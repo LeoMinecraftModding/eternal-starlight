@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "eternal_starlight:block/starlight_mangrove_planks"
+  }
+}

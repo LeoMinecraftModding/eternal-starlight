@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "cn.leolezury.eternalstarlight.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "eternalstarlight.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "ItemInHandRendererMixin"
+  ],
+  "minVersion": "0.8"
+}

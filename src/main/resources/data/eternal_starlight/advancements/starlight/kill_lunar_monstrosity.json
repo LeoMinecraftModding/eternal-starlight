@@ -1,0 +1,39 @@
+{
+  "parent": "eternal_starlight:starlight/kill_starlight_golem",
+  "criteria": {
+    "killed_lunar_monstrosity": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:lunar_monstrosity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.lunar_monstrosity.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:parasol_grass"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.lunar_monstrosity.title"
+    }
+  },
+  "requirements": [
+    [
+      "killed_lunar_monstrosity"
+    ]
+  ]
+}

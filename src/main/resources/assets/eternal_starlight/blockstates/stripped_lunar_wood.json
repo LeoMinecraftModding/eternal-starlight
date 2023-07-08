@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "eternal_starlight:block/stripped_lunar_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "eternal_starlight:block/stripped_lunar_wood"
+    },
+    "axis=z": {
+      "model": "eternal_starlight:block/stripped_lunar_wood",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "eternal_starlight:grimstone_brick_slab",
+    "eternal_starlight:polished_grimstone_slab",
+    "eternal_starlight:voidstone_brick_slab",
+    "eternal_starlight:polished_voidstone_slab",
+    "eternal_starlight:nightshade_mud_brick_slab"
+  ]
+}

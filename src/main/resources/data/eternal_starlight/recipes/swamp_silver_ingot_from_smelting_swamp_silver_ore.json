@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "swamp_silver_ingot",
+  "ingredient": {
+    "item": "eternal_starlight:swamp_silver_ore"
+  },
+  "result": "eternal_starlight:swamp_silver_ingot"
+}

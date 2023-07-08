@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/starlight_mangrove_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/starlight_mangrove_planks"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/starlight_mangrove_slab_top"
+    }
+  }
+}

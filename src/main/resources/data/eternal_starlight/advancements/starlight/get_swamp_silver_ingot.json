@@ -1,0 +1,37 @@
+{
+  "parent": "eternal_starlight:starlight/enter_starlight",
+  "criteria": {
+    "swamp_silver_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:swamp_silver_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.swamp_silver_ingot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.swamp_silver_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "swamp_silver_ingot"
+    ]
+  ]
+}

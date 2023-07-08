@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "eternal_starlight:polished_voidstone"
+  },
+  "result": "eternal_starlight:polished_voidstone_slab"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "eternal_starlight:block/stripped_starlight_mangrove_log",
+    "side": "eternal_starlight:block/stripped_starlight_mangrove_log"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "eternal_starlight:northland_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "eternal_starlight:northland_planks"
+  }
+}

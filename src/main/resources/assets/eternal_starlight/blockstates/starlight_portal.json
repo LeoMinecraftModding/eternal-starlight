@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "eternal_starlight:block/starlight_portal_ns"
+    },
+    "axis=z": {
+      "model": "eternal_starlight:block/starlight_portal_ew"
+    }
+  }
+}

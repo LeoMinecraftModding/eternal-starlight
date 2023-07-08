@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "eternal_starlight:block/nightshade_mud_bricks",
+    "side": "eternal_starlight:block/nightshade_mud_bricks",
+    "top": "eternal_starlight:block/nightshade_mud_bricks"
+  }
+}

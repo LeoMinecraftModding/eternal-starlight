@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "eternal_starlight:mossy_maze",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 12932893237,
+    "spacing": 20,
+    "separation": 6,
+    "type": "minecraft:random_spread"
+  }
+}

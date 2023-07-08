@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "eternal_starlight:block/energy_block"
+    },
+    "lit=true": {
+      "model": "eternal_starlight:block/energy_block_lit"
+    }
+  }
+}

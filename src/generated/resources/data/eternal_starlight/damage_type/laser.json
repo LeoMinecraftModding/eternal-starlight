@@ -1,0 +1,6 @@
+{
+  "effects": "burning",
+  "exhaustion": 0.0,
+  "message_id": "eternal_starlight.laser",
+  "scaling": "when_caused_by_living_non_player"
+}

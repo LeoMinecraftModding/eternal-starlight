@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "eternal_starlight:block/muddy_starlight_mangrove_roots",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "eternal_starlight:block/muddy_starlight_mangrove_roots"
+    },
+    "axis=z": {
+      "model": "eternal_starlight:block/muddy_starlight_mangrove_roots",
+      "x": 90
+    }
+  }
+}

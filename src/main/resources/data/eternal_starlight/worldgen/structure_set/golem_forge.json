@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "eternal_starlight:golem_forge",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 73239823921,
+    "spacing": 20,
+    "separation": 6,
+    "type": "minecraft:random_spread"
+  }
+}

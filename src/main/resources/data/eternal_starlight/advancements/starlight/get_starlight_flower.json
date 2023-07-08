@@ -1,0 +1,37 @@
+{
+  "parent": "eternal_starlight:starlight/enter_starlight",
+  "criteria": {
+    "starlight_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:starlight_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.starlight_flower.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:starlight_flower"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.starlight_flower.title"
+    }
+  },
+  "requirements": [
+    [
+      "starlight_flower"
+    ]
+  ]
+}

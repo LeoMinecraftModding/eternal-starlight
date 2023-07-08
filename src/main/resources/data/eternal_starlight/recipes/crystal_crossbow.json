@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:blue_starlight_crystal_shard"
+    },
+    "*": {
+      "item": "eternal_starlight:red_starlight_crystal_shard"
+    },
+    "$": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "&": {
+      "item": "eternal_starlight:golem_steel_ingot"
+    },
+    "~": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "#&#",
+    "~$~",
+    " * "
+  ],
+  "result": {
+    "item": "eternal_starlight:crystal_crossbow"
+  }
+}

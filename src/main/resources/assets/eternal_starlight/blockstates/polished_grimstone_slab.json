@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/polished_grimstone_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/polished_grimstone"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/polished_grimstone_slab_top"
+    }
+  }
+}

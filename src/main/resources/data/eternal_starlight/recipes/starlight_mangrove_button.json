@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:starlight_mangrove_planks"
+    }
+  ],
+  "result": {
+    "item": "eternal_starlight:starlight_mangrove_button"
+  }
+}

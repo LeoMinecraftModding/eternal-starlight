@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "eternal_starlight:block/starlight_mangrove_planks"
+  }
+}
