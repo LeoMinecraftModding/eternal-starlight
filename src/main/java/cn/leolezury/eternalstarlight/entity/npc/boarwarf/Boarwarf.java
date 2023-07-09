@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.entity.npc.boarwarf;
 
-import cn.leolezury.eternalstarlight.entity.npc.boarwarf.goal.*;
+import cn.leolezury.eternalstarlight.entity.ai.goal.*;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.trade.BoarwarfTrades;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;

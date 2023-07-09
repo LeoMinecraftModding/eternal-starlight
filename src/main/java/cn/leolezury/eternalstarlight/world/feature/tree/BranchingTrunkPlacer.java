@@ -7,10 +7,13 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
@@ -18,12 +21,16 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class BranchingTrunkPlacer extends TrunkPlacer {
-    public static final Codec<BranchingTrunkPlacer> CODEC = RecordCodecBuilder.create((p_70090_) -> {
-        return trunkPlacerParts(p_70090_).apply(p_70090_, BranchingTrunkPlacer::new);
-    });
+    public static final Codec<BranchingTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) -> trunkPlacerParts(instance).and(IntProvider.codec(0, 24).fieldOf("branch_length").forGetter((placer) -> placer.branchLen)).and(IntProvider.codec(0, 10).fieldOf("branch_num").forGetter((placer) -> placer.branchNum)).apply(instance, BranchingTrunkPlacer::new));
 
-    public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB) {
+    private final IntProvider branchLen;
+    private final IntProvider branchNum;
+
+
+    public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, IntProvider branchLen, IntProvider branchNum) {
         super(baseHeight, randomHeightA, randomHeightB);
+        this.branchLen = branchLen;
+        this.branchNum = branchNum;
     }
 
 
@@ -32,63 +39,49 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
     }
 
 
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, RandomSource random, int height, BlockPos startPos, TreeConfiguration treeConfig) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> placer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> leafAttachments = Lists.newArrayList();
 
         for (int y = 0; y <= height; y++) {
-            if (!placeLog(worldReader, worldPlacer, random, startPos.above(y), treeConfig)) {
+            if (!placeLog(reader, placer, random, startPos.above(y), config)) {
                 height = y;
-
                 break;
             }
         }
         leafAttachments.add(new FoliagePlacer.FoliageAttachment(startPos.above(height), 0, false));
 
-        int numBranches = 2 + random.nextInt(2 + 1);
-        float offset = random.nextFloat();
-        for (int b = 0; b < numBranches; b++) {
-            buildBranch(worldReader, worldPlacer, startPos, leafAttachments, height - 6 + b, 6, 0.3 * b + offset, 0.25, random, treeConfig, false);
+        int numBranches = branchNum.sample(random);
+
+        for (int i = 0; i < numBranches; i++) {
+            int len = branchLen.sample(random);
+            placeBranch(reader, placer, startPos, leafAttachments, height - numBranches + i, len, 0.3 * i + random.nextFloat(), 0.25, random, config);
         }
 
         return leafAttachments;
     }
 
-    public static BlockPos translate(BlockPos pos, double distance, double angle, double tilt) {
-        double rangle = angle * 2.0D * Math.PI;
-        double rtilt = tilt * Math.PI;
-
-        return pos.offset(
-                (int) Math.round(Math.sin(rangle) * Math.sin(rtilt) * distance),
-                (int) Math.round(Math.cos(rtilt) * distance),
-                (int) Math.round(Math.cos(rangle) * Math.sin(rtilt) * distance));
+    public static BlockPos rotationToPosition(BlockPos pos, double distance, double angle, double tilt) {
+        double angle1 = angle * 2.0D * Math.PI;
+        double tilt1 = tilt * Math.PI;
+        return pos.offset((int) Math.round(Math.sin(angle1) * Math.sin(tilt1) * distance), (int) Math.round(Math.cos(tilt1) * distance), (int) Math.round(Math.cos(angle1) * Math.sin(tilt1) * distance));
     }
 
-    private void buildBranch(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, BlockPos pos, List<FoliagePlacer.FoliageAttachment> leafBlocks, int height, double length, double angle, double tilt, RandomSource treeRNG, TreeConfiguration treeConfig, boolean perpendicularBranches) {
+    private void placeBranch(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> placer, BlockPos pos, List<FoliagePlacer.FoliageAttachment> leafAttachments, int height, double length, double angle, double roll, RandomSource randomSource, TreeConfiguration config) {
         BlockPos src = pos.above(height);
-        BlockPos dest = translate(src, length, angle, tilt);
+        BlockPos dest = rotationToPosition(src, length, angle, roll);
+        
+        drawBresenhamBranch(reader, placer, randomSource, src, dest, config);
 
-        if (perpendicularBranches) {
-            drawBresenhamBranch(worldReader, worldPlacer, treeRNG, src, new BlockPos(dest.getX(), src.getY(), dest.getZ()), treeConfig);
+        placeLog(reader, placer, randomSource, dest.east(), config);
+        placeLog(reader, placer, randomSource, dest.west(), config);
+        placeLog(reader, placer, randomSource, dest.south(), config);
+        placeLog(reader, placer, randomSource, dest.north(), config);
 
-            int max = Math.max(src.getY(), dest.getY());
-
-            for (int i = Math.min(src.getY(), dest.getY()); i < max + 1; i++) {
-                placeLog(worldReader, worldPlacer, treeRNG, new BlockPos(dest.getX(), i, dest.getZ()), treeConfig);
-            }
-        } else {
-            drawBresenhamBranch(worldReader, worldPlacer, treeRNG, src, dest, treeConfig);
-        }
-
-        placeLog(worldReader, worldPlacer, treeRNG, dest.east(), treeConfig);
-        placeLog(worldReader, worldPlacer, treeRNG, dest.west(), treeConfig);
-        placeLog(worldReader, worldPlacer, treeRNG, dest.south(), treeConfig);
-        placeLog(worldReader, worldPlacer, treeRNG, dest.north(), treeConfig);
-
-        leafBlocks.add(new FoliagePlacer.FoliageAttachment(dest, 0, false));
+        leafAttachments.add(new FoliagePlacer.FoliageAttachment(dest, 0, false));
     }
 
-    private void drawBresenhamBranch(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, RandomSource random, BlockPos from, BlockPos to, TreeConfiguration config) {
-        for (BlockPos pixel : new VoxelBresenhamIterator(from, to))
-            placeLog(worldReader, worldPlacer, random, pixel, config);
+    private void drawBresenhamBranch(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> placer, RandomSource random, BlockPos from, BlockPos to, TreeConfiguration config) {
+        for (BlockPos pos : new VoxelBresenhamIterator(from, to))
+            placeLog(reader, placer, random, pos, config);
     }
 }

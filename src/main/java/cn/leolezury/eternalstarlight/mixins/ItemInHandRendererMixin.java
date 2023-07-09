@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemInHandRenderer.class)
-public class ItemInHandRendererMixin {
+public abstract class ItemInHandRendererMixin {
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
     private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {

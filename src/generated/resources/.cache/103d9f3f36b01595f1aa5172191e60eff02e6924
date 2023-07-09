@@ -1,4 +1,4 @@
-// 1.20.1	2023-06-25T15:26:49.4146938	Registries
+// 1.20.1	2023-07-09T21:02:40.7949518	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
 9d42623689b3d76c6fb9d8fd67cd9631def1e785 data/eternal_starlight/damage_type/ground_shake.json
@@ -12,7 +12,7 @@ e5a59f4c19757f7f6229d40dd2240097feaeb289 data/eternal_starlight/worldgen/configu
 358f076796ae99d601cfe9815bdf443c10c762f0 data/eternal_starlight/worldgen/configured_feature/fallen_starlight_mangrove_log.json
 f4ee6cc6f9dd38fac444e4129987eecc6fac72c9 data/eternal_starlight/worldgen/configured_feature/glowing_nightshade_mud_ore.json
 88c09d0b305525f5be57cfbec3a474d7cf5ee608 data/eternal_starlight/worldgen/configured_feature/huge_glowing_mushroom.json
-e8b425bae5f330c84d4b69591faeed976e23f6ba data/eternal_starlight/worldgen/configured_feature/lunar.json
+226c8f33884c61fa3e83aade7693c5cf7aaa5d2f data/eternal_starlight/worldgen/configured_feature/lunar.json
 4585dd61d14b43f2faeece1d934b423bce7b8efc data/eternal_starlight/worldgen/configured_feature/nightshade_dirt_ore.json
 940251a8c9227a84c96535d23e4cdaa10de883d7 data/eternal_starlight/worldgen/configured_feature/northland.json
 579824cdc4dcec01ed932f985e61ffd3b3c303bf data/eternal_starlight/worldgen/configured_feature/sl_dense_forest.json

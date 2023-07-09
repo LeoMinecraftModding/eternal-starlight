@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem;
 
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.entity.npc.boarwarf.goal.AstralGolemRandomStrollNearVillageGoal;
+import cn.leolezury.eternalstarlight.entity.ai.goal.AstralGolemRandomStrollNearVillageGoal;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
 import net.minecraft.core.BlockPos;

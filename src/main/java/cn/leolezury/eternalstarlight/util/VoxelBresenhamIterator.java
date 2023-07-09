@@ -10,9 +10,9 @@ public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterabl
     private final int y_inc;
     private final int z_inc;
     private final int doubleAbsDx;
-    private int i = 0;
     private final int doubleAbsDy;
     private final int doubleAbsDz;
+    private int i = 0;
     private final int length;
     private final BlockPos.MutableBlockPos voxel;
     private final Direction.Axis direction;
@@ -86,7 +86,7 @@ public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterabl
 
     private void primeNext() {
         switch (this.direction) {
-            case X:
+            case X -> {
                 if (this.var_1 > 0) {
                     this.voxel.move(0, this.y_inc, 0);
                     this.var_1 -= this.doubleAbsDx;
@@ -95,12 +95,11 @@ public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterabl
                     this.voxel.move(0, 0, this.z_inc);
                     this.var_2 -= this.doubleAbsDx;
                 }
-
                 this.var_1 += this.doubleAbsDy;
                 this.var_2 += this.doubleAbsDz;
                 this.voxel.move(this.x_inc, 0, 0);
-                break;
-            case Y:
+            }
+            case Y -> {
                 if (this.var_1 > 0) {
                     this.voxel.move(this.x_inc, 0, 0);
                     this.var_1 -= this.doubleAbsDy;
@@ -109,12 +108,11 @@ public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterabl
                     this.voxel.move(0, 0, this.z_inc);
                     this.var_2 -= this.doubleAbsDy;
                 }
-
                 this.var_1 += this.doubleAbsDx;
                 this.var_2 += this.doubleAbsDz;
                 this.voxel.move(0, this.y_inc, 0);
-                break;
-            case Z:
+            }
+            case Z -> {
                 if (this.var_1 > 0) {
                     this.voxel.move(0, this.y_inc, 0);
                     this.var_1 -= this.doubleAbsDz;
@@ -123,11 +121,10 @@ public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterabl
                     this.voxel.move(this.x_inc, 0, 0);
                     this.var_2 -= this.doubleAbsDz;
                 }
-
                 this.var_1 += this.doubleAbsDy;
                 this.var_2 += this.doubleAbsDx;
                 this.voxel.move(0, 0, this.z_inc);
-                break;
+            }
         }
     }
 

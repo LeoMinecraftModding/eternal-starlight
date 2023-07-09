@@ -369,6 +369,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                     if (getAttackTicks() == 1 && target != null) {
                         targetPos = target.position();
                     }
+
                     if (distanceToSqr(targetPos) < 900 && getAttackTicks() >= 60) {
                         float distance = Mth.sqrt((float) distanceToSqr(targetPos));
                         for (double i = 0; i <= Mth.ceil(distance); i += 0.5) {

@@ -14,31 +14,23 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class StarlightCrystalFeature extends Feature<NoneFeatureConfiguration> {
-    public StarlightCrystalFeature(Codec<NoneFeatureConfiguration> p_66003_) {
-        super(p_66003_);
+public class StarlightCrystalFeature extends SLFeature<NoneFeatureConfiguration> {
+    public StarlightCrystalFeature(Codec<NoneFeatureConfiguration> codec) {
+        super(codec);
     }
 
-    protected boolean setBlockIfEmpty(WorldGenLevel p_65791_, BlockPos p_65792_, BlockState p_65793_) {
-        if (p_65791_.isEmptyBlock(p_65792_)) {
-            setBlock(p_65791_, p_65792_, p_65793_);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159882_) {
-        RandomSource randomsource = p_159882_.random();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        RandomSource randomsource = context.random();
         boolean isRed = randomsource.nextBoolean();
         for (int x = -5; x <= 5; x++) {
             for (int z = -5; z <= 5; z++) {
                 if (randomsource.nextBoolean()) {
                     if (Mth.abs(x) <= 2 && Mth.abs(z) <= 2) {
-                        BlockPos blockpos = p_159882_.origin().offset(x, 0, z);
+                        BlockPos blockpos = context.origin().offset(x, 0, z);
 
                         WorldGenLevel worldgenlevel;
                         boolean reachedAir = false;
-                        for(worldgenlevel = p_159882_.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
+                        for(worldgenlevel = context.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
                             if (worldgenlevel.isEmptyBlock(blockpos)) {
                                 reachedAir = true;
                             }
@@ -56,11 +48,11 @@ public class StarlightCrystalFeature extends Feature<NoneFeatureConfiguration> {
                             }
                         }
                     } else {
-                        BlockPos blockpos = p_159882_.origin().offset(x, 0, z);
+                        BlockPos blockpos = context.origin().offset(x, 0, z);
 
                         WorldGenLevel worldgenlevel;
                         boolean reachedAir = false;
-                        for(worldgenlevel = p_159882_.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
+                        for(worldgenlevel = context.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
                             if (worldgenlevel.isEmptyBlock(blockpos)) {
                                 reachedAir = true;
                             }
