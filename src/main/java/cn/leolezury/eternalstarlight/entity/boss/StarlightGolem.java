@@ -123,7 +123,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
         public void tick() {
             if (StarlightGolem.this.getAttackState() == 3 && StarlightGolem.this.getAttackTicks() >= 25) {
                 StarlightGolem.this.getLookControl().setLookAt(StarlightGolem.this.targetPos.x, StarlightGolem.this.targetPos.y, StarlightGolem.this.targetPos.z, 100F, 100F);
-            } else if (StarlightGolem.this.getTarget() != null && StarlightGolem.this.getAttackState() != 1) {
+            } else if (StarlightGolem.this.getTarget() != null && (StarlightGolem.this.getAttackState() != 1 || StarlightGolem.this.getAttackTicks() <= 55)) {
                 StarlightGolem.this.getLookControl().setLookAt(StarlightGolem.this.getTarget(), 100F, 100F);
             }
         }
@@ -136,11 +136,6 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                 .add(Attributes.MAX_HEALTH, 220.0D)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-    }
-
-    @Override
-    public boolean removeWhenFarAway(double p_37894_) {
-        return false;
     }
 
     @Override
@@ -297,7 +292,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                 case 1 -> {
                     if (getAttackTicks() == 60) {
                         playSound(SoundEventInit.STARLIGHT_GOLEM_PREPARE_BEAM.get(), getSoundVolume(), getVoicePitch());
-                        StarlightGolemBeam beam = new StarlightGolemBeam(EntityInit.STARLIGHT_GOLEM_BEAM.get(), level(), this, getX(), getY() + 1, getZ(), 0, 0, 100);
+                        StarlightGolemBeam beam = new StarlightGolemBeam(EntityInit.STARLIGHT_GOLEM_BEAM.get(), level(), this, getX(), getY() + 1, getZ(), (float) ((yHeadRot + 90) * Math.PI / 180.0d), (float) (-getXRot() * Math.PI / 180.0d), 100);
                         beam.setPos(position());
                         level().addFreshEntity(beam);
                     }
@@ -314,9 +309,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                         }
                     }
 
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 201);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 201);
                 }
                 case 2 -> {
                     if (getAttackTicks() % 20 == 0 && target != null) {
@@ -326,9 +319,8 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                         fireColumn.setOwner(this);
                         level().addFreshEntity(fireColumn);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 201);
-                    }
+
+                    setAttackTicks((getAttackTicks() + 1) % 201);
                 }
                 case 3 -> {
                     if (getAttackTicks() == 25 && target != null) {
@@ -375,9 +367,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                         }
                     }
 
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 61);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 61);
                 }
                 case 4 -> {
                     if (getAttackTicks() == 1) {
@@ -387,33 +377,30 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                     if (!canHurt()) {
                         heal(0.1f);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 21);
-                        if (getAttackTicks() == 0) {
-                            setAttackState(5);
-                            setAttackTicks(1);
-                        }
+
+                    setAttackTicks((getAttackTicks() + 1) % 21);
+                    if (getAttackTicks() == 0) {
+                        setAttackState(5);
+                        setAttackTicks(1);
                     }
                 }
                 case 5 -> {
                     if (!canHurt()) {
                         heal(0.1f);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 601);
-                        if (getAttackTicks() == 0) {
-                            setAttackState(6);
-                            setAttackTicks(1);
-                        }
+
+                    setAttackTicks((getAttackTicks() + 1) % 601);
+                    if (getAttackTicks() == 0) {
+                        setAttackState(6);
+                        setAttackTicks(1);
                     }
                 }
                 case 6 -> {
                     if (!canHurt()) {
                         heal(0.1f);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 11);
-                    }
+
+                    setAttackTicks((getAttackTicks() + 1) % 11);
                 }
             }
             if (getAttackTicks() == 0) {

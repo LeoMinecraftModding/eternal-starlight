@@ -54,7 +54,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 
         for (int i = 0; i < numBranches; i++) {
             int len = branchLen.sample(random);
-            placeBranch(reader, placer, startPos, leafAttachments, height - numBranches + i, len, 0.3 * i + random.nextFloat(), 0.25, random, config);
+            placeBranch(reader, placer, startPos, leafAttachments, (int) (height - numBranches * 1.5 + i), len, 0.3 * i + random.nextFloat(), 0.25, random, config);
         }
 
         return leafAttachments;

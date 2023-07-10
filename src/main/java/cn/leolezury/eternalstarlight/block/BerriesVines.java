@@ -25,21 +25,11 @@ public interface BerriesVines {
         if (p_152954_.getValue(BERRIES)) {
             Block.popResource(p_152955_, p_152956_, new ItemStack(ItemInit.LUNAR_BERRIES.get(), 1));
             float f = Mth.randomBetween(p_152955_.random, 0.8F, 1.2F);
-            p_152955_.playSound((Player)null, p_152956_, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
+            p_152955_.playSound(null, p_152956_, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
             p_152955_.setBlock(p_152956_, p_152954_.setValue(BERRIES, Boolean.valueOf(false)), 2);
             return InteractionResult.sidedSuccess(p_152955_.isClientSide);
         } else {
             return InteractionResult.PASS;
         }
-    }
-
-    static boolean hasLunarBerries(BlockState p_152952_) {
-        return p_152952_.hasProperty(BERRIES) && p_152952_.getValue(BERRIES);
-    }
-
-    static ToIntFunction<BlockState> emission(int p_181218_) {
-        return (p_181216_) -> {
-            return p_181216_.getValue(BlockStateProperties.BERRIES) ? p_181218_ : 0;
-        };
     }
 }

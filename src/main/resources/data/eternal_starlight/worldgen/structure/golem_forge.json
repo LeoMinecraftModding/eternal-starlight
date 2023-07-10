@@ -1,10 +1,10 @@
 {
-  "type": "minecraft:jigsaw",
+  "type": "eternal_starlight:large_jigsaw",
 
   "start_pool": "eternal_starlight:golem_forge/start_pool",
   
-  "size": 7,
-  "max_distance_from_center": 100,
+  "size": 20,
+  "max_distance_from_center": 256,
   "biomes": "#eternal_starlight:has_structure/golem_forge",
   "step": "underground_structures",
   "terrain_adaptation": "bury",

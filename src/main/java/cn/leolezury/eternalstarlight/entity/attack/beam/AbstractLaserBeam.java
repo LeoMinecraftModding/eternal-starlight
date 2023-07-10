@@ -94,6 +94,7 @@ public abstract class AbstractLaserBeam extends Entity {
         if (!level().isClientSide) {
             update();
         }
+
         if (caster != null) {
             if (caster instanceof LaserShooter shooter) {
                 if (shooter.shouldLaserFollowHead()) {
@@ -216,7 +217,7 @@ public abstract class AbstractLaserBeam extends Entity {
     }
 
     public float getRotationSpeed() {
-        return 10f;
+        return 2f;
     }
 
     private void calculateEndPos() {
@@ -293,21 +294,18 @@ public abstract class AbstractLaserBeam extends Entity {
     }
 
     public void updateRotations() {
-        if (caster instanceof LaserShooter shooter) {
-            if (shooter.shouldLaserFollowHead()) {
-                this.setYaw((float) ((caster.yHeadRot + 90) * Math.PI / 180.0d));
-                this.setPitch((float) (-caster.getXRot() * Math.PI / 180.0d));
-            } else {
-                shooter.lookAtLaserEnd(new Vec3(endPosX, endPosY, endPosZ));
-                Vec3 wantedPos = shooter.getLaserWantedPos();
+        if (caster instanceof LaserShooter shooter && !shooter.shouldLaserFollowHead()) {
+            shooter.lookAtLaserEnd(new Vec3(endPosX, endPosY, endPosZ));
+            Vec3 wantedPos = shooter.getLaserWantedPos();
 
-                float wantedYaw = MathUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) / 180f * Mth.PI;
-                float wantedPitch = MathUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) / 180f * Mth.PI;
-                float currentYaw = getYaw();
-                float currentPitch = getPitch();
-                setPitch((float) (MathUtil.rotateTowards((float) (currentPitch / Math.PI * 180f), (float) (wantedPitch / Math.PI * 180f), getRotationSpeed()) / 180f * Math.PI));
-                setYaw((float) (MathUtil.rotateTowards((float) (currentYaw / Math.PI * 180f), (float) (wantedYaw / Math.PI * 180f), getRotationSpeed()) / 180f * Math.PI));
-            }
+            float wantedYaw = MathUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) / 180f * Mth.PI;
+            float wantedPitch = MathUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) / 180f * Mth.PI;
+            float currentYaw = getYaw();
+            float currentPitch = getPitch();
+            float f0 = wantedPitch > currentPitch ? 1 : -1;
+            float f1 = wantedYaw > currentYaw ? 1: -1;
+            setPitch((float) (currentPitch + f0 * Math.min(Math.abs(wantedPitch - currentPitch), getRotationSpeed() / 180f * Math.PI)));
+            setPitch((float) (currentYaw + f1 * Math.min(Math.abs(wantedYaw - currentYaw), getRotationSpeed() / 180f * Math.PI)));
         } else {
             this.setYaw((float) ((caster.yHeadRot + 90) * Math.PI / 180.0d));
             this.setPitch((float) (-caster.getXRot() * Math.PI / 180.0d));

@@ -16,10 +16,4 @@ public class MathUtil {
         double d1 = endZ - startZ;
         return !(Math.abs(d1) > (double)1.0E-5F) && !(Math.abs(d0) > (double)1.0E-5F) ? 0 : (float)(Mth.atan2(d1, d0) * (double)(180F / (float)Math.PI));
     }
-
-    public static float rotateTowards(float from, float to, float maxAngle) {
-        float f = Mth.degreesDifference(from, to);
-        float f1 = Mth.clamp(f, -maxAngle, maxAngle);
-        return from + f1;
-    }
 }

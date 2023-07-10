@@ -189,11 +189,6 @@ public class LunarMonstrosity extends AbstractSLBoss {
     }
 
     @Override
-    public boolean removeWhenFarAway(double p_37894_) {
-        return false;
-    }
-
-    @Override
     protected void tickDeath() {
         if (deathTime == 0) {
             stopAllAnimStates();
@@ -213,8 +208,9 @@ public class LunarMonstrosity extends AbstractSLBoss {
         vineAnimationState.stop();
         switchPhaseAnimationState.stop();
         biteAnimationState.stop();
-        appearAnimationState.stop();
+        disappearAnimationState.stop();
         sneakAnimationState.stop();
+        appearAnimationState.stop();
     }
 
     @Override
@@ -251,9 +247,9 @@ public class LunarMonstrosity extends AbstractSLBoss {
     }
 
     @Override
-    public boolean hurt(DamageSource p_21016_, float p_21017_) {
-        if (p_21016_.is(DamageTypes.GENERIC_KILL)) {
-            return super.hurt(p_21016_, p_21017_);
+    public boolean hurt(DamageSource damageSource, float amount) {
+        if (damageSource.is(DamageTypes.GENERIC_KILL)) {
+            return super.hurt(damageSource, amount);
         }
         if (getAttackState() == 6) {
             return false;
@@ -262,17 +258,17 @@ public class LunarMonstrosity extends AbstractSLBoss {
             setPhase(1);
             setAttackState(-1);
             setAttackTicks(1);
-            return super.hurt(p_21016_, p_21017_ / 2f);
+            return super.hurt(damageSource, amount / 2f);
         }
-        if (p_21016_.getEntity() != null && getTarget() != null) {
-            if (getAttackState() == 4 && p_21016_.getEntity().getUUID().equals(getTarget().getUUID()) && p_21017_ >= 6) {
+        if (damageSource.getEntity() != null && getTarget() != null) {
+            if (getAttackState() == 4 && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
                 setAttackState(-2);
             }
         }
         if (isOnFire() || getAttackState() == -2) {
-            return super.hurt(p_21016_, p_21017_);
+            return super.hurt(damageSource, amount);
         } else {
-            return super.hurt(p_21016_, Math.min(1, p_21017_));
+            return super.hurt(damageSource, Math.min(1, amount));
         }
     }
 
@@ -288,8 +284,8 @@ public class LunarMonstrosity extends AbstractSLBoss {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_21047_) {
-        return getAttackState() == 6 ? super.getDimensions(p_21047_).scale(0.1f) : super.getDimensions(p_21047_);
+    public EntityDimensions getDimensions(Pose pose) {
+        return getAttackState() == 6 ? super.getDimensions(pose).scale(0.1f) : super.getDimensions(pose);
     }
 
     private void doBiteDamage(float damage) {
@@ -324,6 +320,9 @@ public class LunarMonstrosity extends AbstractSLBoss {
             if (sneakCoolDown > 0) {
                 sneakCoolDown--;
             }
+            if (tickCount % 10 == 0) {
+                refreshDimensions();
+            }
             if (getAttackState() == 0) {
                 setAttackTicks(0);
                 if (target != null && target.isAlive()) {
@@ -347,9 +346,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
             }
             switch (getAttackState()) {
                 case -2 -> {
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 101);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 101);
                 }
                 case -1 -> {
                     if (getAttackTicks() == 1) {
@@ -361,9 +358,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                     if (getAttackTicks() == 90) {
                         doBiteDamage(40);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 101);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 101);
                 }
                 case 1 -> {
                     if (getAttackTicks() == 1 && target != null) {
@@ -389,9 +384,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                                         .add(targetPos.scale(-1)).scale(0.1));
                     }
 
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 201);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 201);
                 }
                 case 2 -> {
                     if (getAttackTicks() % 10 == 0 && target != null) {
@@ -404,9 +397,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                         level().addFreshEntity(spore);
                     }
 
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 101);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 101);
                 }
                 case 3 -> {
                     if (getAttackTicks() % 15 == 0 && target != null) {
@@ -420,9 +411,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                         }
                     }
 
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 91);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 91);
                 }
                 case 4 -> {
                     if (getAttackTicks() == 0) {
@@ -431,35 +420,25 @@ public class LunarMonstrosity extends AbstractSLBoss {
                     if (getAttackTicks() == 10) {
                         doBiteDamage(20);
                     }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 21);
-                    }
+
+                    setAttackTicks((getAttackTicks() + 1) % 21);
                 }
                 case 5 -> {
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 31);
-                        if (getAttackTicks() == 0) {
-                            setAttackState(6);
-                            setAttackTicks(1);
-                        }
+                    setAttackTicks((getAttackTicks() + 1) % 31);
+                    if (getAttackTicks() == 0) {
+                        setAttackState(6);
+                        setAttackTicks(1);
                     }
                 }
                 case 6 -> {
-                    if (getAttackState() % 10 == 0) {
-                        refreshDimensions();
-                    }
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 301);
-                        if (getAttackTicks() == 0) {
-                            setAttackState(7);
-                            setAttackTicks(1);
-                        }
+                    setAttackTicks((getAttackTicks() + 1) % 301);
+                    if (getAttackTicks() == 0) {
+                        setAttackState(7);
+                        setAttackTicks(1);
                     }
                 }
                 case 7 -> {
-                    if (getAttackState() != 0) {
-                        setAttackTicks((getAttackTicks() + 1) % 31);
-                    }
+                    setAttackTicks((getAttackTicks() + 1) % 31);
                 }
             }
             if (getAttackTicks() == 0) {

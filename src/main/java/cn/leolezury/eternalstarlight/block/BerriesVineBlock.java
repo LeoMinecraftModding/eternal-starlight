@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -21,10 +22,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BerriesVineBlock extends GrowingPlantHeadBlock implements BonemealableBlock, BerriesVines {
-    private static final float CHANCE_OF_BERRIES_ON_GROWTH = 0.11F;
-
-    public BerriesVineBlock(BlockBehaviour.Properties p_152959_) {
-        super(p_152959_, Direction.DOWN, SHAPE, false, 0.1D);
+    public BerriesVineBlock(BlockBehaviour.Properties properties) {
+        super(properties, Direction.DOWN, SHAPE, false, 0.1D);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(BERRIES, Boolean.valueOf(false)));
     }
 
@@ -61,8 +60,9 @@ public class BerriesVineBlock extends GrowingPlantHeadBlock implements Bonemeala
         p_152993_.add(BERRIES);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_152970_, BlockPos p_152971_, BlockState p_152972_, boolean p_152973_) {
-        return !p_152972_.getValue(BERRIES);
+    @Override
+    public boolean isValidBonemealTarget(LevelReader p_255931_, BlockPos p_256046_, BlockState p_256550_, boolean p_256181_) {
+        return !p_256550_.getValue(BERRIES);
     }
 
     public boolean isBonemealSuccess(Level p_220930_, RandomSource p_220931_, BlockPos p_220932_, BlockState p_220933_) {

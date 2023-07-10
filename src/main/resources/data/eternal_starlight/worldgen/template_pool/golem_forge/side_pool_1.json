@@ -5,7 +5,16 @@
     {
       "weight": 5,
       "element": {
-        "location": "eternal_starlight:golem_forge_road",
+        "location": "eternal_starlight:golem_forge/road_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "eternal_starlight:golem_forge/road_2",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

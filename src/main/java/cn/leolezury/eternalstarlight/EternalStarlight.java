@@ -27,6 +27,7 @@ public class EternalStarlight {
         PlacerInit.TRUNK_PLACERS.register(modEventBus);
         PlacerInit.FLOIAGE_PLACERS.register(modEventBus);
         TreeDecoratorInit.TREE_DECORATORS.register(modEventBus);
+        StructureInit.STRUCTURES.register(modEventBus);
 
         POIInit.POIS.register(modEventBus);
 

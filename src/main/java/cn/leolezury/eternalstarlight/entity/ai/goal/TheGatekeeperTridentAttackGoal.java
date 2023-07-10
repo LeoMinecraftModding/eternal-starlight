@@ -6,14 +6,11 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import java.util.EnumSet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.Items;
 
-public class TheGatekeeperBowAttackGoal extends Goal {
+public class TheGatekeeperTridentAttackGoal extends Goal {
     private final TheGatekeeper mob;
     private final double speedModifier;
     private int attackIntervalMin;
@@ -24,24 +21,24 @@ public class TheGatekeeperBowAttackGoal extends Goal {
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public TheGatekeeperBowAttackGoal(TheGatekeeper p_25792_, double p_25793_, int p_25794_, float p_25795_) {
-        this.mob = p_25792_;
-        this.speedModifier = p_25793_;
-        this.attackIntervalMin = p_25794_;
-        this.attackRadiusSqr = p_25795_ * p_25795_;
+    public TheGatekeeperTridentAttackGoal(TheGatekeeper mob, double speedModifier, int attackIntervalMin, float attackRadius) {
+        this.mob = mob;
+        this.speedModifier = speedModifier;
+        this.attackIntervalMin = attackIntervalMin;
+        this.attackRadiusSqr = attackRadius * attackRadius;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
     public boolean canUse() {
-        return this.mob.getTarget() == null ? false : (this.isHoldingBow() && this.mob.performingRemoteAttack && this.mob.isActivated());
+        return this.mob.getTarget() != null && this.isHoldingTrident() && this.mob.performingRemoteAttack && this.mob.isActivated();
     }
 
-    protected boolean isHoldingBow() {
-        return this.mob.isHolding(is -> is.getItem() instanceof BowItem);
+    protected boolean isHoldingTrident() {
+        return this.mob.getMainHandItem().is(Items.TRIDENT);
     }
 
     public boolean canContinueToUse() {
-        return (this.canUse() || !this.mob.getNavigation().isDone()) && this.isHoldingBow() && this.mob.performingRemoteAttack && this.mob.isActivated();
+        return (this.canUse() || !this.mob.getNavigation().isDone()) && this.isHoldingTrident() && this.mob.performingRemoteAttack && this.mob.isActivated();
     }
 
     public void start() {
@@ -54,9 +51,7 @@ public class TheGatekeeperBowAttackGoal extends Goal {
         this.mob.setAggressive(false);
         this.seeTime = 0;
         this.attackTime = -1;
-        if (this.mob.getUseItem().getItem() instanceof BowItem) {
-            this.mob.stopUsingItem();
-        }
+        this.mob.setAttackState(0);
     }
 
     public boolean requiresUpdateEveryTick() {
@@ -108,9 +103,8 @@ public class TheGatekeeperBowAttackGoal extends Goal {
 
                 this.mob.getMoveControl().strafe(this.strafingBackwards ? -0.5F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
                 Entity entity = this.mob.getControlledVehicle();
-                if (entity instanceof Mob) {
-                    Mob mob = (Mob)entity;
-                    mob.lookAt(livingentity, 30.0F, 30.0F);
+                if (entity instanceof Mob mob0) {
+                    mob0.lookAt(livingentity, 30.0F, 30.0F);
                 }
 
                 this.mob.lookAt(livingentity, 30.0F, 30.0F);
@@ -118,21 +112,9 @@ public class TheGatekeeperBowAttackGoal extends Goal {
                 this.mob.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
             }
 
-            if (this.mob.isUsingItem()) {
-                if (!this.mob.isBlocking() && !this.mob.isGatekeeperBlocking()) {
-                    if (!flag && this.seeTime < -60) {
-                        this.mob.stopUsingItem();
-                    } else if (flag) {
-                        int i = this.mob.getTicksUsingItem();
-                        if (i >= 20) {
-                            this.mob.stopUsingItem();
-                            this.mob.performRangedAttack(livingentity, BowItem.getPowerForTime(i));
-                            this.attackTime = this.attackIntervalMin;
-                        }
-                    }
-                }
-            } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof BowItem));
+            if (--this.attackTime <= 0 && this.seeTime >= -60 && this.mob.getAttackState() == 0) {
+                this.mob.setAttackState(2);
+                this.attackTime = this.attackIntervalMin + 20;
             }
 
         }

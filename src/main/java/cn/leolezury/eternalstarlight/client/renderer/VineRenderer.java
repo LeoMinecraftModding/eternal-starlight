@@ -24,17 +24,17 @@ public class VineRenderer extends EntityRenderer<Vine> {
     }
 
     @Override
-    public void render(Vine p_114485_, float p_114486_, float p_114487_, PoseStack p_114488_, MultiBufferSource p_114489_, int p_114490_) {
-        p_114488_.pushPose();
-        float scale = p_114485_.getSpawnedTicks() <= 40 ? p_114485_.getSpawnedTicks() / 40f : 1;
-        if (p_114485_.getSpawnedTicks() >= 160) {
-            scale = (200 - p_114485_.getSpawnedTicks()) / 40f;
+    public void render(Vine entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+        stack.pushPose();
+        float scale = entity.getSpawnedTicks() <= 40 ? entity.getSpawnedTicks() / 40f : 1;
+        if (entity.getSpawnedTicks() >= 160) {
+            scale = (200 - entity.getSpawnedTicks()) / 40f;
         }
-        p_114488_.scale(scale, scale, scale);
-        VertexConsumer vertexconsumer = p_114489_.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-        this.model.renderToBuffer(p_114488_, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        p_114488_.popPose();
-        super.render(p_114485_, p_114486_, p_114487_, p_114488_, p_114489_, p_114490_);
+        stack.scale(scale, scale, scale);
+        VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
+        this.model.renderToBuffer(stack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        stack.popPose();
+        super.render(entity, f1, f2, stack, bufferSource, packedLight);
     }
 
     @Override

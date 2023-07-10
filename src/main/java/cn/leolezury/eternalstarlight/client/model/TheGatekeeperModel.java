@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.client.model.animation.TheGatekeeperAnimati
 import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.Optional;
@@ -30,6 +32,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends HumanoidModel<T
 
     private final ModelPart root;
     private final boolean slim;
+    private boolean tridentAttack = false;
     private static final Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
     
     public TheGatekeeperModel(ModelPart root, boolean slim) {
@@ -84,14 +87,13 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends HumanoidModel<T
 
     protected void animate(AnimationState state, AnimationDefinition definition, float speed, float f) {
         state.updateTime(speed, f);
-        state.ifStarted((animState) -> {
-            GatekeeperKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE);
-        });
+        state.ifStarted((animState) -> GatekeeperKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
     }
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         root.getAllParts().forEach(ModelPart::resetPose);
+        tridentAttack = false;
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         if (entity.getAttackTicks() >= 0 && entity.getAttackState() != 0 && entity.deathTime <= 0) {
             int state = entity.getAttackState();
@@ -103,12 +105,16 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends HumanoidModel<T
                     animate(entity.meleeAttackAnimationState, TheGatekeeperAnimation.MELEE, ageInTicks);
                 }
                 case 2 -> {
-                    animate(entity.jumpAnimationState, TheGatekeeperAnimation.JUMP, ageInTicks);
+                    tridentAttack = true;
+                    animate(entity.throwTridentAnimationState, TheGatekeeperAnimation.THROW_TRIDENT, ageInTicks);
                 }
                 case 3 -> {
-                    animate(entity.inAirAnimationState, TheGatekeeperAnimation.IN_AIR, ageInTicks);
+                    animate(entity.jumpAnimationState, TheGatekeeperAnimation.JUMP, ageInTicks);
                 }
                 case 4 -> {
+                    animate(entity.inAirAnimationState, TheGatekeeperAnimation.IN_AIR, ageInTicks);
+                }
+                case 5 -> {
                     animate(entity.landAnimationState, TheGatekeeperAnimation.LAND, ageInTicks);
                 }
             }
@@ -119,20 +125,14 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends HumanoidModel<T
     public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick) {
         super.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
         this.leftArmPose = ArmPose.EMPTY;
-        this.rightArmPose = ArmPose.EMPTY;
-        if (entity.getAttackState() == 0) {
-            if (entity.isGatekeeperBlocking()) {
-                this.leftArmPose = ArmPose.BLOCK;
-            } else if (entity.isUsingItem()) {
-                this.rightArmPose = ArmPose.BOW_AND_ARROW;
-            }
+        if (entity.getAttackState() == -2) {
+            this.leftArmPose = ArmPose.BLOCK;
         }
     }
 
     public void renderHeadToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.headParts().forEach((modelPart) -> modelPart.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha));
     }
-
 
     public void translateToHand(HumanoidArm arm, PoseStack stack) {
         ModelPart modelpart = this.getArm(arm);
@@ -143,6 +143,9 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends HumanoidModel<T
             modelpart.x -= f;
         } else {
             modelpart.translateAndRotate(stack);
+        }
+        if (tridentAttack && arm == HumanoidArm.RIGHT) {
+            stack.mulPose(Axis.YP.rotationDegrees(180.0F));
         }
     }
 }

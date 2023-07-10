@@ -101,6 +101,11 @@ public abstract class AbstractSLBoss extends Monster {
     }
 
     @Override
+    public boolean removeWhenFarAway(double dist) {
+        return false;
+    }
+
+    @Override
     public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
         if (!effectInstance.getEffect().isBeneficial()) {
             return false;

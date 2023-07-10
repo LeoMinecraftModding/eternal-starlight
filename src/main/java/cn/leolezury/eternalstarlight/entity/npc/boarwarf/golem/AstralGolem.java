@@ -174,8 +174,6 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
                 this.playSound(SoundEventInit.ASTRAL_GOLEM_REPAIR.get(), 1.0F, f1);
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
-                }
-                if (!player.getAbilities().instabuild) {
                     Boarwarf.setBoarwarfCredit(player, Boarwarf.getBoarwarfCredit(player) + 10);
                 }
                 return InteractionResult.sidedSuccess(this.level().isClientSide);

@@ -3,8 +3,11 @@ package cn.leolezury.eternalstarlight.client.renderer;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.client.model.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.client.renderer.layer.TheGatekeeperHeadLayer;
+import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
@@ -31,8 +34,13 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
     }
 
     @Override
-    public ResourceLocation getTextureLocation(T entity) {
+    public void render(T entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         model = entity.isSlim() ? slimModel : normalModel;
+        super.render(entity, f1, f2, stack, bufferSource, packedLight);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(T entity) {
         return entity.isSlim() ? SLIM_ENTITY_TEXTURE : ENTITY_TEXTURE;
     }
 }
