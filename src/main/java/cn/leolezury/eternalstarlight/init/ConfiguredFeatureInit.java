@@ -79,6 +79,9 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LAKE_KEY = registerKey("swamp_lake");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE_KEY = registerKey("swamp_silver_ore");
 
+    //structure features
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT_KEY = registerKey("cursed_garden_extra_height");
+
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<Block> blockHolderGetter = context.lookup(Registries.BLOCK);
         HolderGetter<PlacedFeature> placedFeatureHolderGetter = context.lookup(Registries.PLACED_FEATURE);
@@ -116,6 +119,9 @@ public class ConfiguredFeatureInit {
         register(context, SL_GRASS_KEY, Feature.FLOWER, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_REED.get().defaultBlockState(), 2)), 64));
         register(context, SWAMP_LAKE_KEY, Feature.LAKE, new LakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), BlockStateProvider.simple(BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())));
         register(context, SWAMP_SILVER_ORE_KEY, Feature.ORE, new OreConfiguration(MUD_SWAMP_SILVER_ORES.get(), 7));
+
+        //structure features
+        register(context, CURSED_GARDEN_EXTRA_HEIGHT_KEY, FeatureInit.CURSED_GARDEN_EXTRA_HEIGHT.get(), new NoneFeatureConfiguration());
     }
 
 

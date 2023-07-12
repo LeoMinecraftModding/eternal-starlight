@@ -28,7 +28,7 @@ public class ItemInit {
     public static final RegistryObject<Item> RED_STARLIGHT_CRYSTAL_SHARD = ITEMS.register("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_STARLIGHT_CRYSTAL_SHARD = ITEMS.register("blue_starlight_crystal_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRYSTAL_CROSSBOW = ITEMS.register("crystal_crossbow", () -> new CrystalCrossbowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
-    public static final RegistryObject<Item> LUNAR_MONSTROSITY_BOW = ITEMS.register("lunar_monstrosity_bow", () -> new LunarMonstrosityBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
+    public static final RegistryObject<Item> MOONRING_BOW = ITEMS.register("moonring_bow", () -> new MoonRingBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
     public static final RegistryObject<Item> LUNAR_BERRIES = ITEMS.register("lunar_berries", () -> new ItemNameBlockItem(BlockInit.BERRIES_VINES.get(), (new Item.Properties()).food((new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).build())));
 
     //lunar wood
@@ -173,9 +173,9 @@ public class ItemInit {
     public static final RegistryObject<Item> SWAMP_SILVER_BOOTS = ITEMS.register("swamp_silver_boots",
             () -> new SwampSilverArmorItem(SLArmorMaterials.SWAMP_SILVER, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> GOLEM_STEEL_INGOT = ITEMS.register("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item> OXIDIZED_GOLEM_STEEL = ITEMS.register("oxidized_golem_steel", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> OXIDIZED_GOLEM_STEEL_INGOT = ITEMS.register("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TENACIOUS_PETAL = ITEMS.register("tenacious_petal", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item> PETAL_GREATSWORD = ITEMS.register("petal_greatsword", () -> new GreatswordItem(SLItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item> MOONRING_GREATSWORD = ITEMS.register("moonring_greatsword", () -> new GreatswordItem(SLItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> PETAL_SCYTHE = ITEMS.register("petal_scythe", () -> new ScytheItem(SLItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = ITEMS.register("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 }

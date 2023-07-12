@@ -1,0 +1,14 @@
+{
+  "name": "eternal_starlight:cursed_garden/side_pool_2",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:feature_pool_element",
+        "projection": "rigid",
+        "feature": "eternal_starlight:cursed_garden_extra_height"
+      }
+    }
+  ]
+}

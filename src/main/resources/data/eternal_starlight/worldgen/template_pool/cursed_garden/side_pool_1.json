@@ -1,12 +1,12 @@
 {
-  "name": "eternal_starlight:mossy_maze/side_pool_1",
+  "name": "eternal_starlight:cursed_garden/side_pool_1",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 5,
       "element": {
-        "location": "eternal_starlight:mossy_maze_road_1",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/road_1",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -14,8 +14,17 @@
     {
       "weight": 5,
       "element": {
-        "location": "eternal_starlight:mossy_maze_road_2",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/road_2",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "eternal_starlight:cursed_garden/road_3",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -23,8 +32,8 @@
     {
       "weight": 4,
       "element": {
-        "location": "eternal_starlight:mossy_maze_room_1",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/room_1",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -32,8 +41,8 @@
     {
       "weight": 4,
       "element": {
-        "location": "eternal_starlight:mossy_maze_room_2",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/room_2",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -41,8 +50,8 @@
     {
       "weight": 2,
       "element": {
-        "location": "eternal_starlight:mossy_maze_chest_room_1",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/plants_room",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

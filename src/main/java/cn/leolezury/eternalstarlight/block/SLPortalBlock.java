@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.init.DimensionInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import cn.leolezury.eternalstarlight.util.SLTeleporter;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;

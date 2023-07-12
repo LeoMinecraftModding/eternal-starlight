@@ -1,14 +1,13 @@
 package cn.leolezury.eternalstarlight.entity.ai.goal;
 
 import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import java.util.EnumSet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.BowItem;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.item.Items;
+
+import java.util.EnumSet;
 
 public class TheGatekeeperTridentAttackGoal extends Goal {
     private final TheGatekeeper mob;

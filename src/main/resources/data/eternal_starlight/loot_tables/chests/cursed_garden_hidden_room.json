@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 5,
+        "max": 8
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "eternal_starlight:tenacious_petal"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "eternal_starlight:swamp_silver_nugget",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

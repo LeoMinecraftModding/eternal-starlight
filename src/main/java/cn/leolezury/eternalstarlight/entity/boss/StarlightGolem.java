@@ -335,7 +335,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                         List<BlockPos> blockList = new ArrayList<>();
                         CameraShake.cameraShake(level(), position(), 45, 0.02f, 40, 20);
                         float distance = Mth.sqrt((float) distanceToSqr(targetPos));
-                        for (int i = 0; i <= Mth.ceil(distance); i += 2) {
+                        for (int i = 0; i <= Mth.ceil(distance); i += 4) {
                             AABB aabb = new AABB(getX() - 1.5, getY() - 1.5, getZ() - 1.5, getX() + 1.5, getY() + 1.5, getZ() + 1.5).move(targetPos.add(position().add(0, 1, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof StarlightGolem)) {

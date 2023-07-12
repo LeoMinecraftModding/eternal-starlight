@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:oxidized_golem_steel",
+          "name": "eternal_starlight:oxidized_golem_steel_ingot",
           "functions": [
             {
               "function": "minecraft:set_count",

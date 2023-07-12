@@ -1,12 +1,9 @@
 package cn.leolezury.eternalstarlight.item.weapon;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -23,7 +20,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ForgeMod;
@@ -31,7 +27,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;

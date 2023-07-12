@@ -18,7 +18,6 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.Optional;

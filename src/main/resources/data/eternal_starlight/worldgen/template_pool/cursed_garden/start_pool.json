@@ -1,12 +1,12 @@
 {
-  "name": "eternal_starlight:mossy_maze/start_pool",
+  "name": "eternal_starlight:cursed_garden/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "eternal_starlight:mossy_maze_core",
-        "processors": "eternal_starlight:mossy_maze",
+        "location": "eternal_starlight:cursed_garden/core",
+        "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.client.renderer;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.client.model.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.client.renderer.layer.TheGatekeeperHeadLayer;
-import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidArmorModel;

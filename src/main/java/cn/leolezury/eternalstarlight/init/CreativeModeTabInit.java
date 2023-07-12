@@ -10,8 +10,6 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.List;
-
 public class CreativeModeTabInit {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EternalStarlight.MOD_ID);
 
@@ -148,7 +146,7 @@ public class CreativeModeTabInit {
     public static final RegistryObject<CreativeModeTab> COMBAT = TABS.register("combat", () -> CreativeModeTab.builder()
             .withTabsBefore(FUNCTIONAL_BLOCKS.getKey())
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".combat"))
-            .icon(() -> new ItemStack(ItemInit.PETAL_GREATSWORD.get()))
+            .icon(() -> new ItemStack(ItemInit.MOONRING_GREATSWORD.get()))
             .displayItems((parameters, output) -> {
                 output.accept(ItemInit.SWAMP_SILVER_HELMET.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_CHESTPLATE.get().getDefaultInstance());
@@ -156,10 +154,10 @@ public class CreativeModeTabInit {
                 output.accept(ItemInit.SWAMP_SILVER_BOOTS.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_SCYTHE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_SWORD.get().getDefaultInstance());
-                output.accept(ItemInit.PETAL_GREATSWORD.get().getDefaultInstance());
+                output.accept(ItemInit.MOONRING_GREATSWORD.get().getDefaultInstance());
                 output.accept(ItemInit.PETAL_SCYTHE.get().getDefaultInstance());
                 output.accept(ItemInit.CRYSTAL_CROSSBOW.get().getDefaultInstance());
-                output.accept(ItemInit.LUNAR_MONSTROSITY_BOW.get().getDefaultInstance());
+                output.accept(ItemInit.MOONRING_BOW.get().getDefaultInstance());
             }).build());
 
     public static final RegistryObject<CreativeModeTab> TOOLS = TABS.register("tools", () -> CreativeModeTab.builder()
@@ -185,8 +183,11 @@ public class CreativeModeTabInit {
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".ingredients"))
             .icon(() -> new ItemStack(ItemInit.TENACIOUS_PETAL.get()))
             .displayItems((parameters, output) -> {
+                output.accept(ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get().getDefaultInstance());
+                output.accept(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_ORE.get().getDefaultInstance());
                 output.accept(ItemInit.TENACIOUS_PETAL.get().getDefaultInstance());
+                output.accept(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get().getDefaultInstance());
                 output.accept(ItemInit.GOLEM_STEEL_INGOT.get().getDefaultInstance());
                 output.accept(ItemInit.STARLIGHT_FLOWER.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_INGOT.get().getDefaultInstance());

@@ -37,7 +37,7 @@ public class SeekingEyeItem extends Item {
                 structureTagKey = SLTags.Structures.GOLEM_FORGE;
             }
             if (player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.RED_CRYSTAL_MOSS_CARPET.get()) || player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.BLUE_CRYSTAL_MOSS_CARPET.get())) {
-                structureTagKey = SLTags.Structures.MOSSY_MAZE;
+                structureTagKey = SLTags.Structures.CURSED_GARDEN;
             }
             // else if
             BlockPos blockPos = serverLevel.findNearestMapStructure(structureTagKey, player.blockPosition(), 100, false);

@@ -45,6 +45,9 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> SWAMP_LAKE_KEY = createKey("swamp_lake");
     public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE_KEY = createKey("swamp_silver_ore");
 
+    //structure features
+    public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT_KEY = createKey("cursed_garden_extra_height");
+
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         //register(context, , configuredFeatures.getOrThrow(ConfiguredFeatureInit.), );
@@ -75,6 +78,9 @@ public class PlacedFeatureInit {
         register(context, SL_GRASS_KEY, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_GRASS_KEY), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, SWAMP_LAKE_KEY, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_LAKE_KEY), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
         register(context, SWAMP_SILVER_ORE_KEY, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_SILVER_ORE_KEY), commonOrePlacement(30, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+
+        //structure features
+        register(context, CURSED_GARDEN_EXTRA_HEIGHT_KEY, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CURSED_GARDEN_EXTRA_HEIGHT_KEY)); //no placement modifier
     }
 
 

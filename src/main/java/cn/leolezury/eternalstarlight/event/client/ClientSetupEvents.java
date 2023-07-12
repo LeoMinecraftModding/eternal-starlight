@@ -53,14 +53,14 @@ public class ClientSetupEvents {
         ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pulling"), (p_174615_, p_174616_, p_174617_, p_174618_) -> p_174617_ != null && p_174617_.isUsingItem() && p_174617_.getUseItem() == p_174615_ && !CrystalCrossbowItem.isCharged(p_174615_) ? 1.0F : 0.0F);
         ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("charged"), (p_174610_, p_174611_, p_174612_, p_174613_) -> p_174612_ != null && CrystalCrossbowItem.isCharged(p_174610_) ? 1.0F : 0.0F);
         ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("firework"), (p_174605_, p_174606_, p_174607_, p_174608_) -> p_174607_ != null && CrystalCrossbowItem.isCharged(p_174605_) && CrystalCrossbowItem.containsChargedProjectile(p_174605_, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
-        ItemProperties.register(ItemInit.LUNAR_MONSTROSITY_BOW.get(), new ResourceLocation("pull"), (p_174635_, p_174636_, p_174637_, p_174638_) -> {
+        ItemProperties.register(ItemInit.MOONRING_BOW.get(), new ResourceLocation("pull"), (p_174635_, p_174636_, p_174637_, p_174638_) -> {
             if (p_174637_ == null) {
                 return 0.0F;
             } else {
                 return p_174637_.getUseItem() != p_174635_ ? 0.0F : (float)(p_174635_.getUseDuration() - p_174637_.getUseItemRemainingTicks()) / 20.0F;
             }
         });
-        ItemProperties.register(ItemInit.LUNAR_MONSTROSITY_BOW.get(), new ResourceLocation("pulling"), (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.MOONRING_BOW.get(), new ResourceLocation("pulling"), (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

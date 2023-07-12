@@ -17,6 +17,15 @@ public abstract class SLFeature<FC extends FeatureConfiguration> extends Feature
         super(codec);
     }
 
+    protected boolean isValidBlock(BlockState state, List<TagKey<Block>> tags) {
+        for (TagKey<Block> tag : tags) {
+            if (state.is(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state) {
         if (level.isEmptyBlock(pos)) {
             setBlock(level, pos, state);
@@ -25,11 +34,10 @@ public abstract class SLFeature<FC extends FeatureConfiguration> extends Feature
         return false;
     }
 
-    private boolean isValidBlock(BlockState state, List<TagKey<Block>> tags) {
-        for (TagKey<Block> tag : tags) {
-            if (state.is(tag)) {
-                return true;
-            }
+    protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state, List<TagKey<Block>> ignored) {
+        if (level.isEmptyBlock(pos) || isValidBlock(level.getBlockState(pos), ignored)) {
+            setBlock(level, pos, state);
+            return true;
         }
         return false;
     }

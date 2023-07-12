@@ -30,13 +30,9 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.entity.projectile.ThrownTrident;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -245,37 +241,6 @@ public class TheGatekeeper extends AbstractSLBoss {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (getTarget() instanceof ServerPlayer serverPlayer) {
-            serverPlayer.sendSystemMessage(Component.literal("<!>").append(isDamageSourceBlocked(source) ? "Blocked, dude! " : "Not blocked :( ").append(isBlocking() ? "isBlocking true AS:" : "isBlocking false AS:").append(String.valueOf(getAttackState())).append(performingRemoteAttack ? " Type: remote" : " Type: melee"));
-        }
-        return super.hurt(source, amount);
-    }
-
-    public void debugStartUsingItem(InteractionHand p_21159_, ServerPlayer player) {
-        ItemStack itemstack = this.getItemInHand(p_21159_);
-        if (!itemstack.isEmpty() && !this.isUsingItem()) {
-            int duration = net.minecraftforge.event.ForgeEventFactory.onItemUseStart(this, itemstack, itemstack.getUseDuration());
-            if (duration <= 0) {
-                player.sendSystemMessage(Component.literal("Forge event returned duration less than zero"));
-                return;
-            }
-            this.useItem = itemstack;
-            this.useItemRemaining = duration;
-            if (!this.level().isClientSide) {
-                this.setLivingEntityFlag(1, true);
-                this.setLivingEntityFlag(2, p_21159_ == InteractionHand.OFF_HAND);
-                this.gameEvent(GameEvent.ITEM_INTERACT_START);
-                player.sendSystemMessage(Component.literal("ok...").append(performingRemoteAttack ? "remote" : "melee"));
-            }
-        } else if (itemstack.isEmpty()) {
-            player.sendSystemMessage(Component.literal("ItemStack Empty"));
-        } else if (this.isUsingItem()) {
-            player.sendSystemMessage(Component.literal("Already Using: ").append(getUseItem().getDisplayName()));
-        }
-    }
-
-    @Override
     public boolean isBlocking() {
         return this.isUsingItem() && getUsedItemHand() == InteractionHand.OFF_HAND && getAttackState() == -2;
     }
@@ -325,17 +290,10 @@ public class TheGatekeeper extends AbstractSLBoss {
                 jumpCoolDown--;
             }
             if (getAttackState() == -2 && !isBlocking()) {
-                if (getTarget() instanceof ServerPlayer serverPlayer) {
-                    debugStartUsingItem(InteractionHand.OFF_HAND, serverPlayer);
-                    //serverPlayer.sendSystemMessage(Component.literal("<X> as: -2, trying to block... Type:").append(performingRemoteAttack ? "remote" : "melee"));
-                }
+                startUsingItem(InteractionHand.OFF_HAND);
             }
             if (getAttackState() != -2 && isBlocking()) {
                 stopUsingItem();
-                if (getTarget() instanceof ServerPlayer serverPlayer) {
-                    debugStartUsingItem(InteractionHand.OFF_HAND, serverPlayer);
-                    //serverPlayer.sendSystemMessage(Component.literal("<X> as NOT -2, trying to CANCEL block... Type:").append(performingRemoteAttack ? "remote" : "melee"));
-                }
             }
 
             if (isActivated()) {

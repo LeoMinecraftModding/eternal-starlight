@@ -18,13 +18,13 @@ public abstract class ItemInHandRendererMixin {
     private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
         ItemStack itemStack = player.getMainHandItem();
         ItemStack itemStack1 = player.getOffhandItem();
-        boolean flag = itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack.is(ItemInit.LUNAR_MONSTROSITY_BOW.get());
-        boolean flag1 = itemStack1.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack1.is(ItemInit.LUNAR_MONSTROSITY_BOW.get());
+        boolean flag = itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack.is(ItemInit.MOONRING_BOW.get());
+        boolean flag1 = itemStack1.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack1.is(ItemInit.MOONRING_BOW.get());
         if (flag || flag1) {
             if (player.isUsingItem()) {
                 ItemStack itemStack2 = player.getUseItem();
                 InteractionHand interactionhand = player.getUsedItemHand();
-                if (itemStack2.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack2.is(ItemInit.LUNAR_MONSTROSITY_BOW.get())) {
+                if (itemStack2.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack2.is(ItemInit.MOONRING_BOW.get())) {
                     cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(interactionhand));
                 }
             } else {

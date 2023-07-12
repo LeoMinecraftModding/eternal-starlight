@@ -151,11 +151,11 @@
   "item.eternal_starlight.red_starlight_crystal_shard": "Red Starlight Crystal Shard",
   "item.eternal_starlight.blue_starlight_crystal_shard": "Blue Starlight Crystal Shard",
   "item.eternal_starlight.golem_steel_ingot": "Golem Steel Ingot",
-  "item.eternal_starlight.oxidized_golem_steel": "Oxidized Golem Steel",
+  "item.eternal_starlight.oxidized_golem_steel_ingot": "Oxidized Golem Steel Ingot",
   "item.eternal_starlight.tenacious_petal": "Tenacious Petal",
   "item.eternal_starlight.crystal_crossbow": "Crystal Crossbow",
-  "item.eternal_starlight.lunar_monstrosity_bow": "Lunar Monstrosity Bow",
-  "item.eternal_starlight.petal_greatsword": "Petal Greatsword",
+  "item.eternal_starlight.moonring_bow": "Moonring Bow",
+  "item.eternal_starlight.moonring_greatsword": "Moonring Greatsword",
   "item.eternal_starlight.petal_scythe": "Petal Scythe",
 
   "enchantment.eternal_starlight.poisoning": "Poisoning",
@@ -229,7 +229,7 @@
   "advancements.eternal_starlight.golem_steel_ingot.title": "Redox Reactions",
   "advancements.eternal_starlight.golem_steel_ingot.description": "Getting golem steel ingot",
   "advancements.eternal_starlight.lunar_monstrosity.title": "Through the Thorns",
-  "advancements.eternal_starlight.lunar_monstrosity.description": "Find the Mossy Maze with crystal moss carpets and seeking eye, and defeat the giant Lunar Monstrosity",
+  "advancements.eternal_starlight.lunar_monstrosity.description": "Find the Cursed Garden with crystal moss carpets and seeking eye, and defeat the giant Lunar Monstrosity",
 
   "death.attack.eternal_starlight.laser": "%1$s was shot through by a laser",
   "death.attack.eternal_starlight.laser.player": "%1$s was shot through by a laser while escaping %2$s",

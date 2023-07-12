@@ -21,7 +21,7 @@ public class SLTags {
         }
         public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
         public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
-        public static final TagKey<Structure> MOSSY_MAZE = create("mossy_maze");
+        public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
     }
     public static class Biomes {
         public static final TagKey<Biome> STARLIGHT_FOREST_VARIANT = TagKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, "starlight_forest_variant"));

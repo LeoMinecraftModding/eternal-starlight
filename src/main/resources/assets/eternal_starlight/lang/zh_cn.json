@@ -151,11 +151,11 @@
   "item.eternal_starlight.red_starlight_crystal_shard": "红色星辉水晶碎片",
   "item.eternal_starlight.blue_starlight_crystal_shard": "蓝色星辉水晶碎片",
   "item.eternal_starlight.golem_steel_ingot": "傀儡钢锭",
-  "item.eternal_starlight.oxidized_golem_steel": "氧化傀儡钢",
+  "item.eternal_starlight.oxidized_golem_steel_ingot": "氧化傀儡钢锭",
   "item.eternal_starlight.tenacious_petal": "坚韧花瓣",
   "item.eternal_starlight.crystal_crossbow": "水晶弩",
-  "item.eternal_starlight.lunar_monstrosity_bow": "月藤巨物之弓",
-  "item.eternal_starlight.petal_greatsword": "花瓣巨剑",
+  "item.eternal_starlight.moonring_bow": "月珥之弓",
+  "item.eternal_starlight.moonring_greatsword": "月珥巨剑",
   "item.eternal_starlight.petal_scythe": "花瓣之镰",
 
   "enchantment.eternal_starlight.poisoning": "浸毒",
@@ -229,7 +229,7 @@
   "advancements.eternal_starlight.golem_steel_ingot.title": "氧化还原反应",
   "advancements.eternal_starlight.golem_steel_ingot.description": "获得傀儡钢锭",
   "advancements.eternal_starlight.lunar_monstrosity.title": "披荆斩棘",
-  "advancements.eternal_starlight.lunar_monstrosity.description": "使用晶藓地毯和寻觅之眼找到苔藓迷宫并击败月藤巨物",
+  "advancements.eternal_starlight.lunar_monstrosity.description": "使用晶藓地毯和寻觅之眼找到诅咒花园并击败月藤巨物",
 
   "death.attack.eternal_starlight.laser": "%1$s被一道激光射穿了",
   "death.attack.eternal_starlight.laser.player": "%1$s在逃离%2$s时被一道激光射穿了",

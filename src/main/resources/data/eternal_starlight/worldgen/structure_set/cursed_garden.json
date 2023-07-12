@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "eternal_starlight:mossy_maze",
+      "structure": "eternal_starlight:cursed_garden",
       "weight": 1
     }
   ],
   "placement": {
     "salt": 12932893237,
-    "spacing": 20,
-    "separation": 6,
+    "spacing": 24,
+    "separation": 20,
     "type": "minecraft:random_spread"
   }
 }

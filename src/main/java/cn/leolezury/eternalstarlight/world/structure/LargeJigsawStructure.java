@@ -2,21 +2,13 @@ package cn.leolezury.eternalstarlight.world.structure;
 
 import cn.leolezury.eternalstarlight.init.StructureInit;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.EmptyBlockGetter;
-import net.minecraft.world.level.NoiseColumn;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
@@ -37,7 +29,7 @@ public final class LargeJigsawStructure extends Structure {
             return structure.startHeight;
         }), Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter((structure) -> {
             return structure.projectStartToHeightmap;
-        }), Codec.intRange(1, 512).fieldOf("max_distance_from_center").forGetter((structure) -> {
+        }), Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter((structure) -> {
             return structure.maxDistanceFromCenter;
         })).apply(instance, LargeJigsawStructure::new);
     }).codec();

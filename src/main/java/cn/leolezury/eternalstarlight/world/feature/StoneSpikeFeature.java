@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.world.feature;
 
 import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.util.SLTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -11,7 +10,6 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;

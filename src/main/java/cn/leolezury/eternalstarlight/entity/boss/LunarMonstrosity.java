@@ -301,6 +301,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
     @Override
     public void aiStep() {
         super.aiStep();
+        refreshDimensions();
         if (!level().isClientSide) {
             bossEvent.setProgress(getHealth() / getMaxHealth());
             setParticleAngle((targetPos.x - getX()) / 10D, (targetPos.y - getY() - 2) / 10D, (targetPos.z - getZ()) / 10D);
@@ -319,9 +320,6 @@ public class LunarMonstrosity extends AbstractSLBoss {
             }
             if (sneakCoolDown > 0) {
                 sneakCoolDown--;
-            }
-            if (tickCount % 10 == 0) {
-                refreshDimensions();
             }
             if (getAttackState() == 0) {
                 setAttackTicks(0);
@@ -493,7 +491,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource p_33034_) {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEventInit.LUNAR_MONSTROSITY_HURT.get();
     }
 

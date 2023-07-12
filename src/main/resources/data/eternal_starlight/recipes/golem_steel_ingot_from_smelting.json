@@ -4,7 +4,7 @@
   "experience": 0.8,
   "group": "golem_steel_ingot",
   "ingredient": {
-    "item": "eternal_starlight:oxidized_golem_steel"
+    "item": "eternal_starlight:oxidized_golem_steel_ingot"
   },
   "result": "eternal_starlight:golem_steel_ingot"
 }
