@@ -33,8 +33,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
             double ry = (pos.getY() - 0.2F + level.getRandom().nextFloat() * 1.25F);
             double rz = (pos.getZ() - 0.2F + level.getRandom().nextFloat() * 1.25F);
             level.addParticle(entity.getSpawnerParticle(), rx, ry, rz, 0.0D, 0.0D, 0.0D);
-        }
-        else if (level.getDifficulty() != Difficulty.PEACEFUL && entity.spawnBoss((ServerLevelAccessor)level)) {
+        } else if (level.getDifficulty() != Difficulty.PEACEFUL && entity.spawnBoss((ServerLevelAccessor)level)) {
             level.destroyBlock(pos, false);
             entity.spawnedBoss = true;
         }
@@ -54,11 +53,11 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
     public abstract ParticleOptions getSpawnerParticle();
 
     protected void initializeCreature(T mob) {
-        mob.restrictTo(getBlockPos(), 46);
+        mob.restrictTo(getBlockPos(), 50);
     }
 
     protected int getRange() {
-        return 9;
+        return 50;
     }
 
     protected T makeMob() {

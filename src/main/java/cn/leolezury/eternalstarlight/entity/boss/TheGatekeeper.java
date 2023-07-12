@@ -1,11 +1,15 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
+import cn.leolezury.eternalstarlight.block.SLPortalBlock;
 import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGoal;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
 import cn.leolezury.eternalstarlight.event.server.ServerEvents;
+import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.DamageTypeInit;
+import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -17,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -37,6 +42,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
@@ -336,7 +342,13 @@ public class TheGatekeeper extends AbstractSLBoss {
                 case -1 -> {
                     setAttackTicks((getAttackTicks() + 1) % 41);
                     if (getAttackTicks() == 0) {
-                        //lock portal
+                        //TODO: lock portal
+                        /*Vec3 portalFrameVec = getInitialPos().add(0, -1, 0);
+                        BlockPos portalFramePos = new BlockPos((int) portalFrameVec.x, (int) portalFrameVec.y, (int) portalFrameVec.z);
+                        for (Direction direction : Direction.Plane.VERTICAL) {
+                            BlockPos framePos = portalFramePos.relative(direction);
+                            ((SLPortalBlock) BlockInit.STARLIGHT_PORTAL.get()).trySpawnPortal(level(), framePos, );
+                        }*/
                         setActivated(true);
                     }
                 }
@@ -407,7 +419,7 @@ public class TheGatekeeper extends AbstractSLBoss {
                 setAttackState(0);
             }
         } else {
-            //clientside
+            level().addParticle(ParticleInit.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
         }
     }
 

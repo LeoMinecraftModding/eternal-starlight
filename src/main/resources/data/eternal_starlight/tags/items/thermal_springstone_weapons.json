@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "eternal_starlight:thermal_springstone_sword",
+    "eternal_starlight:thermal_springstone_axe",
+    "eternal_starlight:thermal_springstone_pickaxe",
+    "eternal_starlight:thermal_springstone_scythe",
+    "eternal_starlight:thermal_springstone_hammer"
+  ]
+}

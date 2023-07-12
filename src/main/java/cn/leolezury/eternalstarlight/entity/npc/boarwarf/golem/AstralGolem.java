@@ -45,8 +45,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class AstralGolem extends AbstractGolem implements NeutralMob {
-    public AstralGolem(EntityType<? extends AbstractGolem> p_27508_, Level p_27509_) {
-        super(p_27508_, p_27509_);
+    public AstralGolem(EntityType<? extends AbstractGolem> golem, Level level) {
+        super(golem, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
     }
     

@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class SoundEventInit {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, EternalStarlight.MOD_ID);
 
+    public static final RegistryObject<SoundEvent> ARMOR_EQUIP_THERMAL_SPRINGSTONE = register("item.armor.equip_thermal_springstone");
     public static final RegistryObject<SoundEvent> ARMOR_EQUIP_SWAMP_SILVER = register("item.armor.equip_swamp_silver");
 
     public static final RegistryObject<SoundEvent> SEEKING_EYE_LAUNCH = register("entity.seeking_eye.launch");

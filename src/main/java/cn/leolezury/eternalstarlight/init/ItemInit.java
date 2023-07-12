@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
 import cn.leolezury.eternalstarlight.item.armor.SLArmorMaterials;
 import cn.leolezury.eternalstarlight.item.armor.SwampSilverArmorItem;
+import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.misc.LootBagItem;
 import cn.leolezury.eternalstarlight.item.misc.SLBoatItem;
 import cn.leolezury.eternalstarlight.item.misc.SeekingEyeItem;
@@ -151,8 +152,29 @@ public class ItemInit {
     public static final RegistryObject<Item> STARLIGHT_GOLEM_SPAWNER = ITEMS.register("starlight_golem_spawner", () -> new BlockItem(BlockInit.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
     public static final RegistryObject<Item> LUNAR_MONSTROSITY_SPAWNER = ITEMS.register("lunar_monstrosity_spawner", () -> new BlockItem(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
     public static final RegistryObject<Item> LOOT_BAG = ITEMS.register("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(STARLIGHT)));
+
+    public static final RegistryObject<Item> SPRINGSTONE = ITEMS.register("springstone", () -> new BlockItem(BlockInit.SPRINGSTONE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE = ITEMS.register("thermal_springstone", () -> new BlockItem(BlockInit.THERMAL_SPRINGSTONE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_INGOT = ITEMS.register("thermal_springstone_ingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SWORD = ITEMS.register("thermal_springstone_sword",
+            () -> new SwordItem(SLItemTiers.THERMAL_SPRINGSTONE, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_PICKAXE = ITEMS.register("thermal_springstone_pickaxe",
+            () -> new PickaxeItem(SLItemTiers.THERMAL_SPRINGSTONE,1, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_AXE = ITEMS.register("thermal_springstone_axe",
+            () -> new AxeItem(SLItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SCYTHE = ITEMS.register("thermal_springstone_scythe",
+            () -> new ScytheItem(SLItemTiers.THERMAL_SPRINGSTONE, 3, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HAMMER = ITEMS.register("thermal_springstone_hammer",
+            () -> new HammerItem(SLItemTiers.THERMAL_SPRINGSTONE, 8, -3.5F, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HELMET = ITEMS.register("thermal_springstone_helmet",
+            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_CHESTPLATE = ITEMS.register("thermal_springstone_chestplate",
+            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_LEGGINGS = ITEMS.register("thermal_springstone_leggings",
+            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> THERMAL_SPRINGSTONE_BOOTS = ITEMS.register("thermal_springstone_boots",
+            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_ORE = ITEMS.register("swamp_silver_ore", () -> new BlockItem(BlockInit.SWAMP_SILVER_ORE.get(), new Item.Properties()));
-    //public static final RegistryObject<Item> DEEPSLATE_SWAMP_SILVER_ORE = ITEMS.register("deepslate_swamp_silver_ore", () -> new BlockItem(BlockInit.DEEPSLATE_SWAMP_SILVER_ORE.get(), new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_BLOCK = ITEMS.register("swamp_silver_block", () -> new BlockItem(BlockInit.SWAMP_SILVER_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_INGOT = ITEMS.register("swamp_silver_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_NUGGET = ITEMS.register("swamp_silver_nugget", () -> new Item(new Item.Properties()));

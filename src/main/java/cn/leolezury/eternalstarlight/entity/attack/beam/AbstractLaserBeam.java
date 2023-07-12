@@ -304,15 +304,15 @@ public abstract class AbstractLaserBeam extends Entity {
             shooter.lookAtLaserEnd(new Vec3(endPosX, endPosY, endPosZ));
             Vec3 wantedPos = shooter.getLaserWantedPos();
 
-            float wantedYaw = MathUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) / 180f * Mth.PI;
-            float wantedPitch = MathUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) / 180f * Mth.PI;
+            float wantedYaw = MathUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) * Mth.PI / 180f;
+            float wantedPitch = MathUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) * Mth.PI / 180f;
             float currentYaw = getYaw();
             float currentPitch = getPitch();
             setYaw(rotateTowards((float) (currentYaw / Math.PI * 180f), (float) (wantedYaw / Math.PI * 180f), getRotationSpeed()) * Mth.PI / 180f);
             setPitch(rotateTowards((float) (currentPitch / Math.PI * 180f), (float) (wantedPitch / Math.PI * 180f), getRotationSpeed()) * Mth.PI / 180f);
         } else {
-            this.setYaw((float) ((caster.yHeadRot + 90) * Math.PI / 180.0d));
-            this.setPitch((float) (-caster.getXRot() * Math.PI / 180.0d));
+            this.setYaw((float) ((caster.yHeadRot + 90) * Math.PI / 180f));
+            this.setPitch((float) (-caster.getXRot() * Math.PI / 180f));
         }
     }
 

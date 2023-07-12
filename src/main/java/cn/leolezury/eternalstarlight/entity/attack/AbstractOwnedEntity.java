@@ -103,7 +103,7 @@ public abstract class AbstractOwnedEntity extends Entity {
 
     @Override
     public boolean hurt(DamageSource damageSource, float amount) {
-        if (damageSource.equals(damageSources().fellOutOfWorld())) {
+        if (damageSource.equals(damageSources().genericKill())) {
             discard();
         }
         return false;

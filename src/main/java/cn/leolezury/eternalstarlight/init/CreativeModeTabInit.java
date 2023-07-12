@@ -96,8 +96,10 @@ public class CreativeModeTabInit {
                 output.accept(ItemInit.NIGHTSHADE_MUD_BRICK_SLAB.get().getDefaultInstance());
                 output.accept(ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get().getDefaultInstance());
                 output.accept(ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get().getDefaultInstance());
-                output.accept(ItemInit.ENERGY_BLOCK.get().getDefaultInstance());
+                output.accept(ItemInit.SPRINGSTONE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_BLOCK.get().getDefaultInstance());
+                output.accept(ItemInit.ENERGY_BLOCK.get().getDefaultInstance());
             }).build());
 
     public static final RegistryObject<CreativeModeTab> NATURE_BLOCKS = TABS.register("nature_blocks", () -> CreativeModeTab.builder()
@@ -105,9 +107,11 @@ public class CreativeModeTabInit {
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".nature_blocks"))
             .icon(() -> new ItemStack(ItemInit.STARLIGHT_MANGROVE_SAPLING.get()))
             .displayItems((parameters, output) -> {
-                output.accept(ItemInit.SWAMP_SILVER_ORE.get().getDefaultInstance());
                 output.accept(ItemInit.GRIMSTONE.get().getDefaultInstance());
                 output.accept(ItemInit.VOIDSTONE.get().getDefaultInstance());
+                output.accept(ItemInit.SPRINGSTONE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE.get().getDefaultInstance());
+                output.accept(ItemInit.SWAMP_SILVER_ORE.get().getDefaultInstance());
                 output.accept(ItemInit.GLOWING_MUSHROOM.get().getDefaultInstance());
                 output.accept(ItemInit.GLOWING_MUSHROOM_BLOCK.get().getDefaultInstance());
                 output.accept(ItemInit.CRESCENT_GRASS.get().getDefaultInstance());
@@ -148,6 +152,13 @@ public class CreativeModeTabInit {
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".combat"))
             .icon(() -> new ItemStack(ItemInit.MOONRING_GREATSWORD.get()))
             .displayItems((parameters, output) -> {
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_HELMET.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_BOOTS.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_HAMMER.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_SWORD.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_HELMET.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_CHESTPLATE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_LEGGINGS.get().getDefaultInstance());
@@ -166,6 +177,10 @@ public class CreativeModeTabInit {
             .icon(() -> new ItemStack(ItemInit.SWAMP_SILVER_AXE.get()))
             .displayItems((parameters, output) -> {
                 output.accept(ItemInit.SEEKING_EYE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_HAMMER.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_AXE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_SCYTHE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_AXE.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_PICKAXE.get().getDefaultInstance());
@@ -185,13 +200,15 @@ public class CreativeModeTabInit {
             .displayItems((parameters, output) -> {
                 output.accept(ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get().getDefaultInstance());
                 output.accept(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE.get().getDefaultInstance());
+                output.accept(ItemInit.THERMAL_SPRINGSTONE_INGOT.get().getDefaultInstance());
                 output.accept(ItemInit.SWAMP_SILVER_ORE.get().getDefaultInstance());
+                output.accept(ItemInit.SWAMP_SILVER_INGOT.get().getDefaultInstance());
+                output.accept(ItemInit.SWAMP_SILVER_NUGGET.get().getDefaultInstance());
                 output.accept(ItemInit.TENACIOUS_PETAL.get().getDefaultInstance());
                 output.accept(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get().getDefaultInstance());
                 output.accept(ItemInit.GOLEM_STEEL_INGOT.get().getDefaultInstance());
                 output.accept(ItemInit.STARLIGHT_FLOWER.get().getDefaultInstance());
-                output.accept(ItemInit.SWAMP_SILVER_INGOT.get().getDefaultInstance());
-                output.accept(ItemInit.SWAMP_SILVER_NUGGET.get().getDefaultInstance());
                 output.accept(ItemInit.NIGHTSHADE_MUD.get().getDefaultInstance());
             }).build());
 

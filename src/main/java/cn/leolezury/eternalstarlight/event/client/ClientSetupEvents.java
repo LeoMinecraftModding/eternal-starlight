@@ -3,12 +3,15 @@ package cn.leolezury.eternalstarlight.event.client;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
 import cn.leolezury.eternalstarlight.client.model.*;
+import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.client.renderer.*;
 import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
 import cn.leolezury.eternalstarlight.init.*;
 import cn.leolezury.eternalstarlight.item.weapon.CrystalCrossbowItem;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
@@ -77,7 +80,7 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterBlockColor(RegisterColorHandlersEvent.Block event) {
-        event.register((p_92626_, p_92627_, p_92628_, p_92629_) -> p_92627_ != null && p_92628_ != null ? BiomeColors.getAverageFoliageColor(p_92627_, p_92628_) : FoliageColor.getDefaultColor(), BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
+        event.register((state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor(), BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
     @SubscribeEvent
@@ -119,6 +122,8 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(LayerDefinitions.INNER_ARMOR_DEFORMATION));
+        event.registerLayerDefinition(ThermalSpringStoneArmorModel.OUTER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(LayerDefinitions.OUTER_ARMOR_DEFORMATION));
         event.registerLayerDefinition(SLBoatRenderer.createBoatModelName(SLBoat.Type.LUNAR), BoatModel::createBodyModel);
         event.registerLayerDefinition(SLBoatRenderer.createChestBoatModelName(SLBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(SLBoatRenderer.createBoatModelName(SLBoat.Type.NORTHLAND), BoatModel::createBodyModel);

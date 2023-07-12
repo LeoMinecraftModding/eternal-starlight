@@ -58,14 +58,18 @@ public class SLPortalBlock extends Block {
         }
     }
 
-    public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos) {
+    public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos, BlockState state) {
         SLPortalBlock.Size SLPortalBlock$size = this.isPortal(worldIn, pos);
         if (SLPortalBlock$size != null && !onTrySpawnPortal(worldIn, pos, SLPortalBlock$size)) {
-            SLPortalBlock$size.placePortalBlocks();
+            SLPortalBlock$size.placePortalBlocks(BlockInit.STARLIGHT_PORTAL.get().defaultBlockState());
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos) {
+        return trySpawnPortal(worldIn, pos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState());
     }
 
     public static boolean onTrySpawnPortal(LevelAccessor world, BlockPos pos, SLPortalBlock.Size size) {
@@ -311,12 +315,12 @@ public class SLPortalBlock extends Block {
             return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
         }
 
-        public void placePortalBlocks() {
+        public void placePortalBlocks(BlockState state) {
             for(int i = 0; i < this.width; ++i) {
                 BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i);
 
                 for(int j = 0; j < this.height; ++j) {
-                    this.level.setBlock(blockpos.above(j), BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(SLPortalBlock.AXIS, this.axis), 18);
+                    this.level.setBlock(blockpos.above(j), state.setValue(SLPortalBlock.AXIS, this.axis), 18);
                 }
             }
 

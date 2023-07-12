@@ -6,12 +6,16 @@ import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.DimensionInit;
 import cn.leolezury.eternalstarlight.init.EnchantmentInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
+import cn.leolezury.eternalstarlight.item.armor.SwampSilverArmorItem;
+import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.manager.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -61,14 +65,30 @@ public class ServerEvents {
                 entity.addEffect(new MobEffectInstance(MobEffects.POISON, 60 * poisoningLevel, poisoningLevel - 1));
             }
         }
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringStoneArmorItem
+                || event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringStoneArmorItem
+                || event.getEntity().getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringStoneArmorItem
+                || event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringStoneArmorItem
+        ) {
+            if (event.getSource().getDirectEntity() instanceof LivingEntity livingEntity) {
+                livingEntity.setSecondsOnFire(10);
+            }
+            if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
+                event.setAmount(event.getAmount() / 2);
+            }
+        }
+
+        if (event.getSource().getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(SLTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
+            event.getEntity().setSecondsOnFire(10);
+        }
     }
 
     @SubscribeEvent
     public static void onAddMobEffect(MobEffectEvent.Applicable event) {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.SWAMP_SILVER_HELMET.get())
-                && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(ItemInit.SWAMP_SILVER_CHESTPLATE.get())
-                && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(ItemInit.SWAMP_SILVER_LEGGINGS.get())
-                && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(ItemInit.SWAMP_SILVER_BOOTS.get())
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof SwampSilverArmorItem
+                && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof SwampSilverArmorItem
+                && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof SwampSilverArmorItem
+                && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem() instanceof SwampSilverArmorItem
         ) {
             if (!event.getEffectInstance().getEffect().isBeneficial()) {
                 event.setResult(Event.Result.DENY);

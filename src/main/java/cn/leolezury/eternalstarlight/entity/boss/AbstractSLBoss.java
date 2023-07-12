@@ -61,6 +61,10 @@ public abstract class AbstractSLBoss extends Monster {
     private Vec3 initialPos = Vec3.ZERO;
     private boolean spawned = false;
 
+    public Vec3 getInitialPos() {
+        return initialPos;
+    }
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();

@@ -4,12 +4,18 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
 public class SLTags {
+    public static class Items {
+        public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = ItemTags.create(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_weapons"));
+    }
+
     public static class Blocks {
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = BlockTags.create(new ResourceLocation(EternalStarlight.MOD_ID, "portal_frame_blocks"));
         public static final TagKey<Block> BASE_STONE_STARLIGHT = BlockTags.create(new ResourceLocation(EternalStarlight.MOD_ID, "base_stone_starlight"));
