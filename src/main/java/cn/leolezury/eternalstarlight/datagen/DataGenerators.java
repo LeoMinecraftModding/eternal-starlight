@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.datagen;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import cn.leolezury.eternalstarlight.datagen.provider.SLDataProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

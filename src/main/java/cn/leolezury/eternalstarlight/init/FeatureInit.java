@@ -1,7 +1,8 @@
 package cn.leolezury.eternalstarlight.init;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.world.feature.CursedGardenExtraHeightFeature;
+import cn.leolezury.eternalstarlight.world.feature.structure.CursedGardenExtraHeightFeature;
+import cn.leolezury.eternalstarlight.world.feature.BetterLakeFeature;
 import cn.leolezury.eternalstarlight.world.feature.FallenLogFeature;
 import cn.leolezury.eternalstarlight.world.feature.StarlightCrystalFeature;
 import cn.leolezury.eternalstarlight.world.feature.StoneSpikeFeature;
@@ -17,4 +18,5 @@ public class FeatureInit {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> STONE_SPIKE = FEATURES.register("stone_spike", () -> new StoneSpikeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));
+    public static final RegistryObject<Feature<BetterLakeFeature.Configuration>> SL_LAKE = FEATURES.register("sl_lake", () -> new BetterLakeFeature(BetterLakeFeature.Configuration.CODEC));
 }

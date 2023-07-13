@@ -1,6 +1,7 @@
-package cn.leolezury.eternalstarlight.world.feature;
+package cn.leolezury.eternalstarlight.world.feature.structure;
 
 import cn.leolezury.eternalstarlight.init.BlockInit;
+import cn.leolezury.eternalstarlight.world.feature.SLFeature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;

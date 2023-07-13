@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.entity.attack.beam.StarlightGolemBeam;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
 import cn.leolezury.eternalstarlight.init.*;
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.util.MathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -339,7 +340,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserShooter {
                             AABB aabb = new AABB(getX() - 1.5, getY() - 1.5, getZ() - 1.5, getX() + 1.5, getY() + 1.5, getZ() + 1.5).move(targetPos.add(position().add(0, 1, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof StarlightGolem)) {
-                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 40);
+                                    livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.GROUND_SHAKE, this), 40);
                                 }
                             }
                             for (int x = (int) aabb.minX; x <= aabb.maxX; x++) {

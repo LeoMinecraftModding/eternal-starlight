@@ -6,7 +6,7 @@
       "minecraft:cave_extra_underground"
     ]
   },
-  "downfall": 0.1,
+  "downfall": 0.4,
   "has_precipitation": false,
   "effects": {
     "fog_color": 3091031,
@@ -16,7 +16,7 @@
     "water_color": 6187416,
     "water_fog_color": 6187416,
     "music": {
-      "sound": "minecraft:music.overworld.meadow",
+      "sound": "eternal_starlight:music.dimension.eternal_starlight",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
@@ -69,7 +69,9 @@
   "spawn_costs": {},
   "features": [
     [],
-    [],
+    [
+      "eternal_starlight:cave_spring"
+    ],
     [],
     [],
     [],

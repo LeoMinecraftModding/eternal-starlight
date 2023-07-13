@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "eternalstarlight.refmap.json",
   "mixins": [
+    "BubbleColumnBlockMixin"
   ],
   "client": [
     "ItemInHandRendererMixin"

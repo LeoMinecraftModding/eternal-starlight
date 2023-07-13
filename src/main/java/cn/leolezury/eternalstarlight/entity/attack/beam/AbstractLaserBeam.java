@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.entity.attack.beam;
 
-import cn.leolezury.eternalstarlight.init.DamageTypeInit;
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.util.ControlledAnimation;
 import cn.leolezury.eternalstarlight.util.MathUtil;
 import net.minecraft.core.BlockPos;
@@ -211,7 +211,7 @@ public abstract class AbstractLaserBeam extends Entity {
     }
 
     public void doHurtTarget(LivingEntity target) {
-        if (target.hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.LASER, this, caster), 10)) {
+        if (target.hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.LASER, this, caster), 10)) {
             target.setSecondsOnFire(3);
         }
     }

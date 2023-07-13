@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.block;
 
-import cn.leolezury.eternalstarlight.init.PlacedFeatureInit;
+import cn.leolezury.eternalstarlight.datagen.generator.PlacedFeatureGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -53,7 +53,7 @@ public class NightshadeGrassBlock extends SpreadingSnowyNightshadeDirtBlock impl
                 Holder<PlacedFeature> holder;
 
                 HolderGetter<PlacedFeature> placedFeatureHolderGetter =  p_221270_.holderLookup(Registries.PLACED_FEATURE);
-                holder = placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.SL_GRASS_KEY);
+                holder = placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.SL_GRASS_KEY);
 
                 holder.value().place(p_221270_, p_221270_.getChunkSource().getGenerator(), p_221271_, blockpos1);
             }

@@ -1,15 +1,12 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
-import cn.leolezury.eternalstarlight.block.SLPortalBlock;
 import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGoal;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
 import cn.leolezury.eternalstarlight.event.server.ServerEvents;
-import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.init.DamageTypeInit;
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -21,7 +18,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -41,8 +37,6 @@ import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
@@ -401,7 +395,7 @@ public class TheGatekeeper extends AbstractSLBoss {
                             }
                         }
                         for (LivingEntity livingEntity : getEntitiesNearby(LivingEntity.class, 3)) {
-                            livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 20);
+                            livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.GROUND_SHAKE, this), 20);
                         }
                     }
 

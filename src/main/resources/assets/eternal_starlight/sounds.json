@@ -1,4 +1,12 @@
 {
+  "music.dimension.eternal_starlight": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/default",
+        "stream": true
+      }
+    ]
+  },
   "item.armor.equip_thermal_springstone": {
     "sounds": [
       "item/armor/equip_iron1",
@@ -228,9 +236,19 @@
   },
   "entity.dryad.hurt": {
     "sounds": [
-      "eternal_starlight:dryad_hurt"
+      "eternal_starlight:mob/dryad_hurt"
     ],
     "subtitle": "subtitles.entity.dryad.hurt"
+  },
+  "entity.twilight_squid.ambient": {
+    "sounds": [
+      "entity/glow_squid/ambient1",
+      "entity/glow_squid/ambient2",
+      "entity/glow_squid/ambient3",
+      "entity/glow_squid/ambient4",
+      "entity/glow_squid/ambient5"
+    ],
+    "subtitle": "subtitles.entity.twilight_squid.ambient"
   },
   "entity.twilight_squid.death": {
     "sounds": [
@@ -349,7 +367,10 @@
   },
   "entity.lunar_monstrosity.roar": {
     "sounds": [
-      "eternal_starlight:lunar_monstrosity_roar"
+      {
+        "name": "eternal_starlight:mob/lunar_monstrosity_roar",
+        "volume": 0.5
+      }
     ],
     "subtitle": "subtitles.entity.lunar_monstrosity.roar"
   }

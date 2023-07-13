@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.init;
+package cn.leolezury.eternalstarlight.datagen.generator;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class DamageTypeInit {
+public class DamageTypeGenerator {
     public static final ResourceKey<DamageType> LASER = create("laser");
     public static final ResourceKey<DamageType> GROUND_SHAKE = create("ground_shake");
     public static final ResourceKey<DamageType> FIRE_COLUMN = create("fire_column");

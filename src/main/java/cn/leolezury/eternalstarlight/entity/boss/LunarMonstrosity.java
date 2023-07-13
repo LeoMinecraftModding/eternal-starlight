@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.entity.boss;
 
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.projectile.Spore;
-import cn.leolezury.eternalstarlight.init.DamageTypeInit;
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
@@ -293,7 +293,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
             Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
             vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
             if (vec3.dot(this.getViewVector(1.0F)) < 0.0D) {
-                livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.BITE, this), damage);
+                livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.BITE, this), damage);
             }
         }
     }
@@ -369,7 +369,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                             AABB aabb = new AABB(getX() - 1, getY() + 1, getZ() - 1, getX() + 1, getY() + 3, getZ() + 1).move(targetPos.add(position().add(0, 2, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof LunarMonstrosity)) {
-                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.POISON, this), 2);
+                                    livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.POISON, this), 2);
                                     livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
                                 }
                             }

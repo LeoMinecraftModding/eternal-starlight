@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.init;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.*;
 import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
+import cn.leolezury.eternalstarlight.datagen.generator.ConfiguredFeatureGenerator;
 import cn.leolezury.eternalstarlight.world.feature.tree.LunarTreeGrower;
 import cn.leolezury.eternalstarlight.world.feature.tree.NorthlandTreeGrower;
 import cn.leolezury.eternalstarlight.world.feature.tree.StarlightMangroveTreeGrower;
@@ -337,14 +338,14 @@ public class BlockInit {
     })));
     public static final RegistryObject<Block> GLOWING_MUSHROOM = BLOCKS.register("glowing_mushroom", () -> new MushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).hasPostProcess(BlockInit::always).lightLevel((state) -> {
         return 15;
-    }), ConfiguredFeatureInit.HUGE_GLOWING_MUSHROOM_KEY));
+    }), ConfiguredFeatureGenerator.HUGE_GLOWING_MUSHROOM_KEY));
     public static final RegistryObject<Block> GLOWING_MUSHROOM_BLOCK = BLOCKS.register("glowing_mushroom_block", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).lightLevel((state) -> {
         return 15;
     })));
     public static final RegistryObject<Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
     public static final RegistryObject<Block> SPRINGSTONE = BLOCKS.register("springstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).strength(3.0F, 3.0F)));
-    public static final RegistryObject<Block> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
+    public static final RegistryObject<Block> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new ThermalSpringStoneBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
     public static final RegistryObject<Block> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
     public static final RegistryObject<Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).mapColor(MapColor.STONE).strength(5.0F, 3.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)));

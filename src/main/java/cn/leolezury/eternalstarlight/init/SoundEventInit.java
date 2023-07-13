@@ -1,6 +1,9 @@
 package cn.leolezury.eternalstarlight.init;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -9,6 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class SoundEventInit {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, EternalStarlight.MOD_ID);
+
+    public static final RegistryObject<SoundEvent> MUSIC_DIMENSION_SL = register("music.dimension.eternal_starlight");
 
     public static final RegistryObject<SoundEvent> ARMOR_EQUIP_THERMAL_SPRINGSTONE = register("item.armor.equip_thermal_springstone");
     public static final RegistryObject<SoundEvent> ARMOR_EQUIP_SWAMP_SILVER = register("item.armor.equip_swamp_silver");
@@ -36,6 +41,7 @@ public class SoundEventInit {
 
     public static final RegistryObject<SoundEvent> DRYAD_HURT = register("entity.dryad.hurt");
 
+    public static final RegistryObject<SoundEvent> TWILIGHT_SQUID_AMBIENT = register("entity.twilight_squid.ambient");
     public static final RegistryObject<SoundEvent> TWILIGHT_SQUID_HURT = register("entity.twilight_squid.hurt");
     public static final RegistryObject<SoundEvent> TWILIGHT_SQUID_DEATH = register("entity.twilight_squid.death");
     public static final RegistryObject<SoundEvent> TWILIGHT_SQUID_SQUIRT = register("entity.twilight_squid.squirt");

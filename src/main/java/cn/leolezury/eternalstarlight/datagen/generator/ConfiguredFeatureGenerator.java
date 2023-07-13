@@ -1,8 +1,11 @@
-package cn.leolezury.eternalstarlight.init;
+package cn.leolezury.eternalstarlight.datagen.generator;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import cn.leolezury.eternalstarlight.init.BlockInit;
+import cn.leolezury.eternalstarlight.init.FeatureInit;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import cn.leolezury.eternalstarlight.world.feature.FallenLogFeature;
+import cn.leolezury.eternalstarlight.world.feature.BetterLakeFeature;
 import cn.leolezury.eternalstarlight.world.feature.tree.BranchingTrunkPlacer;
 import cn.leolezury.eternalstarlight.world.feature.tree.SpheroidFoliagePlacer;
 import cn.leolezury.eternalstarlight.world.feature.tree.TrunkBerriesDecorator;
@@ -54,7 +57,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class ConfiguredFeatureInit {
+public class ConfiguredFeatureGenerator {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE_KEY = registerKey("stone_spike");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE_KEY = registerKey("stone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE_KEY = registerKey("deepslate_ore");
@@ -77,6 +80,7 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_FLOWER_KEY = registerKey("starlight_flower");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SL_GRASS_KEY = registerKey("sl_grass");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LAKE_KEY = registerKey("swamp_lake");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_SPRING_KEY = registerKey("cave_spring");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE_KEY = registerKey("swamp_silver_ore");
 
     //structure features
@@ -97,8 +101,8 @@ public class ConfiguredFeatureInit {
         register(context, STONE_SPIKE_KEY, FeatureInit.STONE_SPIKE.get(), new NoneFeatureConfiguration());
         register(context, STONE_ORE_KEY, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));
         register(context, DEEPSLATE_ORE_KEY, Feature.ORE, new OreConfiguration(slRule, Blocks.DEEPSLATE.defaultBlockState(), 64));
-        register(context, CHISELED_VOIDSTONE_ORE_KEY, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 64));
-        register(context, GLOWING_NIGHTSHADE_MUD_ORE_KEY, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 64));
+        register(context, CHISELED_VOIDSTONE_ORE_KEY, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 20));
+        register(context, GLOWING_NIGHTSHADE_MUD_ORE_KEY, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         register(context, NIGHTSHADE_DIRT_ORE_KEY, Feature.ORE, new OreConfiguration(slRule, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));
         register(context, FALLEN_LUNAR_LOG_KEY, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get())));
         register(context, FALLEN_NORTHLAND_LOG_KEY, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get())));
@@ -111,13 +115,15 @@ public class ConfiguredFeatureInit {
         register(context, NORTHLAND_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get()), new GiantTrunkPlacer(10, 2, 10), BlockStateProvider.simple(BlockInit.NORTHLAND_LEAVES.get()), new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)), new TwoLayersFeatureSize(1, 1, 2)).build());
         register(context, STARLIGHT_MANGROVE_KEY, Feature.TREE, (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LOG.get()), new UpwardsBranchingTrunkPlacer(4, 1, 9, UniformInt.of(1, 6), 0.5F, UniformInt.of(0, 1), blockHolderGetter.getOrThrow(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)), BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LEAVES.get()), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70), Optional.of(new MangroveRootPlacer(UniformInt.of(3, 7), BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_ROOTS.get()), Optional.of(new AboveRootPlacement(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(blockHolderGetter.getOrThrow(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, BlockInit.NIGHTSHADE_MUD.get(), BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), BlockStateProvider.simple(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), 8, 15, 0.2F))), new TwoLayersFeatureSize(3, 0, 2))).decorators(List.of(new LeaveVineDecorator(0.125F), new AttachedToLeavesDecorator(0.14F, 1, 0, new RandomizedIntStateProvider(BlockStateProvider.simple(Blocks.MANGROVE_PROPAGULE.defaultBlockState().setValue(MangrovePropaguleBlock.HANGING, Boolean.valueOf(true))), MangrovePropaguleBlock.AGE, UniformInt.of(0, 4)), 2, List.of(Direction.DOWN)))).ignoreVines().build());
         register(context, HUGE_GLOWING_MUSHROOM_KEY, Feature.HUGE_RED_MUSHROOM, new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(BlockInit.GLOWING_MUSHROOM_BLOCK.get().defaultBlockState().setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), BlockStateProvider.simple(Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, Boolean.valueOf(false)).setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), 2));
-        register(context, SL_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.HUGE_GLOWING_MUSHROOM_CHECKED_KEY), 0.175F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.LUNAR_TREE_CHECKED_KEY), 0.6666667F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.2F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
-        register(context, SL_DENSE_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.LUNAR_TREE_CHECKED_KEY), 0.9F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.1F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
-        register(context, SL_SWAMP_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.STARLIGHT_MANGROVE_TREE_CHECKED_KEY), 0.9F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED), 0.1F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
-        register(context, SL_PERMAFROST_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configuredFeatureHolderGetter.getOrThrow(TreeFeatures.SPRUCE)), 0.25F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.NORTHLAND_TREE_CHECKED_KEY), 0.25F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureInit.NORTHLAND_ON_SNOW_KEY), 0.25F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
+        register(context, SL_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.HUGE_GLOWING_MUSHROOM_CHECKED_KEY), 0.175F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.LUNAR_TREE_CHECKED_KEY), 0.6666667F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.2F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
+        register(context, SL_DENSE_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.LUNAR_TREE_CHECKED_KEY), 0.9F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.1F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
+        register(context, SL_SWAMP_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.STARLIGHT_MANGROVE_TREE_CHECKED_KEY), 0.9F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED), 0.1F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
+        register(context, SL_PERMAFROST_FOREST_KEY, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configuredFeatureHolderGetter.getOrThrow(TreeFeatures.SPRUCE)), 0.25F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.NORTHLAND_TREE_CHECKED_KEY), 0.25F), new WeightedPlacedFeature(placedFeatureHolderGetter.getOrThrow(PlacedFeatureGenerator.NORTHLAND_ON_SNOW_KEY), 0.25F)), placedFeatureHolderGetter.getOrThrow(TreePlacements.OAK_CHECKED)));
         register(context, STARLIGHT_FLOWER_KEY, Feature.FLOWER, new RandomPatchConfiguration(48, 15, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(BlockInit.STARLIGHT_FLOWER.get())))));
         register(context, SL_GRASS_KEY, Feature.FLOWER, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_REED.get().defaultBlockState(), 2)), 64));
         register(context, SWAMP_LAKE_KEY, Feature.LAKE, new LakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), BlockStateProvider.simple(BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())));
+        WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.SPRINGSTONE.get().defaultBlockState(), 10).add(BlockInit.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build());
+        register(context, CAVE_SPRING_KEY, FeatureInit.SL_LAKE.get(), new BetterLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), stateProvider, UniformInt.of(8, 10), UniformInt.of(6, 8), UniformInt.of(8, 10)));
         register(context, SWAMP_SILVER_ORE_KEY, Feature.ORE, new OreConfiguration(MUD_SWAMP_SILVER_ORES.get(), 7));
 
         //structure features
@@ -134,7 +140,7 @@ public class ConfiguredFeatureInit {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
 
-    private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
-        return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
+    private static RandomPatchConfiguration grassPatch(BlockStateProvider stateProvider, int p_195204_) {
+        return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(stateProvider)));
     }
 }

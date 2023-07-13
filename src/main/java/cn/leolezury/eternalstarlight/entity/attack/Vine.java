@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.attack;
 
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.init.DamageTypeInit;
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,7 +35,7 @@ public class Vine extends AbstractOwnedEntity {
                 if (getAttackMode() == 0) {
                     for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
                         if (!livingEntity.getUUID().equals(getOwner().getUUID())) {
-                            livingEntity.hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.POISON, this, getOwner()), 4);
+                            livingEntity.hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.POISON, this, getOwner()), 4);
                         }
                     }
                 }
@@ -43,7 +43,7 @@ public class Vine extends AbstractOwnedEntity {
                     for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
                         if (!livingEntity.getUUID().equals(getOwner().getUUID())) {
                             livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 4));
-                            livingEntity.hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.POISON, this, getOwner()), 1);
+                            livingEntity.hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.POISON, this, getOwner()), 1);
                         }
                     }
                 }
