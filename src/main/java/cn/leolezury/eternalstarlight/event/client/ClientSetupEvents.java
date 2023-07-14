@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
 import cn.leolezury.eternalstarlight.client.model.*;
 import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
+import cn.leolezury.eternalstarlight.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.client.renderer.*;
 import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
 import cn.leolezury.eternalstarlight.init.*;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -89,6 +91,15 @@ public class ClientSetupEvents {
             BlockState blockstate = ((BlockItem)p_92687_.getItem()).getBlock().defaultBlockState();
             return event.getBlockColors().getColor(blockstate, null, null, p_92688_);
         }, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
+    }
+
+    @SubscribeEvent
+    public static void onBakingCompleted(ModelEvent.ModifyBakingResult event) {
+        for (ResourceLocation id : event.getModels().keySet()) {
+            if (id.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
+                event.getModels().put(id, new GlowingBakedModel(event.getModels().get(id)));
+            }
+        }
     }
 
     @SubscribeEvent

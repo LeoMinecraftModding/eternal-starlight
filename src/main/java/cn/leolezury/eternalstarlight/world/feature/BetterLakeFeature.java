@@ -52,7 +52,7 @@ public class BetterLakeFeature extends SLFeature<BetterLakeFeature.Configuration
                     double threshold = 1 + 1.4 * fastNoiseLite.GetNoise(pos.getX(), pos.getY() * 2, pos.getZ());
                     if (param < threshold && !level.isEmptyBlock(pos)) {
                         double distSqr = Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2);
-                        if (distSqr <= xRadius * 2.5 * zRadius * 2.5) {
+                        if (distSqr <= (xRadius + 16) * (zRadius + 16)) {
                             blockPositions.add(pos);
                             if (distSqr <= xRadius * zRadius) {
                                 if (y <= 0) {
