@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public abstract class AbstractOwnedEntity extends Entity {
-    public AbstractOwnedEntity(EntityType<?> p_19870_, Level p_19871_) {
-        super(p_19870_, p_19871_);
+    public AbstractOwnedEntity(EntityType<?> type, Level level) {
+        super(type, level);
     }
     @Nullable
     private LivingEntity owner;

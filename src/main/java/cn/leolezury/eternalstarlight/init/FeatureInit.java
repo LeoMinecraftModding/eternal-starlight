@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.init;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.world.feature.structure.CursedGardenExtraHeightFeature;
 import cn.leolezury.eternalstarlight.world.feature.BetterLakeFeature;
 import cn.leolezury.eternalstarlight.world.feature.FallenLogFeature;
 import cn.leolezury.eternalstarlight.world.feature.StarlightCrystalFeature;
 import cn.leolezury.eternalstarlight.world.feature.StoneSpikeFeature;
+import cn.leolezury.eternalstarlight.world.feature.structure.CursedGardenExtraHeightFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.registries.DeferredRegister;

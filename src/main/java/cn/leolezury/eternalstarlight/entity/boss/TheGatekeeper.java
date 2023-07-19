@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGoal;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
 import cn.leolezury.eternalstarlight.event.server.ServerEvents;
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -242,6 +242,7 @@ public class TheGatekeeper extends AbstractSLBoss {
 
     @Override
     public boolean isBlocking() {
+        // a really awful way to fix the shield bug...
         return this.isUsingItem() && getUsedItemHand() == InteractionHand.OFF_HAND && getAttackState() == -2;
     }
 
@@ -252,6 +253,7 @@ public class TheGatekeeper extends AbstractSLBoss {
             setCustomName(Component.literal(gatekeeperName));
             bossEvent.setProgress(getHealth() / getMaxHealth());
 
+            setLeftHanded(false);
             if (!getOffhandItem().is(Items.SHIELD)) {
                 setItemInHand(InteractionHand.OFF_HAND, Items.SHIELD.getDefaultInstance());
             }
@@ -289,15 +291,15 @@ public class TheGatekeeper extends AbstractSLBoss {
             if (jumpCoolDown > 0) {
                 jumpCoolDown--;
             }
-            if (getAttackState() == -2 && !isBlocking()) {
+            if (getAttackState() == -2 && !super.isBlocking()) {
                 startUsingItem(InteractionHand.OFF_HAND);
             }
-            if (getAttackState() != -2 && isBlocking()) {
+            if (getAttackState() != -2 && super.isBlocking()) {
                 stopUsingItem();
             }
 
             if (isActivated()) {
-                if (jumpCoolDown <= 0 && !targetInRange(4) && (getAttackState() == 0 || getAttackState() == 2)) {
+                if (jumpCoolDown <= 0 && !targetInRange(4) && (getAttackState() == 0 || getAttackState() == 2) && target != null && target.isAlive()) {
                     setAttackState(3);
                     setAttackTicks(0);
                     jumpCoolDown = 200;

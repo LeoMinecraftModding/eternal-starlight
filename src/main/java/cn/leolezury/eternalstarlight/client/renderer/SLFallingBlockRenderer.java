@@ -27,7 +27,7 @@ public class SLFallingBlockRenderer extends EntityRenderer<SLFallingBlock> {
         this.dispatcher = context.getBlockRenderDispatcher();
     }
 
-    public void render(SLFallingBlock block, float p_114635_, float p_114636_, PoseStack stack, MultiBufferSource bufferSource, int p_114639_) {
+    public void render(SLFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         BlockState blockstate = block.getBlockState();
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = block.level();
@@ -39,12 +39,12 @@ public class SLFallingBlockRenderer extends EntityRenderer<SLFallingBlock> {
                 for (var renderType : model.getRenderTypes(blockstate, RandomSource.create(blockstate.getSeed(block.getStartPos())), net.minecraftforge.client.model.data.ModelData.EMPTY))
                     this.dispatcher.getModelRenderer().tesselateBlock(level, model, blockstate, blockpos, stack, bufferSource.getBuffer(renderType), false, RandomSource.create(), blockstate.getSeed(block.getStartPos()), OverlayTexture.NO_OVERLAY, net.minecraftforge.client.model.data.ModelData.EMPTY, renderType);
                 stack.popPose();
-                super.render(block, p_114635_, p_114636_, stack, bufferSource, p_114639_);
+                super.render(block, yaw, delta, stack, bufferSource, packedLight);
             }
         }
     }
 
-    public ResourceLocation getTextureLocation(SLFallingBlock p_114632_) {
+    public ResourceLocation getTextureLocation(SLFallingBlock block) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 }

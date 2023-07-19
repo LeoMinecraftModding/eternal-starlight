@@ -9,8 +9,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -56,9 +53,9 @@ public class HammerItem extends DiggerItem implements Vanishable {
         BlockPos pos = context.getClickedPos();
         if (level.isClientSide) {
             for (int i = 0; i < 360; i += 10) {
-                Vec3 vec3 = MathUtil.rotationToPosition(pos.getCenter(), 2, 0, i);
+                Vec3 vec3 = MathUtil.rotationToPosition(pos.getCenter().add(0, -0.1, 0), 2, 0, i);
                 BlockPos particlePos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
-                spawnBlockParticle(level, particlePos, vec3);
+                spawnBlockParticle(level, particlePos, vec3.add(0, 0.6, 0));
             }
         } else if (player != null) {
             for (LivingEntity entity : level.getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, player, new AABB(pos).inflate(2))) {

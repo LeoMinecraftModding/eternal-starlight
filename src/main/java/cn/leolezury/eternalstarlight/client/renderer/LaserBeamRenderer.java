@@ -126,7 +126,7 @@ public class LaserBeamRenderer<T extends AbstractLaserBeam> extends EntityRender
         drawVertex(matrix4f, matrix3f, builder, getBeamRadius(), offset, 0, maxU, minV, 1, packedLightIn);
     }
 
-    private void renderBeam(float length, float yaw, float pitch, int frame,  PoseStack matrixStackIn, VertexConsumer builder, int packedLightIn) {
+    private void renderBeam(float length, float yaw, float pitch, int frame, PoseStack matrixStackIn, VertexConsumer builder, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.mulPose((new Quaternionf()).rotationX(1.5707964F));
         matrixStackIn.mulPose((new Quaternionf()).rotationZ((yaw - 90.0F) * 0.017453292F));

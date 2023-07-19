@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.entity.projectile;
 
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.core.Direction;
@@ -24,12 +24,12 @@ import net.minecraft.world.phys.EntityHitResult;
 import java.util.Random;
 
 public class Spore extends AbstractHurtingProjectile {
-    public Spore(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
-        super(p_36833_, p_36834_);
+    public Spore(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
+        super(type, level);
     }
 
-    public Spore(Level p_37609_, LivingEntity p_37610_, double p_37611_, double p_37612_, double p_37613_) {
-        super(EntityInit.SPORE.get(), p_37610_, p_37611_, p_37612_, p_37613_, p_37609_);
+    public Spore(Level level, LivingEntity entity, double x, double y, double z) {
+        super(EntityInit.SPORE.get(), entity, x, y, z, level);
     }
 
     protected float getSoundVolume() {
@@ -53,7 +53,7 @@ public class Spore extends AbstractHurtingProjectile {
         return false;
     }
 
-    public boolean hurt(DamageSource p_37616_, float p_37617_) {
+    public boolean hurt(DamageSource damageSource, float amount) {
         return false;
     }
 
@@ -62,8 +62,8 @@ public class Spore extends AbstractHurtingProjectile {
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult p_37258_) {
-        super.onHitBlock(p_37258_);
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
 
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
         AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
@@ -77,7 +77,7 @@ public class Spore extends AbstractHurtingProjectile {
         cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
         this.level().addFreshEntity(cloud);
 
-        if (p_37258_.getDirection().equals(Direction.UP)) {
+        if (result.getDirection().equals(Direction.UP)) {
             for (int i = 0; i < 5; i++) {
                 Vine vine = EntityInit.VINE.get().create(level());
                 Random random = new Random();
@@ -98,11 +98,11 @@ public class Spore extends AbstractHurtingProjectile {
     }
 
     @Override
-    protected void onHitEntity(EntityHitResult p_37259_) {
-        super.onHitEntity(p_37259_);
+    protected void onHitEntity(EntityHitResult result) {
+        super.onHitEntity(result);
 
-        if (getOwner() != null && !p_37259_.getEntity().getUUID().equals(getOwner().getUUID())) {
-            p_37259_.getEntity().hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.POISON, this, getOwner()), 5);
+        if (getOwner() != null && !result.getEntity().getUUID().equals(getOwner().getUUID())) {
+            result.getEntity().hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.POISON, this, getOwner()), 5);
         }
 
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());

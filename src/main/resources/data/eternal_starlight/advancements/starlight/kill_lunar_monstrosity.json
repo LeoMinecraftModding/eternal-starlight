@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:starlight/kill_starlight_golem",
+  "parent": "eternal_starlight:starlight/get_thermal_springstone",
   "criteria": {
     "killed_lunar_monstrosity": {
       "conditions": {

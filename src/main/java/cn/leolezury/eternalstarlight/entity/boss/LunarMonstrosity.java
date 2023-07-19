@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.projectile.Spore;
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;

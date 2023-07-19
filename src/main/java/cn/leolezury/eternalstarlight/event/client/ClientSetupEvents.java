@@ -5,14 +5,13 @@ import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
 import cn.leolezury.eternalstarlight.client.model.*;
 import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.client.model.item.GlowingBakedModel;
+import cn.leolezury.eternalstarlight.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.client.renderer.*;
 import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
 import cn.leolezury.eternalstarlight.init.*;
 import cn.leolezury.eternalstarlight.item.weapon.CrystalCrossbowItem;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.LayerDefinitions;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
@@ -104,6 +103,7 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);
         event.registerSpriteSet(ParticleInit.STARLIGHT.get(), EndRodParticle.Provider::new);
         event.registerSpriteSet(ParticleInit.POISON.get(), FlameParticle.Provider::new);
         event.registerSpriteSet(ParticleInit.ENERGY.get(), FlameParticle.Provider::new);
@@ -112,6 +112,7 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityInit.FALLING_BLOCK.get(), SLFallingBlockRenderer::new);
+        event.registerEntityRenderer(EntityInit.AETHERSENT_METEOR.get(), AetherSentMeteorRenderer::new);
         event.registerEntityRenderer(EntityInit.BOAT.get(), (context) -> new SLBoatRenderer(context, false));
         event.registerEntityRenderer(EntityInit.CHEST_BOAT.get(), (context) -> new SLBoatRenderer(context, true));
         event.registerEntityRenderer(EntityInit.CAMERA_SHAKE.get(), NothingRenderer::new);

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.attack;
 
-import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import java.util.Random;
 
 public class Vine extends AbstractOwnedEntity {
-    public Vine(EntityType<?> p_19870_, Level p_19871_) {
-        super(p_19870_, p_19871_);
+    public Vine(EntityType<?> type, Level level) {
+        super(type, level);
     }
 
     @Override

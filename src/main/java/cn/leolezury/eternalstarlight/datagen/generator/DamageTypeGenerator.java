@@ -13,6 +13,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class DamageTypeGenerator {
+    public static final ResourceKey<DamageType> METEOR = create("meteor");
+
     public static final ResourceKey<DamageType> LASER = create("laser");
     public static final ResourceKey<DamageType> GROUND_SHAKE = create("ground_shake");
     public static final ResourceKey<DamageType> FIRE_COLUMN = create("fire_column");
@@ -37,6 +39,7 @@ public class DamageTypeGenerator {
     }
 
     public static void bootstrap(BootstapContext<DamageType> context) {
+        context.register(METEOR, new DamageType(slDamage("meteor"), 0.0F));
         context.register(LASER, new DamageType(slDamage("laser"), 0.0F, DamageEffects.BURNING));
         context.register(GROUND_SHAKE, new DamageType(slDamage("ground_shake"), 0.0F));
         context.register(FIRE_COLUMN, new DamageType(slDamage("fire_column"), 0.0F, DamageEffects.BURNING));

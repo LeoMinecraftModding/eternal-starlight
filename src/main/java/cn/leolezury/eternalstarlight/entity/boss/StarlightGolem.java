@@ -1,12 +1,15 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
+import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.entity.attack.FireColumn;
 import cn.leolezury.eternalstarlight.entity.attack.beam.LaserShooter;
 import cn.leolezury.eternalstarlight.entity.attack.beam.StarlightGolemBeam;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
-import cn.leolezury.eternalstarlight.init.*;
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.init.BlockInit;
+import cn.leolezury.eternalstarlight.init.EntityInit;
+import cn.leolezury.eternalstarlight.init.ParticleInit;
+import cn.leolezury.eternalstarlight.init.SoundEventInit;
 import cn.leolezury.eternalstarlight.util.MathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;

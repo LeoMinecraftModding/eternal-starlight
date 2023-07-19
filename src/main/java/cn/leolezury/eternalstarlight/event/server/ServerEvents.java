@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.block.SLPortalBlock;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.DimensionInit;
 import cn.leolezury.eternalstarlight.init.EnchantmentInit;
-import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.manager.TheGatekeeperNameManager;

@@ -8,6 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -63,39 +64,48 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
         ResourceLocation barLocation;
-        if (event.getBossEvent().getName().contains(Component.translatable("entity." + EternalStarlight.MOD_ID + ".starlight_golem"))) {
+        LerpingBossEvent bossEvent = event.getBossEvent();
+        Component bossDesc;
+        if (bossEvent.getName().contains(Component.translatable("entity." + EternalStarlight.MOD_ID + ".starlight_golem"))) {
             event.setCanceled(true);
             barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/starlight_golem.png");
-        } else if (event.getBossEvent().getName().contains(Component.translatable("entity." + EternalStarlight.MOD_ID + ".lunar_monstrosity"))) {
+            bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".starlight_golem.desc");
+        } else if (bossEvent.getName().contains(Component.translatable("entity." + EternalStarlight.MOD_ID + ".lunar_monstrosity"))) {
             event.setCanceled(true);
             barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/lunar_monstrosity.png");
+            bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".lunar_monstrosity.desc");
         } else {
             return;
         }
+        event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
         RenderSystem.setShaderTexture(0, GUI_BARS_LOCATION);
-        drawBar(event.getGuiGraphics(), event.getX(), event.getY(), event.getBossEvent(), barLocation);
-        Component component = event.getBossEvent().getName();
-        int l = Minecraft.getInstance().font.width(component);
-        int i1 = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - l / 2;
-        int j1 = event.getY() - 9;
-        event.getGuiGraphics().drawString(Minecraft.getInstance().font, component, i1, j1, 16777215);
+        drawBar(event.getGuiGraphics(), event.getX(), event.getY(), bossEvent, barLocation);
+        Component component = bossEvent.getName();
+        int textWidth = Minecraft.getInstance().font.width(component);
+        int textX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - textWidth / 2;
+        int textY = event.getY() - 9;
+        event.getGuiGraphics().drawString(Minecraft.getInstance().font, component, textX, textY, 16777215);
+        int descWidth = Minecraft.getInstance().font.width(bossDesc);
+        int descX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - descWidth / 2;
+        int descY = event.getY() + 9;
+        event.getGuiGraphics().drawString(Minecraft.getInstance().font, bossDesc, descX, descY, 16777215);
     }
 
-    public static void drawBar(GuiGraphics guiGraphics, int p_93708_, int p_93709_, BossEvent p_93710_, ResourceLocation barLocation) {
-        drawBar(guiGraphics, p_93708_, p_93709_, p_93710_, 182, 0);
-        int i = (int)(p_93710_.getProgress() * 183.0F);
+    public static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, ResourceLocation barLocation) {
+        drawBar(guiGraphics, x, y, event, 182, 0);
+        int i = (int)(event.getProgress() * 183.0F);
         if (i > 0) {
-            drawBar(guiGraphics, p_93708_, p_93709_, p_93710_, i, 5);
+            drawBar(guiGraphics, x, y, event, i, 5);
         }
         RenderSystem.setShaderTexture(0, barLocation);
-        guiGraphics.blit(barLocation, p_93708_, p_93709_ - 1, 0.0F, 0.0F, 184, 7, 184, 7);
+        guiGraphics.blit(barLocation, x, y - 1, 0.0F, 0.0F, 184, 7, 184, 7);
     }
 
-    private static void drawBar(GuiGraphics p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, int p_281636_) {
-        p_281657_.blit(GUI_BARS_LOCATION, p_283675_, p_282498_, 0, p_281288_.getColor().ordinal() * 5 * 2 + p_281636_, p_283619_, 5);
-        if (p_281288_.getOverlay() != BossEvent.BossBarOverlay.PROGRESS) {
+    private static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, int width, int i) {
+        guiGraphics.blit(GUI_BARS_LOCATION, x, y, 0, event.getColor().ordinal() * 5 * 2 + i, width, 5);
+        if (event.getOverlay() != BossEvent.BossBarOverlay.PROGRESS) {
             RenderSystem.enableBlend();
-            p_281657_.blit(GUI_BARS_LOCATION, p_283675_, p_282498_, 0, 80 + (p_281288_.getOverlay().ordinal() - 1) * 5 * 2 + p_281636_, p_283619_, 5);
+            guiGraphics.blit(GUI_BARS_LOCATION, x, y, 0, 80 + (event.getOverlay().ordinal() - 1) * 5 * 2 + i, width, 5);
             RenderSystem.disableBlend();
         }
     }

@@ -183,6 +183,7 @@
   "tooltip.eternal_starlight.swamp_silver_armor": "穿全套时: 免疫任何负面效果",
 
   "entity.eternal_starlight.falling_block": "下落的方块",
+  "entity.eternal_starlight.aethersent_meteor": "天锡陨石",
   "entity.eternal_starlight.boat": "船",
   "entity.eternal_starlight.chest_boat": "箱船",
   "entity.eternal_starlight.camera_shake": "摄像头晃动",
@@ -201,6 +202,9 @@
   "entity.eternal_starlight.fire_column": "火柱",
   "entity.eternal_starlight.spore": "孢子",
   "entity.eternal_starlight.vine": "藤蔓",
+
+  "boss.eternal_starlight.starlight_golem.desc": "远古锻造厂中废弃的傀儡",
+  "boss.eternal_starlight.lunar_monstrosity.desc": "诅咒花园中的恶物",
 
   "subtitles.entity.seeking_eye.launch": "寻觅之眼 : 发射",
   "subtitles.entity.seeking_eye.death": "寻觅之眼 : 掉落",
@@ -249,9 +253,13 @@
   "advancements.eternal_starlight.starlight_golem.description": "使用红石粉和寻觅之眼找到傀儡锻造厂并击败星光傀儡",
   "advancements.eternal_starlight.golem_steel_ingot.title": "氧化还原反应",
   "advancements.eternal_starlight.golem_steel_ingot.description": "获得傀儡钢锭",
+  "advancements.eternal_starlight.thermal_springstone.title": "小心烫手!",
+  "advancements.eternal_starlight.thermal_springstone.description": "获得热泉石. 提示: 只有烈火才能摧毁生活在这个维度的巨型植物...",
   "advancements.eternal_starlight.lunar_monstrosity.title": "披荆斩棘",
   "advancements.eternal_starlight.lunar_monstrosity.description": "使用晶藓地毯和寻觅之眼找到诅咒花园并击败月藤巨物",
 
+  "death.attack.eternal_starlight.meteor": "%1$s被陨石砸中了",
+  "death.attack.eternal_starlight.meteor.player": "%1$s在逃离%2$s时被陨石砸中了",
   "death.attack.eternal_starlight.laser": "%1$s被一道激光射穿了",
   "death.attack.eternal_starlight.laser.player": "%1$s在逃离%2$s时被一道激光射穿了",
   "death.attack.eternal_starlight.fire_column": "%1$s误入大火之中",
