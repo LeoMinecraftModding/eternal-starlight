@@ -6,6 +6,7 @@
   "refmap": "eternalstarlight.refmap.json",
   "mixins": [
     "BubbleColumnBlockMixin",
+    "access.AxeItemAccess",
     "access.BlockEntityTypeAccess",
     "access.BlockEntityTypeBuilderAccess",
     "access.ButtonBlockAccess",
@@ -14,6 +15,7 @@
     "access.FlowerPotBlockAccess",
     "access.FoliagePlacerTypeAccess",
     "access.MangroveRootsBlockAccess",
+    "access.PickaxeItemAccess",
     "access.PressurePlateBlockAccess",
     "access.SaplingBlockAccess",
     "access.SimpleParticleTypeAccess",

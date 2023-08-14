@@ -11,6 +11,8 @@ import cn.leolezury.eternalstarlight.item.misc.SLBoatItem;
 import cn.leolezury.eternalstarlight.item.misc.SLBookItem;
 import cn.leolezury.eternalstarlight.item.misc.SeekingEyeItem;
 import cn.leolezury.eternalstarlight.item.weapon.*;
+import cn.leolezury.eternalstarlight.mixins.access.AxeItemAccess;
+import cn.leolezury.eternalstarlight.mixins.access.PickaxeItemAccess;
 import cn.leolezury.eternalstarlight.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.util.register.RegistryObject;
 import net.minecraft.ChatFormatting;
@@ -20,7 +22,7 @@ import net.minecraft.world.item.*;
 
 public class ItemInit {
 //    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EternalStarlight.MOD_ID);
-    static Rarity STARLIGHT = Rarity.create("Starlight", ChatFormatting.DARK_AQUA);
+//    static Rarity STARLIGHT = Rarity.create("Starlight", ChatFormatting.DARK_AQUA);
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, EternalStarlight.MOD_ID);
     public static final RegistryObject<Item> RED_STARLIGHT_CRYSTAL_BLOCK = ITEMS.register("red_starlight_crystal_block", () -> new BlockItem(BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLUE_STARLIGHT_CRYSTAL_BLOCK = ITEMS.register("blue_starlight_crystal_block", () -> new BlockItem(BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
@@ -163,8 +165,8 @@ public class ItemInit {
     public static final RegistryObject<Item> ENERGY_BLOCK = ITEMS.register("energy_block", () -> new BlockItem(BlockInit.ENERGY_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item> STARLIGHT_GOLEM_SPAWNER = ITEMS.register("starlight_golem_spawner", () -> new BlockItem(BlockInit.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
     public static final RegistryObject<Item> LUNAR_MONSTROSITY_SPAWNER = ITEMS.register("lunar_monstrosity_spawner", () -> new BlockItem(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
-    public static final RegistryObject<Item> LOOT_BAG = ITEMS.register("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(STARLIGHT)));
-    public static final RegistryObject<Item> BOOK = ITEMS.register("book", () -> new SLBookItem(new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item> LOOT_BAG = ITEMS.register("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant()/*.rarity(STARLIGHT)*/));
+    public static final RegistryObject<Item> BOOK = ITEMS.register("book", () -> new SLBookItem(new Item.Properties()/*.rarity(STARLIGHT)*/));
 
     //aethersent
     public static final RegistryObject<Item> AETHERSENT_BLOCK = ITEMS.register("aethersent_block", () -> new BlockItem(BlockInit.AETHERSENT_BLOCK.get(), new Item.Properties()));
@@ -188,9 +190,9 @@ public class ItemInit {
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SWORD = ITEMS.register("thermal_springstone_sword",
             () -> new SwordItem(SLItemTiers.THERMAL_SPRINGSTONE, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_PICKAXE = ITEMS.register("thermal_springstone_pickaxe",
-            () -> new PickaxeItem(SLItemTiers.THERMAL_SPRINGSTONE,1, -1.0F, new Item.Properties()));
+            () -> PickaxeItemAccess.create(SLItemTiers.THERMAL_SPRINGSTONE,1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_AXE = ITEMS.register("thermal_springstone_axe",
-            () -> new AxeItem(SLItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F, new Item.Properties()));
+            () -> AxeItemAccess.create(SLItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SCYTHE = ITEMS.register("thermal_springstone_scythe",
             () -> new ScytheItem(SLItemTiers.THERMAL_SPRINGSTONE, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HAMMER = ITEMS.register("thermal_springstone_hammer",
@@ -212,9 +214,9 @@ public class ItemInit {
     public static final RegistryObject<Item> SWAMP_SILVER_SWORD = ITEMS.register("swamp_silver_sword",
             () -> new SwordItem(SLItemTiers.SWAMP_SILVER, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_PICKAXE = ITEMS.register("swamp_silver_pickaxe",
-            () -> new PickaxeItem(SLItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
+            () -> PickaxeItemAccess.create(SLItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_AXE = ITEMS.register("swamp_silver_axe",
-            () -> new AxeItem(SLItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
+            () -> AxeItemAccess.create(SLItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_SCYTHE = ITEMS.register("swamp_silver_scythe",
             () -> new ScytheItem(SLItemTiers.SWAMP_SILVER, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_HELMET = ITEMS.register("swamp_silver_helmet",
@@ -227,12 +229,12 @@ public class ItemInit {
             () -> new SwampSilverArmorItem(SLArmorMaterials.SWAMP_SILVER, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     //boss materials
-    public static final RegistryObject<Item> GOLEM_STEEL_INGOT = ITEMS.register("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item> GOLEM_STEEL_INGOT = ITEMS.register("golem_steel_ingot", () -> new Item(new Item.Properties()/*.rarity(STARLIGHT)*/));
     public static final RegistryObject<Item> OXIDIZED_GOLEM_STEEL_INGOT = ITEMS.register("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> TENACIOUS_PETAL = ITEMS.register("tenacious_petal", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item> CRYSTAL_CROSSBOW = ITEMS.register("crystal_crossbow", () -> new CrystalCrossbowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
-    public static final RegistryObject<Item> MOONRING_BOW = ITEMS.register("moonring_bow", () -> new MoonRingBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
-    public static final RegistryObject<Item> MOONRING_GREATSWORD = ITEMS.register("moonring_greatsword", () -> new GreatswordItem(SLItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item> PETAL_SCYTHE = ITEMS.register("petal_scythe", () -> new ScytheItem(SLItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item> TENACIOUS_PETAL = ITEMS.register("tenacious_petal", () -> new Item(new Item.Properties()/*.rarity(STARLIGHT)*/));
+    public static final RegistryObject<Item> CRYSTAL_CROSSBOW = ITEMS.register("crystal_crossbow", () -> new CrystalCrossbowItem(new Item.Properties().stacksTo(1).durability(2000)/*.rarity(STARLIGHT)*/));
+    public static final RegistryObject<Item> MOONRING_BOW = ITEMS.register("moonring_bow", () -> new MoonRingBowItem(new Item.Properties().stacksTo(1).durability(2000)/*.rarity(STARLIGHT)*/));
+    public static final RegistryObject<Item> MOONRING_GREATSWORD = ITEMS.register("moonring_greatsword", () -> new GreatswordItem(SLItemTiers.PETAL, 6, -2.8F, new Item.Properties()/*.rarity(STARLIGHT)*/));
+    public static final RegistryObject<Item> PETAL_SCYTHE = ITEMS.register("petal_scythe", () -> new ScytheItem(SLItemTiers.PETAL, 3, -1.0F, new Item.Properties()/*.rarity(STARLIGHT)*/));
     public static final RegistryObject<Item> SEEKING_EYE = ITEMS.register("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 }
