@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "cutout",
+  "textures": {
+    "plant": "eternal_starlight:block/swamp_rose"
+  }
+}

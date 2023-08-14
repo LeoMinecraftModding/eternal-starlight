@@ -1,0 +1,103 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:canyon",
+      "minecraft:cave",
+      "minecraft:cave_extra_underground"
+    ]
+  },
+  "downfall": 0.4,
+  "has_precipitation": false,
+  "effects": {
+    "fog_color": 14803455,
+    "foliage_color": 3091031,
+    "grass_color": 3091031,
+    "sky_color": 14803455,
+    "water_color": 6187416,
+    "water_fog_color": 6187416,
+    "music": {
+      "sound": "eternal_starlight:music.dimension.eternal_starlight",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:snow"
+      },
+      "probability": 0.005
+    }
+  },
+  "precipitation": "none",
+  "temperature": 0.8,
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "weight": 1,
+        "minCount": 8,
+        "maxCount": 8
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "eternal_starlight:dryad",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 5
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "eternal_starlight:lonestar_skeleton",
+        "weight": 4,
+        "minCount": 1,
+        "maxCount": 4
+      }
+    ],
+    "underground_water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "weight": 1,
+        "minCount": 4,
+        "maxCount": 6
+      }
+    ],
+    "water_ambient": []
+  },
+  "spawn_costs": {},
+  "features": [
+    [],
+    [
+      "eternal_starlight:cave_spring"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "eternal_starlight:stone_ore",
+      "eternal_starlight:deepslate_ore",
+      "eternal_starlight:chiseled_voidstone_ore",
+      "eternal_starlight:nightshade_dirt_ore"
+    ],
+    [],
+    [
+      "minecraft:spring_water",
+      "minecraft:ice_spike",
+      "eternal_starlight:fallen_northland_log"
+    ],
+    [
+      "minecraft:glow_lichen",
+      "minecraft:patch_tall_grass",
+      "eternal_starlight:cave_vine",
+      "eternal_starlight:sl_permafrost_forest",
+      "eternal_starlight:starlight_crystal"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ]
+}

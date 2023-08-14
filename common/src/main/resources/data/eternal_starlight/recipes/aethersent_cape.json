@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "eternal_starlight:aethersent_ingot"
+    },
+    "#": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    "X X",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "item": "eternal_starlight:aethersent_cape"
+  }
+}

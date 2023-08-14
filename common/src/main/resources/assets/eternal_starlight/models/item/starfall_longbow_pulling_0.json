@@ -1,0 +1,6 @@
+{
+  "parent": "item/bow",
+  "textures": {
+    "layer0": "eternal_starlight:item/starfall_longbow_pulling_0"
+  }
+}

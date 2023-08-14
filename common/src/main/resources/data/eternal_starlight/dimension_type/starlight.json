@@ -1,0 +1,20 @@
+{
+    "ambient_light": 0,
+    "bed_works": true,
+    "coordinate_scale": 1,
+    "has_ceiling": false,
+    "has_raids": false,
+    "has_skylight": true,
+    "effects": "eternal_starlight:special_effect",
+    "fixed_time": 12000,
+    "min_y": -64,
+    "height": 288,
+    "logical_height": 288,
+    "infiniburn": "#minecraft:infiniburn_overworld",
+    "monster_spawn_block_light_limit": 0,
+    "monster_spawn_light_level": 0,
+    "natural": true,
+    "piglin_safe": false,
+    "respawn_anchor_works": true,
+    "ultrawarm": false
+}

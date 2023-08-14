@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "eternal_starlight:cursed_garden",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 12932893237,
+    "spacing": 24,
+    "separation": 20,
+    "min_dist_from_spawn": 40,
+    "type": "eternal_starlight:sl_random_spread"
+  }
+}

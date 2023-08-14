@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "swamp_silver_ingot",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:aethersent_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "eternal_starlight:aethersent_ingot"
+  }
+}
