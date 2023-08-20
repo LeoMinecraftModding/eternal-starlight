@@ -14,7 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeModeTabInit {
     public static final RegistrationProvider<CreativeModeTab> TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, EternalStarlight.MOD_ID);
-
     public static final RegistryObject<CreativeModeTab> BUILDING_BLOCKS = TABS.register("building_blocks", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".building_blocks"))

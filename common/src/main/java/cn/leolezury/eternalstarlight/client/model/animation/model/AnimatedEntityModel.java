@@ -3,15 +3,17 @@ package cn.leolezury.eternalstarlight.client.model.animation.model;
 import cn.leolezury.eternalstarlight.client.model.animation.SLKeyframeAnimations;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
-@OnlyIn(Dist.CLIENT)
+
 public abstract class AnimatedEntityModel<E extends Entity> extends EntityModel<E> implements AnimatedModel {
     private static final Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
 

@@ -9,10 +9,10 @@ import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-@OnlyIn(Dist.CLIENT)
+
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {
     public AstralGolemRenderer(EntityRendererProvider.Context context) {
         super(context, new AstralGolemModel<>(context.bakeLayer(AstralGolemModel.LAYER_LOCATION)), 0.5f);

@@ -15,13 +15,13 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
 import java.util.Random;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LightningParticle extends Particle {
     private final Vec3 endPos;
     private final Vector3f color;
@@ -71,7 +71,7 @@ public class LightningParticle extends Particle {
         return ParticleRenderType.CUSTOM;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    
     public static class Provider implements ParticleProvider<LightningParticleOptions> {
         public Provider(SpriteSet spriteSet) {}
 

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.block.interfaces;
+package cn.leolezury.eternalstarlight.block.api;
 
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import net.minecraft.core.BlockPos;

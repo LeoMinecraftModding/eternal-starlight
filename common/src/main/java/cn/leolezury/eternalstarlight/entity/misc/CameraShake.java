@@ -13,8 +13,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.network.NetworkHooks;
 
 public class CameraShake extends Entity {
@@ -36,7 +36,7 @@ public class CameraShake extends Entity {
         setPos(position.x(), position.y(), position.z());
     }
 
-    @OnlyIn(Dist.CLIENT)
+    
     public float getShakeAmount(Player player, float delta) {
         float ticksDelta = tickCount + delta;
         float timeFrac = 1.0f - (ticksDelta - getDuration()) / (getFadeDuration() + 1.0f);

@@ -47,8 +47,8 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+//import net.minecraftforge.api.distmarker.Dist;
+//import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -74,8 +74,6 @@ public class LunarMonstrosity extends AbstractSLBoss {
     int biteCoolDown = 0;
     int sneakCoolDown = 0;
     private Vec3 targetPos = Vec3.ZERO;
-
-    @OnlyIn(Dist.CLIENT)
     public Vec3 headPos = Vec3.ZERO;
 
     @Override
@@ -311,7 +309,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    
     public void handleEntityEvent(byte id) {
         if (id == ClientEvents.BOSS_MUSIC_ID) {
             ClientEvents.handleEntityEvent(this, id);

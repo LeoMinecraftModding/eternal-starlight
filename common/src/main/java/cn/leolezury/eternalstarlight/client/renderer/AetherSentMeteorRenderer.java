@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.client.renderer;
 
-import cn.leolezury.eternalstarlight.entity.misc.AethersentMeteor;
+import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,16 +16,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class AetherSentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
+public class AetherSentMeteorRenderer extends EntityRenderer<AetherSentMeteor> {
     private final BlockRenderDispatcher dispatcher;
 
-    public AethersentMeteorRenderer(EntityRendererProvider.Context context) {
+    public AetherSentMeteorRenderer(EntityRendererProvider.Context context) {
         super(context);
         this.shadowRadius = 0.5F;
         this.dispatcher = context.getBlockRenderDispatcher();
     }
 
-    public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(AetherSentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         BlockState blockstate = BlockInit.AETHERSENT_BLOCK.get().defaultBlockState();
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = meteor.level();
@@ -44,7 +44,7 @@ public class AetherSentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
         }
     }
 
-    public ResourceLocation getTextureLocation(AethersentMeteor meteor) {
+    public ResourceLocation getTextureLocation(AetherSentMeteor meteor) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 }

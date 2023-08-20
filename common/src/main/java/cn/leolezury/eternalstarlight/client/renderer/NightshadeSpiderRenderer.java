@@ -9,10 +9,10 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-@OnlyIn(Dist.CLIENT)
+
 public class NightshadeSpiderRenderer<T extends NightshadeSpider> extends MobRenderer<T, SpiderModel<T>> {
     private static final ResourceLocation NIGHTSHADE_SPIDER_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/nightshade_spider.png");
 

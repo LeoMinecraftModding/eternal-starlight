@@ -11,13 +11,13 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LaserBeamRenderer<T extends AbstractLaserBeam> extends EntityRenderer<T> {
     public LaserBeamRenderer(EntityRendererProvider.Context mgr) {
         super(mgr);

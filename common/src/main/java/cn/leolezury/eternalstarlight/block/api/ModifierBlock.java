@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.block.interfaces;
+package cn.leolezury.eternalstarlight.block.api;
 
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;

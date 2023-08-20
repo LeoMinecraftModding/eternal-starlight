@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.client;
 import cn.leolezury.eternalstarlight.client.renderer.world.SLSkyRenderer;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;

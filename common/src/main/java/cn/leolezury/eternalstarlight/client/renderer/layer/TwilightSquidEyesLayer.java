@@ -7,10 +7,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TwilightSquidEyesLayer<T extends TwilightSquid, M extends TwilightSquidModel<T>> extends EyesLayer<T, M> {
     private static final RenderType SQUID_EYES = RenderType.eyes(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/twilight_squid_eyes.png"));
 

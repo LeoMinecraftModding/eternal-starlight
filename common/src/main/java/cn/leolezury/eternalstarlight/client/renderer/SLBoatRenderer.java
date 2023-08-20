@@ -17,14 +17,14 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Quaternionf;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SLBoatRenderer extends EntityRenderer<SLBoat> {
     private final Map<SLBoat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
 

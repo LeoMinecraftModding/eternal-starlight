@@ -5,12 +5,12 @@ import net.minecraft.world.level.block.Block;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public record ESFlammableBlock (int catchOdds, int burnOdds) implements Consumer<Block> {
+public record ESFlammableBlockModifier(int catchOdds, int burnOdds) implements Consumer<Block> {
     private static final Map<Block, Entry> entries = Maps.newHashMap();
-    public static final ESFlammableBlock WOOD = create(5, 20);
-    public static final ESFlammableBlock LEAVES = create(30, 60);
-    public static final ESFlammableBlock TALL_FLOWER = create(60, 100);
-    public static final ESFlammableBlock IVY = create(60, 50);
+    public static final ESFlammableBlockModifier WOOD = create(5, 20);
+    public static final ESFlammableBlockModifier LEAVES = create(30, 60);
+    public static final ESFlammableBlockModifier TALL_FLOWER = create(60, 100);
+    public static final ESFlammableBlockModifier IVY = create(60, 50);
 
     public record Entry(int catchOdds, int burnOdds) {
 
@@ -21,8 +21,8 @@ public record ESFlammableBlock (int catchOdds, int burnOdds) implements Consumer
     }
 
 
-    public static ESFlammableBlock create(int catchOdds, int burnOdds) {
-        return new ESFlammableBlock(catchOdds, burnOdds);
+    public static ESFlammableBlockModifier create(int catchOdds, int burnOdds) {
+        return new ESFlammableBlockModifier(catchOdds, burnOdds);
     }
 
     public static void setBlockFlammable(Block block, int catchOdds, int burnOdds) {

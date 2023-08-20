@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.client.gui.screens;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.GameNarrator;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -9,14 +11,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SLBookScreen extends Screen {
     private static final int PAGE_BUTTON_WIDTH = 23;
     private static final int PAGE_BUTTON_HEIGHT = 13;

@@ -1,13 +1,13 @@
 package cn.leolezury.eternalstarlight.client.model.animation;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LunarMonstrosityAnimation {
     public static final AnimationDefinition DISAPPEAR = AnimationDefinition.Builder.withLength(1.5f)
             .addAnimation("base",

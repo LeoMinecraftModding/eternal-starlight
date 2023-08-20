@@ -25,8 +25,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FogType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,8 +34,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = Dist.CLIENT)
+
+@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = EnvType.CLIENT)
 public class ClientEvents {
     public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
     public static final Map<Integer, CommonBossMusicInstance> BOSS_SOUND_MAP = new HashMap<>();

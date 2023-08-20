@@ -16,11 +16,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SLSkyRenderer {
     private static final float TIME_OF_DAY = 0.55833f;
     private static final ResourceLocation DEAD_STAR_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/environment/dead_star.png");

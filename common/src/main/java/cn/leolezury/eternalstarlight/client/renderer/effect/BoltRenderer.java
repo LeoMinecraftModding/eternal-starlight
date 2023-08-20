@@ -7,13 +7,13 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class BoltRenderer {
 
     /** Amount of times per tick we refresh. 3 implies 60 Hz. */

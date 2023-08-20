@@ -6,15 +6,15 @@ import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SLKeyframeAnimations {
     public static void animate(AnimatedModel model, AnimationDefinition definition, long accumulatedTime, float scale, Vector3f cache) {
         float f = getElapsedSeconds(definition, accumulatedTime);

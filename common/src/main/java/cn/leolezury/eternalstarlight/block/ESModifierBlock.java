@@ -1,20 +1,19 @@
 package cn.leolezury.eternalstarlight.block;
 
-import cn.leolezury.eternalstarlight.block.interfaces.ModifierBlock;
-import cn.leolezury.eternalstarlight.block.interfaces.ModifierContainer;
+import cn.leolezury.eternalstarlight.block.api.ModifierBlock;
+import cn.leolezury.eternalstarlight.block.api.ModifierContainer;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Consumer;
 
-public class ESBlock extends Block implements ModifierBlock {
+public class ESModifierBlock extends Block implements ModifierBlock {
     private ModifierContainer modifierContainer;
-
-    public ESBlock(Properties properties) {
+    public ESModifierBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ESBlock modifiers(Consumer... modifiers) {
+    public ESModifierBlock modifiers(Consumer... modifiers) {
         modifierContainer = new ModifierContainer<>(this, modifiers);
         return this;
     }

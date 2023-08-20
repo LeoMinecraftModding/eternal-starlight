@@ -13,6 +13,8 @@ import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
 import cn.leolezury.eternalstarlight.util.MathUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -39,8 +41,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -264,7 +264,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
         return list;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    
     public void handleEntityEvent(byte id) {
         if (id == ClientEvents.BOSS_MUSIC_ID) {
             ClientEvents.handleEntityEvent(this, id);

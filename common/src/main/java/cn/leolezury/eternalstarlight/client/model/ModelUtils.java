@@ -4,14 +4,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Quaternionf;
 import org.joml.Vector4f;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ModelUtils {
     public static void translateAndRotate(PoseStack stack, ModelPart part) {
         stack.translate(part.x / 16.0F, part.y / 16.0F, part.z / 16.0F);

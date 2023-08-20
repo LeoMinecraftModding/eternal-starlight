@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.util.register.RegistryObject;
 import cn.leolezury.eternalstarlight.world.feature.tree.TrunkBerriesDecorator;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 public class TreeDecoratorInit {
     public static final RegistrationProvider<TreeDecoratorType<?>> TREE_DECORATORS = RegistrationProvider.get(Registries.TREE_DECORATOR_TYPE, EternalStarlight.MOD_ID);
