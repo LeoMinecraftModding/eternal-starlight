@@ -44,6 +44,7 @@ public class OpenSLBookMessage {
             chapterBuilder.withTitle(buf.readUtf(384));
             chapterBuilder.withContent(buf.readUtf(384));
             chapterBuilder.withDisplayScale(buf.readFloat());
+            chapterBuilder.withEntityOffset(buf.readInt());
             dataList.add(chapterBuilder.build());
         }
         return new OpenSLBookMessage(builder.build(), dataList);
@@ -64,6 +65,7 @@ public class OpenSLBookMessage {
             buf.writeUtf(chapterData.getTitle(), 384);
             buf.writeUtf(chapterData.getContent(), 384);
             buf.writeFloat(chapterData.entityDisplayScale);
+            buf.writeInt(chapterData.entityOffset);
         }
     }
 
@@ -87,9 +89,8 @@ public class OpenSLBookMessage {
         private static List<BookRenderData.ChapterRenderData> getRenderDataList(OpenSLBookMessage message) {
             List<BookRenderData.ChapterRenderData> chapterRenderDataList = new ArrayList<>();
             for (ChapterData data : message.chapterDataList) {
-                BookRenderData.ChapterRenderData chapterRenderData = new BookRenderData.ChapterRenderData(data.getDisplayEntity(), data.getImageLocation(), Component.translatable(data.getTitle()), Component.translatable(data.getContent()), data.entityDisplayScale);
+                BookRenderData.ChapterRenderData chapterRenderData = new BookRenderData.ChapterRenderData(data.getDisplayEntity(), data.getImageLocation(), Component.translatable(data.getTitle()), Component.translatable(data.getContent()), data.entityDisplayScale, data.entityOffset);
                 chapterRenderDataList.add(chapterRenderData);
-                System.out.println("building CRD list, content:" + chapterRenderData.getContent().getString());
             }
             return chapterRenderDataList;
         }

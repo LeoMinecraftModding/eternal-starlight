@@ -53,6 +53,7 @@ public class BookRenderData {
 
     public static class ChapterRenderData {
         public float entityDisplayScale;
+        public int entityOffset;
         private ResourceLocation imageLocation;
         public ResourceLocation getImageLocation() {
             return imageLocation;
@@ -82,12 +83,13 @@ public class BookRenderData {
             this.content = content;
         }
 
-        public ChapterRenderData(ResourceLocation displayEntity, ResourceLocation imageLocation, Component title, Component content, float entityDisplayScale) {
+        public ChapterRenderData(ResourceLocation displayEntity, ResourceLocation imageLocation, Component title, Component content, float entityDisplayScale, int entityOffset) {
             setDisplayEntity(displayEntity);
             setImageLocation(imageLocation);
             setTitle(title);
             setContent(content);
             this.entityDisplayScale = entityDisplayScale;
+            this.entityOffset = entityOffset;
         }
     }
 }

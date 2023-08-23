@@ -92,11 +92,15 @@ public class BookManager extends SimpleJsonResourceReloadListener {
                     ChapterData chapterData = chapterManager.getChapterData(chapterLocation);
                     if (serverPlayer.getServer() != null) {
                         ServerAdvancementManager advancementManager = serverPlayer.getServer().getAdvancements();
-                        Advancement advancement = advancementManager.getAdvancement(chapterData.getTrigger());
-                        if (advancement != null) {
-                            AdvancementProgress advancementProgress = serverPlayer.getAdvancements().getOrStartProgress(advancement);
-                            if (advancementProgress.isDone()) {
-                                chapterDataList.add(chapterData);
+                        if (chapterData.getTrigger().getPath().isEmpty()) {
+                            chapterDataList.add(chapterData);
+                        } else {
+                            Advancement advancement = advancementManager.getAdvancement(chapterData.getTrigger());
+                            if (advancement != null) {
+                                AdvancementProgress advancementProgress = serverPlayer.getAdvancements().getOrStartProgress(advancement);
+                                if (advancementProgress.isDone()) {
+                                    chapterDataList.add(chapterData);
+                                }
                             }
                         }
                     }

@@ -50,6 +50,9 @@ public class ChapterManager extends SimpleJsonResourceReloadListener {
         if (jsonObject.has("entity_display_scale")) {
             builder.withDisplayScale(jsonObject.get("entity_display_scale").getAsInt());
         }
+        if (jsonObject.has("entity_offset")) {
+            builder.withEntityOffset(jsonObject.get("entity_offset").getAsInt());
+        }
         if (jsonObject.has("title")) {
             builder.withTitle(jsonObject.get("title").getAsString());
         }

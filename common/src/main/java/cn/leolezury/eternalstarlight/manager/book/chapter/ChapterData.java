@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ChapterData {
     public float entityDisplayScale;
+    public int entityOffset;
     private ResourceLocation trigger;
     public ResourceLocation getTrigger() {
         return trigger;
@@ -41,13 +42,14 @@ public class ChapterData {
         this.content = content;
     }
 
-    public ChapterData(ResourceLocation trigger, ResourceLocation imageLocation, ResourceLocation displayEntity, String title, String content, int entityDisplayScale) {
+    public ChapterData(ResourceLocation trigger, ResourceLocation imageLocation, ResourceLocation displayEntity, String title, String content, float entityDisplayScale, int entityOffset) {
         setTrigger(trigger);
         setImageLocation(imageLocation);
         setDisplayEntity(displayEntity);
         setTitle(title);
         setContent(content);
         this.entityDisplayScale = entityDisplayScale;
+        this.entityOffset = entityOffset;
     }
 
     public static class Builder {
@@ -55,7 +57,7 @@ public class ChapterData {
 
         public Builder() {
             ResourceLocation empty = new ResourceLocation("");
-            this.chapterData = new ChapterData(empty, empty, empty, "", "", 0);
+            this.chapterData = new ChapterData(empty, empty, empty, "", "", 0, 0);
         }
 
         public ChapterData.Builder withTrigger(ResourceLocation location) {
@@ -75,6 +77,11 @@ public class ChapterData {
 
         public ChapterData.Builder withDisplayScale(float scale) {
             chapterData.entityDisplayScale = scale;
+            return this;
+        }
+
+        public ChapterData.Builder withEntityOffset(int offset) {
+            chapterData.entityOffset = offset;
             return this;
         }
 

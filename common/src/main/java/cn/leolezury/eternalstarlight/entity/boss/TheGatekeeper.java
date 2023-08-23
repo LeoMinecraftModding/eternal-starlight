@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGo
 import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
+import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.event.server.ServerEvents;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.minecraft.core.BlockPos;
@@ -37,6 +38,8 @@ import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -247,11 +250,24 @@ public class TheGatekeeper extends AbstractSLBoss {
         return this.isUsingItem() && getUsedItemHand() == InteractionHand.OFF_HAND && getAttackState() == -2;
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public void handleEntityEvent(byte id) {
+        if (id == ClientEvents.BOSS_MUSIC_ID) {
+            ClientEvents.handleEntityEvent(this, id);
+        } else {
+            super.handleEntityEvent(id);
+        }
+    }
+
     @Override
     public void aiStep() {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
+            if (!isSilent()) {
+                this.level().broadcastEntityEvent(this, (byte)ClientEvents.BOSS_MUSIC_ID);
+            }
+
             setCustomName(Component.literal(gatekeeperName));
 
             setLeftHanded(false);
@@ -384,7 +400,7 @@ public class TheGatekeeper extends AbstractSLBoss {
                     }
                     if (onGround()) {
                         setAttackTicks(200);
-                        CameraShake.cameraShake(level(), position(), 45, 0.03f, 40, 20);
+                        CameraShake.createCameraShake(level(), position(), 45, 0.03f, 40, 20);
                         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
                         ((ServerLevel)level()).sendParticles(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
                         for (int x = -2; x <= 2; x++) {

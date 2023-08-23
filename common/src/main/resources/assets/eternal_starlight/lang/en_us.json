@@ -183,6 +183,7 @@
   "item.eternal_starlight.swamp_silver_boots": "Swamp Silver Boots",
   "item.eternal_starlight.seeking_eye": "Seeking Eye",
   "item.eternal_starlight.loot_bag": "Loot Bag",
+  "item.eternal_starlight.book": "Starlight Story",
   "item.eternal_starlight.red_starlight_crystal_shard": "Red Starlight Crystal Shard",
   "item.eternal_starlight.blue_starlight_crystal_shard": "Blue Starlight Crystal Shard",
   "item.eternal_starlight.golem_steel_ingot": "Golem Steel Ingot",
@@ -220,9 +221,6 @@
   "entity.eternal_starlight.fire_column": "Column of Fire",
   "entity.eternal_starlight.spore": "Spore",
   "entity.eternal_starlight.vine": "Vine",
-
-  "boss.eternal_starlight.starlight_golem.desc": "Abandoned Golem in an Ancient Forge",
-  "boss.eternal_starlight.lunar_monstrosity.desc": "Devil in the Cursed Garden",
 
   "subtitles.entity.seeking_eye.launch": "Seeking Eye launches",
   "subtitles.entity.seeking_eye.death": "Seeking Eye drops",

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.client.sounds.CommonBossMusicInstance;
 import cn.leolezury.eternalstarlight.entity.boss.AbstractSLBoss;
 import cn.leolezury.eternalstarlight.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.entity.boss.StarlightGolem;
+import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import com.mojang.blaze3d.shaders.FogShape;
@@ -25,8 +26,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FogType;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,30 +35,34 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 
-
-@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
     public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
     public static final Map<Integer, CommonBossMusicInstance> BOSS_SOUND_MAP = new HashMap<>();
     public static final int BOSS_MUSIC_ID = 100;
 
     @SubscribeEvent
-    public static void onSetupCamera(ViewportEvent.ComputeCameraAngles event) {
-        Player player = Minecraft.getInstance().player;
-        float delta = Minecraft.getInstance().getFrameTime();
-        if (player != null) {
-            float ticksExistedDelta = player.tickCount + delta;
+    public static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
+        LocalPlayer localPlayer = Minecraft.getInstance().player;
+        float partialTicks = Minecraft.getInstance().getFrameTime();
+
+        if (localPlayer != null) {
+            float ticks = localPlayer.tickCount + partialTicks;
             if (!Minecraft.getInstance().isPaused()) {
-                float shakeAmplitude = 0;
-                for (CameraShake cameraShake : player.level().getEntitiesOfClass(CameraShake.class, player.getBoundingBox().inflate(20, 20, 20))) {
-                    if (cameraShake.distanceTo(player) < cameraShake.getRadius()) {
-                        shakeAmplitude += cameraShake.getShakeAmount(player, delta);
+                float shakeAmount = 0;
+                if (Minecraft.getInstance().level != null) {
+                    for (CameraShake cameraShake : Minecraft.getInstance().level.getEntitiesOfClass(CameraShake.class, localPlayer.getBoundingBox().inflate(50))) {
+                        if (cameraShake.distanceTo(localPlayer) < cameraShake.getRadius()) {
+                            shakeAmount += cameraShake.getShakeAmount(localPlayer, partialTicks);
+                        }
                     }
                 }
-                if (shakeAmplitude > 1.0f) shakeAmplitude = 1.0f;
-                event.setPitch((float) (event.getPitch() + shakeAmplitude * Math.cos(ticksExistedDelta * 3 + 2) * 25));
-                event.setYaw((float) (event.getYaw() + shakeAmplitude * Math.cos(ticksExistedDelta * 5 + 1) * 25));
-                event.setRoll((float) (event.getRoll() + shakeAmplitude * Math.cos(ticksExistedDelta * 4) * 25));
+                shakeAmount = Math.min(shakeAmount, 1);
+
+                event.setPitch((float) (event.getPitch() + shakeAmount * Math.cos(ticks * 3) * 20));
+                event.setYaw((float) (event.getYaw() + shakeAmount * Math.cos(ticks * 4) * 20));
+                event.setRoll((float) (event.getRoll() + shakeAmount * Math.cos(ticks * 5) * 20));
             }
         }
     }
@@ -128,18 +133,22 @@ public class ClientEvents {
             return;
         }
         Component bossDesc;
-        if (boss instanceof StarlightGolem) {
+        if (boss instanceof TheGatekeeper) {
+            event.setCanceled(true);
+            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/the_gatekeeper.png");
+            bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".the_gatekeeper.desc");
+        } else if (boss instanceof StarlightGolem) {
             event.setCanceled(true);
             barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/starlight_golem.png");
             bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".starlight_golem.desc");
-        } else if (boss instanceof LunarMonstrosity lunarMonstrosity) {
+        } else if (boss instanceof LunarMonstrosity) {
             event.setCanceled(true);
-            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/lunar_monstrosity_" + lunarMonstrosity.getPhase() + ".png");
+            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/lunar_monstrosity.png");
             bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".lunar_monstrosity.desc");
         } else {
             return;
         }
-        event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
+        //event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
         RenderSystem.setShaderTexture(0, GUI_BARS_LOCATION);
         drawBar(event.getGuiGraphics(), event.getX(), event.getY(), bossEvent, barLocation);
         Component component = bossEvent.getName();
@@ -147,10 +156,10 @@ public class ClientEvents {
         int textX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - textWidth / 2;
         int textY = event.getY() - 9;
         event.getGuiGraphics().drawString(Minecraft.getInstance().font, component, textX, textY, 16777215);
-        int descWidth = Minecraft.getInstance().font.width(bossDesc);
+        /*int descWidth = Minecraft.getInstance().font.width(bossDesc);
         int descX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - descWidth / 2;
         int descY = event.getY() + 9;
-        event.getGuiGraphics().drawString(Minecraft.getInstance().font, bossDesc, descX, descY, 16777215);
+        event.getGuiGraphics().drawString(Minecraft.getInstance().font, bossDesc, descX, descY, 16777215);*/
     }
 
     public static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, ResourceLocation barLocation) {
@@ -160,7 +169,7 @@ public class ClientEvents {
             drawBar(guiGraphics, x, y, event, i, 5);
         }
         RenderSystem.setShaderTexture(0, barLocation);
-        guiGraphics.blit(barLocation, x, y - 1, 0.0F, 0.0F, 184, 7, 184, 7);
+        guiGraphics.blit(barLocation, x - 36, y - 32, 0.0F, 0.0F, 256, 64, 256, 64);
     }
 
     private static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, int width, int i) {

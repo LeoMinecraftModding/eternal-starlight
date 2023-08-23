@@ -33,7 +33,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -108,6 +110,17 @@ public class ServerEvents {
             if (event.getSource().getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
                 Vec3 location = livingEntity.position();
                 AethersentMeteor.createMeteorShower(serverLevel, event.getEntity(), livingEntity, location.x, location.y, location.z, 200, true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        LivingEntity livingEntity = event.getEntity();
+        if (livingEntity.tickCount % 20 == 0) {
+            int coolDown = livingEntity.getPersistentData().getInt("MeteorCoolDown");
+            if (coolDown > 0) {
+                livingEntity.getPersistentData().putInt("MeteorCoolDown", coolDown - 1);
             }
         }
     }

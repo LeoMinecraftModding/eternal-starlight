@@ -93,7 +93,7 @@ public class Spore extends AbstractHurtingProjectile {
             ((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
         }
 
-        CameraShake.cameraShake(level(), position(), 45, 0.002f, 20, 10);
+        CameraShake.createCameraShake(level(), position(), 45, 0.002f, 20, 10);
         discard();
     }
 
@@ -121,7 +121,7 @@ public class Spore extends AbstractHurtingProjectile {
             ((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
         }
 
-        CameraShake.cameraShake(level(), position(), 45, 0.002f, 20, 10);
+        CameraShake.createCameraShake(level(), position(), 45, 0.002f, 20, 10);
         discard();
     }
 }
