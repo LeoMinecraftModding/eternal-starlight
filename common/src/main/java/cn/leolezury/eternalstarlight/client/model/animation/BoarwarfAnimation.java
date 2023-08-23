@@ -8,6 +8,7 @@ import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
 
+@Environment(EnvType.CLIENT)
 public class BoarwarfAnimation {
     public static final AnimationDefinition WALK = AnimationDefinition.Builder.withLength(1f).looping()
             .addAnimation("body",

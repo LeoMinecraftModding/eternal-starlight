@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.block;
 
-import cn.leolezury.eternalstarlight.block.api.BerriesVines;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import net.minecraft.core.BlockPos;

@@ -8,6 +8,8 @@ import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -309,7 +311,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
         }
     }
 
-    
+    @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == ClientEvents.BOSS_MUSIC_ID) {
             ClientEvents.handleEntityEvent(this, id);

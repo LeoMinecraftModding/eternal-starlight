@@ -14,7 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
     public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_armor"), "inner");
     public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_armor"), "outer");

@@ -8,6 +8,7 @@ import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
 
+@Environment(EnvType.CLIENT)
 public class LunarMonstrosityAnimation {
     public static final AnimationDefinition DISAPPEAR = AnimationDefinition.Builder.withLength(1.5f)
             .addAnimation("base",

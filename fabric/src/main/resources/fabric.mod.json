@@ -16,12 +16,15 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.examplemod.fabric.ExampleModFabric"
+      "cn.leolezury.eternalstarlight.ESFabric"
     ]
   },
+  "mixins": [
+    "eternal_starlight-common.mixins.json",
+    "eternal_starlight.mixins.json"
+  ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.4",
-    "architectury": ">=8.1.79"
+    "minecraft": ">=1.20.1"
   }
 }

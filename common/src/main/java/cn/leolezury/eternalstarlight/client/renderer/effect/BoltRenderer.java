@@ -13,7 +13,7 @@ import org.joml.Matrix4f;
 
 import java.util.*;
 
-
+@Environment(EnvType.CLIENT)
 public class BoltRenderer {
 
     /** Amount of times per tick we refresh. 3 implies 60 Hz. */

@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class DryadRenderer<T extends Dryad> extends MobRenderer<T, DryadModel<T>> {
     ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/dryad.png");
     ResourceLocation LUSH_ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lush_dryad.png");

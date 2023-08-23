@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(SaplingBlock.class)
 public interface SaplingBlockAccess {
     @Invoker("<init>")
-    static SaplingBlock createSpaling(AbstractTreeGrower $$0, BlockBehaviour.Properties $$1) {
+    static SaplingBlock create(AbstractTreeGrower $$0, BlockBehaviour.Properties $$1) {
         throw new UnsupportedOperationException();
     }
 }

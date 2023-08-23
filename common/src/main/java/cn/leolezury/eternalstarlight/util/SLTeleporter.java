@@ -24,14 +24,13 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.ITeleporter;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class SLTeleporter implements ITeleporter {
+public class SLTeleporter {
     protected final ServerLevel level;
 
     public SLTeleporter(ServerLevel worldIn) {
@@ -42,7 +41,7 @@ public class SLTeleporter implements ITeleporter {
         PoiManager poiManager = this.level.getPoiManager();
         poiManager.ensureLoadedAndValid(this.level, pos, 64);
         Optional<PoiRecord> optional = poiManager.getInSquare((poiType) ->
-                poiType == POIInit.STARLIGHT_PORTAL.getHolder().get(), pos, 64, PoiManager.Occupancy.ANY).sorted(Comparator.<PoiRecord>comparingDouble((poi) ->
+                poiType.is(POIInit.STARLIGHT_PORTAL.getResourceKey().location()), pos, 64, PoiManager.Occupancy.ANY).sorted(Comparator.<PoiRecord>comparingDouble((poi) ->
                 poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
                 poi.getPos().getY())).filter((poi) ->
                 this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
@@ -164,7 +163,6 @@ public class SLTeleporter implements ITeleporter {
     }
 
     @Nullable
-    @Override
     public PortalInfo getPortalInfo(Entity entity, ServerLevel level, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         boolean destinationIsUG = level.dimension() == DimensionInit.STARLIGHT_KEY;
         if (entity.level().dimension() != DimensionInit.STARLIGHT_KEY && !destinationIsUG) {
@@ -208,7 +206,6 @@ public class SLTeleporter implements ITeleporter {
         }
     }
 
-    @Override
     public boolean playTeleportSound(ServerPlayer player, ServerLevel sourceWorld, ServerLevel destWorld) {
         return false;
     }

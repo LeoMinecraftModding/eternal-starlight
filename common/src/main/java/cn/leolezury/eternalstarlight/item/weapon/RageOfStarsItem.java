@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.item.weapon;
 
-import cn.leolezury.eternalstarlight.entity.misc.AethersentMeteor;
+import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,7 +26,7 @@ public class RageOfStarsItem extends Item {
         EntityHitResult entityHitResult = ProjectileUtil.getEntityHitResult(entity, eyePosition, vec3, aabb, (entity1) -> !entity1.isSpectator() && entity1 instanceof LivingEntity, range * range);
         if (entityHitResult != null && entityHitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
             Vec3 location = livingEntity.position();
-            AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
+            AetherSentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
         }
         return super.onEntitySwing(stack, entity);
     }

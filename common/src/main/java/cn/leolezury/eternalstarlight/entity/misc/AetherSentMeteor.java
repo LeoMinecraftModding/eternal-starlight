@@ -31,8 +31,8 @@ import org.joml.Vector3f;
 
 import java.util.UUID;
 
-public class AethersentMeteor extends AbstractHurtingProjectile {
-    protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
+public class AetherSentMeteor extends AbstractHurtingProjectile {
+    protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AetherSentMeteor.class, EntityDataSerializers.INT);
 
     public int getSize() {
         return entityData.get(SIZE);
@@ -42,7 +42,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
         entityData.set(SIZE, size);
     }
 
-    protected static final EntityDataAccessor<Integer> TICKS_SINCE_LANDED = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> TICKS_SINCE_LANDED = SynchedEntityData.defineId(AetherSentMeteor.class, EntityDataSerializers.INT);
 
     public int getTicksSinceLanded() {
         return entityData.get(TICKS_SINCE_LANDED);
@@ -79,12 +79,12 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 
     public boolean onlyHurtEnemy = true;
 
-    public AethersentMeteor(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
+    public AetherSentMeteor(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
         super(type, level);
         noPhysics = true;
     }
 
-    public AethersentMeteor(Level level, LivingEntity entity, double x, double y, double z) {
+    public AetherSentMeteor(Level level, LivingEntity entity, double x, double y, double z) {
         this(EntityInit.AETHERSENT_METEOR.get(), level);
         xo = x;
         yo = y;
@@ -100,7 +100,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
         entity.getPersistentData().putInt("MeteorCoolDown", 1);
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
-                AethersentMeteor meteor = new AethersentMeteor(level, entity, targetX + x, targetY + height, targetZ + z);
+                AetherSentMeteor meteor = new AetherSentMeteor(level, entity, targetX + x, targetY + height, targetZ + z);
                 meteor.setSize(entity.getRandom().nextInt(2, 5));
                 meteor.setTarget(target);
                 meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));

@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.client.renderer;
 import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
+@Environment(EnvType.CLIENT)
 public class AetherSentMeteorRenderer extends EntityRenderer<AetherSentMeteor> {
     private final BlockRenderDispatcher dispatcher;
 

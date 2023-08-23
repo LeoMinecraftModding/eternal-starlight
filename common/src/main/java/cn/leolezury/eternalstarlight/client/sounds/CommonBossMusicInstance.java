@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.entity.boss.AbstractSLBoss;
 import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -12,6 +14,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class CommonBossMusicInstance extends AbstractTickableSoundInstance {
     private final AbstractSLBoss boss;
 

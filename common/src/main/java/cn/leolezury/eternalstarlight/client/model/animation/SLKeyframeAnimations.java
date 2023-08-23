@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 
 
+@Environment(EnvType.CLIENT)
 public class SLKeyframeAnimations {
     public static void animate(AnimatedModel model, AnimationDefinition definition, long accumulatedTime, float scale, Vector3f cache) {
         float f = getElapsedSeconds(definition, accumulatedTime);

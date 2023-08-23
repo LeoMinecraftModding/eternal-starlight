@@ -21,7 +21,7 @@ import org.joml.Vector3f;
 
 import java.util.Random;
 
-
+@Environment(EnvType.CLIENT)
 public class LightningParticle extends Particle {
     private final Vec3 endPos;
     private final Vector3f color;

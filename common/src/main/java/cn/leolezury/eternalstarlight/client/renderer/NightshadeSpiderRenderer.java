@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class NightshadeSpiderRenderer<T extends NightshadeSpider> extends MobRenderer<T, SpiderModel<T>> {
     private static final ResourceLocation NIGHTSHADE_SPIDER_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/nightshade_spider.png");
 

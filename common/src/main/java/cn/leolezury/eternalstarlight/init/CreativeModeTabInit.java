@@ -14,11 +14,14 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeModeTabInit {
     public static final RegistrationProvider<CreativeModeTab> TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, EternalStarlight.MOD_ID);
-    public static final RegistryObject<CreativeModeTab> BUILDING_BLOCKS = TABS.register("building_blocks", () -> CreativeModeTab.builder()
+
+    // We need to split this to Forge, Fabric and Quilt later...
+    public static final RegistryObject<CreativeModeTab> BUILDING_BLOCKS = TABS.register("building_blocks", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".building_blocks"))
             .icon(() -> new ItemStack(ItemInit.CHISELED_GRIMSTONE.get()))
             .displayItems((parameters, output) -> {
+                output
                 output.accept(ItemInit.RED_STARLIGHT_CRYSTAL_BLOCK.get().getDefaultInstance());
                 output.accept(ItemInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().getDefaultInstance());
                 output.accept(ItemInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().getDefaultInstance());
@@ -239,7 +242,7 @@ public class CreativeModeTabInit {
             }).build());
 
     public static final RegistryObject<CreativeModeTab> SPAWN_EGGS = TABS.register("spawn_eggs", () -> CreativeModeTab.builder()
-            .withTabsBefore(FOODS.getKey())
+            .withTabsBefore(FOODS.getResourceKey())
             .title(Component.translatable("itemGroup." + EternalStarlight.MOD_ID + ".spawn_eggs"))
             .icon(() -> new ItemStack(Items.PHANTOM_SPAWN_EGG))
             .displayItems((parameters, output) -> {

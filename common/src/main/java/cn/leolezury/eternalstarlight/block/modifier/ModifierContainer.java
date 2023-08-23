@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.block.api;
+package cn.leolezury.eternalstarlight.block.modifier;
 
 import java.util.function.Consumer;
 

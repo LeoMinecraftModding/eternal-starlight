@@ -9,7 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class NothingRenderer extends EntityRenderer<Entity> {
     public NothingRenderer(EntityRendererProvider.Context mgr) {
         super(mgr);

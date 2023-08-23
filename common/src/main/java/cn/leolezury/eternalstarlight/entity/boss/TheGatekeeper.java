@@ -8,6 +8,8 @@ import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
 import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.event.server.ServerEvents;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -38,8 +40,6 @@ import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -250,7 +250,7 @@ public class TheGatekeeper extends AbstractSLBoss {
         return this.isUsingItem() && getUsedItemHand() == InteractionHand.OFF_HAND && getAttackState() == -2;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == ClientEvents.BOSS_MUSIC_ID) {
             ClientEvents.handleEntityEvent(this, id);

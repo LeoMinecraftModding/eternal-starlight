@@ -10,7 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class NightshadeSpiderEyesLayer<T extends Entity, M extends SpiderModel<T>> extends EyesLayer<T, M> {
     private static final RenderType SPIDER_EYES = RenderType.eyes(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/nightshade_spider_eyes.png"));
 

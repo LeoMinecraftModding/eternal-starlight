@@ -20,7 +20,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 
-
+@Environment(EnvType.CLIENT)
 public class SLSkyRenderer {
     private static final float TIME_OF_DAY = 0.55833f;
     private static final ResourceLocation DEAD_STAR_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/environment/dead_star.png");

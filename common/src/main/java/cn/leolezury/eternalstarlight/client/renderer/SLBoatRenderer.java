@@ -24,7 +24,7 @@ import org.joml.Quaternionf;
 import java.util.Map;
 import java.util.stream.Stream;
 
-
+@Environment(EnvType.CLIENT)
 public class SLBoatRenderer extends EntityRenderer<SLBoat> {
     private final Map<SLBoat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
 

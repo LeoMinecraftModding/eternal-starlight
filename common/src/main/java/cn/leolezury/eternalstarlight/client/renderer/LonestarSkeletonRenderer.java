@@ -9,7 +9,7 @@ import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class LonestarSkeletonRenderer extends SkeletonRenderer {
     private static final ResourceLocation LONESTAR_SKELETON_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lonestar_skeleton.png");
 

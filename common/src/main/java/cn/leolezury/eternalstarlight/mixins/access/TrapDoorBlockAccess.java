@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(TrapDoorBlock.class)
 public interface TrapDoorBlockAccess {
     @Invoker("<init>")
-    static TrapDoorBlock createTrapDoorBlock(BlockBehaviour.Properties properties, BlockSetType type) {
+    static TrapDoorBlock create(BlockBehaviour.Properties properties, BlockSetType type) {
         throw new UnsupportedOperationException();
     }
 }

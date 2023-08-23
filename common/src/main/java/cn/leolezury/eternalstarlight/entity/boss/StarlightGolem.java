@@ -66,7 +66,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
     private Vec3 targetPos = Vec3.ZERO;
 
     public boolean canHurt() {
-        return getLitEnergyBlocks().size() == 0;
+        return getLitEnergyBlocks().isEmpty();
     }
 
     @Override
@@ -217,11 +217,6 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
     }
 
     @Override
-    public boolean isPushedByFluid(FluidTFluidType type) {
-        return false;
-    }
-
-    @Override
     public boolean canBossMove() {
         return false;
     }
@@ -264,7 +259,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
         return list;
     }
 
-    
+    @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == ClientEvents.BOSS_MUSIC_ID) {
             ClientEvents.handleEntityEvent(this, id);
@@ -323,7 +318,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
                     }
 
                     if (getAttackTicks() >= 60 && getAttackTicks() % 40 == 0) {
-                        CameraShake.cameraShake(level(), position(), 45, 0.02f, 40, 20);
+                        CameraShake.createCameraShake(level(), position(), 45, 0.02f, 40, 20);
                         for (int x = -1; x <= 1; x += 2) {
                             for (int z = -1; z <= 1; z += 2) {
                                 FireColumn fireColumn = EntityInit.FIRE_COLUMN.get().create(level());
@@ -338,7 +333,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
                 }
                 case 2 -> {
                     if (getAttackTicks() % 20 == 0 && target != null) {
-                        CameraShake.cameraShake(level(), position(), 45, 0.02f, 40, 20);
+                        CameraShake.createCameraShake(level(), position(), 45, 0.02f, 40, 20);
                         FireColumn fireColumn = EntityInit.FIRE_COLUMN.get().create(level());
                         fireColumn.setPos(target.position());
                         fireColumn.setOwner(this);
@@ -358,7 +353,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
 
                     if (getAttackTicks() == 40 && targetPos.distanceTo(position()) < 25) {
                         List<BlockPos> blockList = new ArrayList<>();
-                        CameraShake.cameraShake(level(), position(), 45, 0.02f, 40, 20);
+                        CameraShake.createCameraShake(level(), position(), 45, 0.02f, 40, 20);
                         float distance = Mth.sqrt((float) distanceToSqr(targetPos));
                         for (int i = 0; i <= Mth.ceil(distance); i += 4) {
                             AABB aabb = new AABB(getX() - 1.5, getY() - 1.5, getZ() - 1.5, getX() + 1.5, getY() + 1.5, getZ() + 1.5).move(targetPos.add(position().add(0, 1, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(TallGrassBlock.class)
 public interface TallGrassBlockAccess {
     @Invoker("<init>")
-    static TallGrassBlock createTallGrassBlock(BlockBehaviour.Properties $$0) {
+    static TallGrassBlock create(BlockBehaviour.Properties $$0) {
         throw new UnsupportedOperationException();
     }
 }

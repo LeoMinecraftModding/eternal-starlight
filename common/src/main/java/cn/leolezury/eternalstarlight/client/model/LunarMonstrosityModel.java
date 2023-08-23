@@ -14,7 +14,7 @@ import net.fabricmc.api.Environment;
 
 import java.util.List;
 
-
+@Environment(EnvType.CLIENT)
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonflower"), "main");
     private final ModelPart root;

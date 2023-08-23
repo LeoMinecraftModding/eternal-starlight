@@ -11,7 +11,7 @@ import org.joml.Vector4f;
 
 import java.util.List;
 
-
+@Environment(EnvType.CLIENT)
 public class ModelUtils {
     public static void translateAndRotate(PoseStack stack, ModelPart part) {
         stack.translate(part.x / 16.0F, part.y / 16.0F, part.z / 16.0F);

@@ -3,9 +3,10 @@ package cn.leolezury.eternalstarlight.init;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.*;
 import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
-import cn.leolezury.eternalstarlight.block.modifier.ESFlammableBlockModifier;
+import cn.leolezury.eternalstarlight.block.modifier.ESFlammabilityModifier;
 import cn.leolezury.eternalstarlight.datagen.generator.ConfiguredFeatureGenerator;
 import cn.leolezury.eternalstarlight.mixins.access.*;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.util.register.RegistryObject;
 import cn.leolezury.eternalstarlight.world.feature.tree.LunarTreeGrower;
@@ -49,7 +50,7 @@ public class BlockInit {
 
     //lunar wood
     public static final RegistryObject<Block> LUNAR_LEAVES = BLOCKS.register("lunar_leaves",
-            () -> new ESLeaveBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)).modifiers(ESFlammableBlockModifier.LEAVES));
+            () -> new ESLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)).modifiers(ESFlammabilityModifier.LEAVES));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -69,7 +70,7 @@ public class BlockInit {
     public static final RegistryObject<Block> LUNAR_WOOD = BLOCKS.register("lunar_wood",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block> LUNAR_PLANKS = BLOCKS.register("lunar_planks",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammableBlockModifier.WOOD));
+            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -89,13 +90,13 @@ public class BlockInit {
     public static final RegistryObject<Block> STRIPPED_LUNAR_WOOD = BLOCKS.register("stripped_lunar_wood",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block> LUNAR_DOOR = BLOCKS.register("lunar_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
+            () -> DoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
     public static final RegistryObject<Block> LUNAR_TRAPDOOR = BLOCKS.register("lunar_trapdoor",
-            () -> TrapDoorBlockAccess.createTrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
+            () -> TrapDoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
     public static final RegistryObject<Block> LUNAR_PRESSURE_PLATE = BLOCKS.register("lunar_pressure_plate",
-            () -> PressurePlateBlockAccess.createPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
+            () -> PressurePlateBlockAccess.create(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
     public static final RegistryObject<Block> LUNAR_BUTTON = BLOCKS.register("lunar_button",
-            () -> ButtonBlockAccess.createButton(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET, 30, true));
+            () -> ButtonBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET, 30, true));
     public static final RegistryObject<Block> LUNAR_FENCE = BLOCKS.register("lunar_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block> LUNAR_FENCE_GATE = BLOCKS.register("lunar_fence_gate",
@@ -112,12 +113,12 @@ public class BlockInit {
             () -> new SLCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR));
     public static final RegistryObject<Block> LUNAR_WALL_HANGING_SIGN = BLOCKS.register("lunar_wall_hanging_sign",
             () -> new SLWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR));
-    public static final RegistryObject<Block> LUNAR_SAPLING = BLOCKS.register("lunar_sapling", () -> SaplingBlockAccess.createSpaling(new LunarTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<Block> POTTED_LUNAR_SAPLING = BLOCKS.register("potted_lunar_sapling", () -> new FlowerPotBlock((Blocks.FLOWER_POT), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block> LUNAR_SAPLING = BLOCKS.register("lunar_sapling", () -> SaplingBlockAccess.create(new LunarTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block> POTTED_LUNAR_SAPLING = BLOCKS.register("potted_lunar_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LUNAR_SAPLING, BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     //northland wood
     public static final RegistryObject<Block> NORTHLAND_LEAVES = BLOCKS.register("northland_leaves",
-            () -> new ESLeaveBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)).modifiers(ESFlammableBlockModifier.LEAVES));
+            () -> new ESLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)).modifiers(ESFlammabilityModifier.LEAVES));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -137,7 +138,7 @@ public class BlockInit {
     public static final RegistryObject<Block> NORTHLAND_WOOD = BLOCKS.register("northland_wood",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block> NORTHLAND_PLANKS = BLOCKS.register("northland_planks",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammableBlockModifier.WOOD));
+            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -157,13 +158,13 @@ public class BlockInit {
     public static final RegistryObject<Block> STRIPPED_NORTHLAND_WOOD = BLOCKS.register("stripped_northland_wood",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block> NORTHLAND_DOOR = BLOCKS.register("northland_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
+            () -> DoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
     public static final RegistryObject<Block> NORTHLAND_TRAPDOOR = BLOCKS.register("northland_trapdoor",
-            () -> TrapDoorBlockAccess.createTrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
+            () -> TrapDoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
     public static final RegistryObject<Block> NORTHLAND_PRESSURE_PLATE = BLOCKS.register("northland_pressure_plate",
-            () -> PressurePlateBlockAccess.createPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
+            () -> PressurePlateBlockAccess.create(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
     public static final RegistryObject<Block> NORTHLAND_BUTTON = BLOCKS.register("northland_button",
-            () -> ButtonBlockAccess.createButton(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET, 30, true));
+            () -> ButtonBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET, 30, true));
     public static final RegistryObject<Block> NORTHLAND_FENCE = BLOCKS.register("northland_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block> NORTHLAND_FENCE_GATE = BLOCKS.register("northland_fence_gate",
@@ -180,12 +181,12 @@ public class BlockInit {
             () -> new SLCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND));
     public static final RegistryObject<Block> NORTHLAND_WALL_HANGING_SIGN = BLOCKS.register("northland_wall_hanging_sign",
             () -> new SLWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND));
-    public static final RegistryObject<Block> NORTHLAND_SAPLING = BLOCKS.register("northland_sapling", () -> SaplingBlockAccess.createSpaling(new NorthlandTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<Block> POTTED_NORTHLAND_SAPLING = BLOCKS.register("potted_northland_sapling", () -> FlowerPotBlockAccess.create((Blocks.FLOWER_POT), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block> NORTHLAND_SAPLING = BLOCKS.register("northland_sapling", () -> SaplingBlockAccess.create(new NorthlandTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block> POTTED_NORTHLAND_SAPLING = BLOCKS.register("potted_northland_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, NORTHLAND_SAPLING, BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     //starlight mangrove wood
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_LEAVES = BLOCKS.register("starlight_mangrove_leaves",
-            () -> new ESLeaveBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)).modifiers(ESFlammableBlockModifier.LEAVES)); //{
+            () -> new ESLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)).modifiers(ESFlammabilityModifier.LEAVES)); //{
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
 //                    return true;
@@ -200,9 +201,9 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_LOG = BLOCKS.register("starlight_mangrove_log",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammableBlockModifier.WOOD));
+            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_WOOD = BLOCKS.register("starlight_mangrove_wood",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammableBlockModifier.WOOD));
+            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
 //    public static final RegistryObject<Block> STARLIGHT_MANGROVE_PLANKS = BLOCKS.register("starlight_mangrove_planks",
 //            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)) {
 //                @Override
@@ -225,13 +226,13 @@ public class BlockInit {
     public static final RegistryObject<Block> STRIPPED_STARLIGHT_MANGROVE_WOOD = BLOCKS.register("stripped_starlight_mangrove_wood",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_DOOR = BLOCKS.register("starlight_mangrove_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
+            () -> DoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_TRAPDOOR = BLOCKS.register("starlight_mangrove_trapdoor",
-            () -> TrapDoorBlockAccess.createTrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
+            () -> TrapDoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_PRESSURE_PLATE = BLOCKS.register("starlight_mangrove_pressure_plate",
-            () -> PressurePlateBlockAccess.createPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
+            () -> PressurePlateBlockAccess.create(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_BUTTON = BLOCKS.register("starlight_mangrove_button",
-            () -> ButtonBlockAccess.createButton(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET, 30, true));
+            () -> ButtonBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE_SET, 30, true));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_FENCE = BLOCKS.register("starlight_mangrove_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_FENCE_GATE = BLOCKS.register("starlight_mangrove_fence_gate",
@@ -248,8 +249,8 @@ public class BlockInit {
             () -> new SLCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_WALL_HANGING_SIGN = BLOCKS.register("starlight_mangrove_wall_hanging_sign",
             () -> new SLWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED), SLWoodTypes.STARLIGHT_MANGROVE));
-    public static final RegistryObject<Block> STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("starlight_mangrove_sapling", () -> SaplingBlockAccess.createSpaling(new StarlightMangroveTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
-    public static final RegistryObject<Block> POTTED_STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("potted_starlight_mangrove_sapling", () -> FlowerPotBlockAccess.create((Blocks.FLOWER_POT), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("starlight_mangrove_sapling", () -> SaplingBlockAccess.create(new StarlightMangroveTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> POTTED_STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("potted_starlight_mangrove_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_MANGROVE_SAPLING, BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_ROOTS = BLOCKS.register("starlight_mangrove_roots", () -> MangroveRootsBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.MANGROVE_ROOTS)));
     public static final RegistryObject<Block> MUDDY_STARLIGHT_MANGROVE_ROOTS = BLOCKS.register("muddy_starlight_mangrove_roots", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.MUDDY_MANGROVE_ROOTS)));
 
@@ -289,7 +290,7 @@ public class BlockInit {
     public static final RegistryObject<Block> STARLIGHT_FLOWER = BLOCKS.register("starlight_flower", () -> FlowerBlockAccess.create(MobEffects.DAMAGE_RESISTANCE, 10, BlockBehaviour.Properties.copy(Blocks.POPPY).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
         return 15;
     })));
-    public static final RegistryObject<Block> POTTED_STARLIGHT_FLOWER = BLOCKS.register("potted_starlight_flower", () -> FlowerPotBlockAccess.create((Blocks.FLOWER_POT), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
+    public static final RegistryObject<Block> POTTED_STARLIGHT_FLOWER = BLOCKS.register("potted_starlight_flower", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_FLOWER, BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
         return 15;
     })));
     public static final RegistryObject<Block> NIGHT_SPROUTS = BLOCKS.register("night_sprouts", () -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE)) {
@@ -334,12 +335,12 @@ public class BlockInit {
             return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
         }
     });
-    public static final RegistryObject<Block> CRESCENT_GRASS = BLOCKS.register("crescent_grass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
-    public static final RegistryObject<Block> GLOWING_CRESCENT_GRASS = BLOCKS.register("glowing_crescent_grass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
+    public static final RegistryObject<Block> CRESCENT_GRASS = BLOCKS.register("crescent_grass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block> GLOWING_CRESCENT_GRASS = BLOCKS.register("glowing_crescent_grass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
         return 15;
     })));
-    public static final RegistryObject<Block> PARASOL_GRASS = BLOCKS.register("parasol_grass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
-    public static final RegistryObject<Block> GLOWING_PARASOL_GRASS = BLOCKS.register("glowing_parasol_grass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
+    public static final RegistryObject<Block> PARASOL_GRASS = BLOCKS.register("parasol_grass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block> GLOWING_PARASOL_GRASS = BLOCKS.register("glowing_parasol_grass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
         return 15;
     })));
     public static final RegistryObject<Block> LUNAR_REED = BLOCKS.register("lunar_reed", () -> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.LARGE_FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> {
@@ -347,14 +348,14 @@ public class BlockInit {
     })));
     public static final RegistryObject<Block> GLOWING_MUSHROOM = BLOCKS.register("glowing_mushroom", () -> new MushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).hasPostProcess(BlockInit::always).lightLevel((state) -> {
         return 15;
-    }), ConfiguredFeatureGenerator.HUGE_GLOWING_MUSHROOM_KEY));
+    }), ConfiguredFeatureGenerator.HUGE_GLOWING_MUSHROOM));
     public static final RegistryObject<Block> GLOWING_MUSHROOM_BLOCK = BLOCKS.register("glowing_mushroom_block", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).lightLevel((state) -> {
         return 15;
     })));
 
     // swamp grass
     public static final RegistryObject<Block> SWAMP_ROSE = BLOCKS.register("swamp_rose", () -> FlowerBlockAccess.create(MobEffects.POISON, 10, BlockBehaviour.Properties.copy(Blocks.POPPY).mapColor(MapColor.COLOR_GREEN)));
-    public static final RegistryObject<Block> POTTED_SWAMP_ROSE = BLOCKS.register("potted_swamp_rose", () -> FlowerPotBlockAccess.create((Blocks.FLOWER_POT), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> POTTED_SWAMP_ROSE = BLOCKS.register("potted_swamp_rose", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SWAMP_ROSE, BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block> FANTABUD = BLOCKS.register("fantabud", () -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)) {
         @Override
         public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
@@ -367,14 +368,14 @@ public class BlockInit {
             return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
         }
     });
-    public static final RegistryObject<Block> FANTAFERN = BLOCKS.register("fantafern", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
+    public static final RegistryObject<Block> FANTAFERN = BLOCKS.register("fantafern", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
         return 15;
     })));
-    public static final RegistryObject<Block> GREEN_FANTAFERN = BLOCKS.register("green_fantafern", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
-    public static final RegistryObject<Block> FANTAGRASS = BLOCKS.register("fantagrass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
+    public static final RegistryObject<Block> GREEN_FANTAFERN = BLOCKS.register("green_fantafern", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> FANTAGRASS = BLOCKS.register("fantagrass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
         return 15;
     })));
-    public static final RegistryObject<Block> GREEN_FANTAGRASS = BLOCKS.register("green_fantagrass", () -> TallGrassBlockAccess.createTallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> GREEN_FANTAGRASS = BLOCKS.register("green_fantagrass", () -> TallGrassBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
 
     public static final RegistryObject<Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));

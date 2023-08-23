@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class StarlightGolemGlowLayer<T extends StarlightGolem, M extends StarlightGolemModel<T>> extends EyesLayer<T, M> {
     private static final RenderType GLOW = RenderType.eyes(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/starlight_golem_glow.png"));
 

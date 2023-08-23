@@ -2,6 +2,8 @@ package cn.leolezury.eternalstarlight.client.model.item;
 
 import cn.leolezury.eternalstarlight.client.renderer.SLRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-
+@Environment(EnvType.CLIENT)
 public class GlowingBakedModel extends BakedModelWrapper {
     public GlowingBakedModel(BakedModel originalModel) {
         super(originalModel);

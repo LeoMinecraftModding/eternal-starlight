@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class TwilightSquidRenderer<T extends TwilightSquid> extends MobRenderer<T, TwilightSquidModel<T>> {
     ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/twilight_squid.png");
 

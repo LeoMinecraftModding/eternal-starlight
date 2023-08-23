@@ -15,6 +15,8 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
+@Environment(EnvType.CLIENT)
+
 public class SLDimensionSpecialEffects extends DimensionSpecialEffects {
     public SLDimensionSpecialEffects(float cloudHeight, boolean placebo, SkyType fogType, boolean brightenLightMap, boolean entityLightingBottomsLit) {
         super(cloudHeight, placebo, fogType, brightenLightMap, entityLightingBottomsLit);
@@ -37,7 +39,6 @@ public class SLDimensionSpecialEffects extends DimensionSpecialEffects {
         return false;
     }
 
-    @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
         return SLSkyRenderer.renderSky(level, poseStack, projectionMatrix, partialTick, camera, setupFog);
     }

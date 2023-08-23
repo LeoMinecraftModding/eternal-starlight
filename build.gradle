@@ -15,6 +15,8 @@ subprojects {
     }
 
     dependencies {
+        compileOnly group: 'com.google.auto.service', name: 'auto-service', version: '1.1.0'
+        annotationProcessor group: 'com.google.auto.service', name: 'auto-service', version: '1.1.0'
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()

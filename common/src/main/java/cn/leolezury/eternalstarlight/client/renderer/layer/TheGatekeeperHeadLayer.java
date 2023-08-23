@@ -9,6 +9,8 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.Property;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -27,6 +29,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class TheGatekeeperHeadLayer<T extends TheGatekeeper> extends RenderLayer<T, TheGatekeeperModel<T>> {
     private final TheGatekeeperModel<T> model;
     private String prevPlayerName = "steve";

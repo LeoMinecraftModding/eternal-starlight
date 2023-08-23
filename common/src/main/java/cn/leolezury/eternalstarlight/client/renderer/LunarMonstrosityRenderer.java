@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRenderer<T, LunarMonstrosityModel<T>> {
     ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lunar_monstrosity.png");
     ResourceLocation ENTITY_PHASE_2_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lunar_monstrosity_1.png");

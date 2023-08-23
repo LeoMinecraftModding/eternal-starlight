@@ -1,11 +1,11 @@
-package cn.leolezury.eternalstarlight.block.api;
+package cn.leolezury.eternalstarlight.block.modifier;
 
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-public interface ModifierBlock<T extends Block> {
+public interface ModifiedBlock<T extends Block> {
     T modifiers(Consumer... modifiers);
 
     @Nullable

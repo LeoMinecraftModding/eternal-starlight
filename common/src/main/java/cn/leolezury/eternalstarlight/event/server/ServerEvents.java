@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.event.server;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.SLPortalBlock;
-import cn.leolezury.eternalstarlight.entity.misc.AethersentMeteor;
+import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.DimensionInit;
 import cn.leolezury.eternalstarlight.init.EnchantmentInit;
@@ -109,7 +109,7 @@ public class ServerEvents {
         ) {
             if (event.getSource().getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
                 Vec3 location = livingEntity.position();
-                AethersentMeteor.createMeteorShower(serverLevel, event.getEntity(), livingEntity, location.x, location.y, location.z, 200, true);
+                AetherSentMeteor.createMeteorShower(serverLevel, event.getEntity(), livingEntity, location.x, location.y, location.z, 200, true);
             }
         }
     }
@@ -144,7 +144,7 @@ public class ServerEvents {
         HitResult result = event.getRayTraceResult();
         if (projectile.getPersistentData().contains(EternalStarlight.MOD_ID + ":starfall") && projectile.level() instanceof ServerLevel serverLevel) {
             Vec3 location = result.getLocation();
-            AethersentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
+            AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
         }
     }
 

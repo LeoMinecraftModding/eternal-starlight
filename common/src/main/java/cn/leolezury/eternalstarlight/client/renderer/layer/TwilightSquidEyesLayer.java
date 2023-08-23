@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-
+@Environment(EnvType.CLIENT)
 public class TwilightSquidEyesLayer<T extends TwilightSquid, M extends TwilightSquidModel<T>> extends EyesLayer<T, M> {
     private static final RenderType SQUID_EYES = RenderType.eyes(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/twilight_squid_eyes.png"));
 
