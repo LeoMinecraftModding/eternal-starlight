@@ -1,13 +1,18 @@
 package cn.leolezury.eternalstarlight.client.gui.screens;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
+import com.mojang.blaze3d.platform.Lighting;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.GameNarrator;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.gui.screens.inventory.PageButton;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -18,7 +23,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 
+import javax.annotation.Nullable;
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,15 +158,14 @@ public class SLBookScreen extends Screen {
             Component title = currentChapter < 0 ? bookData.getTitle() : chapter.getTitle();
             graphics.drawString(font, title, x + (bookData.bookWidth / 2 - 2 * bookData.textOffsetX - font.width(title)) / 2, y + (bookData.bookHeight - 2 * bookData.textOffsetY) / 4 * 3, 0, false);
             // draw entity display
-            Optional<Holder<EntityType<?>>> entityTypeHolder = ForgeRegistries.ENTITY_TYPES.getHolder(chapter.getDisplayEntity());
-            if (entityTypeHolder.isPresent()) {
-                EntityType<?> entityType = entityTypeHolder.get().get();
+            EntityType<?> entityType;
+            if ((entityType = ESPlatform.INSTANCE.getEntityType(chapter.getDisplayEntity())) != null) {
                 Entity entity = null;
                 if (minecraft != null && minecraft.level != null) {
                     entity = entityType.create(minecraft.level);
                 }
                 if (entity instanceof LivingEntity livingEntity) {
-                    InventoryScreen.renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth / 2 - 2 * bookData.textOffsetX) / 2, y + chapter.entityOffset, (int) (17 * chapter.entityDisplayScale), 0, 0, livingEntity);
+                    renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth / 2 - 2 * bookData.textOffsetX) / 2, y + chapter.entityOffset, (int) (17 * chapter.entityDisplayScale), 0, 0, livingEntity);
                 }
             }
         } else {
@@ -170,5 +177,52 @@ public class SLBookScreen extends Screen {
                 graphics.drawString(font, components.get(i), x, y + textY, 0, false);
             }
         }
+    }
+
+    // Copied from Forge-Tweaked InventoryScreen
+    public static void renderEntityInInventoryFollowsAngle(GuiGraphics p_282802_, int p_275688_, int p_275245_, int p_275535_, float angleXComponent, float angleYComponent, LivingEntity p_275689_) {
+        float f = angleXComponent;
+        float f1 = angleYComponent;
+        Quaternionf quaternionf = (new Quaternionf()).rotateZ((float)Math.PI);
+        Quaternionf quaternionf1 = (new Quaternionf()).rotateX(f1 * 20.0F * ((float)Math.PI / 180F));
+        quaternionf.mul(quaternionf1);
+        float f2 = p_275689_.yBodyRot;
+        float f3 = p_275689_.getYRot();
+        float f4 = p_275689_.getXRot();
+        float f5 = p_275689_.yHeadRotO;
+        float f6 = p_275689_.yHeadRot;
+        p_275689_.yBodyRot = 180.0F + f * 20.0F;
+        p_275689_.setYRot(180.0F + f * 40.0F);
+        p_275689_.setXRot(-f1 * 20.0F);
+        p_275689_.yHeadRot = p_275689_.getYRot();
+        p_275689_.yHeadRotO = p_275689_.getYRot();
+        renderEntityInInventory(p_282802_, p_275688_, p_275245_, p_275535_, quaternionf, quaternionf1, p_275689_);
+        p_275689_.yBodyRot = f2;
+        p_275689_.setYRot(f3);
+        p_275689_.setXRot(f4);
+        p_275689_.yHeadRotO = f5;
+        p_275689_.yHeadRot = f6;
+    }
+
+    public static void renderEntityInInventory(GuiGraphics p_282665_, int p_283622_, int p_283401_, int p_281360_, Quaternionf p_281880_, @Nullable Quaternionf p_282882_, LivingEntity p_282466_) {
+        p_282665_.pose().pushPose();
+        p_282665_.pose().translate((double)p_283622_, (double)p_283401_, 50.0D);
+        p_282665_.pose().mulPoseMatrix((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
+        p_282665_.pose().mulPose(p_281880_);
+        Lighting.setupForEntityInInventory();
+        EntityRenderDispatcher entityrenderdispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
+        if (p_282882_ != null) {
+            p_282882_.conjugate();
+            entityrenderdispatcher.overrideCameraOrientation(p_282882_);
+        }
+
+        entityrenderdispatcher.setRenderShadow(false);
+        RenderSystem.runAsFancy(() -> {
+            entityrenderdispatcher.render(p_282466_, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, p_282665_.pose(), p_282665_.bufferSource(), 15728880);
+        });
+        p_282665_.flush();
+        entityrenderdispatcher.setRenderShadow(true);
+        p_282665_.pose().popPose();
+        Lighting.setupFor3DItems();
     }
 }

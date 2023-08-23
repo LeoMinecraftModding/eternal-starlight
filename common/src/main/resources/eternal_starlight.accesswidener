@@ -1,7 +1,13 @@
 accessWidener v2 named
 
 accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+
 accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/Codec;)V
-#accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
+
+accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
+
 #accessible method net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection <init> (ZZ)V
+
+accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;

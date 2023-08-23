@@ -2,6 +2,9 @@ package java.cn.leolezury.eternalstarlight.platform;
 
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import com.google.auto.service.AutoService;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -18,5 +21,10 @@ public class FabricPlatform implements ESPlatform {
     @Override
     public FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
+    }
+
+    @Override
+    public EntityType<?> getEntityType(ResourceLocation location) {
+        return BuiltInRegistries.ENTITY_TYPE.get(location);
     }
 }

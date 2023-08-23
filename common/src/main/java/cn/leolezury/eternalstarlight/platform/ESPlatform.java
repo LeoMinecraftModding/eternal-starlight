@@ -1,6 +1,11 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.Util;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -30,7 +35,12 @@ public interface ESPlatform {
         QUILT
     }
 
+    // some loader-related stuff
     Loader getLoader();
 
+    // for initialization
     FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties);
+
+    // entity stuff
+    EntityType<?> getEntityType(ResourceLocation location);
 }
