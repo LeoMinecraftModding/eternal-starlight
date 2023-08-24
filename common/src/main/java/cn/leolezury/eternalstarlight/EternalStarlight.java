@@ -1,11 +1,8 @@
 package cn.leolezury.eternalstarlight;
 
-import cn.leolezury.eternalstarlight.init.*;
+import cn.leolezury.eternalstarlight.init.BlockInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;

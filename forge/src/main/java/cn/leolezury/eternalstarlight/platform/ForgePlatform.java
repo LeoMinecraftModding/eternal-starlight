@@ -1,13 +1,18 @@
 package cn.leolezury.eternalstarlight.platform;
 
-import cn.leolezury.eternalstarlight.item.weapon.*;
+import cn.leolezury.eternalstarlight.item.weapon.ForgeHammerItem;
+import cn.leolezury.eternalstarlight.item.weapon.ForgeScytheItem;
+import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
+import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.Camera;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,24 +23,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.EntityMobGriefingEvent;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Optional;
@@ -66,6 +64,26 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
+    public boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult) {
+        return ForgeEventFactory.onProjectileImpact(projectile, hitResult);
+    }
+
+    @Override
+    public int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
+        return ForgeEventFactory.onArrowLoose(stack, level, player, charge, hasAmmo);
+    }
+
+    @Override
+    public boolean postMobGriefingEvent(Level level, Entity entity) {
+        return ForgeEventFactory.getMobGriefingEvent(level, entity);
+    }
+
+    @Override
+    public boolean noFluidAtCamera(Camera camera) {
+        return camera.getBlockAtCamera().getFluidState().isEmpty();
+    }
+
+    @Override
     public EntityType<?> getEntityType(ResourceLocation location) {
         Optional<Holder<EntityType<?>>> entityTypeHolder = ForgeRegistries.ENTITY_TYPES.getHolder(location);
         return entityTypeHolder.<EntityType<?>>map(Holder::get).orElse(null);
@@ -82,23 +100,18 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult) {
-        return ForgeEventFactory.onProjectileImpact(projectile, hitResult);
-    }
-
-    @Override
-    public int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
-        return ForgeEventFactory.onArrowLoose(stack, level, player, charge, hasAmmo);
-    }
-
-    @Override
-    public boolean postMobGriefingEvent(Level level, Entity entity) {
-        return ForgeEventFactory.getMobGriefingEvent(level, entity);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(Entity entity) {
+        return NetworkHooks.getEntitySpawningPacket(entity);
     }
 
     @Override
     public boolean isShears(ItemStack stack) {
         return stack.is(Tags.Items.SHEARS);
+    }
+
+    @Override
+    public boolean isShield(ItemStack stack) {
+        return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
     }
 
     @Override

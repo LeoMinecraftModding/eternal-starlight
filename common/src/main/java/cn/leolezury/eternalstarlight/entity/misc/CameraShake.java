@@ -1,9 +1,12 @@
 package cn.leolezury.eternalstarlight.entity.misc;
 
 import cn.leolezury.eternalstarlight.init.EntityInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -102,10 +105,11 @@ public class CameraShake extends Entity {
         }
     }
 
-    /*@Override
+    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }*/
+        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
+        return packet == null ? super.getAddEntityPacket() : packet;
+    }
 
     public static void createCameraShake(Level level, Vec3 pos, float radius, float magnitude, int duration, int fadeDuration) {
         if (!level.isClientSide) {

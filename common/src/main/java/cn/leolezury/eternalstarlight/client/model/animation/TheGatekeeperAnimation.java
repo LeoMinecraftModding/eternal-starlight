@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.client.model.animation;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 
 @Environment(EnvType.CLIENT)

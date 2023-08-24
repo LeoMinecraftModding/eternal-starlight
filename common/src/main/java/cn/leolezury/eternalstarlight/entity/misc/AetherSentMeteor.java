@@ -1,13 +1,15 @@
 package cn.leolezury.eternalstarlight.entity.misc;
 
 import cn.leolezury.eternalstarlight.client.particle.lightning.LightningParticleOptions;
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -149,7 +151,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
         for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize()))) {
             if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
                 livingEntity.invulnerableTime = 0;
-                livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.METEOR, getOwner()), getSize() * damageScale * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
+                livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.METEOR, getOwner()), getSize() * damageScale * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
             }
         }
     }

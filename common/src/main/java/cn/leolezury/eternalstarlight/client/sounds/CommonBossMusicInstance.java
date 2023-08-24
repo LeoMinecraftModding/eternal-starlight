@@ -1,9 +1,8 @@
 package cn.leolezury.eternalstarlight.client.sounds;
 
+import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.entity.boss.AbstractSLBoss;
-import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -32,11 +31,11 @@ public class CommonBossMusicInstance extends AbstractTickableSoundInstance {
     }
 
     public boolean shouldPlaySound() {
-        return (!this.boss.isSilent() && ClientEvents.BOSS_SOUND_MAP.get(this.boss.getId()) == this);
+        return (!this.boss.isSilent() && ClientHandlers.BOSS_SOUND_MAP.get(this.boss.getId()) == this);
     }
 
     public boolean isNearest() {
-        for (Map.Entry<Integer, CommonBossMusicInstance> entry : ClientEvents.BOSS_SOUND_MAP.entrySet()) {
+        for (Map.Entry<Integer, CommonBossMusicInstance> entry : ClientHandlers.BOSS_SOUND_MAP.entrySet()) {
             CommonBossMusicInstance music = entry.getValue();
             if (music != this && new Vec3(getX(), getY(), getZ()).distanceToSqr(music.x, music.y, music.z) < (400f * 400f) && music.shouldPlaySound()) {
                 return false;
@@ -58,7 +57,7 @@ public class CommonBossMusicInstance extends AbstractTickableSoundInstance {
             this.z = this.boss.getZ();
         } else {
             stop();
-            ClientEvents.BOSS_SOUND_MAP.remove(this.boss.getId());
+            ClientHandlers.BOSS_SOUND_MAP.remove(this.boss.getId());
         }
         this.ticksExisted++;
     }

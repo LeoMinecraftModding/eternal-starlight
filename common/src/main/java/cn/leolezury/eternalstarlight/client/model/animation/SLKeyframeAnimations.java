@@ -1,13 +1,13 @@
 package cn.leolezury.eternalstarlight.client.model.animation;
 
 import cn.leolezury.eternalstarlight.client.model.animation.model.AnimatedModel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.entity.projectile;
 
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.init.EntityInit;
@@ -102,7 +102,7 @@ public class Spore extends AbstractHurtingProjectile {
         super.onHitEntity(result);
 
         if (getOwner() != null && !result.getEntity().getUUID().equals(getOwner().getUUID())) {
-            result.getEntity().hurt(DamageTypeGenerator.getIndirectEntityDamageSource(level(), DamageTypeGenerator.POISON, this, getOwner()), 5);
+            result.getEntity().hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.POISON, this, getOwner()), 5);
         }
 
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());

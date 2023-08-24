@@ -5,12 +5,12 @@ import cn.leolezury.eternalstarlight.client.model.AstralGolemModel;
 import cn.leolezury.eternalstarlight.client.renderer.layer.AstralGolemArmorLayer;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolemMaterials;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {

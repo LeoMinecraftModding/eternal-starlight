@@ -4,13 +4,13 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.client.model.animation.LunarMonstrosityAnimation;
 import cn.leolezury.eternalstarlight.client.model.animation.model.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.entity.boss.LunarMonstrosity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 import java.util.List;
 

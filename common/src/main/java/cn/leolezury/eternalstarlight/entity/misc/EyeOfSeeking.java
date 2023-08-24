@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.entity.misc;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -185,6 +186,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
+        return packet == null ? super.getAddEntityPacket() : packet;
     }
 }

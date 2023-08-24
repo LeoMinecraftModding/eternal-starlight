@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.*;
 import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
 import cn.leolezury.eternalstarlight.block.modifier.ESFlammabilityModifier;
-import cn.leolezury.eternalstarlight.datagen.generator.ConfiguredFeatureGenerator;
+import cn.leolezury.eternalstarlight.datagen.ConfiguredFeatureInit;
 import cn.leolezury.eternalstarlight.mixins.access.*;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.register.RegistrationProvider;
@@ -66,11 +66,11 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> LUNAR_LOG = BLOCKS.register("lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> LUNAR_WOOD = BLOCKS.register("lunar_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> LUNAR_PLANKS = BLOCKS.register("lunar_planks",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
+            () -> new ESModifiedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -86,9 +86,9 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> STRIPPED_LUNAR_LOG = BLOCKS.register("stripped_lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> STRIPPED_LUNAR_WOOD = BLOCKS.register("stripped_lunar_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> LUNAR_DOOR = BLOCKS.register("lunar_door",
             () -> DoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK), SLWoodTypes.LUNAR_SET));
     public static final RegistryObject<Block> LUNAR_TRAPDOOR = BLOCKS.register("lunar_trapdoor",
@@ -134,11 +134,11 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> NORTHLAND_LOG = BLOCKS.register("northland_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> NORTHLAND_WOOD = BLOCKS.register("northland_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> NORTHLAND_PLANKS = BLOCKS.register("northland_planks",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
+            () -> new ESModifiedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
 //            {
 //                @Override
 //                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction){
@@ -154,9 +154,9 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> STRIPPED_NORTHLAND_LOG = BLOCKS.register("stripped_northland_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> STRIPPED_NORTHLAND_WOOD = BLOCKS.register("stripped_northland_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BROWN)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> NORTHLAND_DOOR = BLOCKS.register("northland_door",
             () -> DoorBlockAccess.create(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BROWN), SLWoodTypes.NORTHLAND_SET));
     public static final RegistryObject<Block> NORTHLAND_TRAPDOOR = BLOCKS.register("northland_trapdoor",
@@ -201,9 +201,9 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_LOG = BLOCKS.register("starlight_mangrove_log",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_WOOD = BLOCKS.register("starlight_mangrove_wood",
-            () -> new ESModifierBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
+            () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
 //    public static final RegistryObject<Block> STARLIGHT_MANGROVE_PLANKS = BLOCKS.register("starlight_mangrove_planks",
 //            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)) {
 //                @Override
@@ -220,7 +220,7 @@ public class BlockInit {
 //                }
 //            });
     public static final RegistryObject<Block> STARLIGHT_MANGROVE_PLANKS = BLOCKS.register("starlight_mangrove_planks",
-        () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)));
+        () -> new ESModifiedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)).modifiers(ESFlammabilityModifier.WOOD));
     public static final RegistryObject<Block> STRIPPED_STARLIGHT_MANGROVE_LOG = BLOCKS.register("stripped_starlight_mangrove_log",
             () -> new ESLogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block> STRIPPED_STARLIGHT_MANGROVE_WOOD = BLOCKS.register("stripped_starlight_mangrove_wood",
@@ -348,7 +348,7 @@ public class BlockInit {
     })));
     public static final RegistryObject<Block> GLOWING_MUSHROOM = BLOCKS.register("glowing_mushroom", () -> new MushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).hasPostProcess(BlockInit::always).lightLevel((state) -> {
         return 15;
-    }), ConfiguredFeatureGenerator.HUGE_GLOWING_MUSHROOM));
+    }), ConfiguredFeatureInit.HUGE_GLOWING_MUSHROOM));
     public static final RegistryObject<Block> GLOWING_MUSHROOM_BLOCK = BLOCKS.register("glowing_mushroom_block", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).lightLevel((state) -> {
         return 15;
     })));

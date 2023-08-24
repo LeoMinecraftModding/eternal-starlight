@@ -7,15 +7,15 @@ import net.minecraft.world.level.block.LeavesBlock;
 
 import java.util.function.Consumer;
 
-public class ESLeavesBlock extends LeavesBlock implements ModifiedBlock {
-    private ModifierContainer modifierContainer;
+public class ESLeavesBlock extends LeavesBlock implements ModifiedBlock<LeavesBlock> {
+    private ModifierContainer<Block> modifierContainer;
     public ESLeavesBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     public ESLeavesBlock modifiers(Consumer... modifiers) {
-        modifierContainer = new ModifierContainer<>(this, modifiers);
+        modifierContainer = new ModifierContainer<Block>(this, modifiers);
         return this;
     }
 

@@ -39,10 +39,8 @@ public abstract class SpreadingSnowyNightshadeDirtBlock extends SnowyDirtBlock {
 
     public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource randomSource) {
         if (!canBeGrass(state, serverLevel, pos)) {
-            if (!serverLevel.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             serverLevel.setBlockAndUpdate(pos, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState());
         } else {
-            if (!serverLevel.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             if (serverLevel.getMaxLocalRawBrightness(pos.above()) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 

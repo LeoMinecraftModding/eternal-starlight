@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.manager.book;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.event.server.ServerEvents;
+import cn.leolezury.eternalstarlight.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.message.OpenSLBookMessage;
@@ -82,8 +82,8 @@ public class BookManager extends SimpleJsonResourceReloadListener {
     }
 
     public static void openBook(ResourceLocation bookLocation, ServerPlayer serverPlayer) {
-        BookManager bookManager = ServerEvents.getBookManager();
-        ChapterManager chapterManager = ServerEvents.getChapterManager();
+        BookManager bookManager = CommonHandlers.getBookManager();
+        ChapterManager chapterManager = CommonHandlers.getChapterManager();
         if (bookManager.getBookLocations().contains(bookLocation)) {
             BookData bookData = bookManager.getBookData(bookLocation);
             List<ChapterData> chapterDataList = new ArrayList<>();

@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
 import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.projectile.Spore;
-import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
@@ -49,8 +49,6 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-//import net.minecraftforge.api.distmarker.Dist;
-//import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -306,15 +304,15 @@ public class LunarMonstrosity extends AbstractSLBoss {
             Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
             vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
             if (vec3.dot(this.getViewVector(1.0F)) < 0.0D) {
-                livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.BITE, this), damage);
+                livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.BITE, this), damage);
             }
         }
     }
 
     @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
-        if (id == ClientEvents.BOSS_MUSIC_ID) {
-            ClientEvents.handleEntityEvent(this, id);
+        if (id == ClientHandlers.BOSS_MUSIC_ID) {
+            ClientHandlers.handleEntityEvent(this, id);
         } else {
             super.handleEntityEvent(id);
         }
@@ -327,7 +325,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
         refreshDimensions();
         if (!level().isClientSide) {
             if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte)ClientEvents.BOSS_MUSIC_ID);
+                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
             }
             setParticleAngle((targetPos.x - getX()) / 10D, (targetPos.y - getY() - 2) / 10D, (targetPos.z - getZ()) / 10D);
             LivingEntity target = getTarget();
@@ -394,7 +392,7 @@ public class LunarMonstrosity extends AbstractSLBoss {
                             AABB aabb = new AABB(getX() - 1, getY() + 1, getZ() - 1, getX() + 1, getY() + 3, getZ() + 1).move(targetPos.add(position().add(0, 2, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof LunarMonstrosity)) {
-                                    livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.POISON, this), 2);
+                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.POISON, this), 2);
                                     livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
                                 }
                             }

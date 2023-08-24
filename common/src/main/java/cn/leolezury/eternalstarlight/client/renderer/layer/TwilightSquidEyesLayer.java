@@ -3,12 +3,12 @@ package cn.leolezury.eternalstarlight.client.renderer.layer;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.client.model.TwilightSquidModel;
 import cn.leolezury.eternalstarlight.entity.animal.TwilightSquid;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class TwilightSquidEyesLayer<T extends TwilightSquid, M extends TwilightSquidModel<T>> extends EyesLayer<T, M> {

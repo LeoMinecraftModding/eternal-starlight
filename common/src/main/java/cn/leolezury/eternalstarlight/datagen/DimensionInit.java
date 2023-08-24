@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.init;
+package cn.leolezury.eternalstarlight.datagen;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import net.minecraft.core.registries.Registries;

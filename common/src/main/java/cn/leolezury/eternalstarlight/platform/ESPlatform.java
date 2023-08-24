@@ -1,25 +1,31 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.item.weapon.CommonHammerItem;
+import cn.leolezury.eternalstarlight.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.Util;
-import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.Camera;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.Iterator;
@@ -53,22 +59,54 @@ public interface ESPlatform {
     Loader getLoader();
 
     // for initialization
-    ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties);
-    HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties);
-    FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties);
+    default ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
+        return new CommonScytheItem(tier, damage, attackSpeed, properties);
+    }
+    default HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
+        return new CommonHammerItem(tier, damage, attackSpeed, properties);
+    }
+    default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
+        return new FlowerPotBlock(flower.get(), properties);
+    }
 
     // event-related
-    boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult);
-    int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo);
-    boolean postMobGriefingEvent(Level level, Entity entity);
+    default boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult) {
+        return false;
+    }
+    default int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
+        return charge;
+    }
+    default boolean postMobGriefingEvent(Level level, Entity entity) {
+        return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+    }
+    default boolean noFluidAtCamera(Camera camera) {
+        return true;
+    }
 
     // entity stuff
-    EntityType<?> getEntityType(ResourceLocation location);
-    ResourceLocation getEntityTypeIdentifier(EntityType<?> entityType);
-    Attribute getEntityReachAttribute();
+    default EntityType<?> getEntityType(ResourceLocation location) {
+        return BuiltInRegistries.ENTITY_TYPE.get(location);
+    }
+    default ResourceLocation getEntityTypeIdentifier(EntityType<?> entityType) {
+        return BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
+    }
+    default Attribute getEntityReachAttribute() {
+        return null;
+    }
+    default Packet<ClientGamePacketListener> getAddEntityPacket(Entity entity) {
+        return null;
+    }
 
     // item stuff
-    boolean isShears(ItemStack stack);
-    boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player);
+    default boolean isShears(ItemStack stack) {
+        return stack.is(Items.SHEARS);
+    }
+    default boolean isShield(ItemStack stack) {
+        return stack.is(Items.SHIELD);
+    }
+    default boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
+        int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
+        return enchant <= 0 ? false : arrow.getItem().getClass() == ArrowItem.class;
+    }
     Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 }

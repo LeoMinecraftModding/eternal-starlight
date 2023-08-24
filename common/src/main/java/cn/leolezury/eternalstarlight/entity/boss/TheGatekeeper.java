@@ -1,12 +1,12 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGoal;
 import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
-import cn.leolezury.eternalstarlight.event.client.ClientEvents;
-import cn.leolezury.eternalstarlight.event.server.ServerEvents;
+import cn.leolezury.eternalstarlight.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -238,7 +238,7 @@ public class TheGatekeeper extends AbstractSLBoss {
     public void initializeBoss() {
         super.initializeBoss();
         setActivated(false);
-        gatekeeperName = ServerEvents.getGatekeeperName();
+        gatekeeperName = CommonHandlers.getGatekeeperName();
         setSlim(getRandom().nextBoolean());
         //TODO: remove debug thing
         activate();
@@ -252,8 +252,8 @@ public class TheGatekeeper extends AbstractSLBoss {
 
     @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
-        if (id == ClientEvents.BOSS_MUSIC_ID) {
-            ClientEvents.handleEntityEvent(this, id);
+        if (id == ClientHandlers.BOSS_MUSIC_ID) {
+            ClientHandlers.handleEntityEvent(this, id);
         } else {
             super.handleEntityEvent(id);
         }
@@ -265,7 +265,7 @@ public class TheGatekeeper extends AbstractSLBoss {
         bossEvent.update();
         if (!level().isClientSide) {
             if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte)ClientEvents.BOSS_MUSIC_ID);
+                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
             }
 
             setCustomName(Component.literal(gatekeeperName));
@@ -414,7 +414,7 @@ public class TheGatekeeper extends AbstractSLBoss {
                             }
                         }
                         for (LivingEntity livingEntity : getEntitiesNearby(LivingEntity.class, 3)) {
-                            livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.GROUND_SHAKE, this), 20);
+                            livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 20);
                         }
                     }
 

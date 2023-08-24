@@ -6,15 +6,15 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Consumer;
 
-public class ESModifierBlock extends Block implements ModifiedBlock {
-    private ModifierContainer modifierContainer;
-    public ESModifierBlock(Properties properties) {
+public class ESModifiedBlock extends Block implements ModifiedBlock<Block> {
+    private ModifierContainer<Block> modifierContainer;
+    public ESModifiedBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ESModifierBlock modifiers(Consumer... modifiers) {
-        modifierContainer = new ModifierContainer<>(this, modifiers);
+    public ESModifiedBlock modifiers(Consumer... modifiers) {
+        modifierContainer = new ModifierContainer<Block>(this, modifiers);
         return this;
     }
 

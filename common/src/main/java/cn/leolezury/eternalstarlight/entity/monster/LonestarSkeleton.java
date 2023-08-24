@@ -18,8 +18,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public class LonestarSkeleton extends AbstractSkeleton {
-    public LonestarSkeleton(EntityType<? extends LonestarSkeleton> p_33836_, Level p_33837_) {
-        super(p_33836_, p_33837_);
+    public LonestarSkeleton(EntityType<? extends LonestarSkeleton> type, Level level) {
+        super(type, level);
     }
 
     protected SoundEvent getAmbientSound() {
@@ -40,8 +40,8 @@ public class LonestarSkeleton extends AbstractSkeleton {
                 }
             }
             if (isTargetNear) {
-                if (!getItemInHand(InteractionHand.MAIN_HAND).is(Items.STONE_AXE)) {
-                    setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.STONE_AXE));
+                if (!getItemInHand(InteractionHand.MAIN_HAND).is(Items.STONE_SWORD)) {
+                    setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.STONE_SWORD));
                 }
                 meleeTicks++;
             } else {

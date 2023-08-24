@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.misc;
 
 import cn.leolezury.eternalstarlight.init.EntityInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 
 import java.util.Optional;
 
@@ -104,7 +104,9 @@ public class SLFallingBlock extends Entity {
         return bsOp.orElse(null);
     }
 
+    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
+        return packet == null ? super.getAddEntityPacket() : packet;
     }
 }

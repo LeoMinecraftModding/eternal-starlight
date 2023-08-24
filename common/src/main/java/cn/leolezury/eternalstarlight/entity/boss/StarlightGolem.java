@@ -1,13 +1,13 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
-import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.attack.FireColumn;
 import cn.leolezury.eternalstarlight.entity.attack.beam.LaserCaster;
 import cn.leolezury.eternalstarlight.entity.attack.beam.StarlightGolemBeam;
 import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
-import cn.leolezury.eternalstarlight.event.client.ClientEvents;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
@@ -261,8 +261,8 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
 
     @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
-        if (id == ClientEvents.BOSS_MUSIC_ID) {
-            ClientEvents.handleEntityEvent(this, id);
+        if (id == ClientHandlers.BOSS_MUSIC_ID) {
+            ClientHandlers.handleEntityEvent(this, id);
         } else {
             super.handleEntityEvent(id);
         }
@@ -274,7 +274,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
         bossEvent.update();
         if (!level().isClientSide) {
             if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte)ClientEvents.BOSS_MUSIC_ID);
+                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
             }
             setDeltaMovement(0, getDeltaMovement().y, 0);
             LivingEntity target = getTarget();
@@ -359,7 +359,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
                             AABB aabb = new AABB(getX() - 1.5, getY() - 1.5, getZ() - 1.5, getX() + 1.5, getY() + 1.5, getZ() + 1.5).move(targetPos.add(position().add(0, 1, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof StarlightGolem)) {
-                                    livingEntity.hurt(DamageTypeGenerator.getEntityDamageSource(level(), DamageTypeGenerator.GROUND_SHAKE, this), 40);
+                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 40);
                                 }
                             }
                             for (int x = (int) aabb.minX; x <= aabb.maxX; x++) {

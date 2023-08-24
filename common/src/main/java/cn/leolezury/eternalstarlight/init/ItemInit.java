@@ -16,13 +16,9 @@ import cn.leolezury.eternalstarlight.mixins.access.PickaxeItemAccess;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.util.register.RegistryObject;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemInit {
 //    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EternalStarlight.MOD_ID);

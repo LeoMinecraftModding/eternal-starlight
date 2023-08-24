@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.block.modifier;
 
 import com.google.common.collect.Maps;
 import net.minecraft.world.level.block.Block;
+
 import java.util.Map;
 import java.util.function.Consumer;
 

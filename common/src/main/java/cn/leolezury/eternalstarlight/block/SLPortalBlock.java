@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.block;
 
 import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.init.DimensionInit;
+import cn.leolezury.eternalstarlight.datagen.DimensionInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import cn.leolezury.eternalstarlight.util.SLTeleporter;
@@ -27,9 +27,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-//import net.minecraftforge.common.MinecraftForge;
-//import net.minecraftforge.event.level.BlockEvent;
-//import net.minecraftforge.eventbus.api.Cancelable;
 import org.jetbrains.annotations.Nullable;
 
 public class SLPortalBlock extends Block {
@@ -61,7 +58,7 @@ public class SLPortalBlock extends Block {
     public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos, BlockState state) {
         SLPortalBlock.Size SLPortalBlock$size = this.isPortal(worldIn, pos);
         if (SLPortalBlock$size != null && !onTrySpawnPortal(worldIn, pos, SLPortalBlock$size)) {
-            SLPortalBlock$size.placePortalBlocks(BlockInit.STARLIGHT_PORTAL.get().defaultBlockState());
+            SLPortalBlock$size.placePortalBlocks(state);
             return true;
         } else {
             return false;

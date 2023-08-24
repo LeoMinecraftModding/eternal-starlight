@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.client.model.animation.model;
 
 import cn.leolezury.eternalstarlight.client.model.animation.SLKeyframeAnimations;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.AnimationState;
@@ -8,6 +10,8 @@ import org.joml.Vector3f;
 
 import java.util.Optional;
 
+
+@Environment(EnvType.CLIENT)
 public interface AnimatedModel {
     Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
 

@@ -1,9 +1,8 @@
 package cn.leolezury.eternalstarlight.entity.boss;
 
-import cn.leolezury.eternalstarlight.event.client.ClientEvents;
+import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-//import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public abstract class AbstractSLBoss extends Monster {
     protected AbstractSLBoss(EntityType<? extends Monster> type, Level level) {
         super(type, level);
         if (level.isClientSide) {
-            ClientEvents.BOSSES.add(this);
+            ClientHandlers.BOSSES.add(this);
         }
     }
     

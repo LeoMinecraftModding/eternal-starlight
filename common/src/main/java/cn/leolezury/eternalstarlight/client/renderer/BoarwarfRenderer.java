@@ -6,11 +6,11 @@ import cn.leolezury.eternalstarlight.client.renderer.layer.BoarwarfBiomeLayer;
 import cn.leolezury.eternalstarlight.client.renderer.layer.BoarwarfHairLayer;
 import cn.leolezury.eternalstarlight.client.renderer.layer.BoarwarfProfessionLayer;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.Boarwarf;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfRenderer<T extends Boarwarf> extends MobRenderer<T, BoarwarfModel<T>> {

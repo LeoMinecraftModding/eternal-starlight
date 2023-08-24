@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.entity.ai.goal.AstralGolemRandomStrollNearV
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -39,7 +40,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
@@ -198,7 +198,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
             } else {
                 LivingEntity target = getTarget();
                 double reachSqr = 3 * (getBbWidth() * 2.0F * getBbWidth() * 2.0F + getTarget().getBbWidth());
-                setBlocking(getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK) && distanceToSqr(target) >= reachSqr + 2);
+                setBlocking(ESPlatform.INSTANCE.isShield(getOffhandItem()) && distanceToSqr(target) >= reachSqr + 2);
             }
             if (isGolemBlocking() && !isBlocking()) {
                 startUsingItem(InteractionHand.OFF_HAND);
