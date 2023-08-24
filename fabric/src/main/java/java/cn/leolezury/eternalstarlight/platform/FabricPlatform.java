@@ -1,6 +1,8 @@
 package java.cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonScytheItem;
+import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import com.google.auto.service.AutoService;
@@ -8,6 +10,7 @@ import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -37,6 +41,11 @@ public class FabricPlatform implements ESPlatform {
     @Override
     public ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new CommonScytheItem(tier, damage, attackSpeed, properties);
+    }
+
+    @Override
+    public HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
+        return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
 
     @Override
@@ -67,6 +76,11 @@ public class FabricPlatform implements ESPlatform {
     @Override
     public int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
         return charge;
+    }
+
+    @Override
+    public boolean postMobGriefingEvent(Level level, Entity entity) {
+        return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.attack.beam;
 
 import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.ControlledAnimation;
 import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.core.BlockPos;
@@ -23,7 +24,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +130,7 @@ public abstract class AbstractLaserBeam extends Entity {
                 spawnExplosionParticles(2);
             }
             if (!level().isClientSide) {
-                boolean canDestroy = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), caster);
+                boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster);
                 if (canDestroy && hitPos != null) {
                     BlockState blockState = level().getBlockState(hitPos);
                     if (blockState.getDestroySpeed(level(), hitPos) != -1) {
@@ -201,10 +201,10 @@ public abstract class AbstractLaserBeam extends Entity {
         getEntityData().set(CASTER, id);
     }
 
-    @Override
+    /*@Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    }*/
 
     public int getRadius() {
         return 30;

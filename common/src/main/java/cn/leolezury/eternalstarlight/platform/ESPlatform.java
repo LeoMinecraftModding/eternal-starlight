@@ -1,10 +1,12 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
@@ -52,11 +54,13 @@ public interface ESPlatform {
 
     // for initialization
     ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties);
+    HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties);
     FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties);
 
     // event-related
     boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult);
     int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo);
+    boolean postMobGriefingEvent(Level level, Entity entity);
 
     // entity stuff
     EntityType<?> getEntityType(ResourceLocation location);

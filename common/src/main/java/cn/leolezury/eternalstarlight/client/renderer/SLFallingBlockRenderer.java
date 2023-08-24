@@ -35,6 +35,7 @@ public class SLFallingBlockRenderer extends EntityRenderer<SLFallingBlock> {
                 stack.pushPose();
                 BlockPos blockpos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
                 stack.translate(-0.5D, 0.0D, -0.5D);
+                // TODO: Split to platforms
                 var model = this.dispatcher.getBlockModel(blockstate);
                 for (var renderType : model.getRenderTypes(blockstate, RandomSource.create(blockstate.getSeed(block.getStartPos())), net.minecraftforge.client.model.data.ModelData.EMPTY))
                     this.dispatcher.getModelRenderer().tesselateBlock(level, model, blockstate, blockpos, stack, bufferSource.getBuffer(renderType), false, RandomSource.create(), blockstate.getSeed(block.getStartPos()), OverlayTexture.NO_OVERLAY, net.minecraftforge.client.model.data.ModelData.EMPTY, renderType);

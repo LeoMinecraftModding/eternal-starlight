@@ -24,7 +24,6 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ToolActions;
 
 public class HammerItem extends DiggerItem implements Vanishable {
     private final float attackDamage;
@@ -42,7 +41,7 @@ public class HammerItem extends DiggerItem implements Vanishable {
     protected void spawnBlockParticle(Level level, BlockPos pos, Vec3 particlePos) {
         BlockState state = level.getBlockState(pos);
         if (state.getRenderShape() != RenderShape.INVISIBLE) {
-            level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state).setPos(pos), particlePos.x, particlePos.y, particlePos.z, 0, 1.5D, 0);
+            level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), particlePos.x, particlePos.y, particlePos.z, 0, 1.5D, 0);
         }
     }
 
@@ -93,10 +92,5 @@ public class HammerItem extends DiggerItem implements Vanishable {
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
         return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
-    }
-
-    @Override
-    public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
-        return ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction);
     }
 }

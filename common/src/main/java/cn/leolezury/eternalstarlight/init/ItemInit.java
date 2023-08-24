@@ -200,7 +200,7 @@ public class ItemInit {
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SCYTHE = ITEMS.register("thermal_springstone_scythe",
             () -> ESPlatform.INSTANCE.createScythe(SLItemTiers.THERMAL_SPRINGSTONE, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HAMMER = ITEMS.register("thermal_springstone_hammer",
-            () -> new HammerItem(SLItemTiers.THERMAL_SPRINGSTONE, 8, -3.5F, new Item.Properties()));
+            () -> ESPlatform.INSTANCE.createHammer(SLItemTiers.THERMAL_SPRINGSTONE, 8, -3.5F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HELMET = ITEMS.register("thermal_springstone_helmet",
             () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_CHESTPLATE = ITEMS.register("thermal_springstone_chestplate",
