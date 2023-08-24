@@ -19,7 +19,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -28,6 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
@@ -78,6 +78,8 @@ public interface ESPlatform {
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
     }
+    Rarity getESRarity();
+    CreativeModeTab getESTab();
 
     // event-related
     default boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult) {
@@ -116,8 +118,9 @@ public interface ESPlatform {
     }
     default boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
         int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
-        return enchant <= 0 ? false : arrow.getItem().getClass() == ArrowItem.class;
+        return enchant > 0 && arrow.getItem().getClass() == ArrowItem.class;
     }
+    EnchantmentCategory getESWeaponEnchantmentCategory();
     Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 
     // client-side

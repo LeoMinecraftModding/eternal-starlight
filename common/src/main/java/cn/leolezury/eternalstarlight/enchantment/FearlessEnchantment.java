@@ -1,18 +1,16 @@
 package cn.leolezury.eternalstarlight.enchantment;
 
-import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class FearlessEnchantment extends Enchantment {
-    static EnchantmentCategory SL_WEAPON = EnchantmentCategory.create("slWeapon", item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem);
+    private static final EnchantmentCategory ES_WEAPON = ESPlatform.INSTANCE.getESWeaponEnchantmentCategory();
     public FearlessEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
-        super(rarity, SL_WEAPON, slots);
+        super(rarity, ES_WEAPON, slots);
     }
 
     public int getMinCost(int p_45102_) {

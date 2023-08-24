@@ -23,8 +23,13 @@ configurations {
     developmentQuilt.extendsFrom common
 }
 
+repositories {
+    maven { url = "https://jitpack.io" } // Fabric ASM
+}
+
 dependencies {
     modImplementation "org.quiltmc:quilt-loader:${rootProject.quilt_loader_version}"
+    modImplementation "com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"
     modApi "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${rootProject.quilt_fabric_api_version}"
     // Remove the next few lines if you don't want to depend on the API
     /* modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}")
@@ -57,7 +62,7 @@ shadowJar {
 
 remapJar {
     injectAccessWidener = true
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
     classifier null
 }

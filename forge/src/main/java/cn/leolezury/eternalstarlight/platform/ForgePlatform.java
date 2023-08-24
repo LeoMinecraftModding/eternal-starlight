@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -16,18 +17,15 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -49,6 +47,9 @@ import java.util.function.Supplier;
 
 @AutoService(ESPlatform.class)
 public class ForgePlatform implements ESPlatform {
+    private static final Rarity STARLIGHT_RARITY = Rarity.create("STARLIGHT", ChatFormatting.DARK_AQUA);
+    private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = EnchantmentCategory.create("ES_WEAPON", (item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem || item instanceof HammerItem));
+
     @Override
     public Loader getLoader() {
         return Loader.FORGE;
@@ -126,6 +127,16 @@ public class ForgePlatform implements ESPlatform {
             return arrowItem.isInfinite(arrow, bow, player);
         }
         return false;
+    }
+
+    @Override
+    public Rarity getESRarity() {
+        return STARLIGHT_RARITY;
+    }
+
+    @Override
+    public EnchantmentCategory getESWeaponEnchantmentCategory() {
+        return ES_WEAPON_ENCHANTMENT_CATEGORY;
     }
 
     @Override

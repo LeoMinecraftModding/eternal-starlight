@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "cn.leolezury.eternalstarlight.ESFabric"
+    ],
+    "mm:early_risers": [
+      "cn.leolezury.eternalstarlight.asm.ESASM"
     ]
   },
   "mixins": [

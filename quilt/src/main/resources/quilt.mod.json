@@ -20,7 +20,10 @@
     "environment": "*",
     "entrypoints": {
       "init": [
-        "net.examplemod.quilt.ExampleModQuilt"
+        "cn.leolezury.eternalstarlight.ESQuilt"
+      ],
+      "mm:early_risers": [
+        "cn.leolezury.eternalstarlight.asm.ESASM"
       ]
     },
     "depends": [

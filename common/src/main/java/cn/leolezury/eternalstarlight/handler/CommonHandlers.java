@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.handler;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.SLPortalBlock;
+import cn.leolezury.eternalstarlight.datagen.DimensionInit;
 import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.datagen.DimensionInit;
 import cn.leolezury.eternalstarlight.init.EnchantmentInit;
 import cn.leolezury.eternalstarlight.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;

@@ -3,9 +3,10 @@
   "package": "cn.leolezury.eternalstarlight.mixins.fabric",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "client": [
-  ],
   "mixins": [
+    "EnchantmentCategoryMixin"
+  ],
+  "client": [
   ],
   "injectors": {
     "defaultRequire": 1

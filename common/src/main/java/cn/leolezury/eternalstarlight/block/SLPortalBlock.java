@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.block;
 
-import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.datagen.DimensionInit;
+import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import cn.leolezury.eternalstarlight.util.SLTeleporter;

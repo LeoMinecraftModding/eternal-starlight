@@ -1,4 +1,10 @@
 package java.cn.leolezury.eternalstarlight;
 
-public class ESFabric {
+import net.fabricmc.api.ModInitializer;
+
+public class ESFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+
+    }
 }

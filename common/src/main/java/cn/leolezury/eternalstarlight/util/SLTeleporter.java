@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.util;
 
 import cn.leolezury.eternalstarlight.block.SLPortalBlock;
-import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.datagen.DimensionInit;
+import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.POIInit;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;

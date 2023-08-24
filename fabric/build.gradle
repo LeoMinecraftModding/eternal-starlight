@@ -19,8 +19,13 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+repositories {
+    maven { url = "https://jitpack.io" } // Fabric ASM
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     // Remove the next line if you don't want to depend on the API
     // modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
@@ -46,7 +51,7 @@ shadowJar {
 
 remapJar {
     injectAccessWidener = true
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
     classifier null
 }
