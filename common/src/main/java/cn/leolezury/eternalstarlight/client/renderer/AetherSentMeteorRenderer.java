@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.client.renderer;
 
 import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -38,9 +39,7 @@ public class AetherSentMeteorRenderer extends EntityRenderer<AetherSentMeteor> {
                 float scale = meteor.getSize() / 10f;
                 stack.translate(-0.5D * scale, 0.0D, -0.5D * scale);
                 stack.scale(scale, scale, scale);
-                var model = this.dispatcher.getBlockModel(blockstate);
-                for (var renderType : model.getRenderTypes(blockstate, RandomSource.create(), net.minecraftforge.client.model.data.ModelData.EMPTY))
-                    this.dispatcher.getModelRenderer().tesselateBlock(level, model, blockstate, blockpos, stack, bufferSource.getBuffer(renderType), false, RandomSource.create(), blockstate.getSeed(meteor.blockPosition()), OverlayTexture.NO_OVERLAY, net.minecraftforge.client.model.data.ModelData.EMPTY, renderType);
+                ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(meteor.blockPosition()));
                 stack.popPose();
                 super.render(meteor, yaw, delta, stack, bufferSource, packedLight);
             }

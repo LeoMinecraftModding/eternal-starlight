@@ -243,15 +243,6 @@
     ],
     "subtitle": "subtitles.entity.lonestar_skeleton.hurt"
   },
-  "entity.lonestar_skeleton.step": {
-    "sounds": [
-      "mob/skeleton/step1",
-      "mob/skeleton/step2",
-      "mob/skeleton/step3",
-      "mob/skeleton/step4"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
   "entity.dryad.hurt": {
     "sounds": [
       "eternal_starlight:mob/dryad_hurt"

@@ -35,7 +35,6 @@ public class SoundEventInit {
     public static final RegistryObject<SoundEvent> LONESTAR_SKELETON_AMBIENT = register("entity.lonestar_skeleton.ambient");
     public static final RegistryObject<SoundEvent> LONESTAR_SKELETON_HURT = register("entity.lonestar_skeleton.hurt");
     public static final RegistryObject<SoundEvent> LONESTAR_SKELETON_DEATH = register("entity.lonestar_skeleton.death");
-    public static final RegistryObject<SoundEvent> LONESTAR_SKELETON_STEP = register("entity.lonestar_skeleton.step");
 
     public static final RegistryObject<SoundEvent> DRYAD_HURT = register("entity.dryad.hurt");
 

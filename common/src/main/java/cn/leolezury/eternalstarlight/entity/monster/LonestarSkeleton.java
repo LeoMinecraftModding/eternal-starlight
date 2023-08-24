@@ -11,13 +11,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-public class LonestarSkeleton extends AbstractSkeleton {
+public class LonestarSkeleton extends Skeleton {
     public LonestarSkeleton(EntityType<? extends LonestarSkeleton> type, Level level) {
         super(type, level);
     }
@@ -70,10 +71,6 @@ public class LonestarSkeleton extends AbstractSkeleton {
 
     protected SoundEvent getDeathSound() {
         return SoundEventInit.LONESTAR_SKELETON_DEATH.get();
-    }
-
-    protected SoundEvent getStepSound() {
-        return SoundEventInit.LONESTAR_SKELETON_STEP.get();
     }
 
     protected AbstractArrow getArrow(ItemStack p_33846_, float p_33847_) {
