@@ -29,7 +29,7 @@ public class Vine extends AbstractOwnedEntity {
                 discard();
             }
             if (getSpawnedTicks() == 10) {
-                CameraShake.cameraShake(level(), position(), 30, 0.001f, 20, 10);
+                CameraShake.createCameraShake(level(), position(), 30, 0.001f, 20, 10);
             }
             if (getSpawnedTicks() > 40 && getOwner() != null) {
                 if (getAttackMode() == 0) {

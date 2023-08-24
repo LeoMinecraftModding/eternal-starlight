@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.entity.ai.goal.*;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.trade.BoarwarfTrades;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -240,11 +241,11 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     }
 
     public static int getBoarwarfCredit(Player player) {
-        return player.getPersistentData().getInt("boarwarf_credit");
+        return ESUtil.getPersistentData(player).getInt("boarwarf_credit");
     }
 
     public static void setBoarwarfCredit(Player player, int credit) {
-        player.getPersistentData().putInt("boarwarf_credit", credit);
+        ESUtil.getPersistentData(player).putInt("boarwarf_credit", credit);
     }
 
     @Override

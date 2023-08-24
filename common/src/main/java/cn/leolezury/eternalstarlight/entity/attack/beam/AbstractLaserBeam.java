@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.entity.attack.beam;
 
 import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.util.ControlledAnimation;
-import cn.leolezury.eternalstarlight.util.MathUtil;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -304,8 +304,8 @@ public abstract class AbstractLaserBeam extends Entity {
             shooter.lookAtLaserEnd(new Vec3(endPosX, endPosY, endPosZ));
             Vec3 wantedPos = shooter.getLaserWantedPos();
 
-            float wantedYaw = MathUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) * Mth.PI / 180f;
-            float wantedPitch = MathUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) * Mth.PI / 180f;
+            float wantedYaw = ESUtil.positionToYaw(getX(), wantedPos.x, getZ(), wantedPos.z) * Mth.PI / 180f;
+            float wantedPitch = ESUtil.positionToPitch(getX(), wantedPos.x, getY(), wantedPos.y, getZ(), wantedPos.z) * Mth.PI / 180f;
             float currentYaw = getYaw();
             float currentPitch = getPitch();
             setYaw(rotateTowards((float) (currentYaw / Math.PI * 180f), (float) (wantedYaw / Math.PI * 180f), getRotationSpeed()) * Mth.PI / 180f);

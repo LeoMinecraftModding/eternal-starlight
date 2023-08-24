@@ -39,7 +39,7 @@ public class SLDimensionSpecialEffects extends DimensionSpecialEffects {
         return false;
     }
 
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+    public static boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
         return SLSkyRenderer.renderSky(level, poseStack, projectionMatrix, partialTick, camera, setupFog);
     }
 }

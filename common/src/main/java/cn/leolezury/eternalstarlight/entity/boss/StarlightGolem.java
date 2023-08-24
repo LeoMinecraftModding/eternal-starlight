@@ -12,7 +12,7 @@ import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
-import cn.leolezury.eternalstarlight.util.MathUtil;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
@@ -110,9 +110,9 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
 
     @Override
     public void lookAtLaserEnd(Vec3 endPos) {
-        setXRot(-MathUtil.positionToPitch(getX(), endPos.x, getY(), endPos.y, getZ(), endPos.z));
-        setYBodyRot(MathUtil.positionToYaw(getX(), endPos.x, getZ(), endPos.z) - 90);
-        setYHeadRot(MathUtil.positionToYaw(getX(), endPos.x, getZ(), endPos.z) - 90);
+        setXRot(-ESUtil.positionToPitch(getX(), endPos.x, getY(), endPos.y, getZ(), endPos.z));
+        setYBodyRot(ESUtil.positionToYaw(getX(), endPos.x, getZ(), endPos.z) - 90);
+        setYHeadRot(ESUtil.positionToYaw(getX(), endPos.x, getZ(), endPos.z) - 90);
     }
 
     class LookAtTargetGoal extends Goal {
@@ -348,7 +348,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
                     }
                     
                     if (getAttackTicks() > 25) {
-                        setYBodyRot(MathUtil.positionToYaw(getX(), targetPos.x, getZ(), targetPos.z));
+                        setYBodyRot(ESUtil.positionToYaw(getX(), targetPos.x, getZ(), targetPos.z));
                     }
 
                     if (getAttackTicks() == 40 && targetPos.distanceTo(position()) < 25) {

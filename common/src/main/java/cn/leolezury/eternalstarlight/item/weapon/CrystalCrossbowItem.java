@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.item.weapon;
 
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -234,7 +235,7 @@ public class CrystalCrossbowItem extends CrossbowItem {
     }
 
     public static void performShooting(Level p_40888_, LivingEntity p_40889_, InteractionHand p_40890_, ItemStack p_40891_, float p_40892_, float p_40893_) {
-        if (p_40889_ instanceof Player player && net.minecraftforge.event.ForgeEventFactory.onArrowLoose(p_40891_, p_40889_.level(), player, 1, true) < 0) return;
+        if (p_40889_ instanceof Player player && ESPlatform.INSTANCE.postArrowLooseEvent(p_40891_, p_40889_.level(), player, 1, true) < 0) return;
         List<ItemStack> list = getChargedProjectiles(p_40891_);
         float[] afloat = getShotPitches(p_40889_.getRandom());
 

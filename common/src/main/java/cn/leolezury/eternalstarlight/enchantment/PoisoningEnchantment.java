@@ -5,8 +5,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class PoisoningEnchantment extends Enchantment {
-    public PoisoningEnchantment(Enchantment.Rarity p_45098_, EquipmentSlot... p_45099_) {
-        super(p_45098_, EnchantmentCategory.ARMOR, p_45099_);
+    public PoisoningEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
+        super(rarity, EnchantmentCategory.ARMOR, slots);
     }
 
     public int getMinCost(int p_45102_) {

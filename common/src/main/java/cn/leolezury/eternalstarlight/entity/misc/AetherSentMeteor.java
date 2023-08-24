@@ -4,7 +4,8 @@ import cn.leolezury.eternalstarlight.client.particle.lightning.LightningParticle
 import cn.leolezury.eternalstarlight.datagen.generator.DamageTypeGenerator;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
-import cn.leolezury.eternalstarlight.util.MathUtil;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
@@ -94,10 +94,11 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     }
 
     public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
-        if (entity.getPersistentData().getInt("MeteorCoolDown") > 0) {
+        CompoundTag tag = ESUtil.getPersistentData(entity);
+        if (tag.getInt("MeteorCoolDown") > 0) {
             return;
         }
-        entity.getPersistentData().putInt("MeteorCoolDown", 1);
+        tag.putInt("MeteorCoolDown", 1);
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 AetherSentMeteor meteor = new AetherSentMeteor(level, entity, targetX + x, targetY + height, targetZ + z);
@@ -215,8 +216,8 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
                     float pitch = random.nextInt(361);
                     float yaw = random.nextInt(361);
                     float len = random.nextInt(getSize());
-                    Vec3 particleTarget = MathUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
-                    Vec3 particleStart = MathUtil.rotationToPosition(position(), len, pitch, yaw);
+                    Vec3 particleTarget = ESUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
+                    Vec3 particleStart = ESUtil.rotationToPosition(position(), len, pitch, yaw);
                     Vec3 motion = particleTarget.subtract(particleStart);
                     level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), particleStart.x, particleStart.y, particleStart.z, motion.x, motion.y, motion.z);
                 }
@@ -225,7 +226,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
             }
         } else {
             HitResult result = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-            if (result.getType() != HitResult.Type.MISS && !ForgeEventFactory.onProjectileImpact(this, result)) {
+            if (result.getType() != HitResult.Type.MISS && !ESPlatform.INSTANCE.postProjectileImpactEvent(this, result)) {
                 this.onHit(result);
             }
             setDeltaMovement(0, -2, 0);

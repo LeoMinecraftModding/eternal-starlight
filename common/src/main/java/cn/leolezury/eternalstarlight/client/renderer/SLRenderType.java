@@ -20,9 +20,9 @@ public abstract class SLRenderType extends RenderType {
         return create("glow_effect", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, rendertype$state);
     }
 
-    private static final RenderType GLOW_CUTOUT = create("glow_cutout", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 131072, true, false, RenderType.CompositeState.builder().setShaderState(RENDERTYPE_EYES_SHADER).setLightmapState(LIGHTMAP).setShaderState(RENDERTYPE_CUTOUT_SHADER).setTextureState(BLOCK_SHEET).createCompositeState(true));
+    /*private static final RenderType GLOW_CUTOUT = create("glow_cutout", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 131072, true, false, RenderType.CompositeState.builder().setShaderState(RENDERTYPE_EYES_SHADER).setLightmapState(LIGHTMAP).setShaderState(RENDERTYPE_CUTOUT_SHADER).setTextureState(BLOCK_SHEET).createCompositeState(true));
 
     public static RenderType glowCutout() {
         return GLOW_CUTOUT;
-    }
+    }*/
 }

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.entity.animal;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -12,7 +13,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -32,7 +32,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class Dryad extends Animal {
@@ -89,7 +88,7 @@ public class Dryad extends Animal {
         ItemStack stack = p_27584_.getItemInHand(p_27585_);
         boolean flag = this.isFood(stack);
         if (!flag) {
-            if (stack.is(Tags.Items.SHEARS) && hasLeaves()) {
+            if (ESPlatform.INSTANCE.isShears(stack) && hasLeaves()) {
                 setHasLeaves(false);
                 spawnAtLocation(ItemInit.LUNAR_LEAVES.get());
                 stack.hurtAndBreak(1, p_27584_, (p_32290_) -> {

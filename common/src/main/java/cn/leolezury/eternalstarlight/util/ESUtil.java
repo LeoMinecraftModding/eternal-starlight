@@ -1,9 +1,12 @@
 package cn.leolezury.eternalstarlight.util;
 
+import cn.leolezury.eternalstarlight.entity.interfaces.PersistentDataHolder;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
-public class MathUtil {
+public class ESUtil {
     public static float positionToPitch(double startX, double endX, double startY, double endY, double startZ, double endZ) {
         double d0 = endX - startX;
         double d1 = endY - startY;
@@ -23,5 +26,12 @@ public class MathUtil {
         double endPosY = startPos.y + radius * Math.sin(pitch * Math.PI / 180d);
         double endPosZ = startPos.z + radius * Math.sin(yaw * Math.PI / 180d) * Math.cos(pitch * Math.PI / 180d);
         return new Vec3(endPosX, endPosY, endPosZ);
+    }
+
+    public static CompoundTag getPersistentData(Entity entity) {
+        if (entity instanceof PersistentDataHolder holder) {
+            return holder.getPersistentData();
+        }
+        return null;
     }
 }

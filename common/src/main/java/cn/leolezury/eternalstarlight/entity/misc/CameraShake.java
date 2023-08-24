@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.entity.misc;
 
 import cn.leolezury.eternalstarlight.init.EntityInit;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -12,9 +12,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
 
 public class CameraShake extends Entity {
     private static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(CameraShake.class, EntityDataSerializers.FLOAT);
@@ -85,7 +82,7 @@ public class CameraShake extends Entity {
         compoundTag.putInt("SpawnedTicks", tickCount);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public float getShakeAmount(Player player, float partialTicks) {
         float dist = (float) position().distanceTo(player.getEyePosition());
         if (dist > getRadius()) {
@@ -105,10 +102,10 @@ public class CameraShake extends Entity {
         }
     }
 
-    @Override
+    /*@Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    }*/
 
     public static void createCameraShake(Level level, Vec3 pos, float radius, float magnitude, int duration, int fadeDuration) {
         if (!level.isClientSide) {

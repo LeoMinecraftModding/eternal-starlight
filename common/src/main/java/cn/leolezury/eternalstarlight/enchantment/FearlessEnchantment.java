@@ -11,8 +11,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class FearlessEnchantment extends Enchantment {
     static EnchantmentCategory SL_WEAPON = EnchantmentCategory.create("slWeapon", item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem);
-    public FearlessEnchantment(Enchantment.Rarity p_45098_, EquipmentSlot... p_45099_) {
-        super(p_45098_, SL_WEAPON, p_45099_);
+    public FearlessEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
+        super(rarity, SL_WEAPON, slots);
     }
 
     public int getMinCost(int p_45102_) {

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.ai.goal;
 
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 
@@ -31,7 +32,7 @@ public class BoarwarfTradeWithPlayerGoal extends Goal {
                 return false;
             } else if (this.villager.distanceToSqr(player) > 16.0D) {
                 return false;
-            } else return player.getPersistentData().getInt("boarwarf_credit") >= -30;
+            } else return ESUtil.getPersistentData(player).getInt("boarwarf_credit") >= -30;
         }
     }
 

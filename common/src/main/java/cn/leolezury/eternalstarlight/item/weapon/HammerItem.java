@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.item.weapon;
 
-import cn.leolezury.eternalstarlight.util.MathUtil;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
@@ -53,7 +53,7 @@ public class HammerItem extends DiggerItem implements Vanishable {
         BlockPos pos = context.getClickedPos();
         if (level.isClientSide) {
             for (int i = 0; i < 360; i += 10) {
-                Vec3 vec3 = MathUtil.rotationToPosition(pos.getCenter().add(0, -0.1, 0), 2, 0, i);
+                Vec3 vec3 = ESUtil.rotationToPosition(pos.getCenter().add(0, -0.1, 0), 2, 0, i);
                 BlockPos particlePos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
                 spawnBlockParticle(level, particlePos, vec3.add(0, 0.6, 0));
             }

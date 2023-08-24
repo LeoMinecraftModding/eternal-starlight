@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.item.weapon;
 
 import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.ItemInit;
+import cn.leolezury.eternalstarlight.item.interfaces.Swingable;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -11,13 +12,13 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class RageOfStarsItem extends Item {
+public class RageOfStarsItem extends Item implements Swingable {
     public RageOfStarsItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+    public void swing(ItemStack stack, LivingEntity entity) {
         double range = 10;
         Vec3 eyePosition = entity.getEyePosition();
         Vec3 viewVector = entity.getViewVector(1.0F);
@@ -28,7 +29,6 @@ public class RageOfStarsItem extends Item {
             Vec3 location = livingEntity.position();
             AetherSentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
         }
-        return super.onEntitySwing(stack, entity);
     }
 
     @Override

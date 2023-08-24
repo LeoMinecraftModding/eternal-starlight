@@ -6,7 +6,9 @@
   "refmap": "eternalstarlight.refmap.json",
   "mixins": [
     "BubbleColumnBlockMixin",
+    "EntityMixin",
     "FireBlockMixin",
+    "LivingEntityMixin",
     "access.AxeItemAccess",
     "access.ButtonBlockAccess",
     "access.DoorBlockAccess",

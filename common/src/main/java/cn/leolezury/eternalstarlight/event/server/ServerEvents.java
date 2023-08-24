@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.manager.book.BookManager;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.manager.gatekeeper.TheGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.util.ESUtil;
 import cn.leolezury.eternalstarlight.util.SLTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -118,9 +119,9 @@ public class ServerEvents {
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         LivingEntity livingEntity = event.getEntity();
         if (livingEntity.tickCount % 20 == 0) {
-            int coolDown = livingEntity.getPersistentData().getInt("MeteorCoolDown");
+            int coolDown = ESUtil.getPersistentData(livingEntity).getInt("MeteorCoolDown");
             if (coolDown > 0) {
-                livingEntity.getPersistentData().putInt("MeteorCoolDown", coolDown - 1);
+                ESUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
             }
         }
     }
@@ -142,7 +143,7 @@ public class ServerEvents {
     public static void onProjectileImpact(ProjectileImpactEvent event) {
         Projectile projectile = event.getProjectile();
         HitResult result = event.getRayTraceResult();
-        if (projectile.getPersistentData().contains(EternalStarlight.MOD_ID + ":starfall") && projectile.level() instanceof ServerLevel serverLevel) {
+        if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall") && projectile.level() instanceof ServerLevel serverLevel) {
             Vec3 location = result.getLocation();
             AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
         }

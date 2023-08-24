@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.client.model.item.wrapper;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -12,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ESBakedModelWrapper<T extends BakedModel> implements BakedModel {
     private final T origin;
 

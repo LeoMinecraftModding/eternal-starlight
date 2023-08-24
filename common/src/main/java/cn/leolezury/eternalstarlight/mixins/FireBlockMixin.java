@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FireBlock.class)
-public class FireBlockMixin {
+public abstract class FireBlockMixin {
     @Inject(at = @At("HEAD"), method = "getBurnOdds", cancellable = true)
     private void getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         ESFlammabilityModifier.Entry entry;
