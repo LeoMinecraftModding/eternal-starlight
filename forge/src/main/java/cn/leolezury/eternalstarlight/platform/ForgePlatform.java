@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
@@ -13,6 +14,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -183,6 +185,11 @@ public class ForgePlatform implements ESPlatform {
         BlockPos blockpos = context.getClickedPos();
         BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ToolActions.HOE_TILL, false);
         return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
+    }
+
+    @Override
+    public DimensionSpecialEffects getDimEffect() {
+        return new ForgeDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
     }
 
     @OnlyIn(Dist.CLIENT)

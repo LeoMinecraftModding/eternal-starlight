@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.client.ESDimensionSpecialEffects;
+import cn.leolezury.eternalstarlight.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonScytheItem;
@@ -11,6 +13,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -132,6 +135,11 @@ public interface ESPlatform {
     Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 
     // client-side
+    @Environment(EnvType.CLIENT)
+    default DimensionSpecialEffects getDimEffect() {
+        ESSkyRenderer.createStars();
+        return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
+    }
     @Environment(EnvType.CLIENT)
     default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
         dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);

@@ -2,9 +2,7 @@ package cn.leolezury.eternalstarlight.network;
 
 import net.minecraft.Util;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.Level;
 
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;

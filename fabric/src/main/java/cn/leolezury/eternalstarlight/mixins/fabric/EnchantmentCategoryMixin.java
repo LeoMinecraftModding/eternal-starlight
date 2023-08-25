@@ -1,4 +1,4 @@
-package java.cn.leolezury.eternalstarlight.mixins.fabric;
+package cn.leolezury.eternalstarlight.mixins.fabric;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;

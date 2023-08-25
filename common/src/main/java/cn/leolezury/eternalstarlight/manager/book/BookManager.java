@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.manager.book;
 
-import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;

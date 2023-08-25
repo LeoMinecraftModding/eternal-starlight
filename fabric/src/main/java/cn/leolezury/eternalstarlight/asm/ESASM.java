@@ -1,4 +1,4 @@
-package java.cn.leolezury.eternalstarlight.asm;
+package cn.leolezury.eternalstarlight.asm;
 
 import com.chocohead.mm.api.ClassTinkerers;
 import net.fabricmc.loader.api.FabricLoader;

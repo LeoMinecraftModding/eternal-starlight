@@ -1,8 +1,7 @@
-package java.cn.leolezury.eternalstarlight.item.armor;
+package cn.leolezury.eternalstarlight.item.armor;
 
 import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.init.ItemInit;
-import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.util.ESUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.client;
 
-import cn.leolezury.eternalstarlight.client.renderer.world.SLSkyRenderer;
+import cn.leolezury.eternalstarlight.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.util.ESTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
@@ -39,7 +39,7 @@ public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
         return false;
     }
 
-    public static boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return SLSkyRenderer.renderSky(level, poseStack, projectionMatrix, partialTick, camera, setupFog);
+    public static boolean doRenderSky(ClientLevel level, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        return ESSkyRenderer.renderSky(level, poseStack, projectionMatrix, partialTick, camera, setupFog);
     }
 }

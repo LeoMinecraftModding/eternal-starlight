@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.mixins;
 
 import cn.leolezury.eternalstarlight.init.ItemInit;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@Environment(EnvType.CLIENT)
 @Mixin(ItemInHandRenderer.class)
 public abstract class ItemInHandRendererMixin {
     @SuppressWarnings({"ConstantConditions"})

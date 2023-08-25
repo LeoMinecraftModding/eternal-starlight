@@ -108,11 +108,11 @@ public class ClientHandlers {
 
     private static final ResourceLocation GUI_BARS_LOCATION = new ResourceLocation("textures/gui/bars.png");
 
-    public static boolean renderBossBar(GuiGraphics guiGraphics, LerpingBossEvent bossEvent, int x, int y) {
+    public static void renderBossBar(GuiGraphics guiGraphics, LerpingBossEvent bossEvent, int x, int y) {
         ResourceLocation barLocation;
         Mob boss = null;
         if (BOSSES.isEmpty()) {
-            return false;
+            return;
         }
         for (Mob mob : BOSSES) {
             if (mob.getUUID().equals(bossEvent.getId())) {
@@ -121,7 +121,7 @@ public class ClientHandlers {
             }
         }
         if (boss == null) {
-            return false;
+            return;
         }
         //Component bossDesc;
         if (boss instanceof TheGatekeeper) {
@@ -134,7 +134,7 @@ public class ClientHandlers {
             barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/lunar_monstrosity.png");
             //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".lunar_monstrosity.desc");
         } else {
-            return false;
+            return;
         }
         //event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
         RenderSystem.setShaderTexture(0, GUI_BARS_LOCATION);
@@ -148,7 +148,6 @@ public class ClientHandlers {
         int descX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - descWidth / 2;
         int descY = event.getY() + 9;
         event.getGuiGraphics().drawString(Minecraft.getInstance().font, bossDesc, descX, descY, 16777215);*/
-        return true;
     }
 
     public static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, ResourceLocation barLocation) {

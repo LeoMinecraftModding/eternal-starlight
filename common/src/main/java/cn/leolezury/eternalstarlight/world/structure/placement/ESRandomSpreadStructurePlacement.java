@@ -41,6 +41,6 @@ public class ESRandomSpreadStructurePlacement extends RandomSpreadStructurePlace
     }
 
     public StructurePlacementType<?> type() {
-        return StructurePlacementTypeInit.SL_RANDOM_SPREAD.get();
+        return StructurePlacementTypeInit.ES_RANDOM_SPREAD.get();
     }
 }

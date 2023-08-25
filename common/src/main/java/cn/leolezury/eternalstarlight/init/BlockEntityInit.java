@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.init;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.block.entity.LunarMonstrositySpawnerEntity;
 import cn.leolezury.eternalstarlight.block.entity.ESHangingSignBlockEntity;
 import cn.leolezury.eternalstarlight.block.entity.ESSignBlockEntity;
+import cn.leolezury.eternalstarlight.block.entity.LunarMonstrositySpawnerEntity;
 import cn.leolezury.eternalstarlight.block.entity.StarlightGolemSpawnerEntity;
 import cn.leolezury.eternalstarlight.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.util.register.RegistryObject;

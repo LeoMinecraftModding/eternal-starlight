@@ -1,4 +1,4 @@
-package java.cn.leolezury.eternalstarlight;
+package cn.leolezury.eternalstarlight;
 
 import net.fabricmc.api.ModInitializer;
 

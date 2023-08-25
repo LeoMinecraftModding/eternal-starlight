@@ -2,22 +2,19 @@ package cn.leolezury.eternalstarlight.client.handler;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.block.entity.ESWoodTypes;
-import cn.leolezury.eternalstarlight.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.client.model.*;
 import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.client.renderer.*;
-import cn.leolezury.eternalstarlight.client.renderer.world.SLSkyRenderer;
 import cn.leolezury.eternalstarlight.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.init.*;
 import cn.leolezury.eternalstarlight.item.weapon.CrystalCrossbowItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -26,7 +23,6 @@ import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -43,6 +39,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
@@ -52,10 +50,27 @@ import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 public class ClientSetupHandlers {
-    //private static int registered;
-    public static void clientSetup() {
-        //EternalStarlight.NETWORK_WRAPPER.registerMessage(registered++, OpenSLBookMessage.class, OpenSLBookMessage::write, OpenSLBookMessage::read, OpenSLBookMessage.Handler::handle);
+    public interface BlockColorRegisterStrategy {
+        void register(BlockColor blockColor, Block... itemLikes);
+    }
 
+    public interface ItemColorRegisterStrategy {
+        void register(ItemColor itemColor, ItemLike... itemLikes);
+    }
+
+    public interface ParticleProviderRegisterStrategy {
+        <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider);
+    }
+
+    public interface EntityRendererRegisterStrategy {
+        <T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererProvider<T> entityRendererProvider);
+    }
+
+    public interface RendererLayerRegisterStrategy {
+        void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
+    }
+
+    public static void clientSetup() {
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
 
@@ -102,22 +117,19 @@ public class ClientSetupHandlers {
         Sheets.SIGN_MATERIALS.put(woodType, Sheets.createSignMaterial(woodType));
     }
 
-    public static DimensionSpecialEffects getDimEffect() {
-        SLSkyRenderer.createStars();
-        return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
-    }
-
-    public static void registerBlockColors(BlockColors blockColors) {
+    public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
         BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
-        blockColors.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
-    public static void registerItemColors(BlockColors blockColors, ItemColors itemColors) {
+
+
+    public static void registerItemColors(ItemColorRegisterStrategy strategy) {
         ItemColor leavesItemColor = (stack, packedLight) -> {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
-            return blockColors.getColor(blockstate, null, null, packedLight);
+            return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
         };
-        itemColors.register(leavesItemColor, ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(leavesItemColor, ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
@@ -126,18 +138,6 @@ public class ClientSetupHandlers {
                 models.put(id, new GlowingBakedModel(models.get(id)));
             }
         }
-    }
-
-    public interface ParticleProviderRegisterStrategy {
-        <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider);
-    }
-
-    public interface EntityRendererRegisterStrategy {
-        <T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererProvider<T> entityRendererProvider);
-    }
-
-    public interface RendererLayerRegisterStrategy {
-        void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
     }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {

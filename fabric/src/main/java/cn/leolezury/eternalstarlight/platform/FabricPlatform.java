@@ -1,8 +1,9 @@
-package java.cn.leolezury.eternalstarlight.platform;
+package cn.leolezury.eternalstarlight.platform;
 
 import cn.leolezury.eternalstarlight.init.ItemInit;
+import cn.leolezury.eternalstarlight.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
-import cn.leolezury.eternalstarlight.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.network.FabricNetworkHandler;
 import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
@@ -17,8 +18,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-import java.cn.leolezury.eternalstarlight.item.armor.FabricThermalSpringStoneArmorItem;
-import java.cn.leolezury.eternalstarlight.network.FabricNetworkHandler;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 

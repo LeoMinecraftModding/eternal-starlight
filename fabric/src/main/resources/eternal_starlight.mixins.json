@@ -7,6 +7,10 @@
     "EnchantmentCategoryMixin"
   ],
   "client": [
+    "BossHealthOverlayMixin",
+    "CameraMixin",
+    "LevelRendererMixin",
+    "ModelManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
