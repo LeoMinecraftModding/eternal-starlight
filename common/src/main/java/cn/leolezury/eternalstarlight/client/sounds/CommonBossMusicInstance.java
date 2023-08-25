@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.client.sounds;
 
 import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.entity.boss.AbstractSLBoss;
+import cn.leolezury.eternalstarlight.entity.boss.AbstractESBoss;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,11 +15,11 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class CommonBossMusicInstance extends AbstractTickableSoundInstance {
-    private final AbstractSLBoss boss;
+    private final AbstractESBoss boss;
 
     private int ticksExisted = 0;
 
-    public CommonBossMusicInstance(AbstractSLBoss boss) {
+    public CommonBossMusicInstance(AbstractESBoss boss) {
         super(SoundEventInit.MUSIC_BOSS.get(), SoundSource.RECORDS, boss.getRandom());
         this.boss = boss;
         this.attenuation = SoundInstance.Attenuation.NONE;

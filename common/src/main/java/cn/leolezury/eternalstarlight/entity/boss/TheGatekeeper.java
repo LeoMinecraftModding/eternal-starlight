@@ -3,9 +3,9 @@ package cn.leolezury.eternalstarlight.entity.boss;
 import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.ai.goal.TheGatekeeperTridentAttackGoal;
-import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
+import cn.leolezury.eternalstarlight.entity.boss.bossevent.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
+import cn.leolezury.eternalstarlight.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
 import net.fabricmc.api.EnvType;
@@ -43,11 +43,11 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class TheGatekeeper extends AbstractSLBoss {
-    public TheGatekeeper(EntityType<? extends AbstractSLBoss> entityType, Level level) {
+public class TheGatekeeper extends AbstractESBoss {
+    public TheGatekeeper(EntityType<? extends AbstractESBoss> entityType, Level level) {
         super(entityType, level);
     }
-    private final SLServerBossEvent bossEvent = new SLServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
+    private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
 
     protected static final EntityDataAccessor<Boolean> SLIM = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.BOOLEAN);
     public boolean isSlim() {
@@ -407,7 +407,7 @@ public class TheGatekeeper extends AbstractSLBoss {
                             for (int y = -1; y <= 0; y++) {
                                 for (int z = -2; z <= 2; z++) {
                                     BlockPos blockPos = blockPosition().offset(x, y, z);
-                                    SLFallingBlock fallingBlock = new SLFallingBlock(level(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), level().getBlockState(blockPos), 60);
+                                    ESFallingBlock fallingBlock = new ESFallingBlock(level(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), level().getBlockState(blockPos), 60);
                                     fallingBlock.push(0, getRandom().nextDouble() / 5 + 0.5, 0);
                                     level().addFreshEntity(fallingBlock);
                                 }

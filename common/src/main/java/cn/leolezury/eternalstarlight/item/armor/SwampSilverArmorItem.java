@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.item.armor;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
+import cn.leolezury.eternalstarlight.item.interfaces.TickableArmor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -14,19 +16,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SwampSilverArmorItem extends ArmorItem {
+public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
     public SwampSilverArmorItem(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        for (MobEffectInstance effectInstance : player.getActiveEffects()) {
+    public void tick(Level level, LivingEntity livingEntity, ItemStack armor) {
+        for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
             if (!effectInstance.getEffect().isBeneficial()) {
-                player.removeEffect(effectInstance.getEffect());
+                livingEntity.removeEffect(effectInstance.getEffect());
             }
         }
-        super.onArmorTick(stack, level, player);
     }
 
     @Override

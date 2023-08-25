@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.item.misc;
 import cn.leolezury.eternalstarlight.entity.misc.EyeOfSeeking;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -32,12 +32,12 @@ public class SeekingEyeItem extends Item {
         player.startUsingItem(hand);
         if (level instanceof ServerLevel) {
             ServerLevel serverLevel = (ServerLevel)level;
-            TagKey<Structure> structureTagKey = SLTags.Structures.BOSS_STRUCTURES;
+            TagKey<Structure> structureTagKey = ESTags.Structures.BOSS_STRUCTURES;
             if (player.getItemInHand(InteractionHand.OFF_HAND).is(Items.REDSTONE)) {
-                structureTagKey = SLTags.Structures.GOLEM_FORGE;
+                structureTagKey = ESTags.Structures.GOLEM_FORGE;
             }
             if (player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.RED_CRYSTAL_MOSS_CARPET.get()) || player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.BLUE_CRYSTAL_MOSS_CARPET.get())) {
-                structureTagKey = SLTags.Structures.CURSED_GARDEN;
+                structureTagKey = ESTags.Structures.CURSED_GARDEN;
             }
             // else if
             BlockPos blockPos = serverLevel.findNearestMapStructure(structureTagKey, player.blockPosition(), 100, false);

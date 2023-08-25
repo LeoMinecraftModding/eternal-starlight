@@ -16,7 +16,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 
 import java.util.List;
 
-public class StoneSpikeFeature extends SLFeature<NoneFeatureConfiguration> {
+public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
     public StoneSpikeFeature(Codec<NoneFeatureConfiguration> p_66003_) {
         super(p_66003_);
     }

@@ -36,19 +36,21 @@ public class CommonSetupHandlers {
         pottedPlantsMap.put(BlockInit.NORTHLAND_SAPLING.getId(), BlockInit.POTTED_NORTHLAND_SAPLING);
         pottedPlantsMap.put(BlockInit.STARLIGHT_MANGROVE_SAPLING.getId(), BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING);
     }
-    
-    public static final Map<EntityType<?>, AttributeSupplier> attributeMap = new HashMap<>();
 
-    public static void createAttributes() {
-        attributeMap.put(EntityInit.BOARWARF.get(), Boarwarf.createAttributes().build());
-        attributeMap.put(EntityInit.ASTRAL_GOLEM.get(), AstralGolem.createAttributes().build());
-        attributeMap.put(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
-        attributeMap.put(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
-        attributeMap.put(EntityInit.TWILIGHT_SQUID.get(), TwilightSquid.createAttributes().build());
-        attributeMap.put(EntityInit.DRYAD.get(), Dryad.createAttributes().build());
-        attributeMap.put(EntityInit.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
-        attributeMap.put(EntityInit.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
-        attributeMap.put(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
+    public interface EntityAttributeRegisterStrategy {
+        <T extends Entity> void register(EntityType<T> entityType, AttributeSupplier attributeSupplier);
+    }
+
+    public static void createAttributes(EntityAttributeRegisterStrategy strategy) {
+        strategy.register(EntityInit.BOARWARF.get(), Boarwarf.createAttributes().build());
+        strategy.register(EntityInit.ASTRAL_GOLEM.get(), AstralGolem.createAttributes().build());
+        strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
+        strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
+        strategy.register(EntityInit.TWILIGHT_SQUID.get(), TwilightSquid.createAttributes().build());
+        strategy.register(EntityInit.DRYAD.get(), Dryad.createAttributes().build());
+        strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
+        strategy.register(EntityInit.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
+        strategy.register(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
     }
 
     public interface SpawnPlacementRegisterStrategy {

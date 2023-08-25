@@ -1,12 +1,21 @@
 package cn.leolezury.eternalstarlight.util;
 
 import cn.leolezury.eternalstarlight.entity.interfaces.PersistentDataHolder;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.function.Supplier;
+
 public class ESUtil {
+    public static void runWhenOnClient(Supplier<Runnable> toRun) {
+        if (ESPlatform.INSTANCE.isClientSide()) {
+            toRun.get().run();
+        }
+    }
+
     public static float positionToPitch(double startX, double endX, double startY, double endY, double startZ, double endZ) {
         double d0 = endX - startX;
         double d1 = endY - startY;

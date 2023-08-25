@@ -18,4 +18,5 @@ public class PlacerInit {
     public static final RegistrationProvider<FoliagePlacerType<?>> FOLIAGE_PLACERS = RegistrationProvider.get(Registries.FOLIAGE_PLACER_TYPE, EternalStarlight.MOD_ID);
     public static final RegistryObject<TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching_trunk_placer", () -> TrunkPlacerTypeAccess.create(BranchingTrunkPlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid_foliage_placer", () -> FoliagePlacerTypeAccess.create(SpheroidFoliagePlacer.CODEC));
+    public static void postRegistry() {}
 }

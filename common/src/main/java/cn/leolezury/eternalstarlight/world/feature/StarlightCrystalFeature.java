@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.world.feature;
 
 import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class StarlightCrystalFeature extends SLFeature<NoneFeatureConfiguration> {
+public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration> {
     public StarlightCrystalFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
@@ -36,7 +36,7 @@ public class StarlightCrystalFeature extends SLFeature<NoneFeatureConfiguration>
 
                         blockpos = blockpos.above();
 
-                        if (worldgenlevel.getBlockState(blockpos.below()).is(SLTags.Blocks.BASE_STONE_STARLIGHT)) {
+                        if (worldgenlevel.getBlockState(blockpos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
                             if (setBlockIfEmpty(worldgenlevel, blockpos, isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState())) {
                                 setBlockIfEmpty(worldgenlevel, blockpos.above(), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState());
                                 setBlockIfEmpty(worldgenlevel, blockpos.offset(1, 0, 0), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.EAST) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.EAST));
@@ -58,7 +58,7 @@ public class StarlightCrystalFeature extends SLFeature<NoneFeatureConfiguration>
 
                         blockpos = blockpos.above();
 
-                        if (worldgenlevel.getBlockState(blockpos.below()).is(SLTags.Blocks.BASE_STONE_STARLIGHT)) {
+                        if (worldgenlevel.getBlockState(blockpos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
                             setBlockIfEmpty(worldgenlevel, blockpos, isRed ? BlockInit.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState());
                         }
                     }

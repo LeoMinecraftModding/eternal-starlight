@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.world.feature;
 
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-public class FallenLogFeature extends SLFeature<FallenLogFeature.Configuration> {
+public class FallenLogFeature extends ESFeature<FallenLogFeature.Configuration> {
     public FallenLogFeature(Codec<FallenLogFeature.Configuration> codec) {
         super(codec);
     }
@@ -24,7 +24,7 @@ public class FallenLogFeature extends SLFeature<FallenLogFeature.Configuration> 
         for (int i = 0; i < length; i++) {
             BlockPos pos = blockPos.offset(ew ? i + length / 2 : 0, 0, ew ? 0 : i + length / 2);
             if (terrainAdapting) {
-                for(; !worldGenLevel.getBlockState(pos).is(BlockTags.DIRT) && !worldGenLevel.getBlockState(pos).is(BlockTags.SNOW) && !worldGenLevel.getBlockState(pos).is(SLTags.Blocks.BASE_STONE_STARLIGHT) && pos.getY() > worldGenLevel.getMinBuildHeight() + 2; pos = pos.below()) {
+                for(; !worldGenLevel.getBlockState(pos).is(BlockTags.DIRT) && !worldGenLevel.getBlockState(pos).is(BlockTags.SNOW) && !worldGenLevel.getBlockState(pos).is(ESTags.Blocks.BASE_STONE_STARLIGHT) && pos.getY() > worldGenLevel.getMinBuildHeight() + 2; pos = pos.below()) {
                 }
                 pos = pos.above();
             }
@@ -54,7 +54,7 @@ public class FallenLogFeature extends SLFeature<FallenLogFeature.Configuration> 
         if (!isLarge) {
             placeLog(context.level(), pos, provider, randomsource.nextInt(5) + 4, false, true, ew);
         } else {
-            for(; !context.level().getBlockState(pos).is(BlockTags.DIRT) && !context.level().getBlockState(pos).is(BlockTags.SNOW) && !context.level().getBlockState(pos).is(SLTags.Blocks.BASE_STONE_STARLIGHT) && pos.getY() > context.level().getMinBuildHeight() + 2; pos = pos.below()) {
+            for(; !context.level().getBlockState(pos).is(BlockTags.DIRT) && !context.level().getBlockState(pos).is(BlockTags.SNOW) && !context.level().getBlockState(pos).is(ESTags.Blocks.BASE_STONE_STARLIGHT) && pos.getY() > context.level().getMinBuildHeight() + 2; pos = pos.below()) {
             }
             pos = pos.below();
             int size = randomsource.nextInt(3) + 2;

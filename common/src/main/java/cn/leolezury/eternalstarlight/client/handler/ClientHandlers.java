@@ -2,13 +2,13 @@ package cn.leolezury.eternalstarlight.client.handler;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.client.sounds.CommonBossMusicInstance;
-import cn.leolezury.eternalstarlight.entity.boss.AbstractSLBoss;
+import cn.leolezury.eternalstarlight.entity.boss.AbstractESBoss;
 import cn.leolezury.eternalstarlight.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
@@ -70,11 +70,11 @@ public class ClientHandlers {
         }
         Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
         if (camera.getFluidInCamera() == FogType.NONE && ESPlatform.INSTANCE.noFluidAtCamera(camera)) {
-            if (biomeHolder.is(SLTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
+            if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
                 RenderSystem.setShaderFogStart(-4.0F);
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.87f, 0.87f, 1f);
-            } else if (biomeHolder.is(SLTags.Biomes.DARK_SWAMP_VARIANT)) {
+            } else if (biomeHolder.is(ESTags.Biomes.DARK_SWAMP_VARIANT)) {
                 RenderSystem.setShaderFogStart(-1.0F);
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.07f, 0, 0.07f);
@@ -86,7 +86,7 @@ public class ClientHandlers {
     public static void handleEntityEvent(Entity entity, Byte id) {
         float volume = Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.RECORDS);
 
-        if (entity instanceof AbstractSLBoss boss && entity.isAlive() && id == BOSS_MUSIC_ID) {
+        if (entity instanceof AbstractESBoss boss && entity.isAlive() && id == BOSS_MUSIC_ID) {
             if (volume <= 0.0F) {
                 BOSS_SOUND_MAP.clear();
             } else {

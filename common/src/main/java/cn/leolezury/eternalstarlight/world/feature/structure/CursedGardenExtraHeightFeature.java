@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.world.feature.structure;
 
 import cn.leolezury.eternalstarlight.init.BlockInit;
-import cn.leolezury.eternalstarlight.world.feature.SLFeature;
+import cn.leolezury.eternalstarlight.world.feature.ESFeature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import java.util.List;
 
-public class CursedGardenExtraHeightFeature extends SLFeature<NoneFeatureConfiguration> {
+public class CursedGardenExtraHeightFeature extends ESFeature<NoneFeatureConfiguration> {
     public CursedGardenExtraHeightFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }

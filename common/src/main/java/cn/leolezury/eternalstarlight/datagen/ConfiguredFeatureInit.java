@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.datagen;
 import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.FeatureInit;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import cn.leolezury.eternalstarlight.world.feature.BetterLakeFeature;
 import cn.leolezury.eternalstarlight.world.feature.FallenLogFeature;
 import cn.leolezury.eternalstarlight.world.feature.tree.BranchingTrunkPlacer;
@@ -94,7 +94,7 @@ public class ConfiguredFeatureInit {
         Supplier<List<OreConfiguration.TargetBlockState>> MUD_SWAMP_SILVER_ORES = Suppliers.memoize(() -> List.of(
                 OreConfiguration.target(new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get()), BlockInit.SWAMP_SILVER_ORE.get().defaultBlockState())));
 
-        RuleTest slRule = new TagMatchTest(SLTags.Blocks.BASE_STONE_STARLIGHT);
+        RuleTest slRule = new TagMatchTest(ESTags.Blocks.BASE_STONE_STARLIGHT);
         RuleTest voidstoneRule = new BlockMatchTest(BlockInit.VOIDSTONE.get());
         RuleTest mudRule = new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get());
 
@@ -123,10 +123,10 @@ public class ConfiguredFeatureInit {
         register(context, SL_GRASS, Feature.FLOWER, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.SMALL_GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_LUNAR_GRASS.get().defaultBlockState(), 2).add(BlockInit.CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_CRESCENT_GRASS.get().defaultBlockState(), 2).add(BlockInit.PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.GLOWING_PARASOL_GRASS.get().defaultBlockState(), 2).add(BlockInit.LUNAR_REED.get().defaultBlockState(), 1)), 128));
         register(context, SWAMP_GRASS, Feature.FLOWER, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.FANTABUD.get().defaultBlockState(), 1).add(BlockInit.GREEN_FANTABUD.get().defaultBlockState(), 1).add(BlockInit.FANTAFERN.get().defaultBlockState(), 1).add(BlockInit.GREEN_FANTAFERN.get().defaultBlockState(), 1).add(BlockInit.FANTAGRASS.get().defaultBlockState(), 1).add(BlockInit.GREEN_FANTAGRASS.get().defaultBlockState(), 1)), 128));
         WeightedStateProvider swampLakeStateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.NIGHTSHADE_MUD.get().defaultBlockState(), 10).add(BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 1).build());
-        register(context, SWAMP_LAKE, FeatureInit.SL_LAKE.get(), new BetterLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), swampLakeStateProvider, UniformInt.of(8, 10), UniformInt.of(4, 6), UniformInt.of(8, 10)));
+        register(context, SWAMP_LAKE, FeatureInit.BETTER_LAKE.get(), new BetterLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), swampLakeStateProvider, UniformInt.of(8, 10), UniformInt.of(4, 6), UniformInt.of(8, 10)));
         register(context, SWAMP_WATER, FeatureInit.SWAMP_WATER.get(), new NoneFeatureConfiguration());
         WeightedStateProvider caveSpringStateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.SPRINGSTONE.get().defaultBlockState(), 10).add(BlockInit.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build());
-        register(context, CAVE_SPRING, FeatureInit.SL_LAKE.get(), new BetterLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), caveSpringStateProvider, UniformInt.of(8, 10), UniformInt.of(6, 8), UniformInt.of(8, 10)));
+        register(context, CAVE_SPRING, FeatureInit.BETTER_LAKE.get(), new BetterLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), caveSpringStateProvider, UniformInt.of(8, 10), UniformInt.of(6, 8), UniformInt.of(8, 10)));
         register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(MUD_SWAMP_SILVER_ORES.get(), 7));
 
         //structure features

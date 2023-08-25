@@ -1,9 +1,13 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.init.ItemInit;
+import cn.leolezury.eternalstarlight.item.armor.ForgeThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.weapon.ForgeHammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ForgeScytheItem;
 import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
+import cn.leolezury.eternalstarlight.network.ForgeNetworkHandler;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
@@ -14,9 +18,12 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -32,11 +39,15 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.ModelData;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -56,6 +67,11 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
+    public boolean isClientSide() {
+        return FMLLoader.getDist() == Dist.CLIENT;
+    }
+
+    @Override
     public ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new ForgeScytheItem(tier, damage, attackSpeed, properties);
     }
@@ -63,6 +79,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new ForgeHammerItem(tier, damage, attackSpeed, properties);
+    }
+
+    @Override
+    public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties) {
+        return new ForgeThermalSpringStoneArmorItem(material, type, properties);
     }
 
     @Override
@@ -83,6 +104,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public boolean postMobGriefingEvent(Level level, Entity entity) {
         return ForgeEventFactory.getMobGriefingEvent(level, entity);
+    }
+
+    @Override
+    public boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
+        return ForgeHooks.onTravelToDimension(entity, dimension);
     }
 
     @Override
@@ -135,6 +161,18 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
+    public CreativeModeTab getESTab() {
+        return CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.STARLIGHT_FLOWER.get())).title(Component.translatable("itemGroup.eternal_starlight")).displayItems((displayParameters, output) -> {
+            for (ResourceKey<Item> entry : ItemInit.REGISTERED_ITEMS) {
+                Item item = ItemInit.ITEMS.getRegistry().get(entry);
+                if (item != null) {
+                    output.accept(item);
+                }
+            }
+        }).build();
+    }
+
+    @Override
     public EnchantmentCategory getESWeaponEnchantmentCategory() {
         return ES_WEAPON_ENCHANTMENT_CATEGORY;
     }
@@ -147,11 +185,22 @@ public class ForgePlatform implements ESPlatform {
         return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
         var model = dispatcher.getBlockModel(state);
         for (var renderType : model.getRenderTypes(state, RandomSource.create(seed), ModelData.EMPTY))
             dispatcher.getModelRenderer().tesselateBlock(level, model, state, pos, stack, multiBufferSource.getBuffer(renderType), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY, net.minecraftforge.client.model.data.ModelData.EMPTY, renderType);
 
+    }
+
+    @Override
+    public void sendToClient(ServerPlayer player, Object packet) {
+        ForgeNetworkHandler.sendToClient(player, packet);
+    }
+
+    @Override
+    public void sendToServer(Object packet) {
+        ForgeNetworkHandler.sendToServer(packet);
     }
 }

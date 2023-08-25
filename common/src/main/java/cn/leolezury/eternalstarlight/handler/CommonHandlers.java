@@ -1,18 +1,19 @@
 package cn.leolezury.eternalstarlight.handler;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.block.SLPortalBlock;
+import cn.leolezury.eternalstarlight.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.datagen.DimensionInit;
 import cn.leolezury.eternalstarlight.entity.misc.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.EnchantmentInit;
 import cn.leolezury.eternalstarlight.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.manager.book.BookManager;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.manager.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.util.ESUtil;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -28,12 +29,15 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class CommonHandlers {
     private static TheGatekeeperNameManager gatekeeperNameManager;
@@ -51,11 +55,11 @@ public class CommonHandlers {
     }
 
     public static void onRightClickBlock(Level level, Player player, InteractionHand hand, BlockPos pos) {
-        if (!level.isClientSide && player.getItemInHand(hand).is(Items.GLOWSTONE_DUST) && level.getBlockState(pos).is(SLTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+        if (!level.isClientSide && player.getItemInHand(hand).is(Items.GLOWSTONE_DUST) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
             if (level.dimension() == DimensionInit.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
                 for (Direction direction : Direction.Plane.VERTICAL) {
                     BlockPos framePos = pos.relative(direction);
-                    if (((SLPortalBlock) BlockInit.STARLIGHT_PORTAL.get()).trySpawnPortal(level, framePos)) {
+                    if (((ESPortalBlock) BlockInit.STARLIGHT_PORTAL.get()).trySpawnPortal(level, framePos)) {
                         level.playSound(player, framePos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
                         player.swing(hand);
                     }
@@ -84,7 +88,7 @@ public class CommonHandlers {
             }
         }
 
-        if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(SLTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
+        if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
             entity.setSecondsOnFire(10);
         }
 
@@ -104,6 +108,12 @@ public class CommonHandlers {
     }
 
     public static void onLivingTick(LivingEntity livingEntity) {
+        List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
+        for (ItemStack armor : armors) {
+            if (armor.getItem() instanceof TickableArmor tickableArmor) {
+                tickableArmor.tick(livingEntity.level(), livingEntity, armor);
+            }
+        }
         if (livingEntity.tickCount % 20 == 0) {
             int coolDown = ESUtil.getPersistentData(livingEntity).getInt("MeteorCoolDown");
             if (coolDown > 0) {

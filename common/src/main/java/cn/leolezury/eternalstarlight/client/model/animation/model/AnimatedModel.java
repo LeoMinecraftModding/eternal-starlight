@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.client.model.animation.model;
 
-import cn.leolezury.eternalstarlight.client.model.animation.SLKeyframeAnimations;
+import cn.leolezury.eternalstarlight.client.model.animation.ESKeyframeAnimations;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationDefinition;
@@ -21,13 +21,13 @@ public interface AnimatedModel {
 
     default void animate(AnimationState state, AnimationDefinition definition, float tickCount, float speed) {
         state.updateTime(tickCount, speed);
-        state.ifStarted((animState) -> SLKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
+        state.ifStarted((animState) -> ESKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
     }
 
     default void animateWalk(AnimationDefinition definition, float swing, float swingAmount, float speed, float scale) {
         long accumulatedTime = (long)(swing * 50.0F * speed);
         float interpolationScale = Math.min(swingAmount * scale, 1.0F);
-        SLKeyframeAnimations.animate(this, definition, accumulatedTime, interpolationScale, ANIMATION_VECTOR_CACHE);
+        ESKeyframeAnimations.animate(this, definition, accumulatedTime, interpolationScale, ANIMATION_VECTOR_CACHE);
     }
 
     ModelPart root();

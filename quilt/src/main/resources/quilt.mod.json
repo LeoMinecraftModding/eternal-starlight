@@ -5,9 +5,9 @@
     "eternal_starlight.mixins.json"
   ],
   "quilt_loader": {
-    "group": "${group}",
+    "group": "${maven_group}",
     "id": "examplemod",
-    "version": "${version}",
+    "version": "${rootProject.version}",
     "name": "Example Mod",
     "description": "This is an example description! Tell everyone what your mod is about!",
     "authors": ["Me!"],

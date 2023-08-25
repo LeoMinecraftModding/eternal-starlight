@@ -1,15 +1,15 @@
 package cn.leolezury.eternalstarlight.client.handler;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.block.entity.SLWoodTypes;
-import cn.leolezury.eternalstarlight.client.SLDimensionSpecialEffects;
+import cn.leolezury.eternalstarlight.block.entity.ESWoodTypes;
+import cn.leolezury.eternalstarlight.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.client.model.*;
 import cn.leolezury.eternalstarlight.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.client.renderer.*;
 import cn.leolezury.eternalstarlight.client.renderer.world.SLSkyRenderer;
-import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
+import cn.leolezury.eternalstarlight.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.init.*;
 import cn.leolezury.eternalstarlight.item.weapon.CrystalCrossbowItem;
 import net.fabricmc.api.EnvType;
@@ -90,12 +90,12 @@ public class ClientSetupHandlers {
     }
 
     public static void clientWoodSetup() {
-        WoodType.register(SLWoodTypes.LUNAR);
-        WoodType.register(SLWoodTypes.NORTHLAND);
-        WoodType.register(SLWoodTypes.STARLIGHT_MANGROVE);
-        registerWoodTypeForSign(SLWoodTypes.LUNAR);
-        registerWoodTypeForSign(SLWoodTypes.NORTHLAND);
-        registerWoodTypeForSign(SLWoodTypes.STARLIGHT_MANGROVE);
+        WoodType.register(ESWoodTypes.LUNAR);
+        WoodType.register(ESWoodTypes.NORTHLAND);
+        WoodType.register(ESWoodTypes.STARLIGHT_MANGROVE);
+        registerWoodTypeForSign(ESWoodTypes.LUNAR);
+        registerWoodTypeForSign(ESWoodTypes.NORTHLAND);
+        registerWoodTypeForSign(ESWoodTypes.STARLIGHT_MANGROVE);
     }
 
     private static void registerWoodTypeForSign(WoodType woodType) {
@@ -104,7 +104,7 @@ public class ClientSetupHandlers {
 
     public static DimensionSpecialEffects getDimEffect() {
         SLSkyRenderer.createStars();
-        return new SLDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
+        return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
     }
 
     public static void registerBlockColors(BlockColors blockColors) {
@@ -148,10 +148,10 @@ public class ClientSetupHandlers {
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
-        strategy.register(EntityInit.FALLING_BLOCK.get(), SLFallingBlockRenderer::new);
+        strategy.register(EntityInit.FALLING_BLOCK.get(), ESFallingBlockRenderer::new);
         strategy.register(EntityInit.AETHERSENT_METEOR.get(), AetherSentMeteorRenderer::new);
-        strategy.register(EntityInit.BOAT.get(), (context) -> new SLBoatRenderer(context, false));
-        strategy.register(EntityInit.CHEST_BOAT.get(), (context) -> new SLBoatRenderer(context, true));
+        strategy.register(EntityInit.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
+        strategy.register(EntityInit.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
         strategy.register(EntityInit.CAMERA_SHAKE.get(), NothingRenderer::new);
         strategy.register(EntityInit.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
         strategy.register(EntityInit.BOARWARF.get(), BoarwarfRenderer::new);
@@ -175,12 +175,12 @@ public class ClientSetupHandlers {
     public static void registerLayers(RendererLayerRegisterStrategy strategy) {
         strategy.register(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(INNER_ARMOR_DEFORMATION));
         strategy.register(ThermalSpringStoneArmorModel.OUTER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(OUTER_ARMOR_DEFORMATION));
-        strategy.register(SLBoatRenderer.createBoatModelName(SLBoat.Type.LUNAR), BoatModel::createBodyModel);
-        strategy.register(SLBoatRenderer.createChestBoatModelName(SLBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
-        strategy.register(SLBoatRenderer.createBoatModelName(SLBoat.Type.NORTHLAND), BoatModel::createBodyModel);
-        strategy.register(SLBoatRenderer.createChestBoatModelName(SLBoat.Type.NORTHLAND), ChestBoatModel::createBodyModel);
-        strategy.register(SLBoatRenderer.createBoatModelName(SLBoat.Type.STARLIGHT_MANGROVE), BoatModel::createBodyModel);
-        strategy.register(SLBoatRenderer.createChestBoatModelName(SLBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.LUNAR), BoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.NORTHLAND), BoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.NORTHLAND), ChestBoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), BoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
         strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
         strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
         strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));

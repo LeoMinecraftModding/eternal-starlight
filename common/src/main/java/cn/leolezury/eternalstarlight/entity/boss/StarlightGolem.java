@@ -3,11 +3,11 @@ package cn.leolezury.eternalstarlight.entity.boss;
 import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.attack.FireColumn;
-import cn.leolezury.eternalstarlight.entity.attack.beam.LaserCaster;
+import cn.leolezury.eternalstarlight.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.entity.attack.beam.StarlightGolemBeam;
-import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
+import cn.leolezury.eternalstarlight.entity.boss.bossevent.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.entity.misc.SLFallingBlock;
+import cn.leolezury.eternalstarlight.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
@@ -46,11 +46,11 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
-    public StarlightGolem(EntityType<? extends AbstractSLBoss> entityType, Level level) {
+public class StarlightGolem extends AbstractESBoss implements LaserCaster {
+    public StarlightGolem(EntityType<? extends AbstractESBoss> entityType, Level level) {
         super(entityType, level);
     }
-    private final SLServerBossEvent bossEvent = new SLServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
+    private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
 
     public AnimationState energyBeamAnimationState = new AnimationState();
     public AnimationState flameAnimationState = new AnimationState();
@@ -381,7 +381,7 @@ public class StarlightGolem extends AbstractSLBoss implements LaserCaster {
                             }
                         }
                         for (BlockPos blockPos : blockList) {
-                            SLFallingBlock fallingBlock = new SLFallingBlock(level(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), level().getBlockState(blockPos), 60);
+                            ESFallingBlock fallingBlock = new ESFallingBlock(level(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), level().getBlockState(blockPos), 60);
                             fallingBlock.push(0, getRandom().nextDouble() / 5 + 0.5, 0);
                             level().addFreshEntity(fallingBlock);
                         }

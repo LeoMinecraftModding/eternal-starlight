@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class SwampWaterFeature extends SLFeature<NoneFeatureConfiguration> {
+public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
     public SwampWaterFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
         this.fastNoiseLite = new FastNoiseLite();

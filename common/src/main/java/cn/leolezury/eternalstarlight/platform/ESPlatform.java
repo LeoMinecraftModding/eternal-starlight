@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.platform;
 
+import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
@@ -18,7 +19,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -67,6 +70,7 @@ public interface ESPlatform {
 
     // some loader-related stuff
     Loader getLoader();
+    boolean isClientSide();
 
     // for initialization
     default ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
@@ -75,6 +79,7 @@ public interface ESPlatform {
     default HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
+    ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties);
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
     }
@@ -90,6 +95,9 @@ public interface ESPlatform {
     }
     default boolean postMobGriefingEvent(Level level, Entity entity) {
         return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+    }
+    default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
+        return true;
     }
     default boolean noFluidAtCamera(Camera camera) {
         return true;
@@ -128,4 +136,8 @@ public interface ESPlatform {
     default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
         dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
     }
+
+    // networking
+    void sendToClient(ServerPlayer player, Object packet);
+    void sendToServer(Object packet);
 }

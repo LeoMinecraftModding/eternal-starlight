@@ -1,12 +1,5 @@
 {
-  "itemGroup.eternal_starlight.building_blocks": "永恒星光 - 建筑方块",
-  "itemGroup.eternal_starlight.nature_blocks": "永恒星光 - 自然方块",
-  "itemGroup.eternal_starlight.functional_blocks": "永恒星光 - 功能性方块",
-  "itemGroup.eternal_starlight.combat": "永恒星光 - 战斗用品",
-  "itemGroup.eternal_starlight.tools": "永恒星光 - 工具与实用物品",
-  "itemGroup.eternal_starlight.ingredients": "永恒星光 - 原材料",
-  "itemGroup.eternal_starlight.foods": "永恒星光 - 食物",
-  "itemGroup.eternal_starlight.spawn_eggs": "永恒星光 - 刷怪蛋",
+  "itemGroup.eternal_starlight": "永恒星光",
 
   "block.eternal_starlight.berries_vines": "浆果藤曼",
   "block.eternal_starlight.berries_vines_plant": "浆果藤曼植株",

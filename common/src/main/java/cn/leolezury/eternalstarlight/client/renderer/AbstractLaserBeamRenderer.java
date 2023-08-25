@@ -58,7 +58,7 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
             frame = 6;
         }
 
-        VertexConsumer consumer = bufferSource.getBuffer(SLRenderType.glow(getTextureLocation(laserBeam)));
+        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
 
         // render beam start
         renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);

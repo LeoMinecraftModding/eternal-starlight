@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.entity.npc.boarwarf.trade.BoarwarfTrades;
 import cn.leolezury.eternalstarlight.init.SoundEventInit;
 import cn.leolezury.eternalstarlight.util.ESUtil;
-import cn.leolezury.eternalstarlight.util.SLTags;
+import cn.leolezury.eternalstarlight.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -146,11 +146,11 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
         homePos = blockPosition();
 
-        if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(SLTags.Biomes.STARLIGHT_FOREST_VARIANT)) {
+        if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.STARLIGHT_FOREST_VARIANT)) {
             setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.STARLIGHT_FOREST);
-        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(SLTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
+        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
             setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.PERMAFROST_FOREST);
-        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(SLTags.Biomes.DARK_SWAMP_VARIANT)) {
+        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.DARK_SWAMP_VARIANT)) {
             setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.DARK_SWAMP);
         } else setBiomeVariant(getRandom().nextInt(BoarwarfVariants.BoarwarfBiomeVariants.VARIANT_NUM));
 

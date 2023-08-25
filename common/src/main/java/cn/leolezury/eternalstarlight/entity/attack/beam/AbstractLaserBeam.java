@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.entity.attack.beam;
 
 import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
+import cn.leolezury.eternalstarlight.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.ControlledAnimation;
 import cn.leolezury.eternalstarlight.util.ESUtil;

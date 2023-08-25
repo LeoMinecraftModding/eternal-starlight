@@ -1,12 +1,5 @@
 {
-  "itemGroup.eternal_starlight.building_blocks": "Eternal Starlight - Building Blocks",
-  "itemGroup.eternal_starlight.nature_blocks": "Eternal Starlight - Nature Blocks",
-  "itemGroup.eternal_starlight.functional_blocks": "Eternal Starlight - Functional Blocks",
-  "itemGroup.eternal_starlight.combat": "Eternal Starlight - Combat Items",
-  "itemGroup.eternal_starlight.tools": "Eternal Starlight - Tools and Utilities",
-  "itemGroup.eternal_starlight.ingredients": "Eternal Starlight - Ingredients",
-  "itemGroup.eternal_starlight.foods": "Eternal Starlight - Foods",
-  "itemGroup.eternal_starlight.spawn_eggs": "Eternal Starlight - Spawn Eggs",
+  "itemGroup.eternal_starlight": "Eternal Starlight",
 
   "block.eternal_starlight.berries_vines": "Berries Vines",
   "block.eternal_starlight.berries_vines_plant": "Berries Vines Plant",

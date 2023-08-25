@@ -4,7 +4,8 @@ import cn.leolezury.eternalstarlight.EternalStarlight;
 import cn.leolezury.eternalstarlight.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
-import cn.leolezury.eternalstarlight.message.OpenSLBookMessage;
+import cn.leolezury.eternalstarlight.network.OpenBookPacket;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -106,7 +107,7 @@ public class BookManager extends SimpleJsonResourceReloadListener {
                     }
                 }
             }
-            EternalStarlight.sendMessageToClient(new OpenSLBookMessage(bookData, chapterDataList), serverPlayer);
+            ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(bookData, chapterDataList));
         }
     }
 }

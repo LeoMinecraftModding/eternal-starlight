@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.item.misc;
 
-import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
-import cn.leolezury.eternalstarlight.entity.misc.SLChestBoat;
+import cn.leolezury.eternalstarlight.entity.misc.ESBoat;
+import cn.leolezury.eternalstarlight.entity.misc.ESChestBoat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,10 +23,10 @@ import java.util.function.Predicate;
 public class SLBoatItem extends Item {
 
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
-    private final SLBoat.Type type;
+    private final ESBoat.Type type;
     private final boolean chest;
 
-    public SLBoatItem(boolean chest, SLBoat.Type type, Item.Properties properties) {
+    public SLBoatItem(boolean chest, ESBoat.Type type, Item.Properties properties) {
         super(properties);
         this.chest = chest;
         this.type = type;
@@ -54,7 +54,7 @@ public class SLBoatItem extends Item {
             }
 
             if (result.getType() == HitResult.Type.BLOCK) {
-                SLBoat boat = this.getBoat(level, result);
+                ESBoat boat = this.getBoat(level, result);
                 boat.setSLBoatType(this.type);
                 boat.setYRot(player.getYRot());
                 if (!level.noCollision(boat, boat.getBoundingBox())) {
@@ -79,7 +79,7 @@ public class SLBoatItem extends Item {
         }
     }
 
-    private SLBoat getBoat(Level level, HitResult result) {
-        return this.chest ? new SLChestBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z) : new SLBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z);
+    private ESBoat getBoat(Level level, HitResult result) {
+        return this.chest ? new ESChestBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z) : new ESBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z);
     }
 }

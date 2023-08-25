@@ -1,11 +1,10 @@
 package cn.leolezury.eternalstarlight.init;
 
 import cn.leolezury.eternalstarlight.EternalStarlight;
-import cn.leolezury.eternalstarlight.entity.misc.SLBoat;
+import cn.leolezury.eternalstarlight.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.SLArmorMaterials;
 import cn.leolezury.eternalstarlight.item.armor.SwampSilverArmorItem;
-import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.misc.LootBagItem;
 import cn.leolezury.eternalstarlight.item.misc.SLBoatItem;
 import cn.leolezury.eternalstarlight.item.misc.SLBookItem;
@@ -65,8 +64,8 @@ public class ItemInit {
     public static final RegistryObject<Item> LUNAR_STAIRS = registerItem("lunar_stairs", () -> new BlockItem(BlockInit.LUNAR_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item> LUNAR_SIGN = registerItem("lunar_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.LUNAR_SIGN.get(), BlockInit.LUNAR_WALL_SIGN.get()));
     public static final RegistryObject<Item> LUNAR_HANGING_SIGN = registerItem("lunar_hanging_sign", () -> new HangingSignItem(BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.LUNAR_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
-    public static final RegistryObject<Item> LUNAR_BOAT = registerItem("lunar_boat", () -> new SLBoatItem(false, SLBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> LUNAR_CHEST_BOAT = registerItem("lunar_chest_boat", () -> new SLBoatItem(true, SLBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LUNAR_BOAT = registerItem("lunar_boat", () -> new SLBoatItem(false, ESBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LUNAR_CHEST_BOAT = registerItem("lunar_chest_boat", () -> new SLBoatItem(true, ESBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
 
     //northland wood
     public static final RegistryObject<Item> NORTHLAND_SAPLING = registerItem("northland_sapling", () -> new BlockItem(BlockInit.NORTHLAND_SAPLING.get(), new Item.Properties()));
@@ -86,8 +85,8 @@ public class ItemInit {
     public static final RegistryObject<Item> NORTHLAND_STAIRS = registerItem("northland_stairs", () -> new BlockItem(BlockInit.NORTHLAND_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item> NORTHLAND_SIGN = registerItem("northland_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_WALL_SIGN.get()));
     public static final RegistryObject<Item> NORTHLAND_HANGING_SIGN = registerItem("northland_hanging_sign", () -> new HangingSignItem(BlockInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.NORTHLAND_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
-    public static final RegistryObject<Item> NORTHLAND_BOAT = registerItem("northland_boat", () -> new SLBoatItem(false, SLBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> NORTHLAND_CHEST_BOAT = registerItem("northland_chest_boat", () -> new SLBoatItem(true, SLBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> NORTHLAND_BOAT = registerItem("northland_boat", () -> new SLBoatItem(false, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> NORTHLAND_CHEST_BOAT = registerItem("northland_chest_boat", () -> new SLBoatItem(true, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
 
     //starlight mangrove wood
     public static final RegistryObject<Item> STARLIGHT_MANGROVE_SAPLING = registerItem("starlight_mangrove_sapling", () -> new BlockItem(BlockInit.STARLIGHT_MANGROVE_SAPLING.get(), new Item.Properties()));
@@ -109,8 +108,8 @@ public class ItemInit {
     public static final RegistryObject<Item> MUDDY_STARLIGHT_MANGROVE_ROOTS = registerItem("muddy_starlight_mangrove_roots", () -> new BlockItem(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), new Item.Properties()));
     public static final RegistryObject<Item> STARLIGHT_MANGROVE_SIGN = registerItem("starlight_mangrove_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_SIGN.get()));
     public static final RegistryObject<Item> STARLIGHT_MANGROVE_HANGING_SIGN = registerItem("starlight_mangrove_hanging_sign", () -> new HangingSignItem(BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
-    public static final RegistryObject<Item> STARLIGHT_MANGROVE_BOAT = registerItem("starlight_mangrove_boat", () -> new SLBoatItem(false, SLBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> STARLIGHT_MANGROVE_CHEST_BOAT = registerItem("starlight_mangrove_chest_boat", () -> new SLBoatItem(true, SLBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> STARLIGHT_MANGROVE_BOAT = registerItem("starlight_mangrove_boat", () -> new SLBoatItem(false, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> STARLIGHT_MANGROVE_CHEST_BOAT = registerItem("starlight_mangrove_chest_boat", () -> new SLBoatItem(true, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
 
     // common grass
     public static final RegistryObject<Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(BlockInit.STARLIGHT_FLOWER.get(), new Item.Properties()));
@@ -211,13 +210,13 @@ public class ItemInit {
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HAMMER = registerItem("thermal_springstone_hammer",
             () -> ESPlatform.INSTANCE.createHammer(SLItemTiers.THERMAL_SPRINGSTONE, 8, -3.5F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HELMET = registerItem("thermal_springstone_helmet",
-            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_CHESTPLATE = registerItem("thermal_springstone_chestplate",
-            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_LEGGINGS = registerItem("thermal_springstone_leggings",
-            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_BOOTS = registerItem("thermal_springstone_boots",
-            () -> new ThermalSpringStoneArmorItem(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.BOOTS, new Item.Properties()));
+            () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(SLArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     //swamp silver
     public static final RegistryObject<Item> SWAMP_SILVER_ORE = registerItem("swamp_silver_ore", () -> new BlockItem(BlockInit.SWAMP_SILVER_ORE.get(), new Item.Properties()));
@@ -250,4 +249,5 @@ public class ItemInit {
     public static final RegistryObject<Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(SLItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(SLItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
+    public static void postRegistry() {}
 }

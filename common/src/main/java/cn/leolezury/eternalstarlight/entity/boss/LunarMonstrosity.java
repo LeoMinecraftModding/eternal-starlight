@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.entity.boss;
 import cn.leolezury.eternalstarlight.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.datagen.DamageTypeInit;
 import cn.leolezury.eternalstarlight.entity.attack.Vine;
-import cn.leolezury.eternalstarlight.entity.boss.bossevent.SLServerBossEvent;
+import cn.leolezury.eternalstarlight.entity.boss.bossevent.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.entity.projectile.Spore;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import cn.leolezury.eternalstarlight.init.ParticleInit;
@@ -53,11 +53,11 @@ import net.minecraft.world.phys.Vec3;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class LunarMonstrosity extends AbstractSLBoss {
-    public LunarMonstrosity(EntityType<? extends AbstractSLBoss> entityType, Level level) {
+public class LunarMonstrosity extends AbstractESBoss {
+    public LunarMonstrosity(EntityType<? extends AbstractESBoss> entityType, Level level) {
         super(entityType, level);
     }
-    private final SLServerBossEvent bossEvent = new SLServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
+    private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
 
     public AnimationState toxicBreathAnimationState = new AnimationState();
     public AnimationState sporeAnimationState = new AnimationState();

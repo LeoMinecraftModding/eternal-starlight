@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import java.util.ArrayList;
 import java.util.List;
 
-public class BetterLakeFeature extends SLFeature<BetterLakeFeature.Configuration> {
+public class BetterLakeFeature extends ESFeature<BetterLakeFeature.Configuration> {
     public BetterLakeFeature(Codec<Configuration> codec) {
         super(codec);
         this.fastNoiseLite = new FastNoiseLite();

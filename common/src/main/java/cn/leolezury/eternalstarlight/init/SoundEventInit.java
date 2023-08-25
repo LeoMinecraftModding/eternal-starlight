@@ -59,4 +59,6 @@ public class SoundEventInit {
     public static RegistryObject<SoundEvent> register(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(EternalStarlight.MOD_ID, name)));
     }
+
+    public static void postRegistry() {}
 }
