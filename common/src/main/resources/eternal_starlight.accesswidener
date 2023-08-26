@@ -21,4 +21,8 @@ accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/moj
 
 accessible method net/minecraft/client/renderer/RenderType create (Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;IZZLnet/minecraft/client/renderer/RenderType$CompositeState;)Lnet/minecraft/client/renderer/RenderType$CompositeRenderType;
 
+# ESTeleporter
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
+
+# for the fabric project of eternal starlight, minecraft will crash without this
+extendable class net/minecraft/world/item/enchantment/EnchantmentCategory

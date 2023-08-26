@@ -5,10 +5,10 @@
     "eternal_starlight.mixins.json"
   ],
   "quilt_loader": {
-    "group": "${maven_group}",
-    "id": "examplemod",
-    "version": "${rootProject.version}",
-    "name": "Example Mod",
+    "group": "cn.leolezury",
+    "id": "eternal_starlight",
+    "version": "${version}",
+    "name": "Eternal Starlight",
     "description": "This is an example description! Tell everyone what your mod is about!",
     "authors": ["Me!"],
     "contact": {
@@ -37,11 +37,7 @@
       },
       {
         "id": "minecraft",
-        "version": ">=1.19.4"
-      },
-      {
-        "id": "architectury",
-        "version": ">=8.1.79"
+        "version": ">=1.20"
       }
     ]
   }

@@ -12,10 +12,7 @@ import cn.leolezury.eternalstarlight.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.init.BlockInit;
 import cn.leolezury.eternalstarlight.init.EntityInit;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +35,7 @@ public class CommonSetupHandlers {
     }
 
     public interface EntityAttributeRegisterStrategy {
-        <T extends Entity> void register(EntityType<T> entityType, AttributeSupplier attributeSupplier);
+        <T extends LivingEntity> void register(EntityType<T> entityType, AttributeSupplier attributeSupplier);
     }
 
     public static void createAttributes(EntityAttributeRegisterStrategy strategy) {
@@ -54,10 +51,10 @@ public class CommonSetupHandlers {
     }
 
     public interface SpawnPlacementRegisterStrategy {
-        <T extends Entity> void register(EntityType<T> entityType, @Nullable SpawnPlacements.Type placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate);
+        <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacements.Type placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate);
     }
 
-    public static void onSpawnPlacementRegister(SpawnPlacementRegisterStrategy strategy) {
+    public static void registerSpawnPlacement(SpawnPlacementRegisterStrategy strategy) {
         strategy.register(EntityInit.BOARWARF.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);

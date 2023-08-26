@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.manager.book.BookManager;
 import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.manager.gatekeeper.TheGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.util.ESTags;
 import cn.leolezury.eternalstarlight.util.ESUtil;
 import net.minecraft.core.BlockPos;
@@ -92,7 +93,6 @@ public class CommonHandlers {
             entity.setSecondsOnFire(10);
         }
 
-
         if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
                 && entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
                 && entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem
@@ -146,12 +146,12 @@ public class CommonHandlers {
         void add(PreparableReloadListener listener);
     }
 
-    public static void onAddReloadListener(AddReloadListenerStrategy strategy) {
-        gatekeeperNameManager = new TheGatekeeperNameManager();
-        bookManager = new BookManager();
-        chapterManager = new ChapterManager();
-        strategy.add(gatekeeperNameManager);
+    public static void addReloadListeners(AddReloadListenerStrategy strategy) {
+        bookManager = ESPlatform.INSTANCE.createBookManager();
+        chapterManager = ESPlatform.INSTANCE.createChapterManager();
+        gatekeeperNameManager = ESPlatform.INSTANCE.createGatekeeperNameManager();
         strategy.add(bookManager);
         strategy.add(chapterManager);
+        strategy.add(gatekeeperNameManager);
     }
 }

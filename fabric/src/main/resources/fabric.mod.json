@@ -1,22 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "eternal_starlight",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Eternal Starlight",
+  "description": "A Minecraft dimension mod with structures for you to explore and bosses for you to defeat!",
   "authors": [
-    "Me!"
+    "LeoLezury"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/LeoMinecraftModding/",
+    "sources": "https://github.com/LeoMinecraftModding/Eternal-Starlight"
   },
-  "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
       "cn.leolezury.eternalstarlight.ESFabric"
+    ],
+    "client": [
+      "cn.leolezury.eternalstarlight.client.ESFabricClient"
     ],
     "mm:early_risers": [
       "cn.leolezury.eternalstarlight.asm.ESASM"

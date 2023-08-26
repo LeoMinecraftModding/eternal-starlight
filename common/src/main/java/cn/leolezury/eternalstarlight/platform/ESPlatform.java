@@ -7,6 +7,9 @@ import cn.leolezury.eternalstarlight.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
+import cn.leolezury.eternalstarlight.manager.book.BookManager;
+import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
+import cn.leolezury.eternalstarlight.manager.gatekeeper.TheGatekeeperNameManager;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
@@ -76,6 +79,7 @@ public interface ESPlatform {
     boolean isClientSide();
 
     // for initialization
+    // ---Items
     default ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new CommonScytheItem(tier, damage, attackSpeed, properties);
     }
@@ -83,11 +87,22 @@ public interface ESPlatform {
         return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties);
+    Rarity getESRarity();
+    CreativeModeTab getESTab();
+    // ---Blocks
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
     }
-    Rarity getESRarity();
-    CreativeModeTab getESTab();
+    // ---Reload listeners
+    default BookManager createBookManager() {
+        return new BookManager();
+    }
+    default ChapterManager createChapterManager() {
+        return new ChapterManager();
+    }
+    default TheGatekeeperNameManager createGatekeeperNameManager() {
+        return new TheGatekeeperNameManager();
+    }
 
     // event-related
     default boolean postProjectileImpactEvent(Projectile projectile, HitResult hitResult) {

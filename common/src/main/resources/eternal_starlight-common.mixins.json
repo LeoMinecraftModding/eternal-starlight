@@ -3,7 +3,6 @@
   "package": "cn.leolezury.eternalstarlight.mixins",
   "compatibilityLevel": "JAVA_8",
   "plugin": "cn.leolezury.eternalstarlight.util.ESMixinPlugin",
-  "refmap": "eternalstarlight.refmap.json",
   "mixins": [
     "BubbleColumnBlockMixin",
     "EntityMixin",

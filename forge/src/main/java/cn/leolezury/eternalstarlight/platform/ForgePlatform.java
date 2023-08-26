@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.platform;
 
 import cn.leolezury.eternalstarlight.client.ForgeDimensionSpecialEffects;
+import cn.leolezury.eternalstarlight.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
@@ -189,6 +190,7 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public DimensionSpecialEffects getDimEffect() {
+        ESPlatform.super.getDimEffect();
         return new ForgeDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
     }
 

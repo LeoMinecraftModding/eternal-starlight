@@ -3,6 +3,12 @@ package cn.leolezury.eternalstarlight.platform;
 import cn.leolezury.eternalstarlight.init.ItemInit;
 import cn.leolezury.eternalstarlight.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.item.armor.ThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.manager.book.BookManager;
+import cn.leolezury.eternalstarlight.manager.book.FabricBookManager;
+import cn.leolezury.eternalstarlight.manager.book.chapter.ChapterManager;
+import cn.leolezury.eternalstarlight.manager.book.chapter.FabricChapterManager;
+import cn.leolezury.eternalstarlight.manager.gatekeeper.FabricGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.manager.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.network.FabricNetworkHandler;
 import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
@@ -56,6 +62,21 @@ public class FabricPlatform implements ESPlatform {
                 }
             }
         }).build();
+    }
+
+    @Override
+    public BookManager createBookManager() {
+        return new FabricBookManager();
+    }
+
+    @Override
+    public ChapterManager createChapterManager() {
+        return new FabricChapterManager();
+    }
+
+    @Override
+    public TheGatekeeperNameManager createGatekeeperNameManager() {
+        return new FabricGatekeeperNameManager();
     }
 
     @Override

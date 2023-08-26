@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.asm;
 
 import cn.leolezury.eternalstarlight.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.item.weapon.ScytheItem;
-import cn.leolezury.eternalstarlight.mixins.fabric.EnchantmentCategoryMixin;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
