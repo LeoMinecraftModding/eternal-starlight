@@ -1,5 +1,20 @@
 accessWidener v2 named
 
+accessible method net/minecraft/world/level/block/DoorBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/world/level/block/state/properties/BlockSetType;)V
+accessible method net/minecraft/world/level/block/TrapDoorBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/world/level/block/state/properties/BlockSetType;)V
+accessible method net/minecraft/world/level/block/PressurePlateBlock <init> (Lnet/minecraft/world/level/block/PressurePlateBlock$Sensitivity;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/world/level/block/state/properties/BlockSetType;)V
+accessible method net/minecraft/world/level/block/StairBlock <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/ButtonBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/world/level/block/state/properties/BlockSetType;IZ)V
+accessible method net/minecraft/world/level/block/SaplingBlock <init> (Lnet/minecraft/world/level/block/grower/AbstractTreeGrower;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/MangroveRootsBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/TallGrassBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/item/PickaxeItem <init> (Lnet/minecraft/world/item/Tier;IFLnet/minecraft/world/item/Item$Properties;)V
+accessible method net/minecraft/world/item/AxeItem <init> (Lnet/minecraft/world/item/Tier;FFLnet/minecraft/world/item/Item$Properties;)V
+accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+accessible method net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkPlacerType <init> (Lcom/mojang/serialization/Codec;)V
+accessible method net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacerType <init> (Lcom/mojang/serialization/Codec;)V
+
+
 accessible method net/minecraft/client/renderer/blockentity/BlockEntityRenderers register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
 accessible method net/minecraft/client/renderer/item/ItemProperties register (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClampedItemPropertyFunction;)V
 accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;

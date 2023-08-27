@@ -4,6 +4,7 @@ plugins {
 
 repositories {
     maven { url "https://maven.quiltmc.org/repository/release/" }
+    maven { url = "https://jitpack.io" } // Fabric ASM
 }
 
 architectury {
@@ -31,14 +32,9 @@ dependencies {
     modImplementation "org.quiltmc:quilt-loader:${rootProject.quilt_loader_version}"
     modImplementation "com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"
     modApi "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${rootProject.quilt_fabric_api_version}"
-    // Remove the next few lines if you don't want to depend on the API
-    /* modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}")
-    {
-        // We must not pull Fabric Loader from Architectury Fabric
-        exclude group: "net.fabricmc"
-        exclude group: "net.fabricmc.fabric-api"
-    } */
-
+    include("com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"){
+        transitive = true
+    }
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
 }

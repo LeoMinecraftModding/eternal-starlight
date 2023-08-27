@@ -18,8 +18,8 @@ public class ParticleInit {
             return LightningParticleOptions.CODEC;
         }
     });
-    public static final RegistryObject<SimpleParticleType> STARLIGHT = PARTICLE_TYPES.register("starlight",() -> SimpleParticleTypeAccess.create(false));
-    public static final RegistryObject<SimpleParticleType> POISON = PARTICLE_TYPES.register("poison",() -> SimpleParticleTypeAccess.create(false));
-    public static final RegistryObject<SimpleParticleType> ENERGY = PARTICLE_TYPES.register("energy",() -> SimpleParticleTypeAccess.create(false));
+    public static final RegistryObject<SimpleParticleType> STARLIGHT = PARTICLE_TYPES.register("starlight",() -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> POISON = PARTICLE_TYPES.register("poison",() -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> ENERGY = PARTICLE_TYPES.register("energy",() -> new SimpleParticleType(false));
     public static void postRegistry() {}
 }

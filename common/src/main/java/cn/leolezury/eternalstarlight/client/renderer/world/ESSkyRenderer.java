@@ -35,6 +35,9 @@ public class ESSkyRenderer {
         float f = (float)vec3.x;
         float f1 = (float)vec3.y;
         float f2 = (float)vec3.z;
+        if (starBuffer == null) {
+            createStars();
+        }
         FogRenderer.levelFogColor();
         BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
         RenderSystem.depthMask(false);

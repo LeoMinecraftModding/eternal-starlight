@@ -152,7 +152,6 @@ public interface ESPlatform {
     // client-side
     @Environment(EnvType.CLIENT)
     default DimensionSpecialEffects getDimEffect() {
-        ESSkyRenderer.createStars();
         return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
     }
     @Environment(EnvType.CLIENT)

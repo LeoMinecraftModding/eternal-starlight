@@ -202,9 +202,9 @@ public class ItemInit {
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SWORD = registerItem("thermal_springstone_sword",
             () -> new SwordItem(SLItemTiers.THERMAL_SPRINGSTONE, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_PICKAXE = registerItem("thermal_springstone_pickaxe",
-            () -> PickaxeItemAccess.create(SLItemTiers.THERMAL_SPRINGSTONE,1, -1.0F, new Item.Properties()));
+            () -> new PickaxeItem(SLItemTiers.THERMAL_SPRINGSTONE,1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_AXE = registerItem("thermal_springstone_axe",
-            () -> AxeItemAccess.create(SLItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F, new Item.Properties()));
+            () -> new AxeItem(SLItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_SCYTHE = registerItem("thermal_springstone_scythe",
             () -> ESPlatform.INSTANCE.createScythe(SLItemTiers.THERMAL_SPRINGSTONE, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_HAMMER = registerItem("thermal_springstone_hammer",
@@ -226,9 +226,9 @@ public class ItemInit {
     public static final RegistryObject<Item> SWAMP_SILVER_SWORD = registerItem("swamp_silver_sword",
             () -> new SwordItem(SLItemTiers.SWAMP_SILVER, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_PICKAXE = registerItem("swamp_silver_pickaxe",
-            () -> PickaxeItemAccess.create(SLItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
+            () -> new PickaxeItem(SLItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
-            () -> AxeItemAccess.create(SLItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
+            () -> new AxeItem(SLItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_SCYTHE = registerItem("swamp_silver_scythe",
             () -> ESPlatform.INSTANCE.createScythe(SLItemTiers.SWAMP_SILVER, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
