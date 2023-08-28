@@ -20,10 +20,10 @@
     "environment": "*",
     "entrypoints": {
       "init": [
-        "cn.leolezury.eternalstarlight.ESQuilt"
+        "cn.leolezury.eternalstarlight.quilt.ESQuilt"
       ],
       "mm:early_risers": [
-        "cn.leolezury.eternalstarlight.asm.ESASM"
+        "cn.leolezury.eternalstarlight.quilt.asm.ESASM"
       ]
     },
     "depends": [

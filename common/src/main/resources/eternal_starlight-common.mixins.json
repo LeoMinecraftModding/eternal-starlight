@@ -1,27 +1,13 @@
 {
   "required": true,
-  "package": "cn.leolezury.eternalstarlight.mixins",
+  "package": "cn.leolezury.eternalstarlight.common.mixins",
   "compatibilityLevel": "JAVA_8",
-  "plugin": "cn.leolezury.eternalstarlight.util.ESMixinPlugin",
+  "plugin": "cn.leolezury.eternalstarlight.common.util.ESMixinPlugin",
   "mixins": [
     "BubbleColumnBlockMixin",
     "EntityMixin",
     "FireBlockMixin",
-    "LivingEntityMixin",
-    "access.AxeItemAccess",
-    "access.ButtonBlockAccess",
-    "access.DoorBlockAccess",
-    "access.FlowerBlockAccess",
-    "access.FoliagePlacerTypeAccess",
-    "access.MangroveRootsBlockAccess",
-    "access.PickaxeItemAccess",
-    "access.PressurePlateBlockAccess",
-    "access.SaplingBlockAccess",
-    "access.SimpleParticleTypeAccess",
-    "access.StairBlockAccess",
-    "access.TallGrassBlockAccess",
-    "access.TrapDoorBlockAccess",
-    "access.TrunkPlacerTypeAccess"
+    "LivingEntityMixin"
   ],
   "client": [
     "ItemInHandRendererMixin"

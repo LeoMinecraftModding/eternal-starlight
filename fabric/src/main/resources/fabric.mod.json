@@ -15,13 +15,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "cn.leolezury.eternalstarlight.ESFabric"
+      "cn.leolezury.eternalstarlight.fabric.ESFabric"
     ],
     "client": [
-      "cn.leolezury.eternalstarlight.client.ESFabricClient"
+      "cn.leolezury.eternalstarlight.fabric.client.ESFabricClient"
     ],
     "mm:early_risers": [
-      "cn.leolezury.eternalstarlight.asm.ESASM"
+      "cn.leolezury.eternalstarlight.fabric.asm.ESASM"
     ]
   },
   "mixins": [

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 20,
+    "targets": [
+      {
+        "state": {
+          "Name": "eternal_starlight:chiseled_voidstone"
+        },
+        "target": {
+          "block": "eternal_starlight:voidstone",
+          "predicate_type": "minecraft:block_match"
+        }
+      }
+    ]
+  }
+}

@@ -21,7 +21,8 @@ loom {
     runs {
         data {
             data()
-            programArgs '--mod', "eternal_starlight", '--all', '--output', project(':common').file('src/generated/resources').absolutePath, '--existing', project(':common').file('src/main/resources').absolutePath
+            programArgs "--all", "--mod", "eternal_starlight"
+            programArgs "--output", project(':common').file('src/generated/resources').absolutePath
         }
     }
 }
