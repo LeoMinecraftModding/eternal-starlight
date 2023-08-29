@@ -14,7 +14,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -150,7 +153,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
         if (level().isClientSide) {
             level().addParticle(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 0, 0, 0);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 20; i++) {
                 float pitch = random.nextInt(361);
                 float yaw = random.nextInt(361);
                 float len = random.nextInt(getSize());
@@ -163,7 +166,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
             if (getOwner() == null && getSize() >= 10) {
                 spawnAtLocation(ItemInit.AETHERSENT_BLOCK.get());
             }
-            CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.005f * getSize(), 5, 5);
+            CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.005f * getSize(), 20, 20);
         }
         discard();
     }

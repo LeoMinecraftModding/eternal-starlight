@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.fabric.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

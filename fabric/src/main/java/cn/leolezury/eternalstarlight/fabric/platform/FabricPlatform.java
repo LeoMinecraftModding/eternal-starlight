@@ -1,17 +1,17 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.manager.book.BookManager;
-import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;
 import cn.leolezury.eternalstarlight.common.manager.book.chapter.ChapterManager;
-import cn.leolezury.eternalstarlight.fabric.manager.book.chapter.FabricChapterManager;
-import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.manager.gatekeeper.TheGatekeeperNameManager;
-import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESTeleporter;
+import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;
+import cn.leolezury.eternalstarlight.fabric.manager.book.chapter.FabricChapterManager;
+import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;

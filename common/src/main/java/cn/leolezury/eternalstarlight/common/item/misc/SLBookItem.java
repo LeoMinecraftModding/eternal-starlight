@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
-import cn.leolezury.eternalstarlight.common.manager.book.BookManager;
 import cn.leolezury.eternalstarlight.common.network.TestPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.logging.LogUtils;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
