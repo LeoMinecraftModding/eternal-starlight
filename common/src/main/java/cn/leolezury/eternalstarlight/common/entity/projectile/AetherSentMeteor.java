@@ -1,10 +1,10 @@
-package cn.leolezury.eternalstarlight.common.entity.misc;
+package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticleOptions;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -14,14 +14,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -30,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.UUID;
-
 
 // TODO: Fix the meteor (Will continue to fall after hit)
 public class AetherSentMeteor extends AbstractHurtingProjectile {
@@ -67,13 +62,8 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
         this.target = target;
     }
 
-
     @Nullable
     private Vec3 targetPos;
-
-    public Vec3 getTargetPos() {
-        return targetPos;
-    }
 
     public void setTargetPos(Vec3 targetPos) {
         this.targetPos = targetPos;
@@ -118,9 +108,9 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
 
     @Override
     protected void defineSynchedData() {
+        super.defineSynchedData();
         entityData.define(SIZE, 0);
         entityData.define(TICKS_SINCE_LANDED, 0);
-        super.defineSynchedData();
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -157,8 +147,25 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     }
 
     private void land() {
-        setTicksSinceLanded(1);
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
+        if (level().isClientSide) {
+            level().addParticle(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 0, 0, 0);
+            for (int i = 0; i < 5; i++) {
+                float pitch = random.nextInt(361);
+                float yaw = random.nextInt(361);
+                float len = random.nextInt(getSize());
+                Vec3 particleTarget = ESUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
+                Vec3 particleStart = ESUtil.rotationToPosition(position(), len, pitch, yaw);
+                Vec3 motion = particleTarget.subtract(particleStart);
+                level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), particleStart.x, particleStart.y, particleStart.z, motion.x, motion.y, motion.z);
+            }
+        } else {
+            if (getOwner() == null && getSize() >= 10) {
+                spawnAtLocation(ItemInit.AETHERSENT_BLOCK.get());
+            }
+            CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.005f * getSize(), 5, 5);
+        }
+        discard();
     }
 
     @Override
@@ -186,53 +193,16 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
 
     @Override
     public void tick() {
-        super.tick();
-        if (getSize() <= 0) {
-            discard();
-            return;
-        }
-        if (target == null && targetId != null && !level().isClientSide) {
-            if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
-                target = livingEntity;
-            }
-            if (target == null) {
-                targetId = null;
-            }
-        }
         refreshDimensions();
-        if (getTicksSinceLanded() > 0) {
-            setDeltaMovement(0, 0, 0);
-            if (getTicksSinceLanded() % 5 == 0) {
-                CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.003f * getSize(), 5, 5);
-            }
-            setTicksSinceLanded(getTicksSinceLanded() + 1);
-            if (getTicksSinceLanded() > getSize() * 10) {
-                discard();
-                if (getOwner() == null && getSize() >= 10) {
-                    spawnAtLocation(ItemInit.AETHERSENT_BLOCK.get());
-                }
-            }
-            if (level().isClientSide) {
-                level().addParticle(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 0, 0, 0);
-                for (int i = 0; i < 5; i++) {
-                    float pitch = random.nextInt(361);
-                    float yaw = random.nextInt(361);
-                    float len = random.nextInt(getSize());
-                    Vec3 particleTarget = ESUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
-                    Vec3 particleStart = ESUtil.rotationToPosition(position(), len, pitch, yaw);
-                    Vec3 motion = particleTarget.subtract(particleStart);
-                    level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), particleStart.x, particleStart.y, particleStart.z, motion.x, motion.y, motion.z);
-                }
-            } else if (getTicksSinceLanded() % 5 == 0) {
-                doHurtEntity(0.5f);
-            }
-        } else {
-            setDeltaMovement(0, -2, 0);
-            if (level().isClientSide) {
-                Vec3 motion = getDeltaMovement();
-                for (int i = 0; i < 2; i++) {
-                    level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
-                }
+        setDeltaMovement(0, -2, 0);
+        super.tick();
+        if (level().isClientSide) {
+            Vec3 motion = getDeltaMovement();
+            for (int i = 0; i < 5; i++) {
+                float r = 0.65f + random.nextFloat() * 0.1f;
+                float g = 0.02f + random.nextFloat() * 0.1f;
+                float b = 0.73f + random.nextFloat() * 0.1f;
+                level().addParticle(new LightningParticleOptions(new Vector3f(r, g, b)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
             }
         }
     }

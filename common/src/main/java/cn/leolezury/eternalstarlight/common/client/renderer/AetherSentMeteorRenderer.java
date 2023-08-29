@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer;
 
-import cn.leolezury.eternalstarlight.common.entity.misc.AetherSentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.vertex.PoseStack;

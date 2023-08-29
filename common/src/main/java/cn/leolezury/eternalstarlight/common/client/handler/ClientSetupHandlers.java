@@ -5,11 +5,14 @@ import cn.leolezury.eternalstarlight.common.block.entity.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.client.model.*;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.wrapper.ESBakedModelWrapper;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.item.weapon.CrystalCrossbowItem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.logging.LogUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -31,12 +34,15 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.ItemLike;
@@ -44,8 +50,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 
@@ -124,7 +132,11 @@ public class ClientSetupHandlers {
             BlockInit.STARLIGHT_PORTAL
     );
 
+    public static final Map<ModelResourceLocation, ModelResourceLocation> itemModelsInInventoryMap = new HashMap<>();
+    public static final Map<ResourceLocation, BakedModel> bakedModelsMap = new HashMap<>();
+
     public static void clientSetup() {
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
 
@@ -176,8 +188,6 @@ public class ClientSetupHandlers {
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
-
-
     public static void registerItemColors(ItemColorRegisterStrategy strategy) {
         ItemColor leavesItemColor = (stack, packedLight) -> {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
@@ -191,7 +201,12 @@ public class ClientSetupHandlers {
             if (id.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
                 models.put(id, new GlowingBakedModel(models.get(id)));
             }
+            bakedModelsMap.put(id, models.get(id));
         }
+    }
+
+    public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
     }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {

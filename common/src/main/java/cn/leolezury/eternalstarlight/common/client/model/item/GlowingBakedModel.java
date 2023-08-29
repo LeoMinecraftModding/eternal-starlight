@@ -26,7 +26,7 @@ public class GlowingBakedModel extends ESBakedModelWrapper<BakedModel> {
 
     private static List<BakedQuad> transformQuads(List<BakedQuad> oldQuads) {
         List<BakedQuad> quads = new ArrayList<>();
-        for(BakedQuad quad : oldQuads){
+        for (BakedQuad quad : oldQuads) {
             quads.add(applyGlowEffect(quad));
         }
         return quads;

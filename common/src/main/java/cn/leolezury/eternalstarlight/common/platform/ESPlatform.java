@@ -72,8 +72,7 @@ public interface ESPlatform {
 
     enum Loader {
         FORGE,
-        FABRIC,
-        QUILT
+        FABRIC
     }
 
     // some loader-related stuff

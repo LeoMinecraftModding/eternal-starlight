@@ -39,7 +39,7 @@ public class HammerItem extends DiggerItem implements Vanishable {
     }
 
     protected void spawnBlockParticle(Level level, BlockPos pos, Vec3 particlePos) {
-        BlockState state = level.getBlockState(pos);
+        BlockState state = level.getBlockState(pos.below());
         if (state.getRenderShape() != RenderShape.INVISIBLE) {
             level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), particlePos.x, particlePos.y, particlePos.z, 0, 1.5D, 0);
         }

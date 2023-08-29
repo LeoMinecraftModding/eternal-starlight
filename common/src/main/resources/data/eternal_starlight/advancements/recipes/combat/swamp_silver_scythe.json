@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:swamp_silver_scythe"
+        "recipe": "eternal_starlight:swamp_silver_sickle"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:swamp_silver_scythe"
+      "eternal_starlight:swamp_silver_sickle"
     ]
   },
   "sends_telemetry_event": false

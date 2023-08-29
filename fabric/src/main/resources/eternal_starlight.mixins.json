@@ -11,6 +11,7 @@
   "client": [
     "BossHealthOverlayMixin",
     "CameraMixin",
+    "ItemRendererMixin",
     "LevelRendererMixin",
     "ModelManagerMixin"
   ],

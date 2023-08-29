@@ -14,6 +14,7 @@ import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.Spore;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;

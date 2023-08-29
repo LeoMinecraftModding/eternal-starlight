@@ -8,11 +8,14 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.impl.client.model.ModelLoadingRegistryImpl;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.particles.ParticleOptions;
@@ -30,6 +33,8 @@ public class ESFabricClient implements ClientModInitializer {
         ClientSetupHandlers.clientSetup();
         ClientSetupHandlers.clientWoodSetup();
         ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
+        ClientSetupHandlers.registerExtraBakedModels((ESModelLoadingPlugin.MODELS::add));
+        ModelLoadingPlugin.register(new ESModelLoadingPlugin());
         ClientSetupHandlers.registerItemColors(ColorProviderRegistry.ITEM::register);
 
         ClientSetupHandlers.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ClientSetupHandlers.ParticleProviderRegisterStrategy() {

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
-import cn.leolezury.eternalstarlight.common.entity.misc.AetherSentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.EnchantmentInit;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;

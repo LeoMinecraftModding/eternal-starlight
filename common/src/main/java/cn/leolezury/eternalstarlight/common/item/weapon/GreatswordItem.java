@@ -24,7 +24,7 @@ public class GreatswordItem extends SwordItem {
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADDITION));
         Attribute attribute = ESPlatform.INSTANCE.getEntityReachAttribute();
-        // Implementation of ENTITY_REACH on fabric or quilt is not that easy
+        // Implementation of ENTITY_REACH on fabric is not that easy
         if (attribute != null) {
             builder.put(ESPlatform.INSTANCE.getEntityReachAttribute(), new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", 2, AttributeModifier.Operation.ADDITION));
         }
