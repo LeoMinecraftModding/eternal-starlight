@@ -1,13 +1,9 @@
-package cn.leolezury.eternalstarlight.fabric.client;
+package cn.leolezury.eternalstarlight.quilt.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
-import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import cn.leolezury.eternalstarlight.quilt.network.QuiltNetworkHandler;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
@@ -19,14 +15,18 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
+import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
+import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
-public class ESFabricClient implements ClientModInitializer {
+@ClientOnly
+public class ESQuiltClient implements ClientModInitializer {
     @Override
-    public void onInitializeClient() {
-        FabricNetworkHandler.init(true);
+    public void onInitializeClient(ModContainer container) {
+        QuiltNetworkHandler.init(true);
         ClientSetupHandlers.clientSetup();
         ClientSetupHandlers.clientWoodSetup();
         ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
@@ -44,13 +44,13 @@ public class ESFabricClient implements ClientModInitializer {
         ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
 
         for (Supplier<Block> blockSupplier : ClientSetupHandlers.cutoutMippedBlocks) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());
+            BlockRenderLayerMap.put(RenderType.cutoutMipped(), blockSupplier.get());
         }
         for (Supplier<Block> blockSupplier : ClientSetupHandlers.cutoutBlocks) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutout());
+            BlockRenderLayerMap.put(RenderType.cutout(), blockSupplier.get());
         }
         for (Supplier<Block> blockSupplier : ClientSetupHandlers.translucentBlocks) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
+            BlockRenderLayerMap.put(RenderType.translucent(), blockSupplier.get());
         }
 
         DimensionRenderingRegistry.registerDimensionEffects(new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), ESPlatform.INSTANCE.getDimEffect());

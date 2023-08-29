@@ -27,7 +27,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> STONE_SPIKE = createKey("stone_spike");
     public static final ResourceKey<PlacedFeature> STONE_ORE = createKey("stone_ore");
     public static final ResourceKey<PlacedFeature> DEEPSLATE_ORE = createKey("deepslate_ore");
-    public static final ResourceKey<PlacedFeature> CHISELED_VOIDSTONE_ORE = createKey("chiseled_voidstone_ore");
+    public static final ResourceKey<PlacedFeature> GLOWING_VOIDSTONE_ORE = createKey("glowing_voidstone_ore");
     public static final ResourceKey<PlacedFeature> GLOWING_NIGHTSHADE_MUD_ORE = createKey("glowing_nightshade_mud_ore");
     public static final ResourceKey<PlacedFeature> NIGHTSHADE_DIRT_ORE = createKey("nightshade_dirt_ore");
     public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = createKey("fallen_lunar_log");
@@ -63,7 +63,7 @@ public class PlacedFeatureInit {
         register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_SPIKE), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, STONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(128))));
         register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
-        register(context, CHISELED_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CHISELED_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(-64))));
+        register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(-64))));
         register(context, GLOWING_NIGHTSHADE_MUD_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.GLOWING_NIGHTSHADE_MUD_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(160))));
         register(context, NIGHTSHADE_DIRT_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NIGHTSHADE_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(160))));
         register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);

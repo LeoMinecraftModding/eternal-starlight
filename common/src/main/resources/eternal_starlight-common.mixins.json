@@ -1,7 +1,8 @@
 {
   "required": true,
   "package": "cn.leolezury.eternalstarlight.common.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
   "plugin": "cn.leolezury.eternalstarlight.common.util.ESMixinPlugin",
   "mixins": [
     "BubbleColumnBlockMixin",
@@ -12,5 +13,7 @@
   "client": [
     "ItemInHandRendererMixin"
   ],
-  "minVersion": "0.8"
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

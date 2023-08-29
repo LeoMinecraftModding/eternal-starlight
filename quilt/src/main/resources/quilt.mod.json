@@ -8,19 +8,25 @@
     "group": "cn.leolezury",
     "id": "eternal_starlight",
     "version": "${version}",
-    "name": "Eternal Starlight",
-    "description": "This is an example description! Tell everyone what your mod is about!",
-    "authors": ["Me!"],
-    "contact": {
-      "sources": "https://github.com/architectury/architectury-templates"
+    "metadata": {
+      "name": "Eternal Starlight",
+      "description": "A Minecraft dimension mod with structures for you to explore and bosses for you to defeat!",
+      "contributors": {
+        "LeoLezury": "Owner"
+      },
+      "contact": {
+        "homepage": "https://github.com/LeoMinecraftModding",
+        "issues": "https://github.com/LeoMinecraftModding/Eternal-Starlight/issues",
+        "sources": "https://github.com/LeoMinecraftModding/Eternal-Starlight"
+      }
     },
-    "license": "Insert License Here",
-    "icon": "assets/examplemod/icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
-    "environment": "*",
     "entrypoints": {
       "init": [
         "cn.leolezury.eternalstarlight.quilt.ESQuilt"
+      ],
+      "client": [
+        "cn.leolezury.eternalstarlight.quilt.client.ESQuiltClient"
       ],
       "mm:early_risers": [
         "cn.leolezury.eternalstarlight.quilt.asm.ESASM"

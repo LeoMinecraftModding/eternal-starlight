@@ -44,6 +44,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -69,6 +70,59 @@ public class ClientSetupHandlers {
     public interface RendererLayerRegisterStrategy {
         void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
     }
+
+    public static final List<Supplier<Block>> cutoutMippedBlocks = List.of(
+            BlockInit.LUNAR_LEAVES,
+            BlockInit.NORTHLAND_LEAVES,
+            BlockInit.STARLIGHT_MANGROVE_LEAVES,
+            BlockInit.STARLIGHT_MANGROVE_ROOTS,
+            BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS
+    );
+
+    public static final List<Supplier<Block>> cutoutBlocks = List.of(
+            BlockInit.BERRIES_VINES,
+            BlockInit.BERRIES_VINES_PLANT,
+            BlockInit.LUNAR_SAPLING,
+            BlockInit.POTTED_LUNAR_SAPLING,
+            BlockInit.LUNAR_TRAPDOOR,
+            BlockInit.LUNAR_DOOR,
+            BlockInit.NORTHLAND_SAPLING,
+            BlockInit.POTTED_NORTHLAND_SAPLING,
+            BlockInit.NORTHLAND_TRAPDOOR,
+            BlockInit.NORTHLAND_DOOR,
+            BlockInit.STARLIGHT_MANGROVE_SAPLING,
+            BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING,
+            BlockInit.STARLIGHT_MANGROVE_TRAPDOOR,
+            BlockInit.STARLIGHT_MANGROVE_DOOR,
+            BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
+            BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER,
+            BlockInit.STARLIGHT_FLOWER,
+            BlockInit.POTTED_STARLIGHT_FLOWER,
+            BlockInit.NIGHT_SPROUTS,
+            BlockInit.SMALL_NIGHT_SPROUTS,
+            BlockInit.GLOWING_NIGHT_SPROUTS,
+            BlockInit.SMALL_GLOWING_NIGHT_SPROUTS,
+            BlockInit.LUNAR_GRASS,
+            BlockInit.GLOWING_LUNAR_GRASS,
+            BlockInit.CRESCENT_GRASS,
+            BlockInit.GLOWING_CRESCENT_GRASS,
+            BlockInit.PARASOL_GRASS,
+            BlockInit.GLOWING_PARASOL_GRASS,
+            BlockInit.LUNAR_REED,
+            BlockInit.GLOWING_MUSHROOM,
+            BlockInit.SWAMP_ROSE,
+            BlockInit.POTTED_SWAMP_ROSE,
+            BlockInit.FANTABUD,
+            BlockInit.GREEN_FANTABUD,
+            BlockInit.FANTAFERN,
+            BlockInit.GREEN_FANTAFERN,
+            BlockInit.FANTAGRASS,
+            BlockInit.GREEN_FANTAGRASS,
+            BlockInit.SWAMP_ROSE
+    );
+    public static final List<Supplier<Block>> translucentBlocks = List.of(
+            BlockInit.STARLIGHT_PORTAL
+    );
 
     public static void clientSetup() {
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);

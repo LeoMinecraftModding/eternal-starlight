@@ -161,6 +161,7 @@ public class ItemInit {
     public static final RegistryObject<Item> POLISHED_VOIDSTONE_STAIRS = registerItem("polished_voidstone_stairs", () -> new BlockItem(BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item> POLISHED_VOIDSTONE_WALL = registerItem("polished_voidstone_wall", () -> new BlockItem(BlockInit.POLISHED_VOIDSTONE_WALL.get(), new Item.Properties()));
     public static final RegistryObject<Item> CHISELED_VOIDSTONE = registerItem("chiseled_voidstone", () -> new BlockItem(BlockInit.CHISELED_VOIDSTONE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GLOWING_VOIDSTONE = registerItem("glowing_voidstone", () -> new BlockItem(BlockInit.GLOWING_VOIDSTONE.get(), new Item.Properties()));
 
     //mud
     public static final RegistryObject<Item> NIGHTSHADE_MUD = registerItem("nightshade_mud", () -> new BlockItem(BlockInit.NIGHTSHADE_MUD.get(), new Item.Properties()));
@@ -227,7 +228,7 @@ public class ItemInit {
             () -> new PickaxeItem(SLItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
             () -> new AxeItem(SLItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
-    public static final RegistryObject<Item> SWAMP_SILVER_SCYTHE = registerItem("swamp_silver_scythe",
+    public static final RegistryObject<Item> SWAMP_SILVER_SICKLE = registerItem("swamp_silver_sickle",
             () -> ESPlatform.INSTANCE.createScythe(SLItemTiers.SWAMP_SILVER, 3, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
             () -> new SwampSilverArmorItem(SLArmorMaterials.SWAMP_SILVER, ArmorItem.Type.HELMET, new Item.Properties()));

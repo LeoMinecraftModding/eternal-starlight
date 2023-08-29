@@ -59,7 +59,7 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = registerKey("stone_spike");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = registerKey("stone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = registerKey("deepslate_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHISELED_VOIDSTONE_ORE = registerKey("chiseled_voidstone_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = registerKey("glowing_voidstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = registerKey("glowing_nightshade_mud_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = registerKey("nightshade_dirt_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_LUNAR_LOG = registerKey("fallen_lunar_log");
@@ -101,7 +101,7 @@ public class ConfiguredFeatureInit {
         register(context, STONE_SPIKE, FeatureInit.STONE_SPIKE.get(), new NoneFeatureConfiguration());
         register(context, STONE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));
         register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.DEEPSLATE.defaultBlockState(), 64));
-        register(context, CHISELED_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 20));
+        register(context, GLOWING_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.GLOWING_VOIDSTONE.get().defaultBlockState(), 20));
         register(context, GLOWING_NIGHTSHADE_MUD_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         register(context, NIGHTSHADE_DIRT_ORE, Feature.ORE, new OreConfiguration(slRule, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));
         register(context, FALLEN_LUNAR_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get())));
