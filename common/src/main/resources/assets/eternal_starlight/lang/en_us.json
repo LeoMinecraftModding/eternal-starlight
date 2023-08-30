@@ -188,6 +188,8 @@
   "item.eternal_starlight.moonring_greatsword": "Moonring Greatsword",
   "item.eternal_starlight.petal_scythe": "Petal Scythe",
 
+  "effect.eternal_starlight.crystalline_infection": "Crystalline Infection",
+
   "enchantment.eternal_starlight.poisoning": "Poisoning",
   "enchantment.eternal_starlight.fearless": "Fearless",
 
@@ -270,6 +272,8 @@
 
   "death.attack.eternal_starlight.meteor": "%1$s was hit by a meteor",
   "death.attack.eternal_starlight.meteor.player": "%1$s was hit by a meteor while escaping %2$s",
+  "death.attack.eternal_starlight.crystalline_infection": "%1$s was replaced by crystals",
+  "death.attack.eternal_starlight.crystalline_infection.player": "%1$s was replaced by crystals while escaping %2$s",
   "death.attack.eternal_starlight.laser": "%1$s was shot through by a laser",
   "death.attack.eternal_starlight.laser.player": "%1$s was shot through by a laser while escaping %2$s",
   "death.attack.eternal_starlight.fire_column": "%1$s walked into a column of fire and was burnt to death",

@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.EnchantmentInit;
+import cn.leolezury.eternalstarlight.common.init.MobEffectInit;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
@@ -136,9 +137,20 @@ public class CommonHandlers {
     }*/
 
     public static void onArrowHit(Projectile projectile, HitResult result) {
-        if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall") && projectile.level() instanceof ServerLevel serverLevel) {
-            Vec3 location = result.getLocation();
-            AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
+        if (projectile.level() instanceof ServerLevel serverLevel) {
+            if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
+                if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
+                    int level = 0;
+                    if (living.hasEffect(MobEffectInit.CRYSTALLINE_INFECTION.get())) {
+                        level += living.getEffect(MobEffectInit.CRYSTALLINE_INFECTION.get()).getAmplifier();
+                    }
+                    living.addEffect(new MobEffectInstance(MobEffectInit.CRYSTALLINE_INFECTION.get(), 200, level));
+                }
+            }
+            if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {
+                Vec3 location = result.getLocation();
+                AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
+            }
         }
     }
 

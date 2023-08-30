@@ -1,5 +1,6 @@
-// 1.20.1	2023-08-28T20:53:46.3149607	Registries
+// 1.20.1	2023-08-30T17:13:05.2883112	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
+8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
 9d42623689b3d76c6fb9d8fd67cd9631def1e785 data/eternal_starlight/damage_type/ground_shake.json
 ab5afec9078fe57886a212ce0007298117041b46 data/eternal_starlight/damage_type/laser.json

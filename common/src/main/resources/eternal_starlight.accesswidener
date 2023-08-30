@@ -14,7 +14,6 @@ accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
 accessible method net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkPlacerType <init> (Lcom/mojang/serialization/Codec;)V
 accessible method net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacerType <init> (Lcom/mojang/serialization/Codec;)V
 
-
 accessible method net/minecraft/client/renderer/blockentity/BlockEntityRenderers register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
 accessible method net/minecraft/client/renderer/item/ItemProperties register (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClampedItemPropertyFunction;)V
 accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
@@ -26,6 +25,7 @@ accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEnt
 
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/Codec;)V
 
+accessible method net/minecraft/world/item/CrossbowItem getArrow (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/projectile/AbstractArrow;
 accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
 
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer renderArmorPiece (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V
@@ -35,6 +35,9 @@ accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/moja
 accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
 
 accessible method net/minecraft/client/renderer/RenderType create (Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;IZZLnet/minecraft/client/renderer/RenderType$CompositeState;)Lnet/minecraft/client/renderer/RenderType$CompositeRenderType;
+
+accessible field net/minecraft/client/model/PlayerModel cloak Lnet/minecraft/client/model/geom/ModelPart;
+accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer layers Ljava/util/List;
 
 # ESTeleporter
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;

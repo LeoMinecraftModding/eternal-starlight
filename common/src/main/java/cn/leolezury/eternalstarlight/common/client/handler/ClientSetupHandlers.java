@@ -3,13 +3,14 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.client.model.*;
+import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimation;
+import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
-import cn.leolezury.eternalstarlight.common.item.weapon.CrystalCrossbowItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -28,7 +29,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -37,8 +40,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -123,15 +125,26 @@ public class ClientSetupHandlers {
             BlockInit.GREEN_FANTAGRASS,
             BlockInit.SWAMP_ROSE
     );
+
     public static final List<Supplier<Block>> translucentBlocks = List.of(
             BlockInit.STARLIGHT_PORTAL
     );
 
     public static final Map<ModelResourceLocation, ModelResourceLocation> itemModelsInInventoryMap = new HashMap<>();
+
     public static final Map<ResourceLocation, BakedModel> bakedModelsMap = new HashMap<>();
+
+    public static boolean renderingFirstPersonPlayer = false;
+    public interface PlayerAnimationStateGetter {
+        PlayerAnimationState get(ItemStack itemStack, float tickCount);
+    }
+    public static final Map<Supplier<Item>, PlayerAnimationStateGetter> playerAnimatingItemMap = new HashMap<>();
 
     public static void clientSetup() {
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
+
+        playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_TEST, true, false)));
+
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
 
@@ -139,12 +152,12 @@ public class ClientSetupHandlers {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return CrystalCrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / (float)CrystalCrossbowItem.getChargeDuration(stack);
+                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack);
             }
         });
-        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrystalCrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, level, entity, i) -> entity != null && CrystalCrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, level, entity, i) -> entity != null && CrystalCrossbowItem.isCharged(stack) && CrystalCrossbowItem.containsChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
 
         ItemProperties.register(ItemInit.MOONRING_BOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
             if (entity == null) {

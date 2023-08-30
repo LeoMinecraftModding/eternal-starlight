@@ -30,7 +30,6 @@ import org.joml.Vector3f;
 
 import java.util.UUID;
 
-// TODO: Fix the meteor (Will continue to fall after hit)
 public class AetherSentMeteor extends AbstractHurtingProjectile {
     protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AetherSentMeteor.class, EntityDataSerializers.INT);
 

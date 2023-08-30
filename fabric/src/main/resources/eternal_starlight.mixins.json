@@ -11,9 +11,11 @@
   "client": [
     "BossHealthOverlayMixin",
     "CameraMixin",
+    "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",
-    "ModelManagerMixin"
+    "ModelManagerMixin",
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

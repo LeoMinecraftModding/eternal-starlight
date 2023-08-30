@@ -13,11 +13,16 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class DamageTypeInit {
+    // misc
     public static final ResourceKey<DamageType> METEOR = create("meteor");
-
-    public static final ResourceKey<DamageType> LASER = create("laser");
+    public static final ResourceKey<DamageType> CRYSTALLINE_INFECTION = create("crystalline_infection");
     public static final ResourceKey<DamageType> GROUND_SHAKE = create("ground_shake");
+
+    // starlight golem
+    public static final ResourceKey<DamageType> LASER = create("laser");
     public static final ResourceKey<DamageType> FIRE_COLUMN = create("fire_column");
+
+    // lunar monstrosity
     public static final ResourceKey<DamageType> POISON = create("poison");
     public static final ResourceKey<DamageType> BITE = create("bite");
 
@@ -40,8 +45,9 @@ public class DamageTypeInit {
 
     public static void bootstrap(BootstapContext<DamageType> context) {
         context.register(METEOR, new DamageType(esDamage("meteor"), 0.0F));
-        context.register(LASER, new DamageType(esDamage("laser"), 0.0F, DamageEffects.BURNING));
+        context.register(CRYSTALLINE_INFECTION, new DamageType(esDamage("crystalline_infection"), 0.0F));
         context.register(GROUND_SHAKE, new DamageType(esDamage("ground_shake"), 0.0F));
+        context.register(LASER, new DamageType(esDamage("laser"), 0.0F, DamageEffects.BURNING));
         context.register(FIRE_COLUMN, new DamageType(esDamage("fire_column"), 0.0F, DamageEffects.BURNING));
         context.register(POISON, new DamageType(esDamage("poison"), 0.0F));
         context.register(BITE, new DamageType(esDamage("bite"), 0.0F));

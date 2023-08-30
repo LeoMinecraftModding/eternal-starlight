@@ -9,9 +9,11 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.item.Items;
 
 public class ESFabric implements ModInitializer {
     @Override

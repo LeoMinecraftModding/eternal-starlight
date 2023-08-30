@@ -10,6 +10,7 @@ public class EternalStarlight {
         ItemInit.postRegistry();
         CreativeModeTabInit.postRegistry();
         EntityInit.postRegistry();
+        MobEffectInit.postRegistry();
         BlockEntityInit.postRegistry();
         EnchantmentInit.postRegistry();
         FeatureInit.postRegistry();

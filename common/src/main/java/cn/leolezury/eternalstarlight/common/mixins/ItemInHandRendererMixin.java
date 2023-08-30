@@ -1,17 +1,25 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ItemInHandRenderer.class)
@@ -32,6 +40,27 @@ public abstract class ItemInHandRendererMixin {
                 }
             } else {
                 cir.setReturnValue((itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get()) && CrossbowItem.isCharged(itemStack)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
+            }
+        }
+    }
+
+    @Inject(method = "renderHandsWithItems", at = @At("HEAD"), cancellable = true)
+    private void renderHandsWithItems(float f, PoseStack poseStack, MultiBufferSource.BufferSource bufferSource, LocalPlayer localPlayer, int i, CallbackInfo ci) {
+        // is the player using an animated item?
+        if (localPlayer.isUsingItem()) {
+            boolean animated = false;
+            ItemStack useItem = localPlayer.getItemInHand(localPlayer.getUsedItemHand());
+
+            for (Supplier<Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
+                if (useItem.is(itemSupplier.get())) {
+                    animated = true;
+                    break;
+                }
+            }
+
+            if (animated) {
+                ci.cancel();
+                // so that we can render the player's arms
             }
         }
     }

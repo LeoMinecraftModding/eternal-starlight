@@ -16,6 +16,14 @@ public class ESUtil {
         }
     }
 
+    public static float positionToPitch(Vec3 start, Vec3 end) {
+        return positionToPitch(start.x, end.x, start.y, end.y, start.z, end.z);
+    }
+
+    public static float positionToYaw(Vec3 start, Vec3 end) {
+        return positionToYaw(start.x, end.x, start.z, end.z);
+    }
+
     public static float positionToPitch(double startX, double endX, double startY, double endY, double startZ, double endZ) {
         double d0 = endX - startX;
         double d1 = endY - startY;

@@ -7,7 +7,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum SLItemTiers implements Tier {
+public enum ESItemTiers implements Tier {
     THERMAL_SPRINGSTONE(2, 1000, 10F, 2.5F, 10, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get())),
     SWAMP_SILVER(3, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get())),
     PETAL(3, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ItemInit.TENACIOUS_PETAL.get()));
@@ -19,7 +19,7 @@ public enum SLItemTiers implements Tier {
     private final int enchantmentValue;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    SLItemTiers(int level, int durability, float miningSpeed, float damage, int enchantability, Supplier<Ingredient> repairIngredient) {
+    ESItemTiers(int level, int durability, float miningSpeed, float damage, int enchantability, Supplier<Ingredient> repairIngredient) {
         this.level = level;
         this.uses = durability;
         this.speed = miningSpeed;

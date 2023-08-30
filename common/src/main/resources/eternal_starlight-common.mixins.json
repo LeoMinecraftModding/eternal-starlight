@@ -6,12 +6,18 @@
   "plugin": "cn.leolezury.eternalstarlight.common.util.ESMixinPlugin",
   "mixins": [
     "BubbleColumnBlockMixin",
+    "CrossbowItemMixin",
     "EntityMixin",
     "FireBlockMixin",
     "LivingEntityMixin"
   ],
   "client": [
-    "ItemInHandRendererMixin"
+    "EntityRenderDispatcherMixin",
+    "ItemInHandLayerMixin",
+    "ItemInHandRendererMixin",
+    "LevelRendererMixin",
+    "PlayerModelMixin",
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

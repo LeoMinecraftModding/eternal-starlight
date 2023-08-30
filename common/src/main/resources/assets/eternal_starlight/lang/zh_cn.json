@@ -188,6 +188,8 @@
   "item.eternal_starlight.moonring_greatsword": "月珥巨剑",
   "item.eternal_starlight.petal_scythe": "花瓣之镰",
 
+  "effect.eternal_starlight.crystalline_infection": "晶体感染",
+
   "enchantment.eternal_starlight.poisoning": "浸毒",
   "enchantment.eternal_starlight.fearless": "无畏",
 
@@ -270,6 +272,8 @@
 
   "death.attack.eternal_starlight.meteor": "%1$s被陨石砸中了",
   "death.attack.eternal_starlight.meteor.player": "%1$s在逃离%2$s时被陨石砸中了",
+  "death.attack.eternal_starlight.crystalline_infection": "%1$s被晶体替换了",
+  "death.attack.eternal_starlight.crystalline_infection.player": "%1$s在逃离%2$s时被晶体替换了",
   "death.attack.eternal_starlight.laser": "%1$s被一道激光射穿了",
   "death.attack.eternal_starlight.laser.player": "%1$s在逃离%2$s时被一道激光射穿了",
   "death.attack.eternal_starlight.fire_column": "%1$s误入大火之中",

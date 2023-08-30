@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.EnumMap;
 import java.util.function.Supplier;
 
-public enum SLArmorMaterials implements ArmorMaterial {
+public enum ESArmorMaterials implements ArmorMaterial {
     AETHERSENT(EternalStarlight.MOD_ID + ":aethersent", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
@@ -48,7 +48,7 @@ public enum SLArmorMaterials implements ArmorMaterial {
     private final float knockbackResistance;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private SLArmorMaterials(String name, int multiplier, EnumMap<ArmorItem.Type, Integer> map, int enchantability, SoundEvent sound, float toughness, float resistance, Supplier<Ingredient> ingredient) {
+    private ESArmorMaterials(String name, int multiplier, EnumMap<ArmorItem.Type, Integer> map, int enchantability, SoundEvent sound, float toughness, float resistance, Supplier<Ingredient> ingredient) {
         this.name = name;
         this.durabilityMultiplier = multiplier;
         this.protectionFunctionForType = map;
