@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.animation.ESKeyframeAnimations;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
 import cn.leolezury.eternalstarlight.common.client.model.animation.model.AnimatedModel;
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -43,6 +43,13 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
                 ESKeyframeAnimations.animate(this, definition, (long) (tick * 1000L / 20f), 1.0F, ANIMATION_VECTOR_CACHE);
             }
         }
+    }
+
+    @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
+    private void setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+        PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
+        playerModel.head.resetPose();
+        playerModel.body.resetPose();
     }
 
     @Unique
