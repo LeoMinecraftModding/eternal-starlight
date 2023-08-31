@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -12,6 +13,14 @@ public class MoonringGreatswordItem extends GreatswordItem {
         super(tier, baseDamage, attackSpeed, properties);
     }
 
+    @Override
+    public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
+        if (livingEntity.isCrouching()) {
+            // The blocking animation will become very funny if the player sprint
+            // so simply disable it
+            livingEntity.stopUsingItem();
+        }
+    }
 
     public int getUseDuration(ItemStack itemStack) {
         return 72000;
@@ -21,9 +30,10 @@ public class MoonringGreatswordItem extends GreatswordItem {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1) {
             return InteractionResultHolder.fail(itemStack);
-        } else {
+        } else if (!player.isCrouching()) {
             player.startUsingItem(interactionHand);
             return InteractionResultHolder.consume(itemStack);
         }
+        return InteractionResultHolder.pass(itemStack);
     }
 }

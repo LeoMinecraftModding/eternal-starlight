@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.manager.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.manager.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESTeleporter;
+import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;
 import cn.leolezury.eternalstarlight.fabric.manager.book.chapter.FabricChapterManager;
@@ -20,6 +21,7 @@ import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -97,6 +99,11 @@ public class FabricPlatform implements ESPlatform {
     @Override
     public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
         return HoeItemAccessor.getTillingActions().get(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
+    }
+
+    @Override
+    public BakedModel getGlowingBakedModel(BakedModel origin) {
+        return new FabricGlowingBakedModel(origin);
     }
 
     @Override

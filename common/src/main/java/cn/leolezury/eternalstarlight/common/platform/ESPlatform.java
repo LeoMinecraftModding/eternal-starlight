@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.platform;
 
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
+import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CommonScytheItem;
@@ -20,6 +21,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.Packet;
@@ -154,6 +156,10 @@ public interface ESPlatform {
     @Environment(EnvType.CLIENT)
     default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
         dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
+    }
+    @Environment(EnvType.CLIENT)
+    default BakedModel getGlowingBakedModel(BakedModel origin) {
+        return new GlowingBakedModel(origin);
     }
 
     // networking

@@ -16,16 +16,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
     @ModifyVariable(method = "render", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-    public int modifyRenderLight(int pl, ItemStack stack) {
-        ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (itemKey.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
-            // full bright
-            return 0xF000F0;
-        }
-        return pl;
-    }
-
-    @ModifyVariable(method = "render", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
     public BakedModel render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
         ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (itemDisplayContext == ItemDisplayContext.GUI && ClientSetupHandlers.itemModelsInInventoryMap.containsKey(new ModelResourceLocation(itemKey, "inventory"))) {

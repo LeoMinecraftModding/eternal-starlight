@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningP
 import cn.leolezury.eternalstarlight.common.client.renderer.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -143,7 +144,7 @@ public class ClientSetupHandlers {
     public static void clientSetup() {
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
 
-        playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, true, true, true)));
+        playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, true, true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
@@ -207,7 +208,7 @@ public class ClientSetupHandlers {
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
         for (ResourceLocation id : models.keySet()) {
             if (id.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
-                models.put(id, new GlowingBakedModel(models.get(id)));
+                models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
             }
             bakedModelsMap.put(id, models.get(id));
         }

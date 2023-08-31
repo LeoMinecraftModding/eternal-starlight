@@ -28,6 +28,7 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 
     public void render(ESFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         BlockState blockstate = block.getBlockState();
+        if (blockstate == null) return;
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = block.level();
             if (blockstate != level.getBlockState(block.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {

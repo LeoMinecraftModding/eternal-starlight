@@ -34,6 +34,8 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
         if (livingEntity.isUsingItem()) {
             AnimationDefinition definition = null;
             boolean transform = false;
+            boolean resetLeftArm = false;
+            boolean resetRightArm = false;
             // tricky
             ItemStack useItem = livingEntity.getItemInHand(livingEntity.getUsedItemHand());
             float delta = ageInTicks - ((int) ageInTicks);
@@ -45,6 +47,8 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
                     PlayerAnimationState state = ClientSetupHandlers.playerAnimatingItemMap.get(itemSupplier).get(useItem, tick);
                     definition = state.definition();
                     transform = state.shouldTransformToHand();
+                    resetLeftArm = state.resetLeftArmBeforeAnimation();
+                    resetRightArm = state.resetRightArmBeforeAnimation();
                     break;
                 }
             }
@@ -52,6 +56,14 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
                 doTransform = transform && livingEntity.getUsedItemHand() == InteractionHand.OFF_HAND;
 
                 PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
+                if (resetLeftArm) {
+                    playerModel.leftArm.resetPose();
+                    playerModel.leftSleeve.resetPose();
+                }
+                if (resetRightArm) {
+                    playerModel.rightArm.resetPose();
+                    playerModel.rightSleeve.resetPose();
+                }
 
                 Vec3 hatOriginalPos = makeModelPartPos(playerModel.hat);
                 Vec3 hatOriginalRot = makeModelPartRot(playerModel.hat);
