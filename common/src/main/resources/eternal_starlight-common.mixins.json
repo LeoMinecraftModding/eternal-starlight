@@ -9,7 +9,8 @@
     "CrossbowItemMixin",
     "EntityMixin",
     "FireBlockMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "PlayerMixin"
   ],
   "client": [
     "EntityRenderDispatcherMixin",
