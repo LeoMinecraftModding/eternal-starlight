@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,11 +23,12 @@ public class LootBagItem extends Item {
     }
     
     protected void dropFromLootTable(Level level, Vec3 pos, ResourceLocation lootTable) {
-        if (level.getServer() == null) {
+        MinecraftServer server;
+        if ((server = level.getServer()) == null) {
             return;
         }
-        LootTable loottable = level.getServer().getLootData().getLootTable(lootTable);
-        LootParams.Builder paramBuilder = (new LootParams.Builder((ServerLevel)level)).withParameter(LootContextParams.ORIGIN, pos);
+        LootTable loottable = server.getLootData().getLootTable(lootTable);
+        LootParams.Builder paramBuilder = new LootParams.Builder((ServerLevel)level);
         LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
         loottable.getRandomItems(params).forEach((stack) -> spawnAtLocation(stack, level, pos));
     }
@@ -48,7 +50,6 @@ public class LootBagItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        player.swing(hand);
         if (!level.isClientSide) {
             String lootTable = stack.getOrCreateTag().getString("LootTable");
             dropFromLootTable(level, player.position(), new ResourceLocation(lootTable));

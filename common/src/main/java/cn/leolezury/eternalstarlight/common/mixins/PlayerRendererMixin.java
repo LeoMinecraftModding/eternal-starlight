@@ -40,9 +40,11 @@ public abstract class PlayerRendererMixin {
                 playerModel.setAllVisible(false);
                 if (renderLeftArm) {
                     playerModel.leftArm.visible = true;
+                    playerModel.leftSleeve.visible = true;
                 }
                 if (renderRightArm) {
                     playerModel.rightArm.visible = true;
+                    playerModel.rightSleeve.visible = true;
                 }
             }
         }

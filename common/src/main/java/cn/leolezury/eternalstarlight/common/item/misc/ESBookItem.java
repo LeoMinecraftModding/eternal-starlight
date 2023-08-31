@@ -11,8 +11,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class SLBookItem extends Item {
-    public SLBookItem(Properties properties) {
+public class ESBookItem extends Item {
+    public ESBookItem(Properties properties) {
         super(properties);
     }
 

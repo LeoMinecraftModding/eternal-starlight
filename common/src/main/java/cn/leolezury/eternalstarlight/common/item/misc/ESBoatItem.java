@@ -20,13 +20,13 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SLBoatItem extends Item {
+public class ESBoatItem extends Item {
 
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     private final ESBoat.Type type;
     private final boolean chest;
 
-    public SLBoatItem(boolean chest, ESBoat.Type type, Item.Properties properties) {
+    public ESBoatItem(boolean chest, ESBoat.Type type, Item.Properties properties) {
         super(properties);
         this.chest = chest;
         this.type = type;
