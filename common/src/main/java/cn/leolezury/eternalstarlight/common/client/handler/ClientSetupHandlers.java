@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimati
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.starather.RiesturusStarryParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
