@@ -5,10 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ESArmorMaterials;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
-import cn.leolezury.eternalstarlight.common.item.misc.LootBagItem;
-import cn.leolezury.eternalstarlight.common.item.misc.ESBoatItem;
-import cn.leolezury.eternalstarlight.common.item.misc.ESBookItem;
-import cn.leolezury.eternalstarlight.common.item.misc.SeekingEyeItem;
+import cn.leolezury.eternalstarlight.common.item.misc.*;
 import cn.leolezury.eternalstarlight.common.item.weapon.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
@@ -237,6 +234,9 @@ public class ItemInit {
             () -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_BOOTS = registerItem("swamp_silver_boots",
             () -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER, ArmorItem.Type.BOOTS, new Item.Properties()));
+    //doomeden
+    public static final RegistryObject<Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BONEMORE_BROADSWORD = registerItem("bonemore_broadsword", ()-> new GreatswordItem(ESItemTiers.DOOMEDEN, 2, 0.5F, new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     //boss materials
     public static final RegistryObject<Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
@@ -247,5 +247,6 @@ public class ItemInit {
     public static final RegistryObject<Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
+    public static final RegistryObject<Item> PROPHET_ORB = registerItem("prophet_orb", ()-> new ProphetOrbItem(new Item.Properties()));
     public static void postRegistry() {}
 }
