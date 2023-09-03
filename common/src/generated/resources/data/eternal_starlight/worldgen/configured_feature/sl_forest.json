@@ -1,19 +1,15 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "default": "minecraft:oak_checked",
+    "default": "eternal_starlight:lunar_tree_checked",
     "features": [
       {
         "chance": 0.175,
         "feature": "eternal_starlight:huge_glowing_mushroom_checked"
       },
       {
-        "chance": 0.6666667,
+        "chance": 0.825,
         "feature": "eternal_starlight:lunar_tree_checked"
-      },
-      {
-        "chance": 0.2,
-        "feature": "minecraft:fancy_oak_checked"
       }
     ]
   }

@@ -270,7 +270,10 @@ public class TheGatekeeper extends AbstractESBoss {
 
             setCustomName(Component.literal(gatekeeperName));
 
-            setLeftHanded(false);
+            if (isLeftHanded()) {
+                setLeftHanded(false);
+            }
+
             if (!getOffhandItem().is(Items.SHIELD)) {
                 setItemInHand(InteractionHand.OFF_HAND, Items.SHIELD.getDefaultInstance());
             }

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "default": "minecraft:oak_checked",
+    "default": "eternal_starlight:northland_tree_checked",
     "features": [
       {
         "chance": 0.25,

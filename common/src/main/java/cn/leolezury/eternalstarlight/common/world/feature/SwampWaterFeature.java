@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.feature;
 
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.FastNoiseLite;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -36,6 +37,7 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
                                 && isValid(level.getBlockState(waterPos.offset(0, 0, 1)))
                                 && isValid(level.getBlockState(waterPos.offset(0, 0, -1)))
                                 && level.getBlockState(waterPos).is(BlockTags.DIRT)
+                                && level.getBiome(waterPos).is(ESTags.Biomes.DARK_SWAMP_VARIANT)
                         ) {
                             setBlock(level, waterPos, Blocks.WATER.defaultBlockState());
                         }

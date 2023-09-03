@@ -1,16 +1,16 @@
 {
-  "feature": "eternal_starlight:stone_spike",
+  "feature": "eternal_starlight:northland_huge_tree",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 20
+      "chance": 10
     },
     {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "MOTION_BLOCKING"
+      "heightmap": "WORLD_SURFACE_WG"
     }
   ]
 }

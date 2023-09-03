@@ -51,7 +51,7 @@ public class ESSkyRenderer {
         float[] afloat = level.effects().getSunriseColor(TIME_OF_DAY, partialTicks);
         if (afloat != null) {
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
-            RenderSystem.setShaderColor(0.55F, 0.0F, 0.63F, 1.0F);
+            RenderSystem.setShaderColor(0.055F, 0.0F, 0.055F, 1.0F);
             stack.pushPose();
             stack.mulPose(Axis.XP.rotationDegrees(90.0F));
             float f3 = Mth.sin(level.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;

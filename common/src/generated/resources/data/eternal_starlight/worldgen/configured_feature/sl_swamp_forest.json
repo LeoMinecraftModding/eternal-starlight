@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "default": "minecraft:oak_checked",
+    "default": "eternal_starlight:starlight_mangrove_tree_checked",
     "features": [
       {
         "chance": 0.9,
@@ -9,7 +9,7 @@
       },
       {
         "chance": 0.1,
-        "feature": "minecraft:oak_checked"
+        "feature": "eternal_starlight:huge_glowing_mushroom_checked"
       }
     ]
   }

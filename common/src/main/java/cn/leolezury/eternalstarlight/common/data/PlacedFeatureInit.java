@@ -33,6 +33,9 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = createKey("fallen_lunar_log");
     public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = createKey("fallen_northland_log");
     public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = createKey("fallen_starlight_mangrove_log");
+    public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE = createKey("lunar_huge_tree");
+    public static final ResourceKey<PlacedFeature> NORTHLAND_HUGE_TREE = createKey("northland_huge_tree");
+    public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_HUGE_TREE = createKey("starlight_mangrove_huge_tree");
     public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL = createKey("starlight_crystal");
     public static final ResourceKey<PlacedFeature> CAVE_VINE = createKey("cave_vine");
     public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = createKey("lunar_tree_checked");
@@ -60,7 +63,7 @@ public class PlacedFeatureInit {
         BlockPredicate snowPredicate = BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW);
         List<PlacementModifier> onSnow = List.of(EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.POWDER_SNOW)), 8), BlockPredicateFilter.forPredicate(snowPredicate));
 
-        register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_SPIKE), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
+        register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, STONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(128))));
         register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
         register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(-64))));
@@ -69,6 +72,9 @@ public class PlacedFeatureInit {
         register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
+        register(context, LUNAR_HUGE_TREE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.LUNAR_HUGE_TREE), RarityFilter.onAverageOnceEvery(30), InSquarePlacement.spread(),  PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
+        register(context, NORTHLAND_HUGE_TREE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NORTHLAND_HUGE_TREE), RarityFilter.onAverageOnceEvery(10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
+        register(context, STARLIGHT_MANGROVE_HUGE_TREE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_MANGROVE_HUGE_TREE), RarityFilter.onAverageOnceEvery(10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
         register(context, STARLIGHT_CRYSTAL, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_CRYSTAL), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)));
         register(context, CAVE_VINE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CAVE_VINE), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)));
         register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.LUNAR), PlacementUtils.filteredByBlockSurvival(BlockInit.LUNAR_SAPLING.get()));
@@ -76,7 +82,7 @@ public class PlacedFeatureInit {
         register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
         register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(BlockInit.GLOWING_MUSHROOM.get()));
         register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NORTHLAND), onSnow);
-        register(context, SL_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
+        register(context, SL_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
         register(context, SL_DENSE_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
         register(context, SL_PERMAFROST_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
         register(context, SL_SWAMP_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SL_SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
