@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.weapon;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -30,7 +31,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1) {
             return InteractionResultHolder.fail(itemStack);
-        } else if (!player.isCrouching()) {
+        } else if (player.getPose() == Pose.STANDING) {
             player.startUsingItem(interactionHand);
             return InteractionResultHolder.consume(itemStack);
         }

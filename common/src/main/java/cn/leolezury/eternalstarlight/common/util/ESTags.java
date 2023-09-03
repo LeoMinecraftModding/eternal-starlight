@@ -15,6 +15,15 @@ public class ESTags {
             return TagKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
+        public static final TagKey<Item> RIESTURUS_LOCATE_ITEM = create("riesturus_locate_item");
+        public static final TagKey<Item> RINEMIN_LOCATE_ITEM = create("rinemin_locate_item");
+        public static final TagKey<Item> ANRLO_LOCATE_ITEM = create("anrlo_locate_item");
+        public static final TagKey<Item> CRATEVIRGO_LOCATE_ITEM = create("cratevirgo_locate_item");
+        public static final TagKey<Item> LIBRASCRP_LOCATE_ITEM = create("librascrp_locate_item");
+        public static final TagKey<Item> OPHUCHAGAR_LOCATE_ITEM = create("ophuchagar_locate_item");
+        public static final TagKey<Item> APORNIGAS_LOCATE_ITEM = create("aporniqas_locate_item");
+        public static final TagKey<Item> EGASUSICE_LOCATE_ITEM = create("egasusice_locate_item");
+        public static final TagKey<Item> STARATHER_LOCATE_ITEM = create("starather_locate_item");
     }
 
     public static class Blocks {

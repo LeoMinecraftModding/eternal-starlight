@@ -144,8 +144,11 @@ public class ClientSetupHandlers {
 
     public static void clientSetup() {
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
 
         playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, true, true, true, true, true)));
+        playerAnimatingItemMap.put(ItemInit.PROPHET_ORB, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, true, true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
@@ -217,6 +220,8 @@ public class ClientSetupHandlers {
 
     public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
     }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
