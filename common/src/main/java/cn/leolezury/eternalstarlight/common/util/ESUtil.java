@@ -2,10 +2,14 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.function.Supplier;
 
@@ -43,6 +47,27 @@ public class ESUtil {
         double endPosY = startPos.y + radius * Math.sin(pitch * Math.PI / 180d);
         double endPosZ = startPos.z + radius * Math.sin(yaw * Math.PI / 180d) * Math.cos(pitch * Math.PI / 180d);
         return new Vec3(endPosX, endPosY, endPosZ);
+    }
+
+    public static BlockPos rotateBlockPos(BlockPos centerPos, BlockPos pos, float pitch, float roll) {
+        Vec3 posVec = pos.getCenter();
+        Vec3 centerVec = centerPos.getCenter();
+        Vector3f posVec3f = new Vector3f((float) posVec.x, (float) posVec.y, (float) posVec.z);
+        Vector3f centerVec3f = new Vector3f((float) centerVec.x, (float) centerVec.y, (float) centerVec.z);
+
+        Quaternionf quaternion = new Quaternionf().rotateX(pitch * Mth.PI / 180f).rotateZ(roll * Mth.PI / 180f);
+
+        Matrix4f translationToOrigin = new Matrix4f().translation(-centerVec3f.x, -centerVec3f.y, -centerVec3f.z);
+        Matrix4f inverseTranslation = new Matrix4f().translation(centerVec3f.x, centerVec3f.y, centerVec3f.z);
+
+        Matrix4f rotationMatrix = new Matrix4f().rotate(quaternion);
+
+        Matrix4f transformMatrix = new Matrix4f();
+        transformMatrix.mul(inverseTranslation).mul(rotationMatrix).mul(translationToOrigin);
+
+        posVec3f.mulPosition(transformMatrix);
+
+        return new BlockPos((int) posVec3f.x, (int) posVec3f.y, (int) posVec3f.z);
     }
 
     public static CompoundTag getPersistentData(Entity entity) {

@@ -33,37 +33,16 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
         return false;
     }
 
-    protected BlockPos rotateBlockPos(BlockPos centerPos, BlockPos pos, float pitch, float roll) {
-        Vec3 posVec = pos.getCenter();
-        Vec3 centerVec = centerPos.getCenter();
-        Vector3f posVec3f = new Vector3f((float) posVec.x, (float) posVec.y, (float) posVec.z);
-        Vector3f centerVec3f = new Vector3f((float) centerVec.x, (float) centerVec.y, (float) centerVec.z);
-
-        Quaternionf quaternion = new Quaternionf().rotateX(pitch * Mth.PI / 180f).rotateZ(roll * Mth.PI / 180f);
-
-        Matrix4f translationToOrigin = new Matrix4f().translation(-centerVec3f.x, -centerVec3f.y, -centerVec3f.z);
-        Matrix4f inverseTranslation = new Matrix4f().translation(centerVec3f.x, centerVec3f.y, centerVec3f.z);
-
-        Matrix4f rotationMatrix = new Matrix4f().rotate(quaternion);
-
-        Matrix4f transformMatrix = new Matrix4f();
-        transformMatrix.mul(inverseTranslation).mul(rotationMatrix).mul(translationToOrigin);
-
-        posVec3f.mulPosition(transformMatrix);
-
-        return new BlockPos((int) posVec3f.x, (int) posVec3f.y, (int) posVec3f.z);
-    }
-
     protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state) {
-        return setBlockIfEmpty(level, rotateBlockPos(centerPos, pos, pitch, roll), state);
+        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state);
     }
 
     protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state, List<TagKey<Block>> ignored) {
-        return setBlockIfEmpty(level, rotateBlockPos(centerPos, pos, pitch, roll), state, ignored);
+        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state, ignored);
     }
 
-    protected void setBlockWithRotation(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float yaw, BlockState state) {
-        setBlock(level, rotateBlockPos(centerPos, pos, pitch, yaw), state);
+    protected void setBlockWithRotation(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state) {
+        setBlock(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state);
     }
 
     protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state) {
