@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "eternal_starlight:aethersent_ingot"
+    }
+  },
+  "pattern": [
+    "A A",
+    "# #"
+  ],
+  "result": {
+    "item": "eternal_starlight:aethersent_boots"
+  },
+  "show_notification": true
+}

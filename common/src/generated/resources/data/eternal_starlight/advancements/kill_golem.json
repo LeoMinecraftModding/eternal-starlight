@@ -1,0 +1,40 @@
+{
+  "parent": "eternal_starlight:obtain_seeking_eye",
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:starlight_golem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.kill_golem.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:energy_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.kill_golem.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

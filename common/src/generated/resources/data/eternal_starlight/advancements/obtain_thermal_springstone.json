@@ -1,0 +1,38 @@
+{
+  "parent": "eternal_starlight:kill_golem",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:thermal_springstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_thermal_springstone.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:thermal_springstone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_thermal_springstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

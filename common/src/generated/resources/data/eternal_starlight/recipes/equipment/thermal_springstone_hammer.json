@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:thermal_springstone_ingot"
+    },
+    "H": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "###",
+    "#H#",
+    " H "
+  ],
+  "result": {
+    "item": "eternal_starlight:thermal_springstone_hammer"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:stripped_starlight_mangrove_log"
+    },
+    "C": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "C C",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "eternal_starlight:starlight_mangrove_hanging_sign"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "eternal_starlight:blue_starlight_crystal_shard"
+    },
+    "G": {
+      "item": "eternal_starlight:golem_steel_ingot"
+    },
+    "R": {
+      "item": "eternal_starlight:red_starlight_crystal_shard"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "T": {
+      "item": "minecraft:tripwire_hook"
+    }
+  },
+  "pattern": [
+    "BGB",
+    "STS",
+    " R "
+  ],
+  "result": {
+    "item": "eternal_starlight:crystal_crossbow"
+  },
+  "show_notification": true
+}

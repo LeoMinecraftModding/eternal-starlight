@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    },
+    "H": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "##",
+    " H",
+    " H"
+  ],
+  "result": {
+    "item": "eternal_starlight:swamp_silver_sickle"
+  },
+  "show_notification": true
+}

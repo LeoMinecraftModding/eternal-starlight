@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "eternal_starlight:starlight_flower"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "FPF",
+    "FFF"
+  ],
+  "result": {
+    "item": "eternal_starlight:seeking_eye"
+  },
+  "show_notification": true
+}

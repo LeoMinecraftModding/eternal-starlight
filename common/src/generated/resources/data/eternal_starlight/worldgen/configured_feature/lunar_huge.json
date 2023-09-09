@@ -18,7 +18,7 @@
       "radius": {
         "type": "minecraft:uniform",
         "value": {
-          "max_inclusive": 4,
+          "max_inclusive": 3,
           "min_inclusive": 2
         }
       }
@@ -48,8 +48,8 @@
       "branch_length": {
         "type": "minecraft:uniform",
         "value": {
-          "max_inclusive": 7,
-          "min_inclusive": 6
+          "max_inclusive": 4,
+          "min_inclusive": 3
         }
       },
       "branch_num": {

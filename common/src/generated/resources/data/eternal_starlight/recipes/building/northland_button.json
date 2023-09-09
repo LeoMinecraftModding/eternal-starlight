@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:northland_planks"
+    }
+  ],
+  "result": {
+    "item": "eternal_starlight:northland_button"
+  }
+}

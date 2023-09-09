@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:starlight_mangrove_planks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "eternal_starlight:starlight_mangrove_pressure_plate"
+  },
+  "show_notification": true
+}

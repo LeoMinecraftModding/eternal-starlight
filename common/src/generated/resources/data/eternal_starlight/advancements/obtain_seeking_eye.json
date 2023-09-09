@@ -1,0 +1,38 @@
+{
+  "parent": "eternal_starlight:obtain_starlight_flower",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:seeking_eye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_seeking_eye.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:seeking_eye"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_seeking_eye.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "eternal_starlight:obtain_thermal_springstone",
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:lunar_monstrosity"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.eternal_starlight.kill_lunar_monstrosity.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:parasol_grass"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.kill_lunar_monstrosity.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

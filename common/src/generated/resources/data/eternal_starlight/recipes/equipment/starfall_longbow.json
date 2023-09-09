@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "eternal_starlight:aethersent_ingot"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    " AS",
+    "A S",
+    " AS"
+  ],
+  "result": {
+    "item": "eternal_starlight:starfall_longbow"
+  },
+  "show_notification": true
+}

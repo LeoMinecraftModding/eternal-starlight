@@ -24,37 +24,37 @@ import net.minecraft.world.level.levelgen.placement.*;
 import java.util.List;
 
 public class PlacedFeatureInit {
-    public static final ResourceKey<PlacedFeature> STONE_SPIKE = createKey("stone_spike");
-    public static final ResourceKey<PlacedFeature> STONE_ORE = createKey("stone_ore");
-    public static final ResourceKey<PlacedFeature> DEEPSLATE_ORE = createKey("deepslate_ore");
-    public static final ResourceKey<PlacedFeature> GLOWING_VOIDSTONE_ORE = createKey("glowing_voidstone_ore");
-    public static final ResourceKey<PlacedFeature> GLOWING_NIGHTSHADE_MUD_ORE = createKey("glowing_nightshade_mud_ore");
-    public static final ResourceKey<PlacedFeature> NIGHTSHADE_DIRT_ORE = createKey("nightshade_dirt_ore");
-    public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = createKey("fallen_lunar_log");
-    public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = createKey("fallen_northland_log");
-    public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = createKey("fallen_starlight_mangrove_log");
-    public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL = createKey("starlight_crystal");
-    public static final ResourceKey<PlacedFeature> CAVE_VINE = createKey("cave_vine");
-    public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = createKey("lunar_tree_checked");
-    public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = createKey("lunar_huge_tree_checked");
-    public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = createKey("northland_tree_checked");
-    public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = createKey("starlight_mangrove_tree_checked");
-    public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = createKey("huge_glowing_mushroom_checked");
-    public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = createKey("northland_on_snow");
-    public static final ResourceKey<PlacedFeature> SL_FOREST = createKey("sl_forest");
-    public static final ResourceKey<PlacedFeature> SL_DENSE_FOREST = createKey("sl_dense_forest");
-    public static final ResourceKey<PlacedFeature> SL_SWAMP_FOREST = createKey("sl_swamp_forest");
-    public static final ResourceKey<PlacedFeature> SL_PERMAFROST_FOREST = createKey("sl_permafrost_forest");
-    public static final ResourceKey<PlacedFeature> STARLIGHT_FLOWER = createKey("starlight_flower");
-    public static final ResourceKey<PlacedFeature> SL_GRASS = createKey("sl_grass");
-    public static final ResourceKey<PlacedFeature> SWAMP_GRASS = createKey("swamp_grass");
-    public static final ResourceKey<PlacedFeature> SWAMP_LAKE = createKey("swamp_lake");
-    public static final ResourceKey<PlacedFeature> SWAMP_WATER = createKey("swamp_water");
-    public static final ResourceKey<PlacedFeature> CAVE_SPRING = createKey("cave_spring");
-    public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = createKey("swamp_silver_ore");
+    public static final ResourceKey<PlacedFeature> STONE_SPIKE = create("stone_spike");
+    public static final ResourceKey<PlacedFeature> STONE_ORE = create("stone_ore");
+    public static final ResourceKey<PlacedFeature> DEEPSLATE_ORE = create("deepslate_ore");
+    public static final ResourceKey<PlacedFeature> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
+    public static final ResourceKey<PlacedFeature> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
+    public static final ResourceKey<PlacedFeature> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
+    public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
+    public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
+    public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
+    public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL = create("starlight_crystal");
+    public static final ResourceKey<PlacedFeature> CAVE_VINE = create("cave_vine");
+    public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = create("lunar_tree_checked");
+    public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
+    public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
+    public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = create("starlight_mangrove_tree_checked");
+    public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = create("huge_glowing_mushroom_checked");
+    public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = create("northland_on_snow");
+    public static final ResourceKey<PlacedFeature> SL_FOREST = create("sl_forest");
+    public static final ResourceKey<PlacedFeature> SL_DENSE_FOREST = create("sl_dense_forest");
+    public static final ResourceKey<PlacedFeature> SL_SWAMP_FOREST = create("sl_swamp_forest");
+    public static final ResourceKey<PlacedFeature> SL_PERMAFROST_FOREST = create("sl_permafrost_forest");
+    public static final ResourceKey<PlacedFeature> STARLIGHT_FLOWER = create("starlight_flower");
+    public static final ResourceKey<PlacedFeature> SL_GRASS = create("sl_grass");
+    public static final ResourceKey<PlacedFeature> SWAMP_GRASS = create("swamp_grass");
+    public static final ResourceKey<PlacedFeature> SWAMP_LAKE = create("swamp_lake");
+    public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
+    public static final ResourceKey<PlacedFeature> CAVE_SPRING = create("cave_spring");
+    public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
 
     //structure features
-    public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT = createKey("cursed_garden_extra_height");
+    public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -95,7 +95,7 @@ public class PlacedFeatureInit {
     }
 
 
-    private static ResourceKey<PlacedFeature> createKey(String name) {
+    private static ResourceKey<PlacedFeature> create(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
     }
 

@@ -14,6 +14,9 @@ public class ESTags {
         private static TagKey<Item> create(String string) {
             return TagKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
+        public static final TagKey<Item> LUNAR_LOGS = create("lunar_logs");
+        public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
+        public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> RIESTURUS_LOCATE_ITEM = create("riesturus_locate_item");
         public static final TagKey<Item> RINEMIN_LOCATE_ITEM = create("rinemin_locate_item");

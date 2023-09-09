@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "eternal_starlight:golem_steel_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "eternal_starlight:tenacious_petal"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "TGT",
+    "SSS"
+  ],
+  "result": {
+    "item": "eternal_starlight:moonring_greatsword"
+  },
+  "show_notification": true
+}

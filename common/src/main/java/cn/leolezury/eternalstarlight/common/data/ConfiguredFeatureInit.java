@@ -56,36 +56,36 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ConfiguredFeatureInit {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = registerKey("stone_spike");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = registerKey("stone_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = registerKey("deepslate_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = registerKey("glowing_voidstone_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = registerKey("glowing_nightshade_mud_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = registerKey("nightshade_dirt_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_LUNAR_LOG = registerKey("fallen_lunar_log");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_NORTHLAND_LOG = registerKey("fallen_northland_log");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = registerKey("fallen_starlight_mangrove_log");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_CRYSTAL = registerKey("starlight_crystal");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_VINE = registerKey("cave_vine");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR = registerKey("lunar");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR_HUGE = registerKey("lunar_huge");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NORTHLAND = registerKey("northland");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_MANGROVE = registerKey("starlight_mangrove");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWING_MUSHROOM = registerKey("huge_glowing_mushroom");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_FOREST = registerKey("sl_forest");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_DENSE_FOREST = registerKey("sl_dense_forest");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_SWAMP_FOREST = registerKey("sl_swamp_forest");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_PERMAFROST_FOREST = registerKey("sl_permafrost_forest");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_FLOWER = registerKey("starlight_flower");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_GRASS = registerKey("sl_grass");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_GRASS = registerKey("swamp_grass");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LAKE = registerKey("swamp_lake");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = registerKey("swamp_water");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_SPRING = registerKey("cave_spring");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = registerKey("swamp_silver_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = create("deepslate_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_CRYSTAL = create("starlight_crystal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_VINE = create("cave_vine");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR = create("lunar");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR_HUGE = create("lunar_huge");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NORTHLAND = create("northland");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_MANGROVE = create("starlight_mangrove");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWING_MUSHROOM = create("huge_glowing_mushroom");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_FOREST = create("sl_forest");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_DENSE_FOREST = create("sl_dense_forest");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_SWAMP_FOREST = create("sl_swamp_forest");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_PERMAFROST_FOREST = create("sl_permafrost_forest");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_FLOWER = create("starlight_flower");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SL_GRASS = create("sl_grass");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_GRASS = create("swamp_grass");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_LAKE = create("swamp_lake");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = create("swamp_water");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_SPRING = create("cave_spring");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = create("swamp_silver_ore");
 
     //structure features
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT = registerKey("cursed_garden_extra_height");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<Block> blockHolderGetter = context.lookup(Registries.BLOCK);
@@ -114,7 +114,7 @@ public class ConfiguredFeatureInit {
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.BERRIES_VINES_PLANT.get().defaultBlockState(), 4).add(BlockInit.BERRIES_VINES_PLANT.get().defaultBlockState().setValue(CaveVines.BERRIES, Boolean.valueOf(true)), 1))), BlockColumnConfiguration.layer(ConstantInt.of(1),
                 new RandomizedIntStateProvider(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.BERRIES_VINES.get().defaultBlockState(), 4).add(BlockInit.BERRIES_VINES.get().defaultBlockState().setValue(CaveVines.BERRIES, Boolean.valueOf(true)), 1)), CaveVinesBlock.AGE, UniformInt.of(23, 25)))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
         register(context, LUNAR, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get()), new BranchingTrunkPlacer(8, 2, 10, UniformInt.of(6, 7), UniformInt.of(2, 4)), BlockStateProvider.simple(BlockInit.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(UniformInt.of(2, 4), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).decorators(List.of(new TrunkBerriesDecorator())).build());
-        register(context, LUNAR_HUGE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get()), new MegaBranchingTrunkPlacer(32, 2, 10, UniformInt.of(6, 7), UniformInt.of(2, 4)), BlockStateProvider.simple(BlockInit.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(UniformInt.of(2, 4), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).decorators(List.of(new TrunkBerriesDecorator())).build());
+        register(context, LUNAR_HUGE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get()), new MegaBranchingTrunkPlacer(32, 2, 10, UniformInt.of(3, 4), UniformInt.of(2, 4)), BlockStateProvider.simple(BlockInit.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(UniformInt.of(2, 3), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).decorators(List.of(new TrunkBerriesDecorator())).build());
         register(context, NORTHLAND, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get()), new GiantTrunkPlacer(10, 2, 10), BlockStateProvider.simple(BlockInit.NORTHLAND_LEAVES.get()), new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)), new TwoLayersFeatureSize(1, 1, 2)).build());
         register(context, STARLIGHT_MANGROVE, Feature.TREE, (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LOG.get()), new UpwardsBranchingTrunkPlacer(4, 1, 9, UniformInt.of(1, 6), 0.5F, UniformInt.of(0, 1), blockHolderGetter.getOrThrow(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)), BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LEAVES.get()), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70), Optional.of(new MangroveRootPlacer(UniformInt.of(3, 7), BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_ROOTS.get()), Optional.of(new AboveRootPlacement(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(blockHolderGetter.getOrThrow(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, BlockInit.NIGHTSHADE_MUD.get(), BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), BlockStateProvider.simple(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), 8, 15, 0.2F))), new TwoLayersFeatureSize(3, 0, 2))).decorators(List.of(new LeaveVineDecorator(0.125F), new AttachedToLeavesDecorator(0.14F, 1, 0, new RandomizedIntStateProvider(BlockStateProvider.simple(Blocks.MANGROVE_PROPAGULE.defaultBlockState().setValue(MangrovePropaguleBlock.HANGING, Boolean.valueOf(true))), MangrovePropaguleBlock.AGE, UniformInt.of(0, 4)), 2, List.of(Direction.DOWN)))).ignoreVines().build());
         register(context, HUGE_GLOWING_MUSHROOM, Feature.HUGE_RED_MUSHROOM, new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(BlockInit.GLOWING_MUSHROOM_BLOCK.get().defaultBlockState().setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), BlockStateProvider.simple(Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, Boolean.valueOf(false)).setValue(HugeMushroomBlock.DOWN, Boolean.valueOf(false))), 2));
@@ -137,7 +137,7 @@ public class ConfiguredFeatureInit {
     }
 
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+    public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
     }
 

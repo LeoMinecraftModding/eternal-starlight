@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "result": {
+    "item": "eternal_starlight:swamp_silver_helmet"
+  },
+  "show_notification": true
+}

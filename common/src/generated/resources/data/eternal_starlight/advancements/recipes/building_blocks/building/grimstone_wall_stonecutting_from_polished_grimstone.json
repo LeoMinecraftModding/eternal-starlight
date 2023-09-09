@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eternal_starlight:polished_grimstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:polished_grimstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:building/grimstone_wall_stonecutting_from_polished_grimstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_eternal_starlight:polished_grimstone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:building/grimstone_wall_stonecutting_from_polished_grimstone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

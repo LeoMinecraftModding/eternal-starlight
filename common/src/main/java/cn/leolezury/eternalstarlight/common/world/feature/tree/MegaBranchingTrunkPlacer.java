@@ -50,8 +50,8 @@ public class MegaBranchingTrunkPlacer extends TrunkPlacer {
     private List<FoliagePlacer.FoliageAttachment> genBranchAt(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> placer, BlockPos origin, RandomSource random, int len, int numBranches, int lenBranches, boolean mainTrunk, TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> leafAttachments = Lists.newArrayList();
 
-        int pitch = mainTrunk ? random.nextInt(-10, 10) : (random.nextBoolean() ? random.nextInt(30, 50) : random.nextInt(-50, -30));
-        int roll = mainTrunk ? random.nextInt(-10, 10) : (random.nextBoolean() ? random.nextInt(30, 50) : random.nextInt(-50, -30));
+        int pitch = mainTrunk ? random.nextInt(-5, 5) : (random.nextBoolean() ? random.nextInt(40, 50) : random.nextInt(-50, -40));
+        int roll = mainTrunk ? random.nextInt(-5, 5) : (random.nextBoolean() ? random.nextInt(40, 50) : random.nextInt(-50, -40));
         int i = len / (mainTrunk ? 5 : 2);
         int yStart = mainTrunk ? -5 : 0;
         int r = mainTrunk ? 1 : 0;

@@ -1,0 +1,42 @@
+{
+  "criteria": {
+    "in_dim": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "dimension": "eternal_starlight:starlight"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "eternal_starlight:textures/block/lunar_log.png",
+    "description": {
+      "translate": "advancements.eternal_starlight.enter_starlight.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "eternal_starlight:lunar_log"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.eternal_starlight.enter_starlight.title"
+    }
+  },
+  "requirements": [
+    [
+      "in_dim"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
