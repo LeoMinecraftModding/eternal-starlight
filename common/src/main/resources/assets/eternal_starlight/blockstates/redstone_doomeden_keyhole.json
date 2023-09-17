@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "eternal_starlight:block/redstone_doomeden_keyhole"
+    },
+    "lit=true": {
+      "model": "eternal_starlight:block/redstone_doomeden_keyhole_on"
+    }
+  }
+}

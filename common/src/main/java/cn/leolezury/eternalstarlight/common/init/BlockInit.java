@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.world.feature.tree.LunarTreeGrower;
 import cn.leolezury.eternalstarlight.common.world.feature.tree.NorthlandTreeGrower;
 import cn.leolezury.eternalstarlight.common.world.feature.tree.StarlightMangroveTreeGrower;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
@@ -392,6 +393,16 @@ public class BlockInit {
     public static final RegistryObject<Block> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)));
     public static final RegistryObject<Block> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)));
     public static final RegistryObject<Block> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", ESPortalBlock::new);
+    public static final RegistryObject<Block> DOOMED_TORCH_BLOCK = BLOCKS.register("doomed_torch", ()-> new TorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> DOOMED_REDSTONE_TORCH_BLOCK = BLOCKS.register("doomed_redstone_torch", ()-> new RedstoneTorchBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_TORCH)));
+    public static final RegistryObject<Block> DOOMEDEN_BRICKS_BLOCK = BLOCKS.register("doomeden_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DOOMEDEN_TILE_BLOCK = BLOCKS.register("doomeden_tile", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> POLISHED_DOOMEDEN_BRICKS_BLOCKS = BLOCKS.register("polished_doomeden_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> CHISELED_POLISHED_DOOMEDEN_BRICKS_BLOCKS = BLOCKS.register("chiseled_polished_doomeden_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> ENERGY_CHISELED_POLISHED_DOOMEDEN_BRICKS_BLOCKS = BLOCKS.register("energy_chiseled_polished_doomeden_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DOOMEDEN_LIGHT_BLOCKS = BLOCKS.register("doomeden_light", ()-> new RedstoneLampBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DOOMEDEN_KEYHOLE_BLOCKS = BLOCKS.register("doomeden_keyhole", ()-> new DoomedenKeyholeBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> REDSTONE_DOOMEDEN_KEYHOLE_BLOCKS = BLOCKS.register("redstone_doomeden_keyhole", ()-> new DoomedenKeyholeBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
     private static boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return true;
     }

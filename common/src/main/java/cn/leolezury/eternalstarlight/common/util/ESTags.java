@@ -27,6 +27,7 @@ public class ESTags {
         public static final TagKey<Item> APORNIGAS_LOCATE_ITEM = create("aporniqas_locate_item");
         public static final TagKey<Item> EGASUSICE_LOCATE_ITEM = create("egasusice_locate_item");
         public static final TagKey<Item> STARATHER_LOCATE_ITEM = create("starather_locate_item");
+        public static final TagKey<Item> DOOMEDEN_KEY_ITEM = create("doomeden_key_item");
     }
 
     public static class Blocks {

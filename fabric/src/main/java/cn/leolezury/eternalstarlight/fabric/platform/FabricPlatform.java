@@ -37,6 +37,7 @@ import java.util.function.Predicate;
 @AutoService(ESPlatform.class)
 public class FabricPlatform implements ESPlatform {
     private static final Rarity STARLIGHT_RARITY = ClassTinkerers.getEnum(Rarity.class, "STARLIGHT");
+    private static final Rarity DEMON_RARITY = ClassTinkerers.getEnum(Rarity.class, "DEMON");
     private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = ClassTinkerers.getEnum(EnchantmentCategory.class, "ES_WEAPON");
 
     @Override
@@ -55,8 +56,13 @@ public class FabricPlatform implements ESPlatform {
     }
 
     @Override
-    public Rarity getESRarity() {
+    public Rarity getStarlightRarity() {
         return STARLIGHT_RARITY;
+    }
+
+    @Override
+    public Rarity getDemonRarity() {
+        return DEMON_RARITY;
     }
 
     @Override

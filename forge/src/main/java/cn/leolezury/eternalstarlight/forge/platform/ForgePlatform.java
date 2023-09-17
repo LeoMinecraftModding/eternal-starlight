@@ -62,6 +62,7 @@ import java.util.function.Supplier;
 @AutoService(ESPlatform.class)
 public class ForgePlatform implements ESPlatform {
     private static final Rarity STARLIGHT_RARITY = Rarity.create("STARLIGHT", ChatFormatting.DARK_AQUA);
+    private static final Rarity DEMON_RARITY = Rarity.create("DEMON", ChatFormatting.DARK_RED);
     private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = EnchantmentCategory.create("ES_WEAPON", (item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem || item instanceof HammerItem));
 
     @Override
@@ -159,8 +160,13 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public Rarity getESRarity() {
+    public Rarity getStarlightRarity() {
         return STARLIGHT_RARITY;
+    }
+
+    @Override
+    public Rarity getDemonRarity() {
+        return DEMON_RARITY;
     }
 
     @Override
