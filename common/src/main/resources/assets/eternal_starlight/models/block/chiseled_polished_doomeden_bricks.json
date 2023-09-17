@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/doomeden_tile",
+    "side": "eternal_starlight:block/chiseled_polished_doomeden_bricks",
+    "top": "eternal_starlight:block/doomeden_tile"
+  }
+}

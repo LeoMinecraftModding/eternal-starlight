@@ -21,6 +21,9 @@ configurations {
 
 repositories {
     maven { url = "https://jitpack.io" } // Fabric ASM
+    maven { name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    } // EMI
 }
 
 dependencies {
@@ -35,6 +38,9 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    modCompileOnly "dev.emi:emi-fabric:1.0.19+1.20.1:api"
+    modLocalRuntime "dev.emi:emi-fabric:1.0.19+1.20.1"
 }
 
 processResources {

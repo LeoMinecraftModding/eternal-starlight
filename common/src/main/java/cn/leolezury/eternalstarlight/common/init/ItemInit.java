@@ -23,7 +23,8 @@ import java.util.function.Supplier;
 public class ItemInit {
 //    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EternalStarlight.MOD_ID);
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, EternalStarlight.MOD_ID);
-    private static final Rarity STARLIGHT = ESPlatform.INSTANCE.getESRarity();
+    private static final Rarity STARLIGHT = ESPlatform.INSTANCE.getStarlightRarity();
+    private static final Rarity DEMON = ESPlatform.INSTANCE.getDemonRarity();
     
     public static final List<ResourceKey<Item>> REGISTERED_ITEMS = new ArrayList<>();
     private static RegistryObject<Item> registerItem(String name, Supplier<? extends Item> supplier) {
@@ -236,14 +237,32 @@ public class ItemInit {
             () -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER, ArmorItem.Type.BOOTS, new Item.Properties()));
     //doomeden
     public static final RegistryObject<Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", ()-> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> BONEMORE_BROADSWORD = registerItem("bonemore_broadsword", ()-> new GreatswordItem(ESItemTiers.DOOMEDEN, 2, 0.5F, new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> BONEMORE_BROADSWORD = registerItem("bonemore_broadsword", ()-> new GreatswordItem(ESItemTiers.DOOMEDEN, 2, 0.5F, new Item.Properties().rarity(DEMON)));
+    public static final RegistryObject<Item> BLOOD_BOW = registerItem("blood_bow", ()-> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(DEMON)));
+    public static final RegistryObject<Item> LIVING_ARM = registerItem("living_arm", ()-> new LivingArmItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DOOMED_TORCH = registerItem("doomed_torch", ()-> new BlockItem(BlockInit.DOOMED_TORCH_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", ()-> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationMod(1).build())));
+    public static final RegistryObject<Item> ROTTEN_HAM = registerItem("rotten_ham", ()-> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationMod(1).build())));
+    public static final RegistryObject<Item> DOOMEDEN_EYE = registerItem("doomeden_eye", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RAG = registerItem("rag", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_GRIDER = registerItem("doomeden_grinder", ()-> new DoomedenGriderItem(ESItemTiers.DOOMEDEN, 1, 1, new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_SWORD = registerItem("doomeden_sword", ()-> new DoomedenSwordItem(ESItemTiers.DOOMEDEN, 1, 1, new Item.Properties()));
+    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", ()-> new BlockItem(BlockInit.DOOMED_REDSTONE_TORCH_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", ()-> new BlockItem(BlockInit.DOOMEDEN_BRICKS_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_TILE = registerItem("doomeden_tile", ()-> new BlockItem(BlockInit.DOOMEDEN_TILE_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> POLISHED_DOOMEDEN_BRICKS = registerItem("polished_doomeden_bricks", ()-> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICKS_BLOCKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("chiseled_polished_doomeden_bricks", ()-> new BlockItem(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS_BLOCKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> ENERGY_CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("energy_chiseled_polished_doomeden_bricks", ()-> new BlockItem(BlockInit.ENERGY_CHISELED_POLISHED_DOOMEDEN_BRICKS_BLOCKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_LIGHT = registerItem("doomeden_light", ()-> new BlockItem(BlockInit.DOOMEDEN_LIGHT_BLOCKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_KEYHOLE = registerItem("doomeden_keyhole", ()-> new BlockItem(BlockInit.DOOMEDEN_KEYHOLE_BLOCKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> REDSTONE_DOOMEDEN_KEYHOLE = registerItem("redstone_doomeden_keyhole", ()-> new BlockItem(BlockInit.REDSTONE_DOOMEDEN_KEYHOLE_BLOCKS.get(), new Item.Properties()));
 
     //boss materials
     public static final RegistryObject<Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
-    public static final RegistryObject<Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonRingBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
+    public static final RegistryObject<Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
     public static final RegistryObject<Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));

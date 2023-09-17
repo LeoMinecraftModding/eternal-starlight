@@ -146,6 +146,9 @@ public class ClientSetupHandlers {
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
+        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
 
         playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, true, true, true, true, true)));
         playerAnimatingItemMap.put(ItemInit.PROPHET_ORB, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, true, true, true, true, true)));
@@ -181,6 +184,15 @@ public class ClientSetupHandlers {
             }
         });
         ItemProperties.register(ItemInit.STARFALL_LONGBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+        ItemProperties.register(ItemInit.BLOOD_BOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+            }
+        });
+        ItemProperties.register(ItemInit.BLOOD_BOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
     }
 
     public static void clientWoodSetup() {
@@ -222,7 +234,9 @@ public class ClientSetupHandlers {
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
-    }
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));    }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
         strategy.register(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);

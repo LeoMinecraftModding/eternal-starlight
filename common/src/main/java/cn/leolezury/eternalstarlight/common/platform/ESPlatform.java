@@ -86,7 +86,8 @@ public interface ESPlatform {
         return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties);
-    Rarity getESRarity();
+    Rarity getStarlightRarity();
+    Rarity getDemonRarity();
     CreativeModeTab getESTab();
     // ---Blocks
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
