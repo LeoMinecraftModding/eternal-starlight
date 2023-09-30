@@ -14,6 +14,30 @@
       }
     ]
   },
+  "music.biome.starlight_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/starlight_forest",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.starlight_permafrost_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/starlight_permafrost_forest",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.dark_swamp": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/dark_swamp",
+        "stream": true
+      }
+    ]
+  },
   "item.armor.equip_aethersent": {
     "sounds": [
       "item/armor/equip_leather1",

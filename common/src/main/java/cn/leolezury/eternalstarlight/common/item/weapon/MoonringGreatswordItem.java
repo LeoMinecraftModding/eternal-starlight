@@ -16,9 +16,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
 
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
-        if (livingEntity.isCrouching()) {
-            // The blocking animation will become very funny if the player sprint
-            // so simply disable it
+        if (livingEntity.getPose() != Pose.STANDING) {
             livingEntity.stopUsingItem();
         }
     }

@@ -1,59 +1,18 @@
 {
     "type": "eternal_starlight:starlight",
     "generator": {
-        "type": "minecraft:noise",
+        "type": "eternal_starlight:es_gen",
         "settings": "eternal_starlight:starlight",
         "biome_source": {
-            "type": "minecraft:multi_noise",
+            "type": "eternal_starlight:es_biomes",
             "biomes": [
-                {
-                    "biome": "eternal_starlight:starlight_forest",
-                    "parameters": {
-                        "temperature": 0.1,
-                        "humidity": 0,
-                        "continentalness": 0.3,
-                        "erosion": 2,
-                        "weirdness": 0,
-                        "depth": 0,
-                        "offset": 0
-                    }
-                },
-                {
-                    "biome": "eternal_starlight:starlight_dense_forest",
-                    "parameters": {
-                        "temperature": 0.15,
-                        "humidity": 0,
-                        "continentalness": 0.3,
-                        "erosion": 2,
-                        "weirdness": 0.2,
-                        "depth": 0,
-                        "offset": 0
-                    }
-                },
-                {
-                    "biome": "eternal_starlight:starlight_permafrost_forest",
-                    "parameters": {
-                        "temperature": -1,
-                        "humidity": 0,
-                        "continentalness": 0.3,
-                        "erosion": 2,
-                        "weirdness": 0.1,
-                        "depth": 0,
-                        "offset": 0
-                    }
-                },
-                {
-                    "biome": "eternal_starlight:dark_swamp",
-                    "parameters": {
-                        "temperature": -0.15,
-                        "humidity": 0.4,
-                        "continentalness": 0.3,
-                        "erosion": 2,
-                        "weirdness": 0.5,
-                        "depth": 0,
-                        "offset": 0
-                    }
-                }
+                "eternal_starlight:starlight_forest",
+                "eternal_starlight:starlight_dense_forest",
+                "eternal_starlight:dark_swamp",
+                "eternal_starlight:starlight_permafrost_forest",
+                "eternal_starlight:shimmer_river",
+                "eternal_starlight:starlit_sea",
+                "eternal_starlight:warm_shore"
             ]
         }
     }

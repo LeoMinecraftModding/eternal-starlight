@@ -8,8 +8,6 @@ import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
-import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -70,7 +68,7 @@ public class ClientHandlers {
         }
         Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
         if (camera.getFluidInCamera() == FogType.NONE && ESPlatform.INSTANCE.noFluidAtCamera(camera)) {
-            if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
+            /*if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
                 RenderSystem.setShaderFogStart(-4.0F);
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.87f, 0.87f, 1f);
@@ -79,7 +77,7 @@ public class ClientHandlers {
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.07f, 0, 0.07f);
             }
-            RenderSystem.setShaderFogShape(FogShape.SPHERE);
+            RenderSystem.setShaderFogShape(FogShape.SPHERE);*/
         }
     }
 

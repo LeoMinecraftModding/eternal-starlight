@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;

@@ -16,7 +16,7 @@
     "water_color": 6187416,
     "water_fog_color": 6187416,
     "music": {
-      "sound": "eternal_starlight:music.dimension.eternal_starlight",
+      "sound": "eternal_starlight:music.biome.starlight_permafrost_forest",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false

@@ -16,10 +16,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class DoomedenKeyholeBlock extends Block {
-    public static final BooleanProperty LIT;
+    public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+
     public DoomedenKeyholeBlock(Properties properties) {
         super(properties);
     }
+
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState().setValue(LIT, blockPlaceContext.getLevel().hasNeighborSignal(blockPlaceContext.getClickedPos()));
@@ -38,9 +40,5 @@ public class DoomedenKeyholeBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIT);
-    }
-
-    static {
-        LIT = RedstoneTorchBlock.LIT;
     }
 }

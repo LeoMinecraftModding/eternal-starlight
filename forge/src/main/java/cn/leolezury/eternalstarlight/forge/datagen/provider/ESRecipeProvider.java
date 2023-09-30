@@ -235,17 +235,17 @@ public class ESRecipeProvider extends RecipeProvider {
         addChestplate(consumer, "swamp_silver_chestplate", ItemInit.SWAMP_SILVER_CHESTPLATE, ItemInit.SWAMP_SILVER_INGOT);
         addLeggings(consumer, "swamp_silver_leggings", ItemInit.SWAMP_SILVER_LEGGINGS, ItemInit.SWAMP_SILVER_INGOT);
         addBoots(consumer, "swamp_silver_boots", ItemInit.SWAMP_SILVER_BOOTS, ItemInit.SWAMP_SILVER_INGOT);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ItemInit.SWAMP_SILVER_INGOT.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get())
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', Ingredient.of(ItemInit.SWAMP_SILVER_NUGGET.get()))
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_NUGGET.get()))
-                .save(consumer, getBuildingLocation("swamp_silver_ingot_from_nuggets"));
+                .save(consumer, getMiscLocation("swamp_silver_ingot_from_nuggets"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemInit.SWAMP_SILVER_NUGGET.get(), 9)
                 .requires(ItemInit.SWAMP_SILVER_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_INGOT.get()))
-                .save(consumer, getModLocation("misc/swamp_silver_nuggets_from_ingot"));
+                .save(consumer, getMiscLocation("swamp_silver_nuggets_from_ingot"));
         addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_ORE.get());
         addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_ORE.get());
         addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
@@ -268,7 +268,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
     // misc
     protected final void addSmelt(Consumer<FinishedRecipe> finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, Supplier<? extends Item> criteria, Supplier<? extends Item> output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output.get(), 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria.get())).save(finishedRecipeConsumer, getModLocation(id + "_" + recipeTypeName));
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output.get(), 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria.get())).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
     }
 
     protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, Supplier<? extends Block> output) {
@@ -516,13 +516,13 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('P', planks.get())
                 .group("boat")
                 .unlockedBy("in_water", insideOf(Blocks.WATER))
-                .save(finishedRecipeConsumer);
+                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(boat.get()).getPath()));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat.get())
                 .requires(boat.get())
                 .group("chest_boat")
                 .unlockedBy("has_boat", has(ItemTags.BOATS))
-                .save(finishedRecipeConsumer);
+                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(chestBoat.get()).getPath()));
     }
 
     // stone
@@ -599,6 +599,10 @@ public class ESRecipeProvider extends RecipeProvider {
 
     protected final ResourceLocation getModLocation(String id) {
         return new ResourceLocation(EternalStarlight.MOD_ID, id);
+    }
+
+    protected final ResourceLocation getMiscLocation(String id) {
+        return getModLocation("misc/" + id);
     }
 
     protected final ResourceLocation getEquipmentLocation(String id) {
