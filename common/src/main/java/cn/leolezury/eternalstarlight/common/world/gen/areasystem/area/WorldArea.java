@@ -14,14 +14,14 @@ public class WorldArea {
     }
 
     public int getBiome(int x, int z) {
-        int dataX = ((int) Math.floor(x * size / 1024d)) % size;
-        int dataZ = ((int) Math.floor(z * size / 1024d)) % size;
+        int dataX = ((int) Math.floor(x * size / 1024d)) & (size - 1);
+        int dataZ = ((int) Math.floor(z * size / 1024d)) & (size - 1);
         return biomes[dataX][dataZ];
     }
 
     public int getHeight(int x, int z) {
-        int dataX = ((int) Math.floor(x * size / 1024d)) % size;
-        int dataZ = ((int) Math.floor(z * size / 1024d)) % size;
+        int dataX = ((int) Math.floor(x * size / 1024d)) & (size - 1);
+        int dataZ = ((int) Math.floor(z * size / 1024d)) & (size - 1);
         return heights[dataX][dataZ];
     }
 }

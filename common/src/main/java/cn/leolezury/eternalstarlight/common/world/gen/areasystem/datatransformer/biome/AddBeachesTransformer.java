@@ -15,14 +15,17 @@ public class AddBeachesTransformer implements NeighborsRelatedTransformer {
 
     @Override
     public int transform(BiomesContainer container, Random random, int original, int up, int down, int left, int right) {
-        // if it's at the edge of an ocean biome, return beach
-        if (BiomeDataRegistry.getBiomeData(original).isOcean()
-                && (BiomeDataRegistry.getBiomeData(up).canHaveBeaches())
-                && (BiomeDataRegistry.getBiomeData(down).canHaveBeaches())
-                && (BiomeDataRegistry.getBiomeData(left).canHaveBeaches())
-                && (BiomeDataRegistry.getBiomeData(right).canHaveBeaches())
+        if (BiomeDataRegistry.getBiomeData(original).canHaveBeaches()
+                && (BiomeDataRegistry.getBiomeData(up).isOcean()
+                || BiomeDataRegistry.getBiomeData(down).isOcean()
+                || BiomeDataRegistry.getBiomeData(left).isOcean()
+                || BiomeDataRegistry.getBiomeData(right).isOcean()
+                || up == beach
+                || down == beach
+                || left == beach
+                || right == beach)
         ) {
-            return beach;
+            return this.beach;
         }
         return original;
     }

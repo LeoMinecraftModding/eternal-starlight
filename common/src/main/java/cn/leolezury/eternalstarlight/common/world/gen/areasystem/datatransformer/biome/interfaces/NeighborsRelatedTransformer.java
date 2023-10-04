@@ -7,7 +7,7 @@ import java.util.Random;
 public interface NeighborsRelatedTransformer extends BiomeDataTransformer {
     @Override
     default int transform(BiomesContainer container, Random random, int x, int z) {
-        return transform(container, random, container.getDataSafe(x, z), container.getUp(x, z), container.getDown(x, z), container.getLeft(x, z), container.getRight(x, z));
+        return transform(container, random, container.getDataRaw(x, z), container.getUp(x, z), container.getDown(x, z), container.getLeft(x, z), container.getRight(x, z));
     }
 
     int transform(BiomesContainer container, Random random, int original, int up, int down, int left, int right);

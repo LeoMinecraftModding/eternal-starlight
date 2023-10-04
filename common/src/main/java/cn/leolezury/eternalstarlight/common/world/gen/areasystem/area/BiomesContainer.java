@@ -27,13 +27,14 @@ public class BiomesContainer extends AbstractAreaContainer {
     }
 
     @Override
-    public void finialize() {
-        int[][] transformed = getData().clone();
-        for (int x = 0; x < size; x++) {
-            for (int z = 0; z < size; z++) {
-                transformed[x][z] = BiomeDataRegistry.getBiomeId(BiomeDataRegistry.getBiomeData(getDataRaw(x, z)).biome());
+    public void doFinialize() {
+        int[][] transformed = new int[size / 2][size / 2];
+        for (int x = 0; x < size / 2; x++) {
+            for (int z = 0; z < size / 2; z++) {
+                transformed[x][z] = BiomeDataRegistry.getBiomeId(BiomeDataRegistry.getBiomeData(getDataRaw(x + size / 4, z + size / 4)).biome());
             }
         }
+        this.size = size / 2;
         setData(transformed);
     }
 }

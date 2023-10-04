@@ -32,7 +32,7 @@ public class ESBiomeSource extends BiomeSource {
     public ESBiomeSource(HolderSet<Biome> biomeHolderSet) {
         this.biomeHolderSet = biomeHolderSet;
         this.biomeProvider = new ESBiomeProvider(320, -64);
-        this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> (biomeHolderSet.unwrapKey().orElseThrow()).location(), Function.identity())));
+        this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> (biomeHolder.unwrapKey().orElseThrow()).location(), Function.identity())));
     }
 
     public void setSeed(long seed) {
@@ -61,6 +61,6 @@ public class ESBiomeSource extends BiomeSource {
 
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
-        return biomeMap.get(BiomeDataRegistry.getBiomeLocation(getBiome(x * 4, z * 4)));
+        return biomeMap.get(BiomeDataRegistry.getBiomeData(getBiome(x * 4, z * 4)).biome());
     }
 }

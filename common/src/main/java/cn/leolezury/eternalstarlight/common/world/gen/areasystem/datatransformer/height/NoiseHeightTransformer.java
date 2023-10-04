@@ -15,10 +15,13 @@ public class NoiseHeightTransformer implements BiomeRelatedTransformer {
         int maxValleyDepth = data.maxValleyDepth();
         int height = original;
         if (variance > 0) {
-            height += (int) (0.95 * container.provider.noises[0].getValue(worldX * 0.004, worldZ * 0.004, false) + 0.05 * container.provider.noises[1].getValue(worldX * 0.04, worldZ * 0.04, true)) * variance;
+            height += (int) ((0.95 * container.provider.noises[0].getValue(worldX * 0.004, worldZ * 0.004, false) + 0.05 * container.provider.noises[1].getValue(worldX * 0.04, worldZ * 0.04, true)) * variance);
         }
         if (maxValleyDepth > 0) {
-            height += (int) (Math.abs(0.98 * container.provider.noises[0].getValue(worldX * 0.006, worldZ * 0.006, false) + 0.02 * container.provider.noises[1].getValue(worldX * 0.06, worldZ * 0.06, true)) - 1d) * maxValleyDepth;
+            double valley = 0.98 * container.provider.noises[0].getValue(worldX * 0.006, worldZ * 0.006, false) + 0.02 * container.provider.noises[1].getValue(worldX * 0.06, worldZ * 0.06, true);
+            if (valley > 0) {
+                height += (int) (valley * maxValleyDepth);
+            }
         }
         return height;
     }

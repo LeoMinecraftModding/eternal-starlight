@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.areasystem.area;
 
 import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biomeprovider.AbstractBiomeProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.areasystem.datatransformer.DataTransformer;
-import net.minecraft.core.BlockPos;
 
 import java.util.Random;
 
@@ -13,6 +12,7 @@ public abstract class AbstractAreaContainer {
     public final int areaX;
     public final int areaZ;
     public int size;
+    private boolean finalized = false;
 
     public AbstractAreaContainer(AbstractBiomeProvider provider, long seed, int areaX, int areaZ, int size) {
         this.provider = provider;
@@ -42,8 +42,8 @@ public abstract class AbstractAreaContainer {
 
     public void processData(DataTransformer transformer, long seedAddition) {
         int[][] transformed = getData().clone();
-        for (int x = 0; x < size; x++) {
-            for (int z = 0; z < size; z++) {
+        for (int x = 0; x < this.size; x++) {
+            for (int z = 0; z < this.size; z++) {
                 transformed[x][z] = transformer.transform(this, getRandomForPos(x, z, seedAddition), x, z);
             }
         }
@@ -51,15 +51,15 @@ public abstract class AbstractAreaContainer {
     }
 
     public int getWorldX(int x) {
-        return areaX * size + x;
+        return areaX * (size / (finalized ? 1 : 2)) + x;
     }
 
     public int getWorldZ(int z) {
-        return areaZ * size + z;
+        return areaZ * (size / (finalized ? 1 : 2)) + z;
     }
 
     public Random getRandomForPos(int x, int z, long seedAddition) {
-        return new Random((this.seed + seedAddition) * new BlockPos(getWorldX(x), 0, getWorldZ(z)).asLong());
+        return new Random((this.seed + seedAddition) * AbstractBiomeProvider.posAsLong(getWorldX(x), getWorldZ(z)));
     }
 
     public int getDown(int x, int z) {
@@ -78,5 +78,12 @@ public abstract class AbstractAreaContainer {
         return getDataSafe(x + 1, z);
     }
 
-    public abstract void finialize();
+    public void finialize() {
+        if (!finalized) {
+            doFinialize();
+        }
+        this.finalized = true;
+    }
+
+    public abstract void doFinialize();
 }

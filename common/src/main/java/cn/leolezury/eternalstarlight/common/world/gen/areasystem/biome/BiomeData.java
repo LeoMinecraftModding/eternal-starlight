@@ -46,7 +46,6 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
         BlockStateTransformer blockStateTransformer = BlockStateTransformer.DEFAULT;
         ChunkGenHeightTransformer heightTransformer = ChunkGenHeightTransformer.DEFAULT;
 
-
         public Builder(ResourceLocation name, int height, int variance) {
             this.name = name;
             this.biome = name;
@@ -65,6 +64,10 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
         public Builder withTemperatures(Temperature... temperatures) {
             this.temperatures = temperatures;
             return this;
+        }
+
+        public Builder fullRangeTemperatures() {
+            return this.withTemperatures(Temperature.COLD_EXTREME, Temperature.COLD, Temperature.NEUTRAL, Temperature.HOT, Temperature.HOT_EXTREME);
         }
 
         public Builder withMaxValleyDepth(int maxValleyDepth) {

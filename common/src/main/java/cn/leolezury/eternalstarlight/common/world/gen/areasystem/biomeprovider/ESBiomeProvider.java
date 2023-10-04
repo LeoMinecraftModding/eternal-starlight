@@ -30,13 +30,10 @@ public class ESBiomeProvider extends AbstractBiomeProvider {
         doubleAndProcessEdges(container, 1);
         doubleAndProcessEdges(container, 2);
         doubleAndProcessEdges(container, 3);
-        container.processData(BiomeTransformers.ADD_BEACHES, 0);
         doubleAndProcessEdges(container, 4);
         doubleAndProcessEdges(container, 5);
         container.processData(BiomeTransformers.ASSIMILATE_LONELY, 0);
-        for (int i = 0; i < 3; i++) {
-            container.processData(BiomeTransformers.ADD_BEACHES, 0);
-        }
+        container.processData(BiomeTransformers.ADD_BEACHES, 0);
         container.processData(BiomeTransformers.ADD_RIVER, 0);
         for (int i = 0; i < 2; i++) {
             container.processData(BiomeTransformers.ADD_RIVER_TRANSITION, 0);
@@ -47,8 +44,8 @@ public class ESBiomeProvider extends AbstractBiomeProvider {
 
     @Override
     void doHeightsTransformation(HeightsContainer container) {
-        container.processData(HeightTransformers.NOISE, 0);
         container.processData(HeightTransformers.SMOOTH_LARGE, 0);
+        container.processData(HeightTransformers.NOISE, 0);
         container.processData(HeightTransformers.SMOOTH_SMALL, 0);
     }
 }

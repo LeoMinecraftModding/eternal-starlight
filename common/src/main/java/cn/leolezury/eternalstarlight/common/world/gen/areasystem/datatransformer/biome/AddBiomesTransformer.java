@@ -17,7 +17,7 @@ public class AddBiomesTransformer implements NoiseDataTransformer {
 
     @Override
     public int transform(BiomesContainer container, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
-        BiomeData.Temperature temperature = BiomeData.Temperature.NEUTRAL;
+        BiomeData.Temperature temperature;
         double noiseVal = noise.getValue(worldX * xzScale, worldZ * xzScale, false);
         if (noiseVal >= 0.6) {
             temperature = BiomeData.Temperature.HOT_EXTREME;
@@ -27,7 +27,7 @@ public class AddBiomesTransformer implements NoiseDataTransformer {
             temperature = BiomeData.Temperature.NEUTRAL;
         } else if (noiseVal >= -0.6) {
             temperature = BiomeData.Temperature.COLD;
-        } else if (noiseVal >= -1) {
+        } else {
             temperature = BiomeData.Temperature.COLD_EXTREME;
         }
         return container.provider.getRandomBiome(temperature, BiomeDataRegistry.getBiomeData(original).isOcean(), random);

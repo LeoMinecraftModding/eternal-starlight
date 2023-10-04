@@ -18,13 +18,14 @@ public class HeightsContainer extends AbstractAreaContainer {
     }
 
     @Override
-    public void finialize() {
-        int[][] transformed = getData().clone();
-        for (int x = 0; x < size; x++) {
-            for (int z = 0; z < size; z++) {
-                transformed[x][z] = Mth.clamp(getDataRaw(x, z), provider.minHeight, provider.maxHeight);
+    public void doFinialize() {
+        int[][] transformed = new int[size / 2][size / 2];
+        for (int x = 0; x < size / 2; x++) {
+            for (int z = 0; z < size / 2; z++) {
+                transformed[x][z] = Mth.clamp(getDataRaw(x + size / 4, z + size / 4), provider.minHeight, provider.maxHeight);
             }
         }
+        this.size = size / 2;
         setData(transformed);
     }
 }
