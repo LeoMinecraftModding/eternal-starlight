@@ -39,7 +39,6 @@ public class ESPortalBlock extends Block {
                 .strength(-1F)
                 .noCollission()
                 .lightLevel((state) -> 10)
-                .noLootTable()
         );
         registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.X));
     }
