@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biome.BiomeData
 import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biome.BiomeDataRegistry;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import com.google.common.collect.Sets;
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.Util;
@@ -28,9 +27,7 @@ import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;

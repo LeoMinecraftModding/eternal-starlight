@@ -64,5 +64,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "eternal_starlight:entities/nightshade_spider"
 }
