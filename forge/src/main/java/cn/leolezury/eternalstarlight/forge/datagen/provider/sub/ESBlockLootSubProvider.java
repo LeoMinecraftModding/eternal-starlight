@@ -9,7 +9,6 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -148,6 +147,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get());
 
         dropSelf(BlockInit.DOOMED_TORCH.get());
+        dropOther(BlockInit.WALL_DOOMED_TORCH.get(), ItemInit.DOOMED_TORCH.get());
         dropSelf(BlockInit.DOOMED_REDSTONE_TORCH.get());
         dropSelf(BlockInit.DOOMEDEN_BRICKS.get());
         dropSelf(BlockInit.DOOMEDEN_TILE.get());
@@ -209,6 +209,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
     }
 
     private LootTable.Builder createLunarLeavesDrops(Block leaves, Block sapling, float... saplingChances) {
-        return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(leaves, LootItem.lootTableItem(Items.APPLE))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+        return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(leaves, LootItem.lootTableItem(ItemInit.LUNAR_BERRIES.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
 }

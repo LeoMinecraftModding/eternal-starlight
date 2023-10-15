@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
-import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biome.BiomeDataRegistry;
+import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeDataRegistry;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -161,8 +161,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 
     @Override
     public int getBaseHeight(int x, int z, Heightmap.Types types, LevelHeightAccessor levelHeightAccessor, RandomState randomState) {
-        BlockState[] states = new BlockState[generatorSettings().value().noiseSettings().clampToHeightAccessor(levelHeightAccessor).height()];
-        return levelHeightAccessor.getMinBuildHeight() + iterateTerrainColumn(x, z, states, types.isOpaque(), levelHeightAccessor);
+        return getSurfaceHeight(x, z);
     }
 
     @Override
@@ -198,7 +197,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
         } else {
             state = AIR;
         }
-        return data.blockStateTransformer().apply(state, this, x, y, z, surfaceHeight);
+        return state;
     }
 
     private int getSurfaceHeight(int x, int z) {

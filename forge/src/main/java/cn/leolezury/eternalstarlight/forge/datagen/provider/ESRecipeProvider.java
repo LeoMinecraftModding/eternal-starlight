@@ -289,10 +289,11 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     protected final void addShapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> criteria, Supplier<? extends Item> output, int num, ItemLike... ingredients) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output.get(), num)
-                .requires(Ingredient.of(ingredients))
-                .unlockedBy("has_item", has(criteria.get()))
-                .save(finishedRecipeConsumer, getModLocation("shapeless/" + id));
+        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output.get(), num);
+        for (ItemLike item : ingredients) {
+            builder.requires(item);
+        }
+        builder.unlockedBy("has_item", has(criteria.get())).save(finishedRecipeConsumer, getModLocation("shapeless/" + id));
     }
 
     // combat & tools

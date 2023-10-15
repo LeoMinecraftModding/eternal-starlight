@@ -152,6 +152,11 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
+    public boolean canStrip(ItemStack stack) {
+        return stack.canPerformAction(ToolActions.AXE_STRIP);
+    }
+
+    @Override
     public boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
         if (arrow.getItem() instanceof ArrowItem arrowItem) {
             return arrowItem.isInfinite(arrow, bow, player);

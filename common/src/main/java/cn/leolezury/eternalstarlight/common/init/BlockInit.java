@@ -8,9 +8,9 @@ import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
-import cn.leolezury.eternalstarlight.common.world.feature.tree.LunarTreeGrower;
-import cn.leolezury.eternalstarlight.common.world.feature.tree.NorthlandTreeGrower;
-import cn.leolezury.eternalstarlight.common.world.feature.tree.StarlightMangroveTreeGrower;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.LunarTreeGrower;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.NorthlandTreeGrower;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.StarlightMangroveTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -289,6 +290,7 @@ public class BlockInit {
 
     // doomeden
     public static final RegistryObject<Block> DOOMED_TORCH = BLOCKS.register("doomed_torch", () -> new TorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> WALL_DOOMED_TORCH = BLOCKS.register("wall_doomed_torch", () -> new WallTorchBlock(BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));
     public static final RegistryObject<Block> DOOMED_REDSTONE_TORCH = BLOCKS.register("doomed_redstone_torch", () -> new DoomedenRedstoneTorchBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_TORCH)));
     public static final RegistryObject<Block> DOOMEDEN_BRICKS = BLOCKS.register("doomeden_bricks", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> DOOMEDEN_TILE = BLOCKS.register("doomeden_tile", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));

@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.item.weapon.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -243,7 +244,7 @@ public class ItemInit {
     public static final RegistryObject<Item> BONEMORE_BROADSWORD = registerItem("bonemore_broadsword", () -> new GreatswordItem(ESItemTiers.DOOMEDEN, 6, -2.8F, new Item.Properties().rarity(DEMON)));
     public static final RegistryObject<Item> BLOOD_BOW = registerItem("blood_bow", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(DEMON)));
     public static final RegistryObject<Item> LIVING_ARM = registerItem("living_arm", () -> new LivingArmItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> DOOMED_TORCH = registerItem("doomed_torch", () -> new BlockItem(BlockInit.DOOMED_TORCH.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMED_TORCH = registerItem("doomed_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_TORCH.get(), BlockInit.WALL_DOOMED_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).meat().build())));
     public static final RegistryObject<Item> ROTTEN_HAM = registerItem("rotten_ham", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
     public static final RegistryObject<Item> DOOMEDEN_EYE = registerItem("doomeden_eye", () -> new Item(new Item.Properties()));

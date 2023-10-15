@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
-import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.areasystem.biomeprovider.ESBiomeProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeDataRegistry;
+import cn.leolezury.eternalstarlight.common.world.gen.provider.wgenprovider.ESWorldGenProvider;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -27,16 +27,16 @@ public class ESBiomeSource extends BiomeSource {
 
     public final Map<ResourceLocation, Holder<Biome>> biomeMap = new HashMap<>();
     public final HolderSet<Biome> biomeHolderSet;
-    private final ESBiomeProvider biomeProvider;
+    private final ESWorldGenProvider provider;
 
     public ESBiomeSource(HolderSet<Biome> biomeHolderSet) {
         this.biomeHolderSet = biomeHolderSet;
-        this.biomeProvider = new ESBiomeProvider(320, -64);
+        this.provider = new ESWorldGenProvider(320, -64);
         this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> (biomeHolder.unwrapKey().orElseThrow()).location(), Function.identity())));
     }
 
     public void setSeed(long seed) {
-        this.biomeProvider.setSeed(seed);
+        this.provider.setSeed(seed);
     }
 
     @Override
@@ -51,12 +51,12 @@ public class ESBiomeSource extends BiomeSource {
 
     public int getBiome(int x, int z) {
         ChunkPos pos = new ChunkPos(x >> 4, z >> 4);
-        return this.biomeProvider.getWorldArea(pos.x, pos.z).getBiome(x, z);
+        return this.provider.getWorldArea(pos.x, pos.z).getBiome(x, z);
     }
 
     public int getHeight(int x, int z) {
         ChunkPos pos = new ChunkPos(x >> 4, z >> 4);
-        return this.biomeProvider.getWorldArea(pos.x, pos.z).getHeight(x, z);
+        return this.provider.getWorldArea(pos.x, pos.z).getHeight(x, z);
     }
 
     @Override

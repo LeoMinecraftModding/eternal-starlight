@@ -142,6 +142,9 @@ public interface ESPlatform {
     default boolean isShield(ItemStack stack) {
         return stack.is(Items.SHIELD);
     }
+    default boolean canStrip(ItemStack stack) {
+        return stack.getItem() instanceof AxeItem;
+    }
     default boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
         int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
         return enchant > 0 && arrow.getItem().getClass() == ArrowItem.class;

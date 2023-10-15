@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.init;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
-import cn.leolezury.eternalstarlight.common.world.structure.placement.ESRandomSpreadStructurePlacement;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.ESRandomSpreadStructurePlacement;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 public class StructurePlacementTypeInit {
