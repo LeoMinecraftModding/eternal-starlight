@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.projectile.Spore;
+import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class SporeModel<T extends Spore> extends EntityModel<T> {
+public class SporeModel<T extends LunarSpore> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "spore"), "main");
     private final ModelPart spore;
 

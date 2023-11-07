@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.*;
 import cn.leolezury.eternalstarlight.common.block.entity.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.block.modifier.ESFlammabilityModifier;
 import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
+import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
@@ -392,9 +393,9 @@ public class BlockInit {
     })));
     public static final RegistryObject<Block> GREEN_FANTAGRASS = BLOCKS.register("green_fantagrass", () -> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
 
-    public static final RegistryObject<Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
-    public static final RegistryObject<Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE), NIGHTSHADE_MUD, PlacedFeatureInit.SWAMP_GRASS));
     public static final RegistryObject<Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+    public static final RegistryObject<Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new NightshadeGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE), NIGHTSHADE_DIRT, PlacedFeatureInit.SL_GRASS));
 
     public static final RegistryObject<Block> AETHERSENT_BLOCK = BLOCKS.register("aethersent_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block> SPRINGSTONE = BLOCKS.register("springstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_BROWN).strength(3.0F, 3.0F)));

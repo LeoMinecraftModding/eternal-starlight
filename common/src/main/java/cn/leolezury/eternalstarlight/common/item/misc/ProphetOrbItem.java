@@ -46,7 +46,7 @@ public class ProphetOrbItem extends Item implements Vanishable {
         } else {
 
         }
-        if (player.getPose() == Pose.STANDING && player.getPose() == Pose.STANDING) {
+        if (player.getPose() == Pose.STANDING) {
             player.startUsingItem(interactionHand);
             return InteractionResultHolder.consume(itemStack);
         }

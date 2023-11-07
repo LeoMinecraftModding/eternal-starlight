@@ -259,8 +259,8 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM_BEAM.get(), StarlightGolemBeamRenderer::new);
         strategy.register(EntityInit.FIRE_COLUMN.get(), NothingRenderer::new);
-        strategy.register(EntityInit.SPORE.get(), SporeRenderer::new);
-        strategy.register(EntityInit.VINE.get(), VineRenderer::new);
+        strategy.register(EntityInit.LUNAR_SPORE.get(), SporeRenderer::new);
+        strategy.register(EntityInit.LUNAR_VINE.get(), VineRenderer::new);
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);

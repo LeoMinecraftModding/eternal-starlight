@@ -46,8 +46,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-public class StarlightGolem extends AbstractESBoss implements LaserCaster {
-    public StarlightGolem(EntityType<? extends AbstractESBoss> entityType, Level level) {
+public class StarlightGolem extends ESBoss implements LaserCaster {
+    public StarlightGolem(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);

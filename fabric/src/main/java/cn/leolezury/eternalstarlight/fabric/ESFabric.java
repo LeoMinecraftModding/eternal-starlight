@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.fabric;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -19,8 +20,10 @@ public class ESFabric implements ModInitializer {
         EternalStarlight.init();
 
         // setup handlers
-        // CommonSetupHandlers.setup();
         FabricNetworkHandler.init(false);
+        if (ESPlatform.INSTANCE.isPhysicalClient()) {
+            FabricNetworkHandler.init(true);
+        }
         CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
         CommonSetupHandlers.registerSpawnPlacement(SpawnPlacements::register);
         CommonSetupHandlers.registerChunkGenerator();

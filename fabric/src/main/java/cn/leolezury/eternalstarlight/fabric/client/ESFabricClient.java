@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.fabric.client;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,7 +26,6 @@ import java.util.function.Supplier;
 public class ESFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        FabricNetworkHandler.init(true);
         ClientSetupHandlers.clientSetup();
         ClientSetupHandlers.clientWoodSetup();
         ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);

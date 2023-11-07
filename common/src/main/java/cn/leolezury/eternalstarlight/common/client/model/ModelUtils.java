@@ -13,22 +13,12 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ModelUtils {
-    public static void translateAndRotate(PoseStack stack, ModelPart part) {
-        stack.translate(part.x / 16.0F, part.y / 16.0F, part.z / 16.0F);
-        if (part.xRot != 0.0F || part.yRot != 0.0F || part.zRot != 0.0F) {
-            stack.mulPose((new Quaternionf()).rotationZYX(part.zRot, part.yRot, part.xRot));
-        }
-        if (part.xScale != 1.0F || part.yScale != 1.0F || part.zScale != 1.0F) {
-            stack.scale(part.xScale, part.yScale, part.zScale);
-        }
-    }
-    
     public static void translateAndRotateFromModel(PoseStack stack, List<ModelPart> parts, int index) {
         ModelPart part = parts.get(index);
         if (index + 1 < parts.size()) {
             translateAndRotateFromModel(stack, parts, index + 1);
         }
-        translateAndRotate(stack, part);
+        part.translateAndRotate(stack);
     }
 
     public static Vec3 getModelPosition(Entity entity, float yaw, List<ModelPart> parts) {

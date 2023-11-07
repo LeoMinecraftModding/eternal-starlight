@@ -2,10 +2,10 @@ package cn.leolezury.eternalstarlight.fabric.platform;
 
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
-import cn.leolezury.eternalstarlight.common.manager.book.BookManager;
-import cn.leolezury.eternalstarlight.common.manager.book.chapter.ChapterManager;
-import cn.leolezury.eternalstarlight.common.manager.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
+import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
+import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.ESTeleporter;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
@@ -46,7 +46,7 @@ public class FabricPlatform implements ESPlatform {
     }
 
     @Override
-    public boolean isClientSide() {
+    public boolean isPhysicalClient() {
         return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
     }
 

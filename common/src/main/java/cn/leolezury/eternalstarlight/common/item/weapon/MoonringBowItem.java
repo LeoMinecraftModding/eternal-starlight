@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.entity.attack.Vine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -50,7 +50,7 @@ public class MoonringBowItem extends BowItem {
             i++;
         }
         if (canCreate) {
-            Vine vine = EntityInit.VINE.get().create(level);
+            LunarVine vine = EntityInit.LUNAR_VINE.get().create(level);
             vine.setPos(x, i, z);
             vine.setAttackMode(0);
             vine.setOwner(owner);

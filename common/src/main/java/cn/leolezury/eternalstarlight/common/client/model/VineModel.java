@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.attack.Vine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class VineModel<T extends Vine> extends EntityModel<T> {
+public class VineModel<T extends LunarVine> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "vine"), "main");
     private final ModelPart vine;
 

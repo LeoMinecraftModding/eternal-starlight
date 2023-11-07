@@ -2,14 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    [
-      {
-        "item": "eternal_starlight:nightshade_mud"
-      },
-      {
-        "item": "eternal_starlight:lunar_berries"
-      }
-    ]
+    {
+      "item": "eternal_starlight:nightshade_mud"
+    },
+    {
+      "item": "eternal_starlight:lunar_berries"
+    }
   ],
   "result": {
     "item": "eternal_starlight:packed_nightshade_mud"

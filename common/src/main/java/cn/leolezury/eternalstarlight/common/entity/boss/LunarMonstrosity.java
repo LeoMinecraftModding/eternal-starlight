@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.entity.attack.Vine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.boss.bossevent.ESServerBossEvent;
-import cn.leolezury.eternalstarlight.common.entity.projectile.Spore;
+import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
 import cn.leolezury.eternalstarlight.common.init.ParticleInit;
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
@@ -53,8 +53,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class LunarMonstrosity extends AbstractESBoss {
-    public LunarMonstrosity(EntityType<? extends AbstractESBoss> entityType, Level level) {
+public class LunarMonstrosity extends ESBoss {
+    public LunarMonstrosity(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
@@ -412,7 +412,7 @@ public class LunarMonstrosity extends AbstractESBoss {
                         double x = target.getX() - getX();
                         double y = target.getY() - getY() - 2;
                         double z = target.getZ() - getZ();
-                        Spore spore = new Spore(level(), this, x, y, z);
+                        LunarSpore spore = new LunarSpore(level(), this, x, y, z);
                         spore.setPos(position().add(0, 2, 0));
                         spore.setOwner(this);
                         level().addFreshEntity(spore);
@@ -423,7 +423,7 @@ public class LunarMonstrosity extends AbstractESBoss {
                 case 3 -> {
                     if (getAttackTicks() % 15 == 0 && target != null) {
                         for (int i = 0; i < 5; i++) {
-                            Vine vine = EntityInit.VINE.get().create(level());
+                            LunarVine vine = EntityInit.LUNAR_VINE.get().create(level());
                             Random random = new Random();
                             vine.setPos(target.position().add(random.nextDouble(), 0.2, random.nextDouble()));
                             vine.setAttackMode(1);

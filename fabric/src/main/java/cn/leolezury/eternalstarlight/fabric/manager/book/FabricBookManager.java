@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.fabric.manager.book;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.manager.book.BookManager;
+import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resources.ResourceLocation;
 

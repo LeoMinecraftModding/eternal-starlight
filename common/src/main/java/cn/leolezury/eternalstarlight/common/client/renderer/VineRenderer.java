@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.VineModel;
-import cn.leolezury.eternalstarlight.common.entity.attack.Vine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class VineRenderer extends EntityRenderer<Vine> {
+public class VineRenderer extends EntityRenderer<LunarVine> {
     ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/vine.png");
-    VineModel<Vine> model;
+    VineModel<LunarVine> model;
 
     public VineRenderer(EntityRendererProvider.Context context) {
         super(context);
@@ -24,7 +24,7 @@ public class VineRenderer extends EntityRenderer<Vine> {
     }
 
     @Override
-    public void render(Vine entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(LunarVine entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         stack.pushPose();
         float scale = entity.getSpawnedTicks() <= 40 ? entity.getSpawnedTicks() / 40f : 1;
         if (entity.getSpawnedTicks() >= 160) {
@@ -38,7 +38,7 @@ public class VineRenderer extends EntityRenderer<Vine> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Vine entity) {
+    public ResourceLocation getTextureLocation(LunarVine entity) {
         return ENTITY_TEXTURE;
     }
 }

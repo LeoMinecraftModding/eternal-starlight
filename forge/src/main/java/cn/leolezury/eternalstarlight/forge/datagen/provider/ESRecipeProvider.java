@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class ESRecipeProvider extends RecipeProvider {
     public ESRecipeProvider(PackOutput output) {
@@ -36,12 +35,12 @@ public class ESRecipeProvider extends RecipeProvider {
         addThermalSpringstoneRecipes(consumer);
 
         // smelt
-        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "golem_steel_ingot", 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT, ItemInit.GOLEM_STEEL_INGOT, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
-        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "golem_steel_ingot", 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT, ItemInit.GOLEM_STEEL_INGOT, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "golem_steel_ingot", 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "golem_steel_ingot", 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
 
         // misc
-        addShapeless(consumer, "muddy_starlight_mangrove_roots", ItemInit.STARLIGHT_MANGROVE_ROOTS, ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS, 1, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.NIGHTSHADE_MUD.get());
-        addShapeless(consumer, "packed_nightshade_mud", ItemInit.NIGHTSHADE_MUD, ItemInit.PACKED_NIGHTSHADE_MUD, 1, ItemInit.NIGHTSHADE_MUD.get(), ItemInit.LUNAR_BERRIES.get());
+        addShapeless(consumer, "muddy_starlight_mangrove_roots", ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.NIGHTSHADE_MUD.get());
+        addShapeless(consumer, "packed_nightshade_mud", ItemInit.NIGHTSHADE_MUD.get(), ItemInit.PACKED_NIGHTSHADE_MUD.get(), 1, ItemInit.NIGHTSHADE_MUD.get(), ItemInit.LUNAR_BERRIES.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.SEEKING_EYE.get())
                 .pattern("FFF")
                 .pattern("FPF")
@@ -82,107 +81,107 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addWoodRecipes(Consumer<FinishedRecipe> consumer) {
-        addButton(consumer, "lunar", BlockInit.LUNAR_BUTTON, BlockInit.LUNAR_PLANKS);
-        addDoor(consumer, "lunar", BlockInit.LUNAR_DOOR, BlockInit.LUNAR_PLANKS);
-        addFence(consumer, "lunar", BlockInit.LUNAR_FENCE, BlockInit.LUNAR_PLANKS);
-        addFenceGate(consumer, "lunar", BlockInit.LUNAR_FENCE_GATE, BlockInit.LUNAR_PLANKS);
-        addPlanks(consumer, "lunar", BlockInit.LUNAR_PLANKS, ESTags.Items.LUNAR_LOGS);
-        addWood(consumer, "lunar", BlockInit.LUNAR_WOOD, BlockInit.LUNAR_LOG);
-        addStrippedWood(consumer, "lunar", BlockInit.STRIPPED_LUNAR_WOOD, BlockInit.STRIPPED_LUNAR_LOG);
-        addPressurePlate(consumer, "lunar", BlockInit.LUNAR_PRESSURE_PLATE, BlockInit.LUNAR_PLANKS);
-        addSlab(consumer, "lunar", BlockInit.LUNAR_SLAB, BlockInit.LUNAR_PLANKS);
-        addStairs(consumer, "lunar", BlockInit.LUNAR_STAIRS, BlockInit.LUNAR_PLANKS);
-        addTrapdoor(consumer, "lunar", BlockInit.LUNAR_TRAPDOOR, BlockInit.LUNAR_PLANKS);
-        addSign(consumer, "lunar", ItemInit.LUNAR_SIGN, BlockInit.LUNAR_PLANKS);
-        addHangingSign(consumer, "lunar", ItemInit.LUNAR_HANGING_SIGN, BlockInit.STRIPPED_LUNAR_LOG);
-        addBoat(consumer, ItemInit.LUNAR_BOAT, ItemInit.LUNAR_CHEST_BOAT, BlockInit.LUNAR_PLANKS);
+        addButton(consumer, "lunar", BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_PLANKS.get());
+        addDoor(consumer, "lunar", BlockInit.LUNAR_DOOR.get(), BlockInit.LUNAR_PLANKS.get());
+        addFence(consumer, "lunar", BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_PLANKS.get());
+        addFenceGate(consumer, "lunar", BlockInit.LUNAR_FENCE_GATE.get(), BlockInit.LUNAR_PLANKS.get());
+        addPlanks(consumer, "lunar", BlockInit.LUNAR_PLANKS.get(), ESTags.Items.LUNAR_LOGS);
+        addWood(consumer, "lunar", BlockInit.LUNAR_WOOD.get(), BlockInit.LUNAR_LOG.get());
+        addStrippedWood(consumer, "lunar", BlockInit.STRIPPED_LUNAR_WOOD.get(), BlockInit.STRIPPED_LUNAR_LOG.get());
+        addPressurePlate(consumer, "lunar", BlockInit.LUNAR_PRESSURE_PLATE.get(), BlockInit.LUNAR_PLANKS.get());
+        addSlab(consumer, "lunar", BlockInit.LUNAR_SLAB.get(), BlockInit.LUNAR_PLANKS.get());
+        addStairs(consumer, "lunar", BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_PLANKS.get());
+        addTrapdoor(consumer, "lunar", BlockInit.LUNAR_TRAPDOOR.get(), BlockInit.LUNAR_PLANKS.get());
+        addSign(consumer, "lunar", ItemInit.LUNAR_SIGN.get(), BlockInit.LUNAR_PLANKS.get());
+        addHangingSign(consumer, "lunar", ItemInit.LUNAR_HANGING_SIGN.get(), BlockInit.STRIPPED_LUNAR_LOG.get());
+        addBoat(consumer, ItemInit.LUNAR_BOAT.get(), ItemInit.LUNAR_CHEST_BOAT.get(), BlockInit.LUNAR_PLANKS.get());
 
-        addButton(consumer, "northland", BlockInit.NORTHLAND_BUTTON, BlockInit.NORTHLAND_PLANKS);
-        addDoor(consumer, "northland", BlockInit.NORTHLAND_DOOR, BlockInit.NORTHLAND_PLANKS);
-        addFence(consumer, "northland", BlockInit.NORTHLAND_FENCE, BlockInit.NORTHLAND_PLANKS);
-        addFenceGate(consumer, "northland", BlockInit.NORTHLAND_FENCE_GATE, BlockInit.NORTHLAND_PLANKS);
-        addPlanks(consumer, "northland", BlockInit.NORTHLAND_PLANKS, ESTags.Items.NORTHLAND_LOGS);
-        addWood(consumer, "northland", BlockInit.NORTHLAND_WOOD, BlockInit.NORTHLAND_LOG);
-        addStrippedWood(consumer, "northland", BlockInit.STRIPPED_NORTHLAND_WOOD, BlockInit.STRIPPED_NORTHLAND_LOG);
-        addPressurePlate(consumer, "northland", BlockInit.NORTHLAND_PRESSURE_PLATE, BlockInit.NORTHLAND_PLANKS);
-        addSlab(consumer, "northland", BlockInit.NORTHLAND_SLAB, BlockInit.NORTHLAND_PLANKS);
-        addStairs(consumer, "northland", BlockInit.NORTHLAND_STAIRS, BlockInit.NORTHLAND_PLANKS);
-        addTrapdoor(consumer, "northland", BlockInit.NORTHLAND_TRAPDOOR, BlockInit.NORTHLAND_PLANKS);
-        addSign(consumer, "northland", ItemInit.NORTHLAND_SIGN, BlockInit.NORTHLAND_PLANKS);
-        addHangingSign(consumer, "northland", ItemInit.NORTHLAND_HANGING_SIGN, BlockInit.STRIPPED_NORTHLAND_LOG);
-        addBoat(consumer, ItemInit.NORTHLAND_BOAT, ItemInit.NORTHLAND_CHEST_BOAT, BlockInit.NORTHLAND_PLANKS);
+        addButton(consumer, "northland", BlockInit.NORTHLAND_BUTTON.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addDoor(consumer, "northland", BlockInit.NORTHLAND_DOOR.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addFence(consumer, "northland", BlockInit.NORTHLAND_FENCE.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addFenceGate(consumer, "northland", BlockInit.NORTHLAND_FENCE_GATE.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addPlanks(consumer, "northland", BlockInit.NORTHLAND_PLANKS.get(), ESTags.Items.NORTHLAND_LOGS);
+        addWood(consumer, "northland", BlockInit.NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_LOG.get());
+        addStrippedWood(consumer, "northland", BlockInit.STRIPPED_NORTHLAND_WOOD.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
+        addPressurePlate(consumer, "northland", BlockInit.NORTHLAND_PRESSURE_PLATE.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addSlab(consumer, "northland", BlockInit.NORTHLAND_SLAB.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addStairs(consumer, "northland", BlockInit.NORTHLAND_STAIRS.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addTrapdoor(consumer, "northland", BlockInit.NORTHLAND_TRAPDOOR.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addSign(consumer, "northland", ItemInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_PLANKS.get());
+        addHangingSign(consumer, "northland", ItemInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
+        addBoat(consumer, ItemInit.NORTHLAND_BOAT.get(), ItemInit.NORTHLAND_CHEST_BOAT.get(), BlockInit.NORTHLAND_PLANKS.get());
 
-        addButton(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_BUTTON, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addDoor(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_DOOR, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addFence(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_FENCE, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addFenceGate(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_FENCE_GATE, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addPlanks(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_PLANKS, ESTags.Items.STARLIGHT_MANGROVE_LOGS);
-        addWood(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_WOOD, BlockInit.STARLIGHT_MANGROVE_LOG);
-        addStrippedWood(consumer, "starlight_mangrove", BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD, BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG);
-        addPressurePlate(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addSlab(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_SLAB, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addStairs(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_STAIRS, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addTrapdoor(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_TRAPDOOR, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addSign(consumer, "starlight_mangrove", ItemInit.STARLIGHT_MANGROVE_SIGN, BlockInit.STARLIGHT_MANGROVE_PLANKS);
-        addHangingSign(consumer, "starlight_mangrove", ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN, BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG);
-        addBoat(consumer, ItemInit.STARLIGHT_MANGROVE_BOAT, ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT, BlockInit.STARLIGHT_MANGROVE_PLANKS);
+        addButton(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addDoor(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_DOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addFence(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_FENCE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addFenceGate(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addPlanks(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), ESTags.Items.STARLIGHT_MANGROVE_LOGS);
+        addWood(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_LOG.get());
+        addStrippedWood(consumer, "starlight_mangrove", BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
+        addPressurePlate(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addSlab(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_SLAB.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addStairs(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addTrapdoor(consumer, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addSign(consumer, "starlight_mangrove", ItemInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addHangingSign(consumer, "starlight_mangrove", ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
+        addBoat(consumer, ItemInit.STARLIGHT_MANGROVE_BOAT.get(), ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
     }
 
     private void addStoneRecipes(Consumer<FinishedRecipe> consumer) {
-        addPolished(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE, BlockInit.GRIMSTONE);
-        addBricks(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS, BlockInit.POLISHED_GRIMSTONE);
-        addChiseled(consumer, "grimstone", BlockInit.CHISELED_GRIMSTONE, BlockInit.GRIMSTONE_BRICK_SLAB);
-        addStoneCuttingChiseled(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS, ItemInit.CHISELED_GRIMSTONE.get());
-        addStoneCuttingBricks(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.GRIMSTONE_BRICKS.get());
-        addWall(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_WALL, BlockInit.GRIMSTONE_BRICKS);
-        addStoneCuttingWall(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.GRIMSTONE_BRICK_WALL.get());
-        addStoneCuttingWall(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS, ItemInit.GRIMSTONE_BRICK_WALL.get());
-        addStairs(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_STAIRS, BlockInit.GRIMSTONE_BRICKS);
-        addStoneCuttingStairs(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.GRIMSTONE_BRICK_STAIRS.get());
-        addStoneCuttingStairs(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS, ItemInit.GRIMSTONE_BRICK_STAIRS.get());
-        addSlab(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_SLAB, BlockInit.GRIMSTONE_BRICKS);
-        addStoneCuttingSlab(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.GRIMSTONE_BRICK_SLAB.get());
-        addStoneCuttingSlab(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS, ItemInit.GRIMSTONE_BRICK_SLAB.get());
-        addWall(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_WALL, BlockInit.POLISHED_GRIMSTONE);
-        addStoneCuttingWall(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.POLISHED_GRIMSTONE_WALL.get());
-        addStairs(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_STAIRS, BlockInit.POLISHED_GRIMSTONE);
-        addStoneCuttingStairs(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.POLISHED_GRIMSTONE_STAIRS.get());
-        addSlab(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_SLAB, BlockInit.POLISHED_GRIMSTONE);
-        addStoneCuttingSlab(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE, ItemInit.POLISHED_GRIMSTONE_SLAB.get());
+        addPolished(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE.get());
+        addBricks(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        addChiseled(consumer, "grimstone", BlockInit.CHISELED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
+        addStoneCuttingChiseled(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), ItemInit.CHISELED_GRIMSTONE.get());
+        addStoneCuttingBricks(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.GRIMSTONE_BRICKS.get());
+        addWall(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_WALL.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        addStoneCuttingWall(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.GRIMSTONE_BRICK_WALL.get());
+        addStoneCuttingWall(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), ItemInit.GRIMSTONE_BRICK_WALL.get());
+        addStairs(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_STAIRS.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        addStoneCuttingStairs(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.GRIMSTONE_BRICK_STAIRS.get());
+        addStoneCuttingStairs(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), ItemInit.GRIMSTONE_BRICK_STAIRS.get());
+        addSlab(consumer, "grimstone", BlockInit.GRIMSTONE_BRICK_SLAB.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        addStoneCuttingSlab(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.GRIMSTONE_BRICK_SLAB.get());
+        addStoneCuttingSlab(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), ItemInit.GRIMSTONE_BRICK_SLAB.get());
+        addWall(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_WALL.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        addStoneCuttingWall(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.POLISHED_GRIMSTONE_WALL.get());
+        addStairs(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_STAIRS.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        addStoneCuttingStairs(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.POLISHED_GRIMSTONE_STAIRS.get());
+        addSlab(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE_SLAB.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        addStoneCuttingSlab(consumer, "polished_grimstone", BlockInit.POLISHED_GRIMSTONE.get(), ItemInit.POLISHED_GRIMSTONE_SLAB.get());
 
-        addPolished(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE, BlockInit.VOIDSTONE);
-        addBricks(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS, BlockInit.POLISHED_VOIDSTONE);
-        addChiseled(consumer, "voidstone", BlockInit.CHISELED_VOIDSTONE, BlockInit.VOIDSTONE_BRICK_SLAB);
-        addStoneCuttingChiseled(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS, ItemInit.CHISELED_VOIDSTONE.get());
-        addStoneCuttingBricks(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.VOIDSTONE_BRICKS.get());
-        addWall(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_WALL, BlockInit.VOIDSTONE_BRICKS);
-        addStoneCuttingWall(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.VOIDSTONE_BRICK_WALL.get());
-        addStoneCuttingWall(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS, ItemInit.VOIDSTONE_BRICK_WALL.get());
-        addStairs(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_STAIRS, BlockInit.VOIDSTONE_BRICKS);
-        addStoneCuttingStairs(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.VOIDSTONE_BRICK_STAIRS.get());
-        addStoneCuttingStairs(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS, ItemInit.VOIDSTONE_BRICK_STAIRS.get());
-        addSlab(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_SLAB, BlockInit.VOIDSTONE_BRICKS);
-        addStoneCuttingSlab(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.VOIDSTONE_BRICK_SLAB.get());
-        addStoneCuttingSlab(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS, ItemInit.VOIDSTONE_BRICK_SLAB.get());
-        addWall(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_WALL, BlockInit.POLISHED_VOIDSTONE);
-        addStoneCuttingWall(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.POLISHED_VOIDSTONE_WALL.get());
-        addStairs(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_STAIRS, BlockInit.POLISHED_VOIDSTONE);
-        addStoneCuttingStairs(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.POLISHED_VOIDSTONE_STAIRS.get());
-        addSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_SLAB, BlockInit.POLISHED_VOIDSTONE);
-        addStoneCuttingSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE, ItemInit.POLISHED_VOIDSTONE_SLAB.get());
+        addPolished(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE.get());
+        addBricks(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        addChiseled(consumer, "voidstone", BlockInit.CHISELED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get());
+        addStoneCuttingChiseled(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS.get(), ItemInit.CHISELED_VOIDSTONE.get());
+        addStoneCuttingBricks(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.VOIDSTONE_BRICKS.get());
+        addWall(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_WALL.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        addStoneCuttingWall(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.VOIDSTONE_BRICK_WALL.get());
+        addStoneCuttingWall(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS.get(), ItemInit.VOIDSTONE_BRICK_WALL.get());
+        addStairs(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_STAIRS.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        addStoneCuttingStairs(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.VOIDSTONE_BRICK_STAIRS.get());
+        addStoneCuttingStairs(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS.get(), ItemInit.VOIDSTONE_BRICK_STAIRS.get());
+        addSlab(consumer, "voidstone", BlockInit.VOIDSTONE_BRICK_SLAB.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        addStoneCuttingSlab(consumer, "voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.VOIDSTONE_BRICK_SLAB.get());
+        addStoneCuttingSlab(consumer, "voidstone", BlockInit.VOIDSTONE_BRICKS.get(), ItemInit.VOIDSTONE_BRICK_SLAB.get());
+        addWall(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_WALL.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        addStoneCuttingWall(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.POLISHED_VOIDSTONE_WALL.get());
+        addStairs(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        addStoneCuttingStairs(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.POLISHED_VOIDSTONE_STAIRS.get());
+        addSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        addStoneCuttingSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.POLISHED_VOIDSTONE_SLAB.get());
 
-        addBricks(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS, BlockInit.PACKED_NIGHTSHADE_MUD);
-        addWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_WALL, BlockInit.NIGHTSHADE_MUD_BRICKS);
-        addStoneCuttingWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS, ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get());
-        addStairs(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS, BlockInit.NIGHTSHADE_MUD_BRICKS);
-        addStoneCuttingStairs(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS, ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
-        addSlab(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_SLAB, BlockInit.NIGHTSHADE_MUD_BRICKS);
-        addStoneCuttingSlab(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS, ItemInit.NIGHTSHADE_MUD_BRICK_SLAB.get());
+        addBricks(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.PACKED_NIGHTSHADE_MUD.get());
+        addWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
+        addStoneCuttingWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get());
+        addStairs(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
+        addStoneCuttingStairs(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
+        addSlab(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
+        addStoneCuttingSlab(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), ItemInit.NIGHTSHADE_MUD_BRICK_SLAB.get());
     }
 
     private void addAetherSentRecipes(Consumer<FinishedRecipe> consumer) {
-        addCompressed(consumer, "aethersent", ItemInit.AETHERSENT_INGOT.get(), BlockInit.AETHERSENT_BLOCK);
-        addReverseCompressed(consumer, "aethersent", BlockInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT);
+        addCompressed(consumer, "aethersent", ItemInit.AETHERSENT_INGOT.get(), BlockInit.AETHERSENT_BLOCK.get());
+        addReverseCompressed(consumer, "aethersent", BlockInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_HOOD.get())
                 .pattern("###")
                 .pattern("A A")
@@ -221,20 +220,20 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
                 .save(consumer, getEquipmentLocation("starfall_longbow"));
-        addSword(consumer, "rage_of_stars", ItemInit.RAGE_OF_STARS, ItemInit.AETHERSENT_INGOT, () -> Items.STICK);
+        addSword(consumer, "rage_of_stars", ItemInit.RAGE_OF_STARS.get(), ItemInit.AETHERSENT_INGOT.get(), Items.STICK);
     }
 
     private void addSwampSilverRecipes(Consumer<FinishedRecipe> consumer) {
-        addCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get(), BlockInit.SWAMP_SILVER_BLOCK);
-        addReverseCompressed(consumer, "swamp_silver", BlockInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT);
-        addAxe(consumer, "swamp_silver_axe", ItemInit.SWAMP_SILVER_AXE, ItemInit.SWAMP_SILVER_INGOT, () -> Items.STICK);
-        addPickaxe(consumer, "swamp_silver_pickaxe", ItemInit.SWAMP_SILVER_PICKAXE, ItemInit.SWAMP_SILVER_INGOT, () -> Items.STICK);
-        addHoe(consumer, "swamp_silver_sickle", ItemInit.SWAMP_SILVER_SICKLE, ItemInit.SWAMP_SILVER_INGOT, () -> Items.STICK);
-        addSword(consumer, "swamp_silver_sword", ItemInit.SWAMP_SILVER_SWORD, ItemInit.SWAMP_SILVER_INGOT, () -> Items.STICK);
-        addHelmet(consumer, "swamp_silver_helmet", ItemInit.SWAMP_SILVER_HELMET, ItemInit.SWAMP_SILVER_INGOT);
-        addChestplate(consumer, "swamp_silver_chestplate", ItemInit.SWAMP_SILVER_CHESTPLATE, ItemInit.SWAMP_SILVER_INGOT);
-        addLeggings(consumer, "swamp_silver_leggings", ItemInit.SWAMP_SILVER_LEGGINGS, ItemInit.SWAMP_SILVER_INGOT);
-        addBoots(consumer, "swamp_silver_boots", ItemInit.SWAMP_SILVER_BOOTS, ItemInit.SWAMP_SILVER_INGOT);
+        addCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get(), BlockInit.SWAMP_SILVER_BLOCK.get());
+        addReverseCompressed(consumer, "swamp_silver", BlockInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        addAxe(consumer, "swamp_silver_axe", ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
+        addPickaxe(consumer, "swamp_silver_pickaxe", ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
+        addHoe(consumer, "swamp_silver_sickle", ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
+        addSword(consumer, "swamp_silver_sword", ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
+        addHelmet(consumer, "swamp_silver_helmet", ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        addChestplate(consumer, "swamp_silver_chestplate", ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        addLeggings(consumer, "swamp_silver_leggings", ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        addBoots(consumer, "swamp_silver_boots", ItemInit.SWAMP_SILVER_BOOTS.get(), ItemInit.SWAMP_SILVER_INGOT.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get())
                 .pattern("###")
                 .pattern("###")
@@ -246,33 +245,33 @@ public class ESRecipeProvider extends RecipeProvider {
                 .requires(ItemInit.SWAMP_SILVER_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_INGOT.get()))
                 .save(consumer, getMiscLocation("swamp_silver_nuggets_from_ingot"));
-        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_ORE.get());
-        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_ORE.get());
-        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
-        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_nugget", 100, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_INGOT, ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
+        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
+        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
+        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
+        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_nugget", 100, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
     }
 
     private void addThermalSpringstoneRecipes(Consumer<FinishedRecipe> consumer) {
-        addAxe(consumer, "thermal_springstone_axe", ItemInit.THERMAL_SPRINGSTONE_AXE, ItemInit.THERMAL_SPRINGSTONE_INGOT, () -> Items.STICK);
-        addPickaxe(consumer, "thermal_springstone_pickaxe", ItemInit.THERMAL_SPRINGSTONE_PICKAXE, ItemInit.THERMAL_SPRINGSTONE_INGOT, () -> Items.STICK);
-        addHoe(consumer, "thermal_springstone_scythe", ItemInit.THERMAL_SPRINGSTONE_SCYTHE, ItemInit.THERMAL_SPRINGSTONE_INGOT, () -> Items.STICK);
-        addSword(consumer, "thermal_springstone_sword", ItemInit.THERMAL_SPRINGSTONE_SWORD, ItemInit.THERMAL_SPRINGSTONE_INGOT, () -> Items.STICK);
-        addHammer(consumer, "thermal_springstone_hammer", ItemInit.THERMAL_SPRINGSTONE_HAMMER, ItemInit.THERMAL_SPRINGSTONE_INGOT, () -> Items.STICK);
-        addHelmet(consumer, "thermal_springstone_helmet", ItemInit.THERMAL_SPRINGSTONE_HELMET, ItemInit.THERMAL_SPRINGSTONE_INGOT);
-        addChestplate(consumer, "thermal_springstone_chestplate", ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE, ItemInit.THERMAL_SPRINGSTONE_INGOT);
-        addLeggings(consumer, "thermal_springstone_leggings", ItemInit.THERMAL_SPRINGSTONE_LEGGINGS, ItemInit.THERMAL_SPRINGSTONE_INGOT);
-        addBoots(consumer, "thermal_springstone_boots", ItemInit.THERMAL_SPRINGSTONE_BOOTS, ItemInit.THERMAL_SPRINGSTONE_INGOT);
-        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "thermal_springstone_ingot", 200, ItemInit.THERMAL_SPRINGSTONE, ItemInit.THERMAL_SPRINGSTONE_INGOT, ItemInit.THERMAL_SPRINGSTONE.get());
-        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "thermal_springstone_ingot", 100, ItemInit.THERMAL_SPRINGSTONE, ItemInit.THERMAL_SPRINGSTONE_INGOT, ItemInit.THERMAL_SPRINGSTONE.get());
+        addAxe(consumer, "thermal_springstone_axe", ItemInit.THERMAL_SPRINGSTONE_AXE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+        addPickaxe(consumer, "thermal_springstone_pickaxe", ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+        addHoe(consumer, "thermal_springstone_scythe", ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+        addSword(consumer, "thermal_springstone_sword", ItemInit.THERMAL_SPRINGSTONE_SWORD.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+        addHammer(consumer, "thermal_springstone_hammer", ItemInit.THERMAL_SPRINGSTONE_HAMMER.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+        addHelmet(consumer, "thermal_springstone_helmet", ItemInit.THERMAL_SPRINGSTONE_HELMET.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
+        addChestplate(consumer, "thermal_springstone_chestplate", ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
+        addLeggings(consumer, "thermal_springstone_leggings", ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
+        addBoots(consumer, "thermal_springstone_boots", ItemInit.THERMAL_SPRINGSTONE_BOOTS.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
+        addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "thermal_springstone_ingot", 200, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
+        addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "thermal_springstone_ingot", 100, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
     }
 
     // misc
-    protected final void addSmelt(Consumer<FinishedRecipe> finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, Supplier<? extends Item> criteria, Supplier<? extends Item> output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output.get(), 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria.get())).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
+    protected final void addSmelt(Consumer<FinishedRecipe> finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
     }
 
-    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, Supplier<? extends Block> output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get())
+    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, Block output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
@@ -281,321 +280,321 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getModLocation("compressed_blocks/" + id));
     }
 
-    protected final void addReverseCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block compressed, Supplier<? extends Item> output) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output.get(), 9)
+    protected final void addReverseCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block compressed, ItemLike output) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 9)
                 .requires(compressed)
                 .unlockedBy("has_item", has(compressed))
                 .save(finishedRecipeConsumer, getModLocation("compressed_blocks/reversed/" + id));
     }
 
-    protected final void addShapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> criteria, Supplier<? extends Item> output, int num, ItemLike... ingredients) {
-        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output.get(), num);
+    protected final void addShapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
+        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, num);
         for (ItemLike item : ingredients) {
             builder.requires(item);
         }
-        builder.unlockedBy("has_item", has(criteria.get())).save(finishedRecipeConsumer, getModLocation("shapeless/" + id));
+        builder.unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getModLocation("shapeless/" + id));
     }
 
     // combat & tools
-    protected final void addHelmet(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addHelmet(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("# #")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addChestplate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addChestplate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addLeggings(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addLeggings(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addBoots(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addBoots(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("# #")
                 .pattern("# #")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addHoe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input, Supplier<? extends Item> handle) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output.get())
+    protected final void addHoe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("##")
                 .pattern(" H")
                 .pattern(" H")
-                .define('#', input.get())
-                .define('H', handle.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addPickaxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input, Supplier<? extends Item> handle) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output.get())
+    protected final void addPickaxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("###")
                 .pattern(" H ")
                 .pattern(" H ")
-                .define('#', input.get())
-                .define('H', handle.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addSword(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input, Supplier<? extends Item> handle) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addSword(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("#")
                 .pattern("#")
                 .pattern("H")
-                .define('#', input.get())
-                .define('H', handle.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addAxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input, Supplier<? extends Item> handle) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output.get())
+    protected final void addAxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("##")
                 .pattern("#H")
                 .pattern(" H")
-                .define('#', input.get())
-                .define('H', handle.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addHammer(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Item> input, Supplier<? extends Item> handle) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output.get())
+    protected final void addHammer(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("#H#")
                 .pattern(" H ")
-                .define('#', input.get())
-                .define('H', handle.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
     // building blocks and wooden stuff
-    protected final void addPlanks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, TagKey<Item> input) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output.get(), 4)
+    protected final void addPlanks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, TagKey<Item> input) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_planks"));
     }
 
-    protected final void addWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 3)
+    protected final void addWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 3)
                 .pattern("##")
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_wood"));
     }
 
-    protected final void addStrippedWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 3)
+    protected final void addStrippedWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 3)
                 .pattern("##")
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_stripped_wood"));
     }
 
-    protected final void addButton(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, output.get())
-                .requires(input.get())
-                .unlockedBy("has_item", has(input.get()))
+    protected final void addButton(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, output)
+                .requires(input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_button"));
     }
 
-    protected final void addDoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output.get(), 3)
+    protected final void addDoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 3)
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_door"));
     }
 
-    protected final void addFence(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 3)
+    protected final void addFence(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3)
                 .pattern("#S#")
                 .pattern("#S#")
-                .define('#', input.get())
+                .define('#', input)
                 .define('S', Items.STICK)
-                .unlockedBy("has_item", has(input.get()))
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence"));
     }
 
-    protected final void addFenceGate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output.get())
+    protected final void addFenceGate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output)
                 .pattern("S#S")
                 .pattern("S#S")
-                .define('#', input.get())
+                .define('#', input)
                 .define('S', Items.STICK)
-                .unlockedBy("has_item", has(input.get()))
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence_gate"));
     }
 
-    protected final void addPressurePlate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output.get())
+    protected final void addPressurePlate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output)
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_pressure_plate"));
     }
 
-    protected final void addSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 6)
+    protected final void addSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
                 .pattern("###")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab"));
     }
 
-    protected final void addStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output.get(), 2)
+    protected final void addStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 2)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs"));
     }
 
-    protected final void addTrapdoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output.get(), 2)
+    protected final void addTrapdoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 2)
                 .pattern("###")
                 .pattern("###")
-                .define('#', input.get())
-                .unlockedBy("has_item", has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_trapdoor"));
     }
 
-    protected final void addSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 3)
+    protected final void addSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3)
                 .pattern("###")
                 .pattern("###")
                 .pattern(" S ")
-                .define('#', input.get())
+                .define('#', input)
                 .define('S', Items.STICK)
-                .unlockedBy("has_item", has(input.get()))
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_sign"));
     }
 
-    protected final void addHangingSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Item> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 6)
+    protected final void addHangingSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("C C")
                 .pattern("###")
                 .pattern("###")
-                .define('#', input.get())
+                .define('#', input)
                 .define('C', Items.CHAIN)
-                .unlockedBy("has_item", has(input.get()))
+                .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_hanging_sign"));
     }
 
-    protected final void addBoat(Consumer<FinishedRecipe> finishedRecipeConsumer, Supplier<? extends Item> boat, Supplier<? extends Item> chestBoat, Supplier<? extends Block> planks) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat.get())
+    protected final void addBoat(Consumer<FinishedRecipe> finishedRecipeConsumer, Item boat, Item chestBoat, Block planks) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
                 .pattern("P P")
                 .pattern("PPP")
-                .define('P', planks.get())
+                .define('P', planks)
                 .group("boat")
                 .unlockedBy("in_water", insideOf(Blocks.WATER))
-                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(boat.get()).getPath()));
+                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(boat).getPath()));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat.get())
-                .requires(boat.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
+                .requires(boat)
                 .group("chest_boat")
                 .unlockedBy("has_boat", has(ItemTags.BOATS))
-                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(chestBoat.get()).getPath()));
+                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(chestBoat).getPath()));
     }
 
     // stone
-    protected final void addPolished(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 4)
+    protected final void addPolished(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
                 .pattern("##")
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath(), has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_polished"));
     }
 
-    protected final void addBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 4)
+    protected final void addBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
                 .pattern("##")
                 .pattern("##")
-                .define('#', input.get())
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath(), has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks"));
     }
 
-    protected final void addWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 6)
+    protected final void addWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("###")
                 .pattern("###")
-                .define('#', input.get())
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath(), has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall"));
     }
 
-    protected final void addChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<? extends Block> output, Supplier<? extends Block> input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output.get(), 6)
+    protected final void addChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("#")
                 .pattern("#")
-                .define('#', input.get())
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath(), has(input.get()))
+                .define('#', input)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled"));
     }
 
-    protected final void addStoneCuttingChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<Block> input, ItemLike output) {
+    protected final void addStoneCuttingChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath()));
+                .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<Block> input, ItemLike output) {
+    protected final void addStoneCuttingBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath()));
+                .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<Block> input, ItemLike output) {
+    protected final void addStoneCuttingSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output, 2)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath()));
+                .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<Block> input, ItemLike output) {
+    protected final void addStoneCuttingStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath()));
+                .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Supplier<Block> input, ItemLike output) {
+    protected final void addStoneCuttingWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input.get()).getPath()));
+                .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Supplier<Block> input, ItemLike output) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input.get()), RecipeCategory.BUILDING_BLOCKS, output)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()), has(input.get()));
+    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output) {
+        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input), has(input));
     }
 
-    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Supplier<Block> input, ItemLike output, int outputAmount) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input.get()), RecipeCategory.BUILDING_BLOCKS, output, outputAmount)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input.get()), has(input.get()));
+    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output, int outputAmount) {
+        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, outputAmount)
+                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input), has(input));
     }
 
     protected final ResourceLocation getModLocation(String id) {

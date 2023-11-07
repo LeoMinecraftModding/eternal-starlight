@@ -1,0 +1,11 @@
+{
+  "type": "eternal_starlight:starlight",
+  "generator": {
+    "type": "eternal_starlight:es_gen",
+    "biome_source": {
+      "type": "eternal_starlight:es_biomes",
+      "biomes": []
+    },
+    "settings": "eternal_starlight:starlight"
+  }
+}

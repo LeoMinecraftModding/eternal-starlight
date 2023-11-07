@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 public class ESUtil {
     public static void runWhenOnClient(Supplier<Runnable> toRun) {
-        if (ESPlatform.INSTANCE.isClientSide()) {
+        if (ESPlatform.INSTANCE.isPhysicalClient()) {
             toRun.get().run();
         }
     }

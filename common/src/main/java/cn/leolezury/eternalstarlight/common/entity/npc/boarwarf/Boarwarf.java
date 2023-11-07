@@ -40,6 +40,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Boarwarf extends PathfinderMob implements Npc, Merchant {
+
+    public Boarwarf(EntityType<? extends PathfinderMob> type, Level level) {
+        super(type, level);
+    }
+
     @Nullable
     private Player customer;
     @Nullable
@@ -113,10 +118,6 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         compoundTag.putInt("HomeX", homePos.getX());
         compoundTag.putInt("HomeY", homePos.getY());
         compoundTag.putInt("HomeZ", homePos.getZ());
-    }
-
-    public Boarwarf(EntityType<? extends PathfinderMob> type, Level level) {
-        super(type, level);
     }
 
     @Override

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.forge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.forge.network.ForgeNetworkHandler;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -22,15 +23,6 @@ public class CommonSetupEvents {
     public static void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(CommonSetupHandlers::setup);
         event.enqueueWork(ForgeNetworkHandler::init);
-    }
-
-    @SubscribeEvent
-    public void onRegister(RegisterEvent event) {
-        if (event.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
-            CommonSetupHandlers.registerChunkGenerator();
-        } else if (event.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
-            CommonSetupHandlers.registerBiomeSource();
-        }
     }
 
     @SubscribeEvent

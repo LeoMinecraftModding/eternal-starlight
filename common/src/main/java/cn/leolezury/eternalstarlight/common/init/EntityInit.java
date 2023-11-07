@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.animal.Dryad;
 import cn.leolezury.eternalstarlight.common.entity.animal.TwilightSquid;
 import cn.leolezury.eternalstarlight.common.entity.attack.FireColumn;
-import cn.leolezury.eternalstarlight.common.entity.attack.Vine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.attack.beam.StarlightGolemBeam;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
@@ -15,7 +15,7 @@ import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
-import cn.leolezury.eternalstarlight.common.entity.projectile.Spore;
+import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -42,7 +42,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<LunarMonstrosity>> LUNAR_MONSTROSITY = ENTITIES.register("lunar_monstrosity", () -> EntityType.Builder.<LunarMonstrosity>of(LunarMonstrosity::new, MobCategory.MONSTER).sized(1f, 3f).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_monstrosity").toString()));
     public static final RegistryObject<EntityType<StarlightGolemBeam>> STARLIGHT_GOLEM_BEAM = ENTITIES.register("starlight_golem_beam", () -> EntityType.Builder.<StarlightGolemBeam>of(StarlightGolemBeam::new, MobCategory.MISC).sized(0f, 0f).build(new ResourceLocation(EternalStarlight.MOD_ID, "starlight_golem_beam").toString()));
     public static final RegistryObject<EntityType<FireColumn>> FIRE_COLUMN = ENTITIES.register("fire_column", () -> EntityType.Builder.<FireColumn>of(FireColumn::new, MobCategory.MISC).sized(0f, 0f).build(new ResourceLocation(EternalStarlight.MOD_ID, "fire_column").toString()));
-    public static final RegistryObject<EntityType<Spore>> SPORE = ENTITIES.register("spore", () -> EntityType.Builder.<Spore>of(Spore::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(new ResourceLocation(EternalStarlight.MOD_ID, "spore").toString()));
-    public static final RegistryObject<EntityType<Vine>> VINE = ENTITIES.register("vine", () -> EntityType.Builder.<Vine>of(Vine::new, MobCategory.MISC).sized(0.3f, 1f).build(new ResourceLocation(EternalStarlight.MOD_ID, "vine").toString()));
+    public static final RegistryObject<EntityType<LunarSpore>> LUNAR_SPORE = ENTITIES.register("lunar_spore", () -> EntityType.Builder.<LunarSpore>of(LunarSpore::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_spore").toString()));
+    public static final RegistryObject<EntityType<LunarVine>> LUNAR_VINE = ENTITIES.register("lunar_vine", () -> EntityType.Builder.<LunarVine>of(LunarVine::new, MobCategory.MISC).sized(0.3f, 1f).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_vine").toString()));
     public static void postRegistry() {}
 }

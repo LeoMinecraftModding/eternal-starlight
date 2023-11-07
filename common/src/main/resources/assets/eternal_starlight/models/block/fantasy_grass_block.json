@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "eternal_starlight:block/nightshade_dirt",
+    "bottom": "eternal_starlight:block/nightshade_mud",
     "side": "eternal_starlight:block/fantasy_grass_block_side",
     "top": "eternal_starlight:block/fantasy_grass_block_top"
   }

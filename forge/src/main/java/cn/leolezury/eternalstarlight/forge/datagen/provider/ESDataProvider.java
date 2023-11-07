@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -17,6 +18,9 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureInit::bootstrap)
             .add(Registries.PLACED_FEATURE, PlacedFeatureInit::bootstrap)
+            .add(Registries.NOISE_SETTINGS, DimensionInit::bootstrapNoiseSettings)
+            .add(Registries.DIMENSION_TYPE, DimensionInit::bootstrapDimType)
+            .add(Registries.LEVEL_STEM, DimensionInit::bootstrapLevelStem)
             .add(Registries.DAMAGE_TYPE, DamageTypeInit::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

@@ -71,7 +71,7 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public boolean isClientSide() {
+    public boolean isPhysicalClient() {
         return FMLLoader.getDist() == Dist.CLIENT;
     }
 

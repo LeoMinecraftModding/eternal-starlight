@@ -43,8 +43,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class TheGatekeeper extends AbstractESBoss {
-    public TheGatekeeper(EntityType<? extends AbstractESBoss> entityType, Level level) {
+public class TheGatekeeper extends ESBoss {
+    public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);

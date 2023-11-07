@@ -21,7 +21,7 @@ public class TestPacket {
 
     public static class Handler {
         public static void handle(TestPacket message) {
-            LogUtils.getLogger().info("Received a test packet, name of the player: " + message.name + ", is client side: " + ESPlatform.INSTANCE.isClientSide());
+            LogUtils.getLogger().info("Received a test packet, name of the player: " + message.name + ", is client side: " + ESPlatform.INSTANCE.isPhysicalClient());
         }
     }
 }

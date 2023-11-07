@@ -20,13 +20,14 @@ public class DataGenerators {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
-        PackOutput output = event.getGenerator().getPackOutput();
+        PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output));
         generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));
+
         generator.addProvider(event.includeServer(), new ESDataProvider(output, lookupProvider));
     }
 }

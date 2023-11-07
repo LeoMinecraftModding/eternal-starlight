@@ -14,7 +14,6 @@ import net.minecraft.client.gui.screens.inventory.PageButton;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -33,12 +32,12 @@ public class ESBookScreen extends Screen {
     private static final int PAGE_BUTTON_HEIGHT = 13;
     private PageButton forwardButton;
     private PageButton backButton;
-    private BookRenderData bookData;
+    private final BookRenderData bookData;
     private int totalPages;
     private int currentPage;
     private int relativePage;
-    private List<List<FormattedCharSequence>> cachedComponents = new ArrayList<>();
-    private List<Integer> pagesPerSection = new ArrayList<>();
+    private final List<List<FormattedCharSequence>> cachedComponents = new ArrayList<>();
+    private final List<Integer> pagesPerSection = new ArrayList<>();
 
     public ESBookScreen(BookRenderData bookData) {
         super(GameNarrator.NO_TITLE);
@@ -50,12 +49,12 @@ public class ESBookScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        int x = (this.width - bookData.bookWidth) / 2;
-        int y = (this.height - bookData.bookHeight) / 2;
-        this.forwardButton = this.addRenderableWidget(new PageButton(x + bookData.bookWidth - PAGE_BUTTON_WIDTH, y + bookData.bookHeight - PAGE_BUTTON_HEIGHT, true, (button) -> {
+        int x = (this.width - bookData.bookWidth()) / 2;
+        int y = (this.height - bookData.bookHeight()) / 2;
+        this.forwardButton = this.addRenderableWidget(new PageButton(x + bookData.bookWidth() - PAGE_BUTTON_WIDTH, y + bookData.bookHeight() - PAGE_BUTTON_HEIGHT, true, (button) -> {
             this.pageForward();
         }, true));
-        this.backButton = this.addRenderableWidget(new PageButton(x, y + bookData.bookHeight - PAGE_BUTTON_HEIGHT, false, (button) -> {
+        this.backButton = this.addRenderableWidget(new PageButton(x, y + bookData.bookHeight() - PAGE_BUTTON_HEIGHT, false, (button) -> {
             this.pageBack();
         }, true));
     }
@@ -80,7 +79,7 @@ public class ESBookScreen extends Screen {
     }
 
     private int getCurrentChapter(int page) {
-        List<BookRenderData.ChapterRenderData> chapters = bookData.getChapters();
+        List<BookRenderData.ChapterRenderData> chapters = bookData.chapters();
         int pages = 0;
         for (int i = 0; i < chapters.size() + 1; i++) {
             pages += pagesPerSection.get(i);
@@ -96,15 +95,15 @@ public class ESBookScreen extends Screen {
     @Override
     public void render(GuiGraphics graphics, int i, int i1, float f) {
         renderBackground(graphics);
-        List<BookRenderData.ChapterRenderData> chapters = bookData.getChapters();
+        List<BookRenderData.ChapterRenderData> chapters = bookData.chapters();
         if (cachedComponents.isEmpty()) {
             // build the cache
-            int textWidth = bookData.bookWidth / 2 - bookData.textOffsetX * 2;
-            int linesPerPage = (bookData.bookHeight - 2 * bookData.textOffsetY) / this.font.lineHeight;
+            int textWidth = bookData.bookWidth() / 2 - bookData.textOffsetX() * 2;
+            int linesPerPage = (bookData.bookHeight() - 2 * bookData.textOffsetY()) / this.font.lineHeight;
             MutableComponent index = Component.empty();
             AtomicInteger order = new AtomicInteger(1);
             chapters.forEach((data) -> {
-                index.append(Component.translatable("book." + EternalStarlight.MOD_ID + ".chapter")).append(" " + order.get() + ": ").append(data.getTitle()).append("\n");
+                index.append(Component.translatable("book." + EternalStarlight.MOD_ID + ".chapter")).append(" " + order.get() + ": ").append(data.title()).append("\n");
                 order.getAndIncrement();
             });
             List<FormattedCharSequence> indexLines = this.font.split(index, textWidth);
@@ -115,7 +114,7 @@ public class ESBookScreen extends Screen {
             totalPages += 1; // because the book has a title and an image, takes one page
             for (BookRenderData.ChapterRenderData chapter : chapters) {
                 // split content to lines
-                List<FormattedCharSequence> lines = this.font.split(chapter.getContent(), textWidth);
+                List<FormattedCharSequence> lines = this.font.split(chapter.content(), textWidth);
                 cachedComponents.add(lines);
                 int pages = lines.size() % linesPerPage == 0 ? lines.size() / linesPerPage : lines.size() / linesPerPage + 1;
                 pagesPerSection.add(pages + 1);
@@ -124,51 +123,50 @@ public class ESBookScreen extends Screen {
             }
             updateButtonVisibility();
         }
-        int x = (width - bookData.bookWidth) / 2;
-        int y = (height - bookData.bookHeight) / 2;
-        int leftPageX = x + bookData.textOffsetX;
-        int rightPageX = x + bookData.bookWidth / 2 + bookData.textOffsetX;
-        graphics.blit(bookData.getBackgroundLocation(), x, y, 0, 0, 0, bookData.bookWidth, bookData.bookHeight, bookData.bookWidth, bookData.bookHeight);
-        renderPage(graphics, 0, leftPageX, y + bookData.textOffsetY);
+        int x = (width - bookData.bookWidth()) / 2;
+        int y = (height - bookData.bookHeight()) / 2;
+        int leftPageX = x + bookData.textOffsetX();
+        int rightPageX = x + bookData.bookWidth() / 2 + bookData.textOffsetX();
+        graphics.blit(bookData.backgroundLocation(), x, y, 0, 0, 0, bookData.bookWidth(), bookData.bookHeight(), bookData.bookWidth(), bookData.bookHeight());
+        renderPage(graphics, 0, leftPageX, y + bookData.textOffsetY());
         if (currentPage + 1 < totalPages) {
-            renderPage(graphics, 1, rightPageX, y + bookData.textOffsetY);
+            renderPage(graphics, 1, rightPageX, y + bookData.textOffsetY());
         }
         super.render(graphics, i, i1, f);
     }
 
     private void renderPage(GuiGraphics graphics, int pageOffset, int x, int y) {
-        int linesPerPage = (bookData.bookHeight - 2 * bookData.textOffsetY) / this.font.lineHeight;
+        int linesPerPage = (bookData.bookHeight() - 2 * bookData.textOffsetY()) / this.font.lineHeight;
         int currentChapter = getCurrentChapter(currentPage + pageOffset);
-        List<BookRenderData.ChapterRenderData> chapters = bookData.getChapters();
-        BookRenderData.ChapterRenderData chapter = new BookRenderData.ChapterRenderData(new ResourceLocation(""), new ResourceLocation(""), Component.empty(), Component.empty(), 0, 0);
+        List<BookRenderData.ChapterRenderData> chapters = bookData.chapters();
         if (currentChapter >= 0) {
-            chapter = chapters.get(currentChapter);
-        }
-        if (relativePage == 0) {
-            // then it's a title page
-            // draw background
-            graphics.blit(currentChapter < 0 ? bookData.getTitleBackgroundLocation() : chapter.getImageLocation(), x - bookData.textOffsetX, y - bookData.textOffsetY, 0, 0, 0, bookData.bookWidth / 2, bookData.bookHeight, bookData.bookWidth / 2, bookData.bookHeight);
-            // draw title
-            Component title = currentChapter < 0 ? bookData.getTitle() : chapter.getTitle();
-            graphics.drawString(font, title, x + (bookData.bookWidth / 2 - 2 * bookData.textOffsetX - font.width(title)) / 2, y + (bookData.bookHeight - 2 * bookData.textOffsetY) / 4 * 3, 0, false);
-            // draw entity display
-            EntityType<?> entityType;
-            if ((entityType = ESPlatform.INSTANCE.getEntityType(chapter.getDisplayEntity())) != null) {
-                Entity entity = null;
-                if (minecraft != null && minecraft.level != null) {
-                    entity = entityType.create(minecraft.level);
+            BookRenderData.ChapterRenderData chapter = chapters.get(currentChapter);
+            if (relativePage == 0) {
+                // then it's a title page
+                // draw background
+                graphics.blit(currentChapter < 0 ? bookData.titleBackgroundLocation() : chapter.imageLocation(), x - bookData.textOffsetX(), y - bookData.textOffsetY(), 0, 0, 0, bookData.bookWidth() / 2, bookData.bookHeight(), bookData.bookWidth() / 2, bookData.bookHeight());
+                // draw title
+                Component title = currentChapter < 0 ? bookData.title() : chapter.title();
+                graphics.drawString(font, title, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX() - font.width(title)) / 2, y + (bookData.bookHeight() - 2 * bookData.textOffsetY()) / 4 * 3, 0, false);
+                // draw entity display
+                EntityType<?> entityType;
+                if ((entityType = ESPlatform.INSTANCE.getEntityType(chapter.displayEntity())) != null) {
+                    Entity entity = null;
+                    if (minecraft != null && minecraft.level != null) {
+                        entity = entityType.create(minecraft.level);
+                    }
+                    if (entity instanceof LivingEntity livingEntity) {
+                        renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX()) / 2, y + chapter.entityOffset(), (int) (17 * chapter.entityDisplayScale()), 0, 0, livingEntity);
+                    }
                 }
-                if (entity instanceof LivingEntity livingEntity) {
-                    renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth / 2 - 2 * bookData.textOffsetX) / 2, y + chapter.entityOffset, (int) (17 * chapter.entityDisplayScale), 0, 0, livingEntity);
+            } else {
+                // then it's a normal page
+                // get the lines for the current chapter
+                List<FormattedCharSequence> components = cachedComponents.get(currentChapter + 1);
+                for (int i = (relativePage - 1) * linesPerPage; i < Math.min(relativePage * linesPerPage, components.size()); i++) {
+                    int textY = (i - (relativePage - 1) * linesPerPage) * font.lineHeight;
+                    graphics.drawString(font, components.get(i), x, y + textY, 0, false);
                 }
-            }
-        } else {
-            // then it's a normal page
-            // get the lines for the current chapter
-            List<FormattedCharSequence> components = cachedComponents.get(currentChapter + 1);
-            for (int i = (relativePage - 1) * linesPerPage; i < Math.min(relativePage * linesPerPage, components.size()); i++) {
-                int textY = (i - (relativePage - 1) * linesPerPage) * font.lineHeight;
-                graphics.drawString(font, components.get(i), x, y + textY, 0, false);
             }
         }
     }

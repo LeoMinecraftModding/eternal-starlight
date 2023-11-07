@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.sounds.CommonBossMusicInstance;
-import cn.leolezury.eternalstarlight.common.entity.boss.AbstractESBoss;
+import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
@@ -84,7 +84,7 @@ public class ClientHandlers {
     public static void handleEntityEvent(Entity entity, Byte id) {
         float volume = Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.RECORDS);
 
-        if (entity instanceof AbstractESBoss boss && entity.isAlive() && id == BOSS_MUSIC_ID) {
+        if (entity instanceof ESBoss boss && entity.isAlive() && id == BOSS_MUSIC_ID) {
             if (volume <= 0.0F) {
                 BOSS_SOUND_MAP.clear();
             } else {

@@ -7,9 +7,9 @@ import cn.leolezury.eternalstarlight.common.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
-import cn.leolezury.eternalstarlight.common.manager.book.BookManager;
-import cn.leolezury.eternalstarlight.common.manager.book.chapter.ChapterManager;
-import cn.leolezury.eternalstarlight.common.manager.gatekeeper.TheGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
+import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
+import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
@@ -75,7 +75,7 @@ public interface ESPlatform {
 
     // some loader-related stuff
     Loader getLoader();
-    boolean isClientSide();
+    boolean isPhysicalClient();
 
     // for initialization
     // ---Items

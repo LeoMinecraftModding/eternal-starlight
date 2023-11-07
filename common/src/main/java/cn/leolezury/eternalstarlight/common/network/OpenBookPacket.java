@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.client.gui.screens.BookRenderData;
 import cn.leolezury.eternalstarlight.common.client.gui.screens.ESBookScreen;
-import cn.leolezury.eternalstarlight.common.manager.book.BookData;
-import cn.leolezury.eternalstarlight.common.manager.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.resource.book.BookData;
+import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenBookPacket {
-    private BookData bookData;
-    private List<ChapterData> chapterDataList;
+    private final BookData bookData;
+    private final List<ChapterData> chapterDataList;
 
     public OpenBookPacket(BookData bookData, List<ChapterData> chapterDataList) {
         this.bookData = bookData;
@@ -49,31 +49,32 @@ public class OpenBookPacket {
     }
 
     public static void write(OpenBookPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(message.bookData.bookWidth);
-        buf.writeInt(message.bookData.bookHeight);
-        buf.writeInt(message.bookData.textOffsetX);
-        buf.writeInt(message.bookData.textOffsetY);
-        buf.writeUtf(message.bookData.getBackgroundLocation().toString(), 384);
-        buf.writeUtf(message.bookData.getTitleBackgroundLocation().toString(), 384);
-        buf.writeUtf(message.bookData.getTitle(), 384);
+        buf.writeInt(message.bookData.bookWidth());
+        buf.writeInt(message.bookData.bookHeight());
+        buf.writeInt(message.bookData.textOffsetX());
+        buf.writeInt(message.bookData.textOffsetY());
+        buf.writeUtf(message.bookData.backgroundLocation().toString(), 384);
+        buf.writeUtf(message.bookData.titleBackgroundLocation().toString(), 384);
+        buf.writeUtf(message.bookData.title(), 384);
         buf.writeInt(message.chapterDataList.size());
         for (ChapterData chapterData : message.chapterDataList) {
-            buf.writeUtf(chapterData.getImageLocation().toString(), 384);
-            buf.writeUtf(chapterData.getDisplayEntity().toString(), 384);
-            buf.writeUtf(chapterData.getTitle(), 384);
-            buf.writeUtf(chapterData.getContent(), 384);
-            buf.writeFloat(chapterData.entityDisplayScale);
-            buf.writeInt(chapterData.entityOffset);
+            buf.writeUtf(chapterData.imageLocation().toString(), 384);
+            buf.writeUtf(chapterData.displayEntity().toString(), 384);
+            buf.writeUtf(chapterData.title(), 384);
+            buf.writeUtf(chapterData.content(), 384);
+            buf.writeFloat(chapterData.entityDisplayScale());
+            buf.writeInt(chapterData.entityOffset());
         }
     }
 
     public static class Handler {
         public static void handle(OpenBookPacket message) {
-            if (ESPlatform.INSTANCE.isClientSide()) {
+            if (ESPlatform.INSTANCE.isPhysicalClient()) {
                 LocalPlayer localPlayer = Minecraft.getInstance().player;
                 if (localPlayer != null) {
                     List<BookRenderData.ChapterRenderData> chapterRenderDataList = getRenderDataList(message);
-                    BookRenderData bookRenderData = new BookRenderData(message.bookData.getBackgroundLocation(), message.bookData.getTitleBackgroundLocation(), Component.translatable(message.bookData.getTitle()), chapterRenderDataList, message.bookData.bookWidth, message.bookData.bookHeight, message.bookData.textOffsetX, message.bookData.textOffsetY);
+                    BookData data = message.bookData;
+                    BookRenderData bookRenderData = new BookRenderData(data.bookWidth(), data.bookHeight(), data.textOffsetX(), data.textOffsetY(), data.backgroundLocation(), data.titleBackgroundLocation(), Component.translatable(data.title()), chapterRenderDataList);
                     Minecraft.getInstance().setScreen(new ESBookScreen(bookRenderData));
                 }
             }
@@ -83,7 +84,7 @@ public class OpenBookPacket {
         private static List<BookRenderData.ChapterRenderData> getRenderDataList(OpenBookPacket message) {
             List<BookRenderData.ChapterRenderData> chapterRenderDataList = new ArrayList<>();
             for (ChapterData data : message.chapterDataList) {
-                BookRenderData.ChapterRenderData chapterRenderData = new BookRenderData.ChapterRenderData(data.getDisplayEntity(), data.getImageLocation(), Component.translatable(data.getTitle()), Component.translatable(data.getContent()), data.entityDisplayScale, data.entityOffset);
+                BookRenderData.ChapterRenderData chapterRenderData = new BookRenderData.ChapterRenderData(data.displayEntity(), data.entityDisplayScale(), data.entityOffset(), Component.translatable(data.title()), Component.translatable(data.content()), data.imageLocation());
                 chapterRenderDataList.add(chapterRenderData);
             }
             return chapterRenderDataList;

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
-import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeDataRegistry;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -52,10 +52,16 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
             this.defaultBlock = settings.value().defaultBlock();
             this.defaultFluid = settings.value().defaultFluid();
             this.seaLevel = settings.value().seaLevel();
+            if (biomeSource instanceof ESBiomeSource source) {
+                source.setHeights(settings.value().noiseSettings().minY() + settings.value().noiseSettings().height(), settings.value().noiseSettings().minY());
+            }
         } else {
             this.defaultBlock = Blocks.STONE.defaultBlockState();
             this.defaultFluid = Blocks.WATER.defaultBlockState();
             this.seaLevel = 50;
+            if (biomeSource instanceof ESBiomeSource source) {
+                source.setHeights(320, -64);
+            }
         }
     }
 

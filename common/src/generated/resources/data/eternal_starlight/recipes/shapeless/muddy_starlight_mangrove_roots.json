@@ -2,14 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    [
-      {
-        "item": "eternal_starlight:starlight_mangrove_roots"
-      },
-      {
-        "item": "eternal_starlight:nightshade_mud"
-      }
-    ]
+    {
+      "item": "eternal_starlight:starlight_mangrove_roots"
+    },
+    {
+      "item": "eternal_starlight:nightshade_mud"
+    }
   ],
   "result": {
     "item": "eternal_starlight:muddy_starlight_mangrove_roots"

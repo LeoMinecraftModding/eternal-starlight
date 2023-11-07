@@ -18,8 +18,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class FabricNetworkHandler {
-    private static final Map<Class<?>, BiConsumer<?, FriendlyByteBuf>> ENCODERS = new ConcurrentHashMap<>();
-    private static final Map<Class<?>, ResourceLocation> PACKET_LOCATION_MAP = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, BiConsumer<?, FriendlyByteBuf>> PACKET_TO_WRITE_FUNC = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, ResourceLocation> PACKET_TO_LOCATION = new ConcurrentHashMap<>();
     private static boolean client = true;
 
     public static void init(boolean client) {
@@ -28,39 +28,26 @@ public class FabricNetworkHandler {
     }
 
     private static <T> void register(String path, ESPackets.Handler<T> handler) {
-        registerMessage(path, handler.packetClass(), handler.write(), handler.read(), handler.handle());
-    }
-
-    private static <T> void registerMessage(String path, Class<T> packetClass, BiConsumer<T, FriendlyByteBuf> encode, Function<FriendlyByteBuf, T> decode, Consumer<T> handler) {
-        ENCODERS.put(packetClass, encode);
-        PACKET_LOCATION_MAP.put(packetClass, new ResourceLocation(EternalStarlight.MOD_ID, path));
+        PACKET_TO_WRITE_FUNC.put(handler.packetClass(), handler.write());
+        PACKET_TO_LOCATION.put(handler.packetClass(), new ResourceLocation(EternalStarlight.MOD_ID, path));
         if (client) {
-            registerClientReceiver(path, decode, handler);
+            registerClientReceiver(path, handler.read(), handler.handle());
         } else {
-            registerServerReceiver(path, decode, handler);
+            registerServerReceiver(path, handler.read(), handler.handle());
         }
     }
 
     public static <T> void sendToClient(ServerPlayer player, T packet) {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        BiConsumer<T, FriendlyByteBuf> encoder = (BiConsumer<T, FriendlyByteBuf>) ENCODERS.get(packet.getClass());
+        BiConsumer<T, FriendlyByteBuf> encoder = (BiConsumer<T, FriendlyByteBuf>) PACKET_TO_WRITE_FUNC.get(packet.getClass());
         encoder.accept(packet, buf);
-        ServerPlayNetworking.send(player, PACKET_LOCATION_MAP.get(packet.getClass()), buf);
+        ServerPlayNetworking.send(player, PACKET_TO_LOCATION.get(packet.getClass()), buf);
     }
 
-    @Environment(EnvType.CLIENT)
-    public static <T> void sendToServer(T packet) {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        BiConsumer<T, FriendlyByteBuf> encoder = (BiConsumer<T, FriendlyByteBuf>) ENCODERS.get(packet.getClass());
-        encoder.accept(packet, buf);
-        ClientPlayNetworking.send(PACKET_LOCATION_MAP.get(packet.getClass()), buf);
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static <T> void registerClientReceiver(String path, Function<FriendlyByteBuf, T> read, Consumer<T> handler) {
-        ClientPlayNetworking.registerGlobalReceiver(new ResourceLocation(EternalStarlight.MOD_ID, path), (minecraft, clientPacketListener, buf, packetSender) -> {
+    public static <T> void registerServerReceiver(String path, Function<FriendlyByteBuf, T> read, Consumer<T> handler) {
+        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation(EternalStarlight.MOD_ID, path), (server, listener, player, buf, packetSender) -> {
             buf.retain();
-            minecraft.execute(() -> {
+            server.execute(() -> {
                 T packet = read.apply(buf);
                 handler.accept(packet);
                 buf.release();
@@ -68,10 +55,19 @@ public class FabricNetworkHandler {
         });
     }
 
-    public static <T> void registerServerReceiver(String path, Function<FriendlyByteBuf, T> read, Consumer<T> handler) {
-        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation(EternalStarlight.MOD_ID, path), (server, listener, player, buf, packetSender) -> {
+    @Environment(EnvType.CLIENT)
+    public static <T> void sendToServer(T packet) {
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+        BiConsumer<T, FriendlyByteBuf> encoder = (BiConsumer<T, FriendlyByteBuf>) PACKET_TO_WRITE_FUNC.get(packet.getClass());
+        encoder.accept(packet, buf);
+        ClientPlayNetworking.send(PACKET_TO_LOCATION.get(packet.getClass()), buf);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static <T> void registerClientReceiver(String path, Function<FriendlyByteBuf, T> read, Consumer<T> handler) {
+        ClientPlayNetworking.registerGlobalReceiver(new ResourceLocation(EternalStarlight.MOD_ID, path), (minecraft, clientPacketListener, buf, packetSender) -> {
             buf.retain();
-            server.execute(() -> {
+            minecraft.execute(() -> {
                 T packet = read.apply(buf);
                 handler.accept(packet);
                 buf.release();

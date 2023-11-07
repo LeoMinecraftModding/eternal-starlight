@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
-import cn.leolezury.eternalstarlight.common.world.gen.provider.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.provider.wgenprovider.ESWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.ESWorldGenProvider;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -26,17 +26,20 @@ public class ESBiomeSource extends BiomeSource {
     ).apply(instance, instance.stable(ESBiomeSource::new)));
 
     public final Map<ResourceLocation, Holder<Biome>> biomeMap = new HashMap<>();
-    public final HolderSet<Biome> biomeHolderSet;
-    private final ESWorldGenProvider provider;
+    private final HolderSet<Biome> biomeHolderSet;
+    private ESWorldGenProvider provider;
 
     public ESBiomeSource(HolderSet<Biome> biomeHolderSet) {
         this.biomeHolderSet = biomeHolderSet;
-        this.provider = new ESWorldGenProvider(320, -64);
-        this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> (biomeHolder.unwrapKey().orElseThrow()).location(), Function.identity())));
+        this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> biomeHolder.unwrapKey().orElseThrow().location(), Function.identity())));
     }
 
     public void setSeed(long seed) {
         this.provider.setSeed(seed);
+    }
+
+    public void setHeights(int maxHeight, int minHeight) {
+        this.provider = new ESWorldGenProvider(maxHeight, minHeight);
     }
 
     @Override
