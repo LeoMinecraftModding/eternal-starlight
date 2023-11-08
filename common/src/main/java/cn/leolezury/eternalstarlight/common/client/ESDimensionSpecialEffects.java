@@ -16,7 +16,6 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 @Environment(EnvType.CLIENT)
-
 public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
     public ESDimensionSpecialEffects(float cloudHeight, boolean placebo, SkyType fogType, boolean brightenLightMap, boolean entityLightingBottomsLit) {
         super(cloudHeight, placebo, fogType, brightenLightMap, entityLightingBottomsLit);
@@ -29,13 +28,16 @@ public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean isFoggyAt(int x, int y) {
+        // nope
+        // at least for now
+        /*
         Player player = Minecraft.getInstance().player;
 
         if (player != null) {
             Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
             return biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT) || biomeHolder.is(ESTags.Biomes.DARK_SWAMP_VARIANT);
         }
-
+        */
         return false;
     }
 

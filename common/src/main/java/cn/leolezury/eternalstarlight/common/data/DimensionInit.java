@@ -108,13 +108,13 @@ public class DimensionInit {
         HolderGetter<NoiseGeneratorSettings> noiseSettingsHolderGetter = context.lookup(Registries.NOISE_SETTINGS);
         LevelStem levelStem = new LevelStem(dimensionTypeHolderGetter.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(HolderSet.direct(
                 // all biomes in our dimension
-                /*biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_FOREST),
+                biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_DENSE_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP),
                 biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA),
-                biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE)*/
+                biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE)
         )), noiseSettingsHolderGetter.getOrThrow(STARLIGHT_NOISE_SETTINGS)));
         context.register(STARLIGHT_LEVEL_STEM, levelStem);
     }

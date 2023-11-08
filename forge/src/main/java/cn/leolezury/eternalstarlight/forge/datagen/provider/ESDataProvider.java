@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
-import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
+import cn.leolezury.eternalstarlight.common.data.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +15,7 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureInit::bootstrap)
             .add(Registries.PLACED_FEATURE, PlacedFeatureInit::bootstrap)
+            .add(Registries.BIOME, BiomeInit::bootstrap)
             .add(Registries.NOISE_SETTINGS, DimensionInit::bootstrapNoiseSettings)
             .add(Registries.DIMENSION_TYPE, DimensionInit::bootstrapDimType)
             .add(Registries.LEVEL_STEM, DimensionInit::bootstrapLevelStem)
