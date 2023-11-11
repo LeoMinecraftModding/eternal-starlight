@@ -74,7 +74,7 @@ public class ClientSetupHandlers {
         void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
     }
 
-    public static final List<Supplier<Block>> cutoutMippedBlocks = List.of(
+    public static final List<Supplier<? extends Block>> cutoutMippedBlocks = List.of(
             BlockInit.LUNAR_LEAVES,
             BlockInit.NORTHLAND_LEAVES,
             BlockInit.STARLIGHT_MANGROVE_LEAVES,
@@ -82,7 +82,7 @@ public class ClientSetupHandlers {
             BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS
     );
 
-    public static final List<Supplier<Block>> cutoutBlocks = List.of(
+    public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
             BlockInit.BERRIES_VINES,
             BlockInit.BERRIES_VINES_PLANT,
             BlockInit.LUNAR_SAPLING,
@@ -121,10 +121,12 @@ public class ClientSetupHandlers {
             BlockInit.GREEN_FANTAFERN,
             BlockInit.FANTAGRASS,
             BlockInit.GREEN_FANTAGRASS,
-            BlockInit.SWAMP_ROSE
+            BlockInit.SWAMP_ROSE,
+            BlockInit.STARLIGHT_GOLEM_SPAWNER,
+            BlockInit.LUNAR_MONSTROSITY_SPAWNER
     );
 
-    public static final List<Supplier<Block>> translucentBlocks = List.of(
+    public static final List<Supplier<? extends Block>> translucentBlocks = List.of(
             BlockInit.STARLIGHT_PORTAL
     );
 
@@ -136,7 +138,7 @@ public class ClientSetupHandlers {
     public interface PlayerAnimationStateGetter {
         PlayerAnimationState get(ItemStack itemStack, float tickCount);
     }
-    public static final Map<Supplier<Item>, PlayerAnimationStateGetter> playerAnimatingItemMap = new HashMap<>();
+    public static final Map<Supplier<? extends Item>, PlayerAnimationStateGetter> playerAnimatingItemMap = new HashMap<>();
 
     public static void clientSetup() {
         itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));

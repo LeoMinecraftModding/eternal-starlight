@@ -11,5 +11,5 @@ import net.minecraft.world.effect.MobEffectCategory;
 public class MobEffectInit {
     public static final RegistrationProvider<MobEffect> MOB_EFFECTS = RegistrationProvider.get(Registries.MOB_EFFECT, EternalStarlight.MOD_ID);
     public static final RegistryObject<MobEffect> CRYSTALLINE_INFECTION = MOB_EFFECTS.register("crystalline_infection", () -> new CrystallineInfectionEffect(MobEffectCategory.HARMFUL, 8001164));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

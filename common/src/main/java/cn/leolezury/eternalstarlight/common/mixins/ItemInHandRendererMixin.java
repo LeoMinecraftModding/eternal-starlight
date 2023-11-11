@@ -50,7 +50,7 @@ public abstract class ItemInHandRendererMixin {
             boolean animated = false;
             ItemStack useItem = localPlayer.getItemInHand(localPlayer.getUsedItemHand());
 
-            for (Supplier<Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
+            for (Supplier<? extends Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
                 if (useItem.is(itemSupplier.get())) {
                     animated = true;
                     break;

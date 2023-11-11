@@ -26,7 +26,7 @@ public abstract class PlayerRendererMixin {
             boolean renderLeftArm = false;
             boolean renderRightArm = false;
 
-            for (Supplier<Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
+            for (Supplier<? extends Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
                 if (useItem.is(itemSupplier.get())) {
                     animated = true;
                     PlayerAnimationState state = ClientSetupHandlers.playerAnimatingItemMap.get(itemSupplier).get(useItem, tick);

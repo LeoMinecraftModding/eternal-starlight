@@ -6,20 +6,20 @@ public class EternalStarlight {
     public static final String MOD_ID = "eternal_starlight";
 
     public static void init() {
-        BlockInit.postRegistry();
-        ItemInit.postRegistry();
-        CreativeModeTabInit.postRegistry();
-        EntityInit.postRegistry();
-        MobEffectInit.postRegistry();
-        BlockEntityInit.postRegistry();
-        EnchantmentInit.postRegistry();
-        FeatureInit.postRegistry();
-        PlacerInit.postRegistry();
-        TreeDecoratorInit.postRegistry();
-        StructurePlacementTypeInit.postRegistry();
-        StructureInit.postRegistry();
-        POIInit.postRegistry();
-        ParticleInit.postRegistry();
-        SoundEventInit.postRegistry();
+        BlockInit.loadClass();
+        ItemInit.loadClass();
+        CreativeModeTabInit.loadClass();
+        EntityInit.loadClass();
+        MobEffectInit.loadClass();
+        BlockEntityInit.loadClass();
+        EnchantmentInit.loadClass();
+        FeatureInit.loadClass();
+        PlacerInit.loadClass();
+        TreeDecoratorInit.loadClass();
+        StructurePlacementTypeInit.loadClass();
+        StructureInit.loadClass();
+        POIInit.loadClass();
+        ParticleInit.loadClass();
+        SoundEventInit.loadClass();
     }
 }

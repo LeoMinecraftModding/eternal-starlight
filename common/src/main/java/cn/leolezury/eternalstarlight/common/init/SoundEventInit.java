@@ -63,5 +63,5 @@ public class SoundEventInit {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(EternalStarlight.MOD_ID, name)));
     }
 
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

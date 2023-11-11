@@ -16,5 +16,5 @@ public class BlockEntityInit {
     public static final RegistryObject<BlockEntityType<ESHangingSignBlockEntity>> HANGING_SIGN_BLOCK_ENTITY = BLOCK_ENTITIES.register("hanging_sign_block_entity", () -> BlockEntityType.Builder.of(ESHangingSignBlockEntity::new, BlockInit.LUNAR_WALL_HANGING_SIGN.get(), BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.NORTHLAND_WALL_HANGING_SIGN.get(), BlockInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get()).build(null));
     public static final RegistryObject<BlockEntityType<StarlightGolemSpawnerEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerEntity::new, BlockInit.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
     public static final RegistryObject<BlockEntityType<LunarMonstrositySpawnerEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerEntity::new, BlockInit.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

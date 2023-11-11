@@ -44,7 +44,7 @@ public abstract class LevelRendererMixin {
             ItemStack useItem = player.getItemInHand(player.getUsedItemHand());
             boolean renderModel = false;
 
-            for (Supplier<Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
+            for (Supplier<? extends Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
                 if (useItem.is(itemSupplier.get())) {
                     renderModel = true;
                     break;

@@ -170,6 +170,27 @@ public class ESRecipeProvider extends RecipeProvider {
         addSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE.get());
         addStoneCuttingSlab(consumer, "polished_voidstone", BlockInit.POLISHED_VOIDSTONE.get(), ItemInit.POLISHED_VOIDSTONE_SLAB.get());
 
+        addPolished(consumer, "doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        addBricks(consumer, "doomeden", BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        addChiseled(consumer, "doomeden", BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get());
+        addStoneCuttingChiseled(consumer, "doomeden", BlockInit.DOOMEDEN_BRICKS.get(), ItemInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+        addStoneCuttingBricks(consumer, "doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICKS.get());
+        addWall(consumer, "doomeden", BlockInit.DOOMEDEN_BRICK_WALL.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        addStoneCuttingWall(consumer, "doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_WALL.get());
+        addStoneCuttingWall(consumer, "doomeden", BlockInit.DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_WALL.get());
+        addStairs(consumer, "doomeden", BlockInit.DOOMEDEN_BRICK_STAIRS.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        addStoneCuttingStairs(consumer, "doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_STAIRS.get());
+        addStoneCuttingStairs(consumer, "doomeden", BlockInit.DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_STAIRS.get());
+        addSlab(consumer, "doomeden", BlockInit.DOOMEDEN_BRICK_SLAB.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        addStoneCuttingSlab(consumer, "doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_SLAB.get());
+        addStoneCuttingSlab(consumer, "doomeden", BlockInit.DOOMEDEN_BRICKS.get(), ItemInit.DOOMEDEN_BRICK_SLAB.get());
+        addWall(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        addStoneCuttingWall(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.POLISHED_DOOMEDEN_BRICK_WALL.get());
+        addStairs(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        addStoneCuttingStairs(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+        addSlab(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        addStoneCuttingSlab(consumer, "polished_doomeden", BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), ItemInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
+
         addBricks(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.PACKED_NIGHTSHADE_MUD.get());
         addWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
         addStoneCuttingWall(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get());

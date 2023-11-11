@@ -17,5 +17,5 @@ public class FeatureInit {
     public static final RegistryObject<Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<BetterLakeFeature.Configuration>> BETTER_LAKE = FEATURES.register("better_lake", () -> new BetterLakeFeature(BetterLakeFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> SWAMP_WATER = FEATURES.register("swamp_water", () -> new SwampWaterFeature(NoneFeatureConfiguration.CODEC));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

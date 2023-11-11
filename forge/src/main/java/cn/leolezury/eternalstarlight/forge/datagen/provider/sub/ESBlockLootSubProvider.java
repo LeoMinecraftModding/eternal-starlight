@@ -149,9 +149,16 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.DOOMED_TORCH.get());
         dropOther(BlockInit.WALL_DOOMED_TORCH.get(), ItemInit.DOOMED_TORCH.get());
         dropSelf(BlockInit.DOOMED_REDSTONE_TORCH.get());
+        dropOther(BlockInit.DOOMED_REDSTONE_WALL_TORCH.get(), ItemInit.DOOMED_REDSTONE_TORCH.get());
         dropSelf(BlockInit.DOOMEDEN_BRICKS.get());
-        dropSelf(BlockInit.DOOMEDEN_TILE.get());
+        add(BlockInit.DOOMEDEN_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.DOOMEDEN_BRICK_STAIRS.get());
+        dropSelf(BlockInit.DOOMEDEN_BRICK_WALL.get());
         dropSelf(BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        add(BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get());
+        dropSelf(BlockInit.DOOMEDEN_TILE.get());
         dropSelf(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         dropSelf(BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         dropSelf(BlockInit.DOOMEDEN_LIGHT.get());

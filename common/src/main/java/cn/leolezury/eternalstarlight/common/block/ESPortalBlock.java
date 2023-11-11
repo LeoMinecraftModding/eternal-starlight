@@ -34,12 +34,8 @@ public class ESPortalBlock extends Block {
     protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-    public ESPortalBlock() {
-        super(Properties.of()
-                .strength(-1F)
-                .noCollission()
-                .lightLevel((state) -> 10)
-        );
+    public ESPortalBlock(Properties properties) {
+        super(properties);
         registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.X));
     }
 

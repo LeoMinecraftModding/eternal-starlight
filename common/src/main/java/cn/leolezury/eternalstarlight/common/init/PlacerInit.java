@@ -18,5 +18,5 @@ public class PlacerInit {
     public static final RegistryObject<TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching_trunk_placer", () -> new TrunkPlacerType(BranchingTrunkPlacer.CODEC));
     public static final RegistryObject<TrunkPlacerType<MegaBranchingTrunkPlacer>> MEGA_TRUNK_BRANCHING = TRUNK_PLACERS.register("mega_branching_trunk_placer", () -> new TrunkPlacerType(MegaBranchingTrunkPlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid_foliage_placer", () -> new FoliagePlacerType(SpheroidFoliagePlacer.CODEC));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

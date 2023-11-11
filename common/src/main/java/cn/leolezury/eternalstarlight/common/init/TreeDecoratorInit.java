@@ -10,5 +10,5 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorTy
 public class TreeDecoratorInit {
     public static final RegistrationProvider<TreeDecoratorType<?>> TREE_DECORATORS = RegistrationProvider.get(Registries.TREE_DECORATOR_TYPE, EternalStarlight.MOD_ID);
     public static final RegistryObject<TreeDecoratorType<TrunkBerriesDecorator>> TRUNK_BERRIES = TREE_DECORATORS.register("trunk_berries", () -> new TreeDecoratorType<>(TrunkBerriesDecorator.CODEC));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

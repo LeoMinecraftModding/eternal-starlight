@@ -251,10 +251,16 @@ public class ItemInit {
     public static final RegistryObject<Item> RAG = registerItem("rag", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_GRINDER = registerItem("doomeden_grinder", () -> new DoomedenGrinderItem(ESItemTiers.DOOMEDEN, 5, -2.0F, new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_SWORD = registerItem("doomeden_sword", () -> new DoomedenSwordItem(ESItemTiers.DOOMEDEN, 4, -1.8F, new Item.Properties()));
-    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new BlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.DOOMED_REDSTONE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", () -> new BlockItem(BlockInit.DOOMEDEN_BRICKS.get(), new Item.Properties()));
-    public static final RegistryObject<Item> DOOMEDEN_TILE = registerItem("doomeden_tile", () -> new BlockItem(BlockInit.DOOMEDEN_TILE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_BRICK_SLAB = registerItem("doomeden_brick_slab", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_BRICK_STAIRS = registerItem("doomeden_brick_stairs", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_BRICK_WALL = registerItem("doomeden_brick_wall", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
     public static final RegistryObject<Item> POLISHED_DOOMEDEN_BRICKS = registerItem("polished_doomeden_bricks", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> POLISHED_DOOMEDEN_BRICK_SLAB = registerItem("polished_doomeden_brick_slab", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item> POLISHED_DOOMEDEN_BRICK_STAIRS = registerItem("polished_doomeden_brick_stairs", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> POLISHED_DOOMEDEN_BRICK_WALL = registerItem("polished_doomeden_brick_wall", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_TILE = registerItem("doomeden_tile", () -> new BlockItem(BlockInit.DOOMEDEN_TILE.get(), new Item.Properties()));
     public static final RegistryObject<Item> CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("chiseled_polished_doomeden_bricks", () -> new BlockItem(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item> CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("charged_chiseled_polished_doomeden_bricks", () -> new BlockItem(BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_LIGHT = registerItem("doomeden_light", () -> new BlockItem(BlockInit.DOOMEDEN_LIGHT.get(), new Item.Properties()));
@@ -271,5 +277,5 @@ public class ItemInit {
     public static final RegistryObject<Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
     public static final RegistryObject<Item> PROPHET_ORB = registerItem("prophet_orb", ()-> new ProphetOrbItem(new Item.Properties()));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }

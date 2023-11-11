@@ -38,7 +38,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
             float delta = ageInTicks - ((int) ageInTicks);
             float tick = livingEntity.getTicksUsingItem() + delta;
             boolean animated = false;
-            for (Supplier<Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
+            for (Supplier<? extends Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
                 if (useItem.is(itemSupplier.get())) {
                     animated = true;
                     PlayerAnimationState state = ClientSetupHandlers.playerAnimatingItemMap.get(itemSupplier).get(useItem, tick);

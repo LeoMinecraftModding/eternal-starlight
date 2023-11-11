@@ -44,5 +44,5 @@ public class EntityInit {
     public static final RegistryObject<EntityType<FireColumn>> FIRE_COLUMN = ENTITIES.register("fire_column", () -> EntityType.Builder.<FireColumn>of(FireColumn::new, MobCategory.MISC).sized(0f, 0f).build(new ResourceLocation(EternalStarlight.MOD_ID, "fire_column").toString()));
     public static final RegistryObject<EntityType<LunarSpore>> LUNAR_SPORE = ENTITIES.register("lunar_spore", () -> EntityType.Builder.<LunarSpore>of(LunarSpore::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_spore").toString()));
     public static final RegistryObject<EntityType<LunarVine>> LUNAR_VINE = ENTITIES.register("lunar_vine", () -> EntityType.Builder.<LunarVine>of(LunarVine::new, MobCategory.MISC).sized(0.3f, 1f).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_vine").toString()));
-    public static void postRegistry() {}
+    public static void loadClass() {}
 }
