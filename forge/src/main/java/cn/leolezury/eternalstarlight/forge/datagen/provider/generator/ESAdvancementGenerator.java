@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.forge.datagen;
+package cn.leolezury.eternalstarlight.forge.datagen.provider.generator;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;

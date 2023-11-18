@@ -16,10 +16,10 @@ public class ESASM implements Runnable {
                 .build();
 
         ClassTinkerers.enumBuilder(mapC("class_1814"), "L" + mapC("class_124") + ";")  // Rarity // ChatFormatting
-                .addEnum("STARLIGHT", () -> new Object[] { ChatFormatting.DARK_AQUA })
+                .addEnum("ES_STARLIGHT", () -> new Object[] { ChatFormatting.DARK_AQUA })
                 .build();
         ClassTinkerers.enumBuilder(mapC("class_1814"), "L" + mapC("class_124") + ";")  // Rarity // ChatFormatting
-                .addEnum("DEMON", () -> new Object[] { ChatFormatting.DARK_RED })
+                .addEnum("ES_DEMON", () -> new Object[] { ChatFormatting.DARK_RED })
                 .build();
     }
 

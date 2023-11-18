@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
-import cn.leolezury.eternalstarlight.forge.datagen.ESAdvancementGenerator;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.generator.ESAdvancementGenerator;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;

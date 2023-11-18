@@ -248,7 +248,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).meat().build())));
     public static final RegistryObject<Item> ROTTEN_HAM = registerItem("rotten_ham", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
     public static final RegistryObject<Item> DOOMEDEN_EYE = registerItem("doomeden_eye", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> RAG = registerItem("rag", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_RAG = registerItem("doomeden_rag", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_GRINDER = registerItem("doomeden_grinder", () -> new DoomedenGrinderItem(ESItemTiers.DOOMEDEN, 5, -2.0F, new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_SWORD = registerItem("doomeden_sword", () -> new DoomedenSwordItem(ESItemTiers.DOOMEDEN, 4, -1.8F, new Item.Properties()));
     public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
