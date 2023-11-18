@@ -15,7 +15,6 @@ import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
-import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -23,16 +22,13 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -56,12 +52,12 @@ import java.util.function.Supplier;
 public interface ESPlatform {
     ESPlatform INSTANCE = Util.make(() -> {
         final ServiceLoader<ESPlatform> loader = ServiceLoader.load(ESPlatform.class);
-        final Iterator<ESPlatform> it = loader.iterator();
-        if (!it.hasNext()) {
+        final Iterator<ESPlatform> iterator = loader.iterator();
+        if (!iterator.hasNext()) {
             throw new RuntimeException("Platform instance not found!");
         } else {
-            final ESPlatform platform = it.next();
-            if (it.hasNext()) {
+            final ESPlatform platform = iterator.next();
+            if (iterator.hasNext()) {
                 throw new RuntimeException("More than one platform instance was found!");
             }
             return platform;
@@ -114,20 +110,11 @@ public interface ESPlatform {
     default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
         return true;
     }
-    default boolean noFluidAtCamera(Camera camera) {
-        return true;
-    }
 
     // world
     void teleportEntity(ServerLevel dest, Entity entity);
 
     // entity stuff
-    default EntityType<?> getEntityType(ResourceLocation location) {
-        return BuiltInRegistries.ENTITY_TYPE.get(location);
-    }
-    default ResourceLocation getEntityTypeIdentifier(EntityType<?> entityType) {
-        return BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
-    }
     default Attribute getEntityReachAttribute() {
         return null;
     }

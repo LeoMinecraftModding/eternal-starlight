@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "eternal_starlight:block/glowing_voidstone"
-  }
-}

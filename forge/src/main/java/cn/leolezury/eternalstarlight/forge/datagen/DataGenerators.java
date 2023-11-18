@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.ESAdvancementProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.ESDataProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.ESLootProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.ESRecipeProvider;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -23,6 +20,8 @@ public class DataGenerators {
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
+
+        generator.addProvider(event.includeClient(), new ESBlockStateProvider(output, helper));
 
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output));

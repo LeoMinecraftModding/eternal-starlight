@@ -7,7 +7,6 @@ import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -67,7 +66,8 @@ public class ClientHandlers {
             return;
         }
         Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
-        if (camera.getFluidInCamera() == FogType.NONE && ESPlatform.INSTANCE.noFluidAtCamera(camera)) {
+        boolean noFluidAtCam = player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty();
+        if (camera.getFluidInCamera() == FogType.NONE && noFluidAtCam) {
             /*if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
                 RenderSystem.setShaderFogStart(-4.0F);
                 RenderSystem.setShaderFogEnd(96.0F);

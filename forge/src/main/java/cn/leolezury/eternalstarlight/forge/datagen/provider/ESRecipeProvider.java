@@ -201,8 +201,8 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addAetherSentRecipes(Consumer<FinishedRecipe> consumer) {
-        addCompressed(consumer, "aethersent", ItemInit.AETHERSENT_INGOT.get(), BlockInit.AETHERSENT_BLOCK.get());
-        addReverseCompressed(consumer, "aethersent", BlockInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT.get());
+        addCompressed(consumer, "aethersent", ItemInit.AETHERSENT_INGOT.get(), ItemInit.AETHERSENT_BLOCK.get());
+        addReverseCompressed(consumer, "aethersent", ItemInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_HOOD.get())
                 .pattern("###")
                 .pattern("A A")
@@ -245,8 +245,8 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addSwampSilverRecipes(Consumer<FinishedRecipe> consumer) {
-        addCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get(), BlockInit.SWAMP_SILVER_BLOCK.get());
-        addReverseCompressed(consumer, "swamp_silver", BlockInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        addCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_BLOCK.get());
+        addReverseCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT.get());
         addAxe(consumer, "swamp_silver_axe", ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
         addPickaxe(consumer, "swamp_silver_pickaxe", ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
         addHoe(consumer, "swamp_silver_sickle", ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
@@ -291,21 +291,25 @@ public class ESRecipeProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
     }
 
-    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, Block output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output)
+    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, ItemLike output) {
+        addCompressed(finishedRecipeConsumer, id, RecipeCategory.BUILDING_BLOCKS, toCompress, output);
+    }
+
+    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, RecipeCategory category, ItemLike toCompress, ItemLike output) {
+        ShapedRecipeBuilder.shaped(category, output)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', Ingredient.of(toCompress))
                 .unlockedBy("has_item", has(toCompress))
-                .save(finishedRecipeConsumer, getModLocation("compressed_blocks/" + id));
+                .save(finishedRecipeConsumer, getModLocation("compressed/" + id));
     }
 
-    protected final void addReverseCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block compressed, ItemLike output) {
+    protected final void addReverseCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike compressed, ItemLike output) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 9)
                 .requires(compressed)
                 .unlockedBy("has_item", has(compressed))
-                .save(finishedRecipeConsumer, getModLocation("compressed_blocks/reversed/" + id));
+                .save(finishedRecipeConsumer, getModLocation("compressed/reversed/" + id));
     }
 
     protected final void addShapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {

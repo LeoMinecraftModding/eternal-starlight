@@ -35,19 +35,19 @@ public class ESAdvancementGenerator implements ForgeAdvancementProvider.Advancem
                                 LocationPredicate.inDimension(DimensionInit.STARLIGHT_KEY)))
                 .save(consumer, EternalStarlight.MOD_ID + ":enter_starlight");
 
-        Advancement swamp_silver = addItemObtain(consumer, root, "obtain_swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get());
+        Advancement swampSilver = addItemObtain(consumer, root, "obtain_swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get());
 
-        Advancement starlight_flower = addItemObtain(consumer, root, "obtain_starlight_flower", ItemInit.STARLIGHT_FLOWER.get());
+        Advancement starlightFlower = addItemObtain(consumer, root, "obtain_starlight_flower", ItemInit.STARLIGHT_FLOWER.get());
 
-        Advancement seeking_eye = addItemObtain(consumer, starlight_flower, "obtain_seeking_eye", ItemInit.SEEKING_EYE.get());
+        Advancement seekingEye = addItemObtain(consumer, starlightFlower, "obtain_seeking_eye", ItemInit.SEEKING_EYE.get());
 
-        Advancement kill_golem = addEntityKill(consumer, seeking_eye, "kill_golem", EntityInit.STARLIGHT_GOLEM.get(), ItemInit.ENERGY_BLOCK.get());
+        Advancement killGolem = addEntityKill(consumer, seekingEye, "kill_golem", EntityInit.STARLIGHT_GOLEM.get(), ItemInit.ENERGY_BLOCK.get());
 
-        Advancement golem_steel_ingot = addItemObtain(consumer, kill_golem, "obtain_golem_steel_ingot", ItemInit.GOLEM_STEEL_INGOT.get());
+        Advancement golemSteelIngot = addItemObtain(consumer, killGolem, "obtain_golem_steel_ingot", ItemInit.GOLEM_STEEL_INGOT.get());
 
-        Advancement thermal_springstone = addItemObtain(consumer, kill_golem, "obtain_thermal_springstone", ItemInit.THERMAL_SPRINGSTONE.get());
+        Advancement thermalSpringstone = addItemObtain(consumer, killGolem, "obtain_thermal_springstone", ItemInit.THERMAL_SPRINGSTONE.get());
 
-        Advancement kill_lunar_monstrosity = addEntityKill(consumer, thermal_springstone, "kill_lunar_monstrosity", EntityInit.LUNAR_MONSTROSITY.get(), ItemInit.PARASOL_GRASS.get());
+        Advancement killLunarMonstrosity = addEntityKill(consumer, thermalSpringstone, "kill_lunar_monstrosity", EntityInit.LUNAR_MONSTROSITY.get(), ItemInit.PARASOL_GRASS.get());
     }
 
     private static Advancement addItemObtain(Consumer<Advancement> consumer, Advancement parent, String id, Item item) {

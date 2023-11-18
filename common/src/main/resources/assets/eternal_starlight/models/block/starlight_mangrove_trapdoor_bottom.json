@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_trapdoor_bottom",
-  "render_type": "cutout",
-  "textures": {
-    "texture": "eternal_starlight:block/starlight_mangrove_trapdoor"
-  }
-}

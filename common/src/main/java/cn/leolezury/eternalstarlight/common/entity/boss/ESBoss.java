@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -135,7 +135,7 @@ public class ESBoss extends Monster {
 
     public ResourceLocation getBossLootTable() {
         ResourceLocation lootTable = null;
-        ResourceLocation resourcelocation = ESPlatform.INSTANCE.getEntityTypeIdentifier(getType());
+        ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
 
         if (resourcelocation != null) {
             lootTable = resourcelocation.withPrefix("bosses/");

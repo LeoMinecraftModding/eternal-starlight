@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screens;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
@@ -12,8 +11,10 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.PageButton;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -139,34 +140,36 @@ public class ESBookScreen extends Screen {
         int linesPerPage = (bookData.bookHeight() - 2 * bookData.textOffsetY()) / this.font.lineHeight;
         int currentChapter = getCurrentChapter(currentPage + pageOffset);
         List<BookRenderData.ChapterRenderData> chapters = bookData.chapters();
+        ResourceLocation empty = new ResourceLocation("");
+        BookRenderData.ChapterRenderData chapter = new BookRenderData.ChapterRenderData(empty, 0f, 0, Component.empty(), Component.empty(), empty);
         if (currentChapter >= 0) {
-            BookRenderData.ChapterRenderData chapter = chapters.get(currentChapter);
-            if (relativePage == 0) {
-                // then it's a title page
-                // draw background
-                graphics.blit(currentChapter < 0 ? bookData.titleBackgroundLocation() : chapter.imageLocation(), x - bookData.textOffsetX(), y - bookData.textOffsetY(), 0, 0, 0, bookData.bookWidth() / 2, bookData.bookHeight(), bookData.bookWidth() / 2, bookData.bookHeight());
-                // draw title
-                Component title = currentChapter < 0 ? bookData.title() : chapter.title();
-                graphics.drawString(font, title, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX() - font.width(title)) / 2, y + (bookData.bookHeight() - 2 * bookData.textOffsetY()) / 4 * 3, 0, false);
-                // draw entity display
-                EntityType<?> entityType;
-                if ((entityType = ESPlatform.INSTANCE.getEntityType(chapter.displayEntity())) != null) {
-                    Entity entity = null;
-                    if (minecraft != null && minecraft.level != null) {
-                        entity = entityType.create(minecraft.level);
-                    }
-                    if (entity instanceof LivingEntity livingEntity) {
-                        renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX()) / 2, y + chapter.entityOffset(), (int) (17 * chapter.entityDisplayScale()), 0, 0, livingEntity);
-                    }
+            chapter = chapters.get(currentChapter);
+        }
+        if (relativePage == 0) {
+            // then it's a title page
+            // draw background
+            graphics.blit(currentChapter < 0 ? bookData.titleBackgroundLocation() : chapter.imageLocation(), x - bookData.textOffsetX(), y - bookData.textOffsetY(), 0, 0, 0, bookData.bookWidth() / 2, bookData.bookHeight(), bookData.bookWidth() / 2, bookData.bookHeight());
+            // draw title
+            Component title = currentChapter < 0 ? bookData.title() : chapter.title();
+            graphics.drawString(font, title, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX() - font.width(title)) / 2, y + (bookData.bookHeight() - 2 * bookData.textOffsetY()) / 4 * 3, 0, false);
+            // draw entity display
+            if (BuiltInRegistries.ENTITY_TYPE.containsKey(chapter.displayEntity())) {
+                EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(chapter.displayEntity());
+                Entity entity = null;
+                if (minecraft != null && minecraft.level != null) {
+                    entity = entityType.create(minecraft.level);
                 }
-            } else {
-                // then it's a normal page
-                // get the lines for the current chapter
-                List<FormattedCharSequence> components = cachedComponents.get(currentChapter + 1);
-                for (int i = (relativePage - 1) * linesPerPage; i < Math.min(relativePage * linesPerPage, components.size()); i++) {
-                    int textY = (i - (relativePage - 1) * linesPerPage) * font.lineHeight;
-                    graphics.drawString(font, components.get(i), x, y + textY, 0, false);
+                if (entity instanceof LivingEntity livingEntity) {
+                    renderEntityInInventoryFollowsAngle(graphics, x + (bookData.bookWidth() / 2 - 2 * bookData.textOffsetX()) / 2, y + chapter.entityOffset(), (int) (17 * chapter.entityDisplayScale()), 0, 0, livingEntity);
                 }
+            }
+        } else {
+            // then it's a normal page
+            // get the lines for the current chapter
+            List<FormattedCharSequence> components = cachedComponents.get(currentChapter + 1);
+            for (int i = (relativePage - 1) * linesPerPage; i < Math.min(relativePage * linesPerPage, components.size()); i++) {
+                int textY = (i - (relativePage - 1) * linesPerPage) * font.lineHeight;
+                graphics.drawString(font, components.get(i), x, y + textY, 0, false);
             }
         }
     }

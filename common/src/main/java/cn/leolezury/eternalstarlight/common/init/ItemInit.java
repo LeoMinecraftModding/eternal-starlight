@@ -251,7 +251,7 @@ public class ItemInit {
     public static final RegistryObject<Item> RAG = registerItem("rag", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_GRINDER = registerItem("doomeden_grinder", () -> new DoomedenGrinderItem(ESItemTiers.DOOMEDEN, 5, -2.0F, new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_SWORD = registerItem("doomeden_sword", () -> new DoomedenSwordItem(ESItemTiers.DOOMEDEN, 4, -1.8F, new Item.Properties()));
-    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.DOOMED_REDSTONE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", () -> new BlockItem(BlockInit.DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_BRICK_SLAB = registerItem("doomeden_brick_slab", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_BRICK_STAIRS = registerItem("doomeden_brick_stairs", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));

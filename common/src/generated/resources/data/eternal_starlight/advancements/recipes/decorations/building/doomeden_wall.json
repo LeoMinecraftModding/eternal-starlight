@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_doomeden_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:doomeden_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:building/doomeden_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_doomeden_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:building/doomeden_wall"
+    ]
+  },
+  "sends_telemetry_event": false
+}

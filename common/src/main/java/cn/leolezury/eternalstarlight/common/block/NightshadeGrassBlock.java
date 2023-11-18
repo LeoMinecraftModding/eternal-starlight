@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;

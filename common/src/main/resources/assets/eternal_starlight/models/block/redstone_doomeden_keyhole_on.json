@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "eternal_starlight:block/doomeden_tile",
-    "front": "eternal_starlight:block/redstone_doomeden_keyhole_on",
-    "side": "eternal_starlight:block/doomeden_keyhole_on_side"
-  }
-}

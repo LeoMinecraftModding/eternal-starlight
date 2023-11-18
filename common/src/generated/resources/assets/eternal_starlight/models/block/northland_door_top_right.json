@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "eternal_starlight:block/northland_door_top",
+    "top": "eternal_starlight:block/northland_door_bottom"
+  }
+}

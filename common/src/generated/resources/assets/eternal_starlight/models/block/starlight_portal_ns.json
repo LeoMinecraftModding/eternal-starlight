@@ -1,0 +1,41 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "minecraft:missingno"
+        },
+        "east": {
+          "texture": "minecraft:missingno"
+        },
+        "north": {
+          "texture": "#portal"
+        },
+        "south": {
+          "texture": "#portal"
+        },
+        "up": {
+          "texture": "minecraft:missingno"
+        },
+        "west": {
+          "texture": "minecraft:missingno"
+        }
+      },
+      "from": [
+        0,
+        0,
+        6
+      ],
+      "to": [
+        16,
+        16,
+        10
+      ]
+    }
+  ],
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "particle": "eternal_starlight:block/starlight_portal",
+    "portal": "eternal_starlight:block/starlight_portal"
+  }
+}

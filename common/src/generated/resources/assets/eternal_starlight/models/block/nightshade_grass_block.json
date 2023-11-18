@@ -1,0 +1,91 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#bottom"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "minecraft:missingno"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#overlay",
+          "tintindex": 0
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#overlay",
+          "tintindex": 0
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#overlay",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "minecraft:missingno"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#overlay",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "textures": {
+    "bottom": "eternal_starlight:block/nightshade_dirt",
+    "overlay": "eternal_starlight:block/nightshade_grass_block_side_overlay",
+    "particle": "eternal_starlight:block/nightshade_dirt",
+    "side": "eternal_starlight:block/nightshade_grass_block_side",
+    "top": "eternal_starlight:block/nightshade_grass_block_top"
+  }
+}

@@ -6,7 +6,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
-import cn.leolezury.eternalstarlight.common.util.ESTeleporter;
+import cn.leolezury.eternalstarlight.common.world.ESTeleporter;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;

@@ -15,23 +15,19 @@ import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -52,9 +48,7 @@ import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -111,24 +105,8 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public boolean noFluidAtCamera(Camera camera) {
-        return camera.getBlockAtCamera().getFluidState().isEmpty();
-    }
-
-    @Override
     public void teleportEntity(ServerLevel dest, Entity entity) {
         entity.changeDimension(dest, new ForgeTeleporter(dest));
-    }
-
-    @Override
-    public EntityType<?> getEntityType(ResourceLocation location) {
-        Optional<Holder<EntityType<?>>> entityTypeHolder = ForgeRegistries.ENTITY_TYPES.getHolder(location);
-        return entityTypeHolder.<EntityType<?>>map(Holder::get).orElse(null);
-    }
-
-    @Override
-    public ResourceLocation getEntityTypeIdentifier(EntityType<?> entityType) {
-        return ForgeRegistries.ENTITY_TYPES.getKey(entityType);
     }
 
     @Override

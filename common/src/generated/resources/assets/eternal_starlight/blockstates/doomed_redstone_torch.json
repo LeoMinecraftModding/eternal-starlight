@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "eternal_starlight:block/doomed_redstone_torch"
+    },
+    "lit=true": {
+      "model": "eternal_starlight:block/doomed_redstone_torch_lit"
+    }
+  }
+}

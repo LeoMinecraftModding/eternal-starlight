@@ -103,7 +103,9 @@ public class ESPortalBlock extends Block {
                     if (destinationWorld != null && !entity.isPassenger()) {
                         entity.level().getProfiler().push("starlight_portal");
                         entity.setPortalCooldown();
-                        ESPlatform.INSTANCE.teleportEntity(destinationWorld, entity);
+                        if (ESPlatform.INSTANCE.postTravelToDimensionEvent(entity, destination)) {
+                            ESPlatform.INSTANCE.teleportEntity(destinationWorld, entity);
+                        }
                         entity.level().getProfiler().pop();
                     }
                 }

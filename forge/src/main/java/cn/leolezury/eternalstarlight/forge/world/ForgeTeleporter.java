@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.world;
 
-import cn.leolezury.eternalstarlight.common.util.ESTeleporter;
+import cn.leolezury.eternalstarlight.common.world.ESTeleporter;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.portal.PortalInfo;

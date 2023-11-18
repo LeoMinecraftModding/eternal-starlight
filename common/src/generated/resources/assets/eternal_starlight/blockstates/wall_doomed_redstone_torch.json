@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch"
+    },
+    "facing=east,lit=true": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch_lit"
+    },
+    "facing=north,lit=false": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch_lit",
+      "y": 270
+    },
+    "facing=south,lit=false": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch_lit",
+      "y": 90
+    },
+    "facing=west,lit=false": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "eternal_starlight:block/wall_doomed_redstone_torch_lit",
+      "y": 180
+    }
+  }
+}

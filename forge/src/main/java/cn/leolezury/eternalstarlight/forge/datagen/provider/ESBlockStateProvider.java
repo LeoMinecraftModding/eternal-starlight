@@ -3,15 +3,14 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.ModelProvider;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -53,7 +52,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.STARLIGHT_MANGROVE_SAPLING.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
         mangroveRoots(BlockInit.STARLIGHT_MANGROVE_ROOTS.get());
-        muddyMangroveRoots(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+        mangroveRoots(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
         // stones
         simpleBlock(BlockInit.GRIMSTONE.get());
@@ -76,7 +75,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         simpleBlock(BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         torch(BlockInit.DOOMED_TORCH.get(), BlockInit.WALL_DOOMED_TORCH.get());
-        redstoneTorch(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.DOOMED_REDSTONE_WALL_TORCH.get());
+        redstoneTorch(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.WALL_DOOMED_REDSTONE_TORCH.get());
         stoneSet(BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get(), BlockInit.DOOMEDEN_BRICK_STAIRS.get(), BlockInit.DOOMEDEN_BRICK_WALL.get());
         stoneSet(BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get());
         onOffBlock(BlockInit.DOOMEDEN_LIGHT.get());
@@ -93,7 +92,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.CRESCENT_GRASS.get());
         crossBlock(BlockInit.GLOWING_CRESCENT_GRASS.get());
         crossBlock(BlockInit.PARASOL_GRASS.get());
-        crossBlock(BlockInit.GLOWING_NIGHT_SPROUTS.get());
+        crossBlock(BlockInit.GLOWING_PARASOL_GRASS.get());
         doublePlant(BlockInit.LUNAR_REED.get());
         crossBlock(BlockInit.GLOWING_MUSHROOM.get());
         singleFace(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
@@ -108,9 +107,18 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.GREEN_FANTAGRASS.get());
 
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());
+        grassBlock(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_DIRT.get()));
+        simpleGrassBlock(BlockInit.FANTASY_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_MUD.get()));
 
-        // W. I. P.
-        // TODO: Grass block
+        simpleBlock(BlockInit.AETHERSENT_BLOCK.get());
+        simpleBlock(BlockInit.SPRINGSTONE.get());
+        simpleBlock(BlockInit.THERMAL_SPRINGSTONE.get());
+        simpleBlock(BlockInit.SWAMP_SILVER_ORE.get());
+        simpleBlock(BlockInit.SWAMP_SILVER_BLOCK.get());
+        onOffBlock(BlockInit.ENERGY_BLOCK.get());
+        spawner(BlockInit.STARLIGHT_GOLEM_SPAWNER.get());
+        spawner(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get());
+        portal(BlockInit.STARLIGHT_PORTAL.get());
     }
 
     private void woodSet(RotatedPillarBlock log, Block wood, Block planks, RotatedPillarBlock strippedLog, Block strippedWood, DoorBlock door, boolean cutoutDoor, TrapDoorBlock trapdoor, boolean cutoutTrapdoor, PressurePlateBlock pressurePlate, ButtonBlock button, FenceBlock fence, FenceGateBlock fenceGate, SlabBlock slab, StairBlock stairs, Block sign, Block wallSign, Block hangingSign, Block wallHangingSign) {
@@ -125,9 +133,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
             doorBlock(door, blockTexture(door).withSuffix("_top"), blockTexture(door).withSuffix("_bottom"));
         }
         if (cutoutTrapdoor) {
-            trapdoorBlockWithRenderType(trapdoor, blockTexture(door), true, CUTOUT);
+            trapdoorBlockWithRenderType(trapdoor, blockTexture(trapdoor), true, CUTOUT);
         } else {
-            trapdoorBlock(trapdoor, blockTexture(door), true);
+            trapdoorBlock(trapdoor, blockTexture(trapdoor), true);
         }
         pressurePlateBlock(pressurePlate, blockTexture(planks));
         buttonBlock(button, blockTexture(planks));
@@ -146,29 +154,116 @@ public class ESBlockStateProvider extends BlockStateProvider {
         wallBlock(wall, blockTexture(stone));
     }
 
+    private void portal(Block block) {
+        ModelFile modelEw = models().getBuilder(name(block) + "_ew")
+                .texture("particle", blockTexture(block))
+                .texture("portal", blockTexture(block))
+                .renderType(TRANSLUCENT)
+                .element()
+                .from(6, 0, 0)
+                .to(10, 16, 16)
+                .allFaces((dir, builder) -> {
+                    if (dir == Direction.EAST || dir == Direction.WEST) {
+                        builder.uvs(0, 0, 16, 16)
+                                .texture("#portal")
+                                .end();
+                    }
+                })
+                .end();
+        ModelFile modelNs = models().getBuilder(name(block) + "_ns")
+                .texture("particle", blockTexture(block))
+                .texture("portal", blockTexture(block))
+                .renderType(TRANSLUCENT)
+                .element()
+                .from(0, 0, 6)
+                .to(16, 16, 10)
+                .allFaces((dir, builder) -> {
+                    if (dir == Direction.NORTH || dir == Direction.SOUTH) {
+                        builder.uvs(0, 0, 16, 16)
+                                .texture("#portal")
+                                .end();
+                    }
+                })
+                .end();
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+    }
+
     private void berriesVines(Block block) {
         ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
-        ModelFile modelLit = models().cross(name(block), blockTexture(block).withSuffix("_lit")).renderType(CUTOUT);
+        ModelFile modelLit = models().cross(name(block) + "_lit", blockTexture(block).withSuffix("_lit")).renderType(CUTOUT);
         onOffBlock(block, BerriesVines.BERRIES, modelLit, modelNormal);
     }
 
     private void mangroveRoots(Block block) {
-        ModelFile modelFile = models().withExistingParent(name(block), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/mangrove_roots")).texture("side", blockTexture(block).withSuffix("_side")).texture("top", blockTexture(block).withSuffix("_top")).renderType(CUTOUT_MIPPED);
-        simpleBlock(block, modelFile);
-    }
-
-    private void muddyMangroveRoots(Block block) {
         cubeColumn(block, blockTexture(block).withSuffix("_top"), blockTexture(block).withSuffix("_side"), CUTOUT_MIPPED);
     }
 
     private void doomedenKeyhole(Block block, Block redstone) {
-        ModelFile modelOn = models().orientable(name(block), blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_front"), blockTexture(block).withSuffix("_on_top"));
-        ModelFile modelOff = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_front"), blockTexture(block).withSuffix("_off_top"));
+        ModelFile modelOn = models().orientable(name(block) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_front"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
+        ModelFile modelOff = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_front"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
         horizontalBlock(block, state -> state.getValue(BlockStateProperties.LIT) ? modelOn : modelOff);
 
-        ModelFile modelOnRedstone = models().orientable(name(block), blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(block).withSuffix("_on_top"));
-        ModelFile modelOffRedstone = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(block).withSuffix("_off_top"));
+        ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
+        ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
         horizontalBlock(redstone, state -> state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone);
+    }
+
+    private void spawner(Block block) {
+        simpleBlock(block, models().cubeAll(name(block), blockTexture(Blocks.SPAWNER)).renderType(CUTOUT));
+    }
+
+    private void simpleGrassBlock(Block grassBlock, ResourceLocation dirt) {
+        ModelFile modelFile = models().cubeBottomTop(name(grassBlock), blockTexture(grassBlock).withSuffix("_side"), dirt, blockTexture(grassBlock).withSuffix("_top"));
+        getVariantBuilder(grassBlock).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(modelFile).nextModel()
+                .rotationY(270).modelFile(modelFile).nextModel()
+                .rotationY(180).modelFile(modelFile).nextModel()
+                .rotationY(90).modelFile(modelFile).build());
+    }
+
+    private void grassBlock(Block grassBlock, ResourceLocation dirt) {
+        ModelFile modelNormal = models().withExistingParent(name(grassBlock), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/block"))
+                .texture("particle", dirt).texture("bottom", dirt).texture("top", blockTexture(grassBlock).withSuffix("_top")).texture("side", blockTexture(grassBlock).withSuffix("_side")).texture("overlay", blockTexture(grassBlock).withSuffix("_side_overlay"))
+                .element()
+                .from(0, 0, 0)
+                .to(16, 16, 16)
+                .allFaces((dir, builder) -> {
+                    var faceBuilder = builder
+                            .uvs(0, 0, 16, 16)
+                            .texture("#" + (dir == Direction.UP ? "top" : (dir == Direction.DOWN ? "bottom" : "side")))
+                            .cullface(dir);
+                    if (dir == Direction.UP) {
+                        faceBuilder.tintindex(0).end();
+                    } else {
+                        faceBuilder.end();
+                    }
+                })
+                .end()
+                .element()
+                .from(0, 0, 0)
+                .to(16, 16, 16)
+                .allFaces((dir, builder) -> {
+                    if (dir != Direction.UP && dir != Direction.DOWN) {
+                        builder.uvs(0, 0, 16, 16)
+                                .texture("#overlay")
+                                .cullface(dir)
+                                .tintindex(0)
+                                .end();
+                    }
+                })
+                .end();
+        ModelFile modelSnow = models().cubeBottomTop(name(grassBlock) + "_snow", blockTexture(grassBlock).withSuffix("_snow"), dirt, blockTexture(grassBlock).withSuffix("_top"));
+        getVariantBuilder(grassBlock).forAllStates(state -> {
+            if (state.getValue(BlockStateProperties.SNOWY)) {
+                return ConfiguredModel.builder().modelFile(modelSnow).build();
+            } else {
+                return ConfiguredModel.builder()
+                        .modelFile(modelNormal).nextModel()
+                        .rotationY(270).modelFile(modelNormal).nextModel()
+                        .rotationY(180).modelFile(modelNormal).nextModel()
+                        .rotationY(90).modelFile(modelNormal).build();
+            }
+        });
     }
 
     private void torch(Block normal, Block wall) {
@@ -179,16 +274,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void redstoneTorch(Block normal, Block wall) {
-        ModelFile modelNormal = models().torch(name(normal), blockTexture(normal));
+        ModelFile modelNormal = models().torch(name(normal) + "_lit", blockTexture(normal));
         ModelFile modelNormalOff = models().torch(name(normal), blockTexture(normal).withSuffix("_off"));
-        ModelFile modelWall = models().torchWall(name(wall), blockTexture(normal));
-        ModelFile modelWallOff = models().torch(name(normal), blockTexture(normal).withSuffix("_off"));
+        ModelFile modelWall = models().torchWall(name(wall) + "_lit", blockTexture(normal));
+        ModelFile modelWallOff = models().torchWall(name(wall), blockTexture(normal).withSuffix("_off"));
         onOffBlock(normal, BlockStateProperties.LIT, modelNormal, modelNormalOff);
         horizontalBlock(wall, state -> state.getValue(BlockStateProperties.LIT) ? modelWall : modelWallOff, 90);
     }
 
     private void onOffBlock(Block block) {
-        ModelFile on = models().cubeAll(name(block), blockTexture(block));
+        ModelFile on = models().cubeAll(name(block) + "_lit", blockTexture(block).withSuffix("_lit"));
         ModelFile off = models().cubeAll(name(block), blockTexture(block));
         onOffBlock(block, BlockStateProperties.LIT, on, off);
     }
@@ -216,12 +311,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void doublePlant(Block block) {
-        ModelFile upper = models().cross(name(block) + "_top", key(block).withSuffix("_top")).renderType(CUTOUT);
-        ModelFile lower = models().cross(name(block) + "_bottom", key(block).withSuffix("_bottom")).renderType(CUTOUT);
+        ModelFile upper = models().cross(name(block) + "_top", blockTexture(block).withSuffix("_top")).renderType(CUTOUT);
+        ModelFile lower = models().cross(name(block) + "_bottom", blockTexture(block).withSuffix("_bottom")).renderType(CUTOUT);
         getVariantBuilder(block)
-                .partialState().with(BlockStateProperties.HALF, Half.TOP)
+                .partialState().with(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER)
                 .modelForState().modelFile(upper).addModel()
-                .partialState().with(BlockStateProperties.HALF, Half.BOTTOM)
+                .partialState().with(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER)
                 .modelForState().modelFile(lower).addModel();
     }
 
@@ -240,7 +335,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void crossBlock(Block block, ResourceLocation renderType) {
-        ModelFile modelFile = models().cross(name(block), key(block)).renderType(renderType);
+        ModelFile modelFile = models().cross(name(block), blockTexture(block)).renderType(renderType);
         simpleBlock(block, modelFile);
     }
 

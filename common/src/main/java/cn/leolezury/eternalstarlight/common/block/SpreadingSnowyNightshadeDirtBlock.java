@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

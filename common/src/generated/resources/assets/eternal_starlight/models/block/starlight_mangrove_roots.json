@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "end": "eternal_starlight:block/starlight_mangrove_roots_top",
+    "side": "eternal_starlight:block/starlight_mangrove_roots_side"
+  }
+}

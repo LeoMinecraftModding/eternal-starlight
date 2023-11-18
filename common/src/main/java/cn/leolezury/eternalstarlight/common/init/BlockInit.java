@@ -196,9 +196,9 @@ public class BlockInit {
 
     // doomeden
     public static final RegistryObject<Block> DOOMED_TORCH = BLOCKS.register("doomed_torch", () -> new TorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
-    public static final RegistryObject<Block> WALL_DOOMED_TORCH = BLOCKS.register("wall_doomed_torch", () -> new WallTorchBlock(BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> WALL_DOOMED_TORCH = BLOCKS.register("wall_doomed_torch", () -> new WallTorchBlock(BlockBehaviour.Properties.copy(Blocks.WALL_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> DOOMED_REDSTONE_TORCH = BLOCKS.register("doomed_redstone_torch", () -> new DoomedenRedstoneTorchBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_TORCH)));
-    public static final RegistryObject<Block> DOOMED_REDSTONE_WALL_TORCH = BLOCKS.register("doomed_redstone_wall_torch", () -> new DoomedenRedstoneWallTorchBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_TORCH)));
+    public static final RegistryObject<Block> WALL_DOOMED_REDSTONE_TORCH = BLOCKS.register("wall_doomed_redstone_torch", () -> new DoomedenRedstoneWallTorchBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_WALL_TORCH)));
     public static final RegistryObject<Block> DOOMEDEN_BRICKS = BLOCKS.register("doomeden_bricks", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<SlabBlock> DOOMEDEN_BRICK_SLAB = BLOCKS.register("doomeden_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<StairBlock> DOOMEDEN_BRICK_STAIRS = BLOCKS.register("doomeden_brick_stairs", () -> new StairBlock(BlockInit.DOOMEDEN_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_GREEN)));

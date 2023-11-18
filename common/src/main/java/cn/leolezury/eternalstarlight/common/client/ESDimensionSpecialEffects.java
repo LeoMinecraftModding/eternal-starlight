@@ -1,17 +1,12 @@
 package cn.leolezury.eternalstarlight.common.client;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
-import net.minecraft.core.Holder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 

@@ -40,6 +40,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -208,15 +209,18 @@ public class ClientSetupHandlers {
 
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
         BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
+        BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : GrassColor.getDefaultColor();
+        strategy.register(grassColor, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
     public static void registerItemColors(ItemColorRegisterStrategy strategy) {
-        ItemColor leavesItemColor = (stack, packedLight) -> {
+        ItemColor toBlock = (stack, packedLight) -> {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
             return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
         };
-        strategy.register(leavesItemColor, ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(toBlock, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
+        strategy.register(toBlock, ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {

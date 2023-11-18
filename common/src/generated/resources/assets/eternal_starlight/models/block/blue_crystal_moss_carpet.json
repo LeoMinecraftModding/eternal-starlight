@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/carpet",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "wool": "eternal_starlight:block/blue_crystal_moss_carpet"
+  }
+}

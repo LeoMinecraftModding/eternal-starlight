@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "eternal_starlight:block/wall_doomed_torch"
+    },
+    "facing=north": {
+      "model": "eternal_starlight:block/wall_doomed_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "eternal_starlight:block/wall_doomed_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "eternal_starlight:block/wall_doomed_torch",
+      "y": 180
+    }
+  }
+}
