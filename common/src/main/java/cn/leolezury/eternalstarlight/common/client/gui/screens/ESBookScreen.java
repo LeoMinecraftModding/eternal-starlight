@@ -94,8 +94,8 @@ public class ESBookScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics graphics, int i, int i1, float f) {
-        renderBackground(graphics);
+    public void render(GuiGraphics graphics, int i, int j, float f) {
+        renderBackground(graphics, i, j, f);
         List<BookRenderData.ChapterRenderData> chapters = bookData.chapters();
         if (cachedComponents.isEmpty()) {
             // build the cache
@@ -133,7 +133,7 @@ public class ESBookScreen extends Screen {
         if (currentPage + 1 < totalPages) {
             renderPage(graphics, 1, rightPageX, y + bookData.textOffsetY());
         }
-        super.render(graphics, i, i1, f);
+        super.render(graphics, i, j, f);
     }
 
     private void renderPage(GuiGraphics graphics, int pageOffset, int x, int y) {

@@ -2,10 +2,7 @@ package cn.leolezury.eternalstarlight.common.resource.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -13,7 +10,6 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.level.storage.loot.Deserializers;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
@@ -24,7 +20,7 @@ import java.util.Map;
 public class TheGatekeeperNameManager extends SimpleJsonResourceReloadListener {
     private static final ResourceLocation NAMES_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "eternal_starlight/gatekeeper_names/gatekeeper_names.json");
     private static final RandomSource RANDOM = RandomSource.create();
-    public static final Gson GSON_INSTANCE = Deserializers.createFunctionSerializer().create();
+    public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final List<String> names = Lists.newArrayList();
     private static final String folder = "eternal_starlight/gatekeeper_names";
 

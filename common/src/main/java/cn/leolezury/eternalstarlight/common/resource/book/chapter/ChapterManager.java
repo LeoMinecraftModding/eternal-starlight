@@ -1,20 +1,20 @@
 package cn.leolezury.eternalstarlight.common.resource.book.chapter;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.level.storage.loot.Deserializers;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class ChapterManager extends SimpleJsonResourceReloadListener {
-    public static final Gson GSON_INSTANCE = Deserializers.createFunctionSerializer().create();
+    public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final Map<ResourceLocation, ChapterData> chapterDataMap = new HashMap<>();
     private static final String folder = "eternal_starlight/chapters";
 

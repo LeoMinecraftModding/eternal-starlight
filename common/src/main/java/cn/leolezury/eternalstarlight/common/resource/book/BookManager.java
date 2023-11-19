@@ -5,11 +5,9 @@ import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
@@ -17,12 +15,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.level.storage.loot.Deserializers;
 
 import java.util.*;
 
 public class BookManager extends SimpleJsonResourceReloadListener {
-    public static final Gson GSON_INSTANCE = Deserializers.createFunctionSerializer().create();
+    public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final Map<ResourceLocation, BookData> bookDataMap = new HashMap<>();
     private static final String folder = "eternal_starlight/books";
 
@@ -95,7 +92,7 @@ public class BookManager extends SimpleJsonResourceReloadListener {
                         if (chapterData.trigger().getPath().isEmpty()) {
                             chapterDataList.add(chapterData);
                         } else {
-                            Advancement advancement = advancementManager.getAdvancement(chapterData.trigger());
+                            AdvancementHolder advancement = advancementManager.get(chapterData.trigger());
                             if (advancement != null) {
                                 AdvancementProgress advancementProgress = serverPlayer.getAdvancements().getOrStartProgress(advancement);
                                 if (advancementProgress.isDone()) {

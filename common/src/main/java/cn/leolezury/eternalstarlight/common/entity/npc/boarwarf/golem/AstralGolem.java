@@ -100,7 +100,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new AstralGolemMeleeAttackGoal(this));
+        goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0, true));
         goalSelector.addGoal(2, new AstralGolemRandomStrollNearVillageGoal(this));
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, LivingEntity.class, 32.0F));
         goalSelector.addGoal(4, new RandomLookAroundGoal(this));
@@ -109,16 +109,6 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
         targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (entity) -> entity instanceof Enemy && !(entity instanceof Creeper)));
         targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, false));
-    }
-
-    static class AstralGolemMeleeAttackGoal extends MeleeAttackGoal {
-        public AstralGolemMeleeAttackGoal(AstralGolem p_34123_) {
-            super(p_34123_, 2.0D, true);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return super.getAttackReachSqr(entity) * 3;
-        }
     }
 
     public static AttributeSupplier.Builder createAttributes() {

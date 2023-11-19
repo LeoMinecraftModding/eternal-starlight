@@ -61,8 +61,8 @@ public class BerriesVineBlock extends GrowingPlantHeadBlock implements Bonemeala
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, boolean b) {
-        return !state.getValue(BERRIES);
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return !blockState.getValue(BERRIES);
     }
 
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {

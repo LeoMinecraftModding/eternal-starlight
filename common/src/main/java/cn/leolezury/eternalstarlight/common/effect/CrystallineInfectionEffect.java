@@ -24,7 +24,7 @@ public class CrystallineInfectionEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         int k = 25 >> amplifier;
         if (k > 0) {
             return duration % k == 0;

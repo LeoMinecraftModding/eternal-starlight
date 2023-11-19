@@ -136,7 +136,7 @@ public class TheGatekeeper extends ESBoss {
         }
 
         @Override
-        protected void checkAndPerformAttack(LivingEntity target, double dist) {
+        protected void checkAndPerformAttack(LivingEntity target) {
 
         }
     }

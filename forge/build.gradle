@@ -2,21 +2,15 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
+apply from: 'https://gist.gitmirror.com/Technici4n/facbcdf18ce1a556b76e6027180c32ce/raw/1e0a2fbd8ecb708294ef50c16a20aed468d948e1/classremapper.gradle'
+
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge()
 }
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
-
-    forge {
-        convertAccessWideners = true
-        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-
-        mixinConfig "eternal_starlight-common.mixins.json"
-        mixinConfig "eternal_starlight.mixins.json"
-    }
 
     runs {
         data {
@@ -41,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    forge "net.neoforged:forge:${rootProject.forge_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
     // modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 

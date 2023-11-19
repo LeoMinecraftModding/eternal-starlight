@@ -64,7 +64,7 @@ public class TheGatekeeperHeadLayer<T extends TheGatekeeper> extends RenderLayer
         }
 
         Minecraft minecraft = Minecraft.getInstance();
-        Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.getSkinManager().getInsecureSkinInformation(gameProfile);
+        Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.getSkinManager().getInsecureSkin(gameProfile);
         boolean hasKey = map.containsKey(MinecraftProfileTexture.Type.SKIN);
         if (!hasKey) {
             return;

@@ -3,6 +3,11 @@ loaderVersion = "[37,)"
 #issueTrackerURL = ""
 license = "MIT"
 
+[[mixins]]
+config = "eternal_starlight.mixins.json"
+[[mixins]]
+config = "eternal_starlight-common.mixins.json"
+
 [[mods]]
 modId = "eternal_starlight"
 version = "${version}"
@@ -14,9 +19,9 @@ A Minecraft dimension mod with structures for you to explore and bosses for you 
 #logoFile = "logo.png"
 
 [[dependencies.eternal_starlight]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[41.0.22,)"
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
