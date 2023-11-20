@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -17,17 +18,18 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class ESRecipeProvider extends RecipeProvider {
-    public ESRecipeProvider(PackOutput output) {
-        super(output);
+    public ESRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
         addWoodRecipes(consumer);
         addStoneRecipes(consumer);
         addAetherSentRecipes(consumer);
@@ -80,7 +82,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(consumer, getEquipmentLocation("petal_scythe"));
     }
 
-    private void addWoodRecipes(Consumer<FinishedRecipe> consumer) {
+    private void addWoodRecipes(RecipeOutput consumer) {
         addButton(consumer, "lunar", BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_PLANKS.get());
         addDoor(consumer, "lunar", BlockInit.LUNAR_DOOR.get(), BlockInit.LUNAR_PLANKS.get());
         addFence(consumer, "lunar", BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_PLANKS.get());
@@ -127,7 +129,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addBoat(consumer, ItemInit.STARLIGHT_MANGROVE_BOAT.get(), ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
     }
 
-    private void addStoneRecipes(Consumer<FinishedRecipe> consumer) {
+    private void addStoneRecipes(RecipeOutput consumer) {
         addPolished(consumer, "grimstone", BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE.get());
         addBricks(consumer, "grimstone", BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.POLISHED_GRIMSTONE.get());
         addChiseled(consumer, "grimstone", BlockInit.CHISELED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
@@ -200,7 +202,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addStoneCuttingSlab(consumer, "nightshade_mud", BlockInit.NIGHTSHADE_MUD_BRICKS.get(), ItemInit.NIGHTSHADE_MUD_BRICK_SLAB.get());
     }
 
-    private void addAetherSentRecipes(Consumer<FinishedRecipe> consumer) {
+    private void addAetherSentRecipes(RecipeOutput consumer) {
         addCompressed(consumer, "aethersent", ItemInit.AETHERSENT_INGOT.get(), ItemInit.AETHERSENT_BLOCK.get());
         addReverseCompressed(consumer, "aethersent", ItemInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_HOOD.get())
@@ -244,7 +246,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSword(consumer, "rage_of_stars", ItemInit.RAGE_OF_STARS.get(), ItemInit.AETHERSENT_INGOT.get(), Items.STICK);
     }
 
-    private void addSwampSilverRecipes(Consumer<FinishedRecipe> consumer) {
+    private void addSwampSilverRecipes(RecipeOutput consumer) {
         addCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_BLOCK.get());
         addReverseCompressed(consumer, "swamp_silver", ItemInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT.get());
         addAxe(consumer, "swamp_silver_axe", ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
@@ -272,7 +274,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_nugget", 100, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
     }
 
-    private void addThermalSpringstoneRecipes(Consumer<FinishedRecipe> consumer) {
+    private void addThermalSpringstoneRecipes(RecipeOutput consumer) {
         addAxe(consumer, "thermal_springstone_axe", ItemInit.THERMAL_SPRINGSTONE_AXE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
         addPickaxe(consumer, "thermal_springstone_pickaxe", ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
         addHoe(consumer, "thermal_springstone_scythe", ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
@@ -287,15 +289,15 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     // misc
-    protected final void addSmelt(Consumer<FinishedRecipe> finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
+    protected final void addSmelt(RecipeOutput finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
         SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
     }
 
-    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike toCompress, ItemLike output) {
+    protected final void addCompressed(RecipeOutput finishedRecipeConsumer, String id, ItemLike toCompress, ItemLike output) {
         addCompressed(finishedRecipeConsumer, id, RecipeCategory.BUILDING_BLOCKS, toCompress, output);
     }
 
-    protected final void addCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, RecipeCategory category, ItemLike toCompress, ItemLike output) {
+    protected final void addCompressed(RecipeOutput finishedRecipeConsumer, String id, RecipeCategory category, ItemLike toCompress, ItemLike output) {
         ShapedRecipeBuilder.shaped(category, output)
                 .pattern("###")
                 .pattern("###")
@@ -305,14 +307,14 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getModLocation("compressed/" + id));
     }
 
-    protected final void addReverseCompressed(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike compressed, ItemLike output) {
+    protected final void addReverseCompressed(RecipeOutput finishedRecipeConsumer, String id, ItemLike compressed, ItemLike output) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 9)
                 .requires(compressed)
                 .unlockedBy("has_item", has(compressed))
                 .save(finishedRecipeConsumer, getModLocation("compressed/reversed/" + id));
     }
 
-    protected final void addShapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
+    protected final void addShapeless(RecipeOutput finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
         ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, num);
         for (ItemLike item : ingredients) {
             builder.requires(item);
@@ -321,7 +323,7 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     // combat & tools
-    protected final void addHelmet(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+    protected final void addHelmet(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("# #")
@@ -330,7 +332,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addChestplate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+    protected final void addChestplate(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("# #")
                 .pattern("###")
@@ -340,7 +342,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addLeggings(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+    protected final void addLeggings(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("# #")
@@ -350,7 +352,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addBoots(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
+    protected final void addBoots(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("# #")
                 .pattern("# #")
@@ -359,7 +361,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addHoe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+    protected final void addHoe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("##")
                 .pattern(" H")
@@ -370,7 +372,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addPickaxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+    protected final void addPickaxe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("###")
                 .pattern(" H ")
@@ -381,7 +383,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addSword(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+    protected final void addSword(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("#")
                 .pattern("#")
@@ -392,7 +394,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addAxe(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+    protected final void addAxe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
                 .pattern("##")
                 .pattern("#H")
@@ -403,7 +405,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getEquipmentLocation(id));
     }
 
-    protected final void addHammer(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
+    protected final void addHammer(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
                 .pattern("###")
                 .pattern("#H#")
@@ -415,14 +417,14 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     // building blocks and wooden stuff
-    protected final void addPlanks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, TagKey<Item> input) {
+    protected final void addPlanks(RecipeOutput finishedRecipeConsumer, String id, Block output, TagKey<Item> input) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_planks"));
     }
 
-    protected final void addWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addWood(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 3)
                 .pattern("##")
                 .pattern("##")
@@ -431,7 +433,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_wood"));
     }
 
-    protected final void addStrippedWood(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addStrippedWood(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 3)
                 .pattern("##")
                 .pattern("##")
@@ -440,14 +442,14 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_stripped_wood"));
     }
 
-    protected final void addButton(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addButton(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, output)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_button"));
     }
 
-    protected final void addDoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addDoor(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 3)
                 .pattern("##")
                 .pattern("##")
@@ -457,7 +459,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_door"));
     }
 
-    protected final void addFence(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addFence(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3)
                 .pattern("#S#")
                 .pattern("#S#")
@@ -467,7 +469,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence"));
     }
 
-    protected final void addFenceGate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addFenceGate(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output)
                 .pattern("S#S")
                 .pattern("S#S")
@@ -477,7 +479,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence_gate"));
     }
 
-    protected final void addPressurePlate(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addPressurePlate(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output)
                 .pattern("##")
                 .define('#', input)
@@ -485,7 +487,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_pressure_plate"));
     }
 
-    protected final void addSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addSlab(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
                 .pattern("###")
                 .define('#', input)
@@ -493,7 +495,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab"));
     }
 
-    protected final void addStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addStairs(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 2)
                 .pattern("#  ")
                 .pattern("## ")
@@ -503,7 +505,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs"));
     }
 
-    protected final void addTrapdoor(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addTrapdoor(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 2)
                 .pattern("###")
                 .pattern("###")
@@ -512,7 +514,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_trapdoor"));
     }
 
-    protected final void addSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, Block input) {
+    protected final void addSign(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3)
                 .pattern("###")
                 .pattern("###")
@@ -523,7 +525,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_sign"));
     }
 
-    protected final void addHangingSign(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, ItemLike output, Block input) {
+    protected final void addHangingSign(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("C C")
                 .pattern("###")
@@ -534,7 +536,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_hanging_sign"));
     }
 
-    protected final void addBoat(Consumer<FinishedRecipe> finishedRecipeConsumer, Item boat, Item chestBoat, Block planks) {
+    protected final void addBoat(RecipeOutput finishedRecipeConsumer, Item boat, Item chestBoat, Block planks) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
                 .pattern("P P")
                 .pattern("PPP")
@@ -551,7 +553,7 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     // stone
-    protected final void addPolished(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addPolished(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
                 .pattern("##")
                 .pattern("##")
@@ -560,7 +562,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_polished"));
     }
 
-    protected final void addBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addBricks(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
                 .pattern("##")
                 .pattern("##")
@@ -569,7 +571,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks"));
     }
 
-    protected final void addWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addWall(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -578,7 +580,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall"));
     }
 
-    protected final void addChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block output, Block input) {
+    protected final void addChiseled(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
                 .pattern("#")
                 .pattern("#")
@@ -587,27 +589,27 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled"));
     }
 
-    protected final void addStoneCuttingChiseled(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
+    protected final void addStoneCuttingChiseled(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingBricks(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
+    protected final void addStoneCuttingBricks(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingSlab(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
+    protected final void addStoneCuttingSlab(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output, 2)
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingStairs(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
+    protected final void addStoneCuttingStairs(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
-    protected final void addStoneCuttingWall(Consumer<FinishedRecipe> finishedRecipeConsumer, String id, Block input, ItemLike output) {
+    protected final void addStoneCuttingWall(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
                 .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }

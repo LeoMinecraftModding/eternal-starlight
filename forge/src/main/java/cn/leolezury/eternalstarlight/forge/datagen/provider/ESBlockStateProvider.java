@@ -10,9 +10,12 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraftforge.client.model.generators.*;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class ESBlockStateProvider extends BlockStateProvider {
     // Render Types
@@ -162,13 +165,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .element()
                 .from(6, 0, 0)
                 .to(10, 16, 16)
-                .allFaces((dir, builder) -> {
-                    if (dir == Direction.EAST || dir == Direction.WEST) {
-                        builder.uvs(0, 0, 16, 16)
-                                .texture("#portal")
-                                .end();
-                    }
-                })
+                .face(Direction.EAST)
+                .uvs(0, 0, 16, 16)
+                .texture("#portal")
+                .end()
+                .face(Direction.WEST)
+                .uvs(0, 0, 16, 16)
+                .texture("#portal")
+                .end()
                 .end();
         ModelFile modelNs = models().getBuilder(name(block) + "_ns")
                 .texture("particle", blockTexture(block))
@@ -177,13 +181,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .element()
                 .from(0, 0, 6)
                 .to(16, 16, 10)
-                .allFaces((dir, builder) -> {
-                    if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                        builder.uvs(0, 0, 16, 16)
-                                .texture("#portal")
-                                .end();
-                    }
-                })
+                .face(Direction.NORTH)
+                .uvs(0, 0, 16, 16)
+                .texture("#portal")
+                .end()
+                .face(Direction.SOUTH)
+                .uvs(0, 0, 16, 16)
+                .texture("#portal")
+                .end()
                 .end();
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
     }
@@ -242,15 +247,30 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .element()
                 .from(0, 0, 0)
                 .to(16, 16, 16)
-                .allFaces((dir, builder) -> {
-                    if (dir != Direction.UP && dir != Direction.DOWN) {
-                        builder.uvs(0, 0, 16, 16)
-                                .texture("#overlay")
-                                .cullface(dir)
-                                .tintindex(0)
-                                .end();
-                    }
-                })
+                .face(Direction.NORTH)
+                .uvs(0, 0, 16, 16)
+                .texture("#overlay")
+                .cullface(Direction.NORTH)
+                .tintindex(0)
+                .end()
+                .face(Direction.SOUTH)
+                .uvs(0, 0, 16, 16)
+                .texture("#overlay")
+                .cullface(Direction.SOUTH)
+                .tintindex(0)
+                .end()
+                .face(Direction.WEST)
+                .uvs(0, 0, 16, 16)
+                .texture("#overlay")
+                .cullface(Direction.WEST)
+                .tintindex(0)
+                .end()
+                .face(Direction.EAST)
+                .uvs(0, 0, 16, 16)
+                .texture("#overlay")
+                .cullface(Direction.EAST)
+                .tintindex(0)
+                .end()
                 .end();
         ModelFile modelSnow = models().cubeBottomTop(name(grassBlock) + "_snow", blockTexture(grassBlock).withSuffix("_snow"), dirt, blockTexture(grassBlock).withSuffix("_top"));
         getVariantBuilder(grassBlock).forAllStates(state -> {

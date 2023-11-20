@@ -28,9 +28,9 @@
 
 package cn.leolezury.eternalstarlight.forge.util.register;
 
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.javafmlmod.FMLModContainer;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.javafmlmod.FMLModContainer;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -39,7 +39,7 @@ import java.util.ServiceLoader;
 /**
  * An interface loaded through Service Loaders, for providing the mod event bus for a
  * mod container, which is used by the {@link ForgeRegistrationFactory} for getting the bus
- * that a {@link net.minecraftforge.registries.DeferredRegister} should be registered to.
+ * that a {@link net.neoforged.neoforge.registries.DeferredRegister} should be registered to.
  */
 public interface ForgeBusGetter {
 

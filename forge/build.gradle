@@ -2,8 +2,6 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
-apply from: 'https://gist.gitmirror.com/Technici4n/facbcdf18ce1a556b76e6027180c32ce/raw/1e0a2fbd8ecb708294ef50c16a20aed468d948e1/classremapper.gradle'
-
 architectury {
     platformSetupLoomIde()
     neoForge()

@@ -48,7 +48,7 @@ public class TheGatekeeperHeadLayer<T extends TheGatekeeper> extends RenderLayer
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entityIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entityIn.getCustomName() == null || entityIn.getCustomName().getString().isEmpty()) {
+        /*if (entityIn.getCustomName() == null || entityIn.getCustomName().getString().isEmpty()) {
             return;
         }
         String name = entityIn.getCustomName().getString();
@@ -63,70 +63,13 @@ public class TheGatekeeperHeadLayer<T extends TheGatekeeper> extends RenderLayer
             gameProfile = playerProfile;
         }
 
-        Minecraft minecraft = Minecraft.getInstance();
-        Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.getSkinManager().getInsecureSkin(gameProfile);
-        boolean hasKey = map.containsKey(MinecraftProfileTexture.Type.SKIN);
-        if (!hasKey) {
-            return;
-        }
-        ResourceLocation TEXTURE = minecraft.getSkinManager().registerTexture(map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-
-        getParentModel().copyPropertiesTo(this.model);
-        this.model.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTicks);
-        this.model.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutout(TEXTURE));
-        this.model.renderHeadToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
-    }
-
-    private void updatePlayerProfile() {
-        updateGameprofile(playerProfile, (profile) -> {
-            playerProfile = profile;
-            prevPlayerName = profile.getName();
-            changed = true;
-        });
-    }
-
-    public static void updateGameprofile(@Nullable GameProfile profile, Consumer<GameProfile> profileConsumer) {
-        if (profile != null && !StringUtil.isNullOrEmpty(profile.getName()) && (!profile.isComplete() || !profile.getProperties().containsKey("textures")) && profileCache != null && sessionService != null) {
-            profileCache.getAsync(profile.getName(), (p_182470_) -> {
-                Util.backgroundExecutor().execute(() -> {
-                    Util.ifElse(p_182470_, (p_276255_) -> {
-                        Property property = Iterables.getFirst(p_276255_.getProperties().get("textures"), (Property)null);
-                        if (property == null) {
-                            MinecraftSessionService minecraftsessionservice = sessionService;
-                            if (minecraftsessionservice == null) {
-                                return;
-                            }
-
-                            p_276255_ = minecraftsessionservice.fillProfileProperties(p_276255_, true);
-                        }
-
-                        GameProfile gameprofile = p_276255_;
-                        Executor executor = mainThreadExecutor;
-                        if (executor != null) {
-                            executor.execute(() -> {
-                                GameProfileCache gameprofilecache = profileCache;
-                                if (gameprofilecache != null) {
-                                    gameprofilecache.add(gameprofile);
-                                    profileConsumer.accept(gameprofile);
-                                }
-
-                            });
-                        }
-
-                    }, () -> {
-                        Executor executor = mainThreadExecutor;
-                        if (executor != null) {
-                            executor.execute(() -> {
-                                profileConsumer.accept(profile);
-                            });
-                        }
-
-                    });
-                });
-            });
-        } else {
-            profileConsumer.accept(profile);
-        }
+        if (gameProfile != null) {
+            ResourceLocation TEXTURE = Minecraft.getInstance().getSkinManager().getInsecureSkin(gameProfile).texture();
+            getParentModel().copyPropertiesTo(this.model);
+            this.model.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTicks);
+            this.model.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutout(TEXTURE));
+            this.model.renderHeadToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+        }*/
     }
 }

@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.forge.item.weapon;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ToolActions;
 
 public class ForgeScytheItem extends ScytheItem {
     public ForgeScytheItem(Tier tier, float damage, float attackSpeed, Properties properties) {

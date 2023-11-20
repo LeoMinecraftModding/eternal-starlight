@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[37,)"
+loaderVersion = "*"
 #issueTrackerURL = ""
 license = "MIT"
 

@@ -33,7 +33,7 @@ import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
 import com.google.auto.service.AutoService;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.ParametersAreNonnullByDefault;

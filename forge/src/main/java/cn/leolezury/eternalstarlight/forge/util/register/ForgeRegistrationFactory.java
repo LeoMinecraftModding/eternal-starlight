@@ -39,10 +39,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.NewRegistryEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nonnull;
@@ -82,7 +82,7 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
     private static class Provider<T> implements RegistrationProvider<T> {
         private final String modId;
         private final DeferredRegister<T> registry;
-        private net.minecraftforge.registries.RegistryBuilder<T> regBuilder;
+        private net.neoforged.neoforge.registries.RegistryBuilder<T> regBuilder;
 
         private final Set<RegistryObject<T>> entries = new HashSet<>();
         private final Set<RegistryObject<T>> entriesView = Collections.unmodifiableSet(entries);
@@ -161,7 +161,7 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
         }
 
         private final class Builder implements RegistryBuilder<T> {
-            private final net.minecraftforge.registries.RegistryBuilder<T> builder = new net.minecraftforge.registries.RegistryBuilder<>();
+            private final net.neoforged.neoforge.registries.RegistryBuilder<T> builder = new net.neoforged.neoforge.registries.RegistryBuilder<>();
             private final Map<RegistryFeatureType<?>, Object> features = new HashMap<>();
 
             public Builder() {

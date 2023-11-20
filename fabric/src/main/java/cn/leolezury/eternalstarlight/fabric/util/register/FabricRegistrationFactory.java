@@ -179,9 +179,9 @@ public class FabricRegistrationFactory implements RegistrationProvider.Factory {
                 if (features.containsKey(RegistryFeatureType.SYNCED)) {
                     builder.attribute(RegistryAttribute.SYNCED);
                 }
-                if (features.containsKey(RegistryFeatureType.SAVED_TO_DISK)) {
+                /*if (features.containsKey(RegistryFeatureType.SAVED_TO_DISK)) {
                     builder.attribute(RegistryAttribute.PERSISTED);
-                }
+                }*/
 
                 final Supplier<Registry<T>> sup = Suppliers.ofInstance(builder.buildAndRegister());
                 if (defaultValueSupplier != null) {

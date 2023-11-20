@@ -2,12 +2,14 @@ package cn.leolezury.eternalstarlight.forge.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkRegistry;
+import net.neoforged.neoforge.network.PlayNetworkDirection;
+import net.neoforged.neoforge.network.simple.MessageFunctions;
+import net.neoforged.neoforge.network.simple.SimpleChannel;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -30,15 +32,13 @@ public class ForgeNetworkHandler {
     }
 
     public static <T> void registerMessage(int idx, ESPackets.Handler<T> handler) {
-        SIMPLE_CHANNEL.registerMessage(idx, handler.packetClass(), handler.write(), handler.read(), (msg, contextSupplier) -> commonHandle(msg, contextSupplier, handler.handle()));
-    }
-
-    public static <T> void commonHandle(T packet, Supplier<NetworkEvent.Context> ctx, Consumer<T> handle) {
-        ctx.get().enqueueWork(() -> handle.accept(packet));
+        SIMPLE_CHANNEL.registerMessage(idx, handler.packetClass(), (object, arg) -> handler.write().accept(object, arg), arg -> handler.read().apply(arg), (msg, context) -> {
+            context.enqueueWork(() -> handler.handle().accept(msg));
+        });
     }
 
     public static void sendToClient(ServerPlayer serverPlayer, Object packet) {
-        SIMPLE_CHANNEL.sendTo(packet, serverPlayer.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+        SIMPLE_CHANNEL.sendTo(packet, serverPlayer.connection.connection, PlayNetworkDirection.PLAY_TO_CLIENT);
     }
 
     public static void sendToServer(Object packet) {

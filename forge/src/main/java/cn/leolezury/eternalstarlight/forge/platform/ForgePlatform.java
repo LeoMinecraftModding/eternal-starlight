@@ -38,16 +38,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.network.NetworkHooks;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -91,17 +91,17 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
-        return ForgeEventFactory.onArrowLoose(stack, level, player, charge, hasAmmo);
+        return EventHooks.onArrowLoose(stack, level, player, charge, hasAmmo);
     }
 
     @Override
     public boolean postMobGriefingEvent(Level level, Entity entity) {
-        return ForgeEventFactory.getMobGriefingEvent(level, entity);
+        return EventHooks.getMobGriefingEvent(level, entity);
     }
 
     @Override
     public boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
-        return ForgeHooks.onTravelToDimension(entity, dimension);
+        return CommonHooks.onTravelToDimension(entity, dimension);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public Attribute getEntityReachAttribute() {
-        return ForgeMod.ENTITY_REACH.get();
+        return NeoForgeMod.ENTITY_REACH.get();
     }
 
     @Override
@@ -189,7 +189,7 @@ public class ForgePlatform implements ESPlatform {
     public void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
         var model = dispatcher.getBlockModel(state);
         for (var renderType : model.getRenderTypes(state, RandomSource.create(seed), ModelData.EMPTY))
-            dispatcher.getModelRenderer().tesselateBlock(level, model, state, pos, stack, multiBufferSource.getBuffer(renderType), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY, net.minecraftforge.client.model.data.ModelData.EMPTY, renderType);
+            dispatcher.getModelRenderer().tesselateBlock(level, model, state, pos, stack, multiBufferSource.getBuffer(renderType), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
 
     }
 

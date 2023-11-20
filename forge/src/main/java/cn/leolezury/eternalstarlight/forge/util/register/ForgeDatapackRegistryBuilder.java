@@ -39,8 +39,8 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DataPackRegistryEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -79,7 +79,7 @@ public class ForgeDatapackRegistryBuilder<T> implements DatapackRegistryBuilder<
 
     @Override
     public DatapackRegistry<T> build() {
-        final IEventBus bus = ForgeRegistrationFactory.getBus(key.location().getNamespace());
+        IEventBus bus = ForgeRegistrationFactory.getBus(key.location().getNamespace());
         bus.addListener((final DataPackRegistryEvent.NewRegistry event) -> event.dataPackRegistry(key, Objects.requireNonNull(elementCodec, "element codec must not be null"), networkCodec));
 
         return new DatapackRegistry<>() {
