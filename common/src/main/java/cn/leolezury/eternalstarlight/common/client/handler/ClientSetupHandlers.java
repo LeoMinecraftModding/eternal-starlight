@@ -76,6 +76,7 @@ public class ClientSetupHandlers {
     }
 
     public static final List<Supplier<? extends Block>> cutoutMippedBlocks = List.of(
+            BlockInit.NIGHTSHADE_GRASS_BLOCK,
             BlockInit.LUNAR_LEAVES,
             BlockInit.NORTHLAND_LEAVES,
             BlockInit.STARLIGHT_MANGROVE_LEAVES,
@@ -100,6 +101,10 @@ public class ClientSetupHandlers {
             BlockInit.STARLIGHT_MANGROVE_DOOR,
             BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER,
+            BlockInit.DOOMED_TORCH,
+            BlockInit.WALL_DOOMED_TORCH,
+            BlockInit.DOOMED_REDSTONE_TORCH,
+            BlockInit.WALL_DOOMED_REDSTONE_TORCH,
             BlockInit.STARLIGHT_FLOWER,
             BlockInit.POTTED_STARLIGHT_FLOWER,
             BlockInit.NIGHT_SPROUTS,

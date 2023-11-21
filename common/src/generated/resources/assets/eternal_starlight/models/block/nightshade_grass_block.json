@@ -42,9 +42,6 @@
     },
     {
       "faces": {
-        "down": {
-          "texture": "minecraft:missingno"
-        },
         "east": {
           "cullface": "east",
           "texture": "#overlay",
@@ -59,9 +56,6 @@
           "cullface": "south",
           "texture": "#overlay",
           "tintindex": 0
-        },
-        "up": {
-          "texture": "minecraft:missingno"
         },
         "west": {
           "cullface": "west",
@@ -81,6 +75,7 @@
       ]
     }
   ],
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "bottom": "eternal_starlight:block/nightshade_dirt",
     "overlay": "eternal_starlight:block/nightshade_grass_block_side_overlay",

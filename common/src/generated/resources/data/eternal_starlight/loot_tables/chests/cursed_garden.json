@@ -143,8 +143,8 @@
           "functions": [
             {
               "enchantments": [
-                "eternal_starlight:fearless",
-                "eternal_starlight:poisoning"
+                "eternal_starlight:poisoning",
+                "eternal_starlight:fearless"
               ],
               "function": "minecraft:enchant_randomly"
             }

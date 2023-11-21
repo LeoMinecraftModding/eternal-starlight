@@ -227,7 +227,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void grassBlock(Block grassBlock, ResourceLocation dirt) {
-        ModelFile modelNormal = models().withExistingParent(name(grassBlock), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/block"))
+        ModelFile modelNormal = models().withExistingParent(name(grassBlock), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/block")).renderType(CUTOUT_MIPPED)
                 .texture("particle", dirt).texture("bottom", dirt).texture("top", blockTexture(grassBlock).withSuffix("_top")).texture("side", blockTexture(grassBlock).withSuffix("_side")).texture("overlay", blockTexture(grassBlock).withSuffix("_side_overlay"))
                 .element()
                 .from(0, 0, 0)

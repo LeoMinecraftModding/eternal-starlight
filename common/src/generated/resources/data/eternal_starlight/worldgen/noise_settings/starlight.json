@@ -35,7 +35,7 @@
     "vein_toggle": 0.0
   },
   "ore_veins_enabled": false,
-  "sea_level": 0,
+  "sea_level": 50,
   "spawn_target": [],
   "surface_rule": {
     "type": "minecraft:sequence",

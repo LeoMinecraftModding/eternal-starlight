@@ -2,20 +2,8 @@
   "elements": [
     {
       "faces": {
-        "down": {
-          "texture": "minecraft:missingno"
-        },
         "east": {
           "texture": "#portal"
-        },
-        "north": {
-          "texture": "minecraft:missingno"
-        },
-        "south": {
-          "texture": "minecraft:missingno"
-        },
-        "up": {
-          "texture": "minecraft:missingno"
         },
         "west": {
           "texture": "#portal"

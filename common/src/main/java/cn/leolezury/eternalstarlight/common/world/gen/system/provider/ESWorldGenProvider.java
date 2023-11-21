@@ -25,14 +25,16 @@ public class ESWorldGenProvider extends AbstractWorldGenProvider {
         area.transformBiomes(BiomeTransformers.ADD_OCEAN, 0);
         area.transformBiomes(BiomeTransformers.APPLY_BIOMES, 0);
         area.transformBiomes(BiomeTransformers.DUPLICATE, 0);
-        scaleAndProcessEdges(area, 0);
-        scaleAndProcessEdges(area, 1);
-        scaleAndProcessEdges(area, 2);
-        scaleAndProcessEdges(area, 3);
-        scaleAndProcessEdges(area, 4);
-        scaleAndProcessEdges(area, 5);
+        enlargeAndProcessBiomes(area, 0);
+        enlargeAndProcessBiomes(area, 1);
+        enlargeAndProcessBiomes(area, 2);
+        enlargeAndProcessBiomes(area, 3);
+        enlargeAndProcessBiomes(area, 4);
+        enlargeAndProcessBiomes(area, 5);
         area.transformBiomes(BiomeTransformers.ASSIMILATE_LONELY, 0);
-        area.transformBiomes(BiomeTransformers.ADD_BEACHES, 0);
+        for (int i = 0; i < 5; i++) {
+            area.transformBiomes(BiomeTransformers.ADD_BEACHES, 0);
+        }
         area.transformBiomes(BiomeTransformers.ADD_RIVER, 0);
         for (int i = 0; i < 2; i++) {
             area.transformBiomes(BiomeTransformers.ADD_RIVER_TRANSITION, 0);

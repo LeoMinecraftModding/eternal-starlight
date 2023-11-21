@@ -57,7 +57,7 @@ public abstract class AbstractWorldGenProvider {
     abstract void doBiomesTransformation(WorldArea area);
     abstract void doHeightsTransformation(WorldArea area);
 
-    public void scaleAndProcessEdges(WorldArea area, long seedAddition) {
+    public void enlargeAndProcessBiomes(WorldArea area, long seedAddition) {
         area.transformBiomes(BiomeTransformers.DUPLICATE, seedAddition);
         area.transformBiomes(BiomeTransformers.RANDOMIZE, seedAddition);
         area.transformBiomes(BiomeTransformers.ASSIMILATE, seedAddition);

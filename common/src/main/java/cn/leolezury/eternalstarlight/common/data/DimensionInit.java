@@ -93,7 +93,7 @@ public class DimensionInit {
                 ),
                 makeSurfaceRule(),
                 List.of(),
-                0,
+                50,
                 false,
                 false,
                 false,

@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,13 +18,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
-
 public class DoomedenRedstoneTorchBlock extends TorchBlock {
-    public static final BooleanProperty LIT;
-    private static final Map<BlockGetter, List<Toggle>> RECENT_TOGGLES;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public DoomedenRedstoneTorchBlock(BlockBehaviour.Properties properties) {
         super(properties, DustParticleOptions.REDSTONE);
@@ -65,25 +58,8 @@ public class DoomedenRedstoneTorchBlock extends TorchBlock {
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (level instanceof ServerLevel serverLevel && setLit(blockState, serverLevel, blockPos, !blockState.getValue(LIT))) {
-            return InteractionResult.SUCCESS;
-        }
-        return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
-    }
-
-    public boolean setLit(BlockState state, ServerLevel serverLevel, BlockPos blockPos, boolean lit) {
-        if (!lit) {
-            serverLevel.setBlock(blockPos, state.setValue(LIT, false), 3);
-            if (isToggledTooFrequently(serverLevel, blockPos, true)) {
-                serverLevel.levelEvent(1502, blockPos, 0);
-                serverLevel.scheduleTick(blockPos, serverLevel.getBlockState(blockPos).getBlock(), 160);
-            }
-            return true;
-        } else if (!isToggledTooFrequently(serverLevel, blockPos, false)) {
-            serverLevel.setBlock(blockPos, state.setValue(LIT, true), 3);
-            return true;
-        }
-        return false;
+        level.setBlockAndUpdate(blockPos, blockState.setValue(LIT, !blockState.getValue(LIT)));
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl) {
@@ -112,41 +88,5 @@ public class DoomedenRedstoneTorchBlock extends TorchBlock {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIT);
-    }
-
-    private static boolean isToggledTooFrequently(Level level, BlockPos blockPos, boolean bl) {
-        List<Toggle> list = RECENT_TOGGLES.computeIfAbsent(level, (blockGetter) -> Lists.newArrayList());
-        if (bl) {
-            list.add(new Toggle(blockPos.immutable(), level.getGameTime()));
-        }
-
-        int i = 0;
-
-        for(int j = 0; j < list.size(); ++j) {
-            Toggle toggle = list.get(j);
-            if (toggle.pos.equals(blockPos)) {
-                ++i;
-                if (i >= 8) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    static {
-        LIT = BlockStateProperties.LIT;
-        RECENT_TOGGLES = new WeakHashMap();
-    }
-
-    public static class Toggle {
-        final BlockPos pos;
-        final long when;
-
-        public Toggle(BlockPos blockPos, long l) {
-            this.pos = blockPos;
-            this.when = l;
-        }
     }
 }

@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-18T17:49:12.2848838	Loot Tables
+// 1.20.2	2023-11-21T15:09:34.8455412	Loot Tables
 0d7d8c3f6b3f49ca6b75e3961a37f41a5bc7472d data/eternal_starlight/loot_tables/blocks/aethersent_block.json
 d2768b2c67b2d06f7f9c6d98b6aed611a3354c77 data/eternal_starlight/loot_tables/blocks/berries_vines.json
 4a6bd63e8701407f5cf1068745242043e17020c3 data/eternal_starlight/loot_tables/blocks/berries_vines_plant.json
@@ -153,7 +153,7 @@ bc85a76e9aa3070ef2f5405c6bccebb24d52561e data/eternal_starlight/loot_tables/bloc
 f9cd1f73347fdb3ae6e02aa0ff30f4ad4d272e01 data/eternal_starlight/loot_tables/bosses/boss_common.json
 1f23e9e5065ab745f76213997e29221e75b408d8 data/eternal_starlight/loot_tables/bosses/lunar_monstrosity.json
 c101a506ec848b46e4f2a8854b89c2dfb033f436 data/eternal_starlight/loot_tables/bosses/starlight_golem.json
-1007aa751711c1279676f749ade4732e3bc005b2 data/eternal_starlight/loot_tables/chests/cursed_garden.json
+c47a367d33826ddf560f30e39a1c3907b1e57a5a data/eternal_starlight/loot_tables/chests/cursed_garden.json
 0deee9ad8e801bed4c2237b7b3728c225a88f670 data/eternal_starlight/loot_tables/chests/cursed_garden_hidden_room.json
 8dc1e0806dfe404bdd6b3b9ac5efaa3146199197 data/eternal_starlight/loot_tables/chests/golem_forge.json
 5cef279ff4a7f128c7a31d9fe03f973f750349a6 data/eternal_starlight/loot_tables/chests/golem_forge_furnace_room.json

@@ -20,6 +20,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -34,6 +35,10 @@ public class ClientHandlers {
     public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
     public static final Map<Integer, CommonBossMusicInstance> BOSS_SOUND_MAP = new HashMap<>();
     public static final int BOSS_MUSIC_ID = 100;
+    private static final ResourceLocation[] BAR_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_background"), new ResourceLocation("boss_bar/blue_background"), new ResourceLocation("boss_bar/red_background"), new ResourceLocation("boss_bar/green_background"), new ResourceLocation("boss_bar/yellow_background"), new ResourceLocation("boss_bar/purple_background"), new ResourceLocation("boss_bar/white_background")};
+    private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_progress"), new ResourceLocation("boss_bar/blue_progress"), new ResourceLocation("boss_bar/red_progress"), new ResourceLocation("boss_bar/green_progress"), new ResourceLocation("boss_bar/yellow_progress"), new ResourceLocation("boss_bar/purple_progress"), new ResourceLocation("boss_bar/white_progress")};
+    private static final ResourceLocation[] OVERLAY_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_background"), new ResourceLocation("boss_bar/notched_10_background"), new ResourceLocation("boss_bar/notched_12_background"), new ResourceLocation("boss_bar/notched_20_background")};
+    private static final ResourceLocation[] OVERLAY_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_progress"), new ResourceLocation("boss_bar/notched_10_progress"), new ResourceLocation("boss_bar/notched_12_progress"), new ResourceLocation("boss_bar/notched_20_progress")};
 
     public static Vec3 computeCameraAngles(Vec3 angles) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
@@ -104,8 +109,6 @@ public class ClientHandlers {
         }
     }
 
-    private static final ResourceLocation GUI_BARS_LOCATION = new ResourceLocation("textures/gui/bars.png");
-
     public static boolean renderBossBar(GuiGraphics guiGraphics, LerpingBossEvent bossEvent, int x, int y) {
         ResourceLocation barLocation;
         Mob boss = null;
@@ -135,7 +138,6 @@ public class ClientHandlers {
             return false;
         }
         //event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
-        RenderSystem.setShaderTexture(0, GUI_BARS_LOCATION);
         drawBar(guiGraphics, x, y, bossEvent, barLocation);
         Component component = bossEvent.getName();
         int textWidth = Minecraft.getInstance().font.width(component);
@@ -150,20 +152,20 @@ public class ClientHandlers {
     }
 
     public static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, ResourceLocation barLocation) {
-        drawBar(guiGraphics, x, y, event, 182, 0);
-        int i = (int)(event.getProgress() * 183.0F);
-        if (i > 0) {
-            drawBar(guiGraphics, x, y, event, i, 5);
+        drawBar(guiGraphics, x, y, event, 182, BAR_BACKGROUND_SPRITES, OVERLAY_BACKGROUND_SPRITES);
+        int k = Mth.lerpDiscrete(event.getProgress(), 0, 182);
+        if (k > 0) {
+            drawBar(guiGraphics, x, y, event, k, BAR_PROGRESS_SPRITES, OVERLAY_PROGRESS_SPRITES);
         }
         RenderSystem.setShaderTexture(0, barLocation);
         guiGraphics.blit(barLocation, x - 36, y - 32, 0.0F, 0.0F, 256, 64, 256, 64);
     }
 
-    private static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent event, int width, int i) {
-        guiGraphics.blit(GUI_BARS_LOCATION, x, y, 0, event.getColor().ordinal() * 5 * 2 + i, width, 5);
-        if (event.getOverlay() != BossEvent.BossBarOverlay.PROGRESS) {
+    private static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent bossEvent, int progress, ResourceLocation[] bars, ResourceLocation[] overlays) {
+        guiGraphics.blitSprite(bars[bossEvent.getColor().ordinal()], 182, 5, 0, 0, x, y, progress, 5);
+        if (bossEvent.getOverlay() != BossEvent.BossBarOverlay.PROGRESS) {
             RenderSystem.enableBlend();
-            guiGraphics.blit(GUI_BARS_LOCATION, x, y, 0, 80 + (event.getOverlay().ordinal() - 1) * 5 * 2 + i, width, 5);
+            guiGraphics.blitSprite(overlays[bossEvent.getOverlay().ordinal() - 1], 182, 5, 0, 0, x, y, progress, 5);
             RenderSystem.disableBlend();
         }
     }

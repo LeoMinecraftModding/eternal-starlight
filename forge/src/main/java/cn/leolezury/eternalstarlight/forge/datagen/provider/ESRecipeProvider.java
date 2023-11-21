@@ -50,7 +50,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('P', Items.ENDER_PEARL)
                 .define('F', ItemInit.STARLIGHT_FLOWER.get())
                 .unlockedBy("has_item", has(ItemInit.STARLIGHT_FLOWER.get()))
-                .save(consumer, getEquipmentLocation("seeking_eye"));
+                .save(consumer, getModLocation("seeking_eye"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.CRYSTAL_CROSSBOW.get())
                 .pattern("BGB")
                 .pattern("STS")
@@ -61,7 +61,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('B', ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
                 .define('R', ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get())
                 .unlockedBy("has_item", has(ItemInit.GOLEM_STEEL_INGOT.get()))
-                .save(consumer, getEquipmentLocation("crystal_crossbow"));
+                .save(consumer, getModLocation("crystal_crossbow"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.MOONRING_GREATSWORD.get())
                 .pattern("TTT")
                 .pattern("TGT")
@@ -70,7 +70,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('G', ItemInit.GOLEM_STEEL_INGOT.get())
                 .define('T', ItemInit.TENACIOUS_PETAL.get())
                 .unlockedBy("has_item", has(ItemInit.TENACIOUS_PETAL.get()))
-                .save(consumer, getEquipmentLocation("moonring_greatsword"));
+                .save(consumer, getModLocation("moonring_greatsword"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.PETAL_SCYTHE.get())
                 .pattern("GTT")
                 .pattern("GS ")
@@ -79,7 +79,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('G', ItemInit.GOLEM_STEEL_INGOT.get())
                 .define('T', ItemInit.TENACIOUS_PETAL.get())
                 .unlockedBy("has_item", has(ItemInit.TENACIOUS_PETAL.get()))
-                .save(consumer, getEquipmentLocation("petal_scythe"));
+                .save(consumer, getModLocation("petal_scythe"));
     }
 
     private void addWoodRecipes(RecipeOutput consumer) {
@@ -211,7 +211,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', Items.LEATHER)
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
-                .save(consumer, getEquipmentLocation("aethersent_hood"));
+                .save(consumer, getModLocation("aethersent_hood"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_CAPE.get())
                 .pattern("A A")
                 .pattern("#A#")
@@ -219,7 +219,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', Items.LEATHER)
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
-                .save(consumer, getEquipmentLocation("aethersent_cape"));
+                .save(consumer, getModLocation("aethersent_cape"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_BOTTOMS.get())
                 .pattern("###")
                 .pattern("A A")
@@ -227,14 +227,14 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', Items.LEATHER)
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
-                .save(consumer, getEquipmentLocation("aethersent_bottoms"));
+                .save(consumer, getModLocation("aethersent_bottoms"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_BOOTS.get())
                 .pattern("A A")
                 .pattern("# #")
                 .define('#', Items.LEATHER)
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
-                .save(consumer, getEquipmentLocation("aethersent_boots"));
+                .save(consumer, getModLocation("aethersent_boots"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.STARFALL_LONGBOW.get())
                 .pattern(" AS")
                 .pattern("A S")
@@ -242,7 +242,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('S', Items.STRING)
                 .define('A', ItemInit.AETHERSENT_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.AETHERSENT_INGOT.get()))
-                .save(consumer, getEquipmentLocation("starfall_longbow"));
+                .save(consumer, getModLocation("starfall_longbow"));
         addSword(consumer, "rage_of_stars", ItemInit.RAGE_OF_STARS.get(), ItemInit.AETHERSENT_INGOT.get(), Items.STICK);
     }
 
@@ -263,11 +263,11 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .define('#', Ingredient.of(ItemInit.SWAMP_SILVER_NUGGET.get()))
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_NUGGET.get()))
-                .save(consumer, getMiscLocation("swamp_silver_ingot_from_nuggets"));
+                .save(consumer, getModLocation("swamp_silver_ingot_from_nuggets"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemInit.SWAMP_SILVER_NUGGET.get(), 9)
                 .requires(ItemInit.SWAMP_SILVER_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_INGOT.get()))
-                .save(consumer, getMiscLocation("swamp_silver_nuggets_from_ingot"));
+                .save(consumer, getModLocation("swamp_silver_nuggets_from_ingot"));
         addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
         addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
         addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
@@ -290,11 +290,11 @@ public class ESRecipeProvider extends RecipeProvider {
 
     // misc
     protected final void addSmelt(RecipeOutput finishedRecipeConsumer, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getMiscLocation(id + "_" + recipeTypeName));
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(finishedRecipeConsumer, getModLocation(id + "_" + recipeTypeName));
     }
 
     protected final void addCompressed(RecipeOutput finishedRecipeConsumer, String id, ItemLike toCompress, ItemLike output) {
-        addCompressed(finishedRecipeConsumer, id, RecipeCategory.BUILDING_BLOCKS, toCompress, output);
+        addCompressed(finishedRecipeConsumer, id, RecipeCategory.MISC, toCompress, output);
     }
 
     protected final void addCompressed(RecipeOutput finishedRecipeConsumer, String id, RecipeCategory category, ItemLike toCompress, ItemLike output) {
@@ -329,7 +329,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("# #")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addChestplate(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
@@ -339,7 +339,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addLeggings(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
@@ -349,7 +349,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("# #")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addBoots(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input) {
@@ -358,7 +358,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("# #")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addHoe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
@@ -369,7 +369,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addPickaxe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
@@ -380,7 +380,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addSword(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
@@ -391,7 +391,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addAxe(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
@@ -402,7 +402,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     protected final void addHammer(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, ItemLike input, ItemLike handle) {
@@ -413,7 +413,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getEquipmentLocation(id));
+                .save(finishedRecipeConsumer, getModLocation(id));
     }
 
     // building blocks and wooden stuff
@@ -421,7 +421,7 @@ public class ESRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_planks"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_planks"));
     }
 
     protected final void addWood(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -430,7 +430,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_wood"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_wood"));
     }
 
     protected final void addStrippedWood(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -439,14 +439,14 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_stripped_wood"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_stripped_wood"));
     }
 
     protected final void addButton(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, output)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_button"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_button"));
     }
 
     protected final void addDoor(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -456,17 +456,17 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_door"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_door"));
     }
 
     protected final void addFence(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 3)
                 .pattern("#S#")
                 .pattern("#S#")
                 .define('#', input)
                 .define('S', Items.STICK)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_fence"));
     }
 
     protected final void addFenceGate(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -476,7 +476,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('S', Items.STICK)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_fence_gate"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_fence_gate"));
     }
 
     protected final void addPressurePlate(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -484,7 +484,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_pressure_plate"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_pressure_plate"));
     }
 
     protected final void addSlab(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -492,17 +492,17 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_slab"));
     }
 
     protected final void addStairs(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, output, 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 2)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_stairs"));
     }
 
     protected final void addTrapdoor(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
@@ -511,7 +511,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_trapdoor"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_trapdoor"));
     }
 
     protected final void addSign(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, Block input) {
@@ -522,7 +522,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('S', Items.STICK)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_sign"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_sign"));
     }
 
     protected final void addHangingSign(RecipeOutput finishedRecipeConsumer, String id, ItemLike output, Block input) {
@@ -533,7 +533,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .define('C', Items.CHAIN)
                 .unlockedBy("has_item", has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_hanging_sign"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_hanging_sign"));
     }
 
     protected final void addBoat(RecipeOutput finishedRecipeConsumer, Item boat, Item chestBoat, Block planks) {
@@ -543,75 +543,75 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('P', planks)
                 .group("boat")
                 .unlockedBy("in_water", insideOf(Blocks.WATER))
-                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(boat).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(ForgeRegistries.ITEMS.getKey(boat).getPath()));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
                 .requires(boat)
                 .group("chest_boat")
                 .unlockedBy("has_boat", has(ItemTags.BOATS))
-                .save(finishedRecipeConsumer, getMiscLocation(ForgeRegistries.ITEMS.getKey(chestBoat).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(ForgeRegistries.ITEMS.getKey(chestBoat).getPath()));
     }
 
     // stone
     protected final void addPolished(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_polished"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_polished"));
     }
 
     protected final void addBricks(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_bricks"));
     }
 
     protected final void addWall(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_wall"));
     }
 
     protected final void addChiseled(RecipeOutput finishedRecipeConsumer, String id, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
                 .pattern("#")
                 .pattern("#")
                 .define('#', input)
                 .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled"));
+                .save(finishedRecipeConsumer, getModLocation(id + "_chiseled"));
     }
 
     protected final void addStoneCuttingChiseled(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingBricks(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingSlab(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output, 2)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingStairs(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingWall(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getBuildingLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
     }
 
     public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output) {
@@ -626,17 +626,5 @@ public class ESRecipeProvider extends RecipeProvider {
 
     protected final ResourceLocation getModLocation(String id) {
         return new ResourceLocation(EternalStarlight.MOD_ID, id);
-    }
-
-    protected final ResourceLocation getMiscLocation(String id) {
-        return getModLocation("misc/" + id);
-    }
-
-    protected final ResourceLocation getEquipmentLocation(String id) {
-        return getModLocation("equipment/" + id);
-    }
-
-    protected final ResourceLocation getBuildingLocation(String id) {
-        return getModLocation("building/" + id);
     }
 }

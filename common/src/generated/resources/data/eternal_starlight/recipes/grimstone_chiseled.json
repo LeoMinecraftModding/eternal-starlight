@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:grimstone_brick_slab"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 6,
+    "item": "eternal_starlight:chiseled_grimstone"
+  },
+  "show_notification": true
+}
