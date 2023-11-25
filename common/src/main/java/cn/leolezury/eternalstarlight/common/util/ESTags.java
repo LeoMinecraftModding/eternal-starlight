@@ -18,22 +18,26 @@ public class ESTags {
         public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
-        public static final TagKey<Item> RIESTURUS_LOCATE_ITEM = create("riesturus_locate_item");
-        public static final TagKey<Item> RINEMIN_LOCATE_ITEM = create("rinemin_locate_item");
-        public static final TagKey<Item> ANRLO_LOCATE_ITEM = create("anrlo_locate_item");
-        public static final TagKey<Item> CRATEVIRGO_LOCATE_ITEM = create("cratevirgo_locate_item");
-        public static final TagKey<Item> LIBRASCRP_LOCATE_ITEM = create("librascrp_locate_item");
-        public static final TagKey<Item> OPHUCHAGAR_LOCATE_ITEM = create("ophuchagar_locate_item");
-        public static final TagKey<Item> APORNIGAS_LOCATE_ITEM = create("aporniqas_locate_item");
-        public static final TagKey<Item> EGASUSICE_LOCATE_ITEM = create("egasusice_locate_item");
-        public static final TagKey<Item> STARATHER_LOCATE_ITEM = create("starather_locate_item");
-        public static final TagKey<Item> DOOMEDEN_KEY_ITEM = create("doomeden_key_item");
+        // astral sorcery system stuff
+        public static final TagKey<Item> RIESTURUS_LOCATORS = create("riesturus_locators");
+        public static final TagKey<Item> RINEMIN_LOCATORS = create("rinemin_locators");
+        public static final TagKey<Item> ANRLO_LOCATORS = create("anrlo_locators");
+        public static final TagKey<Item> CRATEVIRGO_LOCATORS = create("cratevirgo_locators");
+        public static final TagKey<Item> LIBRASCRP_LOCATORS = create("librascrp_locators");
+        public static final TagKey<Item> OPHUCHAGAR_LOCATORS = create("ophuchagar_locators");
+        public static final TagKey<Item> APORNIGAS_LOCATORS = create("aporniqas_locators");
+        public static final TagKey<Item> EGASUSICE_LOCATORS = create("egasusice_locators");
+        public static final TagKey<Item> STARATHER_LOCATORS = create("starather_locators");
+        public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
     }
 
     public static class Blocks {
         private static TagKey<Block> create(String string) {
             return TagKey.create(Registries.BLOCK, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
+        public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
+        public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
+        public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = create("portal_frame_blocks");
         public static final TagKey<Block> BASE_STONE_STARLIGHT = create("base_stone_starlight");
     }

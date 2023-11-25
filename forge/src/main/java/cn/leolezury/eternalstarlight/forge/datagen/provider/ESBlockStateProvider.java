@@ -67,6 +67,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.CHISELED_VOIDSTONE.get());
         stoneSet(BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get(), BlockInit.VOIDSTONE_BRICK_STAIRS.get(), BlockInit.VOIDSTONE_BRICK_WALL.get());
         stoneSet(BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE_WALL.get());
+        simpleBlock(BlockInit.GLOWING_VOIDSTONE.get());
 
         simpleBlock(BlockInit.NIGHTSHADE_MUD.get());
         simpleBlock(BlockInit.GLOWING_NIGHTSHADE_MUD.get());
@@ -98,7 +99,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.GLOWING_PARASOL_GRASS.get());
         doublePlant(BlockInit.LUNAR_REED.get());
         crossBlock(BlockInit.GLOWING_MUSHROOM.get());
-        singleFace(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
+        mushroomBlock(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
 
         crossBlock(BlockInit.SWAMP_ROSE.get());
         pottedPlant(BlockInit.POTTED_SWAMP_ROSE.get(), blockTexture(BlockInit.SWAMP_ROSE.get()));
@@ -215,6 +216,24 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     private void spawner(Block block) {
         simpleBlock(block, models().cubeAll(name(block), blockTexture(Blocks.SPAWNER)).renderType(CUTOUT));
+    }
+
+    private void mushroomBlock(Block block) {
+        ModelFile modelOutside = models().singleTexture(name(block), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
+        ModelFile modelInside = models().getExistingFile(mcLoc("block/mushroom_block_inside"));
+        getMultipartBuilder(block)
+                .part().modelFile(modelOutside).addModel().condition(BlockStateProperties.NORTH, true).end()
+                .part().modelFile(modelOutside).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()
+                .part().modelFile(modelOutside).uvLock(true).rotationY(180).addModel().condition(BlockStateProperties.SOUTH, true).end()
+                .part().modelFile(modelOutside).uvLock(true).rotationY(270).addModel().condition(BlockStateProperties.WEST, true).end()
+                .part().modelFile(modelOutside).uvLock(true).rotationX(270).addModel().condition(BlockStateProperties.UP, true).end()
+                .part().modelFile(modelOutside).uvLock(true).rotationX(90).addModel().condition(BlockStateProperties.DOWN, true).end()
+                .part().modelFile(modelInside).addModel().condition(BlockStateProperties.NORTH, false).end()
+                .part().modelFile(modelInside).uvLock(false).rotationY(90).addModel().condition(BlockStateProperties.EAST, false).end()
+                .part().modelFile(modelInside).uvLock(false).rotationY(180).addModel().condition(BlockStateProperties.SOUTH, false).end()
+                .part().modelFile(modelInside).uvLock(false).rotationY(270).addModel().condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(modelInside).uvLock(false).rotationX(270).addModel().condition(BlockStateProperties.UP, false).end()
+                .part().modelFile(modelInside).uvLock(false).rotationX(90).addModel().condition(BlockStateProperties.DOWN, false).end();
     }
 
     private void simpleGrassBlock(Block grassBlock, ResourceLocation dirt) {
@@ -342,11 +361,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     private void cubeColumn(Block block, ResourceLocation end, ResourceLocation side, ResourceLocation renderType) {
         ModelFile modelFile = models().cubeColumn(name(block), side, end).renderType(renderType);
-        simpleBlock(block, modelFile);
-    }
-
-    private void singleFace(Block block) {
-        ModelFile modelFile = models().singleTexture(name(block), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
         simpleBlock(block, modelFile);
     }
 

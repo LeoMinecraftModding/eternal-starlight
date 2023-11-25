@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "eternal_starlight:item/bow_of_blood_pulling_0"
+  }
+}

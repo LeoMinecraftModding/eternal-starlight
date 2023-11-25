@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "eternal_starlight:block/lunar_planks"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "item/bow",
-  "textures": {
-    "layer0": "eternal_starlight:item/blood_bow_pulling_0"
-  }
-}

@@ -189,14 +189,14 @@ public class ClientSetupHandlers {
         });
         ItemProperties.register(ItemInit.STARFALL_LONGBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ItemInit.BLOOD_BOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ItemInit.BOW_OF_BLOOD.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
                 return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         });
-        ItemProperties.register(ItemInit.BLOOD_BOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.BOW_OF_BLOOD.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
     }
 
     public static void clientWoodSetup() {

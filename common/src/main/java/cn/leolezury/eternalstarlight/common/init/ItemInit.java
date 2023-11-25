@@ -134,9 +134,9 @@ public class ItemInit {
     public static final RegistryObject<Item> FANTAGRASS = registerItem("fantagrass", () -> new BlockItem(BlockInit.FANTAGRASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> GREEN_FANTAGRASS = registerItem("green_fantagrass", () -> new BlockItem(BlockInit.GREEN_FANTAGRASS.get(), new Item.Properties()));
 
-    public static final RegistryObject<Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(BlockInit.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(BlockInit.NIGHTSHADE_DIRT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(BlockInit.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
 
     //grimstone
     public static final RegistryObject<Item> GRIMSTONE = registerItem("grimstone", () -> new BlockItem(BlockInit.GRIMSTONE.get(), new Item.Properties()));
@@ -242,16 +242,16 @@ public class ItemInit {
     // doomeden
     public static final RegistryObject<Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BONEMORE_BROADSWORD = registerItem("bonemore_broadsword", () -> new GreatswordItem(ESItemTiers.DOOMEDEN, 6, -2.8F, new Item.Properties().rarity(DEMON)));
-    public static final RegistryObject<Item> BLOOD_BOW = registerItem("blood_bow", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(DEMON)));
+    public static final RegistryObject<Item> BOW_OF_BLOOD = registerItem("bow_of_blood", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(DEMON)));
     public static final RegistryObject<Item> LIVING_ARM = registerItem("living_arm", () -> new LivingArmItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DOOMED_TORCH = registerItem("doomed_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_TORCH.get(), BlockInit.WALL_DOOMED_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).meat().build())));
     public static final RegistryObject<Item> ROTTEN_HAM = registerItem("rotten_ham", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
-    public static final RegistryObject<Item> DOOMEDEN_EYE = registerItem("doomeden_eye", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> EYE_OF_DOOM = registerItem("eye_of_doom", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_RAG = registerItem("doomeden_rag", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> DOOMEDEN_GRINDER = registerItem("doomeden_grinder", () -> new DoomedenGrinderItem(ESItemTiers.DOOMEDEN, 5, -2.0F, new Item.Properties()));
+    public static final RegistryObject<Item> DOOMEDEN_FLESH_GRINDER = registerItem("doomeden_flesh_grinder", () -> new DoomedenGrinderItem(ESItemTiers.DOOMEDEN, 5, -2.0F, new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_SWORD = registerItem("doomeden_sword", () -> new DoomedenSwordItem(ESItemTiers.DOOMEDEN, 4, -1.8F, new Item.Properties()));
-    public static final RegistryObject<Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(BlockInit.DOOMED_REDSTONE_TORCH.get(), BlockInit.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final RegistryObject<Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", () -> new BlockItem(BlockInit.DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_BRICK_SLAB = registerItem("doomeden_brick_slab", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
     public static final RegistryObject<Item> DOOMEDEN_BRICK_STAIRS = registerItem("doomeden_brick_stairs", () -> new BlockItem(BlockInit.DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
@@ -276,6 +276,8 @@ public class ItemInit {
     public static final RegistryObject<Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
+
+    // misc, maybe?
     public static final RegistryObject<Item> PROPHET_ORB = registerItem("prophet_orb", ()-> new ProphetOrbItem(new Item.Properties()));
     public static void loadClass() {}
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "eternal_starlight:block/polished_voidstone"
+  }
+}

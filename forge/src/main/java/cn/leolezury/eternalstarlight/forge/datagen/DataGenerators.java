@@ -2,6 +2,8 @@ package cn.leolezury.eternalstarlight.forge.datagen;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESBlockTagsProvider;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -22,7 +24,11 @@ public class DataGenerators {
         ExistingFileHelper helper = event.getExistingFileHelper();
 
         generator.addProvider(event.includeClient(), new ESBlockStateProvider(output, helper));
+        generator.addProvider(event.includeClient(), new ESItemModelProvider(output, helper));
 
+        ESBlockTagsProvider blockTagsProvider = new ESBlockTagsProvider(output, lookupProvider, helper);
+        generator.addProvider(event.includeServer(), blockTagsProvider);
+        generator.addProvider(event.includeServer(), new ESItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));

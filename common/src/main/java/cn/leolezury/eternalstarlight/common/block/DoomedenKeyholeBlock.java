@@ -45,7 +45,7 @@ public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (player.getItemInHand(hand).is(ESTags.Items.DOOMEDEN_KEY_ITEM) && !state.getValue(LIT)) {
+        if (player.getItemInHand(hand).is(ESTags.Items.DOOMEDEN_KEYS) && !state.getValue(LIT)) {
             level.setBlock(pos, state.setValue(LIT, true), 1);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {

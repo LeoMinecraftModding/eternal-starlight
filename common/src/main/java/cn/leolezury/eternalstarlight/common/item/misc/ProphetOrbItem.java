@@ -25,23 +25,23 @@ public class ProphetOrbItem extends Item implements Vanishable {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (player.getOffhandItem().is(ESTags.Items.RIESTURUS_LOCATE_ITEM)) {
+        if (player.getOffhandItem().is(ESTags.Items.RIESTURUS_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.RIESTURUS_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.RIESTURUS_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.RINEMIN_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.RINEMIN_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.ANRLO_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.ANRLO_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.CRATEVIRGO_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.CRATEVIRGO_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.LIBRASCRP_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.LIBRASCRP_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.OPHUCHAGAR_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.OPHUCHAGAR_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.APORNIGAS_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.APORNIGAS_LOCATORS)) {
 
-        } else if (player.getOffhandItem().is(ESTags.Items.EGASUSICE_LOCATE_ITEM)) {
+        } else if (player.getOffhandItem().is(ESTags.Items.EGASUSICE_LOCATORS)) {
 
         } else {
 

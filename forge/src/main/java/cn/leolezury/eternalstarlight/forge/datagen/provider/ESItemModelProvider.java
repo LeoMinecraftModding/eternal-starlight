@@ -3,7 +3,9 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
@@ -108,11 +110,177 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
         basicBlockItem(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
 
-        // TODO: We'll be right back
+        basicItemWithBlockTexture(ItemInit.SWAMP_ROSE.get());
+        basicItemWithBlockTexture(ItemInit.FANTABUD.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTABUD.get());
+        basicItemWithBlockTexture(ItemInit.FANTAFERN.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTAFERN.get());
+        basicItemWithBlockTexture(ItemInit.FANTAGRASS.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTAGRASS.get());
+
+        basicBlockItem(ItemInit.NIGHTSHADE_DIRT.get());
+        basicBlockItem(ItemInit.NIGHTSHADE_GRASS_BLOCK.get());
+        basicBlockItem(ItemInit.FANTASY_GRASS_BLOCK.get());
+
+        basicBlockItem(ItemInit.GRIMSTONE.get());
+        basicBlockItem(ItemInit.GRIMSTONE_BRICKS.get());
+        basicBlockItem(ItemInit.GRIMSTONE_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.GRIMSTONE_BRICK_STAIRS.get());
+        wall(ItemInit.GRIMSTONE_BRICK_WALL.get(), ItemInit.GRIMSTONE_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_GRIMSTONE.get());
+        basicBlockItem(ItemInit.POLISHED_GRIMSTONE_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_GRIMSTONE_STAIRS.get());
+        wall(ItemInit.POLISHED_GRIMSTONE_WALL.get(), ItemInit.POLISHED_GRIMSTONE.get());
+        basicBlockItem(ItemInit.CHISELED_GRIMSTONE.get());
+
+        basicBlockItem(ItemInit.VOIDSTONE.get());
+        basicBlockItem(ItemInit.VOIDSTONE_BRICKS.get());
+        basicBlockItem(ItemInit.VOIDSTONE_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.VOIDSTONE_BRICK_STAIRS.get());
+        wall(ItemInit.VOIDSTONE_BRICK_WALL.get(), ItemInit.VOIDSTONE_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_VOIDSTONE.get());
+        basicBlockItem(ItemInit.POLISHED_VOIDSTONE_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_VOIDSTONE_STAIRS.get());
+        wall(ItemInit.POLISHED_VOIDSTONE_WALL.get(), ItemInit.POLISHED_VOIDSTONE.get());
+        basicBlockItem(ItemInit.CHISELED_VOIDSTONE.get());
+        basicBlockItem(ItemInit.GLOWING_VOIDSTONE.get());
+
+        basicBlockItem(ItemInit.NIGHTSHADE_MUD.get());
+        basicBlockItem(ItemInit.GLOWING_NIGHTSHADE_MUD.get());
+        basicBlockItem(ItemInit.PACKED_NIGHTSHADE_MUD.get());
+        basicBlockItem(ItemInit.NIGHTSHADE_MUD_BRICKS.get());
+        basicBlockItem(ItemInit.NIGHTSHADE_MUD_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
+        wall(ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get(), ItemInit.NIGHTSHADE_MUD_BRICKS.get());
+
+        basicBlockItem(ItemInit.ENERGY_BLOCK.get());
+        basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
+        basicBlockItem(ItemInit.LUNAR_MONSTROSITY_SPAWNER.get());
+        basicItem(ItemInit.LOOT_BAG.get());
+        basicItem(ItemInit.BOOK.get());
+
+        basicBlockItem(ItemInit.AETHERSENT_BLOCK.get());
+        basicItem(ItemInit.AETHERSENT_INGOT.get());
+        basicHandheld(ItemInit.RAGE_OF_STARS.get());
+        bow(ItemInit.STARFALL_LONGBOW.get());
+        basicItem(ItemInit.AETHERSENT_HOOD.get());
+        basicItem(ItemInit.AETHERSENT_CAPE.get());
+        basicItem(ItemInit.AETHERSENT_BOTTOMS.get());
+        basicItem(ItemInit.AETHERSENT_BOOTS.get());
+
+        basicBlockItem(ItemInit.SPRINGSTONE.get());
+        basicBlockItem(ItemInit.THERMAL_SPRINGSTONE.get());
+        basicItem(ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
+        basicHandheld(ItemInit.THERMAL_SPRINGSTONE_SWORD.get());
+        basicHandheld(ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get());
+        basicHandheld(ItemInit.THERMAL_SPRINGSTONE_AXE.get());
+        basicHandheld(ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get());
+        inventoryModel(ItemInit.THERMAL_SPRINGSTONE_HAMMER.get());
+        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_HELMET.get());
+        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get());
+        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get());
+        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_BOOTS.get());
+
+        basicBlockItem(ItemInit.SWAMP_SILVER_ORE.get());
+        basicBlockItem(ItemInit.SWAMP_SILVER_BLOCK.get());
+        basicItem(ItemInit.SWAMP_SILVER_INGOT.get());
+        basicItem(ItemInit.SWAMP_SILVER_NUGGET.get());
+        basicHandheld(ItemInit.SWAMP_SILVER_SWORD.get());
+        basicHandheld(ItemInit.SWAMP_SILVER_PICKAXE.get());
+        basicHandheld(ItemInit.SWAMP_SILVER_AXE.get());
+        basicHandheld(ItemInit.SWAMP_SILVER_SICKLE.get());
+        basicItem(ItemInit.SWAMP_SILVER_HELMET.get());
+        basicItem(ItemInit.SWAMP_SILVER_CHESTPLATE.get());
+        basicItem(ItemInit.SWAMP_SILVER_LEGGINGS.get());
+        basicItem(ItemInit.SWAMP_SILVER_BOOTS.get());
+
+        basicItem(ItemInit.BROKEN_DOOMEDEN_BONE.get());
+        largeHandheld(ItemInit.BONEMORE_BROADSWORD.get());
+        inventoryModel(ItemInit.BONEMORE_BROADSWORD.get());
+        bow(ItemInit.BOW_OF_BLOOD.get());
+        basicHandheld(ItemInit.LIVING_ARM.get());
+        basicItemWithBlockTexture(ItemInit.DOOMED_TORCH.get());
+        basicItemWithBlockTexture(ItemInit.DOOMED_REDSTONE_TORCH.get());
+        basicItem(ItemInit.DOOMEDEN_CARRION.get());
+        basicHandheld(ItemInit.ROTTEN_HAM.get());
+        basicItem(ItemInit.EYE_OF_DOOM.get());
+        basicItem(ItemInit.DOOMEDEN_RAG.get());
+        basicItem(ItemInit.DOOMEDEN_FLESH_GRINDER.get());
+        inventoryModel(ItemInit.DOOMEDEN_SWORD.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICK_STAIRS.get());
+        wall(ItemInit.DOOMEDEN_BRICK_WALL.get(), ItemInit.DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+        wall(ItemInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_TILE.get());
+        basicBlockItem(ItemInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_LIGHT.get());
+        basicBlockItem(ItemInit.DOOMEDEN_KEYHOLE.get());
+        basicBlockItem(ItemInit.REDSTONE_DOOMEDEN_KEYHOLE.get());
+
+        basicItem(ItemInit.GOLEM_STEEL_INGOT.get());
+        basicItem(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        basicItem(ItemInit.TENACIOUS_PETAL.get());
+        crossbow(ItemInit.CRYSTAL_CROSSBOW.get());
+        bow(ItemInit.MOONRING_BOW.get());
+        largeHandheld(ItemInit.MOONRING_GREATSWORD.get());
+        inventoryModel(ItemInit.MOONRING_GREATSWORD.get());
+        largeHandheld(ItemInit.PETAL_SCYTHE.get());
+        inventoryModel(ItemInit.PETAL_SCYTHE.get());
+        basicItem(ItemInit.SEEKING_EYE.get());
+        inventoryModel(ItemInit.PROPHET_ORB.get());
+    }
+
+    private void armorWithTrim(ArmorItem armor) {
+        ItemModelBuilder armorBuilder = basicItem(armor);
+        for (ItemModelGenerators.TrimModelData trimModelData : ItemModelGenerators.GENERATED_TRIM_MODELS) {
+            ModelFile trimModel = withExistingParent(name(armor) + "_" + trimModelData.name() + "_trim", mcLoc("item/generated"))
+                    .texture("layer0", modLoc("item/" + name(armor)))
+                    .texture("layer1", mcLoc("trims/items/" + armor.getType().getName() + "_trim_" + trimModelData.name()));
+            armorBuilder.override().predicate(new ResourceLocation("trim_type"), trimModelData.itemModelIndex()).model(trimModel).end();
+        }
+    }
+
+    private void crossbow(Item item) {
+        ModelFile pull0 = withExistingParent(name(item) + "_pulling_0", "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_0"));
+        ModelFile pull1 = withExistingParent(name(item) + "_pulling_1", "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_1"));
+        ModelFile pull2 = withExistingParent(name(item) + "_pulling_2", "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_2"));
+        ModelFile arrow = withExistingParent(name(item) + "_arrow", "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_arrow"));
+        ModelFile firework = withExistingParent(name(item) + "_firework", "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_firework"));
+        withExistingParent(name(item), "item/crossbow")
+                .texture("layer0", itemTexture(item).withSuffix("_standby"))
+                .override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
+                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.58).model(pull1).end()
+                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 1.0).model(pull2).end()
+                .override().predicate(new ResourceLocation("charged"), 1).model(arrow).end()
+                .override().predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1).model(firework).end();
+    }
+
+    private void bow(Item item) {
+        ModelFile pull0 = withExistingParent(name(item) + "_pulling_0", "item/bow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_0"));
+        ModelFile pull1 = withExistingParent(name(item) + "_pulling_1", "item/bow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_1"));
+        ModelFile pull2 = withExistingParent(name(item) + "_pulling_2", "item/bow")
+                .texture("layer0", itemTexture(item).withSuffix("_pulling_2"));
+        withExistingParent(name(item), "item/bow")
+                .texture("layer0", itemTexture(item))
+                .override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
+                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.65).model(pull1).end()
+                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.9).model(pull2).end();
     }
 
     private void trapdoor(Item item) {
-        withExistingParent(name(item), name(item) + "_bottom");
+        withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item) + "_bottom"));
     }
 
     private void button(Item button, Item material) {
@@ -127,14 +295,14 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("texture", blockTextureFromItem(planks));
     }
 
-    private void wall(Item fence, Item stone) {
-        getBuilder(name(fence))
+    private void wall(Item wall, Item stone) {
+        getBuilder(name(wall))
                 .parent(getExistingFile(mcLoc("block/wall_inventory")))
                 .texture("wall", blockTextureFromItem(stone));
     }
 
     private void basicBlockItem(Item item) {
-        withExistingParent(name(item), name(item));
+        withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
     }
 
     private void basicItemWithBlockTexture(Item item) {
@@ -145,6 +313,26 @@ public class ESItemModelProvider extends ItemModelProvider {
         return getBuilder(item.toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", texture);
+    }
+
+    private ItemModelBuilder largeHandheld(Item item) {
+        return basicHandheld(item, itemTexture(item), true);
+    }
+
+    private ItemModelBuilder basicHandheld(Item item) {
+        return basicHandheld(item, itemTexture(item), false);
+    }
+
+    private ItemModelBuilder basicHandheld(Item item, ResourceLocation texture, boolean large) {
+        return getBuilder(item.toString())
+                .parent(large ? new ModelFile.UncheckedModelFile(EternalStarlight.MOD_ID + ":item/large_handheld") : new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", texture);
+    }
+
+    private ItemModelBuilder inventoryModel(Item item) {
+        return getBuilder(item.toString() + "_inventory")
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", itemTexture(item) + "_inventory");
     }
 
     public ResourceLocation blockTexture(Block block) {

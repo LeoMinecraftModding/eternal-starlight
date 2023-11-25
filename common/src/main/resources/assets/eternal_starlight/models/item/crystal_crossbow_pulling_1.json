@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:item/crossbow",
-    "textures": {
-        "layer0": "eternal_starlight:item/crystal_crossbow_pulling_1"
-    }
-}

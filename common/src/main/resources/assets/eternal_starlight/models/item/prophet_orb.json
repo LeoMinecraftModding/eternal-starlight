@@ -1,7 +1,6 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "eternal_starlight:item/prophet_orb",
+		"layer0": "eternal_starlight:item/prophet_orb",
 		"particle": "eternal_starlight:item/prophet_orb"
 	},
 	"elements": [
@@ -9,12 +8,12 @@
 			"from": [3, 6, 3],
 			"to": [13, 16, 13],
 			"faces": {
-				"north": {"uv": [3, 3, 13, 13], "texture": "#0"},
-				"east": {"uv": [3, 3, 13, 13], "texture": "#0"},
-				"south": {"uv": [3, 3, 13, 13], "texture": "#0"},
-				"west": {"uv": [3, 3, 13, 13], "texture": "#0"},
-				"up": {"uv": [3, 3, 13, 13], "texture": "#0"},
-				"down": {"uv": [3, 3, 13, 13], "texture": "#0"}
+				"north": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
+				"east": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
+				"west": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#layer0"}
 			}
 		}
 	],
