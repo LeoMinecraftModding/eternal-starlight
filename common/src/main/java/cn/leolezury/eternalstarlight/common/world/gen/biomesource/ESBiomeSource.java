@@ -9,7 +9,6 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
@@ -53,13 +52,11 @@ public class ESBiomeSource extends BiomeSource {
     }
 
     public int getBiome(int x, int z) {
-        ChunkPos pos = new ChunkPos(x >> 4, z >> 4);
-        return this.provider.getWorldArea(pos.x, pos.z).getBiome(x, z);
+        return this.provider.getWorldArea(x, z).getBiome(x, z);
     }
 
     public int getHeight(int x, int z) {
-        ChunkPos pos = new ChunkPos(x >> 4, z >> 4);
-        return this.provider.getWorldArea(pos.x, pos.z).getHeight(x, z);
+        return this.provider.getWorldArea(x, z).getHeight(x, z);
     }
 
     @Override

@@ -2,7 +2,7 @@
   "carvers": {},
   "downfall": 0.5,
   "effects": {
-    "fog_color": 3091031,
+    "fog_color": 14803455,
     "foliage_color": 3091031,
     "grass_color": 3091031,
     "music": {
@@ -17,7 +17,7 @@
       },
       "probability": 0.001
     },
-    "sky_color": 5658761,
+    "sky_color": 14803455,
     "water_color": 6187416,
     "water_fog_color": 6187416
   },
@@ -44,7 +44,7 @@
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:starlight_flower",
-      "eternal_starlight:sl_permafrost_forest",
+      "eternal_starlight:permafrost_forest",
       "eternal_starlight:fallen_northland_log"
     ],
     [

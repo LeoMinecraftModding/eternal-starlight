@@ -1,0 +1,9 @@
+{
+  "asset_name": "aethersent",
+  "description": {
+    "color": "#905EA8",
+    "translate": "trim_material.eternal_starlight.aethersent"
+  },
+  "ingredient": "eternal_starlight:aethersent_ingot",
+  "item_model_index": 1.0
+}

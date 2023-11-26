@@ -1,5 +1,5 @@
 {
-  "feature": "eternal_starlight:sl_forest",
+  "feature": "eternal_starlight:dense_forest",
   "placement": [
     {
       "type": "minecraft:count",
@@ -7,11 +7,11 @@
         "type": "minecraft:weighted_list",
         "distribution": [
           {
-            "data": 12,
+            "data": 15,
             "weight": 9
           },
           {
-            "data": 13,
+            "data": 17,
             "weight": 1
           }
         ]

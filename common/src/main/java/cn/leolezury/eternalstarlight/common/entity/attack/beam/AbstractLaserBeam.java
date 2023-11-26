@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.attack.beam;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.ControlledAnimation;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,7 +35,7 @@ public class AbstractLaserBeam extends Entity {
     public double prevCollidePosX, prevCollidePosY, prevCollidePosZ;
     public float renderYaw, renderPitch;
 
-    public ControlledAnimation appear = new ControlledAnimation(3);
+    public int appearTimer = 0;
 
     public boolean on = true;
 
@@ -110,13 +109,17 @@ public class AbstractLaserBeam extends Entity {
             }
         }
 
-        if (!on && appear.getTimer() == 0) {
+        if (!on && appearTimer == 0) {
             this.discard() ;
         }
         if (on && tickCount > 20) {
-            appear.increaseTimer();
+            if (appearTimer < 3) {
+                appearTimer++;
+            }
         } else {
-            appear.decreaseTimer();
+            if (appearTimer > 0) {
+                appearTimer--;
+            }
         }
 
         if (caster == null || !caster.isAlive()) discard();

@@ -1,5 +1,5 @@
 {
-  "feature": "eternal_starlight:sl_swamp_forest",
+  "feature": "eternal_starlight:starlight_forest",
   "placement": [
     {
       "type": "minecraft:count",
@@ -7,11 +7,11 @@
         "type": "minecraft:weighted_list",
         "distribution": [
           {
-            "data": 4,
+            "data": 12,
             "weight": 9
           },
           {
-            "data": 5,
+            "data": 13,
             "weight": 1
           }
         ]

@@ -15,6 +15,6 @@ public class AddOceanTransformer implements NoiseDataTransformer {
 
     @Override
     public int transform(AbstractWorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
-        return noise.getValue(worldX * 0.1, worldZ * 0.1, true) > 0.3 ? this.ocean : original;
+        return noise.getValue(worldX * 0.15, worldZ * 0.15, true) > 0.3 ? this.ocean : original;
     }
 }

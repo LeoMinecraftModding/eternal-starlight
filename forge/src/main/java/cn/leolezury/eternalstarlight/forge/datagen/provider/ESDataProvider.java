@@ -19,7 +19,8 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.NOISE_SETTINGS, DimensionInit::bootstrapNoiseSettings)
             .add(Registries.DIMENSION_TYPE, DimensionInit::bootstrapDimType)
             .add(Registries.LEVEL_STEM, DimensionInit::bootstrapLevelStem)
-            .add(Registries.DAMAGE_TYPE, DamageTypeInit::bootstrap);
+            .add(Registries.DAMAGE_TYPE, DamageTypeInit::bootstrap)
+            .add(Registries.TRIM_MATERIAL, TrimMaterialInit::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID));

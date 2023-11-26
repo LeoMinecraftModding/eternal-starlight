@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import com.google.gson.*;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.resources.ResourceLocation;

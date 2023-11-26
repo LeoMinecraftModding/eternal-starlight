@@ -1,0 +1,9 @@
+{
+  "asset_name": "golem_steel",
+  "description": {
+    "color": "#FDBD77",
+    "translate": "trim_material.eternal_starlight.golem_steel"
+  },
+  "ingredient": "eternal_starlight:golem_steel_ingot",
+  "item_model_index": 0.3
+}

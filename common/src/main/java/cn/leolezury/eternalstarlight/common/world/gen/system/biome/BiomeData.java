@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public record BiomeData(ResourceLocation name, ResourceLocation biome,
                         Temperature[] temperatures,
-                        int height, int variance, int maxValleyDepth,
+                        int height, int variance,
                         boolean hasBeaches, boolean hasRivers, boolean isOcean) {
     public enum Temperature {
         COLD_EXTREME,
@@ -28,7 +28,6 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
         private Temperature[] temperatures = {Temperature.NEUTRAL};
         private final int height;
         private final int variance;
-        private int maxValleyDepth;
         private boolean hasBeaches = true;
         private boolean hasRivers = true;
         private boolean isOcean = false;
@@ -38,7 +37,6 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
             this.biome = name;
             this.height = height;
             this.variance = variance;
-            this.maxValleyDepth = variance / 2;
         }
 
         public Builder(ResourceLocation name, ResourceLocation biome, int height, int variance) {
@@ -57,11 +55,6 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
             return this.withTemperatures(Temperature.COLD_EXTREME, Temperature.COLD, Temperature.NEUTRAL, Temperature.HOT, Temperature.HOT_EXTREME);
         }
 
-        public Builder withMaxValleyDepth(int maxValleyDepth) {
-            this.maxValleyDepth = maxValleyDepth;
-            return this;
-        }
-
         public Builder hasBeaches(boolean hasBeaches) {
             this.hasBeaches = hasBeaches;
             return this;
@@ -78,7 +71,7 @@ public record BiomeData(ResourceLocation name, ResourceLocation biome,
         }
 
         public BiomeData build() {
-            return new BiomeData(name, biome, temperatures, height, variance, maxValleyDepth, hasBeaches, hasRivers, isOcean);
+            return new BiomeData(name, biome, temperatures, height, variance, hasBeaches, hasRivers, isOcean);
         }
     }
 }

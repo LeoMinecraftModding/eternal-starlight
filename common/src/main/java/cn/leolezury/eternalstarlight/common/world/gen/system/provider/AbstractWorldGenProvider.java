@@ -20,15 +20,15 @@ public abstract class AbstractWorldGenProvider {
     public PerlinSimplexNoise[] noises = new PerlinSimplexNoise[3];
     private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_LAND_BIOME = new EnumMap<>(BiomeData.Temperature.class);
     private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_OCEAN_BIOME = new EnumMap<>(BiomeData.Temperature.class);
-    abstract int[] getLandBiomes();
-    abstract int[] getOceanBiomes();
-    private final Long2ObjectLinkedOpenHashMap<WorldArea> cache = new Long2ObjectLinkedOpenHashMap<>();
+    public abstract int[] getLandBiomes();
+    public abstract int[] getOceanBiomes();
+    private final Long2ObjectLinkedOpenHashMap<WorldArea> generatedAreas = new Long2ObjectLinkedOpenHashMap<>();
 
     public AbstractWorldGenProvider(int maxHeight, int minHeight) {
         this.maxHeight = maxHeight;
         this.minHeight = minHeight;
-        fillBiomeMapByTemperature(TEMPERATURE_TO_LAND_BIOME, getLandBiomes());
-        fillBiomeMapByTemperature(TEMPERATURE_TO_OCEAN_BIOME, getOceanBiomes());
+        initBiomes(TEMPERATURE_TO_LAND_BIOME, getLandBiomes());
+        initBiomes(TEMPERATURE_TO_OCEAN_BIOME, getOceanBiomes());
     }
 
     public void setSeed(long seed) {
@@ -38,7 +38,7 @@ public abstract class AbstractWorldGenProvider {
         this.noises[2] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 3 + 10), List.of(0));
     }
 
-    private void fillBiomeMapByTemperature(EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, int[] biomes) {
+    private void initBiomes(EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, int[] biomes) {
         for (BiomeData.Temperature temperature : BiomeData.Temperature.values()) {
             map.put(temperature, new ArrayList<>());
         }
@@ -54,22 +54,12 @@ public abstract class AbstractWorldGenProvider {
         return biomeList.get(random.nextInt(biomeList.size()));
     }
 
-    abstract void doBiomesTransformation(WorldArea area);
-    abstract void doHeightsTransformation(WorldArea area);
-
-    public void enlargeAndProcessBiomes(WorldArea area, long seedAddition) {
-        area.transformBiomes(BiomeTransformers.DUPLICATE, seedAddition);
-        area.transformBiomes(BiomeTransformers.RANDOMIZE, seedAddition);
-        area.transformBiomes(BiomeTransformers.ASSIMILATE, seedAddition);
-        area.transformBiomes(BiomeTransformers.ASSIMILATE_LONELY, seedAddition);
-    }
-
-    public WorldArea getWorldArea(int chunkX, int chunkZ) {
-        int areaX = (int) Math.floor(chunkX / 64d);
-        int areaZ = (int) Math.floor(chunkZ / 64d);
+    public WorldArea getWorldArea(int x, int z) {
+        int areaX = x >> 10;
+        int areaZ = z >> 10;
         long areaPos = posAsLong(areaX, areaZ);
-        synchronized (cache) {
-            WorldArea area = cache.get(areaPos);
+        synchronized (generatedAreas) {
+            WorldArea area = generatedAreas.get(areaPos);
             if (area != null) {
                 return area;
             } else {
@@ -79,13 +69,23 @@ public abstract class AbstractWorldGenProvider {
                 area.initHeights();
                 doHeightsTransformation(area);
                 area.finalizeAll();
-                cache.put(areaPos, area);
-                while (cache.size() > 32) {
-                    cache.removeFirst();
+                generatedAreas.put(areaPos, area);
+                while (generatedAreas.size() > 32) {
+                    generatedAreas.removeFirst();
                 }
             }
             return area;
         }
+    }
+
+    public abstract void doBiomesTransformation(WorldArea area);
+    public abstract void doHeightsTransformation(WorldArea area);
+
+    public void enlargeAndProcessBiomes(WorldArea area, long seedAddition) {
+        area.transformBiomes(BiomeTransformers.DUPLICATE, seedAddition);
+        area.transformBiomes(BiomeTransformers.RANDOMIZE, seedAddition);
+        area.transformBiomes(BiomeTransformers.ASSIMILATE, seedAddition);
+        area.transformBiomes(BiomeTransformers.ASSIMILATE_LONELY, seedAddition);
     }
 
     public static long posAsLong(int i, int j) {

@@ -1,5 +1,5 @@
 {
-  "type": "eternal_starlight:better_lake",
+  "type": "eternal_starlight:lake",
   "config": {
     "barrier": {
       "type": "minecraft:weighted_state_provider",

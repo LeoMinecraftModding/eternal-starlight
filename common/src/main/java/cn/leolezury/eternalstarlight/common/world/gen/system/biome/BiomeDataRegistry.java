@@ -30,9 +30,9 @@ public class BiomeDataRegistry {
     public static final int DARK_SWAMP = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "dark_swamp"), 60, 5).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.HOT_EXTREME).build());
     public static final int STARLIGHT_PERMAFROST_FOREST = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "starlight_permafrost_forest"), 110, 50).withTemperatures(BiomeData.Temperature.COLD, BiomeData.Temperature.COLD_EXTREME).hasBeaches(false).hasRivers(false).build());
     public static final int SHIMMER_RIVER = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river"), 30, 5).build());
-    public static final int SHIMMER_RIVER_TRANSITION = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river_transition"), new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river"), 40, 3).withMaxValleyDepth(2).build());
+    public static final int SHIMMER_RIVER_TRANSITION = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river_transition"), new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river"), 40, 3).build());
     public static final int STARLIT_SEA = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "starlit_sea"), 40, 5).fullRangeTemperatures().isOcean(true).build());
-    public static final int WARM_SHORE = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "warm_shore"), 60, 5).withMaxValleyDepth(0).build());
+    public static final int WARM_SHORE = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "warm_shore"), 60, 5).build());
 
     private static int register(BiomeData data) {
         LOCATION_TO_DATA.put(data.name(), data);

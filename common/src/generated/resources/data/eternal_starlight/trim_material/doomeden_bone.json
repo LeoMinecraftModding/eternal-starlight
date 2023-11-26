@@ -1,0 +1,9 @@
+{
+  "asset_name": "doomeden_bone",
+  "description": {
+    "color": "#FDBD77",
+    "translate": "trim_material.eternal_starlight.doomeden_bone"
+  },
+  "ingredient": "eternal_starlight:broken_doomeden_bone",
+  "item_model_index": 0.1
+}

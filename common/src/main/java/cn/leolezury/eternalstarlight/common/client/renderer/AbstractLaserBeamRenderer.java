@@ -53,7 +53,7 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
 
         float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
 
-        int frame = Mth.floor((laserBeam.appear.getTimer() - 1 + partialTicks) * 2);
+        int frame = Mth.floor((laserBeam.appearTimer - 1 + partialTicks) * 2);
         if (frame < 0) {
             frame = 6;
         }

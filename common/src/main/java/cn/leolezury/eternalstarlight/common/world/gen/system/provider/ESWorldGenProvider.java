@@ -11,17 +11,17 @@ public class ESWorldGenProvider extends AbstractWorldGenProvider {
     }
 
     @Override
-    int[] getLandBiomes() {
+    public int[] getLandBiomes() {
         return new int[]{BiomeDataRegistry.STARLIGHT_FOREST, BiomeDataRegistry.STARLIGHT_DENSE_FOREST, BiomeDataRegistry.DARK_SWAMP, BiomeDataRegistry.STARLIGHT_PERMAFROST_FOREST};
     }
 
     @Override
-    int[] getOceanBiomes() {
+    public int[] getOceanBiomes() {
         return new int[]{BiomeDataRegistry.STARLIT_SEA};
     }
 
     @Override
-    void doBiomesTransformation(WorldArea area) {
+    public void doBiomesTransformation(WorldArea area) {
         area.transformBiomes(BiomeTransformers.ADD_OCEAN, 0);
         area.transformBiomes(BiomeTransformers.APPLY_BIOMES, 0);
         area.transformBiomes(BiomeTransformers.DUPLICATE, 0);
@@ -44,7 +44,7 @@ public class ESWorldGenProvider extends AbstractWorldGenProvider {
     }
 
     @Override
-    void doHeightsTransformation(WorldArea area) {
+    public void doHeightsTransformation(WorldArea area) {
         area.transformHeights(HeightTransformers.SMOOTH_LARGE, 0);
         area.transformHeights(HeightTransformers.NOISE, 0);
         area.transformHeights(HeightTransformers.SMOOTH_SMALL, 0);

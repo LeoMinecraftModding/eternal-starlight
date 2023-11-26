@@ -27,16 +27,16 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
         return false;
     }
 
-    protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state) {
-        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state);
+    protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float yaw, BlockState state) {
+        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, yaw), state);
     }
 
-    protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state, List<TagKey<Block>> ignored) {
-        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state, ignored);
+    protected boolean setBlockWithRotationIfEmpty(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float yaw, BlockState state, List<TagKey<Block>> ignored) {
+        return setBlockIfEmpty(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, yaw), state, ignored);
     }
 
-    protected void setBlockWithRotation(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float roll, BlockState state) {
-        setBlock(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, roll), state);
+    protected void setBlockWithRotation(WorldGenLevel level, BlockPos centerPos, BlockPos pos, float pitch, float yaw, BlockState state) {
+        setBlock(level, ESUtil.rotateBlockPos(centerPos, pos, pitch, yaw), state);
     }
 
     protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state) {

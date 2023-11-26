@@ -7,7 +7,7 @@ public class BiomeTransformers {
     public static final DataTransformer DUPLICATE = new DuplicateSizeTransformer();
     public static final DataTransformer FINALIZE = new FinalizeBiomesTransformer();
 
-    public static final DataTransformer APPLY_BIOMES = new AddBiomesTransformer(0.07);
+    public static final DataTransformer APPLY_BIOMES = new AddBiomesTransformer(0.06);
     public static final DataTransformer ADD_OCEAN = new AddOceanTransformer(BiomeDataRegistry.STARLIT_SEA);
     public static final DataTransformer ADD_BEACHES = new AddBeachesTransformer(BiomeDataRegistry.WARM_SHORE);
     public static final DataTransformer ADD_RIVER = new AddRiverTransformer(BiomeDataRegistry.SHIMMER_RIVER);

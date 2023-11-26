@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.world.gen.feature.tree;
+package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 
 import cn.leolezury.eternalstarlight.common.block.BerriesVineBlock;
 import cn.leolezury.eternalstarlight.common.block.BerriesVinePlantBlock;

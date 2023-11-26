@@ -46,8 +46,8 @@
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:starlight_flower",
-      "eternal_starlight:sl_swamp_forest",
-      "eternal_starlight:sl_grass",
+      "eternal_starlight:swamp_forest",
+      "eternal_starlight:common_grass",
       "eternal_starlight:fallen_starlight_mangrove_log"
     ],
     [

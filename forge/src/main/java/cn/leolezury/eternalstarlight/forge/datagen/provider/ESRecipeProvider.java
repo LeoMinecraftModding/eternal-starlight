@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class ESRecipeProvider extends RecipeProvider {
     public ESRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {

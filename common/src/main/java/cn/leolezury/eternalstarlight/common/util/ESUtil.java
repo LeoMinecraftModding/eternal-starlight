@@ -7,9 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
 
 import java.util.function.Supplier;
 
@@ -49,25 +46,27 @@ public class ESUtil {
         return new Vec3(endPosX, endPosY, endPosZ);
     }
 
-    public static BlockPos rotateBlockPos(BlockPos centerPos, BlockPos pos, float pitch, float roll) {
+    public static boolean isPointInEllipsoid(double x, double y, double z, double a, double b, double c) {
+        double value = (x * x) / (a * a) + (y * y) / (b * b) + (z * z) / (c * c);
+        return value <= 1;
+    }
+
+    public static BlockPos rotateBlockPos(BlockPos centerPos, BlockPos pos, float pitch, float yaw) {
         Vec3 posVec = pos.getCenter();
         Vec3 centerVec = centerPos.getCenter();
-        Vector3f posVec3f = new Vector3f((float) posVec.x, (float) posVec.y, (float) posVec.z);
-        Vector3f centerVec3f = new Vector3f((float) centerVec.x, (float) centerVec.y, (float) centerVec.z);
 
-        Quaternionf quaternion = new Quaternionf().rotateX(pitch * Mth.PI / 180f).rotateZ(roll * Mth.PI / 180f);
+        double rotPitch = Math.toRadians(pitch);
+        double rotYaw = Math.toRadians(yaw);
 
-        Matrix4f translationToOrigin = new Matrix4f().translation(-centerVec3f.x, -centerVec3f.y, -centerVec3f.z);
-        Matrix4f inverseTranslation = new Matrix4f().translation(centerVec3f.x, centerVec3f.y, centerVec3f.z);
+        double rotatedX = posVec.x;
+        double rotatedY = centerVec.y + (posVec.y - centerVec.y) * Math.cos(rotPitch) - (posVec.z - centerVec.z) * Math.sin(rotPitch);
+        double rotatedZ = centerVec.z + (posVec.y - centerVec.y) * Math.sin(rotPitch) + (posVec.z - centerVec.z) * Math.cos(rotPitch);
 
-        Matrix4f rotationMatrix = new Matrix4f().rotate(quaternion);
+        double resultX = centerVec.x + (rotatedX - centerVec.x) * Math.cos(rotYaw) + (rotatedZ - centerVec.z) * Math.sin(rotYaw);
+        double resultY = rotatedY;
+        double resultZ = centerVec.z - (rotatedX - centerVec.x) * Math.sin(rotYaw) + (rotatedZ - centerVec.z) * Math.cos(rotYaw);
 
-        Matrix4f transformMatrix = new Matrix4f();
-        transformMatrix.mul(inverseTranslation).mul(rotationMatrix).mul(translationToOrigin);
-
-        posVec3f.mulPosition(transformMatrix);
-
-        return new BlockPos((int) posVec3f.x, (int) posVec3f.y, (int) posVec3f.z);
+        return new BlockPos((int) resultX, (int) resultY, (int) resultZ);
     }
 
     public static CompoundTag getPersistentData(Entity entity) {
