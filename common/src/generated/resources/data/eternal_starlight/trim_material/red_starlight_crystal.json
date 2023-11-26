@@ -4,6 +4,6 @@
     "color": "#B63070",
     "translate": "trim_material.eternal_starlight.red_starlight_crystal"
   },
-  "ingredient": "eternal_starlight:red_starlight_crystal_cluster",
+  "ingredient": "eternal_starlight:red_starlight_crystal_shard",
   "item_model_index": 1.0
 }

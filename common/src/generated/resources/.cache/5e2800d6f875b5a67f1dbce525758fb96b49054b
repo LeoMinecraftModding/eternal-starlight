@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-25T16:46:56.8214663	Tags for minecraft:item mod id eternal_starlight
+// 1.20.2	2023-11-26T22:30:02.5566795	Tags for minecraft:item mod id eternal_starlight
 85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/items/starlight_mangrove_logs.json
@@ -20,7 +20,8 @@ f6f17b7fe45531101de0f5596a816d3256eb35ae data/minecraft/tags/items/saplings.json
 fa0601726c481a77ba3c3ac8f2e128c8afb461fc data/minecraft/tags/items/small_flowers.json
 da214adabcf15dd63663724c49f7922e8d819f30 data/minecraft/tags/items/stairs.json
 75e1a6d41042555e81384e8d6ad8bb5606d140af data/minecraft/tags/items/swords.json
-c25cc3b13d73ce7b82609fab33fc58f08840bf52 data/minecraft/tags/items/trimmable_armor.json
+978041ef31f86d6d3833bd59a4eb74db7e393d42 data/minecraft/tags/items/trimmable_armor.json
+d9b676f9118df62a33eab92e67640099b8e25a66 data/minecraft/tags/items/trim_materials.json
 a380da19f8a1215e7c02e8d19771e23eb6d46d2b data/minecraft/tags/items/wooden_buttons.json
 02fb2995a45caa3e6ec43184837f4e26d781c0a4 data/minecraft/tags/items/wooden_doors.json
 6f770bc4178026f264d924d2d6057fa29803c679 data/minecraft/tags/items/wooden_fences.json

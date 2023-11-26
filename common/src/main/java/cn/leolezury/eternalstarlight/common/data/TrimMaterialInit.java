@@ -26,8 +26,8 @@ public class TrimMaterialInit {
     public static final ResourceKey<TrimMaterial> DOOMEDEN_BONE = create("doomeden_bone");
 
     public static void bootstrap(BootstapContext<TrimMaterial> context) {
-        register(context, RED_STARLIGHT_CRYSTAL, ItemInit.RED_STARLIGHT_CRYSTAL_CLUSTER.asHolder(), 0xb63070, 1.0f);
-        register(context, BLUE_STARLIGHT_CRYSTAL, ItemInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.asHolder(), 0x308fb6, 0.8f);
+        register(context, RED_STARLIGHT_CRYSTAL, ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0xb63070, 1.0f);
+        register(context, BLUE_STARLIGHT_CRYSTAL, ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0x308fb6, 0.8f);
         register(context, AETHERSENT, ItemInit.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
         register(context, THERMAL_SPRINGSTONE, ItemInit.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
         register(context, SWAMP_SILVER, ItemInit.SWAMP_SILVER_INGOT.asHolder(), 0xfdbd77, 0.2f);

@@ -108,7 +108,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.GLOWING_PARASOL_GRASS.get());
         basicItem(ItemInit.LUNAR_REED.get(), blockTextureFromItem(ItemInit.LUNAR_REED.get()).withSuffix("_top"));
         basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
-        basicBlockItem(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
+        cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
 
         basicItemWithBlockTexture(ItemInit.SWAMP_ROSE.get());
         basicItemWithBlockTexture(ItemInit.FANTABUD.get());
@@ -163,7 +163,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.AETHERSENT_INGOT.get());
         basicHandheld(ItemInit.RAGE_OF_STARS.get());
         bow(ItemInit.STARFALL_LONGBOW.get());
-        basicItem(ItemInit.AETHERSENT_HOOD.get());
+        armorWithTrim((ArmorItem) ItemInit.AETHERSENT_HOOD.get());
         basicItem(ItemInit.AETHERSENT_CAPE.get());
         basicItem(ItemInit.AETHERSENT_BOTTOMS.get());
         basicItem(ItemInit.AETHERSENT_BOOTS.get());
@@ -176,10 +176,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicHandheld(ItemInit.THERMAL_SPRINGSTONE_AXE.get());
         basicHandheld(ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get());
         inventoryModel(ItemInit.THERMAL_SPRINGSTONE_HAMMER.get());
-        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_HELMET.get());
-        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get());
-        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get());
-        armorWithTrim((ArmorItem) ItemInit.THERMAL_SPRINGSTONE_BOOTS.get());
+        basicItem(ItemInit.THERMAL_SPRINGSTONE_HELMET.get());
+        basicItem(ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get());
+        basicItem(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get());
+        basicItem(ItemInit.THERMAL_SPRINGSTONE_BOOTS.get());
 
         basicBlockItem(ItemInit.SWAMP_SILVER_ORE.get());
         basicBlockItem(ItemInit.SWAMP_SILVER_BLOCK.get());
@@ -189,8 +189,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicHandheld(ItemInit.SWAMP_SILVER_PICKAXE.get());
         basicHandheld(ItemInit.SWAMP_SILVER_AXE.get());
         basicHandheld(ItemInit.SWAMP_SILVER_SICKLE.get());
-        basicItem(ItemInit.SWAMP_SILVER_HELMET.get());
-        basicItem(ItemInit.SWAMP_SILVER_CHESTPLATE.get());
+        armorWithTrim((ArmorItem) ItemInit.SWAMP_SILVER_HELMET.get());
+        armorWithTrim((ArmorItem) ItemInit.SWAMP_SILVER_CHESTPLATE.get());
         basicItem(ItemInit.SWAMP_SILVER_LEGGINGS.get());
         basicItem(ItemInit.SWAMP_SILVER_BOOTS.get());
 
@@ -299,6 +299,12 @@ public class ESItemModelProvider extends ItemModelProvider {
         getBuilder(name(wall))
                 .parent(getExistingFile(mcLoc("block/wall_inventory")))
                 .texture("wall", blockTextureFromItem(stone));
+    }
+
+    private void cubeAll(Item cube) {
+        getBuilder(name(cube))
+                .parent(getExistingFile(mcLoc("block/cube_all")))
+                .texture("all", blockTextureFromItem(cube));
     }
 
     private void basicBlockItem(Item item) {

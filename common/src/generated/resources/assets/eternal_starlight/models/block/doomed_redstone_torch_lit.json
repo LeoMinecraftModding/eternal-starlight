@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/template_torch",
+  "render_type": "minecraft:cutout",
   "textures": {
     "torch": "eternal_starlight:block/doomed_redstone_torch"
   }

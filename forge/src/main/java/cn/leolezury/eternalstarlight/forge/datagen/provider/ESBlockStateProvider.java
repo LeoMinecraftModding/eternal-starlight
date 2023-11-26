@@ -306,17 +306,17 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void torch(Block normal, Block wall) {
-        ModelFile modelNormal = models().torch(name(normal), blockTexture(normal));
-        ModelFile modelWall = models().torchWall(name(wall), blockTexture(normal));
+        ModelFile modelNormal = models().torch(name(normal), blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelWall = models().torchWall(name(wall), blockTexture(normal)).renderType(CUTOUT);
         simpleBlock(normal, modelNormal);
         horizontalBlock(wall, modelWall, 90);
     }
 
     private void redstoneTorch(Block normal, Block wall) {
-        ModelFile modelNormal = models().torch(name(normal) + "_lit", blockTexture(normal));
-        ModelFile modelNormalOff = models().torch(name(normal), blockTexture(normal).withSuffix("_off"));
-        ModelFile modelWall = models().torchWall(name(wall) + "_lit", blockTexture(normal));
-        ModelFile modelWallOff = models().torchWall(name(wall), blockTexture(normal).withSuffix("_off"));
+        ModelFile modelNormal = models().torch(name(normal) + "_lit", blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelNormalOff = models().torch(name(normal), blockTexture(normal).withSuffix("_off")).renderType(CUTOUT);
+        ModelFile modelWall = models().torchWall(name(wall) + "_lit", blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelWallOff = models().torchWall(name(wall), blockTexture(normal).withSuffix("_off")).renderType(CUTOUT);
         onOffBlock(normal, BlockStateProperties.LIT, modelNormal, modelNormalOff);
         horizontalBlock(wall, state -> state.getValue(BlockStateProperties.LIT) ? modelWall : modelWallOff, 90);
     }

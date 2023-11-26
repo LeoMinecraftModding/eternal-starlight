@@ -94,11 +94,19 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.SWAMP_ROSE.get()
         );
         tag(ItemTags.TRIMMABLE_ARMOR).add(
-                ItemInit.THERMAL_SPRINGSTONE_HELMET.get(),
-                ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
-                ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get(),
-                ItemInit.THERMAL_SPRINGSTONE_BOOTS.get()
+                ItemInit.AETHERSENT_HOOD.get(),
+                ItemInit.SWAMP_SILVER_HELMET.get(),
+                ItemInit.SWAMP_SILVER_CHESTPLATE.get()
         );
-        // TODO: trim materials
+        tag(ItemTags.TRIM_MATERIALS).add(
+                ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get(),
+                ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get(),
+                ItemInit.AETHERSENT_INGOT.get(),
+                ItemInit.THERMAL_SPRINGSTONE_INGOT.get(),
+                ItemInit.SWAMP_SILVER_INGOT.get(),
+                ItemInit.GOLEM_STEEL_INGOT.get(),
+                ItemInit.TENACIOUS_PETAL.get(),
+                ItemInit.BROKEN_DOOMEDEN_BONE.get()
+        );
     }
 }
