@@ -224,7 +224,7 @@ public class ItemInit {
     public static final RegistryObject<Item> THERMAL_SPRINGSTONE_BOOTS = registerItem("thermal_springstone_boots",
             () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(ESArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    //swamp silver
+    // swamp silver
     public static final RegistryObject<Item> SWAMP_SILVER_ORE = registerItem("swamp_silver_ore", () -> new BlockItem(BlockInit.SWAMP_SILVER_ORE.get(), new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_BLOCK = registerItem("swamp_silver_block", () -> new BlockItem(BlockInit.SWAMP_SILVER_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_INGOT = registerItem("swamp_silver_ingot", () -> new Item(new Item.Properties()));
@@ -232,7 +232,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SWAMP_SILVER_SWORD = registerItem("swamp_silver_sword",
             () -> new SwordItem(ESItemTiers.SWAMP_SILVER, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_PICKAXE = registerItem("swamp_silver_pickaxe",
-            () -> new PickaxeItem(ESItemTiers.SWAMP_SILVER,1, -1.0F, new Item.Properties()));
+            () -> new PickaxeItem(ESItemTiers.SWAMP_SILVER, 1, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
             () -> new AxeItem(ESItemTiers.SWAMP_SILVER, 6, -3.1F, new Item.Properties()));
     public static final RegistryObject<Item> SWAMP_SILVER_SICKLE = registerItem("swamp_silver_sickle",

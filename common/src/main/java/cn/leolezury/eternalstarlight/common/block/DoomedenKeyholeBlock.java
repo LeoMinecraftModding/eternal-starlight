@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -37,6 +38,7 @@ public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
                     break;
                 }
             }
+            direction = direction.getOpposite();
             return defaultBlockState().setValue(FACING, direction);
         }
 
@@ -46,11 +48,21 @@ public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         if (player.getItemInHand(hand).is(ESTags.Items.DOOMEDEN_KEYS) && !state.getValue(LIT)) {
-            level.setBlock(pos, state.setValue(LIT, true), 1);
+            level.setBlockAndUpdate(pos, state.setValue(LIT, true));
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             return InteractionResult.PASS;
         }
+    }
+
+    @Override
+    public boolean isSignalSource(BlockState blockState) {
+        return blockState.getValue(LIT);
+    }
+
+    @Override
+    public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
+        return blockState.getValue(LIT) ? 15 : super.getSignal(blockState, blockGetter, blockPos, direction);
     }
 
     @Override
