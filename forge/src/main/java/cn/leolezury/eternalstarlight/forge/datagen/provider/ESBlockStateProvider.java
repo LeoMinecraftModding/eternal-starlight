@@ -87,6 +87,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
         crossBlock(BlockInit.STARLIGHT_FLOWER.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_FLOWER.get(), blockTexture(BlockInit.STARLIGHT_FLOWER.get()));
+        crossBlock(BlockInit.CONEBLOOM.get());
+        pottedPlant(BlockInit.POTTED_CONEBLOOM.get(), blockTexture(BlockInit.CONEBLOOM.get()));
+        crossBlock(BlockInit.NIGHTFAN.get());
+        pottedPlant(BlockInit.POTTED_NIGHTFAN.get(), blockTexture(BlockInit.NIGHTFAN.get()));
+        crossBlock(BlockInit.PINK_ROSE.get());
+        pottedPlant(BlockInit.POTTED_PINK_ROSE.get(), blockTexture(BlockInit.PINK_ROSE.get()));
+        crossBlock(BlockInit.STARLIGHT_TORCHFLOWER.get());
+        pottedPlant(BlockInit.POTTED_STARLIGHT_TORCHFLOWER.get(), blockTexture(BlockInit.STARLIGHT_TORCHFLOWER.get()));
         crossBlock(BlockInit.NIGHT_SPROUTS.get());
         crossBlock(BlockInit.SMALL_NIGHT_SPROUTS.get());
         crossBlock(BlockInit.GLOWING_NIGHT_SPROUTS.get());
@@ -94,6 +102,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.LUNAR_GRASS.get());
         crossBlock(BlockInit.GLOWING_LUNAR_GRASS.get());
         crossBlock(BlockInit.CRESCENT_GRASS.get());
+        crossBlock(BlockInit.GLADESPIKE.get());
+        crossBlock(BlockInit.VIVIDSTALK.get());
         crossBlock(BlockInit.GLOWING_CRESCENT_GRASS.get());
         crossBlock(BlockInit.PARASOL_GRASS.get());
         crossBlock(BlockInit.GLOWING_PARASOL_GRASS.get());
@@ -374,7 +384,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void carpetBlock(Block block, ResourceLocation wool) {
-        ModelFile modelFile = models().carpet(name(block), wool).renderType(CUTOUT);
+        ModelFile modelFile = models().carpet(name(block), wool);
         simpleBlock(block, modelFile);
     }
 

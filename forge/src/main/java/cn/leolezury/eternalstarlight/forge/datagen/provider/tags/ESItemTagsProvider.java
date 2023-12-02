@@ -48,6 +48,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
+        copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
         tag(ItemTags.BOATS).add(
                 ItemInit.LUNAR_BOAT.get(),
                 ItemInit.NORTHLAND_BOAT.get(),
@@ -89,10 +90,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         /*tag(ItemTags.SHOVELS).add(
 
         );*/
-        tag(ItemTags.SMALL_FLOWERS).add(
-                ItemInit.STARLIGHT_FLOWER.get(),
-                ItemInit.SWAMP_ROSE.get()
-        );
         tag(ItemTags.TRIMMABLE_ARMOR).add(
                 ItemInit.AETHERSENT_HOOD.get(),
                 ItemInit.SWAMP_SILVER_HELMET.get(),

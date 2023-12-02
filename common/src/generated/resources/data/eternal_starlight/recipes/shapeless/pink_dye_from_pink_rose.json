@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:pink_rose"
+    }
+  ],
+  "result": {
+    "item": "minecraft:pink_dye"
+  }
+}

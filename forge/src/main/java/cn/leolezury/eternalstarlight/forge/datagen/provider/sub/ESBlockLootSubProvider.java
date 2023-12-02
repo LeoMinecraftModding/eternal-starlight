@@ -167,6 +167,14 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
         dropSelf(BlockInit.STARLIGHT_FLOWER.get());
         dropPottedContents(BlockInit.POTTED_STARLIGHT_FLOWER.get());
+        dropSelf(BlockInit.CONEBLOOM.get());
+        dropPottedContents(BlockInit.POTTED_CONEBLOOM.get());
+        dropSelf(BlockInit.NIGHTFAN.get());
+        dropPottedContents(BlockInit.POTTED_NIGHTFAN.get());
+        dropSelf(BlockInit.PINK_ROSE.get());
+        dropPottedContents(BlockInit.POTTED_PINK_ROSE.get());
+        dropSelf(BlockInit.STARLIGHT_TORCHFLOWER.get());
+        dropPottedContents(BlockInit.POTTED_STARLIGHT_TORCHFLOWER.get());
         dropSelf(BlockInit.NIGHT_SPROUTS.get());
         dropSelf(BlockInit.SMALL_NIGHT_SPROUTS.get());
         dropSelf(BlockInit.GLOWING_NIGHT_SPROUTS.get());
@@ -174,6 +182,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.LUNAR_GRASS.get());
         dropSelf(BlockInit.GLOWING_LUNAR_GRASS.get());
         dropSelf(BlockInit.CRESCENT_GRASS.get());
+        dropSelf(BlockInit.GLADESPIKE.get());
+        dropSelf(BlockInit.VIVIDSTALK.get());
         dropSelf(BlockInit.GLOWING_CRESCENT_GRASS.get());
         dropSelf(BlockInit.PARASOL_GRASS.get());
         dropSelf(BlockInit.GLOWING_PARASOL_GRASS.get());

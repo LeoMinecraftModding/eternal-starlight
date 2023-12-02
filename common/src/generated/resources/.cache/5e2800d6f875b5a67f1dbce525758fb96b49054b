@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-26T22:30:02.5566795	Tags for minecraft:item mod id eternal_starlight
+// 1.20.2	2023-12-02T13:17:44.6608117	Tags for minecraft:item mod id eternal_starlight
 85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/items/starlight_mangrove_logs.json
@@ -17,7 +17,7 @@ a85a4d998ced2af35205e88e0074d2212a506174 data/minecraft/tags/items/leaves.json
 f6f17b7fe45531101de0f5596a816d3256eb35ae data/minecraft/tags/items/saplings.json
 64fb33356c5ac2b74f0b59d5cb242138dc8273a8 data/minecraft/tags/items/signs.json
 89a7319b6bf18e856530c203793161b798cafc77 data/minecraft/tags/items/slabs.json
-fa0601726c481a77ba3c3ac8f2e128c8afb461fc data/minecraft/tags/items/small_flowers.json
+fc7b395f400d9da56fe2f5194cb47c0702ef0249 data/minecraft/tags/items/small_flowers.json
 da214adabcf15dd63663724c49f7922e8d819f30 data/minecraft/tags/items/stairs.json
 75e1a6d41042555e81384e8d6ad8bb5606d140af data/minecraft/tags/items/swords.json
 978041ef31f86d6d3833bd59a4eb74db7e393d42 data/minecraft/tags/items/trimmable_armor.json

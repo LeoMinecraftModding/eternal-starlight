@@ -41,6 +41,10 @@ public class ESBiomeSource extends BiomeSource {
         this.provider = new ESWorldGenProvider(maxHeight, minHeight);
     }
 
+    public void setCacheSize(int size) {
+        this.provider.setCacheSize(size);
+    }
+
     @Override
     protected Codec<? extends BiomeSource> codec() {
         return CODEC;

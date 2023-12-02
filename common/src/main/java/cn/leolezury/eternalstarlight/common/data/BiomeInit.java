@@ -96,7 +96,7 @@ public class BiomeInit {
     private static BiomeGenerationSettings.Builder forestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
 
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FLOWER);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_FLOWER);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_LUNAR_LOG);
@@ -108,7 +108,7 @@ public class BiomeInit {
     private static BiomeGenerationSettings.Builder denseForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
 
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FLOWER);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_FLOWER);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.DENSE_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_LUNAR_LOG);
@@ -119,7 +119,7 @@ public class BiomeInit {
     private static BiomeGenerationSettings.Builder snowyForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
 
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FLOWER);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_FLOWER);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.PERMAFROST_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_NORTHLAND_LOG);
 
@@ -130,7 +130,7 @@ public class BiomeInit {
         BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.LAKES, PlacedFeatureInit.SWAMP_WATER);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FLOWER);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_FLOWER);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SWAMP_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.COMMON_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_STARLIGHT_MANGROVE_LOG);

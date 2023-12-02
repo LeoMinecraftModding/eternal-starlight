@@ -63,10 +63,9 @@ public class ESUtil {
         double rotatedZ = centerVec.z + (posVec.y - centerVec.y) * Math.sin(rotPitch) + (posVec.z - centerVec.z) * Math.cos(rotPitch);
 
         double resultX = centerVec.x + (rotatedX - centerVec.x) * Math.cos(rotYaw) + (rotatedZ - centerVec.z) * Math.sin(rotYaw);
-        double resultY = rotatedY;
         double resultZ = centerVec.z - (rotatedX - centerVec.x) * Math.sin(rotYaw) + (rotatedZ - centerVec.z) * Math.cos(rotYaw);
 
-        return new BlockPos((int) resultX, (int) resultY, (int) resultZ);
+        return new BlockPos((int) Math.round(resultX), (int) Math.round(rotatedY), (int) Math.round(resultZ));
     }
 
     public static CompoundTag getPersistentData(Entity entity) {

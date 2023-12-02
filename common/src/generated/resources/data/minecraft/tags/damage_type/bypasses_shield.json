@@ -1,6 +1,6 @@
 {
-  "replace": false,
   "values": [
+    "eternal_starlight:laser",
     "eternal_starlight:poison"
   ]
 }

@@ -35,6 +35,14 @@ public class ESRecipeProvider extends RecipeProvider {
         addSwampSilverRecipes(consumer);
         addThermalSpringstoneRecipes(consumer);
 
+        // flower -> dye
+        addSingleConversion(consumer, ItemInit.STARLIGHT_FLOWER.get(), Items.BLUE_DYE);
+        addSingleConversion(consumer, ItemInit.CONEBLOOM.get(), Items.BROWN_DYE);
+        addSingleConversion(consumer, ItemInit.NIGHTFAN.get(), Items.PURPLE_DYE);
+        addSingleConversion(consumer, ItemInit.PINK_ROSE.get(), Items.PINK_DYE);
+        addSingleConversion(consumer, ItemInit.STARLIGHT_TORCHFLOWER.get(), Items.YELLOW_DYE);
+        addSingleConversion(consumer, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
+
         // smelt
         addSmelt(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, "golem_steel_ingot", 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
         addSmelt(consumer, "blasting", RecipeSerializer.BLASTING_RECIPE, "golem_steel_ingot", 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
@@ -311,6 +319,13 @@ public class ESRecipeProvider extends RecipeProvider {
                 .requires(compressed)
                 .unlockedBy("has_item", has(compressed))
                 .save(finishedRecipeConsumer, getModLocation("compressed/reversed/" + id));
+    }
+
+    protected final void addSingleConversion(RecipeOutput finishedRecipeConsumer, Item from, Item to) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, to)
+                .requires(from)
+                .unlockedBy("has_item", has(from))
+                .save(finishedRecipeConsumer, getModLocation("shapeless/" + ForgeRegistries.ITEMS.getKey(to).getPath() + "_from_" + ForgeRegistries.ITEMS.getKey(from).getPath()));
     }
 
     protected final void addShapeless(RecipeOutput finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {

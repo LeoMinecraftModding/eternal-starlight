@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
@@ -35,6 +36,7 @@ public class ESFabric implements ModInitializer {
             CommonHandlers.onRightClickBlock(world, player, hand, hitResult.getBlockPos());
             return InteractionResult.PASS;
         });
+        ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
 
         CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
     }

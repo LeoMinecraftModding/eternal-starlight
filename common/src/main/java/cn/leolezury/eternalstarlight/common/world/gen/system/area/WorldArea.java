@@ -12,7 +12,9 @@ public class WorldArea {
     public final int areaX;
     public final int areaZ;
     private int[][] biomes;
+    private int[] finalBiomes;
     private int[][] heights;
+    private int[] finalHeights;
     public int size;
 
     public WorldArea(AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed) {
@@ -57,17 +59,25 @@ public class WorldArea {
         this.size = tempSize; // 2048
         transformHeights(HeightTransformers.FINALIZE, 0);
         this.size = finalSize; // 1024
+        this.finalBiomes = new int[this.size * this.size];
+        for (int i = 0; i < this.size; i++) {
+            System.arraycopy(this.biomes[i], 0, this.finalBiomes, i * this.size, this.size);
+        }
+        this.finalHeights = new int[this.size * this.size];
+        for (int i = 0; i < this.size; i++) {
+            System.arraycopy(this.heights[i], 0, this.finalHeights, i * this.size, this.size);
+        }
     }
 
     public int getBiome(int x, int z) {
-        int dataX = ((int) Math.floor(x * size / 1024d)) & (size - 1);
-        int dataZ = ((int) Math.floor(z * size / 1024d)) & (size - 1);
-        return biomes[dataX][dataZ];
+        int dataX = (size == 1024 ? x : ((int) Math.floor(x * size / 1024d))) & (size - 1);
+        int dataZ = (size == 1024 ? x : ((int) Math.floor(z * size / 1024d))) & (size - 1);
+        return finalBiomes[size * dataX + dataZ];
     }
 
     public int getHeight(int x, int z) {
-        int dataX = ((int) Math.floor(x * size / 1024d)) & (size - 1);
-        int dataZ = ((int) Math.floor(z * size / 1024d)) & (size - 1);
-        return heights[dataX][dataZ];
+        int dataX = (size == 1024 ? x : ((int) Math.floor(x * size / 1024d))) & (size - 1);
+        int dataZ = (size == 1024 ? x : ((int) Math.floor(z * size / 1024d))) & (size - 1);
+        return finalHeights[size * dataX + dataZ];
     }
 }

@@ -16,7 +16,8 @@ import java.util.Random;
 public abstract class AbstractWorldGenProvider {
     public final int maxHeight;
     public final int minHeight;
-    public long seed;
+    private long seed;
+    private int cacheSize = 32;
     public PerlinSimplexNoise[] noises = new PerlinSimplexNoise[3];
     private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_LAND_BIOME = new EnumMap<>(BiomeData.Temperature.class);
     private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_OCEAN_BIOME = new EnumMap<>(BiomeData.Temperature.class);
@@ -70,12 +71,16 @@ public abstract class AbstractWorldGenProvider {
                 doHeightsTransformation(area);
                 area.finalizeAll();
                 generatedAreas.put(areaPos, area);
-                while (generatedAreas.size() > 32) {
+                while (generatedAreas.size() > cacheSize) {
                     generatedAreas.removeFirst();
                 }
             }
             return area;
         }
+    }
+
+    public void setCacheSize(int size) {
+        this.cacheSize = Math.max(size, 32);
     }
 
     public abstract void doBiomesTransformation(WorldArea area);

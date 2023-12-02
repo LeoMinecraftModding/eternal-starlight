@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemInit {
-//    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EternalStarlight.MOD_ID);
+    //    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EternalStarlight.MOD_ID);
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, EternalStarlight.MOD_ID);
     private static final Rarity STARLIGHT = ESPlatform.INSTANCE.getStarlightRarity();
     private static final Rarity DEMON = ESPlatform.INSTANCE.getDemonRarity();
-    
+
     public static final List<ResourceKey<Item>> REGISTERED_ITEMS = new ArrayList<>();
     private static RegistryObject<Item> registerItem(String name, Supplier<? extends Item> supplier) {
         REGISTERED_ITEMS.add(ResourceKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, name)));
@@ -111,6 +111,10 @@ public class ItemInit {
 
     // common grass
     public static final RegistryObject<Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(BlockInit.STARLIGHT_FLOWER.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CONEBLOOM = registerItem("conebloom", () -> new BlockItem(BlockInit.CONEBLOOM.get(), new Item.Properties()));
+    public static final RegistryObject<Item> NIGHTFAN = registerItem("nightfan", () -> new BlockItem(BlockInit.NIGHTFAN.get(), new Item.Properties()));
+    public static final RegistryObject<Item> PINK_ROSE = registerItem("pink_rose", () -> new BlockItem(BlockInit.PINK_ROSE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> STARLIGHT_TORCHFLOWER = registerItem("starlight_torchflower", () -> new BlockItem(BlockInit.STARLIGHT_TORCHFLOWER.get(), new Item.Properties()));
     public static final RegistryObject<Item> NIGHT_SPROUTS = registerItem("night_sprouts", () -> new BlockItem(BlockInit.NIGHT_SPROUTS.get(), new Item.Properties()));
     public static final RegistryObject<Item> GLOWING_NIGHT_SPROUTS = registerItem("glowing_night_sprouts", () -> new BlockItem(BlockInit.GLOWING_NIGHT_SPROUTS.get(), new Item.Properties()));
     public static final RegistryObject<Item> SMALL_NIGHT_SPROUTS = registerItem("small_night_sprouts", () -> new BlockItem(BlockInit.SMALL_NIGHT_SPROUTS.get(), new Item.Properties()));
@@ -122,6 +126,9 @@ public class ItemInit {
     public static final RegistryObject<Item> PARASOL_GRASS = registerItem("parasol_grass", () -> new BlockItem(BlockInit.PARASOL_GRASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> GLOWING_PARASOL_GRASS = registerItem("glowing_parasol_grass", () -> new BlockItem(BlockInit.GLOWING_PARASOL_GRASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> LUNAR_REED = registerItem("lunar_reed", () -> new BlockItem(BlockInit.LUNAR_REED.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GLADESPIKE = registerItem("gladespike", () -> new BlockItem(BlockInit.GLADESPIKE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> VIVIDSTALK = registerItem("vividstalk", () -> new BlockItem(BlockInit.VIVIDSTALK.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(BlockInit.GLOWING_MUSHROOM.get(), new Item.Properties()));
     public static final RegistryObject<Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(BlockInit.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 
@@ -267,7 +274,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DOOMEDEN_KEYHOLE = registerItem("doomeden_keyhole", () -> new BlockItem(BlockInit.DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
     public static final RegistryObject<Item> REDSTONE_DOOMEDEN_KEYHOLE = registerItem("redstone_doomeden_keyhole", () -> new BlockItem(BlockInit.REDSTONE_DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
 
-    //boss materials
+    // boss materials
     public static final RegistryObject<Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(STARLIGHT)));

@@ -44,6 +44,12 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
                 for (int y = 0; y <= yRadius; y++) {
                     if (ESUtil.isPointInEllipsoid(x, y, z, xzRadius, yRadius, xzRadius)) {
                         placeFoliage(level, setter, predicate, centerPos.offset(x, y, z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(x, -y, z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(-x, y, z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(-x, -y, z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(x, y, -z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(x, -y, -z), provider, random);
+                        placeFoliage(level, setter, predicate, centerPos.offset(-x, y, -z), provider, random);
                         placeFoliage(level, setter, predicate, centerPos.offset(-x, -y, -z), provider, random);
                     }
                 }

@@ -3,12 +3,15 @@ package cn.leolezury.eternalstarlight.forge.datagen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESBlockTagsProvider;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESDamageTypeTagsProvider;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESEntityTypeTagsProvider;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
@@ -29,10 +32,15 @@ public class DataGenerators {
         ESBlockTagsProvider blockTagsProvider = new ESBlockTagsProvider(output, lookupProvider, helper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ESItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter(), helper));
+        generator.addProvider(event.includeServer(), new ESEntityTypeTagsProvider(output, lookupProvider, helper));
+
+        DatapackBuiltinEntriesProvider dataProvider = new ESDataProvider(output, lookupProvider);
+        CompletableFuture<HolderLookup.Provider> lookup = dataProvider.getRegistryProvider();
+        generator.addProvider(event.includeServer(), dataProvider);
+        generator.addProvider(event.includeServer(), new ESDamageTypeTagsProvider(output, lookup, helper));
+
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));
-
-        generator.addProvider(event.includeServer(), new ESDataProvider(output, lookupProvider));
     }
 }

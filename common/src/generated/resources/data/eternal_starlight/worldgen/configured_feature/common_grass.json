@@ -76,6 +76,18 @@
                   }
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:gladespike"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:vividstalk"
+                },
+                "weight": 1
               }
             ]
           }

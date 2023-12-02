@@ -141,6 +141,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.SMALL_FLOWERS).add(
                 BlockInit.STARLIGHT_FLOWER.get(),
+                BlockInit.CONEBLOOM.get(),
+                BlockInit.NIGHTFAN.get(),
+                BlockInit.PINK_ROSE.get(),
+                BlockInit.STARLIGHT_TORCHFLOWER.get(),
                 BlockInit.SWAMP_ROSE.get()
         );
         tag(BlockTags.FLOWER_POTS).add(

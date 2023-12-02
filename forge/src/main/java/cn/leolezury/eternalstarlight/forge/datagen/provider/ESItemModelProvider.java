@@ -96,6 +96,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
         basicItemWithBlockTexture(ItemInit.STARLIGHT_FLOWER.get());
+        basicItemWithBlockTexture(ItemInit.CONEBLOOM.get());
+        basicItemWithBlockTexture(ItemInit.NIGHTFAN.get());
+        basicItemWithBlockTexture(ItemInit.PINK_ROSE.get());
+        basicItemWithBlockTexture(ItemInit.STARLIGHT_TORCHFLOWER.get());
         basicItemWithBlockTexture(ItemInit.NIGHT_SPROUTS.get());
         basicItemWithBlockTexture(ItemInit.GLOWING_NIGHT_SPROUTS.get());
         basicItemWithBlockTexture(ItemInit.SMALL_NIGHT_SPROUTS.get());
@@ -107,6 +111,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.PARASOL_GRASS.get());
         basicItemWithBlockTexture(ItemInit.GLOWING_PARASOL_GRASS.get());
         basicItem(ItemInit.LUNAR_REED.get(), blockTextureFromItem(ItemInit.LUNAR_REED.get()).withSuffix("_top"));
+        basicItemWithBlockTexture(ItemInit.GLADESPIKE.get());
+        basicItemWithBlockTexture(ItemInit.VIVIDSTALK.get());
         basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
         cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
 

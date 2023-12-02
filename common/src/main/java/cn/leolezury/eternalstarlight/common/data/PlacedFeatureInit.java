@@ -45,7 +45,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> DENSE_FOREST = create("dense_forest");
     public static final ResourceKey<PlacedFeature> SWAMP_FOREST = create("swamp_forest");
     public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST = create("permafrost_forest");
-    public static final ResourceKey<PlacedFeature> STARLIGHT_FLOWER = create("starlight_flower");
+    public static final ResourceKey<PlacedFeature> COMMON_FLOWER = create("common_flower");
     public static final ResourceKey<PlacedFeature> COMMON_GRASS = create("common_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_GRASS = create("swamp_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_LAKE = create("swamp_lake");
@@ -82,7 +82,7 @@ public class PlacedFeatureInit {
         register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
         register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
         register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
-        register(context, STARLIGHT_FLOWER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_FLOWER), RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
+        register(context, COMMON_FLOWER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.COMMON_FLOWER), RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP);
         register(context, COMMON_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.COMMON_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
         register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);
         register(context, SWAMP_LAKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_LAKE), RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE);

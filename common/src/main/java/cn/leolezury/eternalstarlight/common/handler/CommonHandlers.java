@@ -16,8 +16,10 @@ import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.sounds.SoundEvents;
@@ -54,6 +56,20 @@ public class CommonHandlers {
     }
     public static ChapterManager getChapterManager() {
         return chapterManager;
+    }
+
+    private static int ticksSinceLastUpdate = 0;
+
+    public static void onServerTick(MinecraftServer server) {
+        ticksSinceLastUpdate++;
+        if (ticksSinceLastUpdate >= 20) {
+            for (ServerLevel level : server.getAllLevels()) {
+                if (level.getChunkSource().getGenerator().getBiomeSource() instanceof ESBiomeSource source) {
+                    source.setCacheSize(level.players().size() * 8);
+                }
+            }
+            ticksSinceLastUpdate = 0;
+        }
     }
 
     public static void onRightClickBlock(Level level, Player player, InteractionHand hand, BlockPos pos) {

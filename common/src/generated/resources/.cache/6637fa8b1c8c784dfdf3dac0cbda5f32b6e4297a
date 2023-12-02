@@ -1,4 +1,4 @@
-// 1.20.2	2023-11-25T16:46:56.5836047	Tags for minecraft:block mod id eternal_starlight
+// 1.20.2	2023-12-02T13:17:44.1961849	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/blocks/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/blocks/northland_logs.json
@@ -23,7 +23,7 @@ ed25a8852a76999e232989f59d2100e0e1303e4d data/minecraft/tags/blocks/needs_iron_t
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/blocks/portals.json
 f6f17b7fe45531101de0f5596a816d3256eb35ae data/minecraft/tags/blocks/saplings.json
 89a7319b6bf18e856530c203793161b798cafc77 data/minecraft/tags/blocks/slabs.json
-fa0601726c481a77ba3c3ac8f2e128c8afb461fc data/minecraft/tags/blocks/small_flowers.json
+fc7b395f400d9da56fe2f5194cb47c0702ef0249 data/minecraft/tags/blocks/small_flowers.json
 da214adabcf15dd63663724c49f7922e8d819f30 data/minecraft/tags/blocks/stairs.json
 64fb33356c5ac2b74f0b59d5cb242138dc8273a8 data/minecraft/tags/blocks/standing_signs.json
 88f2ff6e6b9dbe897136ad9141bdef493d9f39dc data/minecraft/tags/blocks/wall_hanging_signs.json

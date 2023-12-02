@@ -36,6 +36,10 @@ public class CommonSetupHandlers {
 
     public static void setup() {
         pottedPlantsMap.put(BlockInit.STARLIGHT_FLOWER.getId(), BlockInit.POTTED_STARLIGHT_FLOWER);
+        pottedPlantsMap.put(BlockInit.CONEBLOOM.getId(), BlockInit.POTTED_CONEBLOOM);
+        pottedPlantsMap.put(BlockInit.NIGHTFAN.getId(), BlockInit.POTTED_NIGHTFAN);
+        pottedPlantsMap.put(BlockInit.PINK_ROSE.getId(), BlockInit.POTTED_PINK_ROSE);
+        pottedPlantsMap.put(BlockInit.STARLIGHT_TORCHFLOWER.getId(), BlockInit.POTTED_STARLIGHT_TORCHFLOWER);
         pottedPlantsMap.put(BlockInit.SWAMP_ROSE.getId(), BlockInit.POTTED_SWAMP_ROSE);
         pottedPlantsMap.put(BlockInit.LUNAR_SAPLING.getId(), BlockInit.POTTED_LUNAR_SAPLING);
         pottedPlantsMap.put(BlockInit.NORTHLAND_SAPLING.getId(), BlockInit.POTTED_NORTHLAND_SAPLING);

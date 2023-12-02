@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:starlight_torchflower"
+    }
+  ],
+  "result": {
+    "item": "minecraft:yellow_dye"
+  }
+}

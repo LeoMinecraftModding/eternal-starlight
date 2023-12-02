@@ -65,9 +65,9 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 
         int pitch = mainTrunk ? random.nextInt(-5, 5) : (random.nextBoolean() ? branchLen.sample(random) : -branchLen.sample(random));
         int yaw = random.nextInt(0, 360);
-        int i = len / (mainTrunk ? 5 : 2);
+        int distBetweenBranches = len / 5;
         int yStart = mainTrunk ? -5 : 0;
-        int r = mainTrunk ? trunkRadius.sample(random) : 0;
+        int r = trunkRadius.sample(random);
 
         // generate the top leaves
         BlockPos topLeavesPos = ESUtil.rotateBlockPos(origin, origin.offset(0, len, 0), pitch, yaw);
@@ -75,17 +75,26 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 
         for (int y = yStart; y <= len; y++) {
             if (mainTrunk) {
-                for (int x = -r; x <= r; x++) {
-                    for (int z = -r; z <= r; z++) {
-                        if (x == r && (z == r || z == -r) || x == -r && (z == r || z == -r)) {
-                            continue;
+                if (r == 0) {
+                    if (y > len / numBranches && y < len && y % distBetweenBranches == 0) {
+                        BlockPos rotated = ESUtil.rotateBlockPos(origin, origin.offset(0, y, 0), pitch, yaw);
+                        // leafAttachments.add(new FoliagePlacer.FoliageAttachment(rotated, 0, false));
+                        leafAttachments.addAll(genBranchAt(level, placer, rotated, random, lenBranches, numBranches, lenBranches, false, config));
+                    }
+                    placeLogWithRotation(level, placer, random, origin.offset(0, y, 0), origin, pitch, yaw, config);
+                } else {
+                    for (int x = -r; x <= r; x++) {
+                        for (int z = -r; z <= r; z++) {
+                            if (x == r && (z == r || z == -r) || x == -r && (z == r || z == -r)) {
+                                continue;
+                            }
+                            if (y > len / numBranches && y < len && y % distBetweenBranches == 0 && (x == -r || x == r || z == -r || z == r)) {
+                                BlockPos rotated = ESUtil.rotateBlockPos(origin, origin.offset(x, y, z), pitch, yaw);
+                                // leafAttachments.add(new FoliagePlacer.FoliageAttachment(rotated, 0, false));
+                                leafAttachments.addAll(genBranchAt(level, placer, rotated, random, lenBranches, numBranches, lenBranches, false, config));
+                            }
+                            placeLogWithRotation(level, placer, random, origin.offset(x, y, z), origin, pitch, yaw, config);
                         }
-                        if (y > len / numBranches && y < len && y % i == 0 && (x == -r || x == r || z == -r || z == r)) {
-                            BlockPos rotated = ESUtil.rotateBlockPos(origin, origin.offset(x, y, z), pitch, yaw);
-                            // leafAttachments.add(new FoliagePlacer.FoliageAttachment(rotated, 0, false));
-                            leafAttachments.addAll(genBranchAt(level, placer, rotated, random, lenBranches, numBranches, lenBranches, false, config));
-                        }
-                        placeLogWithRotation(level, placer, random, origin.offset(x, y, z), origin, pitch, yaw, config);
                     }
                 }
             } else {
