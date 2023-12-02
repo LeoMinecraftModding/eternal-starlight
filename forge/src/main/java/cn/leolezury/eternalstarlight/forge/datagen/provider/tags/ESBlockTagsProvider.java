@@ -50,6 +50,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 Blocks.DEEPSLATE
         );
         // mc tags
+        tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
         tag(BlockTags.LOGS).addTags(
                 ESTags.Blocks.LUNAR_LOGS,
                 ESTags.Blocks.NORTHLAND_LOGS,

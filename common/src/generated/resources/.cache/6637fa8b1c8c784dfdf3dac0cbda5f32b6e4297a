@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-02T13:17:44.1961849	Tags for minecraft:block mod id eternal_starlight
+// 1.20.2	2023-12-02T21:32:05.9638618	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/blocks/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/blocks/northland_logs.json
@@ -19,6 +19,7 @@ af51780ee9f3741010a1f592a17088814d874648 data/minecraft/tags/blocks/mineable/sho
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/blocks/moss_replaceable.json
 b693fe30a8cbf132951921d83aa529f16648ccdd data/minecraft/tags/blocks/mushroom_grow_block.json
 ed25a8852a76999e232989f59d2100e0e1303e4d data/minecraft/tags/blocks/needs_iron_tool.json
+030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/blocks/overworld_carver_replaceables.json
 9dd71e7a23ea35b79c2674c3501ff447dc43fb67 data/minecraft/tags/blocks/planks.json
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/blocks/portals.json
 f6f17b7fe45531101de0f5596a816d3256eb35ae data/minecraft/tags/blocks/saplings.json

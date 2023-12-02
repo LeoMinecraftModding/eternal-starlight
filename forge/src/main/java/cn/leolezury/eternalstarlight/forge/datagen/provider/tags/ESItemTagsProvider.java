@@ -31,6 +31,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get(),
                 ItemInit.THERMAL_SPRINGSTONE_HAMMER.get()
         );
+        tag(ESTags.Items.DOOMEDEN_KEYS).add(
+                ItemInit.EYE_OF_DOOM.get(),
+                ItemInit.LIVING_ARM.get(),
+                ItemInit.DOOMEDEN_SWORD.get()
+        );
         // mc tags
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
