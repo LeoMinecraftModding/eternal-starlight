@@ -1,4 +1,6 @@
-// 1.20.2	2023-12-02T13:17:44.3261106	Loot Tables
+// 1.20.2	2023-12-03T14:17:53.9546678	Loot Tables
+77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
+2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
 0d7d8c3f6b3f49ca6b75e3961a37f41a5bc7472d data/eternal_starlight/loot_tables/blocks/aethersent_block.json
 d2768b2c67b2d06f7f9c6d98b6aed611a3354c77 data/eternal_starlight/loot_tables/blocks/berries_vines.json
 4a6bd63e8701407f5cf1068745242043e17020c3 data/eternal_starlight/loot_tables/blocks/berries_vines_plant.json

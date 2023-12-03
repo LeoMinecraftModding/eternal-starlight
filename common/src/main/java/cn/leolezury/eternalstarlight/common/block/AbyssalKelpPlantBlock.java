@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -14,22 +13,21 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.KelpPlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class BerriesVinePlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock, BerriesVines {
-    public BerriesVinePlantBlock(BlockBehaviour.Properties properties) {
-        super(properties, Direction.DOWN, SHAPE, false);
+public class AbyssalKelpPlantBlock extends KelpPlantBlock implements AbyssalKelp {
+    public AbyssalKelpPlantBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, Boolean.valueOf(false)));
     }
 
+    @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) BlockInit.BERRIES_VINES.get();
+        return (GrowingPlantHeadBlock) BlockInit.ABYSSAL_KELP.get();
     }
 
     protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
@@ -37,7 +35,7 @@ public class BerriesVinePlantBlock extends GrowingPlantBodyBlock implements Bone
     }
 
     public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState state) {
-        return new ItemStack(ItemInit.LUNAR_BERRIES.get());
+        return new ItemStack(ItemInit.ABYSSAL_FRUIT.get());
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {

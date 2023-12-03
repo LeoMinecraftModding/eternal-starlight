@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
@@ -40,6 +41,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
     protected void generate() {
         add(BlockInit.BERRIES_VINES.get(), this::createBerriesVinesDrop);
         add(BlockInit.BERRIES_VINES_PLANT.get(), this::createBerriesVinesDrop);
+        add(BlockInit.ABYSSAL_KELP.get(), this::createAbyssalKelpDrop);
+        add(BlockInit.ABYSSAL_KELP_PLANT.get(), this::createAbyssalKelpDrop);
 
         add(BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), (block) -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
         add(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), (block) -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
@@ -223,6 +226,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
     private LootTable.Builder createBerriesVinesDrop(Block block) {
         return LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.LUNAR_BERRIES.get())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerriesVines.BERRIES, true))));
+    }
+
+    private LootTable.Builder createAbyssalKelpDrop(Block block) {
+        return LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.ABYSSAL_FRUIT.get())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AbyssalKelp.BERRIES, true))));
     }
 
     private LootTable.Builder createLunarLeavesDrops(Block leaves, Block sapling, float... saplingChances) {

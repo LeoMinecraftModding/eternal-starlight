@@ -32,6 +32,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         berriesVines(BlockInit.BERRIES_VINES.get());
         berriesVines(BlockInit.BERRIES_VINES_PLANT.get());
+        berriesVines(BlockInit.ABYSSAL_KELP.get());
+        berriesVines(BlockInit.ABYSSAL_KELP_PLANT.get());
         crossBlock(BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
         crossBlock(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
         simpleBlock(BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -207,7 +209,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     private void berriesVines(Block block) {
         ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
         ModelFile modelLit = models().cross(name(block) + "_lit", blockTexture(block).withSuffix("_lit")).renderType(CUTOUT);
-        onOffBlock(block, BerriesVines.BERRIES, modelLit, modelNormal);
+        onOffBlock(block, BlockStateProperties.BERRIES, modelLit, modelNormal);
     }
 
     private void mangroveRoots(Block block) {

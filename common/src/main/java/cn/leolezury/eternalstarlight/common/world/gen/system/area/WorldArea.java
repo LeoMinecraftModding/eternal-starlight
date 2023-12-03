@@ -71,13 +71,13 @@ public class WorldArea {
 
     public int getBiome(int x, int z) {
         int dataX = (size == 1024 ? x : ((int) Math.floor(x * size / 1024d))) & (size - 1);
-        int dataZ = (size == 1024 ? x : ((int) Math.floor(z * size / 1024d))) & (size - 1);
+        int dataZ = (size == 1024 ? z : ((int) Math.floor(z * size / 1024d))) & (size - 1);
         return finalBiomes[size * dataX + dataZ];
     }
 
     public int getHeight(int x, int z) {
         int dataX = (size == 1024 ? x : ((int) Math.floor(x * size / 1024d))) & (size - 1);
-        int dataZ = (size == 1024 ? x : ((int) Math.floor(z * size / 1024d))) & (size - 1);
+        int dataZ = (size == 1024 ? z : ((int) Math.floor(z * size / 1024d))) & (size - 1);
         return finalHeights[size * dataX + dataZ];
     }
 }

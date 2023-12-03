@@ -3,6 +3,8 @@
 
   "block.eternal_starlight.berries_vines": "Berries Vines",
   "block.eternal_starlight.berries_vines_plant": "Berries Vines Plant",
+  "block.eternal_starlight.abyssal_kelp": "Abyssal Kelp",
+  "block.eternal_starlight.abyssal_kelp_plant": "Abyssal Kelp Plant",
   "block.eternal_starlight.red_starlight_crystal_cluster": "Red Starlight Crystal Cluster",
   "block.eternal_starlight.blue_starlight_crystal_cluster": "Blue Starlight Crystal Cluster",
   "block.eternal_starlight.red_starlight_crystal_block": "Red Starlight Crystal Block",
@@ -167,6 +169,7 @@
   "block.eternal_starlight.lunar_monstrosity_spawner": "Lunar Monstrosity Spawner",
 
   "item.eternal_starlight.lunar_berries": "Lunar Berries",
+  "item.eternal_starlight.abyssal_fruit": "Abyssal Fruit",
   "item.eternal_starlight.lunar_boat": "Lunar Boat",
   "item.eternal_starlight.lunar_chest_boat": "Lunar Chest Boat",
   "item.eternal_starlight.northland_boat": "Northland Boat",

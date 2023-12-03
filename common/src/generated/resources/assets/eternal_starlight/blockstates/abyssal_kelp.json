@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "berries=false": {
+      "model": "eternal_starlight:block/abyssal_kelp"
+    },
+    "berries=true": {
+      "model": "eternal_starlight:block/abyssal_kelp_lit"
+    }
+  }
+}

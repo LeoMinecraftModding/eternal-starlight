@@ -3,6 +3,8 @@
 
   "block.eternal_starlight.berries_vines": "浆果藤曼",
   "block.eternal_starlight.berries_vines_plant": "浆果藤曼植株",
+  "block.eternal_starlight.abyssal_kelp": "渊海草",
+  "block.eternal_starlight.abyssal_kelp_plant": "渊海草植株",
   "block.eternal_starlight.red_starlight_crystal_cluster": "红色星辉水晶簇",
   "block.eternal_starlight.blue_starlight_crystal_cluster": "蓝色星辉水晶簇",
   "block.eternal_starlight.red_starlight_crystal_block": "红色星辉水晶块",
@@ -167,6 +169,7 @@
   "block.eternal_starlight.lunar_monstrosity_spawner": "月藤巨物刷怪笼",
 
   "item.eternal_starlight.lunar_berries": "月辉浆果",
+  "item.eternal_starlight.abyssal_fruit": "渊海果",
   "item.eternal_starlight.lunar_boat": "月辉船",
   "item.eternal_starlight.lunar_chest_boat": "月辉箱船",
   "item.eternal_starlight.northland_boat": "北地木船",

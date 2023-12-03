@@ -87,6 +87,8 @@ public class ClientSetupHandlers {
     public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
             BlockInit.BERRIES_VINES,
             BlockInit.BERRIES_VINES_PLANT,
+            BlockInit.ABYSSAL_KELP,
+            BlockInit.ABYSSAL_KELP_PLANT,
             BlockInit.LUNAR_SAPLING,
             BlockInit.POTTED_LUNAR_SAPLING,
             BlockInit.LUNAR_TRAPDOOR,

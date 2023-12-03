@@ -31,6 +31,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get());
         basicItem(ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get());
         basicItem(ItemInit.LUNAR_BERRIES.get());
+        basicItem(ItemInit.ABYSSAL_FRUIT.get());
 
         // wood
         basicItemWithBlockTexture(ItemInit.LUNAR_SAPLING.get());
