@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerRenderer.class)
 public abstract class PlayerRendererMixin {
     @Inject(method = "getArmPose", at = @At(value = "RETURN"), cancellable = true)
-    private static void getArmPose(AbstractClientPlayer player, InteractionHand hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
+    private static void es_getArmPose(AbstractClientPlayer player, InteractionHand hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (!player.swinging && itemInHand.is(ItemInit.CRYSTAL_CROSSBOW.get())
                 && CrossbowItem.isCharged(itemInHand)) {

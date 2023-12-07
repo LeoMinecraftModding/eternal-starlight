@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowItemMixin {
     @Inject(method = "getArrow", at = @At("RETURN"), cancellable = true)
-    private static void getArrow(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, CallbackInfoReturnable<AbstractArrow> cir) {
+    private static void es_getArrow(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, CallbackInfoReturnable<AbstractArrow> cir) {
         if (itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get())) {
             AbstractArrow abstractArrow = cir.getReturnValue();
             ESUtil.getPersistentData(abstractArrow).putBoolean(EternalStarlight.MOD_ID + ":crystal", true);

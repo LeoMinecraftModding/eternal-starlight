@@ -38,7 +38,7 @@ public class BiomeInit {
         HolderGetter<ConfiguredWorldCarver<?>> carverHolderGetter = context.lookup(Registries.CONFIGURED_CARVER);
         context.register(STARLIGHT_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), forestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIGHT_DENSE_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), denseForestSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), baseSpawnBuilder(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
+        context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), baseSpawnBuilder(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
@@ -85,14 +85,14 @@ public class BiomeInit {
         BiomeDefaultFeatures.addDefaultGrass(builder);
         BiomeDefaultFeatures.addSavannaExtraGrass(builder);
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.CAVE_VINE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.DEEPSLATE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.NIGHTSHADE_DIRT_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacedFeatureInit.CAVE_VINE);
 
-        builder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
-        builder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
+        builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES);
+        builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES_EXTRA);
 
         return builder;
     }

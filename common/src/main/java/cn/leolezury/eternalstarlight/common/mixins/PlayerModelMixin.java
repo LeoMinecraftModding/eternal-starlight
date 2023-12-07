@@ -27,7 +27,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
     private static boolean doTransform = false;
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("RETURN"))
-    private void setupAnim(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void es_setupAnim(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (livingEntity.isUsingItem()) {
             AnimationDefinition definition = null;
             boolean transform = false;
@@ -152,7 +152,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
-    private void setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void es_setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
         playerModel.head.resetPose();
         playerModel.body.resetPose();

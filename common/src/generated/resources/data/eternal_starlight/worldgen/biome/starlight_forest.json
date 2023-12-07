@@ -1,8 +1,8 @@
 {
   "carvers": {
     "air": [
-      "minecraft:cave",
-      "minecraft:cave_extra_underground"
+      "eternal_starlight:caves",
+      "eternal_starlight:caves_extra"
     ]
   },
   "downfall": 0.5,
@@ -41,15 +41,14 @@
       "eternal_starlight:nightshade_dirt_ore",
       "eternal_starlight:glowing_voidstone_ore"
     ],
-    [
-      "eternal_starlight:cave_vine"
-    ],
+    [],
     [],
     [
       "minecraft:patch_grass_forest",
       "minecraft:patch_tall_grass",
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
+      "eternal_starlight:cave_vine",
       "eternal_starlight:common_flower",
       "eternal_starlight:starlight_forest",
       "eternal_starlight:common_grass",

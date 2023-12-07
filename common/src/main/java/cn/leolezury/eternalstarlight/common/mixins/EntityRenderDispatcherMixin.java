@@ -31,7 +31,7 @@ public abstract class EntityRenderDispatcherMixin {
     @Shadow public abstract <T extends Entity> EntityRenderer<? super T> getRenderer(T entity);
 
     @Inject(method = "renderShadow", at = @At("HEAD"), cancellable = true)
-    private static void renderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
+    private static void es_renderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
         if (entity instanceof Player && ClientSetupHandlers.renderingFirstPersonPlayer) {
             // cancel the shadow rendering while rendering a first person player model
             ci.cancel();
@@ -39,8 +39,8 @@ public abstract class EntityRenderDispatcherMixin {
     }
 
     @Inject(method = "render", at = @At("RETURN"))
-    private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
-        if (entity instanceof LivingEntity living) {
+    private <E extends Entity> void es_render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
+        if (entity instanceof LivingEntity living && !ClientSetupHandlers.renderingFirstPersonPlayer) {
             AttributeInstance speed = living.getAttribute(Attributes.MOVEMENT_SPEED);
             if (speed == null) return;
 

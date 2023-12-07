@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Player.class)
 public abstract class PlayerMixin {
     @Inject(at = @At(value = "HEAD"), method = "hurtCurrentlyUsedShield")
-    private void damageShield(float amount, CallbackInfo callBackInfo) {
+    private void es_damageShield(float amount, CallbackInfo callBackInfo) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ItemInit.MOONRING_GREATSWORD.get())) {
@@ -22,7 +22,7 @@ public abstract class PlayerMixin {
     }
 
     @Inject(at = @At(value = "HEAD"), method = "disableShield", cancellable = true)
-    private void disableShieldHead(boolean sprinting, CallbackInfo ci) {
+    private void es_disableShieldHead(boolean sprinting, CallbackInfo ci) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ItemInit.MOONRING_GREATSWORD.get())) {

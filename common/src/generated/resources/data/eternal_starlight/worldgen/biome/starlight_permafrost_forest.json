@@ -1,15 +1,15 @@
 {
   "carvers": {
     "air": [
-      "minecraft:cave",
-      "minecraft:cave_extra_underground"
+      "eternal_starlight:caves",
+      "eternal_starlight:caves_extra"
     ]
   },
   "downfall": 0.5,
   "effects": {
     "fog_color": 14803455,
     "foliage_color": 3091031,
-    "grass_color": 3091031,
+    "grass_color": 14803455,
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
@@ -39,15 +39,14 @@
       "eternal_starlight:nightshade_dirt_ore",
       "eternal_starlight:glowing_voidstone_ore"
     ],
-    [
-      "eternal_starlight:cave_vine"
-    ],
+    [],
     [],
     [
       "minecraft:patch_grass_forest",
       "minecraft:patch_tall_grass",
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
+      "eternal_starlight:cave_vine",
       "eternal_starlight:common_flower",
       "eternal_starlight:permafrost_forest",
       "eternal_starlight:fallen_northland_log"

@@ -15,14 +15,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BubbleColumnBlock.class)
 public abstract class BubbleColumnBlockMixin {
     @Inject(method = "getColumnState", at = @At(value = "RETURN"), cancellable = true)
-    private static void getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
+    private static void es_getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
         if (state.is(BlockInit.THERMAL_SPRINGSTONE.get())) {
             cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(false)));
         }
     }
 
     @Inject(method = "canSurvive", at = @At(value = "RETURN"), cancellable = true)
-    private void canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    private void es_canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (levelReader.getBlockState(pos.below()).is(BlockInit.THERMAL_SPRINGSTONE.get())) {
             cir.setReturnValue(true);
         }

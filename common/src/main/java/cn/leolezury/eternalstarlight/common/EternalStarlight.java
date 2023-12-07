@@ -13,6 +13,7 @@ public class EternalStarlight {
         MobEffectInit.loadClass();
         BlockEntityInit.loadClass();
         EnchantmentInit.loadClass();
+        WorldCarverInit.loadClass();
         FeatureInit.loadClass();
         PlacerInit.loadClass();
         TreeDecoratorInit.loadClass();

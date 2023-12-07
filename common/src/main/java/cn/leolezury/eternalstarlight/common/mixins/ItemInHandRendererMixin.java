@@ -25,7 +25,7 @@ import java.util.function.Supplier;
 public abstract class ItemInHandRendererMixin {
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
-    private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
+    private static void es_evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
         ItemStack itemStack = player.getMainHandItem();
         ItemStack itemStack1 = player.getOffhandItem();
         boolean flag = itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get()) || itemStack.is(ItemInit.MOONRING_BOW.get()) || itemStack.is(ItemInit.STARFALL_LONGBOW.get()) || itemStack.is(ItemInit.BOW_OF_BLOOD.get());
@@ -44,7 +44,7 @@ public abstract class ItemInHandRendererMixin {
     }
 
     @Inject(method = "renderHandsWithItems", at = @At("HEAD"), cancellable = true)
-    private void renderHandsWithItems(float f, PoseStack poseStack, MultiBufferSource.BufferSource bufferSource, LocalPlayer localPlayer, int i, CallbackInfo ci) {
+    private void es_renderHandsWithItems(float f, PoseStack poseStack, MultiBufferSource.BufferSource bufferSource, LocalPlayer localPlayer, int i, CallbackInfo ci) {
         // is the player using an animated item?
         if (localPlayer.isUsingItem()) {
             boolean animated = false;

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FireBlock.class)
 public abstract class FireBlockMixin {
     @Inject(at = @At("HEAD"), method = "getBurnOdds", cancellable = true)
-    private void getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
+    private void es_getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         ESFlammabilityModifier.Entry entry;
         if ((entry = ESFlammabilityModifier.getEntry(blockState.getBlock())) != null) {
             callbackInfoReturnable.setReturnValue(blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? 0 : entry.burnOdds());
@@ -20,7 +20,7 @@ public abstract class FireBlockMixin {
     }
 
     @Inject(at = @At("HEAD"), method = "getIgniteOdds*", cancellable = true)
-    private void getIgniteOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
+    private void es_getIgniteOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         ESFlammabilityModifier.Entry entry;
         if ((entry = ESFlammabilityModifier.getEntry(blockState.getBlock())) != null) {
             callbackInfoReturnable.setReturnValue(blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? 0 : entry.catchOdds());

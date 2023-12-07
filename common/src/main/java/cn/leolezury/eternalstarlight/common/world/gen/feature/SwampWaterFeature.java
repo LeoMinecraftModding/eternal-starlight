@@ -27,7 +27,7 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
 
         for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {
             for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
-                if (noise.getValue(x, z, false) > 0) {
+                if (noise.getValue(x / 20d, z / 20d, false) > 0) {
                     for (int y = chunkCoord.getY() - 16; y < chunkCoord.getY() + 16; y++) {
                         BlockPos waterPos = new BlockPos(x, y, z);
                         if (level.getBlockState(waterPos.offset(0, 1, 0)).isAir()

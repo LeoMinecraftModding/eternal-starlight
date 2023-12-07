@@ -128,6 +128,7 @@ public class ConfiguredFeatureInit {
         register(context, SWAMP_LAKE, FeatureInit.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), swampLakeStateProvider, UniformInt.of(8, 10), UniformInt.of(4, 6), UniformInt.of(8, 10)));
         register(context, SWAMP_WATER, FeatureInit.SWAMP_WATER.get(), new NoneFeatureConfiguration());
         WeightedStateProvider caveSpringStateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.SPRINGSTONE.get().defaultBlockState(), 10).add(BlockInit.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build());
+        // TODO: A separate feature for this
         register(context, CAVE_SPRING, FeatureInit.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), caveSpringStateProvider, UniformInt.of(8, 10), UniformInt.of(6, 8), UniformInt.of(8, 10)));
         register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(MUD_SWAMP_SILVER_ORES.get(), 7));
 

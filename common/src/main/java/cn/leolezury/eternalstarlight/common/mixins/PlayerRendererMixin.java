@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 @Mixin(PlayerRenderer.class)
 public abstract class PlayerRendererMixin {
     @Inject(method = "setModelProperties", at = @At("RETURN"))
-    private void setModelProperties(AbstractClientPlayer player, CallbackInfo ci) {
+    private void es_setModelProperties(AbstractClientPlayer player, CallbackInfo ci) {
         if (ClientSetupHandlers.renderingFirstPersonPlayer) {
             PlayerModel<AbstractClientPlayer> playerModel = ((PlayerRenderer) (Object) this).getModel();
             ItemStack useItem = player.getItemInHand(player.getUsedItemHand());

@@ -42,17 +42,17 @@ public class ESBlockStateProvider extends BlockStateProvider {
         carpetBlock(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get()));
 
         // woods
-        simpleBlockWithRenderType(BlockInit.LUNAR_LEAVES.get(), CUTOUT_MIPPED);
+        leaves(BlockInit.LUNAR_LEAVES.get());
         woodSet(BlockInit.LUNAR_LOG.get(), BlockInit.LUNAR_WOOD.get(), BlockInit.LUNAR_PLANKS.get(), BlockInit.STRIPPED_LUNAR_LOG.get(), BlockInit.STRIPPED_LUNAR_WOOD.get(), BlockInit.LUNAR_DOOR.get(), false, BlockInit.LUNAR_TRAPDOOR.get(), false, BlockInit.LUNAR_PRESSURE_PLATE.get(), BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_FENCE_GATE.get(), BlockInit.LUNAR_SLAB.get(), BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_SIGN.get(), BlockInit.LUNAR_WALL_SIGN.get(), BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.LUNAR_WALL_HANGING_SIGN.get());
         crossBlock(BlockInit.LUNAR_SAPLING.get());
         pottedPlant(BlockInit.POTTED_LUNAR_SAPLING.get(), blockTexture(BlockInit.LUNAR_SAPLING.get()));
 
-        simpleBlockWithRenderType(BlockInit.NORTHLAND_LEAVES.get(), CUTOUT_MIPPED);
+        leaves(BlockInit.NORTHLAND_LEAVES.get());
         woodSet(BlockInit.NORTHLAND_LOG.get(), BlockInit.NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_PLANKS.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get(), BlockInit.STRIPPED_NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_DOOR.get(), false, BlockInit.NORTHLAND_TRAPDOOR.get(), false, BlockInit.NORTHLAND_PRESSURE_PLATE.get(), BlockInit.NORTHLAND_BUTTON.get(), BlockInit.NORTHLAND_FENCE.get(), BlockInit.NORTHLAND_FENCE_GATE.get(), BlockInit.NORTHLAND_SLAB.get(), BlockInit.NORTHLAND_STAIRS.get(), BlockInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_WALL_SIGN.get(), BlockInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.NORTHLAND_WALL_HANGING_SIGN.get());
         crossBlock(BlockInit.NORTHLAND_SAPLING.get());
         pottedPlant(BlockInit.POTTED_NORTHLAND_SAPLING.get(), blockTexture(BlockInit.NORTHLAND_SAPLING.get()));
 
-        simpleBlockWithRenderType(BlockInit.STARLIGHT_MANGROVE_LEAVES.get(), CUTOUT_MIPPED);
+        leaves(BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
         woodSet(BlockInit.STARLIGHT_MANGROVE_LOG.get(), BlockInit.STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_DOOR.get(), true, BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), true, BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_FENCE.get(), BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(), BlockInit.STARLIGHT_MANGROVE_SLAB.get(), BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get());
         crossBlock(BlockInit.STARLIGHT_MANGROVE_SAPLING.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
@@ -354,6 +354,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     private void simpleBlockWithRenderType(Block block, ResourceLocation renderType) {
         simpleBlock(block, models().cubeAll(name(block), blockTexture(block)).renderType(renderType));
+    }
+
+    private void leaves(Block leaves) {
+        ModelFile modelFile = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
+        simpleBlock(leaves, modelFile);
     }
 
     private void pottedPlant(Block potted, ResourceLocation location) {

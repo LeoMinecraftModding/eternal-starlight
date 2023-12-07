@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ModelManager.class)
 public abstract class ModelManagerMixin {
     @Inject(method = "apply", at = @At(value = "FIELD", target = "Lnet/minecraft/client/resources/model/ModelManager;missingModel:Lnet/minecraft/client/resources/model/BakedModel;", shift = At.Shift.AFTER))
-    private void apply(ModelManager.ReloadState reloadState, ProfilerFiller profilerFiller, CallbackInfo ci) {
+    private void es_apply(ModelManager.ReloadState reloadState, ProfilerFiller profilerFiller, CallbackInfo ci) {
         ClientSetupHandlers.modifyBakingResult(reloadState.modelBakery().getBakedTopLevelModels());
     }
 }

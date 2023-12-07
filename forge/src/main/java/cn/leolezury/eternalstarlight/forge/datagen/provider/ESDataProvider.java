@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESDataProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            .add(Registries.CONFIGURED_CARVER, ConfiguredWorldCarverInit::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureInit::bootstrap)
             .add(Registries.PLACED_FEATURE, PlacedFeatureInit::bootstrap)
             .add(Registries.BIOME, BiomeInit::bootstrap)

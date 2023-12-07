@@ -23,7 +23,7 @@ public abstract class CameraMixin {
     @Shadow public abstract float getYRot();
 
     @Inject(method = "setup", at = @At(value = "RETURN"))
-    private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
+    private void es_setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
         Vec3 angles = ClientHandlers.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
         setRotation((float) angles.y, (float) angles.x);
     }

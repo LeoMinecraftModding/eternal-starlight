@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RegistryDataLoader.class)
 public abstract class RegistryDataLoaderMixin {
     @Inject(at = @At("HEAD"), method = "registryDirPath", cancellable = true)
-    private static void registryDirPath(ResourceLocation resourceLocation, CallbackInfoReturnable<String> cir) {
+    private static void es_registryDirPath(ResourceLocation resourceLocation, CallbackInfoReturnable<String> cir) {
         if (FabricDatapackRegistryBuilder.OWNED_REGISTRIES.contains(resourceLocation)) {
             cir.setReturnValue(resourceLocation.getNamespace() + "/" + resourceLocation.getPath());
         }

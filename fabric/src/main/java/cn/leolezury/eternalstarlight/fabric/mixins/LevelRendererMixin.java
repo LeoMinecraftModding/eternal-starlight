@@ -22,7 +22,7 @@ public abstract class LevelRendererMixin {
     @Shadow private @Nullable ClientLevel level;
 
     @Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
-    private void renderSky(PoseStack poseStack, Matrix4f matrix4f, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
+    private void es_renderSky(PoseStack poseStack, Matrix4f matrix4f, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
         if (level.dimension() == DimensionInit.STARLIGHT_KEY) {
             ESSkyRenderer.renderSky(level, poseStack, matrix4f, f, camera, runnable);
             ci.cancel();
