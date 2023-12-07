@@ -54,7 +54,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> CAVE_SPRING = create("cave_spring");
     public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
 
-    //structure features
+    // structure features
     public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -110,6 +110,7 @@ public class PlacedFeatureInit {
                                  PlacementModifier... modifiers) {
         register(context, key, configuration, List.of(modifiers));
     }
+
     public static List<PlacementModifier> orePlacement(PlacementModifier modifier, PlacementModifier modifier1) {
         return List.of(modifier, InSquarePlacement.spread(), modifier1, BiomeFilter.biome());
     }

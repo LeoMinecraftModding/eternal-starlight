@@ -8,6 +8,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ESUtil {
@@ -51,21 +53,84 @@ public class ESUtil {
         return value <= 1;
     }
 
-    public static BlockPos rotateBlockPos(BlockPos centerPos, BlockPos pos, float pitch, float yaw) {
-        Vec3 posVec = pos.getCenter();
-        Vec3 centerVec = centerPos.getCenter();
+    public static List<int[]> getBresenham3DPoints(int x1, int y1, int z1, int x2, int y2, int z2) {
+        List<int[]> points = new ArrayList<>();
+        points.add(new int[]{x1, y1, z1});
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+        int dz = Math.abs(z2 - z1);
+        int xs;
+        int ys;
+        int zs;
+        if (x2 > x1) {
+            xs = 1;
+        } else {
+            xs = -1;
+        }
+        if (y2 > y1) {
+            ys = 1;
+        } else {
+            ys = -1;
+        }
+        if (z2 > z1) {
+            zs = 1;
+        } else {
+            zs = -1;
+        }
 
-        double rotPitch = Math.toRadians(pitch);
-        double rotYaw = Math.toRadians(yaw);
-
-        double rotatedX = posVec.x;
-        double rotatedY = centerVec.y + (posVec.y - centerVec.y) * Math.cos(rotPitch) - (posVec.z - centerVec.z) * Math.sin(rotPitch);
-        double rotatedZ = centerVec.z + (posVec.y - centerVec.y) * Math.sin(rotPitch) + (posVec.z - centerVec.z) * Math.cos(rotPitch);
-
-        double resultX = centerVec.x + (rotatedX - centerVec.x) * Math.cos(rotYaw) + (rotatedZ - centerVec.z) * Math.sin(rotYaw);
-        double resultZ = centerVec.z - (rotatedX - centerVec.x) * Math.sin(rotYaw) + (rotatedZ - centerVec.z) * Math.cos(rotYaw);
-
-        return new BlockPos((int) Math.round(resultX), (int) Math.round(rotatedY), (int) Math.round(resultZ));
+        if (dx >= dy && dx >= dz) {
+            int p1 = 2 * dy - dx;
+            int p2 = 2 * dz - dx;
+            while (x1 != x2) {
+                x1 += xs;
+                if (p1 >= 0) {
+                    y1 += ys;
+                    p1 -= 2 * dx;
+                }
+                if (p2 >= 0) {
+                    z1 += zs;
+                    p2 -= 2 * dx;
+                }
+                p1 += 2 * dy;
+                p2 += 2 * dz;
+                points.add(new int[]{x1, y1, z1});
+            }
+        } else if (dy >= dx && dy >= dz) {
+            int p1 = 2 * dx - dy;
+            int p2 = 2 * dz - dy;
+            while (y1 != y2) {
+                y1 += ys;
+                if (p1 >= 0) {
+                    x1 += xs;
+                    p1 -= 2 * dy;
+                }
+                if (p2 >= 0) {
+                    z1 += zs;
+                    p2 -= 2 * dy;
+                }
+                p1 += 2 * dx;
+                p2 += 2 * dz;
+                points.add(new int[]{x1, y1, z1});
+            }
+        } else {
+            int p1 = 2 * dy - dz;
+            int p2 = 2 * dx - dz;
+            while (z1 != z2) {
+                z1 += zs;
+                if (p1 >= 0) {
+                    y1 += ys;
+                    p1 -= 2 * dz;
+                }
+                if (p2 >= 0) {
+                    x1 += xs;
+                    p2 -= 2 * dz;
+                }
+                p1 += 2 * dy;
+                p2 += 2 * dx;
+                points.add(new int[]{x1, y1, z1});
+            }
+        }
+        return points;
     }
 
     public static CompoundTag getPersistentData(Entity entity) {

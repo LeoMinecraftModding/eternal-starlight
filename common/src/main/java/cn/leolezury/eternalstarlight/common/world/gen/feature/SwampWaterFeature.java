@@ -22,7 +22,7 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         WorldGenLevel level = context.level();
-        PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(level.getSeed() / 5 + 3), List.of());
+        PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(level.getSeed() / 5 + 3), List.of(0));
         BlockPos chunkCoord = getChunkCoordinate(context.origin()).offset(1, 0, 1);
 
         for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {

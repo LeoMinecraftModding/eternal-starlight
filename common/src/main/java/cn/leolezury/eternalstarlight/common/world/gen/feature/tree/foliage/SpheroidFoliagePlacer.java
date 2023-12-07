@@ -19,12 +19,10 @@ import java.util.function.BiFunction;
 public class SpheroidFoliagePlacer extends FoliagePlacer {
     public static final Codec<SpheroidFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> foliagePlacerParts(instance).apply(instance, SpheroidFoliagePlacer::new));
 
-    private final float horizontalRadius;
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 
     public SpheroidFoliagePlacer(IntProvider horizontalRadius, IntProvider yOffset) {
         super(horizontalRadius, yOffset);
-        this.horizontalRadius = (horizontalRadius.getMaxValue() + horizontalRadius.getMinValue()) / 2f;
     }
 
 
@@ -59,7 +57,7 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
 
     protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration baseTreeFeatureConfig, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
         BlockPos center = foliage.pos().above(offset);
-        placeSpheroidFoliage(levelReader, setter, VALID_TREE_POS, random, center, foliage.radiusOffset() + this.horizontalRadius + random.nextInt(4), foliage.radiusOffset() + 1.5F + random.nextInt(2), baseTreeFeatureConfig.foliageProvider);
+        placeSpheroidFoliage(levelReader, setter, VALID_TREE_POS, random, center, foliage.radiusOffset() + this.radius.sample(random), foliage.radiusOffset() + 1.5F + random.nextInt(2), baseTreeFeatureConfig.foliageProvider);
     }
 
     public int foliageHeight(RandomSource random, int i, TreeConfiguration treeConfiguration) {

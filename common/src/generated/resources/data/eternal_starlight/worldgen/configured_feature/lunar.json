@@ -19,7 +19,7 @@
         "type": "minecraft:uniform",
         "value": {
           "max_inclusive": 4,
-          "min_inclusive": 2
+          "min_inclusive": 3
         }
       }
     },
@@ -45,6 +45,7 @@
     "trunk_placer": {
       "type": "eternal_starlight:branching",
       "base_height": 8,
+      "branch_layer_num": 1,
       "branch_length": {
         "type": "minecraft:uniform",
         "value": {
@@ -56,14 +57,7 @@
         "type": "minecraft:uniform",
         "value": {
           "max_inclusive": 4,
-          "min_inclusive": 2
-        }
-      },
-      "branch_pitch": {
-        "type": "minecraft:uniform",
-        "value": {
-          "max_inclusive": 40,
-          "min_inclusive": 30
+          "min_inclusive": 3
         }
       },
       "height_rand_a": 2,
