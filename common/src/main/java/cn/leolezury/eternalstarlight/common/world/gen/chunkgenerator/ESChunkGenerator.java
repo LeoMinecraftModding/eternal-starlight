@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import cn.leolezury.eternalstarlight.common.world.gen.carver.ESExtraCavesCarver;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
 import com.google.common.collect.Sets;
@@ -10,24 +11,29 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.QuartPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
-import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.chunk.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import net.minecraft.world.level.levelgen.carver.CarvingContext;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -204,6 +210,53 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
             state = AIR;
         }
         return state;
+    }
+
+    private NoiseChunk createNoiseChunk(ChunkAccess chunkAccess, StructureManager structureManager, Blender blender, RandomState randomState) {
+        return NoiseChunk.forChunk(chunkAccess, randomState, Beardifier.forStructuresInChunk(structureManager, chunkAccess.getPos()), generatorSettings().value(), this.globalFluidPicker.get(), blender);
+    }
+
+    @Override
+    public void applyCarvers(WorldGenRegion worldGenRegion, long l, RandomState randomState, BiomeManager biomeManager, StructureManager structureManager, ChunkAccess chunkAccess, GenerationStep.Carving carving) {
+        BiomeManager biomeManager2 = biomeManager.withDifferentSource((ix, jx, kx) -> {
+            return this.biomeSource.getNoiseBiome(ix, jx, kx, randomState.sampler());
+        });
+        WorldgenRandom worldgenRandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.generateUniqueSeed()));
+
+        ChunkPos chunkPos = chunkAccess.getPos();
+        NoiseChunk noiseChunk = chunkAccess.getOrCreateNoiseChunk((chunkAccessx) -> {
+            return this.createNoiseChunk(chunkAccessx, structureManager, Blender.of(worldGenRegion), randomState);
+        });
+        Aquifer aquifer = noiseChunk.aquifer();
+        CarvingContext carvingContext = new CarvingContext(this, worldGenRegion.registryAccess(), chunkAccess.getHeightAccessorForGeneration(), noiseChunk, randomState, generatorSettings().value().surfaceRule());
+        CarvingMask carvingMask = ((ProtoChunk)chunkAccess).getOrCreateCarvingMask(carving);
+
+        for(int j = -8; j <= 8; ++j) {
+            for(int k = -8; k <= 8; ++k) {
+                ChunkPos chunkPos2 = new ChunkPos(chunkPos.x + j, chunkPos.z + k);
+                ChunkAccess chunkAccess2 = worldGenRegion.getChunk(chunkPos2.x, chunkPos2.z);
+                BiomeGenerationSettings biomeGenerationSettings = chunkAccess2.carverBiome(() -> {
+                    return this.getBiomeGenerationSettings(this.biomeSource.getNoiseBiome(QuartPos.fromBlock(chunkPos2.getMinBlockX()), 0, QuartPos.fromBlock(chunkPos2.getMinBlockZ()), randomState.sampler()));
+                });
+                Iterable<Holder<ConfiguredWorldCarver<?>>> iterable = biomeGenerationSettings.getCarvers(carving);
+                int m = 0;
+
+                for(Iterator var24 = iterable.iterator(); var24.hasNext(); ++m) {
+                    Holder<ConfiguredWorldCarver<?>> holder = (Holder)var24.next();
+                    ConfiguredWorldCarver<?> configuredWorldCarver = (ConfiguredWorldCarver)holder.value();
+                    worldgenRandom.setLargeFeatureSeed(l + (long)m, chunkPos2.x, chunkPos2.z);
+                    if (configuredWorldCarver.isStartChunk(worldgenRandom)) {
+                        Objects.requireNonNull(biomeManager2);
+                        // ES: Set carver seed
+                        if (configuredWorldCarver.worldCarver() instanceof ESExtraCavesCarver extraCavesCarver) {
+                            extraCavesCarver.setSeed(seed);
+                        }
+                        configuredWorldCarver.carve(carvingContext, chunkAccess, biomeManager2::getBiome, worldgenRandom, aquifer, chunkPos2, carvingMask);
+                    }
+                }
+            }
+        }
+
     }
 
     private int getSurfaceHeight(int x, int z) {

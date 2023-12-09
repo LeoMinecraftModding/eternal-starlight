@@ -44,8 +44,8 @@ accessible field net/minecraft/client/model/PlayerModel cloak Lnet/minecraft/cli
 accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer layers Ljava/util/List;
 accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MODELS Ljava/util/List;
 
-# ESTeleporter
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
+accessible field net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator globalFluidPicker Ljava/util/function/Supplier;
 
 # for the fabric project of eternal starlight, minecraft will crash without this
 extendable class net/minecraft/world/item/enchantment/EnchantmentCategory

@@ -30,8 +30,8 @@ public class StarlightCrystalClusterBlock extends Block implements SimpleWaterlo
     protected final VoxelShape upAabb;
     protected final VoxelShape downAabb;
 
-    public StarlightCrystalClusterBlock(BlockBehaviour.Properties p_152017_) {
-        super(p_152017_);
+    public StarlightCrystalClusterBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
         this.upAabb = Block.box((double)3, 0.0D, (double)3, (double)(16 - 3), (double)5, (double)(16 - 3));
         this.downAabb = Block.box((double)3, (double)(16 - 5), (double)3, (double)(16 - 3), 16.0D, (double)(16 - 3));
@@ -95,9 +95,5 @@ public class StarlightCrystalClusterBlock extends Block implements SimpleWaterlo
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_152043_) {
         p_152043_.add(WATERLOGGED, FACING);
-    }
-
-    public PushReaction getPistonPushReaction(BlockState p_152047_) {
-        return PushReaction.DESTROY;
     }
 }

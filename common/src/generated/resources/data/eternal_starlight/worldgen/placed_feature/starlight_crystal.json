@@ -2,12 +2,8 @@
   "feature": "eternal_starlight:starlight_crystal",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 10
-    },
-    {
       "type": "minecraft:count",
-      "count": 188
+      "count": 5
     },
     {
       "type": "minecraft:in_square"
@@ -17,7 +13,7 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 256
+          "absolute": 45
         },
         "min_inclusive": {
           "above_bottom": 0
@@ -30,11 +26,11 @@
         "type": "minecraft:matching_blocks",
         "blocks": "minecraft:air"
       },
-      "direction_of_search": "up",
+      "direction_of_search": "down",
       "max_steps": 12,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
-        "direction": "down"
+        "direction": "up"
       }
     },
     {

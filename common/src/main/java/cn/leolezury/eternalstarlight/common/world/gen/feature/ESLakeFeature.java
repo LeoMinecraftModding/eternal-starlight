@@ -138,7 +138,7 @@ public class ESLakeFeature extends ESFeature<ESLakeFeature.Configuration> {
         return !blockState.is(BlockTags.FEATURES_CANNOT_REPLACE);
     }
 
-    public record Configuration(BlockStateProvider fluid, BlockStateProvider barrier, IntProvider xRadius, IntProvider yRadius, IntProvider zRadius) implements FeatureConfiguration {
-        public static final Codec<ESLakeFeature.Configuration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BlockStateProvider.CODEC.fieldOf("fluid").forGetter(Configuration::fluid), BlockStateProvider.CODEC.fieldOf("barrier").forGetter(Configuration::barrier), IntProvider.CODEC.fieldOf("xRadius").forGetter(Configuration::xRadius), IntProvider.CODEC.fieldOf("yRadius").forGetter(Configuration::yRadius), IntProvider.CODEC.fieldOf("zRadius").forGetter(Configuration::zRadius)).apply(instance, Configuration::new));
+    public record Configuration(BlockStateProvider fluid, BlockStateProvider barrier) implements FeatureConfiguration {
+        public static final Codec<ESLakeFeature.Configuration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BlockStateProvider.CODEC.fieldOf("fluid").forGetter(Configuration::fluid), BlockStateProvider.CODEC.fieldOf("barrier").forGetter(Configuration::barrier)).apply(instance, Configuration::new));
     }
 }

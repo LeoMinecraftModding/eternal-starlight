@@ -34,8 +34,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         berriesVines(BlockInit.BERRIES_VINES_PLANT.get());
         berriesVines(BlockInit.ABYSSAL_KELP.get());
         berriesVines(BlockInit.ABYSSAL_KELP_PLANT.get());
-        crossBlock(BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-        crossBlock(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+        crystalCluster(BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+        crystalCluster(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
         simpleBlock(BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get());
         simpleBlock(BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
         carpetBlock(BlockInit.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.RED_CRYSTAL_MOSS_CARPET.get()));
@@ -224,6 +224,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
         ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
         ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
         horizontalBlock(redstone, state -> state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone);
+    }
+
+    private void crystalCluster(Block block) {
+        ModelFile modelFile = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
+        getVariantBuilder(block).forAllStates((state) -> {
+            Direction direction = state.getValue(BlockStateProperties.FACING);
+            int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
+            return ConfiguredModel.builder()
+                    .modelFile(modelFile).rotationY(((int) direction.toYRot() + 180) % 360).rotationX(rotX).build();
+        });
     }
 
     private void spawner(Block block) {

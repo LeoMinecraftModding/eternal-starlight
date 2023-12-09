@@ -2,15 +2,21 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration> {
     public StarlightCrystalFeature(Codec<NoneFeatureConfiguration> codec) {
@@ -18,48 +24,55 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
     }
 
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        RandomSource randomsource = context.random();
-        boolean isRed = randomsource.nextBoolean();
+        WorldGenLevel level = context.level();
+        BlockPos pos = context.origin();
+        RandomSource random = context.random();
+        boolean isRed = random.nextBoolean();
+        BlockState crystalState = isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState();
+        BlockState carpetState = isRed ? BlockInit.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState();
+        // generate a sphere
         for (int x = -5; x <= 5; x++) {
-            for (int z = -5; z <= 5; z++) {
-                if (randomsource.nextBoolean()) {
-                    if (Mth.abs(x) <= 2 && Mth.abs(z) <= 2) {
-                        BlockPos blockpos = context.origin().offset(x, 0, z);
-
-                        WorldGenLevel worldgenlevel;
-                        boolean reachedAir = false;
-                        for(worldgenlevel = context.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
-                            if (worldgenlevel.isEmptyBlock(blockpos)) {
-                                reachedAir = true;
+            for (int y = -3; y <= 3; y++) {
+                for (int z = -5; z <= 5; z++) {
+                    if (ESUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
+                        setBlockIfEmpty(level, pos.offset(x, y, z), crystalState);
+                    }
+                }
+            }
+        }
+        // generate the pointy stuff
+        for (int y = 0; y <= 10; y++) {
+            int radius = (int) Math.round(15d / (y + 3));
+            int radiusOffset = radius <= 1 ? 0 : random.nextInt(3) - 1;
+            for (int x = -radius; x <= radius; x++) {
+                for (int z = -radius; z <= radius; z++) {
+                    if (x * x + z * z <= Math.pow(radius - 1 + radiusOffset, 2)) {
+                        setBlockIfEmpty(level, pos.offset(x, y, z), crystalState);
+                    }
+                }
+            }
+        }
+        // randomly place decorations
+        for (int x = -7; x <= 7; x++) {
+            for (int y = -5; y <= 12; y++) {
+                for (int z = -7; z <= 7; z++) {
+                    if (random.nextBoolean()) {
+                        List<Direction> possibleDirs = new ArrayList<>();
+                        for (Direction direction : Direction.values()) {
+                            BlockPos relativePos = pos.offset(x, y, z).relative(direction);
+                            if (level.getBlockState(relativePos).is(crystalState.getBlock())) {
+                                possibleDirs.add(direction);
                             }
                         }
-
-                        blockpos = blockpos.above();
-
-                        if (worldgenlevel.getBlockState(blockpos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
-                            if (setBlockIfEmpty(worldgenlevel, blockpos, isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState())) {
-                                setBlockIfEmpty(worldgenlevel, blockpos.above(), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState());
-                                setBlockIfEmpty(worldgenlevel, blockpos.offset(1, 0, 0), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.EAST) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.EAST));
-                                setBlockIfEmpty(worldgenlevel, blockpos.offset(-1, 0, 0), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.WEST) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.WEST));
-                                setBlockIfEmpty(worldgenlevel, blockpos.offset(0, 0, 1), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.SOUTH) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.SOUTH));
-                                setBlockIfEmpty(worldgenlevel, blockpos.offset(0, 0, -1), isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.NORTH) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.NORTH));
-                            }
+                        if (!possibleDirs.isEmpty()) {
+                            Direction direction = possibleDirs.get(random.nextInt(possibleDirs.size())).getOpposite();
+                            BlockState clusterState = isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction);
+                            setBlockIfEmpty(level, pos.offset(x, y, z), clusterState);
                         }
                     } else {
-                        BlockPos blockpos = context.origin().offset(x, 0, z);
-
-                        WorldGenLevel worldgenlevel;
-                        boolean reachedAir = false;
-                        for(worldgenlevel = context.level(); (worldgenlevel.isEmptyBlock(blockpos) || !reachedAir) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
-                            if (worldgenlevel.isEmptyBlock(blockpos)) {
-                                reachedAir = true;
-                            }
-                        }
-
-                        blockpos = blockpos.above();
-
-                        if (worldgenlevel.getBlockState(blockpos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
-                            setBlockIfEmpty(worldgenlevel, blockpos, isRed ? BlockInit.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState());
+                        BlockPos relativePos = pos.offset(x, y - 1, z);
+                        if (x * x + z * z < 7 * 7 && level.getBlockState(relativePos).is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
+                            setBlockIfEmpty(level, pos.offset(x, y, z), carpetState);
                         }
                     }
                 }

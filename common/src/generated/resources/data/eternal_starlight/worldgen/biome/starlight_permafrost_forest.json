@@ -28,7 +28,9 @@
   },
   "features": [
     [],
-    [],
+    [
+      "eternal_starlight:hot_spring"
+    ],
     [],
     [],
     [],
@@ -39,7 +41,9 @@
       "eternal_starlight:nightshade_dirt_ore",
       "eternal_starlight:glowing_voidstone_ore"
     ],
-    [],
+    [
+      "eternal_starlight:starlight_crystal"
+    ],
     [],
     [
       "minecraft:patch_grass_forest",

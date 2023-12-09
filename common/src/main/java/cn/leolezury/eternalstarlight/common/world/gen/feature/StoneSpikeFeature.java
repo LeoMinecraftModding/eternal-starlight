@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.WorldGenLevel;
@@ -14,44 +12,38 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 
-import java.util.List;
-
 public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
-    public StoneSpikeFeature(Codec<NoneFeatureConfiguration> p_66003_) {
-        super(p_66003_);
+    public StoneSpikeFeature(Codec<NoneFeatureConfiguration> codec) {
+        super(codec);
     }
 
     private BlockState getBlockToPlace(RandomSource randomSource, BlockPos pos) {
-        WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.COBBLESTONE.defaultBlockState(), 2).add(Blocks.COBBLED_DEEPSLATE.defaultBlockState(), 2).add(Blocks.MOSSY_COBBLESTONE.defaultBlockState(), 2).add(Blocks.STONE.defaultBlockState(), 2).add(Blocks.DEEPSLATE.defaultBlockState(), 2).add(BlockInit.GRIMSTONE.get().defaultBlockState(), 1).add(BlockInit.VOIDSTONE.get().defaultBlockState(), 1).build());
+        WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.COBBLESTONE.defaultBlockState(), 500).add(Blocks.STONE.defaultBlockState(), 500).add(Blocks.MOSSY_COBBLESTONE.defaultBlockState(), 200).add(Blocks.IRON_ORE.defaultBlockState(), 2).add(Blocks.DIAMOND_ORE.defaultBlockState(), 1).build());
         return stateProvider.getState(randomSource, pos);
     }
 
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159882_) {
-        BlockPos blockPos = p_159882_.origin();
-        RandomSource randomsource = p_159882_.random();
-        WorldGenLevel worldGenLevel = p_159882_.level();
-        int size = 2 * randomsource.nextInt(6) + 2;
-        for (int i = -size / 2; i < size / 2; i++) {
-            for (int j = -size / 2; j < size / 2; j++) {
-                if (randomsource.nextBoolean() && Mth.sqrt((float) i * i + j * j) <= (float) size / 2 + 1) {
-                    placeOnTop(worldGenLevel, blockPos.offset(i, 0, j), getBlockToPlace(randomsource, blockPos.offset(i, 0, j)), List.of(BlockTags.LEAVES));
-                    if (randomsource.nextInt(4) == 0) {
-                        int height = randomsource.nextInt(6) + 3;
-                        for (int k = 0; k < height; k++) {
-                            placeOnTop(worldGenLevel, blockPos.offset(i, k, j), getBlockToPlace(randomsource, blockPos.offset(i, k, j)), List.of(BlockTags.LEAVES));
-                        }
-                        for (int k = 0; k < height - randomsource.nextInt(2) + 1; k++) {
-                            placeOnTop(worldGenLevel, blockPos.offset(i + 1, k, j + 1), getBlockToPlace(randomsource, blockPos.offset(i + 1, k, j + 1)), List.of(BlockTags.LEAVES));
-                        }
-                        for (int k = 0; k < height - randomsource.nextInt(2) + 1; k++) {
-                            placeOnTop(worldGenLevel, blockPos.offset(i + 1, k, j - 1), getBlockToPlace(randomsource, blockPos.offset(i + 1, k, j - 1)), List.of(BlockTags.LEAVES));
-                        }
-                        for (int k = 0; k < height - randomsource.nextInt(2) + 1; k++) {
-                            placeOnTop(worldGenLevel, blockPos.offset(i - 1, k, j + 1), getBlockToPlace(randomsource, blockPos.offset(i - 1, k, j + 1)), List.of(BlockTags.LEAVES));
-                        }
-                        for (int k = 0; k < height - randomsource.nextInt(2) + 1; k++) {
-                            placeOnTop(worldGenLevel, blockPos.offset(i - 1, k, j - 1), getBlockToPlace(randomsource, blockPos.offset(i - 1, k, j - 1)), List.of(BlockTags.LEAVES));
-                        }
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        WorldGenLevel level = context.level();
+        BlockPos pos = context.origin();
+        RandomSource random = context.random();
+        // generate a sphere
+        for (int x = -5; x <= 5; x++) {
+            for (int y = -3; y <= 3; y++) {
+                for (int z = -5; z <= 5; z++) {
+                    if (ESUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
+                        setBlockIfEmpty(level, pos.offset(x, y, z), getBlockToPlace(random, pos.offset(x, y, z)));
+                    }
+                }
+            }
+        }
+        // generate the pointy stuff
+        for (int y = 0; y <= 10; y++) {
+            int radius = (int) Math.round(15d / (y + 3));
+            int radiusOffset = radius <= 1 ? 0 : random.nextInt(3) - 1;
+            for (int x = -radius; x <= radius; x++) {
+                for (int z = -radius; z <= radius; z++) {
+                    if (x * x + z * z <= Math.pow(radius - 1 + radiusOffset, 2)) {
+                        setBlockIfEmpty(level, pos.offset(x, y, z), getBlockToPlace(random, pos.offset(x, y, z)));
                     }
                 }
             }
