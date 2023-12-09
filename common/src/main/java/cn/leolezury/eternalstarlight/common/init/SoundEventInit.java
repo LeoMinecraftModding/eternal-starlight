@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.init;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;

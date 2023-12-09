@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.item.weapon.CommonHammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -22,6 +23,7 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceKey;
@@ -72,6 +74,9 @@ public interface ESPlatform {
     // some loader-related stuff
     Loader getLoader();
     boolean isPhysicalClient();
+
+    // registry utils
+    <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace);
 
     // for initialization
     // ---Items

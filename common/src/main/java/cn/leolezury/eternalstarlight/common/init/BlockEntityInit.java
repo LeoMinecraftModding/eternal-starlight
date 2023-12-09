@@ -5,8 +5,8 @@ import cn.leolezury.eternalstarlight.common.block.entity.ESHangingSignBlockEntit
 import cn.leolezury.eternalstarlight.common.block.entity.ESSignBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.LunarMonstrositySpawnerEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.StarlightGolemSpawnerEntity;
-import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 

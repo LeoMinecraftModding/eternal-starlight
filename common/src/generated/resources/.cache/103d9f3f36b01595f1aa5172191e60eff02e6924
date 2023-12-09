@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-09T14:32:34.4653665	Registries
+// 1.20.2	2023-12-09T19:35:13.3598353	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
@@ -16,7 +16,7 @@ f1bbd6c30b43169f0b9316e4374175c396b1aff1 data/eternal_starlight/trim_material/bl
 2d10ea2722a078d21a2cd189f09b2df19efba325 data/eternal_starlight/trim_material/red_starlight_crystal.json
 b767bc9ebf88de4d0606540e18cca0f57f8111b3 data/eternal_starlight/trim_material/swamp_silver.json
 966d35ffa9233e3efa40e7c03ce8c2ff60d77c92 data/eternal_starlight/trim_material/thermal_springstone.json
-60c2b859b3de8188f308ccc166d16d823cbc8011 data/eternal_starlight/worldgen/biome/dark_swamp.json
+4b61a36b0997e68f2b08339f37717a602d09d4ce data/eternal_starlight/worldgen/biome/dark_swamp.json
 6cd474cf4097639635c2480a9815fbe0b54d6948 data/eternal_starlight/worldgen/biome/shimmer_river.json
 b1afda84fbb2a5a0944e592dc5923576dc9a33ec data/eternal_starlight/worldgen/biome/starlight_dense_forest.json
 19762228dfa2db301d5e3d94d40a5627d6959c68 data/eternal_starlight/worldgen/biome/starlight_forest.json

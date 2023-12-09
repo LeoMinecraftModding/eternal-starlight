@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.init;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticleOptions;
-import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;

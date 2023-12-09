@@ -2,7 +2,7 @@
   "parent": "minecraft:block/door_bottom_left_open",
   "render_type": "minecraft:cutout",
   "textures": {
-    "bottom": "eternal_starlight:block/starlight_mangrove_door_top",
-    "top": "eternal_starlight:block/starlight_mangrove_door_bottom"
+    "bottom": "eternal_starlight:block/starlight_mangrove_door_bottom",
+    "top": "eternal_starlight:block/starlight_mangrove_door_top"
   }
 }

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.init;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.*;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.CursedGardenExtraHeightFeature;
 import net.minecraft.core.registries.Registries;

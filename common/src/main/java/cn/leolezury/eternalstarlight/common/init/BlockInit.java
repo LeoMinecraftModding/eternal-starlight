@@ -7,8 +7,8 @@ import cn.leolezury.eternalstarlight.common.block.modifier.ESFlammabilityModifie
 import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
 import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.register.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.util.register.RegistryObject;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
+import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.grower.LunarTreeGrower;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.grower.NorthlandTreeGrower;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.grower.StarlightMangroveTreeGrower;

@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -15,7 +16,6 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class ESBlockStateProvider extends BlockStateProvider {
     // Render Types
@@ -144,9 +144,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         logBlock(strippedLog);
         simpleBlock(strippedWood, models().cubeAll(name(strippedWood), blockTexture(log)));
         if (cutoutDoor) {
-            doorBlockWithRenderType(door, blockTexture(door).withSuffix("_top"), blockTexture(door).withSuffix("_bottom"), CUTOUT);
+            doorBlockWithRenderType(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"), CUTOUT);
         } else {
-            doorBlock(door, blockTexture(door).withSuffix("_top"), blockTexture(door).withSuffix("_bottom"));
+            doorBlock(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"));
         }
         if (cutoutTrapdoor) {
             trapdoorBlockWithRenderType(trapdoor, blockTexture(trapdoor), true, CUTOUT);
@@ -406,7 +406,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private ResourceLocation key(Block block) {
-        return ForgeRegistries.BLOCKS.getKey(block);
+        return BuiltInRegistries.BLOCK.getKey(block);
     }
 
     private String name(Block block) {

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +19,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -325,7 +325,7 @@ public class ESRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, to)
                 .requires(from)
                 .unlockedBy("has_item", has(from))
-                .save(finishedRecipeConsumer, getModLocation("shapeless/" + ForgeRegistries.ITEMS.getKey(to).getPath() + "_from_" + ForgeRegistries.ITEMS.getKey(from).getPath()));
+                .save(finishedRecipeConsumer, getModLocation("shapeless/" + BuiltInRegistries.ITEM.getKey(to).getPath() + "_from_" + BuiltInRegistries.ITEM.getKey(from).getPath()));
     }
 
     protected final void addShapeless(RecipeOutput finishedRecipeConsumer, String id, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
@@ -557,13 +557,13 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('P', planks)
                 .group("boat")
                 .unlockedBy("in_water", insideOf(Blocks.WATER))
-                .save(finishedRecipeConsumer, getModLocation(ForgeRegistries.ITEMS.getKey(boat).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(BuiltInRegistries.ITEM.getKey(boat).getPath()));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
                 .requires(boat)
                 .group("chest_boat")
                 .unlockedBy("has_boat", has(ItemTags.BOATS))
-                .save(finishedRecipeConsumer, getModLocation(ForgeRegistries.ITEMS.getKey(chestBoat).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(BuiltInRegistries.ITEM.getKey(chestBoat).getPath()));
     }
 
     // stone
@@ -572,7 +572,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getModLocation(id + "_polished"));
     }
 
@@ -581,7 +581,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getModLocation(id + "_bricks"));
     }
 
@@ -590,7 +590,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getModLocation(id + "_wall"));
     }
 
@@ -599,43 +599,43 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("#")
                 .pattern("#")
                 .define('#', input)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input).getPath(), has(input))
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input).getPath(), has(input))
                 .save(finishedRecipeConsumer, getModLocation(id + "_chiseled"));
     }
 
     protected final void addStoneCuttingChiseled(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getModLocation(id + "_chiseled_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_chiseled_stonecutting_from_" + BuiltInRegistries.BLOCK.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingBricks(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getModLocation(id + "_bricks_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_bricks_stonecutting_from_" + BuiltInRegistries.BLOCK.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingSlab(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output, 2)
-                .save(finishedRecipeConsumer, getModLocation(id + "_slab_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_slab_stonecutting_from_" + BuiltInRegistries.BLOCK.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingStairs(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getModLocation(id + "_stairs_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_stairs_stonecutting_from_" + BuiltInRegistries.BLOCK.getKey(input).getPath()));
     }
 
     protected final void addStoneCuttingWall(RecipeOutput finishedRecipeConsumer, String id, Block input, ItemLike output) {
         makeStonecuttingRecipeBuilder(input, output)
-                .save(finishedRecipeConsumer, getModLocation(id + "_wall_stonecutting_from_" + ForgeRegistries.BLOCKS.getKey(input).getPath()));
+                .save(finishedRecipeConsumer, getModLocation(id + "_wall_stonecutting_from_" + BuiltInRegistries.BLOCK.getKey(input).getPath()));
     }
 
     public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output) {
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input), has(input));
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input), has(input));
     }
 
     public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output, int outputAmount) {
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, outputAmount)
-                .unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(input), has(input));
+                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input), has(input));
     }
 
     protected final ResourceLocation getModLocation(String id) {

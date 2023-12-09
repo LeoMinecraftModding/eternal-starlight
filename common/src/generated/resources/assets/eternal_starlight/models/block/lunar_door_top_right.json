@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/door_top_right",
   "textures": {
-    "bottom": "eternal_starlight:block/lunar_door_top",
-    "top": "eternal_starlight:block/lunar_door_bottom"
+    "bottom": "eternal_starlight:block/lunar_door_bottom",
+    "top": "eternal_starlight:block/lunar_door_top"
   }
 }
