@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-03T14:17:53.6728292	Item Models: eternal_starlight
+// 1.20.2	2023-12-10T14:35:26.5814309	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 2dec47d5b9fe15edef8d4d11ea52b018952fc5b0 assets/eternal_starlight/models/item/aethersent_block.json
 fe7306c93bf1160b307aadac41e110b8646db1cd assets/eternal_starlight/models/item/aethersent_boots.json
@@ -45,7 +45,7 @@ d52c850015594bba52a3ba794df728630a34df47 assets/eternal_starlight/models/item/cr
 7cc011d29bebfbc3e031212a9614935ab2c70715 assets/eternal_starlight/models/item/doomeden_brick_stairs.json
 e1717938dbfb515b33befc3ed2401ba65be1e8c4 assets/eternal_starlight/models/item/doomeden_brick_wall.json
 55b2977192e093713c1c9be0def174b516833abb assets/eternal_starlight/models/item/doomeden_carrion.json
-f9946d0bbed0d581fa09f370a3eebb7f341a4396 assets/eternal_starlight/models/item/doomeden_flesh_grinder.json
+e48f7e71f583be263a40db4dfb92eb17e46d073d assets/eternal_starlight/models/item/doomeden_flesh_grinder.json
 51abc28c252b7f50433c53df10ffb05b31895738 assets/eternal_starlight/models/item/doomeden_keyhole.json
 c0afe18994e4ac1413c67192820cee816bc5b626 assets/eternal_starlight/models/item/doomeden_light.json
 7d699b19f34fd162ae81c8e722faf2bb3733fe94 assets/eternal_starlight/models/item/doomeden_rag.json

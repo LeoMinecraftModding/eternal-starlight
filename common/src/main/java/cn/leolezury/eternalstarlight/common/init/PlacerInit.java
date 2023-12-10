@@ -10,11 +10,9 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
 public class PlacerInit {
-//    public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, EternalStarlight.MOD_ID);
-//    public static final DeferredRegister<FoliagePlacerType<?>> FLOIAGE_PLACERS = DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, EternalStarlight.MOD_ID);
     public static final RegistrationProvider<TrunkPlacerType<?>> TRUNK_PLACERS = RegistrationProvider.get(Registries.TRUNK_PLACER_TYPE, EternalStarlight.MOD_ID);
     public static final RegistrationProvider<FoliagePlacerType<?>> FOLIAGE_PLACERS = RegistrationProvider.get(Registries.FOLIAGE_PLACER_TYPE, EternalStarlight.MOD_ID);
-    public static final RegistryObject<TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching", () -> new TrunkPlacerType(BranchingTrunkPlacer.CODEC));
-    public static final RegistryObject<FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid", () -> new FoliagePlacerType(SpheroidFoliagePlacer.CODEC));
+    public static final RegistryObject<TrunkPlacerType<?>, TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching", () -> new TrunkPlacerType(BranchingTrunkPlacer.CODEC));
+    public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid", () -> new FoliagePlacerType(SpheroidFoliagePlacer.CODEC));
     public static void loadClass() {}
 }

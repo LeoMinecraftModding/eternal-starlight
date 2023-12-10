@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.carver.WorldCarver;
 
 public class WorldCarverInit {
     public static final RegistrationProvider<WorldCarver<?>> WORLD_CARVERS = RegistrationProvider.get(Registries.CARVER, EternalStarlight.MOD_ID);
-    public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CAVES = WORLD_CARVERS.register("caves", () -> new ESCaveCarver(CaveCarverConfiguration.CODEC));
-    public static final RegistryObject<WorldCarver<CarverConfiguration>> CAVES_EXTRA = WORLD_CARVERS.register("caves_extra", () -> new ESExtraCavesCarver(CarverConfiguration.CODEC.codec()));
+    public static final RegistryObject<WorldCarver<?>, WorldCarver<CaveCarverConfiguration>> CAVES = WORLD_CARVERS.register("caves", () -> new ESCaveCarver(CaveCarverConfiguration.CODEC));
+    public static final RegistryObject<WorldCarver<?>, WorldCarver<CarverConfiguration>> CAVES_EXTRA = WORLD_CARVERS.register("caves_extra", () -> new ESExtraCavesCarver(CarverConfiguration.CODEC.codec()));
     public static void loadClass() {}
 }

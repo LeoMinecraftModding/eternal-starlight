@@ -212,7 +212,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicHandheld(ItemInit.ROTTEN_HAM.get());
         basicItem(ItemInit.EYE_OF_DOOM.get());
         basicItem(ItemInit.DOOMEDEN_RAG.get());
-        basicItem(ItemInit.DOOMEDEN_FLESH_GRINDER.get());
+        basicHandheld(ItemInit.DOOMEDEN_FLESH_GRINDER.get());
         inventoryModel(ItemInit.DOOMEDEN_SWORD.get());
         basicBlockItem(ItemInit.DOOMEDEN_BRICKS.get());
         basicBlockItem(ItemInit.DOOMEDEN_BRICK_SLAB.get());
