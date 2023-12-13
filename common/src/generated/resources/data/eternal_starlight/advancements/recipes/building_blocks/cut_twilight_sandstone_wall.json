@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cut_twilight_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:cut_twilight_sandstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:cut_twilight_sandstone_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cut_twilight_sandstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:cut_twilight_sandstone_wall"
+    ]
+  },
+  "sends_telemetry_event": false
+}

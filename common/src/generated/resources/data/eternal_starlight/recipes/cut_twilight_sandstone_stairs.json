@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:cut_twilight_sandstone"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "eternal_starlight:cut_twilight_sandstone_stairs"
+  },
+  "show_notification": true
+}

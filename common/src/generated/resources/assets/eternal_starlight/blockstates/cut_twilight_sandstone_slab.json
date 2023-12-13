@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/cut_twilight_sandstone_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/cut_twilight_sandstone"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/cut_twilight_sandstone_slab_top"
+    }
+  }
+}

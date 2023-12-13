@@ -1,13 +1,12 @@
 {
   "values": [
-    "eternal_starlight:lunar_stairs",
-    "eternal_starlight:northland_stairs",
-    "eternal_starlight:starlight_mangrove_stairs",
     "eternal_starlight:grimstone_brick_stairs",
     "eternal_starlight:polished_grimstone_stairs",
     "eternal_starlight:voidstone_brick_stairs",
     "eternal_starlight:polished_voidstone_stairs",
     "eternal_starlight:nightshade_mud_brick_stairs",
+    "eternal_starlight:twilight_sandstone_stairs",
+    "eternal_starlight:cut_twilight_sandstone_stairs",
     "eternal_starlight:doomeden_brick_stairs",
     "eternal_starlight:polished_doomeden_brick_stairs"
   ]

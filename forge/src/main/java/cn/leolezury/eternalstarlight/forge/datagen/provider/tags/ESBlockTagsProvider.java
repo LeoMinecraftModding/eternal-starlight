@@ -113,14 +113,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.STARLIGHT_MANGROVE_SLAB.get()
         );
         tag(BlockTags.SLABS).add(
-                BlockInit.LUNAR_SLAB.get(),
-                BlockInit.NORTHLAND_SLAB.get(),
-                BlockInit.STARLIGHT_MANGROVE_SLAB.get(),
                 BlockInit.GRIMSTONE_BRICK_SLAB.get(),
                 BlockInit.POLISHED_GRIMSTONE_SLAB.get(),
                 BlockInit.VOIDSTONE_BRICK_SLAB.get(),
                 BlockInit.POLISHED_VOIDSTONE_SLAB.get(),
                 BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(),
+                BlockInit.TWILIGHT_SANDSTONE_SLAB.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
                 BlockInit.DOOMEDEN_BRICK_SLAB.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get()
         );
@@ -130,16 +129,25 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.STARLIGHT_MANGROVE_STAIRS.get()
         );
         tag(BlockTags.STAIRS).add(
-                BlockInit.LUNAR_STAIRS.get(),
-                BlockInit.NORTHLAND_STAIRS.get(),
-                BlockInit.STARLIGHT_MANGROVE_STAIRS.get(),
                 BlockInit.GRIMSTONE_BRICK_STAIRS.get(),
                 BlockInit.POLISHED_GRIMSTONE_STAIRS.get(),
                 BlockInit.VOIDSTONE_BRICK_STAIRS.get(),
                 BlockInit.POLISHED_VOIDSTONE_STAIRS.get(),
                 BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
+                BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
                 BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get()
+        );
+        tag(BlockTags.WALLS).add(
+                BlockInit.GRIMSTONE_BRICK_WALL.get(),
+                BlockInit.POLISHED_GRIMSTONE_WALL.get(),
+                BlockInit.VOIDSTONE_BRICK_WALL.get(),
+                BlockInit.POLISHED_VOIDSTONE_WALL.get(),
+                BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                BlockInit.TWILIGHT_SANDSTONE_WALL.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
+                BlockInit.DOOMEDEN_BRICK_WALL.get()
         );
         tag(BlockTags.WOODEN_BUTTONS).add(
                 BlockInit.LUNAR_BUTTON.get(),
@@ -214,6 +222,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
                 BlockInit.FANTASY_GRASS_BLOCK.get()
         );
+        tag(BlockTags.SAND).add(
+                BlockInit.TWILIGHT_SAND.get()
+        );
+        tag(BlockTags.SMELTS_TO_GLASS).add(
+                BlockInit.TWILIGHT_SAND.get()
+        );
         tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
                 BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
                 BlockInit.NIGHTSHADE_DIRT.get()
@@ -278,6 +292,15 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(),
                 BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
                 BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                BlockInit.TWILIGHT_SANDSTONE.get(),
+                BlockInit.TWILIGHT_SANDSTONE_SLAB.get(),
+                BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(),
+                BlockInit.TWILIGHT_SANDSTONE_WALL.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
+                BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
+                BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(),
                 BlockInit.DOOMEDEN_BRICKS.get(),
                 BlockInit.DOOMEDEN_BRICK_SLAB.get(),
                 BlockInit.DOOMEDEN_BRICK_STAIRS.get(),

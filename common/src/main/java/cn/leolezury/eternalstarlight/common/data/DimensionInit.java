@@ -57,7 +57,7 @@ public class DimensionInit {
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(Blocks.SAND.defaultBlockState())), // TODO: Twilight Sand!
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(BlockInit.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.DARK_SWAMP), makeSurface(BlockInit.FANTASY_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())),
                 makeSurface(BlockInit.NIGHTSHADE_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState())
         );

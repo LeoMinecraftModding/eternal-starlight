@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "eternal_starlight:block/cut_twilight_sandstone"
+  }
+}

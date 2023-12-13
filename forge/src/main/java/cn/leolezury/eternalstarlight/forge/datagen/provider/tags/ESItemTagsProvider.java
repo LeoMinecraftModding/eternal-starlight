@@ -48,11 +48,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+        copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
         copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
         copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
+        copy(BlockTags.SAND, ItemTags.SAND);
+        copy(BlockTags.SMELTS_TO_GLASS, ItemTags.SMELTS_TO_GLASS);
         copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
         tag(ItemTags.BOATS).add(
                 ItemInit.LUNAR_BOAT.get(),
@@ -109,6 +112,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.GOLEM_STEEL_INGOT.get(),
                 ItemInit.TENACIOUS_PETAL.get(),
                 ItemInit.BROKEN_DOOMEDEN_BONE.get()
+        );
+        tag(ItemTags.STONE_TOOL_MATERIALS).add(
+                ItemInit.GRIMSTONE.get(),
+                ItemInit.VOIDSTONE.get()
+        );
+        tag(ItemTags.STONE_CRAFTING_MATERIALS).add(
+                ItemInit.GRIMSTONE.get(),
+                ItemInit.VOIDSTONE.get()
         );
     }
 }

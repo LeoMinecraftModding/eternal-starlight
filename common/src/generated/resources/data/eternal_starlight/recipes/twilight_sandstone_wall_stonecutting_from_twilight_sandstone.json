@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "eternal_starlight:twilight_sandstone"
+  },
+  "result": "eternal_starlight:twilight_sandstone_wall"
+}

@@ -103,6 +103,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.PACKED_NIGHTSHADE_MUD.get());
         stoneSet(BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(), BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(), BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get());
 
+        simpleBlock(BlockInit.TWILIGHT_SAND.get());
+        sandstoneAndCut(BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
+        slabBlock(BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()));
+        stairsBlock(BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
+        wallBlock(BlockInit.TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"));
+        slabBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()));
+        stairsBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
+        wallBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
+        simpleBlock(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
+
         // doomeden
         simpleBlock(BlockInit.DOOMEDEN_TILE.get());
         simpleBlock(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
@@ -352,6 +362,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
                         .rotationY(90).modelFile(modelNormal).build();
             }
         });
+    }
+
+    private void sandstoneAndCut(Block sandstone, Block cut) {
+        ModelFile modelFile = models().cubeBottomTop(name(sandstone), blockTexture(sandstone), blockTexture(sandstone).withSuffix("_bottom"), blockTexture(sandstone).withSuffix("_top"));
+        ModelFile modelCut = models().cubeColumn(name(cut), blockTexture(cut), blockTexture(sandstone).withSuffix("_top"));
+        simpleBlock(sandstone, modelFile);
+        simpleBlock(cut, modelCut);
     }
 
     private void coralFan(Block fan) {

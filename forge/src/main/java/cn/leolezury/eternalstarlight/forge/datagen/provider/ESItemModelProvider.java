@@ -179,6 +179,17 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
         wall(ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get(), ItemInit.NIGHTSHADE_MUD_BRICKS.get());
 
+        basicBlockItem(ItemInit.TWILIGHT_SAND.get());
+        basicBlockItem(ItemInit.TWILIGHT_SANDSTONE.get());
+        basicBlockItem(ItemInit.TWILIGHT_SANDSTONE_SLAB.get());
+        basicBlockItem(ItemInit.TWILIGHT_SANDSTONE_STAIRS.get());
+        wall(ItemInit.TWILIGHT_SANDSTONE_WALL.get(), ItemInit.TWILIGHT_SANDSTONE.get());
+        basicBlockItem(ItemInit.CUT_TWILIGHT_SANDSTONE.get());
+        basicBlockItem(ItemInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
+        basicBlockItem(ItemInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
+        wall(ItemInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), ItemInit.CUT_TWILIGHT_SANDSTONE.get());
+        basicBlockItem(ItemInit.CHISELED_TWILIGHT_SANDSTONE.get());
+
         basicBlockItem(ItemInit.ENERGY_BLOCK.get());
         basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
         basicBlockItem(ItemInit.LUNAR_MONSTROSITY_SPAWNER.get());

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "eternal_starlight:block/twilight_sandstone_top",
+    "side": "eternal_starlight:block/twilight_sandstone_top",
+    "top": "eternal_starlight:block/cut_twilight_sandstone"
+  }
+}

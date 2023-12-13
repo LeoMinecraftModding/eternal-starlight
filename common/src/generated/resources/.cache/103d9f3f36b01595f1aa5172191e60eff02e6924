@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-13T14:20:37.4375899	Registries
+// 1.20.2	2023-12-13T18:32:44.1965723	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
@@ -54,7 +54,7 @@ be9ed8326a5b24f97240eb290cc6e684d6904b11 data/eternal_starlight/worldgen/configu
 2feda19dd65bf72f7ab48709e3aca09224ad634d data/eternal_starlight/worldgen/configured_feature/swamp_grass.json
 dbe77196279fb98d3a89ff1c740c819159fcd033 data/eternal_starlight/worldgen/configured_feature/swamp_silver_ore.json
 52fc9b4580184152c51bfc241050ba3ba65dc698 data/eternal_starlight/worldgen/configured_feature/swamp_water.json
-2e0a4ed2e7a96f90845791705b9b0c1a8f56f374 data/eternal_starlight/worldgen/noise_settings/starlight.json
+4e049ef0106bafb3c191658b20c05e66cae97634 data/eternal_starlight/worldgen/noise_settings/starlight.json
 4a37f1a8cf380000de38e81db02a8d1efa1387ab data/eternal_starlight/worldgen/placed_feature/abyssal_kelp.json
 e82595200b4bd91af9ce0a6242f0a73d1e2f9e4a data/eternal_starlight/worldgen/placed_feature/cave_vine.json
 b69b649a3aaa209b6e5e5c58556de981adc92ebe data/eternal_starlight/worldgen/placed_feature/common_flower.json

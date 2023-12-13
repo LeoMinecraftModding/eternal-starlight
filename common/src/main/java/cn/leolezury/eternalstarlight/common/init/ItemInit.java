@@ -198,6 +198,18 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICK_STAIRS = registerItem("nightshade_mud_brick_stairs", () -> new BlockItem(BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICK_WALL = registerItem("nightshade_mud_brick_wall", () -> new BlockItem(BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), new Item.Properties()));
 
+    // sand
+    public static final RegistryObject<Item, Item> TWILIGHT_SAND = registerItem("twilight_sand", () -> new BlockItem(BlockInit.TWILIGHT_SAND.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TWILIGHT_SANDSTONE = registerItem("twilight_sandstone", () -> new BlockItem(BlockInit.TWILIGHT_SANDSTONE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TWILIGHT_SANDSTONE_SLAB = registerItem("twilight_sandstone_slab", () -> new BlockItem(BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TWILIGHT_SANDSTONE_STAIRS = registerItem("twilight_sandstone_stairs", () -> new BlockItem(BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TWILIGHT_SANDSTONE_WALL = registerItem("twilight_sandstone_wall", () -> new BlockItem(BlockInit.TWILIGHT_SANDSTONE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CUT_TWILIGHT_SANDSTONE = registerItem("cut_twilight_sandstone", () -> new BlockItem(BlockInit.CUT_TWILIGHT_SANDSTONE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CUT_TWILIGHT_SANDSTONE_SLAB = registerItem("cut_twilight_sandstone_slab", () -> new BlockItem(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CUT_TWILIGHT_SANDSTONE_STAIRS = registerItem("cut_twilight_sandstone_stairs", () -> new BlockItem(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CUT_TWILIGHT_SANDSTONE_WALL = registerItem("cut_twilight_sandstone_wall", () -> new BlockItem(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_TWILIGHT_SANDSTONE = registerItem("chiseled_twilight_sandstone", () -> new BlockItem(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), new Item.Properties()));
+
     // misc
     public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(BlockInit.ENERGY_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(BlockInit.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));

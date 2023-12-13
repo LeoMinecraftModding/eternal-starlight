@@ -176,6 +176,17 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
         dropSelf(BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get());
 
+        dropSelf(BlockInit.TWILIGHT_SAND.get());
+        dropSelf(BlockInit.TWILIGHT_SANDSTONE.get());
+        dropSelf(BlockInit.TWILIGHT_SANDSTONE_SLAB.get());
+        dropSelf(BlockInit.TWILIGHT_SANDSTONE_STAIRS.get());
+        dropSelf(BlockInit.TWILIGHT_SANDSTONE_WALL.get());
+        dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE.get());
+        dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
+        dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
+        dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get());
+        dropSelf(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
+
         dropSelf(BlockInit.DOOMED_TORCH.get());
         dropOther(BlockInit.WALL_DOOMED_TORCH.get(), ItemInit.DOOMED_TORCH.get());
         dropSelf(BlockInit.DOOMED_REDSTONE_TORCH.get());

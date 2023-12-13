@@ -221,6 +221,18 @@ public class BlockInit {
     public static final RegistryObject<Block, StairBlock> NIGHTSHADE_MUD_BRICK_STAIRS = BLOCKS.register("nightshade_mud_brick_stairs", () -> new StairBlock(NIGHTSHADE_MUD_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.MUD_BRICK_STAIRS)));
     public static final RegistryObject<Block, WallBlock> NIGHTSHADE_MUD_BRICK_WALL = BLOCKS.register("nightshade_mud_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.MUD_BRICK_WALL)));
 
+    // sand
+    public static final RegistryObject<Block, Block> TWILIGHT_SAND = BLOCKS.register("twilight_sand", () -> new SandBlock(0x907e9b, BlockBehaviour.Properties.copy(Blocks.SAND).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> TWILIGHT_SANDSTONE = BLOCKS.register("twilight_sandstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, SlabBlock> TWILIGHT_SANDSTONE_SLAB = BLOCKS.register("twilight_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE_SLAB).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, StairBlock> TWILIGHT_SANDSTONE_STAIRS = BLOCKS.register("twilight_sandstone_stairs", () -> new StairBlock(TWILIGHT_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.SANDSTONE_STAIRS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, WallBlock> TWILIGHT_SANDSTONE_WALL = BLOCKS.register("twilight_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> CUT_TWILIGHT_SANDSTONE = BLOCKS.register("cut_twilight_sandstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CUT_SANDSTONE).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, SlabBlock> CUT_TWILIGHT_SANDSTONE_SLAB = BLOCKS.register("cut_twilight_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.CUT_SANDSTONE_SLAB).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, StairBlock> CUT_TWILIGHT_SANDSTONE_STAIRS = BLOCKS.register("cut_twilight_sandstone_stairs", () -> new StairBlock(CUT_TWILIGHT_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.SANDSTONE_STAIRS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, WallBlock> CUT_TWILIGHT_SANDSTONE_WALL = BLOCKS.register("cut_twilight_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> CHISELED_TWILIGHT_SANDSTONE = BLOCKS.register("chiseled_twilight_sandstone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CHISELED_SANDSTONE).mapColor(MapColor.COLOR_PURPLE)));
+
     // doomeden
     public static final RegistryObject<Block, Block> DOOMED_TORCH = BLOCKS.register("doomed_torch", () -> new TorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block, Block> WALL_DOOMED_TORCH = BLOCKS.register("wall_doomed_torch", () -> new WallTorchBlock(BlockBehaviour.Properties.copy(Blocks.WALL_TORCH), ParticleTypes.FLAME));
