@@ -41,6 +41,33 @@ public class ESBlockStateProvider extends BlockStateProvider {
         carpetBlock(BlockInit.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.RED_CRYSTAL_MOSS_CARPET.get()));
         carpetBlock(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get()));
 
+        crossBlock(BlockInit.DEAD_TENTACLES_CORAL.get());
+        crossBlock(BlockInit.TENTACLES_CORAL.get());
+        coralFan(BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
+        coralFan(BlockInit.TENTACLES_CORAL_FAN.get());
+        coralWallFan(BlockInit.DEAD_TENTACLES_CORAL_WALL_FAN.get(), BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
+        coralWallFan(BlockInit.TENTACLES_CORAL_WALL_FAN.get(), BlockInit.TENTACLES_CORAL_FAN.get());
+        simpleBlock(BlockInit.DEAD_TENTACLES_CORAL_BLOCK.get());
+        simpleBlock(BlockInit.TENTACLES_CORAL_BLOCK.get());
+
+        crossBlock(BlockInit.DEAD_GOLDEN_CORAL.get());
+        crossBlock(BlockInit.GOLDEN_CORAL.get());
+        coralFan(BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
+        coralFan(BlockInit.GOLDEN_CORAL_FAN.get());
+        coralWallFan(BlockInit.DEAD_GOLDEN_CORAL_WALL_FAN.get(), BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
+        coralWallFan(BlockInit.GOLDEN_CORAL_WALL_FAN.get(), BlockInit.GOLDEN_CORAL_FAN.get());
+        simpleBlock(BlockInit.DEAD_GOLDEN_CORAL_BLOCK.get());
+        simpleBlock(BlockInit.GOLDEN_CORAL_BLOCK.get());
+
+        crossBlock(BlockInit.DEAD_CRYSTALLUM_CORAL.get());
+        crossBlock(BlockInit.CRYSTALLUM_CORAL.get());
+        coralFan(BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
+        coralFan(BlockInit.CRYSTALLUM_CORAL_FAN.get());
+        coralWallFan(BlockInit.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
+        coralWallFan(BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get(), BlockInit.CRYSTALLUM_CORAL_FAN.get());
+        simpleBlock(BlockInit.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
+        simpleBlock(BlockInit.CRYSTALLUM_CORAL_BLOCK.get());
+
         // woods
         leaves(BlockInit.LUNAR_LEAVES.get());
         woodSet(BlockInit.LUNAR_LOG.get(), BlockInit.LUNAR_WOOD.get(), BlockInit.LUNAR_PLANKS.get(), BlockInit.STRIPPED_LUNAR_LOG.get(), BlockInit.STRIPPED_LUNAR_WOOD.get(), BlockInit.LUNAR_DOOR.get(), false, BlockInit.LUNAR_TRAPDOOR.get(), false, BlockInit.LUNAR_PRESSURE_PLATE.get(), BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_FENCE_GATE.get(), BlockInit.LUNAR_SLAB.get(), BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_SIGN.get(), BlockInit.LUNAR_WALL_SIGN.get(), BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.LUNAR_WALL_HANGING_SIGN.get());
@@ -325,6 +352,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
                         .rotationY(90).modelFile(modelNormal).build();
             }
         });
+    }
+
+    private void coralFan(Block fan) {
+        ModelFile modelFile = models().singleTexture(name(fan), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/coral_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
+        simpleBlock(fan, modelFile);
+    }
+
+    private void coralWallFan(Block wall, Block fan) {
+        ModelFile modelFile = models().singleTexture(name(wall), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/coral_wall_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
+        getVariantBuilder(wall).forAllStates((state) -> ConfiguredModel.builder().modelFile(modelFile).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build());
     }
 
     private void torch(Block normal, Block wall) {

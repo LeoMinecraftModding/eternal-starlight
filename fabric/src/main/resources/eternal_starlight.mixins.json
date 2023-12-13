@@ -5,8 +5,7 @@
   "minVersion": "0.8",
   "mixins": [
     "LivingEntityMixin",
-    "ProjectileMixin",
-    "RegistryDataLoaderMixin"
+    "ProjectileMixin"
   ],
   "client": [
     "BossHealthOverlayMixin",

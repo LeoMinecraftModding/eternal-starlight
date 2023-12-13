@@ -51,7 +51,8 @@
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:cave_vine",
-      "eternal_starlight:abyssal_kelp"
+      "eternal_starlight:abyssal_kelp",
+      "eternal_starlight:ocean_vegetation"
     ],
     [
       "minecraft:freeze_top_layer"

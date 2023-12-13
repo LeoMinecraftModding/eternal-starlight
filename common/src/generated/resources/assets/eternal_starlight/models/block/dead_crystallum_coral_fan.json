@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/coral_fan",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fan": "eternal_starlight:block/dead_crystallum_coral_fan"
+  }
+}

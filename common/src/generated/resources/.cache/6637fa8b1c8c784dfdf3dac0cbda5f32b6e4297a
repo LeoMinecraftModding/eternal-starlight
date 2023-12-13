@@ -1,9 +1,13 @@
-// 1.20.2	2023-12-02T21:32:05.9638618	Tags for minecraft:block mod id eternal_starlight
+// 1.20.2	2023-12-13T13:56:12.1418705	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
+4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
+88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
+7fce1a137247b8258907de27d1fe5b35a15d9986 data/eternal_starlight/tags/blocks/coral_plants.json
 85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/blocks/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/blocks/northland_logs.json
 a456306172c3653ceedd90339c9c61928318231a data/eternal_starlight/tags/blocks/portal_frame_blocks.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/blocks/starlight_mangrove_logs.json
+9f8a39c6be0d825a8a6ab30cc3fe57964ac5d0a4 data/eternal_starlight/tags/blocks/wall_corals.json
 53e94706ccd9b0767178ac55802d691fea9eaa1e data/minecraft/tags/blocks/beacon_base_blocks.json
 ec71e3c64ba26b515871e7bed8ee7205aa88b9a1 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 da3951c5a8a256ba3e3c13fe3674bfe1bdabf2e4 data/minecraft/tags/blocks/climbable.json
@@ -14,7 +18,7 @@ ce76664fbed91edc3e9c6773ef61b8c4f2a5c9aa data/minecraft/tags/blocks/flower_pots.
 a85a4d998ced2af35205e88e0074d2212a506174 data/minecraft/tags/blocks/leaves.json
 64ac3bd4821476295787959d3944191f8d7d9017 data/minecraft/tags/blocks/logs.json
 64ac3bd4821476295787959d3944191f8d7d9017 data/minecraft/tags/blocks/logs_that_burn.json
-9b4d94060a1fe54d7f1cebcb859f1cba4e96f66b data/minecraft/tags/blocks/mineable/pickaxe.json
+01aa3bf0d2988478f6e2b7f301d4de0a7ec8edb4 data/minecraft/tags/blocks/mineable/pickaxe.json
 af51780ee9f3741010a1f592a17088814d874648 data/minecraft/tags/blocks/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/blocks/moss_replaceable.json
 b693fe30a8cbf132951921d83aa529f16648ccdd data/minecraft/tags/blocks/mushroom_grow_block.json

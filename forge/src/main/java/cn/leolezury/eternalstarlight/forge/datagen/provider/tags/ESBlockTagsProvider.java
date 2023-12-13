@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -48,6 +49,26 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.VOIDSTONE.get(),
                 Blocks.STONE,
                 Blocks.DEEPSLATE
+        );
+        tag(ESTags.Blocks.CORAL_PLANTS).add(
+                BlockInit.TENTACLES_CORAL.get(),
+                BlockInit.GOLDEN_CORAL.get(),
+                BlockInit.CRYSTALLUM_CORAL.get()
+        );
+        tag(ESTags.Blocks.CORALS).addTag(ESTags.Blocks.CORAL_PLANTS).add(
+                BlockInit.TENTACLES_CORAL_FAN.get(),
+                BlockInit.GOLDEN_CORAL_FAN.get(),
+                BlockInit.CRYSTALLUM_CORAL_FAN.get()
+        );
+        tag(ESTags.Blocks.WALL_CORALS).add(
+                BlockInit.TENTACLES_CORAL_WALL_FAN.get(),
+                BlockInit.GOLDEN_CORAL_WALL_FAN.get(),
+                BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get()
+        );
+        tag(ESTags.Blocks.CORAL_BLOCKS).add(
+                BlockInit.TENTACLES_CORAL_BLOCK.get(),
+                BlockInit.GOLDEN_CORAL_BLOCK.get(),
+                BlockInit.CRYSTALLUM_CORAL_BLOCK.get()
         );
         // mc tags
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
@@ -207,6 +228,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.GRIMSTONE.get(),
                 BlockInit.VOIDSTONE.get()
         );
+
         // mc tools stuff
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 BlockInit.AETHERSENT_BLOCK.get(),
@@ -217,6 +239,18 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
                 BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
                 BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                BlockInit.TENTACLES_CORAL.get(),
+                BlockInit.GOLDEN_CORAL.get(),
+                BlockInit.CRYSTALLUM_CORAL.get(),
+                BlockInit.TENTACLES_CORAL_FAN.get(),
+                BlockInit.GOLDEN_CORAL_FAN.get(),
+                BlockInit.CRYSTALLUM_CORAL_FAN.get(),
+                BlockInit.TENTACLES_CORAL_WALL_FAN.get(),
+                BlockInit.GOLDEN_CORAL_WALL_FAN.get(),
+                BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get(),
+                BlockInit.TENTACLES_CORAL_BLOCK.get(),
+                BlockInit.GOLDEN_CORAL_BLOCK.get(),
+                BlockInit.CRYSTALLUM_CORAL_BLOCK.get(),
                 // all stone building blocks
                 BlockInit.GRIMSTONE.get(),
                 BlockInit.GRIMSTONE_BRICKS.get(),

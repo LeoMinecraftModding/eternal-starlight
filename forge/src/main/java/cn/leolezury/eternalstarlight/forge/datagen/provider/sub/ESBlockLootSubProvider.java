@@ -13,6 +13,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -53,6 +54,31 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
         dropSelf(BlockInit.RED_CRYSTAL_MOSS_CARPET.get());
         dropSelf(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get());
+
+        dropWhenSilkTouch(BlockInit.DEAD_TENTACLES_CORAL.get());
+        dropWhenSilkTouch(BlockInit.TENTACLES_CORAL.get());
+        dropWhenSilkTouch(BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.DEAD_TENTACLES_CORAL_WALL_FAN.get(), BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
+        dropWhenSilkTouch(BlockInit.TENTACLES_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.TENTACLES_CORAL_WALL_FAN.get(), BlockInit.TENTACLES_CORAL_FAN.get());
+        dropSelf(BlockInit.DEAD_TENTACLES_CORAL_BLOCK.get());
+
+        add(BlockInit.TENTACLES_CORAL_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.DEAD_TENTACLES_CORAL_BLOCK.get()));dropWhenSilkTouch(BlockInit.DEAD_GOLDEN_CORAL.get());
+        dropWhenSilkTouch(BlockInit.GOLDEN_CORAL.get());
+        dropWhenSilkTouch(BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.DEAD_GOLDEN_CORAL_WALL_FAN.get(), BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
+        dropWhenSilkTouch(BlockInit.GOLDEN_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.GOLDEN_CORAL_WALL_FAN.get(), BlockInit.GOLDEN_CORAL_FAN.get());
+        dropSelf(BlockInit.DEAD_GOLDEN_CORAL_BLOCK.get());
+        add(BlockInit.GOLDEN_CORAL_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.DEAD_GOLDEN_CORAL_BLOCK.get()));dropWhenSilkTouch(BlockInit.DEAD_CRYSTALLUM_CORAL.get());
+
+        dropWhenSilkTouch(BlockInit.CRYSTALLUM_CORAL.get());
+        dropWhenSilkTouch(BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
+        dropWhenSilkTouch(BlockInit.CRYSTALLUM_CORAL_FAN.get());
+        otherWhenSilkTouch(BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get(), BlockInit.CRYSTALLUM_CORAL_FAN.get());
+        dropSelf(BlockInit.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
+        add(BlockInit.CRYSTALLUM_CORAL_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.DEAD_CRYSTALLUM_CORAL_BLOCK.get()));
 
         add(BlockInit.LUNAR_LEAVES.get(), (block) -> this.createLunarLeavesDrops(block, BlockInit.LUNAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         dropSelf(BlockInit.LUNAR_LOG.get());

@@ -33,6 +33,25 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.LUNAR_BERRIES.get());
         basicItem(ItemInit.ABYSSAL_FRUIT.get());
 
+        basicItemWithBlockTexture(ItemInit.DEAD_TENTACLES_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.TENTACLES_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.DEAD_TENTACLES_CORAL_FAN.get());
+        basicItemWithBlockTexture(ItemInit.TENTACLES_CORAL_FAN.get());
+        basicBlockItem(ItemInit.DEAD_TENTACLES_CORAL_BLOCK.get());
+        basicBlockItem(ItemInit.TENTACLES_CORAL_BLOCK.get());
+        basicItemWithBlockTexture(ItemInit.DEAD_GOLDEN_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.GOLDEN_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.DEAD_GOLDEN_CORAL_FAN.get());
+        basicItemWithBlockTexture(ItemInit.GOLDEN_CORAL_FAN.get());
+        basicBlockItem(ItemInit.DEAD_GOLDEN_CORAL_BLOCK.get());
+        basicBlockItem(ItemInit.GOLDEN_CORAL_BLOCK.get());
+        basicItemWithBlockTexture(ItemInit.DEAD_CRYSTALLUM_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.CRYSTALLUM_CORAL.get());
+        basicItemWithBlockTexture(ItemInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
+        basicItemWithBlockTexture(ItemInit.CRYSTALLUM_CORAL_FAN.get());
+        basicBlockItem(ItemInit.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
+        basicBlockItem(ItemInit.CRYSTALLUM_CORAL_BLOCK.get());
+
         // wood
         basicItemWithBlockTexture(ItemInit.LUNAR_SAPLING.get());
         basicBlockItem(ItemInit.LUNAR_LEAVES.get());

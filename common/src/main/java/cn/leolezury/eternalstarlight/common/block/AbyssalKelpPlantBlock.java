@@ -39,7 +39,7 @@ public class AbyssalKelpPlantBlock extends KelpPlantBlock implements AbyssalKelp
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        return BerriesVines.use(state, level, pos);
+        return AbyssalKelp.use(state, level, pos);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

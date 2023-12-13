@@ -67,7 +67,7 @@ public class FabricPlatform implements ESPlatform {
             public <I extends T> RegistryObject<T, I> register(String id, Supplier<? extends I> supplier) {
                 ResourceLocation location = new ResourceLocation(namespace, id);
                 ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(registry.key(), location);
-                I object = Registry.register(registry, id, supplier.get());
+                I object = Registry.register(registry, location, supplier.get());
                 return new RegistryObject<T, I>() {
                     @Override
                     public Holder<T> asHolder() {

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/tentacles_coral_wall_fan",
+      "y": 270
+    }
+  }
+}

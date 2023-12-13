@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "eternal_starlight:block/golden_coral_block"
+  }
+}

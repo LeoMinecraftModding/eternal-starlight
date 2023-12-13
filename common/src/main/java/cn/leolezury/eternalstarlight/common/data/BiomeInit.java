@@ -149,6 +149,7 @@ public class BiomeInit {
         BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.OCEAN_VEGETATION);
 
         return builder;
     }

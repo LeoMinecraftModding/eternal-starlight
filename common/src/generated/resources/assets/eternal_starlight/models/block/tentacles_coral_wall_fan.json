@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/coral_wall_fan",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fan": "eternal_starlight:block/tentacles_coral_fan"
+  }
+}
