@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:twilight_sandstone_cut_stonecutting_from_twilight_sandstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

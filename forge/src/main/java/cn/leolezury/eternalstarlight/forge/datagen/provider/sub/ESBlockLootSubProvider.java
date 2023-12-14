@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import com.mojang.logging.LogUtils;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,6 +15,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -100,6 +102,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.LUNAR_WALL_HANGING_SIGN.get());
         dropSelf(BlockInit.LUNAR_SAPLING.get());
         dropPottedContents(BlockInit.POTTED_LUNAR_SAPLING.get());
+
+        dropSelf(BlockInit.DEAD_LUNAR_LOG.get());
+        dropSelf(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get());
+        dropSelf(BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get());
 
         add(BlockInit.NORTHLAND_LEAVES.get(), (block) -> this.createLeavesDrops(block, BlockInit.NORTHLAND_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         dropSelf(BlockInit.NORTHLAND_LOG.get());
@@ -240,6 +246,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.GREEN_FANTAFERN.get());
         dropSelf(BlockInit.FANTAGRASS.get());
         dropSelf(BlockInit.GREEN_FANTAGRASS.get());
+
+        dropSelf(BlockInit.DEAD_LUNAR_BUSH.get());
+
         add(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.NIGHTSHADE_DIRT.get()));
         add(BlockInit.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.NIGHTSHADE_MUD.get()));
         dropSelf(BlockInit.NIGHTSHADE_DIRT.get());

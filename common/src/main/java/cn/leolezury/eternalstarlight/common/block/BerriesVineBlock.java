@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -22,9 +23,16 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BerriesVineBlock extends GrowingPlantHeadBlock implements BonemealableBlock, BerriesVines {
+    public static final MapCodec<BerriesVineBlock> CODEC = simpleCodec(BerriesVineBlock::new);
+
     public BerriesVineBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(BERRIES, Boolean.valueOf(false)));
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+        return CODEC;
     }
 
     protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
@@ -47,7 +55,7 @@ public class BerriesVineBlock extends GrowingPlantHeadBlock implements Bonemeala
         return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
     }
 
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
         return new ItemStack(ItemInit.LUNAR_BERRIES.get());
     }
 

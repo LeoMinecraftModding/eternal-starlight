@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:polished_voidstone_wall_stonecutting_from_polished_voidstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

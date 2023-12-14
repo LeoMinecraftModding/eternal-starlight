@@ -24,6 +24,5 @@
     "recipes": [
       "eternal_starlight:lunar_boat"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

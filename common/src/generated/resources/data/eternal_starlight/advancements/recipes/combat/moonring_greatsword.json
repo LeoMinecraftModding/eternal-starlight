@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:moonring_greatsword"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

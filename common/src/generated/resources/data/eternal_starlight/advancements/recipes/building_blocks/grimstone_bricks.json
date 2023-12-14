@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:grimstone_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

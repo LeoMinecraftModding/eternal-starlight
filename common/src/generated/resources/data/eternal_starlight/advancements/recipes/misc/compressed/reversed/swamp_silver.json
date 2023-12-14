@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:compressed/reversed/swamp_silver"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

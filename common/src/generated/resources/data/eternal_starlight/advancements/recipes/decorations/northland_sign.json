@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:northland_sign"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

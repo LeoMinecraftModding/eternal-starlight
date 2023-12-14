@@ -26,7 +26,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_LOG.get(),
                 BlockInit.LUNAR_WOOD.get(),
                 BlockInit.STRIPPED_LUNAR_LOG.get(),
-                BlockInit.STRIPPED_LUNAR_WOOD.get()
+                BlockInit.DEAD_LUNAR_LOG.get(),
+                BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get(),
+                BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get()
         );
         tag(ESTags.Blocks.NORTHLAND_LOGS).add(
                 BlockInit.NORTHLAND_LOG.get(),

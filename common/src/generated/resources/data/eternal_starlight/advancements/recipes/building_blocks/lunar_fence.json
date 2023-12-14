@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:lunar_fence"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -18,7 +18,6 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(CommonSetupHandlers::setup);
         event.enqueueWork(ForgeNetworkHandler::init);
     }
 

@@ -68,6 +68,9 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.LUNAR_FENCE_GATE.get());
         basicBlockItem(ItemInit.LUNAR_SLAB.get());
         basicBlockItem(ItemInit.LUNAR_STAIRS.get());
+        basicBlockItem(ItemInit.DEAD_LUNAR_LOG.get());
+        basicBlockItem(ItemInit.RED_CRYSTALLIZED_LUNAR_LOG.get());
+        basicBlockItem(ItemInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get());
         basicItem(ItemInit.LUNAR_SIGN.get());
         basicItem(ItemInit.LUNAR_HANGING_SIGN.get());
         basicItem(ItemInit.LUNAR_BOAT.get());
@@ -143,6 +146,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.GREEN_FANTAFERN.get());
         basicItemWithBlockTexture(ItemInit.FANTAGRASS.get());
         basicItemWithBlockTexture(ItemInit.GREEN_FANTAGRASS.get());
+
+        basicItemWithBlockTexture(ItemInit.DEAD_LUNAR_BUSH.get());
 
         basicBlockItem(ItemInit.NIGHTSHADE_DIRT.get());
         basicBlockItem(ItemInit.NIGHTSHADE_GRASS_BLOCK.get());

@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/green_dye_from_swamp_rose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

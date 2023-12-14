@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -13,11 +14,17 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class EnergyBlock extends Block {
+    public static final MapCodec<EnergyBlock> CODEC = simpleCodec(EnergyBlock::new);
     public static BooleanProperty LIT = BlockStateProperties.LIT;
 
     public EnergyBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override

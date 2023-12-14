@@ -1,10 +1,10 @@
 {
-  "type": "eternal_starlight:large_jigsaw",
+  "type": "minecraft:jigsaw",
 
   "start_pool": "eternal_starlight:golem_forge/start_pool",
   
   "size": 20,
-  "max_distance_from_center": 120,
+  "max_distance_from_center": 100,
   "biomes": "#eternal_starlight:has_structure/golem_forge",
   "step": "underground_structures",
   "terrain_adaptation": "bury",
@@ -13,5 +13,7 @@
     "absolute": 10
   },
 
-  "spawn_overrides": {}
+  "spawn_overrides": {},
+
+  "use_expansion_hack": false
 }

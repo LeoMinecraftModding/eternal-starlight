@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:swamp_silver_nugget_blasting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

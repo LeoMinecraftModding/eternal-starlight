@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -23,9 +24,16 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BerriesVinePlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock, BerriesVines {
+    public static final MapCodec<BerriesVinePlantBlock> CODEC = simpleCodec(BerriesVinePlantBlock::new);
+
     public BerriesVinePlantBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
         this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, Boolean.valueOf(false)));
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+        return null;
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {

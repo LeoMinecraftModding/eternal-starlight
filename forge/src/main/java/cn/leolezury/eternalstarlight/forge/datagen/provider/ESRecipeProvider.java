@@ -44,8 +44,8 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
 
         // smelt
-        addSmelt(recipeOutput, "smelting", RecipeSerializer.SMELTING_RECIPE, "golem_steel_ingot", 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
-        addSmelt(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, "golem_steel_ingot", 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        addSmelt(recipeOutput, "golem_steel_ingot", 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        addBlast(recipeOutput, "golem_steel_ingot", 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
 
         // misc
         addShapeless(recipeOutput, "muddy_starlight_mangrove_roots", ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.NIGHTSHADE_MUD.get());
@@ -293,10 +293,10 @@ public class ESRecipeProvider extends RecipeProvider {
                 .requires(ItemInit.SWAMP_SILVER_INGOT.get())
                 .unlockedBy("has_item", has(ItemInit.SWAMP_SILVER_INGOT.get()))
                 .save(recipeOutput, getModLocation("swamp_silver_nuggets_from_ingot"));
-        addSmelt(recipeOutput, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
-        addSmelt(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
-        addSmelt(recipeOutput, "smelting", RecipeSerializer.SMELTING_RECIPE, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
-        addSmelt(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, "swamp_silver_nugget", 100, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
+        addSmelt(recipeOutput, "swamp_silver_ingot", 200, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
+        addBlast(recipeOutput, "swamp_silver_ingot", 100, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
+        addSmelt(recipeOutput, "swamp_silver_nugget", 200, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
+        addBlast(recipeOutput, "swamp_silver_nugget", 100, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
     }
 
     private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {
@@ -309,13 +309,17 @@ public class ESRecipeProvider extends RecipeProvider {
         addChestplate(recipeOutput, "thermal_springstone_chestplate", ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
         addLeggings(recipeOutput, "thermal_springstone_leggings", ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
         addBoots(recipeOutput, "thermal_springstone_boots", ItemInit.THERMAL_SPRINGSTONE_BOOTS.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
-        addSmelt(recipeOutput, "smelting", RecipeSerializer.SMELTING_RECIPE, "thermal_springstone_ingot", 200, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
-        addSmelt(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, "thermal_springstone_ingot", 100, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
+        addSmelt(recipeOutput, "thermal_springstone_ingot", 200, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
+        addBlast(recipeOutput, "thermal_springstone_ingot", 100, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
     }
 
     // misc
-    protected final void addSmelt(RecipeOutput recipeOutput, String recipeTypeName, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time, recipeSerializer).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(id + "_" + recipeTypeName));
+    protected final void addSmelt(RecipeOutput recipeOutput, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(id + "_smelting"));
+    }
+    
+    protected final void addBlast(RecipeOutput recipeOutput, String id, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(id + "_blasting"));
     }
 
     protected final void addCompressed(RecipeOutput recipeOutput, String id, ItemLike toCompress, ItemLike output) {

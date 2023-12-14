@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/brown_dye_from_conebloom"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

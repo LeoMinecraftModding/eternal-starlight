@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:nightshade_mud_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

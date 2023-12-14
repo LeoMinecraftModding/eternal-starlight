@@ -1,9 +1,9 @@
-// 1.20.2	2023-12-13T18:32:44.1295803	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2023-12-14T14:09:13.6109717	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
 7fce1a137247b8258907de27d1fe5b35a15d9986 data/eternal_starlight/tags/blocks/coral_plants.json
-85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/blocks/lunar_logs.json
+eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/blocks/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/blocks/northland_logs.json
 a456306172c3653ceedd90339c9c61928318231a data/eternal_starlight/tags/blocks/portal_frame_blocks.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/blocks/starlight_mangrove_logs.json

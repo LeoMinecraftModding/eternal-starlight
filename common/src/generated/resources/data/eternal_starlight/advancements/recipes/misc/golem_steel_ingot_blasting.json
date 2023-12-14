@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:golem_steel_ingot_blasting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

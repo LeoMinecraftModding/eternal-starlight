@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/blue_dye_from_starlight_flower"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

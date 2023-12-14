@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.LunarMonstrositySpawnerEntity;
 import cn.leolezury.eternalstarlight.common.init.BlockEntityInit;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -13,24 +14,31 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class LunarMonstrositySpawnerBlock extends BaseEntityBlock {
-    public LunarMonstrositySpawnerBlock(Properties p_49224_) {
-        super(p_49224_);
+    public static final MapCodec<LunarMonstrositySpawnerBlock> CODEC = simpleCodec(LunarMonstrositySpawnerBlock::new);
+
+    public LunarMonstrositySpawnerBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-        return new LunarMonstrositySpawnerEntity(p_153215_, p_153216_);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new LunarMonstrositySpawnerEntity(pos, state);
     }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
-        return createTickerHelper(p_153214_, BlockEntityInit.LUNAR_MONSTROSITY_SPAWNER.get(), LunarMonstrositySpawnerEntity::tick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return createTickerHelper(type, BlockEntityInit.LUNAR_MONSTROSITY_SPAWNER.get(), LunarMonstrositySpawnerEntity::tick);
     }
 }

@@ -53,12 +53,19 @@ public class DimensionInit {
     private static SurfaceRules.RuleSource makeSurfaceRule() {
         SurfaceRules.RuleSource bedrock = SurfaceRules.state(Blocks.BEDROCK.defaultBlockState());
         SurfaceRules.RuleSource voidstone = SurfaceRules.state(BlockInit.VOIDSTONE.get().defaultBlockState());
+        SurfaceRules.RuleSource sand = SurfaceRules.state(BlockInit.TWILIGHT_SAND.get().defaultBlockState());
+        SurfaceRules.RuleSource sandstone = SurfaceRules.state(BlockInit.TWILIGHT_SANDSTONE.get().defaultBlockState());
+        SurfaceRules.RuleSource desertRule = SurfaceRules.sequence(
+                SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), sand),
+                SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, 6, CaveSurface.FLOOR), sandstone)
+        );
 
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(BlockInit.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.DARK_SWAMP), makeSurface(BlockInit.FANTASY_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.CRYSTALLIZED_DESERT), desertRule),
                 makeSurface(BlockInit.NIGHTSHADE_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState())
         );
     }
@@ -111,6 +118,7 @@ public class DimensionInit {
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_DENSE_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP),
+                biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT),
                 biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA),
                 biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE)

@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.block.modifier.ModifiedBlock;
-import cn.leolezury.eternalstarlight.common.block.modifier.ModifierContainer;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
@@ -15,23 +13,9 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-import java.util.function.Consumer;
-
-public class ESLogBlock extends RotatedPillarBlock implements ModifiedBlock<RotatedPillarBlock> {
-    private ModifierContainer<Block> modifierContainer;
+public class ESLogBlock extends RotatedPillarBlock {
     public ESLogBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public ESLogBlock modifiers(Consumer... modifiers) {
-        modifierContainer = new ModifierContainer<Block>(this, modifiers);
-        return this;
-    }
-
-    @Override
-    public ModifierContainer<Block> getModifierContainer() {
-        return modifierContainer;
     }
 
     @Override

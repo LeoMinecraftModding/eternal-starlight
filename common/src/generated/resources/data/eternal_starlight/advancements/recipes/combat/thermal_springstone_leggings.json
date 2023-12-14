@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:thermal_springstone_leggings"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -73,6 +73,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         woodSet(BlockInit.LUNAR_LOG.get(), BlockInit.LUNAR_WOOD.get(), BlockInit.LUNAR_PLANKS.get(), BlockInit.STRIPPED_LUNAR_LOG.get(), BlockInit.STRIPPED_LUNAR_WOOD.get(), BlockInit.LUNAR_DOOR.get(), false, BlockInit.LUNAR_TRAPDOOR.get(), false, BlockInit.LUNAR_PRESSURE_PLATE.get(), BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_FENCE_GATE.get(), BlockInit.LUNAR_SLAB.get(), BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_SIGN.get(), BlockInit.LUNAR_WALL_SIGN.get(), BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.LUNAR_WALL_HANGING_SIGN.get());
         crossBlock(BlockInit.LUNAR_SAPLING.get());
         pottedPlant(BlockInit.POTTED_LUNAR_SAPLING.get(), blockTexture(BlockInit.LUNAR_SAPLING.get()));
+        logBlock(BlockInit.DEAD_LUNAR_LOG.get());
+        axisBlock(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get(), blockTexture(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get()), blockTexture(BlockInit.DEAD_LUNAR_LOG.get()).withSuffix("_top"));
+        axisBlock(BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get(), blockTexture(BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get()), blockTexture(BlockInit.DEAD_LUNAR_LOG.get()).withSuffix("_top"));
 
         leaves(BlockInit.NORTHLAND_LEAVES.get());
         woodSet(BlockInit.NORTHLAND_LOG.get(), BlockInit.NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_PLANKS.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get(), BlockInit.STRIPPED_NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_DOOR.get(), false, BlockInit.NORTHLAND_TRAPDOOR.get(), false, BlockInit.NORTHLAND_PRESSURE_PLATE.get(), BlockInit.NORTHLAND_BUTTON.get(), BlockInit.NORTHLAND_FENCE.get(), BlockInit.NORTHLAND_FENCE_GATE.get(), BlockInit.NORTHLAND_SLAB.get(), BlockInit.NORTHLAND_STAIRS.get(), BlockInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_WALL_SIGN.get(), BlockInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.NORTHLAND_WALL_HANGING_SIGN.get());
@@ -105,10 +108,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(BlockInit.TWILIGHT_SAND.get());
         sandstoneAndCut(BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        slabBlock(BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()));
+        slabBlock(BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         stairsBlock(BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         wallBlock(BlockInit.TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"));
-        slabBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()));
+        slabBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         stairsBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         wallBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         simpleBlock(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
@@ -158,6 +161,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.GREEN_FANTAFERN.get());
         crossBlock(BlockInit.FANTAGRASS.get());
         crossBlock(BlockInit.GREEN_FANTAGRASS.get());
+
+        crossBlock(BlockInit.DEAD_LUNAR_BUSH.get());
 
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());
         grassBlock(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_DIRT.get()));

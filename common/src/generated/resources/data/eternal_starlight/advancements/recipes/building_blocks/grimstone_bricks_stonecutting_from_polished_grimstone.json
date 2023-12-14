@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:grimstone_bricks_stonecutting_from_polished_grimstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:doomeden_polished"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

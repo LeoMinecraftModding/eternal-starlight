@@ -15,16 +15,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.eternal_starlight.obtain_swamp_silver.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "eternal_starlight:swamp_silver_ingot"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.eternal_starlight.obtain_swamp_silver.title"
     }

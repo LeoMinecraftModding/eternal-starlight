@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:polished_voidstone_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

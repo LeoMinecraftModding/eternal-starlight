@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:swamp_silver_nuggets_from_ingot"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -15,16 +15,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.eternal_starlight.obtain_starlight_flower.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "eternal_starlight:starlight_flower"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.eternal_starlight.obtain_starlight_flower.title"
     }

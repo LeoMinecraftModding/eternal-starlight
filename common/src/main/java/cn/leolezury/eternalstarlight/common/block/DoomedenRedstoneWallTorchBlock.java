@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -19,12 +21,18 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
+    public static final MapCodec<DoomedenRedstoneWallTorchBlock> CODEC = simpleCodec(DoomedenRedstoneWallTorchBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public DoomedenRedstoneWallTorchBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, true));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseTorchBlock> codec() {
+        return CODEC;
     }
 
     public String getDescriptionId() {
@@ -50,13 +58,13 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
-        if (blockState.getValue(LIT)) {
-            Direction direction = blockState.getValue(FACING).getOpposite();
+        if ((Boolean)blockState.getValue(LIT)) {
+            Direction direction = ((Direction)blockState.getValue(FACING)).getOpposite();
             double d = 0.27;
             double e = (double)blockPos.getX() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.27 * (double)direction.getStepX();
             double f = (double)blockPos.getY() + 0.7 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.22;
             double g = (double)blockPos.getZ() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.27 * (double)direction.getStepZ();
-            level.addParticle(this.flameParticle, e, f, g, 0.0, 0.0, 0.0);
+            level.addParticle(DustParticleOptions.REDSTONE, e, f, g, 0.0, 0.0, 0.0);
         }
     }
 

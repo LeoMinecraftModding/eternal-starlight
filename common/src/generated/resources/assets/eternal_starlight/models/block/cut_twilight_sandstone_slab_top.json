@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab_top",
   "textures": {
     "bottom": "eternal_starlight:block/twilight_sandstone_top",
-    "side": "eternal_starlight:block/twilight_sandstone_top",
-    "top": "eternal_starlight:block/cut_twilight_sandstone"
+    "side": "eternal_starlight:block/cut_twilight_sandstone",
+    "top": "eternal_starlight:block/twilight_sandstone_top"
   }
 }

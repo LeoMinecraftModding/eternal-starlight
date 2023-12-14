@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:crystal_crossbow"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

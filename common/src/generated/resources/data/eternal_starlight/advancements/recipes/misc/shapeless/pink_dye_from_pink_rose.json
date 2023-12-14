@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/pink_dye_from_pink_rose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

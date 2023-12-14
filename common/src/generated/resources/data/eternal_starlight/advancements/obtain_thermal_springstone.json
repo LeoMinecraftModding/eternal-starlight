@@ -15,16 +15,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.eternal_starlight.obtain_thermal_springstone.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "eternal_starlight:thermal_springstone"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.eternal_starlight.obtain_thermal_springstone.title"
     }

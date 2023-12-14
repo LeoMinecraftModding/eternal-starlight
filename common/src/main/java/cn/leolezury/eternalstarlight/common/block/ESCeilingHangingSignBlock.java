@@ -1,19 +1,22 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.ESHangingSignBlockEntity;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
+import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ESCeilingHangingSignBlock extends CeilingHangingSignBlock {
-    public ESCeilingHangingSignBlock(Properties p_250481_, WoodType p_248716_) {
-        super(p_250481_, p_248716_);
+    public ESCeilingHangingSignBlock(WoodType woodType, Properties properties) {
+        super(woodType, properties);
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-        return new ESHangingSignBlockEntity(p_154556_, p_154557_);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new ESHangingSignBlockEntity(pos, state);
     }
 }

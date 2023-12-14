@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:grimstone_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

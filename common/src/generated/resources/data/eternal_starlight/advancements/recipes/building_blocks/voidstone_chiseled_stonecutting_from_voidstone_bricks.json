@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:voidstone_chiseled_stonecutting_from_voidstone_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

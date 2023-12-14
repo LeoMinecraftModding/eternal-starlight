@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:petal_scythe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

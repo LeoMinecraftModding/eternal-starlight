@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -12,11 +13,18 @@ import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ThermalSpringStoneBlock extends Block {
+    public static final MapCodec<ThermalSpringStoneBlock> CODEC = simpleCodec(ThermalSpringStoneBlock::new);
+
     public ThermalSpringStoneBlock(Properties properties) {
         super(properties);
     }
 
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource p_221418_) {
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
         BubbleColumnBlock.updateColumn(level, pos.above(), state);
     }
 

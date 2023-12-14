@@ -23,12 +23,9 @@
     "description": {
       "translate": "advancements.eternal_starlight.enter_starlight.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "eternal_starlight:lunar_log"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.eternal_starlight.enter_starlight.title"
     }

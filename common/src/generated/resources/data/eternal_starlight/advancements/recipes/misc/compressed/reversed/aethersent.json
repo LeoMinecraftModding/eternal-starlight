@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:compressed/reversed/aethersent"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

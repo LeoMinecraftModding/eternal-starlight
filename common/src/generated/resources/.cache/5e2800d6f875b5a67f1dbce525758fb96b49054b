@@ -1,6 +1,6 @@
-// 1.20.2	2023-12-13T18:32:44.2125633	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2023-12-14T14:09:13.6639403	Tags for minecraft:item mod id eternal_starlight
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
-85f1dea19c389601048d06eefb9c7c27b4f27d25 data/eternal_starlight/tags/items/lunar_logs.json
+eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/items/starlight_mangrove_logs.json
 aaf6b3c5a0f9bab148f9c675dab591974443a4ac data/eternal_starlight/tags/items/thermal_springstone_weapons.json

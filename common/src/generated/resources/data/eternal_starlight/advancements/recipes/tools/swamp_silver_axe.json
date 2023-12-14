@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:swamp_silver_axe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

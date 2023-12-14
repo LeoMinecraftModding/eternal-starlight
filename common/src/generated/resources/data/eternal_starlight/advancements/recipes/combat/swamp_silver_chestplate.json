@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:swamp_silver_chestplate"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

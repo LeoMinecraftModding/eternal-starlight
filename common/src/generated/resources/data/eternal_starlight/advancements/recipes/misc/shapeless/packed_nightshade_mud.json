@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/packed_nightshade_mud"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

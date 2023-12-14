@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:twilight_sandstone_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

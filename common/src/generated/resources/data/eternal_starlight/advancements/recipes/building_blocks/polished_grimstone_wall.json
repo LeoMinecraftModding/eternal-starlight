@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:polished_grimstone_wall"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

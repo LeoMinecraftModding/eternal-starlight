@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:starfall_longbow"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

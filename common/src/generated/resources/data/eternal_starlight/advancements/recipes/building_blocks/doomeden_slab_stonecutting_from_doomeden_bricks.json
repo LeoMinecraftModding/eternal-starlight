@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:doomeden_slab_stonecutting_from_doomeden_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

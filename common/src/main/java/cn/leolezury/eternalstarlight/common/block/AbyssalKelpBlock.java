@@ -2,26 +2,43 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.KelpBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class AbyssalKelpBlock extends KelpBlock implements AbyssalKelp {
+public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer, AbyssalKelp {
+    public static final MapCodec<AbyssalKelpBlock> CODEC = simpleCodec(AbyssalKelpBlock::new);
+    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
+
     public AbyssalKelpBlock(Properties properties) {
-        super(properties);
+        super(properties, Direction.UP, SHAPE, true, 0.14);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(BERRIES, Boolean.valueOf(false)));
+    }
+
+    @Override
+    public MapCodec<? extends GrowingPlantHeadBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -37,7 +54,7 @@ public class AbyssalKelpBlock extends KelpBlock implements AbyssalKelp {
         return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
     }
 
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
         return new ItemStack(ItemInit.ABYSSAL_FRUIT.get());
     }
 
@@ -61,5 +78,35 @@ public class AbyssalKelpBlock extends KelpBlock implements AbyssalKelp {
 
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
         serverLevel.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(true)), 2);
+    }
+
+    protected boolean canGrowInto(BlockState blockState) {
+        return blockState.is(Blocks.WATER);
+    }
+
+    public boolean canAttachTo(BlockState blockState) {
+        return !blockState.is(Blocks.MAGMA_BLOCK);
+    }
+
+    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+        return false;
+    }
+
+    public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+        return false;
+    }
+
+    protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
+        return 1;
+    }
+
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
+    }
+
+    public FluidState getFluidState(BlockState blockState) {
+        return Fluids.WATER.getSource(false);
     }
 }

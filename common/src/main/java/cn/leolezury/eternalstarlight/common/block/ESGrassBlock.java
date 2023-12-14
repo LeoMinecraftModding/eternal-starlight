@@ -1,29 +1,39 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-import java.util.function.Supplier;
+public class ESGrassBlock extends ESSpreadingSnowyDirtBlock implements BonemealableBlock {
+    public static final MapCodec<ESGrassBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("spreads_on").forGetter((block) -> block.spreadsOn),
+            ResourceKey.codec(Registries.PLACED_FEATURE).fieldOf("grass").forGetter((block) -> block.grassFeature),
+            propertiesCodec()
+    ).apply(instance, ESGrassBlock::new));
 
-public class NightshadeGrassBlock extends SpreadingSnowyNightshadeDirtBlock implements BonemealableBlock {
     private final ResourceKey<PlacedFeature> grassFeature;
 
-    public NightshadeGrassBlock(BlockBehaviour.Properties properties, Supplier<? extends Block> spreadOn, ResourceKey<PlacedFeature> grassFeature) {
-        super(properties, spreadOn);
+    public ESGrassBlock(Block spreadOn, ResourceKey<PlacedFeature> grassFeature, BlockBehaviour.Properties properties) {
+        super(spreadOn, properties);
         this.grassFeature = grassFeature;
+    }
+
+    @Override
+    protected MapCodec<? extends SnowyDirtBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -37,7 +47,7 @@ public class NightshadeGrassBlock extends SpreadingSnowyNightshadeDirtBlock impl
 
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
-        BlockState blockstate = Blocks.GRASS.defaultBlockState();
+        BlockState blockstate = Blocks.SHORT_GRASS.defaultBlockState();
 
         label46:
         for(int i = 0; i < 128; ++i) {

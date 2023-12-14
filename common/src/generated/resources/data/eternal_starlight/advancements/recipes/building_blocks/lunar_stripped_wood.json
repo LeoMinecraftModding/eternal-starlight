@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:lunar_stripped_wood"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

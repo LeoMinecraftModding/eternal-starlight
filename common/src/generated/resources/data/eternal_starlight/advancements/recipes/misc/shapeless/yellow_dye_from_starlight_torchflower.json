@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/yellow_dye_from_starlight_torchflower"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

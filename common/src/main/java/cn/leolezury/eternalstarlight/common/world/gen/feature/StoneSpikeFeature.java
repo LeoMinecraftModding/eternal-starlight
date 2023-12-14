@@ -36,10 +36,10 @@ public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
                 }
             }
         }
-        // generate the pointy stuff
+        // generate the spike
         for (int y = 0; y <= 10; y++) {
             int radius = (int) Math.round(15d / (y + 3));
-            int radiusOffset = radius <= 1 ? 0 : random.nextInt(3) - 1;
+            int radiusOffset = radius <= 2 ? 0 : random.nextInt(3) - 1;
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     if (x * x + z * z <= Math.pow(radius - 1 + radiusOffset, 2)) {

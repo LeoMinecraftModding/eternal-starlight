@@ -8,7 +8,7 @@ import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
@@ -29,7 +29,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + ".enter_starlight.title"),
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + ".enter_starlight.description"),
                         new ResourceLocation(EternalStarlight.MOD_ID, "textures/block/lunar_log.png"),
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true, false, false)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .addCriterion("in_dim",
@@ -57,7 +57,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                         item,
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".title"),
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".description"),
-                        null, FrameType.GOAL, true, true, false)
+                        null, AdvancementType.GOAL, true, true, false)
                 .addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(item))
                 .save(consumer, EternalStarlight.MOD_ID + ":" + id);
     }
@@ -71,7 +71,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                         item,
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".title"),
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".description"),
-                        null, FrameType.GOAL, true, true, false)
+                        null, AdvancementType.GOAL, true, true, false)
                 .addCriterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(Optional.ofNullable(predicate)))
                 .save(consumer, EternalStarlight.MOD_ID + ":" + id);
     }

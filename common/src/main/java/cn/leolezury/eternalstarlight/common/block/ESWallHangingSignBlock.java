@@ -8,12 +8,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ESWallHangingSignBlock extends WallHangingSignBlock {
-    public ESWallHangingSignBlock(Properties p_251606_, WoodType p_252140_) {
-        super(p_251606_, p_252140_);
+    public ESWallHangingSignBlock(WoodType woodType, Properties properties) {
+        super(woodType, properties);
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-        return new ESHangingSignBlockEntity(p_154556_, p_154557_);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new ESHangingSignBlockEntity(pos, state);
     }
 }

@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:starlight_mangrove_fence_gate"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

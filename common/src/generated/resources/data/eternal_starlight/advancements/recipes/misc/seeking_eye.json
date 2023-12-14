@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:seeking_eye"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

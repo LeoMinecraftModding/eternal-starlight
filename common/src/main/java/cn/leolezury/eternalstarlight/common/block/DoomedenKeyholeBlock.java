@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -19,11 +20,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<DoomedenKeyholeBlock> CODEC = simpleCodec(DoomedenKeyholeBlock::new);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public DoomedenKeyholeBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(LIT, false).setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 
     @Nullable

@@ -15,16 +15,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.eternal_starlight.obtain_seeking_eye.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "eternal_starlight:seeking_eye"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.eternal_starlight.obtain_seeking_eye.title"
     }

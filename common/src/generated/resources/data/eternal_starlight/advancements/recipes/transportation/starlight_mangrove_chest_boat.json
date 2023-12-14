@@ -28,6 +28,5 @@
     "recipes": [
       "eternal_starlight:starlight_mangrove_chest_boat"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

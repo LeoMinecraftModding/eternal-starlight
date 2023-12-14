@@ -14,12 +14,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LightEngine;
 
-import java.util.function.Supplier;
+public abstract class ESSpreadingSnowyDirtBlock extends SnowyDirtBlock {
+    protected final Block spreadsOn;
 
-public abstract class SpreadingSnowyNightshadeDirtBlock extends SnowyDirtBlock {
-    private final Supplier<? extends Block> spreadsOn;
-
-    protected SpreadingSnowyNightshadeDirtBlock(BlockBehaviour.Properties properties, Supplier<? extends Block> spreadsOn) {
+    protected ESSpreadingSnowyDirtBlock(Block spreadsOn, BlockBehaviour.Properties properties) {
         super(properties);
         this.spreadsOn = spreadsOn;
     }
@@ -44,14 +42,14 @@ public abstract class SpreadingSnowyNightshadeDirtBlock extends SnowyDirtBlock {
 
     public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource randomSource) {
         if (!canBeGrass(state, serverLevel, pos)) {
-            serverLevel.setBlockAndUpdate(pos, spreadsOn.get().defaultBlockState());
+            serverLevel.setBlockAndUpdate(pos, spreadsOn.defaultBlockState());
         } else {
             if (serverLevel.getMaxLocalRawBrightness(pos.above()) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 
                 for(int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.offset(randomSource.nextInt(3) - 1, randomSource.nextInt(5) - 3, randomSource.nextInt(3) - 1);
-                    if (serverLevel.getBlockState(blockpos).is(spreadsOn.get()) && canPropagate(blockstate, serverLevel, blockpos)) {
+                    if (serverLevel.getBlockState(blockpos).is(spreadsOn) && canPropagate(blockstate, serverLevel, blockpos)) {
                         serverLevel.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, Boolean.valueOf(serverLevel.getBlockState(blockpos.above()).is(Blocks.SNOW))));
                     }
                 }

@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -9,7 +10,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseTorchBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RedstoneTorchBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,12 +21,18 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class DoomedenRedstoneTorchBlock extends TorchBlock {
+public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
+    public static final MapCodec<DoomedenRedstoneTorchBlock> CODEC = simpleCodec(DoomedenRedstoneTorchBlock::new);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public DoomedenRedstoneTorchBlock(BlockBehaviour.Properties properties) {
-        super(properties, DustParticleOptions.REDSTONE);
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, true));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseTorchBlock> codec() {
+        return CODEC;
     }
 
     public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
@@ -78,11 +87,11 @@ public class DoomedenRedstoneTorchBlock extends TorchBlock {
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
-        if (blockState.getValue(LIT)) {
+        if ((Boolean)blockState.getValue(LIT)) {
             double d = (double)blockPos.getX() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2;
             double e = (double)blockPos.getY() + 0.7 + (randomSource.nextDouble() - 0.5) * 0.2;
             double f = (double)blockPos.getZ() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2;
-            level.addParticle(this.flameParticle, d, e, f, 0.0, 0.0, 0.0);
+            level.addParticle(DustParticleOptions.REDSTONE, d, e, f, 0.0, 0.0, 0.0);
         }
     }
 

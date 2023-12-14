@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/muddy_starlight_mangrove_roots"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

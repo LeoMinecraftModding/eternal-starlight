@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:aethersent_boots"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

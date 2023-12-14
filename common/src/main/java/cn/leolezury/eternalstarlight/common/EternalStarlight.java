@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common;
 
+import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegistry;
 import cn.leolezury.eternalstarlight.common.init.*;
 
 public class EternalStarlight {
@@ -18,9 +19,9 @@ public class EternalStarlight {
         PlacerInit.loadClass();
         TreeDecoratorInit.loadClass();
         StructurePlacementTypeInit.loadClass();
-        StructureInit.loadClass();
         POIInit.loadClass();
         ParticleInit.loadClass();
         SoundEventInit.loadClass();
+        ESFlammabilityRegistry.registerDefaults();
     }
 }

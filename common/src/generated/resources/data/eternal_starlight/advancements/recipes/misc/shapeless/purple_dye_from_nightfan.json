@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:shapeless/purple_dye_from_nightfan"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

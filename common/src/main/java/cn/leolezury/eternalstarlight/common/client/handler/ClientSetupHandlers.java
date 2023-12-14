@@ -157,6 +157,7 @@ public class ClientSetupHandlers {
             BlockInit.GREEN_FANTAFERN,
             BlockInit.FANTAGRASS,
             BlockInit.GREEN_FANTAGRASS,
+            BlockInit.DEAD_LUNAR_BUSH,
             BlockInit.SWAMP_ROSE,
             BlockInit.STARLIGHT_GOLEM_SPAWNER,
             BlockInit.LUNAR_MONSTROSITY_SPAWNER

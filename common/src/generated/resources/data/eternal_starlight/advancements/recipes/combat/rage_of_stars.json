@@ -30,6 +30,5 @@
     "recipes": [
       "eternal_starlight:rage_of_stars"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
