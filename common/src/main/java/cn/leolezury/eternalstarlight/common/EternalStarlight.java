@@ -22,6 +22,8 @@ public class EternalStarlight {
         POIInit.loadClass();
         ParticleInit.loadClass();
         SoundEventInit.loadClass();
+        RecipeSerializerInit.loadClass();
+        RecipeInit.loadClass();
         ESFlammabilityRegistry.registerDefaults();
     }
 }

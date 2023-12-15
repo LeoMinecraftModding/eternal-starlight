@@ -14,6 +14,7 @@ public class ESPackets {
         // test packet
         map.put("test_packet", new Handler<>(TestPacket.class, TestPacket::write, TestPacket::read, TestPacket.Handler::handle));
 
+        map.put("particle", new Handler<>(ESParticlePacket.class, ESParticlePacket::write, ESParticlePacket::read, ESParticlePacket.Handler::handle));
         map.put("open_book", new Handler<>(OpenBookPacket.class, OpenBookPacket::write, OpenBookPacket::read, OpenBookPacket.Handler::handle));
     });
 

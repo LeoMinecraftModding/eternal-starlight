@@ -160,5 +160,10 @@ public interface ESPlatform {
 
     // networking
     void sendToClient(ServerPlayer player, Object packet);
+    default void sendToAllClients(ServerLevel level, Object packet) {
+        for (ServerPlayer player : level.players()) {
+            sendToClient(player, packet);
+        }
+    }
     void sendToServer(Object packet);
 }

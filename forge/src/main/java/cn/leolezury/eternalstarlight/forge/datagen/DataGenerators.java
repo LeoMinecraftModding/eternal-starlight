@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.forge.datagen;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.custom.ESGeyserSmokingProvider;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESBlockTagsProvider;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESDamageTypeTagsProvider;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESEntityTypeTagsProvider;
@@ -42,5 +43,8 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));
+
+        // custom
+        generator.addProvider(event.includeServer(), new ESGeyserSmokingProvider(output));
     }
 }
