@@ -68,14 +68,7 @@
       }
     ],
     "axolotls": [],
-    "creature": [
-      {
-        "type": "eternal_starlight:dryad",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 15
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [
       {

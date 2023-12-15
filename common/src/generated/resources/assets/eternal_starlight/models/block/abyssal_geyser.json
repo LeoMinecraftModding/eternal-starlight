@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/abysslate",
+    "side": "eternal_starlight:block/abysslate",
+    "top": "eternal_starlight:block/abyssal_geyser"
+  }
+}

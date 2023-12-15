@@ -174,6 +174,45 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.CHISELED_VOIDSTONE.get());
         dropSelf(BlockInit.GLOWING_VOIDSTONE.get());
 
+        dropSelf(BlockInit.ABYSSLATE.get());
+        dropSelf(BlockInit.POLISHED_ABYSSLATE.get());
+        add(BlockInit.POLISHED_ABYSSLATE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_ABYSSLATE_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_ABYSSLATE_WALL.get());
+        dropSelf(BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
+        add(BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get());
+        dropSelf(BlockInit.CHISELED_POLISHED_ABYSSLATE.get());
+        dropSelf(BlockInit.ABYSSAL_MAGMA_BLOCK.get());
+        dropOther(BlockInit.ABYSSAL_GEYSER.get(), ItemInit.ABYSSLATE.get());
+
+        dropSelf(BlockInit.THERMABYSSLATE.get());
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE.get());
+        add(BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE_WALL.get());
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
+        add(BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get());
+        dropSelf(BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get());
+        dropSelf(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get());
+        dropOther(BlockInit.THERMABYSSAL_GEYSER.get(), ItemInit.THERMABYSSLATE.get());
+
+        dropSelf(BlockInit.CRYOBYSSLATE.get());
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE.get());
+        add(BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE_WALL.get());
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
+        add(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get());
+        dropSelf(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
+        dropSelf(BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get());
+        dropSelf(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get());
+        dropOther(BlockInit.CRYOBYSSAL_GEYSER.get(), ItemInit.CRYOBYSSLATE.get());
+
         dropSelf(BlockInit.NIGHTSHADE_MUD.get());
         dropSelf(BlockInit.GLOWING_NIGHTSHADE_MUD.get());
         dropSelf(BlockInit.PACKED_NIGHTSHADE_MUD.get());

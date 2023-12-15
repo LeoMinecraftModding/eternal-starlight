@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -14,11 +13,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
@@ -38,6 +35,9 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> CAVE_VINE = create("cave_vine");
     public static final ResourceKey<PlacedFeature> ABYSSAL_KELP = create("abyssal_kelp");
     public static final ResourceKey<PlacedFeature> OCEAN_VEGETATION = create("ocean_vegetation");
+    public static final ResourceKey<PlacedFeature> ABYSSLATE_PATCH = create("abysslate_patch");
+    public static final ResourceKey<PlacedFeature> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
+    public static final ResourceKey<PlacedFeature> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
     public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = create("lunar_tree_checked");
     public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
     public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
@@ -79,6 +79,9 @@ public class PlacedFeatureInit {
         register(context, CAVE_VINE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CAVE_VINE), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
         register(context, ABYSSAL_KELP, configuredFeatures.getOrThrow(ConfiguredFeatureInit.ABYSSAL_KELP), NoiseBasedCountPlacement.of(120, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
         register(context, OCEAN_VEGETATION, configuredFeatures.getOrThrow(ConfiguredFeatureInit.OCEAN_VEGETATION), NoiseBasedCountPlacement.of(20, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ConfiguredFeatureInit.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ConfiguredFeatureInit.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        register(context, CRYOBYSSLATE_PATCH, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CRYOBYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
         register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.LUNAR), PlacementUtils.filteredByBlockSurvival(BlockInit.LUNAR_SAPLING.get()));
         register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(BlockInit.LUNAR_SAPLING.get()));
         register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NORTHLAND), PlacementUtils.filteredByBlockSurvival(BlockInit.NORTHLAND_SAPLING.get()));

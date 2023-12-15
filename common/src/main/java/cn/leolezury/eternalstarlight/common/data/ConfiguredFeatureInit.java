@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.FeatureInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.AbysslatePatchFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESLakeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.FallenLogFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator.TrunkBerriesDecorator;
@@ -70,6 +71,9 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_VINE = create("cave_vine");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSAL_KELP = create("abyssal_kelp");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OCEAN_VEGETATION = create("ocean_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSLATE_PATCH = create("abysslate_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR = create("lunar");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR_HUGE = create("lunar_huge");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NORTHLAND = create("northland");
@@ -117,6 +121,9 @@ public class ConfiguredFeatureInit {
                 new RandomizedIntStateProvider(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.BERRIES_VINES.get().defaultBlockState(), 4).add(BlockInit.BERRIES_VINES.get().defaultBlockState().setValue(CaveVines.BERRIES, Boolean.valueOf(true)), 1)), CaveVinesBlock.AGE, UniformInt.of(23, 25)))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
         register(context, ABYSSAL_KELP, FeatureInit.KELP.get(), new NoneFeatureConfiguration());
         register(context, OCEAN_VEGETATION, Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(PlacementUtils.inlinePlaced(FeatureInit.CORAL_TREE.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(FeatureInit.CORAL_CLAW.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(FeatureInit.CORAL_MUSHROOM.get(), FeatureConfiguration.NONE))));
+        register(context, ABYSSLATE_PATCH, FeatureInit.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(BlockStateProvider.simple(BlockInit.ABYSSLATE.get()), BlockStateProvider.simple(BlockInit.ABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(BlockInit.ABYSSAL_GEYSER.get())));
+        register(context, THERMABYSSLATE_PATCH, FeatureInit.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(BlockStateProvider.simple(BlockInit.THERMABYSSLATE.get()), BlockStateProvider.simple(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(BlockInit.THERMABYSSAL_GEYSER.get())));
+        register(context, CRYOBYSSLATE_PATCH, FeatureInit.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(BlockStateProvider.simple(BlockInit.CRYOBYSSLATE.get()), BlockStateProvider.simple(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(BlockInit.CRYOBYSSAL_GEYSER.get())));
         register(context, LUNAR, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get()), new BranchingTrunkPlacer(8, 2, 10, ConstantInt.of(0), UniformInt.of(6, 7), ConstantInt.of(1), UniformInt.of(3, 4)), BlockStateProvider.simple(BlockInit.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(UniformInt.of(3, 4), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).decorators(List.of(new TrunkBerriesDecorator())).build());
         register(context, LUNAR_HUGE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get()), new BranchingTrunkPlacer(32, 2, 10, UniformInt.of(3, 4), UniformInt.of(2, 4)), BlockStateProvider.simple(BlockInit.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(UniformInt.of(3, 4), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).decorators(List.of(new TrunkBerriesDecorator())).build());
         register(context, NORTHLAND, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get()), new GiantTrunkPlacer(10, 2, 10), BlockStateProvider.simple(BlockInit.NORTHLAND_LEAVES.get()), new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)), new TwoLayersFeatureSize(1, 1, 2)).build());

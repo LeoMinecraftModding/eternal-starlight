@@ -7,12 +7,12 @@ import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ESSignBlockEntity extends SignBlockEntity {
-    public ESSignBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(blockPos, blockState);
+    public ESSignBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
     }
 
     @Override
     public BlockEntityType<?> getType() {
-        return BlockEntityInit.SIGN_BLOCK_ENTITY.get();
+        return BlockEntityInit.SIGN.get();
     }
 }

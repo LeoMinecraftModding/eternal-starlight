@@ -1,0 +1,23 @@
+{
+  "type": "eternal_starlight:abysslate_patch",
+  "config": {
+    "geyser": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:cryobyssal_geyser"
+      }
+    },
+    "magma": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:cryobyssal_magma_block"
+      }
+    },
+    "stone": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:cryobysslate"
+      }
+    }
+  }
+}

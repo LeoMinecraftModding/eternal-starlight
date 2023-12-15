@@ -188,8 +188,8 @@ public class ClientSetupHandlers {
         playerAnimatingItemMap.put(ItemInit.MOONRING_GREATSWORD, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, true, true, true, true, true)));
         playerAnimatingItemMap.put(ItemInit.PROPHET_ORB, ((stack, tickCount) -> new PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, true, true, true, true, true)));
 
-        BlockEntityRenderers.register(BlockEntityInit.SIGN_BLOCK_ENTITY.get(), SignRenderer::new);
-        BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN_BLOCK_ENTITY.get(), HangingSignRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN.get(), HangingSignRenderer::new);
 
         ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
             if (entity == null) {

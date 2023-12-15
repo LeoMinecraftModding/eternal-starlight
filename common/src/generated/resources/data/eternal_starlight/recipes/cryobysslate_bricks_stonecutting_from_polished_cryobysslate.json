@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "eternal_starlight:polished_cryobysslate"
+  },
+  "result": "eternal_starlight:polished_cryobysslate_bricks"
+}

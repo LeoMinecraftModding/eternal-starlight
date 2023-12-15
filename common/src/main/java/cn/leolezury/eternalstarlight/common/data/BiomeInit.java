@@ -26,6 +26,7 @@ public class BiomeInit {
     public static final ResourceKey<Biome> CRYSTALLIZED_DESERT = create("crystallized_desert");
     public static final ResourceKey<Biome> SHIMMER_RIVER = create("shimmer_river");
     public static final ResourceKey<Biome> STARLIT_SEA = create("starlit_sea");
+    public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
     public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
 
     public static final Music MUSIC_DEFAULT = new Music(SoundEventInit.MUSIC_DIMENSION_SL.asHolder(), 1200, 12000, true);
@@ -41,8 +42,9 @@ public class BiomeInit {
         context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), baseSpawnBuilder(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DEFAULT), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
-        context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
+        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
+        context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
+        context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(10027263), baseAquaticSpawnBuilder(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
     }
 
@@ -75,6 +77,14 @@ public class BiomeInit {
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.LONESTAR_SKELETON.get(), 5, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.DRYAD.get(), 15, 1, 2))
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
+    }
+
+    private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
+        return new MobSpawnSettings.Builder()
+                .creatureGenerationProbability(0.1f)
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.LONESTAR_SKELETON.get(), 5, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
     }
 
@@ -162,6 +172,17 @@ public class BiomeInit {
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.OCEAN_VEGETATION);
+
+        return builder;
+    }
+
+    private static BiomeGenerationSettings.Builder theAbyssSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+
+        builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.ABYSSLATE_PATCH);
+        builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.THERMABYSSLATE_PATCH);
+        builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.CRYOBYSSLATE_PATCH);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
 
         return builder;
     }

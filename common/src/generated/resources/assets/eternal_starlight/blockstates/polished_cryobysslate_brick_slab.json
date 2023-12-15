@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/polished_cryobysslate_brick_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/polished_cryobysslate_bricks"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/polished_cryobysslate_brick_slab_top"
+    }
+  }
+}

@@ -195,6 +195,46 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> CHISELED_VOIDSTONE = registerItem("chiseled_voidstone", () -> new BlockItem(BlockInit.CHISELED_VOIDSTONE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLOWING_VOIDSTONE = registerItem("glowing_voidstone", () -> new BlockItem(BlockInit.GLOWING_VOIDSTONE.get(), new Item.Properties()));
 
+    // the abyss
+    public static final RegistryObject<Item, Item> ABYSSLATE = registerItem("abysslate", () -> new BlockItem(BlockInit.ABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE = registerItem("polished_abysslate", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_SLAB = registerItem("polished_abysslate_slab", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_STAIRS = registerItem("polished_abysslate_stairs", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_WALL = registerItem("polished_abysslate_wall", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_BRICKS = registerItem("polished_abysslate_bricks", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_BRICK_SLAB = registerItem("polished_abysslate_brick_slab", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_BRICK_STAIRS = registerItem("polished_abysslate_brick_stairs", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE_BRICK_WALL = registerItem("polished_abysslate_brick_wall", () -> new BlockItem(BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_POLISHED_ABYSSLATE = registerItem("chiseled_polished_abysslate", () -> new BlockItem(BlockInit.CHISELED_POLISHED_ABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> ABYSSAL_MAGMA_BLOCK = registerItem("abyssal_magma_block", () -> new BlockItem(BlockInit.ABYSSAL_MAGMA_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> ABYSSAL_GEYSER = registerItem("abyssal_geyser", () -> new BlockItem(BlockInit.ABYSSAL_GEYSER.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item, Item> THERMABYSSLATE = registerItem("thermabysslate", () -> new BlockItem(BlockInit.THERMABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE = registerItem("polished_thermabysslate", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_SLAB = registerItem("polished_thermabysslate_slab", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_STAIRS = registerItem("polished_thermabysslate_stairs", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_WALL = registerItem("polished_thermabysslate_wall", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_BRICKS = registerItem("polished_thermabysslate_bricks", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_BRICK_SLAB = registerItem("polished_thermabysslate_brick_slab", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_BRICK_STAIRS = registerItem("polished_thermabysslate_brick_stairs", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_THERMABYSSLATE_BRICK_WALL = registerItem("polished_thermabysslate_brick_wall", () -> new BlockItem(BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_POLISHED_THERMABYSSLATE = registerItem("chiseled_polished_thermabysslate", () -> new BlockItem(BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> THERMABYSSAL_MAGMA_BLOCK = registerItem("thermabyssal_magma_block", () -> new BlockItem(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> THERMABYSSAL_GEYSER = registerItem("thermabyssal_geyser", () -> new BlockItem(BlockInit.THERMABYSSAL_GEYSER.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item, Item> CRYOBYSSLATE = registerItem("cryobysslate", () -> new BlockItem(BlockInit.CRYOBYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE = registerItem("polished_cryobysslate", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_SLAB = registerItem("polished_cryobysslate_slab", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_STAIRS = registerItem("polished_cryobysslate_stairs", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_WALL = registerItem("polished_cryobysslate_wall", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_BRICKS = registerItem("polished_cryobysslate_bricks", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_BRICK_SLAB = registerItem("polished_cryobysslate_brick_slab", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_BRICK_STAIRS = registerItem("polished_cryobysslate_brick_stairs", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_CRYOBYSSLATE_BRICK_WALL = registerItem("polished_cryobysslate_brick_wall", () -> new BlockItem(BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_POLISHED_CRYOBYSSLATE = registerItem("chiseled_polished_cryobysslate", () -> new BlockItem(BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CRYOBYSSAL_MAGMA_BLOCK = registerItem("cryobyssal_magma_block", () -> new BlockItem(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CRYOBYSSAL_GEYSER = registerItem("cryobyssal_geyser", () -> new BlockItem(BlockInit.CRYOBYSSAL_GEYSER.get(), new Item.Properties()));
+
     // mud
     public static final RegistryObject<Item, Item> NIGHTSHADE_MUD = registerItem("nightshade_mud", () -> new BlockItem(BlockInit.NIGHTSHADE_MUD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLOWING_NIGHTSHADE_MUD = registerItem("glowing_nightshade_mud", () -> new BlockItem(BlockInit.GLOWING_NIGHTSHADE_MUD.get(), new Item.Properties()));

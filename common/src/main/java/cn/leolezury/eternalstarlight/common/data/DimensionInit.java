@@ -59,13 +59,15 @@ public class DimensionInit {
                 SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), sand),
                 SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, 6, CaveSurface.FLOOR), sandstone)
         );
+        SurfaceRules.RuleSource abysslate = SurfaceRules.state(BlockInit.ABYSSLATE.get().defaultBlockState());
 
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
-                SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone),
+                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(BiomeInit.THE_ABYSS)), SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone)),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(BlockInit.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.DARK_SWAMP), makeSurface(BlockInit.FANTASY_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.CRYSTALLIZED_DESERT), desertRule),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.THE_ABYSS), abysslate),
                 makeSurface(BlockInit.NIGHTSHADE_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState())
         );
     }
@@ -121,6 +123,7 @@ public class DimensionInit {
                 biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT),
                 biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA),
+                biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS),
                 biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE)
         )), noiseSettingsHolderGetter.getOrThrow(STARLIGHT_NOISE_SETTINGS)));
         context.register(STARLIGHT_LEVEL_STEM, levelStem);

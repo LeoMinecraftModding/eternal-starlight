@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "eternal_starlight:polished_doomeden_bricks"
+      "item": "eternal_starlight:thermabysslate"
     }
   },
   "pattern": [
@@ -12,6 +12,6 @@
   ],
   "result": {
     "count": 4,
-    "item": "eternal_starlight:doomeden_bricks"
+    "item": "eternal_starlight:polished_thermabysslate"
   }
 }

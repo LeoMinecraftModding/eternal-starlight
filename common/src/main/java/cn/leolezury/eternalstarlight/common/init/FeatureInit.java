@@ -25,6 +25,7 @@ public class FeatureInit {
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_MUSHROOM = FEATURES.register("coral_mushroom", () -> new ESCoralMushroomFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_TREE = FEATURES.register("coral_tree", () -> new ESCoralTreeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> DEAD_LUNAR_TREE = FEATURES.register("dead_lunar_tree", () -> new DeadLunarTreeFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CURSED_GARDEN_EXTRA_HEIGHT = FEATURES.register("cursed_garden_extra_height", () -> new CursedGardenExtraHeightFeature(NoneFeatureConfiguration.CODEC));
     public static void loadClass() {}
 }

@@ -19,11 +19,14 @@ public abstract class BubbleColumnBlockMixin {
         if (state.is(BlockInit.THERMAL_SPRINGSTONE.get())) {
             cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(false)));
         }
+        if (state.is(BlockInit.ABYSSAL_MAGMA_BLOCK.get()) || state.is(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get()) || state.is(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get())) {
+            cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(true)));
+        }
     }
 
     @Inject(method = "canSurvive", at = @At(value = "RETURN"), cancellable = true)
     private void es_canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (levelReader.getBlockState(pos.below()).is(BlockInit.THERMAL_SPRINGSTONE.get())) {
+        if (levelReader.getBlockState(pos.below()).is(BlockInit.THERMAL_SPRINGSTONE.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.ABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get())) {
             cir.setReturnValue(true);
         }
     }

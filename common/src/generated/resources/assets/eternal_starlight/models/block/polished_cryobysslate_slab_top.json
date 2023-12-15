@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/polished_cryobysslate",
+    "side": "eternal_starlight:block/polished_cryobysslate",
+    "top": "eternal_starlight:block/polished_cryobysslate"
+  }
+}

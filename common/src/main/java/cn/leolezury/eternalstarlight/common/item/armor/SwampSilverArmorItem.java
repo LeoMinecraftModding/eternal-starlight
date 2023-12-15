@@ -7,6 +7,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,9 +21,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
     private static final EnumMap<Type, UUID> ARMOR_MODIFIER_UUID_PER_TYPE = Util.make(new EnumMap(Type.class), (enumMap) -> {
@@ -55,9 +54,15 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 
     @Override
     public void tick(Level level, LivingEntity livingEntity, ItemStack armor) {
+        List<MobEffect> effectsToRemove = new ArrayList<>();
         for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
             if (!effectInstance.getEffect().isBeneficial()) {
-                livingEntity.removeEffect(effectInstance.getEffect());
+                effectsToRemove.add(effectInstance.getEffect());
+            }
+        }
+        for (MobEffect effect : effectsToRemove) {
+            if (livingEntity.hasEffect(effect)) {
+                livingEntity.removeEffect(effect);
             }
         }
     }

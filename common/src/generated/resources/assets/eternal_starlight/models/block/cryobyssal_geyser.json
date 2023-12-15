@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/cryobysslate",
+    "side": "eternal_starlight:block/cryobysslate",
+    "top": "eternal_starlight:block/cryobyssal_geyser"
+  }
+}

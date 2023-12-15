@@ -39,6 +39,10 @@ public class ESWorldGenProvider extends AbstractWorldGenProvider {
         for (int i = 0; i < 2; i++) {
             area.transformBiomes(BiomeTransformers.ADD_RIVER_TRANSITION, 0);
         }
+        area.transformBiomes(BiomeTransformers.ADD_THE_ABYSS, 0);
+        for (int i = 0; i < 3; i++) {
+            area.transformBiomes(BiomeTransformers.ADD_THE_ABYSS_TRANSITION, 0);
+        }
         area.transformBiomes(BiomeTransformers.DUPLICATE, 0);
         area.transformBiomes(BiomeTransformers.DUPLICATE, 0);
     }

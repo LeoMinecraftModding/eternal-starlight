@@ -12,6 +12,8 @@ public class BiomeTransformers {
     public static final DataTransformer ADD_BEACHES = new AddBeachesTransformer(BiomeDataRegistry.WARM_SHORE);
     public static final DataTransformer ADD_RIVER = new AddRiverTransformer(BiomeDataRegistry.SHIMMER_RIVER);
     public static final DataTransformer ADD_RIVER_TRANSITION = new AddTransitionBiomeTransformer(BiomeDataRegistry.SHIMMER_RIVER, BiomeDataRegistry.SHIMMER_RIVER_TRANSITION);
+    public static final DataTransformer ADD_THE_ABYSS = new AddTheAbyssTransformer(BiomeDataRegistry.THE_ABYSS);
+    public static final DataTransformer ADD_THE_ABYSS_TRANSITION = new AddTransitionBiomeTransformer(BiomeDataRegistry.THE_ABYSS, BiomeDataRegistry.THE_ABYSS_TRANSITION);
 
     public static final DataTransformer RANDOMIZE = new RandomizeBiomesTransformer();
     public static final DataTransformer ASSIMILATE = new AssimilateBiomesTransformer(false);

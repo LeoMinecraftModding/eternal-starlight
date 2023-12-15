@@ -101,6 +101,27 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stoneSet(BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE_WALL.get());
         simpleBlock(BlockInit.GLOWING_VOIDSTONE.get());
 
+        simpleBlock(BlockInit.ABYSSLATE.get());
+        simpleBlock(BlockInit.CHISELED_POLISHED_ABYSSLATE.get());
+        stoneSet(BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_SLAB.get(), BlockInit.POLISHED_ABYSSLATE_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE_WALL.get());
+        stoneSet(BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get());
+        simpleBlock(BlockInit.ABYSSAL_MAGMA_BLOCK.get());
+        geyser(BlockInit.ABYSSLATE.get(), BlockInit.ABYSSAL_GEYSER.get());
+
+        simpleBlock(BlockInit.THERMABYSSLATE.get());
+        simpleBlock(BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get());
+        stoneSet(BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE_WALL.get());
+        stoneSet(BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get());
+        simpleBlock(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get());
+        geyser(BlockInit.THERMABYSSLATE.get(), BlockInit.THERMABYSSAL_GEYSER.get());
+
+        simpleBlock(BlockInit.CRYOBYSSLATE.get());
+        simpleBlock(BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get());
+        stoneSet(BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE_WALL.get());
+        stoneSet(BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
+        simpleBlock(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get());
+        geyser(BlockInit.CRYOBYSSLATE.get(), BlockInit.CRYOBYSSAL_GEYSER.get());
+
         simpleBlock(BlockInit.NIGHTSHADE_MUD.get());
         simpleBlock(BlockInit.GLOWING_NIGHTSHADE_MUD.get());
         simpleBlock(BlockInit.PACKED_NIGHTSHADE_MUD.get());
@@ -280,6 +301,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     private void spawner(Block block) {
         simpleBlock(block, models().cubeAll(name(block), blockTexture(Blocks.SPAWNER)).renderType(CUTOUT));
+    }
+
+    private void geyser(Block stone, Block geyser) {
+        ModelFile modelFile = models().cubeBottomTop(name(geyser), blockTexture(stone), blockTexture(stone), blockTexture(geyser));
+        simpleBlock(geyser, modelFile);
     }
 
     private void mushroomBlock(Block block) {

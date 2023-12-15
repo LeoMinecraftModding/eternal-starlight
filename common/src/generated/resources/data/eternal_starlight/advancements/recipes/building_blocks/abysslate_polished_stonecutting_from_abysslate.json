@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_doomeden_bricks": {
+    "has_eternal_starlight:abysslate": {
       "conditions": {
         "items": [
           {
             "items": [
-              "eternal_starlight:polished_doomeden_bricks"
+              "eternal_starlight:abysslate"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:doomeden_bricks"
+        "recipe": "eternal_starlight:abysslate_polished_stonecutting_from_abysslate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_polished_doomeden_bricks"
+      "has_eternal_starlight:abysslate"
     ]
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:doomeden_bricks"
+      "eternal_starlight:abysslate_polished_stonecutting_from_abysslate"
     ]
   }
 }

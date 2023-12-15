@@ -32,7 +32,9 @@ public class BiomeDataRegistry {
     public static final int CRYSTALLIZED_DESERT = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "crystallized_desert"), 60, 10).withTemperatures(BiomeData.Temperature.HOT, BiomeData.Temperature.HOT_EXTREME).hasRivers(false).build());
     public static final int SHIMMER_RIVER = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river"), 30, 5).build());
     public static final int SHIMMER_RIVER_TRANSITION = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river_transition"), new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_river"), 40, 3).build());
-    public static final int STARLIT_SEA = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "starlit_sea"), 40, 5).fullRangeTemperatures().isOcean(true).build());
+    public static final int STARLIT_SEA = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "starlit_sea"), 30, 5).fullRangeTemperatures().isOcean(true).build());
+    public static final int THE_ABYSS = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "the_abyss"), -55, 5).fullRangeTemperatures().isOcean(true).build());
+    public static final int THE_ABYSS_TRANSITION = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "the_abyss_transition"), new ResourceLocation(EternalStarlight.MOD_ID, "the_abyss"), -20, 3).isOcean(true).build());
     public static final int WARM_SHORE = register(new BiomeData.Builder(new ResourceLocation(EternalStarlight.MOD_ID, "warm_shore"), 60, 5).build());
 
     private static int register(BiomeData data) {

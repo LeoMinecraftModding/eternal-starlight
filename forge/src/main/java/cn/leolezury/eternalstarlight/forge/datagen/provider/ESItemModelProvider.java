@@ -184,6 +184,45 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
         wall(ItemInit.NIGHTSHADE_MUD_BRICK_WALL.get(), ItemInit.NIGHTSHADE_MUD_BRICKS.get());
 
+        basicBlockItem(ItemInit.ABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE_STAIRS.get());
+        wall(ItemInit.POLISHED_ABYSSLATE_WALL.get(), ItemInit.POLISHED_ABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get());
+        wall(ItemInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), ItemInit.POLISHED_ABYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.CHISELED_POLISHED_ABYSSLATE.get());
+        basicBlockItem(ItemInit.ABYSSAL_MAGMA_BLOCK.get());
+        basicBlockItem(ItemInit.ABYSSAL_GEYSER.get());
+
+        basicBlockItem(ItemInit.THERMABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE_STAIRS.get());
+        wall(ItemInit.POLISHED_THERMABYSSLATE_WALL.get(), ItemInit.POLISHED_THERMABYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get());
+        wall(ItemInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), ItemInit.POLISHED_THERMABYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.CHISELED_POLISHED_THERMABYSSLATE.get());
+        basicBlockItem(ItemInit.THERMABYSSAL_MAGMA_BLOCK.get());
+        basicBlockItem(ItemInit.THERMABYSSAL_GEYSER.get());
+
+        basicBlockItem(ItemInit.CRYOBYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE_STAIRS.get());
+        wall(ItemInit.POLISHED_CRYOBYSSLATE_WALL.get(), ItemInit.POLISHED_CRYOBYSSLATE.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get());
+        wall(ItemInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), ItemInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
+        basicBlockItem(ItemInit.CHISELED_POLISHED_CRYOBYSSLATE.get());
+        basicBlockItem(ItemInit.CRYOBYSSAL_MAGMA_BLOCK.get());
+        basicBlockItem(ItemInit.CRYOBYSSAL_GEYSER.get());
+
         basicBlockItem(ItemInit.TWILIGHT_SAND.get());
         basicBlockItem(ItemInit.TWILIGHT_SANDSTONE.get());
         basicBlockItem(ItemInit.TWILIGHT_SANDSTONE_SLAB.get());
