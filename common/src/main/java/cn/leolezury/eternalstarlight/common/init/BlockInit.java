@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.init;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.*;
-import cn.leolezury.eternalstarlight.common.block.entity.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.data.ConfiguredFeatureInit;
 import cn.leolezury.eternalstarlight.common.data.PlacedFeatureInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -196,6 +195,46 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_ROOTS = BLOCKS.register("starlight_mangrove_roots", () -> new MangroveRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_ROOTS)));
     public static final RegistryObject<Block, Block> MUDDY_STARLIGHT_MANGROVE_ROOTS = BLOCKS.register("muddy_starlight_mangrove_roots", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUDDY_MANGROVE_ROOTS)));
 
+    // scarlet wood
+    public static final RegistryObject<Block, Block> SCARLET_LEAVES = BLOCKS.register("scarlet_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_LOG = BLOCKS.register("scarlet_log",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_WOOD = BLOCKS.register("scarlet_wood",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_PLANKS = BLOCKS.register("scarlet_planks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_SCARLET_LOG = BLOCKS.register("stripped_scarlet_log",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> STRIPPED_SCARLET_WOOD = BLOCKS.register("stripped_scarlet_wood",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, DoorBlock> SCARLET_DOOR = BLOCKS.register("scarlet_door",
+            () -> new DoorBlock(ESWoodTypes.SCARLET_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, TrapDoorBlock> SCARLET_TRAPDOOR = BLOCKS.register("scarlet_trapdoor",
+            () -> new TrapDoorBlock(ESWoodTypes.SCARLET_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, PressurePlateBlock> SCARLET_PRESSURE_PLATE = BLOCKS.register("scarlet_pressure_plate",
+            () -> new PressurePlateBlock(ESWoodTypes.SCARLET_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, ButtonBlock> SCARLET_BUTTON = BLOCKS.register("scarlet_button",
+            () -> new ButtonBlock(ESWoodTypes.SCARLET_SET, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, FenceBlock> SCARLET_FENCE = BLOCKS.register("scarlet_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, FenceGateBlock> SCARLET_FENCE_GATE = BLOCKS.register("scarlet_fence_gate",
+            () -> new FenceGateBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, SlabBlock> SCARLET_SLAB = BLOCKS.register("scarlet_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, StairBlock> SCARLET_STAIRS = BLOCKS.register("scarlet_stairs",
+            () -> new StairBlock(SCARLET_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_SIGN = BLOCKS.register("scarlet_sign",
+            () -> new ESStandingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_WALL_SIGN = BLOCKS.register("scarlet_wall_sign",
+            () -> new ESWallSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_HANGING_SIGN = BLOCKS.register("scarlet_hanging_sign",
+            () -> new ESCeilingHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_WALL_HANGING_SIGN = BLOCKS.register("scarlet_wall_hanging_sign",
+            () -> new ESWallHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_SAPLING = BLOCKS.register("scarlet_sapling", () -> new SaplingBlock(new TreeGrower("scarlet", Optional.empty(), Optional.of(ConfiguredFeatureInit.SCARLET), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> POTTED_SCARLET_SAPLING = BLOCKS.register("potted_scarlet_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SCARLET_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
+
     // grimstone
     public static final RegistryObject<Block, Block> GRIMSTONE = BLOCKS.register("grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
     public static final RegistryObject<Block, Block> GRIMSTONE_BRICKS = BLOCKS.register("grimstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
@@ -379,6 +418,27 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> GREEN_FANTAFERN = BLOCKS.register("green_fantafern", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> FANTAGRASS = BLOCKS.register("fantagrass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> GREEN_FANTAGRASS = BLOCKS.register("green_fantagrass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
+
+    // scarlet forest grass
+    public static final RegistryObject<Block, Block> ORANGE_SCARLET_BUD = BLOCKS.register("orange_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_ORANGE)) {
+        @Override
+        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
+            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
+        }
+    });
+    public static final RegistryObject<Block, Block> PURPLE_SCARLET_BUD = BLOCKS.register("purple_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)) {
+        @Override
+        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
+            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
+        }
+    });
+    public static final RegistryObject<Block, Block> RED_SCARLET_BUD = BLOCKS.register("red_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_RED)) {
+        @Override
+        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
+            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
+        }
+    });
+    public static final RegistryObject<Block, Block> SCARLET_GRASS = BLOCKS.register("scarlet_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_RED)));
 
     // desert grass
     public static final RegistryObject<Block, Block> DEAD_LUNAR_BUSH = BLOCKS.register("dead_lunar_bush", () -> new DeadBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH)));

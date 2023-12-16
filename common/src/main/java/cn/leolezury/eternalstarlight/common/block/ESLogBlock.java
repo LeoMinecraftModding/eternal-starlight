@@ -30,6 +30,8 @@ public class ESLogBlock extends RotatedPillarBlock {
                 stripped = BlockInit.STRIPPED_NORTHLAND_LOG.get();
             } else if (blockState.is(BlockInit.STARLIGHT_MANGROVE_LOG.get())) {
                 stripped = BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get();
+            } else if (blockState.is(BlockInit.SCARLET_LOG.get())) {
+                stripped = BlockInit.STRIPPED_SCARLET_LOG.get();
             } else {
                 return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
             }

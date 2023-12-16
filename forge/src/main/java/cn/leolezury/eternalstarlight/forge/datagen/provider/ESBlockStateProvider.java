@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -88,6 +87,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
         pottedPlant(BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
         mangroveRoots(BlockInit.STARLIGHT_MANGROVE_ROOTS.get());
         mangroveRoots(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+
+        leaves(BlockInit.SCARLET_LEAVES.get());
+        woodSet(BlockInit.SCARLET_LOG.get(), BlockInit.SCARLET_WOOD.get(), BlockInit.SCARLET_PLANKS.get(), BlockInit.STRIPPED_SCARLET_LOG.get(), BlockInit.STRIPPED_SCARLET_WOOD.get(), BlockInit.SCARLET_DOOR.get(), false, BlockInit.SCARLET_TRAPDOOR.get(), false, BlockInit.SCARLET_PRESSURE_PLATE.get(), BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_FENCE.get(), BlockInit.SCARLET_FENCE_GATE.get(), BlockInit.SCARLET_SLAB.get(), BlockInit.SCARLET_STAIRS.get(), BlockInit.SCARLET_SIGN.get(), BlockInit.SCARLET_WALL_SIGN.get(), BlockInit.SCARLET_HANGING_SIGN.get(), BlockInit.SCARLET_WALL_HANGING_SIGN.get());
+        crossBlock(BlockInit.SCARLET_SAPLING.get());
+        pottedPlant(BlockInit.POTTED_SCARLET_SAPLING.get(), blockTexture(BlockInit.SCARLET_SAPLING.get()));
 
         // stones
         simpleBlock(BlockInit.GRIMSTONE.get());
@@ -182,6 +186,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.GREEN_FANTAFERN.get());
         crossBlock(BlockInit.FANTAGRASS.get());
         crossBlock(BlockInit.GREEN_FANTAGRASS.get());
+
+        crossBlock(BlockInit.ORANGE_SCARLET_BUD.get());
+        crossBlock(BlockInit.PURPLE_SCARLET_BUD.get());
+        crossBlock(BlockInit.RED_SCARLET_BUD.get());
+        crossBlock(BlockInit.SCARLET_GRASS.get());
 
         crossBlock(BlockInit.DEAD_LUNAR_BUSH.get());
 

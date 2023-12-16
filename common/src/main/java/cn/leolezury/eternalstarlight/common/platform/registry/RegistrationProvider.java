@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.platform.registry;
 
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 

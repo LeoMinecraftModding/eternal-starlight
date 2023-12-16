@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "eternal_starlight:scarlet_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "eternal_starlight:scarlet_planks"
+  }
+}

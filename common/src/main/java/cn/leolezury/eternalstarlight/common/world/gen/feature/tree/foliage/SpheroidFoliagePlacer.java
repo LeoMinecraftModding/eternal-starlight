@@ -25,7 +25,7 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
         super(horizontalRadius, yOffset);
     }
 
-
+    @Override
     protected FoliagePlacerType<SpheroidFoliagePlacer> type() {
         return PlacerInit.FOLIAGE_SPHEROID.get();
     }
@@ -55,16 +55,18 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
         }
     }
 
+    @Override
     protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration baseTreeFeatureConfig, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
         BlockPos center = foliage.pos().above(offset);
         placeSpheroidFoliage(levelReader, setter, VALID_TREE_POS, random, center, foliage.radiusOffset() + this.radius.sample(random), foliage.radiusOffset() + 1.5F + random.nextInt(2), baseTreeFeatureConfig.foliageProvider);
     }
 
+    @Override
     public int foliageHeight(RandomSource random, int i, TreeConfiguration treeConfiguration) {
         return 0;
     }
 
-
+    @Override
     protected boolean shouldSkipLocation(RandomSource random, int i0, int i1, int i2, int i3, boolean bool) {
         return false;
     }

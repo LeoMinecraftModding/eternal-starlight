@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;

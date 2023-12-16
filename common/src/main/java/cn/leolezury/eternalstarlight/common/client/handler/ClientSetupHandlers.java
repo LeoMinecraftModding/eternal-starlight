@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.entity.ESWoodTypes;
+import cn.leolezury.eternalstarlight.common.block.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.client.model.*;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
@@ -81,7 +81,8 @@ public class ClientSetupHandlers {
             BlockInit.NORTHLAND_LEAVES,
             BlockInit.STARLIGHT_MANGROVE_LEAVES,
             BlockInit.STARLIGHT_MANGROVE_ROOTS,
-            BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS
+            BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS,
+            BlockInit.SCARLET_LEAVES
     );
 
     public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
@@ -119,6 +120,10 @@ public class ClientSetupHandlers {
             BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING,
             BlockInit.STARLIGHT_MANGROVE_TRAPDOOR,
             BlockInit.STARLIGHT_MANGROVE_DOOR,
+            BlockInit.SCARLET_SAPLING,
+            BlockInit.POTTED_SCARLET_SAPLING,
+            BlockInit.SCARLET_TRAPDOOR,
+            BlockInit.SCARLET_DOOR,
             BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.DOOMED_TORCH,
@@ -157,6 +162,10 @@ public class ClientSetupHandlers {
             BlockInit.GREEN_FANTAFERN,
             BlockInit.FANTAGRASS,
             BlockInit.GREEN_FANTAGRASS,
+            BlockInit.ORANGE_SCARLET_BUD,
+            BlockInit.PURPLE_SCARLET_BUD,
+            BlockInit.RED_SCARLET_BUD,
+            BlockInit.SCARLET_GRASS,
             BlockInit.DEAD_LUNAR_BUSH,
             BlockInit.SWAMP_ROSE,
             BlockInit.STARLIGHT_GOLEM_SPAWNER,
@@ -317,6 +326,8 @@ public class ClientSetupHandlers {
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.NORTHLAND), ChestBoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), BoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.SCARLET), BoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ChestBoatModel::createBodyModel);
         strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
         strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
         strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));

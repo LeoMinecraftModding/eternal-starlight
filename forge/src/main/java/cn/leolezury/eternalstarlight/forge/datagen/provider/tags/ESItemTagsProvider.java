@@ -24,6 +24,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
         copy(ESTags.Blocks.NORTHLAND_LOGS, ESTags.Items.NORTHLAND_LOGS);
         copy(ESTags.Blocks.STARLIGHT_MANGROVE_LOGS, ESTags.Items.STARLIGHT_MANGROVE_LOGS);
+        copy(ESTags.Blocks.SCARLET_LOGS, ESTags.Items.SCARLET_LOGS);
         tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS).add(
                 ItemInit.THERMAL_SPRINGSTONE_SWORD.get(),
                 ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get(),
@@ -60,12 +61,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.BOATS).add(
                 ItemInit.LUNAR_BOAT.get(),
                 ItemInit.NORTHLAND_BOAT.get(),
-                ItemInit.STARLIGHT_MANGROVE_BOAT.get()
+                ItemInit.STARLIGHT_MANGROVE_BOAT.get(),
+                ItemInit.SCARLET_BOAT.get()
         );
         tag(ItemTags.CHEST_BOATS).add(
                 ItemInit.LUNAR_CHEST_BOAT.get(),
                 ItemInit.NORTHLAND_CHEST_BOAT.get(),
-                ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get()
+                ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(),
+                ItemInit.SCARLET_CHEST_BOAT.get()
         );
         tag(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
                 ItemInit.THERMAL_SPRINGSTONE_HELMET.get(),

@@ -17,6 +17,7 @@ public class ESTags {
         public static final TagKey<Item> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
+        public static final TagKey<Item> SCARLET_LOGS = create("scarlet_logs");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
         // astral sorcery system stuff
@@ -38,6 +39,7 @@ public class ESTags {
         public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
+        public static final TagKey<Block> SCARLET_LOGS = create("scarlet_logs");
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = create("portal_frame_blocks");
         public static final TagKey<Block> BASE_STONE_STARLIGHT = create("base_stone_starlight");
         public static final TagKey<Block> CORAL_PLANTS = create("coral_plants");

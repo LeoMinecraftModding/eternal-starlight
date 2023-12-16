@@ -12,7 +12,7 @@ public class ESWorldGenProvider extends AbstractWorldGenProvider {
 
     @Override
     public int[] getLandBiomes() {
-        return new int[]{BiomeDataRegistry.STARLIGHT_FOREST, BiomeDataRegistry.STARLIGHT_DENSE_FOREST, BiomeDataRegistry.DARK_SWAMP, BiomeDataRegistry.STARLIGHT_PERMAFROST_FOREST, BiomeDataRegistry.CRYSTALLIZED_DESERT};
+        return new int[]{BiomeDataRegistry.STARLIGHT_FOREST, BiomeDataRegistry.STARLIGHT_DENSE_FOREST, BiomeDataRegistry.DARK_SWAMP, BiomeDataRegistry.STARLIGHT_PERMAFROST_FOREST, BiomeDataRegistry.SCARLET_FOREST, BiomeDataRegistry.CRYSTALLIZED_DESERT};
     }
 
     @Override

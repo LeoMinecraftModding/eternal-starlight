@@ -13,9 +13,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -119,6 +117,21 @@ public class ESRecipeProvider extends RecipeProvider {
         addSign(recipeOutput, "northland", ItemInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_PLANKS.get());
         addHangingSign(recipeOutput, "northland", ItemInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
         addBoat(recipeOutput, ItemInit.NORTHLAND_BOAT.get(), ItemInit.NORTHLAND_CHEST_BOAT.get(), BlockInit.NORTHLAND_PLANKS.get());
+
+        addButton(recipeOutput, "scarlet", BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_PLANKS.get());
+        addDoor(recipeOutput, "scarlet", BlockInit.SCARLET_DOOR.get(), BlockInit.SCARLET_PLANKS.get());
+        addFence(recipeOutput, "scarlet", BlockInit.SCARLET_FENCE.get(), BlockInit.SCARLET_PLANKS.get());
+        addFenceGate(recipeOutput, "scarlet", BlockInit.SCARLET_FENCE_GATE.get(), BlockInit.SCARLET_PLANKS.get());
+        addPlanks(recipeOutput, "scarlet", BlockInit.SCARLET_PLANKS.get(), ESTags.Items.SCARLET_LOGS);
+        addWood(recipeOutput, "scarlet", BlockInit.SCARLET_WOOD.get(), BlockInit.SCARLET_LOG.get());
+        addStrippedWood(recipeOutput, "scarlet", BlockInit.STRIPPED_SCARLET_WOOD.get(), BlockInit.STRIPPED_SCARLET_LOG.get());
+        addPressurePlate(recipeOutput, "scarlet", BlockInit.SCARLET_PRESSURE_PLATE.get(), BlockInit.SCARLET_PLANKS.get());
+        addSlab(recipeOutput, "scarlet", BlockInit.SCARLET_SLAB.get(), BlockInit.SCARLET_PLANKS.get());
+        addStairs(recipeOutput, "scarlet", BlockInit.SCARLET_STAIRS.get(), BlockInit.SCARLET_PLANKS.get());
+        addTrapdoor(recipeOutput, "scarlet", BlockInit.SCARLET_TRAPDOOR.get(), BlockInit.SCARLET_PLANKS.get());
+        addSign(recipeOutput, "scarlet", ItemInit.SCARLET_SIGN.get(), BlockInit.SCARLET_PLANKS.get());
+        addHangingSign(recipeOutput, "scarlet", ItemInit.SCARLET_HANGING_SIGN.get(), BlockInit.STRIPPED_SCARLET_LOG.get());
+        addBoat(recipeOutput, ItemInit.SCARLET_BOAT.get(), ItemInit.SCARLET_CHEST_BOAT.get(), BlockInit.SCARLET_PLANKS.get());
 
         addButton(recipeOutput, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
         addDoor(recipeOutput, "starlight_mangrove", BlockInit.STARLIGHT_MANGROVE_DOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());

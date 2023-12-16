@@ -1,0 +1,103 @@
+{
+  "carvers": {
+    "air": [
+      "eternal_starlight:caves",
+      "eternal_starlight:caves_extra"
+    ]
+  },
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 10313569,
+    "foliage_color": 10313569,
+    "grass_color": 10313569,
+    "music": {
+      "max_delay": 12000,
+      "min_delay": 1200,
+      "replace_current_music": true,
+      "sound": "eternal_starlight:music.biome.starlight_forest"
+    },
+    "particle": {
+      "options": {
+        "type": "eternal_starlight:starlight"
+      },
+      "probability": 0.001
+    },
+    "sky_color": 10313569,
+    "water_color": 6187416,
+    "water_fog_color": 6187416
+  },
+  "features": [
+    [],
+    [
+      "eternal_starlight:hot_spring"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "eternal_starlight:stone_ore",
+      "eternal_starlight:deepslate_ore",
+      "eternal_starlight:nightshade_dirt_ore",
+      "eternal_starlight:glowing_voidstone_ore"
+    ],
+    [
+      "eternal_starlight:starlight_crystal"
+    ],
+    [],
+    [
+      "minecraft:patch_grass_forest",
+      "minecraft:patch_tall_grass",
+      "minecraft:patch_grass_badlands",
+      "minecraft:patch_grass_savanna",
+      "eternal_starlight:cave_vine",
+      "eternal_starlight:common_flower",
+      "eternal_starlight:scarlet_forest_grass",
+      "eternal_starlight:scarlet_forest",
+      "eternal_starlight:fallen_scarlet_log"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "eternal_starlight:dryad",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "eternal_starlight:nightshade_spider",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "eternal_starlight:lonestar_skeleton",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

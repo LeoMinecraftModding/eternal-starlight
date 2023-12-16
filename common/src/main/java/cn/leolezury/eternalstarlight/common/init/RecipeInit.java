@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class RecipeInit {

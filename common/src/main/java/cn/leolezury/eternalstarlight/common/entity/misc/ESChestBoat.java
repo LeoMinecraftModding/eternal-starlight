@@ -32,16 +32,16 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
     private ResourceLocation lootTable;
     private long lootTableSeed;
 
-    public ESChestBoat(EntityType<? extends Boat> p_219869_, Level p_219870_) {
-        super(p_219869_, p_219870_);
+    public ESChestBoat(EntityType<? extends Boat> type, Level level) {
+        super(type, level);
     }
 
-    public ESChestBoat(Level p_219872_, double p_219873_, double p_219874_, double p_219875_) {
-        this(EntityInit.CHEST_BOAT.get(), p_219872_);
-        this.setPos(p_219873_, p_219874_, p_219875_);
-        this.xo = p_219873_;
-        this.yo = p_219874_;
-        this.zo = p_219875_;
+    public ESChestBoat(Level level, double x, double y, double z) {
+        this(EntityInit.CHEST_BOAT.get(), level);
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 
     protected float getSinglePassengerXOffset() {
@@ -52,48 +52,48 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
         return 1;
     }
 
-    protected void addAdditionalSaveData(CompoundTag p_219908_) {
-        super.addAdditionalSaveData(p_219908_);
-        this.addChestVehicleSaveData(p_219908_);
+    protected void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.addChestVehicleSaveData(tag);
     }
 
-    protected void readAdditionalSaveData(CompoundTag p_219901_) {
-        super.readAdditionalSaveData(p_219901_);
-        this.readChestVehicleSaveData(p_219901_);
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.readChestVehicleSaveData(tag);
     }
 
-    public void destroy(DamageSource p_219892_) {
-        super.destroy(p_219892_);
-        this.chestVehicleDestroyed(p_219892_, this.level(), this);
+    public void destroy(DamageSource source) {
+        super.destroy(source);
+        this.chestVehicleDestroyed(source, this.level(), this);
     }
 
-    public void remove(Entity.RemovalReason p_219894_) {
-        if (!this.level().isClientSide && p_219894_.shouldDestroy()) {
+    public void remove(Entity.RemovalReason reason) {
+        if (!this.level().isClientSide && reason.shouldDestroy()) {
             Containers.dropContents(this.level(), this, this);
         }
 
-        super.remove(p_219894_);
+        super.remove(reason);
     }
 
-    public InteractionResult interact(Player p_219898_, InteractionHand p_219899_) {
-        if (this.canAddPassenger(p_219898_) && !p_219898_.isSecondaryUseActive()) {
-            return super.interact(p_219898_, p_219899_);
+    public InteractionResult interact(Player player, InteractionHand hand) {
+        if (this.canAddPassenger(player) && !player.isSecondaryUseActive()) {
+            return super.interact(player, hand);
         } else {
-            InteractionResult interactionresult = this.interactWithContainerVehicle(p_219898_);
+            InteractionResult interactionresult = this.interactWithContainerVehicle(player);
             if (interactionresult.consumesAction()) {
-                this.gameEvent(GameEvent.CONTAINER_OPEN, p_219898_);
-                PiglinAi.angerNearbyPiglins(p_219898_, true);
+                this.gameEvent(GameEvent.CONTAINER_OPEN, player);
+                PiglinAi.angerNearbyPiglins(player, true);
             }
 
             return interactionresult;
         }
     }
 
-    public void openCustomInventoryScreen(Player p_219906_) {
-        p_219906_.openMenu(this);
-        if (!p_219906_.level().isClientSide) {
-            this.gameEvent(GameEvent.CONTAINER_OPEN, p_219906_);
-            PiglinAi.angerNearbyPiglins(p_219906_, true);
+    public void openCustomInventoryScreen(Player player) {
+        player.openMenu(this);
+        if (!player.level().isClientSide) {
+            this.gameEvent(GameEvent.CONTAINER_OPEN, player);
+            PiglinAi.angerNearbyPiglins(player, true);
         }
 
     }
@@ -103,6 +103,7 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
             case LUNAR -> ItemInit.LUNAR_CHEST_BOAT.get();
             case NORTHLAND -> ItemInit.NORTHLAND_CHEST_BOAT.get();
             case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get();
+            case SCARLET -> ItemInit.SCARLET_CHEST_BOAT.get();
         };
     }
 

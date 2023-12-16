@@ -96,6 +96,26 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.NORTHLAND_BOAT.get());
         basicItem(ItemInit.NORTHLAND_CHEST_BOAT.get());
 
+        basicItemWithBlockTexture(ItemInit.SCARLET_SAPLING.get());
+        basicBlockItem(ItemInit.SCARLET_LEAVES.get());
+        basicBlockItem(ItemInit.SCARLET_LOG.get());
+        basicBlockItem(ItemInit.SCARLET_WOOD.get());
+        basicBlockItem(ItemInit.SCARLET_PLANKS.get());
+        basicBlockItem(ItemInit.STRIPPED_SCARLET_LOG.get());
+        basicBlockItem(ItemInit.STRIPPED_SCARLET_WOOD.get());
+        basicItem(ItemInit.SCARLET_DOOR.get());
+        trapdoor(ItemInit.SCARLET_TRAPDOOR.get());
+        basicBlockItem(ItemInit.SCARLET_PRESSURE_PLATE.get());
+        button(ItemInit.SCARLET_BUTTON.get(), ItemInit.SCARLET_PLANKS.get());
+        fence(ItemInit.SCARLET_FENCE.get(), ItemInit.SCARLET_PLANKS.get());
+        basicBlockItem(ItemInit.SCARLET_FENCE_GATE.get());
+        basicBlockItem(ItemInit.SCARLET_SLAB.get());
+        basicBlockItem(ItemInit.SCARLET_STAIRS.get());
+        basicItem(ItemInit.SCARLET_SIGN.get());
+        basicItem(ItemInit.SCARLET_HANGING_SIGN.get());
+        basicItem(ItemInit.SCARLET_BOAT.get());
+        basicItem(ItemInit.SCARLET_CHEST_BOAT.get());
+
         basicItemWithBlockTexture(ItemInit.STARLIGHT_MANGROVE_SAPLING.get());
         basicBlockItem(ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
         basicBlockItem(ItemInit.STARLIGHT_MANGROVE_LOG.get());
@@ -146,6 +166,11 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.GREEN_FANTAFERN.get());
         basicItemWithBlockTexture(ItemInit.FANTAGRASS.get());
         basicItemWithBlockTexture(ItemInit.GREEN_FANTAGRASS.get());
+
+        basicItemWithBlockTexture(ItemInit.ORANGE_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.PURPLE_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.RED_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.SCARLET_GRASS.get());
 
         basicItemWithBlockTexture(ItemInit.DEAD_LUNAR_BUSH.get());
 

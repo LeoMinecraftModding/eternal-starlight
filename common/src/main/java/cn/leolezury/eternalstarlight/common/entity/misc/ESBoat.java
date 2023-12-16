@@ -42,6 +42,7 @@ public class ESBoat extends Boat {
             case LUNAR -> ItemInit.LUNAR_BOAT.get();
             case NORTHLAND -> ItemInit.NORTHLAND_BOAT.get();
             case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_BOAT.get();
+            case SCARLET -> ItemInit.SCARLET_BOAT.get();
         };
     }
 
@@ -77,7 +78,7 @@ public class ESBoat extends Boat {
         LUNAR(BlockInit.LUNAR_PLANKS.get(), "lunar"),
         NORTHLAND(BlockInit.NORTHLAND_PLANKS.get(), "northland"),
         STARLIGHT_MANGROVE(BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
-        ;
+        SCARLET(BlockInit.SCARLET_PLANKS.get(), "scarlet");
 
         private final String name;
         private final Block block;

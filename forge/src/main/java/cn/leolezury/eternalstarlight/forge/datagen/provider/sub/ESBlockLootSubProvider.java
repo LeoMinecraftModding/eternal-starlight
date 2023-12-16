@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import com.mojang.logging.LogUtils;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,8 +13,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -28,7 +25,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -150,6 +146,27 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropPottedContents(BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get());
         dropSelf(BlockInit.STARLIGHT_MANGROVE_ROOTS.get());
         dropSelf(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+
+        add(BlockInit.SCARLET_LEAVES.get(), (block) -> this.createLeavesDrops(block, BlockInit.SCARLET_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        dropSelf(BlockInit.SCARLET_LOG.get());
+        dropSelf(BlockInit.SCARLET_WOOD.get());
+        dropSelf(BlockInit.SCARLET_PLANKS.get());
+        dropSelf(BlockInit.STRIPPED_SCARLET_LOG.get());
+        dropSelf(BlockInit.STRIPPED_SCARLET_WOOD.get());
+        add(BlockInit.SCARLET_DOOR.get(), this::createDoorTable);
+        dropSelf(BlockInit.SCARLET_TRAPDOOR.get());
+        dropSelf(BlockInit.SCARLET_PRESSURE_PLATE.get());
+        dropSelf(BlockInit.SCARLET_BUTTON.get());
+        dropSelf(BlockInit.SCARLET_FENCE.get());
+        dropSelf(BlockInit.SCARLET_FENCE_GATE.get());
+        add(BlockInit.SCARLET_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.SCARLET_STAIRS.get());
+        dropSelf(BlockInit.SCARLET_SIGN.get());
+        dropSelf(BlockInit.SCARLET_WALL_SIGN.get());
+        dropSelf(BlockInit.SCARLET_HANGING_SIGN.get());
+        dropSelf(BlockInit.SCARLET_WALL_HANGING_SIGN.get());
+        dropSelf(BlockInit.SCARLET_SAPLING.get());
+        dropPottedContents(BlockInit.POTTED_SCARLET_SAPLING.get());
 
         dropSelf(BlockInit.GRIMSTONE.get());
         dropSelf(BlockInit.GRIMSTONE_BRICKS.get());
@@ -285,6 +302,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.GREEN_FANTAFERN.get());
         dropSelf(BlockInit.FANTAGRASS.get());
         dropSelf(BlockInit.GREEN_FANTAGRASS.get());
+
+        dropSelf(BlockInit.ORANGE_SCARLET_BUD.get());
+        dropSelf(BlockInit.PURPLE_SCARLET_BUD.get());
+        dropSelf(BlockInit.RED_SCARLET_BUD.get());
+        dropSelf(BlockInit.SCARLET_GRASS.get());
 
         dropSelf(BlockInit.DEAD_LUNAR_BUSH.get());
 
