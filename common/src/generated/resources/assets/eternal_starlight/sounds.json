@@ -1,0 +1,383 @@
+{
+  "entity.astral_golem.attack": {
+    "sounds": [
+      "mob/irongolem/throw"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.attack"
+  },
+  "entity.astral_golem.death": {
+    "sounds": [
+      "mob/irongolem/death"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.death"
+  },
+  "entity.astral_golem.hurt": {
+    "sounds": [
+      "mob/irongolem/hit1",
+      "mob/irongolem/hit2",
+      "mob/irongolem/hit3",
+      "mob/irongolem/hit4"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.hurt"
+  },
+  "entity.astral_golem.repair": {
+    "sounds": [
+      "mob/irongolem/repair"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.repair"
+  },
+  "entity.boarwarf.ambient": {
+    "sounds": [
+      {
+        "name": "mob/piglin/idle1",
+        "volume": 0.66
+      },
+      {
+        "name": "mob/piglin/idle2",
+        "volume": 0.66
+      },
+      {
+        "name": "mob/piglin/idle3",
+        "volume": 0.66
+      },
+      {
+        "name": "mob/piglin/idle4",
+        "volume": 0.66
+      },
+      {
+        "name": "mob/piglin/idle5",
+        "volume": 0.66
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.ambient"
+  },
+  "entity.boarwarf.death": {
+    "sounds": [
+      {
+        "name": "mob/piglin/death1",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/death2",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/death3",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/death4",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.death"
+  },
+  "entity.boarwarf.hurt": {
+    "sounds": [
+      {
+        "name": "mob/piglin/hurt1",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/hurt2",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/hurt3",
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.hurt"
+  },
+  "entity.boarwarf.no": {
+    "sounds": [
+      {
+        "name": "mob/piglin/angry1",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/angry2",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/angry3",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/piglin/angry4",
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.no"
+  },
+  "entity.boarwarf.trade": {
+    "sounds": [
+      {
+        "name": "mob/piglin/admire1",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/admire2",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/celebrate2",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/celebrate4",
+        "volume": 0.85
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.trade"
+  },
+  "entity.boarwarf.yes": {
+    "sounds": [
+      {
+        "name": "mob/piglin/celebrate1",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/celebrate2",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/piglin/celebrate3",
+        "volume": 0.75
+      },
+      {
+        "name": "mob/piglin/celebrate4",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.boarwarf.yes"
+  },
+  "entity.dryad.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/dryad_hurt"
+    ],
+    "subtitle": "subtitles.entity.dryad.hurt"
+  },
+  "entity.lumino_fish.death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.lumino_fish.death"
+  },
+  "entity.lumino_fish.flop": {
+    "sounds": [
+      {
+        "name": "entity/fish/flop1",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop2",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop3",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop4",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.entity.lumino_fish.flop"
+  },
+  "entity.lumino_fish.hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.lumino_fish.hurt"
+  },
+  "entity.lunar_monstrosity.bite": {
+    "sounds": [
+      "mob/evocation_illager/fangs"
+    ],
+    "subtitle": "subtitles.entity.lunar_monstrosity.bite"
+  },
+  "entity.lunar_monstrosity.death": {
+    "sounds": [
+      "mob/blaze/death"
+    ],
+    "subtitle": "subtitles.entity.lunar_monstrosity.death"
+  },
+  "entity.lunar_monstrosity.hurt": {
+    "sounds": [
+      {
+        "name": "mob/irongolem/damage1",
+        "pitch": 1.5,
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage1",
+        "pitch": 1.2,
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "pitch": 1.5,
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "pitch": 1.2,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.lunar_monstrosity.hurt"
+  },
+  "entity.lunar_monstrosity.roar": {
+    "sounds": [
+      "eternal_starlight:mob/lunar_monstrosity_roar"
+    ],
+    "subtitle": "subtitles.entity.lunar_monstrosity.roar"
+  },
+  "entity.seeking_eye.death": {
+    "sounds": [
+      {
+        "name": "entity/endereye/dead1",
+        "volume": 1.3
+      },
+      {
+        "name": "entity/endereye/dead2",
+        "volume": 1.3
+      }
+    ],
+    "subtitle": "subtitles.entity.seeking_eye.death"
+  },
+  "entity.seeking_eye.launch": {
+    "sounds": [
+      "entity/endereye/endereye_launch1",
+      "entity/endereye/endereye_launch2"
+    ],
+    "subtitle": "subtitles.entity.seeking_eye.launch"
+  },
+  "entity.starlight_golem.block": {
+    "sounds": [
+      "random/anvil_land"
+    ],
+    "subtitle": "subtitles.entity.starlight_golem.block"
+  },
+  "entity.starlight_golem.death": {
+    "sounds": [
+      "mob/irongolem/death"
+    ],
+    "subtitle": "subtitles.entity.starlight_golem.death"
+  },
+  "entity.starlight_golem.hurt": {
+    "sounds": [
+      {
+        "name": "mob/irongolem/damage1",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage1",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.starlight_golem.hurt"
+  },
+  "entity.starlight_golem.prepare_beam": {
+    "sounds": [
+      "block/beacon/activate"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.prepare_beam"
+  },
+  "entity.starlight_golem.prepare_charge": {
+    "sounds": [
+      "mob/irongolem/repair"
+    ],
+    "subtitle": "subtitles.entity.astral_golem.prepare_charge"
+  },
+  "item.armor.equip_aethersent": {
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_aethersent"
+  },
+  "item.armor.equip_swamp_silver": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_swamp_silver"
+  },
+  "item.armor.equip_thermal_springstone": {
+    "sounds": [
+      "item/armor/equip_iron1",
+      "item/armor/equip_iron2",
+      "item/armor/equip_iron3",
+      "item/armor/equip_iron4",
+      "item/armor/equip_iron5",
+      "item/armor/equip_iron6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_thermal_springstone"
+  },
+  "music.biome.dark_swamp": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/dark_swamp",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.starlight_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/starlight_forest",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.starlight_permafrost_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/starlight_permafrost_forest",
+        "stream": true
+      }
+    ]
+  },
+  "music.boss.common": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/boss/common",
+        "stream": true
+      }
+    ]
+  },
+  "music.dimension.eternal_starlight": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/default",
+        "stream": true
+      }
+    ]
+  }
+}

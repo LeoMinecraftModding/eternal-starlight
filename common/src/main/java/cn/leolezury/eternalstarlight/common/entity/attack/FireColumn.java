@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,7 +40,7 @@ public class FireColumn extends AttackEffectEntity {
                 }
             }
             if (getSpawnedTicks() == 20) {
-                playSound(SoundEventInit.FIRE_COLUMN_APPEAR.get(), getSoundVolume(), getVoicePitch());
+                playSound(SoundEvents.FIRECHARGE_USE, getSoundVolume(), getVoicePitch());
             }
             if (getSpawnedTicks() > 20 && getOwner() != null) {
                 AABB box = new AABB(getX() + 0.8, y, getZ() + 0.8, getX() - 0.8, getY(), getZ() - 0.8);

@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-16T16:00:53.8443821	Loot Tables
+// 1.20.4	2023-12-17T20:34:32.6974556	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -275,4 +275,3 @@ a6c9578f288d492c587c4229a5674583970f3c79 data/eternal_starlight/loot_tables/enti
 79b6e077a4db6f80d3775aaa4c11278755ee8422 data/eternal_starlight/loot_tables/entities/nightshade_spider.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_tables/entities/starlight_golem.json
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_tables/entities/the_gatekeeper.json
-03589f6ba4802e1b9cd671f8f74e1dde242aaa94 data/eternal_starlight/loot_tables/entities/twilight_squid.json

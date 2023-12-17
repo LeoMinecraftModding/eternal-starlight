@@ -29,30 +29,22 @@ public class SoundEventInit {
     public static final RegistryObject<SoundEvent, SoundEvent> BOARWARF_YES = register("entity.boarwarf.yes");
     public static final RegistryObject<SoundEvent, SoundEvent> BOARWARF_NO = register("entity.boarwarf.no");
 
-
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_ATTACK = register("entity.astral_golem.attack");
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_HURT = register("entity.astral_golem.hurt");
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_DEATH = register("entity.astral_golem.death");
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_REPAIR = register("entity.astral_golem.repair");
 
-    public static final RegistryObject<SoundEvent, SoundEvent> LONESTAR_SKELETON_AMBIENT = register("entity.lonestar_skeleton.ambient");
-    public static final RegistryObject<SoundEvent, SoundEvent> LONESTAR_SKELETON_HURT = register("entity.lonestar_skeleton.hurt");
-    public static final RegistryObject<SoundEvent, SoundEvent> LONESTAR_SKELETON_DEATH = register("entity.lonestar_skeleton.death");
-
     public static final RegistryObject<SoundEvent, SoundEvent> DRYAD_HURT = register("entity.dryad.hurt");
 
-    public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_SQUID_AMBIENT = register("entity.twilight_squid.ambient");
-    public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_SQUID_HURT = register("entity.twilight_squid.hurt");
-    public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_SQUID_DEATH = register("entity.twilight_squid.death");
-    public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_SQUID_SQUIRT = register("entity.twilight_squid.squirt");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_HURT = register("entity.lumino_fish.hurt");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_DEATH = register("entity.lumino_fish.death");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_FLOP = register("entity.lumino_fish.flop");
 
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_HURT = register("entity.starlight_golem.hurt");
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_DEATH = register("entity.starlight_golem.death");
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_BLOCK = register("entity.starlight_golem.block");
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_PREPARE_BEAM = register("entity.starlight_golem.prepare_beam");
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_PREPARE_CHARGE = register("entity.starlight_golem.prepare_charge");
-
-    public static final RegistryObject<SoundEvent, SoundEvent> FIRE_COLUMN_APPEAR = register("entity.fire_column.appear");
 
     public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_HURT = register("entity.lunar_monstrosity.hurt");
     public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_DEATH = register("entity.lunar_monstrosity.death");

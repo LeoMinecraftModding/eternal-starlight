@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.monster;
 
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +24,7 @@ public class LonestarSkeleton extends Skeleton {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEventInit.LONESTAR_SKELETON_AMBIENT.get();
+        return SoundEvents.SKELETON_AMBIENT;
     }
 
     private int meleeTicks = 0;
@@ -65,11 +66,11 @@ public class LonestarSkeleton extends Skeleton {
     }
 
     protected SoundEvent getHurtSound(DamageSource p_33850_) {
-        return SoundEventInit.LONESTAR_SKELETON_HURT.get();
+        return SoundEvents.SKELETON_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.LONESTAR_SKELETON_DEATH.get();
+        return SoundEvents.SKELETON_DEATH;
     }
 
     protected AbstractArrow getArrow(ItemStack p_33846_, float p_33847_) {

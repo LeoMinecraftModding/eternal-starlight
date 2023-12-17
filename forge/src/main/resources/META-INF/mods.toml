@@ -20,14 +20,14 @@ A Minecraft dimension mod with structures for you to explore and bosses for you 
 
 [[dependencies.eternal_starlight]]
 modId = "neoforge"
-mandatory = true
+type = "required"
 versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.eternal_starlight]]
 modId = "minecraft"
-mandatory = true
+type = "required"
 versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"

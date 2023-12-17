@@ -303,7 +303,6 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
-        strategy.register(EntityInit.TWILIGHT_SQUID.get(), TwilightSquidRenderer::new);
         strategy.register(EntityInit.DRYAD.get(), DryadRenderer::new);
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM.get(), StarlightGolemRenderer::new);
@@ -336,7 +335,6 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
-        strategy.register(TwilightSquidModel.LAYER_LOCATION, TwilightSquidModel::createBodyLayer);
         strategy.register(DryadModel.LAYER_LOCATION, DryadModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
         strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
