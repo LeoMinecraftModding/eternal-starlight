@@ -58,6 +58,7 @@ shadowJar {
 }
 
 remapJar {
+    atAccessWideners.add('eternal_starlight.accesswidener')
     inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
 }
