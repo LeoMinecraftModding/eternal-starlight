@@ -169,6 +169,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropPottedContents(BlockInit.POTTED_SCARLET_SAPLING.get());
 
         dropSelf(BlockInit.GRIMSTONE.get());
+        dropSelf(BlockInit.COBBLED_GRIMSTONE.get());
+        add(BlockInit.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.COBBLED_GRIMSTONE_STAIRS.get());
+        dropSelf(BlockInit.COBBLED_GRIMSTONE_WALL.get());
         dropSelf(BlockInit.GRIMSTONE_BRICKS.get());
         add(BlockInit.GRIMSTONE_BRICK_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.GRIMSTONE_BRICK_STAIRS.get());
@@ -177,9 +181,18 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(BlockInit.POLISHED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.POLISHED_GRIMSTONE_STAIRS.get());
         dropSelf(BlockInit.POLISHED_GRIMSTONE_WALL.get());
+        dropSelf(BlockInit.GRIMSTONE_TILES.get());
+        add(BlockInit.GRIMSTONE_TILE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.GRIMSTONE_TILE_STAIRS.get());
+        dropSelf(BlockInit.GRIMSTONE_TILE_WALL.get());
         dropSelf(BlockInit.CHISELED_GRIMSTONE.get());
+        dropSelf(BlockInit.GLOWING_GRIMSTONE.get());
 
         dropSelf(BlockInit.VOIDSTONE.get());
+        dropSelf(BlockInit.COBBLED_VOIDSTONE.get());
+        add(BlockInit.COBBLED_VOIDSTONE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.COBBLED_VOIDSTONE_STAIRS.get());
+        dropSelf(BlockInit.COBBLED_VOIDSTONE_WALL.get());
         dropSelf(BlockInit.VOIDSTONE_BRICKS.get());
         add(BlockInit.VOIDSTONE_BRICK_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.VOIDSTONE_BRICK_STAIRS.get());
@@ -188,6 +201,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(BlockInit.POLISHED_VOIDSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.POLISHED_VOIDSTONE_STAIRS.get());
         dropSelf(BlockInit.POLISHED_VOIDSTONE_WALL.get());
+        dropSelf(BlockInit.VOIDSTONE_TILES.get());
+        add(BlockInit.VOIDSTONE_TILE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.VOIDSTONE_TILE_STAIRS.get());
+        dropSelf(BlockInit.VOIDSTONE_TILE_WALL.get());
         dropSelf(BlockInit.CHISELED_VOIDSTONE.get());
         dropSelf(BlockInit.GLOWING_VOIDSTONE.get());
 

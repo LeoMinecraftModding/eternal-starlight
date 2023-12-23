@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/cobbled_grimstone",
+    "side": "eternal_starlight:block/cobbled_grimstone",
+    "top": "eternal_starlight:block/cobbled_grimstone"
+  }
+}

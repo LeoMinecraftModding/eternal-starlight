@@ -179,6 +179,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.FANTASY_GRASS_BLOCK.get());
 
         basicBlockItem(ItemInit.GRIMSTONE.get());
+        basicBlockItem(ItemInit.COBBLED_GRIMSTONE.get());
+        basicBlockItem(ItemInit.COBBLED_GRIMSTONE_SLAB.get());
+        basicBlockItem(ItemInit.COBBLED_GRIMSTONE_STAIRS.get());
+        wall(ItemInit.COBBLED_GRIMSTONE_WALL.get(), ItemInit.COBBLED_GRIMSTONE.get());
         basicBlockItem(ItemInit.GRIMSTONE_BRICKS.get());
         basicBlockItem(ItemInit.GRIMSTONE_BRICK_SLAB.get());
         basicBlockItem(ItemInit.GRIMSTONE_BRICK_STAIRS.get());
@@ -187,9 +191,18 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.POLISHED_GRIMSTONE_SLAB.get());
         basicBlockItem(ItemInit.POLISHED_GRIMSTONE_STAIRS.get());
         wall(ItemInit.POLISHED_GRIMSTONE_WALL.get(), ItemInit.POLISHED_GRIMSTONE.get());
+        basicBlockItem(ItemInit.GRIMSTONE_TILES.get());
+        basicBlockItem(ItemInit.GRIMSTONE_TILE_SLAB.get());
+        basicBlockItem(ItemInit.GRIMSTONE_TILE_STAIRS.get());
+        wall(ItemInit.GRIMSTONE_TILE_WALL.get(), ItemInit.GRIMSTONE_TILES.get());
         basicBlockItem(ItemInit.CHISELED_GRIMSTONE.get());
+        basicBlockItem(ItemInit.GLOWING_GRIMSTONE.get());
 
         basicBlockItem(ItemInit.VOIDSTONE.get());
+        basicBlockItem(ItemInit.COBBLED_VOIDSTONE.get());
+        basicBlockItem(ItemInit.COBBLED_VOIDSTONE_SLAB.get());
+        basicBlockItem(ItemInit.COBBLED_VOIDSTONE_STAIRS.get());
+        wall(ItemInit.COBBLED_VOIDSTONE_WALL.get(), ItemInit.COBBLED_VOIDSTONE.get());
         basicBlockItem(ItemInit.VOIDSTONE_BRICKS.get());
         basicBlockItem(ItemInit.VOIDSTONE_BRICK_SLAB.get());
         basicBlockItem(ItemInit.VOIDSTONE_BRICK_STAIRS.get());
@@ -198,6 +211,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.POLISHED_VOIDSTONE_SLAB.get());
         basicBlockItem(ItemInit.POLISHED_VOIDSTONE_STAIRS.get());
         wall(ItemInit.POLISHED_VOIDSTONE_WALL.get(), ItemInit.POLISHED_VOIDSTONE.get());
+        basicBlockItem(ItemInit.VOIDSTONE_TILES.get());
+        basicBlockItem(ItemInit.VOIDSTONE_TILE_SLAB.get());
+        basicBlockItem(ItemInit.VOIDSTONE_TILE_STAIRS.get());
+        wall(ItemInit.VOIDSTONE_TILE_WALL.get(), ItemInit.VOIDSTONE_TILES.get());
         basicBlockItem(ItemInit.CHISELED_VOIDSTONE.get());
         basicBlockItem(ItemInit.GLOWING_VOIDSTONE.get());
 

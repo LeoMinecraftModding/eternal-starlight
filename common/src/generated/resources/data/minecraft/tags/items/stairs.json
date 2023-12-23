@@ -1,9 +1,13 @@
 {
   "values": [
+    "eternal_starlight:cobbled_grimstone_stairs",
     "eternal_starlight:grimstone_brick_stairs",
     "eternal_starlight:polished_grimstone_stairs",
+    "eternal_starlight:grimstone_tile_stairs",
+    "eternal_starlight:cobbled_voidstone_stairs",
     "eternal_starlight:voidstone_brick_stairs",
     "eternal_starlight:polished_voidstone_stairs",
+    "eternal_starlight:voidstone_tile_stairs",
     "eternal_starlight:polished_abysslate_stairs",
     "eternal_starlight:polished_abysslate_brick_stairs",
     "eternal_starlight:polished_thermabysslate_stairs",

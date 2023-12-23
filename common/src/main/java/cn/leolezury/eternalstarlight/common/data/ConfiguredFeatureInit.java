@@ -61,6 +61,7 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = create("deepslate_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_GRIMSTONE_ORE = create("glowing_grimstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
@@ -107,12 +108,14 @@ public class ConfiguredFeatureInit {
                 OreConfiguration.target(new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get()), BlockInit.SWAMP_SILVER_ORE.get().defaultBlockState())));
 
         RuleTest slRule = new TagMatchTest(ESTags.Blocks.BASE_STONE_STARLIGHT);
+        RuleTest grimstoneRule = new BlockMatchTest(BlockInit.GRIMSTONE.get());
         RuleTest voidstoneRule = new BlockMatchTest(BlockInit.VOIDSTONE.get());
         RuleTest mudRule = new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get());
 
         register(context, STONE_SPIKE, FeatureInit.STONE_SPIKE.get(), new NoneFeatureConfiguration());
         register(context, STONE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));
         register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.DEEPSLATE.defaultBlockState(), 64));
+        register(context, GLOWING_GRIMSTONE_ORE, Feature.ORE, new OreConfiguration(grimstoneRule, BlockInit.GLOWING_GRIMSTONE.get().defaultBlockState(), 20));
         register(context, GLOWING_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.GLOWING_VOIDSTONE.get().defaultBlockState(), 20));
         register(context, GLOWING_NIGHTSHADE_MUD_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         register(context, NIGHTSHADE_DIRT_ORE, Feature.ORE, new OreConfiguration(slRule, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));

@@ -102,6 +102,7 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.DEEPSLATE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.NIGHTSHADE_DIRT_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_GRIMSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacedFeatureInit.STARLIGHT_CRYSTAL);
         builder.addFeature(GenerationStep.Decoration.LAKES, PlacedFeatureInit.HOT_SPRING);
