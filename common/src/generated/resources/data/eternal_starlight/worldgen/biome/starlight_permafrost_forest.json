@@ -52,8 +52,8 @@
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:cave_vine",
-      "eternal_starlight:common_flower",
       "eternal_starlight:permafrost_forest",
+      "eternal_starlight:permafrost_forest_grass",
       "eternal_starlight:fallen_northland_log"
     ],
     [

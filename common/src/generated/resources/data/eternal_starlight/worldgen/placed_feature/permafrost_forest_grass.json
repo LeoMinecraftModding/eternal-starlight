@@ -1,16 +1,12 @@
 {
-  "feature": "eternal_starlight:common_flower",
+  "feature": "eternal_starlight:permafrost_forest_grass",
   "placement": [
-    {
-      "type": "minecraft:rarity_filter",
-      "chance": 8
-    },
     {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "MOTION_BLOCKING"
+      "heightmap": "WORLD_SURFACE_WG"
     },
     {
       "type": "minecraft:biome"

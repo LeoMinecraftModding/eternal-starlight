@@ -79,15 +79,21 @@
               },
               {
                 "data": {
-                  "Name": "eternal_starlight:gladespike"
+                  "Name": "eternal_starlight:conebloom"
                 },
-                "weight": 1
+                "weight": 2
               },
               {
                 "data": {
                   "Name": "eternal_starlight:vividstalk"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:starlight_flower"
+                },
+                "weight": 2
               }
             ]
           }

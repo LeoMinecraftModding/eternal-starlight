@@ -43,6 +43,30 @@
                   "Name": "eternal_starlight:green_fantagrass"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:vividstalk"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:swamp_rose"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:nightfan"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:starlight_flower"
+                },
+                "weight": 1
               }
             ]
           }

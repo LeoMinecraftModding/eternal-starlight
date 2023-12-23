@@ -54,9 +54,8 @@
       "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:cave_vine",
-      "eternal_starlight:common_flower",
       "eternal_starlight:starlight_forest",
-      "eternal_starlight:common_grass",
+      "eternal_starlight:forest_grass",
       "eternal_starlight:fallen_lunar_log"
     ],
     [

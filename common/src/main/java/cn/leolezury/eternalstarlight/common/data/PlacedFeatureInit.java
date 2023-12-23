@@ -53,11 +53,11 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST = create("permafrost_forest");
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST = create("scarlet_forest");
     public static final ResourceKey<PlacedFeature> DEAD_LUNAR_TREE = create("dead_lunar_tree");
-    public static final ResourceKey<PlacedFeature> COMMON_FLOWER = create("common_flower");
-    public static final ResourceKey<PlacedFeature> COMMON_GRASS = create("common_grass");
-    public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
+    public static final ResourceKey<PlacedFeature> FOREST_GRASS = create("forest_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_GRASS = create("swamp_grass");
+    public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST_GRASS = create("permafrost_forest_grass");
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST_GRASS = create("scarlet_forest_grass");
+    public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
     public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
@@ -102,9 +102,9 @@ public class PlacedFeatureInit {
         register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
         register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
         register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(15), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, COMMON_FLOWER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.COMMON_FLOWER), RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-        register(context, COMMON_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.COMMON_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        register(context, FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        register(context, PERMAFROST_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.PERMAFROST_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

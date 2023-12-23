@@ -31,6 +31,12 @@
                   "Name": "eternal_starlight:scarlet_grass"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:starlight_flower"
+                },
+                "weight": 1
               }
             ]
           }
