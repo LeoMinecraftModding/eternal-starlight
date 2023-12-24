@@ -64,6 +64,12 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:whisperbloom"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:starlight_flower"
                 },
                 "weight": 1

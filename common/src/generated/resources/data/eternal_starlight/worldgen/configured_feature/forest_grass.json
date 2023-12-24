@@ -70,6 +70,36 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:lunar_bush"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:glowing_lunar_bush"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:tall_crescent_grass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:tall_glowing_crescent_grass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:lunar_reed",
                   "Properties": {
                     "half": "lower"
@@ -85,6 +115,15 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:tall_gladespike",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:vividstalk"
                 },
                 "weight": 1
@@ -97,7 +136,22 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:pink_rose_bush",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:starlight_torchflower"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:whisperbloom"
                 },
                 "weight": 2
               },

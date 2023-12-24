@@ -167,6 +167,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         pottedPlant(BlockInit.POTTED_PINK_ROSE.get(), blockTexture(BlockInit.PINK_ROSE.get()));
         crossBlock(BlockInit.STARLIGHT_TORCHFLOWER.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_TORCHFLOWER.get(), blockTexture(BlockInit.STARLIGHT_TORCHFLOWER.get()));
+        doublePlant(BlockInit.NIGHTFAN_BUSH.get());
+        doublePlant(BlockInit.PINK_ROSE_BUSH.get());
         crossBlock(BlockInit.NIGHT_SPROUTS.get());
         crossBlock(BlockInit.SMALL_NIGHT_SPROUTS.get());
         crossBlock(BlockInit.GLOWING_NIGHT_SPROUTS.get());
@@ -174,12 +176,18 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crossBlock(BlockInit.LUNAR_GRASS.get());
         crossBlock(BlockInit.GLOWING_LUNAR_GRASS.get());
         crossBlock(BlockInit.CRESCENT_GRASS.get());
-        crossBlock(BlockInit.GLADESPIKE.get());
-        crossBlock(BlockInit.VIVIDSTALK.get());
         crossBlock(BlockInit.GLOWING_CRESCENT_GRASS.get());
         crossBlock(BlockInit.PARASOL_GRASS.get());
         crossBlock(BlockInit.GLOWING_PARASOL_GRASS.get());
+        crossBlock(BlockInit.LUNAR_BUSH.get());
+        crossBlock(BlockInit.GLOWING_LUNAR_BUSH.get());
+        doublePlant(BlockInit.TALL_CRESCENT_GRASS.get());
+        doublePlant(BlockInit.TALL_GLOWING_CRESCENT_GRASS.get());
         doublePlant(BlockInit.LUNAR_REED.get());
+        crossBlock(BlockInit.WHISPERBLOOM.get());
+        crossBlock(BlockInit.GLADESPIKE.get());
+        crossBlock(BlockInit.VIVIDSTALK.get());
+        doublePlant(BlockInit.TALL_GLADESPIKE.get());
         crossBlock(BlockInit.GLOWING_MUSHROOM.get());
         mushroomBlock(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
 

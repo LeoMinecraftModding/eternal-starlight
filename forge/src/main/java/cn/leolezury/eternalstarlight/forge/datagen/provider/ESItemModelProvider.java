@@ -143,6 +143,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.NIGHTFAN.get());
         basicItemWithBlockTexture(ItemInit.PINK_ROSE.get());
         basicItemWithBlockTexture(ItemInit.STARLIGHT_TORCHFLOWER.get());
+        basicItem(ItemInit.NIGHTFAN_BUSH.get(), blockTextureFromItem(ItemInit.NIGHTFAN_BUSH.get()).withSuffix("_top"));
+        basicItem(ItemInit.PINK_ROSE_BUSH.get(), blockTextureFromItem(ItemInit.PINK_ROSE_BUSH.get()).withSuffix("_top"));
         basicItemWithBlockTexture(ItemInit.NIGHT_SPROUTS.get());
         basicItemWithBlockTexture(ItemInit.GLOWING_NIGHT_SPROUTS.get());
         basicItemWithBlockTexture(ItemInit.SMALL_NIGHT_SPROUTS.get());
@@ -153,9 +155,15 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ItemInit.GLOWING_CRESCENT_GRASS.get());
         basicItemWithBlockTexture(ItemInit.PARASOL_GRASS.get());
         basicItemWithBlockTexture(ItemInit.GLOWING_PARASOL_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.LUNAR_BUSH.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_LUNAR_BUSH.get());
+        basicItem(ItemInit.TALL_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_CRESCENT_GRASS.get()).withSuffix("_top"));
+        basicItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get()).withSuffix("_top"));
         basicItem(ItemInit.LUNAR_REED.get(), blockTextureFromItem(ItemInit.LUNAR_REED.get()).withSuffix("_top"));
+        basicItemWithBlockTexture(ItemInit.WHISPERBLOOM.get());
         basicItemWithBlockTexture(ItemInit.GLADESPIKE.get());
         basicItemWithBlockTexture(ItemInit.VIVIDSTALK.get());
+        basicItem(ItemInit.TALL_GLADESPIKE.get(), blockTextureFromItem(ItemInit.TALL_GLADESPIKE.get()).withSuffix("_top"));
         basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
         cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
 

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "eternal_starlight:block/tall_crescent_grass_bottom"
+    },
+    "half=upper": {
+      "model": "eternal_starlight:block/tall_crescent_grass_top"
+    }
+  }
+}

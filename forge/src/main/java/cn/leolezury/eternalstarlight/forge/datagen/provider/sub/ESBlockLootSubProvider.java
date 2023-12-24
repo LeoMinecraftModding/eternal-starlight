@@ -295,6 +295,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropPottedContents(BlockInit.POTTED_PINK_ROSE.get());
         dropSelf(BlockInit.STARLIGHT_TORCHFLOWER.get());
         dropPottedContents(BlockInit.POTTED_STARLIGHT_TORCHFLOWER.get());
+        add(BlockInit.NIGHTFAN_BUSH.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+        add(BlockInit.PINK_ROSE_BUSH.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
         dropSelf(BlockInit.NIGHT_SPROUTS.get());
         dropSelf(BlockInit.SMALL_NIGHT_SPROUTS.get());
         dropSelf(BlockInit.GLOWING_NIGHT_SPROUTS.get());
@@ -302,12 +304,18 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.LUNAR_GRASS.get());
         dropSelf(BlockInit.GLOWING_LUNAR_GRASS.get());
         dropSelf(BlockInit.CRESCENT_GRASS.get());
-        dropSelf(BlockInit.GLADESPIKE.get());
-        dropSelf(BlockInit.VIVIDSTALK.get());
         dropSelf(BlockInit.GLOWING_CRESCENT_GRASS.get());
         dropSelf(BlockInit.PARASOL_GRASS.get());
         dropSelf(BlockInit.GLOWING_PARASOL_GRASS.get());
+        dropSelf(BlockInit.LUNAR_BUSH.get());
+        dropSelf(BlockInit.GLOWING_LUNAR_BUSH.get());
+        add(BlockInit.TALL_CRESCENT_GRASS.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+        add(BlockInit.TALL_GLOWING_CRESCENT_GRASS.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
         add(BlockInit.LUNAR_REED.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+        dropSelf(BlockInit.WHISPERBLOOM.get());
+        dropSelf(BlockInit.GLADESPIKE.get());
+        dropSelf(BlockInit.VIVIDSTALK.get());
+        add(BlockInit.TALL_GLADESPIKE.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
         dropSelf(BlockInit.GLOWING_MUSHROOM.get());
         add(BlockInit.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, BlockInit.GLOWING_MUSHROOM.get())));
 

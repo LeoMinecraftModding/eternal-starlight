@@ -39,7 +39,10 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, ItemInit.NIGHTFAN.get(), Items.PURPLE_DYE);
         addSingleConversion(recipeOutput, ItemInit.PINK_ROSE.get(), Items.PINK_DYE);
         addSingleConversion(recipeOutput, ItemInit.STARLIGHT_TORCHFLOWER.get(), Items.YELLOW_DYE);
+        addSingleConversion(recipeOutput, ItemInit.NIGHTFAN_BUSH.get(), Items.PURPLE_DYE);
+        addSingleConversion(recipeOutput, ItemInit.PINK_ROSE_BUSH.get(), Items.PINK_DYE);
         addSingleConversion(recipeOutput, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
+        addSingleConversion(recipeOutput, ItemInit.WHISPERBLOOM.get(), Items.PINK_DYE);
 
         // smelt
         addSmelt(recipeOutput, 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());

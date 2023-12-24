@@ -70,6 +70,36 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:lunar_bush"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:glowing_lunar_bush"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:tall_crescent_grass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:tall_glowing_crescent_grass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:lunar_reed",
                   "Properties": {
                     "half": "lower"
@@ -88,6 +118,12 @@
                   "Name": "eternal_starlight:vividstalk"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:whisperbloom"
+                },
+                "weight": 2
               },
               {
                 "data": {

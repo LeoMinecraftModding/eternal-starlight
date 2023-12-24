@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:nightfan_bush"
+    }
+  ],
+  "result": {
+    "item": "minecraft:purple_dye"
+  }
+}

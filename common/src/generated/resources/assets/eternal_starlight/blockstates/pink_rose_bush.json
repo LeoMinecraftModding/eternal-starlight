@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "eternal_starlight:block/pink_rose_bush_bottom"
+    },
+    "half=upper": {
+      "model": "eternal_starlight:block/pink_rose_bush_top"
+    }
+  }
+}
