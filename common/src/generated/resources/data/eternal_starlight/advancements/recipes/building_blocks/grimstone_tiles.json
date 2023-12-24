@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_grimstone_bricks": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -23,7 +23,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_grimstone_bricks"
+      "has_item"
     ]
   ],
   "rewards": {

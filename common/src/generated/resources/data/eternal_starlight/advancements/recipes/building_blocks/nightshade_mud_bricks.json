@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_packed_nightshade_mud": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -23,7 +23,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_packed_nightshade_mud"
+      "has_item"
     ]
   ],
   "rewards": {

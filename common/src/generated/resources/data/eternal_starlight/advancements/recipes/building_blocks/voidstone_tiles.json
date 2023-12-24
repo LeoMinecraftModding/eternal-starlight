@@ -1,13 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "eternal_starlight:voidstone_tiles"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_voidstone_bricks": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -18,12 +12,18 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:voidstone_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_voidstone_bricks"
+      "has_item"
     ]
   ],
   "rewards": {

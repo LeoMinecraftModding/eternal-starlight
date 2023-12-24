@@ -168,7 +168,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.SCARLET_SAPLING.get());
         dropPottedContents(BlockInit.POTTED_SCARLET_SAPLING.get());
 
-        dropSelf(BlockInit.GRIMSTONE.get());
+        add(BlockInit.GRIMSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.COBBLED_GRIMSTONE.get()));
         dropSelf(BlockInit.COBBLED_GRIMSTONE.get());
         add(BlockInit.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.COBBLED_GRIMSTONE_STAIRS.get());
@@ -188,7 +188,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.CHISELED_GRIMSTONE.get());
         dropSelf(BlockInit.GLOWING_GRIMSTONE.get());
 
-        dropSelf(BlockInit.VOIDSTONE.get());
+        add(BlockInit.VOIDSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.COBBLED_VOIDSTONE.get()));
         dropSelf(BlockInit.COBBLED_VOIDSTONE.get());
         add(BlockInit.COBBLED_VOIDSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.COBBLED_VOIDSTONE_STAIRS.get());

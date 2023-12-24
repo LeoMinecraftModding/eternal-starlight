@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_thermabysslate": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -23,7 +23,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_polished_thermabysslate"
+      "has_item"
     ]
   ],
   "rewards": {
