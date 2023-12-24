@@ -11,8 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class DryadRenderer<T extends Dryad> extends MobRenderer<T, DryadModel<T>> {
-    ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/dryad.png");
-    ResourceLocation LUSH_ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lush_dryad.png");
+    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/dryad.png");
+    private static final ResourceLocation LUSH_ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lush_dryad.png");
 
     public DryadRenderer(EntityRendererProvider.Context context) {
         super(context, new DryadModel<>(context.bakeLayer(DryadModel.LAYER_LOCATION)), 0.5f);

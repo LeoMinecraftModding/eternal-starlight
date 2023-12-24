@@ -15,8 +15,8 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class SporeRenderer extends EntityRenderer<LunarSpore> {
-    ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/spore.png");
-    SporeModel<LunarSpore> model;
+    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/spore.png");
+    private final SporeModel<LunarSpore> model;
 
     public SporeRenderer(EntityRendererProvider.Context context) {
         super(context);

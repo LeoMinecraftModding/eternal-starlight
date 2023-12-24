@@ -16,12 +16,12 @@ public interface AnimatedModel {
     Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
 
     default void animate(AnimationState state, AnimationDefinition definition, float tickCount) {
-        this.animate(state, definition, tickCount, 1.0F);
+        this.animate(state, definition, tickCount, 1.0F, 1.0F);
     }
 
-    default void animate(AnimationState state, AnimationDefinition definition, float tickCount, float speed) {
+    default void animate(AnimationState state, AnimationDefinition definition, float tickCount, float speed, float scale) {
         state.updateTime(tickCount, speed);
-        state.ifStarted((animState) -> ESKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
+        state.ifStarted((animState) -> ESKeyframeAnimations.animate(this, definition, animState.getAccumulatedTime(), scale, ANIMATION_VECTOR_CACHE));
     }
 
     default void animateWalk(AnimationDefinition definition, float swing, float swingAmount, float speed, float scale) {

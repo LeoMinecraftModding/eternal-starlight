@@ -61,7 +61,7 @@ public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
         head.yRot = netHeadYaw * ((float)Math.PI / 180F);
         head.xRot = headPitch * ((float)Math.PI / 180F);
         this.animateWalk(BoarwarfAnimation.WALK, limbSwing, limbSwingAmount, 1.0f, 2.5f);
-        this.animate(entity.idleAnimationState, BoarwarfAnimation.IDLE, ageInTicks, 0.2f);
+        this.animate(entity.idleAnimationState, BoarwarfAnimation.IDLE, ageInTicks, 0.2f, 1.0f);
     }
 
     @Override

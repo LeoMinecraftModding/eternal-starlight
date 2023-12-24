@@ -5,6 +5,7 @@
       "eternal_starlight:caves_extra"
     ]
   },
+  "creature_spawn_probability": 0.2,
   "downfall": 0.5,
   "effects": {
     "fog_color": 3091031,
@@ -74,7 +75,14 @@
       }
     ],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "eternal_starlight:luminofish",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      }
+    ],
     "misc": [],
     "monster": [
       {

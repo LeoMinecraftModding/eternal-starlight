@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-24T15:34:54.6445008	Loot Tables
+// 1.20.4	2023-12-24T18:16:28.5072365	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -296,6 +296,7 @@ a461217c956af4bd0fb8803afa168aeb4b966da2 data/eternal_starlight/loot_tables/enti
 fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_tables/entities/boarwarf.json
 626253080122b0d0d9667ae34cc3080e9f9cd0b8 data/eternal_starlight/loot_tables/entities/dryad.json
 a6c9578f288d492c587c4229a5674583970f3c79 data/eternal_starlight/loot_tables/entities/lonestar_skeleton.json
+95addea3e93484d5de428acecd22ae30396ef13f data/eternal_starlight/loot_tables/entities/luminofish.json
 7434a091afba605f14251db73d338adfbd887bfd data/eternal_starlight/loot_tables/entities/lunar_monstrosity.json
 79b6e077a4db6f80d3775aaa4c11278755ee8422 data/eternal_starlight/loot_tables/entities/nightshade_spider.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_tables/entities/starlight_golem.json

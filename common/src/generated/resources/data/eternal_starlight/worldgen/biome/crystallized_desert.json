@@ -5,6 +5,7 @@
       "eternal_starlight:caves_extra"
     ]
   },
+  "creature_spawn_probability": 0.2,
   "downfall": 0.5,
   "effects": {
     "fog_color": 8349826,

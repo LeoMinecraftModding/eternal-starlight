@@ -40,18 +40,18 @@ public class Dryad extends Animal {
         super(p_27557_, p_27558_);
     }
 
-    protected static final EntityDataAccessor<Boolean> HAS_LEAVE = SynchedEntityData.defineId(Dryad.class, EntityDataSerializers.BOOLEAN);
+    protected static final EntityDataAccessor<Boolean> HAS_LEAVES = SynchedEntityData.defineId(Dryad.class, EntityDataSerializers.BOOLEAN);
     public boolean hasLeaves() {
-        return entityData.get(HAS_LEAVE);
+        return entityData.get(HAS_LEAVES);
     }
     public void setHasLeaves(boolean hasLeaves) {
-        entityData.set(HAS_LEAVE, hasLeaves);
+        entityData.set(HAS_LEAVES, hasLeaves);
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(HAS_LEAVE, true);
+        entityData.define(HAS_LEAVES, true);
     }
 
     protected void registerGoals() {

@@ -46,7 +46,7 @@ public class BiomeInit {
         context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DEFAULT), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), baseAquaticSpawnBuilder(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
+        context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
     }
 
@@ -75,16 +75,21 @@ public class BiomeInit {
 
     private static MobSpawnSettings.Builder baseSpawnBuilder() {
         return new MobSpawnSettings.Builder()
-                .creatureGenerationProbability(0.1f)
+                .creatureGenerationProbability(0.2f)
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.LONESTAR_SKELETON.get(), 5, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.DRYAD.get(), 15, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
     }
 
+    private static MobSpawnSettings.Builder theAbyssSpawns() {
+        return baseAquaticSpawnBuilder()
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.LUMINOFISH.get(), 10, 1, 4));
+    }
+
     private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
         return new MobSpawnSettings.Builder()
-                .creatureGenerationProbability(0.1f)
+                .creatureGenerationProbability(0.2f)
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.LONESTAR_SKELETON.get(), 5, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));

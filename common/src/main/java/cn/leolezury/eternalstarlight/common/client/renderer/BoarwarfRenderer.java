@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfRenderer<T extends Boarwarf> extends MobRenderer<T, BoarwarfModel<T>> {
-    ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/boarwarf.png");
+    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/boarwarf.png");
 
     public BoarwarfRenderer(EntityRendererProvider.Context context) {
         super(context, new BoarwarfModel<>(context.bakeLayer(BoarwarfModel.LAYER_LOCATION)), 0.5f);

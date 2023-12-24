@@ -46,6 +46,8 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(ItemInit.LUNAR_LEAVES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(-1.0F, 1.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))));
 
+        add(EntityInit.LUMINOFISH.get(), LootTable.lootTable()); // TODO: loot!
+
         // no loot
 
         // how dare you hurt the cute npc
