@@ -16,7 +16,7 @@ public abstract class EntityMixin implements PersistentDataHolder {
     private CompoundTag esPersistentData;
 
     @Override
-    public CompoundTag esGetPersistentData() {
+    public CompoundTag getESPersistentData() {
         if (esPersistentData == null) {
             esPersistentData = new CompoundTag();
         }

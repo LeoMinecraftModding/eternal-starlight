@@ -98,6 +98,12 @@
         "maxCount": 6,
         "minCount": 3,
         "weight": 10
+      },
+      {
+        "type": "eternal_starlight:luminaris",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 8
       }
     ],
     "water_creature": []

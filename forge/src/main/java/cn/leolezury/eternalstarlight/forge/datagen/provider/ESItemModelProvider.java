@@ -362,6 +362,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.LUMINOFISH.get());
         basicItem(ItemInit.COOKED_LUMINOFISH.get());
 
+        basicItem(ItemInit.LUMINARIS_BUCKET.get());
+        basicItem(ItemInit.LUMINARIS.get());
+        basicItem(ItemInit.COOKED_LUMINARIS.get());
+
         basicBlockItem(ItemInit.ENERGY_BLOCK.get());
         basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
         basicBlockItem(ItemInit.LUNAR_MONSTROSITY_SPAWNER.get());

@@ -158,16 +158,16 @@
     ],
     "subtitle": "subtitles.entity.dryad.hurt"
   },
-  "entity.lumino_fish.death": {
+  "entity.luminaris.death": {
     "sounds": [
       "entity/fish/hurt1",
       "entity/fish/hurt2",
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.lumino_fish.death"
+    "subtitle": "subtitles.entity.luminaris.death"
   },
-  "entity.lumino_fish.flop": {
+  "entity.luminaris.flop": {
     "sounds": [
       {
         "name": "entity/fish/flop1",
@@ -186,16 +186,55 @@
         "volume": 0.3
       }
     ],
-    "subtitle": "subtitles.entity.lumino_fish.flop"
+    "subtitle": "subtitles.entity.luminaris.flop"
   },
-  "entity.lumino_fish.hurt": {
+  "entity.luminaris.hurt": {
     "sounds": [
       "entity/fish/hurt1",
       "entity/fish/hurt2",
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.lumino_fish.hurt"
+    "subtitle": "subtitles.entity.luminaris.hurt"
+  },
+  "entity.luminofish.death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.luminofish.death"
+  },
+  "entity.luminofish.flop": {
+    "sounds": [
+      {
+        "name": "entity/fish/flop1",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop2",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop3",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop4",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.entity.luminofish.flop"
+  },
+  "entity.luminofish.hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.luminofish.hurt"
   },
   "entity.lunar_monstrosity.bite": {
     "sounds": [

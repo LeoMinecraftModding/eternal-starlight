@@ -84,18 +84,18 @@ public class LuminoFish extends AbstractSchoolingFish {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEventInit.LUMINO_FISH_HURT.get();
+        return SoundEventInit.LUMINOFISH_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.LUMINO_FISH_DEATH.get();
+        return SoundEventInit.LUMINOFISH_DEATH.get();
     }
 
     @Override
     protected SoundEvent getFlopSound() {
-        return SoundEventInit.LUMINO_FISH_FLOP.get();
+        return SoundEventInit.LUMINOFISH_FLOP.get();
     }
 
     @Override

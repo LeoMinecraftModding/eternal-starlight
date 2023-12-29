@@ -2,12 +2,12 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESWoodTypes;
-import cn.leolezury.eternalstarlight.common.client.model.*;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimationState;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
-import cn.leolezury.eternalstarlight.common.client.renderer.*;
+import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -313,6 +313,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
         strategy.register(EntityInit.DRYAD.get(), DryadRenderer::new);
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFishRenderer::new);
+        strategy.register(EntityInit.LUMINARIS.get(), LuminarisRenderer::new);
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM.get(), StarlightGolemRenderer::new);
         strategy.register(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
@@ -346,6 +347,7 @@ public class ClientSetupHandlers {
         strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
         strategy.register(DryadModel.LAYER_LOCATION, DryadModel::createBodyLayer);
         strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
+        strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
         strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
         strategy.register(TheGatekeeperModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));

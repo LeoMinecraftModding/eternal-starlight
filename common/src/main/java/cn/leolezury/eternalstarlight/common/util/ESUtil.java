@@ -134,7 +134,7 @@ public class ESUtil {
 
     public static CompoundTag getPersistentData(Entity entity) {
         if (entity instanceof PersistentDataHolder holder) {
-            return holder.esGetPersistentData();
+            return holder.getESPersistentData();
         }
         return new CompoundTag();
     }

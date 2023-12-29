@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.monster;
 
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;

@@ -36,9 +36,13 @@ public class SoundEventInit {
 
     public static final RegistryObject<SoundEvent, SoundEvent> DRYAD_HURT = register("entity.dryad.hurt");
 
-    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_HURT = register("entity.lumino_fish.hurt");
-    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_DEATH = register("entity.lumino_fish.death");
-    public static final RegistryObject<SoundEvent, SoundEvent> LUMINO_FISH_FLOP = register("entity.lumino_fish.flop");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_HURT = register("entity.luminofish.hurt");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_DEATH = register("entity.luminofish.death");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_FLOP = register("entity.luminofish.flop");
+
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_HURT = register("entity.luminaris.hurt");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_DEATH = register("entity.luminaris.death");
+    public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_FLOP = register("entity.luminaris.flop");
 
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_HURT = register("entity.starlight_golem.hurt");
     public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_DEATH = register("entity.starlight_golem.death");

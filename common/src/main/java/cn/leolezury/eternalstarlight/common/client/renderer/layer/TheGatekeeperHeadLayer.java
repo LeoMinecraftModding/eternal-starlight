@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
-import cn.leolezury.eternalstarlight.common.client.model.TheGatekeeperModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftSessionService;

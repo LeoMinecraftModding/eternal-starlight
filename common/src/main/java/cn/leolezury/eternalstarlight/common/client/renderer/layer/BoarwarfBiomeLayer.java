@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.BoarwarfModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.BoarwarfVariants;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -48,6 +48,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
         addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
         addSmelt(recipeOutput, 200, ItemInit.LUMINOFISH.get(), ItemInit.COOKED_LUMINOFISH.get(), ItemInit.LUMINOFISH.get());
+        addSmelt(recipeOutput, 200, ItemInit.LUMINARIS.get(), ItemInit.COOKED_LUMINARIS.get(), ItemInit.LUMINARIS.get());
 
         // ores
         addSmelt(recipeOutput, 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
@@ -97,6 +98,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
     private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
         simpleCookingRecipe(recipeOutput, name, recipeSerializer, factory, time, ItemInit.LUMINOFISH.get(), ItemInit.COOKED_LUMINOFISH.get(), 0.35F);
+        simpleCookingRecipe(recipeOutput, name, recipeSerializer, factory, time, ItemInit.LUMINARIS.get(), ItemInit.COOKED_LUMINARIS.get(), 0.35F);
     }
 
     private <T extends AbstractCookingRecipe> void simpleCookingRecipe(RecipeOutput recipeOutput, String name, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> factory, int time, ItemLike input, ItemLike output, float exp) {

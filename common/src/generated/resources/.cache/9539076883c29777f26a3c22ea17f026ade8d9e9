@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-29T09:47:26.9069204	Item Models: eternal_starlight
+// 1.20.4	2023-12-29T13:08:53.9164938	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -49,6 +49,7 @@ e02a90e767581c9cd7212b3ac51f03e8d9bdc6ef assets/eternal_starlight/models/item/co
 aadb695a1da8c261af41d2158ae7196d617bfbbc assets/eternal_starlight/models/item/cobbled_voidstone_stairs.json
 b464d6a2fd9e4ed2831d1e261e5f84be8577a3bb assets/eternal_starlight/models/item/cobbled_voidstone_wall.json
 e5922d9cdec25ffd0c4b642850df91ce37b44c55 assets/eternal_starlight/models/item/conebloom.json
+dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/cooked_luminaris.json
 535ae2fcfb3aa8b3d300509977556ba145dcdce5 assets/eternal_starlight/models/item/cooked_luminofish.json
 6c070c5d2e1c3e3ba28da6d35951d30ed3002f72 assets/eternal_starlight/models/item/crescent_grass.json
 7ddb335c47119122e79dafb94614bce46cc11f57 assets/eternal_starlight/models/item/cryobyssal_geyser.json
@@ -126,6 +127,8 @@ fa9edd4fae239533ab0cf14a77ffcf0ae3d5731c assets/eternal_starlight/models/item/gr
 f289ca560531c1f11d2df95c86788a0c445944b4 assets/eternal_starlight/models/item/grimstone_tile_wall.json
 2b1fa4eead9b12632a6cae4fd89455a7adf07869 assets/eternal_starlight/models/item/living_arm.json
 24bb90d5d9304d69e79c66c4dab25ddaf877d38b assets/eternal_starlight/models/item/loot_bag.json
+69e9074947e866b43dc792c8b8d76e9355fc21fd assets/eternal_starlight/models/item/luminaris.json
+cb1668489194db297488b00aeebaaa72988d8512 assets/eternal_starlight/models/item/luminaris_bucket.json
 e0486839ba354db4dc781ec4c91e4ae724c871d5 assets/eternal_starlight/models/item/luminofish.json
 ffa75ba3ae12618c55c2aaef7d07a78e0c3e21f4 assets/eternal_starlight/models/item/luminofish_bucket.json
 4fb6bcf57442e19af49d165d1a6738f5119921c5 assets/eternal_starlight/models/item/lunar_berries.json
