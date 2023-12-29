@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
+// TODO: codec?
 public class ESStandingSignBlock extends StandingSignBlock {
 
     public ESStandingSignBlock(WoodType woodType, Properties properties) {

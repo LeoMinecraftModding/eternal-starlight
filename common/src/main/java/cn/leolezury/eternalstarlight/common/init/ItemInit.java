@@ -313,6 +313,22 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> CUT_TWILIGHT_SANDSTONE_WALL = registerItem("cut_twilight_sandstone_wall", () -> new BlockItem(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> CHISELED_TWILIGHT_SANDSTONE = registerItem("chiseled_twilight_sandstone", () -> new BlockItem(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), new Item.Properties()));
 
+    // golem steel
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(BlockInit.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BLOCK = registerItem("oxidized_golem_steel_block", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_SLAB = registerItem("golem_steel_slab", () -> new BlockItem(BlockInit.GOLEM_STEEL_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_SLAB = registerItem("oxidized_golem_steel_slab", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_STAIRS = registerItem("golem_steel_stairs", () -> new BlockItem(BlockInit.GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_STAIRS = registerItem("oxidized_golem_steel_stairs", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_TILES = registerItem("golem_steel_tiles", () -> new BlockItem(BlockInit.GOLEM_STEEL_TILES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILES = registerItem("oxidized_golem_steel_tiles", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_SLAB = registerItem("golem_steel_tile_slab", () -> new BlockItem(BlockInit.GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_SLAB = registerItem("oxidized_golem_steel_tile_slab", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_STAIRS = registerItem("golem_steel_tile_stairs", () -> new BlockItem(BlockInit.GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = registerItem("oxidized_golem_steel_tile_stairs", () -> new BlockItem(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+
     // aethersent
     public static final RegistryObject<Item, Item> AETHERSENT_BLOCK = registerItem("aethersent_block", () -> new BlockItem(BlockInit.AETHERSENT_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AETHERSENT_INGOT = registerItem("aethersent_ingot", () -> new Item(new Item.Properties()));

@@ -146,6 +146,21 @@ public class ESBlockStateProvider extends BlockStateProvider {
         wallBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         simpleBlock(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
 
+        simpleBlock(BlockInit.GOLEM_STEEL_BLOCK.get());
+        simpleBlock(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        slabBlock(BlockInit.GOLEM_STEEL_SLAB.get(), blockTexture(BlockInit.GOLEM_STEEL_BLOCK.get()), blockTexture(BlockInit.GOLEM_STEEL_BLOCK.get()));
+        slabBlock(BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
+        stairsBlock(BlockInit.GOLEM_STEEL_STAIRS.get(), blockTexture(BlockInit.GOLEM_STEEL_BLOCK.get()));
+        stairsBlock(BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
+        simpleBlock(BlockInit.GOLEM_STEEL_TILES.get());
+        simpleBlock(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        slabBlock(BlockInit.GOLEM_STEEL_TILE_SLAB.get(), blockTexture(BlockInit.GOLEM_STEEL_TILES.get()), blockTexture(BlockInit.GOLEM_STEEL_TILES.get()));
+        slabBlock(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get()), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get()));
+        stairsBlock(BlockInit.GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(BlockInit.GOLEM_STEEL_TILES.get()));
+        stairsBlock(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get()));
+        simpleBlock(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get());
+        simpleBlock(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
+
         // doomeden
         simpleBlock(BlockInit.DOOMEDEN_TILE.get());
         simpleBlock(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());

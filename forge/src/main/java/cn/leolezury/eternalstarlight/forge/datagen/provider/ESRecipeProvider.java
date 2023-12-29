@@ -357,6 +357,31 @@ public class ESRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get(), 2);
         chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
+
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.GOLEM_STEEL_BLOCK.get(), "golem_steel_ingot_from_golem_steel_block", "golem_steel_ingot");
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(), "oxidized_golem_steel_ingot_from_oxidized_golem_steel_block", "oxidized_golem_steel_ingot");
+        addStoneCompress(recipeOutput, BlockInit.GOLEM_STEEL_BLOCK.get(), BlockInit.GOLEM_STEEL_TILES.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(), BlockInit.GOLEM_STEEL_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(), BlockInit.GOLEM_STEEL_BLOCK.get());
+        addStairs(recipeOutput, BlockInit.GOLEM_STEEL_STAIRS.get(), BlockInit.GOLEM_STEEL_BLOCK.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GOLEM_STEEL_STAIRS.get(), BlockInit.GOLEM_STEEL_BLOCK.get());
+        addSlab(recipeOutput, BlockInit.GOLEM_STEEL_SLAB.get(), BlockInit.GOLEM_STEEL_BLOCK.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GOLEM_STEEL_SLAB.get(), BlockInit.GOLEM_STEEL_BLOCK.get(), 2);
+        addStairs(recipeOutput, BlockInit.GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.GOLEM_STEEL_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.GOLEM_STEEL_TILES.get());
+        addSlab(recipeOutput, BlockInit.GOLEM_STEEL_TILE_SLAB.get(), BlockInit.GOLEM_STEEL_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GOLEM_STEEL_TILE_SLAB.get(), BlockInit.GOLEM_STEEL_TILES.get(), 2);
+        addStoneCompress(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        addStairs(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        addSlab(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(), 2);
+        addStairs(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        addSlab(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get(), 2);
     }
 
     private void addAetherSentRecipes(RecipeOutput recipeOutput) {

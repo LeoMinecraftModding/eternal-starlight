@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-23T19:09:26.5223478	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2023-12-29T22:26:53.8425045	Tags for minecraft:item mod id eternal_starlight
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
@@ -19,10 +19,10 @@ a17dc2a3331a71a42677e471bc87963375ad6374 data/minecraft/tags/items/leaves.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/items/sand.json
 c46c630836a7f368e154d3cd64d1932a26556b57 data/minecraft/tags/items/saplings.json
 d799c8e58424274cffbe57d728bb11386c314e06 data/minecraft/tags/items/signs.json
-5d56ee9e555ca24fd3903706af9e5040ca0cbb7d data/minecraft/tags/items/slabs.json
+bbd057407e7496b1efca8014e8dee07a10189380 data/minecraft/tags/items/slabs.json
 fc7b395f400d9da56fe2f5194cb47c0702ef0249 data/minecraft/tags/items/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/items/smelts_to_glass.json
-4926a3b46e57470a79da7bbbcb4a601ad466f919 data/minecraft/tags/items/stairs.json
+332c55d9538d6df04d11edd99a3fb01436f837e1 data/minecraft/tags/items/stairs.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/items/stone_crafting_materials.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/items/stone_tool_materials.json
 75e1a6d41042555e81384e8d6ad8bb5606d140af data/minecraft/tags/items/swords.json

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "eternal_starlight:block/oxidized_chiseled_golem_steel_block"
+  }
+}

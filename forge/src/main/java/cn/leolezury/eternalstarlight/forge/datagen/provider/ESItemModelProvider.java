@@ -284,6 +284,21 @@ public class ESItemModelProvider extends ItemModelProvider {
         wall(ItemInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), ItemInit.CUT_TWILIGHT_SANDSTONE.get());
         basicBlockItem(ItemInit.CHISELED_TWILIGHT_SANDSTONE.get());
 
+        basicBlockItem(ItemInit.GOLEM_STEEL_BLOCK.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        basicBlockItem(ItemInit.GOLEM_STEEL_SLAB.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_SLAB.get());
+        basicBlockItem(ItemInit.GOLEM_STEEL_STAIRS.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_STAIRS.get());
+        basicBlockItem(ItemInit.GOLEM_STEEL_TILES.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        basicBlockItem(ItemInit.GOLEM_STEEL_TILE_SLAB.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get());
+        basicBlockItem(ItemInit.GOLEM_STEEL_TILE_STAIRS.get());
+        basicBlockItem(ItemInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
+        basicBlockItem(ItemInit.CHISELED_GOLEM_STEEL_BLOCK.get());
+        basicBlockItem(ItemInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
+
         basicBlockItem(ItemInit.AETHERSENT_BLOCK.get());
         basicItem(ItemInit.AETHERSENT_INGOT.get());
         basicHandheld(ItemInit.RAGE_OF_STARS.get());

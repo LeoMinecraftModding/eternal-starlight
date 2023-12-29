@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -14,8 +15,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class ESLogBlock extends RotatedPillarBlock {
+    public static final MapCodec<ESLogBlock> CODEC = simpleCodec(ESLogBlock::new);
+
     public ESLogBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public MapCodec<? extends RotatedPillarBlock> codec() {
+        return CODEC;
     }
 
     @Override

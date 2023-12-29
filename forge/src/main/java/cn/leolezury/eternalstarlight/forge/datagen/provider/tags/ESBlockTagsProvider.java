@@ -145,6 +145,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(),
                 BlockInit.TWILIGHT_SANDSTONE_SLAB.get(),
                 BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
+                BlockInit.GOLEM_STEEL_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
                 BlockInit.DOOMEDEN_BRICK_SLAB.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get()
         );
@@ -172,6 +176,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
                 BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(),
                 BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
+                BlockInit.GOLEM_STEEL_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
                 BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get()
         );
@@ -409,6 +417,19 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
                 BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
                 BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(),
+                BlockInit.GOLEM_STEEL_BLOCK.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+                BlockInit.GOLEM_STEEL_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                BlockInit.GOLEM_STEEL_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                BlockInit.GOLEM_STEEL_TILES.get(),
+                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+                BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(),
+                BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
                 BlockInit.DOOMEDEN_BRICKS.get(),
                 BlockInit.DOOMEDEN_BRICK_SLAB.get(),
                 BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
@@ -436,7 +457,20 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
                 BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
                 BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
-                BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get()
+                BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                BlockInit.GOLEM_STEEL_BLOCK.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+                BlockInit.GOLEM_STEEL_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                BlockInit.GOLEM_STEEL_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                BlockInit.GOLEM_STEEL_TILES.get(),
+                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
+                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+                BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(),
+                BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
         );
     }
 }

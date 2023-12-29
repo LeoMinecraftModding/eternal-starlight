@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "eternal_starlight:oxidized_golem_steel_block"
+  },
+  "result": "eternal_starlight:oxidized_golem_steel_stairs"
+}

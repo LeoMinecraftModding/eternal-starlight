@@ -257,14 +257,29 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
         dropSelf(BlockInit.TWILIGHT_SAND.get());
         dropSelf(BlockInit.TWILIGHT_SANDSTONE.get());
-        dropSelf(BlockInit.TWILIGHT_SANDSTONE_SLAB.get());
+        add(BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.TWILIGHT_SANDSTONE_STAIRS.get());
         dropSelf(BlockInit.TWILIGHT_SANDSTONE_WALL.get());
         dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
+        add(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), this::createSlabItemTable);
         dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
         dropSelf(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get());
         dropSelf(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
+
+        dropSelf(BlockInit.GOLEM_STEEL_BLOCK.get());
+        dropSelf(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+        add(BlockInit.GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
+        add(BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.GOLEM_STEEL_STAIRS.get());
+        dropSelf(BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get());
+        dropSelf(BlockInit.GOLEM_STEEL_TILES.get());
+        dropSelf(BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
+        add(BlockInit.GOLEM_STEEL_TILE_SLAB.get(), this::createSlabItemTable);
+        add(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.GOLEM_STEEL_TILE_STAIRS.get());
+        dropSelf(BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
+        dropSelf(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get());
+        dropSelf(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
         dropSelf(BlockInit.DOOMED_TORCH.get());
         dropOther(BlockInit.WALL_DOOMED_TORCH.get(), ItemInit.DOOMED_TORCH.get());
