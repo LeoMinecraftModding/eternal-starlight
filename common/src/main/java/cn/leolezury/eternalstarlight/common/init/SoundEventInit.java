@@ -34,7 +34,7 @@ public class SoundEventInit {
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_DEATH = register("entity.astral_golem.death");
     public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_REPAIR = register("entity.astral_golem.repair");
 
-    public static final RegistryObject<SoundEvent, SoundEvent> DRYAD_HURT = register("entity.dryad.hurt");
+    public static final RegistryObject<SoundEvent, SoundEvent> ENT_HURT = register("entity.ent.hurt");
 
     public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_HURT = register("entity.luminofish.hurt");
     public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_DEATH = register("entity.luminofish.death");

@@ -78,7 +78,7 @@ public class BiomeInit {
                 .creatureGenerationProbability(0.2f)
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.LONESTAR_SKELETON.get(), 5, 1, 2))
-                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.DRYAD.get(), 15, 1, 2))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.ENT.get(), 15, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
     }
 

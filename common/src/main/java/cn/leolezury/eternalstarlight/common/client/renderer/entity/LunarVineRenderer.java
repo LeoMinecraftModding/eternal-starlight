@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.entity.VineModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.LunarVineModel;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,13 +14,13 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class VineRenderer extends EntityRenderer<LunarVine> {
+public class LunarVineRenderer extends EntityRenderer<LunarVine> {
     private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/vine.png");
-    VineModel<LunarVine> model;
+    LunarVineModel<LunarVine> model;
 
-    public VineRenderer(EntityRendererProvider.Context context) {
+    public LunarVineRenderer(EntityRendererProvider.Context context) {
         super(context);
-        model = new VineModel<>(context.bakeLayer(VineModel.LAYER_LOCATION));
+        model = new LunarVineModel<>(context.bakeLayer(LunarVineModel.LAYER_LOCATION));
     }
 
     @Override

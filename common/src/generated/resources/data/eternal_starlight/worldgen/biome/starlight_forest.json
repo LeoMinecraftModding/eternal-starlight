@@ -77,7 +77,7 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "eternal_starlight:dryad",
+        "type": "eternal_starlight:ent",
         "maxCount": 2,
         "minCount": 1,
         "weight": 15

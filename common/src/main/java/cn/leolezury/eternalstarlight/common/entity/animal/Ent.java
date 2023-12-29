@@ -31,16 +31,15 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
-public class Dryad extends Animal {
+public class Ent extends Animal {
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.LUNAR_BERRIES.get());
-    public Dryad(EntityType<? extends Animal> p_27557_, Level p_27558_) {
-        super(p_27557_, p_27558_);
+    public Ent(EntityType<? extends Animal> type, Level level) {
+        super(type, level);
     }
 
-    protected static final EntityDataAccessor<Boolean> HAS_LEAVES = SynchedEntityData.defineId(Dryad.class, EntityDataSerializers.BOOLEAN);
+    protected static final EntityDataAccessor<Boolean> HAS_LEAVES = SynchedEntityData.defineId(Ent.class, EntityDataSerializers.BOOLEAN);
     public boolean hasLeaves() {
         return entityData.get(HAS_LEAVES);
     }
@@ -67,11 +66,13 @@ public class Dryad extends Animal {
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
+        super.readAdditionalSaveData(compoundTag);
         setHasLeaves(compoundTag.getBoolean("HasLeaves"));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
+        super.addAdditionalSaveData(compoundTag);
         compoundTag.putBoolean("HasLeaves", hasLeaves());
     }
 
@@ -79,53 +80,53 @@ public class Dryad extends Animal {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
-    public static boolean checkDryadSpawnRules(EntityType<? extends Dryad> p_218105_, LevelAccessor p_218106_, MobSpawnType p_218107_, BlockPos p_218108_, RandomSource p_218109_) {
-        return p_218106_.getBlockState(p_218108_.below()).is(BlockTags.DIRT) || p_218106_.getBlockState(p_218108_.below()).is(Blocks.SNOW_BLOCK);
+    public static boolean checkDryadSpawnRules(EntityType<? extends Ent> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return level.getBlockState(pos.below()).is(BlockTags.DIRT);
     }
 
     @Override
-    public InteractionResult mobInteract(Player p_27584_, InteractionHand p_27585_) {
-        ItemStack stack = p_27584_.getItemInHand(p_27585_);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
         boolean flag = this.isFood(stack);
         if (!flag) {
             if (ESPlatform.INSTANCE.isShears(stack) && hasLeaves()) {
                 setHasLeaves(false);
                 spawnAtLocation(ItemInit.LUNAR_LEAVES.get());
-                stack.hurtAndBreak(1, p_27584_, (p_32290_) -> {
-                    p_32290_.broadcastBreakEvent(p_27585_);
+                stack.hurtAndBreak(1, player, (p) -> {
+                    p.broadcastBreakEvent(hand);
                 });
                 playSound(SoundEvents.SHEEP_SHEAR);
-                p_27584_.swing(p_27585_);
+                player.swing(hand);
                 if (this.level().isClientSide) {
                     return InteractionResult.CONSUME;
                 }
             }
             if (stack.is(Items.BONE_MEAL) && !hasLeaves()) {
                 setHasLeaves(true);
-                usePlayerItem(p_27584_, p_27585_, stack);
+                usePlayerItem(player, hand, stack);
                 playSound(SoundEvents.BONE_MEAL_USE);
-                p_27584_.swing(p_27585_);
+                player.swing(hand);
                 if (this.level().isClientSide) {
                     return InteractionResult.CONSUME;
                 }
             }
         }
-        return super.mobInteract(p_27584_, p_27585_);
+        return super.mobInteract(player, hand);
     }
 
-    public boolean isFood(ItemStack p_29508_) {
-        return FOOD_ITEMS.test(p_29508_);
-    }
-
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return EntityInit.DRYAD.get().create(p_146743_);
+    public boolean isFood(ItemStack stack_) {
+        return FOOD_ITEMS.test(stack_);
     }
 
     @Nullable
     @Override
-    protected SoundEvent getHurtSound(DamageSource p_21239_) {
-        return SoundEventInit.DRYAD_HURT.get();
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
+        return EntityInit.ENT.get().create(level);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEventInit.ENT_HURT.get();
     }
 }

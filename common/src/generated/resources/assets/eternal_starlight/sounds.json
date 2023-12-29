@@ -152,11 +152,11 @@
     ],
     "subtitle": "subtitles.entity.boarwarf.yes"
   },
-  "entity.dryad.hurt": {
+  "entity.ent.hurt": {
     "sounds": [
-      "eternal_starlight:mob/dryad_hurt"
+      "eternal_starlight:mob/ent_hurt"
     ],
-    "subtitle": "subtitles.entity.dryad.hurt"
+    "subtitle": "subtitles.entity.ent.hurt"
   },
   "entity.luminaris.death": {
     "sounds": [

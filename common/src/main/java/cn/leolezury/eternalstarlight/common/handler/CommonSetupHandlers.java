@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.animal.Dryad;
+import cn.leolezury.eternalstarlight.common.entity.animal.Ent;
 import cn.leolezury.eternalstarlight.common.entity.animal.Luminaris;
 import cn.leolezury.eternalstarlight.common.entity.animal.LuminoFish;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
@@ -35,7 +35,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.ASTRAL_GOLEM.get(), AstralGolem.createAttributes().build());
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
-        strategy.register(EntityInit.DRYAD.get(), Dryad.createAttributes().build());
+        strategy.register(EntityInit.ENT.get(), Ent.createAttributes().build());
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFish.createAttributes().build());
         strategy.register(EntityInit.LUMINARIS.get(), Luminaris.createAttributes().build());
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
@@ -51,7 +51,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.BOARWARF.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
-        strategy.register(EntityInit.DRYAD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Dryad::checkDryadSpawnRules);
+        strategy.register(EntityInit.ENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkDryadSpawnRules);
         strategy.register(EntityInit.LUMINOFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.OCEAN_FLOOR, LuminoFish::checkSurfaceWaterAnimalSpawnRules);
         strategy.register(EntityInit.LUMINARIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.OCEAN_FLOOR, Luminaris::checkSurfaceWaterAnimalSpawnRules);
     }

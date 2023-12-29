@@ -14,11 +14,11 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class VineModel<T extends LunarVine> extends EntityModel<T> {
+public class LunarVineModel<T extends LunarVine> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "vine"), "main");
     private final ModelPart vine;
 
-    public VineModel(ModelPart root) {
+    public LunarVineModel(ModelPart root) {
         this.vine = root.getChild("vine");
     }
 

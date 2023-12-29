@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.entity.SporeModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.LunarSporeModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,13 +14,13 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class SporeRenderer extends EntityRenderer<LunarSpore> {
+public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
     private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/spore.png");
-    private final SporeModel<LunarSpore> model;
+    private final LunarSporeModel<LunarSpore> model;
 
-    public SporeRenderer(EntityRendererProvider.Context context) {
+    public LunarSporeRenderer(EntityRendererProvider.Context context) {
         super(context);
-        model = new SporeModel<>(context.bakeLayer(SporeModel.LAYER_LOCATION));
+        model = new LunarSporeModel<>(context.bakeLayer(LunarSporeModel.LAYER_LOCATION));
     }
 
     @Override

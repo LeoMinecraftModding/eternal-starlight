@@ -311,7 +311,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
-        strategy.register(EntityInit.DRYAD.get(), DryadRenderer::new);
+        strategy.register(EntityInit.ENT.get(), EntRenderer::new);
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFishRenderer::new);
         strategy.register(EntityInit.LUMINARIS.get(), LuminarisRenderer::new);
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
@@ -319,8 +319,8 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM_BEAM.get(), StarlightGolemBeamRenderer::new);
         strategy.register(EntityInit.FIRE_COLUMN.get(), NothingRenderer::new);
-        strategy.register(EntityInit.LUNAR_SPORE.get(), SporeRenderer::new);
-        strategy.register(EntityInit.LUNAR_VINE.get(), VineRenderer::new);
+        strategy.register(EntityInit.LUNAR_SPORE.get(), LunarSporeRenderer::new);
+        strategy.register(EntityInit.LUNAR_VINE.get(), LunarVineRenderer::new);
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
@@ -345,7 +345,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
-        strategy.register(DryadModel.LAYER_LOCATION, DryadModel::createBodyLayer);
+        strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
         strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
         strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
@@ -354,7 +354,7 @@ public class ClientSetupHandlers {
         strategy.register(TheGatekeeperModel.OUTER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(StarlightGolemModel.LAYER_LOCATION, StarlightGolemModel::createBodyLayer);
         strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
-        strategy.register(SporeModel.LAYER_LOCATION, SporeModel::createBodyLayer);
-        strategy.register(VineModel.LAYER_LOCATION, VineModel::createBodyLayer);
+        strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
+        strategy.register(LunarVineModel.LAYER_LOCATION, LunarVineModel::createBodyLayer);
     }
 }

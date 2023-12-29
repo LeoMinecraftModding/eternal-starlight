@@ -14,11 +14,11 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class SporeModel<T extends LunarSpore> extends EntityModel<T> {
+public class LunarSporeModel<T extends LunarSpore> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "spore"), "main");
     private final ModelPart spore;
 
-    public SporeModel(ModelPart root) {
+    public LunarSporeModel(ModelPart root) {
         this.spore = root.getChild("spore");
     }
 

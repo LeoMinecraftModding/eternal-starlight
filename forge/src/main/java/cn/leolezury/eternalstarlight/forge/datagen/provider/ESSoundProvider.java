@@ -47,7 +47,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
         add(SoundEventInit.ASTRAL_GOLEM_DEATH.get(), definition().with(sound(mcLoc("mob/irongolem/death"))).subtitle("subtitles.entity.astral_golem.death"));
         add(SoundEventInit.ASTRAL_GOLEM_REPAIR.get(), definition().with(sound(mcLoc("mob/irongolem/repair"))).subtitle("subtitles.entity.astral_golem.repair"));
 
-        add(SoundEventInit.DRYAD_HURT.get(), definition().with(sound(loc("mob/dryad_hurt"))).subtitle("subtitles.entity.dryad.hurt"));
+        add(SoundEventInit.ENT_HURT.get(), definition().with(sound(loc("mob/ent_hurt"))).subtitle("subtitles.entity.ent.hurt"));
 
         add(SoundEventInit.LUMINOFISH_HURT.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity.luminofish.hurt"));
         add(SoundEventInit.LUMINOFISH_DEATH.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity.luminofish.death"));

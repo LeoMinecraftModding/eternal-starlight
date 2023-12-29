@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.animal.Dryad;
+import cn.leolezury.eternalstarlight.common.entity.animal.Ent;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -15,13 +15,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class DryadModel<T extends Dryad> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "dryad"), "main");
+public class EntModel<T extends Ent> extends EntityModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "ent"), "main");
     private final ModelPart head;
     private final ModelPart right_leg;
     private final ModelPart left_leg;
 
-    public DryadModel(ModelPart root) {
+    public EntModel(ModelPart root) {
         this.head = root.getChild("head");
         this.right_leg = root.getChild("right_leg");
         this.left_leg = root.getChild("left_leg");
