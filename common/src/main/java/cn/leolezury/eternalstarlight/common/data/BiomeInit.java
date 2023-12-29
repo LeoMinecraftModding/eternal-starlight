@@ -84,7 +84,7 @@ public class BiomeInit {
 
     private static MobSpawnSettings.Builder theAbyssSpawns() {
         return baseAquaticSpawnBuilder()
-                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.LUMINOFISH.get(), 10, 1, 4));
+                .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(EntityInit.LUMINOFISH.get(), 10, 3, 6));
     }
 
     private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {

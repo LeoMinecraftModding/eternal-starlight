@@ -32,8 +32,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -44,6 +46,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.loading.FMLLoader;
@@ -137,6 +140,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new ForgeHammerItem(tier, damage, attackSpeed, properties);
+    }
+
+    @Override
+    public MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
+        return new MobBucketItem(entityType, fluid, soundEvent, properties);
     }
 
     @Override

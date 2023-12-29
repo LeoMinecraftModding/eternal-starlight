@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:voidstone_brick_wall_from_voidstone_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_voidstone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:voidstone_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_voidstone_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:voidstone_brick_wall_from_voidstone_bricks_stonecutting"
+    ]
+  }
+}

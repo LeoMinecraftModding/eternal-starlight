@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-24T18:16:28.5232272	Registries
+// 1.20.4	2023-12-29T10:16:32.3865972	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
@@ -24,7 +24,7 @@ b4ec05b0811943892cad22ccee9654968ff0b3c3 data/eternal_starlight/worldgen/biome/d
 f66cf264327ee4b97058ae179fcef053ae83eed9 data/eternal_starlight/worldgen/biome/starlight_forest.json
 3eb63556f0200143a8f4161a8a9f79505f043580 data/eternal_starlight/worldgen/biome/starlight_permafrost_forest.json
 003764c386508581104b8bb1fa6c14ac9b933fff data/eternal_starlight/worldgen/biome/starlit_sea.json
-e64c2e7c1ad3e2b1505b3d0229f284964114814e data/eternal_starlight/worldgen/biome/the_abyss.json
+000ce8434e729b1723ffd52f0b959eb9840a5386 data/eternal_starlight/worldgen/biome/the_abyss.json
 f6ad6f72dbfd416cbe609057e7eb42282b7ee192 data/eternal_starlight/worldgen/biome/warm_shore.json
 7690b169d75ab472c571deb5075c4970bd3b37da data/eternal_starlight/worldgen/configured_carver/caves.json
 d0414cd5f5586d75f34638c975c58a6160d61216 data/eternal_starlight/worldgen/configured_carver/caves_extra.json

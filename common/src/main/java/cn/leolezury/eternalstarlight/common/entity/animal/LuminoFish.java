@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
+import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -99,7 +100,6 @@ public class LuminoFish extends AbstractSchoolingFish {
 
     @Override
     public ItemStack getBucketItemStack() {
-        // todo: bucket item
-        return null;
+        return ItemInit.LUMINOFISH_BUCKET.get().getDefaultInstance();
     }
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:polished_thermabysslate_from_thermabysslate_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thermabysslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:thermabysslate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_thermabysslate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_thermabysslate_from_thermabysslate_stonecutting"
+    ]
+  }
+}

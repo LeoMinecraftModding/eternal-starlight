@@ -291,6 +291,8 @@
   "block.eternal_starlight.starlight_golem_spawner": "Starlight Golem Spawner",
   "block.eternal_starlight.lunar_monstrosity_spawner": "Lunar Monstrosity Spawner",
 
+  "item.eternal_starlight.red_starlight_crystal_shard": "Red Starlight Crystal Shard",
+  "item.eternal_starlight.blue_starlight_crystal_shard": "Blue Starlight Crystal Shard",
   "item.eternal_starlight.lunar_berries": "Lunar Berries",
   "item.eternal_starlight.abyssal_fruit": "Abyssal Fruit",
   "item.eternal_starlight.lunar_boat": "Lunar Boat",
@@ -338,11 +340,10 @@
   "item.eternal_starlight.doomeden_rag": "Doomeden Rag",
   "item.eternal_starlight.doomeden_flesh_grinder": "Doomeden Flesh Grinder",
   "item.eternal_starlight.doomeden_sword": "Doomeden Sword",
+  "item.eternal_starlight.luminofish_bucket": "Luminofish Bucket",
+  "item.eternal_starlight.luminofish": "Luminofish",
+  "item.eternal_starlight.cooked_luminofish": "Cooked Luminofish",
   "item.eternal_starlight.seeking_eye": "Seeking Eye",
-  "item.eternal_starlight.loot_bag": "Loot Bag",
-  "item.eternal_starlight.book": "Starlight Story",
-  "item.eternal_starlight.red_starlight_crystal_shard": "Red Starlight Crystal Shard",
-  "item.eternal_starlight.blue_starlight_crystal_shard": "Blue Starlight Crystal Shard",
   "item.eternal_starlight.golem_steel_ingot": "Golem Steel Ingot",
   "item.eternal_starlight.oxidized_golem_steel_ingot": "Oxidized Golem Steel Ingot",
   "item.eternal_starlight.tenacious_petal": "Tenacious Petal",
@@ -350,6 +351,8 @@
   "item.eternal_starlight.moonring_bow": "Moonring Bow",
   "item.eternal_starlight.moonring_greatsword": "Moonring Greatsword",
   "item.eternal_starlight.petal_scythe": "Petal Scythe",
+  "item.eternal_starlight.loot_bag": "Loot Bag",
+  "item.eternal_starlight.book": "Starlight Story",
 
   "effect.eternal_starlight.crystalline_infection": "Crystal Infection",
 

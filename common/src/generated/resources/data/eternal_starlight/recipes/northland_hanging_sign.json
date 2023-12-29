@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "hanging_sign",
   "key": {
     "#": {
       "item": "eternal_starlight:stripped_northland_log"
     },
-    "C": {
+    "X": {
       "item": "minecraft:chain"
     }
   },
   "pattern": [
-    "C C",
+    "X X",
     "###",
     "###"
   ],

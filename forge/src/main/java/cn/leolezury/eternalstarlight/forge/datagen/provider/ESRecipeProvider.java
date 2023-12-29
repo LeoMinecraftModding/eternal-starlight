@@ -13,7 +13,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -44,7 +44,12 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
         addSingleConversion(recipeOutput, ItemInit.WHISPERBLOOM.get(), Items.PINK_DYE);
 
-        // smelt
+        // food
+        addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
+        addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
+        addSmelt(recipeOutput, 200, ItemInit.LUMINOFISH.get(), ItemInit.COOKED_LUMINOFISH.get(), ItemInit.LUMINOFISH.get());
+
+        // ores
         addSmelt(recipeOutput, 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
         addBlast(recipeOutput, 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
 
@@ -90,6 +95,15 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
+    private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
+        simpleCookingRecipe(recipeOutput, name, recipeSerializer, factory, time, ItemInit.LUMINOFISH.get(), ItemInit.COOKED_LUMINOFISH.get(), 0.35F);
+    }
+
+    private <T extends AbstractCookingRecipe> void simpleCookingRecipe(RecipeOutput recipeOutput, String name, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> factory, int time, ItemLike input, ItemLike output, float exp) {
+        SimpleCookingRecipeBuilder builder = SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.FOOD, output, exp, time, serializer, factory).unlockedBy(getHasName(input), has(input));
+        builder.save(recipeOutput, name(output) + "_from_" + name);
+    }
+
     private void addWoodRecipes(RecipeOutput recipeOutput) {
         addButton(recipeOutput, BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_PLANKS.get());
         addDoor(recipeOutput, BlockInit.LUNAR_DOOR.get(), BlockInit.LUNAR_PLANKS.get());
@@ -103,7 +117,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addStairs(recipeOutput, BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_PLANKS.get());
         addTrapdoor(recipeOutput, BlockInit.LUNAR_TRAPDOOR.get(), BlockInit.LUNAR_PLANKS.get());
         addSign(recipeOutput, ItemInit.LUNAR_SIGN.get(), BlockInit.LUNAR_PLANKS.get());
-        addHangingSign(recipeOutput, ItemInit.LUNAR_HANGING_SIGN.get(), BlockInit.STRIPPED_LUNAR_LOG.get());
+        hangingSign(recipeOutput, ItemInit.LUNAR_HANGING_SIGN.get(), BlockInit.STRIPPED_LUNAR_LOG.get());
         addBoat(recipeOutput, ItemInit.LUNAR_BOAT.get(), ItemInit.LUNAR_CHEST_BOAT.get(), BlockInit.LUNAR_PLANKS.get());
 
         addButton(recipeOutput, BlockInit.NORTHLAND_BUTTON.get(), BlockInit.NORTHLAND_PLANKS.get());
@@ -118,7 +132,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addStairs(recipeOutput, BlockInit.NORTHLAND_STAIRS.get(), BlockInit.NORTHLAND_PLANKS.get());
         addTrapdoor(recipeOutput, BlockInit.NORTHLAND_TRAPDOOR.get(), BlockInit.NORTHLAND_PLANKS.get());
         addSign(recipeOutput, ItemInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_PLANKS.get());
-        addHangingSign(recipeOutput, ItemInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
+        hangingSign(recipeOutput, ItemInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
         addBoat(recipeOutput, ItemInit.NORTHLAND_BOAT.get(), ItemInit.NORTHLAND_CHEST_BOAT.get(), BlockInit.NORTHLAND_PLANKS.get());
 
         addButton(recipeOutput, BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_PLANKS.get());
@@ -133,7 +147,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addStairs(recipeOutput, BlockInit.SCARLET_STAIRS.get(), BlockInit.SCARLET_PLANKS.get());
         addTrapdoor(recipeOutput, BlockInit.SCARLET_TRAPDOOR.get(), BlockInit.SCARLET_PLANKS.get());
         addSign(recipeOutput, ItemInit.SCARLET_SIGN.get(), BlockInit.SCARLET_PLANKS.get());
-        addHangingSign(recipeOutput, ItemInit.SCARLET_HANGING_SIGN.get(), BlockInit.STRIPPED_SCARLET_LOG.get());
+        hangingSign(recipeOutput, ItemInit.SCARLET_HANGING_SIGN.get(), BlockInit.STRIPPED_SCARLET_LOG.get());
         addBoat(recipeOutput, ItemInit.SCARLET_BOAT.get(), ItemInit.SCARLET_CHEST_BOAT.get(), BlockInit.SCARLET_PLANKS.get());
 
         addButton(recipeOutput, BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
@@ -148,7 +162,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addStairs(recipeOutput, BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
         addTrapdoor(recipeOutput, BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
         addSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addHangingSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
+        hangingSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
         addBoat(recipeOutput, ItemInit.STARLIGHT_MANGROVE_BOAT.get(), ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
     }
 
@@ -156,196 +170,195 @@ public class ESRecipeProvider extends RecipeProvider {
         addSmelt(recipeOutput, 200, BlockInit.COBBLED_GRIMSTONE.get(), BlockInit.GRIMSTONE.get(), BlockInit.COBBLED_GRIMSTONE.get());
         addStoneCompress(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE.get());
         addStoneCompress(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
         addStoneCompress(recipeOutput, BlockInit.GRIMSTONE_TILES.get(), BlockInit.GRIMSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_GRIMSTONE.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.CHISELED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.GRIMSTONE_TILES.get());
-        addWall(recipeOutput, BlockInit.COBBLED_GRIMSTONE_WALL.get(), BlockInit.COBBLED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_GRIMSTONE.get(), BlockInit.COBBLED_GRIMSTONE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.COBBLED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_TILES.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_GRIMSTONE_WALL.get(), BlockInit.COBBLED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_GRIMSTONE_WALL.get(), BlockInit.COBBLED_GRIMSTONE.get());
         addStairs(recipeOutput, BlockInit.COBBLED_GRIMSTONE_STAIRS.get(), BlockInit.COBBLED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_GRIMSTONE.get(), BlockInit.COBBLED_GRIMSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_GRIMSTONE_STAIRS.get(), BlockInit.COBBLED_GRIMSTONE.get());
         addSlab(recipeOutput, BlockInit.COBBLED_GRIMSTONE_SLAB.get(), BlockInit.COBBLED_GRIMSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.COBBLED_GRIMSTONE.get(), BlockInit.COBBLED_GRIMSTONE_SLAB.get());
-        addWall(recipeOutput, BlockInit.GRIMSTONE_BRICK_WALL.get(), BlockInit.GRIMSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.GRIMSTONE_BRICK_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_GRIMSTONE_SLAB.get(), BlockInit.COBBLED_GRIMSTONE.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_WALL.get(), BlockInit.GRIMSTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_WALL.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_WALL.get(), BlockInit.GRIMSTONE_BRICKS.get());
         addStairs(recipeOutput, BlockInit.GRIMSTONE_BRICK_STAIRS.get(), BlockInit.GRIMSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.GRIMSTONE_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_STAIRS.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_STAIRS.get(), BlockInit.GRIMSTONE_BRICKS.get());
         addSlab(recipeOutput, BlockInit.GRIMSTONE_BRICK_SLAB.get(), BlockInit.GRIMSTONE_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.GRIMSTONE_BRICKS.get(), BlockInit.GRIMSTONE_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_GRIMSTONE_WALL.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.POLISHED_GRIMSTONE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_SLAB.get(), BlockInit.POLISHED_GRIMSTONE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_BRICK_SLAB.get(), BlockInit.GRIMSTONE_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE_WALL.get(), BlockInit.POLISHED_GRIMSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE_WALL.get(), BlockInit.POLISHED_GRIMSTONE.get());
         addStairs(recipeOutput, BlockInit.POLISHED_GRIMSTONE_STAIRS.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.POLISHED_GRIMSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE_STAIRS.get(), BlockInit.POLISHED_GRIMSTONE.get());
         addSlab(recipeOutput, BlockInit.POLISHED_GRIMSTONE_SLAB.get(), BlockInit.POLISHED_GRIMSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_GRIMSTONE.get(), BlockInit.POLISHED_GRIMSTONE_SLAB.get());
-        addWall(recipeOutput, BlockInit.GRIMSTONE_TILE_WALL.get(), BlockInit.GRIMSTONE_TILES.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_TILES.get(), BlockInit.GRIMSTONE_TILE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_GRIMSTONE_SLAB.get(), BlockInit.POLISHED_GRIMSTONE.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_TILE_WALL.get(), BlockInit.GRIMSTONE_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_TILE_WALL.get(), BlockInit.GRIMSTONE_TILES.get());
         addStairs(recipeOutput, BlockInit.GRIMSTONE_TILE_STAIRS.get(), BlockInit.GRIMSTONE_TILES.get());
-        addStoneCutting(recipeOutput, BlockInit.GRIMSTONE_TILES.get(), BlockInit.GRIMSTONE_TILE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_TILE_STAIRS.get(), BlockInit.GRIMSTONE_TILES.get());
         addSlab(recipeOutput, BlockInit.GRIMSTONE_TILE_SLAB.get(), BlockInit.GRIMSTONE_TILES.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.GRIMSTONE_TILES.get(), BlockInit.GRIMSTONE_TILE_SLAB.get());
-
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.GRIMSTONE_TILE_SLAB.get(), BlockInit.GRIMSTONE_TILES.get(), 2);
+        
         addSmelt(recipeOutput, 200, BlockInit.COBBLED_VOIDSTONE.get(), BlockInit.VOIDSTONE.get(), BlockInit.COBBLED_VOIDSTONE.get());
         addStoneCompress(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE.get());
         addStoneCompress(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get());
         addStoneCompress(recipeOutput, BlockInit.VOIDSTONE_TILES.get(), BlockInit.VOIDSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.CHISELED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.VOIDSTONE_TILES.get());
-        addWall(recipeOutput, BlockInit.COBBLED_VOIDSTONE_WALL.get(), BlockInit.COBBLED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_VOIDSTONE.get(), BlockInit.COBBLED_VOIDSTONE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.COBBLED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_TILES.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_VOIDSTONE_WALL.get(), BlockInit.COBBLED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_VOIDSTONE_WALL.get(), BlockInit.COBBLED_VOIDSTONE.get());
         addStairs(recipeOutput, BlockInit.COBBLED_VOIDSTONE_STAIRS.get(), BlockInit.COBBLED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.COBBLED_VOIDSTONE.get(), BlockInit.COBBLED_VOIDSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_VOIDSTONE_STAIRS.get(), BlockInit.COBBLED_VOIDSTONE.get());
         addSlab(recipeOutput, BlockInit.COBBLED_VOIDSTONE_SLAB.get(), BlockInit.COBBLED_VOIDSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.COBBLED_VOIDSTONE.get(), BlockInit.COBBLED_VOIDSTONE_SLAB.get());
-        addWall(recipeOutput, BlockInit.VOIDSTONE_BRICK_WALL.get(), BlockInit.VOIDSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.VOIDSTONE_BRICK_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.COBBLED_VOIDSTONE_SLAB.get(), BlockInit.COBBLED_VOIDSTONE.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_WALL.get(), BlockInit.VOIDSTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_WALL.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_WALL.get(), BlockInit.VOIDSTONE_BRICKS.get());
         addStairs(recipeOutput, BlockInit.VOIDSTONE_BRICK_STAIRS.get(), BlockInit.VOIDSTONE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.VOIDSTONE_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_STAIRS.get(), BlockInit.VOIDSTONE_BRICKS.get());
         addSlab(recipeOutput, BlockInit.VOIDSTONE_BRICK_SLAB.get(), BlockInit.VOIDSTONE_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.VOIDSTONE_BRICKS.get(), BlockInit.VOIDSTONE_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_VOIDSTONE_WALL.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_SLAB.get(), BlockInit.POLISHED_VOIDSTONE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_BRICK_SLAB.get(), BlockInit.VOIDSTONE_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE_WALL.get(), BlockInit.POLISHED_VOIDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE_WALL.get(), BlockInit.POLISHED_VOIDSTONE.get());
         addStairs(recipeOutput, BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE_STAIRS.get(), BlockInit.POLISHED_VOIDSTONE.get());
         addSlab(recipeOutput, BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_VOIDSTONE.get(), BlockInit.POLISHED_VOIDSTONE_SLAB.get());
-        addWall(recipeOutput, BlockInit.VOIDSTONE_TILE_WALL.get(), BlockInit.VOIDSTONE_TILES.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_TILES.get(), BlockInit.VOIDSTONE_TILE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_VOIDSTONE_SLAB.get(), BlockInit.POLISHED_VOIDSTONE.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_TILE_WALL.get(), BlockInit.VOIDSTONE_TILES.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_TILE_WALL.get(), BlockInit.VOIDSTONE_TILES.get());
         addStairs(recipeOutput, BlockInit.VOIDSTONE_TILE_STAIRS.get(), BlockInit.VOIDSTONE_TILES.get());
-        addStoneCutting(recipeOutput, BlockInit.VOIDSTONE_TILES.get(), BlockInit.VOIDSTONE_TILE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_TILE_STAIRS.get(), BlockInit.VOIDSTONE_TILES.get());
         addSlab(recipeOutput, BlockInit.VOIDSTONE_TILE_SLAB.get(), BlockInit.VOIDSTONE_TILES.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.VOIDSTONE_TILES.get(), BlockInit.VOIDSTONE_TILE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.VOIDSTONE_TILE_SLAB.get(), BlockInit.VOIDSTONE_TILES.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.ABYSSLATE.get());
         addStoneCompress(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get());
-        addStoneCutting(recipeOutput, BlockInit.ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.CHISELED_POLISHED_ABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
-        addWall(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.ABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_ABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
         addStairs(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
         addSlab(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_ABYSSLATE_WALL.get(), BlockInit.POLISHED_ABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_ABYSSLATE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_ABYSSLATE_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_WALL.get(), BlockInit.POLISHED_ABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_WALL.get(), BlockInit.POLISHED_ABYSSLATE.get());
         addStairs(recipeOutput, BlockInit.POLISHED_ABYSSLATE_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_STAIRS.get(), BlockInit.POLISHED_ABYSSLATE.get());
         addSlab(recipeOutput, BlockInit.POLISHED_ABYSSLATE_SLAB.get(), BlockInit.POLISHED_ABYSSLATE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_ABYSSLATE.get(), BlockInit.POLISHED_ABYSSLATE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_ABYSSLATE_SLAB.get(), BlockInit.POLISHED_ABYSSLATE.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.THERMABYSSLATE.get());
         addStoneCompress(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get());
-        addStoneCutting(recipeOutput, BlockInit.THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
-        addWall(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.THERMABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
         addStairs(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
         addSlab(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_WALL.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
         addStairs(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
         addSlab(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_THERMABYSSLATE.get(), BlockInit.POLISHED_THERMABYSSLATE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(), BlockInit.POLISHED_THERMABYSSLATE.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.CRYOBYSSLATE.get());
         addStoneCompress(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get());
-        addStoneCutting(recipeOutput, BlockInit.CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
-        addWall(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.CRYOBYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
         addStairs(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
         addSlab(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
         addStairs(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
         addSlab(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_CRYOBYSSLATE.get(), BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(), BlockInit.POLISHED_CRYOBYSSLATE.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICKS.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get());
-        addStoneCutting(recipeOutput, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICKS.get());
-        addWall(recipeOutput, BlockInit.DOOMEDEN_BRICK_WALL.get(), BlockInit.DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_WALL.get());
-        addStoneCutting(recipeOutput, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_WALL.get());
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_WALL.get(), BlockInit.DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_WALL.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_WALL.get(), BlockInit.DOOMEDEN_BRICKS.get());
         addStairs(recipeOutput, BlockInit.DOOMEDEN_BRICK_STAIRS.get(), BlockInit.DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_STAIRS.get());
-        addStoneCutting(recipeOutput, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_STAIRS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_STAIRS.get(), BlockInit.DOOMEDEN_BRICKS.get());
         addSlab(recipeOutput, BlockInit.DOOMEDEN_BRICK_SLAB.get(), BlockInit.DOOMEDEN_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.DOOMEDEN_BRICKS.get(), BlockInit.DOOMEDEN_BRICK_SLAB.get());
-        addWall(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_SLAB.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.DOOMEDEN_BRICK_SLAB.get(), BlockInit.DOOMEDEN_BRICKS.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
         addStairs(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
         addSlab(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), BlockInit.POLISHED_DOOMEDEN_BRICKS.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.PACKED_NIGHTSHADE_MUD.get());
-        addWall(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
         addStairs(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
-        addStoneCutting(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
         addSlab(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.NIGHTSHADE_MUD_BRICKS.get(), BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(), BlockInit.NIGHTSHADE_MUD_BRICKS.get(), 2);
 
         addStoneCompress(recipeOutput, BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SAND.get());
-        addWall(recipeOutput, BlockInit.TWILIGHT_SANDSTONE_WALL.get(), BlockInit.TWILIGHT_SANDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SANDSTONE_WALL.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.TWILIGHT_SANDSTONE_WALL.get(), BlockInit.TWILIGHT_SANDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.TWILIGHT_SANDSTONE_WALL.get(), BlockInit.TWILIGHT_SANDSTONE.get());
         addStairs(recipeOutput, BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(), BlockInit.TWILIGHT_SANDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SANDSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(), BlockInit.TWILIGHT_SANDSTONE.get());
         addSlab(recipeOutput, BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), BlockInit.TWILIGHT_SANDSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SANDSTONE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.TWILIGHT_SANDSTONE_SLAB.get(), BlockInit.TWILIGHT_SANDSTONE.get(), 2);
         addStoneCompress(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SANDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        addWall(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.TWILIGHT_SANDSTONE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
         addStairs(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        addStoneCutting(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
         addSlab(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
-        addStoneCuttingSlab(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
-        addChiseled(recipeOutput, BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
-        addStoneCutting(recipeOutput, BlockInit.CUT_TWILIGHT_SANDSTONE.get(), BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get(), 2);
+        chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), BlockInit.CUT_TWILIGHT_SANDSTONE.get());
     }
 
     private void addAetherSentRecipes(RecipeOutput recipeOutput) {
-        addCompressed(recipeOutput, ItemInit.AETHERSENT_INGOT.get(), ItemInit.AETHERSENT_BLOCK.get());
-        addReverseCompressed(recipeOutput, ItemInit.AETHERSENT_BLOCK.get(), ItemInit.AETHERSENT_INGOT.get());
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.AETHERSENT_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.AETHERSENT_BLOCK.get(), "aethersent_ingot_from_iron_block", "aethersent_ingot");
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_HOOD.get())
                 .pattern("###")
                 .pattern("A A")
@@ -388,8 +401,8 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addSwampSilverRecipes(RecipeOutput recipeOutput) {
-        addCompressed(recipeOutput, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_BLOCK.get());
-        addReverseCompressed(recipeOutput, ItemInit.SWAMP_SILVER_BLOCK.get(), ItemInit.SWAMP_SILVER_INGOT.get());
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.SWAMP_SILVER_BLOCK.get(), "swamp_silver_ingot_from_iron_block", "swamp_silver_ingot");
+        nineBlockStorageRecipesWithCustomPacking(recipeOutput, RecipeCategory.MISC, ItemInit.SWAMP_SILVER_NUGGET.get(), RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get(), "swamp_silver_ingot_from_nuggets", "swamp_silver_ingot");
         addAxe(recipeOutput, ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
         addPickaxe(recipeOutput, ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
         addHoe(recipeOutput, ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
@@ -398,8 +411,6 @@ public class ESRecipeProvider extends RecipeProvider {
         addChestplate(recipeOutput, ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_INGOT.get());
         addLeggings(recipeOutput, ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_INGOT.get());
         addBoots(recipeOutput, ItemInit.SWAMP_SILVER_BOOTS.get(), ItemInit.SWAMP_SILVER_INGOT.get());
-        addCompressed(recipeOutput, ItemInit.SWAMP_SILVER_NUGGET.get(), ItemInit.SWAMP_SILVER_INGOT.get());
-        addReverseCompressed(recipeOutput, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_NUGGET.get());
         addSmelt(recipeOutput, 200, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
         addBlast(recipeOutput, 100, ItemInit.SWAMP_SILVER_ORE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_ORE.get());
         addSmelt(recipeOutput, 200, ItemInit.SWAMP_SILVER_INGOT.get(), ItemInit.SWAMP_SILVER_NUGGET.get(), ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_SICKLE.get(), ItemInit.SWAMP_SILVER_SWORD.get(), ItemInit.SWAMP_SILVER_HELMET.get(), ItemInit.SWAMP_SILVER_CHESTPLATE.get(), ItemInit.SWAMP_SILVER_LEGGINGS.get(), ItemInit.SWAMP_SILVER_BOOTS.get());
@@ -427,27 +438,6 @@ public class ESRecipeProvider extends RecipeProvider {
     
     protected final void addBlast(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_blasting"));
-    }
-
-    protected final void addCompressed(RecipeOutput recipeOutput, ItemLike toCompress, ItemLike output) {
-        addCompressed(recipeOutput, RecipeCategory.MISC, toCompress, output);
-    }
-
-    protected final void addCompressed(RecipeOutput recipeOutput, RecipeCategory category, ItemLike toCompress, ItemLike output) {
-        ShapedRecipeBuilder.shaped(category, output)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', Ingredient.of(toCompress))
-                .unlockedBy("has_item", has(toCompress))
-                .save(recipeOutput, getModLocation("compressed/" + name(output)));
-    }
-
-    protected final void addReverseCompressed(RecipeOutput recipeOutput, ItemLike compressed, ItemLike output) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 9)
-                .requires(compressed)
-                .unlockedBy("has_item", has(compressed))
-                .save(recipeOutput, getModLocation("compressed/reversed/" + name(output)));
     }
 
     protected final void addSingleConversion(RecipeOutput recipeOutput, Item from, Item to) {
@@ -668,17 +658,6 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    protected final void addHangingSign(RecipeOutput recipeOutput, ItemLike output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 6)
-                .pattern("C C")
-                .pattern("###")
-                .pattern("###")
-                .define('#', input)
-                .define('C', Items.CHAIN)
-                .unlockedBy("has_item", has(input))
-                .save(recipeOutput);
-    }
-
     protected final void addBoat(RecipeOutput recipeOutput, Item boat, Item chestBoat, Block planks) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
                 .pattern("P P")
@@ -703,48 +682,6 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('#', input)
                 .unlockedBy("has_item", has(input))
                 .save(recipeOutput);
-    }
-
-    protected final void addWall(RecipeOutput recipeOutput, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
-                .pattern("###")
-                .pattern("###")
-                .define('#', input)
-                .unlockedBy("has_item", has(input))
-                .save(recipeOutput);
-    }
-
-    protected final void addChiseled(RecipeOutput recipeOutput, Block output, Block input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
-                .pattern("#")
-                .pattern("#")
-                .define('#', input)
-                .unlockedBy("has_item", has(input))
-                .save(recipeOutput);
-    }
-
-    protected final void addStoneCuttingSlab(RecipeOutput recipeOutput, Block input, ItemLike output) {
-        addStoneCutting(recipeOutput, input, output, 2);
-    }
-
-    protected final void addStoneCutting(RecipeOutput recipeOutput, Block input, ItemLike output) {
-        makeStonecuttingRecipeBuilder(input, output)
-                .save(recipeOutput, getModLocation(name(output) + "_stonecutting_from_" + name(input)));
-    }
-
-    protected final void addStoneCutting(RecipeOutput recipeOutput, Block input, ItemLike output, int amount) {
-        makeStonecuttingRecipeBuilder(input, output, amount)
-                .save(recipeOutput, getModLocation(name(output) + "_stonecutting_from_" + name(input)));
-    }
-
-    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output)
-                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input), has(input));
-    }
-
-    public SingleItemRecipeBuilder makeStonecuttingRecipeBuilder(Block input, ItemLike output, int outputAmount) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, outputAmount)
-                .unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(input), has(input));
     }
 
     protected final String name(ItemLike item) {

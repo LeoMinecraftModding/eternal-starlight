@@ -284,12 +284,6 @@ public class ESItemModelProvider extends ItemModelProvider {
         wall(ItemInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), ItemInit.CUT_TWILIGHT_SANDSTONE.get());
         basicBlockItem(ItemInit.CHISELED_TWILIGHT_SANDSTONE.get());
 
-        basicBlockItem(ItemInit.ENERGY_BLOCK.get());
-        basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
-        basicBlockItem(ItemInit.LUNAR_MONSTROSITY_SPAWNER.get());
-        basicItem(ItemInit.LOOT_BAG.get());
-        basicItem(ItemInit.BOOK.get());
-
         basicBlockItem(ItemInit.AETHERSENT_BLOCK.get());
         basicItem(ItemInit.AETHERSENT_INGOT.get());
         basicHandheld(ItemInit.RAGE_OF_STARS.get());
@@ -363,6 +357,16 @@ public class ESItemModelProvider extends ItemModelProvider {
         largeHandheld(ItemInit.PETAL_SCYTHE.get());
         inventoryModel(ItemInit.PETAL_SCYTHE.get());
         basicItem(ItemInit.SEEKING_EYE.get());
+
+        basicItem(ItemInit.LUMINOFISH_BUCKET.get());
+        basicItem(ItemInit.LUMINOFISH.get());
+        basicItem(ItemInit.COOKED_LUMINOFISH.get());
+
+        basicBlockItem(ItemInit.ENERGY_BLOCK.get());
+        basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
+        basicBlockItem(ItemInit.LUNAR_MONSTROSITY_SPAWNER.get());
+        basicItem(ItemInit.LOOT_BAG.get());
+        basicItem(ItemInit.BOOK.get());
         inventoryModel(ItemInit.PROPHET_ORB.get());
     }
 

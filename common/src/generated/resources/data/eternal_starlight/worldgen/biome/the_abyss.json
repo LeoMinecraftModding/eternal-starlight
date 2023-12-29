@@ -75,14 +75,7 @@
       }
     ],
     "axolotls": [],
-    "creature": [
-      {
-        "type": "eternal_starlight:luminofish",
-        "maxCount": 4,
-        "minCount": 1,
-        "weight": 10
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [
       {
@@ -99,7 +92,14 @@
       }
     ],
     "underground_water_creature": [],
-    "water_ambient": [],
+    "water_ambient": [
+      {
+        "type": "eternal_starlight:luminofish",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 10
+      }
+    ],
     "water_creature": []
   },
   "temperature": 0.5

@@ -291,6 +291,8 @@
   "block.eternal_starlight.starlight_golem_spawner": "星光傀儡刷怪笼",
   "block.eternal_starlight.lunar_monstrosity_spawner": "月藤巨物刷怪笼",
 
+  "item.eternal_starlight.red_starlight_crystal_shard": "红色星辉水晶碎片",
+  "item.eternal_starlight.blue_starlight_crystal_shard": "蓝色星辉水晶碎片",
   "item.eternal_starlight.lunar_berries": "月辉浆果",
   "item.eternal_starlight.abyssal_fruit": "渊海果",
   "item.eternal_starlight.lunar_boat": "月辉船",
@@ -338,11 +340,10 @@
   "item.eternal_starlight.doomeden_rag": "魔窟破布",
   "item.eternal_starlight.doomeden_flesh_grinder": "魔窟绞肉机",
   "item.eternal_starlight.doomeden_sword": "魔窟剑客之剑",
+  "item.eternal_starlight.luminofish_bucket": "光鲀桶",
+  "item.eternal_starlight.luminofish": "光鲀",
+  "item.eternal_starlight.cooked_luminofish": "熟光鲀",
   "item.eternal_starlight.seeking_eye": "寻觅之眼",
-  "item.eternal_starlight.loot_bag": "战利品袋",
-  "item.eternal_starlight.book": "星光物语",
-  "item.eternal_starlight.red_starlight_crystal_shard": "红色星辉水晶碎片",
-  "item.eternal_starlight.blue_starlight_crystal_shard": "蓝色星辉水晶碎片",
   "item.eternal_starlight.golem_steel_ingot": "傀儡钢锭",
   "item.eternal_starlight.oxidized_golem_steel_ingot": "氧化傀儡钢锭",
   "item.eternal_starlight.tenacious_petal": "坚韧花瓣",
@@ -350,6 +351,8 @@
   "item.eternal_starlight.moonring_bow": "月珥之弓",
   "item.eternal_starlight.moonring_greatsword": "月珥巨剑",
   "item.eternal_starlight.petal_scythe": "花瓣之镰",
+  "item.eternal_starlight.loot_bag": "战利品袋",
+  "item.eternal_starlight.book": "星光物语",
 
   "effect.eternal_starlight.crystalline_infection": "晶体感染",
 
