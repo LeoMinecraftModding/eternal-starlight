@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -32,7 +32,7 @@ public abstract class EntityRenderDispatcherMixin {
 
     @Inject(method = "renderShadow", at = @At("HEAD"), cancellable = true)
     private static void es_renderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
-        if (entity instanceof Player && ClientSetupHandlers.renderingFirstPersonPlayer) {
+        if (entity instanceof Player && PlayerAnimator.renderingFirstPersonPlayer) {
             // cancel the shadow rendering while rendering a first person player model
             ci.cancel();
         }
@@ -40,7 +40,7 @@ public abstract class EntityRenderDispatcherMixin {
 
     @Inject(method = "render", at = @At("RETURN"))
     private <E extends Entity> void es_render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
-        if (entity instanceof LivingEntity living && !ClientSetupHandlers.renderingFirstPersonPlayer) {
+        if (entity instanceof LivingEntity living && !PlayerAnimator.renderingFirstPersonPlayer) {
             AttributeInstance speed = living.getAttribute(Attributes.MOVEMENT_SPEED);
             if (speed == null) return;
 

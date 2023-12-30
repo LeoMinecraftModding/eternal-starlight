@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
@@ -13,8 +13,6 @@ import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Final;
@@ -25,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.Map;
 
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin {
@@ -41,20 +39,21 @@ public abstract class LevelRendererMixin {
     public void es_render(PoseStack stack, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightTexture lightmapTextureManager, Matrix4f matrix4f, CallbackInfo info) {
         if (camera.isDetached()) return;
         if (camera.getEntity() instanceof LocalPlayer player && player.isUsingItem()) {
-            ItemStack useItem = player.getItemInHand(player.getUsedItemHand());
             boolean renderModel = false;
 
-            for (Supplier<? extends Item> itemSupplier : ClientSetupHandlers.playerAnimatingItemMap.keySet()) {
-                if (useItem.is(itemSupplier.get())) {
-                    renderModel = true;
-                    break;
+            for (Map.Entry<PlayerAnimator.AnimationTrigger, PlayerAnimator.AnimationStateFunction> entry : PlayerAnimator.ANIMATIONS.entrySet()) {
+                if (entry.getKey().shouldPlay(player)) {
+                    PlayerAnimator.PlayerAnimationState state = entry.getValue().get(player);
+                    if (state.renderLeftArm() || state.renderRightArm()) {
+                        renderModel = true;
+                    }
                 }
             }
 
             if (renderModel) {
                 Vec3 cameraPos = camera.getPosition();
                 MultiBufferSource.BufferSource bufferSource = this.renderBuffers.bufferSource();
-                ClientSetupHandlers.renderingFirstPersonPlayer = true;
+                PlayerAnimator.renderingFirstPersonPlayer = true;
 
                 // Very, very tricky way to filter model layers
                 // Maybe the best way keep mod capabilities
@@ -73,7 +72,7 @@ public abstract class LevelRendererMixin {
                 playerRenderer.layers.clear();
                 playerRenderer.layers.addAll(prevLayers);
 
-                ClientSetupHandlers.renderingFirstPersonPlayer = false;
+                PlayerAnimator.renderingFirstPersonPlayer = false;
             }
         }
     }

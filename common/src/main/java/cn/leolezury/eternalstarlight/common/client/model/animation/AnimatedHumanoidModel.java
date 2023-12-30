@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.model.animation.model;
+package cn.leolezury.eternalstarlight.common.client.model.animation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

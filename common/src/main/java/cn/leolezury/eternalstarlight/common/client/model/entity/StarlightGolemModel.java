@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.animation.StarlightGolemAnimation;
-import cn.leolezury.eternalstarlight.common.client.model.animation.model.AnimatedEntityModel;
+import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
+import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

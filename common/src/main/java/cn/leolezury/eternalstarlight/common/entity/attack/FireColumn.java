@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 
-public class FireColumn extends AttackEffectEntity {
+public class FireColumn extends AttackEffect {
     public FireColumn(EntityType<? extends Entity> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }

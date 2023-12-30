@@ -11,7 +11,6 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator.Tru
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpheroidFoliagePlacer;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpikeFoliagePlacer;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk.BranchingTrunkPlacer;
-import com.google.common.base.Suppliers;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -55,7 +54,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");

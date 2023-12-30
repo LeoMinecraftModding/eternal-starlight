@@ -242,7 +242,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(wood, models().cubeAll(name(wood), blockTexture(log)));
         simpleBlock(planks);
         logBlock(strippedLog);
-        simpleBlock(strippedWood, models().cubeAll(name(strippedWood), blockTexture(log)));
+        simpleBlock(strippedWood, models().cubeAll(name(strippedWood), blockTexture(strippedLog)));
         if (cutoutDoor) {
             doorBlockWithRenderType(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"), CUTOUT);
         } else {

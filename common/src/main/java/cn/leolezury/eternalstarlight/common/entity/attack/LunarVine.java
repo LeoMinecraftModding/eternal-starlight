@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
-public class LunarVine extends AttackEffectEntity {
+public class LunarVine extends AttackEffect {
     public LunarVine(EntityType<?> type, Level level) {
         super(type, level);
     }

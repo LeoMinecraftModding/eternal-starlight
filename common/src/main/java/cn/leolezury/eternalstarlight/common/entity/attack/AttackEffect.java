@@ -18,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class AttackEffectEntity extends Entity {
-    public AttackEffectEntity(EntityType<?> type, Level level) {
+public class AttackEffect extends Entity {
+    public AttackEffect(EntityType<?> type, Level level) {
         super(type, level);
     }
     @Nullable
@@ -42,14 +42,14 @@ public class AttackEffectEntity extends Entity {
     public void setTarget(LivingEntity target) {
         this.target = target;
     }
-    protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
     public int getSpawnedTicks() {
         return entityData.get(SPAWNED_TICKS);
     }
     public void setSpawnedTicks(int spawnedTicks) {
         entityData.set(SPAWNED_TICKS, spawnedTicks);
     }
-    protected static final EntityDataAccessor<Integer> ATTACK_MODE = SynchedEntityData.defineId(AttackEffectEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<Integer> ATTACK_MODE = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
     public int getAttackMode() {
         return entityData.get(ATTACK_MODE);
     }

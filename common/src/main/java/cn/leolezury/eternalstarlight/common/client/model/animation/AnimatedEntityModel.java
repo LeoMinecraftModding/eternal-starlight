@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.model.animation.model;
+package cn.leolezury.eternalstarlight.common.client.model.animation;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

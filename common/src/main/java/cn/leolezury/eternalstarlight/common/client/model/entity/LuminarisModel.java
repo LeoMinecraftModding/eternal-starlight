@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.animation.LuminarisAnimation;
-import cn.leolezury.eternalstarlight.common.client.model.animation.model.AnimatedEntityModel;
+import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
+import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LuminarisAnimation;
 import cn.leolezury.eternalstarlight.common.entity.animal.Luminaris;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

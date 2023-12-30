@@ -2,20 +2,24 @@ package cn.leolezury.eternalstarlight.common.entity.animal;
 
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
 public class LuminoFish extends AbstractSchoolingFish {
@@ -71,6 +75,11 @@ public class LuminoFish extends AbstractSchoolingFish {
     }
 
     @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        return super.isInvulnerableTo(damageSource) || damageSource.is(DamageTypes.HOT_FLOOR);
+    }
+
+    @Override
     public boolean hurt(DamageSource damageSource, float amount) {
         boolean flag = super.hurt(damageSource, amount);
         Entity entity = damageSource.getDirectEntity();
@@ -101,5 +110,10 @@ public class LuminoFish extends AbstractSchoolingFish {
     @Override
     public ItemStack getBucketItemStack() {
         return ItemInit.LUMINOFISH_BUCKET.get().getDefaultInstance();
+    }
+
+    public static boolean checkAbyssalWaterAnimalSpawnRules(EntityType<? extends WaterAnimal> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
+        int seaLevel = levelAccessor.getSeaLevel();
+        return blockPos.getY() <= seaLevel - 40 && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER);
     }
 }

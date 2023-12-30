@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "eternal_starlight:block/lunar_log"
+    "all": "eternal_starlight:block/stripped_lunar_log"
   }
 }
