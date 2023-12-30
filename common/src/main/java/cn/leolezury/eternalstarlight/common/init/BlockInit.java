@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -197,7 +198,9 @@ public class BlockInit {
 
     // scarlet wood
     public static final RegistryObject<Block, Block> SCARLET_LEAVES = BLOCKS.register("scarlet_leaves",
-            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+            () -> new ScarletLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> SCARLET_LEAVES_PILE = BLOCKS.register("scarlet_leaves_pile",
+            () -> new LeavesPileBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW).noCollission().sound(SoundType.CHERRY_LEAVES).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_LOG = BLOCKS.register("scarlet_log",
             () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_WOOD = BLOCKS.register("scarlet_wood",
@@ -492,7 +495,7 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new ThermalSpringStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).mapColor(MapColor.STONE).strength(5.0F, 3.5F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block, Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block, Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel((state) -> 10)));

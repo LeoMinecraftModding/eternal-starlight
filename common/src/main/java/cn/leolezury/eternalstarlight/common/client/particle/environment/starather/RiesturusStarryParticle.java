@@ -7,7 +7,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 
 @Environment(EnvType.CLIENT)
-
 public class RiesturusStarryParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
 

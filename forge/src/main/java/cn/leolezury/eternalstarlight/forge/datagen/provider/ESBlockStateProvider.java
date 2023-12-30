@@ -89,6 +89,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         mangroveRoots(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
         leaves(BlockInit.SCARLET_LEAVES.get());
+        layered(BlockInit.SCARLET_LEAVES_PILE.get(), blockTexture(BlockInit.SCARLET_LEAVES.get()));
         woodSet(BlockInit.SCARLET_LOG.get(), BlockInit.SCARLET_WOOD.get(), BlockInit.SCARLET_PLANKS.get(), BlockInit.STRIPPED_SCARLET_LOG.get(), BlockInit.STRIPPED_SCARLET_WOOD.get(), BlockInit.SCARLET_DOOR.get(), false, BlockInit.SCARLET_TRAPDOOR.get(), false, BlockInit.SCARLET_PRESSURE_PLATE.get(), BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_FENCE.get(), BlockInit.SCARLET_FENCE_GATE.get(), BlockInit.SCARLET_SLAB.get(), BlockInit.SCARLET_STAIRS.get(), BlockInit.SCARLET_SIGN.get(), BlockInit.SCARLET_WALL_SIGN.get(), BlockInit.SCARLET_HANGING_SIGN.get(), BlockInit.SCARLET_WALL_HANGING_SIGN.get());
         crossBlock(BlockInit.SCARLET_SAPLING.get());
         pottedPlant(BlockInit.POTTED_SCARLET_SAPLING.get(), blockTexture(BlockInit.SCARLET_SAPLING.get()));
@@ -484,13 +485,30 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(wall, models().getBuilder(name(wall)).texture("particle", location));
     }
 
-    private void simpleBlockWithRenderType(Block block, ResourceLocation renderType) {
-        simpleBlock(block, models().cubeAll(name(block), blockTexture(block)).renderType(renderType));
-    }
-
     private void leaves(Block leaves) {
         ModelFile modelFile = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         simpleBlock(leaves, modelFile);
+    }
+
+    private void layered(Block layered, ResourceLocation texture) {
+        getVariantBuilder(layered).forAllStates((state -> {
+            int height = state.getValue(BlockStateProperties.LAYERS) * 2;
+            ModelFile modelFile = height < 16 ? models().withExistingParent(name(layered) + "_height" + height, new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/thin_block"))
+                    .texture("particle", texture)
+                    .texture("texture", texture)
+                    .renderType(CUTOUT_MIPPED)
+                    .element()
+                    .from(0, 0, 0)
+                    .to(16, height, 16)
+                    .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#texture").cullface(Direction.DOWN).end()
+                    .face(Direction.UP).uvs(0, 0, 16, 16).texture("#texture").end()
+                    .face(Direction.NORTH).uvs(0, 16 - height, 16, 16).texture("#texture").cullface(Direction.NORTH).end()
+                    .face(Direction.SOUTH).uvs(0, 16 - height, 16, 16).texture("#texture").cullface(Direction.SOUTH).end()
+                    .face(Direction.WEST).uvs(0, 16 - height, 16, 16).texture("#texture").cullface(Direction.WEST).end()
+                    .face(Direction.EAST).uvs(0, 16 - height, 16, 16).texture("#texture").cullface(Direction.EAST).end()
+                    .end() : models().cubeAll(name(layered), texture);
+            return ConfiguredModel.builder().modelFile(modelFile).build();
+        }));
     }
 
     private void pottedPlant(Block potted, ResourceLocation location) {

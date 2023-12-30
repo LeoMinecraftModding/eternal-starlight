@@ -114,6 +114,7 @@ public class ItemInit {
     // scarlet wood
     public static final RegistryObject<Item, Item> SCARLET_SAPLING = registerItem("scarlet_sapling", () -> new BlockItem(BlockInit.SCARLET_SAPLING.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SCARLET_LEAVES = registerItem("scarlet_leaves", () -> new BlockItem(BlockInit.SCARLET_LEAVES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_LEAVES_PILE = registerItem("scarlet_leaves_pile", () -> new BlockItem(BlockInit.SCARLET_LEAVES_PILE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SCARLET_LOG = registerItem("scarlet_log", () -> new BlockItem(BlockInit.SCARLET_LOG.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SCARLET_WOOD = registerItem("scarlet_wood", () -> new BlockItem(BlockInit.SCARLET_WOOD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SCARLET_PLANKS = registerItem("scarlet_planks", () -> new BlockItem(BlockInit.SCARLET_PLANKS.get(), new Item.Properties()));

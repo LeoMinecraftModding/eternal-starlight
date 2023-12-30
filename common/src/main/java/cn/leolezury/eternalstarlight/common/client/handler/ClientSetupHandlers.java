@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimato
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
@@ -20,6 +21,7 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.particle.CherryParticle;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
@@ -45,6 +47,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CherryLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
@@ -84,7 +87,8 @@ public class ClientSetupHandlers {
             BlockInit.STARLIGHT_MANGROVE_LEAVES,
             BlockInit.STARLIGHT_MANGROVE_ROOTS,
             BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS,
-            BlockInit.SCARLET_LEAVES
+            BlockInit.SCARLET_LEAVES,
+            BlockInit.SCARLET_LEAVES_PILE
     );
 
     public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
@@ -290,10 +294,11 @@ public class ClientSetupHandlers {
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));    }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
-        strategy.register(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);
         strategy.register(ParticleInit.STARLIGHT.get(), EndRodParticle.Provider::new);
-        strategy.register(ParticleInit.POISON.get(), FlameParticle.Provider::new);
+        strategy.register(ParticleInit.SCARLET_LEAVES.get(), ScarletLeavesParticle.Provider::new);
         strategy.register(ParticleInit.ENERGY.get(), FlameParticle.Provider::new);
+        strategy.register(ParticleInit.POISON.get(), FlameParticle.Provider::new);
+        strategy.register(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {

@@ -33,6 +33,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
     public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
     public static final ResourceKey<PlacedFeature> FALLEN_SCARLET_LOG = create("fallen_scarlet_log");
+    public static final ResourceKey<PlacedFeature> SCARLET_LEAVES_PILE = create("scarlet_leaves_pile");
     public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL = create("starlight_crystal");
     public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL_SURFACE = create("starlight_crystal_surface");
     public static final ResourceKey<PlacedFeature> CAVE_VINE = create("cave_vine");
@@ -82,6 +83,7 @@ public class PlacedFeatureInit {
         register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, FALLEN_SCARLET_LOG, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FALLEN_SCARLET_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        register(context, SCARLET_LEAVES_PILE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_LEAVES_PILE), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, STARLIGHT_CRYSTAL, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_CRYSTAL), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
         register(context, STARLIGHT_CRYSTAL_SURFACE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_CRYSTAL), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, CAVE_VINE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.CAVE_VINE), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());

@@ -98,6 +98,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         basicItemWithBlockTexture(ItemInit.SCARLET_SAPLING.get());
         basicBlockItem(ItemInit.SCARLET_LEAVES.get());
+        basicBlockItem(ItemInit.SCARLET_LEAVES_PILE.get());
         basicBlockItem(ItemInit.SCARLET_LOG.get());
         basicBlockItem(ItemInit.SCARLET_WOOD.get());
         basicBlockItem(ItemInit.SCARLET_PLANKS.get());

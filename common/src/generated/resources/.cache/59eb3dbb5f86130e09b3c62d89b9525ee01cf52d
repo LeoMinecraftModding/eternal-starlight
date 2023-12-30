@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-29T22:26:53.5715248	Loot Tables
+// 1.20.4	2023-12-30T20:58:57.5945117	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -223,6 +223,7 @@ a1f184eeae4a4bb8f5f2e9d4200173a732fa8683 data/eternal_starlight/loot_tables/bloc
 fc4d8c40ec0263b33f1d69018831ebd2f622f83e data/eternal_starlight/loot_tables/blocks/scarlet_grass.json
 8ab812e95abf3122b19377e8618cff600c0335e7 data/eternal_starlight/loot_tables/blocks/scarlet_hanging_sign.json
 1eb48208fb42555c4e04fe4b4ed6f667da97a569 data/eternal_starlight/loot_tables/blocks/scarlet_leaves.json
+eb8efac49d4c46b38a6f219309fe310206a6ad9e data/eternal_starlight/loot_tables/blocks/scarlet_leaves_pile.json
 fbb3ea3ce97945757759e54d28daba926dc208ac data/eternal_starlight/loot_tables/blocks/scarlet_log.json
 71af0dcfbdf7c242271d86109e9b3dbbe805db7d data/eternal_starlight/loot_tables/blocks/scarlet_planks.json
 f95e4516fcf1e0c72709505128807d693ff0baa6 data/eternal_starlight/loot_tables/blocks/scarlet_pressure_plate.json

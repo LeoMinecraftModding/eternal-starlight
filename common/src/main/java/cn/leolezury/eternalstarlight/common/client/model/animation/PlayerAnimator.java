@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.model.animation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;

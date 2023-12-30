@@ -169,6 +169,7 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_SCARLET_LOG);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_LEAVES_PILE);
 
         return builder;
     }

@@ -148,6 +148,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
         add(BlockInit.SCARLET_LEAVES.get(), (block) -> this.createLeavesDrops(block, BlockInit.SCARLET_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(BlockInit.SCARLET_LEAVES_PILE.get(), noDrop());
         dropSelf(BlockInit.SCARLET_LOG.get());
         dropSelf(BlockInit.SCARLET_WOOD.get());
         dropSelf(BlockInit.SCARLET_PLANKS.get());

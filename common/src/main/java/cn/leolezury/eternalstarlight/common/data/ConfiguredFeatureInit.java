@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.AbysslatePatchFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESLakeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.FallenLogFeature;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.LeavesPileFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator.TrunkBerriesDecorator;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpheroidFoliagePlacer;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpikeFoliagePlacer;
@@ -28,6 +29,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -68,6 +70,7 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_SCARLET_LOG = create("fallen_scarlet_log");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SCARLET_LEAVES_PILE = create("scarlet_leaves_pile");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_CRYSTAL = create("starlight_crystal");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_VINE = create("cave_vine");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSAL_KELP = create("abyssal_kelp");
@@ -119,6 +122,7 @@ public class ConfiguredFeatureInit {
         register(context, FALLEN_NORTHLAND_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get())));
         register(context, FALLEN_STARLIGHT_MANGROVE_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LOG.get())));
         register(context, FALLEN_SCARLET_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.SCARLET_LOG.get())));
+        register(context, SCARLET_LEAVES_PILE, FeatureInit.LEAVES_PILE.get(), new LeavesPileFeature.Configuration(BlockStateProvider.simple(BlockInit.SCARLET_LEAVES_PILE.get())));
         register(context, STARLIGHT_CRYSTAL, FeatureInit.STARLIGHT_CRYSTAL.get(), new NoneFeatureConfiguration());
         register(context, CAVE_VINE, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()),
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.BERRIES_VINES_PLANT.get().defaultBlockState(), 4).add(BlockInit.BERRIES_VINES_PLANT.get().defaultBlockState().setValue(CaveVines.BERRIES, Boolean.valueOf(true)), 1))), BlockColumnConfiguration.layer(ConstantInt.of(1),

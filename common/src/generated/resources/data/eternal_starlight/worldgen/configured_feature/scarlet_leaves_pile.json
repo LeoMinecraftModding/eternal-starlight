@@ -1,0 +1,14 @@
+{
+  "type": "eternal_starlight:leaves_pile",
+  "config": {
+    "pile": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:scarlet_leaves_pile",
+        "Properties": {
+          "layers": "1"
+        }
+      }
+    }
+  }
+}

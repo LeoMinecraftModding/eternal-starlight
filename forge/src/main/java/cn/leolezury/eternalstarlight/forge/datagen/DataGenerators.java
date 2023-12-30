@@ -29,6 +29,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ESBlockStateProvider(output, helper));
         generator.addProvider(event.includeClient(), new ESItemModelProvider(output, helper));
+        generator.addProvider(event.includeClient(), new ESParticleDescriptionProvider(output, helper));
         generator.addProvider(event.includeClient(), new ESSoundProvider(output, helper));
 
         ESBlockTagsProvider blockTagsProvider = new ESBlockTagsProvider(output, lookupProvider, helper);
