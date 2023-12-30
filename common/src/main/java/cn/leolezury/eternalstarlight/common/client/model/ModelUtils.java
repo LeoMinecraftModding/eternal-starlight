@@ -30,6 +30,7 @@ public class ModelUtils {
 
         translateAndRotateFromModel(stack, parts, 0);
         Vector4f vec = new Vector4f(0, 0, 0, 1).mul(stack.last().pose());
+        // TODO: scale with generic.scale once 1.20.5 was released
         return new Vec3(vec.x(), vec.y(), vec.z());
     }
 }

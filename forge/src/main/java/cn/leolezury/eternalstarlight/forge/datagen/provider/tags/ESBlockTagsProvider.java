@@ -276,7 +276,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.BEACON_BASE_BLOCKS).add(
                 BlockInit.AETHERSENT_BLOCK.get(),
-                BlockInit.SWAMP_SILVER_BLOCK.get()
+                BlockInit.SWAMP_SILVER_BLOCK.get(),
+                BlockInit.GOLEM_STEEL_BLOCK.get()
         );
         tag(BlockTags.DIRT).add(
                 BlockInit.NIGHTSHADE_DIRT.get(),
