@@ -65,6 +65,7 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = create("swamp_silver_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
@@ -95,7 +96,6 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HOT_SPRING = create("hot_spring");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = create("swamp_silver_ore");
 
     // structure features
     public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
@@ -103,9 +103,6 @@ public class ConfiguredFeatureInit {
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<Block> blockHolderGetter = context.lookup(Registries.BLOCK);
         HolderGetter<PlacedFeature> placedFeatureHolderGetter = context.lookup(Registries.PLACED_FEATURE);
-
-        Supplier<List<OreConfiguration.TargetBlockState>> MUD_SWAMP_SILVER_ORES = Suppliers.memoize(() -> List.of(
-                OreConfiguration.target(new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get()), BlockInit.SWAMP_SILVER_ORE.get().defaultBlockState())));
 
         RuleTest slRule = new TagMatchTest(ESTags.Blocks.BASE_STONE_STARLIGHT);
         RuleTest grimstoneRule = new BlockMatchTest(BlockInit.GRIMSTONE.get());
@@ -119,6 +116,7 @@ public class ConfiguredFeatureInit {
         register(context, GLOWING_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.GLOWING_VOIDSTONE.get().defaultBlockState(), 20));
         register(context, GLOWING_NIGHTSHADE_MUD_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         register(context, NIGHTSHADE_DIRT_ORE, Feature.ORE, new OreConfiguration(slRule, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));
+        register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.SWAMP_SILVER_ORE.get().defaultBlockState(), 7));
         register(context, FALLEN_LUNAR_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get())));
         register(context, FALLEN_NORTHLAND_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get())));
         register(context, FALLEN_STARLIGHT_MANGROVE_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LOG.get())));
@@ -153,7 +151,6 @@ public class ConfiguredFeatureInit {
         register(context, SWAMP_WATER, FeatureInit.SWAMP_WATER.get(), new NoneFeatureConfiguration());
         WeightedStateProvider caveSpringStateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.SPRINGSTONE.get().defaultBlockState(), 10).add(BlockInit.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build());
         register(context, HOT_SPRING, FeatureInit.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), caveSpringStateProvider));
-        register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(MUD_SWAMP_SILVER_ORES.get(), 7));
 
         // structure features
         register(context, CURSED_GARDEN_EXTRA_HEIGHT, FeatureInit.CURSED_GARDEN_EXTRA_HEIGHT.get(), new NoneFeatureConfiguration());

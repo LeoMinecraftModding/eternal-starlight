@@ -118,11 +118,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         );
         tag(ItemTags.STONE_TOOL_MATERIALS).add(
                 ItemInit.GRIMSTONE.get(),
-                ItemInit.VOIDSTONE.get()
+                ItemInit.COBBLED_GRIMSTONE.get(),
+                ItemInit.VOIDSTONE.get(),
+                ItemInit.COBBLED_VOIDSTONE.get()
         );
         tag(ItemTags.STONE_CRAFTING_MATERIALS).add(
                 ItemInit.GRIMSTONE.get(),
-                ItemInit.VOIDSTONE.get()
+                ItemInit.COBBLED_GRIMSTONE.get(),
+                ItemInit.VOIDSTONE.get(),
+                ItemInit.COBBLED_VOIDSTONE.get()
         );
     }
 }

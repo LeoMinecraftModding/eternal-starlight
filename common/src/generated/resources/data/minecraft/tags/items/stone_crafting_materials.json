@@ -1,6 +1,8 @@
 {
   "values": [
     "eternal_starlight:grimstone",
-    "eternal_starlight:voidstone"
+    "eternal_starlight:cobbled_grimstone",
+    "eternal_starlight:voidstone",
+    "eternal_starlight:cobbled_voidstone"
   ]
 }
