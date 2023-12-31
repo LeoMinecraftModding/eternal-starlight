@@ -357,6 +357,14 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> CHISELED_GOLEM_STEEL_BLOCK = BLOCKS.register("chiseled_golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block, Block> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = BLOCKS.register("oxidized_chiseled_golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 
+    // tenacious petal
+    public static final RegistryObject<Block, Block> LUNAR_MOSAIC = BLOCKS.register("lunar_mosaic", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, SlabBlock> LUNAR_MOSAIC_SLAB = BLOCKS.register("lunar_mosaic_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, StairBlock> LUNAR_MOSAIC_STAIRS = BLOCKS.register("lunar_mosaic_stairs", () -> new StairBlock(LUNAR_MOSAIC.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, FenceBlock> LUNAR_MOSAIC_FENCE = BLOCKS.register("lunar_mosaic_fence", () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, FenceGateBlock> LUNAR_MOSAIC_FENCE_GATE = BLOCKS.register("lunar_mosaic_fence_gate", () -> new FenceGateBlock(ESWoodTypes.LUNAR_MOSAIC, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, Block> LUNAR_MAT = BLOCKS.register("lunar_mat", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_BLUE)));
+
     // doomeden
     public static final RegistryObject<Block, Block> DOOMED_TORCH = BLOCKS.register("doomed_torch", () -> new TorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.TORCH)));
     public static final RegistryObject<Block, Block> WALL_DOOMED_TORCH = BLOCKS.register("wall_doomed_torch", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.WALL_TORCH)));

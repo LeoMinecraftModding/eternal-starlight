@@ -162,6 +162,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get());
         simpleBlock(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
+        simpleBlock(BlockInit.LUNAR_MOSAIC.get());
+        slabBlock(BlockInit.LUNAR_MOSAIC_SLAB.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
+        stairsBlock(BlockInit.LUNAR_MOSAIC_STAIRS.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
+        fenceBlock(BlockInit.LUNAR_MOSAIC_FENCE.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
+        fenceGateBlock(BlockInit.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
+        carpetBlock(BlockInit.LUNAR_MAT.get(), blockTexture(BlockInit.LUNAR_MAT.get()));
+
         // doomeden
         simpleBlock(BlockInit.DOOMEDEN_TILE.get());
         simpleBlock(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());

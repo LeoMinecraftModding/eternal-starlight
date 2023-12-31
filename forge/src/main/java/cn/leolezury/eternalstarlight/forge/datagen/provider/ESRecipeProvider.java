@@ -101,11 +101,6 @@ public class ESRecipeProvider extends RecipeProvider {
         simpleCookingRecipe(recipeOutput, name, recipeSerializer, factory, time, ItemInit.LUMINARIS.get(), ItemInit.COOKED_LUMINARIS.get(), 0.35F);
     }
 
-    private <T extends AbstractCookingRecipe> void simpleCookingRecipe(RecipeOutput recipeOutput, String name, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> factory, int time, ItemLike input, ItemLike output, float exp) {
-        SimpleCookingRecipeBuilder builder = SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.FOOD, output, exp, time, serializer, factory).unlockedBy(getHasName(input), has(input));
-        builder.save(recipeOutput, name(output) + "_from_" + name);
-    }
-
     private void addWoodRecipes(RecipeOutput recipeOutput) {
         addButton(recipeOutput, BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_PLANKS.get());
         addDoor(recipeOutput, BlockInit.LUNAR_DOOR.get(), BlockInit.LUNAR_PLANKS.get());
@@ -382,6 +377,15 @@ public class ESRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
         addSlab(recipeOutput, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get());
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get(), 2);
+
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.TENACIOUS_PETAL.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.LUNAR_MOSAIC.get(), "tenacious_petal_from_lunar_mosaic", "tenacious_petal");
+        addStairs(recipeOutput, BlockInit.LUNAR_MOSAIC_STAIRS.get(), BlockInit.LUNAR_MOSAIC.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.LUNAR_MOSAIC_STAIRS.get(), BlockInit.LUNAR_MOSAIC.get());
+        addSlab(recipeOutput, BlockInit.LUNAR_MOSAIC_SLAB.get(), BlockInit.LUNAR_MOSAIC.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, BlockInit.LUNAR_MOSAIC_SLAB.get(), BlockInit.LUNAR_MOSAIC.get(), 2);
+        addFence(recipeOutput, BlockInit.LUNAR_MOSAIC_FENCE.get(), BlockInit.LUNAR_MOSAIC.get());
+        addFenceGate(recipeOutput, BlockInit.LUNAR_MOSAIC_FENCE_GATE.get(), BlockInit.LUNAR_MOSAIC.get());
+        carpet(recipeOutput, BlockInit.LUNAR_MAT.get(), BlockInit.LUNAR_MOSAIC.get());
     }
 
     private void addAetherSentRecipes(RecipeOutput recipeOutput) {

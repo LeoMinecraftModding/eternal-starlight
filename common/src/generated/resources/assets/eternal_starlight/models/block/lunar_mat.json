@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "eternal_starlight:block/lunar_mat"
+  }
+}

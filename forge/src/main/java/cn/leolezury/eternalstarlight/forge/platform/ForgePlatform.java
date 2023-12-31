@@ -56,7 +56,6 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.EventHooks;
-import net.neoforged.neoforge.network.NetworkHooks;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -180,11 +179,6 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public Attribute getEntityReachAttribute() {
         return NeoForgeMod.ENTITY_REACH.value();
-    }
-
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket(Entity entity) {
-        return NetworkHooks.getEntitySpawningPacket(entity);
     }
 
     @Override

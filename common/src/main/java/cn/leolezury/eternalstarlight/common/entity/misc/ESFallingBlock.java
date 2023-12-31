@@ -103,10 +103,4 @@ public class ESFallingBlock extends Entity {
         Optional<BlockState> bsOp = getEntityData().get(BLOCK_STATE);
         return bsOp.orElse(null);
     }
-
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
-        return packet == null ? super.getAddEntityPacket() : packet;
-    }
 }

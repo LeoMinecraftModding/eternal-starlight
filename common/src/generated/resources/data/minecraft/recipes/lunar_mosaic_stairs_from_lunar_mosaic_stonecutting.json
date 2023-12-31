@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "eternal_starlight:lunar_mosaic"
+  },
+  "result": "eternal_starlight:lunar_mosaic_stairs"
+}

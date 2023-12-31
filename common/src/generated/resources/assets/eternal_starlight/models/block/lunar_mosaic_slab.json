@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "eternal_starlight:block/lunar_mosaic",
+    "side": "eternal_starlight:block/lunar_mosaic",
+    "top": "eternal_starlight:block/lunar_mosaic"
+  }
+}

@@ -282,6 +282,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get());
         dropSelf(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
+        dropSelf(BlockInit.LUNAR_MOSAIC.get());
+        add(BlockInit.LUNAR_MOSAIC_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.LUNAR_MOSAIC_STAIRS.get());
+        dropSelf(BlockInit.LUNAR_MOSAIC_FENCE.get());
+        dropSelf(BlockInit.LUNAR_MOSAIC_FENCE_GATE.get());
+        dropSelf(BlockInit.LUNAR_MAT.get());
+
         dropSelf(BlockInit.DOOMED_TORCH.get());
         dropOther(BlockInit.WALL_DOOMED_TORCH.get(), ItemInit.DOOMED_TORCH.get());
         dropSelf(BlockInit.DOOMED_REDSTONE_TORCH.get());

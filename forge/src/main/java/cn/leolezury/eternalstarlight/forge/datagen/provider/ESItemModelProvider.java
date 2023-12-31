@@ -300,6 +300,13 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.CHISELED_GOLEM_STEEL_BLOCK.get());
         basicBlockItem(ItemInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
+        basicBlockItem(ItemInit.LUNAR_MOSAIC.get());
+        basicBlockItem(ItemInit.LUNAR_MOSAIC_SLAB.get());
+        basicBlockItem(ItemInit.LUNAR_MOSAIC_STAIRS.get());
+        fence(ItemInit.LUNAR_MOSAIC_FENCE.get(), ItemInit.LUNAR_MOSAIC.get());
+        basicBlockItem(ItemInit.LUNAR_MOSAIC_FENCE_GATE.get());
+        basicBlockItem(ItemInit.LUNAR_MAT.get());
+
         basicBlockItem(ItemInit.AETHERSENT_BLOCK.get());
         basicItem(ItemInit.AETHERSENT_INGOT.get());
         basicHandheld(ItemInit.RAGE_OF_STARS.get());

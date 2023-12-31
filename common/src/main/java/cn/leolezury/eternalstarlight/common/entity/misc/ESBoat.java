@@ -68,12 +68,6 @@ public class ESBoat extends Boat {
         }
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
-        return packet == null ? super.getAddEntityPacket() : packet;
-    }
-
     public enum Type {
         LUNAR(BlockInit.LUNAR_PLANKS.get(), "lunar"),
         NORTHLAND(BlockInit.NORTHLAND_PLANKS.get(), "northland"),

@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.forge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.forge.network.ForgeNetworkHandler;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(ForgeNetworkHandler::init);
+        // nothing ?
     }
 
     @SubscribeEvent

@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-30T11:36:40.3101146	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2023-12-31T15:58:16.5946672	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -14,7 +14,7 @@ a456306172c3653ceedd90339c9c61928318231a data/eternal_starlight/tags/blocks/port
 da3951c5a8a256ba3e3c13fe3674bfe1bdabf2e4 data/minecraft/tags/blocks/climbable.json
 0043545b9386dab569d4b456c56ccecb3e1d4c5f data/minecraft/tags/blocks/dirt.json
 4fad66675787b4f308e4629dd82bbf1aae4a1570 data/minecraft/tags/blocks/dragon_immune.json
-15f891edc5e0c110813443895b7e83a9d7b8017d data/minecraft/tags/blocks/fence_gates.json
+86fde2ffecfbba6acb9179ee0cf9b2ed9ba265c7 data/minecraft/tags/blocks/fence_gates.json
 7a5c58fd0831f6c672e9ec5ceccd87270f92192e data/minecraft/tags/blocks/flower_pots.json
 a17dc2a3331a71a42677e471bc87963375ad6374 data/minecraft/tags/blocks/leaves.json
 57b53a5b4948f9c8dad917452cc0a56dcbc40478 data/minecraft/tags/blocks/logs.json
@@ -40,8 +40,8 @@ ce55c8506dcb0cfac4ec3f65b843b3577ab53bbc data/minecraft/tags/blocks/wall_signs.j
 4fad66675787b4f308e4629dd82bbf1aae4a1570 data/minecraft/tags/blocks/wither_immune.json
 fe75f65d9c9ae60d12885fa3598da645ab286977 data/minecraft/tags/blocks/wooden_buttons.json
 b2068492be0a70f4eaee4ed78e36423b2bd623e2 data/minecraft/tags/blocks/wooden_doors.json
-7f78d282a86d3719c8c176e2c7a3c1bc9fe5a7bb data/minecraft/tags/blocks/wooden_fences.json
+1a165edb2efae5d0b97cf204ba556c84e2bbc6e8 data/minecraft/tags/blocks/wooden_fences.json
 3e1ff0f34e2f43a791a81b427d01a524466cc4e5 data/minecraft/tags/blocks/wooden_pressure_plates.json
-c9173929cea57e837783e3244c9fc3c4d725e0ae data/minecraft/tags/blocks/wooden_slabs.json
-e523ad9ca5280e1b77cd90cd30ac92832d8e48fe data/minecraft/tags/blocks/wooden_stairs.json
+364a52250e429e0521b2833349d360b04f8099f6 data/minecraft/tags/blocks/wooden_slabs.json
+814d7487c839570293723982259c2194900fdecb data/minecraft/tags/blocks/wooden_stairs.json
 6ebb70b3917adb0251634143c1783f158f8f805d data/minecraft/tags/blocks/wooden_trapdoors.json

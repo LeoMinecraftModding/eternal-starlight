@@ -129,9 +129,6 @@ public interface ESPlatform {
     default Attribute getEntityReachAttribute() {
         return null;
     }
-    default Packet<ClientGamePacketListener> getAddEntityPacket(Entity entity) {
-        return null;
-    }
 
     // item stuff
     default boolean isShears(ItemStack stack) {

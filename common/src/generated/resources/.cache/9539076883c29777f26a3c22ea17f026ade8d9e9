@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-30T20:58:57.6274914	Item Models: eternal_starlight
+// 1.20.4	2023-12-31T15:58:16.6016645	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -150,7 +150,13 @@ c308dc84235256acc18cea8b00cc97c2e6353ab7 assets/eternal_starlight/models/item/lu
 bc5d5c3185a83c8ce961cee85b5e3f8c8f10a5a3 assets/eternal_starlight/models/item/lunar_hanging_sign.json
 bed9837f7cb3234bd2b62c993d66892d8f969422 assets/eternal_starlight/models/item/lunar_leaves.json
 a9d5cfe1230bf9de9283504bfb64920c18f5f424 assets/eternal_starlight/models/item/lunar_log.json
+9965b7735e2be2959caf0d10b83764e5e97f8d6d assets/eternal_starlight/models/item/lunar_mat.json
 482bfe5e304591e7cda562b0d5f2d235b5f249b2 assets/eternal_starlight/models/item/lunar_monstrosity_spawner.json
+ee4454acc1e054bbb2f94bb1dc9786ebdc4c588e assets/eternal_starlight/models/item/lunar_mosaic.json
+1b988c806e8d8a911008629f25997578b6c0a493 assets/eternal_starlight/models/item/lunar_mosaic_fence.json
+c757cf6b1bb0559faf320f04b179907351c48c40 assets/eternal_starlight/models/item/lunar_mosaic_fence_gate.json
+0c59ed5b3a16eee36ee8ec338d3c769f6d559f2e assets/eternal_starlight/models/item/lunar_mosaic_slab.json
+03b1d7a292178f517d9266a63da04567d5d00ddb assets/eternal_starlight/models/item/lunar_mosaic_stairs.json
 b523da40ae9aa08576000c605cf593aa454a18c8 assets/eternal_starlight/models/item/lunar_planks.json
 2dc5b49b780d4e586f17338292163112e3bce26f assets/eternal_starlight/models/item/lunar_pressure_plate.json
 598e03fdd96adbb8323cbd18eb3d0c35bae3979c assets/eternal_starlight/models/item/lunar_reed.json

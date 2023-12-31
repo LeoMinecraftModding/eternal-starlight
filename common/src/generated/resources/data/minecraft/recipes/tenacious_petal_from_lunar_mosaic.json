@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "tenacious_petal",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:lunar_mosaic"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "eternal_starlight:tenacious_petal"
+  }
+}

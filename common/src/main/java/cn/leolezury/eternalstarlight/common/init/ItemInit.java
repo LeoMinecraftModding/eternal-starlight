@@ -330,6 +330,14 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 
+    // tenacious petal
+    public static final RegistryObject<Item, Item> LUNAR_MOSAIC = registerItem("lunar_mosaic", () -> new BlockItem(BlockInit.LUNAR_MOSAIC.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNAR_MOSAIC_SLAB = registerItem("lunar_mosaic_slab", () -> new BlockItem(BlockInit.LUNAR_MOSAIC_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNAR_MOSAIC_STAIRS = registerItem("lunar_mosaic_stairs", () -> new BlockItem(BlockInit.LUNAR_MOSAIC_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE = registerItem("lunar_mosaic_fence", () -> new BlockItem(BlockInit.LUNAR_MOSAIC_FENCE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE_GATE = registerItem("lunar_mosaic_fence_gate", () -> new BlockItem(BlockInit.LUNAR_MOSAIC_FENCE_GATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNAR_MAT = registerItem("lunar_mat", () -> new BlockItem(BlockInit.LUNAR_MAT.get(), new Item.Properties()));
+
     // aethersent
     public static final RegistryObject<Item, Item> AETHERSENT_BLOCK = registerItem("aethersent_block", () -> new BlockItem(BlockInit.AETHERSENT_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AETHERSENT_INGOT = registerItem("aethersent_ingot", () -> new Item(new Item.Properties()));

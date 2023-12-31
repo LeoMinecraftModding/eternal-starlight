@@ -182,10 +182,4 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
     public boolean isAttackable() {
         return false;
     }
-
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
-        return packet == null ? super.getAddEntityPacket() : packet;
-    }
 }

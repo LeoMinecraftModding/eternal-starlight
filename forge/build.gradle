@@ -30,6 +30,13 @@ configurations {
 
 repositories {
     maven { url "https://maven.neoforged.net/releases/" }
+    maven {
+        name 'Maven for PR #277'
+        url "https://prmaven.neoforged.net/NeoForge/pr277/"
+        content {
+            includeModule('net.neoforged', 'neoforge')
+        }
+    }
 }
 
 dependencies {

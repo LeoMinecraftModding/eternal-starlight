@@ -113,19 +113,22 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_FENCE.get(),
                 BlockInit.NORTHLAND_FENCE.get(),
                 BlockInit.STARLIGHT_MANGROVE_FENCE.get(),
-                BlockInit.SCARLET_FENCE.get()
+                BlockInit.SCARLET_FENCE.get(),
+                BlockInit.LUNAR_MOSAIC_FENCE.get()
         );
         tag(BlockTags.FENCE_GATES).add(
                 BlockInit.LUNAR_FENCE_GATE.get(),
                 BlockInit.NORTHLAND_FENCE_GATE.get(),
                 BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(),
-                BlockInit.SCARLET_FENCE_GATE.get()
+                BlockInit.SCARLET_FENCE_GATE.get(),
+                BlockInit.LUNAR_MOSAIC_FENCE_GATE.get()
         );
         tag(BlockTags.WOODEN_SLABS).add(
                 BlockInit.LUNAR_SLAB.get(),
                 BlockInit.NORTHLAND_SLAB.get(),
                 BlockInit.STARLIGHT_MANGROVE_SLAB.get(),
-                BlockInit.SCARLET_SLAB.get()
+                BlockInit.SCARLET_SLAB.get(),
+                BlockInit.LUNAR_MOSAIC_SLAB.get()
         );
         tag(BlockTags.SLABS).add(
                 BlockInit.COBBLED_GRIMSTONE_SLAB.get(),
@@ -156,7 +159,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_STAIRS.get(),
                 BlockInit.NORTHLAND_STAIRS.get(),
                 BlockInit.STARLIGHT_MANGROVE_STAIRS.get(),
-                BlockInit.SCARLET_STAIRS.get()
+                BlockInit.SCARLET_STAIRS.get(),
+                BlockInit.LUNAR_MOSAIC_STAIRS.get()
         );
         tag(BlockTags.STAIRS).add(
                 BlockInit.COBBLED_GRIMSTONE_STAIRS.get(),

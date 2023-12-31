@@ -105,12 +105,6 @@ public class CameraShake extends Entity {
         }
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        Packet<ClientGamePacketListener> packet = ESPlatform.INSTANCE.getAddEntityPacket(this);
-        return packet == null ? super.getAddEntityPacket() : packet;
-    }
-
     public static void createCameraShake(Level level, Vec3 pos, float radius, float magnitude, int duration, int fadeDuration) {
         if (!level.isClientSide) {
             CameraShake cameraShake = new CameraShake(level, pos, radius, magnitude, duration, fadeDuration);

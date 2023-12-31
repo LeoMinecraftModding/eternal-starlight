@@ -2,41 +2,52 @@ package cn.leolezury.eternalstarlight.forge.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.neoforge.network.NetworkRegistry;
-import net.neoforged.neoforge.network.PlayNetworkDirection;
-import net.neoforged.neoforge.network.simple.SimpleChannel;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
+@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ForgeNetworkHandler {
-    private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel SIMPLE_CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(EternalStarlight.MOD_ID, "main_channel"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
-    );
-
-    public static void init() {
-        int registered = 0;
+    @SubscribeEvent
+    public static <T> void onNetworkInit(RegisterPayloadHandlerEvent event) {
+        final IPayloadRegistrar registrar = event.registrar(EternalStarlight.MOD_ID)
+                .optional();
         for (Map.Entry<String, ESPackets.Handler<?>> entry : ESPackets.PACKETS.entrySet()) {
-            registerMessage(registered++, entry.getValue());
+            registerMessage(registrar, entry);
         }
     }
 
-    public static <T> void registerMessage(int idx, ESPackets.Handler<T> handler) {
-        SIMPLE_CHANNEL.registerMessage(idx, handler.packetClass(), (object, arg) -> handler.write().accept(object, arg), arg -> handler.read().apply(arg), (msg, context) -> {
-            context.enqueueWork(() -> handler.handle().accept(msg));
-        });
+    public static <T> void registerMessage(IPayloadRegistrar registrar, Map.Entry<String, ESPackets.Handler<?>> entry) {
+        ResourceLocation id = new ResourceLocation(EternalStarlight.MOD_ID, entry.getKey());
+        registrar.play(id, byteBuf -> new ESPayload<T>(id, (Function<FriendlyByteBuf, T>) entry.getValue().read(), (BiConsumer<T, FriendlyByteBuf>) entry.getValue().write(), (Consumer<T>) entry.getValue().handle(), byteBuf), (arg, context) -> context.workHandler().submitAsync(() -> arg.handler().accept(arg.packet())));
     }
 
-    public static void sendToClient(ServerPlayer serverPlayer, Object packet) {
-        SIMPLE_CHANNEL.sendTo(packet, serverPlayer.connection.connection, PlayNetworkDirection.PLAY_TO_CLIENT);
+    public static <T> void sendToClient(ServerPlayer serverPlayer, Object packet) {
+        for (String id : ESPackets.PACKETS.keySet()) {
+            ESPackets.Handler<?> handler = ESPackets.PACKETS.get(id);
+            if (packet.getClass() == handler.packetClass()) {
+                PacketDistributor.PLAYER.with(serverPlayer).send(new ESPayload<T>(new ResourceLocation(EternalStarlight.MOD_ID, id), (BiConsumer<T, FriendlyByteBuf>) handler.write(), (Consumer<T>) handler.handle(), (T) packet));
+            }
+        }
     }
 
-    public static void sendToServer(Object packet) {
-        SIMPLE_CHANNEL.sendToServer(packet);
+    public static <T> void sendToServer(Object packet) {
+        for (String id : ESPackets.PACKETS.keySet()) {
+            ESPackets.Handler<?> handler = ESPackets.PACKETS.get(id);
+            if (packet.getClass() == handler.packetClass()) {
+                PacketDistributor.SERVER.noArg().send(new ESPayload<T>(new ResourceLocation(EternalStarlight.MOD_ID, id), (BiConsumer<T, FriendlyByteBuf>) handler.write(), (Consumer<T>) handler.handle(), (T) packet));
+            }
+        }
     }
 }

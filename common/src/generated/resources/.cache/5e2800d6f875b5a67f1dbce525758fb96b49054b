@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-30T12:41:48.9083739	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2023-12-31T15:58:16.6816183	Tags for minecraft:item mod id eternal_starlight
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
@@ -31,8 +31,8 @@ d9b676f9118df62a33eab92e67640099b8e25a66 data/minecraft/tags/items/trim_material
 e85274afc776bb0957330cd6dcb271eb966c0de8 data/minecraft/tags/items/walls.json
 fe75f65d9c9ae60d12885fa3598da645ab286977 data/minecraft/tags/items/wooden_buttons.json
 b2068492be0a70f4eaee4ed78e36423b2bd623e2 data/minecraft/tags/items/wooden_doors.json
-7f78d282a86d3719c8c176e2c7a3c1bc9fe5a7bb data/minecraft/tags/items/wooden_fences.json
+1a165edb2efae5d0b97cf204ba556c84e2bbc6e8 data/minecraft/tags/items/wooden_fences.json
 3e1ff0f34e2f43a791a81b427d01a524466cc4e5 data/minecraft/tags/items/wooden_pressure_plates.json
-c9173929cea57e837783e3244c9fc3c4d725e0ae data/minecraft/tags/items/wooden_slabs.json
-e523ad9ca5280e1b77cd90cd30ac92832d8e48fe data/minecraft/tags/items/wooden_stairs.json
+364a52250e429e0521b2833349d360b04f8099f6 data/minecraft/tags/items/wooden_slabs.json
+814d7487c839570293723982259c2194900fdecb data/minecraft/tags/items/wooden_stairs.json
 6ebb70b3917adb0251634143c1783f158f8f805d data/minecraft/tags/items/wooden_trapdoors.json
