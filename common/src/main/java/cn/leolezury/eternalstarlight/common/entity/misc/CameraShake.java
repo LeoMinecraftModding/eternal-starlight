@@ -1,12 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
