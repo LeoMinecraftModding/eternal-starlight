@@ -88,6 +88,9 @@ public class ESLakeFeature extends ESFeature<ESLakeFeature.Configuration> {
                                 if (flag1) {
                                     worldgenlevel.scheduleTick(blockpos1, AIR.getBlock(), 0);
                                     this.markAboveForPostProcessing(worldgenlevel, blockpos1);
+                                } else {
+                                    // ES: schedule tick for hot spring feature
+                                    worldgenlevel.scheduleTick(blockpos1, blockstate1.getFluidState().getType(), 20);
                                 }
                             }
                         }
@@ -107,6 +110,8 @@ public class ESLakeFeature extends ESFeature<ESLakeFeature.Configuration> {
                                 BlockState blockstate = worldgenlevel.getBlockState(blockpos.offset(j2, l3, j3));
                                 if (blockstate.isSolid() && !blockstate.is(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE)) {
                                     worldgenlevel.setBlock(blockpos3, blockstate2, 2);
+                                    // ES: schedule tick for hot spring feature
+                                    worldgenlevel.scheduleTick(blockpos3, blockstate2.getBlock(), 20);
                                     this.markAboveForPostProcessing(worldgenlevel, blockpos3);
                                 }
                             }

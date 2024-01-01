@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-31T15:58:16.6286493	Block States: eternal_starlight
+// 1.20.4	2024-01-01T18:59:38.7863683	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -330,7 +330,7 @@ c56a623b5dfcff2a4ca87a5622357f3d9739203c assets/eternal_starlight/models/block/b
 dc6acfa233cd90f327b507fca91216f217779b05 assets/eternal_starlight/models/block/chiseled_polished_cryobysslate.json
 1089bfadfbf7ca80c985c5f9d0906f4b1342e0eb assets/eternal_starlight/models/block/chiseled_polished_doomeden_bricks.json
 6c482d198fb07c46f6fa62f2a2dcb52aef1f67b1 assets/eternal_starlight/models/block/chiseled_polished_thermabysslate.json
-d54328ce87cabd8569c0f30e5509645a982972f7 assets/eternal_starlight/models/block/chiseled_twilight_sandstone.json
+250118f1e9c23ce85689dc992fe2cea698c14310 assets/eternal_starlight/models/block/chiseled_twilight_sandstone.json
 015118512f24030e56ae529c83f106c95a070286 assets/eternal_starlight/models/block/chiseled_voidstone.json
 c59cd1c3959584ff349c49622d82da6dc93d9eeb assets/eternal_starlight/models/block/cobbled_grimstone.json
 8d819f56d2ba45da2fda040e6e2d52a13ffb557d assets/eternal_starlight/models/block/cobbled_grimstone_slab.json

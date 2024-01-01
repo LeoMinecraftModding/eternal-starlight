@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "eternal_starlight:block/chiseled_twilight_sandstone"
+    "end": "eternal_starlight:block/twilight_sandstone_top",
+    "side": "eternal_starlight:block/chiseled_twilight_sandstone"
   }
 }

@@ -145,7 +145,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         slabBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         stairsBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(BlockInit.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         wallBlock(BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
-        simpleBlock(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get());
+        simpleBlock(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(), models().cubeColumn(name(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.CHISELED_TWILIGHT_SANDSTONE.get()), blockTexture(BlockInit.TWILIGHT_SANDSTONE.get()).withSuffix("_top")));
 
         simpleBlock(BlockInit.GOLEM_STEEL_BLOCK.get());
         simpleBlock(BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get());
