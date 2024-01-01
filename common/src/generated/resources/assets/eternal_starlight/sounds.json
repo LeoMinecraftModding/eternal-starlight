@@ -384,6 +384,10 @@
       {
         "name": "eternal_starlight:music/biome/dark_swamp",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
       }
     ]
   },
@@ -392,6 +396,10 @@
       {
         "name": "eternal_starlight:music/biome/starlight_forest",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
       }
     ]
   },
@@ -399,6 +407,10 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/biome/starlight_permafrost_forest",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
       }
     ]
@@ -411,10 +423,10 @@
       }
     ]
   },
-  "music.dimension.eternal_starlight": {
+  "music.dimension.tranquility": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/dimension/default",
+        "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
       }
     ]

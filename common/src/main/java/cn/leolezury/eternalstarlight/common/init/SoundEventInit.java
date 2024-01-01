@@ -9,7 +9,7 @@ import net.minecraft.sounds.SoundEvent;
 
 public class SoundEventInit {
     public static final RegistrationProvider<SoundEvent> SOUND_EVENTS = RegistrationProvider.get(Registries.SOUND_EVENT, EternalStarlight.MOD_ID);
-    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DIMENSION_SL = register("music.dimension.eternal_starlight");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DIMENSION_TRANQUILITY = register("music.dimension.tranquility");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIGHT_FOREST = register("music.biome.starlight_forest");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_DARK_SWAMP = register("music.biome.dark_swamp");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST = register("music.biome.starlight_permafrost_forest");

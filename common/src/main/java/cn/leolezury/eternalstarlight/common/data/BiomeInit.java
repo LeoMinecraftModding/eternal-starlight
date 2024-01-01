@@ -30,7 +30,7 @@ public class BiomeInit {
     public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
     public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
 
-    public static final Music MUSIC_DEFAULT = new Music(SoundEventInit.MUSIC_DIMENSION_SL.asHolder(), 1200, 12000, true);
+    public static final Music MUSIC_TRANQUILITY = new Music(SoundEventInit.MUSIC_DIMENSION_TRANQUILITY.asHolder(), 1200, 12000, true);
     public static final Music MUSIC_FOREST = new Music(SoundEventInit.MUSIC_BIOME_STARLIGHT_FOREST.asHolder(), 1200, 12000, true);
     public static final Music MUSIC_PERMAFROST_FOREST = new Music(SoundEventInit.MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST.asHolder(), 1200, 12000, true);
     public static final Music MUSIC_SWAMP = new Music(SoundEventInit.MUSIC_BIOME_DARK_SWAMP.asHolder(), 1200, 12000, true);
@@ -43,7 +43,7 @@ public class BiomeInit {
         context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), baseSpawnBuilder(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DEFAULT), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).temperature(2.0f).build());
+        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).temperature(2.0f).build());
         context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
@@ -70,7 +70,7 @@ public class BiomeInit {
                 .waterFogColor(6187416)
                 .skyColor(5658761)
                 .ambientParticle(new AmbientParticleSettings(ParticleInit.STARLIGHT.get(), 0.001f))
-                .backgroundMusic(MUSIC_DEFAULT);
+                .backgroundMusic(MUSIC_TRANQUILITY);
     }
 
     private static MobSpawnSettings.Builder baseSpawnBuilder() {

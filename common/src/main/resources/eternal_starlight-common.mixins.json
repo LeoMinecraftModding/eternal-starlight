@@ -9,6 +9,7 @@
     "EntityMixin",
     "FireBlockMixin",
     "LivingEntityMixin",
+    "MinecraftMixin",
     "PlayerMixin"
   ],
   "client": [
