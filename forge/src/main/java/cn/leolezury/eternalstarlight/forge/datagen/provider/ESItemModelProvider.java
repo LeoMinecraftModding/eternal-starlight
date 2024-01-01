@@ -19,7 +19,7 @@ public class ESItemModelProvider extends ItemModelProvider {
     public ESItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, EternalStarlight.MOD_ID, existingFileHelper);
     }
- 
+
     @Override
     protected void registerModels() {
         basicBlockItem(ItemInit.RED_STARLIGHT_CRYSTAL_BLOCK.get());
