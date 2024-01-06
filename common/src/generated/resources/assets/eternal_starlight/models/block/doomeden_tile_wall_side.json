@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "eternal_starlight:block/doomeden_tiles"
+  }
+}

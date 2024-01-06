@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:doomeden_tile"
+          "name": "eternal_starlight:doomeden_tile_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:blocks/doomeden_tile"
+  "random_sequence": "eternal_starlight:blocks/doomeden_tile_wall"
 }

@@ -170,7 +170,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         carpetBlock(BlockInit.LUNAR_MAT.get(), blockTexture(BlockInit.LUNAR_MAT.get()));
 
         // doomeden
-        simpleBlock(BlockInit.DOOMEDEN_TILE.get());
+        stoneSet(BlockInit.DOOMEDEN_TILES.get(), BlockInit.DOOMEDEN_TILE_SLAB.get(), BlockInit.DOOMEDEN_TILE_STAIRS.get(), BlockInit.DOOMEDEN_TILE_WALL.get());
         simpleBlock(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         simpleBlock(BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         torch(BlockInit.DOOMED_TORCH.get(), BlockInit.WALL_DOOMED_TORCH.get());
@@ -325,12 +325,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void doomedenKeyhole(Block block, Block redstone) {
-        ModelFile modelOn = models().orientable(name(block) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_front"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
-        ModelFile modelOff = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_front"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
+        ModelFile modelOn = models().orientable(name(block) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_front"), blockTexture(BlockInit.DOOMEDEN_TILES.get()));
+        ModelFile modelOff = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_front"), blockTexture(BlockInit.DOOMEDEN_TILES.get()));
         horizontalBlock(block, state -> state.getValue(BlockStateProperties.LIT) ? modelOn : modelOff);
 
-        ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
-        ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(BlockInit.DOOMEDEN_TILE.get()));
+        ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(BlockInit.DOOMEDEN_TILES.get()));
+        ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(BlockInit.DOOMEDEN_TILES.get()));
         horizontalBlock(redstone, state -> state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone);
     }
 

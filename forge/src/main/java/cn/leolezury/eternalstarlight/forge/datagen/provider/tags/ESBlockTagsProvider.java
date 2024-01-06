@@ -153,7 +153,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
                 BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
                 BlockInit.DOOMEDEN_BRICK_SLAB.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get()
+                BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
+                BlockInit.DOOMEDEN_TILE_SLAB.get()
         );
         tag(BlockTags.WOODEN_STAIRS).add(
                 BlockInit.LUNAR_STAIRS.get(),
@@ -185,7 +186,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
                 BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
                 BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get()
+                BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
+                BlockInit.DOOMEDEN_TILE_STAIRS.get()
         );
         tag(BlockTags.WALLS).add(
                 BlockInit.COBBLED_GRIMSTONE_WALL.get(),
@@ -205,7 +207,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(),
                 BlockInit.TWILIGHT_SANDSTONE_WALL.get(),
                 BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
-                BlockInit.DOOMEDEN_BRICK_WALL.get()
+                BlockInit.DOOMEDEN_BRICK_WALL.get(),
+                BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(),
+                BlockInit.DOOMEDEN_TILE_WALL.get()
         );
         tag(BlockTags.WOODEN_BUTTONS).add(
                 BlockInit.LUNAR_BUTTON.get(),
@@ -442,7 +446,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.POLISHED_DOOMEDEN_BRICKS.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
                 BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.DOOMEDEN_TILE.get(),
+                BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(),
+                BlockInit.DOOMEDEN_TILES.get(),
+                BlockInit.DOOMEDEN_TILE_SLAB.get(),
+                BlockInit.DOOMEDEN_TILE_STAIRS.get(),
+                BlockInit.DOOMEDEN_TILE_WALL.get(),
                 BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
                 BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
                 BlockInit.DOOMEDEN_KEYHOLE.get(),

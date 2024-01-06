@@ -92,19 +92,14 @@ public class Ent extends Animal {
                     p.broadcastBreakEvent(hand);
                 });
                 playSound(SoundEvents.SHEEP_SHEAR);
-                player.swing(hand);
-                if (this.level().isClientSide) {
-                    return InteractionResult.CONSUME;
-                }
+                return InteractionResult.sidedSuccess(level().isClientSide);
             }
             if (stack.is(Items.BONE_MEAL) && !hasLeaves()) {
                 setHasLeaves(true);
                 usePlayerItem(player, hand, stack);
                 playSound(SoundEvents.BONE_MEAL_USE);
                 player.swing(hand);
-                if (this.level().isClientSide) {
-                    return InteractionResult.CONSUME;
-                }
+                return InteractionResult.sidedSuccess(level().isClientSide);
             }
         }
         return super.mobInteract(player, hand);

@@ -419,7 +419,10 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_SLAB = registerItem("polished_doomeden_brick_slab", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_STAIRS = registerItem("polished_doomeden_brick_stairs", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_WALL = registerItem("polished_doomeden_brick_wall", () -> new BlockItem(BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> DOOMEDEN_TILE = registerItem("doomeden_tile", () -> new BlockItem(BlockInit.DOOMEDEN_TILE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> DOOMEDEN_TILES = registerItem("doomeden_tiles", () -> new BlockItem(BlockInit.DOOMEDEN_TILES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> DOOMEDEN_TILE_SLAB = registerItem("doomeden_tile_slab", () -> new BlockItem(BlockInit.DOOMEDEN_TILE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> DOOMEDEN_TILE_STAIRS = registerItem("doomeden_tile_stairs", () -> new BlockItem(BlockInit.DOOMEDEN_TILE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> DOOMEDEN_TILE_WALL = registerItem("doomeden_tile_wall", () -> new BlockItem(BlockInit.DOOMEDEN_TILE_WALL.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("chiseled_polished_doomeden_bricks", () -> new BlockItem(BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("charged_chiseled_polished_doomeden_bricks", () -> new BlockItem(BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> DOOMEDEN_LIGHT = registerItem("doomeden_light", () -> new BlockItem(BlockInit.DOOMEDEN_LIGHT.get(), new Item.Properties()));

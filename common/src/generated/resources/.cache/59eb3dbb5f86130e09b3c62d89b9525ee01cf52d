@@ -1,4 +1,4 @@
-// 1.20.4	2023-12-31T15:58:16.5556906	Loot Tables
+// 1.20.4	2024-01-06T11:58:13.4481404	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -61,7 +61,10 @@ a3bf17fe8505816c8f99d831681da6f839b018c8 data/eternal_starlight/loot_tables/bloc
 f18df9245a659eca50c3d23b0b018076d0241e08 data/eternal_starlight/loot_tables/blocks/doomeden_brick_wall.json
 e0e12b18de4b3af0dc96bdf62a5834d0eb6c4707 data/eternal_starlight/loot_tables/blocks/doomeden_keyhole.json
 648842f673086b863c6a921be3fdd737465d5d2e data/eternal_starlight/loot_tables/blocks/doomeden_light.json
-d8dd7cf18eb712add053ec3900f582ad5711714e data/eternal_starlight/loot_tables/blocks/doomeden_tile.json
+b0b1eb04376c9f5417cab0290766ed2600938f5b data/eternal_starlight/loot_tables/blocks/doomeden_tiles.json
+7f8ad2535d6a74bc0ff1e4e6482c0aeeb6aece38 data/eternal_starlight/loot_tables/blocks/doomeden_tile_slab.json
+7a3424dd2e320d8285f5d8555d9831a782f912e5 data/eternal_starlight/loot_tables/blocks/doomeden_tile_stairs.json
+59461a2a70c76d990737d11ecb7f2ab6d875f88f data/eternal_starlight/loot_tables/blocks/doomeden_tile_wall.json
 c694f74fb93033ec3ebefc0eb59a25a050ec7e1d data/eternal_starlight/loot_tables/blocks/doomed_redstone_torch.json
 4d9245850117ef35f9962b38f8179e13b0e78b0e data/eternal_starlight/loot_tables/blocks/doomed_torch.json
 491c5a2fd8f3d221db5c784b707ed0897e5bc12d data/eternal_starlight/loot_tables/blocks/energy_block.json

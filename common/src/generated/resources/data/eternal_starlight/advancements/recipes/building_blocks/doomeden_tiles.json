@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_doomeden_bricks": {
+    "has_item": {
       "conditions": {
         "items": [
           {
             "items": [
-              "eternal_starlight:doomeden_bricks"
+              "eternal_starlight:polished_doomeden_bricks"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:chiseled_polished_doomeden_bricks_from_doomeden_bricks_stonecutting"
+        "recipe": "eternal_starlight:doomeden_tiles"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_doomeden_bricks"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:chiseled_polished_doomeden_bricks_from_doomeden_bricks_stonecutting"
+      "eternal_starlight:doomeden_tiles"
     ]
   }
 }

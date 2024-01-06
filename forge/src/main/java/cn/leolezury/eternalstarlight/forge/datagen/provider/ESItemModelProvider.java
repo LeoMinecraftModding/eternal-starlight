@@ -363,7 +363,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
         basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
         wall(ItemInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.DOOMEDEN_TILE.get());
+        basicBlockItem(ItemInit.DOOMEDEN_TILES.get());
         basicBlockItem(ItemInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         basicBlockItem(ItemInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         basicBlockItem(ItemInit.DOOMEDEN_LIGHT.get());

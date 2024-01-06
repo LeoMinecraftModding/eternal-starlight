@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:doomeden_bricks_from_polished_doomeden_bricks_stonecutting"
+        "recipe": "minecraft:chiseled_polished_doomeden_bricks_from_polished_doomeden_bricks_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:doomeden_bricks_from_polished_doomeden_bricks_stonecutting"
+      "minecraft:chiseled_polished_doomeden_bricks_from_polished_doomeden_bricks_stonecutting"
     ]
   }
 }

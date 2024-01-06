@@ -3,6 +3,6 @@
   "textures": {
     "front": "eternal_starlight:block/redstone_doomeden_keyhole_off",
     "side": "eternal_starlight:block/doomeden_keyhole_off_side",
-    "top": "eternal_starlight:block/doomeden_tile"
+    "top": "eternal_starlight:block/doomeden_tiles"
   }
 }
