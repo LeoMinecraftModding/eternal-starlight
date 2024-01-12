@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -34,6 +35,15 @@ public abstract class EntityRenderDispatcherMixin {
     private static void es_renderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
         if (entity instanceof Player && PlayerAnimator.renderingFirstPersonPlayer) {
             // cancel the shadow rendering while rendering a first person player model
+            ci.cancel();
+        }
+    }
+
+
+    @Inject(method = "renderHitbox", at = @At("HEAD"), cancellable = true)
+    private static void es_renderHitbox(PoseStack poseStack, VertexConsumer vertexConsumer, Entity entity, float f, CallbackInfo ci) {
+        if (entity instanceof Player && PlayerAnimator.renderingFirstPersonPlayer) {
+            // cancel the hitbox rendering while rendering a first person player model
             ci.cancel();
         }
     }

@@ -30,6 +30,7 @@ public class AttackEffect extends Entity {
         return owner;
     }
     public void setOwner(LivingEntity owner) {
+        this.ownerId = owner.getUUID();
         this.owner = owner;
     }
     @Nullable
@@ -40,6 +41,7 @@ public class AttackEffect extends Entity {
         return target;
     }
     public void setTarget(LivingEntity target) {
+        this.targetId = target.getUUID();
         this.target = target;
     }
     protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
