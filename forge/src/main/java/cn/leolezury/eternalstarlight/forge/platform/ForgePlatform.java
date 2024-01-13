@@ -16,6 +16,7 @@ import cn.leolezury.eternalstarlight.forge.world.ForgeTeleporter;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -47,6 +48,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.CommonHooks;
@@ -54,8 +57,10 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +73,9 @@ public class ForgePlatform implements ESPlatform {
     private static final Rarity STARLIGHT_RARITY = Rarity.create("STARLIGHT", ChatFormatting.DARK_AQUA);
     private static final Rarity DEMON_RARITY = Rarity.create("DEMON", ChatFormatting.DARK_RED);
     private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = EnchantmentCategory.create("ES_WEAPON", (item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem || item instanceof HammerItem));
+
     public static final List<DeferredRegister<?>> registers = new ArrayList<>();
+    public static final List<Registry<?>> newRegistries = new ArrayList<>();
 
     @Override
     public Loader getLoader() {
@@ -82,28 +89,48 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
-        ForgeRegistrationProvider provider = new ForgeRegistrationProvider<>(key, namespace);
+        ForgeRegistrationProvider<T> provider = new ForgeRegistrationProvider<>(key, null, namespace);
         if (!registers.contains(provider.deferredRegister)) {
             registers.add(provider.deferredRegister);
         }
         return provider;
     }
 
+    @Override
+    public <T> RegistrationProvider<T> createNewRegistryProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
+        RegistryBuilder<T> builder = new RegistryBuilder<>(key);
+        builder.sync(true);
+        Registry<T> registry = builder.create();
+        ForgeRegistrationProvider<T> provider = new ForgeRegistrationProvider<>(key, registry, namespace);
+        if (!registers.contains(provider.deferredRegister)) {
+            registers.add(provider.deferredRegister);
+        }
+        newRegistries.add(registry);
+        return provider;
+    }
+
     class ForgeRegistrationProvider<T> implements RegistrationProvider<T> {
+        private final ResourceKey<? extends Registry<T>> key;
         private final Registry<T> registry;
         private final DeferredRegister<T> deferredRegister;
         private final String namespace;
 
-        ForgeRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
-            this.registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(key.location());
-            this.deferredRegister = DeferredRegister.create(registry, namespace);
+        ForgeRegistrationProvider(ResourceKey<? extends Registry<T>> key, Registry<T> registry, String namespace) {
+            this.key = key;
+            this.registry = registry;
+            this.deferredRegister = DeferredRegister.create(key, namespace);
             this.namespace = namespace;
+        }
+
+        @Override
+        public Registry<T> registry() {
+            return registry == null ? (Registry<T>) BuiltInRegistries.REGISTRY.get(key.location()) : registry;
         }
 
         @Override
         public <I extends T> RegistryObject<T, I> register(String id, Supplier<? extends I> supplier) {
             ResourceLocation location = new ResourceLocation(namespace, id);
-            ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(registry.key(), location);
+            ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(key, location);
             DeferredHolder<T, I> holder = deferredRegister.register(id, supplier);
             return new RegistryObject<T, I>() {
                 @Override
@@ -126,6 +153,16 @@ public class ForgePlatform implements ESPlatform {
                     return holder.value();
                 }
             };
+        }
+    }
+
+    @Override
+    public <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec) {
+        IEventBus bus = ModList.get().getModContainerById(key.location().getNamespace()).get().getEventBus();
+        if (networkCodec != null) {
+            bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec, networkCodec));
+        } else {
+            bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec));
         }
     }
 

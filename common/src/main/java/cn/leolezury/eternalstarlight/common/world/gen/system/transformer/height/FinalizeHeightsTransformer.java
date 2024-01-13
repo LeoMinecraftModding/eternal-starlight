@@ -1,12 +1,17 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Mth;
 
-public class FinalizeHeightsTransformer implements DataTransformer {
+public class FinalizeHeightsTransformer extends DataTransformer {
+    public static final Codec<FinalizeHeightsTransformer> CODEC = Codec.unit(FinalizeHeightsTransformer::new);
+
     @Override
-    public int[][] transform(int[][] original, int[][] related, AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
+    public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
         int[][] transformed = new int[size / 2][size / 2];
         for (int x = 0; x < size / 2; x++) {
             for (int z = 0; z < size / 2; z++) {
@@ -15,5 +20,10 @@ public class FinalizeHeightsTransformer implements DataTransformer {
             }
         }
         return transformed;
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.FINALIZE_HEIGHTS.get();
     }
 }

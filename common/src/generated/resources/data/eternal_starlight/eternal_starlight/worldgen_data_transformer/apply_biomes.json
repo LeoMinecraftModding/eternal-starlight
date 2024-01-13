@@ -1,0 +1,15 @@
+{
+  "land_biomes": [
+    "eternal_starlight:starlight_forest",
+    "eternal_starlight:starlight_dense_forest",
+    "eternal_starlight:dark_swamp",
+    "eternal_starlight:starlight_permafrost_forest",
+    "eternal_starlight:scarlet_forest",
+    "eternal_starlight:crystallized_desert"
+  ],
+  "ocean_biomes": [
+    "eternal_starlight:starlit_sea"
+  ],
+  "transformer_type": "eternal_starlight:add_biomes",
+  "xz_scale": 0.06
+}

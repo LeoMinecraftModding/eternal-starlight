@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.carver.ESExtraCavesCarver;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -12,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.QuartPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
@@ -58,16 +56,10 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
             this.defaultBlock = settings.value().defaultBlock();
             this.defaultFluid = settings.value().defaultFluid();
             this.seaLevel = settings.value().seaLevel();
-            if (biomeSource instanceof ESBiomeSource source) {
-                source.setHeights(settings.value().noiseSettings().minY() + settings.value().noiseSettings().height(), settings.value().noiseSettings().minY());
-            }
         } else {
             this.defaultBlock = Blocks.STONE.defaultBlockState();
             this.defaultFluid = Blocks.WATER.defaultBlockState();
             this.seaLevel = 50;
-            if (biomeSource instanceof ESBiomeSource source) {
-                source.setHeights(320, -64);
-            }
         }
     }
 
@@ -88,6 +80,9 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
     // Copied from vanilla NoiseBasedChunkGenerator, only to use our custom doFill
     @Override
     public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess) {
+        if (biomeSource instanceof ESBiomeSource source) {
+            source.setRegistryAccess(structureManager.registryAccess());
+        }
         NoiseSettings noiseSettings = generatorSettings().value().noiseSettings().clampToHeightAccessor(chunkAccess.getHeightAccessorForGeneration());
         int i = noiseSettings.minY();
         int j = Mth.floorDiv(i, 16);
@@ -165,6 +160,9 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
     // From the vanilla ChunkGenerator, NoiseBasedChunkGenerator is doing something useless for us
     @Override
     public CompletableFuture<ChunkAccess> createBiomes(Executor executor, RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunkAccess) {
+        if (biomeSource instanceof ESBiomeSource source) {
+            source.setRegistryAccess(structureManager.registryAccess());
+        }
         return CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("init_biomes", () -> {
             chunkAccess.fillBiomesFromNoise(this.biomeSource, randomState.sampler());
             return chunkAccess;
@@ -267,12 +265,8 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     private BiomeData getBiomeDataAt(int x, int z) {
-        return BiomeDataRegistry.getBiomeData(getBiomeAt(x, z));
-    }
-
-    private ResourceLocation getBiomeAt(int x, int z) {
         if (biomeSource instanceof ESBiomeSource source) {
-            return BiomeDataRegistry.getBiomeLocation(source.getBiome(x, z));
+            return source.getBiomeData(x, z);
         }
         return null;
     }

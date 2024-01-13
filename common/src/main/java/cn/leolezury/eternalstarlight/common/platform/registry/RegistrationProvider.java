@@ -11,5 +11,11 @@ public interface RegistrationProvider<T> {
         return ESPlatform.INSTANCE.createRegistrationProvider(key, namespace);
     }
 
+    static <T> RegistrationProvider<T> newRegistry(ResourceKey<? extends Registry<T>> key, String namespace) {
+        return ESPlatform.INSTANCE.createNewRegistryProvider(key, namespace);
+    }
+
+    Registry<T> registry();
+
     <I extends T> RegistryObject<T, I> register(String id, Supplier<? extends I> supplier);
 }

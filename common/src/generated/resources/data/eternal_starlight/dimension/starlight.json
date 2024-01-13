@@ -15,7 +15,195 @@
         "eternal_starlight:starlit_sea",
         "eternal_starlight:the_abyss",
         "eternal_starlight:warm_shore"
-      ]
+      ],
+      "worldgen_provider": {
+        "biome_transformers": [
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_ocean"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:apply_biomes"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 1,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 1,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 1,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 1,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 2,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 2,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 2,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 2,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 3,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 3,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 3,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 3,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 4,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 4,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 4,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 4,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 5,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 5,
+            "transformer": "eternal_starlight:randomize_biomes"
+          },
+          {
+            "seed_addition": 5,
+            "transformer": "eternal_starlight:assimilate_biomes"
+          },
+          {
+            "seed_addition": 5,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:assimilate_lonely_biomes"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_beaches"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_beaches"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_beaches"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_beaches"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_beaches"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_river"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_river_transition"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_river_transition"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_the_abyss"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_the_abyss_transition"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_the_abyss_transition"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:add_the_abyss_transition"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:duplicate"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:duplicate"
+          }
+        ],
+        "height_transformers": [
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:smooth_heights_large"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:noise_height"
+          },
+          {
+            "seed_addition": 0,
+            "transformer": "eternal_starlight:smooth_heights_small"
+          }
+        ],
+        "max_height": 320,
+        "min_height": -64
+      }
     },
     "settings": "eternal_starlight:starlight"
   }

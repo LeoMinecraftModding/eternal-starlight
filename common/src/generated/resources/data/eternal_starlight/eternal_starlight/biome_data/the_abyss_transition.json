@@ -1,0 +1,11 @@
+{
+  "biome": "eternal_starlight:the_abyss",
+  "has_beaches": true,
+  "has_rivers": true,
+  "height": -20,
+  "is_ocean": true,
+  "temperatures": [
+    "neutral"
+  ],
+  "variance": 3
+}

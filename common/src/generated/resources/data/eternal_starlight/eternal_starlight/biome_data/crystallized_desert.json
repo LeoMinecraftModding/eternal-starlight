@@ -1,0 +1,13 @@
+{
+  "biome": "eternal_starlight:crystallized_desert",
+  "has_beaches": true,
+  "has_rivers": false,
+  "height": 60,
+  "is_ocean": false,
+  "temperatures": [
+    "neutral",
+    "hot",
+    "hot_extreme"
+  ],
+  "variance": 10
+}

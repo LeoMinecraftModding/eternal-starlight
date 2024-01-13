@@ -1,0 +1,13 @@
+{
+  "biome": "eternal_starlight:starlight_permafrost_forest",
+  "has_beaches": false,
+  "has_rivers": false,
+  "height": 110,
+  "is_ocean": false,
+  "temperatures": [
+    "neutral",
+    "cold",
+    "cold_extreme"
+  ],
+  "variance": 50
+}

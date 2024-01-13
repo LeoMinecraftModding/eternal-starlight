@@ -18,13 +18,19 @@ import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Lifecycle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
+import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Holder;
+import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -63,6 +69,11 @@ public class FabricPlatform implements ESPlatform {
             private final Registry<T> registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(key.location());
 
             @Override
+            public Registry<T> registry() {
+                return registry;
+            }
+
+            @Override
             public <I extends T> RegistryObject<T, I> register(String id, Supplier<? extends I> supplier) {
                 ResourceLocation location = new ResourceLocation(namespace, id);
                 ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(registry.key(), location);
@@ -90,6 +101,24 @@ public class FabricPlatform implements ESPlatform {
                 };
             }
         };
+    }
+
+    @Override
+    public <T> RegistrationProvider<T> createNewRegistryProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
+        MappedRegistry<T> mappedRegistry = new MappedRegistry<>(key, Lifecycle.stable(), false);
+        FabricRegistryBuilder<T, MappedRegistry<T>> builder = FabricRegistryBuilder.from(mappedRegistry);
+        builder.attribute(RegistryAttribute.SYNCED);
+        builder.buildAndRegister();
+        return createRegistrationProvider(key, namespace);
+    }
+
+    @Override
+    public <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec) {
+        if (networkCodec == null) {
+            DynamicRegistries.register(key, codec);
+        } else {
+            DynamicRegistries.registerSynced(key, codec, networkCodec);
+        }
     }
 
     @Override

@@ -1,17 +1,27 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
+import com.mojang.serialization.Codec;
 
 import java.util.Random;
 
-public class RandomizeBiomesTransformer implements NeighborsRelatedTransformer {
+public class RandomizeBiomesTransformer extends NeighborsRelatedTransformer {
+    public static final Codec<RandomizeBiomesTransformer> CODEC = Codec.unit(RandomizeBiomesTransformer::new);
+
     @Override
-    public int transform(AbstractWorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
+    public int transform(WorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
         // we should only randomize the lonely ones
         if (original != up || original != down || original != left || original != right) {
             return chooseRandomly(random, up, down, left, right);
         }
         return original;
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.RANDOMIZE.get();
     }
 }

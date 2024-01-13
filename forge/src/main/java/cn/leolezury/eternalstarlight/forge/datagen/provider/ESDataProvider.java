@@ -21,9 +21,12 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.DIMENSION_TYPE, DimensionInit::bootstrapDimType)
             .add(Registries.LEVEL_STEM, DimensionInit::bootstrapLevelStem)
             .add(Registries.DAMAGE_TYPE, DamageTypeInit::bootstrap)
-            .add(Registries.TRIM_MATERIAL, TrimMaterialInit::bootstrap);
+            .add(Registries.TRIM_MATERIAL, TrimMaterialInit::bootstrap)
+            // custom
+            .add(ESRegistries.BIOME_DATA, BiomeDataInit::bootstrap)
+            .add(ESRegistries.DATA_TRANSFORMER, DataTransformerInit::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID));
+        super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID, "minecraft"));
     }
 }

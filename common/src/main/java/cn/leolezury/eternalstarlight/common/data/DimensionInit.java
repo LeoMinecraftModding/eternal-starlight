@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalLong;
 
@@ -114,7 +117,37 @@ public class DimensionInit {
         HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
         HolderGetter<DimensionType> dimensionTypeHolderGetter = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<NoiseGeneratorSettings> noiseSettingsHolderGetter = context.lookup(Registries.NOISE_SETTINGS);
-        LevelStem levelStem = new LevelStem(dimensionTypeHolderGetter.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(HolderSet.direct(
+        HolderGetter<DataTransformer> transformers = context.lookup(ESRegistries.DATA_TRANSFORMER);
+        List<WorldGenProvider.TransformerWithSeed> biomeTransformers = new ArrayList<>();
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_OCEAN), 0));
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.APPLY_BIOMES), 0));
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), 0));
+        for (int i = 0; i < 6; i++) {
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), i));
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.RANDOMIZE_BIOMES), i));
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ASSIMILATE_BIOMES), i));
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ASSIMILATE_LONELY_BIOMES), i));
+        }
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ASSIMILATE_LONELY_BIOMES), 0));
+        for (int i = 0; i < 5; i++) {
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_BEACHES), 0));
+        }
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_RIVER), 0));
+        for (int i = 0; i < 2; i++) {
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_RIVER_TRANSITION), 0));
+        }
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_THE_ABYSS), 0));
+        for (int i = 0; i < 3; i++) {
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_THE_ABYSS_TRANSITION), 0));
+        }
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), 0));
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), 0));
+        List<WorldGenProvider.TransformerWithSeed> heightTransformers = new ArrayList<>();
+        heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.SMOOTH_HEIGHTS_LARGE), 0));
+        heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.NOISE_HEIGHT), 0));
+        heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.SMOOTH_HEIGHTS_SMALL), 0));
+        WorldGenProvider provider = new WorldGenProvider(biomeTransformers, heightTransformers, 320, -64);
+        LevelStem levelStem = new LevelStem(dimensionTypeHolderGetter.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(provider, HolderSet.direct(
                 // all biomes in our dimension
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_DENSE_FOREST),

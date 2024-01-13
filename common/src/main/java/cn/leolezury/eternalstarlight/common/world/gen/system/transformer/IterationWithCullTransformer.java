@@ -1,14 +1,14 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 
 import java.util.Random;
 
-public interface IterationWithCullTransformer extends DataTransformer {
-    int transform(int[][] original, int[][] related, AbstractWorldGenProvider provider, Random random, int x, int z, int areaX, int areaZ, int size);
+public abstract class IterationWithCullTransformer extends DataTransformer {
+    public abstract int transform(int[][] original, int[][] related, WorldGenProvider provider, Random random, int x, int z, int areaX, int areaZ, int size);
 
     @Override
-    default int[][] transform(int[][] original, int[][] related, AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
+    public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
         int[][] transformed = new int[size][size];
         int from = size <= 32 ? 0 : (size / 4 - 8);
         int to = size - from;

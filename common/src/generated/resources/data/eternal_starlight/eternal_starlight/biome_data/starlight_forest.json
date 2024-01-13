@@ -1,0 +1,14 @@
+{
+  "biome": "eternal_starlight:starlight_forest",
+  "has_beaches": true,
+  "has_rivers": true,
+  "height": 70,
+  "is_ocean": false,
+  "temperatures": [
+    "neutral",
+    "neutral",
+    "hot",
+    "cold"
+  ],
+  "variance": 15
+}

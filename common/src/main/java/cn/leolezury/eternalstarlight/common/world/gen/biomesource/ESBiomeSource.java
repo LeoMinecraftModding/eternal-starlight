@@ -1,44 +1,40 @@
 package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.ESWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ESBiomeSource extends BiomeSource {
     public static final Codec<ESBiomeSource> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            WorldGenProvider.CODEC.fieldOf("worldgen_provider").forGetter(o -> o.provider),
             RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(o -> o.biomeHolderSet)
     ).apply(instance, instance.stable(ESBiomeSource::new)));
 
-    public final Map<ResourceLocation, Holder<Biome>> biomeMap = new HashMap<>();
+    private final WorldGenProvider provider;
     private final HolderSet<Biome> biomeHolderSet;
-    private ESWorldGenProvider provider;
 
-    public ESBiomeSource(HolderSet<Biome> biomeHolderSet) {
+    public ESBiomeSource(WorldGenProvider provider, HolderSet<Biome> biomeHolderSet) {
+        this.provider = provider;
         this.biomeHolderSet = biomeHolderSet;
-        this.biomeMap.putAll(biomeHolderSet.stream().collect(Collectors.toMap(biomeHolder -> biomeHolder.unwrapKey().orElseThrow().location(), Function.identity())));
     }
 
     public void setSeed(long seed) {
         this.provider.setSeed(seed);
     }
 
-    public void setHeights(int maxHeight, int minHeight) {
-        this.provider = new ESWorldGenProvider(maxHeight, minHeight);
+    public void setRegistryAccess(RegistryAccess access) {
+        this.provider.setRegistryAccess(access);
     }
 
     public void setCacheSize(int size) {
@@ -52,7 +48,11 @@ public class ESBiomeSource extends BiomeSource {
 
     @Override
     protected Stream<Holder<Biome>> collectPossibleBiomes() {
-        return biomeMap.values().stream();
+        return biomeHolderSet.stream();
+    }
+
+    public BiomeData getBiomeData(int x, int z) {
+        return this.provider.getWorldArea(x, z).getBiomeData(x, z);
     }
 
     public int getBiome(int x, int z) {
@@ -65,6 +65,6 @@ public class ESBiomeSource extends BiomeSource {
 
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
-        return biomeMap.get(BiomeDataRegistry.getBiomeData(getBiome(x * 4, z * 4)).biome());
+        return provider.biomeDataRegistry.byId(getBiome(x * 4, z * 4)).biome();
     }
 }

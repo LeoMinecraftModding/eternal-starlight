@@ -1,11 +1,16 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
+import com.mojang.serialization.Codec;
 
 import java.util.Random;
 
-public class AssimilateBiomesTransformer implements NeighborsRelatedTransformer {
+public class AssimilateBiomesTransformer extends NeighborsRelatedTransformer {
+    public static final Codec<AssimilateBiomesTransformer> CODEC = Codec.BOOL.fieldOf("only_lonely").xmap(AssimilateBiomesTransformer::new, transformer -> transformer.onlyLonely).codec();
+
     private final boolean onlyLonely;
 
     public AssimilateBiomesTransformer(boolean onlyLonely) {
@@ -13,7 +18,7 @@ public class AssimilateBiomesTransformer implements NeighborsRelatedTransformer 
     }
 
     @Override
-    public int transform(AbstractWorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
+    public int transform(WorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
         if (!onlyLonely || (original != up && original != down && original != left && original != right)) {
             if (up == left && up == right) {
                 return up;
@@ -41,5 +46,10 @@ public class AssimilateBiomesTransformer implements NeighborsRelatedTransformer 
             }
         }
         return onlyLonely ? original : chooseRandomly(random, up, down, left, right);
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.ASSIMILATE.get();
     }
 }

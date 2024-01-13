@@ -1,13 +1,15 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.area;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
-import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.BiomeTransformers;
+import cn.leolezury.eternalstarlight.common.data.BiomeDataInit;
+import cn.leolezury.eternalstarlight.common.data.DataTransformerInit;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
-import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.HeightTransformers;
+import net.minecraft.core.Registry;
 
 public class WorldArea {
-    public final AbstractWorldGenProvider provider;
+    public final WorldGenProvider provider;
     public final long seed;
     public final int areaX;
     public final int areaZ;
@@ -17,7 +19,7 @@ public class WorldArea {
     private int[] finalHeights;
     public int size;
 
-    public WorldArea(AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed) {
+    public WorldArea(WorldGenProvider provider, int areaX, int areaZ, int size, long seed) {
         this.provider = provider;
         this.areaX = areaX;
         this.areaZ = areaZ;
@@ -29,7 +31,7 @@ public class WorldArea {
         this.biomes = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.biomes[x][z] = BiomeDataRegistry.STARLIGHT_FOREST;
+                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(BiomeDataInit.SCARLET_FOREST));
             }
         }
     }
@@ -43,7 +45,7 @@ public class WorldArea {
         this.heights = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.heights[x][z] = BiomeDataRegistry.getBiomeData(biomes[x][z]).height();
+                this.heights[x][z] = provider.biomeDataRegistry.byId(biomes[x][z]).height();
             }
         }
     }
@@ -52,12 +54,12 @@ public class WorldArea {
         this.heights = transformer.transform(this.heights, this.biomes, provider, areaX, areaZ, size, seed, seedAddition);
     }
 
-    public void finalizeAll() {
+    public void finalizeAll(Registry<DataTransformer> registry) {
         int tempSize = this.size; // 2048
-        transformBiomes(BiomeTransformers.FINALIZE, 0);
+        transformBiomes(registry.get(DataTransformerInit.FINALIZE_BIOMES), 0);
         int finalSize = this.size; // 1024
         this.size = tempSize; // 2048
-        transformHeights(HeightTransformers.FINALIZE, 0);
+        transformHeights(registry.get(DataTransformerInit.FINALIZE_HEIGHTS), 0);
         this.size = finalSize; // 1024
         this.finalBiomes = new int[this.size * this.size];
         for (int i = 0; i < this.size; i++) {
@@ -67,6 +69,10 @@ public class WorldArea {
         for (int i = 0; i < this.size; i++) {
             System.arraycopy(this.heights[i], 0, this.finalHeights, i * this.size, this.size);
         }
+    }
+
+    public BiomeData getBiomeData(int x, int z) {
+        return provider.registryAccess.registryOrThrow(ESRegistries.BIOME_DATA).byId(getBiome(x, z));
     }
 
     public int getBiome(int x, int z) {

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common;
 
 import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegistry;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.init.*;
 
 public class EternalStarlight {
@@ -24,6 +25,8 @@ public class EternalStarlight {
         SoundEventInit.loadClass();
         RecipeSerializerInit.loadClass();
         RecipeInit.loadClass();
+        DataTransformerTypeInit.loadClass();
+        ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
     }
 }

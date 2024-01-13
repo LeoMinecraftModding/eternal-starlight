@@ -1,30 +1,47 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NoiseDataTransformer;
+import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 
 import java.util.Random;
 
-public class AddTheAbyssTransformer implements NoiseDataTransformer {
-    private final int abyss;
+public class AddTheAbyssTransformer extends NoiseDataTransformer {
+    public static final Codec<AddTheAbyssTransformer> CODEC = RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("the_abyss").xmap(AddTheAbyssTransformer::new, transformer -> transformer.abyss).codec();
 
-    public AddTheAbyssTransformer(int abyss) {
+    private final Holder<BiomeData> abyss;
+    private Integer id = null;
+
+    public AddTheAbyssTransformer(Holder<BiomeData> abyss) {
         this.abyss = abyss;
     }
 
     @Override
-    public int transform(AbstractWorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
-        if (BiomeDataRegistry.getBiomeData(original).isOcean()) {
+    public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
+        if (id == null) {
+            id = provider.biomeDataRegistry.getId(abyss.value());
+        }
+        if (provider.biomeDataRegistry.byId(original).isOcean()) {
             double noiseVal =
                     noise.getValue(worldX * 0.0025, worldZ * 0.0025, false) * 0.50d
                     + noise.getValue(worldX * 0.0075, worldZ * 0.0075, true) * 0.25d
                     + noise.getValue(worldX * 0.025, worldZ * 0.025, true) * 0.025d;
             if (noiseVal > -0.02 && noiseVal < 0.02) {
-                return this.abyss;
+                return id;
             }
         }
         return original;
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.ADD_THE_ABYSS.get();
     }
 }

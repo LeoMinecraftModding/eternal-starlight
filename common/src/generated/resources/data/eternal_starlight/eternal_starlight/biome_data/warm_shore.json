@@ -1,0 +1,11 @@
+{
+  "biome": "eternal_starlight:warm_shore",
+  "has_beaches": true,
+  "has_rivers": true,
+  "height": 60,
+  "is_ocean": false,
+  "temperatures": [
+    "neutral"
+  ],
+  "variance": 5
+}

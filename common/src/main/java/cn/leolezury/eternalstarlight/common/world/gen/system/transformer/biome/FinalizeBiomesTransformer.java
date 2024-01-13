@@ -1,19 +1,28 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeDataRegistry;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
+import com.mojang.serialization.Codec;
 
-public class FinalizeBiomesTransformer implements DataTransformer {
+public class FinalizeBiomesTransformer extends DataTransformer {
+    public static final Codec<FinalizeBiomesTransformer> CODEC = Codec.unit(FinalizeBiomesTransformer::new);
+
     @Override
-    public int[][] transform(int[][] original, int[][] related, AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
+    public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
         int[][] transformed = new int[size / 2][size / 2];
         for (int x = 0; x < size / 2; x++) {
             for (int z = 0; z < size / 2; z++) {
                 int data = original[x + size / 4][z + size / 4];
-                transformed[x][z] = BiomeDataRegistry.getBiomeId(BiomeDataRegistry.getBiomeData(data).biome());
+                transformed[x][z] = data;
             }
         }
         return transformed;
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.FINALIZE_BIOMES.get();
     }
 }

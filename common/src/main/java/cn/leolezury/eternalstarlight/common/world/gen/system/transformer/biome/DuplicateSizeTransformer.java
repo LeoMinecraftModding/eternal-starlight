@@ -1,11 +1,16 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.AbstractWorldGenProvider;
+import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
+import com.mojang.serialization.Codec;
 
-public class DuplicateSizeTransformer implements DataTransformer {
+public class DuplicateSizeTransformer extends DataTransformer {
+    public static final Codec<DuplicateSizeTransformer> CODEC = Codec.unit(DuplicateSizeTransformer::new);
+
     @Override
-    public int[][] transform(int[][] original, int[][] related, AbstractWorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
+    public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {
         int newSize = size * 2;
         int[][] transformed = new int[newSize][newSize];
         for (int x = 0; x < newSize; x++) {
@@ -14,5 +19,10 @@ public class DuplicateSizeTransformer implements DataTransformer {
             }
         }
         return transformed;
+    }
+
+    @Override
+    public DataTransformerType<?> type() {
+        return DataTransformerTypeInit.DUPLICATE.get();
     }
 }
