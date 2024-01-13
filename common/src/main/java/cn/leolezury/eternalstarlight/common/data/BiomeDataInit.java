@@ -34,7 +34,7 @@ public class BiomeDataInit {
         context.register(SHIMMER_RIVER, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 30, 5).build());
         context.register(SHIMMER_RIVER_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 40, 3).build());
         context.register(STARLIT_SEA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA), 30, 5).fullRangeTemperatures().isOcean(true).build());
-        context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -55, 5).fullRangeTemperatures().isOcean(true).build());
+        context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -55, 5).isOcean(true).build());
         context.register(THE_ABYSS_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -20, 3).isOcean(true).build());
         context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE), 60, 5).build());
     }

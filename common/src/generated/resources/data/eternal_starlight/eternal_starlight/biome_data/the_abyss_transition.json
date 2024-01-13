@@ -4,8 +4,6 @@
   "has_rivers": true,
   "height": -20,
   "is_ocean": true,
-  "temperatures": [
-    "neutral"
-  ],
+  "temperatures": [],
   "variance": 3
 }

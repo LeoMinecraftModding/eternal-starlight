@@ -64,7 +64,6 @@ public record BiomeData(Holder<Biome> biome,
             this.biome = biome;
             this.height = height;
             this.variance = variance;
-            this.temperatures.add(Temperature.NEUTRAL);
         }
 
         public Builder withTemperatures(Temperature... temperatures) {
