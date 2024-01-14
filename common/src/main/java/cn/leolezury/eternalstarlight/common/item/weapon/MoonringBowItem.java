@@ -37,17 +37,17 @@ public class MoonringBowItem extends BowItem {
             for (int i = (int) y; !level.getBlockState(new BlockPos((int) x, i, (int) z)).isAir(); i++) {
                 if (i > level.getMaxBuildHeight()) {
                     canCreate = false;
-                    blockY = i;
                     break;
                 }
+                blockY = i;
             }
         } else {
             for (int i = (int) y; level.getBlockState(new BlockPos((int) x, i, (int) z)).isAir(); i--) {
                 if (i < level.getMinBuildHeight()) {
                     canCreate = false;
-                    blockY = i + 1;
                     break;
                 }
+                blockY = i + 1;
             }
         }
         if (canCreate) {
