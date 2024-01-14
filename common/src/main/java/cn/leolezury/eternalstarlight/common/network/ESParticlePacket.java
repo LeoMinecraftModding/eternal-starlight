@@ -1,26 +1,14 @@
 package cn.leolezury.eternalstarlight.common.network;
 
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 
-public class ESParticlePacket {
-    private final ParticleOptions particle;
-    private final double x, y, z, dx, dy, dz;
-
-    public ESParticlePacket(ParticleOptions particle, double x, double y, double z, double dx, double dy, double dz) {
-        this.particle = particle;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.dx = dx;
-        this.dy = dy;
-        this.dz = dz;
-    }
+public record ESParticlePacket(ParticleOptions particle,
+                               double x, double y, double z,
+                               double dx, double dy, double dz) {
 
     public static ESParticlePacket read(FriendlyByteBuf buf) {
         ParticleOptions options = readParticle(buf);
@@ -52,12 +40,7 @@ public class ESParticlePacket {
 
     public static class Handler {
         public static void handle(ESParticlePacket message) {
-            ESUtil.runWhenOnClient(() -> () -> {
-                ClientLevel clientLevel = Minecraft.getInstance().level;
-                if (clientLevel != null) {
-                    clientLevel.addParticle(message.particle, message.x, message.y, message.z, message.dx, message.dy, message.dz);
-                }
-            });
+            EternalStarlight.getClientHelper().handleParticlePacket(message);
         }
     }
 }

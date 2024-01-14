@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.ESWoodTypes;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
@@ -25,7 +24,6 @@ import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -47,7 +45,6 @@ import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -243,19 +240,6 @@ public class ClientSetupHandlers {
             }
         });
         ItemProperties.register(ItemInit.BOW_OF_BLOOD.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-    }
-
-    public static void clientWoodSetup() {
-        WoodType.register(ESWoodTypes.LUNAR);
-        WoodType.register(ESWoodTypes.NORTHLAND);
-        WoodType.register(ESWoodTypes.STARLIGHT_MANGROVE);
-        registerWoodTypeForSign(ESWoodTypes.LUNAR);
-        registerWoodTypeForSign(ESWoodTypes.NORTHLAND);
-        registerWoodTypeForSign(ESWoodTypes.STARLIGHT_MANGROVE);
-    }
-
-    private static void registerWoodTypeForSign(WoodType woodType) {
-        Sheets.SIGN_MATERIALS.put(woodType, Sheets.createSignMaterial(woodType));
     }
 
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {

@@ -1,28 +1,16 @@
 package cn.leolezury.eternalstarlight.common.network;
 
-import cn.leolezury.eternalstarlight.common.client.gui.screens.BookRenderData;
-import cn.leolezury.eternalstarlight.common.client.gui.screens.ESBookScreen;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenBookPacket {
-    private final BookData bookData;
-    private final List<ChapterData> chapterDataList;
-
-    public OpenBookPacket(BookData bookData, List<ChapterData> chapterDataList) {
-        this.bookData = bookData;
-        this.chapterDataList = chapterDataList;
-    }
+public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataList) {
 
     public static OpenBookPacket read(FriendlyByteBuf buf) {
         BookData.Builder builder = new BookData.Builder();
@@ -69,25 +57,7 @@ public class OpenBookPacket {
 
     public static class Handler {
         public static void handle(OpenBookPacket message) {
-            if (ESPlatform.INSTANCE.isPhysicalClient()) {
-                LocalPlayer localPlayer = Minecraft.getInstance().player;
-                if (localPlayer != null) {
-                    List<BookRenderData.ChapterRenderData> chapterRenderDataList = getRenderDataList(message);
-                    BookData data = message.bookData;
-                    BookRenderData bookRenderData = new BookRenderData(data.bookWidth(), data.bookHeight(), data.textOffsetX(), data.textOffsetY(), data.backgroundLocation(), data.titleBackgroundLocation(), Component.translatable(data.title()), chapterRenderDataList);
-                    Minecraft.getInstance().setScreen(new ESBookScreen(bookRenderData));
-                }
-            }
-        }
-
-        @NotNull
-        private static List<BookRenderData.ChapterRenderData> getRenderDataList(OpenBookPacket message) {
-            List<BookRenderData.ChapterRenderData> chapterRenderDataList = new ArrayList<>();
-            for (ChapterData data : message.chapterDataList) {
-                BookRenderData.ChapterRenderData chapterRenderData = new BookRenderData.ChapterRenderData(data.displayEntity(), data.entityDisplayScale(), data.entityOffset(), Component.translatable(data.title()), Component.translatable(data.content()), data.imageLocation());
-                chapterRenderDataList.add(chapterRenderData);
-            }
-            return chapterRenderDataList;
+            ESUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
         }
     }
 }

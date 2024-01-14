@@ -1,8 +1,12 @@
 package cn.leolezury.eternalstarlight.common;
 
 import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegistry;
+import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
+import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
+import cn.leolezury.eternalstarlight.common.client.helper.IClientHelper;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.init.*;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 
 public class EternalStarlight {
     public static final String MOD_ID = "eternal_starlight";
@@ -28,5 +32,13 @@ public class EternalStarlight {
         DataTransformerTypeInit.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
+    }
+
+    public static IClientHelper getClientHelper() {
+        if (ESPlatform.INSTANCE.isPhysicalClient()) {
+            return new ClientHelper();
+        } else {
+            return new EmptyClientHelper();
+        }
     }
 }
