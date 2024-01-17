@@ -27,7 +27,6 @@ public class ESFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientSetupHandlers.clientSetup();
-        ClientSetupHandlers.clientWoodSetup();
         ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
         ClientSetupHandlers.registerExtraBakedModels((ESModelLoadingPlugin.MODELS::add));
         ModelLoadingPlugin.register(new ESModelLoadingPlugin());

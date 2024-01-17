@@ -27,11 +27,6 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
-    public static void clientWoodSetup(FMLClientSetupEvent event) {
-        ClientSetupHandlers.clientWoodSetup();
-    }
-
-    @SubscribeEvent
     public static void onRegisterDimEffects(RegisterDimensionSpecialEffectsEvent event) {
         event.register(new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), ESPlatform.INSTANCE.getDimEffect());
     }
