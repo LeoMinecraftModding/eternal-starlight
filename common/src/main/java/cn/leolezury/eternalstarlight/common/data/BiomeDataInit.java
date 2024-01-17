@@ -25,18 +25,18 @@ public class BiomeDataInit {
 
     public static void bootstrap(BootstapContext<BiomeData> context) {
         HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
-        context.register(STARLIGHT_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_FOREST), 70, 15).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());
-        context.register(STARLIGHT_DENSE_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_DENSE_FOREST), 70, 15).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());
-        context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP), 60, 5).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
-        context.register(STARLIGHT_PERMAFROST_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST), 110, 50).withTemperatures(BiomeData.Temperature.COLD, BiomeData.Temperature.COLD_EXTREME).hasBeaches(false).hasRivers(false).build());
-        context.register(SCARLET_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SCARLET_FOREST), 70, 15).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
-        context.register(CRYSTALLIZED_DESERT, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT), 60, 10).withTemperatures(BiomeData.Temperature.HOT, BiomeData.Temperature.HOT_EXTREME).hasRivers(false).build());
-        context.register(SHIMMER_RIVER, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 30, 5).build());
-        context.register(SHIMMER_RIVER_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 40, 3).build());
+        context.register(STARLIGHT_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_FOREST), 61, 10).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());
+        context.register(STARLIGHT_DENSE_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_DENSE_FOREST), 61, 10).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());
+        context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP), 56, 5).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
+        context.register(STARLIGHT_PERMAFROST_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST), 110, 55).withTemperatures(BiomeData.Temperature.COLD, BiomeData.Temperature.COLD_EXTREME).hasBeaches(false).hasRivers(false).build());
+        context.register(SCARLET_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SCARLET_FOREST), 63, 12).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
+        context.register(CRYSTALLIZED_DESERT, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT), 60, 9).withTemperatures(BiomeData.Temperature.HOT, BiomeData.Temperature.HOT_EXTREME).hasRivers(false).build());
+        context.register(SHIMMER_RIVER, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 40, 3).build());
+        context.register(SHIMMER_RIVER_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 45, 3).build());
         context.register(STARLIT_SEA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA), 30, 5).fullRangeTemperatures().isOcean(true).build());
-        context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -55, 5).isOcean(true).build());
+        context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -60, 5).isOcean(true).build());
         context.register(THE_ABYSS_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS), -20, 3).isOcean(true).build());
-        context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE), 60, 5).build());
+        context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE), 55, 4).build());
     }
 
     public static ResourceKey<BiomeData> create(String name) {

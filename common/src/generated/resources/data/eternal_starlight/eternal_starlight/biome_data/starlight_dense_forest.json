@@ -2,12 +2,12 @@
   "biome": "eternal_starlight:starlight_dense_forest",
   "has_beaches": true,
   "has_rivers": true,
-  "height": 70,
+  "height": 61,
   "is_ocean": false,
   "temperatures": [
     "neutral",
     "hot",
     "cold"
   ],
-  "variance": 15
+  "variance": 10
 }

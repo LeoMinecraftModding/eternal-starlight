@@ -2,8 +2,8 @@
   "biome": "eternal_starlight:shimmer_river",
   "has_beaches": true,
   "has_rivers": true,
-  "height": 30,
+  "height": 40,
   "is_ocean": false,
   "temperatures": [],
-  "variance": 5
+  "variance": 3
 }

@@ -10,7 +10,8 @@
     "FireBlockMixin",
     "LivingEntityMixin",
     "MinecraftMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "ServerLevelMixin"
   ],
   "client": [
     "EntityRenderDispatcherMixin",

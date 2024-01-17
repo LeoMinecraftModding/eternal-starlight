@@ -20,7 +20,7 @@ public class NoiseHeightTransformer extends IterationWithCullTransformer {
         int worldX = getWorldCoord(x, areaX, size);
         int worldZ = getWorldCoord(z, areaZ, size);
         if (variance > 0) {
-            height += (int) ((0.95 * provider.noises[0].getValue(worldX * 0.004, worldZ * 0.004, false) + 0.05 * provider.noises[1].getValue(worldX * 0.04, worldZ * 0.04, true)) * variance);
+            height += (int) ((0.95 * provider.noises[0].getValue(worldX * 0.004, worldZ * 0.004, false) + 0.05 * provider.noises[1].getValue(worldX * 0.04, worldZ * 0.04, true)) * (double) variance);
         }
         return height;
     }

@@ -2,11 +2,11 @@
   "biome": "eternal_starlight:scarlet_forest",
   "has_beaches": true,
   "has_rivers": true,
-  "height": 70,
+  "height": 63,
   "is_ocean": false,
   "temperatures": [
     "neutral",
     "hot"
   ],
-  "variance": 15
+  "variance": 12
 }
