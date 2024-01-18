@@ -22,7 +22,7 @@ public abstract class PlayerMixin {
     }
 
     @Inject(at = @At(value = "HEAD"), method = "disableShield", cancellable = true)
-    private void es_disableShieldHead(boolean sprinting, CallbackInfo ci) {
+    private void es_disableShield(boolean sprinting, CallbackInfo ci) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ItemInit.MOONRING_GREATSWORD.get())) {
