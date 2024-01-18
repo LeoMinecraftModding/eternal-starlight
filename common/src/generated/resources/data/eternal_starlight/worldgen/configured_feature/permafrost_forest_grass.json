@@ -100,15 +100,6 @@
               },
               {
                 "data": {
-                  "Name": "eternal_starlight:lunar_reed",
-                  "Properties": {
-                    "half": "lower"
-                  }
-                },
-                "weight": 1
-              },
-              {
-                "data": {
                   "Name": "eternal_starlight:conebloom"
                 },
                 "weight": 2

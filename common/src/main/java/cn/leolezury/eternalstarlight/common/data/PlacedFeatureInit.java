@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -17,7 +18,9 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.material.Fluids;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlacedFeatureInit {
@@ -60,6 +63,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST_GRASS = create("permafrost_forest_grass");
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST_GRASS = create("scarlet_forest_grass");
     public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
+    public static final ResourceKey<PlacedFeature> NEAR_WATER_GRASS = create("near_water_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
 
@@ -70,6 +74,14 @@ public class PlacedFeatureInit {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         BlockPredicate snowPredicate = BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW);
         List<PlacementModifier> onSnow = List.of(EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.POWDER_SNOW)), 8), BlockPredicateFilter.forPredicate(snowPredicate));
+        List<BlockPredicate> nearWater = new ArrayList<>();
+        for (int x = -3; x <= 3; x++) {
+            for (int y = -2; y <= 2; y++) {
+                for (int z = -3; z <= 3; z++) {
+                    nearWater.add(BlockPredicate.matchesFluids(new BlockPos(x, y, z), Fluids.WATER, Fluids.FLOWING_WATER));
+                }
+            }
+        }
 
         register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, STONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
@@ -110,6 +122,7 @@ public class PlacedFeatureInit {
         register(context, PERMAFROST_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.PERMAFROST_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
         register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, HOT_SPRING, configuredFeatures.getOrThrow(ConfiguredFeatureInit.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 

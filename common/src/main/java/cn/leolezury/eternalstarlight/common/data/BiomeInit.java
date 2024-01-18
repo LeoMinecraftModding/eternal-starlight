@@ -44,10 +44,10 @@ public class BiomeInit {
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).temperature(2.0f).build());
-        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
+        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseOceanGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseGenBuilder(featureHolderGetter, carverHolderGetter)).build());
+        context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
     }
 
     private static Biome.BiomeBuilder baseBiomeBuilder(BiomeSpecialEffects.Builder specialEffects, MobSpawnSettings.Builder mobSpawnSettings, BiomeGenerationSettings.Builder genSettings) {
@@ -96,7 +96,7 @@ public class BiomeInit {
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
     }
 
-    public static BiomeGenerationSettings.Builder baseGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+    public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
         BiomeDefaultFeatures.addForestGrass(builder);
@@ -104,6 +104,7 @@ public class BiomeInit {
         BiomeDefaultFeatures.addDefaultGrass(builder);
         BiomeDefaultFeatures.addSavannaExtraGrass(builder);
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.NEAR_WATER_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.CAVE_VINE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.DEEPSLATE_ORE);
@@ -119,8 +120,26 @@ public class BiomeInit {
         return builder;
     }
 
+    public static BiomeGenerationSettings.Builder baseOceanGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+        BiomeDefaultFeatures.addSurfaceFreezing(builder);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.CAVE_VINE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.STONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.DEEPSLATE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.NIGHTSHADE_DIRT_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_GRIMSTONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacedFeatureInit.STARLIGHT_CRYSTAL);
+
+        builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES);
+        builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES_EXTRA);
+
+        return builder;
+    }
+
     private static BiomeGenerationSettings.Builder forestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.STARLIGHT_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FOREST_GRASS);
@@ -131,7 +150,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder denseForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.DENSE_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FOREST_GRASS);
@@ -141,7 +160,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder snowyForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.PERMAFROST_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.PERMAFROST_FOREST_GRASS);
@@ -151,7 +170,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder swampSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.LAKES, PlacedFeatureInit.SWAMP_WATER);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.SWAMP_SILVER_ORE);
@@ -164,7 +183,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder scarletForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST);
@@ -175,7 +194,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder desertSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.STARLIGHT_CRYSTAL_SURFACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.DESERT_GRASS);
@@ -185,7 +204,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder oceanSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseOceanGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.OCEAN_VEGETATION);
@@ -194,7 +213,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder theAbyssSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseOceanGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.ABYSSLATE_PATCH);
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.THERMABYSSLATE_PATCH);
