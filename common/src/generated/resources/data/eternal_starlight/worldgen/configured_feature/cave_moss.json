@@ -1,0 +1,89 @@
+{
+  "type": "minecraft:block_column",
+  "config": {
+    "allowed_placement": {
+      "type": "minecraft:matching_blocks",
+      "blocks": "minecraft:air"
+    },
+    "direction": "down",
+    "layers": [
+      {
+        "height": {
+          "type": "minecraft:weighted_list",
+          "distribution": [
+            {
+              "data": {
+                "type": "minecraft:uniform",
+                "value": {
+                  "max_inclusive": 14,
+                  "min_inclusive": 10
+                }
+              },
+              "weight": 1
+            },
+            {
+              "data": {
+                "type": "minecraft:uniform",
+                "value": {
+                  "max_inclusive": 10,
+                  "min_inclusive": 6
+                }
+              },
+              "weight": 2
+            },
+            {
+              "data": {
+                "type": "minecraft:uniform",
+                "value": {
+                  "max_inclusive": 6,
+                  "min_inclusive": 0
+                }
+              },
+              "weight": 6
+            }
+          ]
+        },
+        "provider": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "data": {
+                "Name": "eternal_starlight:cave_moss_plant"
+              },
+              "weight": 1
+            }
+          ]
+        }
+      },
+      {
+        "height": 1,
+        "provider": {
+          "type": "minecraft:randomized_int_state_provider",
+          "property": "age",
+          "source": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "eternal_starlight:cave_moss",
+                  "Properties": {
+                    "age": "0"
+                  }
+                },
+                "weight": 1
+              }
+            ]
+          },
+          "values": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 25,
+              "min_inclusive": 23
+            }
+          }
+        }
+      }
+    ],
+    "prioritize_tip": true
+  }
+}

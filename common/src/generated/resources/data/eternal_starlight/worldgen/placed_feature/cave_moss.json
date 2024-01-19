@@ -1,9 +1,9 @@
 {
-  "feature": "eternal_starlight:cave_vine",
+  "feature": "eternal_starlight:cave_moss",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 188
+      "count": 200
     },
     {
       "type": "minecraft:in_square"

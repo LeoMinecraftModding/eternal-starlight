@@ -89,6 +89,8 @@ public class ClientSetupHandlers {
     public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
             BlockInit.BERRIES_VINES,
             BlockInit.BERRIES_VINES_PLANT,
+            BlockInit.CAVE_MOSS,
+            BlockInit.CAVE_MOSS_PLANT,
             BlockInit.ABYSSAL_KELP,
             BlockInit.ABYSSAL_KELP_PLANT,
             BlockInit.DEAD_TENTACLES_CORAL,
@@ -246,6 +248,8 @@ public class ClientSetupHandlers {
         BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
         BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : GrassColor.getDefaultColor();
         strategy.register(grassColor, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
+        strategy.register(grassColor, BlockInit.CAVE_MOSS.get());
+        strategy.register(grassColor, BlockInit.CAVE_MOSS_PLANT.get());
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
@@ -255,7 +259,9 @@ public class ClientSetupHandlers {
             return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
         };
         strategy.register(toBlock, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
-        strategy.register(toBlock, ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(toBlock, BlockInit.CAVE_MOSS.get());
+        strategy.register(toBlock, BlockInit.CAVE_MOSS_PLANT.get());
+        strategy.register(toBlock, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {

@@ -44,7 +44,8 @@ public class BerriesVinePlantBlock extends GrowingPlantBodyBlock implements Bone
         return blockState.setValue(BERRIES, state.getValue(BERRIES));
     }
 
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState state) {
+    @Override
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return new ItemStack(ItemInit.LUNAR_BERRIES.get());
     }
 

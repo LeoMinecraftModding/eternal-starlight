@@ -29,10 +29,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        berriesVines(BlockInit.BERRIES_VINES.get());
-        berriesVines(BlockInit.BERRIES_VINES_PLANT.get());
-        berriesVines(BlockInit.ABYSSAL_KELP.get());
-        berriesVines(BlockInit.ABYSSAL_KELP_PLANT.get());
+        vinesWithFruit(BlockInit.BERRIES_VINES.get());
+        vinesWithFruit(BlockInit.BERRIES_VINES_PLANT.get());
+        tintedCross(BlockInit.CAVE_MOSS.get());
+        tintedCross(BlockInit.CAVE_MOSS_PLANT.get(), blockTexture(BlockInit.CAVE_MOSS.get()), CUTOUT);
+        vinesWithFruit(BlockInit.ABYSSAL_KELP.get());
+        vinesWithFruit(BlockInit.ABYSSAL_KELP_PLANT.get());
         crystalCluster(BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
         crystalCluster(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
         simpleBlock(BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -40,8 +42,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         carpetBlock(BlockInit.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.RED_CRYSTAL_MOSS_CARPET.get()));
         carpetBlock(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get()));
 
-        crossBlock(BlockInit.DEAD_TENTACLES_CORAL.get());
-        crossBlock(BlockInit.TENTACLES_CORAL.get());
+        cross(BlockInit.DEAD_TENTACLES_CORAL.get());
+        cross(BlockInit.TENTACLES_CORAL.get());
         coralFan(BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
         coralFan(BlockInit.TENTACLES_CORAL_FAN.get());
         coralWallFan(BlockInit.DEAD_TENTACLES_CORAL_WALL_FAN.get(), BlockInit.DEAD_TENTACLES_CORAL_FAN.get());
@@ -49,8 +51,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.DEAD_TENTACLES_CORAL_BLOCK.get());
         simpleBlock(BlockInit.TENTACLES_CORAL_BLOCK.get());
 
-        crossBlock(BlockInit.DEAD_GOLDEN_CORAL.get());
-        crossBlock(BlockInit.GOLDEN_CORAL.get());
+        cross(BlockInit.DEAD_GOLDEN_CORAL.get());
+        cross(BlockInit.GOLDEN_CORAL.get());
         coralFan(BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
         coralFan(BlockInit.GOLDEN_CORAL_FAN.get());
         coralWallFan(BlockInit.DEAD_GOLDEN_CORAL_WALL_FAN.get(), BlockInit.DEAD_GOLDEN_CORAL_FAN.get());
@@ -58,8 +60,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.DEAD_GOLDEN_CORAL_BLOCK.get());
         simpleBlock(BlockInit.GOLDEN_CORAL_BLOCK.get());
 
-        crossBlock(BlockInit.DEAD_CRYSTALLUM_CORAL.get());
-        crossBlock(BlockInit.CRYSTALLUM_CORAL.get());
+        cross(BlockInit.DEAD_CRYSTALLUM_CORAL.get());
+        cross(BlockInit.CRYSTALLUM_CORAL.get());
         coralFan(BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
         coralFan(BlockInit.CRYSTALLUM_CORAL_FAN.get());
         coralWallFan(BlockInit.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), BlockInit.DEAD_CRYSTALLUM_CORAL_FAN.get());
@@ -70,7 +72,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         // woods
         leaves(BlockInit.LUNAR_LEAVES.get());
         woodSet(BlockInit.LUNAR_LOG.get(), BlockInit.LUNAR_WOOD.get(), BlockInit.LUNAR_PLANKS.get(), BlockInit.STRIPPED_LUNAR_LOG.get(), BlockInit.STRIPPED_LUNAR_WOOD.get(), BlockInit.LUNAR_DOOR.get(), false, BlockInit.LUNAR_TRAPDOOR.get(), false, BlockInit.LUNAR_PRESSURE_PLATE.get(), BlockInit.LUNAR_BUTTON.get(), BlockInit.LUNAR_FENCE.get(), BlockInit.LUNAR_FENCE_GATE.get(), BlockInit.LUNAR_SLAB.get(), BlockInit.LUNAR_STAIRS.get(), BlockInit.LUNAR_SIGN.get(), BlockInit.LUNAR_WALL_SIGN.get(), BlockInit.LUNAR_HANGING_SIGN.get(), BlockInit.LUNAR_WALL_HANGING_SIGN.get());
-        crossBlock(BlockInit.LUNAR_SAPLING.get());
+        cross(BlockInit.LUNAR_SAPLING.get());
         pottedPlant(BlockInit.POTTED_LUNAR_SAPLING.get(), blockTexture(BlockInit.LUNAR_SAPLING.get()));
         logBlock(BlockInit.DEAD_LUNAR_LOG.get());
         axisBlock(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get(), blockTexture(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get()), blockTexture(BlockInit.DEAD_LUNAR_LOG.get()).withSuffix("_top"));
@@ -78,12 +80,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
         leaves(BlockInit.NORTHLAND_LEAVES.get());
         woodSet(BlockInit.NORTHLAND_LOG.get(), BlockInit.NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_PLANKS.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get(), BlockInit.STRIPPED_NORTHLAND_WOOD.get(), BlockInit.NORTHLAND_DOOR.get(), false, BlockInit.NORTHLAND_TRAPDOOR.get(), false, BlockInit.NORTHLAND_PRESSURE_PLATE.get(), BlockInit.NORTHLAND_BUTTON.get(), BlockInit.NORTHLAND_FENCE.get(), BlockInit.NORTHLAND_FENCE_GATE.get(), BlockInit.NORTHLAND_SLAB.get(), BlockInit.NORTHLAND_STAIRS.get(), BlockInit.NORTHLAND_SIGN.get(), BlockInit.NORTHLAND_WALL_SIGN.get(), BlockInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.NORTHLAND_WALL_HANGING_SIGN.get());
-        crossBlock(BlockInit.NORTHLAND_SAPLING.get());
+        cross(BlockInit.NORTHLAND_SAPLING.get());
         pottedPlant(BlockInit.POTTED_NORTHLAND_SAPLING.get(), blockTexture(BlockInit.NORTHLAND_SAPLING.get()));
 
         leaves(BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
         woodSet(BlockInit.STARLIGHT_MANGROVE_LOG.get(), BlockInit.STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_DOOR.get(), true, BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), true, BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_FENCE.get(), BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(), BlockInit.STARLIGHT_MANGROVE_SLAB.get(), BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get());
-        crossBlock(BlockInit.STARLIGHT_MANGROVE_SAPLING.get());
+        cross(BlockInit.STARLIGHT_MANGROVE_SAPLING.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
         mangroveRoots(BlockInit.STARLIGHT_MANGROVE_ROOTS.get());
         mangroveRoots(BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
@@ -91,7 +93,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         leaves(BlockInit.SCARLET_LEAVES.get());
         layered(BlockInit.SCARLET_LEAVES_PILE.get(), blockTexture(BlockInit.SCARLET_LEAVES.get()));
         woodSet(BlockInit.SCARLET_LOG.get(), BlockInit.SCARLET_WOOD.get(), BlockInit.SCARLET_PLANKS.get(), BlockInit.STRIPPED_SCARLET_LOG.get(), BlockInit.STRIPPED_SCARLET_WOOD.get(), BlockInit.SCARLET_DOOR.get(), false, BlockInit.SCARLET_TRAPDOOR.get(), false, BlockInit.SCARLET_PRESSURE_PLATE.get(), BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_FENCE.get(), BlockInit.SCARLET_FENCE_GATE.get(), BlockInit.SCARLET_SLAB.get(), BlockInit.SCARLET_STAIRS.get(), BlockInit.SCARLET_SIGN.get(), BlockInit.SCARLET_WALL_SIGN.get(), BlockInit.SCARLET_HANGING_SIGN.get(), BlockInit.SCARLET_WALL_HANGING_SIGN.get());
-        crossBlock(BlockInit.SCARLET_SAPLING.get());
+        cross(BlockInit.SCARLET_SAPLING.get());
         pottedPlant(BlockInit.POTTED_SCARLET_SAPLING.get(), blockTexture(BlockInit.SCARLET_SAPLING.get()));
 
         // stones
@@ -180,55 +182,55 @@ public class ESBlockStateProvider extends BlockStateProvider {
         onOffBlock(BlockInit.DOOMEDEN_LIGHT.get());
         doomedenKeyhole(BlockInit.DOOMEDEN_KEYHOLE.get(), BlockInit.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
-        crossBlock(BlockInit.STARLIGHT_FLOWER.get());
+        cross(BlockInit.STARLIGHT_FLOWER.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_FLOWER.get(), blockTexture(BlockInit.STARLIGHT_FLOWER.get()));
-        crossBlock(BlockInit.CONEBLOOM.get());
+        cross(BlockInit.CONEBLOOM.get());
         pottedPlant(BlockInit.POTTED_CONEBLOOM.get(), blockTexture(BlockInit.CONEBLOOM.get()));
-        crossBlock(BlockInit.NIGHTFAN.get());
+        cross(BlockInit.NIGHTFAN.get());
         pottedPlant(BlockInit.POTTED_NIGHTFAN.get(), blockTexture(BlockInit.NIGHTFAN.get()));
-        crossBlock(BlockInit.PINK_ROSE.get());
+        cross(BlockInit.PINK_ROSE.get());
         pottedPlant(BlockInit.POTTED_PINK_ROSE.get(), blockTexture(BlockInit.PINK_ROSE.get()));
-        crossBlock(BlockInit.STARLIGHT_TORCHFLOWER.get());
+        cross(BlockInit.STARLIGHT_TORCHFLOWER.get());
         pottedPlant(BlockInit.POTTED_STARLIGHT_TORCHFLOWER.get(), blockTexture(BlockInit.STARLIGHT_TORCHFLOWER.get()));
         doublePlant(BlockInit.NIGHTFAN_BUSH.get());
         doublePlant(BlockInit.PINK_ROSE_BUSH.get());
-        crossBlock(BlockInit.NIGHT_SPROUTS.get());
-        crossBlock(BlockInit.SMALL_NIGHT_SPROUTS.get());
-        crossBlock(BlockInit.GLOWING_NIGHT_SPROUTS.get());
-        crossBlock(BlockInit.SMALL_GLOWING_NIGHT_SPROUTS.get());
-        crossBlock(BlockInit.LUNAR_GRASS.get());
-        crossBlock(BlockInit.GLOWING_LUNAR_GRASS.get());
-        crossBlock(BlockInit.CRESCENT_GRASS.get());
-        crossBlock(BlockInit.GLOWING_CRESCENT_GRASS.get());
-        crossBlock(BlockInit.PARASOL_GRASS.get());
-        crossBlock(BlockInit.GLOWING_PARASOL_GRASS.get());
-        crossBlock(BlockInit.LUNAR_BUSH.get());
-        crossBlock(BlockInit.GLOWING_LUNAR_BUSH.get());
+        cross(BlockInit.NIGHT_SPROUTS.get());
+        cross(BlockInit.SMALL_NIGHT_SPROUTS.get());
+        cross(BlockInit.GLOWING_NIGHT_SPROUTS.get());
+        cross(BlockInit.SMALL_GLOWING_NIGHT_SPROUTS.get());
+        cross(BlockInit.LUNAR_GRASS.get());
+        cross(BlockInit.GLOWING_LUNAR_GRASS.get());
+        cross(BlockInit.CRESCENT_GRASS.get());
+        cross(BlockInit.GLOWING_CRESCENT_GRASS.get());
+        cross(BlockInit.PARASOL_GRASS.get());
+        cross(BlockInit.GLOWING_PARASOL_GRASS.get());
+        cross(BlockInit.LUNAR_BUSH.get());
+        cross(BlockInit.GLOWING_LUNAR_BUSH.get());
         doublePlant(BlockInit.TALL_CRESCENT_GRASS.get());
         doublePlant(BlockInit.TALL_GLOWING_CRESCENT_GRASS.get());
         doublePlant(BlockInit.LUNAR_REED.get());
-        crossBlock(BlockInit.WHISPERBLOOM.get());
-        crossBlock(BlockInit.GLADESPIKE.get());
-        crossBlock(BlockInit.VIVIDSTALK.get());
+        cross(BlockInit.WHISPERBLOOM.get());
+        cross(BlockInit.GLADESPIKE.get());
+        cross(BlockInit.VIVIDSTALK.get());
         doublePlant(BlockInit.TALL_GLADESPIKE.get());
-        crossBlock(BlockInit.GLOWING_MUSHROOM.get());
+        cross(BlockInit.GLOWING_MUSHROOM.get());
         mushroomBlock(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
 
-        crossBlock(BlockInit.SWAMP_ROSE.get());
+        cross(BlockInit.SWAMP_ROSE.get());
         pottedPlant(BlockInit.POTTED_SWAMP_ROSE.get(), blockTexture(BlockInit.SWAMP_ROSE.get()));
-        crossBlock(BlockInit.FANTABUD.get());
-        crossBlock(BlockInit.GREEN_FANTABUD.get());
-        crossBlock(BlockInit.FANTAFERN.get());
-        crossBlock(BlockInit.GREEN_FANTAFERN.get());
-        crossBlock(BlockInit.FANTAGRASS.get());
-        crossBlock(BlockInit.GREEN_FANTAGRASS.get());
+        cross(BlockInit.FANTABUD.get());
+        cross(BlockInit.GREEN_FANTABUD.get());
+        cross(BlockInit.FANTAFERN.get());
+        cross(BlockInit.GREEN_FANTAFERN.get());
+        cross(BlockInit.FANTAGRASS.get());
+        cross(BlockInit.GREEN_FANTAGRASS.get());
 
-        crossBlock(BlockInit.ORANGE_SCARLET_BUD.get());
-        crossBlock(BlockInit.PURPLE_SCARLET_BUD.get());
-        crossBlock(BlockInit.RED_SCARLET_BUD.get());
-        crossBlock(BlockInit.SCARLET_GRASS.get());
+        cross(BlockInit.ORANGE_SCARLET_BUD.get());
+        cross(BlockInit.PURPLE_SCARLET_BUD.get());
+        cross(BlockInit.RED_SCARLET_BUD.get());
+        cross(BlockInit.SCARLET_GRASS.get());
 
-        crossBlock(BlockInit.DEAD_LUNAR_BUSH.get());
+        cross(BlockInit.DEAD_LUNAR_BUSH.get());
 
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());
         grassBlock(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_DIRT.get()));
@@ -314,7 +316,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
     }
 
-    private void berriesVines(Block block) {
+    private void vinesWithFruit(Block block) {
         ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
         ModelFile modelLit = models().cross(name(block) + "_lit", blockTexture(block).withSuffix("_lit")).renderType(CUTOUT);
         onOffBlock(block, BlockStateProperties.BERRIES, modelLit, modelNormal);
@@ -538,12 +540,21 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(block, modelFile);
     }
 
-    private void crossBlock(Block block) {
-        crossBlock(block, CUTOUT);
+    private void cross(Block block) {
+        cross(block, blockTexture(block), CUTOUT);
     }
 
-    private void crossBlock(Block block, ResourceLocation renderType) {
-        ModelFile modelFile = models().cross(name(block), blockTexture(block)).renderType(renderType);
+    private void cross(Block block, ResourceLocation texture, ResourceLocation renderType) {
+        ModelFile modelFile = models().cross(name(block), texture).renderType(renderType);
+        simpleBlock(block, modelFile);
+    }
+
+    private void tintedCross(Block block) {
+        tintedCross(block, blockTexture(block), CUTOUT);
+    }
+
+    private void tintedCross(Block block, ResourceLocation texture, ResourceLocation renderType) {
+        ModelFile modelFile = models().withExistingParent(name(block), "tinted_cross").texture("cross", texture).renderType(renderType);
         simpleBlock(block, modelFile);
     }
 

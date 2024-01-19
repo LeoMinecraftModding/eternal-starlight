@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-06T11:58:13.4481404	Loot Tables
+// 1.20.4	2024-01-19T20:46:06.507482	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -11,6 +11,8 @@ d482caff91a5f877a22b046cb32a89acc1ad87e1 data/eternal_starlight/loot_tables/bloc
 63f1924635d4366f6c6f9f36a69b624f89090e2f data/eternal_starlight/loot_tables/blocks/blue_crystal_moss_carpet.json
 5863eae83bcd59b88922261b090366052525dfbc data/eternal_starlight/loot_tables/blocks/blue_starlight_crystal_block.json
 3304e1d2a0824a7798e9fd5a2f3e2c317b6f177e data/eternal_starlight/loot_tables/blocks/blue_starlight_crystal_cluster.json
+76827f94ae949671dd5ddea03352edf35f78c9ff data/eternal_starlight/loot_tables/blocks/cave_moss.json
+f005be5f4f039719afec1dc09da2e86278beb9ee data/eternal_starlight/loot_tables/blocks/cave_moss_plant.json
 5f0b854f811315ad4985c27f19b7e855486e284c data/eternal_starlight/loot_tables/blocks/charged_chiseled_polished_doomeden_bricks.json
 2dc890f1195af2082b5d047da040aa75413a72cd data/eternal_starlight/loot_tables/blocks/chiseled_golem_steel_block.json
 592dee9a4d9e19251044c7efad3e4a17e8d7718f data/eternal_starlight/loot_tables/blocks/chiseled_grimstone.json

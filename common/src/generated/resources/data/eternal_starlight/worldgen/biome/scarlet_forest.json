@@ -43,9 +43,7 @@
       "eternal_starlight:glowing_grimstone_ore",
       "eternal_starlight:glowing_voidstone_ore"
     ],
-    [
-      "eternal_starlight:starlight_crystal"
-    ],
+    [],
     [],
     [
       "minecraft:patch_grass_forest",
@@ -54,6 +52,7 @@
       "minecraft:patch_grass_savanna",
       "eternal_starlight:near_water_grass",
       "eternal_starlight:cave_vine",
+      "eternal_starlight:cave_moss",
       "eternal_starlight:scarlet_forest_grass",
       "eternal_starlight:scarlet_forest",
       "eternal_starlight:fallen_scarlet_log",

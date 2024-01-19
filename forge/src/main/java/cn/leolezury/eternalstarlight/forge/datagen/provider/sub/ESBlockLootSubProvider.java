@@ -41,6 +41,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
     protected void generate() {
         add(BlockInit.BERRIES_VINES.get(), this::createBerriesVinesDrop);
         add(BlockInit.BERRIES_VINES_PLANT.get(), this::createBerriesVinesDrop);
+        dropSelf(BlockInit.CAVE_MOSS.get());
+        dropOther(BlockInit.CAVE_MOSS_PLANT.get(), BlockInit.CAVE_MOSS.get());
         add(BlockInit.ABYSSAL_KELP.get(), this::createAbyssalKelpDrop);
         add(BlockInit.ABYSSAL_KELP_PLANT.get(), this::createAbyssalKelpDrop);
 

@@ -41,12 +41,11 @@
       "eternal_starlight:glowing_grimstone_ore",
       "eternal_starlight:glowing_voidstone_ore"
     ],
-    [
-      "eternal_starlight:starlight_crystal"
-    ],
+    [],
     [],
     [
-      "eternal_starlight:cave_vine"
+      "eternal_starlight:cave_vine",
+      "eternal_starlight:cave_moss"
     ],
     [
       "minecraft:freeze_top_layer"
