@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-19T20:46:06.507482	Loot Tables
+// 1.20.4	2024-01-19T22:32:25.2175309	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -134,6 +134,8 @@ e4213e907985291c9418689aade032a9b8028d43 data/eternal_starlight/loot_tables/bloc
 f70f278c9d836903f034ca949042d9156a7ce587 data/eternal_starlight/loot_tables/blocks/lunar_wall_hanging_sign.json
 8c3d56ca0d2921cb7f6be0ca86071aed68469b97 data/eternal_starlight/loot_tables/blocks/lunar_wall_sign.json
 ae25b88123a0ed928821ccb9401206b0252ca6e7 data/eternal_starlight/loot_tables/blocks/lunar_wood.json
+a450558095a42d6e290dc8ce1e1ef898bcdd73cc data/eternal_starlight/loot_tables/blocks/moonlight_duckweed.json
+5841e604d313dd427812c07d37713c504b5ea7d8 data/eternal_starlight/loot_tables/blocks/moonlight_lily_pad.json
 b1634550f342799f3dc7eaa2ebf2dafc04a22395 data/eternal_starlight/loot_tables/blocks/muddy_starlight_mangrove_roots.json
 76f9c1d5fe4e92f852f5a08bb3a3e12e5f49c2d3 data/eternal_starlight/loot_tables/blocks/nightfan.json
 a038f4191e4354d5a5ecef4e5607eb1df4734152 data/eternal_starlight/loot_tables/blocks/nightfan_bush.json

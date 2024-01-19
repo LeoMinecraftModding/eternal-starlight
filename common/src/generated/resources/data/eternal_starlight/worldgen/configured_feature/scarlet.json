@@ -1,7 +1,11 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "decorators": [],
+    "decorators": [
+      {
+        "type": "eternal_starlight:trunk_cobweb"
+      }
+    ],
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
@@ -9,7 +13,7 @@
       }
     },
     "foliage_placer": {
-      "type": "eternal_starlight:spike",
+      "type": "eternal_starlight:scarlet",
       "offset": 0,
       "radius": {
         "type": "minecraft:uniform",

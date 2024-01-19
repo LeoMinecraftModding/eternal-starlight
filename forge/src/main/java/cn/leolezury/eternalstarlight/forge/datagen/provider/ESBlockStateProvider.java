@@ -232,6 +232,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
         cross(BlockInit.DEAD_LUNAR_BUSH.get());
 
+        waterlily(BlockInit.MOONLIGHT_LILY_PAD.get());
+        waterlily(BlockInit.MOONLIGHT_DUCKWEED.get());
+
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());
         grassBlock(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_DIRT.get()));
         simpleGrassBlock(BlockInit.FANTASY_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_MUD.get()));
@@ -353,6 +356,29 @@ public class ESBlockStateProvider extends BlockStateProvider {
     private void geyser(Block stone, Block geyser) {
         ModelFile modelFile = models().cubeBottomTop(name(geyser), blockTexture(stone), blockTexture(stone), blockTexture(geyser));
         simpleBlock(geyser, modelFile);
+    }
+
+    private void waterlily(Block lily) {
+        ModelFile model = models().getBuilder(name(lily))
+                .ao(false)
+                .texture("particle", blockTexture(lily))
+                .texture("texture", blockTexture(lily))
+                .renderType(TRANSLUCENT)
+                .element()
+                .from(0, 0.25f, 0)
+                .to(16, 0.25f, 16)
+                .face(Direction.DOWN)
+                .uvs(0, 16, 16, 0)
+                .texture("#texture")
+                .tintindex(0)
+                .end()
+                .face(Direction.UP)
+                .uvs(0, 0, 16, 16)
+                .texture("#texture")
+                .tintindex(0)
+                .end()
+                .end();
+        simpleBlock(lily, model);
     }
 
     private void mushroomBlock(Block block) {

@@ -8,6 +8,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
@@ -43,8 +44,8 @@ public class BiomeInit {
         context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), baseSpawnBuilder(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).temperature(2.0f).build());
-        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), baseOceanGenBuilder(featureHolderGetter, carverHolderGetter)).build());
+        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+        context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
@@ -120,7 +121,7 @@ public class BiomeInit {
         return builder;
     }
 
-    public static BiomeGenerationSettings.Builder baseOceanGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+    public static BiomeGenerationSettings.Builder baseAquaticGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
@@ -185,6 +186,7 @@ public class BiomeInit {
     private static BiomeGenerationSettings.Builder scarletForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_PUMPKIN);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.SCARLET_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.FALLEN_SCARLET_LOG);
@@ -204,8 +206,17 @@ public class BiomeInit {
         return builder;
     }
 
+    private static BiomeGenerationSettings.Builder riverSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder builder = baseAquaticGenBuilder(featureGetter, carverGetter);
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ON_WATER_PLANT);
+
+        return builder;
+    }
+
     private static BiomeGenerationSettings.Builder oceanSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseOceanGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseAquaticGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.ABYSSAL_KELP);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.OCEAN_VEGETATION);
@@ -214,7 +225,7 @@ public class BiomeInit {
     }
 
     private static BiomeGenerationSettings.Builder theAbyssSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-        BiomeGenerationSettings.Builder builder = baseOceanGenBuilder(featureGetter, carverGetter);
+        BiomeGenerationSettings.Builder builder = baseAquaticGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.ABYSSLATE_PATCH);
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacedFeatureInit.THERMABYSSLATE_PATCH);

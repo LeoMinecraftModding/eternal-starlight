@@ -65,6 +65,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST_GRASS = create("scarlet_forest_grass");
     public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<PlacedFeature> NEAR_WATER_GRASS = create("near_water_grass");
+    public static final ResourceKey<PlacedFeature> ON_WATER_PLANT = create("on_water_plant");
     public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
 
@@ -125,6 +126,7 @@ public class PlacedFeatureInit {
         register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
+        register(context, ON_WATER_PLANT, configuredFeatures.getOrThrow(ConfiguredFeatureInit.ON_WATER_PLANT), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, HOT_SPRING, configuredFeatures.getOrThrow(ConfiguredFeatureInit.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 

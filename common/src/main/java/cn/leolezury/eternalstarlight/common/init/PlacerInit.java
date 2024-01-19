@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpheroidFoliagePlacer;
-import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.SpikeFoliagePlacer;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage.ScarletFoliagePlacer;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk.BranchingTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -15,6 +15,6 @@ public class PlacerInit {
     public static final RegistrationProvider<FoliagePlacerType<?>> FOLIAGE_PLACERS = RegistrationProvider.get(Registries.FOLIAGE_PLACER_TYPE, EternalStarlight.MOD_ID);
     public static final RegistryObject<TrunkPlacerType<?>, TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching", () -> new TrunkPlacerType(BranchingTrunkPlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid", () -> new FoliagePlacerType(SpheroidFoliagePlacer.CODEC));
-    public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<SpikeFoliagePlacer>> FOLIAGE_SPIKE = FOLIAGE_PLACERS.register("spike", () -> new FoliagePlacerType(SpikeFoliagePlacer.CODEC));
+    public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<ScarletFoliagePlacer>> FOLIAGE_SCARLET = FOLIAGE_PLACERS.register("scarlet", () -> new FoliagePlacerType(ScarletFoliagePlacer.CODEC));
     public static void loadClass() {}
 }

@@ -184,6 +184,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         basicItemWithBlockTexture(ItemInit.DEAD_LUNAR_BUSH.get());
 
+        basicItemWithBlockTexture(ItemInit.MOONLIGHT_LILY_PAD.get());
+        basicItemWithBlockTexture(ItemInit.MOONLIGHT_DUCKWEED.get());
+
         basicBlockItem(ItemInit.NIGHTSHADE_DIRT.get());
         basicBlockItem(ItemInit.NIGHTSHADE_GRASS_BLOCK.get());
         basicBlockItem(ItemInit.FANTASY_GRASS_BLOCK.get());

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -33,6 +34,13 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
     public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {
         if (predicate.apply(level, pos)) {
             setter.set(pos, config.getState(random, pos));
+        }
+        for (Direction direction : Direction.values()) {
+            if (random.nextInt(5) == 0) {
+                if (predicate.apply(level, pos.relative(direction))) {
+                    setter.set(pos.relative(direction), config.getState(random, pos.relative(direction)));
+                }
+            }
         }
     }
 

@@ -456,6 +456,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.DOOMEDEN_KEYHOLE.get(),
                 BlockInit.REDSTONE_DOOMEDEN_KEYHOLE.get()
         );
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.MOONLIGHT_DUCKWEED.get()
+        );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 BlockInit.NIGHTSHADE_DIRT.get(),
                 BlockInit.NIGHTSHADE_MUD.get(),
@@ -463,6 +467,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
                 BlockInit.FANTASY_GRASS_BLOCK.get(),
                 BlockInit.SWAMP_SILVER_ORE.get()
+        );
+        tag(BlockTags.SWORD_EFFICIENT).add(
+                BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 BlockInit.AETHERSENT_BLOCK.get(),
@@ -484,6 +492,14 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
                 BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(),
                 BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
+        );
+        tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(
+                BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.MOONLIGHT_DUCKWEED.get()
+        );
+        tag(BlockTags.FROG_PREFER_JUMP_TO).add(
+                BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.MOONLIGHT_DUCKWEED.get()
         );
     }
 }

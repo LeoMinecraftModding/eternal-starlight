@@ -178,6 +178,8 @@ public class ClientSetupHandlers {
             BlockInit.RED_SCARLET_BUD,
             BlockInit.SCARLET_GRASS,
             BlockInit.DEAD_LUNAR_BUSH,
+            BlockInit.MOONLIGHT_LILY_PAD,
+            BlockInit.MOONLIGHT_DUCKWEED,
             BlockInit.SWAMP_ROSE,
             BlockInit.STARLIGHT_GOLEM_SPAWNER,
             BlockInit.LUNAR_MONSTROSITY_SPAWNER
@@ -250,6 +252,8 @@ public class ClientSetupHandlers {
         strategy.register(grassColor, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(grassColor, BlockInit.CAVE_MOSS.get());
         strategy.register(grassColor, BlockInit.CAVE_MOSS_PLANT.get());
+        strategy.register(grassColor, BlockInit.MOONLIGHT_LILY_PAD.get());
+        strategy.register(grassColor, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 
@@ -261,6 +265,8 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(toBlock, BlockInit.CAVE_MOSS.get());
         strategy.register(toBlock, BlockInit.CAVE_MOSS_PLANT.get());
+        strategy.register(toBlock, BlockInit.MOONLIGHT_LILY_PAD.get());
+        strategy.register(toBlock, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(toBlock, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
 

@@ -17,18 +17,18 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 
 import java.util.function.BiFunction;
 
-public class SpikeFoliagePlacer extends FoliagePlacer {
-    public static final Codec<SpikeFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> foliagePlacerParts(instance).apply(instance, SpikeFoliagePlacer::new));
+public class ScarletFoliagePlacer extends FoliagePlacer {
+    public static final Codec<ScarletFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> foliagePlacerParts(instance).apply(instance, ScarletFoliagePlacer::new));
 
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 
-    public SpikeFoliagePlacer(IntProvider horizontalRadius, IntProvider yOffset) {
+    public ScarletFoliagePlacer(IntProvider horizontalRadius, IntProvider yOffset) {
         super(horizontalRadius, yOffset);
     }
 
     @Override
     protected FoliagePlacerType<?> type() {
-        return PlacerInit.FOLIAGE_SPIKE.get();
+        return PlacerInit.FOLIAGE_SCARLET.get();
     }
 
     public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {

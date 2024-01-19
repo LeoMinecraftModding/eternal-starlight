@@ -87,7 +87,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
                         placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
                         placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
                         placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-                        leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 2 : 0, false));
+                        leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 1 : 0, false));
                     }
                 }
                 placeLog(level, placer, random, pos, config);
@@ -120,7 +120,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-                                leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 2 : 0, false));
+                                leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 1 : 0, false));
                             }
                         }
                         placeLog(level, placer, random, pos, config);

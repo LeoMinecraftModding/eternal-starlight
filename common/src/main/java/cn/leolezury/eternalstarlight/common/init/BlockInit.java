@@ -403,42 +403,12 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> POTTED_STARLIGHT_TORCHFLOWER = BLOCKS.register("potted_starlight_torchflower", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_TORCHFLOWER, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_YELLOW).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> NIGHTFAN_BUSH = BLOCKS.register("nightfan_bush", () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> PINK_ROSE_BUSH = BLOCKS.register("pink_rose_bush", () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(MapColor.COLOR_PINK)));
-    public static final RegistryObject<Block, Block> NIGHT_SPROUTS = BLOCKS.register("night_sprouts", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> SMALL_NIGHT_SPROUTS = BLOCKS.register("small_night_sprouts", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> GLOWING_NIGHT_SPROUTS = BLOCKS.register("glowing_night_sprouts", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> SMALL_GLOWING_NIGHT_SPROUTS = BLOCKS.register("small_glowing_night_sprouts", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> LUNAR_GRASS = BLOCKS.register("lunar_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> GLOWING_LUNAR_GRASS = BLOCKS.register("glowing_lunar_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
+    public static final RegistryObject<Block, Block> NIGHT_SPROUTS = BLOCKS.register("night_sprouts", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, Block> SMALL_NIGHT_SPROUTS = BLOCKS.register("small_night_sprouts", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, Block> GLOWING_NIGHT_SPROUTS = BLOCKS.register("glowing_night_sprouts", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)));
+    public static final RegistryObject<Block, Block> SMALL_GLOWING_NIGHT_SPROUTS = BLOCKS.register("small_glowing_night_sprouts", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)));
+    public static final RegistryObject<Block, Block> LUNAR_GRASS = BLOCKS.register("lunar_grass", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
+    public static final RegistryObject<Block, Block> GLOWING_LUNAR_GRASS = BLOCKS.register("glowing_lunar_grass", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> CRESCENT_GRASS = BLOCKS.register("crescent_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
     public static final RegistryObject<Block, Block> GLOWING_CRESCENT_GRASS = BLOCKS.register("glowing_crescent_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> PARASOL_GRASS = BLOCKS.register("parasol_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_BLUE)));
@@ -458,46 +428,25 @@ public class BlockInit {
     // swamp grass
     public static final RegistryObject<Block, Block> SWAMP_ROSE = BLOCKS.register("swamp_rose", () -> new FlowerBlock(MobEffects.POISON, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> POTTED_SWAMP_ROSE = BLOCKS.register("potted_swamp_rose", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SWAMP_ROSE, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
-    public static final RegistryObject<Block, Block> FANTABUD = BLOCKS.register("fantabud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> GREEN_FANTABUD = BLOCKS.register("green_fantabud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_GREEN)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
+    public static final RegistryObject<Block, Block> FANTABUD = BLOCKS.register("fantabud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> GREEN_FANTABUD = BLOCKS.register("green_fantabud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> FANTAFERN = BLOCKS.register("fantafern", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> GREEN_FANTAFERN = BLOCKS.register("green_fantafern", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> FANTAGRASS = BLOCKS.register("fantagrass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> 15)));
     public static final RegistryObject<Block, Block> GREEN_FANTAGRASS = BLOCKS.register("green_fantagrass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_GREEN)));
 
     // scarlet forest grass
-    public static final RegistryObject<Block, Block> ORANGE_SCARLET_BUD = BLOCKS.register("orange_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_ORANGE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> PURPLE_SCARLET_BUD = BLOCKS.register("purple_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
-    public static final RegistryObject<Block, Block> RED_SCARLET_BUD = BLOCKS.register("red_scarlet_bud", () -> new ESBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_RED)) {
-        @Override
-        public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-            return Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-        }
-    });
+    public static final RegistryObject<Block, Block> ORANGE_SCARLET_BUD = BLOCKS.register("orange_scarlet_bud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_ORANGE)));
+    public static final RegistryObject<Block, Block> PURPLE_SCARLET_BUD = BLOCKS.register("purple_scarlet_bud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> RED_SCARLET_BUD = BLOCKS.register("red_scarlet_bud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_GRASS = BLOCKS.register("scarlet_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_RED)));
 
     // desert grass
     public static final RegistryObject<Block, Block> DEAD_LUNAR_BUSH = BLOCKS.register("dead_lunar_bush", () -> new DeadBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH)));
+
+    // water grass
+    public static final RegistryObject<Block, Block> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+    public static final RegistryObject<Block, Block> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
 
     public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTSHADE_MUD.get(), PlacedFeatureInit.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));

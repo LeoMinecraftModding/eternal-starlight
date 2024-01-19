@@ -10,7 +10,13 @@
             "entries": [
               {
                 "data": {
-                  "Name": "eternal_starlight:dead_lunar_bush"
+                  "Name": "eternal_starlight:moonlight_duckweed"
+                },
+                "weight": 8
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:moonlight_lily_pad"
                 },
                 "weight": 1
               }
@@ -28,7 +34,7 @@
         }
       ]
     },
-    "tries": 5,
+    "tries": 128,
     "xz_spread": 7,
     "y_spread": 3
   }

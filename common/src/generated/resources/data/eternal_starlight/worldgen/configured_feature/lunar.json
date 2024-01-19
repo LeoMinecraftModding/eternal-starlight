@@ -15,13 +15,7 @@
     "foliage_placer": {
       "type": "eternal_starlight:spheroid",
       "offset": 0,
-      "radius": {
-        "type": "minecraft:uniform",
-        "value": {
-          "max_inclusive": 4,
-          "min_inclusive": 3
-        }
-      }
+      "radius": 2
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
@@ -49,8 +43,8 @@
       "branch_length": {
         "type": "minecraft:uniform",
         "value": {
-          "max_inclusive": 7,
-          "min_inclusive": 6
+          "max_inclusive": 5,
+          "min_inclusive": 4
         }
       },
       "branch_num": {
