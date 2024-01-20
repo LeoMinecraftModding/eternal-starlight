@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block"
+        "model": "eternal_starlight:block/glowing_mushroom_stem"
       },
       "when": {
         "north": "true"
@@ -10,7 +10,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block",
+        "model": "eternal_starlight:block/glowing_mushroom_stem",
         "uvlock": true,
         "y": 90
       },
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block",
+        "model": "eternal_starlight:block/glowing_mushroom_stem",
         "uvlock": true,
         "y": 180
       },
@@ -30,7 +30,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block",
+        "model": "eternal_starlight:block/glowing_mushroom_stem",
         "uvlock": true,
         "y": 270
       },
@@ -40,7 +40,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block",
+        "model": "eternal_starlight:block/glowing_mushroom_stem",
         "uvlock": true,
         "x": 270
       },
@@ -50,7 +50,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block",
+        "model": "eternal_starlight:block/glowing_mushroom_stem",
         "uvlock": true,
         "x": 90
       },
@@ -60,7 +60,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside"
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside"
       },
       "when": {
         "north": "false"
@@ -68,7 +68,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside",
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside",
         "y": 90
       },
       "when": {
@@ -77,7 +77,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside",
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside",
         "y": 180
       },
       "when": {
@@ -86,7 +86,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside",
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside",
         "y": 270
       },
       "when": {
@@ -95,7 +95,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside",
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside",
         "x": 270
       },
       "when": {
@@ -104,7 +104,7 @@
     },
     {
       "apply": {
-        "model": "eternal_starlight:block/glowing_mushroom_block_inside",
+        "model": "eternal_starlight:block/glowing_mushroom_stem_inside",
         "x": 90
       },
       "when": {

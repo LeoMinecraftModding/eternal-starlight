@@ -346,6 +346,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(BlockInit.TALL_GLADESPIKE.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
         dropSelf(BlockInit.GLOWING_MUSHROOM.get());
         add(BlockInit.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, BlockInit.GLOWING_MUSHROOM.get())));
+        dropWhenSilkTouch(BlockInit.GLOWING_MUSHROOM_STEM.get());
 
         dropSelf(BlockInit.SWAMP_ROSE.get());
         dropPottedContents(BlockInit.POTTED_SWAMP_ROSE.get());

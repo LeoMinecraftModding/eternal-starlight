@@ -44,15 +44,10 @@
           ]
         },
         "provider": {
-          "type": "minecraft:weighted_state_provider",
-          "entries": [
-            {
-              "data": {
-                "Name": "eternal_starlight:cave_moss_plant"
-              },
-              "weight": 1
-            }
-          ]
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "eternal_starlight:cave_moss_plant"
+          }
         }
       },
       {
@@ -61,18 +56,13 @@
           "type": "minecraft:randomized_int_state_provider",
           "property": "age",
           "source": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "data": {
-                  "Name": "eternal_starlight:cave_moss",
-                  "Properties": {
-                    "age": "0"
-                  }
-                },
-                "weight": 1
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "eternal_starlight:cave_moss",
+              "Properties": {
+                "age": "0"
               }
-            ]
+            }
           },
           "values": {
             "type": "minecraft:uniform",

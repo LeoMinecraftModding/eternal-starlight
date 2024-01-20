@@ -215,6 +215,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         doublePlant(BlockInit.TALL_GLADESPIKE.get());
         cross(BlockInit.GLOWING_MUSHROOM.get());
         mushroomBlock(BlockInit.GLOWING_MUSHROOM_BLOCK.get());
+        mushroomBlock(BlockInit.GLOWING_MUSHROOM_STEM.get(), blockTexture(BlockInit.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 
         cross(BlockInit.SWAMP_ROSE.get());
         pottedPlant(BlockInit.POTTED_SWAMP_ROSE.get(), blockTexture(BlockInit.SWAMP_ROSE.get()));
@@ -378,12 +379,20 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .tintindex(0)
                 .end()
                 .end();
-        simpleBlock(lily, model);
+        getVariantBuilder(lily).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(model).nextModel()
+                .rotationY(270).modelFile(model).nextModel()
+                .rotationY(180).modelFile(model).nextModel()
+                .rotationY(90).modelFile(model).build());
     }
 
     private void mushroomBlock(Block block) {
+        mushroomBlock(block, blockTexture(block).withSuffix("_inside"));
+    }
+
+    private void mushroomBlock(Block block, ResourceLocation inner) {
         ModelFile modelOutside = models().singleTexture(name(block), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
-        ModelFile modelInside = models().getExistingFile(mcLoc("block/mushroom_block_inside"));
+        ModelFile modelInside = models().singleTexture(name(block) + "_inside", new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), inner);
         getMultipartBuilder(block)
                 .part().modelFile(modelOutside).addModel().condition(BlockStateProperties.NORTH, true).end()
                 .part().modelFile(modelOutside).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()

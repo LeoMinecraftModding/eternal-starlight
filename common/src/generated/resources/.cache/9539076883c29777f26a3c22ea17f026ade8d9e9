@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-19T22:32:25.385435	Item Models: eternal_starlight
+// 1.20.4	2024-01-20T13:46:12.7531173	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -110,6 +110,7 @@ b10ee97a4c4a84d993dff0fd2bf7541aef5f7c7b assets/eternal_starlight/models/item/fa
 7f47368462790300a76ac80718f6e41cc2e54e26 assets/eternal_starlight/models/item/glowing_lunar_grass.json
 eb30e5c1a053323efd903a61530256838205483d assets/eternal_starlight/models/item/glowing_mushroom.json
 876999089f98ec2a2a84e72fce03f54e94993c38 assets/eternal_starlight/models/item/glowing_mushroom_block.json
+3ab04b551140a6a69b67c43ee9e85b0d44aec28d assets/eternal_starlight/models/item/glowing_mushroom_stem.json
 0504e13aabed11ca31db76e47f65dba513f45476 assets/eternal_starlight/models/item/glowing_nightshade_mud.json
 db98533e52a55e0a97147518d99a30aea4017574 assets/eternal_starlight/models/item/glowing_night_sprouts.json
 67fc61a804b7dfea4781c910b63533306c166010 assets/eternal_starlight/models/item/glowing_parasol_grass.json

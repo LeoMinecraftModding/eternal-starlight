@@ -9,14 +9,17 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralMushr
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.CursedGardenExtraHeightFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.DeadLunarTreeFeature;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.HugeGlowingMushroomFeature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class FeatureInit {
     public static final RegistrationProvider<Feature<?>> FEATURES = RegistrationProvider.get(Registries.FEATURE, EternalStarlight.MOD_ID);
     public static final RegistryObject<Feature<?>, Feature<ESLakeFeature.Configuration>> LAKE = FEATURES.register("lake", () -> new ESLakeFeature(ESLakeFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STONE_SPIKE = FEATURES.register("stone_spike", () -> new StoneSpikeFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_GLOWING_MUSHROOM = FEATURES.register("huge_glowing_mushroom", () -> new HugeGlowingMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<LeavesPileFeature.Configuration>> LEAVES_PILE = FEATURES.register("leaves_pile", () -> new LeavesPileFeature(LeavesPileFeature.Configuration.CODEC));

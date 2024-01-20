@@ -187,6 +187,7 @@ public class ItemInit {
 
     public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(BlockInit.GLOWING_MUSHROOM.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(BlockInit.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(BlockInit.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
 
     // swamp grass
     public static final RegistryObject<Item, Item> SWAMP_ROSE = registerItem("swamp_rose", () -> new BlockItem(BlockInit.SWAMP_ROSE.get(), new Item.Properties()));
@@ -209,8 +210,8 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(BlockInit.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
 
     // water grass
-    public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new BlockItem(BlockInit.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new BlockItem(BlockInit.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(BlockInit.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new PlaceOnWaterBlockItem(BlockInit.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
 
     public static final RegistryObject<Item, Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(BlockInit.NIGHTSHADE_DIRT.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));

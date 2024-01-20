@@ -5,6 +5,9 @@
   "ingredients": [
     {
       "item": "eternal_starlight:scarlet_boat"
+    },
+    {
+      "item": "minecraft:chest"
     }
   ],
   "result": {

@@ -707,6 +707,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
                 .requires(boat)
+                .requires(Items.CHEST)
                 .group("chest_boat")
                 .unlockedBy("has_boat", has(ItemTags.BOATS))
                 .save(recipeOutput);

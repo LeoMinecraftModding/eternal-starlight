@@ -5,6 +5,9 @@
   "ingredients": [
     {
       "item": "eternal_starlight:lunar_boat"
+    },
+    {
+      "item": "minecraft:chest"
     }
   ],
   "result": {

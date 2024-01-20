@@ -168,6 +168,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.TALL_GLADESPIKE.get(), blockTextureFromItem(ItemInit.TALL_GLADESPIKE.get()).withSuffix("_top"));
         basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
         cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
+        cubeAll(ItemInit.GLOWING_MUSHROOM_STEM.get());
 
         basicItemWithBlockTexture(ItemInit.SWAMP_ROSE.get());
         basicItemWithBlockTexture(ItemInit.FANTABUD.get());

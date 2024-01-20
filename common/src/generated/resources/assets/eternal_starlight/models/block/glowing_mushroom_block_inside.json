@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_single_face",
+  "textures": {
+    "texture": "eternal_starlight:block/glowing_mushroom_block_inside"
+  }
+}

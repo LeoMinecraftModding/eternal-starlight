@@ -5,6 +5,9 @@
   "ingredients": [
     {
       "item": "eternal_starlight:starlight_mangrove_boat"
+    },
+    {
+      "item": "minecraft:chest"
     }
   ],
   "result": {

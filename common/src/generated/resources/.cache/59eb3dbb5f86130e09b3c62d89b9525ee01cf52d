@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-19T22:32:25.2175309	Loot Tables
+// 1.20.4	2024-01-20T13:46:12.7371266	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -81,6 +81,7 @@ cd1f4646ab7d95c0f9dfbdcf1818c4a073afc2ce data/eternal_starlight/loot_tables/bloc
 7d9143dbf0c9c3f33a10a12361116c4a268670fe data/eternal_starlight/loot_tables/blocks/glowing_lunar_grass.json
 d9b53a439bc8dab9aa6ab4943ec1b61feabbf80c data/eternal_starlight/loot_tables/blocks/glowing_mushroom.json
 cac8d0ea003b25ae94ce32ad03a4cf4447204d68 data/eternal_starlight/loot_tables/blocks/glowing_mushroom_block.json
+729ecf9ea150e8d9b801dd2c86c92c8c24e36b74 data/eternal_starlight/loot_tables/blocks/glowing_mushroom_stem.json
 062edb0a1aeb8fbfa7bc428120a0986ddc4f7471 data/eternal_starlight/loot_tables/blocks/glowing_nightshade_mud.json
 0c759165ee34bd69ee7090c9b457f0f1399b99c0 data/eternal_starlight/loot_tables/blocks/glowing_night_sprouts.json
 c44755064d3cc779385571e3a12f782522db5d01 data/eternal_starlight/loot_tables/blocks/glowing_parasol_grass.json
