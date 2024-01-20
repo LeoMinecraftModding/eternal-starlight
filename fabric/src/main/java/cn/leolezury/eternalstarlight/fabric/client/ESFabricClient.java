@@ -43,13 +43,13 @@ public class ESFabricClient implements ClientModInitializer {
         ClientSetupHandlers.registerEntityRenderers(EntityRendererRegistry::register);
         ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
 
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.cutoutMippedBlocks) {
+        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {
             BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());
         }
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.cutoutBlocks) {
+        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT) {
             BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutout());
         }
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.translucentBlocks) {
+        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_TRANSLUCENT) {
             BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
         }
 

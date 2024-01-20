@@ -75,7 +75,7 @@ public class ClientSetupHandlers {
         void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
     }
 
-    public static final List<Supplier<? extends Block>> cutoutMippedBlocks = List.of(
+    public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
             BlockInit.NIGHTSHADE_GRASS_BLOCK,
             BlockInit.LUNAR_LEAVES,
             BlockInit.NORTHLAND_LEAVES,
@@ -86,7 +86,7 @@ public class ClientSetupHandlers {
             BlockInit.SCARLET_LEAVES_PILE
     );
 
-    public static final List<Supplier<? extends Block>> cutoutBlocks = List.of(
+    public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
             BlockInit.BERRIES_VINES,
             BlockInit.BERRIES_VINES_PLANT,
             BlockInit.CAVE_MOSS,
@@ -185,21 +185,21 @@ public class ClientSetupHandlers {
             BlockInit.LUNAR_MONSTROSITY_SPAWNER
     );
 
-    public static final List<Supplier<? extends Block>> translucentBlocks = List.of(
+    public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
             BlockInit.STARLIGHT_PORTAL
     );
 
-    public static final Map<ModelResourceLocation, ModelResourceLocation> itemModelsInInventoryMap = new HashMap<>();
+    public static final Map<ModelResourceLocation, ModelResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();
 
-    public static final Map<ResourceLocation, BakedModel> bakedModelsMap = new HashMap<>();
+    public static final Map<ResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
     public static void clientSetup() {
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
-        itemModelsInInventoryMap.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
 
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.PROPHET_ORB), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
@@ -275,7 +275,7 @@ public class ClientSetupHandlers {
             if (id.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
                 models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
             }
-            bakedModelsMap.put(id, models.get(id));
+            BAKED_MODELS.put(id, models.get(id));
         }
     }
 

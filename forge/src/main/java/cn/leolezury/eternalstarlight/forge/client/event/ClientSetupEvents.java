@@ -48,13 +48,13 @@ public class ClientSetupEvents {
 
         // Modify Inventory Icon
         for (ResourceLocation id : models.keySet()) {
-            if (ClientSetupHandlers.itemModelsInInventoryMap.containsKey(id)) {
+            if (ClientSetupHandlers.ITEMS_WITH_INV_ICON.containsKey(id)) {
                 BakedModel bakedModel = models.get(id);
                 BakedModelWrapper<?> wrapper = new BakedModelWrapper<>(bakedModel) {
                     @Override
                     public BakedModel applyTransform(ItemDisplayContext transformType, PoseStack poseStack, boolean applyLeftHandTransform) {
                         if (transformType == ItemDisplayContext.GUI) {
-                            return models.get(ClientSetupHandlers.itemModelsInInventoryMap.get(id));
+                            return models.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(id));
                         }
                         return super.applyTransform(transformType, poseStack, applyLeftHandTransform);
                     }
