@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-20T13:46:12.7371266	Loot Tables
+// 1.20.4	2024-01-21T15:04:24.6146874	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -274,6 +274,7 @@ ecca61dc389fd2951251bc29f72e2a8d8bb82e65 data/eternal_starlight/loot_tables/bloc
 84ce133c0949f324dab1ba6ddb8744d0968d931e data/eternal_starlight/loot_tables/blocks/starlight_mangrove_wood.json
 364eac07220ddaf4fc23828bbe4b31a8b495879a data/eternal_starlight/loot_tables/blocks/starlight_portal.json
 1ed41da4582a7070f1e6910488f065bb0fefcd4d data/eternal_starlight/loot_tables/blocks/starlight_torchflower.json
+55b030e87078b84f7275a1653c5f9aab897849ba data/eternal_starlight/loot_tables/blocks/starlit_lily_pad.json
 d28289e40c787545f0a38954fe48a1dc0cad5857 data/eternal_starlight/loot_tables/blocks/stripped_lunar_log.json
 5b118347cd1dd701fdeff131279b667507de240a data/eternal_starlight/loot_tables/blocks/stripped_lunar_wood.json
 147c109162d1752f320c5881099f7160a32e2e7c data/eternal_starlight/loot_tables/blocks/stripped_northland_log.json

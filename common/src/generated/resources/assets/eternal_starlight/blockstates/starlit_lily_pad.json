@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eternal_starlight:block/starlit_lily_pad"
+      },
+      {
+        "model": "eternal_starlight:block/starlit_lily_pad",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/starlit_lily_pad",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/starlit_lily_pad",
+        "y": 90
+      }
+    ]
+  }
+}

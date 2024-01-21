@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-20T15:11:14.7637143	Registries
+// 1.20.4	2024-01-21T15:04:24.6606619	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a9fe4f1bdf74d79312ef76e4f5a18a6172a5829a data/eternal_starlight/damage_type/fire_column.json
@@ -82,7 +82,7 @@ d0f476cf6e54a859d84a1629a3452ed21d170fa9 data/eternal_starlight/worldgen/configu
 4585dd61d14b43f2faeece1d934b423bce7b8efc data/eternal_starlight/worldgen/configured_feature/nightshade_dirt_ore.json
 940251a8c9227a84c96535d23e4cdaa10de883d7 data/eternal_starlight/worldgen/configured_feature/northland.json
 0b26602e16e3f64b6052bd2b177b22b93817ac18 data/eternal_starlight/worldgen/configured_feature/ocean_vegetation.json
-c2ebb38b370dc407fb86f28c78b438d5c2c6417f data/eternal_starlight/worldgen/configured_feature/on_water_plant.json
+ffe2a673b858d0129b20043d2aa4a458ce22693f data/eternal_starlight/worldgen/configured_feature/on_water_plant.json
 a2106bd0ac27809b5f41d51da988ec974afcd239 data/eternal_starlight/worldgen/configured_feature/permafrost_forest.json
 36730b20c16518c7c863aea219238cbf8a5e3f76 data/eternal_starlight/worldgen/configured_feature/permafrost_forest_grass.json
 f9826622db818f1d22edd85409fadd2b62297094 data/eternal_starlight/worldgen/configured_feature/scarlet.json

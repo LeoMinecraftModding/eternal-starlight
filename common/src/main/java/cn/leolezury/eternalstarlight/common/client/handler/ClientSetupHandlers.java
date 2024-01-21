@@ -56,7 +56,7 @@ import java.util.function.Supplier;
 @Environment(EnvType.CLIENT)
 public class ClientSetupHandlers {
     public interface BlockColorRegisterStrategy {
-        void register(BlockColor blockColor, Block... itemLikes);
+        void register(BlockColor blockColor, Block... blocks);
     }
 
     public interface ItemColorRegisterStrategy {
@@ -179,6 +179,7 @@ public class ClientSetupHandlers {
             BlockInit.SCARLET_GRASS,
             BlockInit.DEAD_LUNAR_BUSH,
             BlockInit.MOONLIGHT_LILY_PAD,
+            BlockInit.STARLIT_LILY_PAD,
             BlockInit.MOONLIGHT_DUCKWEED,
             BlockInit.SWAMP_ROSE,
             BlockInit.STARLIGHT_GOLEM_SPAWNER,
@@ -253,6 +254,7 @@ public class ClientSetupHandlers {
         strategy.register(grassColor, BlockInit.CAVE_MOSS.get());
         strategy.register(grassColor, BlockInit.CAVE_MOSS_PLANT.get());
         strategy.register(grassColor, BlockInit.MOONLIGHT_LILY_PAD.get());
+        strategy.register(grassColor, BlockInit.STARLIT_LILY_PAD.get());
         strategy.register(grassColor, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }
@@ -266,6 +268,7 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, BlockInit.CAVE_MOSS.get());
         strategy.register(toBlock, BlockInit.CAVE_MOSS_PLANT.get());
         strategy.register(toBlock, BlockInit.MOONLIGHT_LILY_PAD.get());
+        strategy.register(toBlock, BlockInit.STARLIT_LILY_PAD.get());
         strategy.register(toBlock, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(toBlock, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
     }

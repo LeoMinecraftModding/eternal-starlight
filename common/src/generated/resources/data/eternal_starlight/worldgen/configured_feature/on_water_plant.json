@@ -12,11 +12,17 @@
                 "data": {
                   "Name": "eternal_starlight:moonlight_duckweed"
                 },
-                "weight": 8
+                "weight": 18
               },
               {
                 "data": {
                   "Name": "eternal_starlight:moonlight_lily_pad"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:starlit_lily_pad"
                 },
                 "weight": 1
               }

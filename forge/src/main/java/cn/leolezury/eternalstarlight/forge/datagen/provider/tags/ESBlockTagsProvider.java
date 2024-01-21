@@ -458,6 +458,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.STARLIT_LILY_PAD.get(),
                 BlockInit.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -470,6 +471,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.SWORD_EFFICIENT).add(
                 BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.STARLIT_LILY_PAD.get(),
                 BlockInit.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
@@ -495,10 +497,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(
                 BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.STARLIT_LILY_PAD.get(),
                 BlockInit.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.FROG_PREFER_JUMP_TO).add(
                 BlockInit.MOONLIGHT_LILY_PAD.get(),
+                BlockInit.STARLIT_LILY_PAD.get(),
                 BlockInit.MOONLIGHT_DUCKWEED.get()
         );
     }

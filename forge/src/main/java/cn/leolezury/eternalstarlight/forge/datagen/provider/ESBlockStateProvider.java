@@ -234,6 +234,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         cross(BlockInit.DEAD_LUNAR_BUSH.get());
 
         waterlily(BlockInit.MOONLIGHT_LILY_PAD.get());
+        waterlily(BlockInit.STARLIT_LILY_PAD.get());
         waterlily(BlockInit.MOONLIGHT_DUCKWEED.get());
 
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());

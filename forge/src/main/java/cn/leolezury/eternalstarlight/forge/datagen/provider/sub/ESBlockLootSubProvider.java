@@ -365,6 +365,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.DEAD_LUNAR_BUSH.get());
 
         dropSelf(BlockInit.MOONLIGHT_LILY_PAD.get());
+        dropSelf(BlockInit.STARLIT_LILY_PAD.get());
         dropSelf(BlockInit.MOONLIGHT_DUCKWEED.get());
 
         add(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.NIGHTSHADE_DIRT.get()));

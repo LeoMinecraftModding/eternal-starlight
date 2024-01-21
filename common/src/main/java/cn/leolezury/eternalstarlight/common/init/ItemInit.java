@@ -211,6 +211,7 @@ public class ItemInit {
 
     // water grass
     public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(BlockInit.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STARLIT_LILY_PAD = registerItem("starlit_lily_pad", () -> new PlaceOnWaterBlockItem(BlockInit.STARLIT_LILY_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new PlaceOnWaterBlockItem(BlockInit.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
 
     public static final RegistryObject<Item, Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(BlockInit.NIGHTSHADE_DIRT.get(), new Item.Properties()));
