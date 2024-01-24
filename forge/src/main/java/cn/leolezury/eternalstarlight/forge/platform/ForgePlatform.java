@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.platform;
 
+import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
@@ -7,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.forge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeHammerItem;
@@ -43,8 +45,10 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -177,7 +181,12 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
+    public BucketItem createBucket(Supplier<? extends Fluid> fluid, Item.Properties properties) {
+        return new BucketItem(fluid, properties);
+    }
+
+    @Override
+    public MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<? extends Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
         return new MobBucketItem(entityType, fluid, soundEvent, properties);
     }
 
@@ -189,6 +198,21 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(pot, flower, properties);
+    }
+
+    @Override
+    public LiquidBlock createLiquidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
+        return new LiquidBlock(fluid, properties);
+    }
+
+    @Override
+    public EtherFluid.Still createEtherFluid() {
+        return new ForgeEtherFluid.Still();
+    }
+
+    @Override
+    public EtherFluid.Flowing createFlowingEtherFluid() {
+        return new ForgeEtherFluid.Flowing();
     }
 
     @Override

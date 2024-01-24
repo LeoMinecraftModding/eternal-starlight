@@ -3,10 +3,7 @@ package cn.leolezury.eternalstarlight.forge.datagen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.custom.ESGeyserSmokingProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESBlockTagsProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESDamageTypeTagsProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESEntityTypeTagsProvider;
-import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.ESItemTagsProvider;
+import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -36,6 +33,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ESItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new ESEntityTypeTagsProvider(output, lookupProvider, helper));
+        generator.addProvider(event.includeServer(), new ESFluidTagsProvider(output, lookupProvider, helper));
 
         DatapackBuiltinEntriesProvider dataProvider = new ESDataProvider(output, lookupProvider);
         CompletableFuture<HolderLookup.Provider> lookup = dataProvider.getRegistryProvider();

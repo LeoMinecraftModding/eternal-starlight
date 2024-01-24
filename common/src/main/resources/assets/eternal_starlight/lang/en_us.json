@@ -317,6 +317,7 @@
   "block.eternal_starlight.swamp_silver_ore": "Swamp Silver Ore",
   "block.eternal_starlight.swamp_silver_block": "Swamp Silver Block",
   "block.eternal_starlight.starlight_portal": "Starlight Portal",
+  "block.eternal_starlight.ether": "Ether",
   "block.eternal_starlight.energy_block": "Energy Block",
   "block.eternal_starlight.starlight_golem_spawner": "Starlight Golem Spawner",
   "block.eternal_starlight.lunar_monstrosity_spawner": "Lunar Monstrosity Spawner",
@@ -384,6 +385,7 @@
   "item.eternal_starlight.moonring_bow": "Moonring Bow",
   "item.eternal_starlight.moonring_greatsword": "Moonring Greatsword",
   "item.eternal_starlight.petal_scythe": "Petal Scythe",
+  "item.eternal_starlight.ether_bucket": "Ether Bucket",
   "item.eternal_starlight.loot_bag": "Loot Bag",
   "item.eternal_starlight.book": "Starlight Story",
 

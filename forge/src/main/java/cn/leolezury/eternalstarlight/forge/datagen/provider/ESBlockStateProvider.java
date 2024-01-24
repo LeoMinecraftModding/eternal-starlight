@@ -246,6 +246,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.THERMAL_SPRINGSTONE.get());
         simpleBlock(BlockInit.SWAMP_SILVER_ORE.get());
         simpleBlock(BlockInit.SWAMP_SILVER_BLOCK.get());
+        particleOnly(BlockInit.ETHER.get());
         onOffBlock(BlockInit.ENERGY_BLOCK.get());
         spawner(BlockInit.STARLIGHT_GOLEM_SPAWNER.get());
         spawner(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get());
@@ -526,8 +527,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void simpleSign(Block normal, Block wall, ResourceLocation location) {
-        simpleBlock(normal, models().getBuilder(name(normal)).texture("particle", location));
-        simpleBlock(wall, models().getBuilder(name(wall)).texture("particle", location));
+        particleOnly(normal, location);
+        particleOnly(wall, location);
+    }
+
+    private void particleOnly(Block block) {
+        particleOnly(block, blockTexture(block));
+    }
+
+    private void particleOnly(Block block, ResourceLocation location) {
+        simpleBlock(block, models().getBuilder(name(block)).texture("particle", location));
     }
 
     private void leaves(Block leaves) {

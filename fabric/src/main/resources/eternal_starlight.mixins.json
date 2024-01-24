@@ -10,6 +10,7 @@
   "client": [
     "BossHealthOverlayMixin",
     "CameraMixin",
+    "FogRendererMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",

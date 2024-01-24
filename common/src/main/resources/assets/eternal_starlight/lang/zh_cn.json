@@ -317,6 +317,7 @@
   "block.eternal_starlight.swamp_silver_ore": "沼泽银矿石",
   "block.eternal_starlight.swamp_silver_block": "沼泽银块",
   "block.eternal_starlight.starlight_portal": "星辉传送门",
+  "block.eternal_starlight.ether": "以太",
   "block.eternal_starlight.energy_block": "能量方块",
   "block.eternal_starlight.starlight_golem_spawner": "星光傀儡刷怪笼",
   "block.eternal_starlight.lunar_monstrosity_spawner": "月藤巨物刷怪笼",
@@ -384,6 +385,7 @@
   "item.eternal_starlight.moonring_bow": "月珥之弓",
   "item.eternal_starlight.moonring_greatsword": "月珥巨剑",
   "item.eternal_starlight.petal_scythe": "花瓣之镰",
+  "item.eternal_starlight.ether_bucket": "以太桶",
   "item.eternal_starlight.loot_bag": "战利品袋",
   "item.eternal_starlight.book": "星光物语",
 

@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-21T15:04:24.6426715	Block States: eternal_starlight
+// 1.20.4	2024-01-24T21:11:55.3275862	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -70,6 +70,7 @@ f5b41e58e635f7bcf06ed7fb76ac2badb2cefae6 assets/eternal_starlight/blockstates/do
 c85e807eee24b7f0a689cf11b53ca72427d04f6d assets/eternal_starlight/blockstates/doomed_redstone_torch.json
 860472ecf7ad9daa5bcb6ada59995ce2050637b5 assets/eternal_starlight/blockstates/doomed_torch.json
 154ff99ef63d294ae22012829231bad447b1bef2 assets/eternal_starlight/blockstates/energy_block.json
+b15ca082fdc098a1f2e3ca2a59f88017b6d0a6f7 assets/eternal_starlight/blockstates/ether.json
 a58d38e4e27ed0bae3ac0056db529f0881c335ed assets/eternal_starlight/blockstates/fantabud.json
 aba6ed71194d7b80b8960b4de9d0ba6c6295694d assets/eternal_starlight/blockstates/fantafern.json
 6176404cfc337d7663fba064d039a6f6a79314cc assets/eternal_starlight/blockstates/fantagrass.json
@@ -421,6 +422,7 @@ c4ac279f92e2f6400b4801306106ba9fafbcf952 assets/eternal_starlight/models/block/d
 abcd5ce0cce31211e0b27033479d2edf71525b8b assets/eternal_starlight/models/block/doomed_torch.json
 174c960ce28d5cefc3950474917a15bf94a4d2a6 assets/eternal_starlight/models/block/energy_block.json
 91150301aca404a93a1b23ea697cb38af8cf63ee assets/eternal_starlight/models/block/energy_block_lit.json
+9fc28b254ebbac219ecbf58a06e68970b14edb89 assets/eternal_starlight/models/block/ether.json
 ab205c57935a8488c22ec2e9cba7f980f2c59ef6 assets/eternal_starlight/models/block/fantabud.json
 5e77c73f5b495208c483d84ce88e3adc63775bee assets/eternal_starlight/models/block/fantafern.json
 c4dca572570cb991cc89d26a8587f772140497cc assets/eternal_starlight/models/block/fantagrass.json

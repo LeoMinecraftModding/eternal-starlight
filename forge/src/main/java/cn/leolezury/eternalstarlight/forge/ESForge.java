@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.forge;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.forge.init.FluidTypeInit;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.api.distmarker.Dist;
@@ -13,6 +14,7 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 @Mod(EternalStarlight.MOD_ID)
 public class ESForge {
     public ESForge(IEventBus modEventBus, Dist dist) {
+        FluidTypeInit.loadClass();
         EternalStarlight.init();
         modEventBus.addListener(this::onRegister);
         for (DeferredRegister<?> register : ForgePlatform.registers) {

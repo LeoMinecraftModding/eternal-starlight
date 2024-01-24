@@ -7,6 +7,9 @@ import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.init.FluidInit;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,6 +28,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 
@@ -70,10 +74,21 @@ public class ClientHandlers {
         if (player == null) {
             return;
         }
-        Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
+        if (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.FABRIC) {
+            FluidState fluidState = camera.getEntity().level().getFluidState(camera.getBlockPosition());
+            if (fluidState.is(FluidInit.ETHER_STILL.get()) || fluidState.is(FluidInit.ETHER_FLOWING.get())) {
+                if (camera.getPosition().y < (double) ((float) camera.getBlockPosition().getY() + fluidState.getHeight(camera.getEntity().level(), camera.getBlockPosition()))) {
+                    RenderSystem.setShaderFogStart(0.0F);
+                    RenderSystem.setShaderFogEnd(3.0F);
+                    RenderSystem.setShaderFogColor(232 / 255F, 255 / 255F, 222 / 255F);
+                    RenderSystem.setShaderFogShape(FogShape.SPHERE);
+                }
+            }
+        }
+        /*Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
         boolean noFluidAtCam = player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty();
         if (camera.getFluidInCamera() == FogType.NONE && noFluidAtCam) {
-            /*if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
+            if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
                 RenderSystem.setShaderFogStart(-4.0F);
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.87f, 0.87f, 1f);
@@ -82,8 +97,8 @@ public class ClientHandlers {
                 RenderSystem.setShaderFogEnd(96.0F);
                 RenderSystem.setShaderFogColor(0.07f, 0, 0.07f);
             }
-            RenderSystem.setShaderFogShape(FogShape.SPHERE);*/
-        }
+            RenderSystem.setShaderFogShape(FogShape.SPHERE);
+        }*/
     }
 
     public static void handleEntityEvent(Entity entity, Byte id) {

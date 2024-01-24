@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.platform;
 
+import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
@@ -43,8 +44,10 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 
 import java.util.Iterator;
@@ -90,7 +93,10 @@ public interface ESPlatform {
     default HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
-    default MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
+    default BucketItem createBucket(Supplier<? extends Fluid> fluid, Item.Properties properties) {
+        return new BucketItem(fluid.get(), properties);
+    }
+    default MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<? extends Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
         return new MobBucketItem(entityType.get(), fluid.get(), soundEvent.get(), properties);
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties);
@@ -100,6 +106,15 @@ public interface ESPlatform {
     // ---Blocks
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
+    }
+    default LiquidBlock createLiquidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
+        return new LiquidBlock(fluid.get(), properties);
+    }
+    default EtherFluid.Still createEtherFluid() {
+        return new EtherFluid.Still();
+    }
+    default EtherFluid.Flowing createFlowingEtherFluid() {
+        return new EtherFluid.Flowing();
     }
     // ---Reload listeners
     default BookManager createBookManager() {
