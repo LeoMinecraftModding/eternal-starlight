@@ -92,13 +92,13 @@ public class BlockInit {
     public static final RegistryObject<Block, StairBlock> LUNAR_STAIRS = BLOCKS.register("lunar_stairs",
             () -> new StairBlock(LUNAR_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_SIGN = BLOCKS.register("lunar_sign",
-            () -> new ESStandingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_BLACK)));
+            () -> new StandingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_WALL_SIGN = BLOCKS.register("lunar_wall_sign",
-            () -> new ESWallSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_BLACK)));
+            () -> new WallSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_HANGING_SIGN = BLOCKS.register("lunar_hanging_sign",
-            () -> new ESCeilingHangingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
+            () -> new CeilingHangingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_WALL_HANGING_SIGN = BLOCKS.register("lunar_wall_hanging_sign",
-            () -> new ESWallHangingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
+            () -> new WallHangingSignBlock(ESWoodTypes.LUNAR, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_SAPLING = BLOCKS.register("lunar_sapling", () -> new SaplingBlock(new TreeGrower("lunar", 0.2f, Optional.empty(), Optional.empty(), Optional.of(ConfiguredFeatureInit.LUNAR), Optional.of(ConfiguredFeatureInit.LUNAR_HUGE), Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> POTTED_LUNAR_SAPLING = BLOCKS.register("potted_lunar_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LUNAR_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
@@ -141,13 +141,13 @@ public class BlockInit {
     public static final RegistryObject<Block, StairBlock> NORTHLAND_STAIRS = BLOCKS.register("northland_stairs",
             () -> new StairBlock(NORTHLAND_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_SIGN = BLOCKS.register("northland_sign",
-            () -> new ESStandingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_BROWN)));
+            () -> new StandingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_WALL_SIGN = BLOCKS.register("northland_wall_sign",
-            () -> new ESWallSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_BROWN)));
+            () -> new WallSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_HANGING_SIGN = BLOCKS.register("northland_hanging_sign",
-            () -> new ESCeilingHangingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN)));
+            () -> new CeilingHangingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_WALL_HANGING_SIGN = BLOCKS.register("northland_wall_hanging_sign",
-            () -> new ESWallHangingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN)));
+            () -> new WallHangingSignBlock(ESWoodTypes.NORTHLAND, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_SAPLING = BLOCKS.register("northland_sapling", () -> new SaplingBlock(new TreeGrower("northland", Optional.of(ConfiguredFeatureInit.NORTHLAND), Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> POTTED_NORTHLAND_SAPLING = BLOCKS.register("potted_northland_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, NORTHLAND_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
@@ -181,13 +181,13 @@ public class BlockInit {
     public static final RegistryObject<Block, StairBlock> STARLIGHT_MANGROVE_STAIRS = BLOCKS.register("starlight_mangrove_stairs",
             () -> new StairBlock(STARLIGHT_MANGROVE_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_SIGN = BLOCKS.register("starlight_mangrove_sign",
-            () -> new ESStandingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new StandingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_WALL_SIGN = BLOCKS.register("starlight_mangrove_wall_sign",
-            () -> new ESWallSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new WallSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_HANGING_SIGN = BLOCKS.register("starlight_mangrove_hanging_sign",
-            () -> new ESCeilingHangingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new CeilingHangingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_WALL_HANGING_SIGN = BLOCKS.register("starlight_mangrove_wall_hanging_sign",
-            () -> new ESWallHangingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new WallHangingSignBlock(ESWoodTypes.STARLIGHT_MANGROVE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("starlight_mangrove_sapling", () -> new SaplingBlock(new TreeGrower("starlight_mangrove", Optional.empty(), Optional.of(ConfiguredFeatureInit.STARLIGHT_MANGROVE), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> POTTED_STARLIGHT_MANGROVE_SAPLING = BLOCKS.register("potted_starlight_mangrove_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_MANGROVE_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_ROOTS = BLOCKS.register("starlight_mangrove_roots", () -> new MangroveRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_ROOTS)));
@@ -225,13 +225,13 @@ public class BlockInit {
     public static final RegistryObject<Block, StairBlock> SCARLET_STAIRS = BLOCKS.register("scarlet_stairs",
             () -> new StairBlock(SCARLET_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_SIGN = BLOCKS.register("scarlet_sign",
-            () -> new ESStandingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new StandingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_WALL_SIGN = BLOCKS.register("scarlet_wall_sign",
-            () -> new ESWallSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new WallSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_HANGING_SIGN = BLOCKS.register("scarlet_hanging_sign",
-            () -> new ESCeilingHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new CeilingHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_WALL_HANGING_SIGN = BLOCKS.register("scarlet_wall_hanging_sign",
-            () -> new ESWallHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
+            () -> new WallHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_SAPLING = BLOCKS.register("scarlet_sapling", () -> new SaplingBlock(new TreeGrower("scarlet", Optional.empty(), Optional.of(ConfiguredFeatureInit.SCARLET), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> POTTED_SCARLET_SAPLING = BLOCKS.register("potted_scarlet_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SCARLET_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
 
@@ -454,7 +454,7 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new ThermalSpringStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).mapColor(MapColor.STONE).strength(5.0F, 3.5F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block, Block> ETHER = BLOCKS.register("ether", () -> ESPlatform.INSTANCE.createLiquidBlock(FluidInit.ETHER_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).lightLevel((state) -> 15)));
+    public static final RegistryObject<Block, Block> ETHER = BLOCKS.register("ether", () -> ESPlatform.INSTANCE.createLiquidBlock(FluidInit.ETHER_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA)));
     public static final RegistryObject<Block, Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));

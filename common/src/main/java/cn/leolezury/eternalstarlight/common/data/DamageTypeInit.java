@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class DamageTypeInit {
     // misc
+    public static final ResourceKey<DamageType> ETHER = create("ether");
     public static final ResourceKey<DamageType> METEOR = create("meteor");
     public static final ResourceKey<DamageType> CRYSTALLINE_INFECTION = create("crystalline_infection");
     public static final ResourceKey<DamageType> GROUND_SHAKE = create("ground_shake");
@@ -44,6 +45,7 @@ public class DamageTypeInit {
     }
 
     public static void bootstrap(BootstapContext<DamageType> context) {
+        context.register(ETHER, new DamageType(esDamage("ether"), 0.0F));
         context.register(METEOR, new DamageType(esDamage("meteor"), 0.0F));
         context.register(CRYSTALLINE_INFECTION, new DamageType(esDamage("crystalline_infection"), 0.0F));
         context.register(GROUND_SHAKE, new DamageType(esDamage("ground_shake"), 0.0F));

@@ -4,14 +4,18 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
+    "BlockBehaviourMixin",
     "BubbleColumnBlockMixin",
+    "CeilingHangingSignBlockMixin",
     "CrossbowItemMixin",
     "EntityMixin",
     "FireBlockMixin",
     "LivingEntityMixin",
     "MinecraftMixin",
     "PlayerMixin",
-    "ServerLevelMixin"
+    "ServerLevelMixin",
+    "SignBlockMixin",
+    "WallHangingSignBlockMixin"
   ],
   "client": [
     "EntityRenderDispatcherMixin",

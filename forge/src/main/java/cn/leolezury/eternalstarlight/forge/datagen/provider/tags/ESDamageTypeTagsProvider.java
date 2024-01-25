@@ -20,13 +20,18 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
         tag(DamageTypeTags.BYPASSES_ARMOR).add(
+                DamageTypeInit.ETHER,
+                DamageTypeInit.CRYSTALLINE_INFECTION,
                 DamageTypeInit.POISON
         );
         tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(
+                DamageTypeInit.ETHER,
+                DamageTypeInit.CRYSTALLINE_INFECTION,
                 DamageTypeInit.POISON
         );
         tag(DamageTypeTags.BYPASSES_SHIELD).add(
-                DamageTypeInit.LASER,
+                DamageTypeInit.ETHER,
+                DamageTypeInit.CRYSTALLINE_INFECTION,
                 DamageTypeInit.POISON
         );
         tag(DamageTypeTags.NO_IMPACT).add(

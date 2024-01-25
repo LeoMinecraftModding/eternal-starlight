@@ -467,6 +467,8 @@
   "advancements.eternal_starlight.kill_lunar_monstrosity.title": "Through the Thorns",
   "advancements.eternal_starlight.kill_lunar_monstrosity.description": "Find the Cursed Garden with crystal moss carpets and seeking eye, and defeat the giant Lunar Monstrosity",
 
+  "death.attack.eternal_starlight.ether": "%1$s drift away",
+  "death.attack.eternal_starlight.ether.player": "%1$s drift away while escaping %2$s",
   "death.attack.eternal_starlight.meteor": "%1$s was hit by a meteor",
   "death.attack.eternal_starlight.meteor.player": "%1$s was hit by a meteor while escaping %2$s",
   "death.attack.eternal_starlight.crystalline_infection": "%1$s was replaced by crystals",

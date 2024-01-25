@@ -60,7 +60,7 @@ public class ESFabricClient implements ClientModInitializer {
 
         FluidRenderHandlerRegistry.INSTANCE.register(FluidInit.ETHER_STILL.get(), FluidInit.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
                 new ResourceLocation(EternalStarlight.MOD_ID, "block/ether"),
-                new ResourceLocation(EternalStarlight.MOD_ID, "block/ether")
+                new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow")
         ));
     }
 }

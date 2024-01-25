@@ -30,7 +30,7 @@ public class FluidTypeInit {
 
                 @Override
                 public ResourceLocation getFlowingTexture() {
-                    return new ResourceLocation(EternalStarlight.MOD_ID, "block/ether");
+                    return new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow");
                 }
 
                 @Override

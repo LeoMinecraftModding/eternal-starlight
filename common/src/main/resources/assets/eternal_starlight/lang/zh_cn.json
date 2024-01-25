@@ -467,6 +467,8 @@
   "advancements.eternal_starlight.kill_lunar_monstrosity.title": "披荆斩棘",
   "advancements.eternal_starlight.kill_lunar_monstrosity.description": "使用晶藓地毯和寻觅之眼找到诅咒花园并击败月藤巨物",
 
+  "death.attack.eternal_starlight.ether": "%1$s飘然而去",
+  "death.attack.eternal_starlight.ether.player": "%1$s在逃离%2$s时飘然而去",
   "death.attack.eternal_starlight.meteor": "%1$s被陨石砸中了",
   "death.attack.eternal_starlight.meteor.player": "%1$s在逃离%2$s时被陨石砸中了",
   "death.attack.eternal_starlight.crystalline_infection": "%1$s被晶体替换了",
