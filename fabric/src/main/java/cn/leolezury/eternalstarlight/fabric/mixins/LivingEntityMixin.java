@@ -6,14 +6,14 @@ import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Inject(method = "hurt", at = @At(value = "HEAD"))
-    private void es_hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
-        CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
+    @ModifyVariable(method = "hurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
+    private float es_hurt(float amount, DamageSource damageSource) {
+        return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
     }
 
     @Inject(method = "tick", at = @At(value = "RETURN"))

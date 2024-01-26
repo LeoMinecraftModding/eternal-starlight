@@ -27,7 +27,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        CommonHandlers.onLivingHurt(event.getEntity(), event.getSource(), event.getAmount());
+        event.setAmount(CommonHandlers.onLivingHurt(event.getEntity(), event.getSource(), event.getAmount()));
     }
 
     @SubscribeEvent

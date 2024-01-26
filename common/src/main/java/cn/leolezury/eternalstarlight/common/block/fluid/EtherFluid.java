@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -20,7 +21,15 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 
+import java.util.UUID;
+
 public abstract class EtherFluid extends FlowingFluid {
+    public static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("012CFA7C-C624-495F-8C9F-6020A8718B6B");
+
+    public static AttributeModifier armorModifier(float amount) {
+        return new AttributeModifier(ARMOR_MODIFIER_UUID, "Ether Fluid Modifier", amount, AttributeModifier.Operation.ADDITION);
+    }
+
     @Override
     public Fluid getFlowing() {
         return FluidInit.ETHER_FLOWING.get();

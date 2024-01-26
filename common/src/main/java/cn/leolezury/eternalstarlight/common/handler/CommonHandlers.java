@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
+import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
@@ -31,12 +32,16 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -137,20 +142,40 @@ public class CommonHandlers {
                 ESUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
             }
         }
-    }
-
-    /*@SubscribeEvent
-    public static void onAddMobEffect(MobEffectEvent.Applicable event) {
-        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof SwampSilverArmorItem
-                && entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof SwampSilverArmorItem
-                && entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof SwampSilverArmorItem
-                && entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof SwampSilverArmorItem
-        ) {
-            if (!event.getEffectInstance().getEffect().isBeneficial()) {
-                event.setResult(Event.Result.DENY);
+        if (!livingEntity.level().isClientSide) {
+            int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
+            // ES: From Entity#checkInsideBlocks
+            boolean inEther = false;
+            AABB box = livingEntity.getBoundingBox();
+            BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
+            BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
+            BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+            for (int i = fromPos.getX(); i <= toPos.getX(); ++i) {
+                for (int j = fromPos.getY(); j <= toPos.getY(); ++j) {
+                    for (int k = fromPos.getZ(); k <= toPos.getZ(); ++k) {
+                        mutableBlockPos.set(i, j, k);
+                        BlockState blockState = livingEntity.level().getBlockState(mutableBlockPos);
+                        if (blockState.is(BlockInit.ETHER.get())) {
+                            inEther = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!inEther) {
+                ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", 0);
+                inEtherTicks = 0;
+            }
+            AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+            if (inEtherTicks <= 0 && armorInstance != null) {
+                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_UUID);
+            }
+            if (livingEntity.tickCount % 20 == 0 && inEtherTicks > 0 && armorInstance != null) {
+                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_UUID);
+                armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
             }
         }
-    }*/
+    }
 
     public static void onArrowHit(Projectile projectile, HitResult result) {
         if (projectile.level() instanceof ServerLevel serverLevel) {
