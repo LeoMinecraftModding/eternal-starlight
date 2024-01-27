@@ -76,3 +76,6 @@ accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecr
 
 # for the fabric project of eternal starlight, minecraft will crash without this
 extendable class net/minecraft/world/item/enchantment/EnchantmentCategory
+
+#Gui render
+accessible method net/minecraft/client/gui/Gui renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
+import cn.leolezury.eternalstarlight.common.util.BlockUtil;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.EnchantmentInit;
 import cn.leolezury.eternalstarlight.common.init.MobEffectInit;
@@ -40,8 +41,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -145,26 +144,9 @@ public class CommonHandlers {
         if (!livingEntity.level().isClientSide) {
             int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
             // ES: From Entity#checkInsideBlocks
-            boolean inEther = false;
-            AABB box = livingEntity.getBoundingBox();
-            BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
-            BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
-            BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
-            for (int i = fromPos.getX(); i <= toPos.getX(); ++i) {
-                for (int j = fromPos.getY(); j <= toPos.getY(); ++j) {
-                    for (int k = fromPos.getZ(); k <= toPos.getZ(); ++k) {
-                        mutableBlockPos.set(i, j, k);
-                        BlockState blockState = livingEntity.level().getBlockState(mutableBlockPos);
-                        if (blockState.is(BlockInit.ETHER.get())) {
-                            inEther = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!inEther) {
-                ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", 0);
-                inEtherTicks = 0;
+            boolean inEther = BlockUtil.isEntityInBlock(livingEntity, BlockInit.ETHER.get());
+            if (!inEther && inEtherTicks > 0) {
+                ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", inEtherTicks - 1);
             }
             AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
             if (inEtherTicks <= 0 && armorInstance != null) {

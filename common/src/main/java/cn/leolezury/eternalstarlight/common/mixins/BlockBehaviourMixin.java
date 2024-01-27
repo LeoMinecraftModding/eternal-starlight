@@ -28,6 +28,8 @@ public abstract class BlockBehaviourMixin {
                 CompoundTag compoundTag = ESUtil.getPersistentData(livingEntity);
                 int inEtherTicks = compoundTag.getInt("InEtherTicks");
                 compoundTag.putInt("InEtherTicks", inEtherTicks + 1);
+                int clientEtherTicks = compoundTag.getInt("ClientEtherTicks");
+                compoundTag.putInt("ClientEtherTicks", clientEtherTicks + 1);
                 AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
                 if (armorInstance != null && armorInstance.getValue() <= 0) {
                     if (entity.hurt(DamageTypeInit.getDamageSource(level, DamageTypeInit.ETHER), 1) && level instanceof ServerLevel serverLevel) {

@@ -23,7 +23,8 @@
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "PlayerModelMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "GuiMixin"
   ],
   "injectors": {
     "defaultRequire": 1
