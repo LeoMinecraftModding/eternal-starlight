@@ -40,7 +40,6 @@ import java.util.function.Predicate;
 public class ESChunkGenerator extends NoiseBasedChunkGenerator {
     private static final BlockState AIR = Blocks.AIR.defaultBlockState();
     private final BlockState defaultBlock;
-    private final BlockState defaultFluid;
     private final int seaLevel;
 
     public long seed = 0;
@@ -54,11 +53,9 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
         super(biomeSource, settings);
         if (settings.isBound()) {
             this.defaultBlock = settings.value().defaultBlock();
-            this.defaultFluid = settings.value().defaultFluid();
             this.seaLevel = settings.value().seaLevel();
         } else {
             this.defaultBlock = Blocks.STONE.defaultBlockState();
-            this.defaultFluid = Blocks.WATER.defaultBlockState();
             this.seaLevel = 50;
         }
     }
@@ -203,7 +200,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
         if (y <= surfaceHeight) {
             state = defaultBlock;
         } else if (y <= seaLevel) {
-            state = defaultFluid;
+            state = data.fluidBlock().defaultBlockState();
         } else {
             state = AIR;
         }

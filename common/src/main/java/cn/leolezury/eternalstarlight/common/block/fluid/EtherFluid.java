@@ -13,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -89,6 +91,20 @@ public abstract class EtherFluid extends FlowingFluid {
     @Override
     public boolean isSame(Fluid fluid) {
         return fluid == FluidInit.ETHER_STILL.get() || fluid == FluidInit.ETHER_FLOWING.get();
+    }
+
+    @Override
+    protected void spreadTo(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, Direction direction, FluidState fluidState) {
+        FluidState targetState = levelAccessor.getFluidState(blockPos);
+        if (!targetState.isEmpty()) {
+            if (blockState.getBlock() instanceof LiquidBlock) {
+                levelAccessor.setBlock(blockPos, Blocks.GLOWSTONE.defaultBlockState(), 3);
+            }
+            levelAccessor.levelEvent(1501, blockPos, 0);
+            return;
+        }
+
+        super.spreadTo(levelAccessor, blockPos, blockState, direction, fluidState);
     }
 
     public static class Flowing extends EtherFluid {

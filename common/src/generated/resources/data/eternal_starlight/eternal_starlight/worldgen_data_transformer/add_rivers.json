@@ -1,0 +1,9 @@
+{
+  "rivers": [
+    {
+      "offset": 0,
+      "river": "eternal_starlight:shimmer_river"
+    }
+  ],
+  "transformer_type": "eternal_starlight:add_rivers"
+}

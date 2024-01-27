@@ -20,10 +20,9 @@ public class DataTransformerInit {
     public static final ResourceKey<DataTransformer> APPLY_BIOMES = create("apply_biomes");
     public static final ResourceKey<DataTransformer> ADD_OCEAN = create("add_ocean");
     public static final ResourceKey<DataTransformer> ADD_BEACHES = create("add_beaches");
-    public static final ResourceKey<DataTransformer> ADD_RIVER = create("add_river");
-    public static final ResourceKey<DataTransformer> ADD_RIVER_TRANSITION = create("add_river_transition");
+    public static final ResourceKey<DataTransformer> ADD_RIVERS = create("add_rivers");
+    public static final ResourceKey<DataTransformer> ADD_TRANSITIONS = create("add_transitions");
     public static final ResourceKey<DataTransformer> ADD_THE_ABYSS = create("add_the_abyss");
-    public static final ResourceKey<DataTransformer> ADD_THE_ABYSS_TRANSITION = create("add_the_abyss_transition");
     public static final ResourceKey<DataTransformer> RANDOMIZE_BIOMES = create("randomize_biomes");
     public static final ResourceKey<DataTransformer> ASSIMILATE_BIOMES = create("assimilate_biomes");
     public static final ResourceKey<DataTransformer> ASSIMILATE_LONELY_BIOMES = create("assimilate_lonely_biomes");
@@ -49,10 +48,14 @@ public class DataTransformerInit {
         )));
         context.register(ADD_OCEAN, new AddOceanTransformer(data.getOrThrow(BiomeDataInit.STARLIT_SEA)));
         context.register(ADD_BEACHES, new AddBeachesTransformer(data.getOrThrow(BiomeDataInit.WARM_SHORE)));
-        context.register(ADD_RIVER, new AddRiverTransformer(data.getOrThrow(BiomeDataInit.SHIMMER_RIVER)));
-        context.register(ADD_RIVER_TRANSITION, new AddTransitionBiomeTransformer(data.getOrThrow(BiomeDataInit.SHIMMER_RIVER), data.getOrThrow(BiomeDataInit.SHIMMER_RIVER_TRANSITION)));
+        context.register(ADD_RIVERS, new AddRiversTransformer(List.of(
+                new AddRiversTransformer.RiverWithOffset(data.getOrThrow(BiomeDataInit.SHIMMER_RIVER), 0)
+        )));
         context.register(ADD_THE_ABYSS, new AddTheAbyssTransformer(data.getOrThrow(BiomeDataInit.THE_ABYSS)));
-        context.register(ADD_THE_ABYSS_TRANSITION, new AddTransitionBiomeTransformer(data.getOrThrow(BiomeDataInit.THE_ABYSS), data.getOrThrow(BiomeDataInit.THE_ABYSS_TRANSITION)));
+        context.register(ADD_TRANSITIONS, new AddTransitionBiomesTransformer(List.of(
+                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(BiomeDataInit.SHIMMER_RIVER), data.getOrThrow(BiomeDataInit.SHIMMER_RIVER_TRANSITION)),
+                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(BiomeDataInit.THE_ABYSS), data.getOrThrow(BiomeDataInit.THE_ABYSS_TRANSITION))
+        )));
         context.register(RANDOMIZE_BIOMES, new RandomizeBiomesTransformer());
         context.register(ASSIMILATE_BIOMES, new AssimilateBiomesTransformer(false));
         context.register(ASSIMILATE_LONELY_BIOMES, new AssimilateBiomesTransformer(true));

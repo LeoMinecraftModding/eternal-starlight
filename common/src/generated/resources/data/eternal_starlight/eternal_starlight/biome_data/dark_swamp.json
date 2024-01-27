@@ -1,5 +1,6 @@
 {
   "biome": "eternal_starlight:dark_swamp",
+  "fluid": "minecraft:water",
   "has_beaches": true,
   "has_rivers": true,
   "height": 56,

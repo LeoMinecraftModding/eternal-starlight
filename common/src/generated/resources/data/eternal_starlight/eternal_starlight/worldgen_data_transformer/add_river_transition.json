@@ -1,5 +1,0 @@
-{
-  "biome": "eternal_starlight:shimmer_river",
-  "transformer_type": "eternal_starlight:add_transition",
-  "transition_biome": "eternal_starlight:shimmer_river_transition"
-}

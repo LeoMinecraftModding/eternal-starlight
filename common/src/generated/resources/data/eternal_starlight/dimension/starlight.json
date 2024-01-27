@@ -152,15 +152,7 @@
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_river"
-          },
-          {
-            "seed_addition": 0,
-            "transformer": "eternal_starlight:add_river_transition"
-          },
-          {
-            "seed_addition": 0,
-            "transformer": "eternal_starlight:add_river_transition"
+            "transformer": "eternal_starlight:add_rivers"
           },
           {
             "seed_addition": 0,
@@ -168,15 +160,15 @@
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_the_abyss_transition"
+            "transformer": "eternal_starlight:add_transitions"
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_the_abyss_transition"
+            "transformer": "eternal_starlight:add_transitions"
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_the_abyss_transition"
+            "transformer": "eternal_starlight:add_transitions"
           },
           {
             "seed_addition": 0,

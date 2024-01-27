@@ -132,13 +132,10 @@ public class DimensionInit {
         for (int i = 0; i < 5; i++) {
             biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_BEACHES), 0));
         }
-        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_RIVER), 0));
-        for (int i = 0; i < 2; i++) {
-            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_RIVER_TRANSITION), 0));
-        }
+        biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_RIVERS), 0));
         biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_THE_ABYSS), 0));
         for (int i = 0; i < 3; i++) {
-            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_THE_ABYSS_TRANSITION), 0));
+            biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.ADD_TRANSITIONS), 0));
         }
         biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), 0));
         biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(DataTransformerInit.DUPLICATE), 0));
