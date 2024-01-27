@@ -27,6 +27,7 @@ public class BiomeInit {
     public static final ResourceKey<Biome> SCARLET_FOREST = create("scarlet_forest");
     public static final ResourceKey<Biome> CRYSTALLIZED_DESERT = create("crystallized_desert");
     public static final ResourceKey<Biome> SHIMMER_RIVER = create("shimmer_river");
+    public static final ResourceKey<Biome> ETHER_RIVER = create("ether_river");
     public static final ResourceKey<Biome> STARLIT_SEA = create("starlit_sea");
     public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
     public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
@@ -46,6 +47,7 @@ public class BiomeInit {
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_FOREST), baseSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
         context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
+        context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), baseAquaticGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3145761), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
@@ -114,6 +116,7 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_GRIMSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.LAKES, PlacedFeatureInit.HOT_SPRING);
+        builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacedFeatureInit.ETHER_FLUID_BORDER);
 
         builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES);
         builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES_EXTRA);
@@ -132,6 +135,7 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.NIGHTSHADE_DIRT_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_GRIMSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacedFeatureInit.ETHER_FLUID_BORDER);
 
         builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES);
         builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES_EXTRA);

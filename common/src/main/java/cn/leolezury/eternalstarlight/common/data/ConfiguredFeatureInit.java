@@ -59,6 +59,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ConfiguredFeatureInit {
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ETHER_FLUID_BORDER = create("ether_fluid_border");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = create("deepslate_ore");
@@ -114,6 +115,7 @@ public class ConfiguredFeatureInit {
         RuleTest voidstoneRule = new BlockMatchTest(BlockInit.VOIDSTONE.get());
         RuleTest mudRule = new BlockMatchTest(BlockInit.NIGHTSHADE_MUD.get());
 
+        register(context, ETHER_FLUID_BORDER, FeatureInit.ETHER_FLUID_BORDER.get(), new NoneFeatureConfiguration());
         register(context, STONE_SPIKE, FeatureInit.STONE_SPIKE.get(), new NoneFeatureConfiguration());
         register(context, STONE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));
         register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.DEEPSLATE.defaultBlockState(), 64));

@@ -1,0 +1,13 @@
+{
+  "transformer_type": "eternal_starlight:add_transitions",
+  "transitions": [
+    {
+      "biome": "eternal_starlight:shimmer_river",
+      "transition_biome": "eternal_starlight:shimmer_river_transition"
+    },
+    {
+      "biome": "eternal_starlight:the_abyss",
+      "transition_biome": "eternal_starlight:the_abyss_transition"
+    }
+  ]
+}

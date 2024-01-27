@@ -1,6 +1,6 @@
 {
-  "biome": "eternal_starlight:shimmer_river",
-  "fluid": "minecraft:water",
+  "biome": "eternal_starlight:ether_river",
+  "fluid": "eternal_starlight:ether",
   "has_beaches": true,
   "has_rivers": true,
   "height": 45,

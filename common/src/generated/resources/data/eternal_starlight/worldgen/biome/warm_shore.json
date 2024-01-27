@@ -55,7 +55,8 @@
       "eternal_starlight:cave_moss"
     ],
     [
-      "minecraft:freeze_top_layer"
+      "minecraft:freeze_top_layer",
+      "eternal_starlight:ether_fluid_border"
     ]
   ],
   "has_precipitation": true,
