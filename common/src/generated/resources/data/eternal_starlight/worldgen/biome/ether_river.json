@@ -8,14 +8,14 @@
   "creature_spawn_probability": 0.2,
   "downfall": 0.5,
   "effects": {
-    "fog_color": 14803455,
-    "foliage_color": 3091031,
-    "grass_color": 14803455,
+    "fog_color": 14417883,
+    "foliage_color": 14417883,
+    "grass_color": 14417883,
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
       "replace_current_music": true,
-      "sound": "eternal_starlight:music.biome.starlight_permafrost_forest"
+      "sound": "eternal_starlight:music.dimension.tranquility"
     },
     "particle": {
       "options": {
@@ -23,15 +23,13 @@
       },
       "probability": 0.001
     },
-    "sky_color": 14803455,
-    "water_color": 6187416,
-    "water_fog_color": 6187416
+    "sky_color": 14417883,
+    "water_color": 14417883,
+    "water_fog_color": 14417883
   },
   "features": [
     [],
-    [
-      "eternal_starlight:hot_spring"
-    ],
+    [],
     [],
     [],
     [],
@@ -46,16 +44,8 @@
     [],
     [],
     [
-      "minecraft:patch_grass_forest",
-      "minecraft:patch_tall_grass",
-      "minecraft:patch_grass_badlands",
-      "minecraft:patch_grass_savanna",
-      "eternal_starlight:near_water_grass",
       "eternal_starlight:cave_vine",
-      "eternal_starlight:cave_moss",
-      "eternal_starlight:permafrost_forest",
-      "eternal_starlight:permafrost_forest_grass",
-      "eternal_starlight:fallen_northland_log"
+      "eternal_starlight:cave_moss"
     ],
     [
       "minecraft:freeze_top_layer",
@@ -74,14 +64,7 @@
       }
     ],
     "axolotls": [],
-    "creature": [
-      {
-        "type": "eternal_starlight:ent",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 15
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [
       {
@@ -101,6 +84,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": -0.3,
-  "temperature_modifier": "frozen"
+  "temperature": 0.5
 }

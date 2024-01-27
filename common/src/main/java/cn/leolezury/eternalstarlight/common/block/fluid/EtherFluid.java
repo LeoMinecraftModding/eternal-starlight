@@ -95,10 +95,9 @@ public abstract class EtherFluid extends FlowingFluid {
 
     @Override
     protected void spreadTo(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, Direction direction, FluidState fluidState) {
-        FluidState targetState = levelAccessor.getFluidState(blockPos);
-        if (!targetState.isEmpty()) {
+        if (!blockState.getFluidState().isEmpty() && !blockState.getFluidState().is(this)) {
             if (blockState.getBlock() instanceof LiquidBlock) {
-                levelAccessor.setBlock(blockPos, Blocks.GLOWSTONE.defaultBlockState(), 3);
+                levelAccessor.setBlock(blockPos, Blocks.QUARTZ_BLOCK.defaultBlockState(), 3);
             }
             levelAccessor.levelEvent(1501, blockPos, 0);
             return;

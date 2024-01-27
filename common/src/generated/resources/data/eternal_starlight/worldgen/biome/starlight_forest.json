@@ -60,7 +60,8 @@
       "eternal_starlight:fallen_lunar_log"
     ],
     [
-      "minecraft:freeze_top_layer"
+      "minecraft:freeze_top_layer",
+      "eternal_starlight:ether_fluid_border"
     ]
   ],
   "has_precipitation": true,

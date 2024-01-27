@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlacedFeatureInit {
+    public static final ResourceKey<PlacedFeature> ETHER_FLUID_BORDER = create("ether_fluid_border");
     public static final ResourceKey<PlacedFeature> STONE_SPIKE = create("stone_spike");
     public static final ResourceKey<PlacedFeature> STONE_ORE = create("stone_ore");
     public static final ResourceKey<PlacedFeature> DEEPSLATE_ORE = create("deepslate_ore");
@@ -85,6 +86,7 @@ public class PlacedFeatureInit {
             }
         }
 
+        register(context, ETHER_FLUID_BORDER, configuredFeatures.getOrThrow(ConfiguredFeatureInit.ETHER_FLUID_BORDER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, STONE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));

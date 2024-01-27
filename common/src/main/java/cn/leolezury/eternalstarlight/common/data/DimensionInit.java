@@ -67,7 +67,7 @@ public class DimensionInit {
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(BiomeInit.THE_ABYSS)), SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone)),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(BlockInit.TWILIGHT_SAND.get().defaultBlockState())),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.SHIMMER_RIVER, BiomeInit.ETHER_RIVER, BiomeInit.STARLIT_SEA, BiomeInit.WARM_SHORE), makeSimpleSurface(BlockInit.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.DARK_SWAMP), makeSurface(BlockInit.FANTASY_GRASS_BLOCK.get().defaultBlockState(), BlockInit.NIGHTSHADE_MUD.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.CRYSTALLIZED_DESERT), desertRule),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(BiomeInit.THE_ABYSS), abysslate),
@@ -153,6 +153,7 @@ public class DimensionInit {
                 biomeHolderGetter.getOrThrow(BiomeInit.SCARLET_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT),
                 biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER),
+                biomeHolderGetter.getOrThrow(BiomeInit.ETHER_RIVER),
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIT_SEA),
                 biomeHolderGetter.getOrThrow(BiomeInit.THE_ABYSS),
                 biomeHolderGetter.getOrThrow(BiomeInit.WARM_SHORE)

@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.material.Fluid;
 
 public class ESTags {
     public static class Items {
@@ -56,6 +57,7 @@ public class ESTags {
         public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
         public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
     }
+
     public static class Biomes {
         private static TagKey<Biome> create(String string) {
             return TagKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, string));
@@ -63,5 +65,12 @@ public class ESTags {
         public static final TagKey<Biome> STARLIGHT_FOREST_VARIANT = create("starlight_forest_variant");
         public static final TagKey<Biome> PERMAFROST_FOREST_VARIANT = create("permafrost_forest_variant");
         public static final TagKey<Biome> DARK_SWAMP_VARIANT = create("dark_swamp_variant");
+    }
+
+    public static class Fluids {
+        private static TagKey<Fluid> create(String string) {
+            return TagKey.create(Registries.FLUID, new ResourceLocation(EternalStarlight.MOD_ID, string));
+        }
+        public static final TagKey<Fluid> ETHER = create("ether");
     }
 }

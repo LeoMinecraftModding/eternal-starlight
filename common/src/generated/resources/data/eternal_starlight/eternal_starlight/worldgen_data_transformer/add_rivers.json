@@ -3,6 +3,10 @@
     {
       "offset": 0,
       "river": "eternal_starlight:shimmer_river"
+    },
+    {
+      "offset": 4096,
+      "river": "eternal_starlight:ether_river"
     }
   ],
   "transformer_type": "eternal_starlight:add_rivers"

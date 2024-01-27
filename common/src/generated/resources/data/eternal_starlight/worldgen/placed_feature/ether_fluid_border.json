@@ -1,0 +1,12 @@
+{
+  "feature": "eternal_starlight:ether_fluid_border",
+  "placement": [
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

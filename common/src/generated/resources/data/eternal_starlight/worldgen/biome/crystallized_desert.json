@@ -61,7 +61,8 @@
       "eternal_starlight:dead_lunar_tree"
     ],
     [
-      "minecraft:freeze_top_layer"
+      "minecraft:freeze_top_layer",
+      "eternal_starlight:ether_fluid_border"
     ]
   ],
   "has_precipitation": false,
