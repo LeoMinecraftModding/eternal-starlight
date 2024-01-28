@@ -25,17 +25,23 @@ public abstract class BlockBehaviourMixin {
     public void es_entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity, CallbackInfo ci) {
         if (blockState.is(BlockInit.ETHER.get())) {
             if (entity instanceof LivingEntity livingEntity) {
-                CompoundTag compoundTag = ESUtil.getPersistentData(livingEntity);
-                int inEtherTicks = compoundTag.getInt("InEtherTicks");
-                compoundTag.putInt("InEtherTicks", inEtherTicks + 1);
-                int clientEtherTicks = compoundTag.getInt("ClientEtherTicks");
-                compoundTag.putInt("ClientEtherTicks", clientEtherTicks + 1);
                 AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
                 if (armorInstance != null && armorInstance.getValue() <= 0) {
                     if (entity.hurt(DamageTypeInit.getDamageSource(level, DamageTypeInit.ETHER), 1) && level instanceof ServerLevel serverLevel) {
                         for (int i = 0; i < 5; i++) {
                             serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), entity.getX() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.1, 0.1, 0.1, 0);
                         }
+                    }
+                }
+                CompoundTag compoundTag = ESUtil.getPersistentData(livingEntity);
+                if (armorInstance == null || armorInstance.getValue() > 0) {
+                    int inEtherTicks = compoundTag.getInt("InEtherTicks");
+                    compoundTag.putInt("InEtherTicks", inEtherTicks + 1);
+                }
+                if (level.isClientSide) {
+                    int clientEtherTicks = compoundTag.getInt("ClientEtherTicks");
+                    if (clientEtherTicks < 140) {
+                        compoundTag.putInt("ClientEtherTicks", clientEtherTicks + 1);
                     }
                 }
             } else {

@@ -141,10 +141,9 @@ public class CommonHandlers {
                 ESUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
             }
         }
+        int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
+        boolean inEther = BlockUtil.isEntityInBlock(livingEntity, BlockInit.ETHER.get());
         if (!livingEntity.level().isClientSide) {
-            int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
-            // ES: From Entity#checkInsideBlocks
-            boolean inEther = BlockUtil.isEntityInBlock(livingEntity, BlockInit.ETHER.get());
             if (!inEther && inEtherTicks > 0) {
                 ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", inEtherTicks - 1);
             }
@@ -155,6 +154,11 @@ public class CommonHandlers {
             if (livingEntity.tickCount % 20 == 0 && inEtherTicks > 0 && armorInstance != null) {
                 armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_UUID);
                 armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
+            }
+        } else {
+            int clientEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("ClientEtherTicks");
+            if (!inEther && clientEtherTicks > 0) {
+                ESUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
             }
         }
     }
