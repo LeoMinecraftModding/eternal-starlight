@@ -47,6 +47,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.STRIPPED_SCARLET_LOG.get(),
                 BlockInit.STRIPPED_SCARLET_WOOD.get()
         );
+        tag(ESTags.Blocks.TORREYA_LOGS).add(
+                BlockInit.TORREYA_LOG.get(),
+                BlockInit.TORREYA_WOOD.get(),
+                BlockInit.STRIPPED_TORREYA_LOG.get(),
+                BlockInit.STRIPPED_TORREYA_WOOD.get()
+        );
         tag(ESTags.Blocks.PORTAL_FRAME_BLOCKS).add(
                 BlockInit.CHISELED_GRIMSTONE.get(),
                 BlockInit.CHISELED_VOIDSTONE.get()
@@ -83,25 +89,29 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESTags.Blocks.LUNAR_LOGS,
                 ESTags.Blocks.NORTHLAND_LOGS,
                 ESTags.Blocks.STARLIGHT_MANGROVE_LOGS,
-                ESTags.Blocks.SCARLET_LOGS
+                ESTags.Blocks.SCARLET_LOGS,
+                ESTags.Blocks.TORREYA_LOGS
         );
         tag(BlockTags.LOGS_THAT_BURN).addTags(
                 ESTags.Blocks.LUNAR_LOGS,
                 ESTags.Blocks.NORTHLAND_LOGS,
                 ESTags.Blocks.STARLIGHT_MANGROVE_LOGS,
-                ESTags.Blocks.SCARLET_LOGS
+                ESTags.Blocks.SCARLET_LOGS,
+                ESTags.Blocks.TORREYA_LOGS
         );
         tag(BlockTags.SAPLINGS).add(
                 BlockInit.LUNAR_SAPLING.get(),
                 BlockInit.NORTHLAND_SAPLING.get(),
                 BlockInit.STARLIGHT_MANGROVE_SAPLING.get(),
-                BlockInit.SCARLET_SAPLING.get()
+                BlockInit.SCARLET_SAPLING.get(),
+                BlockInit.TORREYA_SAPLING.get()
         );
         tag(BlockTags.LEAVES).add(
                 BlockInit.LUNAR_LEAVES.get(),
                 BlockInit.NORTHLAND_LEAVES.get(),
                 BlockInit.STARLIGHT_MANGROVE_LEAVES.get(),
-                BlockInit.SCARLET_LEAVES.get()
+                BlockInit.SCARLET_LEAVES.get(),
+                BlockInit.TORREYA_LEAVES.get()
         );
         tag(BlockTags.PLANKS).add(
                 BlockInit.LUNAR_PLANKS.get(),
@@ -114,6 +124,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NORTHLAND_FENCE.get(),
                 BlockInit.STARLIGHT_MANGROVE_FENCE.get(),
                 BlockInit.SCARLET_FENCE.get(),
+                BlockInit.TORREYA_FENCE.get(),
                 BlockInit.LUNAR_MOSAIC_FENCE.get()
         );
         tag(BlockTags.FENCE_GATES).add(
@@ -121,6 +132,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NORTHLAND_FENCE_GATE.get(),
                 BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(),
                 BlockInit.SCARLET_FENCE_GATE.get(),
+                BlockInit.TORREYA_FENCE_GATE.get(),
                 BlockInit.LUNAR_MOSAIC_FENCE_GATE.get()
         );
         tag(BlockTags.WOODEN_SLABS).add(
@@ -128,6 +140,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NORTHLAND_SLAB.get(),
                 BlockInit.STARLIGHT_MANGROVE_SLAB.get(),
                 BlockInit.SCARLET_SLAB.get(),
+                BlockInit.TORREYA_SLAB.get(),
                 BlockInit.LUNAR_MOSAIC_SLAB.get()
         );
         tag(BlockTags.SLABS).add(
@@ -161,6 +174,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NORTHLAND_STAIRS.get(),
                 BlockInit.STARLIGHT_MANGROVE_STAIRS.get(),
                 BlockInit.SCARLET_STAIRS.get(),
+                BlockInit.TORREYA_STAIRS.get(),
                 BlockInit.LUNAR_MOSAIC_STAIRS.get()
         );
         tag(BlockTags.STAIRS).add(
@@ -215,25 +229,29 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_BUTTON.get(),
                 BlockInit.NORTHLAND_BUTTON.get(),
                 BlockInit.STARLIGHT_MANGROVE_BUTTON.get(),
-                BlockInit.SCARLET_BUTTON.get()
+                BlockInit.SCARLET_BUTTON.get(),
+                BlockInit.TORREYA_BUTTON.get()
         );
         tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
                 BlockInit.LUNAR_PRESSURE_PLATE.get(),
                 BlockInit.NORTHLAND_PRESSURE_PLATE.get(),
                 BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(),
-                BlockInit.SCARLET_PRESSURE_PLATE.get()
+                BlockInit.SCARLET_PRESSURE_PLATE.get(),
+                BlockInit.TORREYA_PRESSURE_PLATE.get()
         );
         tag(BlockTags.WOODEN_DOORS).add(
                 BlockInit.LUNAR_DOOR.get(),
                 BlockInit.NORTHLAND_DOOR.get(),
                 BlockInit.STARLIGHT_MANGROVE_DOOR.get(),
-                BlockInit.SCARLET_DOOR.get()
+                BlockInit.SCARLET_DOOR.get(),
+                BlockInit.TORREYA_DOOR.get()
         );
         tag(BlockTags.WOODEN_TRAPDOORS).add(
                 BlockInit.LUNAR_TRAPDOOR.get(),
                 BlockInit.NORTHLAND_TRAPDOOR.get(),
                 BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(),
-                BlockInit.SCARLET_TRAPDOOR.get()
+                BlockInit.SCARLET_TRAPDOOR.get(),
+                BlockInit.TORREYA_TRAPDOOR.get()
         );
         tag(BlockTags.SMALL_FLOWERS).add(
                 BlockInit.STARLIGHT_FLOWER.get(),
@@ -248,6 +266,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.POTTED_NORTHLAND_SAPLING.get(),
                 BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(),
                 BlockInit.POTTED_SCARLET_SAPLING.get(),
+                BlockInit.POTTED_TORREYA_SAPLING.get(),
                 BlockInit.POTTED_STARLIGHT_FLOWER.get(),
                 BlockInit.POTTED_SWAMP_ROSE.get()
         );
@@ -262,25 +281,29 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_SIGN.get(),
                 BlockInit.NORTHLAND_SIGN.get(),
                 BlockInit.STARLIGHT_MANGROVE_SIGN.get(),
-                BlockInit.SCARLET_SIGN.get()
+                BlockInit.SCARLET_SIGN.get(),
+                BlockInit.TORREYA_SIGN.get()
         );
         tag(BlockTags.WALL_SIGNS).add(
                 BlockInit.LUNAR_WALL_SIGN.get(),
                 BlockInit.NORTHLAND_WALL_SIGN.get(),
                 BlockInit.STARLIGHT_MANGROVE_WALL_SIGN.get(),
-                BlockInit.SCARLET_WALL_SIGN.get()
+                BlockInit.SCARLET_WALL_SIGN.get(),
+                BlockInit.TORREYA_WALL_SIGN.get()
         );
         tag(BlockTags.CEILING_HANGING_SIGNS).add(
                 BlockInit.LUNAR_HANGING_SIGN.get(),
                 BlockInit.NORTHLAND_HANGING_SIGN.get(),
                 BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(),
-                BlockInit.SCARLET_HANGING_SIGN.get()
+                BlockInit.SCARLET_HANGING_SIGN.get(),
+                BlockInit.TORREYA_HANGING_SIGN.get()
         );
         tag(BlockTags.WALL_HANGING_SIGNS).add(
                 BlockInit.LUNAR_WALL_HANGING_SIGN.get(),
                 BlockInit.NORTHLAND_WALL_HANGING_SIGN.get(),
                 BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(),
-                BlockInit.SCARLET_WALL_HANGING_SIGN.get()
+                BlockInit.SCARLET_WALL_HANGING_SIGN.get(),
+                BlockInit.TORREYA_WALL_HANGING_SIGN.get()
         );
         tag(BlockTags.BEACON_BASE_BLOCKS).add(
                 BlockInit.AETHERSENT_BLOCK.get(),

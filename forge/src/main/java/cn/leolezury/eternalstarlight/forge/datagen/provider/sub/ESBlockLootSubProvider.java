@@ -171,6 +171,27 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.SCARLET_SAPLING.get());
         dropPottedContents(BlockInit.POTTED_SCARLET_SAPLING.get());
 
+        add(BlockInit.TORREYA_LEAVES.get(), (block) -> this.createLeavesDrops(block, BlockInit.TORREYA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        dropSelf(BlockInit.TORREYA_LOG.get());
+        dropSelf(BlockInit.TORREYA_WOOD.get());
+        dropSelf(BlockInit.TORREYA_PLANKS.get());
+        dropSelf(BlockInit.STRIPPED_TORREYA_LOG.get());
+        dropSelf(BlockInit.STRIPPED_TORREYA_WOOD.get());
+        add(BlockInit.TORREYA_DOOR.get(), this::createDoorTable);
+        dropSelf(BlockInit.TORREYA_TRAPDOOR.get());
+        dropSelf(BlockInit.TORREYA_PRESSURE_PLATE.get());
+        dropSelf(BlockInit.TORREYA_BUTTON.get());
+        dropSelf(BlockInit.TORREYA_FENCE.get());
+        dropSelf(BlockInit.TORREYA_FENCE_GATE.get());
+        add(BlockInit.TORREYA_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockInit.TORREYA_STAIRS.get());
+        dropSelf(BlockInit.TORREYA_SIGN.get());
+        dropSelf(BlockInit.TORREYA_WALL_SIGN.get());
+        dropSelf(BlockInit.TORREYA_HANGING_SIGN.get());
+        dropSelf(BlockInit.TORREYA_WALL_HANGING_SIGN.get());
+        dropSelf(BlockInit.TORREYA_SAPLING.get());
+        dropPottedContents(BlockInit.POTTED_TORREYA_SAPLING.get());
+
         add(BlockInit.GRIMSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.COBBLED_GRIMSTONE.get()));
         dropSelf(BlockInit.COBBLED_GRIMSTONE.get());
         add(BlockInit.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);

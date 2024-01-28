@@ -132,6 +132,21 @@ public class ESRecipeProvider extends RecipeProvider {
         hangingSign(recipeOutput, ItemInit.NORTHLAND_HANGING_SIGN.get(), BlockInit.STRIPPED_NORTHLAND_LOG.get());
         addBoat(recipeOutput, ItemInit.NORTHLAND_BOAT.get(), ItemInit.NORTHLAND_CHEST_BOAT.get(), BlockInit.NORTHLAND_PLANKS.get());
 
+        addButton(recipeOutput, BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addDoor(recipeOutput, BlockInit.STARLIGHT_MANGROVE_DOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addFence(recipeOutput, BlockInit.STARLIGHT_MANGROVE_FENCE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addFenceGate(recipeOutput, BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addPlanks(recipeOutput, BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), ESTags.Items.STARLIGHT_MANGROVE_LOGS);
+        addWood(recipeOutput, BlockInit.STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_LOG.get());
+        addStrippedWood(recipeOutput, BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
+        addPressurePlate(recipeOutput, BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addSlab(recipeOutput, BlockInit.STARLIGHT_MANGROVE_SLAB.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addStairs(recipeOutput, BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addTrapdoor(recipeOutput, BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        hangingSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
+        addBoat(recipeOutput, ItemInit.STARLIGHT_MANGROVE_BOAT.get(), ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+
         addButton(recipeOutput, BlockInit.SCARLET_BUTTON.get(), BlockInit.SCARLET_PLANKS.get());
         addDoor(recipeOutput, BlockInit.SCARLET_DOOR.get(), BlockInit.SCARLET_PLANKS.get());
         addFence(recipeOutput, BlockInit.SCARLET_FENCE.get(), BlockInit.SCARLET_PLANKS.get());
@@ -147,20 +162,20 @@ public class ESRecipeProvider extends RecipeProvider {
         hangingSign(recipeOutput, ItemInit.SCARLET_HANGING_SIGN.get(), BlockInit.STRIPPED_SCARLET_LOG.get());
         addBoat(recipeOutput, ItemInit.SCARLET_BOAT.get(), ItemInit.SCARLET_CHEST_BOAT.get(), BlockInit.SCARLET_PLANKS.get());
 
-        addButton(recipeOutput, BlockInit.STARLIGHT_MANGROVE_BUTTON.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addDoor(recipeOutput, BlockInit.STARLIGHT_MANGROVE_DOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addFence(recipeOutput, BlockInit.STARLIGHT_MANGROVE_FENCE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addFenceGate(recipeOutput, BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addPlanks(recipeOutput, BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), ESTags.Items.STARLIGHT_MANGROVE_LOGS);
-        addWood(recipeOutput, BlockInit.STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STARLIGHT_MANGROVE_LOG.get());
-        addStrippedWood(recipeOutput, BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
-        addPressurePlate(recipeOutput, BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addSlab(recipeOutput, BlockInit.STARLIGHT_MANGROVE_SLAB.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addStairs(recipeOutput, BlockInit.STARLIGHT_MANGROVE_STAIRS.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addTrapdoor(recipeOutput, BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        addSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
-        hangingSign(recipeOutput, ItemInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
-        addBoat(recipeOutput, ItemInit.STARLIGHT_MANGROVE_BOAT.get(), ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get(), BlockInit.STARLIGHT_MANGROVE_PLANKS.get());
+        addButton(recipeOutput, BlockInit.TORREYA_BUTTON.get(), BlockInit.TORREYA_PLANKS.get());
+        addDoor(recipeOutput, BlockInit.TORREYA_DOOR.get(), BlockInit.TORREYA_PLANKS.get());
+        addFence(recipeOutput, BlockInit.TORREYA_FENCE.get(), BlockInit.TORREYA_PLANKS.get());
+        addFenceGate(recipeOutput, BlockInit.TORREYA_FENCE_GATE.get(), BlockInit.TORREYA_PLANKS.get());
+        addPlanks(recipeOutput, BlockInit.TORREYA_PLANKS.get(), ESTags.Items.TORREYA_LOGS);
+        addWood(recipeOutput, BlockInit.TORREYA_WOOD.get(), BlockInit.TORREYA_LOG.get());
+        addStrippedWood(recipeOutput, BlockInit.STRIPPED_TORREYA_WOOD.get(), BlockInit.STRIPPED_TORREYA_LOG.get());
+        addPressurePlate(recipeOutput, BlockInit.TORREYA_PRESSURE_PLATE.get(), BlockInit.TORREYA_PLANKS.get());
+        addSlab(recipeOutput, BlockInit.TORREYA_SLAB.get(), BlockInit.TORREYA_PLANKS.get());
+        addStairs(recipeOutput, BlockInit.TORREYA_STAIRS.get(), BlockInit.TORREYA_PLANKS.get());
+        addTrapdoor(recipeOutput, BlockInit.TORREYA_TRAPDOOR.get(), BlockInit.TORREYA_PLANKS.get());
+        addSign(recipeOutput, ItemInit.TORREYA_SIGN.get(), BlockInit.TORREYA_PLANKS.get());
+        hangingSign(recipeOutput, ItemInit.TORREYA_HANGING_SIGN.get(), BlockInit.STRIPPED_TORREYA_LOG.get());
+        addBoat(recipeOutput, ItemInit.TORREYA_BOAT.get(), ItemInit.TORREYA_CHEST_BOAT.get(), BlockInit.TORREYA_PLANKS.get());
     }
 
     private void addStoneRecipes(RecipeOutput recipeOutput) {

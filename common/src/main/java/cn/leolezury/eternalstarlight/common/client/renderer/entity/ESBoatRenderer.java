@@ -94,10 +94,10 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
 
     @Override
     public ResourceLocation getTextureLocation(ESBoat entity) {
-        return this.boatResources.get(entity.getSLBoatType()).getFirst();
+        return this.boatResources.get(entity.getESBoatType()).getFirst();
     }
 
     public Pair<ResourceLocation, BoatModel> getModelWithLocation(ESBoat boat) {
-        return this.boatResources.get(boat.getSLBoatType());
+        return this.boatResources.get(boat.getESBoatType());
     }
 }

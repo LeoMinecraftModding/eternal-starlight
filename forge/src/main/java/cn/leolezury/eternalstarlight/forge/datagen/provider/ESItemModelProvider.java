@@ -97,27 +97,6 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.NORTHLAND_BOAT.get());
         basicItem(ItemInit.NORTHLAND_CHEST_BOAT.get());
 
-        basicItemWithBlockTexture(ItemInit.SCARLET_SAPLING.get());
-        basicBlockItem(ItemInit.SCARLET_LEAVES.get());
-        basicBlockItem(ItemInit.SCARLET_LEAVES_PILE.get());
-        basicBlockItem(ItemInit.SCARLET_LOG.get());
-        basicBlockItem(ItemInit.SCARLET_WOOD.get());
-        basicBlockItem(ItemInit.SCARLET_PLANKS.get());
-        basicBlockItem(ItemInit.STRIPPED_SCARLET_LOG.get());
-        basicBlockItem(ItemInit.STRIPPED_SCARLET_WOOD.get());
-        basicItem(ItemInit.SCARLET_DOOR.get());
-        trapdoor(ItemInit.SCARLET_TRAPDOOR.get());
-        basicBlockItem(ItemInit.SCARLET_PRESSURE_PLATE.get());
-        button(ItemInit.SCARLET_BUTTON.get(), ItemInit.SCARLET_PLANKS.get());
-        fence(ItemInit.SCARLET_FENCE.get(), ItemInit.SCARLET_PLANKS.get());
-        basicBlockItem(ItemInit.SCARLET_FENCE_GATE.get());
-        basicBlockItem(ItemInit.SCARLET_SLAB.get());
-        basicBlockItem(ItemInit.SCARLET_STAIRS.get());
-        basicItem(ItemInit.SCARLET_SIGN.get());
-        basicItem(ItemInit.SCARLET_HANGING_SIGN.get());
-        basicItem(ItemInit.SCARLET_BOAT.get());
-        basicItem(ItemInit.SCARLET_CHEST_BOAT.get());
-
         basicItemWithBlockTexture(ItemInit.STARLIGHT_MANGROVE_SAPLING.get());
         basicBlockItem(ItemInit.STARLIGHT_MANGROVE_LEAVES.get());
         basicBlockItem(ItemInit.STARLIGHT_MANGROVE_LOG.get());
@@ -139,6 +118,47 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get());
         basicBlockItem(ItemInit.STARLIGHT_MANGROVE_ROOTS.get());
         basicBlockItem(ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+
+        basicItemWithBlockTexture(ItemInit.SCARLET_SAPLING.get());
+        basicBlockItem(ItemInit.SCARLET_LEAVES.get());
+        basicBlockItem(ItemInit.SCARLET_LEAVES_PILE.get());
+        basicBlockItem(ItemInit.SCARLET_LOG.get());
+        basicBlockItem(ItemInit.SCARLET_WOOD.get());
+        basicBlockItem(ItemInit.SCARLET_PLANKS.get());
+        basicBlockItem(ItemInit.STRIPPED_SCARLET_LOG.get());
+        basicBlockItem(ItemInit.STRIPPED_SCARLET_WOOD.get());
+        basicItem(ItemInit.SCARLET_DOOR.get());
+        trapdoor(ItemInit.SCARLET_TRAPDOOR.get());
+        basicBlockItem(ItemInit.SCARLET_PRESSURE_PLATE.get());
+        button(ItemInit.SCARLET_BUTTON.get(), ItemInit.SCARLET_PLANKS.get());
+        fence(ItemInit.SCARLET_FENCE.get(), ItemInit.SCARLET_PLANKS.get());
+        basicBlockItem(ItemInit.SCARLET_FENCE_GATE.get());
+        basicBlockItem(ItemInit.SCARLET_SLAB.get());
+        basicBlockItem(ItemInit.SCARLET_STAIRS.get());
+        basicItem(ItemInit.SCARLET_SIGN.get());
+        basicItem(ItemInit.SCARLET_HANGING_SIGN.get());
+        basicItem(ItemInit.SCARLET_BOAT.get());
+        basicItem(ItemInit.SCARLET_CHEST_BOAT.get());
+
+        basicItemWithBlockTexture(ItemInit.TORREYA_SAPLING.get());
+        basicBlockItem(ItemInit.TORREYA_LEAVES.get());
+        basicBlockItem(ItemInit.TORREYA_LOG.get());
+        basicBlockItem(ItemInit.TORREYA_WOOD.get());
+        basicBlockItem(ItemInit.TORREYA_PLANKS.get());
+        basicBlockItem(ItemInit.STRIPPED_TORREYA_LOG.get());
+        basicBlockItem(ItemInit.STRIPPED_TORREYA_WOOD.get());
+        basicItem(ItemInit.TORREYA_DOOR.get());
+        trapdoor(ItemInit.TORREYA_TRAPDOOR.get());
+        basicBlockItem(ItemInit.TORREYA_PRESSURE_PLATE.get());
+        button(ItemInit.TORREYA_BUTTON.get(), ItemInit.TORREYA_PLANKS.get());
+        fence(ItemInit.TORREYA_FENCE.get(), ItemInit.TORREYA_PLANKS.get());
+        basicBlockItem(ItemInit.TORREYA_FENCE_GATE.get());
+        basicBlockItem(ItemInit.TORREYA_SLAB.get());
+        basicBlockItem(ItemInit.TORREYA_STAIRS.get());
+        basicItem(ItemInit.TORREYA_SIGN.get());
+        basicItem(ItemInit.TORREYA_HANGING_SIGN.get());
+        basicItem(ItemInit.TORREYA_BOAT.get());
+        basicItem(ItemInit.TORREYA_CHEST_BOAT.get());
 
         basicItemWithBlockTexture(ItemInit.STARLIGHT_FLOWER.get());
         basicItemWithBlockTexture(ItemInit.CONEBLOOM.get());

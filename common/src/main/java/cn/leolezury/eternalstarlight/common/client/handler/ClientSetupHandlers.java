@@ -83,7 +83,8 @@ public class ClientSetupHandlers {
             BlockInit.STARLIGHT_MANGROVE_ROOTS,
             BlockInit.MUDDY_STARLIGHT_MANGROVE_ROOTS,
             BlockInit.SCARLET_LEAVES,
-            BlockInit.SCARLET_LEAVES_PILE
+            BlockInit.SCARLET_LEAVES_PILE,
+            BlockInit.TORREYA_LEAVES
     );
 
     public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
@@ -127,6 +128,10 @@ public class ClientSetupHandlers {
             BlockInit.POTTED_SCARLET_SAPLING,
             BlockInit.SCARLET_TRAPDOOR,
             BlockInit.SCARLET_DOOR,
+            BlockInit.TORREYA_SAPLING,
+            BlockInit.POTTED_TORREYA_SAPLING,
+            BlockInit.TORREYA_TRAPDOOR,
+            BlockInit.TORREYA_DOOR,
             BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.DOOMED_TORCH,

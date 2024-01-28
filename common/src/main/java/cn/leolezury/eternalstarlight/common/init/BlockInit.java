@@ -23,8 +23,8 @@ import java.util.Optional;
 public class BlockInit {
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, EternalStarlight.MOD_ID);
 
-    public static final RegistryObject<Block, Block> BERRIES_VINES = BLOCKS.register("berries_vines", () -> new BerriesVineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<Block, Block> BERRIES_VINES_PLANT = BLOCKS.register("berries_vines_plant", () -> new BerriesVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block, Block> BERRIES_VINES = BLOCKS.register("berries_vines", () -> new BerriesVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<Block, Block> BERRIES_VINES_PLANT = BLOCKS.register("berries_vines_plant", () -> new BerriesVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> CAVE_MOSS = BLOCKS.register("cave_moss", () -> new CaveMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel((state) -> 7).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> CAVE_MOSS_PLANT = BLOCKS.register("cave_moss_plant", () -> new CaveMossPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel((state) -> 7).mapColor(MapColor.COLOR_GREEN)));
     public static final RegistryObject<Block, Block> ABYSSAL_KELP = BLOCKS.register("abyssal_kelp", () -> new AbyssalKelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP).lightLevel(CaveVines.emission(14))));
@@ -234,6 +234,46 @@ public class BlockInit {
             () -> new WallHangingSignBlock(ESWoodTypes.SCARLET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_SAPLING = BLOCKS.register("scarlet_sapling", () -> new SaplingBlock(new TreeGrower("scarlet", Optional.empty(), Optional.of(ConfiguredFeatureInit.SCARLET), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> POTTED_SCARLET_SAPLING = BLOCKS.register("potted_scarlet_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SCARLET_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
+
+    // torreya wood
+    public static final RegistryObject<Block, Block> TORREYA_LEAVES = BLOCKS.register("torreya_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> TORREYA_LOG = BLOCKS.register("torreya_log",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_WOOD = BLOCKS.register("torreya_wood",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_PLANKS = BLOCKS.register("torreya_planks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_TORREYA_LOG = BLOCKS.register("stripped_torreya_log",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> STRIPPED_TORREYA_WOOD = BLOCKS.register("stripped_torreya_wood",
+            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, DoorBlock> TORREYA_DOOR = BLOCKS.register("torreya_door",
+            () -> new DoorBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, TrapDoorBlock> TORREYA_TRAPDOOR = BLOCKS.register("torreya_trapdoor",
+            () -> new TrapDoorBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, PressurePlateBlock> TORREYA_PRESSURE_PLATE = BLOCKS.register("torreya_pressure_plate",
+            () -> new PressurePlateBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, ButtonBlock> TORREYA_BUTTON = BLOCKS.register("torreya_button",
+            () -> new ButtonBlock(ESWoodTypes.TORREYA_SET, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, FenceBlock> TORREYA_FENCE = BLOCKS.register("torreya_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, FenceGateBlock> TORREYA_FENCE_GATE = BLOCKS.register("torreya_fence_gate",
+            () -> new FenceGateBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, SlabBlock> TORREYA_SLAB = BLOCKS.register("torreya_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, StairBlock> TORREYA_STAIRS = BLOCKS.register("torreya_stairs",
+            () -> new StairBlock(TORREYA_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_SIGN = BLOCKS.register("torreya_sign",
+            () -> new StandingSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_WALL_SIGN = BLOCKS.register("torreya_wall_sign",
+            () -> new WallSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_HANGING_SIGN = BLOCKS.register("torreya_hanging_sign",
+            () -> new CeilingHangingSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_WALL_HANGING_SIGN = BLOCKS.register("torreya_wall_hanging_sign",
+            () -> new WallHangingSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_SAPLING = BLOCKS.register("torreya_sapling", () -> new SaplingBlock(new TreeGrower("torreya", Optional.empty(), /*Optional.of(ConfiguredFeatureInit.TORREYA)*/Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> POTTED_TORREYA_SAPLING = BLOCKS.register("potted_torreya_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, TORREYA_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
 
     // grimstone
     public static final RegistryObject<Block, Block> GRIMSTONE = BLOCKS.register("grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));

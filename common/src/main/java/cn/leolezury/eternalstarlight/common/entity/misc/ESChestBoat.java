@@ -99,11 +99,12 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
     }
 
     public Item getDropItem() {
-        return switch (this.getSLBoatType()) {
+        return switch (this.getESBoatType()) {
             case LUNAR -> ItemInit.LUNAR_CHEST_BOAT.get();
             case NORTHLAND -> ItemInit.NORTHLAND_CHEST_BOAT.get();
             case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get();
             case SCARLET -> ItemInit.SCARLET_CHEST_BOAT.get();
+            case TORREYA -> ItemInit.TORREYA_CHEST_BOAT.get();
         };
     }
 

@@ -112,28 +112,6 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> NORTHLAND_BOAT = registerItem("northland_boat", () -> new ESBoatItem(false, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> NORTHLAND_CHEST_BOAT = registerItem("northland_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
 
-    // scarlet wood
-    public static final RegistryObject<Item, Item> SCARLET_SAPLING = registerItem("scarlet_sapling", () -> new BlockItem(BlockInit.SCARLET_SAPLING.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_LEAVES = registerItem("scarlet_leaves", () -> new BlockItem(BlockInit.SCARLET_LEAVES.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_LEAVES_PILE = registerItem("scarlet_leaves_pile", () -> new BlockItem(BlockInit.SCARLET_LEAVES_PILE.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_LOG = registerItem("scarlet_log", () -> new BlockItem(BlockInit.SCARLET_LOG.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_WOOD = registerItem("scarlet_wood", () -> new BlockItem(BlockInit.SCARLET_WOOD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_PLANKS = registerItem("scarlet_planks", () -> new BlockItem(BlockInit.SCARLET_PLANKS.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> STRIPPED_SCARLET_LOG = registerItem("stripped_scarlet_log", () -> new BlockItem(BlockInit.STRIPPED_SCARLET_LOG.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> STRIPPED_SCARLET_WOOD = registerItem("stripped_scarlet_wood", () -> new BlockItem(BlockInit.STRIPPED_SCARLET_WOOD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_DOOR = registerItem("scarlet_door", () -> new BlockItem(BlockInit.SCARLET_DOOR.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_TRAPDOOR = registerItem("scarlet_trapdoor", () -> new BlockItem(BlockInit.SCARLET_TRAPDOOR.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_PRESSURE_PLATE = registerItem("scarlet_pressure_plate", () -> new BlockItem(BlockInit.SCARLET_PRESSURE_PLATE.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_BUTTON = registerItem("scarlet_button", () -> new BlockItem(BlockInit.SCARLET_BUTTON.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_FENCE = registerItem("scarlet_fence", () -> new BlockItem(BlockInit.SCARLET_FENCE.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_FENCE_GATE = registerItem("scarlet_fence_gate", () -> new BlockItem(BlockInit.SCARLET_FENCE_GATE.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_SLAB = registerItem("scarlet_slab", () -> new BlockItem(BlockInit.SCARLET_SLAB.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_STAIRS = registerItem("scarlet_stairs", () -> new BlockItem(BlockInit.SCARLET_STAIRS.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> SCARLET_SIGN = registerItem("scarlet_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.SCARLET_SIGN.get(), BlockInit.SCARLET_WALL_SIGN.get()));
-    public static final RegistryObject<Item, Item> SCARLET_HANGING_SIGN = registerItem("scarlet_hanging_sign", () -> new HangingSignItem(BlockInit.SCARLET_HANGING_SIGN.get(), BlockInit.SCARLET_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
-    public static final RegistryObject<Item, Item> SCARLET_BOAT = registerItem("scarlet_boat", () -> new ESBoatItem(false, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item, Item> SCARLET_CHEST_BOAT = registerItem("scarlet_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
-
     // starlight mangrove wood
     public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_SAPLING = registerItem("starlight_mangrove_sapling", () -> new BlockItem(BlockInit.STARLIGHT_MANGROVE_SAPLING.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_LEAVES = registerItem("starlight_mangrove_leaves", () -> new BlockItem(BlockInit.STARLIGHT_MANGROVE_LEAVES.get(), new Item.Properties()));
@@ -156,6 +134,49 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_HANGING_SIGN = registerItem("starlight_mangrove_hanging_sign", () -> new HangingSignItem(BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(), BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
     public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_BOAT = registerItem("starlight_mangrove_boat", () -> new ESBoatItem(false, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_CHEST_BOAT = registerItem("starlight_mangrove_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
+
+    // scarlet wood
+    public static final RegistryObject<Item, Item> SCARLET_SAPLING = registerItem("scarlet_sapling", () -> new BlockItem(BlockInit.SCARLET_SAPLING.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_LEAVES = registerItem("scarlet_leaves", () -> new BlockItem(BlockInit.SCARLET_LEAVES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_LEAVES_PILE = registerItem("scarlet_leaves_pile", () -> new BlockItem(BlockInit.SCARLET_LEAVES_PILE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_LOG = registerItem("scarlet_log", () -> new BlockItem(BlockInit.SCARLET_LOG.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_WOOD = registerItem("scarlet_wood", () -> new BlockItem(BlockInit.SCARLET_WOOD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_PLANKS = registerItem("scarlet_planks", () -> new BlockItem(BlockInit.SCARLET_PLANKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STRIPPED_SCARLET_LOG = registerItem("stripped_scarlet_log", () -> new BlockItem(BlockInit.STRIPPED_SCARLET_LOG.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STRIPPED_SCARLET_WOOD = registerItem("stripped_scarlet_wood", () -> new BlockItem(BlockInit.STRIPPED_SCARLET_WOOD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_DOOR = registerItem("scarlet_door", () -> new BlockItem(BlockInit.SCARLET_DOOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_TRAPDOOR = registerItem("scarlet_trapdoor", () -> new BlockItem(BlockInit.SCARLET_TRAPDOOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_PRESSURE_PLATE = registerItem("scarlet_pressure_plate", () -> new BlockItem(BlockInit.SCARLET_PRESSURE_PLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_BUTTON = registerItem("scarlet_button", () -> new BlockItem(BlockInit.SCARLET_BUTTON.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_FENCE = registerItem("scarlet_fence", () -> new BlockItem(BlockInit.SCARLET_FENCE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_FENCE_GATE = registerItem("scarlet_fence_gate", () -> new BlockItem(BlockInit.SCARLET_FENCE_GATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_SLAB = registerItem("scarlet_slab", () -> new BlockItem(BlockInit.SCARLET_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_STAIRS = registerItem("scarlet_stairs", () -> new BlockItem(BlockInit.SCARLET_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SCARLET_SIGN = registerItem("scarlet_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.SCARLET_SIGN.get(), BlockInit.SCARLET_WALL_SIGN.get()));
+    public static final RegistryObject<Item, Item> SCARLET_HANGING_SIGN = registerItem("scarlet_hanging_sign", () -> new HangingSignItem(BlockInit.SCARLET_HANGING_SIGN.get(), BlockInit.SCARLET_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+    public static final RegistryObject<Item, Item> SCARLET_BOAT = registerItem("scarlet_boat", () -> new ESBoatItem(false, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item, Item> SCARLET_CHEST_BOAT = registerItem("scarlet_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
+
+    // torreya wood
+    public static final RegistryObject<Item, Item> TORREYA_SAPLING = registerItem("torreya_sapling", () -> new BlockItem(BlockInit.TORREYA_SAPLING.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_LEAVES = registerItem("torreya_leaves", () -> new BlockItem(BlockInit.TORREYA_LEAVES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_LOG = registerItem("torreya_log", () -> new BlockItem(BlockInit.TORREYA_LOG.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_WOOD = registerItem("torreya_wood", () -> new BlockItem(BlockInit.TORREYA_WOOD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_PLANKS = registerItem("torreya_planks", () -> new BlockItem(BlockInit.TORREYA_PLANKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STRIPPED_TORREYA_LOG = registerItem("stripped_torreya_log", () -> new BlockItem(BlockInit.STRIPPED_TORREYA_LOG.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STRIPPED_TORREYA_WOOD = registerItem("stripped_torreya_wood", () -> new BlockItem(BlockInit.STRIPPED_TORREYA_WOOD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_DOOR = registerItem("torreya_door", () -> new BlockItem(BlockInit.TORREYA_DOOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_TRAPDOOR = registerItem("torreya_trapdoor", () -> new BlockItem(BlockInit.TORREYA_TRAPDOOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_PRESSURE_PLATE = registerItem("torreya_pressure_plate", () -> new BlockItem(BlockInit.TORREYA_PRESSURE_PLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_BUTTON = registerItem("torreya_button", () -> new BlockItem(BlockInit.TORREYA_BUTTON.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_FENCE = registerItem("torreya_fence", () -> new BlockItem(BlockInit.TORREYA_FENCE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_FENCE_GATE = registerItem("torreya_fence_gate", () -> new BlockItem(BlockInit.TORREYA_FENCE_GATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_SLAB = registerItem("torreya_slab", () -> new BlockItem(BlockInit.TORREYA_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_STAIRS = registerItem("torreya_stairs", () -> new BlockItem(BlockInit.TORREYA_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_SIGN = registerItem("torreya_sign", () -> new SignItem(new Item.Properties().stacksTo(32), BlockInit.TORREYA_SIGN.get(), BlockInit.TORREYA_WALL_SIGN.get()));
+    public static final RegistryObject<Item, Item> TORREYA_HANGING_SIGN = registerItem("torreya_hanging_sign", () -> new HangingSignItem(BlockInit.TORREYA_HANGING_SIGN.get(), BlockInit.TORREYA_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+    public static final RegistryObject<Item, Item> TORREYA_BOAT = registerItem("torreya_boat", () -> new ESBoatItem(false, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item, Item> TORREYA_CHEST_BOAT = registerItem("torreya_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
 
     // common grass
     public static final RegistryObject<Item, Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(BlockInit.STARLIGHT_FLOWER.get(), new Item.Properties()));

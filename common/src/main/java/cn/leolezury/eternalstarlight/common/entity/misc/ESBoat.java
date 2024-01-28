@@ -29,17 +29,18 @@ public class ESBoat extends Boat {
         this.zo = z;
     }
 
-    public ESBoat.Type getSLBoatType() {
+    public ESBoat.Type getESBoatType() {
         return ESBoat.Type.byId(this.entityData.get(BOAT_TYPE));
     }
 
     @Override
     public Item getDropItem() {
-        return switch (this.getSLBoatType()) {
+        return switch (this.getESBoatType()) {
             case LUNAR -> ItemInit.LUNAR_BOAT.get();
             case NORTHLAND -> ItemInit.NORTHLAND_BOAT.get();
             case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_BOAT.get();
             case SCARLET -> ItemInit.SCARLET_BOAT.get();
+            case TORREYA -> ItemInit.TORREYA_BOAT.get();
         };
     }
 
@@ -55,7 +56,7 @@ public class ESBoat extends Boat {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound) {
-        compound.putString("Type", this.getSLBoatType().getName());
+        compound.putString("Type", this.getESBoatType().getName());
     }
 
     @Override
@@ -69,7 +70,8 @@ public class ESBoat extends Boat {
         LUNAR(BlockInit.LUNAR_PLANKS.get(), "lunar"),
         NORTHLAND(BlockInit.NORTHLAND_PLANKS.get(), "northland"),
         STARLIGHT_MANGROVE(BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
-        SCARLET(BlockInit.SCARLET_PLANKS.get(), "scarlet");
+        SCARLET(BlockInit.SCARLET_PLANKS.get(), "scarlet"),
+        TORREYA(BlockInit.TORREYA_PLANKS.get(), "torreya");
 
         private final String name;
         private final Block block;

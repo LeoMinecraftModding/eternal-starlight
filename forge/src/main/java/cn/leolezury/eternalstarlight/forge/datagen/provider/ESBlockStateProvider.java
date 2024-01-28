@@ -96,6 +96,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
         cross(BlockInit.SCARLET_SAPLING.get());
         pottedPlant(BlockInit.POTTED_SCARLET_SAPLING.get(), blockTexture(BlockInit.SCARLET_SAPLING.get()));
 
+        leaves(BlockInit.TORREYA_LEAVES.get());
+        woodSet(BlockInit.TORREYA_LOG.get(), BlockInit.TORREYA_WOOD.get(), BlockInit.TORREYA_PLANKS.get(), BlockInit.STRIPPED_TORREYA_LOG.get(), BlockInit.STRIPPED_TORREYA_WOOD.get(), BlockInit.TORREYA_DOOR.get(), true, BlockInit.TORREYA_TRAPDOOR.get(), true, BlockInit.TORREYA_PRESSURE_PLATE.get(), BlockInit.TORREYA_BUTTON.get(), BlockInit.TORREYA_FENCE.get(), BlockInit.TORREYA_FENCE_GATE.get(), BlockInit.TORREYA_SLAB.get(), BlockInit.TORREYA_STAIRS.get(), BlockInit.TORREYA_SIGN.get(), BlockInit.TORREYA_WALL_SIGN.get(), BlockInit.TORREYA_HANGING_SIGN.get(), BlockInit.TORREYA_WALL_HANGING_SIGN.get());
+        cross(BlockInit.TORREYA_SAPLING.get());
+        pottedPlant(BlockInit.POTTED_TORREYA_SAPLING.get(), blockTexture(BlockInit.TORREYA_SAPLING.get()));
+
         // stones
         simpleBlock(BlockInit.GRIMSTONE.get());
         simpleBlock(BlockInit.CHISELED_GRIMSTONE.get());
