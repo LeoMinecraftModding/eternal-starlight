@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.client.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,6 +14,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 
 import java.util.Map;
@@ -82,5 +84,15 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         ClientSetupHandlers.registerLayers(event::registerLayerDefinition);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterOverlay(RegisterGuiOverlaysEvent event) {
+        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (gui, guiGraphics, partialTicks, width, height) -> {
+            ClientHandlers.renderEtherErosion(gui, guiGraphics);
+        });
+        event.registerAbove(VanillaGuiOverlay.ARMOR_LEVEL.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_armor"), (gui, guiGraphics, partialTicks, width, height) -> {
+            ClientHandlers.renderEtherArmor(guiGraphics, width, height);
+        });
     }
 }

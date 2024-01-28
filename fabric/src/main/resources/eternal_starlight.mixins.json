@@ -11,6 +11,7 @@
     "BossHealthOverlayMixin",
     "CameraMixin",
     "FogRendererMixin",
+    "GuiMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",

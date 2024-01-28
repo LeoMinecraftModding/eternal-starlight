@@ -30,8 +30,8 @@ public abstract class LiquidBlockMixin {
     public void es_shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
         if (this.fluid == FluidInit.ETHER_FLOWING.get() || this.fluid == FluidInit.ETHER_STILL.get()) {
             for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
-                BlockPos blockPos2 = blockPos.relative(direction.getOpposite());
-                if (!level.getFluidState(blockPos2).isEmpty() && !level.getBlockState(blockPos2).is(BlockInit.ETHER.get())) {
+                BlockPos relativePos = blockPos.relative(direction.getOpposite());
+                if (!level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(BlockInit.ETHER.get())) {
                     level.setBlockAndUpdate(blockPos, Blocks.QUARTZ_BLOCK.defaultBlockState());
                     this.fizz(level, blockPos);
                     cir.setReturnValue(false);

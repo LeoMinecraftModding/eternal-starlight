@@ -7,14 +7,18 @@ import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.FluidInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.util.BlockUtil;
+import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
@@ -25,6 +29,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 
@@ -39,6 +44,10 @@ public class ClientHandlers {
     private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_progress"), new ResourceLocation("boss_bar/blue_progress"), new ResourceLocation("boss_bar/red_progress"), new ResourceLocation("boss_bar/green_progress"), new ResourceLocation("boss_bar/yellow_progress"), new ResourceLocation("boss_bar/purple_progress"), new ResourceLocation("boss_bar/white_progress")};
     private static final ResourceLocation[] OVERLAY_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_background"), new ResourceLocation("boss_bar/notched_10_background"), new ResourceLocation("boss_bar/notched_12_background"), new ResourceLocation("boss_bar/notched_20_background")};
     private static final ResourceLocation[] OVERLAY_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_progress"), new ResourceLocation("boss_bar/notched_10_progress"), new ResourceLocation("boss_bar/notched_12_progress"), new ResourceLocation("boss_bar/notched_20_progress")};
+    private static final ResourceLocation ETHER_EROSION_OVERLAY = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/ether_erosion.png");
+    private static final ResourceLocation ETHER_ARMOR_EMPTY = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_empty.png");
+    private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
+    private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
 
     public static Vec3 computeCameraAngles(Vec3 angles) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
@@ -178,6 +187,46 @@ public class ClientHandlers {
             RenderSystem.enableBlend();
             guiGraphics.blitSprite(overlays[bossEvent.getOverlay().ordinal() - 1], 182, 5, 0, 0, x, y, progress, 5);
             RenderSystem.disableBlend();
+        }
+    }
+
+    public static void renderEtherErosion(Gui gui, GuiGraphics guiGraphics) {
+        float clientEtherTicksRaw = ESUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
+        float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getFrameTime(), 140f);
+        float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
+        if (clientEtherTicksRaw > 0) {
+            gui.renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
+        }
+    }
+
+    public static void renderEtherArmor(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.player.level().isClientSide && BlockUtil.isEntityInBlock(minecraft.player, BlockInit.ETHER.get())) {
+            minecraft.getProfiler().push("armor");
+            int initialX = screenWidth / 2 - 91;
+            int initialY = screenHeight - 39;
+            float maxHealth = (float) Math.max(minecraft.player.getAttributeValue(Attributes.MAX_HEALTH), Mth.ceil(minecraft.player.getHealth()));
+            int absorptionAmount = Mth.ceil(minecraft.player.getAbsorptionAmount());
+            int q = Mth.ceil((maxHealth + (float) absorptionAmount) / 2.0F / 10.0F);
+            int r = Math.max(10 - (q - 2), 3);
+            int armorValue = minecraft.player.getArmorValue();
+            int y = initialY - (q - 1) * r - 10;
+            for (int i = 0; i < 10; ++i) {
+                if (armorValue > 0) {
+                    int x = initialX + i * 8;
+                    if (i * 2 + 1 < armorValue) {
+                        guiGraphics.blit(ETHER_ARMOR_FULL, x, y, 0f, 0f, 9, 9, 9, 9);
+                    }
+
+                    if (i * 2 + 1 == armorValue) {
+                        guiGraphics.blit(ETHER_ARMOR_HALF, x, y, 0f, 0f, 9, 9, 9, 9);
+                    }
+
+                    if (i * 2 + 1 > armorValue) {
+                        guiGraphics.blit(ETHER_ARMOR_EMPTY, x, y, 0f, 0f, 9, 9, 9, 9);
+                    }
+                }
+            }
         }
     }
 }

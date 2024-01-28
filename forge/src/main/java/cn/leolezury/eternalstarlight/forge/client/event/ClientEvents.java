@@ -26,6 +26,7 @@ public class ClientEvents {
     public static void onRenderFog(ViewportEvent.RenderFog event) {
         ClientHandlers.onRenderFog(event.getCamera());
     }
+
     @SubscribeEvent
     public static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
         if (ClientHandlers.renderBossBar(event.getGuiGraphics(), event.getBossEvent(), event.getX(), event.getY())) {

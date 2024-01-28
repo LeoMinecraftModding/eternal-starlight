@@ -61,8 +61,6 @@ accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSele
 accessible class net/minecraft/data/models/ItemModelGenerators$TrimModelData
 accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MODELS Ljava/util/List;
 
-# client init
-
 # sky rendering
 accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
 accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
@@ -70,6 +68,9 @@ accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/moj
 # player animator
 accessible field net/minecraft/client/model/PlayerModel cloak Lnet/minecraft/client/model/geom/ModelPart;
 accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer layers Ljava/util/List;
+
+# Gui
+accessible method net/minecraft/client/gui/Gui renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
 
 # portal
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;

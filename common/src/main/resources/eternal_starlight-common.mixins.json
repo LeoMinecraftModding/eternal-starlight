@@ -20,7 +20,6 @@
   ],
   "client": [
     "EntityRenderDispatcherMixin",
-    "GuiMixin",
     "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
