@@ -20,12 +20,12 @@
   ],
   "client": [
     "EntityRenderDispatcherMixin",
+    "GuiMixin",
     "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "PlayerModelMixin",
-    "PlayerRendererMixin",
-    "GuiMixin"
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

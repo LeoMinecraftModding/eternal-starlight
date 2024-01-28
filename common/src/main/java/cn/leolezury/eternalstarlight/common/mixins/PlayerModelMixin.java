@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.mixins;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.ESKeyframeAnimations;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Environment(EnvType.CLIENT)
 @Mixin(PlayerModel.class)
 public abstract class PlayerModelMixin<T extends LivingEntity> implements AnimatedModel {
     @Unique
