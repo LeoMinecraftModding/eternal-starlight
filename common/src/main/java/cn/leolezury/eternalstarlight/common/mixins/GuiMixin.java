@@ -22,9 +22,10 @@ public abstract class GuiMixin {
 
     @Inject(method = "render", at = @At("TAIL"))
     private void es_render(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
-        float clientEtherTicks = Math.min(ESUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks") + Minecraft.getInstance().getFrameTime(), 140f);
+        int clientEtherTicksRaw = ESUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
+        float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getFrameTime(), 140f);
         float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
-        if (clientEtherTicks > 0) {
+        if (clientEtherTicksRaw > 0) {
             renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
         }
     }
