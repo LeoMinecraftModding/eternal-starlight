@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "type": "directory",
+      "source": "eternal_starlight:gui/sprites",
+      "prefix": ""
+    }
+  ]
+}

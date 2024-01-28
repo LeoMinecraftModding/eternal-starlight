@@ -55,7 +55,7 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
             rightArm.xRot = rightArm.xRot - 1.57f - armXRot;
         }
         this.head.y += 12.0F;
-        this.hat.y += 12.0F;
+        this.head.visible = true;
         this.body.y += 12.0F;
         this.leftArm.y += 12.0F;
         this.rightArm.y += 12.0F;

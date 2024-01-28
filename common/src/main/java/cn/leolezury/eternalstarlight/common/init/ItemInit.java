@@ -455,7 +455,7 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> COOKED_LUMINARIS = registerItem("cooked_luminaris", () -> new Item(new Item.Properties().food(Foods.COOKED_SALMON)));
 
     // misc
-    public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> ESPlatform.INSTANCE.createBucket(FluidInit.ETHER_STILL, new Item.Properties()));
+    public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> ESPlatform.INSTANCE.createBucket(FluidInit.ETHER_STILL, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(BlockInit.ENERGY_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(BlockInit.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
