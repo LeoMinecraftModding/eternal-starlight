@@ -16,6 +16,7 @@ public class BiomeDataInit {
     public static final ResourceKey<BiomeData> STARLIGHT_PERMAFROST_FOREST = create("starlight_permafrost_forest");
     public static final ResourceKey<BiomeData> DARK_SWAMP = create("dark_swamp");
     public static final ResourceKey<BiomeData> SCARLET_FOREST = create("scarlet_forest");
+    public static final ResourceKey<BiomeData> TORREYA_FOREST = create("torreya_forest");
     public static final ResourceKey<BiomeData> CRYSTALLIZED_DESERT = create("crystallized_desert");
     public static final ResourceKey<BiomeData> SHIMMER_RIVER = create("shimmer_river");
     public static final ResourceKey<BiomeData> ETHER_RIVER = create("ether_river");
@@ -32,6 +33,7 @@ public class BiomeDataInit {
         context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP), 61, 5).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
         context.register(STARLIGHT_PERMAFROST_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST), 110, 55).withTemperatures(BiomeData.Temperature.COLD, BiomeData.Temperature.COLD_EXTREME).hasBeaches(false).hasRivers(false).build());
         context.register(SCARLET_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SCARLET_FOREST), 63, 12).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT).build());
+        context.register(TORREYA_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.TORREYA_FOREST), 63, 12).build());
         context.register(CRYSTALLIZED_DESERT, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT), 60, 9).withTemperatures(BiomeData.Temperature.HOT, BiomeData.Temperature.HOT_EXTREME).hasRivers(false).build());
         context.register(SHIMMER_RIVER, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 40, 3).build());
         context.register(SHIMMER_RIVER_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER), 45, 3).build());

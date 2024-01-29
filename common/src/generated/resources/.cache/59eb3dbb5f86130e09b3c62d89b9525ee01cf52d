@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-28T22:04:39.1129451	Loot Tables
+// 1.20.4	2024-01-29T12:10:30.6655842	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -314,6 +314,8 @@ b1a48c27be6a3eb00b4b401f36157abfedf4f115 data/eternal_starlight/loot_tables/bloc
 9f2784cbb9f08536f025c11b46e58bc543f8d22c data/eternal_starlight/loot_tables/blocks/torreya_slab.json
 32fdad2c401c8e4a4d30994368dfa0e7240a5367 data/eternal_starlight/loot_tables/blocks/torreya_stairs.json
 dc935db42c019a98328f2bcda5c2dabc9effa949 data/eternal_starlight/loot_tables/blocks/torreya_trapdoor.json
+e5d117ba37e8e9a56d0982745b067705d9c11eb5 data/eternal_starlight/loot_tables/blocks/torreya_vines.json
+91eed1a32c96d1c0f341893895482300bfa1b3cc data/eternal_starlight/loot_tables/blocks/torreya_vines_plant.json
 bcb2153ed196703b0318e0047d0c88b058089a61 data/eternal_starlight/loot_tables/blocks/torreya_wall_hanging_sign.json
 64e58fbf8fb21e975c0929e257181e6b3ba0da88 data/eternal_starlight/loot_tables/blocks/torreya_wall_sign.json
 5c0e4d21a440ea886e7d31bdcaaa6995bfaadb06 data/eternal_starlight/loot_tables/blocks/torreya_wood.json

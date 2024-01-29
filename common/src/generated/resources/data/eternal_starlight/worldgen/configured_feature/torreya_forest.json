@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "eternal_starlight:torreya_tree_checked",
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": "eternal_starlight:torreya_tree_checked"
+      }
+    ]
+  }
+}

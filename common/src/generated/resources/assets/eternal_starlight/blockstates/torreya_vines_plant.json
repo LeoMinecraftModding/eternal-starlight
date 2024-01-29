@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "top=false": {
+      "model": "eternal_starlight:block/torreya_vines_plant"
+    },
+    "top=true": {
+      "model": "eternal_starlight:block/torreya_vines_plant_top"
+    }
+  }
+}

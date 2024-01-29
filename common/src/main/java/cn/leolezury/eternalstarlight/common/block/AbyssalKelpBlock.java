@@ -36,7 +36,7 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 
     public AbyssalKelpBlock(Properties properties) {
         super(properties, Direction.UP, SHAPE, true, 0.14);
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(BERRIES, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(BERRIES, false));
     }
 
     @Override

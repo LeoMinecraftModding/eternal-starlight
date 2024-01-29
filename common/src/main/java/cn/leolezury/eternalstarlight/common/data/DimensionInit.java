@@ -151,6 +151,7 @@ public class DimensionInit {
                 biomeHolderGetter.getOrThrow(BiomeInit.STARLIGHT_PERMAFROST_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.DARK_SWAMP),
                 biomeHolderGetter.getOrThrow(BiomeInit.SCARLET_FOREST),
+                biomeHolderGetter.getOrThrow(BiomeInit.TORREYA_FOREST),
                 biomeHolderGetter.getOrThrow(BiomeInit.CRYSTALLIZED_DESERT),
                 biomeHolderGetter.getOrThrow(BiomeInit.SHIMMER_RIVER),
                 biomeHolderGetter.getOrThrow(BiomeInit.ETHER_RIVER),

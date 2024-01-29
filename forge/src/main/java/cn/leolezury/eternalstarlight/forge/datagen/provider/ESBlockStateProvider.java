@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.TorreyaVinesBlock;
+import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -100,6 +102,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         woodSet(BlockInit.TORREYA_LOG.get(), BlockInit.TORREYA_WOOD.get(), BlockInit.TORREYA_PLANKS.get(), BlockInit.STRIPPED_TORREYA_LOG.get(), BlockInit.STRIPPED_TORREYA_WOOD.get(), BlockInit.TORREYA_DOOR.get(), true, BlockInit.TORREYA_TRAPDOOR.get(), true, BlockInit.TORREYA_PRESSURE_PLATE.get(), BlockInit.TORREYA_BUTTON.get(), BlockInit.TORREYA_FENCE.get(), BlockInit.TORREYA_FENCE_GATE.get(), BlockInit.TORREYA_SLAB.get(), BlockInit.TORREYA_STAIRS.get(), BlockInit.TORREYA_SIGN.get(), BlockInit.TORREYA_WALL_SIGN.get(), BlockInit.TORREYA_HANGING_SIGN.get(), BlockInit.TORREYA_WALL_HANGING_SIGN.get());
         cross(BlockInit.TORREYA_SAPLING.get());
         pottedPlant(BlockInit.POTTED_TORREYA_SAPLING.get(), blockTexture(BlockInit.TORREYA_SAPLING.get()));
+        cross(BlockInit.TORREYA_VINES.get());
+        torreyaVines(BlockInit.TORREYA_VINES_PLANT.get());
 
         // stones
         simpleBlock(BlockInit.GRIMSTONE.get());
@@ -325,6 +329,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .end()
                 .end();
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+    }
+
+    private void torreyaVines(Block block) {
+        ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
+        ModelFile modelTop = models().cross(name(block) + "_top", blockTexture(block).withSuffix("_top")).renderType(CUTOUT);
+        onOffBlock(block, TorreyaVinesPlantBlock.TOP, modelTop, modelNormal);
     }
 
     private void vinesWithFruit(Block block) {

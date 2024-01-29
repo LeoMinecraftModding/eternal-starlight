@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-28T22:04:39.3949084	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-01-29T15:18:25.0077755	Tags for minecraft:item mod id eternal_starlight
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
@@ -16,7 +16,7 @@ fe7d71d80d64485ecd0b87a7a6499b699c4a4cf2 data/minecraft/tags/items/hoes.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/items/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/items/logs_that_burn.json
 7373d53b4e14f4583866fd3967d59f2a9f1ecde3 data/minecraft/tags/items/pickaxes.json
-79fb5c92e554157147da4e632f4df3af74d40541 data/minecraft/tags/items/planks.json
+a034799a9a254fe3ae790f0047b291599e115314 data/minecraft/tags/items/planks.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/items/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/items/saplings.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/items/signs.json

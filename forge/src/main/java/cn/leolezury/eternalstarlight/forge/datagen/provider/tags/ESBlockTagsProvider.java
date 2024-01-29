@@ -117,7 +117,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.LUNAR_PLANKS.get(),
                 BlockInit.NORTHLAND_PLANKS.get(),
                 BlockInit.STARLIGHT_MANGROVE_PLANKS.get(),
-                BlockInit.SCARLET_PLANKS.get()
+                BlockInit.SCARLET_PLANKS.get(),
+                BlockInit.TORREYA_PLANKS.get()
         );
         tag(BlockTags.WOODEN_FENCES).add(
                 BlockInit.LUNAR_FENCE.get(),
@@ -275,7 +276,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.CLIMBABLE).add(
                 BlockInit.BERRIES_VINES.get(),
-                BlockInit.BERRIES_VINES_PLANT.get()
+                BlockInit.BERRIES_VINES_PLANT.get(),
+                BlockInit.CAVE_MOSS.get(),
+                BlockInit.CAVE_MOSS_PLANT.get(),
+                BlockInit.TORREYA_VINES.get(),
+                BlockInit.TORREYA_VINES_PLANT.get()
         );
         tag(BlockTags.STANDING_SIGNS).add(
                 BlockInit.LUNAR_SIGN.get(),

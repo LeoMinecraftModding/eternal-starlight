@@ -159,6 +159,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.TORREYA_HANGING_SIGN.get());
         basicItem(ItemInit.TORREYA_BOAT.get());
         basicItem(ItemInit.TORREYA_CHEST_BOAT.get());
+        basicItemWithBlockTexture(ItemInit.TORREYA_VINES.get());
 
         basicItemWithBlockTexture(ItemInit.STARLIGHT_FLOWER.get());
         basicItemWithBlockTexture(ItemInit.CONEBLOOM.get());

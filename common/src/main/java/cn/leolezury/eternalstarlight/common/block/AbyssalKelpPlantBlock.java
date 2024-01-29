@@ -33,7 +33,7 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 
     public AbyssalKelpPlantBlock(Properties properties) {
         super(properties, Direction.UP, Shapes.block(), true);
-        this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, false));
     }
 
     @Override

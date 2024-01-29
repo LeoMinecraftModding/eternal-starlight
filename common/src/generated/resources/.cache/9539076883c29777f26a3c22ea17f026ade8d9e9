@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-28T22:04:39.2839732	Item Models: eternal_starlight
+// 1.20.4	2024-01-29T12:10:30.8256805	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -399,6 +399,7 @@ d580e7cf6d692d6428e732e7518c8c3f6e05ec17 assets/eternal_starlight/models/item/to
 19ac6cdf8170aa35d047eade5dce27a67d2f06e4 assets/eternal_starlight/models/item/torreya_slab.json
 876ec140012aedb80d3f2a8af4e15414cd696068 assets/eternal_starlight/models/item/torreya_stairs.json
 82e9c13ce53c7c6b608a8d4433eb8912250f1bde assets/eternal_starlight/models/item/torreya_trapdoor.json
+02c19cd59ece87d5642498eb7ed7f1a79be8cb48 assets/eternal_starlight/models/item/torreya_vines.json
 9c8cfc29e76e353c1867a0a6c1d563fcc3cf8bf9 assets/eternal_starlight/models/item/torreya_wood.json
 b48dcc603b063f4b6343c2c6c19f30d508a87635 assets/eternal_starlight/models/item/twilight_sand.json
 de5831c0b61c4533ea8737a79bab4d8ed378315b assets/eternal_starlight/models/item/twilight_sandstone.json

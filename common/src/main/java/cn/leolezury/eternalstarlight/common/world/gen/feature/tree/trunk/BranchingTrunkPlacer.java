@@ -34,7 +34,6 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
     private final IntProvider branchNum;
     private static final double SQRT_3 = Math.sqrt(3);
 
-
     public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, IntProvider branchLen, IntProvider branchNum) {
         this(baseHeight, randomHeightA, randomHeightB, ConstantInt.of(1), branchLen, ConstantInt.of(4), branchNum);
     }
@@ -73,9 +72,10 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
                 BlockPos pos = origin.offset(0, y, 0);
                 if (shouldAddLayer) {
                     BlockPos branchLayerPos;
+                    float yawOffset = random.nextFloat() * 360;
                     for (int i = 0; i < numBranches; i++) {
                         branchLayerPos = pos.offset(0, random.nextInt(5) - 2, 0);
-                        Vec3 vec3 = ESUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i);
+                        Vec3 vec3 = ESUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i + yawOffset);
                         BlockPos endPos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
                         List<int[]> points = ESUtil.getBresenham3DPoints(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ(), endPos.getX(), endPos.getY(), endPos.getZ());
                         for (int[] point : points) {
@@ -106,16 +106,16 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
                         BlockPos pos = origin.offset(x, y, z);
                         if (shouldAddLayer && x == 0 & z == 0) {
                             BlockPos branchLayerPos;
+                            float yawOffset = random.nextFloat() * 360;
                             for (int i = 0; i < numBranches; i++) {
                                 branchLayerPos = pos.offset(0, random.nextInt(5) - 2, 0);
-                                Vec3 vec3 = ESUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i);
+                                Vec3 vec3 = ESUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i + yawOffset);
                                 BlockPos endPos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
                                 List<int[]> points = ESUtil.getBresenham3DPoints(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ(), endPos.getX(), endPos.getY(), endPos.getZ());
                                 for (int[] point : points) {
                                     placeLog(level, placer, random, new BlockPos(point[0], point[1], point[2]), config);
                                 }
                                 int len = points.size();
-                                placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0], points.get(len - 1)[1], points.get(len - 1)[2]), config);
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
                                 placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);

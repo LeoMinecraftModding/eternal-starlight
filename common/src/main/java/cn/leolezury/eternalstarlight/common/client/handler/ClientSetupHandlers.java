@@ -132,6 +132,8 @@ public class ClientSetupHandlers {
             BlockInit.POTTED_TORREYA_SAPLING,
             BlockInit.TORREYA_TRAPDOOR,
             BlockInit.TORREYA_DOOR,
+            BlockInit.TORREYA_VINES,
+            BlockInit.TORREYA_VINES_PLANT,
             BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER,
             BlockInit.DOOMED_TORCH,
@@ -340,6 +342,8 @@ public class ClientSetupHandlers {
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.SCARLET), BoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ChestBoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.TORREYA), BoatModel::createBodyModel);
+        strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.TORREYA), ChestBoatModel::createBodyModel);
         strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
         strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
         strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));

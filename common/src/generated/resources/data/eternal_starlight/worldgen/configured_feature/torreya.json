@@ -1,0 +1,71 @@
+{
+  "type": "minecraft:tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "eternal_starlight:torreya_vines"
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_placer": {
+      "type": "eternal_starlight:torreya",
+      "offset": 0,
+      "radius": 5
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:torreya_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "true",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "force_dirt": false,
+    "ignore_vines": false,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 4,
+      "lower_size": 1,
+      "upper_size": 1
+    },
+    "trunk_placer": {
+      "type": "eternal_starlight:branching",
+      "base_height": 32,
+      "branch_layer_num": 4,
+      "branch_length": {
+        "type": "minecraft:uniform",
+        "value": {
+          "max_inclusive": 4,
+          "min_inclusive": 3
+        }
+      },
+      "branch_num": {
+        "type": "minecraft:uniform",
+        "value": {
+          "max_inclusive": 4,
+          "min_inclusive": 2
+        }
+      },
+      "height_rand_a": 2,
+      "height_rand_b": 10,
+      "trunk_radius": 1
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:torreya_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

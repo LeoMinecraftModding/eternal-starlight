@@ -26,7 +26,7 @@ public class BerriesVinesBlock extends GrowingPlantHeadBlock implements Bonemeal
 
     public BerriesVinesBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(BERRIES, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(BERRIES, false));
     }
 
     @Override

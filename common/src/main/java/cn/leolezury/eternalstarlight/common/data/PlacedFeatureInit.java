@@ -52,6 +52,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
     public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = create("starlight_mangrove_tree_checked");
     public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
+    public static final ResourceKey<PlacedFeature> TORREYA_TREE_CHECKED = create("torreya_tree_checked");
     public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = create("huge_glowing_mushroom_checked");
     public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = create("northland_on_snow");
     public static final ResourceKey<PlacedFeature> STARLIGHT_FOREST = create("starlight_forest");
@@ -59,6 +60,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> SWAMP_FOREST = create("swamp_forest");
     public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST = create("permafrost_forest");
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST = create("scarlet_forest");
+    public static final ResourceKey<PlacedFeature> TORREYA_FOREST = create("torreya_forest");
     public static final ResourceKey<PlacedFeature> DEAD_LUNAR_TREE = create("dead_lunar_tree");
     public static final ResourceKey<PlacedFeature> FOREST_GRASS = create("forest_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_GRASS = create("swamp_grass");
@@ -114,6 +116,7 @@ public class PlacedFeatureInit {
         register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NORTHLAND), PlacementUtils.filteredByBlockSurvival(BlockInit.NORTHLAND_SAPLING.get()));
         register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(BlockInit.STARLIGHT_MANGROVE_SAPLING.get()));
         register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET), PlacementUtils.filteredByBlockSurvival(BlockInit.SCARLET_SAPLING.get()));
+        register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.TORREYA), PlacementUtils.filteredByBlockSurvival(BlockInit.TORREYA_SAPLING.get()));
         register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ConfiguredFeatureInit.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(BlockInit.GLOWING_MUSHROOM.get()));
         register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NORTHLAND), onSnow);
         register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
@@ -121,6 +124,7 @@ public class PlacedFeatureInit {
         register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
         register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
         register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
+        register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ConfiguredFeatureInit.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
         register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(15), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

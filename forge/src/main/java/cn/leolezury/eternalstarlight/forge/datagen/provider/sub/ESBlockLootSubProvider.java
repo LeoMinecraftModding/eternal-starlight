@@ -191,6 +191,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.TORREYA_WALL_HANGING_SIGN.get());
         dropSelf(BlockInit.TORREYA_SAPLING.get());
         dropPottedContents(BlockInit.POTTED_TORREYA_SAPLING.get());
+        add(BlockInit.TORREYA_VINES.get(), noDrop());
+        add(BlockInit.TORREYA_VINES_PLANT.get(), noDrop());
 
         add(BlockInit.GRIMSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.COBBLED_GRIMSTONE.get()));
         dropSelf(BlockInit.COBBLED_GRIMSTONE.get());

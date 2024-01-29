@@ -272,8 +272,10 @@ public class BlockInit {
             () -> new CeilingHangingSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> TORREYA_WALL_HANGING_SIGN = BLOCKS.register("torreya_wall_hanging_sign",
             () -> new WallHangingSignBlock(ESWoodTypes.TORREYA, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, Block> TORREYA_SAPLING = BLOCKS.register("torreya_sapling", () -> new SaplingBlock(new TreeGrower("torreya", Optional.empty(), /*Optional.of(ConfiguredFeatureInit.TORREYA)*/Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> TORREYA_SAPLING = BLOCKS.register("torreya_sapling", () -> new SaplingBlock(new TreeGrower("torreya", Optional.empty(), Optional.of(ConfiguredFeatureInit.TORREYA), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> POTTED_TORREYA_SAPLING = BLOCKS.register("potted_torreya_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, TORREYA_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, Block> TORREYA_VINES = BLOCKS.register("torreya_vines", () -> new TorreyaVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel((state) -> 15).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_VINES_PLANT = BLOCKS.register("torreya_vines_plant", () -> new TorreyaVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel((state) -> 0).mapColor(MapColor.COLOR_BLACK)));
 
     // grimstone
     public static final RegistryObject<Block, Block> GRIMSTONE = BLOCKS.register("grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));

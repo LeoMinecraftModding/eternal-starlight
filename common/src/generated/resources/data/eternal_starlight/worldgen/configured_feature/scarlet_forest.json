@@ -4,7 +4,7 @@
     "default": "eternal_starlight:scarlet_tree_checked",
     "features": [
       {
-        "chance": 0.25,
+        "chance": 0.75,
         "feature": "eternal_starlight:scarlet_tree_checked"
       },
       {

@@ -27,7 +27,7 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 
     public BerriesVinesPlantBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
-        this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, false));
     }
 
     @Override

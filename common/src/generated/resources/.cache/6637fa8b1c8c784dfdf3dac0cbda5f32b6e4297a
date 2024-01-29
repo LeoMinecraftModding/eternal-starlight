@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-28T22:04:39.2469936	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2024-01-29T15:18:24.9877874	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -12,7 +12,7 @@ a456306172c3653ceedd90339c9c61928318231a data/eternal_starlight/tags/blocks/port
 9f8a39c6be0d825a8a6ab30cc3fe57964ac5d0a4 data/eternal_starlight/tags/blocks/wall_corals.json
 0ba82eb57d683ad7ec746142be07ca8f369acecc data/minecraft/tags/blocks/beacon_base_blocks.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/blocks/ceiling_hanging_signs.json
-da3951c5a8a256ba3e3c13fe3674bfe1bdabf2e4 data/minecraft/tags/blocks/climbable.json
+5e02cfb1495b9ff434a80c16a61b18d451579cee data/minecraft/tags/blocks/climbable.json
 0043545b9386dab569d4b456c56ccecb3e1d4c5f data/minecraft/tags/blocks/dirt.json
 4fad66675787b4f308e4629dd82bbf1aae4a1570 data/minecraft/tags/blocks/dragon_immune.json
 2e6a976a86010e675762413d1e443724a82ff7ac data/minecraft/tags/blocks/fence_gates.json
@@ -29,7 +29,7 @@ af51780ee9f3741010a1f592a17088814d874648 data/minecraft/tags/blocks/mineable/sho
 b693fe30a8cbf132951921d83aa529f16648ccdd data/minecraft/tags/blocks/mushroom_grow_block.json
 bd671f2b0caed6abb3154c08f5912791076d37aa data/minecraft/tags/blocks/needs_iron_tool.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/blocks/overworld_carver_replaceables.json
-79fb5c92e554157147da4e632f4df3af74d40541 data/minecraft/tags/blocks/planks.json
+a034799a9a254fe3ae790f0047b291599e115314 data/minecraft/tags/blocks/planks.json
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/blocks/portals.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/blocks/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/blocks/saplings.json

@@ -8,6 +8,10 @@
     {
       "biome": "eternal_starlight:the_abyss",
       "transition_biome": "eternal_starlight:the_abyss_transition"
+    },
+    {
+      "biome": "eternal_starlight:ether_river",
+      "transition_biome": "eternal_starlight:torreya_forest"
     }
   ]
 }

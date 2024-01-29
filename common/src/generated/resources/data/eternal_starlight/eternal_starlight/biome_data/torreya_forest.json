@@ -1,0 +1,10 @@
+{
+  "biome": "eternal_starlight:torreya_forest",
+  "fluid": "minecraft:water",
+  "has_beaches": true,
+  "has_rivers": true,
+  "height": 63,
+  "is_ocean": false,
+  "temperatures": [],
+  "variance": 12
+}

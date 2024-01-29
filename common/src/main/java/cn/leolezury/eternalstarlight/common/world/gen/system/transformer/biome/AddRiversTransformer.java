@@ -40,7 +40,7 @@ public class AddRiversTransformer extends NoiseDataTransformer {
                         noise.getValue((worldX + river.offset()) * 0.0025, (worldZ + river.offset()) * 0.0025, false) * 0.50d
                                 + noise.getValue((worldX + river.offset()) * 0.0075, (worldZ + river.offset()) * 0.0075, true) * 0.25d
                                 + noise.getValue((worldX + river.offset()) * 0.025, (worldZ + river.offset()) * 0.025, true) * 0.025d;
-                if (noiseVal > -0.02 && noiseVal < 0.02) {
+                if (noiseVal > -river.size() && noiseVal < river.size()) {
                     return idList.getInt(i);
                 }
             }
@@ -53,9 +53,10 @@ public class AddRiversTransformer extends NoiseDataTransformer {
         return DataTransformerTypeInit.ADD_RIVERS.get();
     }
 
-    public record RiverWithOffset(Holder<BiomeData> river, int offset) {
+    public record RiverWithOffset(Holder<BiomeData> river, float size, int offset) {
         public static final Codec<RiverWithOffset> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("river").forGetter(RiverWithOffset::river),
+                Codec.FLOAT.fieldOf("size").forGetter(RiverWithOffset::size),
                 Codec.INT.fieldOf("offset").forGetter(RiverWithOffset::offset)
         ).apply(instance, RiverWithOffset::new));
     }
