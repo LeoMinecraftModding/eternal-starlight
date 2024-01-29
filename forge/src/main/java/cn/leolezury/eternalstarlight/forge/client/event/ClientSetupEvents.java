@@ -94,7 +94,7 @@ public class ClientSetupEvents {
         event.registerAbove(VanillaGuiOverlay.ARMOR_LEVEL.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_armor"), (gui, guiGraphics, partialTicks, width, height) -> {
             ClientHandlers.renderEtherArmor(guiGraphics, width, height);
         });
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (gui, guiGraphics, partialTicks, width, height) -> {
+        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_use"), (gui, guiGraphics, partialTicks, width, height) -> {
             ClientHandlers.renderProphetOrbUse(gui, guiGraphics);
         });
     }
