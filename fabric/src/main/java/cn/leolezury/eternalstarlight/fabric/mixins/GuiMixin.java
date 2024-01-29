@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +19,7 @@ public abstract class GuiMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getTicksFrozen()I", shift = At.Shift.BEFORE))
     private void es_render(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
         ClientHandlers.renderEtherErosion(((Gui) (Object) this), guiGraphics);
-        ClientHandlers.screenSkyRender(((Gui)(Object)this), guiGraphics, Minecraft.getInstance().player);
+        ClientHandlers.renderProphetOrbUse(((Gui) (Object) this), guiGraphics);
     }
 
     @Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;getProfiler()Lnet/minecraft/util/profiling/ProfilerFiller;", ordinal = 1, shift = At.Shift.BEFORE))

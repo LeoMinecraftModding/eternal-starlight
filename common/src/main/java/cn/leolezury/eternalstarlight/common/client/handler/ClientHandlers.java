@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.gui.screens.CrestSelectScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.screens.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.sounds.CommonBossMusicInstance;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.FluidInit;
+import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.BlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
@@ -49,7 +50,7 @@ public class ClientHandlers {
     private static final ResourceLocation ETHER_ARMOR_EMPTY = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_empty.png");
     private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
     private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
-    private static final ResourceLocation SCREEN_SKY = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/screen_sky.png");
+    private static final ResourceLocation PROPHET_ORB_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/prophet_orb_use.png");
 
     public static Vec3 computeCameraAngles(Vec3 angles) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
@@ -232,23 +233,18 @@ public class ClientHandlers {
         }
     }
 
-    public static void screenSkyRender(Gui gui, GuiGraphics guiGraphics, Entity entity) {
-        boolean using = ESUtil.getPersistentData(entity).getBoolean("UsingProphetOrb");
-        int usingTicks = ESUtil.getPersistentData(entity).getInt("UsingProphetOrbTicks");
-        float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 140f);
-        float progress = Math.min(ticks, 140f) / 140f;
-        if (using) {
-            if (usingTicks < 280) {
-                ESUtil.getPersistentData(entity).putInt("UsingProphetOrbTicks", usingTicks + 10);
-            }
-            if (usingTicks >= 280) {
-                Minecraft.getInstance().setScreen(new CrestSelectScreen());
-                ESUtil.getPersistentData(entity).putBoolean("UsingProphetOrb", false);
-            }
-            gui.renderTextureOverlay(guiGraphics, SCREEN_SKY, progress);
-        } else {
-            if (usingTicks > 0) {
-                ESUtil.getPersistentData(entity).putInt("UsingProphetOrbTicks", usingTicks - 20);
+    public static void renderProphetOrbUse(Gui gui, GuiGraphics guiGraphics) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player != null) {
+            int usingTicks = player.getTicksUsingItem();
+            float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 140f);
+            float progress = Math.min(ticks, 140f) / 140f;
+            if (player.isUsingItem() && player.getUseItem().is(ItemInit.PROPHET_ORB.get())) {
+                if (usingTicks < 140) {
+                    gui.renderTextureOverlay(guiGraphics, PROPHET_ORB_USE, progress);
+                } else {
+                    Minecraft.getInstance().setScreen(new CrestSelectionScreen());
+                }
             }
         }
     }
