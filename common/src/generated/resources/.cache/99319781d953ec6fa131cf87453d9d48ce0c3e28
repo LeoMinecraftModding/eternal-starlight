@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-29T12:10:30.9036351	Block States: eternal_starlight
+// 1.20.4	2024-01-29T22:55:38.8901718	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -338,6 +338,7 @@ b339c8cb24b323d31b24d09ee7af8efa57f749ae assets/eternal_starlight/blockstates/vo
 4957cd9187e1647728907a8141d9f3add17e5201 assets/eternal_starlight/blockstates/wall_doomed_redstone_torch.json
 ff8e73d2a4fa68494b23ce7ea8f3d3a1897545a1 assets/eternal_starlight/blockstates/wall_doomed_torch.json
 d6a0167a157f052f6d412c7ed0f0bcd6e3c9d525 assets/eternal_starlight/blockstates/whisperbloom.json
+55202ac89c21bcc085169ab985bedd64bfd87009 assets/eternal_starlight/blockstates/withered_starlight_flower.json
 bf93554495d28f3bae60ce8a6cdbad803993bc55 assets/eternal_starlight/models/block/abyssal_geyser.json
 ca21ba2d89815bfe5b3e16678ae5986901b47df7 assets/eternal_starlight/models/block/abyssal_kelp.json
 c2fcaa00b178b1b4e9b9b7b0a255cdfc926bd81e assets/eternal_starlight/models/block/abyssal_kelp_lit.json
@@ -927,3 +928,4 @@ f80f2a79479f01d5a10994df4928842adcc761a2 assets/eternal_starlight/models/block/v
 319ccfec037aa1fdd4d248e8ca93e158953fd3d1 assets/eternal_starlight/models/block/wall_doomed_redstone_torch_lit.json
 983b76944d9d5693a27e12b9c3190a8a89e0e5e5 assets/eternal_starlight/models/block/wall_doomed_torch.json
 571d7b2078304b44b59131864d1cf055cb29b7e2 assets/eternal_starlight/models/block/whisperbloom.json
+b0572748565a90b26ed35bb4f11f3215d4b07f23 assets/eternal_starlight/models/block/withered_starlight_flower.json

@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-29T20:43:04.6170227	Loot Tables
+// 1.20.4	2024-01-29T22:55:38.7562488	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -337,6 +337,7 @@ d1e34ceb2ecbc906991e2f4cb64f8a796009c046 data/eternal_starlight/loot_tables/bloc
 95c4dd838fba74cf30cc658f7e38924cfac62813 data/eternal_starlight/loot_tables/blocks/wall_doomed_redstone_torch.json
 bc85a76e9aa3070ef2f5405c6bccebb24d52561e data/eternal_starlight/loot_tables/blocks/wall_doomed_torch.json
 b7c8e284c47c73e058571089908d269235e58edf data/eternal_starlight/loot_tables/blocks/whisperbloom.json
+6253fb720b05c093fb48ef16e28b2933c8f5255e data/eternal_starlight/loot_tables/blocks/withered_starlight_flower.json
 f9cd1f73347fdb3ae6e02aa0ff30f4ad4d272e01 data/eternal_starlight/loot_tables/bosses/boss_common.json
 1f23e9e5065ab745f76213997e29221e75b408d8 data/eternal_starlight/loot_tables/bosses/lunar_monstrosity.json
 c101a506ec848b46e4f2a8854b89c2dfb033f436 data/eternal_starlight/loot_tables/bosses/starlight_golem.json

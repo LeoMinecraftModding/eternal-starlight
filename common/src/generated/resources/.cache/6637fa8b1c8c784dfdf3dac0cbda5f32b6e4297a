@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-29T15:18:24.9877874	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2024-01-29T22:55:38.8491962	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -34,7 +34,7 @@ d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/blocks/portals.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/blocks/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/blocks/saplings.json
 2059d8dc973cba8c52ae96c11db7eac3e23a5499 data/minecraft/tags/blocks/slabs.json
-fc7b395f400d9da56fe2f5194cb47c0702ef0249 data/minecraft/tags/blocks/small_flowers.json
+15b0b2c0c8a45121a9ab2303f8a977b971054e7d data/minecraft/tags/blocks/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/blocks/smelts_to_glass.json
 63916f90cfdd56bb7cd87173e56733dbc5ad03d1 data/minecraft/tags/blocks/stairs.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/blocks/standing_signs.json

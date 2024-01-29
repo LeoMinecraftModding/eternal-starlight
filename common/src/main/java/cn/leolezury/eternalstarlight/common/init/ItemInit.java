@@ -221,12 +221,12 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> GREEN_FANTAGRASS = registerItem("green_fantagrass", () -> new BlockItem(BlockInit.GREEN_FANTAGRASS.get(), new Item.Properties()));
 
     public static final RegistryObject<Item, Item> ORANGE_SCARLET_BUD = registerItem("orange_scarlet_bud", () -> new BlockItem(BlockInit.ORANGE_SCARLET_BUD.get(), new Item.Properties()));
-
     public static final RegistryObject<Item, Item> PURPLE_SCARLET_BUD = registerItem("purple_scarlet_bud", () -> new BlockItem(BlockInit.PURPLE_SCARLET_BUD.get(), new Item.Properties()));
-
     public static final RegistryObject<Item, Item> RED_SCARLET_BUD = registerItem("red_scarlet_bud", () -> new BlockItem(BlockInit.RED_SCARLET_BUD.get(), new Item.Properties()));
-
     public static final RegistryObject<Item, Item> SCARLET_GRASS = registerItem("scarlet_grass", () -> new BlockItem(BlockInit.SCARLET_GRASS.get(), new Item.Properties()));
+
+    // torreya forest grass
+    public static final RegistryObject<Item, Item> WITHERED_STARLIGHT_FLOWER = registerItem("withered_starlight_flower", () -> new BlockItem(BlockInit.WITHERED_STARLIGHT_FLOWER.get(), new Item.Properties()));
 
     // desert grass
     public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(BlockInit.DEAD_LUNAR_BUSH.get(), new Item.Properties()));

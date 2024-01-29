@@ -66,6 +66,7 @@ public class PlacedFeatureInit {
     public static final ResourceKey<PlacedFeature> SWAMP_GRASS = create("swamp_grass");
     public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST_GRASS = create("permafrost_forest_grass");
     public static final ResourceKey<PlacedFeature> SCARLET_FOREST_GRASS = create("scarlet_forest_grass");
+    public static final ResourceKey<PlacedFeature> TORREYA_FOREST_GRASS = create("torreya_forest_grass");
     public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<PlacedFeature> NEAR_WATER_GRASS = create("near_water_grass");
     public static final ResourceKey<PlacedFeature> ON_WATER_PLANT = create("on_water_plant");
@@ -130,6 +131,7 @@ public class PlacedFeatureInit {
         register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, PERMAFROST_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.PERMAFROST_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        register(context, TORREYA_FOREST_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.TORREYA_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ConfiguredFeatureInit.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
         register(context, ON_WATER_PLANT, configuredFeatures.getOrThrow(ConfiguredFeatureInit.ON_WATER_PLANT), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

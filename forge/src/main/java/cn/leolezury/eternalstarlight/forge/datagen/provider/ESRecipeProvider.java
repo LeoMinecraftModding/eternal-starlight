@@ -43,6 +43,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, ItemInit.PINK_ROSE_BUSH.get(), Items.PINK_DYE);
         addSingleConversion(recipeOutput, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
         addSingleConversion(recipeOutput, ItemInit.WHISPERBLOOM.get(), Items.PINK_DYE);
+        addSingleConversion(recipeOutput, ItemInit.WITHERED_STARLIGHT_FLOWER.get(), Items.ORANGE_DYE);
 
         // food
         addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);

@@ -184,6 +184,7 @@ public class ClientSetupHandlers {
             BlockInit.PURPLE_SCARLET_BUD,
             BlockInit.RED_SCARLET_BUD,
             BlockInit.SCARLET_GRASS,
+            BlockInit.WITHERED_STARLIGHT_FLOWER,
             BlockInit.DEAD_LUNAR_BUSH,
             BlockInit.MOONLIGHT_LILY_PAD,
             BlockInit.STARLIT_LILY_PAD,

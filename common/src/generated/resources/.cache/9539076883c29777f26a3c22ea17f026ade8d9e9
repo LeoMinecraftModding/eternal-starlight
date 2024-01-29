@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-29T12:10:30.8256805	Item Models: eternal_starlight
+// 1.20.4	2024-01-29T22:55:38.861189	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -417,3 +417,4 @@ b6f3dea37e1a1a1113b8759b7b92b59c89747abe assets/eternal_starlight/models/item/vo
 b284c90037070bd4a618cfbfb260669cfd0c0b97 assets/eternal_starlight/models/item/voidstone_tile_stairs.json
 333cca8f6125a3aad24dff53a6cb9e1c8a45de9f assets/eternal_starlight/models/item/voidstone_tile_wall.json
 86d435b0dd3d6ebd019d4ea0d3532104db15c25b assets/eternal_starlight/models/item/whisperbloom.json
+f99791169149e4e0f2cee85fba35187d89082e7a assets/eternal_starlight/models/item/withered_starlight_flower.json

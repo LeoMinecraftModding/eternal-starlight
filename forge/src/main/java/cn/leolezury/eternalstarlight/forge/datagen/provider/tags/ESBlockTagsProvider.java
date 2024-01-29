@@ -260,7 +260,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.NIGHTFAN.get(),
                 BlockInit.PINK_ROSE.get(),
                 BlockInit.STARLIGHT_TORCHFLOWER.get(),
-                BlockInit.SWAMP_ROSE.get()
+                BlockInit.WHISPERBLOOM.get(),
+                BlockInit.SWAMP_ROSE.get(),
+                BlockInit.WITHERED_STARLIGHT_FLOWER.get()
         );
         tag(BlockTags.FLOWER_POTS).add(
                 BlockInit.POTTED_LUNAR_SAPLING.get(),

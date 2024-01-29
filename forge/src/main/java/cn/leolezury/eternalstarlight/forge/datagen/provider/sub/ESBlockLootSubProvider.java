@@ -385,6 +385,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.RED_SCARLET_BUD.get());
         dropSelf(BlockInit.SCARLET_GRASS.get());
 
+        dropSelf(BlockInit.WITHERED_STARLIGHT_FLOWER.get());
+
         dropSelf(BlockInit.DEAD_LUNAR_BUSH.get());
 
         dropSelf(BlockInit.MOONLIGHT_LILY_PAD.get());

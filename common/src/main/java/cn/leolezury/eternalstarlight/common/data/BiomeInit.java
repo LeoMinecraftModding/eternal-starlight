@@ -209,6 +209,7 @@ public class BiomeInit {
     private static BiomeGenerationSettings.Builder torreyaForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.TORREYA_FOREST_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureInit.TORREYA_FOREST);
 
         return builder;

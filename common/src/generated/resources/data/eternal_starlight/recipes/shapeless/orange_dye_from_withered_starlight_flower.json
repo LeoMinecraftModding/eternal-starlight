@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:withered_starlight_flower"
+    }
+  ],
+  "result": {
+    "item": "minecraft:orange_dye"
+  }
+}
