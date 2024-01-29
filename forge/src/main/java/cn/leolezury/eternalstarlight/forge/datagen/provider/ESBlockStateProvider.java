@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.TorreyaVinesBlock;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import net.minecraft.core.Direction;

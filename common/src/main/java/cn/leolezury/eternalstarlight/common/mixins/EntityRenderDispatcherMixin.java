@@ -54,10 +54,10 @@ public abstract class EntityRenderDispatcherMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private <E extends Entity> void es_render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
         if (entity instanceof LivingEntity living && !PlayerAnimator.renderingFirstPersonPlayer) {
-            AttributeInstance speed = living.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (speed == null) return;
+            AttributeInstance armor = living.getAttribute(Attributes.ARMOR);
+            if (armor == null) return;
 
-            AttributeModifier infection = speed.getModifier(CrystallineInfectionEffect.MOVEMENT_SPEED_MODIFIER_UUID);
+            AttributeModifier infection = armor.getModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_UUID);
             if (infection == null) return;
             
             EntityRenderer<? super E> entityRenderer = getRenderer(living);
