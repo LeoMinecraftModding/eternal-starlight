@@ -22,16 +22,6 @@ public class ESTags {
         public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
-        // astral sorcery system stuff
-        public static final TagKey<Item> RIESTURUS_LOCATORS = create("riesturus_locators");
-        public static final TagKey<Item> RINEMIN_LOCATORS = create("rinemin_locators");
-        public static final TagKey<Item> ANRLO_LOCATORS = create("anrlo_locators");
-        public static final TagKey<Item> CRATEVIRGO_LOCATORS = create("cratevirgo_locators");
-        public static final TagKey<Item> LIBRASCRP_LOCATORS = create("librascrp_locators");
-        public static final TagKey<Item> OPHUCHAGAR_LOCATORS = create("ophuchagar_locators");
-        public static final TagKey<Item> APORNIGAS_LOCATORS = create("aporniqas_locators");
-        public static final TagKey<Item> EGASUSICE_LOCATORS = create("egasusice_locators");
-        public static final TagKey<Item> STARATHER_LOCATORS = create("starather_locators");
     }
 
     public static class Blocks {
