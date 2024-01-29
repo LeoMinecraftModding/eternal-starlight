@@ -317,6 +317,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
         strategy.register(EntityInit.ENT.get(), EntRenderer::new);
+        strategy.register(EntityInit.YETI.get(), YetiRenderer::new);
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFishRenderer::new);
         strategy.register(EntityInit.LUMINARIS.get(), LuminarisRenderer::new);
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
@@ -353,6 +354,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
         strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
+        strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);
         strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
         strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));

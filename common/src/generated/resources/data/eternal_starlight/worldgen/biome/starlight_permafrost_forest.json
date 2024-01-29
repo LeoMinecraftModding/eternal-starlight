@@ -80,6 +80,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 15
+      },
+      {
+        "type": "eternal_starlight:yeti",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 10
       }
     ],
     "misc": [],
