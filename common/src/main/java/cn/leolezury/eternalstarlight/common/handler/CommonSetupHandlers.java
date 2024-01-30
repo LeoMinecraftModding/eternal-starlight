@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.animal.Ent;
-import cn.leolezury.eternalstarlight.common.entity.animal.Luminaris;
-import cn.leolezury.eternalstarlight.common.entity.animal.LuminoFish;
-import cn.leolezury.eternalstarlight.common.entity.animal.Yeti;
+import cn.leolezury.eternalstarlight.common.entity.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
@@ -42,6 +39,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
         strategy.register(EntityInit.ENT.get(), Ent.createAttributes().build());
         strategy.register(EntityInit.YETI.get(), Yeti.createAttributes().build());
+        strategy.register(EntityInit.AURORA_DEER.get(), AuroraDeer.createAttributes().build());
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFish.createAttributes().build());
         strategy.register(EntityInit.LUMINARIS.get(), Luminaris.createAttributes().build());
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
@@ -59,6 +57,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         strategy.register(EntityInit.ENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
         strategy.register(EntityInit.YETI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);
+        strategy.register(EntityInit.AURORA_DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);
         strategy.register(EntityInit.LUMINOFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LuminoFish::checkAbyssalWaterAnimalSpawnRules);
         strategy.register(EntityInit.LUMINARIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkAbyssalWaterAnimalSpawnRules);
     }

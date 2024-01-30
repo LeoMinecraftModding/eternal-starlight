@@ -60,8 +60,8 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
 
     @Override
     protected void registerGoals() {
-        goalSelector.addGoal(1, new ChargeAttackGoal(this, 3f, 3, 60, 0.5f));
-        goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6, 1.4, EntitySelector.NO_SPECTATORS::test) {
+        this.goalSelector.addGoal(1, new ChargeAttackGoal(this, true, 3f, 3, 60, 0.5f));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6, 1.4, EntitySelector.NO_SPECTATORS::test) {
             @Override
             public boolean canUse() {
                 return super.canUse() && mob.getTarget() == null;
@@ -72,10 +72,10 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
                 return super.canContinueToUse() && mob.getTarget() == null;
             }
         });
-        goalSelector.addGoal(4, new FishSwimGoal(this));
-        goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
+        this.goalSelector.addGoal(4, new FishSwimGoal(this));
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
 
-        targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
     }
 
     @Override

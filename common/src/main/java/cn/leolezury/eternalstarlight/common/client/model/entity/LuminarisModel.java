@@ -55,11 +55,6 @@ public class LuminarisModel<T extends Luminaris> extends AnimatedEntityModel<T> 
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-    }
-
-    @Override
     public ModelPart root() {
         return head;
     }

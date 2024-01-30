@@ -89,7 +89,8 @@ public class BiomeInit {
 
     private static MobSpawnSettings.Builder permafrostForestSpawns() {
         return baseSpawnBuilder()
-                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.YETI.get(), 10, 3, 6));
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.YETI.get(), 10, 3, 6))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityInit.AURORA_DEER.get(), 8, 3, 6));
     }
 
     private static MobSpawnSettings.Builder theAbyssSpawns() {

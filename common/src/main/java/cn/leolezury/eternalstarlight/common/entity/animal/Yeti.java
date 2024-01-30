@@ -61,8 +61,8 @@ public class Yeti extends Animal {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void aiStep() {
+        super.aiStep();
         if (rollTicks > 0) {
             rollTicks--;
         }

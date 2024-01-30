@@ -12,6 +12,7 @@ public class ChargeAttackGoal extends Goal {
     private final PathfinderMob charger;
     private LivingEntity target;
     private Vec3 targetPos = Vec3.ZERO;
+    private final boolean extendTarget;
     private final float speed;
     private final int randomFrequency;
     private final int chargeTime;
@@ -19,8 +20,9 @@ public class ChargeAttackGoal extends Goal {
     private int chargeTicks;
     private boolean ended;
 
-    public ChargeAttackGoal(PathfinderMob mob, float speed, int randomFrequency, int chargeTime, float attackRange) {
+    public ChargeAttackGoal(PathfinderMob mob, boolean extendTarget, float speed, int randomFrequency, int chargeTime, float attackRange) {
         this.charger = mob;
+        this.extendTarget = extendTarget;
         this.speed = speed;
         this.randomFrequency = randomFrequency;
         this.chargeTime = chargeTime;
@@ -40,7 +42,11 @@ public class ChargeAttackGoal extends Goal {
                 return false;
             } else {
                 if (charger.getSensing().hasLineOfSight(target)) {
-                    targetPos = chargerPos.add(chargeTargetPos.subtract(chargerPos).scale(2));
+                    if (extendTarget) {
+                        targetPos = chargerPos.add(chargeTargetPos.subtract(chargerPos).scale(2));
+                    } else {
+                        targetPos = chargeTargetPos;
+                    }
                     return charger.getRandom().nextInt(randomFrequency) == 0;
                 } else {
                     return false;

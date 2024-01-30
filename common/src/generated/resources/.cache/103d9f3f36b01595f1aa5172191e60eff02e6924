@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-29T22:55:38.9561345	Registries
+// 1.20.4	2024-01-30T16:42:52.0724415	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a318911784ef6902c27bf5dcc8c0f61d775a2f3f data/eternal_starlight/damage_type/ether.json
@@ -53,7 +53,7 @@ b767bc9ebf88de4d0606540e18cca0f57f8111b3 data/eternal_starlight/trim_material/sw
 6a84e9c897d3b6a8b5c1ce89a9594c93ec23fded data/eternal_starlight/worldgen/biome/shimmer_river.json
 44b4d1abff2ff80a65a808b0d68cde85ee9f7c94 data/eternal_starlight/worldgen/biome/starlight_dense_forest.json
 81440e8610cb6d872e591509c0539c221a729f3e data/eternal_starlight/worldgen/biome/starlight_forest.json
-4567d135fb49412ae7ab57e1839bd4b551d3ad99 data/eternal_starlight/worldgen/biome/starlight_permafrost_forest.json
+d5e2eb040c4854e0a02b3dbf04bf2d881077ed68 data/eternal_starlight/worldgen/biome/starlight_permafrost_forest.json
 353e5c506ae08ffd250104cb1fbc87db627942bd data/eternal_starlight/worldgen/biome/starlit_sea.json
 8f563065cc407afd12c0364e3ac6e04e7fff40b6 data/eternal_starlight/worldgen/biome/the_abyss.json
 ef120e366166c91f3cf80a440635818cfdfe7cc1 data/eternal_starlight/worldgen/biome/torreya_forest.json
