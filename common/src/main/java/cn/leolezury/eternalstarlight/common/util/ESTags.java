@@ -20,6 +20,8 @@ public class ESTags {
         public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
         public static final TagKey<Item> SCARLET_LOGS = create("scarlet_logs");
         public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
+        public static final TagKey<Item> YETI_FUR = create("yeti_fur");
+        public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
     }
@@ -39,6 +41,8 @@ public class ESTags {
         public static final TagKey<Block> CORALS = create("corals");
         public static final TagKey<Block> WALL_CORALS = create("wall_corals");
         public static final TagKey<Block> CORAL_BLOCKS = create("coral_blocks");
+        public static final TagKey<Block> YETI_FUR = create("yeti_fur");
+        public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
     }
 
     public static class Structures {

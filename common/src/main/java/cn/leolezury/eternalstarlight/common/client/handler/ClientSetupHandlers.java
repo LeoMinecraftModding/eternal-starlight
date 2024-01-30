@@ -258,6 +258,7 @@ public class ClientSetupHandlers {
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
         BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
         BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : GrassColor.getDefaultColor();
+        BlockColor dyeColor = (state, getter, pos, i) -> state.getBlock().defaultMapColor().col;
         strategy.register(grassColor, BlockInit.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(grassColor, BlockInit.CAVE_MOSS.get());
         strategy.register(grassColor, BlockInit.CAVE_MOSS_PLANT.get());
@@ -265,6 +266,38 @@ public class ClientSetupHandlers {
         strategy.register(grassColor, BlockInit.STARLIT_LILY_PAD.get());
         strategy.register(grassColor, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(leavesColor, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(dyeColor, BlockInit.WHITE_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.ORANGE_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.MAGENTA_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.LIGHT_BLUE_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.YELLOW_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.LIME_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.PINK_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.GRAY_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.LIGHT_GRAY_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.CYAN_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.PURPLE_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.BLUE_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.BROWN_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.GREEN_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.RED_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.BLACK_YETI_FUR.get());
+        strategy.register(dyeColor, BlockInit.WHITE_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.ORANGE_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.MAGENTA_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.YELLOW_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.LIME_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.PINK_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.GRAY_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.CYAN_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.PURPLE_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.BLUE_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.BROWN_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.GREEN_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.RED_YETI_FUR_CARPET.get());
+        strategy.register(dyeColor, BlockInit.BLACK_YETI_FUR_CARPET.get());
     }
 
     public static void registerItemColors(ItemColorRegisterStrategy strategy) {
@@ -279,6 +312,38 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, BlockInit.STARLIT_LILY_PAD.get());
         strategy.register(toBlock, BlockInit.MOONLIGHT_DUCKWEED.get());
         strategy.register(toBlock, BlockInit.STARLIGHT_MANGROVE_LEAVES.get());
+        strategy.register(toBlock, BlockInit.WHITE_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.ORANGE_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.MAGENTA_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.LIGHT_BLUE_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.YELLOW_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.LIME_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.PINK_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.GRAY_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.LIGHT_GRAY_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.CYAN_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.PURPLE_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.BLUE_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.BROWN_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.GREEN_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.RED_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.BLACK_YETI_FUR.get());
+        strategy.register(toBlock, BlockInit.WHITE_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.ORANGE_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.MAGENTA_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.YELLOW_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.LIME_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.PINK_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.GRAY_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.CYAN_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.PURPLE_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.BLUE_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.BROWN_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.GREEN_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.RED_YETI_FUR_CARPET.get());
+        strategy.register(toBlock, BlockInit.BLACK_YETI_FUR_CARPET.get());
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {

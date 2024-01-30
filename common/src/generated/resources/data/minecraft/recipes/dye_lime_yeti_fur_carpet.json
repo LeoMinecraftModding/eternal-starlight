@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "yeti_fur_carpet",
+  "ingredients": [
+    {
+      "item": "minecraft:lime_dye"
+    },
+    [
+      {
+        "item": "eternal_starlight:black_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:blue_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:brown_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:cyan_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:gray_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:green_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:light_blue_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:light_gray_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:magenta_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:orange_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:pink_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:purple_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:red_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:yellow_yeti_fur_carpet"
+      },
+      {
+        "item": "eternal_starlight:white_yeti_fur_carpet"
+      }
+    ]
+  ],
+  "result": {
+    "item": "eternal_starlight:lime_yeti_fur_carpet"
+  }
+}

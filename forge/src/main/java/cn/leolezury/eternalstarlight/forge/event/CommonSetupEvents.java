@@ -43,6 +43,6 @@ public class CommonSetupEvents {
                 event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.OR);
             }
         };
-        CommonSetupHandlers.registerSpawnPlacement(strategy);
+        CommonSetupHandlers.registerSpawnPlacements(strategy);
     }
 }

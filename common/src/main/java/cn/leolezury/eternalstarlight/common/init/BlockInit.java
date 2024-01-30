@@ -332,7 +332,6 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> CHISELED_POLISHED_ABYSSLATE = BLOCKS.register("chiseled_polished_abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE)));
     public static final RegistryObject<Block, Block> ABYSSAL_MAGMA_BLOCK = BLOCKS.register("abyssal_magma_block", () -> new MagmaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGMA_BLOCK).mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block, Block> ABYSSAL_GEYSER = BLOCKS.register("abyssal_geyser", () -> new AbyssalGeyserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
-
     public static final RegistryObject<Block, Block> THERMABYSSLATE = BLOCKS.register("thermabysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).mapColor(MapColor.NETHER)));
     public static final RegistryObject<Block, Block> POLISHED_THERMABYSSLATE = BLOCKS.register("polished_thermabysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE).mapColor(MapColor.NETHER)));
     public static final RegistryObject<Block, SlabBlock> POLISHED_THERMABYSSLATE_SLAB = BLOCKS.register("polished_thermabysslate_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE_SLAB).mapColor(MapColor.NETHER)));
@@ -345,7 +344,6 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> CHISELED_POLISHED_THERMABYSSLATE = BLOCKS.register("chiseled_polished_thermabysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE)));
     public static final RegistryObject<Block, Block> THERMABYSSAL_MAGMA_BLOCK = BLOCKS.register("thermabyssal_magma_block", () -> new MagmaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGMA_BLOCK)));
     public static final RegistryObject<Block, Block> THERMABYSSAL_GEYSER = BLOCKS.register("thermabyssal_geyser", () -> new AbyssalGeyserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).mapColor(MapColor.NETHER)));
-
     public static final RegistryObject<Block, Block> CRYOBYSSLATE = BLOCKS.register("cryobysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
     public static final RegistryObject<Block, Block> POLISHED_CRYOBYSSLATE = BLOCKS.register("polished_cryobysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE)));
     public static final RegistryObject<Block, SlabBlock> POLISHED_CRYOBYSSLATE_SLAB = BLOCKS.register("polished_cryobysslate_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE_SLAB)));
@@ -493,6 +491,41 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTSHADE_MUD.get(), PlacedFeatureInit.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new ESGrassBlock(NIGHTSHADE_DIRT.get(), PlacedFeatureInit.FOREST_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+
+    // yeti fur
+    public static final RegistryObject<Block, Block> WHITE_YETI_FUR = BLOCKS.register("white_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
+    public static final RegistryObject<Block, Block> ORANGE_YETI_FUR = BLOCKS.register("orange_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_WOOL)));
+    public static final RegistryObject<Block, Block> MAGENTA_YETI_FUR = BLOCKS.register("magenta_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGENTA_WOOL)));
+    public static final RegistryObject<Block, Block> LIGHT_BLUE_YETI_FUR = BLOCKS.register("light_blue_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_BLUE_WOOL)));
+    public static final RegistryObject<Block, Block> YELLOW_YETI_FUR = BLOCKS.register("yellow_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.YELLOW_WOOL)));
+    public static final RegistryObject<Block, Block> LIME_YETI_FUR = BLOCKS.register("lime_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIME_WOOL)));
+    public static final RegistryObject<Block, Block> PINK_YETI_FUR = BLOCKS.register("pink_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_WOOL)));
+    public static final RegistryObject<Block, Block> GRAY_YETI_FUR = BLOCKS.register("gray_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAY_WOOL)));
+    public static final RegistryObject<Block, Block> LIGHT_GRAY_YETI_FUR = BLOCKS.register("light_gray_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_GRAY_WOOL)));
+    public static final RegistryObject<Block, Block> CYAN_YETI_FUR = BLOCKS.register("cyan_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CYAN_WOOL)));
+    public static final RegistryObject<Block, Block> PURPLE_YETI_FUR = BLOCKS.register("purple_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_WOOL)));
+    public static final RegistryObject<Block, Block> BLUE_YETI_FUR = BLOCKS.register("blue_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_WOOL)));
+    public static final RegistryObject<Block, Block> BROWN_YETI_FUR = BLOCKS.register("brown_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_WOOL)));
+    public static final RegistryObject<Block, Block> GREEN_YETI_FUR = BLOCKS.register("green_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GREEN_WOOL)));
+    public static final RegistryObject<Block, Block> RED_YETI_FUR = BLOCKS.register("red_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL)));
+    public static final RegistryObject<Block, Block> BLACK_YETI_FUR = BLOCKS.register("black_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_WOOL)));
+
+    public static final RegistryObject<Block, Block> WHITE_YETI_FUR_CARPET = BLOCKS.register("white_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
+    public static final RegistryObject<Block, Block> ORANGE_YETI_FUR_CARPET = BLOCKS.register("orange_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_CARPET)));
+    public static final RegistryObject<Block, Block> MAGENTA_YETI_FUR_CARPET = BLOCKS.register("magenta_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGENTA_CARPET)));
+    public static final RegistryObject<Block, Block> LIGHT_BLUE_YETI_FUR_CARPET = BLOCKS.register("light_blue_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_BLUE_CARPET)));
+    public static final RegistryObject<Block, Block> YELLOW_YETI_FUR_CARPET = BLOCKS.register("yellow_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.YELLOW_CARPET)));
+    public static final RegistryObject<Block, Block> LIME_YETI_FUR_CARPET = BLOCKS.register("lime_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIME_CARPET)));
+    public static final RegistryObject<Block, Block> PINK_YETI_FUR_CARPET = BLOCKS.register("pink_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_CARPET)));
+    public static final RegistryObject<Block, Block> GRAY_YETI_FUR_CARPET = BLOCKS.register("gray_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAY_CARPET)));
+    public static final RegistryObject<Block, Block> LIGHT_GRAY_YETI_FUR_CARPET = BLOCKS.register("light_gray_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT_GRAY_CARPET)));
+    public static final RegistryObject<Block, Block> CYAN_YETI_FUR_CARPET = BLOCKS.register("cyan_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CYAN_CARPET)));
+    public static final RegistryObject<Block, Block> PURPLE_YETI_FUR_CARPET = BLOCKS.register("purple_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CARPET)));
+    public static final RegistryObject<Block, Block> BLUE_YETI_FUR_CARPET = BLOCKS.register("blue_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
+    public static final RegistryObject<Block, Block> BROWN_YETI_FUR_CARPET = BLOCKS.register("brown_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_CARPET)));
+    public static final RegistryObject<Block, Block> GREEN_YETI_FUR_CARPET = BLOCKS.register("green_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GREEN_CARPET)));
+    public static final RegistryObject<Block, Block> RED_YETI_FUR_CARPET = BLOCKS.register("red_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
+    public static final RegistryObject<Block, Block> BLACK_YETI_FUR_CARPET = BLOCKS.register("black_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_CARPET)));
 
     public static final RegistryObject<Block, Block> AETHERSENT_BLOCK = BLOCKS.register("aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> SPRINGSTONE = BLOCKS.register("springstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(MapColor.COLOR_BROWN).strength(3.0F, 3.0F)));

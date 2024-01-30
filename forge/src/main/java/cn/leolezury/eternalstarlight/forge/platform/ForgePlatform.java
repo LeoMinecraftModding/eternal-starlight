@@ -37,7 +37,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -57,7 +56,6 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.CommonHooks;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.EventHooks;
@@ -233,11 +231,6 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public void teleportEntity(ServerLevel dest, Entity entity) {
         entity.changeDimension(dest, new ForgeTeleporter(dest));
-    }
-
-    @Override
-    public Attribute getEntityReachAttribute() {
-        return NeoForgeMod.ENTITY_REACH.value();
     }
 
     @Override

@@ -397,6 +397,40 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(BlockInit.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, BlockInit.NIGHTSHADE_MUD.get()));
         dropSelf(BlockInit.NIGHTSHADE_DIRT.get());
 
+        dropSelf(BlockInit.WHITE_YETI_FUR.get());
+        dropSelf(BlockInit.ORANGE_YETI_FUR.get());
+        dropSelf(BlockInit.MAGENTA_YETI_FUR.get());
+        dropSelf(BlockInit.LIGHT_BLUE_YETI_FUR.get());
+        dropSelf(BlockInit.YELLOW_YETI_FUR.get());
+        dropSelf(BlockInit.LIME_YETI_FUR.get());
+        dropSelf(BlockInit.PINK_YETI_FUR.get());
+        dropSelf(BlockInit.GRAY_YETI_FUR.get());
+        dropSelf(BlockInit.LIGHT_GRAY_YETI_FUR.get());
+        dropSelf(BlockInit.CYAN_YETI_FUR.get());
+        dropSelf(BlockInit.PURPLE_YETI_FUR.get());
+        dropSelf(BlockInit.BLUE_YETI_FUR.get());
+        dropSelf(BlockInit.BROWN_YETI_FUR.get());
+        dropSelf(BlockInit.GREEN_YETI_FUR.get());
+        dropSelf(BlockInit.RED_YETI_FUR.get());
+        dropSelf(BlockInit.BLACK_YETI_FUR.get());
+
+        dropSelf(BlockInit.WHITE_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.ORANGE_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.MAGENTA_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.YELLOW_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.LIME_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.PINK_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.GRAY_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.CYAN_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.PURPLE_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.BLUE_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.BROWN_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.GREEN_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.RED_YETI_FUR_CARPET.get());
+        dropSelf(BlockInit.BLACK_YETI_FUR_CARPET.get());
+
         dropSelf(BlockInit.AETHERSENT_BLOCK.get());
         dropSelf(BlockInit.SPRINGSTONE.get());
         dropSelf(BlockInit.THERMAL_SPRINGSTONE.get());

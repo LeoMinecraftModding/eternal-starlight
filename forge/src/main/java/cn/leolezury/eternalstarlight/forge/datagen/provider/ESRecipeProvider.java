@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -18,11 +17,11 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
 
 public class ESRecipeProvider extends RecipeProvider {
-    public ESRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider);
+    public ESRecipeProvider(PackOutput output) {
+        super(output);
     }
 
     @Override
@@ -32,6 +31,20 @@ public class ESRecipeProvider extends RecipeProvider {
         addAetherSentRecipes(recipeOutput);
         addSwampSilverRecipes(recipeOutput);
         addThermalSpringstoneRecipes(recipeOutput);
+
+        // yeti fur
+        List<Item> dyeList = List.of(Items.BLACK_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.CYAN_DYE, Items.GRAY_DYE, Items.GREEN_DYE, Items.LIGHT_BLUE_DYE, Items.LIGHT_GRAY_DYE, Items.LIME_DYE, Items.MAGENTA_DYE, Items.ORANGE_DYE, Items.PINK_DYE, Items.PURPLE_DYE, Items.RED_DYE, Items.YELLOW_DYE, Items.WHITE_DYE);
+        List<Item> bedList = List.of(Items.BLACK_BED, Items.BLUE_BED, Items.BROWN_BED, Items.CYAN_BED, Items.GRAY_BED, Items.GREEN_BED, Items.LIGHT_BLUE_BED, Items.LIGHT_GRAY_BED, Items.LIME_BED, Items.MAGENTA_BED, Items.ORANGE_BED, Items.PINK_BED, Items.PURPLE_BED, Items.RED_BED, Items.YELLOW_BED, Items.WHITE_BED);
+        List<Item> furList = List.of(ItemInit.BLACK_YETI_FUR.get(), ItemInit.BLUE_YETI_FUR.get(), ItemInit.BROWN_YETI_FUR.get(), ItemInit.CYAN_YETI_FUR.get(), ItemInit.GRAY_YETI_FUR.get(), ItemInit.GREEN_YETI_FUR.get(), ItemInit.LIGHT_BLUE_YETI_FUR.get(), ItemInit.LIGHT_GRAY_YETI_FUR.get(), ItemInit.LIME_YETI_FUR.get(), ItemInit.MAGENTA_YETI_FUR.get(), ItemInit.ORANGE_YETI_FUR.get(), ItemInit.PINK_YETI_FUR.get(), ItemInit.PURPLE_YETI_FUR.get(), ItemInit.RED_YETI_FUR.get(), ItemInit.YELLOW_YETI_FUR.get(), ItemInit.WHITE_YETI_FUR.get());
+        colorBlockWithDye(recipeOutput, dyeList, furList, "yeti_fur");
+        List<Item> carpetList = List.of(ItemInit.BLACK_YETI_FUR_CARPET.get(), ItemInit.BLUE_YETI_FUR_CARPET.get(), ItemInit.BROWN_YETI_FUR_CARPET.get(), ItemInit.CYAN_YETI_FUR_CARPET.get(), ItemInit.GRAY_YETI_FUR_CARPET.get(), ItemInit.GREEN_YETI_FUR_CARPET.get(), ItemInit.LIGHT_BLUE_YETI_FUR_CARPET.get(), ItemInit.LIGHT_GRAY_YETI_FUR_CARPET.get(), ItemInit.LIME_YETI_FUR_CARPET.get(), ItemInit.MAGENTA_YETI_FUR_CARPET.get(), ItemInit.ORANGE_YETI_FUR_CARPET.get(), ItemInit.PINK_YETI_FUR_CARPET.get(), ItemInit.PURPLE_YETI_FUR_CARPET.get(), ItemInit.RED_YETI_FUR_CARPET.get(), ItemInit.YELLOW_YETI_FUR_CARPET.get(), ItemInit.WHITE_YETI_FUR_CARPET.get());
+        colorBlockWithDye(recipeOutput, dyeList, carpetList, "yeti_fur_carpet");
+        for (int i = 0; i < furList.size(); i++) {
+            carpet(recipeOutput, carpetList.get(i), furList.get(i));
+        }
+        for (int i = 0; i < furList.size(); i++) {
+            bedFromPlanksAndWool(recipeOutput, bedList.get(i), furList.get(i));
+        }
 
         // flower -> dye
         addSingleConversion(recipeOutput, ItemInit.STARLIGHT_FLOWER.get(), Items.BLUE_DYE);
@@ -51,7 +64,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSmelt(recipeOutput, 200, ItemInit.LUMINOFISH.get(), ItemInit.COOKED_LUMINOFISH.get(), ItemInit.LUMINOFISH.get());
         addSmelt(recipeOutput, 200, ItemInit.LUMINARIS.get(), ItemInit.COOKED_LUMINARIS.get(), ItemInit.LUMINARIS.get());
 
-        // ores
+        // smelt
         addSmelt(recipeOutput, 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
         addBlast(recipeOutput, 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
 

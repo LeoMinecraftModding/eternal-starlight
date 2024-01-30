@@ -26,6 +26,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(ESTags.Blocks.STARLIGHT_MANGROVE_LOGS, ESTags.Items.STARLIGHT_MANGROVE_LOGS);
         copy(ESTags.Blocks.SCARLET_LOGS, ESTags.Items.SCARLET_LOGS);
         copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
+        copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
+        copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
         tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS).add(
                 ItemInit.THERMAL_SPRINGSTONE_SWORD.get(),
                 ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get(),

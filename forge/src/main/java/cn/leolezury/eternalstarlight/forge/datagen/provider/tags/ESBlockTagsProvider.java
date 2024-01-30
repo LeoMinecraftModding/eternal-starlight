@@ -83,6 +83,42 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.GOLDEN_CORAL_BLOCK.get(),
                 BlockInit.CRYSTALLUM_CORAL_BLOCK.get()
         );
+        tag(ESTags.Blocks.YETI_FUR).add(
+                BlockInit.WHITE_YETI_FUR.get(),
+                BlockInit.ORANGE_YETI_FUR.get(),
+                BlockInit.MAGENTA_YETI_FUR.get(),
+                BlockInit.LIGHT_BLUE_YETI_FUR.get(),
+                BlockInit.YELLOW_YETI_FUR.get(),
+                BlockInit.LIME_YETI_FUR.get(),
+                BlockInit.PINK_YETI_FUR.get(),
+                BlockInit.GRAY_YETI_FUR.get(),
+                BlockInit.LIGHT_GRAY_YETI_FUR.get(),
+                BlockInit.CYAN_YETI_FUR.get(),
+                BlockInit.PURPLE_YETI_FUR.get(),
+                BlockInit.BLUE_YETI_FUR.get(),
+                BlockInit.BROWN_YETI_FUR.get(),
+                BlockInit.GREEN_YETI_FUR.get(),
+                BlockInit.RED_YETI_FUR.get(),
+                BlockInit.BLACK_YETI_FUR.get()
+        );
+        tag(ESTags.Blocks.YETI_FUR_CARPETS).add(
+                BlockInit.WHITE_YETI_FUR_CARPET.get(),
+                BlockInit.ORANGE_YETI_FUR_CARPET.get(),
+                BlockInit.MAGENTA_YETI_FUR_CARPET.get(),
+                BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get(),
+                BlockInit.YELLOW_YETI_FUR_CARPET.get(),
+                BlockInit.LIME_YETI_FUR_CARPET.get(),
+                BlockInit.PINK_YETI_FUR_CARPET.get(),
+                BlockInit.GRAY_YETI_FUR_CARPET.get(),
+                BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get(),
+                BlockInit.CYAN_YETI_FUR_CARPET.get(),
+                BlockInit.PURPLE_YETI_FUR_CARPET.get(),
+                BlockInit.BLUE_YETI_FUR_CARPET.get(),
+                BlockInit.BROWN_YETI_FUR_CARPET.get(),
+                BlockInit.GREEN_YETI_FUR_CARPET.get(),
+                BlockInit.RED_YETI_FUR_CARPET.get(),
+                BlockInit.BLACK_YETI_FUR_CARPET.get()
+        );
         // mc tags
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
         tag(BlockTags.LOGS).addTags(
@@ -535,5 +571,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.STARLIT_LILY_PAD.get(),
                 BlockInit.MOONLIGHT_DUCKWEED.get()
         );
+        tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).addTag(ESTags.Blocks.YETI_FUR_CARPETS);
+        tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS).addTag(ESTags.Blocks.YETI_FUR);
+        tag(BlockTags.DAMPENS_VIBRATIONS).addTag(ESTags.Blocks.YETI_FUR).addTag(ESTags.Blocks.YETI_FUR_CARPETS);
     }
 }

@@ -161,61 +161,6 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.TORREYA_CHEST_BOAT.get());
         basicItemWithBlockTexture(ItemInit.TORREYA_VINES.get());
 
-        basicItemWithBlockTexture(ItemInit.STARLIGHT_FLOWER.get());
-        basicItemWithBlockTexture(ItemInit.CONEBLOOM.get());
-        basicItemWithBlockTexture(ItemInit.NIGHTFAN.get());
-        basicItemWithBlockTexture(ItemInit.PINK_ROSE.get());
-        basicItemWithBlockTexture(ItemInit.STARLIGHT_TORCHFLOWER.get());
-        basicItem(ItemInit.NIGHTFAN_BUSH.get(), blockTextureFromItem(ItemInit.NIGHTFAN_BUSH.get()).withSuffix("_top"));
-        basicItem(ItemInit.PINK_ROSE_BUSH.get(), blockTextureFromItem(ItemInit.PINK_ROSE_BUSH.get()).withSuffix("_top"));
-        basicItemWithBlockTexture(ItemInit.NIGHT_SPROUTS.get());
-        basicItemWithBlockTexture(ItemInit.GLOWING_NIGHT_SPROUTS.get());
-        basicItemWithBlockTexture(ItemInit.SMALL_NIGHT_SPROUTS.get());
-        basicItemWithBlockTexture(ItemInit.SMALL_GLOWING_NIGHT_SPROUTS.get());
-        basicItemWithBlockTexture(ItemInit.LUNAR_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.GLOWING_LUNAR_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.CRESCENT_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.GLOWING_CRESCENT_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.PARASOL_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.GLOWING_PARASOL_GRASS.get());
-        basicItemWithBlockTexture(ItemInit.LUNAR_BUSH.get());
-        basicItemWithBlockTexture(ItemInit.GLOWING_LUNAR_BUSH.get());
-        basicItem(ItemInit.TALL_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_CRESCENT_GRASS.get()).withSuffix("_top"));
-        basicItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get()).withSuffix("_top"));
-        basicItem(ItemInit.LUNAR_REED.get(), blockTextureFromItem(ItemInit.LUNAR_REED.get()).withSuffix("_top"));
-        basicItemWithBlockTexture(ItemInit.WHISPERBLOOM.get());
-        basicItemWithBlockTexture(ItemInit.GLADESPIKE.get());
-        basicItemWithBlockTexture(ItemInit.VIVIDSTALK.get());
-        basicItem(ItemInit.TALL_GLADESPIKE.get(), blockTextureFromItem(ItemInit.TALL_GLADESPIKE.get()).withSuffix("_top"));
-        basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
-        cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
-        cubeAll(ItemInit.GLOWING_MUSHROOM_STEM.get());
-
-        basicItemWithBlockTexture(ItemInit.SWAMP_ROSE.get());
-        basicItemWithBlockTexture(ItemInit.FANTABUD.get());
-        basicItemWithBlockTexture(ItemInit.GREEN_FANTABUD.get());
-        basicItemWithBlockTexture(ItemInit.FANTAFERN.get());
-        basicItemWithBlockTexture(ItemInit.GREEN_FANTAFERN.get());
-        basicItemWithBlockTexture(ItemInit.FANTAGRASS.get());
-        basicItemWithBlockTexture(ItemInit.GREEN_FANTAGRASS.get());
-
-        basicItemWithBlockTexture(ItemInit.ORANGE_SCARLET_BUD.get());
-        basicItemWithBlockTexture(ItemInit.PURPLE_SCARLET_BUD.get());
-        basicItemWithBlockTexture(ItemInit.RED_SCARLET_BUD.get());
-        basicItemWithBlockTexture(ItemInit.SCARLET_GRASS.get());
-
-        basicItemWithBlockTexture(ItemInit.WITHERED_STARLIGHT_FLOWER.get());
-
-        basicItemWithBlockTexture(ItemInit.DEAD_LUNAR_BUSH.get());
-
-        basicItemWithBlockTexture(ItemInit.MOONLIGHT_LILY_PAD.get());
-        basicItemWithBlockTexture(ItemInit.STARLIT_LILY_PAD.get());
-        basicItemWithBlockTexture(ItemInit.MOONLIGHT_DUCKWEED.get());
-
-        basicBlockItem(ItemInit.NIGHTSHADE_DIRT.get());
-        basicBlockItem(ItemInit.NIGHTSHADE_GRASS_BLOCK.get());
-        basicBlockItem(ItemInit.FANTASY_GRASS_BLOCK.get());
-
         basicBlockItem(ItemInit.GRIMSTONE.get());
         basicBlockItem(ItemInit.COBBLED_GRIMSTONE.get());
         basicBlockItem(ItemInit.COBBLED_GRIMSTONE_SLAB.get());
@@ -336,6 +281,92 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.LUNAR_MOSAIC_FENCE_GATE.get());
         basicBlockItem(ItemInit.LUNAR_MAT.get());
 
+        basicItem(ItemInit.BROKEN_DOOMEDEN_BONE.get());
+        largeHandheld(ItemInit.BONEMORE_BROADSWORD.get());
+        inventoryModel(ItemInit.BONEMORE_BROADSWORD.get());
+        bow(ItemInit.BOW_OF_BLOOD.get());
+        basicHandheld(ItemInit.LIVING_ARM.get());
+        basicItemWithBlockTexture(ItemInit.DOOMED_TORCH.get());
+        basicItemWithBlockTexture(ItemInit.DOOMED_REDSTONE_TORCH.get());
+        basicItem(ItemInit.DOOMEDEN_CARRION.get());
+        basicHandheld(ItemInit.ROTTEN_HAM.get());
+        basicItem(ItemInit.EYE_OF_DOOM.get());
+        basicItem(ItemInit.DOOMEDEN_RAG.get());
+        basicHandheld(ItemInit.DOOMEDEN_FLESH_GRINDER.get());
+        inventoryModel(ItemInit.DOOMEDEN_SWORD.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.DOOMEDEN_BRICK_STAIRS.get());
+        wall(ItemInit.DOOMEDEN_BRICK_WALL.get(), ItemInit.DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
+        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+        wall(ItemInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_TILES.get());
+        basicBlockItem(ItemInit.DOOMEDEN_TILE_SLAB.get());
+        basicBlockItem(ItemInit.DOOMEDEN_TILE_STAIRS.get());
+        wall(ItemInit.DOOMEDEN_TILE_WALL.get(), ItemInit.DOOMEDEN_TILES.get());
+        basicBlockItem(ItemInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+        basicBlockItem(ItemInit.DOOMEDEN_LIGHT.get());
+        basicBlockItem(ItemInit.DOOMEDEN_KEYHOLE.get());
+        basicBlockItem(ItemInit.REDSTONE_DOOMEDEN_KEYHOLE.get());
+
+        basicItemWithBlockTexture(ItemInit.STARLIGHT_FLOWER.get());
+        basicItemWithBlockTexture(ItemInit.CONEBLOOM.get());
+        basicItemWithBlockTexture(ItemInit.NIGHTFAN.get());
+        basicItemWithBlockTexture(ItemInit.PINK_ROSE.get());
+        basicItemWithBlockTexture(ItemInit.STARLIGHT_TORCHFLOWER.get());
+        basicItem(ItemInit.NIGHTFAN_BUSH.get(), blockTextureFromItem(ItemInit.NIGHTFAN_BUSH.get()).withSuffix("_top"));
+        basicItem(ItemInit.PINK_ROSE_BUSH.get(), blockTextureFromItem(ItemInit.PINK_ROSE_BUSH.get()).withSuffix("_top"));
+        basicItemWithBlockTexture(ItemInit.NIGHT_SPROUTS.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_NIGHT_SPROUTS.get());
+        basicItemWithBlockTexture(ItemInit.SMALL_NIGHT_SPROUTS.get());
+        basicItemWithBlockTexture(ItemInit.SMALL_GLOWING_NIGHT_SPROUTS.get());
+        basicItemWithBlockTexture(ItemInit.LUNAR_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_LUNAR_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.CRESCENT_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_CRESCENT_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.PARASOL_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_PARASOL_GRASS.get());
+        basicItemWithBlockTexture(ItemInit.LUNAR_BUSH.get());
+        basicItemWithBlockTexture(ItemInit.GLOWING_LUNAR_BUSH.get());
+        basicItem(ItemInit.TALL_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_CRESCENT_GRASS.get()).withSuffix("_top"));
+        basicItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get(), blockTextureFromItem(ItemInit.TALL_GLOWING_CRESCENT_GRASS.get()).withSuffix("_top"));
+        basicItem(ItemInit.LUNAR_REED.get(), blockTextureFromItem(ItemInit.LUNAR_REED.get()).withSuffix("_top"));
+        basicItemWithBlockTexture(ItemInit.WHISPERBLOOM.get());
+        basicItemWithBlockTexture(ItemInit.GLADESPIKE.get());
+        basicItemWithBlockTexture(ItemInit.VIVIDSTALK.get());
+        basicItem(ItemInit.TALL_GLADESPIKE.get(), blockTextureFromItem(ItemInit.TALL_GLADESPIKE.get()).withSuffix("_top"));
+        basicItemWithBlockTexture(ItemInit.GLOWING_MUSHROOM.get());
+        cubeAll(ItemInit.GLOWING_MUSHROOM_BLOCK.get());
+        cubeAll(ItemInit.GLOWING_MUSHROOM_STEM.get());
+
+        basicItemWithBlockTexture(ItemInit.SWAMP_ROSE.get());
+        basicItemWithBlockTexture(ItemInit.FANTABUD.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTABUD.get());
+        basicItemWithBlockTexture(ItemInit.FANTAFERN.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTAFERN.get());
+        basicItemWithBlockTexture(ItemInit.FANTAGRASS.get());
+        basicItemWithBlockTexture(ItemInit.GREEN_FANTAGRASS.get());
+
+        basicItemWithBlockTexture(ItemInit.ORANGE_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.PURPLE_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.RED_SCARLET_BUD.get());
+        basicItemWithBlockTexture(ItemInit.SCARLET_GRASS.get());
+
+        basicItemWithBlockTexture(ItemInit.WITHERED_STARLIGHT_FLOWER.get());
+
+        basicItemWithBlockTexture(ItemInit.DEAD_LUNAR_BUSH.get());
+
+        basicItemWithBlockTexture(ItemInit.MOONLIGHT_LILY_PAD.get());
+        basicItemWithBlockTexture(ItemInit.STARLIT_LILY_PAD.get());
+        basicItemWithBlockTexture(ItemInit.MOONLIGHT_DUCKWEED.get());
+
+        basicBlockItem(ItemInit.NIGHTSHADE_DIRT.get());
+        basicBlockItem(ItemInit.NIGHTSHADE_GRASS_BLOCK.get());
+        basicBlockItem(ItemInit.FANTASY_GRASS_BLOCK.get());
+
         basicBlockItem(ItemInit.AETHERSENT_BLOCK.get());
         basicItem(ItemInit.AETHERSENT_INGOT.get());
         basicHandheld(ItemInit.RAGE_OF_STARS.get());
@@ -371,37 +402,6 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.SWAMP_SILVER_LEGGINGS.get());
         basicItem(ItemInit.SWAMP_SILVER_BOOTS.get());
 
-        basicItem(ItemInit.BROKEN_DOOMEDEN_BONE.get());
-        largeHandheld(ItemInit.BONEMORE_BROADSWORD.get());
-        inventoryModel(ItemInit.BONEMORE_BROADSWORD.get());
-        bow(ItemInit.BOW_OF_BLOOD.get());
-        basicHandheld(ItemInit.LIVING_ARM.get());
-        basicItemWithBlockTexture(ItemInit.DOOMED_TORCH.get());
-        basicItemWithBlockTexture(ItemInit.DOOMED_REDSTONE_TORCH.get());
-        basicItem(ItemInit.DOOMEDEN_CARRION.get());
-        basicHandheld(ItemInit.ROTTEN_HAM.get());
-        basicItem(ItemInit.EYE_OF_DOOM.get());
-        basicItem(ItemInit.DOOMEDEN_RAG.get());
-        basicHandheld(ItemInit.DOOMEDEN_FLESH_GRINDER.get());
-        inventoryModel(ItemInit.DOOMEDEN_SWORD.get());
-        basicBlockItem(ItemInit.DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.DOOMEDEN_BRICK_SLAB.get());
-        basicBlockItem(ItemInit.DOOMEDEN_BRICK_STAIRS.get());
-        wall(ItemInit.DOOMEDEN_BRICK_WALL.get(), ItemInit.DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_SLAB.get());
-        basicBlockItem(ItemInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
-        wall(ItemInit.POLISHED_DOOMEDEN_BRICK_WALL.get(), ItemInit.POLISHED_DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.DOOMEDEN_TILES.get());
-        basicBlockItem(ItemInit.DOOMEDEN_TILE_SLAB.get());
-        basicBlockItem(ItemInit.DOOMEDEN_TILE_STAIRS.get());
-        wall(ItemInit.DOOMEDEN_TILE_WALL.get(), ItemInit.DOOMEDEN_TILES.get());
-        basicBlockItem(ItemInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-        basicBlockItem(ItemInit.DOOMEDEN_LIGHT.get());
-        basicBlockItem(ItemInit.DOOMEDEN_KEYHOLE.get());
-        basicBlockItem(ItemInit.REDSTONE_DOOMEDEN_KEYHOLE.get());
-
         basicItem(ItemInit.GOLEM_STEEL_INGOT.get());
         basicItem(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
         basicItem(ItemInit.TENACIOUS_PETAL.get());
@@ -420,6 +420,40 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.LUMINARIS_BUCKET.get());
         basicItem(ItemInit.LUMINARIS.get());
         basicItem(ItemInit.COOKED_LUMINARIS.get());
+
+        basicBlockItem(ItemInit.WHITE_YETI_FUR.get());
+        basicBlockItem(ItemInit.ORANGE_YETI_FUR.get());
+        basicBlockItem(ItemInit.MAGENTA_YETI_FUR.get());
+        basicBlockItem(ItemInit.LIGHT_BLUE_YETI_FUR.get());
+        basicBlockItem(ItemInit.YELLOW_YETI_FUR.get());
+        basicBlockItem(ItemInit.LIME_YETI_FUR.get());
+        basicBlockItem(ItemInit.PINK_YETI_FUR.get());
+        basicBlockItem(ItemInit.GRAY_YETI_FUR.get());
+        basicBlockItem(ItemInit.LIGHT_GRAY_YETI_FUR.get());
+        basicBlockItem(ItemInit.CYAN_YETI_FUR.get());
+        basicBlockItem(ItemInit.PURPLE_YETI_FUR.get());
+        basicBlockItem(ItemInit.BLUE_YETI_FUR.get());
+        basicBlockItem(ItemInit.BROWN_YETI_FUR.get());
+        basicBlockItem(ItemInit.GREEN_YETI_FUR.get());
+        basicBlockItem(ItemInit.RED_YETI_FUR.get());
+        basicBlockItem(ItemInit.BLACK_YETI_FUR.get());
+
+        basicBlockItem(ItemInit.WHITE_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.ORANGE_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.MAGENTA_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.LIGHT_BLUE_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.YELLOW_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.LIME_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.PINK_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.GRAY_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.LIGHT_GRAY_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.CYAN_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.PURPLE_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.BLUE_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.BROWN_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.GREEN_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.RED_YETI_FUR_CARPET.get());
+        basicBlockItem(ItemInit.BLACK_YETI_FUR_CARPET.get());
 
         basicItem(ItemInit.ETHER_BUCKET.get());
         basicBlockItem(ItemInit.ENERGY_BLOCK.get());

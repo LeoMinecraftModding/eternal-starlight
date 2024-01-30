@@ -33,7 +33,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -140,11 +139,6 @@ public interface ESPlatform {
 
     // world
     void teleportEntity(ServerLevel dest, Entity entity);
-
-    // entity stuff
-    default Attribute getEntityReachAttribute() {
-        return null;
-    }
 
     // item stuff
     default boolean isShears(ItemStack stack) {

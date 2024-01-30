@@ -2,6 +2,10 @@ package cn.leolezury.eternalstarlight.forge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
@@ -10,6 +14,7 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID)
 public class CommonEvents {
@@ -43,5 +48,24 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onAddReloadListener(AddReloadListenerEvent event) {
         CommonHandlers.addReloadListeners(event::addListener);
+    }
+
+    @SubscribeEvent
+    public static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+        CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
+            @Override
+            public void register(ItemLike item, int time) {
+                if (event.getItemStack().is(item.asItem())) {
+                    event.setBurnTime(time);
+                }
+            }
+
+            @Override
+            public void register(TagKey<Item> itemTag, int time) {
+                if (event.getItemStack().is(itemTag)) {
+                    event.setBurnTime(time);
+                }
+            }
+        });
     }
 }

@@ -22,6 +22,10 @@ public class ProphetOrbItem extends Item implements Vanishable {
         }
     }
 
+    public int getUseDuration(ItemStack itemStack) {
+        return 72000;
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);

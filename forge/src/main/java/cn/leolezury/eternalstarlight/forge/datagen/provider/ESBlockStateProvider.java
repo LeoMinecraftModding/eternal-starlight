@@ -40,8 +40,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         crystalCluster(BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
         simpleBlock(BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get());
         simpleBlock(BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
-        carpetBlock(BlockInit.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.RED_CRYSTAL_MOSS_CARPET.get()));
-        carpetBlock(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get()));
+        carpet(BlockInit.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.RED_CRYSTAL_MOSS_CARPET.get()));
+        carpet(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get()));
 
         cross(BlockInit.DEAD_TENTACLES_CORAL.get());
         cross(BlockInit.TENTACLES_CORAL.get());
@@ -177,7 +177,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stairsBlock(BlockInit.LUNAR_MOSAIC_STAIRS.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
         fenceBlock(BlockInit.LUNAR_MOSAIC_FENCE.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
         fenceGateBlock(BlockInit.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(BlockInit.LUNAR_MOSAIC.get()));
-        carpetBlock(BlockInit.LUNAR_MAT.get(), blockTexture(BlockInit.LUNAR_MAT.get()));
+        carpet(BlockInit.LUNAR_MAT.get(), blockTexture(BlockInit.LUNAR_MAT.get()));
 
         // doomeden
         stoneSet(BlockInit.DOOMEDEN_TILES.get(), BlockInit.DOOMEDEN_TILE_SLAB.get(), BlockInit.DOOMEDEN_TILE_STAIRS.get(), BlockInit.DOOMEDEN_TILE_WALL.get());
@@ -250,6 +250,40 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.NIGHTSHADE_DIRT.get());
         grassBlock(BlockInit.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_DIRT.get()));
         simpleGrassBlock(BlockInit.FANTASY_GRASS_BLOCK.get(), blockTexture(BlockInit.NIGHTSHADE_MUD.get()));
+
+        tintedCubeAll(BlockInit.WHITE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.ORANGE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.MAGENTA_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.LIGHT_BLUE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.YELLOW_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.LIME_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.PINK_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.GRAY_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.LIGHT_GRAY_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.CYAN_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.PURPLE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.BLUE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.BROWN_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.GREEN_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.RED_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+        tintedCubeAll(BlockInit.BLACK_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
+
+        tintedCarpet(BlockInit.WHITE_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.ORANGE_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.MAGENTA_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.YELLOW_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.LIME_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.PINK_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.GRAY_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.CYAN_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.PURPLE_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.BLUE_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.BROWN_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.GREEN_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.RED_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
+        tintedCarpet(BlockInit.BLACK_YETI_FUR_CARPET.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
 
         simpleBlock(BlockInit.AETHERSENT_BLOCK.get());
         simpleBlock(BlockInit.SPRINGSTONE.get());
@@ -601,6 +635,20 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(block, modelFile);
     }
 
+    private void tintedCubeAll(Block block, ResourceLocation texture, ResourceLocation renderType) {
+        ModelFile modelFile = models().withExistingParent(name(block), "block/block")
+                .renderType(renderType)
+                .texture("particle", texture)
+                .texture("all", texture)
+                .element()
+                .from(0, 0, 0)
+                .to(16, 16, 16)
+                .allFaces((direction, builder) -> {
+                    builder.texture("#all").cullface(direction).tintindex(0);
+                }).end();
+        simpleBlock(block, modelFile);
+    }
+
     private void cross(Block block) {
         cross(block, blockTexture(block), CUTOUT);
     }
@@ -619,7 +667,24 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(block, modelFile);
     }
 
-    private void carpetBlock(Block block, ResourceLocation wool) {
+    private void tintedCarpet(Block block, ResourceLocation wool) {
+        ModelFile modelFile = models().withExistingParent(name(block), "block/thin_block")
+                .texture("particle", wool)
+                .texture("wool", wool)
+                .element()
+                .from(0, 0, 0)
+                .to(16, 1, 16)
+                .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#wool").cullface(Direction.DOWN).tintindex(0).end()
+                .face(Direction.UP).uvs(0, 0, 16, 16).texture("#wool").tintindex(0).end()
+                .face(Direction.NORTH).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.NORTH).tintindex(0).end()
+                .face(Direction.SOUTH).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.SOUTH).tintindex(0).end()
+                .face(Direction.WEST).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.WEST).tintindex(0).end()
+                .face(Direction.EAST).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.EAST).tintindex(0).end()
+                .end();
+        simpleBlock(block, modelFile);
+    }
+
+    private void carpet(Block block, ResourceLocation wool) {
         ModelFile modelFile = models().carpet(name(block), wool);
         simpleBlock(block, modelFile);
     }

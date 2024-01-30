@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_brown_yeti_fur": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:brown_yeti_fur"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:brown_yeti_fur_carpet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_brown_yeti_fur"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:brown_yeti_fur_carpet"
+    ]
+  }
+}

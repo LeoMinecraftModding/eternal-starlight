@@ -41,7 +41,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ESDamageTypeTagsProvider(output, lookup, helper));
 
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
-        generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new ESRecipeProvider(output));
         generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));
 
         // custom
