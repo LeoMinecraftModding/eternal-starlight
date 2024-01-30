@@ -5,7 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.network.FriendlyByteBuf;
 
 public class TestPacket {
-    private String name;
+    private final String name;
     
     public TestPacket(String s) {
         name = s;

@@ -507,6 +507,11 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> RED_YETI_FUR_CARPET = registerItem("red_yeti_fur_carpet", () -> new BlockItem(BlockInit.RED_YETI_FUR_CARPET.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> BLACK_YETI_FUR_CARPET = registerItem("black_yeti_fur_carpet", () -> new BlockItem(BlockInit.BLACK_YETI_FUR_CARPET.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item, Item> AURORA_DEER_ANTLER = registerItem("aurora_deer_antler",
+            () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AURORA_DEER_ANTLER, 3, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> AURORA_DEER_STEAK = registerItem("aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.BEEF)));
+    public static final RegistryObject<Item, Item> COOKED_AURORA_DEER_STEAK = registerItem("cooked_aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.COOKED_BEEF)));
+
     // misc
     public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> ESPlatform.INSTANCE.createBucket(FluidInit.ETHER_STILL, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(BlockInit.ENERGY_BLOCK.get(), new Item.Properties()));

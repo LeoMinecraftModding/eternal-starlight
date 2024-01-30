@@ -100,7 +100,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.HOES).add(
                 ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get(),
                 ItemInit.SWAMP_SILVER_SICKLE.get(),
-                ItemInit.PETAL_SCYTHE.get()
+                ItemInit.PETAL_SCYTHE.get(),
+                ItemInit.AURORA_DEER_ANTLER.get()
         );
         // No shovel in the mod!?
         /*tag(ItemTags.SHOVELS).add(

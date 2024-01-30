@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-30T13:19:29.8654353	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-01-30T21:12:34.3008483	Tags for minecraft:item mod id eternal_starlight
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
@@ -13,7 +13,7 @@ aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/items/boats.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/items/chest_boats.json
 c25cc3b13d73ce7b82609fab33fc58f08840bf52 data/minecraft/tags/items/freeze_immune_wearables.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/items/hanging_signs.json
-fe7d71d80d64485ecd0b87a7a6499b699c4a4cf2 data/minecraft/tags/items/hoes.json
+8384f2d51b83fb921debe7a877cadedf87958f2e data/minecraft/tags/items/hoes.json
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/items/leaves.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/items/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/items/logs_that_burn.json

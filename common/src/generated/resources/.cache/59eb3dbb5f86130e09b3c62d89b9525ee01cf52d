@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-30T16:42:51.8725572	Loot Tables
+// 1.20.4	2024-01-30T21:12:33.9681886	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -378,7 +378,7 @@ c47a367d33826ddf560f30e39a1c3907b1e57a5a data/eternal_starlight/loot_tables/ches
 8dc1e0806dfe404bdd6b3b9ac5efaa3146199197 data/eternal_starlight/loot_tables/chests/golem_forge.json
 5cef279ff4a7f128c7a31d9fe03f973f750349a6 data/eternal_starlight/loot_tables/chests/golem_forge_furnace_room.json
 a461217c956af4bd0fb8803afa168aeb4b966da2 data/eternal_starlight/loot_tables/entities/astral_golem.json
-66563828f72fae3a158817d7f75e4a3b88739585 data/eternal_starlight/loot_tables/entities/aurora_deer.json
+08f483fdd9a24359589f0afec6a45d6275408a6e data/eternal_starlight/loot_tables/entities/aurora_deer.json
 fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_tables/entities/boarwarf.json
 afc0ccc10a26fbae13a32f58731344ab12275bc6 data/eternal_starlight/loot_tables/entities/ent.json
 a6c9578f288d492c587c4229a5674583970f3c79 data/eternal_starlight/loot_tables/entities/lonestar_skeleton.json

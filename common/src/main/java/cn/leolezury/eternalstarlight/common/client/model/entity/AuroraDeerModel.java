@@ -18,10 +18,14 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "deer"), "main");
     private final ModelPart root;
     private final ModelPart head;
+    private final ModelPart left_horn;
+    private final ModelPart right_horn;
 
     public AuroraDeerModel(ModelPart root) {
         this.root = root.getChild("root");
         this.head = root.getChild("root").getChild("body").getChild("neck").getChild("head");
+        this.left_horn = head.getChild("left_horn");
+        this.right_horn = head.getChild("right_horn");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -45,9 +49,9 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
 
         PartDefinition cube_r4 = head.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(0, 12).addBox(-0.3F, -1.5F, -2.0F, 0.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0F, -5.5F, 2.0F, 0.0F, 0.3491F, 0.0F));
 
-        PartDefinition cube_r5 = head.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(0, 0).addBox(0.5F, -7.0F, -3.5F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, -6.0F, 0.5F, -0.3927F, -0.1745F, -0.2138F));
+        PartDefinition left_horn = head.addOrReplaceChild("left_horn", CubeListBuilder.create().texOffs(16, 20).addBox(-0.5F, -7.0F, -3.5F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -6.0F, 0.5F, -0.3927F, 0.1745F, 0.2138F));
 
-        PartDefinition cube_r6 = head.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(16, 20).addBox(-0.5F, -7.0F, -3.5F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -6.0F, 0.5F, -0.3927F, 0.1745F, 0.2138F));
+        PartDefinition right_horn = head.addOrReplaceChild("right_horn", CubeListBuilder.create().texOffs(0, 0).addBox(0.5F, -7.0F, -3.5F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, -6.0F, 0.5F, -0.3927F, -0.1745F, -0.2138F));
 
         PartDefinition left_front_leg = root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(20, 38).addBox(-1.5F, -1.0F, -2.25F, 3.0F, 5.0F, 4.0F, new CubeDeformation(0.0F))
                 .texOffs(9, 46).addBox(-1.5F, 4.0F, -1.25F, 3.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(2.5F, -9.0F, -7.65F));
@@ -77,6 +81,8 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
             head.yScale = 1.25f;
             head.zScale = 1.25f;
         }
+        left_horn.visible = entity.hasLeftHorn();
+        right_horn.visible = entity.hasRightHorn();
         this.animate(entity.idleAnimationState, AuroraDeerAnimation.IDLE, ageInTicks);
         this.animateWalk(AuroraDeerAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1f);
     }

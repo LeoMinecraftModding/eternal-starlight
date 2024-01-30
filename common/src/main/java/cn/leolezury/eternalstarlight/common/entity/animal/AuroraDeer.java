@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,28 +25,34 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class AuroraDeer extends Animal implements Charger {
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.LUNAR_BERRIES.get());
     protected static final EntityDataAccessor<Boolean> LEFT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
+    public boolean hasLeftHorn() {
+        return entityData.get(LEFT_HORN);
+    }
     protected static final EntityDataAccessor<Boolean> RIGHT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
+    public boolean hasRightHorn() {
+        return entityData.get(RIGHT_HORN);
+    }
 
-    // todo: fix navigation problem (keeps turning around)
     public AuroraDeer(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
 
     public AnimationState idleAnimationState = new AnimationState();
     private boolean charging = false;
+    private int notChargingTicks = 200;
 
     @Override
     public void setCharging(boolean charging) {
         this.charging = charging;
-        if (!charging) {
-            setTarget(null);
-        }
     }
 
     @Override
@@ -55,31 +62,70 @@ public class AuroraDeer extends Animal implements Charger {
         entityData.define(RIGHT_HORN, true);
     }
 
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
+        entityData.set(LEFT_HORN, true);
+        entityData.set(RIGHT_HORN, true);
+        return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData, compoundTag);
+    }
+
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new ChargeAttackGoal(this, false, 1.5f, 3, 30, 0.5f) {
+        this.goalSelector.addGoal(1, new ChargeAttackGoal(this, false, 2f, 80, 80, 0.6f) {
+            private boolean hornBroken = false;
+
             @Override
             public boolean canUse() {
-                return super.canUse() && AuroraDeer.this.getHealth() / AuroraDeer.this.getMaxHealth() >= 0.5f;
+                return super.canUse() && AuroraDeer.this.getHealth() / AuroraDeer.this.getMaxHealth() >= 0.5f && (hasLeftHorn() || hasRightHorn());
+            }
+
+            @Override
+            public void start() {
+                super.start();
+                hornBroken = false;
             }
 
             @Override
             public void tick() {
                 super.tick();
-                if (charging) {
+                if (AuroraDeer.this.charging && !hornBroken) {
                     Vec3 vec3 = AuroraDeer.this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize();
-                    BlockPos blockPos = BlockPos.containing(AuroraDeer.this.position().add(vec3));
-                    if (AuroraDeer.this.level().getBlockState(blockPos).is(BlockTags.SNAPS_GOAT_HORN) || AuroraDeer.this.level().getBlockState(blockPos.above()).is(BlockTags.SNAPS_GOAT_HORN)) {
-                        AuroraDeer.this.randomlyBreakHorn();
+                    AABB box = AuroraDeer.this.getBoundingBox().move(vec3);
+                    BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
+                    BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
+                    BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+                    for (int i = fromPos.getX(); i <= toPos.getX(); ++i) {
+                        for (int j = fromPos.getY(); j <= toPos.getY(); ++j) {
+                            for (int k = fromPos.getZ(); k <= toPos.getZ(); ++k) {
+                                mutableBlockPos.set(i, j, k);
+                                BlockState blockState = AuroraDeer.this.level().getBlockState(mutableBlockPos);
+                                if (blockState.is(BlockTags.SNAPS_GOAT_HORN)) {
+                                    AuroraDeer.this.randomlyBreakHorn();
+                                    hornBroken = true;
+                                    stop();
+                                    return;
+                                }
+                            }
+                        }
                     }
                 }
             }
         });
-        this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && (AuroraDeer.this.getHealth() / AuroraDeer.this.getMaxHealth() < 0.5f || (!hasLeftHorn() && !hasRightHorn()));
+            }
+        });
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && AuroraDeer.this.notChargingTicks >= 200;
+            }
+        });
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
@@ -96,24 +142,34 @@ public class AuroraDeer extends Animal implements Charger {
     @Override
     public void aiStep() {
         super.aiStep();
+        if (charging) {
+            notChargingTicks = 0;
+        } else {
+            notChargingTicks++;
+        }
         if (level().isClientSide) {
             idleAnimationState.startIfStopped(tickCount);
         }
     }
 
     public void randomlyBreakHorn() {
-        EntityDataAccessor<Boolean> accessor = getRandom().nextBoolean() ? LEFT_HORN : RIGHT_HORN;
-        if (!entityData.get(LEFT_HORN)) {
-            accessor = RIGHT_HORN;
+        if (getRandom().nextInt(8) == 0) {
+            EntityDataAccessor<Boolean> accessor = getRandom().nextBoolean() ? LEFT_HORN : RIGHT_HORN;
+            if (!hasLeftHorn()) {
+                accessor = RIGHT_HORN;
+            }
+            if (!hasRightHorn()) {
+                accessor = LEFT_HORN;
+            }
+            if (!hasLeftHorn() && !hasRightHorn()) {
+                return;
+            }
+            entityData.set(accessor, false);
+            if (level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + getBbHeight() / 2f, this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
+            }
+            spawnAtLocation(ItemInit.AURORA_DEER_ANTLER.get());
         }
-        if (!entityData.get(RIGHT_HORN)) {
-            accessor = LEFT_HORN;
-        }
-        entityData.set(accessor, false);
-        if (level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + getBbHeight() / 2f, this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
-        }
-        // todo: horn break effect
     }
 
     @Override
@@ -126,8 +182,8 @@ public class AuroraDeer extends Animal implements Charger {
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        compoundTag.putBoolean("LeftHorn", entityData.get(LEFT_HORN));
-        compoundTag.putBoolean("RightHorn", entityData.get(RIGHT_HORN));
+        compoundTag.putBoolean("LeftHorn", hasLeftHorn());
+        compoundTag.putBoolean("RightHorn", hasRightHorn());
     }
 
     public static boolean checkAuroraDeerSpawnRules(EntityType<? extends AuroraDeer> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-30T11:28:39.1826995	Item Models: eternal_starlight
+// 1.20.4	2024-01-30T21:30:58.4692514	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -19,6 +19,8 @@ d205bcd03217a58599bc4f5de2524fa73f1c1c4b assets/eternal_starlight/models/item/ae
 67c59f8d00de8b94b838827ec7e3a46219c6f032 assets/eternal_starlight/models/item/aethersent_hood_quartz_trim.json
 41cebd1b3a47bc71ad97853c150023518360c9b6 assets/eternal_starlight/models/item/aethersent_hood_redstone_trim.json
 99f738986fca9865631f1e5f6c467358eb0eb8cd assets/eternal_starlight/models/item/aethersent_ingot.json
+1cbe476a77a890864c248c40eec1d5bb2c4d3831 assets/eternal_starlight/models/item/aurora_deer_antler.json
+ace7137656dc7e967304a332b6064537f5fa1e8d assets/eternal_starlight/models/item/aurora_deer_steak.json
 c9424547368f2f5421191786565cd3a2045aaf0c assets/eternal_starlight/models/item/black_yeti_fur.json
 981623508d792fd1eee05b0a79651fc0adf40819 assets/eternal_starlight/models/item/black_yeti_fur_carpet.json
 9ef00539766972b6fc5c060dd68f86f447302205 assets/eternal_starlight/models/item/blue_crystallized_lunar_log.json
@@ -57,6 +59,7 @@ e02a90e767581c9cd7212b3ac51f03e8d9bdc6ef assets/eternal_starlight/models/item/co
 aadb695a1da8c261af41d2158ae7196d617bfbbc assets/eternal_starlight/models/item/cobbled_voidstone_stairs.json
 b464d6a2fd9e4ed2831d1e261e5f84be8577a3bb assets/eternal_starlight/models/item/cobbled_voidstone_wall.json
 e5922d9cdec25ffd0c4b642850df91ce37b44c55 assets/eternal_starlight/models/item/conebloom.json
+d2aa32a295b619c1175ab7584d4d1a2cecad816d assets/eternal_starlight/models/item/cooked_aurora_deer_steak.json
 dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/cooked_luminaris.json
 535ae2fcfb3aa8b3d300509977556ba145dcdce5 assets/eternal_starlight/models/item/cooked_luminofish.json
 6c070c5d2e1c3e3ba28da6d35951d30ed3002f72 assets/eternal_starlight/models/item/crescent_grass.json

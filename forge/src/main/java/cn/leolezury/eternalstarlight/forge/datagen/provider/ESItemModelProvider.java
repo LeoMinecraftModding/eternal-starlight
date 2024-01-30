@@ -455,6 +455,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.RED_YETI_FUR_CARPET.get());
         basicBlockItem(ItemInit.BLACK_YETI_FUR_CARPET.get());
 
+        basicHandheld(ItemInit.AURORA_DEER_ANTLER.get());
+        basicItem(ItemInit.AURORA_DEER_STEAK.get());
+        basicItem(ItemInit.COOKED_AURORA_DEER_STEAK.get());
+
         basicItem(ItemInit.ETHER_BUCKET.get());
         basicBlockItem(ItemInit.ENERGY_BLOCK.get());
         basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
