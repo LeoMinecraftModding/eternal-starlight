@@ -383,6 +383,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
         strategy.register(EntityInit.ENT.get(), EntRenderer::new);
+        strategy.register(EntityInit.RATLIN.get(), RatlinRenderer::new);
         strategy.register(EntityInit.YETI.get(), YetiRenderer::new);
         strategy.register(EntityInit.AURORA_DEER.get(), AuroraDeerRenderer::new);
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFishRenderer::new);
@@ -421,6 +422,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
         strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
+        strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
         strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);
         strategy.register(AuroraDeerModel.LAYER_LOCATION, AuroraDeerModel::createBodyLayer);
         strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);

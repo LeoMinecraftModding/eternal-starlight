@@ -38,6 +38,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
         strategy.register(EntityInit.ENT.get(), Ent.createAttributes().build());
+        strategy.register(EntityInit.RATLIN.get(), Ratlin.createAttributes().build());
         strategy.register(EntityInit.YETI.get(), Yeti.createAttributes().build());
         strategy.register(EntityInit.AURORA_DEER.get(), AuroraDeer.createAttributes().build());
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFish.createAttributes().build());
@@ -56,6 +57,7 @@ public class CommonSetupHandlers {
         strategy.register(EntityInit.LONESTAR_SKELETON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         strategy.register(EntityInit.NIGHTSHADE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         strategy.register(EntityInit.ENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
+        strategy.register(EntityInit.RATLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
         strategy.register(EntityInit.YETI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);
         strategy.register(EntityInit.AURORA_DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);
         strategy.register(EntityInit.LUMINOFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LuminoFish::checkAbyssalWaterAnimalSpawnRules);

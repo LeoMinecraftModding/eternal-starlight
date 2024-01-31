@@ -82,6 +82,12 @@
         "weight": 15
       },
       {
+        "type": "eternal_starlight:ratlin",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 15
+      },
+      {
         "type": "eternal_starlight:yeti",
         "maxCount": 6,
         "minCount": 3,

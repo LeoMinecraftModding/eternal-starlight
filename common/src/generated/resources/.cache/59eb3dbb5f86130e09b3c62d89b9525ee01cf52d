@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-30T21:12:33.9681886	Loot Tables
+// 1.20.4	2024-01-31T13:38:54.842311	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -386,6 +386,7 @@ f1942f074e62b727cc84eb934ad87b712ec2afe9 data/eternal_starlight/loot_tables/enti
 5279245b915aea15236347555d74f1b1a1650e91 data/eternal_starlight/loot_tables/entities/luminofish.json
 7434a091afba605f14251db73d338adfbd887bfd data/eternal_starlight/loot_tables/entities/lunar_monstrosity.json
 79b6e077a4db6f80d3775aaa4c11278755ee8422 data/eternal_starlight/loot_tables/entities/nightshade_spider.json
+60524f4b50d29af90dac2629135c2d54a346be7b data/eternal_starlight/loot_tables/entities/ratlin.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_tables/entities/starlight_golem.json
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_tables/entities/the_gatekeeper.json
 35d4d5d8f11489090e0d4bd7438fc7e5d7b7c8c0 data/eternal_starlight/loot_tables/entities/yeti.json
