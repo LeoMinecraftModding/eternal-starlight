@@ -6,6 +6,8 @@ import cn.leolezury.eternalstarlight.common.util.SpellUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 
@@ -27,9 +29,7 @@ public class TeleportationSpell extends AbstractSpell {
     @Override
     public void onPreparationTick(LivingEntity entity, int ticks) {
         if (entity.level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), entity.getX() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (entity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.5, 0.5, 0.5, 0);
-            serverLevel.sendParticles(ParticleTypes.PORTAL, entity.getX() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (entity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.5, 0.5, 0.5, 0);
-            serverLevel.sendParticles(ParticleTypes.END_ROD, entity.getX() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (entity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.5, 0.5, 0.5, 0);
+            doHurtEnemies(serverLevel, entity);
         }
     }
 
@@ -39,6 +39,7 @@ public class TeleportationSpell extends AbstractSpell {
             for (int i = 0; i < 5; i++) {
                 serverLevel.sendParticles(ParticleTypes.PORTAL, entity.getX() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (entity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.5, 0.5, 0.5, 0);
             }
+            doHurtEnemies(serverLevel, entity);
         }
     }
 
@@ -51,6 +52,18 @@ public class TeleportationSpell extends AbstractSpell {
     public void onStop(LivingEntity entity, int ticks) {
         if (ticks >= spellProperties().spellTicks()) {
             doTeleport(entity);
+        }
+    }
+
+    public void doHurtEnemies(ServerLevel serverLevel, LivingEntity entity) {
+        for (int i = 0; i < 360; i += 5) {
+            Vec3 vec3 = ESUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
+            serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
+        }
+        for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(entity.getBbWidth() * 3.5f))) {
+            if (livingEntity.distanceTo(entity) <= 4 * entity.getBbWidth() && livingEntity instanceof Enemy) {
+                livingEntity.hurt(entity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(entity), 4);
+            }
         }
     }
 

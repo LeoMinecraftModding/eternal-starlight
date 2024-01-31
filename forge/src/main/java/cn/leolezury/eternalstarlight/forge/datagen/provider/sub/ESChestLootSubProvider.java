@@ -17,8 +17,6 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.function.BiConsumer;
 
 public class ESChestLootSubProvider implements LootTableSubProvider {
-    public ESChestLootSubProvider() {}
-
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
         consumer.accept(new ResourceLocation(EternalStarlight.MOD_ID, "chests/cursed_garden"),

@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-31T13:38:54.842311	Loot Tables
+// 1.20.4	2024-01-31T22:47:36.6540447	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -371,7 +371,7 @@ f2941c20ed28cc3e2fd901f0a550410a87f80b69 data/eternal_starlight/loot_tables/bloc
 66a535bc690812a6854b5dc925199725d4802ec4 data/eternal_starlight/loot_tables/blocks/yellow_yeti_fur.json
 019c8a21885af7e74b31f81187c1fef117ea2d61 data/eternal_starlight/loot_tables/blocks/yellow_yeti_fur_carpet.json
 f9cd1f73347fdb3ae6e02aa0ff30f4ad4d272e01 data/eternal_starlight/loot_tables/bosses/boss_common.json
-1f23e9e5065ab745f76213997e29221e75b408d8 data/eternal_starlight/loot_tables/bosses/lunar_monstrosity.json
+7db6fe760f71dc24a0bccfc70ad8c384b892ccce data/eternal_starlight/loot_tables/bosses/lunar_monstrosity.json
 c101a506ec848b46e4f2a8854b89c2dfb033f436 data/eternal_starlight/loot_tables/bosses/starlight_golem.json
 c47a367d33826ddf560f30e39a1c3907b1e57a5a data/eternal_starlight/loot_tables/chests/cursed_garden.json
 0deee9ad8e801bed4c2237b7b3728c225a88f670 data/eternal_starlight/loot_tables/chests/cursed_garden_hidden_room.json
