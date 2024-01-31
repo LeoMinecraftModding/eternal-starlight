@@ -15,6 +15,7 @@
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "LevelRendererMixin",
+    "ModelBakeryMixin",
     "ModelManagerMixin",
     "PlayerRendererMixin"
   ],

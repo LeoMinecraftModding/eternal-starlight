@@ -31,7 +31,7 @@ public class ESFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         ClientSetupHandlers.clientSetup();
         ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
-        ClientSetupHandlers.registerExtraBakedModels((ESModelLoadingPlugin.MODELS::add));
+        ClientSetupHandlers.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
         ModelLoadingPlugin.register(new ESModelLoadingPlugin());
         ClientSetupHandlers.registerItemColors(ColorProviderRegistry.ITEM::register);
 

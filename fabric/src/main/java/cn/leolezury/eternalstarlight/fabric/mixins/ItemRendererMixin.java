@@ -21,7 +21,10 @@ public abstract class ItemRendererMixin {
     public BakedModel es_render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
         ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (itemDisplayContext == ItemDisplayContext.GUI && ClientSetupHandlers.ITEMS_WITH_INV_ICON.containsKey(new ModelResourceLocation(itemKey, "inventory"))) {
-            return ClientSetupHandlers.BAKED_MODELS.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(new ModelResourceLocation(itemKey, "inventory")));
+            BakedModel replacedModel = ClientSetupHandlers.BAKED_MODELS.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(new ModelResourceLocation(itemKey, "inventory")));
+            if (replacedModel != null) {
+                return replacedModel;
+            }
         }
         return bakedModel;
     }
