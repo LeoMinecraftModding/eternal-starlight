@@ -411,6 +411,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         inventoryModel(ItemInit.MOONRING_GREATSWORD.get());
         largeHandheld(ItemInit.PETAL_SCYTHE.get());
         inventoryModel(ItemInit.PETAL_SCYTHE.get());
+        basicHandheld(ItemInit.WAND_OF_TELEPORTATION.get());
         basicItem(ItemInit.SEEKING_EYE.get());
 
         basicItem(ItemInit.LUMINOFISH_BUCKET.get());

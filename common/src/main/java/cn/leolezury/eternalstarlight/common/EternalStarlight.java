@@ -31,6 +31,7 @@ public class EternalStarlight {
         RecipeSerializerInit.loadClass();
         RecipeInit.loadClass();
         DataTransformerTypeInit.loadClass();
+        SpellInit.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
     }

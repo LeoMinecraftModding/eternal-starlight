@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-30T21:30:58.4692514	Item Models: eternal_starlight
+// 1.20.4	2024-01-31T19:04:52.6833182	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -447,6 +447,7 @@ b6f3dea37e1a1a1113b8759b7b92b59c89747abe assets/eternal_starlight/models/item/vo
 9b9b67ca04801129837ba397937f627efdbd6d34 assets/eternal_starlight/models/item/voidstone_tile_slab.json
 b284c90037070bd4a618cfbfb260669cfd0c0b97 assets/eternal_starlight/models/item/voidstone_tile_stairs.json
 333cca8f6125a3aad24dff53a6cb9e1c8a45de9f assets/eternal_starlight/models/item/voidstone_tile_wall.json
+41c9b334449e433f0f3ab140a9f2773834749506 assets/eternal_starlight/models/item/wand_of_teleportation.json
 86d435b0dd3d6ebd019d4ea0d3532104db15c25b assets/eternal_starlight/models/item/whisperbloom.json
 286abbc5fff033749189a0513c90b70cdf4dc9d0 assets/eternal_starlight/models/item/white_yeti_fur.json
 808bec8fd8a36895952da37d07d4d86344b8587d assets/eternal_starlight/models/item/white_yeti_fur_carpet.json
