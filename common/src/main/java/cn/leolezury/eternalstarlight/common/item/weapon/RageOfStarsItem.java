@@ -1,20 +1,20 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class RageOfStarsItem extends Item implements Swingable {
-    public RageOfStarsItem(Properties properties) {
-        super(properties);
+public class RageOfStarsItem extends SwordItem implements Swingable {
+    public RageOfStarsItem(Tier tier, int damage, float attackSpeed, Properties properties) {
+        super(tier, damage, attackSpeed, properties);
     }
 
     @Override
@@ -29,10 +29,5 @@ public class RageOfStarsItem extends Item implements Swingable {
             Vec3 location = livingEntity.position();
             AetherSentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
         }
-    }
-
-    @Override
-    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repairItem) {
-        return repairItem.is(ItemInit.AETHERSENT_INGOT.get()) || super.isValidRepairItem(toRepair, repairItem);
     }
 }

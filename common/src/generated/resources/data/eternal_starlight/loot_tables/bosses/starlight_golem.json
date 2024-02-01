@@ -24,6 +24,20 @@
         "max": 5.0,
         "min": 3.0
       }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:energy_sword"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 0.0
+      }
     }
   ],
   "random_sequence": "eternal_starlight:bosses/starlight_golem"

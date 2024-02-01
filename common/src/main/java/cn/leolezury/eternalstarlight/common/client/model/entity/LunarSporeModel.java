@@ -36,6 +36,11 @@ public class LunarSporeModel<T extends LunarSpore> extends EntityModel<T> {
 
     }
 
+    public void setupAnim(float yaw, float pitch) {
+        this.spore.yRot = yaw * 0.017453292F;
+        this.spore.xRot = pitch * 0.017453292F;
+    }
+
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         spore.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);

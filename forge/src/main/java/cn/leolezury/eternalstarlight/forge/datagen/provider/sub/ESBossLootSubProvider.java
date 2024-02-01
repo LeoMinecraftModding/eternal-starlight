@@ -10,7 +10,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
@@ -37,7 +36,10 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
                                 .add(LootTableReference.lootTableReference(new ResourceLocation(EternalStarlight.MOD_ID, "bosses/boss_common"))))
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(3, 5))
-                                .add(LootItem.lootTableItem(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get()))));
+                                .add(LootItem.lootTableItem(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get())))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(UniformGenerator.between(0, 1))
+                                .add(LootItem.lootTableItem(ItemInit.ENERGY_SWORD.get()))));
 
         consumer.accept(new ResourceLocation(EternalStarlight.MOD_ID, "bosses/lunar_monstrosity"),
                 LootTable.lootTable()
@@ -47,7 +49,7 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
                                 .setRolls(UniformGenerator.between(3, 5))
                                 .add(LootItem.lootTableItem(ItemInit.TENACIOUS_PETAL.get())))
                         .withPool(LootPool.lootPool()
-                                .setRolls(ConstantValue.exactly(1))
+                                .setRolls(UniformGenerator.between(0, 1))
                                 .add(LootItem.lootTableItem(ItemInit.WAND_OF_TELEPORTATION.get()))));
     }
 }

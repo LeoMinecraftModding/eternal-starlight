@@ -15,6 +15,7 @@ import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -47,5 +48,6 @@ public class EntityInit {
     public static final RegistryObject<EntityType<?>, EntityType<FireColumn>> FIRE_COLUMN = ENTITIES.register("fire_column", () -> EntityType.Builder.of(FireColumn::new, MobCategory.MISC).sized(0f, 0f).build(new ResourceLocation(EternalStarlight.MOD_ID, "fire_column").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<LunarSpore>> LUNAR_SPORE = ENTITIES.register("lunar_spore", () -> EntityType.Builder.<LunarSpore>of(LunarSpore::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_spore").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<LunarVine>> LUNAR_VINE = ENTITIES.register("lunar_vine", () -> EntityType.Builder.of(LunarVine::new, MobCategory.MISC).sized(0.3f, 1f).build(new ResourceLocation(EternalStarlight.MOD_ID, "lunar_vine").toString()));
+    public static final RegistryObject<EntityType<?>, EntityType<ThrownShatteredBlade>> THROWN_SHATTERED_BLADE = ENTITIES.register("thrown_shattered_blade", () -> EntityType.Builder.<ThrownShatteredBlade>of(ThrownShatteredBlade::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(new ResourceLocation(EternalStarlight.MOD_ID, "thrown_shattered_blade").toString()));
     public static void loadClass() {}
 }

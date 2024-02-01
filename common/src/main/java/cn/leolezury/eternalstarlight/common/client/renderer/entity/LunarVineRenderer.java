@@ -24,7 +24,7 @@ public class LunarVineRenderer extends EntityRenderer<LunarVine> {
     }
 
     @Override
-    public void render(LunarVine entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(LunarVine entity, float yaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
         stack.pushPose();
         float scale = entity.getSpawnedTicks() <= 40 ? entity.getSpawnedTicks() / 40f : 1;
         if (entity.getSpawnedTicks() >= 160) {
@@ -34,7 +34,7 @@ public class LunarVineRenderer extends EntityRenderer<LunarVine> {
         VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
         this.model.renderToBuffer(stack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         stack.popPose();
-        super.render(entity, f1, f2, stack, bufferSource, packedLight);
+        super.render(entity, yaw, partialTicks, stack, bufferSource, packedLight);
     }
 
     @Override

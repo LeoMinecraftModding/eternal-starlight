@@ -87,6 +87,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.SWAMP_SILVER_SWORD.get(),
                 ItemInit.BONEMORE_BROADSWORD.get(),
                 ItemInit.DOOMEDEN_SWORD.get(),
+                ItemInit.SHATTERED_SWORD.get(),
+                ItemInit.ENERGY_SWORD.get(),
                 ItemInit.MOONRING_GREATSWORD.get()
         );
         tag(ItemTags.PICKAXES).add(

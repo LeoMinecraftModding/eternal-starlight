@@ -402,8 +402,11 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.SWAMP_SILVER_LEGGINGS.get());
         basicItem(ItemInit.SWAMP_SILVER_BOOTS.get());
 
+        shatteredSword(ItemInit.SHATTERED_SWORD.get());
+        basicItem(ItemInit.SHATTERED_SWORD_BLADE.get());
         basicItem(ItemInit.GOLEM_STEEL_INGOT.get());
         basicItem(ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        basicHandheld(ItemInit.ENERGY_SWORD.get());
         basicItem(ItemInit.TENACIOUS_PETAL.get());
         crossbow(ItemInit.CRYSTAL_CROSSBOW.get());
         bow(ItemInit.MOONRING_BOW.get());
@@ -477,6 +480,14 @@ public class ESItemModelProvider extends ItemModelProvider {
                     .texture("layer1", mcLoc("trims/items/" + armor.getType().getName() + "_trim_" + trimModelData.name()));
             armorBuilder.override().predicate(new ResourceLocation("trim_type"), trimModelData.itemModelIndex()).model(trimModel).end();
         }
+    }
+
+    private void shatteredSword(Item item) {
+        ModelFile noBladeModel = withExistingParent(name(item) + "_no_blade", "item/handheld")
+                .texture("layer0", itemTexture(item).withSuffix("_no_blade"));
+        withExistingParent(name(item), "item/handheld")
+                .texture("layer0", itemTexture(item))
+                .override().predicate(new ResourceLocation("no_blade"), 1).model(noBladeModel).end();
     }
 
     private void crossbow(Item item) {

@@ -400,7 +400,7 @@ public class ItemInit {
     // aethersent
     public static final RegistryObject<Item, Item> AETHERSENT_BLOCK = registerItem("aethersent_block", () -> new BlockItem(BlockInit.AETHERSENT_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AETHERSENT_INGOT = registerItem("aethersent_ingot", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item, Item> RAGE_OF_STARS = registerItem("rage_of_stars", () -> new RageOfStarsItem(new Item.Properties().stacksTo(1).defaultDurability(1000)));
+    public static final RegistryObject<Item, Item> RAGE_OF_STARS = registerItem("rage_of_stars", () -> new RageOfStarsItem(ESItemTiers.AETHERSENT, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item, Item> STARFALL_LONGBOW = registerItem("starfall_longbow", () -> new StarfallLongbowItem(new Item.Properties().stacksTo(1).defaultDurability(2000)));
     public static final RegistryObject<Item, Item> AETHERSENT_HOOD = registerItem("aethersent_hood",
             () -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT, ArmorItem.Type.HELMET, new Item.Properties()));
@@ -458,14 +458,17 @@ public class ItemInit {
             () -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     // boss materials
+    public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().stacksTo(1).durability(2000).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(SpellInit.TELEPORTATION, new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(SpellInit.TELEPORTATION, new Item.Properties().durability(1000).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 
     // mob stuff

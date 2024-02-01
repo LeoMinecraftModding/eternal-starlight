@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
@@ -24,10 +25,13 @@ public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
     }
 
     @Override
-    public void render(LunarSpore p_114485_, float p_114486_, float p_114487_, PoseStack p_114488_, MultiBufferSource p_114489_, int p_114490_) {
-        VertexConsumer vertexconsumer = p_114489_.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-        this.model.renderToBuffer(p_114488_, vertexconsumer, p_114490_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        super.render(p_114485_, p_114486_, p_114487_, p_114488_, p_114489_, p_114490_);
+    public void render(LunarSpore entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
+        VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
+        float yRot = Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
+        float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot());
+        this.model.setupAnim(yRot, xRot);
+        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
     }
 
     @Override

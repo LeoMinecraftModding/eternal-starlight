@@ -62,10 +62,6 @@ public class SimpleSpellItem extends Item {
     }
 
     public int getUseDuration(ItemStack itemStack) {
-        /*AbstractSpell spell = spellSupplier.get();
-        int preparationTicks = spell.spellProperties().preparationTicks();
-        int spellTicks = spell.spellProperties().spellTicks();
-        return preparationTicks + spellTicks + 1;*/
         return 72000;
     }
 
@@ -75,6 +71,7 @@ public class SimpleSpellItem extends Item {
         AbstractSpell spell = spellSupplier.get();
         if (!level.isClientSide && spell.canCast(player)) {
             player.startUsingItem(interactionHand);
+            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
             spell.onStart(player);
             return InteractionResultHolder.consume(itemStack);
         }

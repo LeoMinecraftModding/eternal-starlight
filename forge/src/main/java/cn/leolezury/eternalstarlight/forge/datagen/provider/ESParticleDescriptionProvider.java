@@ -18,9 +18,14 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
         spriteSet(ParticleInit.SCARLET_LEAVES.get(), loc("scarlet_leaves"), 5, false);
         sprite(ParticleInit.ENERGY.get(), loc("energy"));
         sprite(ParticleInit.POISON.get(), loc("poison"));
+        spriteSet(ParticleInit.BLADE_SHOCKWAVE.get(), mcLoc("sweep"), 8, false);
     }
 
     private ResourceLocation loc(String s) {
         return new ResourceLocation(EternalStarlight.MOD_ID, s);
+    }
+
+    private ResourceLocation mcLoc(String s) {
+        return new ResourceLocation(s);
     }
 }

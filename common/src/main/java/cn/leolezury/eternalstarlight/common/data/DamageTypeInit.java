@@ -18,6 +18,7 @@ public class DamageTypeInit {
     public static final ResourceKey<DamageType> METEOR = create("meteor");
     public static final ResourceKey<DamageType> CRYSTALLINE_INFECTION = create("crystalline_infection");
     public static final ResourceKey<DamageType> GROUND_SHAKE = create("ground_shake");
+    public static final ResourceKey<DamageType> SHATTERED_BLADE = create("shattered_blade");
 
     // starlight golem
     public static final ResourceKey<DamageType> LASER = create("laser");
@@ -49,6 +50,7 @@ public class DamageTypeInit {
         context.register(METEOR, new DamageType(esDamage("meteor"), 0.0F));
         context.register(CRYSTALLINE_INFECTION, new DamageType(esDamage("crystalline_infection"), 0.0F));
         context.register(GROUND_SHAKE, new DamageType(esDamage("ground_shake"), 0.0F));
+        context.register(SHATTERED_BLADE, new DamageType(esDamage("shattered_blade"), 0.0F));
         context.register(LASER, new DamageType(esDamage("laser"), 0.0F, DamageEffects.BURNING));
         context.register(FIRE_COLUMN, new DamageType(esDamage("fire_column"), 0.0F, DamageEffects.BURNING));
         context.register(POISON, new DamageType(esDamage("poison"), 0.0F));

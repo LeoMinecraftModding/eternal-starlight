@@ -5,11 +5,13 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimato
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
+import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
+import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -210,11 +212,14 @@ public class ClientSetupHandlers {
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
 
+        PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.PROPHET_ORB), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN.get(), HangingSignRenderer::new);
+
+        ItemProperties.register(ItemInit.SHATTERED_SWORD.get(), new ResourceLocation("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
         ItemProperties.register(ItemInit.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
@@ -370,6 +375,7 @@ public class ClientSetupHandlers {
         strategy.register(ParticleInit.ENERGY.get(), FlameParticle.Provider::new);
         strategy.register(ParticleInit.POISON.get(), FlameParticle.Provider::new);
         strategy.register(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);
+        strategy.register(ParticleInit.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
@@ -396,6 +402,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.FIRE_COLUMN.get(), NothingRenderer::new);
         strategy.register(EntityInit.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(EntityInit.LUNAR_VINE.get(), LunarVineRenderer::new);
+        strategy.register(EntityInit.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);

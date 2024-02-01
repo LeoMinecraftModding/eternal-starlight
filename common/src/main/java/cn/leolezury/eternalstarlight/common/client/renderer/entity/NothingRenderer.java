@@ -11,8 +11,8 @@ import net.minecraft.world.entity.Entity;
 
 @Environment(EnvType.CLIENT)
 public class NothingRenderer extends EntityRenderer<Entity> {
-    public NothingRenderer(EntityRendererProvider.Context mgr) {
-        super(mgr);
+    public NothingRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class NothingRenderer extends EntityRenderer<Entity> {
     }
 
     @Override
-    public void render(Entity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+    public void render(Entity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
 
     }
 }
