@@ -55,7 +55,7 @@ public class SimpleSpellItem extends Item {
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int i) {
         AbstractSpell spell = spellSupplier.get();
-        spell.stop(livingEntity, i - spell.spellProperties().preparationTicks());
+        spell.stop(livingEntity, getUseDuration(itemStack) - i - spell.spellProperties().preparationTicks());
         if (livingEntity instanceof Player player) {
             player.getCooldowns().addCooldown(this, spell.spellProperties().coolDownTicks());
         }
