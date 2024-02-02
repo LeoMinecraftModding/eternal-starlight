@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.command.ESCommand;
 import cn.leolezury.eternalstarlight.common.entity.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
@@ -13,6 +14,9 @@ import cn.leolezury.eternalstarlight.common.init.EntityInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
@@ -72,6 +76,10 @@ public class CommonSetupHandlers {
     public static void registerFuels(FuelRegisterStrategy strategy) {
         strategy.register(ESTags.Items.YETI_FUR, 100);
         strategy.register(ESTags.Items.YETI_FUR_CARPETS, 100);
+    }
+
+    public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
+        ESCommand.register(dispatcher, context);
     }
 
     public static void registerChunkGenerator() {

@@ -1,12 +1,14 @@
 package cn.leolezury.eternalstarlight.common.client;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
+import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
@@ -38,5 +40,9 @@ public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
 
     public static boolean doRenderSky(ClientLevel level, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
         return ESSkyRenderer.renderSky(level, poseStack, projectionMatrix, partialTick, camera, setupFog);
+    }
+
+    public static boolean doRenderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
+        return ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
     }
 }

@@ -3,18 +3,21 @@ package cn.leolezury.eternalstarlight.forge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID)
 public class CommonEvents {
@@ -22,6 +25,20 @@ public class CommonEvents {
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             CommonHandlers.onServerTick(event.getServer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLevelTick(TickEvent.LevelTickEvent event) {
+        if (event.phase == TickEvent.Phase.START && event.level instanceof ServerLevel serverLevel) {
+            CommonHandlers.onLevelTick(serverLevel);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLevelLoad(LevelEvent.Load event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            CommonHandlers.onLevelLoad(serverLevel);
         }
     }
 
@@ -67,5 +84,10 @@ public class CommonEvents {
                 }
             }
         });
+    }
+
+    @SubscribeEvent
+    public static void onCommandRegister(RegisterCommandsEvent event) {
+        CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
     }
 }

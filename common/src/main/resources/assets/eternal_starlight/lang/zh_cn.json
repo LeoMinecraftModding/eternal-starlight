@@ -561,5 +561,12 @@
   "trim_material.eternal_starlight.swamp_silver": "沼泽银材料",
   "trim_material.eternal_starlight.golem_steel": "傀儡钢材料",
   "trim_material.eternal_starlight.moonring": "月珥材料",
-  "trim_material.eternal_starlight.doomeden_bone": "魔窟断骨材料"
+  "trim_material.eternal_starlight.doomeden_bone": "魔窟断骨材料",
+
+  "weather.eternal_starlight.meteor_rain": "流星雨",
+
+  "commands.eternal_starlight.weather.set": "已将天气设置为%s",
+  "commands.eternal_starlight.weather.fail": "无法将天气设置为%s",
+  "commands.eternal_starlight.weather.clear": "已将天气清除",
+  "commands.eternal_starlight.weather.clear_fail": "无法将天气清除"
 }

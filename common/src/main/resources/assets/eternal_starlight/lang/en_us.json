@@ -561,5 +561,12 @@
   "trim_material.eternal_starlight.swamp_silver": "Swamp Silver Material",
   "trim_material.eternal_starlight.golem_steel": "Golem Steel Material",
   "trim_material.eternal_starlight.moonring": "Moonring Material",
-  "trim_material.eternal_starlight.doomeden_bone": "Doomeden Bone Material"
+  "trim_material.eternal_starlight.doomeden_bone": "Doomeden Bone Material",
+
+  "weather.eternal_starlight.meteor_rain": "Meteor Rain",
+
+  "commands.eternal_starlight.weather.set": "Set weather to %s",
+  "commands.eternal_starlight.weather.fail": "Failed to set weather to %s",
+  "commands.eternal_starlight.weather.clear": "Set weather to clear",
+  "commands.eternal_starlight.weather.clear_fail": "Failed to set weather to clear"
 }

@@ -32,6 +32,7 @@ public class EternalStarlight {
         RecipeInit.loadClass();
         DataTransformerTypeInit.loadClass();
         SpellInit.loadClass();
+        WeatherInit.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
     }

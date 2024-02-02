@@ -28,8 +28,8 @@ public record ESParticlePacket(ParticleOptions particle,
     }
 
     public static void write(ESParticlePacket message, FriendlyByteBuf buf) {
-        buf.writeInt(BuiltInRegistries.PARTICLE_TYPE.getId(message.particle.getType()));
-        message.particle.writeToNetwork(buf);
+        buf.writeInt(BuiltInRegistries.PARTICLE_TYPE.getId(message.particle().getType()));
+        message.particle().writeToNetwork(buf);
         buf.writeDouble(message.x);
         buf.writeDouble(message.y);
         buf.writeDouble(message.z);

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -32,9 +33,9 @@ public class ESSkyRenderer {
         setupFog.run();
 
         Vec3 vec3 = level.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
-        float f = (float)vec3.x;
-        float f1 = (float)vec3.y;
-        float f2 = (float)vec3.z;
+        float f = (float) vec3.x;
+        float f1 = (float) vec3.y;
+        float f2 = (float) vec3.z;
         if (starBuffer == null) {
             createStars();
         }
@@ -65,8 +66,8 @@ public class ESSkyRenderer {
             bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
             int i = 16;
 
-            for(int j = 0; j <= 16; ++j) {
-                float f7 = (float)j * ((float)Math.PI * 2F) / 16.0F;
+            for (int j = 0; j <= 16; ++j) {
+                float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
                 float f8 = Mth.sin(f7);
                 float f9 = Mth.cos(f7);
                 bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * afloat[3]).color(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
@@ -78,7 +79,11 @@ public class ESSkyRenderer {
 
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
-        float f11 = 1.0F - level.getRainLevel(partialTicks);
+        float rainLevel = level.getRainLevel(partialTicks);
+        if (ClientWeatherInfo.weather != null) {
+            rainLevel = ClientWeatherInfo.weather.modifyRainLevel(rainLevel);
+        }
+        float f11 = 1.0F - rainLevel;
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
         stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
         stack.mulPose(Axis.XP.rotationDegrees(60.0F));

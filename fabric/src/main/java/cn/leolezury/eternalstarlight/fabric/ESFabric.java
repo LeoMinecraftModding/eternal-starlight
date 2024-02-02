@@ -6,7 +6,9 @@ import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -42,6 +44,7 @@ public class ESFabric implements ModInitializer {
                 FuelRegistry.INSTANCE.add(itemTag, time);
             }
         });
+        CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
         CommonSetupHandlers.registerChunkGenerator();
         CommonSetupHandlers.registerBiomeSource();
 
@@ -52,6 +55,8 @@ public class ESFabric implements ModInitializer {
             return InteractionResult.PASS;
         });
         ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
+        ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
+        ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));
 
         CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
     }

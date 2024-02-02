@@ -11,14 +11,14 @@ import cn.leolezury.eternalstarlight.common.init.MobEffectInit;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
+import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
+import cn.leolezury.eternalstarlight.common.network.ESWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
-import cn.leolezury.eternalstarlight.common.util.BlockUtil;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
-import cn.leolezury.eternalstarlight.common.util.SpellUtil;
+import cn.leolezury.eternalstarlight.common.util.*;
+import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -74,6 +74,24 @@ public class CommonHandlers {
                 }
             }
             ticksSinceLastUpdate = 0;
+        }
+    }
+
+    public static void onLevelLoad(ServerLevel serverLevel) {
+        if (serverLevel.dimension() == DimensionInit.STARLIGHT_KEY) {
+            WeatherUtil.getOrCreateWeathers(serverLevel);
+        }
+    }
+
+    public static void onLevelTick(ServerLevel serverLevel) {
+        if (serverLevel.dimension() == DimensionInit.STARLIGHT_KEY) {
+            Weathers weathers = WeatherUtil.getOrCreateWeathers(serverLevel);
+            weathers.tick();
+            weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
+            }), () -> {
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new CancelWeatherPacket(true));
+            });
         }
     }
 
