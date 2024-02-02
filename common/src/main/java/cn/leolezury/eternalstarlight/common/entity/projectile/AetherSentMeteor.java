@@ -188,7 +188,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-        CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.001f * getSize(), 20, 20);
+        CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.0002f * getSize(), 20, 20);
         hit();
         if (!level().isClientSide && target == null && targetPos == null) {
             land();
@@ -198,7 +198,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.001f * getSize(), 20, 20);
+        CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.0002f * getSize(), 20, 20);
         hit();
     }
 

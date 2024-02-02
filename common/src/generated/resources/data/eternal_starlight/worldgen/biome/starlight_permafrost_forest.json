@@ -112,7 +112,7 @@
         "type": "eternal_starlight:lonestar_skeleton",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 5
+        "weight": 10
       }
     ],
     "underground_water_creature": [],

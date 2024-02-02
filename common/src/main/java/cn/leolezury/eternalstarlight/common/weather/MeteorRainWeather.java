@@ -14,6 +14,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 
 public class MeteorRainWeather extends AbstractWeather {
@@ -40,7 +41,7 @@ public class MeteorRainWeather extends AbstractWeather {
 
     @Override
     public void tickBlock(ServerLevel level, int ticks, BlockPos pos) {
-        if (level.getRandom().nextInt(50) == 0) {
+        if (level.getRandom().nextInt(3000) == 0) {
             int targetX = pos.getX();
             int targetY = pos.getY();
             int targetZ = pos.getZ();
@@ -69,7 +70,7 @@ public class MeteorRainWeather extends AbstractWeather {
     public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
         float rainTicks = Math.min(ClientWeatherInfo.ticks + partialTick, ClientWeatherInfo.duration);
         float rainLevel = (ClientWeatherInfo.duration / 2f - Math.abs(ClientWeatherInfo.duration / 2f - rainTicks)) / (ClientWeatherInfo.duration / 2f);
-        ESWeatherRenderer.renderWeather(lightTexture, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, partialTick, camX, camY, camZ);
+        ESWeatherRenderer.renderWeather(lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
         return true;
     }
 

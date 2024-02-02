@@ -48,7 +48,7 @@ public class ESWeatherRenderer {
         return ClientWeatherInfo.weather != null && ClientWeatherInfo.weather.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
     }
 
-    public static void renderWeather(LightTexture lightTexture, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, float partialTicks, double camX, double camY, double camZ) {
+    public static void renderWeather(LightTexture lightTexture, Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ) {
         initialize();
         Minecraft minecraft = Minecraft.getInstance();
         if (!(rainLevel <= 0.0F)) {
@@ -100,7 +100,7 @@ public class ESWeatherRenderer {
                         if (u != v) {
                             RandomSource randomSource = RandomSource.create((long) p * p * 3121 + p * 45238971L ^ (long) o * o * 418711 + o * 13761L);
                             mutableBlockPos.set(p, u, o);
-                            Biome.Precipitation precipitation = biome.getPrecipitationAt(mutableBlockPos);
+                            Biome.Precipitation precipitation = weatherType == null ? biome.getPrecipitationAt(mutableBlockPos) : weatherType;
                             float z;
                             double ac;
                             int ag;
@@ -125,7 +125,7 @@ public class ESWeatherRenderer {
                                 float ae = (float)Math.sqrt(ac * ac + ad * ad) / (float)l;
                                 float af = ((1.0F - ae * ae) * 0.5F + 0.5F) * rainLevel;
                                 mutableBlockPos.set(p, w, o);
-                                ag = LevelRenderer.getLightColor(level, mutableBlockPos);
+                                ag = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
                                 bufferBuilder.vertex((double)p - camX - r + 0.5, (double)v - camY, (double)o - camZ - s + 0.5).uv(0.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
                                 bufferBuilder.vertex((double)p - camX + r + 0.5, (double)v - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
                                 bufferBuilder.vertex((double)p - camX + r + 0.5, (double)u - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
@@ -149,7 +149,7 @@ public class ESWeatherRenderer {
                                 float ak = (float)Math.sqrt(aj * aj + ac * ac) / (float)l;
                                 float al = ((1.0F - ak * ak) * 0.3F + 0.5F) * rainLevel;
                                 mutableBlockPos.set(p, w, o);
-                                int am = LevelRenderer.getLightColor(level, mutableBlockPos);
+                                int am = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
                                 int an = am >> 16 & '\uffff';
                                 ag = am & '\uffff';
                                 int ao = (an * 3 + 240) / 4;
