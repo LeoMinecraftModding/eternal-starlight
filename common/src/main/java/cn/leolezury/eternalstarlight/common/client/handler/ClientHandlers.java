@@ -243,7 +243,7 @@ public class ClientHandlers {
                 if (usingTicks < 140) {
                     gui.renderTextureOverlay(guiGraphics, PROPHET_ORB_USE, progress);
                 } else {
-                    Minecraft.getInstance().setScreen(new CrestSelectionScreen());
+                    Minecraft.getInstance().setScreen(new CrestSelectionScreen(player));
                 }
             }
         }

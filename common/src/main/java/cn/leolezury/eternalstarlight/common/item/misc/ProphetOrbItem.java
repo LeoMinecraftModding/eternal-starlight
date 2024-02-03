@@ -29,7 +29,7 @@ public class ProphetOrbItem extends Item implements Vanishable {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (player.getPose() == Pose.STANDING) {
+        if (player.getPose() == Pose.STANDING && level.isClientSide) {
             player.startUsingItem(interactionHand);
             return InteractionResultHolder.consume(itemStack);
         }

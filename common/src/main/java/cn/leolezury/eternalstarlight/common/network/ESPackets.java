@@ -18,6 +18,7 @@ public class ESPackets {
         map.put("open_book", new Handler<>(OpenBookPacket.class, OpenBookPacket::write, OpenBookPacket::read, OpenBookPacket.Handler::handle));
         map.put("update_weather", new Handler<>(ESWeatherPacket.class, ESWeatherPacket::write, ESWeatherPacket::read, ESWeatherPacket.Handler::handle));
         map.put("cancel_weather", new Handler<>(CancelWeatherPacket.class, CancelWeatherPacket::write, CancelWeatherPacket::read, CancelWeatherPacket.Handler::handle));
+//        map.put("crest_equipment", new Handler<>(CrestEquipmentPacket.class, CrestEquipmentPacket::write, CrestEquipmentPacket::read, CrestEquipmentPacket.Handler::handle));
     });
 
     public record Handler<T>(Class<T> packetClass, BiConsumer<T, FriendlyByteBuf> write, Function<FriendlyByteBuf, T> read, Consumer<T> handle) {

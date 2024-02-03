@@ -12,6 +12,7 @@ public class EternalStarlight {
     public static final String MOD_ID = "eternal_starlight";
 
     public static void init() {
+        CrestInit.postInit();
         FluidInit.loadClass();
         BlockInit.loadClass();
         ItemInit.loadClass();
