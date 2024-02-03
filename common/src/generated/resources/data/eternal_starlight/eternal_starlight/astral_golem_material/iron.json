@@ -1,0 +1,7 @@
+{
+  "attack_damage_multiplier": 1.0,
+  "defense_multiplier": 1.0,
+  "material": "minecraft:iron_ingot",
+  "texture": "eternal_starlight:textures/entity/boarwarf/golem/astral_golem_iron.png",
+  "tint_color": 16777215
+}

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterial;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -20,6 +21,9 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
     public static final ModelLayerLocation INNER_ARMOR_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "astral_golem"), "inner_armor");
     public static final ModelLayerLocation OUTER_ARMOR_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "astral_golem"), "outer_armor");
     private float armXRot = 0;
+    private float r = 1.0F;
+    private float g = 1.0F;
+    private float b = 1.0F;
 
     public AstralGolemModel(ModelPart root) {
         super(root);
@@ -48,6 +52,14 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        AstralGolemMaterial material = entity.getMaterial();
+        if (material != null) {
+            r = ((material.tintColor() >> 16) & 0xFF) / 255f;
+            g = ((material.tintColor() >> 8) & 0xFF) / 255f;
+            b = (material.tintColor() & 0xFF) / 255f;
+        } else {
+            r = g = b = 1.0f;
+        }
         if (entity.getMainHandItem().isEmpty()) {
             leftArm.xRot += armXRot;
             rightArm.xRot += armXRot;
@@ -79,9 +91,9 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        rightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        leftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
+        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
+        rightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
+        leftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
     }
 }

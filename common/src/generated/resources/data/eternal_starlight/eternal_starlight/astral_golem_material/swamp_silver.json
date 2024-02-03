@@ -1,0 +1,7 @@
+{
+  "attack_damage_multiplier": 1.2,
+  "defense_multiplier": 1.2,
+  "material": "eternal_starlight:swamp_silver_ingot",
+  "texture": "eternal_starlight:textures/entity/boarwarf/golem/astral_golem_swamp_silver.png",
+  "tint_color": 16777215
+}

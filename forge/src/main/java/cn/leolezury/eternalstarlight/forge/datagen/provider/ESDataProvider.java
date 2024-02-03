@@ -24,7 +24,8 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.TRIM_MATERIAL, TrimMaterialInit::bootstrap)
             // custom
             .add(ESRegistries.BIOME_DATA, BiomeDataInit::bootstrap)
-            .add(ESRegistries.DATA_TRANSFORMER, DataTransformerInit::bootstrap);
+            .add(ESRegistries.DATA_TRANSFORMER, DataTransformerInit::bootstrap)
+            .add(ESRegistries.ASTRAL_GOLEM_MATERIAL, AstralGolemMaterialInit::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID, "minecraft"));

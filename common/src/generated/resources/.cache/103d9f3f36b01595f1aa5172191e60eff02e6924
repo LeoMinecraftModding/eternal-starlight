@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-02T18:15:28.6216216	Registries
+// 1.20.4	2024-02-03T14:36:52.5261223	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a318911784ef6902c27bf5dcc8c0f61d775a2f3f data/eternal_starlight/damage_type/ether.json
@@ -10,6 +10,8 @@ ab5afec9078fe57886a212ce0007298117041b46 data/eternal_starlight/damage_type/lase
 3cb3f7800d1d4df865b3ea64742fcc6f607a8d9b data/eternal_starlight/damage_type/shattered_blade.json
 44ecbf92eaecb397dddf1db7e52d4c405d078965 data/eternal_starlight/dimension/starlight.json
 d66a15c91b603422efcab931c247979b0782546e data/eternal_starlight/dimension_type/starlight.json
+e086191dcc4420f51a0e7f9cb64cf44f2dd0da93 data/eternal_starlight/eternal_starlight/astral_golem_material/iron.json
+a359713bf0db678136ee8347b61002dc4b823182 data/eternal_starlight/eternal_starlight/astral_golem_material/swamp_silver.json
 48b32ee802d51ec78ce18e20073f1358c50626c5 data/eternal_starlight/eternal_starlight/biome_data/crystallized_desert.json
 25aa152883e9d435e95ae18730a7694084e96fda data/eternal_starlight/eternal_starlight/biome_data/dark_swamp.json
 0cad06d19f90cb64d831d71d368e675269ea4569 data/eternal_starlight/eternal_starlight/biome_data/ether_river.json

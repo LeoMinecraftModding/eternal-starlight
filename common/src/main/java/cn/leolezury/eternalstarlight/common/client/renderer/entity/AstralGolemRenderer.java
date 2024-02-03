@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.AstralGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.AstralGolemArmorLayer;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterials;
+import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterial;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -14,6 +14,8 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {
+    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/golem/astral_golem_iron.png");
+
     public AstralGolemRenderer(EntityRendererProvider.Context context) {
         super(context, new AstralGolemModel<>(context.bakeLayer(AstralGolemModel.LAYER_LOCATION)), 0.5f);
         this.addLayer(new AstralGolemArmorLayer<>(this, new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.INNER_ARMOR_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.OUTER_ARMOR_LOCATION)), context.getModelManager()));
@@ -21,10 +23,7 @@ public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRende
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/golem/astral_golem_0.png");
-        if (entity.getMaterial() >= 0 && entity.getMaterial() < AstralGolemMaterials.MATERIAL_NUM) {
-            ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/golem/astral_golem_" + entity.getMaterial() + ".png");
-        }
-        return ENTITY_TEXTURE;
+        AstralGolemMaterial material = entity.getMaterial();
+        return material == null ? ENTITY_TEXTURE : material.texture();
     }
 }

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem;
 
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.AstralGolemRandomStrollNearVillageGoal;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
@@ -36,6 +37,7 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -59,12 +61,12 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
         return this.attackAnimationTick;
     }
     public BlockPos homePos = BlockPos.ZERO;
-    protected static final EntityDataAccessor<Integer> MATERIAL = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.INT);
-    public int getMaterial() {
-        return entityData.get(MATERIAL);
+    protected static final EntityDataAccessor<String> MATERIAL = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.STRING);
+    public ResourceLocation getMaterialId() {
+        return new ResourceLocation(entityData.get(MATERIAL));
     }
-    public void setMaterial(int material) {
-        entityData.set(MATERIAL, material);
+    public void setMaterialId(ResourceLocation material) {
+        entityData.set(MATERIAL, material.toString());
     }
     protected static final EntityDataAccessor<Boolean> BLOCKING = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.BOOLEAN);
     public boolean isGolemBlocking() {
@@ -77,21 +79,21 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(MATERIAL, 0);
+        entityData.define(MATERIAL, "null");
         entityData.define(BLOCKING, false);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        setMaterial(compoundTag.getInt("Material"));
+        setMaterialId(new ResourceLocation(compoundTag.getString("Material")));
         homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        compoundTag.putInt("Material", getMaterial());
+        compoundTag.putString("Material", getMaterialId().toString());
         compoundTag.putInt("HomeX", homePos.getX());
         compoundTag.putInt("HomeY", homePos.getY());
         compoundTag.putInt("HomeZ", homePos.getZ());
@@ -113,7 +115,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.MAX_HEALTH, 100.0D)
                 .add(Attributes.ARMOR, 10.0D)
                 .add(Attributes.FOLLOW_RANGE, 100.0D)
                 .add(Attributes.ATTACK_DAMAGE, 10.0D)
@@ -127,26 +129,24 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData data, @org.jetbrains.annotations.Nullable CompoundTag tag) {
         homePos = blockPosition();
-
-        setMaterial(getRandom().nextInt(AstralGolemMaterials.MATERIAL_NUM));
-
         return super.finalizeSpawn(level, instance, spawnType, data, tag);
     }
 
-    private boolean isValidRepairMaterial(ItemStack stack) {
-        switch (getMaterial()) {
-            case AstralGolemMaterials.IRON -> {
-                return stack.is(Items.IRON_INGOT);
-            }
-            case AstralGolemMaterials.SWAMP_SILVER -> {
-                return stack.is(ItemInit.SWAMP_SILVER_INGOT.get());
-            }
-            case AstralGolemMaterials.ASTRAL_DIAMOND -> {
-                return stack.is(ItemInit.SEEKING_EYE.get());
-                // TODO: astral diamond material
-            }
+    public AstralGolemMaterial getMaterial() {
+        return level().registryAccess().registryOrThrow(ESRegistries.ASTRAL_GOLEM_MATERIAL).get(getMaterialId());
+    }
+
+    public void setMaterial(AstralGolemMaterial material) {
+        ResourceLocation key = level().registryAccess().registryOrThrow(ESRegistries.ASTRAL_GOLEM_MATERIAL).getKey(material);
+        if (key != null) {
+            setMaterialId(key);
         }
-        return false;
+    }
+
+    private boolean isValidRepairMaterial(ItemStack stack) {
+        Item material = Items.IRON_INGOT;
+        if (getMaterial() != null) material = getMaterial().material();
+        return stack.is(material);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
             return InteractionResult.PASS;
         } else {
             float f = this.getHealth();
-            this.heal(40.0F);
+            this.heal(25.0F);
             if (this.getHealth() == f) {
                 return InteractionResult.PASS;
             } else {
@@ -213,12 +213,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
         this.level().broadcastEntityEvent(this, (byte)4);
         float f = this.getAttackDamage();
         float f1 = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
-        float f2 = 1;
-        switch (getMaterial()) {
-            case AstralGolemMaterials.IRON -> f2 = 1.2F;
-            case AstralGolemMaterials.SWAMP_SILVER -> f2 = 1.5F;
-            case AstralGolemMaterials.ASTRAL_DIAMOND -> f2 = 2.0F;
-        }
+        float f2 = getMaterial() == null ? 1 : getMaterial().attackDamageMultiplier();
         boolean flag = target.hurt(this.damageSources().mobAttack(this), f1 * f2);
         if (flag) {
             double d2;
@@ -241,12 +236,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        float f = 1;
-        switch (getMaterial()) {
-            case AstralGolemMaterials.IRON -> f = 1.0F;
-            case AstralGolemMaterials.SWAMP_SILVER -> f = 1.5F;
-            case AstralGolemMaterials.ASTRAL_DIAMOND -> f = 3.0F;
-        }
+        float f = getMaterial() == null ? 1 : getMaterial().defenseMultiplier();
         if (source.getEntity() instanceof Player player && !player.getAbilities().instabuild) {
             if (Boarwarf.getBoarwarfCredit(player) > -10000) {
                 Boarwarf.setBoarwarfCredit(player, (int) (Boarwarf.getBoarwarfCredit(player) - amount));
@@ -263,11 +253,6 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
             }
         }
         super.die(source);
-    }
-
-    @Override
-    public boolean causeFallDamage(float p_147187_, float p_147188_, DamageSource p_147189_) {
-        return false;
     }
 
     public void handleEntityEvent(byte event) {
