@@ -1,16 +1,17 @@
 package cn.leolezury.eternalstarlight.common.entity.npc.boarwarf;
 
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.*;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.trade.BoarwarfTrades;
+import cn.leolezury.eternalstarlight.common.init.BoarwarfProfessionInit;
 import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -40,7 +41,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Boarwarf extends PathfinderMob implements Npc, Merchant {
-
     public Boarwarf(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
     }
@@ -58,58 +58,69 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     public Boarwarf chatTarget = null;
     public final AnimationState idleAnimationState = new AnimationState();
 
-    protected static final EntityDataAccessor<Integer> HAIR_VARIANT = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.INT);
-    public int getHairVariant() {
-        return entityData.get(HAIR_VARIANT);
+    protected static final EntityDataAccessor<String> TYPE = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
+    public ResourceLocation getTypeId() {
+        return new ResourceLocation(entityData.get(TYPE));
     }
-    public void setHairVariant(int variant) {
-        entityData.set(HAIR_VARIANT, variant);
+    public BoarwarfType getBoarwarfType() {
+        return level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).get(getTypeId());
+    }
+    public void setTypeId(ResourceLocation typeId) {
+        entityData.set(TYPE, typeId.toString());
+    }
+    public void setBoarwarfType(BoarwarfType type) {
+        ResourceLocation key = level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).getKey(type);
+        if (key != null) {
+            setTypeId(key);
+        }
     }
 
-    protected static final EntityDataAccessor<Integer> BIOME_VARIANT = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.INT);
-    public int getBiomeVariant() {
-        return entityData.get(BIOME_VARIANT);
+    protected static final EntityDataAccessor<String> PROFESSION = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
+    public ResourceLocation getProfessionId() {
+        return new ResourceLocation(entityData.get(PROFESSION));
     }
-    public void setBiomeVariant(int variant) {
-        entityData.set(BIOME_VARIANT, variant);
+    public AbstractBoarwarfProfession getProfession() {
+        return BoarwarfProfessionInit.PROFESSIONS.registry().get(getProfessionId());
     }
-
-    protected static final EntityDataAccessor<Integer> PROFESSION_VARIANT = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.INT);
-    public int getProfessionVariant() {
-        return entityData.get(PROFESSION_VARIANT);
+    public void setProfessionId(ResourceLocation professionId) {
+        entityData.set(PROFESSION, professionId.toString());
     }
-    public void setProfessionVariant(int variant) {
-        entityData.set(PROFESSION_VARIANT, variant);
+    public void setProfession(AbstractBoarwarfProfession profession) {
+        ResourceLocation key = BoarwarfProfessionInit.PROFESSIONS.registry().getKey(profession);
+        if (key != null) {
+            setProfessionId(key);
+        }
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(HAIR_VARIANT, 0);
-        entityData.define(BIOME_VARIANT, 0);
-        entityData.define(PROFESSION_VARIANT, 0);
+        entityData.define(TYPE, "null");
+        entityData.define(PROFESSION, "null");
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        setHairVariant(compoundTag.getInt("HairVariant"));
-        setBiomeVariant(compoundTag.getInt("BiomeVariant"));
-        setProfessionVariant(compoundTag.getInt("ProfessionVariant"));
+        setTypeId(new ResourceLocation(compoundTag.getString("Type")));
+        setProfessionId(new ResourceLocation(compoundTag.getString("Profession")));
         restockCoolDown = compoundTag.getInt("RestockCoolDown");
         chatCoolDown = compoundTag.getInt("ChatCoolDown");
         chatTicks = compoundTag.getInt("ChatTicks");
         awakeTicks = compoundTag.getInt("AwakeTicks");
         sleepTicks = compoundTag.getInt("SleepTicks");
         homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
+        if (this.offers == null) {
+            this.offers = new MerchantOffers();
+            this.populateTradeData();
+        }
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        compoundTag.putInt("HairVariant", getHairVariant());
-        compoundTag.putInt("BiomeVariant", getBiomeVariant());
-        compoundTag.putInt("ProfessionVariant", getProfessionVariant());
+        compoundTag.putString("Type", getTypeId().toString());
+        compoundTag.putString("Profession", getProfessionId().toString());
         compoundTag.putInt("RestockCoolDown", restockCoolDown);
         compoundTag.putInt("ChatCoolDown", chatCoolDown);
         compoundTag.putInt("ChatTicks", chatTicks);
@@ -139,7 +150,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0D)
                 .add(Attributes.ARMOR, 10.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.3D);
+                .add(Attributes.MOVEMENT_SPEED, 0.5D);
     }
 
     @Nullable
@@ -147,13 +158,11 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
         homePos = blockPosition();
 
-        if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.STARLIGHT_FOREST_VARIANT)) {
-            setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.STARLIGHT_FOREST);
-        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
-            setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.PERMAFROST_FOREST);
-        } else if (level.getBiome(new BlockPos(getBlockX(), getBlockY(), getBlockZ())).is(ESTags.Biomes.DARK_SWAMP_VARIANT)) {
-            setBiomeVariant(BoarwarfVariants.BoarwarfBiomeVariants.DARK_SWAMP);
-        } else setBiomeVariant(getRandom().nextInt(BoarwarfVariants.BoarwarfBiomeVariants.VARIANT_NUM));
+        level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).forEach((type) -> {
+            if (type.biome().value() == level.getBiome(blockPosition()).value()) {
+                setBoarwarfType(type);
+            }
+        });
 
         return super.finalizeSpawn(level, instance, spawnType, data, tag);
     }
@@ -275,7 +284,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     public void die(DamageSource source) {
         if (source.getEntity() instanceof Player player) {
             if (!player.getAbilities().instabuild) {
-                int credit = (int) (getBoarwarfCredit(player) - 20);
+                int credit = getBoarwarfCredit(player) - 20;
                 if (credit > -10000) {
                     setBoarwarfCredit(player, credit);
                 }
@@ -355,10 +364,9 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     }
 
     protected void populateTradeData() {
-        VillagerTrades.ItemListing[] trades = BoarwarfTrades.BOARWARF_TRADES.get(getProfessionVariant());
-        if (trades != null) {
+        if (getProfession() != null) {
             MerchantOffers merchantoffers = this.getOffers();
-            this.addTrades(merchantoffers, trades, 5);
+            this.addTrades(merchantoffers, getProfession().getTrades(this), 5);
         }
     }
 
@@ -398,7 +406,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         this.ambientSoundTime = -this.getAmbientSoundInterval();
         this.onBoarwarfTrade(offer);
         /*if (this.customer instanceof ServerPlayer) {
-            SLCriteria.BOARWARF_TRADE.test((ServerPlayer)this.customer, this, offer.getResult());
+            ESCriteria.BOARWARF_TRADE.test((ServerPlayer)this.customer, this, offer.getResult());
         }*/
     }
 

@@ -33,6 +33,7 @@ public class EternalStarlight {
         DataTransformerTypeInit.loadClass();
         SpellInit.loadClass();
         WeatherInit.loadClass();
+        BoarwarfProfessionInit.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
     }

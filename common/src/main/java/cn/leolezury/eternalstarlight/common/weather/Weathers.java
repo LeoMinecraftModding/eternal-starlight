@@ -16,6 +16,10 @@ public class Weathers extends SavedData {
 
     public Weathers(ServerLevel serverLevel) {
         this.serverLevel = serverLevel;
+        WeatherInit.WEATHERS.registry().forEach(weather -> {
+            WeatherInstance instance = new WeatherInstance(serverLevel, weather);
+            weathers.add(instance);
+        });
     }
 
     public List<WeatherInstance> getWeathers() {
@@ -41,6 +45,7 @@ public class Weathers extends SavedData {
                 instance.stop();
             }
         }
+        setDirty();
     }
 
     public void clearAllWeathers(int duration) {
@@ -48,6 +53,7 @@ public class Weathers extends SavedData {
             instance.stop();
             instance.ticksUntilNext = duration;
         }
+        setDirty();
     }
 
     public static SavedData.Factory<Weathers> factory(ServerLevel serverLevel) {
