@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataLis
     }
 
     public static class Handler {
-        public static void handle(OpenBookPacket message) {
+        public static void handle(OpenBookPacket message, Player player) {
             ESUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
         }
     }

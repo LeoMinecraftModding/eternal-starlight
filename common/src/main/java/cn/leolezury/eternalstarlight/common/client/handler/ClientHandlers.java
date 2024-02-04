@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.gui.screens.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.sounds.CommonBossMusicInstance;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
@@ -180,7 +179,6 @@ public class ClientHandlers {
         if (k > 0) {
             drawBar(guiGraphics, x, y, event, k, BAR_PROGRESS_SPRITES, OVERLAY_PROGRESS_SPRITES);
         }
-        RenderSystem.setShaderTexture(0, barLocation);
         guiGraphics.blit(barLocation, x - 36, y - 32, 0.0F, 0.0F, 256, 64, 256, 64);
     }
 
@@ -237,13 +235,11 @@ public class ClientHandlers {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             int usingTicks = player.getTicksUsingItem();
-            float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 140f);
-            float progress = Math.min(ticks, 140f) / 140f;
+            float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 150f);
+            float progress = Math.min(ticks, 150f) / 150f;
             if (player.isUsingItem() && player.getUseItem().is(ItemInit.PROPHET_ORB.get())) {
-                if (usingTicks < 140) {
+                if (usingTicks < 150) {
                     gui.renderTextureOverlay(guiGraphics, PROPHET_ORB_USE, progress);
-                } else {
-                    Minecraft.getInstance().setScreen(new CrestSelectionScreen(player));
                 }
             }
         }

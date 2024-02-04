@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.gui.screens;
+package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

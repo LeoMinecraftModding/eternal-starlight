@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.gui.screens;
+package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.platform.Lighting;

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 
 public class CancelWeatherPacket {
     private final boolean cancel;
@@ -20,7 +21,7 @@ public class CancelWeatherPacket {
     }
 
     public static class Handler {
-        public static void handle(CancelWeatherPacket message) {
+        public static void handle(CancelWeatherPacket message, Player player) {
             if (message.cancel) {
                 ClientWeatherInfo.weather = null;
             }

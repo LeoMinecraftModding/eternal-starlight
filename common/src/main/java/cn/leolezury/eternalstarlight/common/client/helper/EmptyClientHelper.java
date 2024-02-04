@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
+import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 
 public class EmptyClientHelper implements IClientHelper {
     @Override
@@ -11,6 +12,11 @@ public class EmptyClientHelper implements IClientHelper {
 
     @Override
     public void handleParticlePacket(ESParticlePacket message) {
+
+    }
+
+    @Override
+    public void handleOpenCrestGui(OpenCrestGuiPacket message) {
 
     }
 }

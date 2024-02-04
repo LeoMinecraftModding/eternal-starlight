@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 
 public record ESParticlePacket(ParticleOptions particle,
                                double x, double y, double z,
@@ -39,7 +40,7 @@ public record ESParticlePacket(ParticleOptions particle,
     }
 
     public static class Handler {
-        public static void handle(ESParticlePacket message) {
+        public static void handle(ESParticlePacket message, Player player) {
             EternalStarlight.getClientHelper().handleParticlePacket(message);
         }
     }

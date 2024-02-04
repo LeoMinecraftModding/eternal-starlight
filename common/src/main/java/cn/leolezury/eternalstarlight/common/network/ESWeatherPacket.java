@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.init.WeatherInit;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 
 public record ESWeatherPacket(AbstractWeather weather,
                               int duration, int ticks) {
@@ -22,7 +23,7 @@ public record ESWeatherPacket(AbstractWeather weather,
     }
 
     public static class Handler {
-        public static void handle(ESWeatherPacket message) {
+        public static void handle(ESWeatherPacket message, Player player) {
             ClientWeatherInfo.weather = message.weather();
             ClientWeatherInfo.duration = message.duration();
             ClientWeatherInfo.ticks = message.ticks();

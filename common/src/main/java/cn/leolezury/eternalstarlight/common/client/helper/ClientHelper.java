@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
-import cn.leolezury.eternalstarlight.common.client.gui.screens.BookRenderData;
-import cn.leolezury.eternalstarlight.common.client.gui.screens.ESBookScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.BookRenderData;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.ESBookScreen;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
+import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import net.fabricmc.api.EnvType;
@@ -39,5 +41,10 @@ public class ClientHelper implements IClientHelper {
         if (clientLevel != null) {
             clientLevel.addParticle(message.particle(), message.x(), message.y(), message.z(), message.dx(), message.dy(), message.dz());
         }
+    }
+
+    @Override
+    public void handleOpenCrestGui(OpenCrestGuiPacket message) {
+        Minecraft.getInstance().setScreen(new CrestSelectionScreen(message.crests()));
     }
 }
