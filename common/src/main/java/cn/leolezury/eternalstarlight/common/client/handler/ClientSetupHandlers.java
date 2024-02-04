@@ -6,7 +6,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.definition.Pl
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
-import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.BoarwarfSilversmithModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
@@ -424,6 +424,10 @@ public class ClientSetupHandlers {
         strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.TORREYA), BoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.TORREYA), ChestBoatModel::createBodyModel);
         strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
+        strategy.register(BoarwarfBlacksmithModel.LAYER_LOCATION, BoarwarfBlacksmithModel::createBodyLayer);
+        strategy.register(BoarwarfChefModel.LAYER_LOCATION, BoarwarfChefModel::createBodyLayer);
+        strategy.register(BoarwarfDruidModel.LAYER_LOCATION, BoarwarfDruidModel::createBodyLayer);
+        strategy.register(BoarwarfDyerModel.LAYER_LOCATION, BoarwarfDyerModel::createBodyLayer);
         strategy.register(BoarwarfSilversmithModel.LAYER_LOCATION, BoarwarfSilversmithModel::createBodyLayer);
         strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
         strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));

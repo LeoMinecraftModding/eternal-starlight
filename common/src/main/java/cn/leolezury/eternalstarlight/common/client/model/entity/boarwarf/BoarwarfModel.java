@@ -21,6 +21,9 @@ public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
     public final ModelPart head;
     public final ModelPart left_arm;
     public final ModelPart right_arm;
+    public final ModelPart left_leg;
+    public final ModelPart right_leg;
+    public final ModelPart left_ear;
 
     public BoarwarfModel(ModelPart root) {
         this.root = root;
@@ -28,6 +31,9 @@ public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
         this.head = body.getChild("head");
         this.left_arm = body.getChild("left_arm");
         this.right_arm = body.getChild("right_arm");
+        this.left_leg = root.getChild("left_leg");
+        this.right_leg = root.getChild("right_leg");
+        this.left_ear = head.getChild("left_ear");
     }
 
     public static LayerDefinition createBodyLayer() {
