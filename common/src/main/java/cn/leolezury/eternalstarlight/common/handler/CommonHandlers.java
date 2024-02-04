@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
+import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
@@ -30,6 +31,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -47,6 +50,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CommonHandlers {
     private static TheGatekeeperNameManager gatekeeperNameManager;
@@ -180,6 +184,14 @@ public class CommonHandlers {
             if (!inEther && clientEtherTicks > 0) {
                 ESUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
             }
+        }
+        if (livingEntity instanceof Player player) {
+            CrestUtil.getCrests(player).forEach(crest -> crest.effect().ifPresent(mobEffectWithLevel ->
+                    mobEffectWithLevel.forEach(mobEffect ->
+                            player.addEffect(new MobEffectInstance(mobEffect.effect(), 20, mobEffect.level())
+                            )
+                    )
+            ));
         }
     }
 
