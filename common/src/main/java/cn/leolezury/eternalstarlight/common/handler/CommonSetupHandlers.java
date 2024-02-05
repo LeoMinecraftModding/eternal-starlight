@@ -10,7 +10,9 @@ import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
+import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
@@ -76,6 +78,8 @@ public class CommonSetupHandlers {
     public static void registerFuels(FuelRegisterStrategy strategy) {
         strategy.register(ESTags.Items.YETI_FUR, 100);
         strategy.register(ESTags.Items.YETI_FUR_CARPETS, 100);
+        strategy.register(BlockInit.SALTPETER_BLOCK.get(), 16000);
+        strategy.register(ItemInit.SALTPETER_POWDER.get(), 1600);
     }
 
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {

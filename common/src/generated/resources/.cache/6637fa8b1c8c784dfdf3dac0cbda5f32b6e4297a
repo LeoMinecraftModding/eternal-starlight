@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-05T13:12:40.7251521	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2024-02-05T14:33:17.744022	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -27,7 +27,7 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/blocks/inside_step_
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/blocks/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/blocks/logs_that_burn.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/blocks/mineable/axe.json
-2ae3cba823848ea57f57d58470dba962d79e5700 data/minecraft/tags/blocks/mineable/pickaxe.json
+03729a5fd5ea20ca9e03447fc4610536db37baf1 data/minecraft/tags/blocks/mineable/pickaxe.json
 af51780ee9f3741010a1f592a17088814d874648 data/minecraft/tags/blocks/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/blocks/moss_replaceable.json
 b693fe30a8cbf132951921d83aa529f16648ccdd data/minecraft/tags/blocks/mushroom_grow_block.json

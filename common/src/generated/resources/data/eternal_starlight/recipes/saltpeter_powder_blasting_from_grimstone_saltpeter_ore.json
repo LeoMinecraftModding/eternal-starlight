@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:grimstone_saltpeter_ore"
+  },
+  "result": "eternal_starlight:saltpeter_powder"
+}

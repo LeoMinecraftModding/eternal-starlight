@@ -292,6 +292,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.SWAMP_SILVER_BLOCK.get());
         simpleBlock(BlockInit.GRIMSTONE_REDSTONE_ORE.get());
         simpleBlock(BlockInit.VOIDSTONE_REDSTONE_ORE.get());
+        simpleBlock(BlockInit.GRIMSTONE_SALTPETER_ORE.get());
+        simpleBlock(BlockInit.VOIDSTONE_SALTPETER_ORE.get());
+        simpleBlock(BlockInit.SALTPETER_BLOCK.get());
         particleOnly(BlockInit.ETHER.get());
         onOffBlock(BlockInit.ENERGY_BLOCK.get());
         spawner(BlockInit.STARLIGHT_GOLEM_SPAWNER.get());

@@ -21,7 +21,7 @@ public class WeatherInstance {
         this.serverLevel = serverLevel;
         this.weather = weather;
         this.active = false;
-        this.currentInterval = weather.weatherProperties().interval().sample(serverLevel.getRandom());
+        this.ticksUntilNext = this.currentInterval = weather.weatherProperties().interval().sample(serverLevel.getRandom());
     }
 
     public void load(CompoundTag compoundTag) {

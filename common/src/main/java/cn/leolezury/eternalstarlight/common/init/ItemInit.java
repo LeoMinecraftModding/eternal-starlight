@@ -460,6 +460,12 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(BlockInit.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(BlockInit.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item, Item> GRIMSTONE_SALTPETER_ORE = registerItem("grimstone_saltpeter_ore", () -> new BlockItem(BlockInit.GRIMSTONE_SALTPETER_ORE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> VOIDSTONE_SALTPETER_ORE = registerItem("voidstone_saltpeter_ore", () -> new BlockItem(BlockInit.VOIDSTONE_SALTPETER_ORE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SALTPETER_BLOCK = registerItem("saltpeter_block", () -> new BlockItem(BlockInit.SALTPETER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SALTPETER_POWDER = registerItem("saltpeter_powder", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> SALTPETER_MATCHBOX = registerItem("saltpeter_matchbox", () -> new FlintAndSteelItem(new Item.Properties().durability(300)));
+
     // boss materials
     public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(STARLIGHT)));

@@ -405,6 +405,12 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ItemInit.GRIMSTONE_REDSTONE_ORE.get());
         basicBlockItem(ItemInit.VOIDSTONE_REDSTONE_ORE.get());
 
+        basicBlockItem(ItemInit.GRIMSTONE_SALTPETER_ORE.get());
+        basicBlockItem(ItemInit.VOIDSTONE_SALTPETER_ORE.get());
+        basicBlockItem(ItemInit.SALTPETER_BLOCK.get());
+        basicItem(ItemInit.SALTPETER_POWDER.get());
+        basicItem(ItemInit.SALTPETER_MATCHBOX.get());
+
         shatteredSword(ItemInit.SHATTERED_SWORD.get());
         basicItem(ItemInit.SHATTERED_SWORD_BLADE.get());
         basicItem(ItemInit.GOLEM_STEEL_INGOT.get());

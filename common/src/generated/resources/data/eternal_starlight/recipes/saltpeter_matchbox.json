@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "item": "eternal_starlight:saltpeter_powder"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "PPP",
+    "SSS"
+  ],
+  "result": {
+    "item": "eternal_starlight:saltpeter_matchbox"
+  }
+}

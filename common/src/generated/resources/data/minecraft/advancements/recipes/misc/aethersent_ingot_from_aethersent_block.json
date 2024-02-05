@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_aethersent_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:aethersent_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:aethersent_ingot_from_aethersent_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_aethersent_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:aethersent_ingot_from_aethersent_block"
+    ]
+  }
+}

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_swamp_silver_block": {
+    "has_item": {
       "conditions": {
         "items": [
           {
             "items": [
-              "eternal_starlight:swamp_silver_block"
+              "eternal_starlight:grimstone_saltpeter_ore"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:swamp_silver_ingot_from_iron_block"
+        "recipe": "eternal_starlight:saltpeter_powder_smelting_from_grimstone_saltpeter_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,12 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_swamp_silver_block"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:swamp_silver_ingot_from_iron_block"
+      "eternal_starlight:saltpeter_powder_smelting_from_grimstone_saltpeter_ore"
     ]
   }
 }

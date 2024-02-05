@@ -31,6 +31,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addAetherSentRecipes(recipeOutput);
         addSwampSilverRecipes(recipeOutput);
         addThermalSpringstoneRecipes(recipeOutput);
+        addSaltpeterRecipes(recipeOutput);
 
         // yeti fur
         List<Item> dyeList = List.of(Items.BLACK_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.CYAN_DYE, Items.GRAY_DYE, Items.GREEN_DYE, Items.LIGHT_BLUE_DYE, Items.LIGHT_GRAY_DYE, Items.LIME_DYE, Items.MAGENTA_DYE, Items.ORANGE_DYE, Items.PINK_DYE, Items.PURPLE_DYE, Items.RED_DYE, Items.YELLOW_DYE, Items.WHITE_DYE);
@@ -431,7 +432,7 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addAetherSentRecipes(RecipeOutput recipeOutput) {
-        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.AETHERSENT_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.AETHERSENT_BLOCK.get(), "aethersent_ingot_from_iron_block", "aethersent_ingot");
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.AETHERSENT_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.AETHERSENT_BLOCK.get(), "aethersent_ingot_from_aethersent_block", "aethersent_ingot");
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AETHERSENT_HOOD.get())
                 .pattern("###")
                 .pattern("A A")
@@ -474,7 +475,7 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     private void addSwampSilverRecipes(RecipeOutput recipeOutput) {
-        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.SWAMP_SILVER_BLOCK.get(), "swamp_silver_ingot_from_iron_block", "swamp_silver_ingot");
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.SWAMP_SILVER_BLOCK.get(), "swamp_silver_ingot_from_swamp_silver_block", "swamp_silver_ingot");
         nineBlockStorageRecipesWithCustomPacking(recipeOutput, RecipeCategory.MISC, ItemInit.SWAMP_SILVER_NUGGET.get(), RecipeCategory.MISC, ItemInit.SWAMP_SILVER_INGOT.get(), "swamp_silver_ingot_from_nuggets", "swamp_silver_ingot");
         addAxe(recipeOutput, ItemInit.SWAMP_SILVER_AXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
         addPickaxe(recipeOutput, ItemInit.SWAMP_SILVER_PICKAXE.get(), ItemInit.SWAMP_SILVER_INGOT.get(), Items.STICK);
@@ -502,6 +503,22 @@ public class ESRecipeProvider extends RecipeProvider {
         addBoots(recipeOutput, ItemInit.THERMAL_SPRINGSTONE_BOOTS.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get());
         addSmelt(recipeOutput, 200, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
         addBlast(recipeOutput, 100, ItemInit.THERMAL_SPRINGSTONE.get(), ItemInit.THERMAL_SPRINGSTONE_INGOT.get(), ItemInit.THERMAL_SPRINGSTONE.get());
+    }
+
+    private void addSaltpeterRecipes(RecipeOutput recipeOutput) {
+        nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, ItemInit.SALTPETER_POWDER.get(), RecipeCategory.BUILDING_BLOCKS, ItemInit.SALTPETER_BLOCK.get(), "saltpeter_powder_from_saltpeter_block", "saltpeter_powder");
+        addSmelt(recipeOutput, 200, ItemInit.GRIMSTONE_SALTPETER_ORE.get(), ItemInit.SALTPETER_POWDER.get(), ItemInit.GRIMSTONE_SALTPETER_ORE.get());
+        addBlast(recipeOutput, 100, ItemInit.GRIMSTONE_SALTPETER_ORE.get(), ItemInit.SALTPETER_POWDER.get(), ItemInit.GRIMSTONE_SALTPETER_ORE.get());
+        addSmelt(recipeOutput, 200, ItemInit.VOIDSTONE_SALTPETER_ORE.get(), ItemInit.SALTPETER_POWDER.get(), ItemInit.VOIDSTONE_SALTPETER_ORE.get());
+        addBlast(recipeOutput, 100, ItemInit.VOIDSTONE_SALTPETER_ORE.get(), ItemInit.SALTPETER_POWDER.get(), ItemInit.VOIDSTONE_SALTPETER_ORE.get());
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemInit.SALTPETER_MATCHBOX.get())
+                .pattern("SSS")
+                .pattern("PPP")
+                .pattern("SSS")
+                .define('S', Items.STRING)
+                .define('P', ItemInit.SALTPETER_POWDER.get())
+                .unlockedBy("has_item", has(ItemInit.SALTPETER_POWDER.get()))
+                .save(recipeOutput);
     }
 
     // misc

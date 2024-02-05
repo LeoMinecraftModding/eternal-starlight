@@ -126,6 +126,8 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GRIMSTONE_REDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.VOIDSTONE_REDSTONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GRIMSTONE_SALTPETER_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.VOIDSTONE_SALTPETER_ORE);
         builder.addFeature(GenerationStep.Decoration.LAKES, PlacedFeatureInit.HOT_SPRING);
         builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacedFeatureInit.ETHER_FLUID_BORDER);
 
@@ -148,6 +150,8 @@ public class BiomeInit {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GLOWING_VOIDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GRIMSTONE_REDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.VOIDSTONE_REDSTONE_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.GRIMSTONE_SALTPETER_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatureInit.VOIDSTONE_SALTPETER_ORE);
         builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacedFeatureInit.ETHER_FLUID_BORDER);
 
         builder.addCarver(GenerationStep.Carving.AIR, ConfiguredWorldCarverInit.CAVES);
