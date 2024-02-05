@@ -15,7 +15,7 @@ public class CrestInit {
     public static final ResourceKey<Crest> BOULDERS_SHIELD = create("boulders_shield");
 
     public static void bootstrap(BootstapContext<Crest> context) {
-        context.register(BOULDERS_SHIELD, new Crest(Crest.CrestElement.TERRA, new ResourceLocation(EternalStarlight.MOD_ID, "textures/crest/boulders_shield.png"), Optional.empty(), new Crest.MobEffectWithLevel(2, MobEffects.DAMAGE_RESISTANCE)));
+        context.register(BOULDERS_SHIELD, new Crest(Crest.CrestElement.TERRA, new ResourceLocation(EternalStarlight.MOD_ID, "textures/crest/boulders_shield.png"), Optional.empty(), new Crest.MobEffectWithLevel(1, MobEffects.DAMAGE_RESISTANCE)));
     }
 
     public static ResourceKey<Crest> create(String name) {
