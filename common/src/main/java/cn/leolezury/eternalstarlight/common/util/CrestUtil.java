@@ -37,7 +37,6 @@ public class CrestUtil {
         }));
         ESUtil.getPersistentData(player).put("Crests", crestsTag);
     }
-
     public static boolean giveCrest(Player player, Crest crest) {
         List<Crest> crests = getCrests(player);
         if (crests.stream().anyMatch((c) -> c.element() == crest.element()) || crests.size() >= 5) {
