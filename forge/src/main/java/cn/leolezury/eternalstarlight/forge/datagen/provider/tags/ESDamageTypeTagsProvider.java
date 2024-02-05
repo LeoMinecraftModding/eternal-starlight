@@ -37,5 +37,8 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
         tag(DamageTypeTags.NO_IMPACT).add(
                 DamageTypeInit.POISON
         );
+        tag(DamageTypeTags.IS_PROJECTILE).add(
+                DamageTypeInit.SHATTERED_BLADE
+        );
     }
 }

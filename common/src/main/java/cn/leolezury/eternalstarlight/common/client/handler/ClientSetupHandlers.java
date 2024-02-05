@@ -208,7 +208,7 @@ public class ClientSetupHandlers {
 
     public static void clientSetup() {
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
@@ -216,7 +216,7 @@ public class ClientSetupHandlers {
 
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
-        PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.PROPHET_ORB), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.PROPHET_ORB_LOCATE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
+        PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN.get(), SignRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN.get(), HangingSignRenderer::new);
@@ -364,7 +364,7 @@ public class ClientSetupHandlers {
 
     public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "prophet_orb_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));

@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:aurora_deer_steak"
+              "eternal_starlight:grimstone_redstone_ore"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:cooked_aurora_deer_steak_smelting"
+        "recipe": "eternal_starlight:redstone_blasting_from_grimstone_redstone_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:cooked_aurora_deer_steak_smelting"
+      "eternal_starlight:redstone_blasting_from_grimstone_redstone_ore"
     ]
   }
 }

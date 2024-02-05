@@ -44,6 +44,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -108,6 +109,9 @@ public interface ESPlatform {
     }
     default LiquidBlock createLiquidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
         return new LiquidBlock(fluid.get(), properties);
+    }
+    default WaterlilyBlock createWaterlily(BlockBehaviour.Properties properties) {
+        return new WaterlilyBlock(properties);
     }
     default EtherFluid.Still createEtherFluid() {
         return new EtherFluid.Still();

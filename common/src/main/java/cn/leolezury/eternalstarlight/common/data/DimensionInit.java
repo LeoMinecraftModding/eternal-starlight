@@ -176,7 +176,7 @@ public class DimensionInit {
                 384, // max y
                 384, // height
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
-                new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), // special effect
+                new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), // special effects
                 0f, // ambient light
                 new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 7) // monster spawn things
         );

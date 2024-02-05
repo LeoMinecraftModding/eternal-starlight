@@ -7,15 +7,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 public class CrestInit {
     public static final ResourceKey<Crest> BOULDERS_SHIELD = create("boulders_shield");
 
     public static void bootstrap(BootstapContext<Crest> context) {
-        context.register(BOULDERS_SHIELD, new Crest(Crest.CrestElement.TERRA, new ResourceLocation(EternalStarlight.MOD_ID, "textures/crest/boulders_shield.png"), Optional.empty(), new Crest.MobEffectWithLevel(1, MobEffects.DAMAGE_RESISTANCE)));
+        context.register(BOULDERS_SHIELD, new Crest(Crest.CrestElement.TERRA, new ResourceLocation(EternalStarlight.MOD_ID, "textures/crest/boulders_shield.png"), null, new Crest.MobEffectWithLevel(MobEffects.DAMAGE_RESISTANCE, 0)));
     }
 
     public static ResourceKey<Crest> create(String name) {

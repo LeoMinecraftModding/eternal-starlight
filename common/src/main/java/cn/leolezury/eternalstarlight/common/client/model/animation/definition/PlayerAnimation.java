@@ -32,7 +32,7 @@ public class PlayerAnimation {
             ))
             .build();
 
-    public static final AnimationDefinition PROPHET_ORB_LOCATE = AnimationDefinition.Builder.withLength(0.75F)
+    public static final AnimationDefinition ORB_OF_PROPHECY_USE = AnimationDefinition.Builder.withLength(0.75F)
             .addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                     new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                     new Keyframe(0.625F, KeyframeAnimations.degreeVec(-15.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)

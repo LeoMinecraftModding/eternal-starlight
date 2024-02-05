@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 public enum ESItemTiers implements Tier {
     AETHERSENT(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ItemInit.AETHERSENT_INGOT.get())),
     THERMAL_SPRINGSTONE(2, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get())),
-    SWAMP_SILVER(3, 1200, 12.0F, 2.0F, 10, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get())),
+    SWAMP_SILVER(3, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get())),
     DOOMEDEN(3, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ItemInit.BROKEN_DOOMEDEN_BONE.get())),
     PETAL(3, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ItemInit.TENACIOUS_PETAL.get())),
     AURORA_DEER_ANTLER(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get()));

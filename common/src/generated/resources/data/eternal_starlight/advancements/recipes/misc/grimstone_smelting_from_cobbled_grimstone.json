@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:swamp_silver_ingot"
+              "eternal_starlight:cobbled_grimstone"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:swamp_silver_nugget_blasting"
+        "recipe": "eternal_starlight:grimstone_smelting_from_cobbled_grimstone"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:swamp_silver_nugget_blasting"
+      "eternal_starlight:grimstone_smelting_from_cobbled_grimstone"
     ]
   }
 }

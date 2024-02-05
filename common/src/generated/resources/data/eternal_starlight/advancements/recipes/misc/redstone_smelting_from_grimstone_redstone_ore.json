@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:oxidized_golem_steel_ingot"
+              "eternal_starlight:grimstone_redstone_ore"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:golem_steel_ingot_smelting"
+        "recipe": "eternal_starlight:redstone_smelting_from_grimstone_redstone_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:golem_steel_ingot_smelting"
+      "eternal_starlight:redstone_smelting_from_grimstone_redstone_ore"
     ]
   }
 }

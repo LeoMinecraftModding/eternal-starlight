@@ -20,8 +20,8 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 import java.util.Objects;
 
-public class ProphetOrbItem extends Item implements Vanishable {
-    public ProphetOrbItem(Properties properties) {
+public class OrbOfProphecyItem extends Item implements Vanishable {
+    public OrbOfProphecyItem(Properties properties) {
         super(properties);
     }
 

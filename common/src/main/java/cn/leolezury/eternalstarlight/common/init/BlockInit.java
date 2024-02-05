@@ -484,9 +484,9 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> DEAD_LUNAR_BUSH = BLOCKS.register("dead_lunar_bush", () -> new DeadBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH)));
 
     // water grass
-    public static final RegistryObject<Block, Block> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
-    public static final RegistryObject<Block, Block> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel((state) -> 5)));
-    public static final RegistryObject<Block, Block> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+    public static final RegistryObject<Block, Block> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> ESPlatform.INSTANCE.createWaterlily(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+    public static final RegistryObject<Block, Block> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> ESPlatform.INSTANCE.createWaterlily(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel((state) -> 5)));
+    public static final RegistryObject<Block, Block> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> ESPlatform.INSTANCE.createWaterlily(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
 
     public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTSHADE_MUD.get(), PlacedFeatureInit.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
@@ -532,6 +532,8 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new ThermalSpringStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
     public static final RegistryObject<Block, Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).mapColor(MapColor.STONE).strength(5.0F, 3.5F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block, Block> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
+    public static final RegistryObject<Block, Block> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));
     public static final RegistryObject<Block, Block> ETHER = BLOCKS.register("ether", () -> ESPlatform.INSTANCE.createLiquidBlock(FluidInit.ETHER_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA)));
     public static final RegistryObject<Block, Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));

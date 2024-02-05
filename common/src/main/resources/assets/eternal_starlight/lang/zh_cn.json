@@ -372,6 +372,8 @@
   "block.eternal_starlight.thermal_springstone": "热泉石",
   "block.eternal_starlight.swamp_silver_ore": "沼泽银矿石",
   "block.eternal_starlight.swamp_silver_block": "沼泽银块",
+  "block.eternal_starlight.grimstone_redstone_ore": "阴沉石红石矿",
+  "block.eternal_starlight.voidstone_redstone_ore": "虚空石红石矿",
   "block.eternal_starlight.starlight_portal": "星辉传送门",
   "block.eternal_starlight.ether": "以太",
   "block.eternal_starlight.energy_block": "能量方块",
@@ -454,6 +456,7 @@
   "item.eternal_starlight.starlight_silver_coin": "星光银币",
   "item.eternal_starlight.loot_bag": "战利品袋",
   "item.eternal_starlight.book": "星光物语",
+  "item.eternal_starlight.orb_of_prophecy": "先知球体",
 
   "effect.eternal_starlight.crystalline_infection": "晶体感染",
 

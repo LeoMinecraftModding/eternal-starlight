@@ -402,6 +402,9 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.SWAMP_SILVER_LEGGINGS.get());
         basicItem(ItemInit.SWAMP_SILVER_BOOTS.get());
 
+        basicBlockItem(ItemInit.GRIMSTONE_REDSTONE_ORE.get());
+        basicBlockItem(ItemInit.VOIDSTONE_REDSTONE_ORE.get());
+
         shatteredSword(ItemInit.SHATTERED_SWORD.get());
         basicItem(ItemInit.SHATTERED_SWORD_BLADE.get());
         basicItem(ItemInit.GOLEM_STEEL_INGOT.get());
@@ -470,7 +473,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.STARLIGHT_SILVER_COIN.get());
         basicItem(ItemInit.LOOT_BAG.get());
         basicItem(ItemInit.BOOK.get());
-        inventoryModel(ItemInit.PROPHET_ORB.get());
+        inventoryModel(ItemInit.ORB_OF_PROPHECY.get());
     }
 
     private void armorWithTrim(ArmorItem armor) {

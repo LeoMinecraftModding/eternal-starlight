@@ -2,17 +2,21 @@ package cn.leolezury.eternalstarlight.forge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.forge.init.FluidTypeInit;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.SpawnPlacementRegisterEvent;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        // nothing ?
+        FluidInteractionRegistry.addInteraction(FluidTypeInit.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(BlockInit.ETHER.get()), Blocks.QUARTZ_BLOCK.defaultBlockState()));
     }
 
     @SubscribeEvent

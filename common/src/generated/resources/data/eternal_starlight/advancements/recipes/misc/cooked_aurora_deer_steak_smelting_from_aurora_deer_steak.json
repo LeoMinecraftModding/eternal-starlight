@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:oxidized_golem_steel_ingot"
+              "eternal_starlight:aurora_deer_steak"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:golem_steel_ingot_blasting"
+        "recipe": "eternal_starlight:cooked_aurora_deer_steak_smelting_from_aurora_deer_steak"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:golem_steel_ingot_blasting"
+      "eternal_starlight:cooked_aurora_deer_steak_smelting_from_aurora_deer_steak"
     ]
   }
 }

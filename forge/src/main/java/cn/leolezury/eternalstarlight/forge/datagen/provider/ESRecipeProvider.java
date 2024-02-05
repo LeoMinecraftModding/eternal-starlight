@@ -68,6 +68,10 @@ public class ESRecipeProvider extends RecipeProvider {
         // smelt
         addSmelt(recipeOutput, 200, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
         addBlast(recipeOutput, 100, ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get(), ItemInit.GOLEM_STEEL_INGOT.get(), ItemInit.OXIDIZED_GOLEM_STEEL_INGOT.get());
+        addSmelt(recipeOutput, 200, ItemInit.GRIMSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.GRIMSTONE_REDSTONE_ORE.get());
+        addBlast(recipeOutput, 100, ItemInit.GRIMSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.GRIMSTONE_REDSTONE_ORE.get());
+        addSmelt(recipeOutput, 200, ItemInit.VOIDSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.VOIDSTONE_REDSTONE_ORE.get());
+        addBlast(recipeOutput, 100, ItemInit.VOIDSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.VOIDSTONE_REDSTONE_ORE.get());
 
         // misc
         addShapeless(recipeOutput, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.NIGHTSHADE_MUD.get());
@@ -502,11 +506,11 @@ public class ESRecipeProvider extends RecipeProvider {
 
     // misc
     protected final void addSmelt(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_smelting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_smelting_from_" + name(criteria)));
     }
     
     protected final void addBlast(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_blasting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_blasting_from_" + name(criteria)));
     }
 
     protected final void addSingleConversion(RecipeOutput recipeOutput, Item from, Item to) {

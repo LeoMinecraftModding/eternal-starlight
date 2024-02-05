@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.forge.block.ForgeWaterlilyBlock;
 import cn.leolezury.eternalstarlight.forge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeThermalSpringStoneArmorItem;
@@ -45,6 +46,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -201,6 +203,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public LiquidBlock createLiquidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
         return new LiquidBlock(fluid, properties);
+    }
+
+    @Override
+    public WaterlilyBlock createWaterlily(BlockBehaviour.Properties properties) {
+        return new ForgeWaterlilyBlock(properties);
     }
 
     @Override

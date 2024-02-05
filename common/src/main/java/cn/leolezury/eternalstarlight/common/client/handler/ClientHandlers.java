@@ -49,7 +49,7 @@ public class ClientHandlers {
     private static final ResourceLocation ETHER_ARMOR_EMPTY = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_empty.png");
     private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
     private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
-    private static final ResourceLocation PROPHET_ORB_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/prophet_orb_use.png");
+    private static final ResourceLocation ORB_OF_PROPHECY_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/orb_of_prophecy_use.png");
 
     public static Vec3 computeCameraAngles(Vec3 angles) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
@@ -231,15 +231,15 @@ public class ClientHandlers {
         }
     }
 
-    public static void renderProphetOrbUse(Gui gui, GuiGraphics guiGraphics) {
+    public static void renderOrbOfProphecyUse(Gui gui, GuiGraphics guiGraphics) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             int usingTicks = player.getTicksUsingItem();
             float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 150f);
             float progress = Math.min(ticks, 150f) / 150f;
-            if (player.isUsingItem() && player.getUseItem().is(ItemInit.PROPHET_ORB.get())) {
+            if (player.isUsingItem() && player.getUseItem().is(ItemInit.ORB_OF_PROPHECY.get())) {
                 if (usingTicks < 150) {
-                    gui.renderTextureOverlay(guiGraphics, PROPHET_ORB_USE, progress);
+                    gui.renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
                 }
             }
         }

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.mixins;
+package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.FluidInit;

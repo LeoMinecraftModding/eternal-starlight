@@ -19,7 +19,7 @@ public abstract class GuiMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getTicksFrozen()I", shift = At.Shift.BEFORE))
     private void es_render(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
         ClientHandlers.renderEtherErosion(((Gui) (Object) this), guiGraphics);
-        ClientHandlers.renderProphetOrbUse(((Gui) (Object) this), guiGraphics);
+        ClientHandlers.renderOrbOfProphecyUse(((Gui) (Object) this), guiGraphics);
     }
 
     @Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;getProfiler()Lnet/minecraft/util/profiling/ProfilerFiller;", ordinal = 1, shift = At.Shift.BEFORE))

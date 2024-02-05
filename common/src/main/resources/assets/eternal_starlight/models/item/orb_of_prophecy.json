@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"layer0": "eternal_starlight:item/prophet_orb",
-		"particle": "eternal_starlight:item/prophet_orb"
+		"layer0": "eternal_starlight:item/orb_of_prophecy",
+		"particle": "eternal_starlight:item/orb_of_prophecy"
 	},
 	"elements": [
 		{

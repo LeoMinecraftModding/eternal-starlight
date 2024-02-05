@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:grimstone_redstone_ore"
+  },
+  "result": "minecraft:redstone"
+}

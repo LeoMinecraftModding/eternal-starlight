@@ -29,7 +29,7 @@ public enum ESArmorMaterials implements ArmorMaterial {
     SWAMP_SILVER(EternalStarlight.MOD_ID + ":swamp_silver", 33, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
-        map.put(ArmorItem.Type.CHESTPLATE, 7);
+        map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 2);
     }), 25, SoundEventInit.ARMOR_EQUIP_SWAMP_SILVER.get(), 1.5F, 0.2F, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get()));
 

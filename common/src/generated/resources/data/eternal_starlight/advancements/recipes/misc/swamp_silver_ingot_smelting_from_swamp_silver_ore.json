@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:thermal_springstone"
+              "eternal_starlight:swamp_silver_ore"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:thermal_springstone_ingot_blasting"
+        "recipe": "eternal_starlight:swamp_silver_ingot_smelting_from_swamp_silver_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:thermal_springstone_ingot_blasting"
+      "eternal_starlight:swamp_silver_ingot_smelting_from_swamp_silver_ore"
     ]
   }
 }

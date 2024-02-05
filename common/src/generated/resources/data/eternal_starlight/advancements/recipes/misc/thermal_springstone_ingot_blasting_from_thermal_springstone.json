@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:cobbled_voidstone"
+              "eternal_starlight:thermal_springstone"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:voidstone_smelting"
+        "recipe": "eternal_starlight:thermal_springstone_ingot_blasting_from_thermal_springstone"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:voidstone_smelting"
+      "eternal_starlight:thermal_springstone_ingot_blasting_from_thermal_springstone"
     ]
   }
 }

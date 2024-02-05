@@ -1,10 +1,10 @@
 {
-  "effect": [
+  "element": "terra",
+  "mob_effects": [
     {
-      "effects": "minecraft:resistance",
-      "level": 1
+      "effect": "minecraft:resistance",
+      "level": 0
     }
   ],
-  "element": "terra",
   "texture": "eternal_starlight:textures/crest/boulders_shield.png"
 }

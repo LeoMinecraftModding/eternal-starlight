@@ -372,6 +372,8 @@
   "block.eternal_starlight.thermal_springstone": "Thermal Springstone",
   "block.eternal_starlight.swamp_silver_ore": "Swamp Silver Ore",
   "block.eternal_starlight.swamp_silver_block": "Swamp Silver Block",
+  "block.eternal_starlight.grimstone_redstone_ore": "Grimstone Redstone Ore",
+  "block.eternal_starlight.voidstone_redstone_ore": "Voidstone Redstone Ore",
   "block.eternal_starlight.starlight_portal": "Starlight Portal",
   "block.eternal_starlight.ether": "Ether",
   "block.eternal_starlight.energy_block": "Energy Block",
@@ -454,6 +456,7 @@
   "item.eternal_starlight.starlight_silver_coin": "Starlight Silver Coin",
   "item.eternal_starlight.loot_bag": "Loot Bag",
   "item.eternal_starlight.book": "Starlight Story",
+  "item.eternal_starlight.orb_of_prophecy": "Orb of Prophecy",
 
   "effect.eternal_starlight.crystalline_infection": "Crystal Infection",
 

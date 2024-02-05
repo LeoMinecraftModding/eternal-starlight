@@ -70,6 +70,8 @@ public class ConfiguredFeatureInit {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = create("swamp_silver_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMSTONE_REDSTONE_ORE = create("grimstone_redstone_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VOIDSTONE_REDSTONE_ORE = create("voidstone_redstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
@@ -129,6 +131,8 @@ public class ConfiguredFeatureInit {
         register(context, GLOWING_NIGHTSHADE_MUD_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         register(context, NIGHTSHADE_DIRT_ORE, Feature.ORE, new OreConfiguration(slRule, BlockInit.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));
         register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(mudRule, BlockInit.SWAMP_SILVER_ORE.get().defaultBlockState(), 7));
+        register(context, GRIMSTONE_REDSTONE_ORE, Feature.ORE, new OreConfiguration(grimstoneRule, BlockInit.GRIMSTONE_REDSTONE_ORE.get().defaultBlockState(), 20));
+        register(context, VOIDSTONE_REDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, BlockInit.VOIDSTONE_REDSTONE_ORE.get().defaultBlockState(), 20));
         register(context, FALLEN_LUNAR_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.LUNAR_LOG.get())));
         register(context, FALLEN_NORTHLAND_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.NORTHLAND_LOG.get())));
         register(context, FALLEN_STARLIGHT_MANGROVE_LOG, FeatureInit.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(BlockInit.STARLIGHT_MANGROVE_LOG.get())));

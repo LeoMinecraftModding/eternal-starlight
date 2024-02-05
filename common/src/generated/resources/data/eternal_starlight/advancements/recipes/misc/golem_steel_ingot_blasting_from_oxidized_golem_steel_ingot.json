@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:luminaris"
+              "eternal_starlight:oxidized_golem_steel_ingot"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:cooked_luminaris_smelting"
+        "recipe": "eternal_starlight:golem_steel_ingot_blasting_from_oxidized_golem_steel_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:cooked_luminaris_smelting"
+      "eternal_starlight:golem_steel_ingot_blasting_from_oxidized_golem_steel_ingot"
     ]
   }
 }

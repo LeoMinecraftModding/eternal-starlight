@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "eternal_starlight:luminofish"
+              "eternal_starlight:voidstone_redstone_ore"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:cooked_luminofish_smelting"
+        "recipe": "eternal_starlight:redstone_blasting_from_voidstone_redstone_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:cooked_luminofish_smelting"
+      "eternal_starlight:redstone_blasting_from_voidstone_redstone_ore"
     ]
   }
 }
