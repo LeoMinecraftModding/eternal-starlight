@@ -4,10 +4,8 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,10 +13,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
-import net.neoforged.neoforge.client.model.BakedModelWrapper;
 
 import java.util.Map;
-
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -47,23 +43,6 @@ public class ClientSetupEvents {
     public static void onBakingCompleted(ModelEvent.ModifyBakingResult event) {
         Map<ResourceLocation, BakedModel> models = event.getModels();
         ClientSetupHandlers.modifyBakingResult(models);
-
-        // Modify Inventory Icon
-        for (ResourceLocation id : models.keySet()) {
-            if (ClientSetupHandlers.ITEMS_WITH_INV_ICON.containsKey(id)) {
-                BakedModel bakedModel = models.get(id);
-                BakedModelWrapper<?> wrapper = new BakedModelWrapper<>(bakedModel) {
-                    @Override
-                    public BakedModel applyTransform(ItemDisplayContext transformType, PoseStack poseStack, boolean applyLeftHandTransform) {
-                        if (transformType == ItemDisplayContext.GUI) {
-                            return models.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(id));
-                        }
-                        return super.applyTransform(transformType, poseStack, applyLeftHandTransform);
-                    }
-                };
-                models.put(id, wrapper);
-            }
-        }
     }
 
     @SubscribeEvent

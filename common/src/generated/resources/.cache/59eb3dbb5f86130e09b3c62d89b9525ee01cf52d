@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-05T14:33:17.7371134	Loot Tables
+// 1.20.4	2024-02-06T12:40:20.5130179	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -77,6 +77,7 @@ b0b1eb04376c9f5417cab0290766ed2600938f5b data/eternal_starlight/loot_tables/bloc
 59461a2a70c76d990737d11ecb7f2ab6d875f88f data/eternal_starlight/loot_tables/blocks/doomeden_tile_wall.json
 c694f74fb93033ec3ebefc0eb59a25a050ec7e1d data/eternal_starlight/loot_tables/blocks/doomed_redstone_torch.json
 4d9245850117ef35f9962b38f8179e13b0e78b0e data/eternal_starlight/loot_tables/blocks/doomed_torch.json
+b6a08ea55b5f2a51ba553515ab37d17068d77e30 data/eternal_starlight/loot_tables/blocks/enchanted_grimstone_bricks.json
 491c5a2fd8f3d221db5c784b707ed0897e5bc12d data/eternal_starlight/loot_tables/blocks/energy_block.json
 cd087e0793f77812fc64121d70b55ecba64f9faa data/eternal_starlight/loot_tables/blocks/fantabud.json
 7937ccf99e0904fb670ead972ce200d45d16e188 data/eternal_starlight/loot_tables/blocks/fantafern.json

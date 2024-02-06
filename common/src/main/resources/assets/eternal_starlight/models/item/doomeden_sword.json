@@ -2,6 +2,7 @@
 	"textures": {
 		"layer0": "eternal_starlight:item/doomeden_sword"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"from": [7.25, 0, 7.25],

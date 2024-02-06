@@ -1,8 +1,9 @@
-package cn.leolezury.eternalstarlight.fabric.mixins;
+package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -23,7 +24,7 @@ public abstract class ItemRendererMixin {
         if (itemDisplayContext == ItemDisplayContext.GUI && ClientSetupHandlers.ITEMS_WITH_INV_ICON.containsKey(new ModelResourceLocation(itemKey, "inventory"))) {
             BakedModel replacedModel = ClientSetupHandlers.BAKED_MODELS.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(new ModelResourceLocation(itemKey, "inventory")));
             if (replacedModel != null) {
-                return replacedModel;
+                return replacedModel.getOverrides().resolve(replacedModel, stack, Minecraft.getInstance().level, null, 0);
             }
         }
         return bakedModel;

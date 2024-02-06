@@ -60,8 +60,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
         add(SoundEventInit.STARLIGHT_GOLEM_HURT.get(), definition().with(sound(mcLoc("mob/irongolem/damage1")).volume(0.8), sound(mcLoc("mob/irongolem/damage1")).pitch(0.8).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(0.8).volume(0.8)).subtitle("subtitles.entity.starlight_golem.hurt"));
         add(SoundEventInit.STARLIGHT_GOLEM_DEATH.get(), definition().with(sound(mcLoc("mob/irongolem/death"))).subtitle("subtitles.entity.starlight_golem.death"));
         add(SoundEventInit.STARLIGHT_GOLEM_BLOCK.get(), definition().with(sound(mcLoc("random/anvil_land"))).subtitle("subtitles.entity.starlight_golem.block"));
-        add(SoundEventInit.STARLIGHT_GOLEM_PREPARE_CHARGE.get(), definition().with(sound(mcLoc("mob/irongolem/repair"))).subtitle("subtitles.entity.astral_golem.prepare_charge"));
-        add(SoundEventInit.STARLIGHT_GOLEM_PREPARE_BEAM.get(), definition().with(sound(mcLoc("block/beacon/activate"))).subtitle("subtitles.entity.astral_golem.prepare_beam"));
+        add(SoundEventInit.STARLIGHT_GOLEM_PREPARE_CHARGE.get(), definition().with(sound(mcLoc("mob/irongolem/repair"))).subtitle("subtitles.entity.starlight_golem.prepare_charge"));
+        add(SoundEventInit.STARLIGHT_GOLEM_PREPARE_BEAM.get(), definition().with(sound(mcLoc("block/beacon/activate"))).subtitle("subtitles.entity.starlight_golem.prepare_beam"));
 
         add(SoundEventInit.LUNAR_MONSTROSITY_HURT.get(), definition().with(sound(mcLoc("mob/irongolem/damage1")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage1")).pitch(1.2).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.2).volume(0.8)).subtitle("subtitles.entity.lunar_monstrosity.hurt"));
         add(SoundEventInit.LUNAR_MONSTROSITY_DEATH.get(), definition().with(sound(mcLoc("mob/blaze/death"))).subtitle("subtitles.entity.lunar_monstrosity.death"));

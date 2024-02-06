@@ -18,7 +18,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
 public class CrestSelectionScreen extends Screen {
@@ -28,6 +30,7 @@ public class CrestSelectionScreen extends Screen {
     private static final int HEIGHT = 256;
     private static final int GUI_RATIO = WIDTH / HEIGHT;
     private final List<CrestButton> crestButtons = new ArrayList<>();
+    private final List<Crest> ownedCrests;
     private List<String> crestIds;
     private CrestButton selectedCrestButton;
     private CrestPageButton nextPage;
@@ -36,8 +39,15 @@ public class CrestSelectionScreen extends Screen {
     private int selected;
     private int tickCount;
 
-    public CrestSelectionScreen(List<String> crests) {
+    public CrestSelectionScreen(List<String> ownedCrests, List<String> crests) {
         super(Component.empty());
+        Registry<Crest> registry;
+        if (Minecraft.getInstance().level != null) {
+            registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
+        } else {
+            registry = null;
+        }
+        this.ownedCrests = ownedCrests.stream().map(s -> registry == null ? null : registry.get(new ResourceLocation(s))).sorted((o1, o2) -> registry == null ? 0 : registry.getId(o1) - registry.getId(o2)).toList();
         this.crestIds = crests;
     }
 
@@ -72,23 +82,19 @@ public class CrestSelectionScreen extends Screen {
         tickCount++;
     }
 
-    private Optional<List<Crest>> getSortedCrests() {
-        if (Minecraft.getInstance().level != null) {
-            Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-            return Optional.of(registry.stream().sorted(Comparator.comparingInt(registry::getId)).toList());
-        } else {
-            onClose();
-            return Optional.empty();
-        }
-    }
-
     public void updateGui() {
-        getSortedCrests().ifPresent((list) -> {
-            this.nextPage.active = selected < list.size() - 1;
+        if (!ownedCrests.isEmpty()) {
+            this.nextPage.active = selected < ownedCrests.size() - 1;
             this.previousPage.active = selected > 0;
-            this.selectedCrest = list.get(selected);
+            this.selectedCrest = ownedCrests.get(selected);
             this.selectedCrestButton.setCrest(selectedCrest);
-        });
+        } else {
+            this.nextPage.active = false;
+            this.previousPage.active = false;
+            this.selectedCrest = null;
+            this.selectedCrestButton.setCrest(null);
+            this.selectedCrestButton.active = false;
+        }
     }
 
     private void previousPage() {
@@ -99,12 +105,10 @@ public class CrestSelectionScreen extends Screen {
     }
 
     private void nextPage() {
-        getSortedCrests().ifPresent((list) -> {
-            if (selected < list.size() - 1) {
-                selected++;
-                updateGui();
-            }
-        });
+        if (selected < ownedCrests.size() - 1) {
+            selected++;
+            updateGui();
+        }
     }
 
     private void cancelCrest(int ordinal) {

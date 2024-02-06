@@ -382,6 +382,7 @@
   "block.eternal_starlight.energy_block": "能量方块",
   "block.eternal_starlight.starlight_golem_spawner": "星光傀儡刷怪笼",
   "block.eternal_starlight.lunar_monstrosity_spawner": "月藤巨物刷怪笼",
+  "block.eternal_starlight.enchanted_grimstone_bricks": "注魔阴沉石砖",
 
   "item.eternal_starlight.red_starlight_crystal_shard": "红色星辉水晶碎片",
   "item.eternal_starlight.blue_starlight_crystal_shard": "蓝色星辉水晶碎片",
@@ -510,7 +511,8 @@
   "subtitles.entity.astral_golem.repair": "星幻傀儡 : 被修复",
   "subtitles.item.armor.equip_thermal_springstone": "热泉石盔甲 : 摩擦",
   "subtitles.item.armor.equip_swamp_silver": "沼泽银盔甲 : 摩擦",
-  "subtitles.entity.ent.hurt": "Ent hurts",
+  "subtitles.item.armor.equip_aethersent": "天赐盔甲 : 摩擦",
+  "subtitles.entity.ent.hurt": "树精 : 受伤",
   "subtitles.entity.luminofish.hurt": "光鲀 : 受伤",
   "subtitles.entity.luminofish.death": "光鲀 : 死亡",
   "subtitles.entity.luminofish.flop": "光鲀 : 挣扎",

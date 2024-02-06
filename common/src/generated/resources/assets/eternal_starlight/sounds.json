@@ -338,13 +338,13 @@
     "sounds": [
       "block/beacon/activate"
     ],
-    "subtitle": "subtitles.entity.astral_golem.prepare_beam"
+    "subtitle": "subtitles.entity.starlight_golem.prepare_beam"
   },
   "entity.starlight_golem.prepare_charge": {
     "sounds": [
       "mob/irongolem/repair"
     ],
-    "subtitle": "subtitles.entity.astral_golem.prepare_charge"
+    "subtitle": "subtitles.entity.starlight_golem.prepare_charge"
   },
   "item.armor.equip_aethersent": {
     "sounds": [

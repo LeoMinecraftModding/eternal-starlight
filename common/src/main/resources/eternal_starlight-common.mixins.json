@@ -14,6 +14,7 @@
     "MinecraftMixin",
     "PlayerMixin",
     "ServerLevelMixin",
+    "ServerPlayerMixin",
     "SignBlockMixin",
     "WallHangingSignBlockMixin"
   ],
@@ -21,8 +22,8 @@
     "EntityRenderDispatcherMixin",
     "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
+    "ItemRendererMixin",
     "LevelRendererMixin",
-    "LocalPlayerMixin",
     "PlayerModelMixin",
     "PlayerRendererMixin"
   ],

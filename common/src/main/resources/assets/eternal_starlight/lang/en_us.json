@@ -382,6 +382,7 @@
   "block.eternal_starlight.energy_block": "Energy Block",
   "block.eternal_starlight.starlight_golem_spawner": "Starlight Golem Spawner",
   "block.eternal_starlight.lunar_monstrosity_spawner": "Lunar Monstrosity Spawner",
+  "block.eternal_starlight.enchanted_grimstone_bricks": "Enchanted Grimstone Bricks",
 
   "item.eternal_starlight.red_starlight_crystal_shard": "Red Starlight Crystal Shard",
   "item.eternal_starlight.blue_starlight_crystal_shard": "Blue Starlight Crystal Shard",
@@ -509,7 +510,8 @@
   "subtitles.entity.astral_golem.hurt": "Astral Golem hurts",
   "subtitles.entity.astral_golem.repair": "Astral Golem repaired",
   "subtitles.item.armor.equip_thermal_springstone": "Thermal Springstone armor clangs",
-  "subtitles.item.armor.equip_swamp_silver": "Swamp silver armor clangs",
+  "subtitles.item.armor.equip_swamp_silver": "Swamp Silver armor clangs",
+  "subtitles.item.armor.equip_aethersent": "Aethersent armor clangs",
   "subtitles.entity.ent.hurt": "Ent hurts",
   "subtitles.entity.luminofish.hurt": "Luminofish hurts",
   "subtitles.entity.luminofish.death": "Luminofish dies",

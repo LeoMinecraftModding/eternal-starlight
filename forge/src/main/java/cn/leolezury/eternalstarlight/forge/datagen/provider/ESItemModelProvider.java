@@ -479,7 +479,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.STARLIGHT_SILVER_COIN.get());
         basicItem(ItemInit.LOOT_BAG.get());
         basicItem(ItemInit.BOOK.get());
-        inventoryModel(ItemInit.ORB_OF_PROPHECY.get());
+        orbOfProphecyInventory(ItemInit.ORB_OF_PROPHECY.get());
+        basicBlockItem(ItemInit.ENCHANTED_GRIMSTONE_BRICKS.get());
     }
 
     private void armorWithTrim(ArmorItem armor) {
@@ -532,6 +533,14 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.65).model(pull1).end()
                 .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.9).model(pull2).end();
+    }
+
+    private void orbOfProphecyInventory(Item item) {
+        ModelFile withCrestModel = withExistingParent(name(item) + "_with_crests_inventory", "item/generated")
+                .texture("layer0", itemTexture(item).withSuffix("_with_crests_inventory"));
+        withExistingParent(name(item) + "_inventory", "item/generated")
+                .texture("layer0", itemTexture(item).withSuffix("_inventory"))
+                .override().predicate(new ResourceLocation("has_crests"), 1).model(withCrestModel).end();
     }
 
     private void trapdoor(Item item) {

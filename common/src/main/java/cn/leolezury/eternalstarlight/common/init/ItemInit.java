@@ -536,6 +536,7 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item, Item> TERRA_STATUE_ITEM = registerItem("terra_statue", () -> new BlockItem(BlockInit.TERRA_STATUE.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
+
     public static void loadClass() {}
 }
