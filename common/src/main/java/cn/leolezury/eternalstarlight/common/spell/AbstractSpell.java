@@ -5,12 +5,18 @@ import net.minecraft.world.entity.LivingEntity;
 
 public abstract class AbstractSpell {
     private final Properties properties;
+    private final ManaType type;
     public Properties spellProperties() {
         return properties;
     }
 
-    public AbstractSpell(Properties properties) {
+    public ManaType spellType() {
+        return type;
+    }
+
+    public AbstractSpell(Properties properties, ManaType type) {
         this.properties = properties;
+        this.type = type;
     }
 
     public boolean canCast(LivingEntity entity) {

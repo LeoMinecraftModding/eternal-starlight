@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.item.weapon.magic;
+package cn.leolezury.eternalstarlight.common.item.magic;
 
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.world.InteractionHand;

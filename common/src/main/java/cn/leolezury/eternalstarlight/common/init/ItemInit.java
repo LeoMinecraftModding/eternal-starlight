@@ -7,8 +7,8 @@ import cn.leolezury.eternalstarlight.common.item.armor.ESArmorMaterials;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.misc.*;
 import cn.leolezury.eternalstarlight.common.item.weapon.*;
-import cn.leolezury.eternalstarlight.common.item.weapon.magic.LivingArmItem;
-import cn.leolezury.eternalstarlight.common.item.weapon.magic.SimpleSpellItem;
+import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
+import cn.leolezury.eternalstarlight.common.item.magic.SimpleSpellItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -537,6 +537,5 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
-
     public static void loadClass() {}
 }
