@@ -2,9 +2,15 @@
   "parent": "minecraft:item/generated",
   "overrides": [
     {
+      "model": "eternal_starlight:item/orb_of_prophecy_temporary_inventory",
+      "predicate": {
+        "minecraft:crests_mode": 0.5
+      }
+    },
+    {
       "model": "eternal_starlight:item/orb_of_prophecy_with_crests_inventory",
       "predicate": {
-        "minecraft:has_crests": 1.0
+        "minecraft:crests_mode": 1.0
       }
     }
   ],

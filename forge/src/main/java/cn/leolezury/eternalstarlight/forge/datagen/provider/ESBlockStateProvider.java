@@ -300,7 +300,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         spawner(BlockInit.STARLIGHT_GOLEM_SPAWNER.get());
         spawner(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get());
         portal(BlockInit.STARLIGHT_PORTAL.get());
-        horizontalBlock(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(BlockInit.GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.GRIMSTONE_BRICKS.get()));
+        horizontalBlock(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(BlockInit.GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.POLISHED_GRIMSTONE.get()));
     }
 
     private void woodSet(RotatedPillarBlock log, Block wood, Block planks, RotatedPillarBlock strippedLog, Block strippedWood, DoorBlock door, boolean cutoutDoor, TrapDoorBlock trapdoor, boolean cutoutTrapdoor, PressurePlateBlock pressurePlate, ButtonBlock button, FenceBlock fence, FenceGateBlock fenceGate, SlabBlock slab, StairBlock stairs, Block sign, Block wallSign, Block hangingSign, Block wallHangingSign) {

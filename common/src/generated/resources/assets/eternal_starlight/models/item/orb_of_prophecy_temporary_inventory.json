@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eternal_starlight:item/orb_of_prophecy_temporary_inventory"
+  }
+}

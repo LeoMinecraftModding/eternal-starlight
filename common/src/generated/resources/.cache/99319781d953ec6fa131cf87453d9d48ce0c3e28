@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-06T12:40:20.529642	Block States: eternal_starlight
+// 1.20.4	2024-02-06T16:07:48.2718717	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -489,7 +489,7 @@ bcde13fed3ad8a3efa43f3161846253e1e8a56f5 assets/eternal_starlight/models/block/d
 c4ac279f92e2f6400b4801306106ba9fafbcf952 assets/eternal_starlight/models/block/doomed_redstone_torch.json
 53d7f17cfaeb247f67a8fe54ecce256559559e08 assets/eternal_starlight/models/block/doomed_redstone_torch_lit.json
 abcd5ce0cce31211e0b27033479d2edf71525b8b assets/eternal_starlight/models/block/doomed_torch.json
-7ba4e765c61b3c4d14ebdd57bfcd4953e9f30773 assets/eternal_starlight/models/block/enchanted_grimstone_bricks.json
+7269ea60061ef7f011c193576180c78ad3c248f1 assets/eternal_starlight/models/block/enchanted_grimstone_bricks.json
 174c960ce28d5cefc3950474917a15bf94a4d2a6 assets/eternal_starlight/models/block/energy_block.json
 91150301aca404a93a1b23ea697cb38af8cf63ee assets/eternal_starlight/models/block/energy_block_lit.json
 9fc28b254ebbac219ecbf58a06e68970b14edb89 assets/eternal_starlight/models/block/ether.json

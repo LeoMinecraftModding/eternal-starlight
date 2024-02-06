@@ -1,22 +1,8 @@
 {
 	"textures": {
-		"layer0": "eternal_starlight:item/orb_of_prophecy",
-		"particle": "eternal_starlight:item/orb_of_prophecy"
+		"layer0": "eternal_starlight:item/orb_of_prophecy_temporary",
+		"particle": "eternal_starlight:item/orb_of_prophecy_temporary"
 	},
-	"overrides": [
-		{
-			"model": "eternal_starlight:item/orb_of_prophecy_temporary",
-			"predicate": {
-				"minecraft:crests_mode": 0.5
-			}
-		},
-		{
-			"model": "eternal_starlight:item/orb_of_prophecy_with_crests",
-			"predicate": {
-				"minecraft:crests_mode": 1.0
-			}
-		}
-	],
 	"gui_light": "front",
 	"elements": [
 		{

@@ -3,6 +3,6 @@
   "textures": {
     "front": "eternal_starlight:block/enchanted_grimstone_bricks",
     "side": "eternal_starlight:block/grimstone_bricks",
-    "top": "eternal_starlight:block/grimstone_bricks"
+    "top": "eternal_starlight:block/polished_grimstone"
   }
 }

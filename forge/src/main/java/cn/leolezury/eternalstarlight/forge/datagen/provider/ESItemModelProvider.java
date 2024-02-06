@@ -538,9 +538,12 @@ public class ESItemModelProvider extends ItemModelProvider {
     private void orbOfProphecyInventory(Item item) {
         ModelFile withCrestModel = withExistingParent(name(item) + "_with_crests_inventory", "item/generated")
                 .texture("layer0", itemTexture(item).withSuffix("_with_crests_inventory"));
+        ModelFile temporaryModel = withExistingParent(name(item) + "_temporary_inventory", "item/generated")
+                .texture("layer0", itemTexture(item).withSuffix("_temporary_inventory"));
         withExistingParent(name(item) + "_inventory", "item/generated")
                 .texture("layer0", itemTexture(item).withSuffix("_inventory"))
-                .override().predicate(new ResourceLocation("has_crests"), 1).model(withCrestModel).end();
+                .override().predicate(new ResourceLocation("crests_mode"), 0.5f).model(temporaryModel).end()
+                .override().predicate(new ResourceLocation("crests_mode"), 1).model(withCrestModel).end();
     }
 
     private void trapdoor(Item item) {

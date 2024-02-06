@@ -263,7 +263,7 @@ public class ClientSetupHandlers {
         });
         ItemProperties.register(ItemInit.BOW_OF_BLOOD.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ItemInit.ORB_OF_PROPHECY.get(), new ResourceLocation("has_crests"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ItemInit.ORB_OF_PROPHECY.get(), new ResourceLocation("crests_mode"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F);
     }
 
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -369,8 +369,6 @@ public class ClientSetupHandlers {
     public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_with_crests"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_with_crests_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));

@@ -47,6 +47,14 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
         return CrestUtil.getCrests(access, crests);
     }
 
+    public static void setTemporary(ItemStack stack) {
+        stack.getOrCreateTag().putBoolean("Temporary", true);
+    }
+
+    public static boolean isTemporary(ItemStack stack) {
+        return stack.getOrCreateTag().getBoolean("Temporary");
+    }
+
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
         if (livingEntity.getPose() != Pose.STANDING) {
@@ -71,10 +79,14 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (player.getPose() == Pose.STANDING) {
             if (hasCrests(level.registryAccess(), itemStack)) {
-                if (player.experienceLevel >= 1) {
-                    player.experienceLevel -= 1;
+                int xpCost = isTemporary(itemStack) ? 2 : 1;
+                if (player.experienceLevel >= xpCost) {
+                    player.experienceLevel -= xpCost;
                     getCrests(level.registryAccess(), itemStack).forEach(crest -> CrestUtil.giveCrest(player, crest));
                     itemStack.getOrCreateTag().put("Crests", new CompoundTag());
+                    if (isTemporary(itemStack)) {
+                        itemStack.shrink(1);
+                    }
                     return InteractionResultHolder.success(itemStack);
                 }
             } else {

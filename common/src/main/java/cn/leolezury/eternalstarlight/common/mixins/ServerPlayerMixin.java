@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,6 +31,16 @@ public abstract class ServerPlayerMixin {
                 CompoundTag tag = ESUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
                 OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), item, tag);
                 return;
+            }
+        }
+        ItemStack itemStack = ItemInit.ORB_OF_PROPHECY.get().getDefaultInstance();
+        if (!CrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
+            CompoundTag tag = ESUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
+            OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), itemStack, tag);
+            OrbOfProphecyItem.setTemporary(itemStack);
+            if (!inventory.add(itemStack)) {
+                ItemEntity itemEntity = new ItemEntity(serverLevel(), ((Player) (Object) this).getX(), ((Player) (Object) this).getY(), ((Player) (Object) this).getZ(), itemStack);
+                serverLevel().addFreshEntity(itemEntity);
             }
         }
     }
