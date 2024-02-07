@@ -52,22 +52,28 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESTags.Items.LIGHT_CRYSTALS
         );
         tag(ESTags.Items.TERRA_CRYSTALS).add(
-                ItemInit.TERRA_CRYSTAL.get()
+                ItemInit.TERRA_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         tag(ESTags.Items.WIND_CRYSTALS).add(
-                ItemInit.WIND_CRYSTAL.get()
+                ItemInit.WIND_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         tag(ESTags.Items.WATER_CRYSTALS).add(
-                ItemInit.WATER_CRYSTAL.get()
+                ItemInit.WATER_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         tag(ESTags.Items.LUNAR_CRYSTALS).add(
-                ItemInit.LUNAR_CRYSTAL.get()
+                ItemInit.LUNAR_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         tag(ESTags.Items.BLAZE_CRYSTALS).add(
-                ItemInit.BLAZE_CRYSTAL.get()
+                ItemInit.BLAZE_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         tag(ESTags.Items.LIGHT_CRYSTALS).add(
-                ItemInit.LIGHT_CRYSTAL.get()
+                ItemInit.LIGHT_CRYSTAL.get(),
+                ItemInit.MANA_CRYSTAL.get()
         );
         // mc tags
         copy(BlockTags.LOGS, ItemTags.LOGS);

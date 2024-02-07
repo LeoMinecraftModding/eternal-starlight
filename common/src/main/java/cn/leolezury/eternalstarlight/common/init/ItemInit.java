@@ -530,6 +530,7 @@ public class ItemInit {
     // magic
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> MANA_CRYSTAL = registerItem("mana_crystal", () -> new Item(new Item.Properties().durability(1800).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> TERRA_CRYSTAL = registerItem("terra_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> WIND_CRYSTAL = registerItem("wind_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> WATER_CRYSTAL = registerItem("water_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));

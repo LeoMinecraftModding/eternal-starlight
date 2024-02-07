@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-07T11:02:03.361676	Item Models: eternal_starlight
+// 1.20.4	2024-02-07T15:12:55.4511331	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -202,6 +202,7 @@ f4b608a5ba53c102ea80144568b83247a9c3f348 assets/eternal_starlight/models/item/lu
 25ee05d669e3f3d3014d330330133b3696100f7f assets/eternal_starlight/models/item/lunar_wood.json
 7e83d0390b1bb67b060754c590ef8429cc9b1164 assets/eternal_starlight/models/item/magenta_yeti_fur.json
 21ae6095ce868121c431781dc7b57ed86cdccb20 assets/eternal_starlight/models/item/magenta_yeti_fur_carpet.json
+8660d2caf09f59c633b0eba72b6149e88f01e98e assets/eternal_starlight/models/item/mana_crystal.json
 5cafb9d9fe8ba5f3d14d43bc8814320f53e2384b assets/eternal_starlight/models/item/mana_crystal_shard.json
 0a84a05e0f3848b62233fff339f0639218c7aaf4 assets/eternal_starlight/models/item/moonlight_duckweed.json
 34327f21c991a0e573d52b8eb75fd187f816a198 assets/eternal_starlight/models/item/moonlight_lily_pad.json

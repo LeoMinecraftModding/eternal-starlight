@@ -50,16 +50,16 @@ public class ESRecipeProvider extends RecipeProvider {
         }
 
         // flower -> dye
-        addSingleConversion(recipeOutput, ItemInit.STARLIGHT_FLOWER.get(), Items.BLUE_DYE);
-        addSingleConversion(recipeOutput, ItemInit.CONEBLOOM.get(), Items.BROWN_DYE);
-        addSingleConversion(recipeOutput, ItemInit.NIGHTFAN.get(), Items.PURPLE_DYE);
-        addSingleConversion(recipeOutput, ItemInit.PINK_ROSE.get(), Items.PINK_DYE);
-        addSingleConversion(recipeOutput, ItemInit.STARLIGHT_TORCHFLOWER.get(), Items.YELLOW_DYE);
-        addSingleConversion(recipeOutput, ItemInit.NIGHTFAN_BUSH.get(), Items.PURPLE_DYE);
-        addSingleConversion(recipeOutput, ItemInit.PINK_ROSE_BUSH.get(), Items.PINK_DYE);
-        addSingleConversion(recipeOutput, ItemInit.SWAMP_ROSE.get(), Items.GREEN_DYE);
-        addSingleConversion(recipeOutput, ItemInit.WHISPERBLOOM.get(), Items.PINK_DYE);
-        addSingleConversion(recipeOutput, ItemInit.WITHERED_STARLIGHT_FLOWER.get(), Items.ORANGE_DYE);
+        addSingleConversion(recipeOutput, Items.BLUE_DYE, ItemInit.STARLIGHT_FLOWER.get());
+        addSingleConversion(recipeOutput, Items.BROWN_DYE, ItemInit.CONEBLOOM.get());
+        addSingleConversion(recipeOutput, Items.PURPLE_DYE, ItemInit.NIGHTFAN.get());
+        addSingleConversion(recipeOutput, Items.PINK_DYE, ItemInit.PINK_ROSE.get());
+        addSingleConversion(recipeOutput, Items.YELLOW_DYE, ItemInit.STARLIGHT_TORCHFLOWER.get());
+        addSingleConversion(recipeOutput, Items.PURPLE_DYE, ItemInit.NIGHTFAN_BUSH.get());
+        addSingleConversion(recipeOutput, Items.PINK_DYE, ItemInit.PINK_ROSE_BUSH.get());
+        addSingleConversion(recipeOutput, Items.GREEN_DYE, ItemInit.SWAMP_ROSE.get());
+        addSingleConversion(recipeOutput, Items.PINK_DYE, ItemInit.WHISPERBLOOM.get());
+        addSingleConversion(recipeOutput, Items.ORANGE_DYE, ItemInit.WITHERED_STARLIGHT_FLOWER.get());
 
         // food
         addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
@@ -85,6 +85,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('G', Items.GLASS)
                 .unlockedBy("has_item", has(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
                 .save(recipeOutput);
+        addShapeless(recipeOutput, ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get(), ItemInit.MANA_CRYSTAL.get(), 1, ItemInit.TERRA_CRYSTAL.get(), ItemInit.WIND_CRYSTAL.get(), ItemInit.WATER_CRYSTAL.get(), ItemInit.LUNAR_CRYSTAL.get(), ItemInit.BLAZE_CRYSTAL.get(), ItemInit.LIGHT_CRYSTAL.get());
         SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ItemInit.TERRA_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "terra_crystal"));
         SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ItemInit.WIND_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "wind_crystal"));
         SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ItemInit.WATER_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "water_crystal"));
@@ -548,7 +549,7 @@ public class ESRecipeProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_blasting_from_" + name(criteria)));
     }
 
-    protected final void addSingleConversion(RecipeOutput recipeOutput, Item from, Item to) {
+    protected final void addSingleConversion(RecipeOutput recipeOutput, Item to, Item from) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, to)
                 .requires(from)
                 .unlockedBy("has_item", has(from))

@@ -474,6 +474,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         orbOfProphecyInventory(ItemInit.ORB_OF_PROPHECY.get());
         basicBlockItem(ItemInit.ENCHANTED_GRIMSTONE_BRICKS.get());
+        basicItem(ItemInit.MANA_CRYSTAL.get());
         basicItem(ItemInit.TERRA_CRYSTAL.get());
         basicItem(ItemInit.WIND_CRYSTAL.get());
         basicItem(ItemInit.WATER_CRYSTAL.get());
