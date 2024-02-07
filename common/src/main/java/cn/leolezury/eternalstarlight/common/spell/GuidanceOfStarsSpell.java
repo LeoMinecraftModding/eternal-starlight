@@ -1,22 +1,22 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
-public class StarsMapSpell extends AbstractSpell {
-    public StarsMapSpell(Properties properties) {
-        super(properties, ManaType.BLAZE);
+public class GuidanceOfStarsSpell extends AbstractSpell {
+    public GuidanceOfStarsSpell(Properties properties) {
+        super(properties);
     }
 
     @Override
     public boolean checkExtraConditions(LivingEntity entity) {
-        return false;
+        return entity.level().dimension() == DimensionInit.STARLIGHT_KEY;
     }
 
     @Override
     public boolean checkExtraConditionsToContinue(LivingEntity entity, int ticks) {
-        return false;
+        return entity.level().dimension() == DimensionInit.STARLIGHT_KEY;
     }
 
     @Override
@@ -34,14 +34,14 @@ public class StarsMapSpell extends AbstractSpell {
     @Override
     public void onStart(LivingEntity entity) {
         if (entity instanceof Player && entity.level().isClientSide) {
-            ESUtil.getPersistentData(entity).putBoolean("UseStarsMap", true);
+
         }
     }
 
     @Override
     public void onStop(LivingEntity entity, int ticks) {
         if (entity instanceof Player && entity.level().isClientSide) {
-            ESUtil.getPersistentData(entity).putBoolean("UseStarsMap", false);
+
         }
     }
 }

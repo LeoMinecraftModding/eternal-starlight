@@ -444,11 +444,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(BlockInit.SALTPETER_BLOCK.get());
 
         // nothing
+        add(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
         add(BlockInit.ENERGY_BLOCK.get(), noDrop());
         add(BlockInit.STARLIGHT_GOLEM_SPAWNER.get(), noDrop());
         add(BlockInit.LUNAR_MONSTROSITY_SPAWNER.get(), noDrop());
         add(BlockInit.STARLIGHT_PORTAL.get(), noDrop());
-        add(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
     }
 
     @Override

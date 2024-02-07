@@ -1,13 +1,19 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen.button;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -28,6 +34,17 @@ public class CrestButton extends Button {
     }
 
     public CrestButton setCrest(Crest crest) {
+        if (this.crest != crest && Minecraft.getInstance().level != null) {
+            if (crest == null) {
+                setTooltip(Tooltip.create(Component.empty()));
+            } else {
+                Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
+                MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)));
+                MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", new ResourceLocation(EternalStarlight.MOD_ID, crest.type().getSerializedName()))).withColor(crest.type().getColor());
+                MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)) + ".desc");
+                setTooltip(Tooltip.create(nameComponent.append("\n").append(typeComponent).append("\n").append(descComponent)));
+            }
+        }
         this.crest = crest;
         return this;
     }
@@ -53,6 +70,7 @@ public class CrestButton extends Button {
                 hoverProgress--;
             }
         }
+        this.active = crest != null;
     }
 
     @Override

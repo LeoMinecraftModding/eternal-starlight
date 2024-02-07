@@ -6,7 +6,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,5 +72,31 @@ public class CrestUtil {
         crests.remove(crest);
         setCrests(player, crests, "OwnedCrests");
         return true;
+    }
+
+    public static void tickCrests(Player player) {
+        getCrests(player).forEach(crest -> {
+            if (player.getAbilities().instabuild || crest.spell().isPresent()) {
+                applyCrestEffects(player, crest);
+            } else {
+                Inventory inventory = player.getInventory();
+                for (int i = 0; i < inventory.getContainerSize(); i++) {
+                    ItemStack stack = inventory.getItem(i);
+                    if (stack.is(crest.type().getCrystalsTag())) {
+                        applyCrestEffects(player, crest);
+                        if (player.tickCount % 60 == 0) {
+                            stack.hurtAndBreak(1, player, (p) -> {});
+                        }
+                        return;
+                    }
+                }
+            }
+        });
+    }
+
+    public static void applyCrestEffects(Player player, Crest crest) {
+        crest.effects().ifPresent(effects ->
+                effects.forEach(mobEffect -> player.addEffect(new MobEffectInstance(mobEffect.effect(), 20, mobEffect.level())))
+        );
     }
 }

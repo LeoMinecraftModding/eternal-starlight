@@ -10,6 +10,7 @@
     "CrossbowItemMixin",
     "EntityMixin",
     "FireBlockMixin",
+    "ItemEntityMixin",
     "LivingEntityMixin",
     "MinecraftMixin",
     "PlayerMixin",

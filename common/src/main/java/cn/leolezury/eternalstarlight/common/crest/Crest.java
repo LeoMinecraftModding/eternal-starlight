@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public record Crest(ManaType element, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects) {
+public record Crest(ManaType type, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects) {
     public Crest(ManaType element, ResourceLocation texture, AbstractSpell spell, MobEffectWithLevel... effects) {
         this(element, texture, Optional.ofNullable(spell), Optional.of(new ArrayList<>(List.of(effects))));
     }
 
     public static final Codec<Crest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ManaType.CODEC.fieldOf("element").forGetter(Crest::element),
+            ManaType.CODEC.fieldOf("type").forGetter(Crest::type),
             ResourceLocation.CODEC.fieldOf("texture").forGetter(Crest::texture),
             SpellInit.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
             MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects)

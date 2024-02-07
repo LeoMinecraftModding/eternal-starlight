@@ -1,11 +1,18 @@
-// 1.20.4	2024-02-01T13:08:38.0626445	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-02-07T11:27:57.6698169	Tags for minecraft:item mod id eternal_starlight
+850879c981433d1cb99895ea37ae7b34f8879db2 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
+3626a8f87b2d17118b519ffa00afb21b176eb25c data/eternal_starlight/tags/items/light_crystals.json
+068fc7e7997ee099cafff1a77820630feaeec35d data/eternal_starlight/tags/items/lunar_crystals.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
+eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/items/mana_crystals.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/items/scarlet_logs.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/items/starlight_mangrove_logs.json
+65ece1e906c8fe0511b51239b4b51feaec240d14 data/eternal_starlight/tags/items/terra_crystals.json
 aaf6b3c5a0f9bab148f9c675dab591974443a4ac data/eternal_starlight/tags/items/thermal_springstone_weapons.json
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/items/torreya_logs.json
+c92ac331dda51c16270c4a77a75b1ba3ceb0b066 data/eternal_starlight/tags/items/water_crystals.json
+d762002094f5e71ccb615675cc48d8de9703909c data/eternal_starlight/tags/items/wind_crystals.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/items/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/items/yeti_fur_carpets.json
 3566be9f2429001243203c27c5c3f61de298861c data/minecraft/tags/items/axes.json

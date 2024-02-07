@@ -24,6 +24,13 @@ public class ESTags {
         public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
+        public static final TagKey<Item> MANA_CRYSTALS = create("mana_crystals");
+        public static final TagKey<Item> TERRA_CRYSTALS = create("terra_crystals");
+        public static final TagKey<Item> WIND_CRYSTALS = create("wind_crystals");
+        public static final TagKey<Item> WATER_CRYSTALS = create("water_crystals");
+        public static final TagKey<Item> LUNAR_CRYSTALS = create("lunar_crystals");
+        public static final TagKey<Item> BLAZE_CRYSTALS = create("blaze_crystals");
+        public static final TagKey<Item> LIGHT_CRYSTALS = create("light_crystals");
     }
 
     public static class Blocks {

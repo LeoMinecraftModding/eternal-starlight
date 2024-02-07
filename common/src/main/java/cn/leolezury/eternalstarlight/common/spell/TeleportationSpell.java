@@ -13,7 +13,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class TeleportationSpell extends AbstractSpell {
     public TeleportationSpell(Properties properties) {
-        super(properties, ManaType.EMPTY);
+        super(properties);
     }
 
     @Override

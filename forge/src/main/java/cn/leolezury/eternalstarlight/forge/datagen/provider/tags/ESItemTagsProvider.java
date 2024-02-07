@@ -40,6 +40,32 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.LIVING_ARM.get(),
                 ItemInit.DOOMEDEN_SWORD.get()
         );
+        tag(ESTags.Items.MANA_CRYSTALS).addTags(
+                ESTags.Items.TERRA_CRYSTALS,
+                ESTags.Items.WIND_CRYSTALS,
+                ESTags.Items.WATER_CRYSTALS,
+                ESTags.Items.LUNAR_CRYSTALS,
+                ESTags.Items.BLAZE_CRYSTALS,
+                ESTags.Items.LIGHT_CRYSTALS
+        );
+        tag(ESTags.Items.TERRA_CRYSTALS).add(
+                ItemInit.TERRA_CRYSTAL.get()
+        );
+        tag(ESTags.Items.WIND_CRYSTALS).add(
+                ItemInit.WIND_CRYSTAL.get()
+        );
+        tag(ESTags.Items.WATER_CRYSTALS).add(
+                ItemInit.WATER_CRYSTAL.get()
+        );
+        tag(ESTags.Items.LUNAR_CRYSTALS).add(
+                ItemInit.LUNAR_CRYSTAL.get()
+        );
+        tag(ESTags.Items.BLAZE_CRYSTALS).add(
+                ItemInit.BLAZE_CRYSTAL.get()
+        );
+        tag(ESTags.Items.LIGHT_CRYSTALS).add(
+                ItemInit.LIGHT_CRYSTAL.get()
+        );
         // mc tags
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);

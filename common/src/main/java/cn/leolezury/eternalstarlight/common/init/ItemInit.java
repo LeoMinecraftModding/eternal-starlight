@@ -5,10 +5,10 @@ import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ESArmorMaterials;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
-import cn.leolezury.eternalstarlight.common.item.misc.*;
-import cn.leolezury.eternalstarlight.common.item.weapon.*;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
 import cn.leolezury.eternalstarlight.common.item.magic.SimpleSpellItem;
+import cn.leolezury.eternalstarlight.common.item.misc.*;
+import cn.leolezury.eternalstarlight.common.item.weapon.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -527,6 +527,17 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> AURORA_DEER_STEAK = registerItem("aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.BEEF)));
     public static final RegistryObject<Item, Item> COOKED_AURORA_DEER_STEAK = registerItem("cooked_aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.COOKED_BEEF)));
 
+    // magic
+    public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> TERRA_CRYSTAL = registerItem("terra_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> WIND_CRYSTAL = registerItem("wind_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> WATER_CRYSTAL = registerItem("water_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> LUNAR_CRYSTAL = registerItem("lunar_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> BLAZE_CRYSTAL = registerItem("blaze_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = registerItem("light_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> MANA_CRYSTAL_SHARD = registerItem("mana_crystal_shard", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
+
     // misc
     public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> ESPlatform.INSTANCE.createBucket(FluidInit.ETHER_STILL, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(BlockInit.ENERGY_BLOCK.get(), new Item.Properties()));
@@ -535,7 +546,5 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
     public static void loadClass() {}
 }

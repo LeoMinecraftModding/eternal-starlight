@@ -128,7 +128,7 @@ public class CrestSelectionScreen extends Screen {
     }
     
     private void selectCrest() {
-        if (crestButtons.stream().anyMatch((crestButton -> !crestButton.isEmpty() && crestButton.getCrest().element() == selectedCrest.element()))) {
+        if (crestButtons.stream().anyMatch((crestButton -> !crestButton.isEmpty() && crestButton.getCrest().type() == selectedCrest.type()))) {
             return;
         }
         for (CrestButton crestButton : crestButtons) {

@@ -1,5 +1,5 @@
 {
-  "element": "terra",
+  "type": "terra",
   "mob_effects": [
     {
       "effect": "minecraft:resistance",

@@ -472,6 +472,16 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.AURORA_DEER_STEAK.get());
         basicItem(ItemInit.COOKED_AURORA_DEER_STEAK.get());
 
+        orbOfProphecyInventory(ItemInit.ORB_OF_PROPHECY.get());
+        basicBlockItem(ItemInit.ENCHANTED_GRIMSTONE_BRICKS.get());
+        basicItem(ItemInit.TERRA_CRYSTAL.get());
+        basicItem(ItemInit.WIND_CRYSTAL.get());
+        basicItem(ItemInit.WATER_CRYSTAL.get());
+        basicItem(ItemInit.LUNAR_CRYSTAL.get());
+        basicItem(ItemInit.BLAZE_CRYSTAL.get());
+        basicItem(ItemInit.LIGHT_CRYSTAL.get());
+        basicItem(ItemInit.MANA_CRYSTAL_SHARD.get());
+
         basicItem(ItemInit.ETHER_BUCKET.get());
         basicBlockItem(ItemInit.ENERGY_BLOCK.get());
         basicBlockItem(ItemInit.STARLIGHT_GOLEM_SPAWNER.get());
@@ -479,8 +489,6 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.STARLIGHT_SILVER_COIN.get());
         basicItem(ItemInit.LOOT_BAG.get());
         basicItem(ItemInit.BOOK.get());
-        orbOfProphecyInventory(ItemInit.ORB_OF_PROPHECY.get());
-        basicBlockItem(ItemInit.ENCHANTED_GRIMSTONE_BRICKS.get());
     }
 
     private void armorWithTrim(ArmorItem armor) {

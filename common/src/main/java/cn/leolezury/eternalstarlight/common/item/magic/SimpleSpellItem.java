@@ -69,10 +69,10 @@ public class SimpleSpellItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         AbstractSpell spell = spellSupplier.get();
-        if (!level.isClientSide && spell.canCast(player)) {
+        if (!level.isClientSide && spell.canCast(player, false)) {
             player.startUsingItem(interactionHand);
             itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
-            spell.onStart(player);
+            spell.start(player, false);
             return InteractionResultHolder.consume(itemStack);
         }
         return InteractionResultHolder.fail(itemStack);

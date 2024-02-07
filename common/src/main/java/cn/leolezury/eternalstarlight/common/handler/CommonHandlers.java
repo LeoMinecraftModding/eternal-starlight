@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.EnchantmentInit;
+import cn.leolezury.eternalstarlight.common.init.ItemInit;
 import cn.leolezury.eternalstarlight.common.init.MobEffectInit;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
@@ -36,6 +37,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -144,11 +147,30 @@ public class CommonHandlers {
             }
         }
 
+        if (source.getDirectEntity() instanceof Player player) {
+            if (player.getRandom().nextInt(15) == 0) {
+                Inventory inventory = player.getInventory();
+                boolean hasCrystals = false;
+                for (int i = 0; i < inventory.getContainerSize(); i++) {
+                    if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
+                        hasCrystals = true;
+                    }
+                }
+                if (hasCrystals) {
+                    ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ItemInit.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
+                    player.level().addFreshEntity(itemEntity);
+                }
+            }
+        }
+
         return amount;
     }
 
     public static void onLivingTick(LivingEntity livingEntity) {
         SpellUtil.ticksSpellCoolDowns(livingEntity);
+        if (livingEntity instanceof Player player) {
+            CrestUtil.tickCrests(player);
+        }
         List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
         for (ItemStack armor : armors) {
             if (armor.getItem() instanceof TickableArmor tickableArmor) {
@@ -180,11 +202,6 @@ public class CommonHandlers {
             if (!inEther && clientEtherTicks > 0) {
                 ESUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
             }
-        }
-        if (livingEntity instanceof Player player) {
-            CrestUtil.getCrests(player).forEach(crest -> crest.effects().ifPresent(mobEffectWithLevel ->
-                    mobEffectWithLevel.forEach(mobEffect -> player.addEffect(new MobEffectInstance(mobEffect.effect(), 20, mobEffect.level())))
-            ));
         }
     }
 
