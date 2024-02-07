@@ -538,6 +538,9 @@ public class BlockInit {
     public static final RegistryObject<Block, Block> VOIDSTONE_SALTPETER_ORE = BLOCKS.register("voidstone_saltpeter_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
     public static final RegistryObject<Block, Block> SALTPETER_BLOCK = BLOCKS.register("saltpeter_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
 
+    public static final RegistryObject<Block, Block> AMARAMBER_LANTERN = BLOCKS.register("amaramber_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+    public static final RegistryObject<Block, Block> AMARAMBER_CANDLE = BLOCKS.register("amaramber_candle", () -> new CandleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CANDLE)));
+
     // magic
     public static final RegistryObject<Block, Block> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 

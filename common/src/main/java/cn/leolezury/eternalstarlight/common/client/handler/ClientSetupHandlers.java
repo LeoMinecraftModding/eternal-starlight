@@ -382,6 +382,7 @@ public class ClientSetupHandlers {
         strategy.register(ParticleInit.POISON.get(), FlameParticle.Provider::new);
         strategy.register(ParticleInit.LIGHTNING.get(), LightningParticle.Provider::new);
         strategy.register(ParticleInit.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
+        strategy.register(ParticleInit.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {

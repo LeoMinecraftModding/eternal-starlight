@@ -443,6 +443,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(BlockInit.VOIDSTONE_SALTPETER_ORE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ItemInit.SALTPETER_POWDER.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
         dropSelf(BlockInit.SALTPETER_BLOCK.get());
 
+        dropSelf(BlockInit.AMARAMBER_LANTERN.get());
+        add(BlockInit.AMARAMBER_CANDLE.get(), this::createCandleDrops);
+
         // nothing
         add(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
         add(BlockInit.ENERGY_BLOCK.get(), noDrop());

@@ -466,6 +466,9 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> SALTPETER_POWDER = registerItem("saltpeter_powder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> SALTPETER_MATCHBOX = registerItem("saltpeter_matchbox", () -> new FlintAndSteelItem(new Item.Properties().durability(300)));
 
+    public static final RegistryObject<Item, Item> AMARAMBER_LANTERN = registerItem("amaramber_lantern", () -> new BlockItem(BlockInit.AMARAMBER_LANTERN.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_CANDLE = registerItem("amaramber_candle", () -> new BlockItem(BlockInit.AMARAMBER_CANDLE.get(), new Item.Properties()));
+
     // boss materials
     public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(STARLIGHT)));

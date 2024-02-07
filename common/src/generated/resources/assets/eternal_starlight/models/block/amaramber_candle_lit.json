@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_candle",
+  "textures": {
+    "all": "eternal_starlight:block/amaramber_candle_lit",
+    "particle": "eternal_starlight:block/amaramber_candle_lit"
+  }
+}

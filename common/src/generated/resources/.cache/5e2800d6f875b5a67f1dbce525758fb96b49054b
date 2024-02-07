@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-07T15:12:55.4654648	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-02-07T16:17:23.8658226	Tags for minecraft:item mod id eternal_starlight
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/items/light_crystals.json
@@ -18,6 +18,7 @@ ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/items/water
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/items/yeti_fur_carpets.json
 3566be9f2429001243203c27c5c3f61de298861c data/minecraft/tags/items/axes.json
 aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/items/boats.json
+4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/items/candles.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/items/chest_boats.json
 c25cc3b13d73ce7b82609fab33fc58f08840bf52 data/minecraft/tags/items/freeze_immune_wearables.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/items/hanging_signs.json

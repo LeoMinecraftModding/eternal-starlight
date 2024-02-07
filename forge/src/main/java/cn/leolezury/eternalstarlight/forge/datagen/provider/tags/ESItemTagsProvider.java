@@ -96,6 +96,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.SAND, ItemTags.SAND);
         copy(BlockTags.SMELTS_TO_GLASS, ItemTags.SMELTS_TO_GLASS);
         copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
+        copy(BlockTags.CANDLES, ItemTags.CANDLES);
         tag(ItemTags.BOATS).add(
                 ItemInit.LUNAR_BOAT.get(),
                 ItemInit.NORTHLAND_BOAT.get(),

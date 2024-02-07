@@ -19,6 +19,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
         sprite(ParticleInit.ENERGY.get(), loc("energy"));
         sprite(ParticleInit.POISON.get(), loc("poison"));
         spriteSet(ParticleInit.BLADE_SHOCKWAVE.get(), mcLoc("sweep"), 8, false);
+        sprite(ParticleInit.AMARAMBER_FLAME.get(), loc("amaramber_flame"));
     }
 
     private ResourceLocation loc(String s) {

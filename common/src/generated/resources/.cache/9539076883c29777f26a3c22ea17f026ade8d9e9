@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-07T15:12:55.4511331	Item Models: eternal_starlight
+// 1.20.4	2024-02-07T16:17:23.8494914	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -19,6 +19,8 @@ d205bcd03217a58599bc4f5de2524fa73f1c1c4b assets/eternal_starlight/models/item/ae
 67c59f8d00de8b94b838827ec7e3a46219c6f032 assets/eternal_starlight/models/item/aethersent_hood_quartz_trim.json
 41cebd1b3a47bc71ad97853c150023518360c9b6 assets/eternal_starlight/models/item/aethersent_hood_redstone_trim.json
 99f738986fca9865631f1e5f6c467358eb0eb8cd assets/eternal_starlight/models/item/aethersent_ingot.json
+957c622b632531962cffa7fd50b6c1d612553f1c assets/eternal_starlight/models/item/amaramber_candle.json
+9bf68b92a1b24c28506868e0bc417d4ec9860d5b assets/eternal_starlight/models/item/amaramber_lantern.json
 1cbe476a77a890864c248c40eec1d5bb2c4d3831 assets/eternal_starlight/models/item/aurora_deer_antler.json
 ace7137656dc7e967304a332b6064537f5fa1e8d assets/eternal_starlight/models/item/aurora_deer_steak.json
 c9424547368f2f5421191786565cd3a2045aaf0c assets/eternal_starlight/models/item/black_yeti_fur.json

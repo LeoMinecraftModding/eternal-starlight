@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "eternal_starlight:block/amaramber_lantern"
+    },
+    "hanging=true": {
+      "model": "eternal_starlight:block/amaramber_lantern_hanging"
+    }
+  }
+}

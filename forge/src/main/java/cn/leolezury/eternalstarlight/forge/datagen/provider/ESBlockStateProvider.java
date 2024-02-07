@@ -296,6 +296,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.VOIDSTONE_SALTPETER_ORE.get());
         simpleBlock(BlockInit.SALTPETER_BLOCK.get());
 
+        lantern(BlockInit.AMARAMBER_LANTERN.get());
+        candle(BlockInit.AMARAMBER_CANDLE.get());
+
         horizontalBlock(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(BlockInit.GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(BlockInit.POLISHED_GRIMSTONE.get()));
 
         particleOnly(BlockInit.ETHER.get());
@@ -535,6 +538,60 @@ public class ESBlockStateProvider extends BlockStateProvider {
                         .rotationY(90).modelFile(modelNormal).build();
             }
         });
+    }
+
+    private void lantern(Block lantern) {
+        ModelFile normal = models().singleTexture(name(lantern), new ResourceLocation("template_lantern"), "lantern", blockTexture(lantern));
+        ModelFile hanging = models().singleTexture(name(lantern) + "_hanging", new ResourceLocation("template_hanging_lantern"), "lantern", blockTexture(lantern));
+        getVariantBuilder(lantern)
+                .partialState().with(BlockStateProperties.HANGING, false)
+                .modelForState().modelFile(normal).addModel()
+                .partialState().with(BlockStateProperties.HANGING, true)
+                .modelForState().modelFile(hanging).addModel();
+    }
+
+    private void candle(Block candle) {
+        ModelFile one = models().withExistingParent(name(candle), "template_candle")
+                .texture("all", blockTexture(candle))
+                .texture("particle", blockTexture(candle));
+        ModelFile oneLit = models().withExistingParent(name(candle) + "_lit", "template_candle")
+                .texture("all", blockTexture(candle).withSuffix("_lit"))
+                .texture("particle", blockTexture(candle).withSuffix("_lit"));
+        ModelFile two = models().withExistingParent(name(candle) + "_two", "template_two_candles")
+                .texture("all", blockTexture(candle))
+                .texture("particle", blockTexture(candle));
+        ModelFile twoLit = models().withExistingParent(name(candle) + "_two_lit", "template_two_candles")
+                .texture("all", blockTexture(candle).withSuffix("_lit"))
+                .texture("particle", blockTexture(candle).withSuffix("_lit"));
+        ModelFile three = models().withExistingParent(name(candle) + "_three", "template_three_candles")
+                .texture("all", blockTexture(candle))
+                .texture("particle", blockTexture(candle));
+        ModelFile threeLit = models().withExistingParent(name(candle) + "_three_lit", "template_three_candles")
+                .texture("all", blockTexture(candle).withSuffix("_lit"))
+                .texture("particle", blockTexture(candle).withSuffix("_lit"));
+        ModelFile four = models().withExistingParent(name(candle) + "_four", "template_four_candles")
+                .texture("all", blockTexture(candle))
+                .texture("particle", blockTexture(candle));
+        ModelFile fourLit = models().withExistingParent(name(candle) + "_four_lit", "template_four_candles")
+                .texture("all", blockTexture(candle).withSuffix("_lit"))
+                .texture("particle", blockTexture(candle).withSuffix("_lit"));
+        getVariantBuilder(candle)
+                .partialState().with(BlockStateProperties.CANDLES, 1).with(BlockStateProperties.LIT, false)
+                .modelForState().modelFile(one).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 1).with(BlockStateProperties.LIT, true)
+                .modelForState().modelFile(oneLit).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 2).with(BlockStateProperties.LIT, false)
+                .modelForState().modelFile(two).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 2).with(BlockStateProperties.LIT, true)
+                .modelForState().modelFile(twoLit).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 3).with(BlockStateProperties.LIT, false)
+                .modelForState().modelFile(three).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 3).with(BlockStateProperties.LIT, true)
+                .modelForState().modelFile(threeLit).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 4).with(BlockStateProperties.LIT, false)
+                .modelForState().modelFile(four).addModel()
+                .partialState().with(BlockStateProperties.CANDLES, 4).with(BlockStateProperties.LIT, true)
+                .modelForState().modelFile(fourLit).addModel();
     }
 
     private void sandstoneAndCut(Block sandstone, Block cut) {
