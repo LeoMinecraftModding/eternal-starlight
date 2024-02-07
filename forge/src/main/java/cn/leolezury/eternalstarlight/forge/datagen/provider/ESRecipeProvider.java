@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.item.recipe.ManaCrystalRecipe;
+import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -73,6 +75,22 @@ public class ESRecipeProvider extends RecipeProvider {
         addBlast(recipeOutput, 100, ItemInit.GRIMSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.GRIMSTONE_REDSTONE_ORE.get());
         addSmelt(recipeOutput, 200, ItemInit.VOIDSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.VOIDSTONE_REDSTONE_ORE.get());
         addBlast(recipeOutput, 100, ItemInit.VOIDSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ItemInit.VOIDSTONE_REDSTONE_ORE.get());
+
+        // magic
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemInit.ORB_OF_PROPHECY.get())
+                .pattern("GCG")
+                .pattern("CCC")
+                .pattern("GCG")
+                .define('C', ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
+                .define('G', Items.GLASS)
+                .unlockedBy("has_item", has(ItemInit.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
+                .save(recipeOutput);
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ItemInit.TERRA_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "terra_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ItemInit.WIND_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "wind_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ItemInit.WATER_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "water_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ItemInit.LUNAR_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "lunar_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ItemInit.BLAZE_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "blaze_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ItemInit.LIGHT_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "light_crystal"));
 
         // misc
         addShapeless(recipeOutput, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ItemInit.STARLIGHT_MANGROVE_ROOTS.get(), ItemInit.NIGHTSHADE_MUD.get());

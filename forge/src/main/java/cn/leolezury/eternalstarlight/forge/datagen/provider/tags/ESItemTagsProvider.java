@@ -40,6 +40,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ItemInit.LIVING_ARM.get(),
                 ItemInit.DOOMEDEN_SWORD.get()
         );
+        tag(ESTags.Items.MANA_CRYSTAL_INGREDIENTS).add(
+                ItemInit.RED_STARLIGHT_CRYSTAL_SHARD.get()
+        );
         tag(ESTags.Items.MANA_CRYSTALS).addTags(
                 ESTags.Items.TERRA_CRYSTALS,
                 ESTags.Items.WIND_CRYSTALS,
