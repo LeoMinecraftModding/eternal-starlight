@@ -29,7 +29,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
 public class ESPortalBlock extends Block {
     public static final MapCodec<ESPortalBlock> CODEC = simpleCodec(ESPortalBlock::new);
@@ -49,47 +52,30 @@ public class ESPortalBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        switch(state.getValue(AXIS)) {
-            case Z:
-                return Z_AABB;
-            case X:
-            default:
-                return X_AABB;
-        }
-    }
-
-    public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos, BlockState state) {
-        ESPortalBlock.Size SLPortalBlock$size = this.isPortal(worldIn, pos);
-        if (SLPortalBlock$size != null) {
-            SLPortalBlock$size.placePortalBlocks(state);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean trySpawnPortal(LevelAccessor worldIn, BlockPos pos) {
-        return trySpawnPortal(worldIn, pos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState());
-    }
-
-    @Nullable
-    public ESPortalBlock.Size isPortal(LevelAccessor worldIn, BlockPos pos) {
-        ESPortalBlock.Size SLPortalBlock$size = new Size(worldIn, pos, Direction.Axis.X);
-        if (SLPortalBlock$size.isValid() && SLPortalBlock$size.portalBlockCount == 0) {
-            return SLPortalBlock$size;
-        } else {
-            ESPortalBlock.Size StarlightPortalBlock$size1 = new Size(worldIn, pos, Direction.Axis.Z);
-            return StarlightPortalBlock$size1.isValid() && StarlightPortalBlock$size1.portalBlockCount == 0 ? StarlightPortalBlock$size1 : null;
-        }
+        return switch (state.getValue(AXIS)) {
+            case Z -> Z_AABB;
+            default -> X_AABB;
+        };
     }
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        Direction.Axis direction$axis = facing.getAxis();
-        Direction.Axis direction$axis1 = stateIn.getValue(AXIS);
-        boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, direction$axis1)).validatePortal() ?
-                Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        Direction.Axis axis = stateIn.getValue(AXIS);
+        Direction leftDir, rightDir;
+        if (axis == Direction.Axis.X) {
+            leftDir = Direction.EAST;
+            rightDir = Direction.WEST;
+        } else {
+            leftDir = Direction.NORTH;
+            rightDir = Direction.SOUTH;
+        }
+        List<Direction> directions = List.of(leftDir, rightDir, Direction.UP, Direction.DOWN);
+        for (Direction direction : directions) {
+            if (!worldIn.getBlockState(currentPos.relative(direction)).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS) && !worldIn.getBlockState(currentPos.relative(direction)).is(this)) {
+                return Blocks.AIR.defaultBlockState();
+            }
+        }
+        return stateIn;
     }
 
     @Override
@@ -156,20 +142,14 @@ public class ESPortalBlock extends Block {
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        switch(rot) {
-            case COUNTERCLOCKWISE_90:
-            case CLOCKWISE_90:
-                switch(state.getValue(AXIS)) {
-                    case Z:
-                        return state.setValue(AXIS, Direction.Axis.X);
-                    case X:
-                        return state.setValue(AXIS, Direction.Axis.Z);
-                    default:
-                        return state;
-                }
-            default:
-                return state;
-        }
+        return switch (rot) {
+            case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (state.getValue(AXIS)) {
+                case Z -> state.setValue(AXIS, Direction.Axis.X);
+                case X -> state.setValue(AXIS, Direction.Axis.Z);
+                default -> state;
+            };
+            default -> state;
+        };
     }
 
     @Override
@@ -177,18 +157,32 @@ public class ESPortalBlock extends Block {
         builder.add(AXIS);
     }
 
-    public static class Size {
+    public static boolean trySpawnPortal(LevelAccessor level, BlockPos framePos) {
+        Validator validator = new Validator(level, framePos, Direction.Axis.X);
+        if (!validator.isValid()) {
+            validator = new Validator(level, framePos, Direction.Axis.Z);
+            if (validator.isValid()) {
+                validator.fillPortal();
+                return true;
+            }
+        } else {
+            validator.fillPortal();
+            return true;
+        }
+        return false;
+    }
+
+    public static class Validator {
+        private static final int MAX_SIZE = 10;
+        private static final int MIN_SIZE = 3;
         private final LevelAccessor level;
         private final Direction.Axis axis;
         private final Direction rightDir;
         private final Direction leftDir;
-        private int portalBlockCount;
-        @Nullable
-        private BlockPos bottomLeft;
-        private int height;
-        private int width;
+        private final List<BlockPos> frames = new ArrayList<>();
+        private final List<BlockPos> hollows = new ArrayList<>();
 
-        public Size(LevelAccessor level, BlockPos pos, Direction.Axis axis) {
+        public Validator(LevelAccessor level, BlockPos framePos, Direction.Axis axis) {
             this.level = level;
             this.axis = axis;
             if (axis == Direction.Axis.X) {
@@ -199,120 +193,61 @@ public class ESPortalBlock extends Block {
                 this.rightDir = Direction.SOUTH;
             }
 
-            for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.canConnect(level.getBlockState(pos.below())); pos = pos.below()) {
-            }
-
-            int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
-            if (i >= 0) {
-                this.bottomLeft = pos.relative(this.leftDir, i);
-                this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
-                if (this.width < 2 || this.width > 21) {
-                    this.bottomLeft = null;
-                    this.width = 0;
-                }
-            }
-
-            if (this.bottomLeft != null) {
-                this.height = this.calculatePortalHeight();
-            }
-
-        }
-
-        protected int getDistanceUntilEdge(BlockPos pos, Direction directionIn) {
-            int i;
-            for(i = 0; i < 22; ++i) {
-                BlockPos blockpos = pos.relative(directionIn, i);
-                if(!this.canConnect(this.level.getBlockState(blockpos)) ||
-                        !(this.level.getBlockState(blockpos.below()).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS))) {
-                    break;
-                }
-            }
-
-            BlockPos framePos = pos.relative(directionIn, i);
-            return this.level.getBlockState(framePos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS) ? i : 0;
-        }
-
-        public int getHeight() {
-            return this.height;
-        }
-
-        public int getWidth() {
-            return this.width;
-        }
-
-        protected int calculatePortalHeight() {
-            label56:
-            for(this.height = 0; this.height < 21; ++this.height) {
-                for(int i = 0; i < this.width; ++i) {
-                    BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i).above(this.height);
-                    BlockState blockstate = this.level.getBlockState(blockpos);
-                    if (!this.canConnect(blockstate)) {
-                        break label56;
-                    }
-
-                    Block block = blockstate.getBlock();
-                    if (block == BlockInit.STARLIGHT_PORTAL.get()) {
-                        ++this.portalBlockCount;
-                    }
-
-                    if (i == 0) {
-                        BlockPos framePos = blockpos.relative(this.leftDir);
-                        if (!(this.level.getBlockState(framePos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS))) {
-                            break label56;
-                        }
-                    } else if (i == this.width - 1) {
-                        BlockPos framePos = blockpos.relative(this.rightDir);
-                        if (!(this.level.getBlockState(framePos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS))) {
-                            break label56;
+            for (int size = MIN_SIZE; size <= MAX_SIZE; size++) {
+                // try build portal
+                List<BlockPos> framePositions = new ArrayList<>();
+                List<BlockPos> hollowPositions = new ArrayList<>();
+                for (int height = -size; height <= size; height++) {
+                    int hollowWidth = size - Math.abs(height);
+                    framePositions.add(new BlockPos(0, height, 0).relative(leftDir, hollowWidth));
+                    framePositions.add(new BlockPos(0, height, 0).relative(rightDir, hollowWidth));
+                    if (hollowWidth >= 1) {
+                        for (int i = 0; i < hollowWidth; i++) {
+                            hollowPositions.add(new BlockPos(0, height, 0).relative(leftDir, i));
+                            hollowPositions.add(new BlockPos(0, height, 0).relative(rightDir, i));
                         }
                     }
                 }
-            }
-
-            for(int j = 0; j < this.width; ++j) {
-                BlockPos framePos = this.bottomLeft.relative(this.rightDir, j).above(this.height);
-                if (!(this.level.getBlockState(framePos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS))) {
-                    this.height = 0;
-                    break;
+                // try validate portal
+                for (BlockPos blockPos : framePositions) {
+                    // so assume our framePos is this frame position
+                    BlockPos offset = framePos.subtract(blockPos);
+                    List<BlockPos> offsetFrames = framePositions.stream().map(pos -> pos.offset(offset)).toList();
+                    List<BlockPos> offsetHollows = hollowPositions.stream().map(pos -> pos.offset(offset)).toList();
+                    boolean correctFrames = validateBlocks(offsetFrames, pos -> !level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS));
+                    boolean correctHollows = validateBlocks(offsetHollows, pos -> !level.getBlockState(pos).is(BlockInit.STARLIGHT_PORTAL.get()) && !level.getBlockState(pos).isAir());
+                    if (correctFrames && correctHollows) {
+                        frames.addAll(offsetFrames);
+                        hollows.addAll(offsetHollows);
+                        return;
+                    }
                 }
-            }
-
-            if (this.height <= 21 && this.height >= 3) {
-                return this.height;
-            } else {
-                this.bottomLeft = null;
-                this.width = 0;
-                this.height = 0;
-                return 0;
             }
         }
 
-        protected boolean canConnect(BlockState pos) {
-            Block block = pos.getBlock();
-            return pos.isAir() || block == BlockInit.STARLIGHT_PORTAL.get();
+        private boolean validateBlocks(List<BlockPos> positions, Function<BlockPos, Boolean> function) {
+            for (BlockPos offsetFrame : positions) {
+                if (function.apply(offsetFrame)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public boolean isValid() {
-            return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+            return !frames.isEmpty() && !hollows.isEmpty();
         }
 
-        public void placePortalBlocks(BlockState state) {
-            for(int i = 0; i < this.width; ++i) {
-                BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i);
-
-                for(int j = 0; j < this.height; ++j) {
-                    this.level.setBlock(blockpos.above(j), state.setValue(ESPortalBlock.AXIS, this.axis), 18);
-                }
+        public void fillPortal() {
+            for (BlockPos blockPos : frames) {
+                level.setBlock(blockPos, BlockInit.CHISELED_GRIMSTONE.get().defaultBlockState(), 3);
             }
-
-        }
-
-        private boolean isPortalCountValidForSize() {
-            return this.portalBlockCount >= this.width * this.height;
-        }
-
-        public boolean validatePortal() {
-            return this.isValid() && this.isPortalCountValidForSize();
+            for (BlockPos blockPos : hollows) {
+                level.setBlock(blockPos, BlockInit.CHISELED_GRIMSTONE.get().defaultBlockState(), 3);
+            }
+            for (BlockPos blockPos : hollows) {
+                level.setBlock(blockPos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis), 3);
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
@@ -105,12 +104,9 @@ public class CommonHandlers {
     public static void onRightClickBlock(Level level, Player player, InteractionHand hand, BlockPos pos) {
         if (!level.isClientSide && player.getItemInHand(hand).is(Items.GLOWSTONE_DUST) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
             if (level.dimension() == DimensionInit.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
-                for (Direction direction : Direction.Plane.VERTICAL) {
-                    BlockPos framePos = pos.relative(direction);
-                    if (((ESPortalBlock) BlockInit.STARLIGHT_PORTAL.get()).trySpawnPortal(level, framePos)) {
-                        level.playSound(player, framePos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        player.swing(hand);
-                    }
+                if (ESPortalBlock.trySpawnPortal(level, pos)) {
+                    level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    player.swing(hand);
                 }
             }
         }
