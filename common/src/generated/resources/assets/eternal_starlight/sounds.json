@@ -357,6 +357,17 @@
     ],
     "subtitle": "subtitles.item.armor.equip_aethersent"
   },
+  "item.armor.equip_amaramber": {
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_amaramber"
+  },
   "item.armor.equip_swamp_silver": {
     "sounds": [
       "item/armor/equip_diamond1",

@@ -14,6 +14,12 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum ESArmorMaterials implements ArmorMaterial {
+    AMARAMBER(EternalStarlight.MOD_ID + ":amaramber", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.BOOTS, 2);
+        map.put(ArmorItem.Type.LEGGINGS, 5);
+        map.put(ArmorItem.Type.CHESTPLATE, 5);
+        map.put(ArmorItem.Type.HELMET, 2);
+    }), 9, SoundEventInit.ARMOR_EQUIP_AMARAMBER.get(), 0F, 0F, () -> Ingredient.of(ItemInit.AMARAMBER_INGOT.get())),
     AETHERSENT(EternalStarlight.MOD_ID + ":aethersent", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);

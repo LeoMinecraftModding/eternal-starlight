@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.item.weapon.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -466,8 +467,22 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> SALTPETER_POWDER = registerItem("saltpeter_powder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> SALTPETER_MATCHBOX = registerItem("saltpeter_matchbox", () -> new FlintAndSteelItem(new Item.Properties().durability(300)));
 
+    public static final RegistryObject<Item, Item> RAW_AMARAMBER = registerItem("raw_amaramber", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_INGOT = registerItem("amaramber_ingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_NUGGET = registerItem("amaramber_nugget", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> AMARAMBER_LANTERN = registerItem("amaramber_lantern", () -> new BlockItem(BlockInit.AMARAMBER_LANTERN.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AMARAMBER_CANDLE = registerItem("amaramber_candle", () -> new BlockItem(BlockInit.AMARAMBER_CANDLE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_ARROW = registerItem("amaramber_arrow", () -> new AmaramberArrowItem(new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_AXE = registerItem("amaramber_axe",
+            () -> new AxeItem(ESItemTiers.AMARAMBER, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_HOE = registerItem("amaramber_hoe",
+            () -> new HoeItem(ESItemTiers.AMARAMBER, -2, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_SHOVEL = registerItem("amaramber_shovel",
+            () -> new AxeItem(ESItemTiers.AMARAMBER, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_HELMET = registerItem("amaramber_helmet",
+            () -> new ArmorItem(ESArmorMaterials.AMARAMBER, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",
+            () -> new ArmorItem(ESArmorMaterials.AMARAMBER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
 
     // boss materials
     public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().rarity(STARLIGHT)));
@@ -533,13 +548,13 @@ public class ItemInit {
     // magic
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(BlockInit.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> MANA_CRYSTAL = registerItem("mana_crystal", () -> new Item(new Item.Properties().durability(1800).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> TERRA_CRYSTAL = registerItem("terra_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> WIND_CRYSTAL = registerItem("wind_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> WATER_CRYSTAL = registerItem("water_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> LUNAR_CRYSTAL = registerItem("lunar_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> BLAZE_CRYSTAL = registerItem("blaze_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = registerItem("light_crystal", () -> new Item(new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> MANA_CRYSTAL = registerItem("mana_crystal", () -> new ManaCrystalItem(ManaType.EMPTY, new Item.Properties().durability(1800).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> TERRA_CRYSTAL = registerItem("terra_crystal", () -> new ManaCrystalItem(ManaType.TERRA, new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> WIND_CRYSTAL = registerItem("wind_crystal", () -> new ManaCrystalItem(ManaType.WIND, new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> WATER_CRYSTAL = registerItem("water_crystal", () -> new ManaCrystalItem(ManaType.WATER, new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> LUNAR_CRYSTAL = registerItem("lunar_crystal", () -> new ManaCrystalItem(ManaType.LUNAR, new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> BLAZE_CRYSTAL = registerItem("blaze_crystal", () -> new ManaCrystalItem(ManaType.BLAZE, new Item.Properties().durability(300).rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = registerItem("light_crystal", () -> new ManaCrystalItem(ManaType.LIGHT, new Item.Properties().durability(300).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> MANA_CRYSTAL_SHARD = registerItem("mana_crystal_shard", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
 
     // misc

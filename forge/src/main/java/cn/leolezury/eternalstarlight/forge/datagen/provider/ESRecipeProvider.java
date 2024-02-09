@@ -34,6 +34,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSwampSilverRecipes(recipeOutput);
         addThermalSpringstoneRecipes(recipeOutput);
         addSaltpeterRecipes(recipeOutput);
+        addAmaramberRecipes(recipeOutput);
 
         // yeti fur
         List<Item> dyeList = List.of(Items.BLACK_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.CYAN_DYE, Items.GRAY_DYE, Items.GREEN_DYE, Items.LIGHT_BLUE_DYE, Items.LIGHT_GRAY_DYE, Items.LIME_DYE, Items.MAGENTA_DYE, Items.ORANGE_DYE, Items.PINK_DYE, Items.PURPLE_DYE, Items.RED_DYE, Items.YELLOW_DYE, Items.WHITE_DYE);
@@ -540,6 +541,48 @@ public class ESRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
+    private void addAmaramberRecipes(RecipeOutput recipeOutput) {
+        addShapeless(recipeOutput, ItemInit.RAW_AMARAMBER.get(), ItemInit.AMARAMBER_INGOT.get(), 2, ItemInit.RAW_AMARAMBER.get(), Items.DEEPSLATE);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ItemInit.AMARAMBER_CANDLE.get())
+                .pattern("S")
+                .pattern("A")
+                .define('S', Items.STRING)
+                .define('A', ItemInit.AMARAMBER_INGOT.get())
+                .unlockedBy("has_item", has(ItemInit.AMARAMBER_INGOT.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ItemInit.AMARAMBER_LANTERN.get())
+                .pattern("NNN")
+                .pattern("NAN")
+                .pattern("NNN")
+                .define('N', Items.IRON_NUGGET)
+                .define('A', ItemInit.AMARAMBER_CANDLE.get())
+                .unlockedBy("has_item", has(ItemInit.AMARAMBER_CANDLE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ItemInit.AMARAMBER_LANTERN.get())
+                .pattern("NNN")
+                .pattern("NAN")
+                .pattern("NNN")
+                .define('N', ItemInit.SWAMP_SILVER_INGOT.get())
+                .define('A', ItemInit.AMARAMBER_CANDLE.get())
+                .unlockedBy("has_item", has(ItemInit.AMARAMBER_CANDLE.get()))
+                .save(recipeOutput, getModLocation("amaramber_lantern_from_swamp_silver_nuggets"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemInit.AMARAMBER_ARROW.get())
+                .pattern("A")
+                .pattern("S")
+                .pattern("S")
+                .define('S', Items.STICK)
+                .define('A', ItemInit.AMARAMBER_INGOT.get())
+                .unlockedBy("has_item", has(ItemInit.AMARAMBER_INGOT.get()))
+                .save(recipeOutput);
+        addAxe(recipeOutput, ItemInit.AMARAMBER_AXE.get(), ItemInit.AMARAMBER_INGOT.get(), Items.STICK);
+        addHoe(recipeOutput, ItemInit.AMARAMBER_HOE.get(), ItemInit.AMARAMBER_INGOT.get(), Items.STICK);
+        addShovel(recipeOutput, ItemInit.AMARAMBER_SHOVEL.get(), ItemInit.AMARAMBER_INGOT.get(), Items.STICK);
+        addHelmet(recipeOutput, ItemInit.AMARAMBER_HELMET.get(), ItemInit.AMARAMBER_INGOT.get());
+        addChestplate(recipeOutput, ItemInit.AMARAMBER_CHESTPLATE.get(), ItemInit.AMARAMBER_INGOT.get());
+        addSmelt(recipeOutput, 200, ItemInit.AMARAMBER_INGOT.get(), ItemInit.AMARAMBER_NUGGET.get(), ItemInit.AMARAMBER_AXE.get(), ItemInit.AMARAMBER_HOE.get(), ItemInit.AMARAMBER_SHOVEL.get(), ItemInit.AMARAMBER_HELMET.get(), ItemInit.AMARAMBER_CHESTPLATE.get());
+        addBlast(recipeOutput, 100, ItemInit.AMARAMBER_INGOT.get(), ItemInit.AMARAMBER_NUGGET.get(), ItemInit.AMARAMBER_AXE.get(), ItemInit.AMARAMBER_HOE.get(), ItemInit.AMARAMBER_SHOVEL.get(), ItemInit.AMARAMBER_HELMET.get(), ItemInit.AMARAMBER_CHESTPLATE.get());
+    }
+
     // misc
     protected final void addSmelt(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_smelting_from_" + name(criteria)));
@@ -608,6 +651,17 @@ public class ESRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .pattern(" H")
                 .pattern(" H")
+                .define('#', input)
+                .define('H', handle)
+                .unlockedBy("has_item", has(input))
+                .save(recipeOutput);
+    }
+
+    protected final void addShovel(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+                .pattern("#")
+                .pattern("H")
+                .pattern("H")
                 .define('#', input)
                 .define('H', handle)
                 .unlockedBy("has_item", has(input))

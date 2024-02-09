@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "eternal_starlight:amaramber_candle"
+    },
+    "N": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NAN",
+    "NNN"
+  ],
+  "result": {
+    "item": "eternal_starlight:amaramber_lantern"
+  }
+}

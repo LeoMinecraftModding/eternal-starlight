@@ -36,6 +36,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -50,6 +51,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CommonHandlers {
     private static TheGatekeeperNameManager gatekeeperNameManager;
@@ -67,6 +69,8 @@ public class CommonHandlers {
     }
 
     private static int ticksSinceLastUpdate = 0;
+
+    private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C624-495F-0193-604728718B6B"), "Amaramber Armor Bonus", 7, AttributeModifier.Operation.ADDITION);
 
     public static void onServerTick(MinecraftServer server) {
         ticksSinceLastUpdate++;
@@ -175,6 +179,16 @@ public class CommonHandlers {
         for (ItemStack armor : armors) {
             if (armor.getItem() instanceof TickableArmor tickableArmor) {
                 tickableArmor.tick(livingEntity.level(), livingEntity, armor);
+            }
+        }
+        AttributeInstance instance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+        if (instance != null) {
+            instance.removeModifier(AMARAMBER_BONUS.getId());
+            if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.AMARAMBER_HELMET.get())
+                    && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ItemInit.AMARAMBER_CHESTPLATE.get())
+                    && livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
+                    && livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+                instance.addPermanentModifier(AMARAMBER_BONUS);
             }
         }
         if (livingEntity.tickCount % 20 == 0) {

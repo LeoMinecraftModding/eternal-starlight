@@ -133,18 +133,22 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         );
         tag(ItemTags.AXES).add(
                 ItemInit.THERMAL_SPRINGSTONE_PICKAXE.get(),
-                ItemInit.SWAMP_SILVER_AXE.get()
+                ItemInit.SWAMP_SILVER_AXE.get(),
+                ItemInit.AMARAMBER_AXE.get()
         );
         tag(ItemTags.HOES).add(
                 ItemInit.THERMAL_SPRINGSTONE_SCYTHE.get(),
                 ItemInit.SWAMP_SILVER_SICKLE.get(),
+                ItemInit.AMARAMBER_HOE.get(),
                 ItemInit.PETAL_SCYTHE.get(),
                 ItemInit.AURORA_DEER_ANTLER.get()
         );
-        // No shovel in the mod!?
-        /*tag(ItemTags.SHOVELS).add(
-
-        );*/
+        tag(ItemTags.SHOVELS).add(
+                ItemInit.AMARAMBER_SHOVEL.get()
+        );
+        tag(ItemTags.ARROWS).add(
+                ItemInit.AMARAMBER_ARROW.get()
+        );
         tag(ItemTags.TRIMMABLE_ARMOR).add(
                 ItemInit.AETHERSENT_HOOD.get(),
                 ItemInit.SWAMP_SILVER_HELMET.get(),

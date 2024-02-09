@@ -10,7 +10,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 
 public enum ManaType implements StringRepresentable {
-    EMPTY("empty", 0xffffff),
+    EMPTY("empty", 0xd16bbb),
     TERRA("terra", 0xa35a53),
     WIND("wind", 0xffffbc),
     WATER("water", 0xb8daeb),

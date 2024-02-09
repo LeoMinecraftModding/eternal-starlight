@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:amaramber_ingot"
+    },
+    "H": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "#",
+    "H",
+    "H"
+  ],
+  "result": {
+    "item": "eternal_starlight:amaramber_shovel"
+  }
+}

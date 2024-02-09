@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": [
+    {
+      "item": "eternal_starlight:amaramber_axe"
+    },
+    {
+      "item": "eternal_starlight:amaramber_hoe"
+    },
+    {
+      "item": "eternal_starlight:amaramber_shovel"
+    },
+    {
+      "item": "eternal_starlight:amaramber_helmet"
+    },
+    {
+      "item": "eternal_starlight:amaramber_chestplate"
+    }
+  ],
+  "result": "eternal_starlight:amaramber_nugget"
+}

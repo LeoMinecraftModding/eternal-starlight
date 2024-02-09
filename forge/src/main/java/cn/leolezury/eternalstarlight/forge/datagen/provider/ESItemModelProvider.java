@@ -411,8 +411,17 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ItemInit.SALTPETER_POWDER.get());
         basicItem(ItemInit.SALTPETER_MATCHBOX.get());
 
+        basicItem(ItemInit.RAW_AMARAMBER.get());
+        basicItem(ItemInit.AMARAMBER_INGOT.get());
+        basicItem(ItemInit.AMARAMBER_NUGGET.get());
         basicItem(ItemInit.AMARAMBER_LANTERN.get());
         basicItem(ItemInit.AMARAMBER_CANDLE.get());
+        basicItem(ItemInit.AMARAMBER_ARROW.get());
+        basicItem(ItemInit.AMARAMBER_AXE.get());
+        basicItem(ItemInit.AMARAMBER_HOE.get());
+        basicItem(ItemInit.AMARAMBER_SHOVEL.get());
+        armorWithTrim((ArmorItem) ItemInit.AMARAMBER_HELMET.get());
+        armorWithTrim((ArmorItem) ItemInit.AMARAMBER_CHESTPLATE.get());
 
         shatteredSword(ItemInit.SHATTERED_SWORD.get());
         basicItem(ItemInit.SHATTERED_SWORD_BLADE.get());

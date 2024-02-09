@@ -410,6 +410,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(EntityInit.LUNAR_VINE.get(), LunarVineRenderer::new);
         strategy.register(EntityInit.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
+        strategy.register(EntityInit.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
