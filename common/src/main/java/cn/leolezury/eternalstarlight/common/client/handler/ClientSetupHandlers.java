@@ -229,6 +229,7 @@ public class ClientSetupHandlers {
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.PORTAL.get(), EsPortalRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN.get(), HangingSignRenderer::new);
 
         ItemProperties.register(ItemInit.SHATTERED_SWORD.get(), new ResourceLocation("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
@@ -372,6 +373,7 @@ public class ClientSetupHandlers {
             shaderInstance.getUniform("LaserTime").set(Minecraft.getInstance().getFrameTime());
             ShaderInstances.GOLEM_LASER = shaderInstance;
         }));
+        strategy.register(ShaderInstances.ES_PORTAL, new ResourceLocation(EternalStarlight.MOD_ID, "es_portal"), DefaultVertexFormat.POSITION, shaderInstance -> ShaderInstances.ES_PORTAL = shaderInstance);
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
