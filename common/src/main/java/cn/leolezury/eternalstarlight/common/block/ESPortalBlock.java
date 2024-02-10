@@ -51,7 +51,7 @@ public class ESPortalBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(AXIS)) {
             case Z -> Z_AABB;
             default -> X_AABB;
@@ -59,8 +59,8 @@ public class ESPortalBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        Direction.Axis axis = stateIn.getValue(AXIS);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        Direction.Axis axis = state.getValue(AXIS);
         Direction leftDir, rightDir;
         if (axis == Direction.Axis.X) {
             leftDir = Direction.EAST;
@@ -71,20 +71,19 @@ public class ESPortalBlock extends Block {
         }
         List<Direction> directions = List.of(leftDir, rightDir, Direction.UP, Direction.DOWN);
         for (Direction direction : directions) {
-            if (!worldIn.getBlockState(currentPos.relative(direction)).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS) && !worldIn.getBlockState(currentPos.relative(direction)).is(this)) {
+            if (!level.getBlockState(currentPos.relative(direction)).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS) && !(level.getBlockState(currentPos.relative(direction)).is(this) && level.getBlockState(currentPos.relative(direction)).getValue(AXIS) == axis)) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
-        return stateIn;
+        return state;
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
-            }
-            else {
+            } else {
                 if (!entity.level().isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
@@ -108,20 +107,20 @@ public class ESPortalBlock extends Block {
     }
 
     @Override
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
+    public void animateTick(BlockState state, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D,
                     (double)pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT,
                     SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
-        for(int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; ++i) {
             double x = (double)pos.getX() + rand.nextDouble();
             double y = (double)pos.getY() + rand.nextDouble();
             double z = (double)pos.getZ() + rand.nextDouble();
-            double xSpeed = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double ySpeed = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double zSpeed = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+            double xSpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
+            double ySpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
+            double zSpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
             int j = rand.nextInt(2) * 2 - 1;
             if (!worldIn.getBlockState(pos.west()).is(this) && !worldIn.getBlockState(pos.east()).is(this)) {
                 x = (double)pos.getX() + 0.5D + 0.25D * (double)j;
@@ -136,7 +135,7 @@ public class ESPortalBlock extends Block {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         return ItemStack.EMPTY;
     }
 
@@ -157,7 +156,7 @@ public class ESPortalBlock extends Block {
         builder.add(AXIS);
     }
 
-    public static boolean trySpawnPortal(LevelAccessor level, BlockPos framePos) {
+    public static boolean validateAndPlacePortal(LevelAccessor level, BlockPos framePos) {
         Validator validator = new Validator(level, framePos, Direction.Axis.X);
         if (!validator.isValid()) {
             validator = new Validator(level, framePos, Direction.Axis.Z);
@@ -171,26 +170,71 @@ public class ESPortalBlock extends Block {
         }
         return false;
     }
+    
+    public static boolean placePortal(LevelAccessor level, BlockPos bottomPos, Direction.Axis axis, int size) {
+        List<BlockPos> framePositions = new ArrayList<>();
+        List<BlockPos> hollowPositions = new ArrayList<>();
+        Direction rightDir;
+        Direction leftDir;
+        if (axis == Direction.Axis.X) {
+            leftDir = Direction.EAST;
+            rightDir = Direction.WEST;
+        } else {
+            leftDir = Direction.NORTH;
+            rightDir = Direction.SOUTH;
+        }
+        for (int height = -size; height <= size; height++) {
+            int hollowWidth = size - Math.abs(height);
+            framePositions.add(new BlockPos(0, height + size, 0).relative(leftDir, hollowWidth));
+            framePositions.add(new BlockPos(0, height + size, 0).relative(rightDir, hollowWidth));
+            if (hollowWidth >= 1) {
+                for (int i = 0; i < hollowWidth; i++) {
+                    hollowPositions.add(new BlockPos(0, height + size, 0).relative(leftDir, i));
+                    hollowPositions.add(new BlockPos(0, height + size, 0).relative(rightDir, i));
+                }
+            }
+        }
+        for (BlockPos blockPos : framePositions) {
+            if (!level.isEmptyBlock(blockPos.offset(bottomPos))) {
+                return false;
+            }
+        }
+        for (BlockPos blockPos : hollowPositions) {
+            if (!level.isEmptyBlock(blockPos.offset(bottomPos))) {
+                return false;
+            }
+        }
+        for (BlockPos blockPos : framePositions) {
+            level.setBlock(blockPos.offset(bottomPos), BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+        }
+        for (BlockPos blockPos : hollowPositions) {
+            level.setBlock(blockPos.offset(bottomPos), BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+        }
+        for (BlockPos blockPos : hollowPositions) {
+            level.setBlock(blockPos.offset(bottomPos), BlockInit.STARLIGHT_PORTAL.get().defaultBlockState(), 3);
+        }
+        return true;
+    }
 
     public static class Validator {
         private static final int MAX_SIZE = 10;
-        private static final int MIN_SIZE = 3;
+        private static final int MIN_SIZE = 2;
         private final LevelAccessor level;
         private final Direction.Axis axis;
-        private final Direction rightDir;
-        private final Direction leftDir;
         private final List<BlockPos> frames = new ArrayList<>();
         private final List<BlockPos> hollows = new ArrayList<>();
 
         public Validator(LevelAccessor level, BlockPos framePos, Direction.Axis axis) {
             this.level = level;
             this.axis = axis;
+            Direction rightDir;
+            Direction leftDir;
             if (axis == Direction.Axis.X) {
-                this.leftDir = Direction.EAST;
-                this.rightDir = Direction.WEST;
+                leftDir = Direction.EAST;
+                rightDir = Direction.WEST;
             } else {
-                this.leftDir = Direction.NORTH;
-                this.rightDir = Direction.SOUTH;
+                leftDir = Direction.NORTH;
+                rightDir = Direction.SOUTH;
             }
 
             for (int size = MIN_SIZE; size <= MAX_SIZE; size++) {
@@ -240,10 +284,10 @@ public class ESPortalBlock extends Block {
 
         public void fillPortal() {
             for (BlockPos blockPos : frames) {
-                level.setBlock(blockPos, BlockInit.CHISELED_GRIMSTONE.get().defaultBlockState(), 3);
+                level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
             }
             for (BlockPos blockPos : hollows) {
-                level.setBlock(blockPos, BlockInit.CHISELED_GRIMSTONE.get().defaultBlockState(), 3);
+                level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
             }
             for (BlockPos blockPos : hollows) {
                 level.setBlock(blockPos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis), 3);

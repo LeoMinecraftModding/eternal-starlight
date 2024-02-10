@@ -1,11 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.shaders;
 
-import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 
 public class ESShaderRenderType extends RenderType {
     public static final ShaderStateShard CREST_SELECT_GUI = new ShaderStateShard(ShaderInstances::getCrestSelectGui);

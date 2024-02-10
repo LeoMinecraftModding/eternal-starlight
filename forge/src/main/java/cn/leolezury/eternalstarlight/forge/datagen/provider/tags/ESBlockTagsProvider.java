@@ -54,7 +54,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 BlockInit.STRIPPED_TORREYA_WOOD.get()
         );
         tag(ESTags.Blocks.PORTAL_FRAME_BLOCKS).add(
-                BlockInit.CHISELED_GRIMSTONE.get(),
                 BlockInit.CHISELED_VOIDSTONE.get()
         );
         tag(ESTags.Blocks.BASE_STONE_STARLIGHT).add(

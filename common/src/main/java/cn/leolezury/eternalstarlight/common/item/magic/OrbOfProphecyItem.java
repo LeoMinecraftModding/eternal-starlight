@@ -1,15 +1,22 @@
-package cn.leolezury.eternalstarlight.common.item.misc;
+package cn.leolezury.eternalstarlight.common.item.magic;
 
+import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
+import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.CrestUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
@@ -17,6 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -95,5 +103,22 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
             }
         }
         return InteractionResultHolder.pass(itemStack);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext useOnContext) {
+        Level level = useOnContext.getLevel();
+        Player player = useOnContext.getPlayer();
+        BlockPos pos = useOnContext.getClickedPos();
+        if (player == null) return InteractionResult.PASS;
+        if (!level.isClientSide && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+            if (level.dimension() == DimensionInit.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
+                if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
+                    level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
+        return InteractionResult.PASS;
     }
 }

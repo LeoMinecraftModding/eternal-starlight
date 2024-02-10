@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ESArmorMaterials;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
+import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.magic.SimpleSpellItem;
 import cn.leolezury.eternalstarlight.common.item.misc.*;
 import cn.leolezury.eternalstarlight.common.item.weapon.*;

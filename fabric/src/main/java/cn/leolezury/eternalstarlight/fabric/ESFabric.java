@@ -9,14 +9,12 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -50,10 +48,6 @@ public class ESFabric implements ModInitializer {
 
 
         // common handlers
-        UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-            CommonHandlers.onRightClickBlock(world, player, hand, hitResult.getBlockPos());
-            return InteractionResult.PASS;
-        });
         ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
         ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
         ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));

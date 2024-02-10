@@ -18,6 +18,6 @@ public class ForgeTeleporter implements ITeleporter {
 
     @Override
     public @Nullable PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-        return new ESTeleporter(this.level).getPortalInfo(entity, destWorld);
+        return ESTeleporter.getPortalInfo(entity, destWorld);
     }
 }

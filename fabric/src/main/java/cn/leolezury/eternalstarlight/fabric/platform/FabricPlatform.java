@@ -17,12 +17,10 @@ import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperN
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
-import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
@@ -30,7 +28,6 @@ import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
@@ -45,8 +42,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.level.portal.PortalInfo;
 
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -169,7 +166,10 @@ public class FabricPlatform implements ESPlatform {
 
     @Override
     public void teleportEntity(ServerLevel dest, Entity entity) {
-        FabricDimensions.teleport(entity, dest, new ESTeleporter(dest).getPortalInfo(entity, dest));
+        PortalInfo info = ESTeleporter.getPortalInfo(entity, dest);
+        if (info != null) {
+            FabricDimensions.teleport(entity, dest, info);
+        }
     }
 
     @Override

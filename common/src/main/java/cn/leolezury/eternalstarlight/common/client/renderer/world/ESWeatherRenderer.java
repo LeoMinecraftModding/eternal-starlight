@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
-import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;

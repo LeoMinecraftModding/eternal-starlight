@@ -7,13 +7,9 @@ import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.RegisterShadersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegisterEvent;
-
-import java.io.IOException;
 
 @Mod(EternalStarlight.MOD_ID)
 public class ESForge {

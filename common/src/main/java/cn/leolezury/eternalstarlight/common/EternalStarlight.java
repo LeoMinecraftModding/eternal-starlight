@@ -25,7 +25,6 @@ public class EternalStarlight {
         PlacerInit.loadClass();
         TreeDecoratorInit.loadClass();
         StructurePlacementTypeInit.loadClass();
-        POIInit.loadClass();
         ParticleInit.loadClass();
         SoundEventInit.loadClass();
         RecipeSerializerInit.loadClass();

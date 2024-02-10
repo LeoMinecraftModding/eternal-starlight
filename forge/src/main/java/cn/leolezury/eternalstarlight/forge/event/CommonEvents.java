@@ -15,7 +15,6 @@ import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -40,11 +39,6 @@ public class CommonEvents {
         if (event.getLevel() instanceof ServerLevel serverLevel) {
             CommonHandlers.onLevelLoad(serverLevel);
         }
-    }
-
-    @SubscribeEvent
-    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        CommonHandlers.onRightClickBlock(event.getLevel(), event.getEntity(), event.getHand(), event.getPos());
     }
 
     @SubscribeEvent
