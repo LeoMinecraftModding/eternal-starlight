@@ -3,20 +3,27 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestButton;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestPageButton;
+import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +32,6 @@ import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class CrestSelectionScreen extends Screen {
     private static final ResourceLocation BACKGROUND = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/background.png");
-
     private static final int WIDTH = 256;
     private static final int HEIGHT = 256;
     private static final int GUI_RATIO = WIDTH / HEIGHT;
@@ -141,6 +147,21 @@ public class CrestSelectionScreen extends Screen {
 
     @Override
     public void render(GuiGraphics guiGraphics, int i, int j, float f) {
+        Minecraft client = Minecraft.getInstance();
+        Window window = client.getWindow();
+        int x = window.getGuiScaledWidth();
+        int y = window.getGuiScaledHeight();
+        Matrix4f positionMatrix = guiGraphics.pose().last().pose();
+        RenderSystem.setShader(ShaderInstances::getCrestSelectGui);
+        RenderSystem.setShaderColor(0f, 1f, 0f, 1f);
+        BufferBuilder buffer = Tesselator.getInstance().getBuilder();
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        buffer.vertex(positionMatrix, x, y, 100).endVertex();
+        buffer.vertex(positionMatrix, x, 0, 100).endVertex();
+        buffer.vertex(positionMatrix, 0, 0, 100).endVertex();
+        buffer.vertex(positionMatrix, 0, y, 100).endVertex();
+        BufferUploader.drawWithShader(buffer.end());
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         List<CrestButton> notEmptyButtons = crestButtons.stream().filter((crestButton -> !crestButton.isEmpty())).toList();
         Vec3 ringCenterPos = new Vec3((this.width / 9f) * 5f, 0, this.height / 2f);
         for (int n = 0; n < notEmptyButtons.size(); n++) {
@@ -153,13 +174,7 @@ public class CrestSelectionScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.renderBackground(guiGraphics, i, j, f);
-        int currentGuiRatio = this.width / this.height * 2; // weird thing
-        if (currentGuiRatio > GUI_RATIO) {
-            guiGraphics.blit(BACKGROUND, 0, (this.height - this.width / GUI_RATIO) / 2, 0.0F, 0.0F, this.width, this.width / GUI_RATIO, this.width, this.width / GUI_RATIO);
-        } else {
-            guiGraphics.blit(BACKGROUND, (this.width - this.height * GUI_RATIO) / 2, 0, 0.0F, 0.0F, this.height * GUI_RATIO, this.height, this.height * GUI_RATIO, this.height);
-        }
+
     }
 
     @Override

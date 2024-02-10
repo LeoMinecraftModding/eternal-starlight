@@ -11,11 +11,14 @@ import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwavePart
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
+import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.item.misc.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -29,6 +32,9 @@ import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -40,6 +46,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
@@ -78,6 +85,10 @@ public class ClientSetupHandlers {
 
     public interface RendererLayerRegisterStrategy {
         void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
+    }
+
+    public interface ShaderRegisterStrategy {
+        void register(ShaderInstance shader, ResourceLocation shaderLocation, VertexFormat vertex, Consumer<ShaderInstance> onLoad);
     }
 
     public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
@@ -355,6 +366,15 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, BlockInit.GREEN_YETI_FUR_CARPET.get());
         strategy.register(toBlock, BlockInit.RED_YETI_FUR_CARPET.get());
         strategy.register(toBlock, BlockInit.BLACK_YETI_FUR_CARPET.get());
+    }
+
+    public static void registerShader(ShaderRegisterStrategy strategy) {
+        strategy.register(ShaderInstances.METEOR_RAIN, new ResourceLocation(EternalStarlight.MOD_ID, "meteor_rain"), DefaultVertexFormat.PARTICLE, shaderInstance -> ShaderInstances.METEOR_RAIN = shaderInstance);
+        strategy.register(ShaderInstances.CREST_SELECT_GUI, new ResourceLocation(EternalStarlight.MOD_ID, "crest_select_gui"), DefaultVertexFormat.POSITION_COLOR, shaderInstance -> ShaderInstances.CREST_SELECT_GUI = shaderInstance);
+        strategy.register(ShaderInstances.GOLEM_LASER, new ResourceLocation(EternalStarlight.MOD_ID, "golem_laser"), DefaultVertexFormat.NEW_ENTITY, (shaderInstance -> {
+            shaderInstance.getUniform("LaserTime").set(Minecraft.getInstance().getFrameTime());
+            ShaderInstances.GOLEM_LASER = shaderInstance;
+        }));
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {

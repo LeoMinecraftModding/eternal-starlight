@@ -59,7 +59,7 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
             frame = 6;
         }
 
-        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
+        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam), (float) laserBeam.getBlockX() + 0.5F, ((float) laserBeam.getY() + 1.0F)));
 
         // render beam start
         renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
@@ -128,6 +128,7 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
         for (int i = 0; i < 6; i++) {
             matrixStackIn.pushPose();
             matrixStackIn.mulPose((new Quaternionf()).rotationY((angle + i * 30) * (float) Math.PI / 180f));
+
             renderBeamPart(length, frame, matrixStackIn, builder, packedLightIn);
             matrixStackIn.popPose();
         }
