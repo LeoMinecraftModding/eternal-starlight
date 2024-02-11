@@ -205,7 +205,7 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public WaterlilyBlock createWaterlily(BlockBehaviour.Properties properties) {
+    public BushBlock createWaterlily(BlockBehaviour.Properties properties) {
         return new ForgeWaterlilyBlock(properties);
     }
 

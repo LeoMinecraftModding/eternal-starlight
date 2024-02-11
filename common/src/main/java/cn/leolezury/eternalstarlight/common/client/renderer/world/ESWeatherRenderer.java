@@ -73,7 +73,11 @@ public class ESWeatherRenderer {
             RenderSystem.depthMask(Minecraft.useShaderTransparency());
             int m = -1;
             float n = (float)ticks + partialTicks;
-            RenderSystem.setShader(GameRenderer::getParticleShader);
+            if (shader != null) {
+                RenderSystem.setShader(() -> shader);
+            } else {
+                RenderSystem.setShader(GameRenderer::getParticleShader);
+            }
             BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
             for(int o = k - l; o <= k + l; ++o) {

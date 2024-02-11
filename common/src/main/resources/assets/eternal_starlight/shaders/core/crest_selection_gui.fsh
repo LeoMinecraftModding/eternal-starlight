@@ -2,8 +2,6 @@
 // License: MIT
 #version 150
 
-uniform sampler2D Sampler0;
-
 uniform vec4 ColorModulator;
 uniform float TickCount;
 uniform float Ratio;
@@ -20,7 +18,7 @@ out vec4 fragColor;
 
 #define zoom 0.800
 #define tile 0.850
-#define speed 0.010
+#define speed 0.001
 
 #define brightness 0.0015
 #define darkmatter 0.300
@@ -30,7 +28,7 @@ out vec4 fragColor;
 void main() {
 	// get coords and direction
 	vec2 uv = texCoord0 * 16. - .5;
-	uv /= 64; // because of mc
+	uv /= 32; // because of mc
 	uv.y *= Ratio;
 	vec3 dir = vec3(uv * zoom, 1.);
 	float time = TickCount * .05 * speed + .25;

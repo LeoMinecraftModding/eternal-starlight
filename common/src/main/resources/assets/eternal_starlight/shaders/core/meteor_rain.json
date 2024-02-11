@@ -2,10 +2,10 @@
   "blend": {
     "func": "add",
     "srcrgb": "srcalpha",
-    "dstrgb": "1"
+    "dstrgb": "1-srcalpha"
   },
-  "vertex": "eternal_starlight:rendertype_meteor_rain",
-  "fragment": "eternal_starlight:rendertype_meteor_rain",
+  "vertex": "particle",
+  "fragment": "eternal_starlight:meteor_rain",
   "attributes": [
     "Position",
     "UV0",
@@ -22,6 +22,8 @@
     { "name": "ColorModulator", "type": "float", "count": 4, "values": [ 1.0, 1.0, 1.0, 1.0 ] },
     { "name": "FogStart", "type": "float", "count": 1, "values": [ 0.0 ] },
     { "name": "FogEnd", "type": "float", "count": 1, "values": [ 1.0 ] },
-    { "name": "FogColor", "type": "float", "count": 1, "values": [ 0.0 ] }
+    { "name": "FogColor", "type": "float", "count": 4, "values": [ 0.0, 0.0, 0.0, 0.0 ] },
+    { "name": "FogShape", "type": "int", "count": 1, "values": [ 0 ] },
+    { "name": "GameTime", "type": "float", "count": 1, "values": [ 0.0 ] }
   ]
 }
