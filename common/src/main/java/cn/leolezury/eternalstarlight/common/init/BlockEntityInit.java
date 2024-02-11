@@ -14,7 +14,7 @@ public class BlockEntityInit {
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<AbyssalGeyserBlockEntity>> ABYSSAL_GEYSER = BLOCK_ENTITIES.register("abyssal_geyser", () -> BlockEntityType.Builder.of(AbyssalGeyserBlockEntity::new, BlockInit.ABYSSAL_GEYSER.get(), BlockInit.THERMABYSSAL_GEYSER.get(), BlockInit.CRYOBYSSAL_GEYSER.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerEntity::new, BlockInit.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerEntity::new, BlockInit.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
-    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalEntity>> PORTAL = BLOCK_ENTITIES.register("es_portal", () -> BlockEntityType.Builder.of(ESPortalEntity::new, BlockInit.STARLIGHT_PORTAL.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, BlockInit.STARLIGHT_PORTAL.get()).build(null));
 
     public static void loadClass() {}
 }

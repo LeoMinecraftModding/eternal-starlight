@@ -4,8 +4,8 @@
         "srcrgb": "srcalpha",
         "dstrgb": "1-srcalpha"
     },
-    "vertex": "eternal_starlight:es_portal",
-    "fragment": "eternal_starlight:es_portal",
+    "vertex": "eternal_starlight:rendertype_starlight_portal",
+    "fragment": "eternal_starlight:rendertype_starlight_portal",
     "attributes": [],
     "samplers": [
         { "name": "Sampler0" },

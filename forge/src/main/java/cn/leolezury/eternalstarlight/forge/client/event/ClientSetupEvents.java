@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +15,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
 
+import java.io.IOException;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
@@ -67,7 +69,13 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterShader(RegisterShadersEvent event) {
-        ClientSetupHandlers.registerShader((shader, shaderLocation, vertex, onLoad) -> event.registerShader(shader, onLoad));
+        ClientSetupHandlers.registerShaders((location, format, loaded) -> {
+            try {
+                event.registerShader(new ShaderInstance(event.getResourceProvider(), location, format), loaded);
+            } catch (IOException e) {
+                EternalStarlight.LOGGER.error("Cannot register shader: {}", location);
+            }
+        });
     }
 
     @SubscribeEvent

@@ -1,15 +1,15 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestButton;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestPageButton;
-import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
+import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
@@ -17,6 +17,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -29,10 +30,6 @@ import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
 public class CrestSelectionScreen extends Screen {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/background.png");
-    private static final int WIDTH = 256;
-    private static final int HEIGHT = 256;
-    private static final int GUI_RATIO = WIDTH / HEIGHT;
     private final List<CrestButton> crestButtons = new ArrayList<>();
     private final List<Crest> ownedCrests;
     private List<String> crestIds;
@@ -149,17 +146,26 @@ public class CrestSelectionScreen extends Screen {
         Window window = client.getWindow();
         int x = window.getGuiScaledWidth();
         int y = window.getGuiScaledHeight();
-        Matrix4f positionMatrix = guiGraphics.pose().last().pose();
-        RenderSystem.setShader(ShaderInstances::getCrestSelectGui);
-        RenderSystem.setShaderColor(0f, 1f, 0f, 1f);
-        BufferBuilder buffer = Tesselator.getInstance().getBuilder();
-        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        buffer.vertex(positionMatrix, x, y, 100).endVertex();
-        buffer.vertex(positionMatrix, x, 0, 100).endVertex();
-        buffer.vertex(positionMatrix, 0, 0, 100).endVertex();
-        buffer.vertex(positionMatrix, 0, y, 100).endVertex();
-        BufferUploader.drawWithShader(buffer.end());
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+        Matrix4f matrix4f = guiGraphics.pose().last().pose();
+        ShaderInstance instance = ESShaders.getCrestSelectionGui();
+        if (instance != null) {
+            Uniform tickUniform = instance.getUniform("TickCount");
+            Uniform ratioUniform = instance.getUniform("Ratio");
+            if (tickUniform != null) {
+                tickUniform.set((float) tickCount + Minecraft.getInstance().getFrameTime());
+            }
+            if (ratioUniform != null) {
+                ratioUniform.set((float) y / x);
+            }
+        }
+        RenderSystem.setShader(ESShaders::getCrestSelectionGui);
+        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferBuilder.vertex(matrix4f, 0, 0, 0).uv(0, 0).endVertex();
+        bufferBuilder.vertex(matrix4f, 0, y, 0).uv(0, 1).endVertex();
+        bufferBuilder.vertex(matrix4f, x, y, 0).uv(1, 1).endVertex();
+        bufferBuilder.vertex(matrix4f, x, 0, 0).uv(1, 0).endVertex();
+        BufferUploader.drawWithShader(bufferBuilder.end());
         List<CrestButton> notEmptyButtons = crestButtons.stream().filter((crestButton -> !crestButton.isEmpty())).toList();
         Vec3 ringCenterPos = new Vec3((this.width / 9f) * 5f, 0, this.height / 2f);
         for (int n = 0; n < notEmptyButtons.size(); n++) {

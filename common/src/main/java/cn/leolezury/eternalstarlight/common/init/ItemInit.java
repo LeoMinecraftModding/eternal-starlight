@@ -497,7 +497,7 @@ public class ItemInit {
     public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, 6, -2.8F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, 3, -1.0F, new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(SpellInit.TELEPORTATION, new Item.Properties().durability(1000).rarity(STARLIGHT)));
-    public static final RegistryObject<Item, Item> ETHEREAL_GAUNTLET = registerItem("ethereal_gauntlet", () -> new SimpleSpellItem(SpellInit.TELEPORTATION, new Item.Properties().durability(1000).rarity(STARLIGHT)));
+    // public static final RegistryObject<Item, Item> ETHEREAL_GAUNTLET = registerItem("ethereal_gauntlet", () -> new SimpleSpellItem(SpellInit.TELEPORTATION, new Item.Properties().durability(1000).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 
     // mob stuff

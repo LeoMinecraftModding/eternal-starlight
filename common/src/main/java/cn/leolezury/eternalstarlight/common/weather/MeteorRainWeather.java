@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.weather;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
-import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
+import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -71,7 +71,7 @@ public class MeteorRainWeather extends AbstractWeather {
     public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
         float rainTicks = Math.min(ClientWeatherInfo.ticks + partialTick, ClientWeatherInfo.duration);
         float rainLevel = (ClientWeatherInfo.duration / 2f - Math.abs(ClientWeatherInfo.duration / 2f - rainTicks)) / (ClientWeatherInfo.duration / 2f);
-        ESWeatherRenderer.renderWeather(ShaderInstances.METEOR_RAIN, lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
+        ESWeatherRenderer.renderWeather(ESShaders.getRenderTypeMeteorRain(), lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
         return true;
     }
 

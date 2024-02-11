@@ -2,16 +2,15 @@
   "blend": {
     "func": "add",
     "srcrgb": "srcalpha",
-    "dstrgb": "1-srcalpha"
+    "dstrgb": "1"
   },
-  "vertex": "eternal_starlight:golem_laser",
-  "fragment": "eternal_starlight:golem_laser",
+  "vertex": "eternal_starlight:rendertype_meteor_rain",
+  "fragment": "eternal_starlight:rendertype_meteor_rain",
   "attributes": [
     "Position",
-    "Color",
     "UV0",
-    "UV2",
-    "Normal"
+    "Color",
+    "UV2"
   ],
   "samplers": [
     { "name": "Sampler0" },
@@ -23,9 +22,6 @@
     { "name": "ColorModulator", "type": "float", "count": 4, "values": [ 1.0, 1.0, 1.0, 1.0 ] },
     { "name": "FogStart", "type": "float", "count": 1, "values": [ 0.0 ] },
     { "name": "FogEnd", "type": "float", "count": 1, "values": [ 1.0 ] },
-    { "name": "FogColor", "type": "float", "count": 4, "values": [ 0.0, 0.0, 0.0, 0.0 ] },
-    { "name": "LaserTime", "type": "float", "count": 1, "values": [ 0.0 ] },
-    { "name": "FogShape", "type": "int", "count": 1, "values": [ 0 ] }
+    { "name": "FogColor", "type": "float", "count": 1, "values": [ 0.0 ] }
   ]
 }
-

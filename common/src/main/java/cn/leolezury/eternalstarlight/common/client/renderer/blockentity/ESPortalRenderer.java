@@ -1,8 +1,7 @@
-package cn.leolezury.eternalstarlight.common.client.renderer.entity;
+package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
-import cn.leolezury.eternalstarlight.common.block.entity.ESPortalEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.renderer.ESRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,22 +10,17 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.joml.Matrix4f;
 
-public class EsPortalRenderer<T extends ESPortalEntity> implements BlockEntityRenderer<T> {
-    private ResourceLocation location = TheEndPortalRenderer.END_SKY_LOCATION;
-    private ResourceLocation location2 = TheEndPortalRenderer.END_PORTAL_LOCATION;
-
-    public EsPortalRenderer(BlockEntityRendererProvider.Context context) {
+public class ESPortalRenderer<T extends ESPortalBlockEntity> implements BlockEntityRenderer<T> {
+    public ESPortalRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
     public void render(T portalEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
         Matrix4f matrix4f = poseStack.last().pose();
-        this.renderCube(portalEntity, matrix4f, multiBufferSource.getBuffer(ESRenderType.portal(location, location2)));
+        this.renderCube(portalEntity, matrix4f, multiBufferSource.getBuffer(ESRenderType.portal(TheEndPortalRenderer.END_SKY_LOCATION, TheEndPortalRenderer.END_PORTAL_LOCATION)));
     }
 
     private void renderCube(T portalEntity, Matrix4f matrix4f, VertexConsumer vertexConsumer) {
@@ -41,7 +35,7 @@ public class EsPortalRenderer<T extends ESPortalEntity> implements BlockEntityRe
     }
 
     private void renderFace(T portalEntity, Matrix4f matrix4f, VertexConsumer vertexConsumer, float f, float g, float h, float i, float j, float k, float l, float m, Direction direction) {
-        if (direction.getAxis() == Direction.Axis.Y && portalEntity.getBlockState().getBlock() instanceof ESPortalBlock portal) {
+        if (direction.getAxis() == Direction.Axis.Y && portalEntity.getBlockState().getBlock() instanceof ESPortalBlock) {
             vertexConsumer.vertex(matrix4f, f, h, j).endVertex();
             vertexConsumer.vertex(matrix4f, g, h, k).endVertex();
             vertexConsumer.vertex(matrix4f, g, i, l).endVertex();

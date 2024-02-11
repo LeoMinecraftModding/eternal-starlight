@@ -1,13 +1,12 @@
 package cn.leolezury.eternalstarlight.common.client.renderer;
 
-import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
+import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
@@ -16,28 +15,28 @@ public abstract class ESRenderType extends RenderType {
         super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
     }
 
-    public static RenderType glow(ResourceLocation location, float f, float g) {
-        RenderStateShard.TextureStateShard textureStateShard = new RenderStateShard.TextureStateShard(location, false, false);
-        return create("golem_laser", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
-                .setShaderState(new ShaderStateShard(ShaderInstances::getGolemLaser))
-                .setTextureState(textureStateShard)
-                .setTexturingState(new RenderStateShard.OffsetTexturingStateShard(f, g))
-                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+    public static RenderType laserBeam(ResourceLocation location) {
+        return create("laser_beam", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+                .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
                 .setCullState(NO_CULL)
+                .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
+                .setShaderState(new ShaderStateShard(ESShaders::getRenderTypeLaserBeam))
                 .setLightmapState(LIGHTMAP)
-                .setWriteMaskState(COLOR_WRITE)
-                .setOverlayState(NO_OVERLAY)
-                .createCompositeState(false)
-        );
-//        return create("glow_effect", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
+                .createCompositeState(true));
     }
 
-    public static RenderType portal(ResourceLocation location, ResourceLocation location2) {
-         return create("es_portal", DefaultVertexFormat.POSITION, VertexFormat.Mode.QUADS, 1536, false, false, RenderType.CompositeState.builder()
-                 .setShaderState(new ShaderStateShard(ShaderInstances::getEsPortal))
-                 .setTextureState(MultiTextureStateShard.builder()
-                         .add(location, false, false)
-                         .add(location2, false, false).build())
-                 .createCompositeState(false));
+    public static RenderType portal(ResourceLocation sky, ResourceLocation portal) {
+        return create("starlight_portal", DefaultVertexFormat.POSITION, VertexFormat.Mode.QUADS, 1536, false, false, RenderType.CompositeState.builder()
+                .setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
+                .setTextureState(MultiTextureStateShard.builder()
+                        .add(sky, false, false)
+                        .add(portal, false, false).build())
+                .createCompositeState(false));
+    }
+
+    public static RenderType glow(ResourceLocation location) {
+        RenderStateShard.TextureStateShard textureStateShard = new RenderStateShard.TextureStateShard(location, false, false);
+        RenderType.CompositeState compositeState = RenderType.CompositeState.builder().setTextureState(textureStateShard).setShaderState(RENDERTYPE_BEACON_BEAM_SHADER).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setCullState(NO_CULL).setOverlayState(OVERLAY).setWriteMaskState(COLOR_WRITE).createCompositeState(false);
+        return create("glow_effect", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
     }
 }

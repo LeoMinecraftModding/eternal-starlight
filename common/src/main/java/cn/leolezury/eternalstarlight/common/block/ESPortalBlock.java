@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.block.entity.ESPortalEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
 import cn.leolezury.eternalstarlight.common.init.ParticleInit;
@@ -56,7 +56,7 @@ public class ESPortalBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new ESPortalEntity(blockPos, blockState);
+        return new ESPortalBlockEntity(blockPos, blockState);
     }
 
     @Override

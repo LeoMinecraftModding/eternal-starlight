@@ -10,8 +10,9 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profess
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
+import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
-import cn.leolezury.eternalstarlight.common.client.shaders.ShaderInstances;
+import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
@@ -61,7 +62,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-
 @Environment(EnvType.CLIENT)
 public class ClientSetupHandlers {
     public interface BlockColorRegisterStrategy {
@@ -85,7 +85,7 @@ public class ClientSetupHandlers {
     }
 
     public interface ShaderRegisterStrategy {
-        void register(ShaderInstance shader, ResourceLocation shaderLocation, VertexFormat vertex, Consumer<ShaderInstance> onLoad);
+        void register(ResourceLocation location, VertexFormat format, Consumer<ShaderInstance> loaded);
     }
 
     public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
@@ -229,7 +229,7 @@ public class ClientSetupHandlers {
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ItemInit.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
 
         BlockEntityRenderers.register(BlockEntityInit.SIGN.get(), SignRenderer::new);
-        BlockEntityRenderers.register(BlockEntityInit.PORTAL.get(), EsPortalRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.HANGING_SIGN.get(), HangingSignRenderer::new);
 
         ItemProperties.register(ItemInit.SHATTERED_SWORD.get(), new ResourceLocation("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
@@ -366,14 +366,11 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, BlockInit.BLACK_YETI_FUR_CARPET.get());
     }
 
-    public static void registerShader(ShaderRegisterStrategy strategy) {
-        strategy.register(ShaderInstances.METEOR_RAIN, new ResourceLocation(EternalStarlight.MOD_ID, "meteor_rain"), DefaultVertexFormat.PARTICLE, shaderInstance -> ShaderInstances.METEOR_RAIN = shaderInstance);
-        strategy.register(ShaderInstances.CREST_SELECT_GUI, new ResourceLocation(EternalStarlight.MOD_ID, "crest_select_gui"), DefaultVertexFormat.POSITION_COLOR, shaderInstance -> ShaderInstances.CREST_SELECT_GUI = shaderInstance);
-        strategy.register(ShaderInstances.GOLEM_LASER, new ResourceLocation(EternalStarlight.MOD_ID, "golem_laser"), DefaultVertexFormat.NEW_ENTITY, (shaderInstance -> {
-            shaderInstance.getUniform("LaserTime").set(Minecraft.getInstance().getFrameTime());
-            ShaderInstances.GOLEM_LASER = shaderInstance;
-        }));
-        strategy.register(ShaderInstances.ES_PORTAL, new ResourceLocation(EternalStarlight.MOD_ID, "es_portal"), DefaultVertexFormat.POSITION, shaderInstance -> ShaderInstances.ES_PORTAL = shaderInstance);
+    public static void registerShaders(ShaderRegisterStrategy strategy) {
+        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
+        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_meteor_rain"), DefaultVertexFormat.PARTICLE, ESShaders::setRenderTypeMeteorRain);
+        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
+        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_starlight_portal"), DefaultVertexFormat.POSITION, ESShaders::setRenderTypeStarlightPortal);
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
