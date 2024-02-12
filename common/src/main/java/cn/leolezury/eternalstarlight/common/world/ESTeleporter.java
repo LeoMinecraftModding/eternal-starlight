@@ -23,7 +23,7 @@ public class ESTeleporter {
         if (existingPortal.isPresent()) {
             return existingPortal;
         } else {
-            Direction.Axis portalAxis = level.getBlockState(entity.portalEntrancePos).getOptionalValue(ESPortalBlock.AXIS).orElse(Direction.Axis.X);
+            Direction.Axis portalAxis = entity.level().getBlockState(entity.portalEntrancePos).getOptionalValue(ESPortalBlock.AXIS).orElse(Direction.Axis.X);
             return makePortal(level, pos, portalAxis);
         }
     }

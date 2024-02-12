@@ -1,62 +1,48 @@
 #version 150
 
-#moj_import <matrix.glsl>
+#moj_import <fog.glsl>
 
-uniform sampler2D Sampler0;
-uniform sampler2D Sampler1;
-
+uniform vec4 ColorModulator;
+uniform float FogStart;
+uniform float FogEnd;
 uniform float GameTime;
-uniform int PortalLayers;
 
-in vec4 texProj0;
-
-const vec3[] COLORS = vec3[](
-    vec3(0.022087, 0.098399, 0.110818),
-    vec3(0.011892, 0.095924, 0.089485),
-    vec3(0.027636, 0.101689, 0.100326),
-    vec3(0.046564, 0.109883, 0.114838),
-    vec3(0.064901, 0.117696, 0.097189),
-    vec3(0.063761, 0.086895, 0.123646),
-    vec3(0.084817, 0.111994, 0.166380),
-    vec3(0.097489, 0.154120, 0.091064),
-    vec3(0.106152, 0.131144, 0.195191),
-    vec3(0.097721, 0.110188, 0.187229),
-    vec3(0.133516, 0.138278, 0.148582),
-    vec3(0.070006, 0.243332, 0.235792),
-    vec3(0.196766, 0.142899, 0.214696),
-    vec3(0.047281, 0.315338, 0.321970),
-    vec3(0.204675, 0.390010, 0.302066),
-    vec3(0.080955, 0.314821, 0.661491)
-);
-
-const mat4 SCALE_TRANSLATE = mat4(
-    0.5, 0.0, 0.0, 0.25,
-    0.0, 0.5, 0.0, 0.25,
-    0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0
-);
-
-mat4 portal_layer(float layer) {
-    mat4 translate = mat4(
-        1.0, 0.0, 0.0, 17.0 / layer,
-        0.0, 1.0, 0.0, (2.0 + layer / 1.5) * (GameTime * 1.5),
-        0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0
-    );
-
-    mat2 rotate = mat2_rotate_z(radians((layer * layer * 4321.0 + layer * 9.0) * 2.0));
-
-    mat2 scale = mat2((4.5 - layer / 4.0) * 2.0);
-
-    return mat4(scale * rotate) * translate * SCALE_TRANSLATE;
-}
+in float vertexDistance;
+in vec4 vertexColor;
+in vec2 texCoord0;
 
 out vec4 fragColor;
 
 void main() {
-    vec3 color = textureProj(Sampler0, texProj0).rgb * COLORS[0];
-    for (int i = 0; i < PortalLayers; i++) {
-        color += textureProj(Sampler1, texProj0 * portal_layer(float(i + 1))).rgb * COLORS[i];
-    }
-    fragColor = vec4(color, 1.0);
+    vec2 st = texCoord0;
+    float anim0 = sin(GameTime * 1000) + 1.;
+    float anim1 = sin(-GameTime * 1000 / 2.) + 2.;
+    float anim2 = sin(GameTime * 1000 + 2.);
+    float anim3 = sin(-GameTime * 1000 + 2.);
+
+    float shape = 0.;
+    
+    vec2 pos = (vec2(0.5) - st) * 1.5;
+
+    float r = length(pos) * 3.;
+    float a = atan(pos.y, pos.x);
+
+    float layer0 = cos(a * anim0 * 2.);
+    float layer1 = cos(a * anim1 * 3.);
+    float layer2 = smoothstep(-1.5, 1., cos(a * anim2 * 10.)) * 0.2 + 0.5;
+    float layer3 = smoothstep(-1.5, 1., cos(a * anim3 * 10.)) * 0.2 + 0.5;
+
+    shape += 1. -smoothstep(layer0, layer0 + 0.5, r);
+    shape += 1. -smoothstep(layer1, layer1 + 0.5, r);
+    shape += 1. -smoothstep(layer2, layer2 + 0.5, r);
+    shape += 1. -smoothstep(layer3, layer3 + 0.5, r);
+    shape += smoothstep(0.65, 0., length(pos));
+    
+    vec3 color = vec3(0.1, 0.1, 0.1);
+    vec3 curveColor = vec3(0.1, 0.1, 0.325);
+    
+    color += curveColor * (smoothstep(1., 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
+    color += curveColor * (smoothstep(anim0, 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
+
+    fragColor = vec4(color, shape) * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd);
 }

@@ -62,23 +62,24 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
         // debug
         frame = 5;
 
-        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
-        VertexConsumer glowConsumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
+        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
 
         // render beam start
-        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, glowConsumer, packedLight);
-
-        // render beam
-        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, frame, stack, consumer, packedLight);
+        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
 
         // render beam end
         stack.pushPose();
         stack.translate(targetX - posX, targetY - posY, targetZ - posZ);
-        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, glowConsumer, packedLight);
+        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
         if (laserBeam.blockSide != null) {
-            renderBlockHit(frame, laserBeam.blockSide, stack, glowConsumer, packedLight);
+            renderBlockHit(frame, laserBeam.blockSide, stack, consumer, packedLight);
         }
         stack.popPose();
+
+        consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
+
+        // render beam
+        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, frame, stack, consumer, packedLight);
     }
 
     private void renderBlockHit(int frame, Direction hitDirection, PoseStack stack, VertexConsumer consumer, int packedLight) {

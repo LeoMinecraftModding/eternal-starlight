@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
 import cn.leolezury.eternalstarlight.common.data.DimensionInit;
 import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
@@ -12,9 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -26,6 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -38,11 +35,12 @@ import java.util.function.Function;
 public class ESPortalBlock extends BaseEntityBlock {
     public static final MapCodec<ESPortalBlock> CODEC = simpleCodec(ESPortalBlock::new);
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
+    public static final BooleanProperty CENTER = BooleanProperty.create("center");
     protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
     public ESPortalBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.X));
+        registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.X).setValue(CENTER, false));
     }
 
     @Override
@@ -117,7 +115,7 @@ public class ESPortalBlock extends BaseEntityBlock {
         }
     }
 
-    @Override
+    /*@Override
     public void animateTick(BlockState state, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D,
@@ -143,7 +141,7 @@ public class ESPortalBlock extends BaseEntityBlock {
 
             worldIn.addParticle(ParticleInit.STARLIGHT.get(), x, y, z, xSpeed, ySpeed, zSpeed);
         }
-    }
+    }*/
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
@@ -164,7 +162,7 @@ public class ESPortalBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AXIS);
+        builder.add(AXIS, CENTER);
     }
 
     public static boolean validateAndPlacePortal(LevelAccessor level, BlockPos framePos) {
@@ -205,6 +203,7 @@ public class ESPortalBlock extends BaseEntityBlock {
                 }
             }
         }
+        BlockPos center = bottomPos.above(size);
         for (BlockPos blockPos : framePositions) {
             if (!level.isEmptyBlock(blockPos.offset(bottomPos))) {
                 return false;
@@ -222,7 +221,7 @@ public class ESPortalBlock extends BaseEntityBlock {
             level.setBlock(blockPos.offset(bottomPos), BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            level.setBlock(blockPos.offset(bottomPos), BlockInit.STARLIGHT_PORTAL.get().defaultBlockState(), 3);
+            level.setBlock(blockPos.offset(bottomPos), BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)), 3);
         }
         return true;
     }
@@ -234,6 +233,7 @@ public class ESPortalBlock extends BaseEntityBlock {
         private final Direction.Axis axis;
         private final List<BlockPos> frames = new ArrayList<>();
         private final List<BlockPos> hollows = new ArrayList<>();
+        private final BlockPos center;
 
         public Validator(LevelAccessor level, BlockPos framePos, Direction.Axis axis) {
             this.level = level;
@@ -274,10 +274,12 @@ public class ESPortalBlock extends BaseEntityBlock {
                     if (correctFrames && correctHollows) {
                         frames.addAll(offsetFrames);
                         hollows.addAll(offsetHollows);
+                        center = offset;
                         return;
                     }
                 }
             }
+            center = BlockPos.ZERO;
         }
 
         private boolean validateBlocks(List<BlockPos> positions, Function<BlockPos, Boolean> function) {
@@ -293,6 +295,10 @@ public class ESPortalBlock extends BaseEntityBlock {
             return !frames.isEmpty() && !hollows.isEmpty();
         }
 
+        public BlockPos getCenter() {
+            return center;
+        }
+
         public void fillPortal() {
             for (BlockPos blockPos : frames) {
                 level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
@@ -301,7 +307,7 @@ public class ESPortalBlock extends BaseEntityBlock {
                 level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
             }
             for (BlockPos blockPos : hollows) {
-                level.setBlock(blockPos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis), 3);
+                level.setBlock(blockPos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.equals(center)), 3);
             }
         }
     }

@@ -28,7 +28,7 @@ out vec4 fragColor;
 void main() {
     // get coords and direction
     vec2 uv = texCoord0 * 16. - .5;
-    uv /= 16; // because of mc
+    uv /= 16.; // because of mc
     uv.y *= Ratio;
     vec3 dir = vec3(uv * zoom, 1.);
     float time = TickCount * .05 * speed + .25;

@@ -25,13 +25,15 @@ public abstract class ESRenderType extends RenderType {
                 .createCompositeState(true));
     }
 
-    public static RenderType portal(ResourceLocation sky, ResourceLocation portal) {
-        return create("starlight_portal", DefaultVertexFormat.POSITION, VertexFormat.Mode.QUADS, 1536, false, false, RenderType.CompositeState.builder()
+    public static RenderType portal() {
+        return create("starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 786432, true, true, RenderType.CompositeState.builder()
+                .setCullState(NO_CULL)
+                .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
+                .setOutputState(TRANSLUCENT_TARGET)
                 .setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
-                .setTextureState(MultiTextureStateShard.builder()
-                        .add(sky, false, false)
-                        .add(portal, false, false).build())
-                .createCompositeState(false));
+                .setLightmapState(LIGHTMAP)
+                .setWriteMaskState(COLOR_WRITE)
+                .createCompositeState(true));
     }
 
     public static RenderType glow(ResourceLocation location) {
