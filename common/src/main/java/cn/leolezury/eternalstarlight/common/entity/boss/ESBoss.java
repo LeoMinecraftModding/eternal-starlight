@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ESBoss extends Monster {
+public class ESBoss extends Monster implements MultiPhaseAttacker {
     protected ESBoss(EntityType<? extends Monster> type, Level level) {
         super(type, level);
         if (level.isClientSide) {
@@ -137,9 +137,7 @@ public class ESBoss extends Monster {
         ResourceLocation lootTable = null;
         ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
 
-        if (resourcelocation != null) {
-            lootTable = resourcelocation.withPrefix("bosses/");
-        }
+        lootTable = resourcelocation.withPrefix("bosses/");
 
         return lootTable;
     }

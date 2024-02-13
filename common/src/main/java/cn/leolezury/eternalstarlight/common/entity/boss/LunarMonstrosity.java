@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.boss;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
-import cn.leolezury.eternalstarlight.common.entity.boss.bossevent.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.init.EntityInit;
 import cn.leolezury.eternalstarlight.common.init.ParticleInit;

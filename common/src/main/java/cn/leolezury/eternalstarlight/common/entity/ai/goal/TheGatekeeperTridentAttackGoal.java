@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.ai.goal;
 
-import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;

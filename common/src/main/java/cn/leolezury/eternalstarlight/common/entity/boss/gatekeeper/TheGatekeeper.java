@@ -1,23 +1,18 @@
-package cn.leolezury.eternalstarlight.common.entity.boss;
+package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.entity.ai.goal.TheGatekeeperTridentAttackGoal;
-import cn.leolezury.eternalstarlight.common.entity.boss.bossevent.ESServerBossEvent;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
+import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
+import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
+import cn.leolezury.eternalstarlight.common.entity.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.init.ParticleInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -35,7 +30,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,6 +42,10 @@ public class TheGatekeeper extends ESBoss {
         super(entityType, level);
     }
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
+
+    private final AttackManager<TheGatekeeper> attackManager = new AttackManager<>(this, List.of(
+        new GatekeeperMeleePhase()
+    ));
 
     protected static final EntityDataAccessor<Boolean> SLIM = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.BOOLEAN);
     public boolean isSlim() {
@@ -104,7 +102,7 @@ public class TheGatekeeper extends ESBoss {
         super.registerGoals();
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new TheGatekeeperMeleeAttackGoal(this, 0.5D, false));
-        goalSelector.addGoal(1, new TheGatekeeperTridentAttackGoal(this, 1.0D, 40, 15.0F));
+        //goalSelector.addGoal(1, new TheGatekeeperTridentAttackGoal(this, 1.0D, 40, 15.0F));
         goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 
@@ -117,7 +115,7 @@ public class TheGatekeeper extends ESBoss {
             super(mob, speed, followingTargetEvenIfNotSeen);
         }
 
-        @Override
+        /*@Override
         public boolean canUse() {
             boolean canUse = true;
             if (mob instanceof TheGatekeeper gatekeeper) {
@@ -133,7 +131,7 @@ public class TheGatekeeper extends ESBoss {
                 canUse = !gatekeeper.performingRemoteAttack && gatekeeper.isActivated() && (gatekeeper.getAttackState() == -2 || gatekeeper.getAttackState() == 0 || gatekeeper.getAttackState() == 1);
             }
             return super.canContinueToUse() && canUse;
-        }
+        }*/
 
         @Override
         protected void checkAndPerformAttack(LivingEntity target) {
@@ -182,7 +180,7 @@ public class TheGatekeeper extends ESBoss {
         super.onSyncedDataUpdated(accessor);
     }
 
-    private boolean targetInRange(double range) {
+    public boolean targetInRange(double range) {
         LivingEntity target = getTarget();
         if (target == null) {
             return false;
@@ -195,7 +193,7 @@ public class TheGatekeeper extends ESBoss {
         return false;
     }
 
-    private void performMeleeAttack() {
+    public void performMeleeAttack() {
         LivingEntity target = getTarget();
         if (target == null) {
             return;
@@ -203,7 +201,7 @@ public class TheGatekeeper extends ESBoss {
         for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(3))) {
             if (livingEntity.getUUID().equals(target.getUUID())) {
                 livingEntity.invulnerableTime = 0;
-                livingEntity.hurt(damageSources().mobAttack(this), 15);
+                livingEntity.hurt(damageSources().mobAttack(this), 7);
                 noSuccessMeleeAttackTicks = 0;
             }
         }
@@ -241,7 +239,7 @@ public class TheGatekeeper extends ESBoss {
         gatekeeperName = CommonHandlers.getGatekeeperName();
         setSlim(getRandom().nextBoolean());
         //TODO: remove debug thing
-        activate();
+        //activate();
     }
 
     @Override
@@ -264,6 +262,9 @@ public class TheGatekeeper extends ESBoss {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
+            if (!isActivated()) {
+                setActivated(true);
+            }
             if (!isSilent()) {
                 this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
             }
@@ -274,166 +275,7 @@ public class TheGatekeeper extends ESBoss {
                 setLeftHanded(false);
             }
 
-            if (!getOffhandItem().is(Items.SHIELD)) {
-                setItemInHand(InteractionHand.OFF_HAND, Items.SHIELD.getDefaultInstance());
-            }
-
-            if (performingRemoteAttack) {
-                noSuccessMeleeAttackTicks = 0;
-                if (!getMainHandItem().is(Items.TRIDENT)) {
-                    setItemInHand(InteractionHand.MAIN_HAND, Items.TRIDENT.getDefaultInstance());
-                }
-            } else {
-                if ((getAttackState() == -2 || getAttackState() == 0) && !targetInRange(2) && noSuccessMeleeAttackTicks < 120) {
-                    setAttackState(-2);
-                    setAttackTicks(95);
-                }
-                if (noSuccessMeleeAttackTicks < 120) {
-                    noSuccessMeleeAttackTicks++;
-                }
-                if (!isBlocking() && isUsingItem()) {
-                    stopUsingItem();
-                }
-                if (!getMainHandItem().is(Items.DIAMOND_SWORD)) {
-                    setItemInHand(InteractionHand.MAIN_HAND, Items.DIAMOND_SWORD.getDefaultInstance());
-                }
-            }
-
-            setItemSlot(EquipmentSlot.HEAD, Items.DIAMOND_HELMET.getDefaultInstance());
-            setItemSlot(EquipmentSlot.CHEST, Items.DIAMOND_CHESTPLATE.getDefaultInstance());
-            setItemSlot(EquipmentSlot.LEGS, Items.DIAMOND_LEGGINGS.getDefaultInstance());
-            setItemSlot(EquipmentSlot.FEET, Items.DIAMOND_BOOTS.getDefaultInstance());
-
-            LivingEntity target = getTarget();
-            if (shieldCoolDown > 0) {
-                shieldCoolDown--;
-            }
-            if (jumpCoolDown > 0) {
-                jumpCoolDown--;
-            }
-            if (getAttackState() == -2 && !super.isBlocking()) {
-                startUsingItem(InteractionHand.OFF_HAND);
-            }
-            if (getAttackState() != -2 && super.isBlocking()) {
-                stopUsingItem();
-            }
-
-            if (isActivated()) {
-                if (jumpCoolDown <= 0 && !targetInRange(4) && (getAttackState() == 0 || getAttackState() == 2) && target != null && target.isAlive()) {
-                    setAttackState(3);
-                    setAttackTicks(0);
-                    jumpCoolDown = 200;
-                    performingRemoteAttack = false;
-                }
-
-                if (getAttackState() == 0) {
-                    setAttackTicks(0);
-                    if (target != null && target.isAlive()) {
-                        List<Projectile> projectiles = getEntitiesNearby(Projectile.class, 20);
-                        boolean shouldBlock = false;
-                        for (Projectile projectile : projectiles) {
-                            if (((projectile.getOwner() instanceof Targeting targeting && targeting.getTarget() != null && targeting.getTarget().getUUID().equals(getUUID())) || (projectile.getOwner() instanceof LivingEntity livingEntity && livingEntity.getUUID().equals(target.getUUID()))) && projectile.getDeltaMovement().length() > 0.01) {
-                                shouldBlock = true;
-                            }
-                        }
-                        if (shouldBlock && shieldCoolDown <= 0) {
-                            setAttackState(-2);
-                            setAttackTicks(60);
-                            shieldCoolDown = 120;
-                        } else if (targetInRange(2)) {
-                            setAttackState(1);
-                            stopUsingItem();
-                            performingRemoteAttack = false;
-                        } else if (noSuccessMeleeAttackTicks >= 120) {
-                            performingRemoteAttack = true;
-                        }
-                    }
-                }
-            }
-
-            switch (getAttackState()) {
-                case -2 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 101);
-                }
-                case -1 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 41);
-                    if (getAttackTicks() == 0) {
-                        //TODO: lock portal
-                        /*Vec3 portalFrameVec = getInitialPos().add(0, -1, 0);
-                        BlockPos portalFramePos = new BlockPos((int) portalFrameVec.x, (int) portalFrameVec.y, (int) portalFrameVec.z);
-                        for (Direction direction : Direction.Plane.VERTICAL) {
-                            BlockPos framePos = portalFramePos.relative(direction);
-                            ((SLPortalBlock) BlockInit.STARLIGHT_PORTAL.get()).trySpawnPortal(level(), framePos, );
-                        }*/
-                        setActivated(true);
-                    }
-                }
-                case 1 -> {
-                    if (getAttackTicks() == 6) {
-                        performMeleeAttack();
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 9);
-                }
-                case 2 -> {
-                    if (getAttackTicks() == 15) {
-                        performRemoteAttack();
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 21);
-                }
-                case 3 -> {
-                    if (getAttackTicks() == 20) {
-                        hurtMarked = true;
-                        hasImpulse = true;
-                        setDeltaMovement(this.getDeltaMovement().add(0, 4, 0));
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 21);
-                    if (getAttackTicks() == 0) {
-                        setAttackState(4);
-                        setAttackTicks(1);
-                    }
-                }
-                case 4 -> {
-                    if (getAttackTicks() == 10 && target != null) {
-                        hurtMarked = true;
-                        hasImpulse = true;
-                        setDeltaMovement(this.getDeltaMovement().add((target.getX() - getX()) / 5d, (target.getY() - getY()) / 5d, (target.getZ() - getZ()) / 5d));
-                    }
-                    if (onGround()) {
-                        setAttackTicks(200);
-                        CameraShake.createCameraShake(level(), position(), 45, 0.03f, 40, 20);
-                        playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
-                        ((ServerLevel)level()).sendParticles(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
-                        for (int x = -2; x <= 2; x++) {
-                            for (int y = -1; y <= 0; y++) {
-                                for (int z = -2; z <= 2; z++) {
-                                    BlockPos blockPos = blockPosition().offset(x, y, z);
-                                    ESFallingBlock fallingBlock = new ESFallingBlock(level(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), level().getBlockState(blockPos), 60);
-                                    fallingBlock.push(0, getRandom().nextDouble() / 5 + 0.5, 0);
-                                    level().addFreshEntity(fallingBlock);
-                                }
-                            }
-                        }
-                        for (LivingEntity livingEntity : getEntitiesNearby(LivingEntity.class, 3)) {
-                            livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 20);
-                        }
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 201);
-                    if (getAttackTicks() == 0) {
-                        setAttackState(5);
-                        setAttackTicks(1);
-                    }
-                }
-                case 5 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 21);
-                }
-            }
-            if (getAttackTicks() == 0) {
-                setAttackState(0);
-            }
+            attackManager.tick();
         } else {
             level().addParticle(ParticleInit.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
         }

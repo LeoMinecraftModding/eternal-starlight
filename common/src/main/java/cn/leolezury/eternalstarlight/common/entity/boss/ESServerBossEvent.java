@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.entity.boss.bossevent;
+package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;

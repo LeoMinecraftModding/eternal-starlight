@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
 import cn.leolezury.eternalstarlight.common.entity.attack.FireColumn;
 import cn.leolezury.eternalstarlight.common.entity.attack.beam.StarlightGolemBeam;
-import cn.leolezury.eternalstarlight.common.entity.boss.bossevent.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;

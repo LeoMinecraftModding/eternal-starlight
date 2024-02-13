@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.command.ESCommand;
 import cn.leolezury.eternalstarlight.common.entity.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
-import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;

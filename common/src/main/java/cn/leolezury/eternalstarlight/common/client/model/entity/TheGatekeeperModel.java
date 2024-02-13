@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedHumanoidModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.TheGatekeeperAnimation;
-import cn.leolezury.eternalstarlight.common.entity.boss.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
