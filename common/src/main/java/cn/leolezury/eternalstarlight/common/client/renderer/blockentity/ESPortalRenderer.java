@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -27,7 +28,7 @@ public class ESPortalRenderer<T extends ESPortalBlockEntity> implements BlockEnt
             VertexConsumer vertexConsumer = multiBufferSource.getBuffer(ESRenderType.portal());
             Matrix4f matrix4f = stack.last().pose();
             Matrix3f matrix3f = stack.last().normal();
-            float radius = 1.8f;
+            float radius = 0.6f * portal.getBlockState().getValue(ESPortalBlock.SIZE) * (Math.min(portal.getClientSideTickCount() + Minecraft.getInstance().getFrameTime(), 60f) / 60f);
             if (portal.getBlockState().getValue(ESPortalBlock.AXIS) == Direction.Axis.X) {
                 vertexConsumer.vertex(matrix4f, -radius, -radius, 0.5f).color(1, 1, 1, 1).uv(0, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
                 vertexConsumer.vertex(matrix4f, -radius, 1 + radius, 0.5f).color(1, 1, 1, 1).uv(0, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();

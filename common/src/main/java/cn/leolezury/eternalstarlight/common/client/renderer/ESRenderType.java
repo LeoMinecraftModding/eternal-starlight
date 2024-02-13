@@ -32,7 +32,10 @@ public abstract class ESRenderType extends RenderType {
                 .setOutputState(TRANSLUCENT_TARGET)
                 .setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
                 .setLightmapState(LIGHTMAP)
+                .setOverlayState(OVERLAY)
                 .setWriteMaskState(COLOR_WRITE)
+                .setDepthTestState(LEQUAL_DEPTH_TEST)
+                .setLayeringState(VIEW_OFFSET_Z_LAYERING)
                 .createCompositeState(true));
     }
 

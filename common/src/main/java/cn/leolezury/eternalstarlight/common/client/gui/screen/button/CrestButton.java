@@ -3,34 +3,53 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen.button;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.GuiUtil;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
 
 public class CrestButton extends Button {
     private static final int CREST_WIDTH = 72;
     private static final int CREST_HEIGHT = 72;
+    private final boolean orbit;
     private Crest crest;
 
     private int prevHoverProgress;
     private int hoverProgress;
 
-    private int prevX;
-    private int prevY;
+    private float prevX;
+    private float prevY;
+
+    private float orbitCenterX;
+    private float orbitCenterY;
+    private float angle;
+    private float prevAngle;
 
     public CrestButton(int x, int y, int width, int height, Component component, OnPress onPress) {
+        this(x, y, width, height, false, component, onPress);
+    }
+
+    public CrestButton(int x, int y, int width, int height, boolean orbit, Component component, OnPress onPress) {
         super(x, y, width, height, component, onPress, DEFAULT_NARRATION);
+        this.orbit = orbit;
+    }
+
+    public void setAngle(float angle) {
+        this.angle = angle;
+    }
+
+    public void setOrbitCenter(float orbitCenterX, float orbitCenterY) {
+        this.orbitCenterX = orbitCenterX;
+        this.orbitCenterY = orbitCenterY;
     }
 
     public CrestButton setCrest(Crest crest) {
@@ -61,6 +80,7 @@ public class CrestButton extends Button {
         prevHoverProgress = hoverProgress;
         prevX = getX();
         prevY = getY();
+        prevAngle = angle;
         if (isHovered()) {
             if (hoverProgress < 5) {
                 hoverProgress++;
@@ -75,30 +95,23 @@ public class CrestButton extends Button {
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+        float partialTicks = Minecraft.getInstance().getFrameTime();
+        float x, y;
+        if (orbit) {
+            float currentAngle = Mth.lerp(partialTicks, prevAngle, angle);
+            Vec3 centerPos = ESUtil.rotationToPosition(new Vec3(orbitCenterX, 0, orbitCenterY), 60, 0, currentAngle);
+            x = (float) (centerPos.x - CREST_WIDTH / 2f);
+            y = (float) (centerPos.z - CREST_HEIGHT / 2f);
+            setPosition((int) x, (int) y);
+        } else {
+            x = Mth.lerp(partialTicks, prevX, getX());
+            y = Mth.lerp(partialTicks, prevY, getY());
+        }
         if (crest != null) {
-            float partialTicks = Minecraft.getInstance().getFrameTime();
             float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
             float width = CREST_WIDTH * progress;
             float height = CREST_HEIGHT * progress;
-            blit(guiGraphics, crest.texture(), (Mth.lerp(partialTicks, prevX, getX()) - (width - getWidth()) / 2f), (Mth.lerp(partialTicks, prevY, getY()) - (height - getHeight()) / 2f), width, height, width, height);
+            GuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
         }
-    }
-    
-    // from GuiGraphics, changed int -> float
-    public void blit(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float y, float width, float height, float texWidth, float texHeight) {
-        this.innerBlit(graphics, resourceLocation, x, x + width, y, y + height, width / texWidth, height / texHeight);
-    }
-    
-    void innerBlit(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float xTo, float y, float yTo, float u, float v) {
-        RenderSystem.setShaderTexture(0, resourceLocation);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        Matrix4f matrix4f = graphics.pose().last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.vertex(matrix4f, x, y, 0).uv(0, 0).endVertex();
-        bufferBuilder.vertex(matrix4f, x, yTo, 0).uv(0, v).endVertex();
-        bufferBuilder.vertex(matrix4f, xTo, yTo, 0).uv(u, v).endVertex();
-        bufferBuilder.vertex(matrix4f, xTo, y, 0).uv(u, 0).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
     }
 }

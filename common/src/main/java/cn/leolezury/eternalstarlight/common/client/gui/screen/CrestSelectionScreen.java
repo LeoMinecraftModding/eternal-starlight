@@ -7,7 +7,6 @@ import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -21,7 +20,6 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 import java.util.ArrayList;
@@ -56,16 +54,16 @@ public class CrestSelectionScreen extends Screen {
     protected void init() {
         if (Minecraft.getInstance().level != null) {
             Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-            this.previousPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 25, this.height / 2 - 12 - 60, 50, 24, false, Component.empty(), (button -> previousPage())));
-            this.nextPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 25, this.height / 2 - 12 + 60, 50, 24, true, Component.empty(), (button -> nextPage())));
+            this.previousPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 - 50, 48, 24, false, Component.empty(), (button -> previousPage())));
+            this.nextPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 + 50, 48, 24, true, Component.empty(), (button -> nextPage())));
             List<Crest> crests = crestIds == null ? this.crestButtons.stream().map(CrestButton::getCrest).toList() : crestIds.stream().map(s -> registry.get(new ResourceLocation(s))).toList();
             this.crestButtons.clear();
             for (int i = 0; i < 5; i++) {
                 int ordinal = i;
-                CrestButton crestButton = this.addRenderableWidget(new CrestButton((int) ((this.width / 9f) * 5f), (int) (this.height / 2f), 36, 36, Component.empty(), (button -> cancelCrest(ordinal))).setCrest(i >= crests.size() ? null : crests.get(i)));
+                CrestButton crestButton = this.addRenderableWidget(new CrestButton((int) ((this.width / 9f) * 5f), (int) (this.height / 2f), 72, 72, true, Component.empty(), (button -> cancelCrest(ordinal))).setCrest(i >= crests.size() ? null : crests.get(i)));
                 this.crestButtons.add(crestButton);
             }
-            this.selectedCrestButton = this.addRenderableWidget(new CrestButton(this.width / 4 - 18, this.height / 2 - 18, 36, 36, Component.empty(), (button -> selectCrest())));
+            this.selectedCrestButton = this.addRenderableWidget(new CrestButton(this.width / 4 - 36, this.height / 2 - 36, 72, 72, Component.empty(), (button -> selectCrest())));
             updateGui();
             crestIds = null;
         } else {
@@ -79,6 +77,8 @@ public class CrestSelectionScreen extends Screen {
             button.tick();
         }
         selectedCrestButton.tick();
+        nextPage.tick();
+        previousPage.tick();
         updateGui();
         tickCount++;
     }
@@ -95,6 +95,12 @@ public class CrestSelectionScreen extends Screen {
             this.selectedCrest = null;
             this.selectedCrestButton.setCrest(null);
             this.selectedCrestButton.active = false;
+        }
+        List<CrestButton> notEmptyButtons = crestButtons.stream().filter((crestButton -> !crestButton.isEmpty())).toList();
+        for (int n = 0; n < notEmptyButtons.size(); n++) {
+            CrestButton crestButton = crestButtons.get(n);
+            crestButton.setOrbitCenter((this.width / 9f) * 5f, this.height / 2f);
+            crestButton.setAngle((360f / notEmptyButtons.size()) * n + tickCount);
         }
     }
 
@@ -166,13 +172,6 @@ public class CrestSelectionScreen extends Screen {
         bufferBuilder.vertex(matrix4f, x, y, 0).uv(1, 1).endVertex();
         bufferBuilder.vertex(matrix4f, x, 0, 0).uv(1, 0).endVertex();
         BufferUploader.drawWithShader(bufferBuilder.end());
-        List<CrestButton> notEmptyButtons = crestButtons.stream().filter((crestButton -> !crestButton.isEmpty())).toList();
-        Vec3 ringCenterPos = new Vec3((this.width / 9f) * 5f, 0, this.height / 2f);
-        for (int n = 0; n < notEmptyButtons.size(); n++) {
-            CrestButton crestButton = crestButtons.get(n);
-            Vec3 centerPos = ESUtil.rotationToPosition(ringCenterPos, 60, 0, (360f / notEmptyButtons.size()) * n + tickCount + Minecraft.getInstance().getFrameTime());
-            crestButton.setPosition((int) (centerPos.x - 18), (int) (centerPos.z - 18));
-        }
         super.render(guiGraphics, i, j, f);
     }
 
