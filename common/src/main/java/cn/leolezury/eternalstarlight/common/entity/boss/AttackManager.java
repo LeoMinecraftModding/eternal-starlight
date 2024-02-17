@@ -56,8 +56,8 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
     
     private Optional<AttackPhase<T>> selectPhase() {
         for (int priority : priorities) {
-            List<AttackPhase<T>> phasesForPriority = phases.get(priority);
-            if (phasesForPriority.stream().anyMatch(p -> p.canStart(entity, coolDowns.getOrDefault(p.getId(), 0) <= 0))) {
+            List<AttackPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, coolDowns.getOrDefault(p.getId(), 0) <= 0)).toList();
+            if (!phasesForPriority.isEmpty()) {
                 return Optional.ofNullable(phasesForPriority.get(entity.getRandom().nextInt(phasesForPriority.size())));
             }
         }

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.weather;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
-import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
+import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

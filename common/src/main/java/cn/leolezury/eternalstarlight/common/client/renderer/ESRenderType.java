@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer;
 
-import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
+import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;

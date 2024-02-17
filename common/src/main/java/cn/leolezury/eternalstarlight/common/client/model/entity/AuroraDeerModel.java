@@ -84,7 +84,7 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
         left_horn.visible = entity.hasLeftHorn();
         right_horn.visible = entity.hasRightHorn();
         this.animate(entity.idleAnimationState, AuroraDeerAnimation.IDLE, ageInTicks);
-        this.animateWalk(AuroraDeerAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1f);
+        this.animateWalk(AuroraDeerAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1.0f);
     }
 
     @Override

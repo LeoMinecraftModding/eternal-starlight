@@ -34,6 +34,18 @@ public record UpdateCrestsPacket(List<String> crests) {
             if (player instanceof ServerPlayer serverPlayer) {
                 Registry<Crest> registry = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.CREST);
                 List<Crest> crestList = message.crests().stream().map(s -> registry.get(new ResourceLocation(s))).toList();
+                for (int i = 0; i < crestList.size(); i++) {
+                    Crest crest = crestList.get(i);
+                    for (int j = i + 1; j < crestList.size(); j++) {
+                        if (crestList.get(j).type() == crest.type()) {
+                            return;
+                        }
+                    }
+                }
+                List<Crest> ownedCrests = CrestUtil.getCrests(player, "OwnedCrests");
+                if (crestList.stream().anyMatch(crest -> !ownedCrests.contains(crest))) {
+                    return;
+                }
                 CrestUtil.setCrests(player, crestList);
             }
         }

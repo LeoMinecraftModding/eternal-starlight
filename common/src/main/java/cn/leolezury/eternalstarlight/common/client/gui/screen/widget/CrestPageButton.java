@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.gui.screen.button;
+package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.util.GuiUtil;

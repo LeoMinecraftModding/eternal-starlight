@@ -6,12 +6,12 @@ public class GatekeeperMeleePhase extends AttackPhase<TheGatekeeper> {
     public static final int ID = 1;
 
     public GatekeeperMeleePhase() {
-        super(ID, 1, 40, 200);
+        super(ID, 1, 40, 10);
     }
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.targetInRange(2);
+        return coolDownOver && entity.canReachTarget(3);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class GatekeeperMeleePhase extends AttackPhase<TheGatekeeper> {
     @Override
     public void tick(TheGatekeeper entity) {
         if (entity.getAttackTicks() == 30) {
-            entity.performMeleeAttack();
+            entity.performMeleeAttack(3);
         }
     }
 

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
-import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestButton;
-import cn.leolezury.eternalstarlight.common.client.gui.screen.button.CrestPageButton;
-import cn.leolezury.eternalstarlight.common.client.shaders.ESShaders;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.CrestButton;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.CrestPageButton;
+import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;

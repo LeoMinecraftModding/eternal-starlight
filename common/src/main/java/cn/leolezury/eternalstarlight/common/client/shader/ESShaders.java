@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.shaders;
+package cn.leolezury.eternalstarlight.common.client.shader;
 
 import net.minecraft.client.renderer.ShaderInstance;
 
