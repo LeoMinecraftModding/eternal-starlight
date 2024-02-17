@@ -419,6 +419,7 @@ public class ClientSetupHandlers {
         strategy.register(EntityInit.LUMINOFISH.get(), LuminoFishRenderer::new);
         strategy.register(EntityInit.LUMINARIS.get(), LuminarisRenderer::new);
         strategy.register(EntityInit.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
+        strategy.register(EntityInit.GATEKEEPER_FIREBALL.get(), GatekeeperFireballRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM.get(), StarlightGolemRenderer::new);
         strategy.register(EntityInit.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(EntityInit.STARLIGHT_GOLEM_BEAM.get(), StarlightGolemBeamRenderer::new);

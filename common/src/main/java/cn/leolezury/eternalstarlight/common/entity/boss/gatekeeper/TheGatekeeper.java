@@ -23,6 +23,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -52,13 +53,16 @@ public class TheGatekeeper extends ESBoss {
     private final AttackManager<TheGatekeeper> attackManager = new AttackManager<>(this, List.of(
             new GatekeeperMeleePhase(),
             new GatekeeperDodgePhase(),
-            new GatekeeperDashPhase()
+            new GatekeeperDashPhase(),
+            new GatekeeperCastFireballPhase()
     ));
 
     public AnimationState meleeAnimationStateA = new AnimationState();
     public AnimationState meleeAnimationStateB = new AnimationState();
+    public AnimationState meleeAnimationStateC = new AnimationState();
     public AnimationState dodgeAnimationState = new AnimationState();
     public AnimationState dashAnimationState = new AnimationState();
+    public AnimationState castFireballAnimationState = new AnimationState();
     private String gatekeeperName = "TheGatekeeper";
 
     @Override
@@ -111,9 +115,9 @@ public class TheGatekeeper extends ESBoss {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.5F)
                 .add(Attributes.FOLLOW_RANGE, 200.0D)
-                .add(Attributes.MAX_HEALTH, 100.0D)
-                .add(Attributes.ATTACK_DAMAGE, 1.0D)
-                .add(Attributes.ARMOR, 12.0D)
+                .add(Attributes.MAX_HEALTH, 400.0D)
+                .add(Attributes.ATTACK_DAMAGE, 4.0D)
+                .add(Attributes.ARMOR, 15.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.8D);
     }
 
@@ -140,6 +144,7 @@ public class TheGatekeeper extends ESBoss {
     public void stopAllAnimStates() {
         meleeAnimationStateA.stop();
         meleeAnimationStateB.stop();
+        meleeAnimationStateC.stop();
         dodgeAnimationState.stop();
         dashAnimationState.stop();
     }
@@ -149,9 +154,16 @@ public class TheGatekeeper extends ESBoss {
         if (accessor.equals(ATTACK_STATE) && getAttackState() != 0) {
             stopAllAnimStates();
             switch (getAttackState()) {
-                case GatekeeperMeleePhase.ID -> (getRandom().nextBoolean() ? meleeAnimationStateA : meleeAnimationStateB).start(tickCount);
+                case GatekeeperMeleePhase.ID -> {
+                    switch (getRandom().nextInt(3)) {
+                        case 0 -> meleeAnimationStateA.start(tickCount);
+                        case 1 -> meleeAnimationStateB.start(tickCount);
+                        case 2 -> meleeAnimationStateC.start(tickCount);
+                    }
+                }
                 case GatekeeperDodgePhase.ID -> dodgeAnimationState.start(tickCount);
                 case GatekeeperDashPhase.ID -> dashAnimationState.start(tickCount);
+                case GatekeeperCastFireballPhase.ID -> castFireballAnimationState.start(tickCount);
             }
         }
         super.onSyncedDataUpdated(accessor);
@@ -216,6 +228,14 @@ public class TheGatekeeper extends ESBoss {
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ParticleInit.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
             }
         }
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (!source.is(DamageTypes.GENERIC_KILL) && (source.getEntity() == null || getTarget() == null || source.getEntity().getUUID() != getTarget().getUUID())) {
+            return false;
+        }
+        return super.hurt(source, amount);
     }
 
     @Override

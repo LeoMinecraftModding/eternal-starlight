@@ -8,7 +8,7 @@ public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
     private boolean attacked = false;
 
     public GatekeeperDashPhase() {
-        super(ID, 1, 20, 100);
+        super(ID, 1, 20, 80);
     }
 
     @Override

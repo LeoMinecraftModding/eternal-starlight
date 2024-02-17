@@ -3,10 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.TheGatekeeperAnimation;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.GatekeeperDashPhase;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.GatekeeperDodgePhase;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.GatekeeperMeleePhase;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -91,14 +88,22 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
             int state = entity.getAttackState();
             switch (state) {
                 case GatekeeperMeleePhase.ID -> {
+                    left_arm.resetPose();
+                    right_arm.resetPose();
                     animate(entity.meleeAnimationStateA, TheGatekeeperAnimation.ATTACK_1, ageInTicks);
                     animate(entity.meleeAnimationStateB, TheGatekeeperAnimation.ATTACK_2, ageInTicks);
+                    animate(entity.meleeAnimationStateC, TheGatekeeperAnimation.ATTACK_3, ageInTicks);
                 }
                 case GatekeeperDodgePhase.ID -> {
                     animate(entity.dodgeAnimationState, TheGatekeeperAnimation.DODGE, ageInTicks);
                 }
                 case GatekeeperDashPhase.ID -> {
+                    left_arm.resetPose();
+                    right_arm.resetPose();
                     animate(entity.dashAnimationState, TheGatekeeperAnimation.DASH, ageInTicks);
+                }
+                case GatekeeperCastFireballPhase.ID -> {
+                    animate(entity.castFireballAnimationState, TheGatekeeperAnimation.CAST_FIREBALL, ageInTicks);
                 }
             }
         }
