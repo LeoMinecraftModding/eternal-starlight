@@ -20,6 +20,8 @@ public class ESPackets {
         map.put("cancel_weather", new PacketInfo<>(CancelWeatherPacket.class, CancelWeatherPacket::write, CancelWeatherPacket::read, CancelWeatherPacket.Handler::handle));
         map.put("open_crest_gui", new PacketInfo<>(OpenCrestGuiPacket.class, OpenCrestGuiPacket::write, OpenCrestGuiPacket::read, OpenCrestGuiPacket.Handler::handle));
         map.put("update_crests", new PacketInfo<>(UpdateCrestsPacket.class, UpdateCrestsPacket::write, UpdateCrestsPacket::read, UpdateCrestsPacket.Handler::handle));
+        map.put("open_gatekeeper_gui", new PacketInfo<>(OpenGatekeeperGuiPacket.class, OpenGatekeeperGuiPacket::write, OpenGatekeeperGuiPacket::read, OpenGatekeeperGuiPacket.Handler::handle));
+        map.put("close_gatekeeper_gui", new PacketInfo<>(CloseGatekeeperGuiPacket.class, CloseGatekeeperGuiPacket::write, CloseGatekeeperGuiPacket::read, CloseGatekeeperGuiPacket.Handler::handle));
     });
 
     public record PacketInfo<T>(Class<T> packetClass, BiConsumer<T, FriendlyByteBuf> write, Function<FriendlyByteBuf, T> read, Handler<T> handle) {

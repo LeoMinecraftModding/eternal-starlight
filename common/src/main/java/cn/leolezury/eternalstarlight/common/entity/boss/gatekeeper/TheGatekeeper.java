@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.entity.ai.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
@@ -8,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.init.ParticleInit;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.fabricmc.api.EnvType;
@@ -22,6 +24,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
@@ -43,6 +47,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TheGatekeeper extends ESBoss {
     public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
@@ -64,11 +69,28 @@ public class TheGatekeeper extends ESBoss {
     public AnimationState dashAnimationState = new AnimationState();
     public AnimationState castFireballAnimationState = new AnimationState();
     private String gatekeeperName = "TheGatekeeper";
+    private ServerPlayer conversationTarget;
+    private String fightTarget;
+    private boolean fightPlayerOnly = true;
+
+    public void setFightTargetName(String fightTarget) {
+        this.fightTarget = fightTarget;
+    }
+
+    public String getFightTargetName() {
+        return fightTarget;
+    }
+
+    public Optional<? extends Player> getFightTarget() {
+        return level().players().stream().filter(p -> p.getName().getString().equals(fightTarget)).findFirst();
+    }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         gatekeeperName = compoundTag.getString("GatekeeperName");
+        fightTarget = compoundTag.getString("FightTarget");
+        fightPlayerOnly = compoundTag.getBoolean("FightPlayerOnly");
         bossEvent.setId(getUUID());
     }
 
@@ -76,6 +98,8 @@ public class TheGatekeeper extends ESBoss {
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putString("GatekeeperName", gatekeeperName);
+        compoundTag.putString("FightTarget", fightTarget);
+        compoundTag.putBoolean("FightPlayerOnly", fightPlayerOnly);
     }
 
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
@@ -91,24 +115,34 @@ public class TheGatekeeper extends ESBoss {
     protected void registerGoals() {
         super.registerGoals();
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new TheGatekeeperMeleeAttackGoal(this, 0.5D, false));
+        goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.5D, false) {
+            @Override
+            protected void checkAndPerformAttack(LivingEntity livingEntity) {
+
+            }
+        });
         goalSelector.addGoal(2, new LookAtTargetGoal(this));
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 
-        targetSelector.addGoal(0, new HurtByTargetGoal(this, TheGatekeeper.class).setAlertOthers());
-        targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-    }
-
-    public static class TheGatekeeperMeleeAttackGoal extends MeleeAttackGoal {
-        public TheGatekeeperMeleeAttackGoal(PathfinderMob mob, double speed, boolean followingTargetEvenIfNotSeen) {
-            super(mob, speed, followingTargetEvenIfNotSeen);
-        }
-
-        @Override
-        protected void checkAndPerformAttack(LivingEntity target) {
-
-        }
+        targetSelector.addGoal(0, new GatekeeperTargetGoal(this) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && fightPlayerOnly;
+            }
+        });
+        targetSelector.addGoal(1, new HurtByTargetGoal(this, TheGatekeeper.class) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && !fightPlayerOnly;
+            }
+        }.setAlertOthers());
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && !fightPlayerOnly;
+            }
+        });
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -190,6 +224,19 @@ public class TheGatekeeper extends ESBoss {
         }
     }
 
+    @Override
+    protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+        if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && conversationTarget == null && getTarget() == null && getFightTarget().isEmpty()) {
+            conversationTarget = serverPlayer;
+            ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenGatekeeperGuiPacket(getId()));
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    public void handleDialogueClose(int operation) {
+        conversationTarget = null;
+    }
 
     public boolean canReachTarget(double range) {
         LivingEntity target = getTarget();
@@ -243,17 +290,16 @@ public class TheGatekeeper extends ESBoss {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
-            if (!isActivated()) {
-                setActivated(true);
-            }
-            if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
-            }
             setCustomName(Component.literal(gatekeeperName));
             if (isLeftHanded()) {
                 setLeftHanded(false);
             }
-            attackManager.tick();
+            if (isActivated()) {
+                attackManager.tick();
+                if (!isSilent()) {
+                    this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
+                }
+            }
         } else {
             level().addParticle(ParticleInit.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
         }

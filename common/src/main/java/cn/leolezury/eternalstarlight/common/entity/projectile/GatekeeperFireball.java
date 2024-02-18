@@ -111,7 +111,6 @@ public class GatekeeperFireball extends Fireball {
             if (entity2 instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)entity2, entity);
             }
-
         }
     }
 
