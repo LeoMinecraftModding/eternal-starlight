@@ -54,8 +54,8 @@ public class ESTags {
     }
 
     public static class Structures {
-        private static TagKey<Structure> create(String p_215896_) {
-            return TagKey.create(Registries.STRUCTURE, new ResourceLocation(EternalStarlight.MOD_ID, p_215896_));
+        private static TagKey<Structure> create(String string) {
+            return TagKey.create(Registries.STRUCTURE, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
         public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
         public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
@@ -66,9 +66,7 @@ public class ESTags {
         private static TagKey<Biome> create(String string) {
             return TagKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
-        public static final TagKey<Biome> STARLIGHT_FOREST_VARIANT = create("starlight_forest_variant");
-        public static final TagKey<Biome> PERMAFROST_FOREST_VARIANT = create("permafrost_forest_variant");
-        public static final TagKey<Biome> DARK_SWAMP_VARIANT = create("dark_swamp_variant");
+        public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
     }
 
     public static class Fluids {

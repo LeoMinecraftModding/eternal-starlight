@@ -39,6 +39,7 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookup = dataProvider.getRegistryProvider();
         generator.addProvider(event.includeServer(), dataProvider);
         generator.addProvider(event.includeServer(), new ESDamageTypeTagsProvider(output, lookup, helper));
+        generator.addProvider(event.includeServer(), new ESBiomeTagsProvider(output, lookup, helper));
 
         generator.addProvider(event.includeServer(), new ESLootProvider(output));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output));

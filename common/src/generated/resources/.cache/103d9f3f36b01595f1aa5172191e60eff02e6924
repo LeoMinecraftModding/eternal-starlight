@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-07T11:02:03.3708054	Registries
+// 1.20.4	2024-02-19T19:41:54.3144269	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 a318911784ef6902c27bf5dcc8c0f61d775a2f3f data/eternal_starlight/damage_type/ether.json
@@ -173,3 +173,9 @@ adfdbf0ec914f555303317b4181ceb32de33a5aa data/eternal_starlight/worldgen/placed_
 1531a379ec1261fa090be065ef694a3b34a73604 data/eternal_starlight/worldgen/placed_feature/torreya_tree_checked.json
 b3a58c6ed0f0d9f2f3039c50292931d124bc398f data/eternal_starlight/worldgen/placed_feature/voidstone_redstone_ore.json
 9ce2945c8c96f69d8fd2309669fcac15f025f81d data/eternal_starlight/worldgen/placed_feature/voidstone_saltpeter_ore.json
+e5904e83ddd6c18983061f0d890d7ec26c703340 data/eternal_starlight/worldgen/structure/golem_forge.json
+5966361ffae0f0308f96691bf917a1f69482f35e data/eternal_starlight/worldgen/structure_set/golem_forge.json
+300cebc43c4362ba3f7e906d9d3bcc780c8804dd data/eternal_starlight/worldgen/template_pool/golem_forge/boss.json
+59823a08783290b4946d8cb0189e57489ec95372 data/eternal_starlight/worldgen/template_pool/golem_forge/road.json
+16ea4402388da1c44586e7868cdabb76e70c8102 data/eternal_starlight/worldgen/template_pool/golem_forge/road_or_room.json
+161384d88e0ad257642d3c44a3c91fd808f2df7b data/eternal_starlight/worldgen/template_pool/golem_forge/road_or_room_double.json
