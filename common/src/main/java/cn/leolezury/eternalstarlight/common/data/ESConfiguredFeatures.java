@@ -113,6 +113,7 @@ public class ESConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> HOT_SPRING = create("hot_spring");
 
     // structure features
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -180,6 +181,7 @@ public class ESConfiguredFeatures {
         register(context, HOT_SPRING, ESFeatures.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.SPRINGSTONE.get().defaultBlockState(), 10).add(ESBlocks.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build())));
 
         // structure features
+        register(context, GOLEM_FORGE_CHIMNEY, ESFeatures.GOLEM_FORGE_CHIMNEY.get(), new NoneFeatureConfiguration());
         register(context, CURSED_GARDEN_EXTRA_HEIGHT, ESFeatures.CURSED_GARDEN_EXTRA_HEIGHT.get(), new NoneFeatureConfiguration());
     }
 

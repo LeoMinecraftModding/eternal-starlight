@@ -41,7 +41,7 @@ public class ESStructures {
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
                         Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(EntityType.BLAZE, 1, 1, 1)))),
-                        GenerationStep.Decoration.SURFACE_STRUCTURES,
+                        GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,
                 ConstantHeight.of(VerticalAnchor.aboveBottom(48)), false, Optional.empty(), 116, List.of()));

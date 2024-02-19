@@ -78,6 +78,7 @@ public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
 
     // structure features
+    public static final ResourceKey<PlacedFeature> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
     public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -147,7 +148,8 @@ public class ESPlacedFeatures {
         register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
         // structure features
-        register(context, CURSED_GARDEN_EXTRA_HEIGHT, configuredFeatures.getOrThrow(ESConfiguredFeatures.CURSED_GARDEN_EXTRA_HEIGHT)); // no placement modifier
+        register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
+        register(context, CURSED_GARDEN_EXTRA_HEIGHT, configuredFeatures.getOrThrow(ESConfiguredFeatures.CURSED_GARDEN_EXTRA_HEIGHT));
     }
 
 

@@ -25,6 +25,17 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/chimney_room",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
         "location": "eternal_starlight:golem_forge/lava_storage",
         "processors": {
           "processors": []

@@ -20,7 +20,7 @@
     "above_bottom": 48
   },
   "start_pool": "eternal_starlight:golem_forge/boss",
-  "step": "surface_structures",
+  "step": "underground_structures",
   "terrain_adaptation": "beard_thin",
   "use_expansion_hack": false
 }

@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralClawF
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralMushroomFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.CursedGardenExtraHeightFeature;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.GolemForgeChimneyFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.DeadLunarTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.HugeGlowingMushroomFeature;
 import net.minecraft.core.registries.Registries;
@@ -31,6 +32,7 @@ public class ESFeatures {
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_TREE = FEATURES.register("coral_tree", () -> new ESCoralTreeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> DEAD_LUNAR_TREE = FEATURES.register("dead_lunar_tree", () -> new DeadLunarTreeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
+    public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GOLEM_FORGE_CHIMNEY = FEATURES.register("golem_forge_chimney", () -> new GolemForgeChimneyFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CURSED_GARDEN_EXTRA_HEIGHT = FEATURES.register("cursed_garden_extra_height", () -> new CursedGardenExtraHeightFeature(NoneFeatureConfiguration.CODEC));
     public static void loadClass() {}
 }
