@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.FluidInit;
+import cn.leolezury.eternalstarlight.common.init.ESFluids;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -19,8 +19,8 @@ public class ESFluidTagsProvider extends FluidTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         tag(ESTags.Fluids.ETHER).add(
-                FluidInit.ETHER_STILL.get(),
-                FluidInit.ETHER_FLOWING.get()
+                ESFluids.ETHER_STILL.get(),
+                ESFluids.ETHER_FLOWING.get()
         );
     }
 }

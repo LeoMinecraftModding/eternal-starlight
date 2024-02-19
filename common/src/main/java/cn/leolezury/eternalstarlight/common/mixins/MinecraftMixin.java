@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -24,7 +24,7 @@ public abstract class MinecraftMixin {
 
     @Inject(at = @At(value = "RETURN"), method = "getSituationalMusic", cancellable = true)
     private void es_getSituationalMusic(CallbackInfoReturnable<Music> cir) {
-        if (player != null && player.level().dimension() == DimensionInit.STARLIGHT_KEY && (cir.getReturnValue() == Musics.GAME || cir.getReturnValue() == Musics.CREATIVE || cir.getReturnValue() == Musics.UNDER_WATER)) {
+        if (player != null && player.level().dimension() == ESDimensions.STARLIGHT_KEY && (cir.getReturnValue() == Musics.GAME || cir.getReturnValue() == Musics.CREATIVE || cir.getReturnValue() == Musics.UNDER_WATER)) {
             Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
             if (biomeHolder.isBound()) {
                 cir.setReturnValue(biomeHolder.value().getBackgroundMusic().orElse(Musics.GAME));

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
@@ -29,7 +29,7 @@ public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShattered
     @Override
     public void render(ThrownShatteredBlade entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
         poseStack.pushPose();
-        ItemStack itemStack = new ItemStack(ItemInit.SHATTERED_SWORD_BLADE.get());
+        ItemStack itemStack = new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get());
         BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, entity.getId());
         poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
         poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90.0F + (entity.tickCount + partialTicks) * 5));

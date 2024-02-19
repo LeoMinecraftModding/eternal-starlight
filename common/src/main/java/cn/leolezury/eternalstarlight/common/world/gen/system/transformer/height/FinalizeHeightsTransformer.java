@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
@@ -24,6 +24,6 @@ public class FinalizeHeightsTransformer extends DataTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.FINALIZE_HEIGHTS.get();
+        return ESDataTransformerTypes.FINALIZE_HEIGHTS.get();
     }
 }

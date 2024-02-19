@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -87,7 +87,7 @@ public abstract class EntityRenderDispatcherMixin {
                 poseStack.mulPose(Axis.XP.rotationDegrees(-pitch));
                 poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
                 poseStack.translate(-0.5F, -0.5F, -0.5F);
-                ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
+                ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
                 poseStack.popPose();
             }
             poseStack.popPose();

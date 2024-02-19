@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -28,7 +28,7 @@ public class AbysslatePatchFeature extends Feature<AbysslatePatchFeature.Configu
                 for (int z = -4; z <= 4; z++) {
                     if (ESUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
                         BlockPos placePos = pos.offset(x, y, z);
-                        if (level.getBlockState(placePos).is(BlockInit.ABYSSLATE.get())) {
+                        if (level.getBlockState(placePos).is(ESBlocks.ABYSSLATE.get())) {
                             // then replace with our block
                             if (level.getBlockState(placePos.above()).isAir() || !level.getBlockState(placePos.above()).getFluidState().isEmpty()) {
                                 if (random.nextInt(8) == 0) {

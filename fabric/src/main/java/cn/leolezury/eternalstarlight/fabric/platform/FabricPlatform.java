@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
@@ -139,8 +139,8 @@ public class FabricPlatform implements ESPlatform {
 
     @Override
     public CreativeModeTab getESTab() {
-        return FabricItemGroup.builder().title(Component.translatable("itemGroup.eternal_starlight")).icon(() -> new ItemStack(ItemInit.STARLIGHT_FLOWER.get())).displayItems((displayParameters, output) -> {
-            for (ResourceKey<Item> entry : ItemInit.REGISTERED_ITEMS) {
+        return FabricItemGroup.builder().title(Component.translatable("itemGroup.eternal_starlight")).icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).displayItems((displayParameters, output) -> {
+            for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
                 Item item = BuiltInRegistries.ITEM.get(entry);
                 if (item != null) {
                     output.accept(item);

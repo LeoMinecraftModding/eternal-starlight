@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,7 +22,7 @@ public class ESBoat extends Boat {
     }
 
     public ESBoat(Level level, double x, double y, double z) {
-        this(EntityInit.BOAT.get(), level);
+        this(ESEntities.BOAT.get(), level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;
@@ -36,11 +36,11 @@ public class ESBoat extends Boat {
     @Override
     public Item getDropItem() {
         return switch (this.getESBoatType()) {
-            case LUNAR -> ItemInit.LUNAR_BOAT.get();
-            case NORTHLAND -> ItemInit.NORTHLAND_BOAT.get();
-            case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_BOAT.get();
-            case SCARLET -> ItemInit.SCARLET_BOAT.get();
-            case TORREYA -> ItemInit.TORREYA_BOAT.get();
+            case LUNAR -> ESItems.LUNAR_BOAT.get();
+            case NORTHLAND -> ESItems.NORTHLAND_BOAT.get();
+            case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_BOAT.get();
+            case SCARLET -> ESItems.SCARLET_BOAT.get();
+            case TORREYA -> ESItems.TORREYA_BOAT.get();
         };
     }
 
@@ -67,11 +67,11 @@ public class ESBoat extends Boat {
     }
 
     public enum Type {
-        LUNAR(BlockInit.LUNAR_PLANKS.get(), "lunar"),
-        NORTHLAND(BlockInit.NORTHLAND_PLANKS.get(), "northland"),
-        STARLIGHT_MANGROVE(BlockInit.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
-        SCARLET(BlockInit.SCARLET_PLANKS.get(), "scarlet"),
-        TORREYA(BlockInit.TORREYA_PLANKS.get(), "torreya");
+        LUNAR(ESBlocks.LUNAR_PLANKS.get(), "lunar"),
+        NORTHLAND(ESBlocks.NORTHLAND_PLANKS.get(), "northland"),
+        STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
+        SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
+        TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya");
 
         private final String name;
         private final Block block;

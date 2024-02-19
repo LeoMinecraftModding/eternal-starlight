@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.beam;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
@@ -214,7 +214,7 @@ public class AbstractLaserBeam extends Entity {
     }
 
     public void doHurtTarget(LivingEntity target) {
-        if (target.hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.LASER, this, caster), 10)) {
+        if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), 10)) {
             target.setSecondsOnFire(3);
         }
     }

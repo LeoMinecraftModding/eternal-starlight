@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.AstralGolemRandomStrollNearVillageGoal;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -161,7 +161,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
                 return InteractionResult.PASS;
             } else {
                 float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
-                this.playSound(SoundEventInit.ASTRAL_GOLEM_REPAIR.get(), 1.0F, f1);
+                this.playSound(ESSoundEvents.ASTRAL_GOLEM_REPAIR.get(), 1.0F, f1);
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                     Boarwarf.setBoarwarfCredit(player, Boarwarf.getBoarwarfCredit(player) + 10);
@@ -230,7 +230,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
             this.doEnchantDamageEffects(this, target);
         }
 
-        this.playSound(SoundEventInit.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
+        this.playSound(ESSoundEvents.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
         return flag;
     }
 
@@ -258,7 +258,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     public void handleEntityEvent(byte event) {
         if (event == 4) {
             this.attackAnimationTick = 10;
-            this.playSound(SoundEventInit.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
+            this.playSound(ESSoundEvents.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
         } else {
             super.handleEntityEvent(event);
         }
@@ -280,12 +280,12 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return isDamageSourceBlocked(source) ? SoundEvents.SHIELD_BLOCK : SoundEventInit.ASTRAL_GOLEM_HURT.get();
+        return isDamageSourceBlocked(source) ? SoundEvents.SHIELD_BLOCK : ESSoundEvents.ASTRAL_GOLEM_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.ASTRAL_GOLEM_DEATH.get();
+        return ESSoundEvents.ASTRAL_GOLEM_DEATH.get();
     }
 
     public void startPersistentAngerTimer() {

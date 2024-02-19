@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:root",
+  "criteria": {
+    "challenged": {
+      "trigger": "eternal_starlight:challenged_gatekeeper"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.challenge_gatekeeper.description"
+    },
+    "icon": {
+      "item": "minecraft:diamond_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.challenge_gatekeeper.title"
+    }
+  },
+  "requirements": [
+    [
+      "challenged"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

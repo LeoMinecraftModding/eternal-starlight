@@ -13,21 +13,21 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESDataProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.CONFIGURED_CARVER, ConfiguredWorldCarverInit::bootstrap)
-            .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureInit::bootstrap)
-            .add(Registries.PLACED_FEATURE, PlacedFeatureInit::bootstrap)
-            .add(Registries.BIOME, BiomeInit::bootstrap)
-            .add(Registries.NOISE_SETTINGS, DimensionInit::bootstrapNoiseSettings)
-            .add(Registries.DIMENSION_TYPE, DimensionInit::bootstrapDimType)
-            .add(Registries.LEVEL_STEM, DimensionInit::bootstrapLevelStem)
-            .add(Registries.DAMAGE_TYPE, DamageTypeInit::bootstrap)
-            .add(Registries.TRIM_MATERIAL, TrimMaterialInit::bootstrap)
+            .add(Registries.CONFIGURED_CARVER, ESConfiguredWorldCarvers::bootstrap)
+            .add(Registries.CONFIGURED_FEATURE, ESConfiguredFeatures::bootstrap)
+            .add(Registries.PLACED_FEATURE, ESPlacedFeatures::bootstrap)
+            .add(Registries.BIOME, ESBiomes::bootstrap)
+            .add(Registries.NOISE_SETTINGS, ESDimensions::bootstrapNoiseSettings)
+            .add(Registries.DIMENSION_TYPE, ESDimensions::bootstrapDimType)
+            .add(Registries.LEVEL_STEM, ESDimensions::bootstrapLevelStem)
+            .add(Registries.DAMAGE_TYPE, ESDamageTypes::bootstrap)
+            .add(Registries.TRIM_MATERIAL, ESTrimMaterials::bootstrap)
             // custom
-            .add(ESRegistries.BIOME_DATA, BiomeDataInit::bootstrap)
-            .add(ESRegistries.DATA_TRANSFORMER, DataTransformerInit::bootstrap)
-            .add(ESRegistries.BOARWARF_TYPE, BoarwarfTypeInit::bootstrap)
-            .add(ESRegistries.ASTRAL_GOLEM_MATERIAL, AstralGolemMaterialInit::bootstrap)
-            .add(ESRegistries.CREST, CrestInit::bootstrap);
+            .add(ESRegistries.BIOME_DATA, ESBiomeDatas::bootstrap)
+            .add(ESRegistries.DATA_TRANSFORMER, ESDataTransformers::bootstrap)
+            .add(ESRegistries.BOARWARF_TYPE, ESBoarwarfTypes::bootstrap)
+            .add(ESRegistries.ASTRAL_GOLEM_MATERIAL, ESAstralGolemMaterials::bootstrap)
+            .add(ESRegistries.CREST, ESCrests::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID, "minecraft"));

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.RecipeInit;
-import cn.leolezury.eternalstarlight.common.init.RecipeSerializerInit;
+import cn.leolezury.eternalstarlight.common.init.ESRecipeSerializers;
+import cn.leolezury.eternalstarlight.common.init.ESRecipes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.RegistryAccess;
@@ -40,12 +40,12 @@ public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<Con
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.GEYSER_SMOKING.get();
+        return ESRecipeSerializers.GEYSER_SMOKING.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RecipeInit.GEYSER_SMOKING.get();
+        return ESRecipes.GEYSER_SMOKING.get();
     }
 
     public static class Type implements RecipeType<GeyserSmokingRecipe> {

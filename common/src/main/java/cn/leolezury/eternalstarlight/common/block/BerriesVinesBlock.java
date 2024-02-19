@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -43,7 +43,7 @@ public class BerriesVinesBlock extends GrowingPlantHeadBlock implements Bonemeal
     }
 
     protected Block getBodyBlock() {
-        return BlockInit.BERRIES_VINES_PLANT.get();
+        return ESBlocks.BERRIES_VINES_PLANT.get();
     }
 
     protected BlockState updateBodyAfterConvertedFromHead(BlockState state, BlockState blockState) {
@@ -55,7 +55,7 @@ public class BerriesVinesBlock extends GrowingPlantHeadBlock implements Bonemeal
     }
 
     public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
-        return new ItemStack(ItemInit.LUNAR_BERRIES.get());
+        return new ItemStack(ESItems.LUNAR_BERRIES.get());
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -37,7 +37,7 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
     }
 
     public ESChestBoat(Level level, double x, double y, double z) {
-        this(EntityInit.CHEST_BOAT.get(), level);
+        this(ESEntities.CHEST_BOAT.get(), level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;
@@ -100,11 +100,11 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
 
     public Item getDropItem() {
         return switch (this.getESBoatType()) {
-            case LUNAR -> ItemInit.LUNAR_CHEST_BOAT.get();
-            case NORTHLAND -> ItemInit.NORTHLAND_CHEST_BOAT.get();
-            case STARLIGHT_MANGROVE -> ItemInit.STARLIGHT_MANGROVE_CHEST_BOAT.get();
-            case SCARLET -> ItemInit.SCARLET_CHEST_BOAT.get();
-            case TORREYA -> ItemInit.TORREYA_CHEST_BOAT.get();
+            case LUNAR -> ESItems.LUNAR_CHEST_BOAT.get();
+            case NORTHLAND -> ESItems.NORTHLAND_CHEST_BOAT.get();
+            case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get();
+            case SCARLET -> ESItems.SCARLET_CHEST_BOAT.get();
+            case TORREYA -> ESItems.TORREYA_CHEST_BOAT.get();
         };
     }
 

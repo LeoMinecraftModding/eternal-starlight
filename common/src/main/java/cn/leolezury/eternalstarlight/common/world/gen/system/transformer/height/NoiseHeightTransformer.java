@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
@@ -27,6 +27,6 @@ public class NoiseHeightTransformer extends IterationWithCullTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.NOISE_HEIGHT.get();
+        return ESDataTransformerTypes.NOISE_HEIGHT.get();
     }
 }

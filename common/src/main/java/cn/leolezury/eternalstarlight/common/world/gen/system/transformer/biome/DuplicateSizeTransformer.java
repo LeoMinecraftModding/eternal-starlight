@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
@@ -23,6 +23,6 @@ public class DuplicateSizeTransformer extends DataTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.DUPLICATE.get();
+        return ESDataTransformerTypes.DUPLICATE.get();
     }
 }

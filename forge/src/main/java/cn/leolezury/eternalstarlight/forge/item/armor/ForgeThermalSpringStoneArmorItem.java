@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.item.armor;
 
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -43,9 +43,9 @@ public class ForgeThermalSpringStoneArmorItem extends ThermalSpringStoneArmorIte
                     outerModel = new ThermalSpringStoneArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ThermalSpringStoneArmorModel.OUTER_LOCATION));
                 }
 
-                if (itemStack.is(ItemInit.THERMAL_SPRINGSTONE_HELMET.get()) || itemStack.is(ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get()) || itemStack.is(ItemInit.THERMAL_SPRINGSTONE_BOOTS.get())) {
+                if (itemStack.is(ESItems.THERMAL_SPRINGSTONE_HELMET.get()) || itemStack.is(ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get()) || itemStack.is(ESItems.THERMAL_SPRINGSTONE_BOOTS.get())) {
                     return outerModel;
-                } else if (itemStack.is(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get())) {
+                } else if (itemStack.is(ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get())) {
                     return innerModel;
                 }
 

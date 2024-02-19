@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
-import cn.leolezury.eternalstarlight.common.init.RecipeSerializerInit;
+import cn.leolezury.eternalstarlight.common.init.ESRecipeSerializers;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
@@ -46,7 +46,7 @@ public class ManaCrystalRecipe extends CustomRecipe {
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializerInit.MANA_CRYSTAL.get();
+        return ESRecipeSerializers.MANA_CRYSTAL.get();
     }
 
     public static class Serializer implements RecipeSerializer<ManaCrystalRecipe> {

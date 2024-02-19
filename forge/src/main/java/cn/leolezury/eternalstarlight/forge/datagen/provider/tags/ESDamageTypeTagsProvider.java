@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -20,25 +20,25 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
         tag(DamageTypeTags.BYPASSES_ARMOR).add(
-                DamageTypeInit.ETHER,
-                DamageTypeInit.CRYSTALLINE_INFECTION,
-                DamageTypeInit.POISON
+                ESDamageTypes.ETHER,
+                ESDamageTypes.CRYSTALLINE_INFECTION,
+                ESDamageTypes.POISON
         );
         tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(
-                DamageTypeInit.ETHER,
-                DamageTypeInit.CRYSTALLINE_INFECTION,
-                DamageTypeInit.POISON
+                ESDamageTypes.ETHER,
+                ESDamageTypes.CRYSTALLINE_INFECTION,
+                ESDamageTypes.POISON
         );
         tag(DamageTypeTags.BYPASSES_SHIELD).add(
-                DamageTypeInit.ETHER,
-                DamageTypeInit.CRYSTALLINE_INFECTION,
-                DamageTypeInit.POISON
+                ESDamageTypes.ETHER,
+                ESDamageTypes.CRYSTALLINE_INFECTION,
+                ESDamageTypes.POISON
         );
         tag(DamageTypeTags.NO_IMPACT).add(
-                DamageTypeInit.POISON
+                ESDamageTypes.POISON
         );
         tag(DamageTypeTags.IS_PROJECTILE).add(
-                DamageTypeInit.SHATTERED_BLADE
+                ESDamageTypes.SHATTERED_BLADE
         );
     }
 }

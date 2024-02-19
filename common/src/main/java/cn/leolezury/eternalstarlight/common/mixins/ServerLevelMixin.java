@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.util.WeatherUtil;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
@@ -24,7 +24,7 @@ public abstract class ServerLevelMixin {
 
     @Inject(method = "tickPrecipitation", at = @At("RETURN"))
     private void es_tickPrecipitation(BlockPos blockPos, CallbackInfo ci) {
-        if (((ServerLevel) (Object) this).dimension() == DimensionInit.STARLIGHT_KEY) {
+        if (((ServerLevel) (Object) this).dimension() == ESDimensions.STARLIGHT_KEY) {
             WeatherUtil.getOrCreateWeathers(((ServerLevel) (Object) this)).getActiveWeather().ifPresent((instance) -> {
                 instance.getWeather().tickBlock(((ServerLevel) (Object) this), instance.ticksSinceStarted, blockPos);
             });

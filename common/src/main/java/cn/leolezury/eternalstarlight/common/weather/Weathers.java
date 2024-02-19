@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.init.WeatherInit;
+import cn.leolezury.eternalstarlight.common.init.ESWeathers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -16,7 +16,7 @@ public class Weathers extends SavedData {
 
     public Weathers(ServerLevel serverLevel) {
         this.serverLevel = serverLevel;
-        WeatherInit.WEATHERS.registry().forEach(weather -> {
+        ESWeathers.WEATHERS.registry().forEach(weather -> {
             WeatherInstance instance = new WeatherInstance(serverLevel, weather);
             weathers.add(instance);
         });
@@ -79,9 +79,9 @@ public class Weathers extends SavedData {
         Weathers weathersData = new Weathers(serverLevel);
         if (compoundTag.contains("Weathers", CompoundTag.TAG_COMPOUND)) {
             CompoundTag weathersTag = compoundTag.getCompound("Weathers");
-            WeatherInit.WEATHERS.registry().forEach(weather -> {
+            ESWeathers.WEATHERS.registry().forEach(weather -> {
                 WeatherInstance instance = new WeatherInstance(serverLevel, weather);
-                String id = Objects.requireNonNull(WeatherInit.WEATHERS.registry().getKey(weather)).toString();
+                String id = Objects.requireNonNull(ESWeathers.WEATHERS.registry().getKey(weather)).toString();
                 if (weathersTag.contains(id, CompoundTag.TAG_COMPOUND)) {
                     instance.load(weathersTag.getCompound(id));
                 }
@@ -95,7 +95,7 @@ public class Weathers extends SavedData {
     public CompoundTag save(CompoundTag compoundTag) {
         CompoundTag weathersTag = new CompoundTag();
         for (WeatherInstance instance : weathers) {
-            String id = Objects.requireNonNull(WeatherInit.WEATHERS.registry().getKey(instance.getWeather())).toString();
+            String id = Objects.requireNonNull(ESWeathers.WEATHERS.registry().getKey(instance.getWeather())).toString();
             CompoundTag weatherTag = new CompoundTag();
             instance.save(weatherTag);
             weathersTag.put(id, weatherTag);

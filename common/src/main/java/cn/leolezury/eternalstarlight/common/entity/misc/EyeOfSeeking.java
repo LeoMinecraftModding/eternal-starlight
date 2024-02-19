@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -31,12 +31,12 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
     }
 
     public EyeOfSeeking(Level p_36960_, double p_36961_, double p_36962_, double p_36963_) {
-        this(EntityInit.EYE_OF_SEEKING.get(), p_36960_);
+        this(ESEntities.EYE_OF_SEEKING.get(), p_36960_);
         this.setPos(p_36961_, p_36962_, p_36963_);
     }
 
     public void setItem(ItemStack p_36973_) {
-        if (!p_36973_.is(ItemInit.SEEKING_EYE.get()) || p_36973_.hasTag()) {
+        if (!p_36973_.is(ESItems.SEEKING_EYE.get()) || p_36973_.hasTag()) {
             this.getEntityData().set(DATA_ITEM_STACK, Util.make(p_36973_.copy(), (p_36978_) -> {
                 p_36978_.setCount(1);
             }));
@@ -49,7 +49,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
     public ItemStack getItem() {
         ItemStack itemstack = this.getItemRaw();
-        return itemstack.isEmpty() ? new ItemStack(ItemInit.SEEKING_EYE.get()) : itemstack;
+        return itemstack.isEmpty() ? new ItemStack(ESItems.SEEKING_EYE.get()) : itemstack;
     }
 
     protected void defineSynchedData() {
@@ -149,7 +149,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
             this.setPos(d0, d1, d2);
             ++this.life;
             if (this.life > 80 && !this.level().isClientSide) {
-                this.playSound(SoundEventInit.SEEKING_EYE_DEATH.get(), 1.0F, 1.0F);
+                this.playSound(ESSoundEvents.SEEKING_EYE_DEATH.get(), 1.0F, 1.0F);
                 this.discard();
                 this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), this.getItem()));
             }

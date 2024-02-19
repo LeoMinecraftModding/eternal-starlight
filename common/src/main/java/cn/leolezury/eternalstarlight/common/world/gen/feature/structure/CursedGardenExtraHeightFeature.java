@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.structure;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESFeature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -30,7 +30,7 @@ public class CursedGardenExtraHeightFeature extends ESFeature<NoneFeatureConfigu
                 if (x <= -4 || x >= 4 || z <= -4 || z >= 4) {
                     int height = baseHeight + random.nextInt(5);
                     for (int y = 0; y <= height; y++) {
-                        setBlockIfEmpty(worldGenLevel, origin.offset(x, y, z), BlockInit.GRIMSTONE_BRICKS.get().defaultBlockState(), ignored);
+                        setBlockIfEmpty(worldGenLevel, origin.offset(x, y, z), ESBlocks.GRIMSTONE_BRICKS.get().defaultBlockState(), ignored);
                     }
                 }
             }

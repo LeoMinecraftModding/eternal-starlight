@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.fabric.item.armor;
 
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -75,9 +75,9 @@ public class FabricThermalSpringStoneArmorItem extends ThermalSpringStoneArmorIt
 
             ThermalSpringStoneArmorModel<LivingEntity> armorModel;
 
-            if (itemStack.is(ItemInit.THERMAL_SPRINGSTONE_HELMET.get()) || itemStack.is(ItemInit.THERMAL_SPRINGSTONE_CHESTPLATE.get()) || itemStack.is(ItemInit.THERMAL_SPRINGSTONE_BOOTS.get())) {
+            if (itemStack.is(ESItems.THERMAL_SPRINGSTONE_HELMET.get()) || itemStack.is(ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get()) || itemStack.is(ESItems.THERMAL_SPRINGSTONE_BOOTS.get())) {
                 armorModel = outerModel;
-            } else if (itemStack.is(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get())) {
+            } else if (itemStack.is(ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get())) {
                 armorModel = innerModel;
             } else return;
 

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +32,7 @@ public class ESFallingBlock extends Entity {
     }
 
     public ESFallingBlock(Level p_31953_, double p_31954_, double p_31955_, double p_31956_, BlockState p_31957_, int duration) {
-        this(EntityInit.FALLING_BLOCK.get(), p_31953_);
+        this(ESEntities.FALLING_BLOCK.get(), p_31953_);
         setBlock(p_31957_);
         setPos(p_31954_, p_31955_ + ((1.0F - getBbHeight()) / 2.0F), p_31956_);
         setDeltaMovement(Vec3.ZERO);

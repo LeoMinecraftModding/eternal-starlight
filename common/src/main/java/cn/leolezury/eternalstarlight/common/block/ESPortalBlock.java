@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
-import cn.leolezury.eternalstarlight.common.init.BlockEntityInit;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
@@ -63,7 +63,7 @@ public class ESPortalBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, BlockEntityInit.STARLIGHT_PORTAL.get(), ESPortalBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalBlockEntity::tick);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class ESPortalBlock extends BaseEntityBlock {
                 }
                 Level entityWorld = entity.level();
                 MinecraftServer minecraftserver = entityWorld.getServer();
-                ResourceKey<Level> destination = entity.level().dimension() == DimensionInit.STARLIGHT_KEY
-                        ? Level.OVERWORLD : DimensionInit.STARLIGHT_KEY;
+                ResourceKey<Level> destination = entity.level().dimension() == ESDimensions.STARLIGHT_KEY
+                        ? Level.OVERWORLD : ESDimensions.STARLIGHT_KEY;
                 if (minecraftserver != null) {
                     ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                     if (destinationWorld != null && !entity.isPassenger()) {
@@ -227,13 +227,13 @@ public class ESPortalBlock extends BaseEntityBlock {
             }
         }
         for (BlockPos blockPos : framePositions) {
-            level.setBlock(blockPos.offset(bottomPos), BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            level.setBlock(blockPos.offset(bottomPos), BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            level.setBlock(blockPos.offset(bottomPos), BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
         }
         return true;
     }
@@ -283,7 +283,7 @@ public class ESPortalBlock extends BaseEntityBlock {
                     List<BlockPos> offsetFrames = framePositions.stream().map(pos -> pos.offset(offset)).toList();
                     List<BlockPos> offsetHollows = hollowPositions.stream().map(pos -> pos.offset(offset)).toList();
                     boolean correctFrames = validateBlocks(offsetFrames, pos -> !level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS));
-                    boolean correctHollows = validateBlocks(offsetHollows, pos -> !level.getBlockState(pos).is(BlockInit.STARLIGHT_PORTAL.get()) && !level.getBlockState(pos).isAir());
+                    boolean correctHollows = validateBlocks(offsetHollows, pos -> !level.getBlockState(pos).is(ESBlocks.STARLIGHT_PORTAL.get()) && !level.getBlockState(pos).isAir());
                     if (correctFrames && correctHollows) {
                         frames.addAll(offsetFrames);
                         hollows.addAll(offsetHollows);
@@ -312,13 +312,13 @@ public class ESPortalBlock extends BaseEntityBlock {
 
         public void fillPortal() {
             for (BlockPos blockPos : frames) {
-                level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+                level.setBlock(blockPos, ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
             }
             for (BlockPos blockPos : hollows) {
-                level.setBlock(blockPos, BlockInit.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+                level.setBlock(blockPos, ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
             }
             for (BlockPos blockPos : hollows) {
-                level.setBlock(blockPos, BlockInit.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.equals(center)).setValue(SIZE, portalSize), 3);
+                level.setBlock(blockPos, ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.equals(center)).setValue(SIZE, portalSize), 3);
             }
         }
     }

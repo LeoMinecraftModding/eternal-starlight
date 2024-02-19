@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -145,7 +145,7 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean isPlayer) {
         super.dropCustomDeathLoot(source, lootingLevel, isPlayer);
-        ItemStack lootBag = new ItemStack(ItemInit.LOOT_BAG.get());
+        ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
         lootBag.getOrCreateTag().putString("LootTable", getBossLootTable().toString());
         ItemEntity item = spawnAtLocation(lootBag);
         if (item != null) {

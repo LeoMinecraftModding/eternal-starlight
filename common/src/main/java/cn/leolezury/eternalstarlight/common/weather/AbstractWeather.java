@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.init.WeatherInit;
+import cn.leolezury.eternalstarlight.common.init.ESWeathers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
@@ -34,7 +34,7 @@ public abstract class AbstractWeather {
     public abstract float modifyRainLevel(float original);
 
     public String getDescriptionId() {
-        return Util.makeDescriptionId("weather", WeatherInit.WEATHERS.registry().getKey(this));
+        return Util.makeDescriptionId("weather", ESWeathers.WEATHERS.registry().getKey(this));
     }
 
     public Component getDescription() {

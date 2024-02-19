@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
@@ -45,7 +45,7 @@ public abstract class ItemInHandRendererMixin {
             float m;
             float n;
             float o;
-            if (itemStack.is(ItemInit.CRYSTAL_CROSSBOW.get())) {
+            if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
                 bl2 = CrossbowItem.isCharged(itemStack);
                 boolean bl3 = humanoidArm == HumanoidArm.RIGHT;
                 int k = bl3 ? 1 : -1;

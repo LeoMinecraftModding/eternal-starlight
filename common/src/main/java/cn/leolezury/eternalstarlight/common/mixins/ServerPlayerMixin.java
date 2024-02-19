@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.util.CrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
@@ -27,13 +27,13 @@ public abstract class ServerPlayerMixin {
         Inventory inventory = ((Player) (Object) this).getInventory();
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             ItemStack item = inventory.getItem(i);
-            if (item.is(ItemInit.ORB_OF_PROPHECY.get()) && !CrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
+            if (item.is(ESItems.ORB_OF_PROPHECY.get()) && !CrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
                 CompoundTag tag = ESUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
                 OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), item, tag);
                 return;
             }
         }
-        ItemStack itemStack = ItemInit.ORB_OF_PROPHECY.get().getDefaultInstance();
+        ItemStack itemStack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
         if (!CrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
             CompoundTag tag = ESUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
             OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), itemStack, tag);

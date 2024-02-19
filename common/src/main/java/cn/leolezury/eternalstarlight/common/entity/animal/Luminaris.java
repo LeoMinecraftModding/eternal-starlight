@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.animal;
 
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.ChargeAttackGoal;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -127,23 +127,23 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEventInit.LUMINARIS_HURT.get();
+        return ESSoundEvents.LUMINARIS_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.LUMINARIS_DEATH.get();
+        return ESSoundEvents.LUMINARIS_DEATH.get();
     }
 
     @Override
     protected SoundEvent getFlopSound() {
-        return SoundEventInit.LUMINARIS_FLOP.get();
+        return ESSoundEvents.LUMINARIS_FLOP.get();
     }
 
     @Override
     public ItemStack getBucketItemStack() {
-        return ItemInit.LUMINARIS_BUCKET.get().getDefaultInstance();
+        return ESItems.LUMINARIS_BUCKET.get().getDefaultInstance();
     }
 
     public static boolean checkAbyssalWaterAnimalSpawnRules(EntityType<? extends WaterAnimal> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {

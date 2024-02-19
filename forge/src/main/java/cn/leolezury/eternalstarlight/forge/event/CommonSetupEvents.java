@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.forge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.forge.init.FluidTypeInit;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.Registry;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        FluidInteractionRegistry.addInteraction(FluidTypeInit.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(BlockInit.ETHER.get()), Blocks.QUARTZ_BLOCK.defaultBlockState()));
+        FluidInteractionRegistry.addInteraction(FluidTypeInit.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), Blocks.QUARTZ_BLOCK.defaultBlockState()));
     }
 
     @SubscribeEvent

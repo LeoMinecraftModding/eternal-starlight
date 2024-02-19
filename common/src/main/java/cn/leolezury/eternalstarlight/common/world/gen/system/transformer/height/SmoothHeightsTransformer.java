@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;
@@ -32,6 +32,6 @@ public class SmoothHeightsTransformer extends IterationWithCullTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.SMOOTH_HEIGHTS.get();
+        return ESDataTransformerTypes.SMOOTH_HEIGHTS.get();
     }
 }

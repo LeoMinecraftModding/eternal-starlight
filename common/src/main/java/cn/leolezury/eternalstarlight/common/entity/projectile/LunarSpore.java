@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -29,7 +29,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
     }
 
     public LunarSpore(Level level, LivingEntity entity, double x, double y, double z) {
-        super(EntityInit.LUNAR_SPORE.get(), entity, x, y, z, level);
+        super(ESEntities.LUNAR_SPORE.get(), entity, x, y, z, level);
     }
 
     protected float getSoundVolume() {
@@ -41,7 +41,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
     }
 
     protected ParticleOptions getTrailParticle() {
-        return ParticleInit.POISON.get();
+        return ESParticles.POISON.get();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
         if (getOwner() instanceof LivingEntity entity) {
             cloud.setOwner(entity);
         }
-        cloud.setParticle(ParticleInit.POISON.get());
+        cloud.setParticle(ESParticles.POISON.get());
         cloud.setRadius(1.5F);
         cloud.setDuration(200);
         cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
@@ -79,7 +79,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
 
         if (result.getDirection().equals(Direction.UP)) {
             for (int i = 0; i < 5; i++) {
-                LunarVine vine = EntityInit.LUNAR_VINE.get().create(level());
+                LunarVine vine = ESEntities.LUNAR_VINE.get().create(level());
                 Random random = new Random();
                 vine.setPos(position().add(random.nextDouble(), 0.2, random.nextDouble()));
                 vine.setAttackMode(0);
@@ -102,7 +102,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
         super.onHitEntity(result);
 
         if (getOwner() != null && !result.getEntity().getUUID().equals(getOwner().getUUID())) {
-            result.getEntity().hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.POISON, this, getOwner()), 5);
+            result.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
         }
 
         playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
@@ -111,7 +111,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
         if (getOwner() instanceof LivingEntity entity) {
             cloud.setOwner(entity);
         }
-        cloud.setParticle(ParticleInit.POISON.get());
+        cloud.setParticle(ESParticles.POISON.get());
         cloud.setRadius(1.5F);
         cloud.setDuration(200);
         cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));

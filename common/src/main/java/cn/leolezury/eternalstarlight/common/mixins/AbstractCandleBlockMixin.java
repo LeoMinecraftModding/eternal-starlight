@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -27,7 +27,7 @@ public abstract class AbstractCandleBlockMixin {
 
     @Inject(method = "animateTick", at = @At("HEAD"), cancellable = true)
     private void es_animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource, CallbackInfo ci) {
-        if ((Object) this == BlockInit.AMARAMBER_CANDLE.get()) {
+        if ((Object) this == ESBlocks.AMARAMBER_CANDLE.get()) {
             if (blockState.getValue(LIT)) {
                 this.getParticleOffsets(blockState).forEach((vec3) -> {
                     Vec3 pos = vec3.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
@@ -39,7 +39,7 @@ public abstract class AbstractCandleBlockMixin {
                         }
                     }
 
-                    level.addParticle(ParticleInit.AMARAMBER_FLAME.get(), pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
+                    level.addParticle(ESParticles.AMARAMBER_FLAME.get(), pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
                 });
             }
             ci.cancel();

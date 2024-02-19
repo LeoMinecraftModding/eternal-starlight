@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +28,7 @@ public class ScarletLeavesBlock extends LeavesBlock {
             BlockPos blockPos2 = blockPos.below();
             BlockState blockState2 = level.getBlockState(blockPos2);
             if (!isFaceFull(blockState2.getCollisionShape(level, blockPos2), Direction.UP)) {
-                ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, ParticleInit.SCARLET_LEAVES.get());
+                ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, ESParticles.SCARLET_LEAVES.get());
             }
         }
     }

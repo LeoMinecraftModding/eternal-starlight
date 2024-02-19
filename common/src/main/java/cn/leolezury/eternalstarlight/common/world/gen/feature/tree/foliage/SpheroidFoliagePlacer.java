@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
-import cn.leolezury.eternalstarlight.common.init.PlacerInit;
+import cn.leolezury.eternalstarlight.common.init.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -28,7 +28,7 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<SpheroidFoliagePlacer> type() {
-        return PlacerInit.FOLIAGE_SPHEROID.get();
+        return ESPlacers.FOLIAGE_SPHEROID.get();
     }
 
     public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -8,13 +8,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ESItemTiers implements Tier {
-    AMARAMBER(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ItemInit.AMARAMBER_INGOT.get())),
-    AETHERSENT(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ItemInit.AETHERSENT_INGOT.get())),
-    THERMAL_SPRINGSTONE(2, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get())),
-    SWAMP_SILVER(3, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get())),
-    DOOMEDEN(3, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ItemInit.BROKEN_DOOMEDEN_BONE.get())),
-    PETAL(3, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ItemInit.TENACIOUS_PETAL.get())),
-    AURORA_DEER_ANTLER(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get()));
+    AMARAMBER(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get())),
+    AETHERSENT(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.AETHERSENT_INGOT.get())),
+    THERMAL_SPRINGSTONE(2, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
+    SWAMP_SILVER(3, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get())),
+    DOOMEDEN(3, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ESItems.BROKEN_DOOMEDEN_BONE.get())),
+    PETAL(3, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get())),
+    AURORA_DEER_ANTLER(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get()));
 
     private final int level;
     private final int uses;

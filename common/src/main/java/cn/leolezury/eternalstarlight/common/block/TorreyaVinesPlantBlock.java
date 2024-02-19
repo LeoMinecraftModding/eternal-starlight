@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,7 +31,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) BlockInit.TORREYA_VINES.get();
+        return (GrowingPlantHeadBlock) ESBlocks.TORREYA_VINES.get();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return new ItemStack(ItemInit.TORREYA_VINES.get());
+        return new ItemStack(ESItems.TORREYA_VINES.get());
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

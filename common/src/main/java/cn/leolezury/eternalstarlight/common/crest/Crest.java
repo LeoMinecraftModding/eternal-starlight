@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.crest;
 
-import cn.leolezury.eternalstarlight.common.init.SpellInit;
+import cn.leolezury.eternalstarlight.common.init.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import com.mojang.serialization.Codec;
@@ -21,7 +21,7 @@ public record Crest(ManaType type, ResourceLocation texture, Optional<AbstractSp
     public static final Codec<Crest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ManaType.CODEC.fieldOf("type").forGetter(Crest::type),
             ResourceLocation.CODEC.fieldOf("texture").forGetter(Crest::texture),
-            SpellInit.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
+            ESSpells.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
             MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects)
     ).apply(instance, Crest::new));
 

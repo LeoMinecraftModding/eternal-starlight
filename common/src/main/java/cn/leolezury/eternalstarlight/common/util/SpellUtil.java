@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
-import cn.leolezury.eternalstarlight.common.init.SpellInit;
+import cn.leolezury.eternalstarlight.common.init.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -37,7 +37,7 @@ public class SpellUtil {
     }
 
     public static int getCoolDownFor(LivingEntity entity, AbstractSpell spell) {
-        String id = Objects.requireNonNull(SpellInit.SPELLS.registry().getKey(spell)).toString();
+        String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
         if (!ESUtil.getPersistentData(entity).contains("SpellCoolDowns", Tag.TAG_COMPOUND)) {
             ESUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
         }
@@ -46,7 +46,7 @@ public class SpellUtil {
     }
 
     public static void setCoolDownFor(LivingEntity entity, AbstractSpell spell, int coolDown) {
-        String id = Objects.requireNonNull(SpellInit.SPELLS.registry().getKey(spell)).toString();
+        String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
         if (!ESUtil.getPersistentData(entity).contains("SpellCoolDowns", Tag.TAG_COMPOUND)) {
             ESUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
         }
@@ -59,8 +59,8 @@ public class SpellUtil {
             ESUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
         }
         CompoundTag spellCoolDowns = ESUtil.getPersistentData(entity).getCompound("SpellCoolDowns");
-        SpellInit.SPELLS.registry().forEach((spell -> {
-            String id = Objects.requireNonNull(SpellInit.SPELLS.registry().getKey(spell)).toString();
+        ESSpells.SPELLS.registry().forEach((spell -> {
+            String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
             if (spellCoolDowns.getInt(id) > 0) {
                 spellCoolDowns.putInt(id, spellCoolDowns.getInt(id) - 1);
             }

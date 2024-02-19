@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
@@ -50,6 +50,6 @@ public class AssimilateBiomesTransformer extends NeighborsRelatedTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.ASSIMILATE.get();
+        return ESDataTransformerTypes.ASSIMILATE.get();
     }
 }

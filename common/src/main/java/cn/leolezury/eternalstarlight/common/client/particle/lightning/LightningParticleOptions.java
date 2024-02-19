@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.lightning;
 
 
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
@@ -43,7 +43,7 @@ public class LightningParticleOptions implements ParticleOptions {
     }
 
     public ParticleType<LightningParticleOptions> getType() {
-        return ParticleInit.LIGHTNING.get();
+        return ESParticles.LIGHTNING.get();
     }
 
     public static Vector3f readVector3f(StringReader reader) throws CommandSyntaxException {

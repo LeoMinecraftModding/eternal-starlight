@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -22,101 +22,101 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider lookupProvider) {
         // mod tags
         tag(ESTags.Blocks.LUNAR_LOGS).add(
-                BlockInit.LUNAR_LOG.get(),
-                BlockInit.LUNAR_WOOD.get(),
-                BlockInit.STRIPPED_LUNAR_LOG.get(),
-                BlockInit.DEAD_LUNAR_LOG.get(),
-                BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get(),
-                BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get()
+                ESBlocks.LUNAR_LOG.get(),
+                ESBlocks.LUNAR_WOOD.get(),
+                ESBlocks.STRIPPED_LUNAR_LOG.get(),
+                ESBlocks.DEAD_LUNAR_LOG.get(),
+                ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get(),
+                ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get()
         );
         tag(ESTags.Blocks.NORTHLAND_LOGS).add(
-                BlockInit.NORTHLAND_LOG.get(),
-                BlockInit.NORTHLAND_WOOD.get(),
-                BlockInit.STRIPPED_NORTHLAND_LOG.get(),
-                BlockInit.STRIPPED_NORTHLAND_WOOD.get()
+                ESBlocks.NORTHLAND_LOG.get(),
+                ESBlocks.NORTHLAND_WOOD.get(),
+                ESBlocks.STRIPPED_NORTHLAND_LOG.get(),
+                ESBlocks.STRIPPED_NORTHLAND_WOOD.get()
         );
         tag(ESTags.Blocks.STARLIGHT_MANGROVE_LOGS).add(
-                BlockInit.STARLIGHT_MANGROVE_LOG.get(),
-                BlockInit.STARLIGHT_MANGROVE_WOOD.get(),
-                BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get(),
-                BlockInit.STRIPPED_STARLIGHT_MANGROVE_WOOD.get()
+                ESBlocks.STARLIGHT_MANGROVE_LOG.get(),
+                ESBlocks.STARLIGHT_MANGROVE_WOOD.get(),
+                ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get(),
+                ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get()
         );
         tag(ESTags.Blocks.SCARLET_LOGS).add(
-                BlockInit.SCARLET_LOG.get(),
-                BlockInit.SCARLET_WOOD.get(),
-                BlockInit.STRIPPED_SCARLET_LOG.get(),
-                BlockInit.STRIPPED_SCARLET_WOOD.get()
+                ESBlocks.SCARLET_LOG.get(),
+                ESBlocks.SCARLET_WOOD.get(),
+                ESBlocks.STRIPPED_SCARLET_LOG.get(),
+                ESBlocks.STRIPPED_SCARLET_WOOD.get()
         );
         tag(ESTags.Blocks.TORREYA_LOGS).add(
-                BlockInit.TORREYA_LOG.get(),
-                BlockInit.TORREYA_WOOD.get(),
-                BlockInit.STRIPPED_TORREYA_LOG.get(),
-                BlockInit.STRIPPED_TORREYA_WOOD.get()
+                ESBlocks.TORREYA_LOG.get(),
+                ESBlocks.TORREYA_WOOD.get(),
+                ESBlocks.STRIPPED_TORREYA_LOG.get(),
+                ESBlocks.STRIPPED_TORREYA_WOOD.get()
         );
         tag(ESTags.Blocks.PORTAL_FRAME_BLOCKS).add(
-                BlockInit.CHISELED_VOIDSTONE.get()
+                ESBlocks.CHISELED_VOIDSTONE.get()
         );
         tag(ESTags.Blocks.BASE_STONE_STARLIGHT).add(
-                BlockInit.GRIMSTONE.get(),
-                BlockInit.VOIDSTONE.get(),
+                ESBlocks.GRIMSTONE.get(),
+                ESBlocks.VOIDSTONE.get(),
                 Blocks.STONE,
                 Blocks.DEEPSLATE
         );
         tag(ESTags.Blocks.CORAL_PLANTS).add(
-                BlockInit.TENTACLES_CORAL.get(),
-                BlockInit.GOLDEN_CORAL.get(),
-                BlockInit.CRYSTALLUM_CORAL.get()
+                ESBlocks.TENTACLES_CORAL.get(),
+                ESBlocks.GOLDEN_CORAL.get(),
+                ESBlocks.CRYSTALLUM_CORAL.get()
         );
         tag(ESTags.Blocks.CORALS).addTag(ESTags.Blocks.CORAL_PLANTS).add(
-                BlockInit.TENTACLES_CORAL_FAN.get(),
-                BlockInit.GOLDEN_CORAL_FAN.get(),
-                BlockInit.CRYSTALLUM_CORAL_FAN.get()
+                ESBlocks.TENTACLES_CORAL_FAN.get(),
+                ESBlocks.GOLDEN_CORAL_FAN.get(),
+                ESBlocks.CRYSTALLUM_CORAL_FAN.get()
         );
         tag(ESTags.Blocks.WALL_CORALS).add(
-                BlockInit.TENTACLES_CORAL_WALL_FAN.get(),
-                BlockInit.GOLDEN_CORAL_WALL_FAN.get(),
-                BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get()
+                ESBlocks.TENTACLES_CORAL_WALL_FAN.get(),
+                ESBlocks.GOLDEN_CORAL_WALL_FAN.get(),
+                ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get()
         );
         tag(ESTags.Blocks.CORAL_BLOCKS).add(
-                BlockInit.TENTACLES_CORAL_BLOCK.get(),
-                BlockInit.GOLDEN_CORAL_BLOCK.get(),
-                BlockInit.CRYSTALLUM_CORAL_BLOCK.get()
+                ESBlocks.TENTACLES_CORAL_BLOCK.get(),
+                ESBlocks.GOLDEN_CORAL_BLOCK.get(),
+                ESBlocks.CRYSTALLUM_CORAL_BLOCK.get()
         );
         tag(ESTags.Blocks.YETI_FUR).add(
-                BlockInit.WHITE_YETI_FUR.get(),
-                BlockInit.ORANGE_YETI_FUR.get(),
-                BlockInit.MAGENTA_YETI_FUR.get(),
-                BlockInit.LIGHT_BLUE_YETI_FUR.get(),
-                BlockInit.YELLOW_YETI_FUR.get(),
-                BlockInit.LIME_YETI_FUR.get(),
-                BlockInit.PINK_YETI_FUR.get(),
-                BlockInit.GRAY_YETI_FUR.get(),
-                BlockInit.LIGHT_GRAY_YETI_FUR.get(),
-                BlockInit.CYAN_YETI_FUR.get(),
-                BlockInit.PURPLE_YETI_FUR.get(),
-                BlockInit.BLUE_YETI_FUR.get(),
-                BlockInit.BROWN_YETI_FUR.get(),
-                BlockInit.GREEN_YETI_FUR.get(),
-                BlockInit.RED_YETI_FUR.get(),
-                BlockInit.BLACK_YETI_FUR.get()
+                ESBlocks.WHITE_YETI_FUR.get(),
+                ESBlocks.ORANGE_YETI_FUR.get(),
+                ESBlocks.MAGENTA_YETI_FUR.get(),
+                ESBlocks.LIGHT_BLUE_YETI_FUR.get(),
+                ESBlocks.YELLOW_YETI_FUR.get(),
+                ESBlocks.LIME_YETI_FUR.get(),
+                ESBlocks.PINK_YETI_FUR.get(),
+                ESBlocks.GRAY_YETI_FUR.get(),
+                ESBlocks.LIGHT_GRAY_YETI_FUR.get(),
+                ESBlocks.CYAN_YETI_FUR.get(),
+                ESBlocks.PURPLE_YETI_FUR.get(),
+                ESBlocks.BLUE_YETI_FUR.get(),
+                ESBlocks.BROWN_YETI_FUR.get(),
+                ESBlocks.GREEN_YETI_FUR.get(),
+                ESBlocks.RED_YETI_FUR.get(),
+                ESBlocks.BLACK_YETI_FUR.get()
         );
         tag(ESTags.Blocks.YETI_FUR_CARPETS).add(
-                BlockInit.WHITE_YETI_FUR_CARPET.get(),
-                BlockInit.ORANGE_YETI_FUR_CARPET.get(),
-                BlockInit.MAGENTA_YETI_FUR_CARPET.get(),
-                BlockInit.LIGHT_BLUE_YETI_FUR_CARPET.get(),
-                BlockInit.YELLOW_YETI_FUR_CARPET.get(),
-                BlockInit.LIME_YETI_FUR_CARPET.get(),
-                BlockInit.PINK_YETI_FUR_CARPET.get(),
-                BlockInit.GRAY_YETI_FUR_CARPET.get(),
-                BlockInit.LIGHT_GRAY_YETI_FUR_CARPET.get(),
-                BlockInit.CYAN_YETI_FUR_CARPET.get(),
-                BlockInit.PURPLE_YETI_FUR_CARPET.get(),
-                BlockInit.BLUE_YETI_FUR_CARPET.get(),
-                BlockInit.BROWN_YETI_FUR_CARPET.get(),
-                BlockInit.GREEN_YETI_FUR_CARPET.get(),
-                BlockInit.RED_YETI_FUR_CARPET.get(),
-                BlockInit.BLACK_YETI_FUR_CARPET.get()
+                ESBlocks.WHITE_YETI_FUR_CARPET.get(),
+                ESBlocks.ORANGE_YETI_FUR_CARPET.get(),
+                ESBlocks.MAGENTA_YETI_FUR_CARPET.get(),
+                ESBlocks.LIGHT_BLUE_YETI_FUR_CARPET.get(),
+                ESBlocks.YELLOW_YETI_FUR_CARPET.get(),
+                ESBlocks.LIME_YETI_FUR_CARPET.get(),
+                ESBlocks.PINK_YETI_FUR_CARPET.get(),
+                ESBlocks.GRAY_YETI_FUR_CARPET.get(),
+                ESBlocks.LIGHT_GRAY_YETI_FUR_CARPET.get(),
+                ESBlocks.CYAN_YETI_FUR_CARPET.get(),
+                ESBlocks.PURPLE_YETI_FUR_CARPET.get(),
+                ESBlocks.BLUE_YETI_FUR_CARPET.get(),
+                ESBlocks.BROWN_YETI_FUR_CARPET.get(),
+                ESBlocks.GREEN_YETI_FUR_CARPET.get(),
+                ESBlocks.RED_YETI_FUR_CARPET.get(),
+                ESBlocks.BLACK_YETI_FUR_CARPET.get()
         );
         // mc tags
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
@@ -135,448 +135,448 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESTags.Blocks.TORREYA_LOGS
         );
         tag(BlockTags.SAPLINGS).add(
-                BlockInit.LUNAR_SAPLING.get(),
-                BlockInit.NORTHLAND_SAPLING.get(),
-                BlockInit.STARLIGHT_MANGROVE_SAPLING.get(),
-                BlockInit.SCARLET_SAPLING.get(),
-                BlockInit.TORREYA_SAPLING.get()
+                ESBlocks.LUNAR_SAPLING.get(),
+                ESBlocks.NORTHLAND_SAPLING.get(),
+                ESBlocks.STARLIGHT_MANGROVE_SAPLING.get(),
+                ESBlocks.SCARLET_SAPLING.get(),
+                ESBlocks.TORREYA_SAPLING.get()
         );
         tag(BlockTags.LEAVES).add(
-                BlockInit.LUNAR_LEAVES.get(),
-                BlockInit.NORTHLAND_LEAVES.get(),
-                BlockInit.STARLIGHT_MANGROVE_LEAVES.get(),
-                BlockInit.SCARLET_LEAVES.get(),
-                BlockInit.TORREYA_LEAVES.get()
+                ESBlocks.LUNAR_LEAVES.get(),
+                ESBlocks.NORTHLAND_LEAVES.get(),
+                ESBlocks.STARLIGHT_MANGROVE_LEAVES.get(),
+                ESBlocks.SCARLET_LEAVES.get(),
+                ESBlocks.TORREYA_LEAVES.get()
         );
         tag(BlockTags.PLANKS).add(
-                BlockInit.LUNAR_PLANKS.get(),
-                BlockInit.NORTHLAND_PLANKS.get(),
-                BlockInit.STARLIGHT_MANGROVE_PLANKS.get(),
-                BlockInit.SCARLET_PLANKS.get(),
-                BlockInit.TORREYA_PLANKS.get()
+                ESBlocks.LUNAR_PLANKS.get(),
+                ESBlocks.NORTHLAND_PLANKS.get(),
+                ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(),
+                ESBlocks.SCARLET_PLANKS.get(),
+                ESBlocks.TORREYA_PLANKS.get()
         );
         tag(BlockTags.WOODEN_FENCES).add(
-                BlockInit.LUNAR_FENCE.get(),
-                BlockInit.NORTHLAND_FENCE.get(),
-                BlockInit.STARLIGHT_MANGROVE_FENCE.get(),
-                BlockInit.SCARLET_FENCE.get(),
-                BlockInit.TORREYA_FENCE.get(),
-                BlockInit.LUNAR_MOSAIC_FENCE.get()
+                ESBlocks.LUNAR_FENCE.get(),
+                ESBlocks.NORTHLAND_FENCE.get(),
+                ESBlocks.STARLIGHT_MANGROVE_FENCE.get(),
+                ESBlocks.SCARLET_FENCE.get(),
+                ESBlocks.TORREYA_FENCE.get(),
+                ESBlocks.LUNAR_MOSAIC_FENCE.get()
         );
         tag(BlockTags.FENCE_GATES).add(
-                BlockInit.LUNAR_FENCE_GATE.get(),
-                BlockInit.NORTHLAND_FENCE_GATE.get(),
-                BlockInit.STARLIGHT_MANGROVE_FENCE_GATE.get(),
-                BlockInit.SCARLET_FENCE_GATE.get(),
-                BlockInit.TORREYA_FENCE_GATE.get(),
-                BlockInit.LUNAR_MOSAIC_FENCE_GATE.get()
+                ESBlocks.LUNAR_FENCE_GATE.get(),
+                ESBlocks.NORTHLAND_FENCE_GATE.get(),
+                ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(),
+                ESBlocks.SCARLET_FENCE_GATE.get(),
+                ESBlocks.TORREYA_FENCE_GATE.get(),
+                ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get()
         );
         tag(BlockTags.WOODEN_SLABS).add(
-                BlockInit.LUNAR_SLAB.get(),
-                BlockInit.NORTHLAND_SLAB.get(),
-                BlockInit.STARLIGHT_MANGROVE_SLAB.get(),
-                BlockInit.SCARLET_SLAB.get(),
-                BlockInit.TORREYA_SLAB.get(),
-                BlockInit.LUNAR_MOSAIC_SLAB.get()
+                ESBlocks.LUNAR_SLAB.get(),
+                ESBlocks.NORTHLAND_SLAB.get(),
+                ESBlocks.STARLIGHT_MANGROVE_SLAB.get(),
+                ESBlocks.SCARLET_SLAB.get(),
+                ESBlocks.TORREYA_SLAB.get(),
+                ESBlocks.LUNAR_MOSAIC_SLAB.get()
         );
         tag(BlockTags.SLABS).add(
-                BlockInit.COBBLED_GRIMSTONE_SLAB.get(),
-                BlockInit.GRIMSTONE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_GRIMSTONE_SLAB.get(),
-                BlockInit.GRIMSTONE_TILE_SLAB.get(),
-                BlockInit.COBBLED_VOIDSTONE_SLAB.get(),
-                BlockInit.VOIDSTONE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_VOIDSTONE_SLAB.get(),
-                BlockInit.VOIDSTONE_TILE_SLAB.get(),
-                BlockInit.POLISHED_ABYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(),
-                BlockInit.TWILIGHT_SANDSTONE_SLAB.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
-                BlockInit.GOLEM_STEEL_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
-                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.DOOMEDEN_BRICK_SLAB.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
-                BlockInit.DOOMEDEN_TILE_SLAB.get()
+                ESBlocks.COBBLED_GRIMSTONE_SLAB.get(),
+                ESBlocks.GRIMSTONE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_GRIMSTONE_SLAB.get(),
+                ESBlocks.GRIMSTONE_TILE_SLAB.get(),
+                ESBlocks.COBBLED_VOIDSTONE_SLAB.get(),
+                ESBlocks.VOIDSTONE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_VOIDSTONE_SLAB.get(),
+                ESBlocks.VOIDSTONE_TILE_SLAB.get(),
+                ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.DOOMEDEN_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
+                ESBlocks.DOOMEDEN_TILE_SLAB.get()
         );
         tag(BlockTags.WOODEN_STAIRS).add(
-                BlockInit.LUNAR_STAIRS.get(),
-                BlockInit.NORTHLAND_STAIRS.get(),
-                BlockInit.STARLIGHT_MANGROVE_STAIRS.get(),
-                BlockInit.SCARLET_STAIRS.get(),
-                BlockInit.TORREYA_STAIRS.get(),
-                BlockInit.LUNAR_MOSAIC_STAIRS.get()
+                ESBlocks.LUNAR_STAIRS.get(),
+                ESBlocks.NORTHLAND_STAIRS.get(),
+                ESBlocks.STARLIGHT_MANGROVE_STAIRS.get(),
+                ESBlocks.SCARLET_STAIRS.get(),
+                ESBlocks.TORREYA_STAIRS.get(),
+                ESBlocks.LUNAR_MOSAIC_STAIRS.get()
         );
         tag(BlockTags.STAIRS).add(
-                BlockInit.COBBLED_GRIMSTONE_STAIRS.get(),
-                BlockInit.GRIMSTONE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_GRIMSTONE_STAIRS.get(),
-                BlockInit.GRIMSTONE_TILE_STAIRS.get(),
-                BlockInit.COBBLED_VOIDSTONE_STAIRS.get(),
-                BlockInit.VOIDSTONE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_VOIDSTONE_STAIRS.get(),
-                BlockInit.VOIDSTONE_TILE_STAIRS.get(),
-                BlockInit.POLISHED_ABYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
-                BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
-                BlockInit.GOLEM_STEEL_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
-                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.DOOMEDEN_TILE_STAIRS.get()
+                ESBlocks.COBBLED_GRIMSTONE_STAIRS.get(),
+                ESBlocks.GRIMSTONE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(),
+                ESBlocks.GRIMSTONE_TILE_STAIRS.get(),
+                ESBlocks.COBBLED_VOIDSTONE_STAIRS.get(),
+                ESBlocks.VOIDSTONE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(),
+                ESBlocks.VOIDSTONE_TILE_STAIRS.get(),
+                ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
+                ESBlocks.GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.DOOMEDEN_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
+                ESBlocks.DOOMEDEN_TILE_STAIRS.get()
         );
         tag(BlockTags.WALLS).add(
-                BlockInit.COBBLED_GRIMSTONE_WALL.get(),
-                BlockInit.GRIMSTONE_BRICK_WALL.get(),
-                BlockInit.POLISHED_GRIMSTONE_WALL.get(),
-                BlockInit.GRIMSTONE_TILE_WALL.get(),
-                BlockInit.COBBLED_VOIDSTONE_WALL.get(),
-                BlockInit.VOIDSTONE_BRICK_WALL.get(),
-                BlockInit.POLISHED_VOIDSTONE_WALL.get(),
-                BlockInit.VOIDSTONE_TILE_WALL.get(),
-                BlockInit.POLISHED_ABYSSLATE_WALL.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_WALL.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(),
-                BlockInit.TWILIGHT_SANDSTONE_WALL.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
-                BlockInit.DOOMEDEN_BRICK_WALL.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(),
-                BlockInit.DOOMEDEN_TILE_WALL.get()
+                ESBlocks.COBBLED_GRIMSTONE_WALL.get(),
+                ESBlocks.GRIMSTONE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_GRIMSTONE_WALL.get(),
+                ESBlocks.GRIMSTONE_TILE_WALL.get(),
+                ESBlocks.COBBLED_VOIDSTONE_WALL.get(),
+                ESBlocks.VOIDSTONE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_VOIDSTONE_WALL.get(),
+                ESBlocks.VOIDSTONE_TILE_WALL.get(),
+                ESBlocks.POLISHED_ABYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_WALL.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(),
+                ESBlocks.DOOMEDEN_BRICK_WALL.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(),
+                ESBlocks.DOOMEDEN_TILE_WALL.get()
         );
         tag(BlockTags.WOODEN_BUTTONS).add(
-                BlockInit.LUNAR_BUTTON.get(),
-                BlockInit.NORTHLAND_BUTTON.get(),
-                BlockInit.STARLIGHT_MANGROVE_BUTTON.get(),
-                BlockInit.SCARLET_BUTTON.get(),
-                BlockInit.TORREYA_BUTTON.get()
+                ESBlocks.LUNAR_BUTTON.get(),
+                ESBlocks.NORTHLAND_BUTTON.get(),
+                ESBlocks.STARLIGHT_MANGROVE_BUTTON.get(),
+                ESBlocks.SCARLET_BUTTON.get(),
+                ESBlocks.TORREYA_BUTTON.get()
         );
         tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
-                BlockInit.LUNAR_PRESSURE_PLATE.get(),
-                BlockInit.NORTHLAND_PRESSURE_PLATE.get(),
-                BlockInit.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(),
-                BlockInit.SCARLET_PRESSURE_PLATE.get(),
-                BlockInit.TORREYA_PRESSURE_PLATE.get()
+                ESBlocks.LUNAR_PRESSURE_PLATE.get(),
+                ESBlocks.NORTHLAND_PRESSURE_PLATE.get(),
+                ESBlocks.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(),
+                ESBlocks.SCARLET_PRESSURE_PLATE.get(),
+                ESBlocks.TORREYA_PRESSURE_PLATE.get()
         );
         tag(BlockTags.WOODEN_DOORS).add(
-                BlockInit.LUNAR_DOOR.get(),
-                BlockInit.NORTHLAND_DOOR.get(),
-                BlockInit.STARLIGHT_MANGROVE_DOOR.get(),
-                BlockInit.SCARLET_DOOR.get(),
-                BlockInit.TORREYA_DOOR.get()
+                ESBlocks.LUNAR_DOOR.get(),
+                ESBlocks.NORTHLAND_DOOR.get(),
+                ESBlocks.STARLIGHT_MANGROVE_DOOR.get(),
+                ESBlocks.SCARLET_DOOR.get(),
+                ESBlocks.TORREYA_DOOR.get()
         );
         tag(BlockTags.WOODEN_TRAPDOORS).add(
-                BlockInit.LUNAR_TRAPDOOR.get(),
-                BlockInit.NORTHLAND_TRAPDOOR.get(),
-                BlockInit.STARLIGHT_MANGROVE_TRAPDOOR.get(),
-                BlockInit.SCARLET_TRAPDOOR.get(),
-                BlockInit.TORREYA_TRAPDOOR.get()
+                ESBlocks.LUNAR_TRAPDOOR.get(),
+                ESBlocks.NORTHLAND_TRAPDOOR.get(),
+                ESBlocks.STARLIGHT_MANGROVE_TRAPDOOR.get(),
+                ESBlocks.SCARLET_TRAPDOOR.get(),
+                ESBlocks.TORREYA_TRAPDOOR.get()
         );
         tag(BlockTags.SMALL_FLOWERS).add(
-                BlockInit.STARLIGHT_FLOWER.get(),
-                BlockInit.CONEBLOOM.get(),
-                BlockInit.NIGHTFAN.get(),
-                BlockInit.PINK_ROSE.get(),
-                BlockInit.STARLIGHT_TORCHFLOWER.get(),
-                BlockInit.WHISPERBLOOM.get(),
-                BlockInit.SWAMP_ROSE.get(),
-                BlockInit.WITHERED_STARLIGHT_FLOWER.get()
+                ESBlocks.STARLIGHT_FLOWER.get(),
+                ESBlocks.CONEBLOOM.get(),
+                ESBlocks.NIGHTFAN.get(),
+                ESBlocks.PINK_ROSE.get(),
+                ESBlocks.STARLIGHT_TORCHFLOWER.get(),
+                ESBlocks.WHISPERBLOOM.get(),
+                ESBlocks.SWAMP_ROSE.get(),
+                ESBlocks.WITHERED_STARLIGHT_FLOWER.get()
         );
         tag(BlockTags.FLOWER_POTS).add(
-                BlockInit.POTTED_LUNAR_SAPLING.get(),
-                BlockInit.POTTED_NORTHLAND_SAPLING.get(),
-                BlockInit.POTTED_STARLIGHT_MANGROVE_SAPLING.get(),
-                BlockInit.POTTED_SCARLET_SAPLING.get(),
-                BlockInit.POTTED_TORREYA_SAPLING.get(),
-                BlockInit.POTTED_STARLIGHT_FLOWER.get(),
-                BlockInit.POTTED_SWAMP_ROSE.get()
+                ESBlocks.POTTED_LUNAR_SAPLING.get(),
+                ESBlocks.POTTED_NORTHLAND_SAPLING.get(),
+                ESBlocks.POTTED_STARLIGHT_MANGROVE_SAPLING.get(),
+                ESBlocks.POTTED_SCARLET_SAPLING.get(),
+                ESBlocks.POTTED_TORREYA_SAPLING.get(),
+                ESBlocks.POTTED_STARLIGHT_FLOWER.get(),
+                ESBlocks.POTTED_SWAMP_ROSE.get()
         );
         tag(BlockTags.PORTALS).add(
-                BlockInit.STARLIGHT_PORTAL.get()
+                ESBlocks.STARLIGHT_PORTAL.get()
         );
         tag(BlockTags.CLIMBABLE).add(
-                BlockInit.BERRIES_VINES.get(),
-                BlockInit.BERRIES_VINES_PLANT.get(),
-                BlockInit.CAVE_MOSS.get(),
-                BlockInit.CAVE_MOSS_PLANT.get(),
-                BlockInit.TORREYA_VINES.get(),
-                BlockInit.TORREYA_VINES_PLANT.get()
+                ESBlocks.BERRIES_VINES.get(),
+                ESBlocks.BERRIES_VINES_PLANT.get(),
+                ESBlocks.CAVE_MOSS.get(),
+                ESBlocks.CAVE_MOSS_PLANT.get(),
+                ESBlocks.TORREYA_VINES.get(),
+                ESBlocks.TORREYA_VINES_PLANT.get()
         );
         tag(BlockTags.STANDING_SIGNS).add(
-                BlockInit.LUNAR_SIGN.get(),
-                BlockInit.NORTHLAND_SIGN.get(),
-                BlockInit.STARLIGHT_MANGROVE_SIGN.get(),
-                BlockInit.SCARLET_SIGN.get(),
-                BlockInit.TORREYA_SIGN.get()
+                ESBlocks.LUNAR_SIGN.get(),
+                ESBlocks.NORTHLAND_SIGN.get(),
+                ESBlocks.STARLIGHT_MANGROVE_SIGN.get(),
+                ESBlocks.SCARLET_SIGN.get(),
+                ESBlocks.TORREYA_SIGN.get()
         );
         tag(BlockTags.WALL_SIGNS).add(
-                BlockInit.LUNAR_WALL_SIGN.get(),
-                BlockInit.NORTHLAND_WALL_SIGN.get(),
-                BlockInit.STARLIGHT_MANGROVE_WALL_SIGN.get(),
-                BlockInit.SCARLET_WALL_SIGN.get(),
-                BlockInit.TORREYA_WALL_SIGN.get()
+                ESBlocks.LUNAR_WALL_SIGN.get(),
+                ESBlocks.NORTHLAND_WALL_SIGN.get(),
+                ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get(),
+                ESBlocks.SCARLET_WALL_SIGN.get(),
+                ESBlocks.TORREYA_WALL_SIGN.get()
         );
         tag(BlockTags.CEILING_HANGING_SIGNS).add(
-                BlockInit.LUNAR_HANGING_SIGN.get(),
-                BlockInit.NORTHLAND_HANGING_SIGN.get(),
-                BlockInit.STARLIGHT_MANGROVE_HANGING_SIGN.get(),
-                BlockInit.SCARLET_HANGING_SIGN.get(),
-                BlockInit.TORREYA_HANGING_SIGN.get()
+                ESBlocks.LUNAR_HANGING_SIGN.get(),
+                ESBlocks.NORTHLAND_HANGING_SIGN.get(),
+                ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(),
+                ESBlocks.SCARLET_HANGING_SIGN.get(),
+                ESBlocks.TORREYA_HANGING_SIGN.get()
         );
         tag(BlockTags.WALL_HANGING_SIGNS).add(
-                BlockInit.LUNAR_WALL_HANGING_SIGN.get(),
-                BlockInit.NORTHLAND_WALL_HANGING_SIGN.get(),
-                BlockInit.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(),
-                BlockInit.SCARLET_WALL_HANGING_SIGN.get(),
-                BlockInit.TORREYA_WALL_HANGING_SIGN.get()
+                ESBlocks.LUNAR_WALL_HANGING_SIGN.get(),
+                ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(),
+                ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(),
+                ESBlocks.SCARLET_WALL_HANGING_SIGN.get(),
+                ESBlocks.TORREYA_WALL_HANGING_SIGN.get()
         );
         tag(BlockTags.BEACON_BASE_BLOCKS).add(
-                BlockInit.AETHERSENT_BLOCK.get(),
-                BlockInit.SWAMP_SILVER_BLOCK.get(),
-                BlockInit.GOLEM_STEEL_BLOCK.get()
+                ESBlocks.AETHERSENT_BLOCK.get(),
+                ESBlocks.SWAMP_SILVER_BLOCK.get(),
+                ESBlocks.GOLEM_STEEL_BLOCK.get()
         );
         tag(BlockTags.DIRT).add(
-                BlockInit.NIGHTSHADE_DIRT.get(),
-                BlockInit.NIGHTSHADE_MUD.get(),
-                BlockInit.GLOWING_NIGHTSHADE_MUD.get(),
-                BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
-                BlockInit.FANTASY_GRASS_BLOCK.get()
+                ESBlocks.NIGHTSHADE_DIRT.get(),
+                ESBlocks.NIGHTSHADE_MUD.get(),
+                ESBlocks.GLOWING_NIGHTSHADE_MUD.get(),
+                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
+                ESBlocks.FANTASY_GRASS_BLOCK.get()
         );
         tag(BlockTags.SAND).add(
-                BlockInit.TWILIGHT_SAND.get()
+                ESBlocks.TWILIGHT_SAND.get()
         );
         tag(BlockTags.SMELTS_TO_GLASS).add(
-                BlockInit.TWILIGHT_SAND.get()
+                ESBlocks.TWILIGHT_SAND.get()
         );
         tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
-                BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
-                BlockInit.NIGHTSHADE_DIRT.get()
+                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
+                ESBlocks.NIGHTSHADE_DIRT.get()
         );
         tag(BlockTags.WITHER_IMMUNE).add(
-                BlockInit.ENERGY_BLOCK.get()
+                ESBlocks.ENERGY_BLOCK.get()
         );
         tag(BlockTags.DRAGON_IMMUNE).add(
-                BlockInit.ENERGY_BLOCK.get()
+                ESBlocks.ENERGY_BLOCK.get()
         );
         tag(BlockTags.MOSS_REPLACEABLE).add(
-                BlockInit.GRIMSTONE.get(),
-                BlockInit.VOIDSTONE.get()
+                ESBlocks.GRIMSTONE.get(),
+                ESBlocks.VOIDSTONE.get()
         );
         tag(BlockTags.CANDLES).add(
-                BlockInit.AMARAMBER_CANDLE.get()
+                ESBlocks.AMARAMBER_CANDLE.get()
         );
 
         // mc tools stuff
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                BlockInit.AETHERSENT_BLOCK.get(),
-                BlockInit.SWAMP_SILVER_BLOCK.get(),
-                BlockInit.SPRINGSTONE.get(),
-                BlockInit.THERMAL_SPRINGSTONE.get(),
-                BlockInit.GRIMSTONE_REDSTONE_ORE.get(),
-                BlockInit.VOIDSTONE_REDSTONE_ORE.get(),
-                BlockInit.GRIMSTONE_SALTPETER_ORE.get(),
-                BlockInit.VOIDSTONE_SALTPETER_ORE.get(),
-                BlockInit.SALTPETER_BLOCK.get(),
-                BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
-                BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
-                BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
-                BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
-                BlockInit.TENTACLES_CORAL.get(),
-                BlockInit.GOLDEN_CORAL.get(),
-                BlockInit.CRYSTALLUM_CORAL.get(),
-                BlockInit.TENTACLES_CORAL_FAN.get(),
-                BlockInit.GOLDEN_CORAL_FAN.get(),
-                BlockInit.CRYSTALLUM_CORAL_FAN.get(),
-                BlockInit.TENTACLES_CORAL_WALL_FAN.get(),
-                BlockInit.GOLDEN_CORAL_WALL_FAN.get(),
-                BlockInit.CRYSTALLUM_CORAL_WALL_FAN.get(),
-                BlockInit.TENTACLES_CORAL_BLOCK.get(),
-                BlockInit.GOLDEN_CORAL_BLOCK.get(),
-                BlockInit.CRYSTALLUM_CORAL_BLOCK.get(),
+                ESBlocks.AETHERSENT_BLOCK.get(),
+                ESBlocks.SWAMP_SILVER_BLOCK.get(),
+                ESBlocks.SPRINGSTONE.get(),
+                ESBlocks.THERMAL_SPRINGSTONE.get(),
+                ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
+                ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
+                ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
+                ESBlocks.VOIDSTONE_SALTPETER_ORE.get(),
+                ESBlocks.SALTPETER_BLOCK.get(),
+                ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
+                ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
+                ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                ESBlocks.TENTACLES_CORAL.get(),
+                ESBlocks.GOLDEN_CORAL.get(),
+                ESBlocks.CRYSTALLUM_CORAL.get(),
+                ESBlocks.TENTACLES_CORAL_FAN.get(),
+                ESBlocks.GOLDEN_CORAL_FAN.get(),
+                ESBlocks.CRYSTALLUM_CORAL_FAN.get(),
+                ESBlocks.TENTACLES_CORAL_WALL_FAN.get(),
+                ESBlocks.GOLDEN_CORAL_WALL_FAN.get(),
+                ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(),
+                ESBlocks.TENTACLES_CORAL_BLOCK.get(),
+                ESBlocks.GOLDEN_CORAL_BLOCK.get(),
+                ESBlocks.CRYSTALLUM_CORAL_BLOCK.get(),
                 // all stone building blocks
-                BlockInit.GRIMSTONE.get(),
-                BlockInit.COBBLED_GRIMSTONE.get(),
-                BlockInit.COBBLED_GRIMSTONE_SLAB.get(),
-                BlockInit.COBBLED_GRIMSTONE_STAIRS.get(),
-                BlockInit.COBBLED_GRIMSTONE_WALL.get(),
-                BlockInit.GRIMSTONE_BRICKS.get(),
-                BlockInit.GRIMSTONE_BRICK_SLAB.get(),
-                BlockInit.GRIMSTONE_BRICK_STAIRS.get(),
-                BlockInit.GRIMSTONE_BRICK_WALL.get(),
-                BlockInit.POLISHED_GRIMSTONE.get(),
-                BlockInit.POLISHED_GRIMSTONE_SLAB.get(),
-                BlockInit.POLISHED_GRIMSTONE_STAIRS.get(),
-                BlockInit.POLISHED_GRIMSTONE_WALL.get(),
-                BlockInit.GRIMSTONE_TILES.get(),
-                BlockInit.GRIMSTONE_TILE_SLAB.get(),
-                BlockInit.GRIMSTONE_TILE_STAIRS.get(),
-                BlockInit.GRIMSTONE_TILE_WALL.get(),
-                BlockInit.CHISELED_GRIMSTONE.get(),
-                BlockInit.GLOWING_GRIMSTONE.get(),
-                BlockInit.VOIDSTONE.get(),
-                BlockInit.COBBLED_VOIDSTONE.get(),
-                BlockInit.COBBLED_VOIDSTONE_SLAB.get(),
-                BlockInit.COBBLED_VOIDSTONE_STAIRS.get(),
-                BlockInit.COBBLED_VOIDSTONE_WALL.get(),
-                BlockInit.VOIDSTONE_BRICKS.get(),
-                BlockInit.VOIDSTONE_BRICK_SLAB.get(),
-                BlockInit.VOIDSTONE_BRICK_STAIRS.get(),
-                BlockInit.VOIDSTONE_BRICK_WALL.get(),
-                BlockInit.POLISHED_VOIDSTONE.get(),
-                BlockInit.POLISHED_VOIDSTONE_SLAB.get(),
-                BlockInit.POLISHED_VOIDSTONE_STAIRS.get(),
-                BlockInit.POLISHED_VOIDSTONE_WALL.get(),
-                BlockInit.VOIDSTONE_TILES.get(),
-                BlockInit.VOIDSTONE_TILE_SLAB.get(),
-                BlockInit.VOIDSTONE_TILE_STAIRS.get(),
-                BlockInit.VOIDSTONE_TILE_WALL.get(),
-                BlockInit.CHISELED_VOIDSTONE.get(),
-                BlockInit.GLOWING_VOIDSTONE.get(),
-                BlockInit.ABYSSLATE.get(),
-                BlockInit.POLISHED_ABYSSLATE.get(),
-                BlockInit.POLISHED_ABYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_ABYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_ABYSSLATE_WALL.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICKS.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_ABYSSLATE_BRICK_WALL.get(),
-                BlockInit.CHISELED_POLISHED_ABYSSLATE.get(),
-                BlockInit.ABYSSAL_MAGMA_BLOCK.get(),
-                BlockInit.ABYSSAL_GEYSER.get(),
-                BlockInit.THERMABYSSLATE.get(),
-                BlockInit.POLISHED_THERMABYSSLATE.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_WALL.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICKS.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_THERMABYSSLATE_BRICK_WALL.get(),
-                BlockInit.CHISELED_POLISHED_THERMABYSSLATE.get(),
-                BlockInit.THERMABYSSAL_MAGMA_BLOCK.get(),
-                BlockInit.THERMABYSSAL_GEYSER.get(),
-                BlockInit.CRYOBYSSLATE.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_SLAB.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_STAIRS.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_WALL.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICKS.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(),
-                BlockInit.CHISELED_POLISHED_CRYOBYSSLATE.get(),
-                BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get(),
-                BlockInit.CRYOBYSSAL_GEYSER.get(),
-                BlockInit.PACKED_NIGHTSHADE_MUD.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICKS.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_SLAB.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
-                BlockInit.NIGHTSHADE_MUD_BRICK_WALL.get(),
-                BlockInit.TWILIGHT_SANDSTONE.get(),
-                BlockInit.TWILIGHT_SANDSTONE_SLAB.get(),
-                BlockInit.TWILIGHT_SANDSTONE_STAIRS.get(),
-                BlockInit.TWILIGHT_SANDSTONE_WALL.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
-                BlockInit.CUT_TWILIGHT_SANDSTONE_WALL.get(),
-                BlockInit.CHISELED_TWILIGHT_SANDSTONE.get(),
-                BlockInit.GOLEM_STEEL_BLOCK.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
-                BlockInit.GOLEM_STEEL_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
-                BlockInit.GOLEM_STEEL_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
-                BlockInit.GOLEM_STEEL_TILES.get(),
-                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(),
-                BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
-                BlockInit.DOOMEDEN_BRICKS.get(),
-                BlockInit.DOOMEDEN_BRICK_SLAB.get(),
-                BlockInit.DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.DOOMEDEN_BRICK_WALL.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICKS.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
-                BlockInit.POLISHED_DOOMEDEN_BRICK_WALL.get(),
-                BlockInit.DOOMEDEN_TILES.get(),
-                BlockInit.DOOMEDEN_TILE_SLAB.get(),
-                BlockInit.DOOMEDEN_TILE_STAIRS.get(),
-                BlockInit.DOOMEDEN_TILE_WALL.get(),
-                BlockInit.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
-                BlockInit.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
-                BlockInit.DOOMEDEN_KEYHOLE.get(),
-                BlockInit.REDSTONE_DOOMEDEN_KEYHOLE.get()
+                ESBlocks.GRIMSTONE.get(),
+                ESBlocks.COBBLED_GRIMSTONE.get(),
+                ESBlocks.COBBLED_GRIMSTONE_SLAB.get(),
+                ESBlocks.COBBLED_GRIMSTONE_STAIRS.get(),
+                ESBlocks.COBBLED_GRIMSTONE_WALL.get(),
+                ESBlocks.GRIMSTONE_BRICKS.get(),
+                ESBlocks.GRIMSTONE_BRICK_SLAB.get(),
+                ESBlocks.GRIMSTONE_BRICK_STAIRS.get(),
+                ESBlocks.GRIMSTONE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_GRIMSTONE.get(),
+                ESBlocks.POLISHED_GRIMSTONE_SLAB.get(),
+                ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(),
+                ESBlocks.POLISHED_GRIMSTONE_WALL.get(),
+                ESBlocks.GRIMSTONE_TILES.get(),
+                ESBlocks.GRIMSTONE_TILE_SLAB.get(),
+                ESBlocks.GRIMSTONE_TILE_STAIRS.get(),
+                ESBlocks.GRIMSTONE_TILE_WALL.get(),
+                ESBlocks.CHISELED_GRIMSTONE.get(),
+                ESBlocks.GLOWING_GRIMSTONE.get(),
+                ESBlocks.VOIDSTONE.get(),
+                ESBlocks.COBBLED_VOIDSTONE.get(),
+                ESBlocks.COBBLED_VOIDSTONE_SLAB.get(),
+                ESBlocks.COBBLED_VOIDSTONE_STAIRS.get(),
+                ESBlocks.COBBLED_VOIDSTONE_WALL.get(),
+                ESBlocks.VOIDSTONE_BRICKS.get(),
+                ESBlocks.VOIDSTONE_BRICK_SLAB.get(),
+                ESBlocks.VOIDSTONE_BRICK_STAIRS.get(),
+                ESBlocks.VOIDSTONE_BRICK_WALL.get(),
+                ESBlocks.POLISHED_VOIDSTONE.get(),
+                ESBlocks.POLISHED_VOIDSTONE_SLAB.get(),
+                ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(),
+                ESBlocks.POLISHED_VOIDSTONE_WALL.get(),
+                ESBlocks.VOIDSTONE_TILES.get(),
+                ESBlocks.VOIDSTONE_TILE_SLAB.get(),
+                ESBlocks.VOIDSTONE_TILE_STAIRS.get(),
+                ESBlocks.VOIDSTONE_TILE_WALL.get(),
+                ESBlocks.CHISELED_VOIDSTONE.get(),
+                ESBlocks.GLOWING_VOIDSTONE.get(),
+                ESBlocks.ABYSSLATE.get(),
+                ESBlocks.POLISHED_ABYSSLATE.get(),
+                ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_ABYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get(),
+                ESBlocks.CHISELED_POLISHED_ABYSSLATE.get(),
+                ESBlocks.ABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.ABYSSAL_GEYSER.get(),
+                ESBlocks.THERMABYSSLATE.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICKS.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_THERMABYSSLATE_BRICK_WALL.get(),
+                ESBlocks.CHISELED_POLISHED_THERMABYSSLATE.get(),
+                ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.THERMABYSSAL_GEYSER.get(),
+                ESBlocks.CRYOBYSSLATE.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_STAIRS.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_WALL.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICKS.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(),
+                ESBlocks.CHISELED_POLISHED_CRYOBYSSLATE.get(),
+                ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.CRYOBYSSAL_GEYSER.get(),
+                ESBlocks.PACKED_NIGHTSHADE_MUD.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICKS.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
+                ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                ESBlocks.TWILIGHT_SANDSTONE.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(),
+                ESBlocks.TWILIGHT_SANDSTONE_WALL.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
+                ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(),
+                ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(),
+                ESBlocks.GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.GOLEM_STEEL_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.GOLEM_STEEL_TILES.get(),
+                ESBlocks.GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.DOOMEDEN_BRICKS.get(),
+                ESBlocks.DOOMEDEN_BRICK_SLAB.get(),
+                ESBlocks.DOOMEDEN_BRICK_STAIRS.get(),
+                ESBlocks.DOOMEDEN_BRICK_WALL.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
+                ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(),
+                ESBlocks.DOOMEDEN_TILES.get(),
+                ESBlocks.DOOMEDEN_TILE_SLAB.get(),
+                ESBlocks.DOOMEDEN_TILE_STAIRS.get(),
+                ESBlocks.DOOMEDEN_TILE_WALL.get(),
+                ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
+                ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
+                ESBlocks.DOOMEDEN_KEYHOLE.get(),
+                ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
         );
         tag(BlockTags.MINEABLE_WITH_AXE).add(
-                BlockInit.MOONLIGHT_LILY_PAD.get(),
-                BlockInit.STARLIT_LILY_PAD.get(),
-                BlockInit.MOONLIGHT_DUCKWEED.get()
+                ESBlocks.MOONLIGHT_LILY_PAD.get(),
+                ESBlocks.STARLIT_LILY_PAD.get(),
+                ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
-                BlockInit.NIGHTSHADE_DIRT.get(),
-                BlockInit.NIGHTSHADE_MUD.get(),
-                BlockInit.GLOWING_NIGHTSHADE_MUD.get(),
-                BlockInit.NIGHTSHADE_GRASS_BLOCK.get(),
-                BlockInit.FANTASY_GRASS_BLOCK.get(),
-                BlockInit.SWAMP_SILVER_ORE.get()
+                ESBlocks.NIGHTSHADE_DIRT.get(),
+                ESBlocks.NIGHTSHADE_MUD.get(),
+                ESBlocks.GLOWING_NIGHTSHADE_MUD.get(),
+                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
+                ESBlocks.FANTASY_GRASS_BLOCK.get(),
+                ESBlocks.SWAMP_SILVER_ORE.get()
         );
         tag(BlockTags.SWORD_EFFICIENT).add(
-                BlockInit.MOONLIGHT_LILY_PAD.get(),
-                BlockInit.STARLIT_LILY_PAD.get(),
-                BlockInit.MOONLIGHT_DUCKWEED.get()
+                ESBlocks.MOONLIGHT_LILY_PAD.get(),
+                ESBlocks.STARLIT_LILY_PAD.get(),
+                ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
-                BlockInit.AETHERSENT_BLOCK.get(),
-                BlockInit.SWAMP_SILVER_BLOCK.get(),
-                BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
-                BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
-                BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
-                BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
-                BlockInit.GOLEM_STEEL_BLOCK.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
-                BlockInit.GOLEM_STEEL_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
-                BlockInit.GOLEM_STEEL_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
-                BlockInit.GOLEM_STEEL_TILES.get(),
-                BlockInit.GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
-                BlockInit.GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
-                BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(),
-                BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
+                ESBlocks.AETHERSENT_BLOCK.get(),
+                ESBlocks.SWAMP_SILVER_BLOCK.get(),
+                ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
+                ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
+                ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+                ESBlocks.GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.GOLEM_STEEL_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+                ESBlocks.GOLEM_STEEL_TILES.get(),
+                ESBlocks.GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+                ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+                ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
+                ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
         );
         tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(
-                BlockInit.MOONLIGHT_LILY_PAD.get(),
-                BlockInit.STARLIT_LILY_PAD.get(),
-                BlockInit.MOONLIGHT_DUCKWEED.get()
+                ESBlocks.MOONLIGHT_LILY_PAD.get(),
+                ESBlocks.STARLIT_LILY_PAD.get(),
+                ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.FROG_PREFER_JUMP_TO).add(
-                BlockInit.MOONLIGHT_LILY_PAD.get(),
-                BlockInit.STARLIT_LILY_PAD.get(),
-                BlockInit.MOONLIGHT_DUCKWEED.get()
+                ESBlocks.MOONLIGHT_LILY_PAD.get(),
+                ESBlocks.STARLIT_LILY_PAD.get(),
+                ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).addTag(ESTags.Blocks.YETI_FUR_CARPETS);
         tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS).addTag(ESTags.Blocks.YETI_FUR);

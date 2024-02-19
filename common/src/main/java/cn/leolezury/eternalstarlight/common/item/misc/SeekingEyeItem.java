@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
 import cn.leolezury.eternalstarlight.common.entity.misc.EyeOfSeeking;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -36,7 +36,7 @@ public class SeekingEyeItem extends Item {
             if (player.getItemInHand(InteractionHand.OFF_HAND).is(Items.REDSTONE)) {
                 structureTagKey = ESTags.Structures.GOLEM_FORGE;
             }
-            if (player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.RED_CRYSTAL_MOSS_CARPET.get()) || player.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.BLUE_CRYSTAL_MOSS_CARPET.get())) {
+            if (player.getItemInHand(InteractionHand.OFF_HAND).is(ESItems.RED_CRYSTAL_MOSS_CARPET.get()) || player.getItemInHand(InteractionHand.OFF_HAND).is(ESItems.BLUE_CRYSTAL_MOSS_CARPET.get())) {
                 structureTagKey = ESTags.Structures.CURSED_GARDEN;
             }
             // else if
@@ -48,7 +48,7 @@ public class SeekingEyeItem extends Item {
                 level.gameEvent(GameEvent.PROJECTILE_SHOOT, eyeOfSeeking.position(), GameEvent.Context.of(player));
                 level.addFreshEntity(eyeOfSeeking);
 
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEventInit.SEEKING_EYE_LAUNCH.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), ESSoundEvents.SEEKING_EYE_LAUNCH.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
                 if (!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
                 }

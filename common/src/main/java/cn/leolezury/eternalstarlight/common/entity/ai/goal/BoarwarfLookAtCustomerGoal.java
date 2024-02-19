@@ -5,7 +5,6 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.player.Player;
 
 public class BoarwarfLookAtCustomerGoal extends LookAtPlayerGoal {
-
     private final Boarwarf villager;
 
     public BoarwarfLookAtCustomerGoal(Boarwarf villager) {

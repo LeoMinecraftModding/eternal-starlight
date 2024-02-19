@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk;
 
-import cn.leolezury.eternalstarlight.common.init.PlacerInit;
+import cn.leolezury.eternalstarlight.common.init.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
@@ -47,7 +47,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
     }
 
     protected TrunkPlacerType<BranchingTrunkPlacer> type() {
-        return PlacerInit.TRUNK_BRANCHING.get();
+        return ESPlacers.TRUNK_BRANCHING.get();
     }
 
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> placer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {

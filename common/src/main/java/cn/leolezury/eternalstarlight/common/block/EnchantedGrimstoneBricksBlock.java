@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.data.CrestInit;
+import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.util.CrestUtil;
 import com.mojang.serialization.MapCodec;
@@ -56,7 +56,7 @@ public class EnchantedGrimstoneBricksBlock extends HorizontalDirectionalBlock {
             if (!player.getAbilities().instabuild) {
                 player.getItemInHand(interactionHand).shrink(1);
             }
-            CrestUtil.giveCrest(player, level.registryAccess().registryOrThrow(ESRegistries.CREST).get(CrestInit.BOULDERS_SHIELD));
+            CrestUtil.giveCrest(player, level.registryAccess().registryOrThrow(ESRegistries.CREST).get(ESCrests.BOULDERS_SHIELD));
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;

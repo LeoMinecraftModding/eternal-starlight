@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticleOptions;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -79,7 +79,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     }
 
     public AetherSentMeteor(Level level, LivingEntity entity, double x, double y, double z) {
-        this(EntityInit.AETHERSENT_METEOR.get(), level);
+        this(ESEntities.AETHERSENT_METEOR.get(), level);
         xo = x;
         yo = y;
         zo = z;
@@ -146,7 +146,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
         for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize()))) {
             if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
                 livingEntity.invulnerableTime = 0;
-                livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.METEOR, getOwner()), getSize() * damageScale * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
+                livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * damageScale * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
             }
         }
     }
@@ -179,7 +179,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
             }
         } else {
             if (getOwner() == null && getSize() >= 10) {
-                spawnAtLocation(ItemInit.AETHERSENT_BLOCK.get());
+                spawnAtLocation(ESItems.AETHERSENT_BLOCK.get());
             }
             discard();
         }

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,10 +23,10 @@ public class EtherFluidBorderFeature extends ESFeature<NoneFeatureConfiguration>
             for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
                 for (int y = chunkCoord.getY() - 32; y < chunkCoord.getY() + 32; y++) {
                     BlockPos pos = new BlockPos(x, y, z);
-                    if (level.getBlockState(pos).is(BlockInit.ETHER.get())) {
+                    if (level.getBlockState(pos).is(ESBlocks.ETHER.get())) {
                         for (Direction direction : Direction.values()) {
                             BlockPos relativePos = pos.relative(direction);
-                            if (!level.getBlockState(relativePos).is(BlockInit.ETHER.get()) && !level.getFluidState(relativePos).isEmpty()) {
+                            if (!level.getBlockState(relativePos).is(ESBlocks.ETHER.get()) && !level.getFluidState(relativePos).isEmpty()) {
                                 setBlock(level, pos, Blocks.QUARTZ_BLOCK.defaultBlockState());
                                 for (Direction dir : Direction.values()) {
                                     if (context.random().nextInt(5) == 0 && (!level.getFluidState(relativePos.relative(dir)).isEmpty() || level.isEmptyBlock(relativePos.relative(dir)))) {

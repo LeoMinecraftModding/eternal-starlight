@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -50,7 +50,7 @@ public class ShatteredSwordItem extends SwordItem {
             } else {
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack item = player.getInventory().getItem(i);
-                    if (item.is(ItemInit.SHATTERED_SWORD_BLADE.get())) {
+                    if (item.is(ESItems.SHATTERED_SWORD_BLADE.get())) {
                         setHasBlade(itemStack, true);
                         item.shrink(1);
                         return InteractionResultHolder.consume(itemStack);

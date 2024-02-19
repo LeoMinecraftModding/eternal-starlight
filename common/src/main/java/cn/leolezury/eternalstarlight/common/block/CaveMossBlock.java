@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,7 +36,7 @@ public class CaveMossBlock extends GrowingPlantHeadBlock implements Bonemealable
 
     @Override
     protected Block getBodyBlock() {
-        return BlockInit.CAVE_MOSS_PLANT.get();
+        return ESBlocks.CAVE_MOSS_PLANT.get();
     }
 
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {

@@ -7,9 +7,9 @@ import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.FluidInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESFluids;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.BlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
@@ -83,7 +83,7 @@ public class ClientHandlers {
         }
         if (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.FABRIC) {
             FluidState fluidState = camera.getEntity().level().getFluidState(camera.getBlockPosition());
-            if (fluidState.is(FluidInit.ETHER_STILL.get()) || fluidState.is(FluidInit.ETHER_FLOWING.get())) {
+            if (fluidState.is(ESFluids.ETHER_STILL.get()) || fluidState.is(ESFluids.ETHER_FLOWING.get())) {
                 if (camera.getPosition().y < (double) ((float) camera.getBlockPosition().getY() + fluidState.getHeight(camera.getEntity().level(), camera.getBlockPosition()))) {
                     RenderSystem.setShaderFogStart(0.0F);
                     RenderSystem.setShaderFogEnd(3.0F);
@@ -202,7 +202,7 @@ public class ClientHandlers {
 
     public static void renderEtherArmor(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player.level().isClientSide && BlockUtil.isEntityInBlock(minecraft.player, BlockInit.ETHER.get())) {
+        if (minecraft.player.level().isClientSide && BlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ETHER.get())) {
             minecraft.getProfiler().push("armor");
             int initialX = screenWidth / 2 - 91;
             int initialY = screenHeight - 39;
@@ -237,7 +237,7 @@ public class ClientHandlers {
             int usingTicks = player.getTicksUsingItem();
             float ticks = Math.min(usingTicks + Minecraft.getInstance().getFrameTime(), 150f);
             float progress = Math.min(ticks, 150f) / 150f;
-            if (player.isUsingItem() && player.getUseItem().is(ItemInit.ORB_OF_PROPHECY.get())) {
+            if (player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get())) {
                 if (usingTicks < 150) {
                     gui.renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
                 }

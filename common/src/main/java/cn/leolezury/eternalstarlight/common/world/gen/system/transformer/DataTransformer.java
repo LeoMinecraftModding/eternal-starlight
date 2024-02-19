@@ -1,13 +1,13 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer;
 
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import com.mojang.serialization.Codec;
 
 import java.util.Random;
 
 public abstract class DataTransformer {
-    public static final Codec<DataTransformer> CODEC = DataTransformerTypeInit.CODEC.dispatch("transformer_type", DataTransformer::type, DataTransformerType::codec);
+    public static final Codec<DataTransformer> CODEC = ESDataTransformerTypes.CODEC.dispatch("transformer_type", DataTransformer::type, DataTransformerType::codec);
 
     public abstract DataTransformerType<?> type();
 

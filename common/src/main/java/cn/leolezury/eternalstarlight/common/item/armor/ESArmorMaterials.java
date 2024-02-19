@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.LazyLoadedValue;
@@ -19,25 +19,25 @@ public enum ESArmorMaterials implements ArmorMaterial {
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 5);
         map.put(ArmorItem.Type.HELMET, 2);
-    }), 9, SoundEventInit.ARMOR_EQUIP_AMARAMBER.get(), 0F, 0F, () -> Ingredient.of(ItemInit.AMARAMBER_INGOT.get())),
+    }), 9, ESSoundEvents.ARMOR_EQUIP_AMARAMBER.get(), 0F, 0F, () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get())),
     AETHERSENT(EternalStarlight.MOD_ID + ":aethersent", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 5);
         map.put(ArmorItem.Type.HELMET, 2);
-    }), 35, SoundEventInit.ARMOR_EQUIP_AETHERSENT.get(), 0F, 0F, () -> Ingredient.of(ItemInit.AETHERSENT_INGOT.get())),
+    }), 35, ESSoundEvents.ARMOR_EQUIP_AETHERSENT.get(), 0F, 0F, () -> Ingredient.of(ESItems.AETHERSENT_INGOT.get())),
     THERMAL_SPRINGSTONE(EternalStarlight.MOD_ID + ":thermal_springstone", 12, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 3);
-    }), 15, SoundEventInit.ARMOR_EQUIP_THERMAL_SPRINGSTONE.get(), 0.5F, 0.0F, () -> Ingredient.of(ItemInit.THERMAL_SPRINGSTONE_INGOT.get())),
+    }), 15, ESSoundEvents.ARMOR_EQUIP_THERMAL_SPRINGSTONE.get(), 0.5F, 0.0F, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
     SWAMP_SILVER(EternalStarlight.MOD_ID + ":swamp_silver", 33, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 2);
-    }), 25, SoundEventInit.ARMOR_EQUIP_SWAMP_SILVER.get(), 1.5F, 0.2F, () -> Ingredient.of(ItemInit.SWAMP_SILVER_INGOT.get()));
+    }), 25, ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.get(), 1.5F, 0.2F, () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get()));
 
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 13);

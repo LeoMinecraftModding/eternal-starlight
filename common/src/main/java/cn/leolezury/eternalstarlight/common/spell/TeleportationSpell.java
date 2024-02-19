@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import cn.leolezury.eternalstarlight.common.util.SpellUtil;
 import net.minecraft.core.particles.ParticleTypes;
@@ -58,7 +58,7 @@ public class TeleportationSpell extends AbstractSpell {
     public void doHurtEnemies(ServerLevel serverLevel, LivingEntity entity) {
         for (int i = 0; i < 360; i += 5) {
             Vec3 vec3 = ESUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
-            serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
+            serverLevel.sendParticles(ESParticles.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
         }
         for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(entity.getBbWidth() * 3.5f))) {
             if (livingEntity.distanceTo(entity) <= 4 * entity.getBbWidth()) {

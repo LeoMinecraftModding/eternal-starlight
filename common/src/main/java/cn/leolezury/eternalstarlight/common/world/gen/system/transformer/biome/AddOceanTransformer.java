@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.init.DataTransformerTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
@@ -33,6 +33,6 @@ public class AddOceanTransformer extends NoiseDataTransformer {
 
     @Override
     public DataTransformerType<?> type() {
-        return DataTransformerTypeInit.ADD_OCEAN.get();
+        return ESDataTransformerTypes.ADD_OCEAN.get();
     }
 }

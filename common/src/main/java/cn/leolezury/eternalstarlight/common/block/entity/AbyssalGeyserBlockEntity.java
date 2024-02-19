@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
-import cn.leolezury.eternalstarlight.common.init.BlockEntityInit;
-import cn.leolezury.eternalstarlight.common.init.RecipeInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.init.ESRecipes;
 import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -27,7 +27,7 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
     private final RandomSource random;
 
     public AbyssalGeyserBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(BlockEntityInit.ABYSSAL_GEYSER.get(), blockPos, blockState);
+        super(ESBlockEntities.ABYSSAL_GEYSER.get(), blockPos, blockState);
         this.random = new LegacyRandomSource(blockPos.asLong());
     }
 
@@ -45,7 +45,7 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet3);
                 if (entity.ticksSinceLastErupt == 200) {
                     // convert items above
-                    List<RecipeHolder<GeyserSmokingRecipe>> list = level.getRecipeManager().getAllRecipesFor(RecipeInit.GEYSER_SMOKING.get());
+                    List<RecipeHolder<GeyserSmokingRecipe>> list = level.getRecipeManager().getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get());
                     AABB itemBox = new AABB(pos);
                     itemBox = itemBox.setMaxY(itemBox.maxY + 2);
                     for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, itemBox)) {

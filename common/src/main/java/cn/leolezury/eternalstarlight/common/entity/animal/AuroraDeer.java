@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.animal;
 
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.ChargeAttackGoal;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +32,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class AuroraDeer extends Animal implements Charger {
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.LUNAR_BERRIES.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.LUNAR_BERRIES.get());
     protected static final EntityDataAccessor<Boolean> LEFT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
     public boolean hasLeftHorn() {
         return entityData.get(LEFT_HORN);
@@ -168,7 +168,7 @@ public class AuroraDeer extends Animal implements Charger {
             if (level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + getBbHeight() / 2f, this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
             }
-            spawnAtLocation(ItemInit.AURORA_DEER_ANTLER.get());
+            spawnAtLocation(ESItems.AURORA_DEER_ANTLER.get());
         }
     }
 
@@ -193,6 +193,6 @@ public class AuroraDeer extends Animal implements Charger {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        return EntityInit.AURORA_DEER.get().create(serverLevel);
+        return ESEntities.AURORA_DEER.get().create(serverLevel);
     }
 }

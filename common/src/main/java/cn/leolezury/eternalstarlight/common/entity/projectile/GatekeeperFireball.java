@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.particles.ParticleOptions;
@@ -29,7 +29,7 @@ public class GatekeeperFireball extends Fireball {
     }
 
     public GatekeeperFireball(Level level, LivingEntity livingEntity, double d, double e, double f) {
-        super(EntityInit.GATEKEEPER_FIREBALL.get(), livingEntity, d, e, f, level);
+        super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, d, e, f, level);
     }
 
     protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);

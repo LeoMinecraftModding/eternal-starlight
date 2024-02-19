@@ -1,16 +1,16 @@
 package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.FireColumn;
 import cn.leolezury.eternalstarlight.common.entity.attack.beam.StarlightGolemBeam;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -161,7 +161,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             return super.hurt(damageSource, f);
         } else {
             if (damageSource.getDirectEntity() instanceof LivingEntity) {
-                playSound(SoundEventInit.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
+                playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
             }
             return false;
         }
@@ -226,7 +226,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             for (int y = center.getY() - 1; y <= center.getY() + 1; y++) {
                 for (int z = center.getZ() - 1; z <= center.getZ() + 1; z++) {
                     BlockState state = level().getBlockState(new BlockPos(x, y, z));
-                    if (state.is(BlockInit.ENERGY_BLOCK.get()) && (!lit || state.getValue(BlockStateProperties.LIT))) {
+                    if (state.is(ESBlocks.ENERGY_BLOCK.get()) && (!lit || state.getValue(BlockStateProperties.LIT))) {
                         list.add(new BlockPos(x, y, z));
                     }
                 }
@@ -243,7 +243,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(-14, 0, -14), false));
         for (BlockPos pos : list) {
             BlockState state = level().getBlockState(pos);
-            if (state.is(BlockInit.ENERGY_BLOCK.get()) && !state.getValue(BlockStateProperties.LIT)) {
+            if (state.is(ESBlocks.ENERGY_BLOCK.get()) && !state.getValue(BlockStateProperties.LIT)) {
                 level().setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, true));
             }
         }
@@ -310,8 +310,8 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             switch (getAttackState()) {
                 case 1 -> {
                     if (getAttackTicks() == 60) {
-                        playSound(SoundEventInit.STARLIGHT_GOLEM_PREPARE_BEAM.get(), getSoundVolume(), getVoicePitch());
-                        StarlightGolemBeam beam = new StarlightGolemBeam(EntityInit.STARLIGHT_GOLEM_BEAM.get(), level(), this, getX(), getY() + 1, getZ(), (float) ((yHeadRot + 90) * Math.PI / 180.0d), (float) (-getXRot() * Math.PI / 180.0d), 100);
+                        playSound(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_BEAM.get(), getSoundVolume(), getVoicePitch());
+                        StarlightGolemBeam beam = new StarlightGolemBeam(ESEntities.STARLIGHT_GOLEM_BEAM.get(), level(), this, getX(), getY() + 1, getZ(), (float) ((yHeadRot + 90) * Math.PI / 180.0d), (float) (-getXRot() * Math.PI / 180.0d), 100);
                         beam.setPos(position());
                         level().addFreshEntity(beam);
                     }
@@ -320,7 +320,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                         CameraShake.createCameraShake(level(), position(), 45, 0.02f, 40, 20);
                         for (int x = -1; x <= 1; x += 2) {
                             for (int z = -1; z <= 1; z += 2) {
-                                FireColumn fireColumn = EntityInit.FIRE_COLUMN.get().create(level());
+                                FireColumn fireColumn = ESEntities.FIRE_COLUMN.get().create(level());
                                 fireColumn.setPos(position().add(x * 5, 0, z * 5));
                                 fireColumn.setOwner(this);
                                 level().addFreshEntity(fireColumn);
@@ -333,7 +333,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                 case 2 -> {
                     if (getAttackTicks() % 20 == 0 && target != null) {
                         CameraShake.createCameraShake(level(), position(), 45, 0.02f, 40, 20);
-                        FireColumn fireColumn = EntityInit.FIRE_COLUMN.get().create(level());
+                        FireColumn fireColumn = ESEntities.FIRE_COLUMN.get().create(level());
                         fireColumn.setPos(target.position());
                         fireColumn.setOwner(this);
                         level().addFreshEntity(fireColumn);
@@ -358,7 +358,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                             AABB aabb = new AABB(getX() - 1.5, getY() - 1.5, getZ() - 1.5, getX() + 1.5, getY() + 1.5, getZ() + 1.5).move(targetPos.add(position().add(0, 1, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof StarlightGolem)) {
-                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.GROUND_SHAKE, this), 40);
+                                    livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.GROUND_SHAKE, this), 40);
                                 }
                             }
                             for (int x = (int) aabb.minX; x <= aabb.maxX; x++) {
@@ -390,7 +390,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                 }
                 case 4 -> {
                     if (getAttackTicks() == 1) {
-                        playSound(SoundEventInit.STARLIGHT_GOLEM_PREPARE_CHARGE.get(), getSoundVolume(), getVoicePitch());
+                        playSound(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_CHARGE.get(), getSoundVolume(), getVoicePitch());
                         litAllEnergyBlocks();
                     }
                     if (!canHurt()) {
@@ -449,7 +449,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                         dy *= velocity;
                         dz *= velocity;
 
-                        level().addParticle(ParticleInit.ENERGY.get(), px, py, pz, dx, dy, dz);
+                        level().addParticle(ESParticles.ENERGY.get(), px, py, pz, dx, dy, dz);
                     }
                 }
             }
@@ -458,11 +458,11 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource p_33034_) {
-        return SoundEventInit.STARLIGHT_GOLEM_HURT.get();
+        return ESSoundEvents.STARLIGHT_GOLEM_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.STARLIGHT_GOLEM_DEATH.get();
+        return ESSoundEvents.STARLIGHT_GOLEM_DEATH.get();
     }
 }

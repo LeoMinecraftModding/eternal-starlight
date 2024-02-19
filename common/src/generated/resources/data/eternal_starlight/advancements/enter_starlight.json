@@ -1,4 +1,5 @@
 {
+  "parent": "eternal_starlight:challenge_gatekeeper",
   "criteria": {
     "in_dim": {
       "conditions": {
@@ -18,8 +19,6 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
-    "background": "eternal_starlight:textures/block/lunar_log.png",
     "description": {
       "translate": "advancements.eternal_starlight.enter_starlight.description"
     },

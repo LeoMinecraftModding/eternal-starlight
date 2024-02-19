@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -23,13 +23,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BlockBehaviourMixin {
     @Inject(method = "entityInside", at = @At(value = "HEAD"))
     public void es_entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity, CallbackInfo ci) {
-        if (blockState.is(BlockInit.ETHER.get())) {
+        if (blockState.is(ESBlocks.ETHER.get())) {
             if (entity instanceof LivingEntity livingEntity) {
                 AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
                 if (armorInstance != null && armorInstance.getValue() <= 0) {
-                    if (entity.hurt(DamageTypeInit.getDamageSource(level, DamageTypeInit.ETHER), 1) && level instanceof ServerLevel serverLevel) {
+                    if (entity.hurt(ESDamageTypes.getDamageSource(level, ESDamageTypes.ETHER), 1) && level instanceof ServerLevel serverLevel) {
                         for (int i = 0; i < 5; i++) {
-                            serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), entity.getX() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.1, 0.1, 0.1, 0);
+                            serverLevel.sendParticles(ESParticles.STARLIGHT.get(), entity.getX() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.1, 0.1, 0.1, 0);
                         }
                     }
                 }
@@ -45,7 +45,7 @@ public abstract class BlockBehaviourMixin {
                     }
                 }
             } else {
-                entity.hurt(DamageTypeInit.getDamageSource(level, DamageTypeInit.ETHER), 1);
+                entity.hurt(ESDamageTypes.getDamageSource(level, ESDamageTypes.ETHER), 1);
             }
         }
     }

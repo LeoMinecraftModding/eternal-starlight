@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.block.fluid;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.FluidInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESFluids;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -34,12 +34,12 @@ public abstract class EtherFluid extends FlowingFluid {
 
     @Override
     public Fluid getFlowing() {
-        return FluidInit.ETHER_FLOWING.get();
+        return ESFluids.ETHER_FLOWING.get();
     }
 
     @Override
     public Fluid getSource() {
-        return FluidInit.ETHER_STILL.get();
+        return ESFluids.ETHER_STILL.get();
     }
 
     @Override
@@ -65,7 +65,7 @@ public abstract class EtherFluid extends FlowingFluid {
 
     @Override
     public Item getBucket() {
-        return ItemInit.ETHER_BUCKET.get();
+        return ESItems.ETHER_BUCKET.get();
     }
 
     @Override
@@ -85,12 +85,12 @@ public abstract class EtherFluid extends FlowingFluid {
 
     @Override
     protected BlockState createLegacyBlock(FluidState fluidState) {
-        return BlockInit.ETHER.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
+        return ESBlocks.ETHER.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
     }
 
     @Override
     public boolean isSame(Fluid fluid) {
-        return fluid == FluidInit.ETHER_STILL.get() || fluid == FluidInit.ETHER_FLOWING.get();
+        return fluid == ESFluids.ETHER_STILL.get() || fluid == ESFluids.ETHER_FLOWING.get();
     }
 
     @Override

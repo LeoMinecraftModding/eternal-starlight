@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
@@ -14,13 +14,13 @@ import java.util.function.Supplier;
 
 public interface WeatheringGolemSteel {
     Supplier<ImmutableMap<Block, Block>> TO_OXIDIZED = Suppliers.memoize(() -> ImmutableMap.of(
-            BlockInit.GOLEM_STEEL_BLOCK.get(), BlockInit.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
-            BlockInit.GOLEM_STEEL_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_SLAB.get(),
-            BlockInit.GOLEM_STEEL_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
-            BlockInit.GOLEM_STEEL_TILES.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILES.get(),
-            BlockInit.GOLEM_STEEL_TILE_SLAB.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
-            BlockInit.GOLEM_STEEL_TILE_STAIRS.get(), BlockInit.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
-            BlockInit.CHISELED_GOLEM_STEEL_BLOCK.get(), BlockInit.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
+            ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+            ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(),
+            ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
+            ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(),
+            ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
+            ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+            ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
     ));
 
     default boolean isOxidized() {

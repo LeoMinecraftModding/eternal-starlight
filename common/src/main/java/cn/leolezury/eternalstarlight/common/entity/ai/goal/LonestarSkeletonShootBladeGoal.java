@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.ai.goal;
 
 import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -42,7 +42,7 @@ public class LonestarSkeletonShootBladeGoal extends Goal {
     }
 
     protected boolean isHoldingRemoteAttackWeapon() {
-        return this.mob.getMainHandItem().is(ItemInit.SHATTERED_SWORD.get());
+        return this.mob.getMainHandItem().is(ESItems.SHATTERED_SWORD.get());
     }
 
     public boolean canContinueToUse() {

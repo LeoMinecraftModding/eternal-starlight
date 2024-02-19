@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.fabric.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
-import cn.leolezury.eternalstarlight.common.init.FluidInit;
+import cn.leolezury.eternalstarlight.common.init.ESFluids;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -55,7 +55,7 @@ public class ESFabricClient implements ClientModInitializer {
 
         DimensionRenderingRegistry.registerDimensionEffects(new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), ESPlatform.INSTANCE.getDimEffect());
 
-        FluidRenderHandlerRegistry.INSTANCE.register(FluidInit.ETHER_STILL.get(), FluidInit.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
+        FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
                 new ResourceLocation(EternalStarlight.MOD_ID, "block/ether"),
                 new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow")
         ));

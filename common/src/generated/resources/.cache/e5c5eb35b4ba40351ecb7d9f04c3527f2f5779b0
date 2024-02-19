@@ -1,5 +1,6 @@
-// 1.20.4	2023-12-14T11:14:31.8311672	Advancements
-09eee8a9144c070b0f7895d801843b77ffc474b0 data/eternal_starlight/advancements/enter_starlight.json
+// 1.20.4	2024-02-19T12:15:32.7795946	Advancements
+a968d9ce82225b9528eb8e3bd906a7af17c006b3 data/eternal_starlight/advancements/challenge_gatekeeper.json
+6fd7592d1f1dfca5a902680793c995d24d4e7c6c data/eternal_starlight/advancements/enter_starlight.json
 79163e0de5636b34e4c028e9fc8810401b1bf313 data/eternal_starlight/advancements/kill_golem.json
 8958938e0e14141e100e654106f485c7fa73ba2b data/eternal_starlight/advancements/kill_lunar_monstrosity.json
 1dd141ae8c1e5207f13b463dd00d634e2087227f data/eternal_starlight/advancements/obtain_golem_steel_ingot.json
@@ -7,3 +8,4 @@
 a08ad6d6d687ab2cb93a96591f41e76a09a40178 data/eternal_starlight/advancements/obtain_starlight_flower.json
 2897e5a50c4fc23213d5ba3cc71ab200dae6d0bb data/eternal_starlight/advancements/obtain_swamp_silver.json
 10d16195871a0f136f5f46e8d0d096b641b19cc1 data/eternal_starlight/advancements/obtain_thermal_springstone.json
+d0d051c8b9b3594c752f9c2f4fa81802078989a8 data/eternal_starlight/advancements/root.json

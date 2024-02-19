@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,7 +26,7 @@ public abstract class ItemEntityMixin {
     @Inject(method = "playerTouch", at = @At("HEAD"), cancellable = true)
     public void es_playerTouch(Player player, CallbackInfo ci) {
         if (((ItemEntity) (Object) this).level().isClientSide) return;
-        if (this.pickupDelay == 0 && (this.target == null || this.target.equals(player.getUUID())) && getItem().is(ItemInit.MANA_CRYSTAL_SHARD.get())) {
+        if (this.pickupDelay == 0 && (this.target == null || this.target.equals(player.getUUID())) && getItem().is(ESItems.MANA_CRYSTAL_SHARD.get())) {
             ci.cancel();
             ((ItemEntity) (Object) this).discard();
             Inventory inventory = player.getInventory();

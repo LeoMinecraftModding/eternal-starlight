@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidModel;
@@ -20,7 +20,7 @@ public abstract class PlayerRendererMixin {
     @Inject(method = "getArmPose", at = @At(value = "RETURN"), cancellable = true)
     private static void es_getArmPose(AbstractClientPlayer player, InteractionHand hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        if (!player.swinging && itemInHand.is(ItemInit.CRYSTAL_CROSSBOW.get())
+        if (!player.swinging && itemInHand.is(ESItems.CRYSTAL_CROSSBOW.get())
                 && CrossbowItem.isCharged(itemInHand)) {
             cir.setReturnValue(HumanoidModel.ArmPose.CROSSBOW_HOLD);
         }

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
 import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -27,8 +27,8 @@ public class ESKelpFeature extends Feature<NoneFeatureConfiguration> {
         int j = worldGenLevel.getHeight(Heightmap.Types.OCEAN_FLOOR, blockPos.getX(), blockPos.getZ());
         BlockPos blockPos2 = new BlockPos(blockPos.getX(), j, blockPos.getZ());
         if (worldGenLevel.getBlockState(blockPos2).is(Blocks.WATER)) {
-            BlockState blockState = BlockInit.ABYSSAL_KELP.get().defaultBlockState();
-            BlockState blockState2 = BlockInit.ABYSSAL_KELP_PLANT.get().defaultBlockState();
+            BlockState blockState = ESBlocks.ABYSSAL_KELP.get().defaultBlockState();
+            BlockState blockState2 = ESBlocks.ABYSSAL_KELP_PLANT.get().defaultBlockState();
             int k = 1 + randomSource.nextInt(10);
 
             for(int l = 0; l <= k; ++l) {
@@ -43,7 +43,7 @@ public class ESKelpFeature extends Feature<NoneFeatureConfiguration> {
                     }
                 } else if (l > 0) {
                     BlockPos blockPos3 = blockPos2.below();
-                    if (blockState.canSurvive(worldGenLevel, blockPos3) && !worldGenLevel.getBlockState(blockPos3.below()).is(BlockInit.ABYSSAL_KELP.get())) {
+                    if (blockState.canSurvive(worldGenLevel, blockPos3) && !worldGenLevel.getBlockState(blockPos3.below()).is(ESBlocks.ABYSSAL_KELP.get())) {
                         worldGenLevel.setBlock(blockPos3, (BlockState)blockState.setValue(KelpBlock.AGE, randomSource.nextInt(4) + 20), 2);
                         ++i;
                     }

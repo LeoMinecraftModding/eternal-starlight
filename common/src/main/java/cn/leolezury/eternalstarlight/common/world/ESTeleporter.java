@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.world;
 
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -36,7 +36,7 @@ public class ESTeleporter {
             for (int z = pos.getZ() - 16; z <= pos.getZ() + 16; z++) {
                 for (int y = minHeight; y <= maxHeight; y++) {
                     BlockPos blockPos = new BlockPos(x, y, z);
-                    if (border.isWithinBounds(blockPos) && level.getBlockState(blockPos).is(BlockInit.STARLIGHT_PORTAL.get())) {
+                    if (border.isWithinBounds(blockPos) && level.getBlockState(blockPos).is(ESBlocks.STARLIGHT_PORTAL.get())) {
                         return Optional.of(blockPos);
                     }
                 }
@@ -84,7 +84,7 @@ public class ESTeleporter {
 
     @Nullable
     public static PortalInfo getPortalInfo(Entity entity, ServerLevel dest) {
-        if (entity.level().dimension() != DimensionInit.STARLIGHT_KEY && dest.dimension() != DimensionInit.STARLIGHT_KEY) {
+        if (entity.level().dimension() != ESDimensions.STARLIGHT_KEY && dest.dimension() != ESDimensions.STARLIGHT_KEY) {
             return null;
         } else {
             WorldBorder border = dest.getWorldBorder();

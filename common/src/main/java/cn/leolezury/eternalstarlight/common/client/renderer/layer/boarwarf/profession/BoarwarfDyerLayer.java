@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.BoarwarfDyerModel;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.init.BoarwarfProfessionInit;
+import cn.leolezury.eternalstarlight.common.init.ESBoarwarfProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -28,7 +28,7 @@ public class BoarwarfDyerLayer<T extends Boarwarf> extends RenderLayer<T, Boarwa
     }
 
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!entity.isInvisible() && entity.getProfession() == BoarwarfProfessionInit.DYER.get()) {
+        if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.DYER.get()) {
             getParentModel().copyPropertiesTo(this.professionModel);
             this.professionModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
             this.professionModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure.placement;
 
-import cn.leolezury.eternalstarlight.common.init.StructurePlacementTypeInit;
+import cn.leolezury.eternalstarlight.common.init.ESStructurePlacementTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -41,6 +41,6 @@ public class ESRandomSpreadStructurePlacement extends RandomSpreadStructurePlace
     }
 
     public StructurePlacementType<?> type() {
-        return StructurePlacementTypeInit.ES_RANDOM_SPREAD.get();
+        return ESStructurePlacementTypes.ES_RANDOM_SPREAD.get();
     }
 }

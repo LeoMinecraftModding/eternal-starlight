@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
@@ -16,17 +16,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BubbleColumnBlockMixin {
     @Inject(method = "getColumnState", at = @At(value = "RETURN"), cancellable = true)
     private static void es_getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
-        if (state.is(BlockInit.THERMAL_SPRINGSTONE.get())) {
+        if (state.is(ESBlocks.THERMAL_SPRINGSTONE.get())) {
             cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(false)));
         }
-        if (state.is(BlockInit.ABYSSAL_MAGMA_BLOCK.get()) || state.is(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get()) || state.is(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get())) {
+        if (state.is(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()) || state.is(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()) || state.is(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get())) {
             cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(true)));
         }
     }
 
     @Inject(method = "canSurvive", at = @At(value = "RETURN"), cancellable = true)
     private void es_canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (levelReader.getBlockState(pos.below()).is(BlockInit.THERMAL_SPRINGSTONE.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.ABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.THERMABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(BlockInit.CRYOBYSSAL_MAGMA_BLOCK.get())) {
+        if (levelReader.getBlockState(pos.below()).is(ESBlocks.THERMAL_SPRINGSTONE.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get())) {
             cir.setReturnValue(true);
         }
     }

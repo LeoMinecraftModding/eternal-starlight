@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -24,11 +24,11 @@ public class ThrownShatteredBlade extends AbstractArrow {
     public int clientSideReturnTickCount;
 
     public ThrownShatteredBlade(EntityType<? extends AbstractArrow> entityType, Level level) {
-        super(entityType, level, new ItemStack(ItemInit.SHATTERED_SWORD_BLADE.get()));
+        super(entityType, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()));
     }
 
     public ThrownShatteredBlade(Level level, LivingEntity livingEntity) {
-        super(EntityInit.THROWN_SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ItemInit.SHATTERED_SWORD_BLADE.get()));
+        super(ESEntities.THROWN_SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()));
     }
 
     public void tick() {
@@ -92,7 +92,7 @@ public class ThrownShatteredBlade extends AbstractArrow {
         }
 
         Entity entity2 = this.getOwner();
-        DamageSource damageSource = DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.SHATTERED_BLADE, this, entity2 == null ? this : entity2);
+        DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, entity2 == null ? this : entity2);
         this.dealtDamage = true;
         if (entity.hurt(damageSource, f)) {
             if (entity.getType() == EntityType.ENDERMAN) {

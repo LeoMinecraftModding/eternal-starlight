@@ -1,12 +1,12 @@
 package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -303,7 +303,7 @@ public class LunarMonstrosity extends ESBoss {
             Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
             vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
             if (vec3.dot(this.getViewVector(1.0F)) < 0.0D) {
-                livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.BITE, this), damage);
+                livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.BITE, this), damage);
             }
         }
     }
@@ -370,10 +370,10 @@ public class LunarMonstrosity extends ESBoss {
                 }
                 case -1 -> {
                     if (getAttackTicks() == 1) {
-                        playSound(SoundEventInit.LUNAR_MONSTROSITY_ROAR.get(), getSoundVolume() / 2, getVoicePitch());
+                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), getSoundVolume() / 2, getVoicePitch());
                     }
                     if (getAttackTicks() == 75) {
-                        playSound(SoundEventInit.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
+                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
                     }
                     if (getAttackTicks() == 90) {
                         doBiteDamage(40);
@@ -391,7 +391,7 @@ public class LunarMonstrosity extends ESBoss {
                             AABB aabb = new AABB(getX() - 1, getY() + 1, getZ() - 1, getX() + 1, getY() + 3, getZ() + 1).move(targetPos.add(position().add(0, 2, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
                             for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                                 if (!(livingEntity instanceof LunarMonstrosity)) {
-                                    livingEntity.hurt(DamageTypeInit.getEntityDamageSource(level(), DamageTypeInit.POISON, this), 2);
+                                    livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.POISON, this), 2);
                                     livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
                                 }
                             }
@@ -422,7 +422,7 @@ public class LunarMonstrosity extends ESBoss {
                 case 3 -> {
                     if (getAttackTicks() % 15 == 0 && target != null) {
                         for (int i = 0; i < 5; i++) {
-                            LunarVine vine = EntityInit.LUNAR_VINE.get().create(level());
+                            LunarVine vine = ESEntities.LUNAR_VINE.get().create(level());
                             Random random = new Random();
                             vine.setPos(target.position().add(random.nextDouble(), 0.2, random.nextDouble()));
                             vine.setAttackMode(1);
@@ -435,7 +435,7 @@ public class LunarMonstrosity extends ESBoss {
                 }
                 case 4 -> {
                     if (getAttackTicks() == 0) {
-                        playSound(SoundEventInit.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
+                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
                     }
                     if (getAttackTicks() == 10) {
                         doBiteDamage(20);
@@ -465,7 +465,7 @@ public class LunarMonstrosity extends ESBoss {
                 setAttackState(0);
             }
         } else {
-            level().addParticle(ParticleInit.POISON.get(), getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
+            level().addParticle(ESParticles.POISON.get(), getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
             if (deathTime <= 0) {
                 switch (getAttackState()) {
                     case -2 -> {
@@ -492,7 +492,7 @@ public class LunarMonstrosity extends ESBoss {
                             dy *= velocity;
                             dz *= velocity;
 
-                            level().addParticle(ParticleInit.POISON.get(), px, py, pz, dx / 5, dy / 5, dz / 5);
+                            level().addParticle(ESParticles.POISON.get(), px, py, pz, dx / 5, dy / 5, dz / 5);
                         }
                     }
                     case 6 -> {
@@ -514,11 +514,11 @@ public class LunarMonstrosity extends ESBoss {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEventInit.LUNAR_MONSTROSITY_HURT.get();
+        return ESSoundEvents.LUNAR_MONSTROSITY_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.LUNAR_MONSTROSITY_DEATH.get();
+        return ESSoundEvents.LUNAR_MONSTROSITY_DEATH.get();
     }
 }

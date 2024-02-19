@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -25,8 +25,8 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
         BlockPos pos = context.origin();
         RandomSource random = context.random();
         boolean isRed = random.nextBoolean();
-        BlockState crystalState = isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState();
-        BlockState carpetState = isRed ? BlockInit.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : BlockInit.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState();
+        BlockState crystalState = isRed ? ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get().defaultBlockState();
+        BlockState carpetState = isRed ? ESBlocks.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState();
         // generate the spike
         int baseHeight = random.nextInt(15, 20);
         placeCrystalPillar(level, pos, crystalState, random, baseHeight);
@@ -69,12 +69,12 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
                             }
                             if (!possibleDirs.isEmpty()) {
                                 Direction direction = possibleDirs.get(random.nextInt(possibleDirs.size())).getOpposite();
-                                BlockState clusterState = isRed ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction) : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction);
+                                BlockState clusterState = isRed ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction) : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction);
                                 setBlockIfEmpty(level, pos.offset(x, y, z), clusterState);
                             }
                             BlockPos relativePos = pos.offset(x, y - 1, z);
                             if (level.getBlockState(relativePos).isFaceSturdy(level, relativePos, Direction.UP)) {
-                                BlockState clusterState = random.nextBoolean() ? BlockInit.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : BlockInit.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState();
+                                BlockState clusterState = random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState();
                                 setBlockIfEmpty(level, pos.offset(x, y, z), clusterState);
                             }
                         } else {

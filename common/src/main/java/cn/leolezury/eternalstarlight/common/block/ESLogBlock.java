@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -32,16 +32,16 @@ public class ESLogBlock extends RotatedPillarBlock {
         if (ESPlatform.INSTANCE.canStrip(stack)) {
             // strip
             Block stripped;
-            if (blockState.is(BlockInit.LUNAR_LOG.get())) {
-                stripped = BlockInit.STRIPPED_LUNAR_LOG.get();
-            } else if (blockState.is(BlockInit.NORTHLAND_LOG.get())) {
-                stripped = BlockInit.STRIPPED_NORTHLAND_LOG.get();
-            } else if (blockState.is(BlockInit.STARLIGHT_MANGROVE_LOG.get())) {
-                stripped = BlockInit.STRIPPED_STARLIGHT_MANGROVE_LOG.get();
-            } else if (blockState.is(BlockInit.SCARLET_LOG.get())) {
-                stripped = BlockInit.STRIPPED_SCARLET_LOG.get();
-            } else if (blockState.is(BlockInit.TORREYA_LOG.get())) {
-                stripped = BlockInit.STRIPPED_TORREYA_LOG.get();
+            if (blockState.is(ESBlocks.LUNAR_LOG.get())) {
+                stripped = ESBlocks.STRIPPED_LUNAR_LOG.get();
+            } else if (blockState.is(ESBlocks.NORTHLAND_LOG.get())) {
+                stripped = ESBlocks.STRIPPED_NORTHLAND_LOG.get();
+            } else if (blockState.is(ESBlocks.STARLIGHT_MANGROVE_LOG.get())) {
+                stripped = ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get();
+            } else if (blockState.is(ESBlocks.SCARLET_LOG.get())) {
+                stripped = ESBlocks.STRIPPED_SCARLET_LOG.get();
+            } else if (blockState.is(ESBlocks.TORREYA_LOG.get())) {
+                stripped = ESBlocks.STRIPPED_TORREYA_LOG.get();
             } else {
                 return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
             }

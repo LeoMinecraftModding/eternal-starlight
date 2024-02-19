@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.npc.boarwarf;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.*;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.init.BoarwarfProfessionInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESBoarwarfProfessions;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -80,13 +80,13 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         return new ResourceLocation(entityData.get(PROFESSION));
     }
     public AbstractBoarwarfProfession getProfession() {
-        return BoarwarfProfessionInit.PROFESSIONS.registry().get(getProfessionId());
+        return ESBoarwarfProfessions.PROFESSIONS.registry().get(getProfessionId());
     }
     public void setProfessionId(ResourceLocation professionId) {
         entityData.set(PROFESSION, professionId.toString());
     }
     public void setProfession(AbstractBoarwarfProfession profession) {
-        ResourceLocation key = BoarwarfProfessionInit.PROFESSIONS.registry().getKey(profession);
+        ResourceLocation key = ESBoarwarfProfessions.PROFESSIONS.registry().getKey(profession);
         if (key != null) {
             setProfessionId(key);
         }
@@ -112,7 +112,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
         if (this.offers == null) {
             this.offers = new MerchantOffers();
-            this.populateTradeData();
+            this.addTrades();
         }
     }
 
@@ -172,22 +172,22 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         if (this.isSleeping()) {
             return null;
         } else {
-            return hasCustomer() ? SoundEventInit.BOARWARF_TRADE.get() : SoundEventInit.BOARWARF_AMBIENT.get();
+            return hasCustomer() ? ESSoundEvents.BOARWARF_TRADE.get() : ESSoundEvents.BOARWARF_AMBIENT.get();
         }
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEventInit.BOARWARF_HURT.get();
+        return ESSoundEvents.BOARWARF_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.BOARWARF_DEATH.get();
+        return ESSoundEvents.BOARWARF_DEATH.get();
     }
 
     protected SoundEvent getYesOrNoSound(boolean yesSound) {
-        return yesSound ? SoundEventInit.BOARWARF_YES.get() : SoundEventInit.BOARWARF_NO.get();
+        return yesSound ? ESSoundEvents.BOARWARF_YES.get() : ESSoundEvents.BOARWARF_NO.get();
     }
 
     @Override
@@ -357,36 +357,36 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     public MerchantOffers getOffers() {
         if (this.offers == null) {
             this.offers = new MerchantOffers();
-            this.populateTradeData();
+            this.addTrades();
         }
 
         return this.offers;
     }
 
-    protected void populateTradeData() {
+    protected void addTrades() {
         if (getProfession() != null) {
             MerchantOffers merchantoffers = this.getOffers();
             this.addTrades(merchantoffers, getProfession().getTrades(this), 5);
         }
     }
 
-    protected void addTrades(MerchantOffers givenMerchantOffers, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {
+    protected void addTrades(MerchantOffers original, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {
         Set<Integer> set = Sets.newHashSet();
         if (newTrades.length > maxNumbers) {
-            while(set.size() < maxNumbers) {
+            while (set.size() < maxNumbers) {
                 set.add(this.random.nextInt(newTrades.length));
             }
         } else {
-            for(int i = 0; i < newTrades.length; ++i) {
+            for (int i = 0; i < newTrades.length; ++i) {
                 set.add(i);
             }
         }
 
-        for(Integer integer : set) {
+        for (Integer integer : set) {
             VillagerTrades.ItemListing villagertrades$itrade = newTrades[integer];
             MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.random);
             if (merchantoffer != null) {
-                givenMerchantOffers.add(merchantoffer);
+                original.add(merchantoffer);
             }
         }
     }
@@ -398,23 +398,21 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     }
 
     @Override
-    public void overrideOffers(@Nullable MerchantOffers offers) { }
+    public void overrideOffers(@Nullable MerchantOffers offers) {
+
+    }
 
     @Override
     public void notifyTrade(MerchantOffer offer) {
         offer.increaseUses();
         this.ambientSoundTime = -this.getAmbientSoundInterval();
-        this.onBoarwarfTrade(offer);
-        /*if (this.customer instanceof ServerPlayer) {
-            ESCriteria.BOARWARF_TRADE.test((ServerPlayer)this.customer, this, offer.getResult());
-        }*/
-    }
-
-    protected void onBoarwarfTrade(MerchantOffer offer) {
         if (offer.shouldRewardExp()) {
             int i = 3 + this.random.nextInt(4);
             this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY() + 0.5D, this.getZ(), i));
         }
+        /*if (this.customer instanceof ServerPlayer) {
+            ESCriteria.BOARWARF_TRADE.test((ServerPlayer)this.customer, this, offer.getResult());
+        }*/
     }
 
     @Override
@@ -431,7 +429,9 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     }
 
     @Override
-    public void overrideXp(int xpIn) { }
+    public void overrideXp(int xp) {
+
+    }
 
     @Override
     public boolean showProgressBar() {
@@ -440,7 +440,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
     @Override
     public SoundEvent getNotifyTradeSound() {
-        return SoundEventInit.BOARWARF_YES.get();
+        return ESSoundEvents.BOARWARF_YES.get();
     }
 
     @Override

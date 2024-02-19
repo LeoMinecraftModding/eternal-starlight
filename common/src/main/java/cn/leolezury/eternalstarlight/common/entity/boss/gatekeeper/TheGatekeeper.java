@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LookAtTargetGoal;
@@ -7,16 +8,20 @@ import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -37,19 +42,27 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Npc;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.Merchant;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.compress.utils.Sets;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-public class TheGatekeeper extends ESBoss {
+public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
@@ -69,9 +82,20 @@ public class TheGatekeeper extends ESBoss {
     public AnimationState dashAnimationState = new AnimationState();
     public AnimationState castFireballAnimationState = new AnimationState();
     private String gatekeeperName = "TheGatekeeper";
+    @Nullable
+    private Player customer;
+    @Nullable
+    protected MerchantOffers offers;
+    private int restockCoolDown;
+    @Nullable
     private ServerPlayer conversationTarget;
+    @Nullable
     private String fightTarget;
     private boolean fightPlayerOnly = true;
+
+    public void setFightPlayerOnly(boolean fightPlayerOnly) {
+        this.fightPlayerOnly = fightPlayerOnly;
+    }
 
     public void setFightTargetName(String fightTarget) {
         this.fightTarget = fightTarget;
@@ -91,7 +115,12 @@ public class TheGatekeeper extends ESBoss {
         gatekeeperName = compoundTag.getString("GatekeeperName");
         fightTarget = compoundTag.getString("FightTarget");
         fightPlayerOnly = compoundTag.getBoolean("FightPlayerOnly");
+        restockCoolDown = compoundTag.getInt("RestockCoolDown");
         bossEvent.setId(getUUID());
+        if (this.offers == null) {
+            this.offers = new MerchantOffers();
+            this.addTrades();
+        }
     }
 
     @Override
@@ -100,6 +129,7 @@ public class TheGatekeeper extends ESBoss {
         compoundTag.putString("GatekeeperName", gatekeeperName);
         compoundTag.putString("FightTarget", fightTarget);
         compoundTag.putBoolean("FightPlayerOnly", fightPlayerOnly);
+        compoundTag.putInt("RestockCoolDown", restockCoolDown);
     }
 
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
@@ -128,19 +158,19 @@ public class TheGatekeeper extends ESBoss {
         targetSelector.addGoal(0, new GatekeeperTargetGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && fightPlayerOnly;
+                return super.canUse() && fightPlayerOnly && isActivated();
             }
         });
         targetSelector.addGoal(1, new HurtByTargetGoal(this, TheGatekeeper.class) {
             @Override
             public boolean canUse() {
-                return super.canUse() && !fightPlayerOnly;
+                return super.canUse() && !fightPlayerOnly && isActivated();
             }
         }.setAlertOthers());
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true) {
             @Override
             public boolean canUse() {
-                return super.canUse() && !fightPlayerOnly;
+                return super.canUse() && !fightPlayerOnly && isActivated();
             }
         });
     }
@@ -168,12 +198,6 @@ public class TheGatekeeper extends ESBoss {
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
         super.populateDefaultEquipmentSlots(randomSource, difficultyInstance);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
-    }
-
-    @Override
-    protected void tickDeath() {
-        //TODO: change to trading mode
-        super.tickDeath();
     }
 
     public void stopAllAnimStates() {
@@ -205,8 +229,13 @@ public class TheGatekeeper extends ESBoss {
     }
 
     @Override
-    public boolean canBossMove() {
-        return isActivated();
+    public boolean isActivated() {
+        return super.isActivated() || !fightPlayerOnly;
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity livingEntity) {
+        return super.canAttack(livingEntity) && isActivated();
     }
 
     @Override
@@ -227,15 +256,45 @@ public class TheGatekeeper extends ESBoss {
 
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
-        if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && conversationTarget == null && getTarget() == null && getFightTarget().isEmpty()) {
-            conversationTarget = serverPlayer;
-            ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenGatekeeperGuiPacket(getId()));
-            return InteractionResult.SUCCESS;
+        if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
+            AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(new ResourceLocation("end/kill_dragon"));
+            boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
+            AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
+            boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
+            boolean hasOrb = false;
+            for (int i = 0; i < serverPlayer.getInventory().getContainerSize(); i++) {
+                if (serverPlayer.getInventory().getItem(i).is(ESItems.ORB_OF_PROPHECY.get())) hasOrb = true;
+            }
+            if (!challenged || !hasOrb) {
+                conversationTarget = serverPlayer;
+                ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenGatekeeperGuiPacket(getId(), killed, challenged));
+            } else if (!getOffers().isEmpty()) {
+                this.setTradingPlayer(serverPlayer);
+                this.openTradingScreen(serverPlayer, this.getDisplayName(), 1);
+            }
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         return InteractionResult.PASS;
     }
 
     public void handleDialogueClose(int operation) {
+        if (operation == 1 && conversationTarget != null) {
+            fightPlayerOnly = true;
+            setFightTargetName(conversationTarget.getName().getString());
+            setActivated(true);
+            setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+        }
+        if (operation == 2 && conversationTarget != null) {
+            fightPlayerOnly = true;
+            setFightTargetName("");
+            setActivated(false);
+            ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
+            ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(conversationTarget);
+            if (!conversationTarget.getInventory().add(stack)) {
+                ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), stack);
+                level().addFreshEntity(entity);
+            }
+        }
         conversationTarget = null;
     }
 
@@ -273,8 +332,25 @@ public class TheGatekeeper extends ESBoss {
             Vec3 initialEndPos = ESUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
             for (int i = 0; i < 15; i++) {
                 Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ParticleInit.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
             }
+        }
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        if (damageSource.is(DamageTypes.GENERIC_KILL)) {
+            super.die(damageSource);
+        } else {
+            getFightTarget().ifPresent(p -> {
+                if (p instanceof ServerPlayer serverPlayer) {
+                    ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
+                }
+            });
+            setHealth(getMaxHealth());
+            fightPlayerOnly = true;
+            setFightTargetName("");
+            setActivated(false);
         }
     }
 
@@ -291,6 +367,18 @@ public class TheGatekeeper extends ESBoss {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
+            if (restockCoolDown > 0) {
+                restockCoolDown--;
+            } else {
+                restockCoolDown = 12000;
+                restockAll();
+            }
+            if (conversationTarget != null && conversationTarget.distanceTo(this) > 20) {
+                conversationTarget = null;
+            }
+            if (getTradingPlayer() != null && getTradingPlayer().distanceTo(this) > 16) {
+                setTradingPlayer(null);
+            }
             setCustomName(Component.literal(gatekeeperName));
             if (isLeftHanded()) {
                 setLeftHanded(false);
@@ -302,7 +390,7 @@ public class TheGatekeeper extends ESBoss {
                 }
             }
         } else {
-            level().addParticle(ParticleInit.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
+            level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
         }
     }
 
@@ -314,5 +402,103 @@ public class TheGatekeeper extends ESBoss {
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.PLAYER_DEATH;
+    }
+
+    @Override
+    public void setTradingPlayer(@Nullable Player player) {
+        this.customer = player;
+    }
+
+    @Nullable
+    @Override
+    public Player getTradingPlayer() {
+        return this.customer;
+    }
+
+    @Override
+    public MerchantOffers getOffers() {
+        if (this.offers == null) {
+            this.offers = new MerchantOffers();
+            this.addTrades();
+        }
+
+        return this.offers;
+    }
+
+    protected void addTrades() {
+        MerchantOffers merchantoffers = this.getOffers();
+        this.addTrades(merchantoffers, GatekeeperTrades.TRADES, 50);
+    }
+
+    protected void addTrades(MerchantOffers original, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {
+        Set<Integer> set = Sets.newHashSet();
+        if (newTrades.length > maxNumbers) {
+            while (set.size() < maxNumbers) {
+                set.add(this.random.nextInt(newTrades.length));
+            }
+        } else {
+            for (int i = 0; i < newTrades.length; ++i) {
+                set.add(i);
+            }
+        }
+
+        for (Integer integer : set) {
+            VillagerTrades.ItemListing villagertrades$itrade = newTrades[integer];
+            MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.random);
+            if (merchantoffer != null) {
+                original.add(merchantoffer);
+            }
+        }
+    }
+
+    protected void restockAll() {
+        for (MerchantOffer merchantoffer : this.getOffers()) {
+            merchantoffer.resetUses();
+        }
+    }
+
+    @Override
+    public void overrideOffers(@Nullable MerchantOffers offers) {
+
+    }
+
+    @Override
+    public void notifyTrade(MerchantOffer offer) {
+        offer.increaseUses();
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
+        if (offer.shouldRewardExp()) {
+            int i = 3 + this.random.nextInt(4);
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY() + 0.5D, this.getZ(), i));
+        }
+    }
+
+    @Override
+    public void notifyTradeUpdated(ItemStack stack) {
+
+    }
+
+    @Override
+    public int getVillagerXp() {
+        return 0;
+    }
+
+    @Override
+    public void overrideXp(int xp) {
+
+    }
+
+    @Override
+    public boolean showProgressBar() {
+        return false;
+    }
+
+    @Override
+    public SoundEvent getNotifyTradeSound() {
+        return null;
+    }
+
+    @Override
+    public boolean isClientSide() {
+        return this.level().isClientSide;
     }
 }

@@ -2,12 +2,12 @@ package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.EnchantmentInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.MobEffectInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESEnchantments;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
@@ -78,13 +78,13 @@ public class CommonHandlers {
     }
 
     public static void onLevelLoad(ServerLevel serverLevel) {
-        if (serverLevel.dimension() == DimensionInit.STARLIGHT_KEY) {
+        if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
             WeatherUtil.getOrCreateWeathers(serverLevel);
         }
     }
 
     public static void onLevelTick(ServerLevel serverLevel) {
-        if (serverLevel.dimension() == DimensionInit.STARLIGHT_KEY) {
+        if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
             Weathers weathers = WeatherUtil.getOrCreateWeathers(serverLevel);
             weathers.tick();
             weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
@@ -97,7 +97,7 @@ public class CommonHandlers {
 
     public static float onLivingHurt(LivingEntity entity, DamageSource source, float amount) {
         if (!entity.level().isClientSide) {
-            int poisoningLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.POISONING.get(), entity);
+            int poisoningLevel = EnchantmentHelper.getEnchantmentLevel(ESEnchantments.POISONING.get(), entity);
             if (poisoningLevel > 0 && source.getEntity() instanceof LivingEntity livingEntity) {
                 livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 60 * poisoningLevel, poisoningLevel - 1));
             }
@@ -140,7 +140,7 @@ public class CommonHandlers {
                     }
                 }
                 if (hasCrystals) {
-                    ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ItemInit.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
+                    ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
                     player.level().addFreshEntity(itemEntity);
                 }
             }
@@ -163,8 +163,8 @@ public class CommonHandlers {
         AttributeInstance instance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
         if (instance != null) {
             instance.removeModifier(AMARAMBER_BONUS.getId());
-            if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.AMARAMBER_HELMET.get())
-                    && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ItemInit.AMARAMBER_CHESTPLATE.get())
+            if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
+                    && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
                     && livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
                     && livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
                 instance.addPermanentModifier(AMARAMBER_BONUS);
@@ -177,7 +177,7 @@ public class CommonHandlers {
             }
         }
         int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
-        boolean inEther = BlockUtil.isEntityInBlock(livingEntity, BlockInit.ETHER.get());
+        boolean inEther = BlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
         if (!livingEntity.level().isClientSide) {
             if (!inEther && inEtherTicks > 0) {
                 ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", inEtherTicks - 1);
@@ -203,10 +203,10 @@ public class CommonHandlers {
             if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
                 if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
                     int level = 0;
-                    if (living.hasEffect(MobEffectInit.CRYSTALLINE_INFECTION.get())) {
-                        level += living.getEffect(MobEffectInit.CRYSTALLINE_INFECTION.get()).getAmplifier();
+                    if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.get())) {
+                        level += living.getEffect(ESMobEffects.CRYSTALLINE_INFECTION.get()).getAmplifier();
                     }
-                    living.addEffect(new MobEffectInstance(MobEffectInit.CRYSTALLINE_INFECTION.get(), 200, level));
+                    living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.get(), 200, level));
                 }
             }
             if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,11 +25,11 @@ public class CaveMossPlantBlock extends GrowingPlantBodyBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return ItemInit.CAVE_MOSS.get().getDefaultInstance();
+        return ESItems.CAVE_MOSS.get().getDefaultInstance();
     }
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) BlockInit.CAVE_MOSS.get();
+        return (GrowingPlantHeadBlock) ESBlocks.CAVE_MOSS.get();
     }
 }

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESFeature;
 import com.mojang.serialization.Codec;
@@ -23,7 +23,7 @@ public class DeadLunarTreeFeature extends ESFeature<NoneFeatureConfiguration> {
     }
 
     private BlockState getBlockToPlace(RandomSource randomSource, BlockPos pos) {
-        WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(BlockInit.DEAD_LUNAR_LOG.get().defaultBlockState(), 10).add(BlockInit.RED_CRYSTALLIZED_LUNAR_LOG.get().defaultBlockState(), 1).add(BlockInit.BLUE_CRYSTALLIZED_LUNAR_LOG.get().defaultBlockState(), 1).build());
+        WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.DEAD_LUNAR_LOG.get().defaultBlockState(), 10).add(ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get().defaultBlockState(), 1).add(ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get().defaultBlockState(), 1).build());
         return stateProvider.getState(randomSource, pos);
     }
 

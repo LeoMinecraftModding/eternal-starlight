@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.monster;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LonestarSkeletonShootBladeGoal;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.ParticleInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
@@ -78,13 +78,13 @@ public class LonestarSkeleton extends Skeleton {
     public void onSwitchWeapon() {
         AttributeInstance instance = getAttribute(Attributes.ATTACK_DAMAGE);
         if (instance != null) {
-            if (getMainHandItem().is(ItemInit.ENERGY_SWORD.get())) {
+            if (getMainHandItem().is(ESItems.ENERGY_SWORD.get())) {
                 instance.addPermanentModifier(DAMAGE_NERF);
             } else {
                 instance.removeModifier(DAMAGE_NERF.getId());
             }
 
-            if (getMainHandItem().is(ItemInit.WAND_OF_TELEPORTATION.get())) {
+            if (getMainHandItem().is(ESItems.WAND_OF_TELEPORTATION.get())) {
                 instance.addPermanentModifier(DAMAGE_ADDITION);
             } else {
                 instance.removeModifier(DAMAGE_ADDITION.getId());
@@ -92,7 +92,7 @@ public class LonestarSkeleton extends Skeleton {
         }
         this.goalSelector.removeGoal(this.meleeGoal);
         this.goalSelector.removeGoal(this.bladeGoal);
-        if (getMainHandItem().is(ItemInit.SHATTERED_SWORD.get())) {
+        if (getMainHandItem().is(ESItems.SHATTERED_SWORD.get())) {
             this.goalSelector.addGoal(4, this.bladeGoal);
         } else {
             this.goalSelector.addGoal(4, this.meleeGoal);
@@ -102,7 +102,7 @@ public class LonestarSkeleton extends Skeleton {
     @Override
     public boolean doHurtTarget(Entity entity) {
         if (level() instanceof ServerLevel serverLevel) {
-            if (getMainHandItem().is(ItemInit.ENERGY_SWORD.get())) {
+            if (getMainHandItem().is(ESItems.ENERGY_SWORD.get())) {
                 Vec3 initialStartPos = getEyePosition();
                 float lookYaw = getYHeadRot() + 90.0f;
                 float lookPitch = -getXRot();
@@ -113,12 +113,12 @@ public class LonestarSkeleton extends Skeleton {
                 for (int i = 0; i < 15; i++) {
                     Vec3 startPos = initialStartPos.offsetRandom(getRandom(), 0.4f);
                     Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
-                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ParticleInit.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
+                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
                 }
-            } else if (getMainHandItem().is(ItemInit.WAND_OF_TELEPORTATION.get())) {
+            } else if (getMainHandItem().is(ESItems.WAND_OF_TELEPORTATION.get())) {
                 for (int i = 0; i < 360; i += 5) {
                     Vec3 vec3 = ESUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
-                    serverLevel.sendParticles(ParticleInit.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
+                    serverLevel.sendParticles(ESParticles.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
                 }
                 teleportTowards(entity);
             }
@@ -169,13 +169,13 @@ public class LonestarSkeleton extends Skeleton {
         super.aiStep();
         if (getTarget() != null && !level().isClientSide) {
             List<Item> possibleWeapons = new ArrayList<>();
-            possibleWeapons.add(ItemInit.SHATTERED_SWORD.get());
+            possibleWeapons.add(ESItems.SHATTERED_SWORD.get());
             if (getTarget() instanceof ServerPlayer serverPlayer) {
                 if (isAdvancementDone(serverPlayer, new ResourceLocation(EternalStarlight.MOD_ID, "kill_golem"))) {
-                    possibleWeapons.add(ItemInit.ENERGY_SWORD.get());
+                    possibleWeapons.add(ESItems.ENERGY_SWORD.get());
                 }
                 if (isAdvancementDone(serverPlayer, new ResourceLocation(EternalStarlight.MOD_ID, "kill_lunar_monstrosity"))) {
-                    possibleWeapons.add(ItemInit.WAND_OF_TELEPORTATION.get());
+                    possibleWeapons.add(ESItems.WAND_OF_TELEPORTATION.get());
                 }
             }
             boolean correctWeapon = false;

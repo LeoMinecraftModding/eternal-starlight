@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -34,7 +34,7 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ent extends Animal {
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.LUNAR_BERRIES.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.LUNAR_BERRIES.get());
     public Ent(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }
@@ -87,7 +87,7 @@ public class Ent extends Animal {
         if (!flag) {
             if (ESPlatform.INSTANCE.isShears(stack) && hasLeaves()) {
                 setHasLeaves(false);
-                spawnAtLocation(ItemInit.LUNAR_LEAVES.get());
+                spawnAtLocation(ESItems.LUNAR_LEAVES.get());
                 stack.hurtAndBreak(1, player, (p) -> {
                     p.broadcastBreakEvent(hand);
                 });
@@ -112,13 +112,13 @@ public class Ent extends Animal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return EntityInit.ENT.get().create(level);
+        return ESEntities.ENT.get().create(level);
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEventInit.ENT_HURT.get();
+        return ESSoundEvents.ENT_HURT.get();
     }
 
     public static boolean checkEntSpawnRules(EntityType<? extends Ent> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

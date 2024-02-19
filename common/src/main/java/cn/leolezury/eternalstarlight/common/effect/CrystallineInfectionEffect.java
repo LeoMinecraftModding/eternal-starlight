@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.effect;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +20,7 @@ public class CrystallineInfectionEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity living, int amplifier) {
-        living.hurt(DamageTypeInit.getDamageSource(living.level(), DamageTypeInit.CRYSTALLINE_INFECTION), (amplifier + 1));
+        living.hurt(ESDamageTypes.getDamageSource(living.level(), ESDamageTypes.CRYSTALLINE_INFECTION), (amplifier + 1));
     }
 
     @Override

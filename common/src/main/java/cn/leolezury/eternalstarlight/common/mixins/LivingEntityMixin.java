@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
     private void es_isBlocking(CallbackInfoReturnable<Boolean> cir) {
-        if (isUsingItem() && getUseItem().is(ItemInit.MOONRING_GREATSWORD.get())) {
+        if (isUsingItem() && getUseItem().is(ESItems.MOONRING_GREATSWORD.get())) {
             cir.setReturnValue(true);
         }
     }

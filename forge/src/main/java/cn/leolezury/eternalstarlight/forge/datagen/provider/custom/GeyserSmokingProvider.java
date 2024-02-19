@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.custom;
 
-import cn.leolezury.eternalstarlight.common.init.RecipeSerializerInit;
+import cn.leolezury.eternalstarlight.common.init.ESRecipeSerializers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonObject;
@@ -57,7 +57,7 @@ public abstract class GeyserSmokingProvider implements DataProvider {
             } else {
                 JsonObject jsonObject = new JsonObject();
 
-                jsonObject.addProperty("type", BuiltInRegistries.RECIPE_SERIALIZER.getKey(RecipeSerializerInit.GEYSER_SMOKING.get()).toString());
+                jsonObject.addProperty("type", BuiltInRegistries.RECIPE_SERIALIZER.getKey(ESRecipeSerializers.GEYSER_SMOKING.get()).toString());
                 jsonObject.addProperty("input", BuiltInRegistries.ITEM.getKey(recipe.get(0)).toString());
                 jsonObject.addProperty("output", BuiltInRegistries.ITEM.getKey(recipe.get(1)).toString());
 

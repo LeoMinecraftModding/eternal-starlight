@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ratlin extends Animal {
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ItemInit.CAVE_MOSS.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.CAVE_MOSS.get());
 
     public Ratlin(EntityType<? extends Animal> type, Level level) {
         super(type, level);
@@ -58,7 +58,7 @@ public class Ratlin extends Animal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return EntityInit.RATLIN.get().create(level);
+        return ESEntities.RATLIN.get().create(level);
     }
 
     public static boolean checkRatlinSpawnRules(EntityType<? extends Ratlin> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

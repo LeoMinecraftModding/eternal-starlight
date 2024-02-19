@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
@@ -28,7 +28,7 @@ public class AetherSentMeteorRenderer extends EntityRenderer<AetherSentMeteor> {
     }
 
     public void render(AetherSentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        BlockState blockstate = BlockInit.AETHERSENT_BLOCK.get().defaultBlockState();
+        BlockState blockstate = ESBlocks.AETHERSENT_BLOCK.get().defaultBlockState();
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = meteor.level();
             if (blockstate != level.getBlockState(meteor.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {

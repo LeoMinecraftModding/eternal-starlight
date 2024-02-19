@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.EntityInit;
+import cn.leolezury.eternalstarlight.common.init.ESEntities;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.nbt.CompoundTag;
@@ -56,7 +56,7 @@ public class CameraShake extends Entity {
     }
 
     public CameraShake(Level level, Vec3 pos, float radius, float magnitude, int duration, int fadeDuration) {
-        super(EntityInit.CAMERA_SHAKE.get(), level);
+        super(ESEntities.CAMERA_SHAKE.get(), level);
         setRadius(radius);
         setMagnitude(magnitude);
         setDuration(duration);

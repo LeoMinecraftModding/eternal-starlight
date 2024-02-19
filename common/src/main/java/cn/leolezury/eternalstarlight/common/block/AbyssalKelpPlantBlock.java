@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.BlockInit;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -43,7 +43,7 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) BlockInit.ABYSSAL_KELP.get();
+        return (GrowingPlantHeadBlock) ESBlocks.ABYSSAL_KELP.get();
     }
 
     protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
@@ -51,7 +51,7 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
     }
 
     public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
-        return new ItemStack(ItemInit.ABYSSAL_FRUIT.get());
+        return new ItemStack(ESItems.ABYSSAL_FRUIT.get());
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
-import cn.leolezury.eternalstarlight.common.init.BlockEntityInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,7 +13,7 @@ public class ESPortalBlockEntity extends BlockEntity {
     }
 
     public ESPortalBlockEntity(BlockPos blockPos, BlockState blockState) {
-        this(BlockEntityInit.STARLIGHT_PORTAL.get(), blockPos, blockState);
+        this(ESBlockEntities.STARLIGHT_PORTAL.get(), blockPos, blockState);
     }
 
     private int clientSideTickCount = 0;

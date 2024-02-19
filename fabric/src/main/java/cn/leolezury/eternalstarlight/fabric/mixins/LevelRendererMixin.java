@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,7 +27,7 @@ public abstract class LevelRendererMixin {
 
     @Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
     private void es_renderSky(PoseStack poseStack, Matrix4f matrix4f, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
-        if (level.dimension() == DimensionInit.STARLIGHT_KEY) {
+        if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
             ESSkyRenderer.renderSky(level, poseStack, matrix4f, f, camera, runnable);
             ci.cancel();
         }
@@ -35,7 +35,7 @@ public abstract class LevelRendererMixin {
 
     @Inject(method = "renderSnowAndRain", at = @At(value = "HEAD"), cancellable = true)
     private void es_renderSnowAndRain(LightTexture lightTexture, float partialTick, double camX, double camY, double camZ, CallbackInfo ci) {
-        if (level.dimension() == DimensionInit.STARLIGHT_KEY) {
+        if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
             if (ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ)) {
                 ci.cancel();
             }

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 
-import cn.leolezury.eternalstarlight.common.init.TreeDecoratorInit;
+import cn.leolezury.eternalstarlight.common.init.ESTreeDecorators;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -14,7 +14,7 @@ public class TrunkCobwebDecorator extends TreeDecorator {
     
     @Override
     protected TreeDecoratorType<?> type() {
-        return TreeDecoratorInit.TRUNK_COBWEB.get();
+        return ESTreeDecorators.TRUNK_COBWEB.get();
     }
 
     @Override

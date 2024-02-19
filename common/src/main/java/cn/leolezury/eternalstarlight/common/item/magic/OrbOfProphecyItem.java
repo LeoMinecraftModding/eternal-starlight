@@ -1,17 +1,20 @@
 package cn.leolezury.eternalstarlight.common.item.magic;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.data.DimensionInit;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.CrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -110,12 +113,14 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
         Level level = useOnContext.getLevel();
         Player player = useOnContext.getPlayer();
         BlockPos pos = useOnContext.getClickedPos();
-        if (player == null) return InteractionResult.PASS;
-        if (!level.isClientSide && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
-            if (level.dimension() == DimensionInit.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
-                if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
-                    level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    return InteractionResult.SUCCESS;
+        if (player instanceof ServerPlayer serverPlayer) {AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
+            boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
+            if (challenged && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+                if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
+                    if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
+                        level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        return InteractionResult.SUCCESS;
+                    }
                 }
             }
         }

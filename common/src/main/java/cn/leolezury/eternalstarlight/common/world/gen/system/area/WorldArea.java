@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.area;
 
-import cn.leolezury.eternalstarlight.common.data.BiomeDataInit;
-import cn.leolezury.eternalstarlight.common.data.DataTransformerInit;
+import cn.leolezury.eternalstarlight.common.data.ESBiomeDatas;
+import cn.leolezury.eternalstarlight.common.data.ESDataTransformers;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
@@ -31,7 +31,7 @@ public class WorldArea {
         this.biomes = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(BiomeDataInit.SCARLET_FOREST));
+                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(ESBiomeDatas.SCARLET_FOREST));
             }
         }
     }
@@ -56,10 +56,10 @@ public class WorldArea {
 
     public void finalizeAll(Registry<DataTransformer> registry) {
         int tempSize = this.size; // 2048
-        transformBiomes(registry.get(DataTransformerInit.FINALIZE_BIOMES), 0);
+        transformBiomes(registry.get(ESDataTransformers.FINALIZE_BIOMES), 0);
         int finalSize = this.size; // 1024
         this.size = tempSize; // 2048
-        transformHeights(registry.get(DataTransformerInit.FINALIZE_HEIGHTS), 0);
+        transformHeights(registry.get(ESDataTransformers.FINALIZE_HEIGHTS), 0);
         this.size = finalSize; // 1024
         this.finalBiomes = new int[this.size * this.size];
         for (int i = 0; i < this.size; i++) {

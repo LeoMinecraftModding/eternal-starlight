@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.AbyssalGeyserBlockEntity;
-import cn.leolezury.eternalstarlight.common.init.BlockEntityInit;
+import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -39,6 +39,6 @@ public class AbyssalGeyserBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, BlockEntityInit.ABYSSAL_GEYSER.get(), AbyssalGeyserBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ESBlockEntities.ABYSSAL_GEYSER.get(), AbyssalGeyserBlockEntity::tick);
     }
 }

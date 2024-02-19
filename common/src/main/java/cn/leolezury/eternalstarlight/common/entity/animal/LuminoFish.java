@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
-import cn.leolezury.eternalstarlight.common.init.SoundEventInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -93,23 +93,23 @@ public class LuminoFish extends AbstractSchoolingFish {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEventInit.LUMINOFISH_HURT.get();
+        return ESSoundEvents.LUMINOFISH_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEventInit.LUMINOFISH_DEATH.get();
+        return ESSoundEvents.LUMINOFISH_DEATH.get();
     }
 
     @Override
     protected SoundEvent getFlopSound() {
-        return SoundEventInit.LUMINOFISH_FLOP.get();
+        return ESSoundEvents.LUMINOFISH_FLOP.get();
     }
 
     @Override
     public ItemStack getBucketItemStack() {
-        return ItemInit.LUMINOFISH_BUCKET.get().getDefaultInstance();
+        return ESItems.LUMINOFISH_BUCKET.get().getDefaultInstance();
     }
 
     public static boolean checkAbyssalWaterAnimalSpawnRules(EntityType<? extends WaterAnimal> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {

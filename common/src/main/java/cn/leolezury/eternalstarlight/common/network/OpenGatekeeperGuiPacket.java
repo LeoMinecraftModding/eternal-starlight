@@ -5,14 +5,18 @@ import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
-public record OpenGatekeeperGuiPacket(int id) {
+public record OpenGatekeeperGuiPacket(int id, boolean killedDragon, boolean challenged) {
     public static OpenGatekeeperGuiPacket read(FriendlyByteBuf buf) {
         int id = buf.readInt();
-        return new OpenGatekeeperGuiPacket(id);
+        boolean killedDragon = buf.readBoolean();
+        boolean challenged = buf.readBoolean();
+        return new OpenGatekeeperGuiPacket(id, killedDragon, challenged);
     }
 
     public static void write(OpenGatekeeperGuiPacket message, FriendlyByteBuf buf) {
         buf.writeInt(message.id());
+        buf.writeBoolean(message.killedDragon());
+        buf.writeBoolean(message.challenged());
     }
 
     public static class Handler {

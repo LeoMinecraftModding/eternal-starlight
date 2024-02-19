@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
-import cn.leolezury.eternalstarlight.common.data.DamageTypeInit;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -45,7 +45,7 @@ public class FireColumn extends AttackEffect {
             if (getSpawnedTicks() > 20 && getOwner() != null) {
                 AABB box = new AABB(getX() + 0.8, y, getZ() + 0.8, getX() - 0.8, getY(), getZ() - 0.8);
                 for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
-                    livingEntity.hurt(DamageTypeInit.getIndirectEntityDamageSource(level(), DamageTypeInit.FIRE_COLUMN, this, getOwner()), 10);
+                    livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FIRE_COLUMN, this, getOwner()), 10);
                     livingEntity.setSecondsOnFire(5);
                 }
             }

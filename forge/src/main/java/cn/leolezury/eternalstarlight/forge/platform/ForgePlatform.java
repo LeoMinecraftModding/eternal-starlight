@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.platform;
 
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
-import cn.leolezury.eternalstarlight.common.init.ItemInit;
+import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
@@ -274,8 +274,8 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public CreativeModeTab getESTab() {
-        return CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.STARLIGHT_FLOWER.get())).title(Component.translatable("itemGroup.eternal_starlight")).displayItems((displayParameters, output) -> {
-            for (ResourceKey<Item> entry : ItemInit.REGISTERED_ITEMS) {
+        return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("itemGroup.eternal_starlight")).displayItems((displayParameters, output) -> {
+            for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
                 Item item = BuiltInRegistries.ITEM.get(entry);
                 if (item != null) {
                     output.accept(item);
