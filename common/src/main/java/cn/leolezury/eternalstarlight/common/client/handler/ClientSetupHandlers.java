@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringSton
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
+import cn.leolezury.eternalstarlight.common.client.particle.effect.ESSmokeParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
@@ -402,6 +403,7 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
         strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
         strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
+        strategy.register(ESParticles.FLAME_SMOKE.get(), ESSmokeParticle.FlameProvider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {

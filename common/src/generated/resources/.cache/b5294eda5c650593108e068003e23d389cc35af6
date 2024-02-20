@@ -1,7 +1,8 @@
-// 1.20.4	2024-02-07T16:17:23.8557207	Particle Descriptions
+// 1.20.4	2024-02-20T22:15:41.6992028	Particle Descriptions
 80f29c59edeb07d57852a74a160b7619e049c7a4 assets/eternal_starlight/particles/amaramber_flame.json
 df3620b4fc75de9ed119c43b5b58474f5bc41607 assets/eternal_starlight/particles/blade_shockwave.json
 641c77c49f4a8a1145185d4910cb1ef687c6e990 assets/eternal_starlight/particles/energy.json
+879a93a5e9cafec7df1beecebab752ae4b45ee6e assets/eternal_starlight/particles/flame_smoke.json
 51d1edc8fd2688525a0ce9e8907cddee9a48f412 assets/eternal_starlight/particles/poison.json
 097e78fde1d3f388ddd0f01d6cc81c38190996f7 assets/eternal_starlight/particles/scarlet_leaves.json
 561eeff328764001a7c7495460eeca4bd7fd3089 assets/eternal_starlight/particles/starlight.json

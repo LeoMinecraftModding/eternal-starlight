@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -60,7 +60,7 @@ public class GatekeeperFireball extends Fireball {
     }
 
     protected ParticleOptions getTrailParticle() {
-        return ParticleTypes.LARGE_SMOKE;
+        return ESParticles.FLAME_SMOKE.get();
     }
 
     @Override
@@ -127,19 +127,20 @@ public class GatekeeperFireball extends Fireball {
                 }
             }
             setSpawnedTicks(getSpawnedTicks() + 1);
-            if (getSpawnedTicks() < 60 && getOwner() != null) {
-                Entity owner = getOwner();
-                float yaw = ESUtil.positionToYaw(owner.position(), position());
-                float pitch = ESUtil.positionToPitch(owner.position(), position());
-                Vec3 newPos = ESUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
-                setPos(newPos);
-            }
             if (getSpawnedTicks() == 60 && getTarget() != null) {
                 Vec3 power = getTarget().position().subtract(position()).normalize().scale(0.4f);
+                setDeltaMovement(Vec3.ZERO);
                 this.xPower = power.x;
                 this.yPower = power.y;
                 this.zPower = power.z;
             }
+        }
+        if (getSpawnedTicks() < 60 && getOwner() != null) {
+            Entity owner = getOwner();
+            float yaw = ESUtil.positionToYaw(owner.position(), position());
+            float pitch = ESUtil.positionToPitch(owner.position(), position());
+            Vec3 newPos = ESUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
+            setPos(newPos);
         }
     }
 
