@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.world;
 
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

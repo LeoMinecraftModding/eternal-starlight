@@ -8,13 +8,13 @@
   "creature_spawn_probability": 0.2,
   "downfall": 0.5,
   "effects": {
-    "fog_color": 3091031,
-    "foliage_color": 3091031,
-    "grass_color": 3091031,
+    "fog_color": 5195923,
+    "foliage_color": 5195923,
+    "grass_color": 5195923,
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
-      "replace_current_music": true,
+      "replace_current_music": false,
       "sound": "eternal_starlight:music.biome.starlight_forest"
     },
     "particle": {
@@ -57,6 +57,7 @@
       "eternal_starlight:near_water_grass",
       "eternal_starlight:cave_vine",
       "eternal_starlight:cave_moss",
+      "eternal_starlight:cave_moss_vein",
       "eternal_starlight:dense_forest",
       "eternal_starlight:forest_grass",
       "eternal_starlight:fallen_lunar_log"

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.block.fluid;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESFluids;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESFluids;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;

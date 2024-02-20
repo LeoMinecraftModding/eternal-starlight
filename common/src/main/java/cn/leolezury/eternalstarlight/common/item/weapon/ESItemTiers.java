@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;

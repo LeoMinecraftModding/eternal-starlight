@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

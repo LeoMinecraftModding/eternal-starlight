@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;

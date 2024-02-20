@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.trade.BuyItemTrade;
 import cn.leolezury.eternalstarlight.common.entity.npc.trade.DyedArmorTrade;
 import cn.leolezury.eternalstarlight.common.entity.npc.trade.SellItemTrade;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
 

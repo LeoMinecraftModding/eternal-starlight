@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

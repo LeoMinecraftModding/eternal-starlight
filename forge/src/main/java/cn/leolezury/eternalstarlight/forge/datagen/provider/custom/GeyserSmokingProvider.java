@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.custom;
 
-import cn.leolezury.eternalstarlight.common.init.ESRecipeSerializers;
+import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonObject;

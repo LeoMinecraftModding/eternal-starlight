@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESTreeDecorators;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;

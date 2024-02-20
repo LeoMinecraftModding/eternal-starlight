@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.BoarwarfDruidModel;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.init.ESBoarwarfProfessions;
+import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;

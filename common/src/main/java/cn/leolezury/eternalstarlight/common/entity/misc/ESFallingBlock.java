@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;

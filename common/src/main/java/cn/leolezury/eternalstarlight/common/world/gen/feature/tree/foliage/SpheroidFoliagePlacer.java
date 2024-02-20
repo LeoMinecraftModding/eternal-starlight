@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
-import cn.leolezury.eternalstarlight.common.init.ESPlacers;
+import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
-import cn.leolezury.eternalstarlight.common.init.ESSpells;
+import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;

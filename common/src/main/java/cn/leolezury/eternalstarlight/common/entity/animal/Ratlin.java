@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;

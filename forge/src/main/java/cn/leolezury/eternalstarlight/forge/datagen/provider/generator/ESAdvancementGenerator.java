@@ -2,10 +2,10 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider.generator;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESCriteriaTriggers;
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;

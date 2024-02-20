@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -44,6 +44,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         add(ESBlocks.BERRIES_VINES_PLANT.get(), this::createBerriesVinesDrop);
         dropSelf(ESBlocks.CAVE_MOSS.get());
         dropOther(ESBlocks.CAVE_MOSS_PLANT.get(), ESBlocks.CAVE_MOSS.get());
+        dropOther(ESBlocks.CAVE_MOSS_VEIN.get(), ESBlocks.CAVE_MOSS.get());
         add(ESBlocks.ABYSSAL_KELP.get(), this::createAbyssalKelpDrop);
         add(ESBlocks.ABYSSAL_KELP_PLANT.get(), this::createAbyssalKelpDrop);
 

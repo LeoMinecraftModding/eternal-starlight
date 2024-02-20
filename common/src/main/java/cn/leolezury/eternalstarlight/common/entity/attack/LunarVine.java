@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;

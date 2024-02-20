@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

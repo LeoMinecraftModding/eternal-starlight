@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.ItemModelGenerators;
@@ -483,6 +483,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicHandheld(ESItems.AURORA_DEER_ANTLER.get());
         basicItem(ESItems.AURORA_DEER_STEAK.get());
         basicItem(ESItems.COOKED_AURORA_DEER_STEAK.get());
+
+        basicItem(ESItems.FROZEN_TUBE.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
         basicBlockItem(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:multiface_growth",
+  "config": {
+    "block": "eternal_starlight:cave_moss_vein",
+    "can_be_placed_on": [
+      "eternal_starlight:grimstone",
+      "eternal_starlight:voidstone"
+    ],
+    "can_place_on_ceiling": true,
+    "can_place_on_floor": false,
+    "can_place_on_wall": true,
+    "chance_of_spreading": 0.5,
+    "search_range": 20
+  }
+}

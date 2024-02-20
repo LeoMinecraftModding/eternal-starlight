@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.nbt.CompoundTag;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.flammable;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;

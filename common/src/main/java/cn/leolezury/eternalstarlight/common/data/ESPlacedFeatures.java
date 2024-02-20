@@ -1,10 +1,9 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -13,7 +12,9 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -46,6 +47,7 @@ public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL_SURFACE = create("starlight_crystal_surface");
     public static final ResourceKey<PlacedFeature> CAVE_VINE = create("cave_vine");
     public static final ResourceKey<PlacedFeature> CAVE_MOSS = create("cave_moss");
+    public static final ResourceKey<PlacedFeature> CAVE_MOSS_VEIN = create("cave_moss_vein");
     public static final ResourceKey<PlacedFeature> ABYSSAL_KELP = create("abyssal_kelp");
     public static final ResourceKey<PlacedFeature> OCEAN_VEGETATION = create("ocean_vegetation");
     public static final ResourceKey<PlacedFeature> ABYSSLATE_PATCH = create("abysslate_patch");
@@ -94,62 +96,63 @@ public class ESPlacedFeatures {
             }
         }
 
-        register(context, ETHER_FLUID_BORDER, configuredFeatures.getOrThrow(ESConfiguredFeatures.ETHER_FLUID_BORDER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, STONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
-        register(context, GLOWING_GRIMSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_GRIMSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
-        register(context, GLOWING_NIGHTSHADE_MUD_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_NIGHTSHADE_MUD_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, NIGHTSHADE_DIRT_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.NIGHTSHADE_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, SWAMP_SILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_SILVER_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, GRIMSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, VOIDSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
-        register(context, GRIMSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_SALTPETER_ORE), commonOrePlacement(18, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-        register(context, VOIDSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_SALTPETER_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
-        register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, FALLEN_SCARLET_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_SCARLET_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, SCARLET_LEAVES_PILE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_LEAVES_PILE), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, STARLIGHT_CRYSTAL, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
-        register(context, STARLIGHT_CRYSTAL_SURFACE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, CAVE_VINE, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_VINE), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
-        register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(200), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
-        register(context, ABYSSAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSAL_KELP), NoiseBasedCountPlacement.of(120, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-        register(context, OCEAN_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.OCEAN_VEGETATION), NoiseBasedCountPlacement.of(20, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-        register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-        register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-        register(context, CRYOBYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYOBYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-        register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
-        register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
-        register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
-        register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
-        register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
-        register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
-        register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));
-        register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
-        register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
-        register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
-        register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
-        register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
-        register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
-        register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
-        register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(15), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, PERMAFROST_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, TORREYA_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
-        register(context, ON_WATER_PLANT, configuredFeatures.getOrThrow(ESConfiguredFeatures.ON_WATER_PLANT), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-        register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, ETHER_FLUID_BORDER, configuredFeatures.getOrThrow(ESConfiguredFeatures.ETHER_FLUID_BORDER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, STONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+        PlacementUtils.register(context, GLOWING_GRIMSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_GRIMSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+        PlacementUtils.register(context, GLOWING_NIGHTSHADE_MUD_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_NIGHTSHADE_MUD_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, NIGHTSHADE_DIRT_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.NIGHTSHADE_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, SWAMP_SILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_SILVER_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, GRIMSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, VOIDSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+        PlacementUtils.register(context, GRIMSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_SALTPETER_ORE), commonOrePlacement(18, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, VOIDSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_SALTPETER_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+        PlacementUtils.register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, FALLEN_SCARLET_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_SCARLET_LOG), RarityFilter.onAverageOnceEvery(10), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, SCARLET_LEAVES_PILE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_LEAVES_PILE), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, STARLIGHT_CRYSTAL, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+        PlacementUtils.register(context, STARLIGHT_CRYSTAL_SURFACE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, CAVE_VINE, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_VINE), CountPlacement.of(188), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+        PlacementUtils.register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(200), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+        PlacementUtils.register(context, CAVE_MOSS_VEIN, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_VEIN), CountPlacement.of(UniformInt.of(104, 157)), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Integer.MIN_VALUE, -13), BiomeFilter.biome());
+        PlacementUtils.register(context, ABYSSAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSAL_KELP), NoiseBasedCountPlacement.of(120, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, OCEAN_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.OCEAN_VEGETATION), NoiseBasedCountPlacement.of(20, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, CRYOBYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYOBYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
+        PlacementUtils.register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
+        PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
+        PlacementUtils.register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
+        PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
+        PlacementUtils.register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
+        PlacementUtils.register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));
+        PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
+        PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
+        PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
+        PlacementUtils.register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
+        PlacementUtils.register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
+        PlacementUtils.register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
+        PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
+        PlacementUtils.register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(15), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, SWAMP_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, PERMAFROST_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, SCARLET_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, TORREYA_FOREST_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
+        PlacementUtils.register(context, ON_WATER_PLANT, configuredFeatures.getOrThrow(ESConfiguredFeatures.ON_WATER_PLANT), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
         // structure features
-        register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
-        register(context, CURSED_GARDEN_EXTRA_HEIGHT, configuredFeatures.getOrThrow(ESConfiguredFeatures.CURSED_GARDEN_EXTRA_HEIGHT));
+        PlacementUtils.register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
+        PlacementUtils.register(context, CURSED_GARDEN_EXTRA_HEIGHT, configuredFeatures.getOrThrow(ESConfiguredFeatures.CURSED_GARDEN_EXTRA_HEIGHT));
     }
 
 
@@ -157,19 +160,10 @@ public class ESPlacedFeatures {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
     }
 
-    private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
-                                 List<PlacementModifier> modifiers) {
-        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-    }
-
-    private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
-                                 PlacementModifier... modifiers) {
-        register(context, key, configuration, List.of(modifiers));
-    }
-
     public static List<PlacementModifier> orePlacement(PlacementModifier modifier, PlacementModifier modifier1) {
         return List.of(modifier, InSquarePlacement.spread(), modifier1, BiomeFilter.biome());
     }
+
     public static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier modifier) {
         return orePlacement(CountPlacement.of(count), modifier);
     }

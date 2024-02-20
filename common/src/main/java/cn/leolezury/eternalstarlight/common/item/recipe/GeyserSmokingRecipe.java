@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ESRecipeSerializers;
-import cn.leolezury.eternalstarlight.common.init.ESRecipes;
+import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
+import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.RegistryAccess;

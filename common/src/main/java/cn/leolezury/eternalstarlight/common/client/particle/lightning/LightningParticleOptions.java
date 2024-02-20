@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.lightning;
 
 
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;

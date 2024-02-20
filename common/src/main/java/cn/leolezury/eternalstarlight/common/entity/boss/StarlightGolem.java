@@ -7,10 +7,10 @@ import cn.leolezury.eternalstarlight.common.entity.attack.beam.StarlightGolemBea
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
-import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

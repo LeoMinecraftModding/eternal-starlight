@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure.placement;
 
-import cn.leolezury.eternalstarlight.common.init.ESStructurePlacementTypes;
+import cn.leolezury.eternalstarlight.common.registry.ESStructurePlacementTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

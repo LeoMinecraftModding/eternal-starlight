@@ -14,7 +14,7 @@
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
-      "replace_current_music": true,
+      "replace_current_music": false,
       "sound": "eternal_starlight:music.dimension.tranquility"
     },
     "particle": {
@@ -61,6 +61,7 @@
       "eternal_starlight:near_water_grass",
       "eternal_starlight:cave_vine",
       "eternal_starlight:cave_moss",
+      "eternal_starlight:cave_moss_vein",
       "eternal_starlight:desert_grass",
       "eternal_starlight:dead_lunar_tree"
     ],

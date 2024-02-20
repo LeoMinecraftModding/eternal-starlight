@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;

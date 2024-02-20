@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer;
 
-import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
+import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import com.mojang.serialization.Codec;
 

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.crest;
 
-import cn.leolezury.eternalstarlight.common.init.ESSpells;
+import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import com.mojang.serialization.Codec;

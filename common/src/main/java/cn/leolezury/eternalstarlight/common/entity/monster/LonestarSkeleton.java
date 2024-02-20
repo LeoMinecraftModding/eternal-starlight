@@ -2,10 +2,10 @@ package cn.leolezury.eternalstarlight.common.entity.monster;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LonestarSkeletonShootBladeGoal;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;

@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.init.ESSpells;
+import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;

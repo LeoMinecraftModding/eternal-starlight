@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.CrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import net.minecraft.nbt.CompoundTag;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.init.ESWeathers;
+import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;

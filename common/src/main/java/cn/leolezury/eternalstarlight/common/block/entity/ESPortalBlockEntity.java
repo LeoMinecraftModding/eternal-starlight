@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;

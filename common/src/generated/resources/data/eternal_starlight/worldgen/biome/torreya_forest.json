@@ -14,7 +14,7 @@
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
-      "replace_current_music": true,
+      "replace_current_music": false,
       "sound": "eternal_starlight:music.biome.starlight_forest"
     },
     "particle": {
@@ -57,6 +57,7 @@
       "eternal_starlight:near_water_grass",
       "eternal_starlight:cave_vine",
       "eternal_starlight:cave_moss",
+      "eternal_starlight:cave_moss_vein",
       "eternal_starlight:torreya_forest_grass",
       "eternal_starlight:torreya_forest"
     ],

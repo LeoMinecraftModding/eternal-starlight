@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.forge.item.armor;
 
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;

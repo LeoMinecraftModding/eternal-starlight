@@ -6,13 +6,14 @@ import cn.leolezury.eternalstarlight.common.entity.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
@@ -51,6 +52,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.LUMINARIS.get(), Luminaris.createAttributes().build());
         strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
         strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
+        strategy.register(ESEntities.FREEZE.get(), Freeze.createAttributes().build());
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
     }
 
@@ -68,6 +70,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.AURORA_DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);
         strategy.register(ESEntities.LUMINOFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LuminoFish::checkAbyssalWaterAnimalSpawnRules);
         strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkAbyssalWaterAnimalSpawnRules);
+        strategy.register(ESEntities.FREEZE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
     }
 
     public interface FuelRegisterStrategy {

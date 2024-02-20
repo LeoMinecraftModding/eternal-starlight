@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.sounds;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
-import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;

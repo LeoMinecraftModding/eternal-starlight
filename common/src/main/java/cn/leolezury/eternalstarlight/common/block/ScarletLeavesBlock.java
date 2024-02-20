@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

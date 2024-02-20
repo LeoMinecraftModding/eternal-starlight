@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESFeature;
 import com.mojang.serialization.Codec;

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 
-import cn.leolezury.eternalstarlight.common.init.ESTreeDecorators;
+import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;

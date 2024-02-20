@@ -2,6 +2,6 @@
   "parent": "minecraft:block/tinted_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "eternal_starlight:block/cave_moss"
+    "cross": "eternal_starlight:block/cave_moss_plant"
   }
 }

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import cn.leolezury.eternalstarlight.common.util.SpellUtil;
 import net.minecraft.core.particles.ParticleTypes;

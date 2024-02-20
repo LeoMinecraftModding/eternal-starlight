@@ -14,10 +14,10 @@ import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortal
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
-import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
@@ -105,6 +105,7 @@ public class ClientSetupHandlers {
             ESBlocks.BERRIES_VINES_PLANT,
             ESBlocks.CAVE_MOSS,
             ESBlocks.CAVE_MOSS_PLANT,
+            ESBlocks.CAVE_MOSS_VEIN,
             ESBlocks.ABYSSAL_KELP,
             ESBlocks.ABYSSAL_KELP_PLANT,
             ESBlocks.DEAD_TENTACLES_CORAL,
@@ -282,6 +283,7 @@ public class ClientSetupHandlers {
         strategy.register(grassColor, ESBlocks.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(grassColor, ESBlocks.CAVE_MOSS.get());
         strategy.register(grassColor, ESBlocks.CAVE_MOSS_PLANT.get());
+        strategy.register(grassColor, ESBlocks.CAVE_MOSS_VEIN.get());
         strategy.register(grassColor, ESBlocks.MOONLIGHT_LILY_PAD.get());
         strategy.register(grassColor, ESBlocks.STARLIT_LILY_PAD.get());
         strategy.register(grassColor, ESBlocks.MOONLIGHT_DUCKWEED.get());
@@ -328,6 +330,7 @@ public class ClientSetupHandlers {
         strategy.register(toBlock, ESBlocks.NIGHTSHADE_GRASS_BLOCK.get());
         strategy.register(toBlock, ESBlocks.CAVE_MOSS.get());
         strategy.register(toBlock, ESBlocks.CAVE_MOSS_PLANT.get());
+        strategy.register(toBlock, ESBlocks.CAVE_MOSS_VEIN.get());
         strategy.register(toBlock, ESBlocks.MOONLIGHT_LILY_PAD.get());
         strategy.register(toBlock, ESBlocks.STARLIT_LILY_PAD.get());
         strategy.register(toBlock, ESBlocks.MOONLIGHT_DUCKWEED.get());
@@ -421,6 +424,8 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
         strategy.register(ESEntities.GATEKEEPER_FIREBALL.get(), GatekeeperFireballRenderer::new);
         strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolemRenderer::new);
+        strategy.register(ESEntities.FREEZE.get(), FreezeRenderer::new);
+        strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(ESEntities.STARLIGHT_GOLEM_BEAM.get(), StarlightGolemBeamRenderer::new);
         strategy.register(ESEntities.FIRE_COLUMN.get(), NothingRenderer::new);
@@ -468,6 +473,8 @@ public class ClientSetupHandlers {
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
         strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
         strategy.register(StarlightGolemModel.LAYER_LOCATION, StarlightGolemModel::createBodyLayer);
+        strategy.register(FreezeModel.LAYER_LOCATION, FreezeModel::createBodyLayer);
+        strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);
         strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
         strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
         strategy.register(LunarVineModel.LAYER_LOCATION, LunarVineModel::createBodyLayer);

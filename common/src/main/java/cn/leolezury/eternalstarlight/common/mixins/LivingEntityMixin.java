@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.init.ESItems;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;

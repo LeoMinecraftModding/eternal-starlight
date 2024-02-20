@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.animal;
 
-import cn.leolezury.eternalstarlight.common.init.ESItems;
-import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;

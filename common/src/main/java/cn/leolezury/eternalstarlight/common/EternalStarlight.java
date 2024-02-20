@@ -5,8 +5,8 @@ import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.IClientHelper;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.init.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 

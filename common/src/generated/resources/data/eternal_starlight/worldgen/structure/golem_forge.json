@@ -8,8 +8,8 @@
       "bounding_box": "piece",
       "spawns": [
         {
-          "type": "minecraft:blaze",
-          "maxCount": 1,
+          "type": "eternal_starlight:freeze",
+          "maxCount": 4,
           "minCount": 1,
           "weight": 1
         }

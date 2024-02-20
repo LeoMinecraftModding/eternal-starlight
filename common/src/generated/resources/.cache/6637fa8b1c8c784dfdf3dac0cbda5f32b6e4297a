@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-10T22:21:03.7038085	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2024-02-20T11:37:56.0289669	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -15,7 +15,7 @@ a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/blocks/port
 0ba82eb57d683ad7ec746142be07ca8f369acecc data/minecraft/tags/blocks/beacon_base_blocks.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/blocks/candles.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/blocks/ceiling_hanging_signs.json
-5e02cfb1495b9ff434a80c16a61b18d451579cee data/minecraft/tags/blocks/climbable.json
+dd45129bf1592e5525f0d5ef452f39494f73d89e data/minecraft/tags/blocks/climbable.json
 a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/blocks/combination_step_sound_blocks.json
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/blocks/dampens_vibrations.json
 0043545b9386dab569d4b456c56ccecb3e1d4c5f data/minecraft/tags/blocks/dirt.json

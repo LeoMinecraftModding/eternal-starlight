@@ -77,6 +77,9 @@ accessible method net/minecraft/client/gui/Gui renderTextureOverlay (Lnet/minecr
 # gatekeeper skin
 accessible method net/minecraft/world/level/block/entity/SkullBlockEntity fetchGameProfile (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 
+# freeze rendertype
+extendable method net/minecraft/client/model/Model renderType (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;
+
 # portal
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
 

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
 import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
 import cn.leolezury.eternalstarlight.common.entity.misc.EyeOfSeeking;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
-import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

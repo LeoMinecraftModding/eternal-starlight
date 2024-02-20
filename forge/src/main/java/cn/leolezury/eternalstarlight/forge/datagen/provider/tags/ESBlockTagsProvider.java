@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -316,6 +316,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.BERRIES_VINES_PLANT.get(),
                 ESBlocks.CAVE_MOSS.get(),
                 ESBlocks.CAVE_MOSS_PLANT.get(),
+                ESBlocks.CAVE_MOSS_VEIN.get(),
                 ESBlocks.TORREYA_VINES.get(),
                 ESBlocks.TORREYA_VINES_PLANT.get()
         );

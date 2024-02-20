@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.forge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.forge.init.FluidTypeInit;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.Registry;

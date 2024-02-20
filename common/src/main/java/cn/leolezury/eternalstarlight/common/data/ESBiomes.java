@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.init.ESEntities;
-import cn.leolezury.eternalstarlight.common.init.ESParticles;
-import cn.leolezury.eternalstarlight.common.init.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -33,10 +33,10 @@ public class ESBiomes {
     public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
     public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
 
-    public static final Music MUSIC_TRANQUILITY = new Music(ESSoundEvents.MUSIC_DIMENSION_TRANQUILITY.asHolder(), 1200, 12000, true);
-    public static final Music MUSIC_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_FOREST.asHolder(), 1200, 12000, true);
-    public static final Music MUSIC_PERMAFROST_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST.asHolder(), 1200, 12000, true);
-    public static final Music MUSIC_SWAMP = new Music(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.asHolder(), 1200, 12000, true);
+    public static final Music MUSIC_TRANQUILITY = new Music(ESSoundEvents.MUSIC_DIMENSION_TRANQUILITY.asHolder(), 1200, 12000, false);
+    public static final Music MUSIC_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_FOREST.asHolder(), 1200, 12000, false);
+    public static final Music MUSIC_PERMAFROST_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST.asHolder(), 1200, 12000, false);
+    public static final Music MUSIC_SWAMP = new Music(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.asHolder(), 1200, 12000, false);
 
     public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> featureHolderGetter = context.lookup(Registries.PLACED_FEATURE);
@@ -68,9 +68,9 @@ public class ESBiomes {
 
     private static BiomeSpecialEffects.Builder baseEffectsBuilder() {
         return new BiomeSpecialEffects.Builder()
-                .fogColor(3091031)
-                .foliageColorOverride(3091031)
-                .grassColorOverride(3091031)
+                .fogColor(5195923)
+                .foliageColorOverride(5195923)
+                .grassColorOverride(5195923)
                 .waterColor(6187416)
                 .waterFogColor(6187416)
                 .skyColor(5658761)
@@ -119,6 +119,7 @@ public class ESBiomes {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.NEAR_WATER_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTSHADE_DIRT_ORE);
@@ -143,6 +144,7 @@ public class ESBiomes {
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTSHADE_DIRT_ORE);

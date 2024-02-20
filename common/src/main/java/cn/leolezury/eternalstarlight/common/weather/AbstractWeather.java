@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.init.ESWeathers;
+import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;

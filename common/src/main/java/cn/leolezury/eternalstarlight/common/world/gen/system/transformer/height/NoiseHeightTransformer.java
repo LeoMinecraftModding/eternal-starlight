@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height;
 
-import cn.leolezury.eternalstarlight.common.init.ESDataTransformerTypes;
+import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;

@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-07T16:17:23.8417717	Loot Tables
+// 1.20.4	2024-02-20T16:14:16.5811732	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -21,6 +21,7 @@ f19282802edcd164dadc87043fa9b57002d23523 data/eternal_starlight/loot_tables/bloc
 d0a333acbcd86f370b4405ef7387fbed7c41b13e data/eternal_starlight/loot_tables/blocks/brown_yeti_fur_carpet.json
 76827f94ae949671dd5ddea03352edf35f78c9ff data/eternal_starlight/loot_tables/blocks/cave_moss.json
 f005be5f4f039719afec1dc09da2e86278beb9ee data/eternal_starlight/loot_tables/blocks/cave_moss_plant.json
+f240237cb9195507cec1c34346619cd8578dbf11 data/eternal_starlight/loot_tables/blocks/cave_moss_vein.json
 5f0b854f811315ad4985c27f19b7e855486e284c data/eternal_starlight/loot_tables/blocks/charged_chiseled_polished_doomeden_bricks.json
 2dc890f1195af2082b5d047da040aa75413a72cd data/eternal_starlight/loot_tables/blocks/chiseled_golem_steel_block.json
 592dee9a4d9e19251044c7efad3e4a17e8d7718f data/eternal_starlight/loot_tables/blocks/chiseled_grimstone.json
@@ -389,6 +390,7 @@ a461217c956af4bd0fb8803afa168aeb4b966da2 data/eternal_starlight/loot_tables/enti
 08f483fdd9a24359589f0afec6a45d6275408a6e data/eternal_starlight/loot_tables/entities/aurora_deer.json
 fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_tables/entities/boarwarf.json
 afc0ccc10a26fbae13a32f58731344ab12275bc6 data/eternal_starlight/loot_tables/entities/ent.json
+fdad82e79eefc983c6008a81b1f251eb424eb364 data/eternal_starlight/loot_tables/entities/freeze.json
 a6c9578f288d492c587c4229a5674583970f3c79 data/eternal_starlight/loot_tables/entities/lonestar_skeleton.json
 f1942f074e62b727cc84eb934ad87b712ec2afe9 data/eternal_starlight/loot_tables/entities/luminaris.json
 5279245b915aea15236347555d74f1b1a1650e91 data/eternal_starlight/loot_tables/entities/luminofish.json

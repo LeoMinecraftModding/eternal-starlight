@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.command;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.init.ESWeathers;
+import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import cn.leolezury.eternalstarlight.common.util.WeatherUtil;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import com.mojang.brigadier.CommandDispatcher;

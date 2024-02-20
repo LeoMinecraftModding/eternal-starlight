@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
-import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
-import cn.leolezury.eternalstarlight.common.init.ESRecipes;
 import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

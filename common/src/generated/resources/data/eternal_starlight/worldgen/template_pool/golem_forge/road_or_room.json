@@ -48,9 +48,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "eternal_starlight:golem_forge/material_storage",
-        "processors": {
-          "processors": []
-        },
+        "processors": "eternal_starlight:golem_forge/oxidization",
         "projection": "rigid"
       },
       "weight": 1

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.StarlightGolemSpawnerEntity;
-import cn.leolezury.eternalstarlight.common.init.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

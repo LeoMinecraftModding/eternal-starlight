@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.init.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

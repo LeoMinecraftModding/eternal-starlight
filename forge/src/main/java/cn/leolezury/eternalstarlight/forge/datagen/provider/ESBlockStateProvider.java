@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
-import cn.leolezury.eternalstarlight.common.init.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -33,7 +33,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         vinesWithFruit(ESBlocks.BERRIES_VINES.get());
         vinesWithFruit(ESBlocks.BERRIES_VINES_PLANT.get());
         tintedCross(ESBlocks.CAVE_MOSS.get());
-        tintedCross(ESBlocks.CAVE_MOSS_PLANT.get(), blockTexture(ESBlocks.CAVE_MOSS.get()), CUTOUT);
+        tintedCross(ESBlocks.CAVE_MOSS_PLANT.get());
+        multifaceBlock(ESBlocks.CAVE_MOSS_VEIN.get());
         vinesWithFruit(ESBlocks.ABYSSAL_KELP.get());
         vinesWithFruit(ESBlocks.ABYSSAL_KELP_PLANT.get());
         crystalCluster(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
@@ -447,6 +448,77 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .rotationY(270).modelFile(model).nextModel()
                 .rotationY(180).modelFile(model).nextModel()
                 .rotationY(90).modelFile(model).build());
+    }
+
+    private void multifaceBlock(Block block) {
+        ModelFile model = models().getBuilder(name(block))
+                .ao(false)
+                .texture("particle", blockTexture(block))
+                .texture("texture", blockTexture(block))
+                .renderType(TRANSLUCENT)
+                .element()
+                .from(0, 0, 0.1f)
+                .to(16, 16, 0.1f)
+                .face(Direction.NORTH)
+                .uvs(16, 0, 0, 16)
+                .texture("#texture")
+                .tintindex(0)
+                .end()
+                .face(Direction.SOUTH)
+                .uvs(0, 0, 16, 16)
+                .texture("#texture")
+                .tintindex(0)
+                .end()
+                .end();
+        getMultipartBuilder(block)
+                .part().modelFile(model).addModel().condition(BlockStateProperties.NORTH, true).end()
+                .part().modelFile(model).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(model).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()
+                .part().modelFile(model).uvLock(true).rotationY(90).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(model).uvLock(true).rotationY(180).addModel().condition(BlockStateProperties.SOUTH, true).end()
+                .part().modelFile(model).uvLock(true).rotationY(180).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(model).uvLock(true).rotationY(270).addModel().condition(BlockStateProperties.WEST, true).end()
+                .part().modelFile(model).uvLock(true).rotationY(270).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(model).uvLock(true).rotationX(270).addModel().condition(BlockStateProperties.UP, true).end()
+                .part().modelFile(model).uvLock(true).rotationX(270).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end()
+                .part().modelFile(model).uvLock(true).rotationX(90).addModel().condition(BlockStateProperties.DOWN, true).end()
+                .part().modelFile(model).uvLock(true).rotationX(90).addModel()
+                .condition(BlockStateProperties.DOWN, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.UP, false)
+                .condition(BlockStateProperties.WEST, false).end();
     }
 
     private void mushroomBlock(Block block) {

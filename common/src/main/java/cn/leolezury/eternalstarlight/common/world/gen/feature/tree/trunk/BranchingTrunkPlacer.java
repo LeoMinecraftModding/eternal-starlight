@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk;
 
-import cn.leolezury.eternalstarlight.common.init.ESPlacers;
+import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESUtil;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
