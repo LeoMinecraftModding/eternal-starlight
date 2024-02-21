@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
-import cn.leolezury.eternalstarlight.common.util.SpellUtil;
+import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +18,7 @@ public abstract class AbstractSpell {
 
     public boolean canCast(LivingEntity entity, boolean checkCrystal) {
         boolean crystalCheck = !checkCrystal || (entity instanceof Player player && hasRightCrystal(player.getInventory()));
-        return crystalCheck && SpellUtil.getCoolDownFor(entity, this) <= 0 && checkExtraConditions(entity);
+        return crystalCheck && ESSpellUtil.getCoolDownFor(entity, this) <= 0 && checkExtraConditions(entity);
     }
 
     public boolean hasRightCrystal(Inventory inventory) {
@@ -55,7 +55,7 @@ public abstract class AbstractSpell {
 
     public void stop(LivingEntity entity, int ticks) {
         onStop(entity, ticks);
-        SpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
+        ESSpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
     }
 
     public abstract boolean checkExtraConditions(LivingEntity entity);

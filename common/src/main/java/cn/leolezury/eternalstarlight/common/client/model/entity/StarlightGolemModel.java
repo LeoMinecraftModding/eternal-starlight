@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
-import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -53,13 +53,13 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
             int state = entity.getAttackState();
             switch (state) {
                 case 1 -> {
-                    animate(entity.energyBeamAnimationState, StarlightGolemAnimation.BEAM, ageInTicks);
+                    animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
                 }
                 case 2 -> {
                     animate(entity.flameAnimationState, StarlightGolemAnimation.FLAME, ageInTicks);
                 }
                 case 3 -> {
-                    animate(entity.shakeGroundAnimationState, StarlightGolemAnimation.SHAKE_GROUND, ageInTicks);
+                    animate(entity.smashGroundAnimationState, StarlightGolemAnimation.SMASH_GROUND, ageInTicks);
                 }
                 case 4 -> {
                     animate(entity.startPowerAnimationState, StarlightGolemAnimation.POWER_START, ageInTicks);

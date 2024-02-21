@@ -10,7 +10,7 @@ import net.minecraft.client.animation.KeyframeAnimations;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemAnimation {
-    public static final AnimationDefinition BEAM = AnimationDefinition.Builder.withLength(10.7083F)
+    public static final AnimationDefinition LASER_BEAM = AnimationDefinition.Builder.withLength(10.7083F)
             .addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                     new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                     new Keyframe(0.75F, KeyframeAnimations.degreeVec(-10.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -518,7 +518,7 @@ public class StarlightGolemAnimation {
             ))
             .build();
 
-    public static final AnimationDefinition SHAKE_GROUND = AnimationDefinition.Builder.withLength(3.0F)
+    public static final AnimationDefinition SMASH_GROUND = AnimationDefinition.Builder.withLength(3.0F)
             .addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                     new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
                     new Keyframe(0.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),

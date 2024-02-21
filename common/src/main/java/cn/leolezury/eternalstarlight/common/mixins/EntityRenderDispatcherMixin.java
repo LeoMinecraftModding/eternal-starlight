@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimato
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -82,8 +82,8 @@ public abstract class EntityRenderDispatcherMixin {
                 poseStack.translate(blockX, blockY, blockZ);
                 poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
                 Vec3 center = new Vec3(living.getBbWidth() / 2, living.getBbHeight() / 2, living.getBbWidth() / 2);
-                float pitch = ESUtil.positionToPitch(center, new Vec3(blockX, blockY, blockZ));
-                float yaw = ESUtil.positionToYaw(center, new Vec3(blockX, blockY, blockZ));
+                float pitch = ESMathUtil.positionToPitch(center, new Vec3(blockX, blockY, blockZ));
+                float yaw = ESMathUtil.positionToYaw(center, new Vec3(blockX, blockY, blockZ));
                 poseStack.mulPose(Axis.XP.rotationDegrees(-pitch));
                 poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
                 poseStack.translate(-0.5F, -0.5F, -0.5F);

@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.GatekeeperFireball;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
@@ -23,7 +23,7 @@ public class GatekeeperCastFireballPhase extends AttackPhase<TheGatekeeper> {
         LivingEntity target = entity.getTarget();
         if (target != null) {
             for (int i = 0; i < 6; i++) {
-                Vec3 pos = ESUtil.rotationToPosition(entity.position(), 3, 0, (360f / 6f) * i);
+                Vec3 pos = ESMathUtil.rotationToPosition(entity.position(), 3, 0, (360f / 6f) * i);
                 GatekeeperFireball fireball = new GatekeeperFireball(entity.level(), entity, 0, 1, 0);
                 fireball.setTarget(target);
                 fireball.setPos(pos);

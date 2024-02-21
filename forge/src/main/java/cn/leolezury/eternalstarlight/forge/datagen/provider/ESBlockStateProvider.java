@@ -613,8 +613,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void lantern(Block lantern) {
-        ModelFile normal = models().singleTexture(name(lantern), new ResourceLocation("template_lantern"), "lantern", blockTexture(lantern));
-        ModelFile hanging = models().singleTexture(name(lantern) + "_hanging", new ResourceLocation("template_hanging_lantern"), "lantern", blockTexture(lantern));
+        ModelFile normal = models().singleTexture(name(lantern), new ResourceLocation("template_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
+        ModelFile hanging = models().singleTexture(name(lantern) + "_hanging", new ResourceLocation("template_hanging_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
         getVariantBuilder(lantern)
                 .partialState().with(BlockStateProperties.HANGING, false)
                 .modelForState().modelFile(normal).addModel()

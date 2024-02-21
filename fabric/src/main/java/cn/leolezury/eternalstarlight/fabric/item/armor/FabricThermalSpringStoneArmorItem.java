@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.fabric.item.armor;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -22,7 +22,7 @@ import net.minecraft.world.item.ItemStack;
 public class FabricThermalSpringStoneArmorItem extends ThermalSpringStoneArmorItem {
     public FabricThermalSpringStoneArmorItem(ArmorMaterial material, Type type, Properties properties) {
         super(material, type, properties);
-        ESUtil.runWhenOnClient(() -> this::initializeClient);
+        ESMiscUtil.runWhenOnClient(() -> this::initializeClient);
     }
 
     @Environment(EnvType.CLIENT)

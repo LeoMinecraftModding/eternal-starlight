@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import net.minecraft.core.BlockPos;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -11,9 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 
-public class FireColumn extends AttackEffect {
-    public FireColumn(EntityType<? extends Entity> p_21683_, Level p_21684_) {
-        super(p_21683_, p_21684_);
+public class EnergizedFlame extends AttackEffect {
+    public EnergizedFlame(EntityType<? extends Entity> type, Level level) {
+        super(type, level);
     }
 
     public PushReaction getPistonPushReaction() {
@@ -28,30 +28,24 @@ public class FireColumn extends AttackEffect {
     @Override
     public void tick() {
         super.tick();
-        setDeltaMovement(0, 0, 0);
         if (getSpawnedTicks() > 100) {
             discard();
         }
         if (!level().isClientSide) {
-            double y = 0;
-            for (y = getY(); level().getBlockState(new BlockPos((int) getX(), (int) y, (int) getZ())).isAir(); y++) {
-                if (y > getY() + 20) {
-                    break;
-                }
-            }
             if (getSpawnedTicks() == 20) {
                 playSound(SoundEvents.FIRECHARGE_USE, getSoundVolume(), getVoicePitch());
             }
             if (getSpawnedTicks() > 20 && getOwner() != null) {
-                AABB box = new AABB(getX() + 0.8, y, getZ() + 0.8, getX() - 0.8, getY(), getZ() - 0.8);
+                AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
                 for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
-                    livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FIRE_COLUMN, this, getOwner()), 10);
+                    livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 10);
                     livingEntity.setSecondsOnFire(5);
                 }
             }
         } else {
             if (getSpawnedTicks() > 20) {
-                level().addParticle(ParticleTypes.FLAME, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
+                level().addParticle(ESParticles.ENERGIZED_FLAME_SMOKE.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
+                level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
             }
         }
     }

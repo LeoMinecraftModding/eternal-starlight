@@ -1,7 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.ESRenderType;
-import cn.leolezury.eternalstarlight.common.entity.attack.beam.AbstractLaserBeam;
+import cn.leolezury.eternalstarlight.common.entity.attack.beam.LaserBeam;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -11,24 +12,24 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
-public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> extends EntityRenderer<T> {
+public abstract class AbstractLaserBeamRenderer<T extends LaserBeam> extends EntityRenderer<T> {
     public AbstractLaserBeamRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
     
     public float getTextureWidth() {
-        return 256;
+        return 32;
     }
     
     public float getTextureHeight() {
-        return 32;
+        return 16;
     }
 
     public float getStartRadius() {
@@ -41,48 +42,41 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
 
     @Override
     public void render(T laserBeam, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        double targetX = Mth.lerp(partialTicks, laserBeam.prevCollidePosX, laserBeam.collidePosX);
-        double targetY = Mth.lerp(partialTicks, laserBeam.prevCollidePosY, laserBeam.collidePosY);
-        double targetZ = Mth.lerp(partialTicks, laserBeam.prevCollidePosZ, laserBeam.collidePosZ);
+        Vec3 endPos = ESMathUtil.rotationToPosition(laserBeam.position(), laserBeam.getLength(), Mth.rotLerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()), Mth.rotLerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()));
+        double targetX = endPos.x;
+        double targetY = endPos.y;
+        double targetZ = endPos.z;
 
         double posX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
         double posY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
         double posZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());
 
-        float yaw = Mth.lerp(partialTicks, laserBeam.prevYaw, laserBeam.renderYaw);
-        float pitch = Mth.lerp(partialTicks, laserBeam.prevPitch, laserBeam.renderPitch);
+        float yaw = Mth.lerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()) * Mth.DEG_TO_RAD;
+        float pitch = Mth.lerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()) * Mth.DEG_TO_RAD;
 
         float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
-
-        int frame = Mth.floor((laserBeam.appearTimer - 1 + partialTicks) * 2);
-        if (frame < 0) {
-            frame = 6;
-        }
-
-        // debug
-        frame = 5;
 
         VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
 
         // render beam start
-        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
+        // renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
 
         // render beam end
-        stack.pushPose();
-        stack.translate(targetX - posX, targetY - posY, targetZ - posZ);
-        renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
+        // stack.pushPose();
+        // stack.translate(targetX - posX, targetY - posY, targetZ - posZ);
+        /*renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
         if (laserBeam.blockSide != null) {
             renderBlockHit(frame, laserBeam.blockSide, stack, consumer, packedLight);
-        }
-        stack.popPose();
+        }*/
+        // stack.popPose();
 
-        consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
+        // consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
 
         // render beam
-        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, frame, stack, consumer, packedLight);
+        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount, stack, consumer, packedLight);
     }
 
-    private void renderBlockHit(int frame, Direction hitDirection, PoseStack stack, VertexConsumer consumer, int packedLight) {
+    /*private void renderBlockHit(int frame, Direction hitDirection, PoseStack stack, VertexConsumer consumer, int packedLight) {
         stack.pushPose();
         Quaternionf sideRotation = hitDirection.getRotation().mul((new Quaternionf()).rotationX(90.0F * (float) Math.PI / 180f));
         renderQuad(frame, sideRotation, stack, consumer, packedLight);
@@ -106,45 +100,41 @@ public abstract class AbstractLaserBeamRenderer<T extends AbstractLaserBeam> ext
         vertex(matrix4f, matrix3f, consumer, getStartRadius(), getStartRadius(), 0, textureEndX, textureEndY, 1, packedLight);
         vertex(matrix4f, matrix3f, consumer, getStartRadius(), -getStartRadius(), 0, textureEndX, textureY, 1, packedLight);
         stack.popPose();
-    }
+    }*/
 
-    private void renderBeamPart(float length, int frame, PoseStack stack, VertexConsumer consumer, int packedLight) {
-        float textureX = 0;
-        float textureY = 16 / getTextureHeight() + 1 / getTextureHeight() * frame;
-        float textureEndX = textureX + 20 / getTextureWidth();
-        float textureEndY = textureY + 1 / getTextureHeight();
-
+    private void renderBeamPart(float length, int tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
         PoseStack.Pose pose = stack.last();
         Matrix4f matrix4f = pose.pose();
         Matrix3f matrix3f = pose.normal();
-        vertex(matrix4f, matrix3f, consumer, -getBeamRadius(), 0, 0, textureX, textureY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, -getBeamRadius(), length, 0, textureX, textureEndY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getBeamRadius(), length, 0, textureEndX, textureEndY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getBeamRadius(), 0, 0, textureEndX, textureY, 1, packedLight);
+        float factor = (float) Math.sin(tickCount + Minecraft.getInstance().getFrameTime());
+        float xOffset = ((tickCount + Minecraft.getInstance().getFrameTime()) * 0.2f) % getTextureWidth();
+        vertex(matrix4f, matrix3f, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
+        vertex(matrix4f, matrix3f, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
+        vertex(matrix4f, matrix3f, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
+        vertex(matrix4f, matrix3f, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
     }
 
-    private void renderBeam(float length, float yaw, float pitch, int frame, PoseStack matrixStackIn, VertexConsumer builder, int packedLightIn) {
+    private void renderBeam(float length, float yaw, float pitch, int tickCount, PoseStack matrixStackIn, VertexConsumer builder, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.mulPose((new Quaternionf()).rotationX(90.0F * (float) Math.PI / 180f));
         matrixStackIn.mulPose((new Quaternionf()).rotationZ((yaw - 90.0F) * (float) Math.PI / 180f));
         matrixStackIn.mulPose((new Quaternionf()).rotationX(-pitch * (float) Math.PI / 180f));
 
-        float angle = Minecraft.getInstance().gameRenderer.getMainCamera().getXRot();
+        float angle = (tickCount + Minecraft.getInstance().getFrameTime());
 
-        // debug
         matrixStackIn.pushPose();
         matrixStackIn.mulPose((new Quaternionf()).rotationY((angle) * (float) Math.PI / 180f));
 
-        renderBeamPart(length, frame, matrixStackIn, builder, packedLightIn);
+        renderBeamPart(length, tickCount, matrixStackIn, builder, packedLightIn);
         matrixStackIn.popPose();
 
-        /*for (int i = 0; i < 6; i++) {
+        for (int i = 1; i < 3; i++) {
             matrixStackIn.pushPose();
-            matrixStackIn.mulPose((new Quaternionf()).rotationY((angle + i * 30) * (float) Math.PI / 180f));
+            matrixStackIn.mulPose((new Quaternionf()).rotationY((i * 30) * (float) Math.PI / 180f));
 
-            renderBeamPart(length, frame, matrixStackIn, builder, packedLightIn);
+            renderBeamPart(length, tickCount, matrixStackIn, builder, packedLightIn);
             matrixStackIn.popPose();
-        }*/
+        }
 
         matrixStackIn.popPose();
     }

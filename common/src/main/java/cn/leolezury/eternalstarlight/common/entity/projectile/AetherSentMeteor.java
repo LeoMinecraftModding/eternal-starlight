@@ -5,7 +5,8 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -89,7 +90,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
 
     public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
         if (!level.isClientSide) {
-            CompoundTag tag = ESUtil.getPersistentData(entity);
+            CompoundTag tag = ESEntityUtil.getPersistentData(entity);
             if (tag.getInt("MeteorCoolDown") > 0) {
                 return;
             }
@@ -172,8 +173,8 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
                 float pitch = random.nextInt(361);
                 float yaw = random.nextInt(361);
                 float len = random.nextInt(getSize());
-                Vec3 particleTarget = ESUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
-                Vec3 particleStart = ESUtil.rotationToPosition(position(), len, pitch, yaw);
+                Vec3 particleTarget = ESMathUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
+                Vec3 particleStart = ESMathUtil.rotationToPosition(position(), len, pitch, yaw);
                 Vec3 motion = particleTarget.subtract(particleStart);
                 level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), particleStart.x, particleStart.y, particleStart.z, motion.x, motion.y, motion.z);
             }

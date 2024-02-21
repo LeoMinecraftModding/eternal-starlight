@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
 import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -48,7 +48,7 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
         for (int x = 0; x <= xzRadius; x++) {
             for (int z = 0; z <= xzRadius; z++) {
                 for (int y = 0; y <= yRadius; y++) {
-                    if (ESUtil.isPointInEllipsoid(x, y, z, xzRadius, yRadius, xzRadius)) {
+                    if (ESMathUtil.isPointInEllipsoid(x, y, z, xzRadius, yRadius, xzRadius)) {
                         placeFoliage(level, setter, predicate, centerPos.offset(x, y, z), provider, random);
                         placeFoliage(level, setter, predicate, centerPos.offset(x, -y, z), provider, random);
                         placeFoliage(level, setter, predicate, centerPos.offset(-x, y, z), provider, random);

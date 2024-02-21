@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
-import cn.leolezury.eternalstarlight.common.util.GuiUtil;
+import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -99,7 +99,7 @@ public class CrestButton extends Button {
         float x, y;
         if (orbit) {
             float currentAngle = Mth.lerp(partialTicks, prevAngle, angle);
-            Vec3 centerPos = ESUtil.rotationToPosition(new Vec3(orbitCenterX, 0, orbitCenterY), 60, 0, currentAngle);
+            Vec3 centerPos = ESMathUtil.rotationToPosition(new Vec3(orbitCenterX, 0, orbitCenterY), 60, 0, currentAngle);
             x = (float) (centerPos.x - CREST_WIDTH / 2f);
             y = (float) (centerPos.z - CREST_HEIGHT / 2f);
             setPosition((int) x, (int) y);
@@ -111,7 +111,7 @@ public class CrestButton extends Button {
             float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
             float width = CREST_WIDTH * progress;
             float height = CREST_HEIGHT * progress;
-            GuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
+            ESGuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
         }
     }
 }

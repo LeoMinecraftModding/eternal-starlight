@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
@@ -36,7 +36,7 @@ public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) 
 
     public static class Handler {
         public static void handle(OpenCrestGuiPacket message, Player player) {
-            ESUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(message));
+            ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(message));
         }
     }
 }

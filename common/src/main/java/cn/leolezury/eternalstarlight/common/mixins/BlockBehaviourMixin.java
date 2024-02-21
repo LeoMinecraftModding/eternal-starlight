@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.mixins;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -33,7 +33,7 @@ public abstract class BlockBehaviourMixin {
                         }
                     }
                 }
-                CompoundTag compoundTag = ESUtil.getPersistentData(livingEntity);
+                CompoundTag compoundTag = ESEntityUtil.getPersistentData(livingEntity);
                 if (armorInstance == null || armorInstance.getValue() > 0) {
                     int inEtherTicks = compoundTag.getInt("InEtherTicks");
                     compoundTag.putInt("InEtherTicks", inEtherTicks + 1);

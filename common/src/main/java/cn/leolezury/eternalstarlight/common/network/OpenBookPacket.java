@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.network;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -58,7 +58,7 @@ public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataLis
 
     public static class Handler {
         public static void handle(OpenBookPacket message, Player player) {
-            ESUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
+            ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
         }
     }
 }

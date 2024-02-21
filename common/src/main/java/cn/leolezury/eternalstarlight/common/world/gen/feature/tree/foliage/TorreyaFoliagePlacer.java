@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
 import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -38,7 +38,7 @@ public class TorreyaFoliagePlacer extends FoliagePlacer {
     }
 
     public static void placeLineFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, RandomSource random, BlockPos fromPos, BlockPos toPos, BlockStateProvider provider) {
-        List<int[]> leavesPositions = ESUtil.getBresenham3DPoints(fromPos.getX(), fromPos.getY(), fromPos.getZ(), toPos.getX(), toPos.getY(), toPos.getZ());
+        List<int[]> leavesPositions = ESMathUtil.getBresenham3DPoints(fromPos.getX(), fromPos.getY(), fromPos.getZ(), toPos.getX(), toPos.getY(), toPos.getZ());
         for (int[] pos : leavesPositions) {
             placeFoliage(level, setter, predicate, new BlockPos(pos[0], pos[1], pos[2]), provider, random);
         }

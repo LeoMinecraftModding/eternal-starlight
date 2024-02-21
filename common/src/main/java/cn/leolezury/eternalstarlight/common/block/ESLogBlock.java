@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -34,14 +35,19 @@ public class ESLogBlock extends RotatedPillarBlock {
             Block stripped;
             if (blockState.is(ESBlocks.LUNAR_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_LUNAR_LOG.get();
+                player.playSound(SoundEvents.AXE_STRIP);
             } else if (blockState.is(ESBlocks.NORTHLAND_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_NORTHLAND_LOG.get();
+                player.playSound(SoundEvents.AXE_STRIP);
             } else if (blockState.is(ESBlocks.STARLIGHT_MANGROVE_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get();
+                player.playSound(SoundEvents.AXE_STRIP);
             } else if (blockState.is(ESBlocks.SCARLET_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_SCARLET_LOG.get();
+                player.playSound(SoundEvents.AXE_STRIP);
             } else if (blockState.is(ESBlocks.TORREYA_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_TORREYA_LOG.get();
+                player.playSound(SoundEvents.AXE_STRIP);
             } else {
                 return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
             }

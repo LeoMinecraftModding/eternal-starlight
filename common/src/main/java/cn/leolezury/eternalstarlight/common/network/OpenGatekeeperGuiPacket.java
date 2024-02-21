@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
@@ -21,7 +21,7 @@ public record OpenGatekeeperGuiPacket(int id, boolean killedDragon, boolean chal
 
     public static class Handler {
         public static void handle(OpenGatekeeperGuiPacket message, Player player) {
-            ESUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenGatekeeperGui(message));
+            ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenGatekeeperGui(message));
         }
     }
 }

@@ -14,7 +14,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancements.AdvancementHolder;
@@ -329,7 +329,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         if (level() instanceof ServerLevel serverLevel) {
             float lookYaw = getYHeadRot() + 90.0f;
             float lookPitch = -getXRot();
-            Vec3 initialEndPos = ESUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
+            Vec3 initialEndPos = ESMathUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
             for (int i = 0; i < 15; i++) {
                 Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
@@ -360,6 +360,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             return false;
         }
         return super.hurt(source, amount);
+    }
+
+    @Override
+    public boolean isSilent() {
+        return super.isSilent() || !isActivated();
     }
 
     @Override

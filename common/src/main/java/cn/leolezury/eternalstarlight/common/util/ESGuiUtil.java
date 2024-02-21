@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
 @Environment(EnvType.CLIENT)
-public class GuiUtil {
+public class ESGuiUtil {
     // from GuiGraphics, changed int -> float
     public static void blit(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float y, float width, float height, float texWidth, float texHeight) {
         innerBlit(graphics, resourceLocation, x, x + width, y, y + height, width / texWidth, height / texHeight);

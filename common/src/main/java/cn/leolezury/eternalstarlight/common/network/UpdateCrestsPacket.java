@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.util.CrestUtil;
+import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -42,11 +42,11 @@ public record UpdateCrestsPacket(List<String> crests) {
                         }
                     }
                 }
-                List<Crest> ownedCrests = CrestUtil.getCrests(player, "OwnedCrests");
+                List<Crest> ownedCrests = ESCrestUtil.getCrests(player, "OwnedCrests");
                 if (crestList.stream().anyMatch(crest -> !ownedCrests.contains(crest))) {
                     return;
                 }
-                CrestUtil.setCrests(player, crestList);
+                ESCrestUtil.setCrests(player, crestList);
             }
         }
     }

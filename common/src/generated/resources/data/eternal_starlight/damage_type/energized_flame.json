@@ -1,6 +1,6 @@
 {
   "effects": "burning",
   "exhaustion": 0.0,
-  "message_id": "eternal_starlight.fire_column",
+  "message_id": "eternal_starlight.energized_flame",
   "scaling": "when_caused_by_living_non_player"
 }

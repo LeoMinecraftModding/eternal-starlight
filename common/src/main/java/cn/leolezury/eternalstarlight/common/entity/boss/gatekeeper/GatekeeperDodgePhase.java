@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackPhase;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
@@ -34,10 +34,10 @@ public class GatekeeperDodgePhase extends AttackPhase<TheGatekeeper> {
     public void onStart(TheGatekeeper entity) {
         LivingEntity target = entity.getTarget();
         if (target != null) {
-            float yaw = ESUtil.positionToYaw(target.position(), entity.position());
-            float pitch = ESUtil.positionToPitch(target.position(), entity.position());
+            float yaw = ESMathUtil.positionToYaw(target.position(), entity.position());
+            float pitch = ESMathUtil.positionToPitch(target.position(), entity.position());
             yaw += entity.getRandom().nextBoolean() ? 10f : -10f;
-            Vec3 newPos = ESUtil.rotationToPosition(target.position(), entity.distanceTo(target), pitch, yaw);
+            Vec3 newPos = ESMathUtil.rotationToPosition(target.position(), entity.distanceTo(target), pitch, yaw);
             entity.hurtMarked = true;
             entity.setDeltaMovement(entity.getDeltaMovement().add(newPos.subtract(entity.position()).normalize()));
         }

@@ -6,7 +6,7 @@ import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -106,7 +106,7 @@ public class LonestarSkeleton extends Skeleton {
                 Vec3 initialStartPos = getEyePosition();
                 float lookYaw = getYHeadRot() + 90.0f;
                 float lookPitch = -getXRot();
-                Vec3 initialEndPos = ESUtil.rotationToPosition(initialStartPos, 0.3f, lookPitch, lookYaw);
+                Vec3 initialEndPos = ESMathUtil.rotationToPosition(initialStartPos, 0.3f, lookPitch, lookYaw);
                 hurtMarked = true;
                 setDeltaMovement(initialEndPos.subtract(initialStartPos).scale(5));
                 playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
@@ -117,7 +117,7 @@ public class LonestarSkeleton extends Skeleton {
                 }
             } else if (getMainHandItem().is(ESItems.WAND_OF_TELEPORTATION.get())) {
                 for (int i = 0; i < 360; i += 5) {
-                    Vec3 vec3 = ESUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
+                    Vec3 vec3 = ESMathUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
                     serverLevel.sendParticles(ESParticles.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
                 }
                 teleportTowards(entity);

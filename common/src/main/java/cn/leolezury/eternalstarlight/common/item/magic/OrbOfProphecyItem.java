@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.CrestUtil;
+import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
@@ -39,23 +39,23 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
     }
 
     public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
-        List<Crest> crests = CrestUtil.getCrests(access, tag);
-        List<Crest> itemCrests = CrestUtil.getCrests(access, stack.getOrCreateTag().getCompound("Crests"));
+        List<Crest> crests = ESCrestUtil.getCrests(access, tag);
+        List<Crest> itemCrests = ESCrestUtil.getCrests(access, stack.getOrCreateTag().getCompound("Crests"));
         crests.addAll(itemCrests);
         CompoundTag crestsTag = new CompoundTag();
-        CrestUtil.setCrests(access, crestsTag, crests);
+        ESCrestUtil.setCrests(access, crestsTag, crests);
         stack.getOrCreateTag().put("Crests", crestsTag);
     }
 
     public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
         if (access == null) return false;
         CompoundTag crests = stack.getOrCreateTag().getCompound("Crests");
-        return !CrestUtil.getCrests(access, crests).isEmpty();
+        return !ESCrestUtil.getCrests(access, crests).isEmpty();
     }
 
     public static List<Crest> getCrests(RegistryAccess access, ItemStack stack) {
         CompoundTag crests = stack.getOrCreateTag().getCompound("Crests");
-        return CrestUtil.getCrests(access, crests);
+        return ESCrestUtil.getCrests(access, crests);
     }
 
     public static void setTemporary(ItemStack stack) {
@@ -73,8 +73,8 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
         }
         if (livingEntity.getTicksUsingItem() >= 140 && livingEntity instanceof ServerPlayer player) {
             Registry<Crest> registry = player.level().registryAccess().registryOrThrow(ESRegistries.CREST);
-            List<String> ownedCrests = CrestUtil.getCrests(player, "OwnedCrests").stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
-            List<String> crests = CrestUtil.getCrests(player).stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
+            List<String> ownedCrests = ESCrestUtil.getCrests(player, "OwnedCrests").stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
+            List<String> crests = ESCrestUtil.getCrests(player).stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
             ESPlatform.INSTANCE.sendToClient(player, new OpenCrestGuiPacket(ownedCrests, crests));
             player.stopUsingItem();
             player.getCooldowns().addCooldown(this, 20);
@@ -93,7 +93,7 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
                 int xpCost = isTemporary(itemStack) ? 2 : 1;
                 if (player.experienceLevel >= xpCost) {
                     player.experienceLevel -= xpCost;
-                    getCrests(level.registryAccess(), itemStack).forEach(crest -> CrestUtil.giveCrest(player, crest));
+                    getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
                     itemStack.getOrCreateTag().put("Crests", new CompoundTag());
                     if (isTemporary(itemStack)) {
                         itemStack.shrink(1);

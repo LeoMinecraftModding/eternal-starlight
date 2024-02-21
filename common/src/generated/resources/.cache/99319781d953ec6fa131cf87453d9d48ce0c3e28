@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-20T11:57:56.589752	Block States: eternal_starlight
+// 1.20.4	2024-02-21T11:42:22.9752238	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -396,8 +396,8 @@ ce3f3a379c2ee8e4f3611f0a41420e7f397d39eb assets/eternal_starlight/models/block/a
 1dd685a0194ceb0154179030c7498f80043f20d1 assets/eternal_starlight/models/block/amaramber_candle_three_lit.json
 c7f80c33cf0987f1d02e09eade50e1016ab05031 assets/eternal_starlight/models/block/amaramber_candle_two.json
 05492d5d413598b637f653008ba7d4abb98a005e assets/eternal_starlight/models/block/amaramber_candle_two_lit.json
-73c56675ed3f044bb0047473b45383cd4fd89c09 assets/eternal_starlight/models/block/amaramber_lantern.json
-04cb6c217a3047ee088cf3d06b24b60cbc3144fe assets/eternal_starlight/models/block/amaramber_lantern_hanging.json
+733c38926321ec2180ba67a84194382e352df1eb assets/eternal_starlight/models/block/amaramber_lantern.json
+bf411cafddb6f6d79a7faf60d79f99b9ca2ac6e0 assets/eternal_starlight/models/block/amaramber_lantern_hanging.json
 bc6345daf8a3b9b58231684f92151b8d8da03b66 assets/eternal_starlight/models/block/berries_vines.json
 03d0d3d8617a30552e0ee2eadbcad9ad0f768224 assets/eternal_starlight/models/block/berries_vines_lit.json
 0546cc769ef060b37479066c3823da08a9b32b07 assets/eternal_starlight/models/block/berries_vines_plant.json

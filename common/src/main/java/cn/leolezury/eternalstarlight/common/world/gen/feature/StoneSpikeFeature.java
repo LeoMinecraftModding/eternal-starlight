@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -30,7 +30,7 @@ public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
         for (int x = -5; x <= 5; x++) {
             for (int y = -3; y <= 3; y++) {
                 for (int z = -5; z <= 5; z++) {
-                    if (ESUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
+                    if (ESMathUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
                         setBlockIfEmpty(level, pos.offset(x, y, z), getBlockToPlace(random, pos.offset(x, y, z)));
                     }
                 }

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.ESFeature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -28,7 +28,7 @@ public class DeadLunarTreeFeature extends ESFeature<NoneFeatureConfiguration> {
     }
 
     private void placeBlockLine(WorldGenLevel level, BlockPos from, BlockPos to, RandomSource random) {
-        List<int[]> points = ESUtil.getBresenham3DPoints(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ());
+        List<int[]> points = ESMathUtil.getBresenham3DPoints(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ());
         for (int[] point : points) {
             BlockPos trunkPos = new BlockPos(point[0], point[1], point[2]);
             setBlockIfEmpty(level, trunkPos, getBlockToPlace(random, trunkPos));
@@ -39,7 +39,7 @@ public class DeadLunarTreeFeature extends ESFeature<NoneFeatureConfiguration> {
         int num = random.nextInt(3, 6);
         int len = random.nextInt(5, 8);
         for (int i = 0; i < num; i++) {
-            Vec3 endVec = ESUtil.rotationToPosition(pos.getCenter(), len, 40, (360f / (float) num) * i);
+            Vec3 endVec = ESMathUtil.rotationToPosition(pos.getCenter(), len, 40, (360f / (float) num) * i);
             BlockPos endPos = new BlockPos((int) endVec.x, (int) endVec.y, (int) endVec.z);
             placeBlockLine(level, pos, endPos, random);
         }

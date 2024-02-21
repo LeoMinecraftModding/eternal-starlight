@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.command;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
-import cn.leolezury.eternalstarlight.common.util.WeatherUtil;
+import cn.leolezury.eternalstarlight.common.util.ESWeatherUtil;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -38,7 +38,7 @@ public class ESWeatherCommand {
     private static int setWeather(CommandSourceStack commandSourceStack, AbstractWeather weather, int duration) {
         int trueDuration = getDuration(commandSourceStack, duration, weather.weatherProperties().duration());
         if (trueDuration > 0 && commandSourceStack.getLevel().dimension() == ESDimensions.STARLIGHT_KEY) {
-            WeatherUtil.getOrCreateWeathers(commandSourceStack.getLevel()).setActiveWeather(weather, trueDuration);
+            ESWeatherUtil.getOrCreateWeathers(commandSourceStack.getLevel()).setActiveWeather(weather, trueDuration);
             commandSourceStack.sendSuccess(() -> Component.translatable("commands.eternal_starlight.weather.set", weather.getDescription()), true);
         } else {
             commandSourceStack.sendFailure(Component.translatable("commands.eternal_starlight.weather.fail", weather.getDescription()));
@@ -49,7 +49,7 @@ public class ESWeatherCommand {
     private static int setClear(CommandSourceStack commandSourceStack, int duration) {
         int trueDuration = getDuration(commandSourceStack, duration, ServerLevel.RAIN_DELAY);
         if (trueDuration > 0 && commandSourceStack.getLevel().dimension() == ESDimensions.STARLIGHT_KEY) {
-            WeatherUtil.getOrCreateWeathers(commandSourceStack.getLevel()).clearAllWeathers(trueDuration);
+            ESWeatherUtil.getOrCreateWeathers(commandSourceStack.getLevel()).clearAllWeathers(trueDuration);
             commandSourceStack.sendSuccess(() -> Component.translatable("commands.eternal_starlight.weather.clear"), true);
         } else {
             commandSourceStack.sendFailure(Component.translatable("commands.eternal_starlight.weather.clear_fail"));

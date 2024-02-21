@@ -1,23 +1,12 @@
 package cn.leolezury.eternalstarlight.common.util;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
-public class ESUtil {
-    public static void runWhenOnClient(Supplier<Runnable> toRun) {
-        if (ESPlatform.INSTANCE.isPhysicalClient()) {
-            toRun.get().run();
-        }
-    }
-
+public class ESMathUtil {
     public static float positionToPitch(Vec3 start, Vec3 end) {
         return positionToPitch(start.x, end.x, start.y, end.y, start.z, end.z);
     }
@@ -130,12 +119,5 @@ public class ESUtil {
             }
         }
         return points;
-    }
-
-    public static CompoundTag getPersistentData(Entity entity) {
-        if (entity instanceof PersistentDataHolder holder) {
-            return holder.getESPersistentData();
-        }
-        return new CompoundTag();
     }
 }

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.weapon;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,7 +28,7 @@ public class EnergySwordItem extends SwordItem {
             Vec3 initialStartPos = livingEntity.getEyePosition();
             float lookYaw = livingEntity.getYHeadRot() + 90.0f;
             float lookPitch = -livingEntity.getXRot();
-            Vec3 initialEndPos = ESUtil.rotationToPosition(initialStartPos, 0.3f, lookPitch, lookYaw);
+            Vec3 initialEndPos = ESMathUtil.rotationToPosition(initialStartPos, 0.3f, lookPitch, lookYaw);
             livingEntity.hurtMarked = true;
             livingEntity.setDeltaMovement(initialEndPos.subtract(initialStartPos).scale(5));
             livingEntity.invulnerableTime += 20;

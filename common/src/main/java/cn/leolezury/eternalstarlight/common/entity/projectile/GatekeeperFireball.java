@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -137,9 +137,9 @@ public class GatekeeperFireball extends Fireball {
         }
         if (getSpawnedTicks() < 60 && getOwner() != null) {
             Entity owner = getOwner();
-            float yaw = ESUtil.positionToYaw(owner.position(), position());
-            float pitch = ESUtil.positionToPitch(owner.position(), position());
-            Vec3 newPos = ESUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
+            float yaw = ESMathUtil.positionToYaw(owner.position(), position());
+            float pitch = ESMathUtil.positionToPitch(owner.position(), position());
+            Vec3 newPos = ESMathUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
             setPos(newPos);
         }
     }

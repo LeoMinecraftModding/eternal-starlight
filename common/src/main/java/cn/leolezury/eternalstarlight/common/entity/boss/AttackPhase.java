@@ -7,12 +7,18 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
     private final int priority;
     private final int duration;
     private final int coolDown;
+    private final int turnsInto;
 
     public AttackPhase(int id, int priority, int duration, int coolDown) {
+        this(id, priority, duration, coolDown, 0);
+    }
+
+    public AttackPhase(int id, int priority, int duration, int coolDown, int turnsInto) {
         this.id = id;
         this.priority = priority;
         this.duration = duration;
         this.coolDown = coolDown;
+        this.turnsInto = turnsInto;
     }
 
     public int getId() {
@@ -44,7 +50,7 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
     }
 
     public void stop(T entity) {
-        entity.setAttackState(0);
+        entity.setAttackState(turnsInto);
         onStop(entity);
         entity.setAttackTicks(0);
     }

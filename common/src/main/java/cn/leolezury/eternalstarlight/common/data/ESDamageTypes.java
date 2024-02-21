@@ -22,7 +22,7 @@ public class ESDamageTypes {
 
     // starlight golem
     public static final ResourceKey<DamageType> LASER = create("laser");
-    public static final ResourceKey<DamageType> FIRE_COLUMN = create("fire_column");
+    public static final ResourceKey<DamageType> ENERGIZED_FLAME = create("energized_flame");
 
     // lunar monstrosity
     public static final ResourceKey<DamageType> POISON = create("poison");
@@ -52,7 +52,7 @@ public class ESDamageTypes {
         context.register(GROUND_SHAKE, new DamageType(esDamage("ground_shake"), 0.0F));
         context.register(SHATTERED_BLADE, new DamageType(esDamage("shattered_blade"), 0.0F));
         context.register(LASER, new DamageType(esDamage("laser"), 0.0F, DamageEffects.BURNING));
-        context.register(FIRE_COLUMN, new DamageType(esDamage("fire_column"), 0.0F, DamageEffects.BURNING));
+        context.register(ENERGIZED_FLAME, new DamageType(esDamage("energized_flame"), 0.0F, DamageEffects.BURNING));
         context.register(POISON, new DamageType(esDamage("poison"), 0.0F));
         context.register(BITE, new DamageType(esDamage("bite"), 0.0F));
     }

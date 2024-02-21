@@ -15,16 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CrestUtil {
+public class ESCrestUtil {
     public static List<Crest> getCrests(Player player) {
         return getCrests(player, "Crests");
     }
 
     public static List<Crest> getCrests(Player player, String tagId) {
-        if (!ESUtil.getPersistentData(player).contains(tagId, Tag.TAG_COMPOUND)) {
-            ESUtil.getPersistentData(player).put(tagId, new CompoundTag());
+        if (!ESEntityUtil.getPersistentData(player).contains(tagId, Tag.TAG_COMPOUND)) {
+            ESEntityUtil.getPersistentData(player).put(tagId, new CompoundTag());
         }
-        CompoundTag crests = ESUtil.getPersistentData(player).getCompound(tagId);
+        CompoundTag crests = ESEntityUtil.getPersistentData(player).getCompound(tagId);
         return getCrests(player.level().registryAccess(), crests);
     }
 
@@ -47,7 +47,7 @@ public class CrestUtil {
     public static void setCrests(Player player, List<Crest> crests, String tagId) {
         CompoundTag crestsTag = new CompoundTag();
         setCrests(player.level().registryAccess(), crestsTag, crests);
-        ESUtil.getPersistentData(player).put(tagId, crestsTag);
+        ESEntityUtil.getPersistentData(player).put(tagId, crestsTag);
     }
 
     public static void setCrests(RegistryAccess access, CompoundTag tag, List<Crest> crests) {

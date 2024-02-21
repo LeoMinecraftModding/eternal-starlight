@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
-import cn.leolezury.eternalstarlight.common.util.SpellUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -57,7 +57,7 @@ public class TeleportationSpell extends AbstractSpell {
 
     public void doHurtEnemies(ServerLevel serverLevel, LivingEntity entity) {
         for (int i = 0; i < 360; i += 5) {
-            Vec3 vec3 = ESUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
+            Vec3 vec3 = ESMathUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight() / 2f, 0), 4 * entity.getBbWidth(), 0, i);
             serverLevel.sendParticles(ESParticles.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
         }
         for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(entity.getBbWidth() * 3.5f))) {
@@ -73,8 +73,8 @@ public class TeleportationSpell extends AbstractSpell {
         Vec3 startPos = entity.getEyePosition();
         float lookYaw = entity.getYHeadRot() + 90.0f;
         float lookPitch = -entity.getXRot();
-        Vec3 endPos = ESUtil.rotationToPosition(startPos, 30, lookPitch, lookYaw);
-        SpellUtil.RaytraceResult result = SpellUtil.raytrace(entity.level(), CollisionContext.of(entity), startPos, endPos);
+        Vec3 endPos = ESMathUtil.rotationToPosition(startPos, 30, lookPitch, lookYaw);
+        ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(entity.level(), CollisionContext.of(entity), startPos, endPos);
         if (!result.entities().isEmpty()) {
             for (int i = 0; i < result.entities().size(); i++) {
                 if (!result.entities().get(i).getUUID().equals(entity.getUUID())) {

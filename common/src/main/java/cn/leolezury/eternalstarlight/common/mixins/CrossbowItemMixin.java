@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.CrossbowItem;
@@ -19,7 +19,7 @@ public abstract class CrossbowItemMixin {
     private static void es_getArrow(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, CallbackInfoReturnable<AbstractArrow> cir) {
         if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
             AbstractArrow abstractArrow = cir.getReturnValue();
-            ESUtil.getPersistentData(abstractArrow).putBoolean(EternalStarlight.MOD_ID + ":crystal", true);
+            ESEntityUtil.getPersistentData(abstractArrow).putBoolean(EternalStarlight.MOD_ID + ":crystal", true);
             cir.setReturnValue(abstractArrow);
         }
     }

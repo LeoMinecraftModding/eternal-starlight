@@ -4,15 +4,15 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.sounds.CommonBossMusicInstance;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.boss.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.BlockUtil;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
@@ -192,7 +192,7 @@ public class ClientHandlers {
     }
 
     public static void renderEtherErosion(Gui gui, GuiGraphics guiGraphics) {
-        float clientEtherTicksRaw = ESUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
+        float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
         float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getFrameTime(), 140f);
         float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
         if (clientEtherTicksRaw > 0) {
@@ -202,7 +202,7 @@ public class ClientHandlers {
 
     public static void renderEtherArmor(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player.level().isClientSide && BlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ETHER.get())) {
+        if (minecraft.player.level().isClientSide && ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ETHER.get())) {
             minecraft.getProfiler().push("armor");
             int initialX = screenWidth / 2 - 91;
             int initialY = screenHeight - 39;

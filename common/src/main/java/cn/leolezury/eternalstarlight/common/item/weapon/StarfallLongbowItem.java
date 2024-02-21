@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.util.ESUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -42,7 +42,7 @@ public class StarfallLongbowItem extends BowItem {
                     if (!level.isClientSide) {
                         ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                         AbstractArrow abstractarrow = arrowitem.createArrow(level, itemstack, player);
-                        ESUtil.getPersistentData(abstractarrow).putBoolean(EternalStarlight.MOD_ID + ":starfall", true);
+                        ESEntityUtil.getPersistentData(abstractarrow).putBoolean(EternalStarlight.MOD_ID + ":starfall", true);
 
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
                         if (f == 1.0F) {

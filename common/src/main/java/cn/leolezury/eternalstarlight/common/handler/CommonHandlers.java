@@ -79,13 +79,13 @@ public class CommonHandlers {
 
     public static void onLevelLoad(ServerLevel serverLevel) {
         if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
-            WeatherUtil.getOrCreateWeathers(serverLevel);
+            ESWeatherUtil.getOrCreateWeathers(serverLevel);
         }
     }
 
     public static void onLevelTick(ServerLevel serverLevel) {
         if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
-            Weathers weathers = WeatherUtil.getOrCreateWeathers(serverLevel);
+            Weathers weathers = ESWeatherUtil.getOrCreateWeathers(serverLevel);
             weathers.tick();
             weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
@@ -150,9 +150,9 @@ public class CommonHandlers {
     }
 
     public static void onLivingTick(LivingEntity livingEntity) {
-        SpellUtil.ticksSpellCoolDowns(livingEntity);
+        ESSpellUtil.ticksSpellCoolDowns(livingEntity);
         if (livingEntity instanceof Player player) {
-            CrestUtil.tickCrests(player);
+            ESCrestUtil.tickCrests(player);
         }
         List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
         for (ItemStack armor : armors) {
@@ -171,16 +171,16 @@ public class CommonHandlers {
             }
         }
         if (livingEntity.tickCount % 20 == 0) {
-            int coolDown = ESUtil.getPersistentData(livingEntity).getInt("MeteorCoolDown");
+            int coolDown = ESEntityUtil.getPersistentData(livingEntity).getInt("MeteorCoolDown");
             if (coolDown > 0) {
-                ESUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
+                ESEntityUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
             }
         }
-        int inEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
-        boolean inEther = BlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
+        int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt("InEtherTicks");
+        boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
         if (!livingEntity.level().isClientSide) {
             if (!inEther && inEtherTicks > 0) {
-                ESUtil.getPersistentData(livingEntity).putInt("InEtherTicks", inEtherTicks - 1);
+                ESEntityUtil.getPersistentData(livingEntity).putInt("InEtherTicks", inEtherTicks - 1);
             }
             AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
             if (inEtherTicks <= 0 && armorInstance != null) {
@@ -191,16 +191,16 @@ public class CommonHandlers {
                 armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
             }
         } else {
-            int clientEtherTicks = ESUtil.getPersistentData(livingEntity).getInt("ClientEtherTicks");
+            int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt("ClientEtherTicks");
             if (!inEther && clientEtherTicks > 0) {
-                ESUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
+                ESEntityUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
             }
         }
     }
 
     public static void onArrowHit(Projectile projectile, HitResult result) {
         if (projectile.level() instanceof ServerLevel serverLevel) {
-            if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
+            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
                 if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
                     int level = 0;
                     if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.get())) {
@@ -209,7 +209,7 @@ public class CommonHandlers {
                     living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.get(), 200, level));
                 }
             }
-            if (ESUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {
+            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {
                 Vec3 location = result.getLocation();
                 AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
             }
