@@ -43,6 +43,6 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 
     public static boolean isHalloween() {
         Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.MONTH) == Calendar.DECEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 1;
+        return calendar.get(Calendar.MONTH) == Calendar.NOVEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 1;
     }
 }

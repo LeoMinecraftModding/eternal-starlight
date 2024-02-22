@@ -128,7 +128,7 @@ public class RayAttack extends Entity {
                     boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster);
                     if (canDestroy) {
                         BlockState blockState = level().getBlockState(hitPos);
-                        if (blockState.getDestroySpeed(level(), hitPos) != -1) {
+                        if (blockState.getDestroySpeed(level(), hitPos) >= 0) {
                             level().destroyBlock(hitPos, true, this);
                         }
                     }
