@@ -1,10 +1,12 @@
-package cn.leolezury.eternalstarlight.common.entity.attack.beam;
+package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -25,29 +28,29 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 
 import java.util.Optional;
 
-public class LaserBeam extends Entity {
-    protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(LaserBeam.class, EntityDataSerializers.INT);
+public class RayAttack extends Entity {
+    protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.INT);
     public Optional<Entity> getCaster() {
         return Optional.ofNullable(level().getEntity(entityData.get(CASTER)));
     }
     public void setCaster(Entity caster) {
         entityData.set(CASTER, caster.getId());
     }
-    protected static final EntityDataAccessor<Float> PITCH = SynchedEntityData.defineId(LaserBeam.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Float> PITCH = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
     public float getPitch() {
         return entityData.get(PITCH);
     }
     public void setPitch(float pitch) {
         entityData.set(PITCH, pitch);
     }
-    protected static final EntityDataAccessor<Float> YAW = SynchedEntityData.defineId(LaserBeam.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Float> YAW = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
     public float getYaw() {
         return entityData.get(YAW);
     }
     public void setYaw(float yaw) {
         entityData.set(YAW, yaw);
     }
-    protected static final EntityDataAccessor<Float> LENGTH = SynchedEntityData.defineId(LaserBeam.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Float> LENGTH = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
     public float getLength() {
         return entityData.get(LENGTH);
     }
@@ -56,15 +59,14 @@ public class LaserBeam extends Entity {
     }
 
     public float prevPitch, prevYaw;
+    private final Object2IntArrayMap<BlockPos> destroyProgresses = new Object2IntArrayMap<>();
 
-    public Direction blockSide = null;
-
-    public LaserBeam(EntityType<? extends LaserBeam> type, Level world) {
+    public RayAttack(EntityType<? extends RayAttack> type, Level world) {
         super(type, world);
         noCulling = true;
     }
 
-    public LaserBeam(EntityType<? extends LaserBeam> type, Level world, LivingEntity caster, double x, double y, double z, float yaw, float pitch) {
+    public RayAttack(EntityType<? extends RayAttack> type, Level world, LivingEntity caster, double x, double y, double z, float yaw, float pitch) {
         this(type, world);
         this.setCaster(caster);
         this.setYaw(yaw);
@@ -94,29 +96,14 @@ public class LaserBeam extends Entity {
             Vec3 idealEndPos = ESMathUtil.rotationToPosition(position(), getRadius(), getPitch(), getYaw());
             Vec3 endPos = idealEndPos;
             ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), idealEndPos);
+            onFirstHit(result);
             boolean hasBlock = result.blockHit() != null && result.blockHit().getType() != HitResult.Type.MISS;
             if (hasBlock) {
                 endPos = result.blockHit().getLocation();
-                blockSide = ((BlockHitResult) result.blockHit()).getDirection();
             }
             setLength((float) endPos.distanceTo(position()));
-            BlockPos origin = BlockPos.containing(endPos);
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        BlockPos firePos = origin.offset(x, y, z);
-                        if (random.nextBoolean() && level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
-                            level().setBlockAndUpdate(firePos, Blocks.FIRE.defaultBlockState());
-                        }
-                    }
-                }
-            }
             result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), endPos);
-            for (Entity target : result.entities()) {
-                if (target instanceof LivingEntity living) {
-                    doHurtTarget(living);
-                }
-            }
+            onHit(result);
         } else {
             prevYaw = getYaw();
             prevPitch = getPitch();
@@ -130,6 +117,46 @@ public class LaserBeam extends Entity {
 
     public int getRadius() {
         return 20;
+    }
+
+    public void onFirstHit(ESEntityUtil.RaytraceResult result) {
+        getCaster().ifPresent(caster -> {
+            if (result.blockHit() != null && result.blockHit().getType() == HitResult.Type.BLOCK) {
+                BlockPos hitPos = ((BlockHitResult)result.blockHit()).getBlockPos();
+                destroyProgresses.put(hitPos, destroyProgresses.containsKey(hitPos) ? destroyProgresses.getInt(hitPos) + 1 : 1);
+                if (destroyProgresses.getInt(hitPos) > 60) {
+                    boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster);
+                    if (canDestroy) {
+                        BlockState blockState = level().getBlockState(hitPos);
+                        if (blockState.getDestroySpeed(level(), hitPos) != -1) {
+                            level().destroyBlock(hitPos, true, this);
+                        }
+                    }
+                }
+            }
+        });
+        while (destroyProgresses.size() > 32) {
+            destroyProgresses.removeInt(destroyProgresses.keySet().stream().sorted().toList().get(0));
+        }
+    }
+
+    public void onHit(ESEntityUtil.RaytraceResult result) {
+        for (Entity target : result.entities()) {
+            if (target instanceof LivingEntity living) {
+                doHurtTarget(living);
+            }
+        }
+        BlockPos origin = BlockPos.containing(ESMathUtil.rotationToPosition(position(), getLength(), getPitch(), getYaw()));
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (int z = -1; z <= 1; z++) {
+                    BlockPos firePos = origin.offset(x, y, z);
+                    if (random.nextBoolean() && level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
+                        level().setBlockAndUpdate(firePos, Blocks.FIRE.defaultBlockState());
+                    }
+                }
+            }
+        }
     }
 
     public void doHurtTarget(LivingEntity target) {

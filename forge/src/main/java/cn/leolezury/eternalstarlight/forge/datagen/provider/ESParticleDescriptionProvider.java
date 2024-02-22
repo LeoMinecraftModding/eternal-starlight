@@ -23,6 +23,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
         spriteSet(ESParticles.FLAME_SMOKE.get(), loc("big_smoke"), 12, false);
         spriteSet(ESParticles.ENERGY_EXPLOSION.get(), mcLoc("explosion"), 16, false);
         spriteSet(ESParticles.ENERGIZED_FLAME_SMOKE.get(), loc("big_smoke"), 12, false);
+        spriteSet(ESParticles.ENERGIZED_FLAME_SPIT.get(), loc("big_smoke"), 12, false);
     }
 
     private ResourceLocation loc(String s) {

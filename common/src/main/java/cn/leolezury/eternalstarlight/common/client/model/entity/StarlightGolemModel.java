@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolemLaserBeamPhase;
+import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolemSpitFlamePhase;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -11,6 +13,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntityModel<T> {
@@ -47,28 +50,16 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
-        head.yRot = netHeadYaw * ((float)Math.PI / 180F);
-        head.xRot = headPitch * ((float)Math.PI / 180F);
+        head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+        head.xRot = headPitch * Mth.DEG_TO_RAD;
         if (entity.getAttackTicks() >= 0 && entity.getAttackState() != 0 && entity.deathTime <= 0) {
             int state = entity.getAttackState();
             switch (state) {
-                case 1 -> {
+                case StarlightGolemLaserBeamPhase.ID -> {
                     animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
                 }
-                case 2 -> {
-                    animate(entity.flameAnimationState, StarlightGolemAnimation.FLAME, ageInTicks);
-                }
-                case 3 -> {
-                    animate(entity.smashGroundAnimationState, StarlightGolemAnimation.SMASH_GROUND, ageInTicks);
-                }
-                case 4 -> {
-                    animate(entity.startPowerAnimationState, StarlightGolemAnimation.POWER_START, ageInTicks);
-                }
-                case 5 -> {
-                    animate(entity.powerAnimationState, StarlightGolemAnimation.POWER, ageInTicks);
-                }
-                case 6 -> {
-                    animate(entity.endPowerAnimationState, StarlightGolemAnimation.POWER_END, ageInTicks);
+                case StarlightGolemSpitFlamePhase.ID -> {
+                    animate(entity.spitFlameBeamAnimationState, StarlightGolemAnimation.SPIT_FLAME, ageInTicks);
                 }
             }
         }

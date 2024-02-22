@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.entity.ai.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
 import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
@@ -14,6 +15,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,7 +27,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -39,7 +40,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 public class StarlightGolem extends ESBoss implements LaserCaster {
@@ -49,17 +49,13 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
 
     private final AttackManager<StarlightGolem> attackManager = new AttackManager<>(this, List.of(
-            new StarlightGolemLaserBeamPhase()
+            new StarlightGolemLaserBeamPhase(),
+            new StarlightGolemSpitFlamePhase()
     ));
 
     public AnimationState laserBeamAnimationState = new AnimationState();
-    public AnimationState flameAnimationState = new AnimationState();
-    public AnimationState smashGroundAnimationState = new AnimationState();
-    public AnimationState startPowerAnimationState = new AnimationState();
-    public AnimationState powerAnimationState = new AnimationState();
-    public AnimationState endPowerAnimationState = new AnimationState();
+    public AnimationState spitFlameBeamAnimationState = new AnimationState();
     public AnimationState deathAnimationState = new AnimationState();
-    private Vec3 targetPos = Vec3.ZERO;
 
     public boolean canHurt() {
         return getLitEnergyBlocks().isEmpty();
@@ -101,7 +97,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     @Override
     public Vec3 getLaserRotationTarget() {
-        return getTarget() == null ? position() : getTarget().position();
+        return getTarget() == null ? position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f)) : getTarget().position().add(getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f), getTarget().getBbHeight() * getRandom().nextFloat(), getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f));
     }
 
     @Override
@@ -111,29 +107,18 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
     }
 
-    private class GolemLookAtTargetGoal extends Goal {
+    private class GolemLookAtTargetGoal extends LookAtTargetGoal {
         public GolemLookAtTargetGoal() {
-            setFlags(EnumSet.of(Goal.Flag.LOOK));
+            super(StarlightGolem.this);
         }
 
         @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-
-        public boolean canUse() {
-            return StarlightGolem.this.getTarget() != null;
-        }
-
-        public boolean canContinueToUse() {
-            return StarlightGolem.this.getTarget() != null;
-        }
-
         public void tick() {
-            if (StarlightGolem.this.getAttackState() == 3 && StarlightGolem.this.getAttackTicks() >= 25) {
-                StarlightGolem.this.getLookControl().setLookAt(StarlightGolem.this.targetPos.x, StarlightGolem.this.targetPos.y, StarlightGolem.this.targetPos.z, 100F, 100F);
-            } else if (StarlightGolem.this.getTarget() != null && (StarlightGolem.this.getAttackState() != 1 || StarlightGolem.this.getAttackTicks() <= 55)) {
-                StarlightGolem.this.getLookControl().setLookAt(StarlightGolem.this.getTarget(), 100F, 100F);
+            boolean affectsLook =
+                    StarlightGolem.this.getAttackState() == StarlightGolemLaserBeamPhase.ID
+                            || StarlightGolem.this.getAttackState() == StarlightGolemSpitFlamePhase.ID;
+            if (!affectsLook) {
+                super.tick();
             }
         }
     }
@@ -180,11 +165,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     public void stopAllAnimStates() {
         laserBeamAnimationState.stop();
-        flameAnimationState.stop();
-        smashGroundAnimationState.stop();
-        startPowerAnimationState.stop();
-        powerAnimationState.stop();
-        endPowerAnimationState.stop();
+        spitFlameBeamAnimationState.stop();
     }
 
     @Override
@@ -193,11 +174,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             stopAllAnimStates();
             switch (getAttackState()) {
                 case StarlightGolemLaserBeamPhase.ID -> laserBeamAnimationState.start(tickCount);
-                case 2 -> flameAnimationState.start(tickCount);
-                case 3 -> smashGroundAnimationState.start(tickCount);
-                case 4 -> startPowerAnimationState.start(tickCount);
-                case 5 -> powerAnimationState.start(tickCount);
-                case 6 -> endPowerAnimationState.start(tickCount);
+                case StarlightGolemSpitFlamePhase.ID -> spitFlameBeamAnimationState.start(tickCount);
             }
         }
         super.onSyncedDataUpdated(accessor);
@@ -252,30 +229,33 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     }
 
     public void spawnEnergizedFlame(int maxNum, int scanRadius, boolean trackTarget) {
-        int spawned = 0;
+        int left = maxNum;
         if (trackTarget) {
             EnergizedFlame energizedFlame = ESEntities.ENERGIZED_FLAME.get().create(level());
             energizedFlame.setPos(getTarget() != null ? getTarget().position() : position());
             energizedFlame.setOwner(this);
             level().addFreshEntity(energizedFlame);
-            if (spawned++ >= maxNum) {
-                return;
-            }
+            left--;
         }
+        List<BlockPos> possiblePositions = new ArrayList<>();
         for (int x = -scanRadius; x <= scanRadius; x += 1) {
             for (int z = -scanRadius; z <= scanRadius; z += 1) {
                 for (int y = -5; y <= 5; y++) {
                     BlockPos firePos = blockPosition().offset(x, y, z);
-                    if (getRandom().nextInt(10) == 0 && level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
-                        EnergizedFlame energizedFlame = ESEntities.ENERGIZED_FLAME.get().create(level());
-                        energizedFlame.setPos(firePos.getCenter().add(0, -0.5, 0));
-                        energizedFlame.setOwner(this);
-                        level().addFreshEntity(energizedFlame);
-                        if (spawned++ >= maxNum) {
-                            return;
-                        }
+                    if (level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
+                        possiblePositions.add(firePos);
                     }
                 }
+            }
+        }
+        for (int i = 0; i < left; i++) {
+            if (!possiblePositions.isEmpty()) {
+                BlockPos firePos = possiblePositions.get(getRandom().nextInt(possiblePositions.size()));
+                EnergizedFlame energizedFlame = ESEntities.ENERGIZED_FLAME.get().create(level());
+                energizedFlame.setPos(firePos.getCenter().add(0, -0.5, 0));
+                energizedFlame.setOwner(this);
+                level().addFreshEntity(energizedFlame);
+                possiblePositions.remove(firePos);
             }
         }
     }
@@ -298,6 +278,11 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                 this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
             }
             attackManager.tick();
+        } else {
+            if (getRandom().nextInt(15) == 0) {
+                Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
+                level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
+            }
         }
     }
 

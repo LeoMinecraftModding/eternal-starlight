@@ -408,6 +408,7 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.FLAME_SMOKE.get(), ESSmokeParticle.FlameProvider::new);
         strategy.register(ESParticles.ENERGY_EXPLOSION.get(), ESExplosionParticle.EnergyProvider::new);
         strategy.register(ESParticles.ENERGIZED_FLAME_SMOKE.get(), ESSmokeParticle.EnergizedFlameProvider::new);
+        strategy.register(ESParticles.ENERGIZED_FLAME_SPIT.get(), ESSmokeParticle.EnergizedFlameSpitProvider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
@@ -434,6 +435,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(ESEntities.GOLEM_LASER_BEAM.get(), StarlightGolemBeamRenderer::new);
+        strategy.register(ESEntities.GOLEM_FLAME_ATTACK.get(), NothingRenderer::new);
         strategy.register(ESEntities.ENERGIZED_FLAME.get(), NothingRenderer::new);
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(ESEntities.LUNAR_VINE.get(), LunarVineRenderer::new);

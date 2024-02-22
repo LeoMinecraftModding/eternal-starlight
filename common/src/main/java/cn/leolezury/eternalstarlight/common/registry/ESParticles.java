@@ -26,5 +26,6 @@ public class ESParticles {
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> FLAME_SMOKE = PARTICLE_TYPES.register("flame_smoke", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGY_EXPLOSION = PARTICLE_TYPES.register("energy_explosion", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SMOKE = PARTICLE_TYPES.register("energized_flame_smoke", () -> new SimpleParticleType(false));
+    public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SPIT = PARTICLE_TYPES.register("energized_flame_spit", () -> new SimpleParticleType(false));
     public static void loadClass() {}
 }

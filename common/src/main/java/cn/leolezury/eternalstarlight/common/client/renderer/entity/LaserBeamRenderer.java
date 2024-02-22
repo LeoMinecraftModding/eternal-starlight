@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.ESRenderType;
-import cn.leolezury.eternalstarlight.common.entity.attack.beam.LaserBeam;
+import cn.leolezury.eternalstarlight.common.entity.attack.ray.RayAttack;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -19,21 +19,13 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
-public abstract class AbstractLaserBeamRenderer<T extends LaserBeam> extends EntityRenderer<T> {
-    public AbstractLaserBeamRenderer(EntityRendererProvider.Context context) {
+public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRenderer<T> {
+    public LaserBeamRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
     
     public float getTextureWidth() {
         return 32;
-    }
-    
-    public float getTextureHeight() {
-        return 16;
-    }
-
-    public float getStartRadius() {
-        return 1.3f;
     }
 
     public float getBeamRadius() {
@@ -57,50 +49,11 @@ public abstract class AbstractLaserBeamRenderer<T extends LaserBeam> extends Ent
         float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
 
         VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
-
-        // render beam start
-        // renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
-
-        // render beam end
-        // stack.pushPose();
-        // stack.translate(targetX - posX, targetY - posY, targetZ - posZ);
-        /*renderQuad(frame, this.entityRenderDispatcher.cameraOrientation(), stack, consumer, packedLight);
-        if (laserBeam.blockSide != null) {
-            renderBlockHit(frame, laserBeam.blockSide, stack, consumer, packedLight);
-        }*/
-        // stack.popPose();
-
         // consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
 
         // render beam
         renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount, stack, consumer, packedLight);
     }
-
-    /*private void renderBlockHit(int frame, Direction hitDirection, PoseStack stack, VertexConsumer consumer, int packedLight) {
-        stack.pushPose();
-        Quaternionf sideRotation = hitDirection.getRotation().mul((new Quaternionf()).rotationX(90.0F * (float) Math.PI / 180f));
-        renderQuad(frame, sideRotation, stack, consumer, packedLight);
-        stack.popPose();
-    }
-
-    private void renderQuad(int frame, Quaternionf rotation, PoseStack stack, VertexConsumer consumer, int packedLight) {
-        stack.pushPose();
-        stack.mulPose(rotation);
-
-        float textureX = 0 + 16F / getTextureWidth() * frame;
-        float textureY = 0;
-        float textureEndX = textureX + 16F / getTextureWidth();
-        float textureEndY = textureY + 16F / getTextureHeight();
-
-        PoseStack.Pose pose = stack.last();
-        Matrix4f matrix4f = pose.pose();
-        Matrix3f matrix3f = pose.normal();
-        vertex(matrix4f, matrix3f, consumer, -getStartRadius(), -getStartRadius(), 0, textureX, textureY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, -getStartRadius(), getStartRadius(), 0, textureX, textureEndY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getStartRadius(), getStartRadius(), 0, textureEndX, textureEndY, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getStartRadius(), -getStartRadius(), 0, textureEndX, textureY, 1, packedLight);
-        stack.popPose();
-    }*/
 
     private void renderBeamPart(float length, int tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
         PoseStack.Pose pose = stack.last();
