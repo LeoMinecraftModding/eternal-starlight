@@ -7,7 +7,7 @@ public class StarlightGolemSummonFlamePhase extends AttackPhase<StarlightGolem> 
     public static final int ID = 3;
 
     public StarlightGolemSummonFlamePhase() {
-        super(ID, 2, 200, 250);
+        super(ID, 2, 210, 250);
     }
 
     @Override

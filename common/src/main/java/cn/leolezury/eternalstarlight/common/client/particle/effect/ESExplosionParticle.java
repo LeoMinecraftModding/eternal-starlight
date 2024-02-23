@@ -36,6 +36,7 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
             return new ESExplosionParticle(clientLevel, d, e, f, 0xffffff, 0x81d4fa, this.sprites, 0);
         }
     }
+
     @Environment(EnvType.CLIENT)
     public static class LavaProvider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet sprites;
