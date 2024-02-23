@@ -407,6 +407,7 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.FLAME_SMOKE.get(), ESSmokeParticle.FlameProvider::new);
         strategy.register(ESParticles.ENERGY_EXPLOSION.get(), ESExplosionParticle.EnergyProvider::new);
+        strategy.register(ESParticles.LAVA_EXPLOSION.get(), ESExplosionParticle.LavaProvider::new);
         strategy.register(ESParticles.ENERGIZED_FLAME_SMOKE.get(), ESSmokeParticle.EnergizedFlameProvider::new);
         strategy.register(ESParticles.ENERGIZED_FLAME_SPIT.get(), ESSmokeParticle.EnergizedFlameSpitProvider::new);
     }

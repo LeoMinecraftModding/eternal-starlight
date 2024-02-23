@@ -245,6 +245,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         gatekeeperName = CommonHandlers.getGatekeeperName();
     }
 
+    @Override
+    public boolean shouldPlayBossMusic() {
+        return isActivated();
+    }
+
     @Environment(EnvType.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == ClientHandlers.BOSS_MUSIC_ID) {
@@ -363,15 +368,13 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     }
 
     @Override
-    public boolean isSilent() {
-        return super.isSilent() || !isActivated();
-    }
-
-    @Override
     public void aiStep() {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
+            if (!isSilent()) {
+                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
+            }
             if (restockCoolDown > 0) {
                 restockCoolDown--;
             } else {
@@ -390,9 +393,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             }
             if (isActivated()) {
                 attackManager.tick();
-                if (!isSilent()) {
-                    this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
-                }
             }
         } else {
             level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);

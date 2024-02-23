@@ -81,7 +81,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         }
 
         public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
-            return new ESSmokeParticle(clientLevel, 0.8f, x, y, z, dx, dy, dz, false, 5f, 0xcfffff, 0x310a02, this.sprites, 0);
+            return new ESSmokeParticle(clientLevel, 0.5f, x, y, z, dx, dy, dz, false, 5f, 0xcfffff, 0x310a02, this.sprites, 0);
         }
     }
 }

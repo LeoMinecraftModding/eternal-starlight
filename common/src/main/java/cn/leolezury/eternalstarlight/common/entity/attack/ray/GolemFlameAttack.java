@@ -21,7 +21,7 @@ public class GolemFlameAttack extends RayAttack {
 
     @Override
     public void updatePosition() {
-        if (tickCount > 140) {
+        if (tickCount > 120) {
             discard();
         }
         getCaster().ifPresentOrElse(caster -> {

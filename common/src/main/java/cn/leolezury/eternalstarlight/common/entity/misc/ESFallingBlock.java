@@ -11,7 +11,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,20 +31,20 @@ public class ESFallingBlock extends Entity {
         this.duration = 20;
     }
 
-    public ESFallingBlock(Level p_31953_, double p_31954_, double p_31955_, double p_31956_, BlockState p_31957_, int duration) {
-        this(ESEntities.FALLING_BLOCK.get(), p_31953_);
-        setBlock(p_31957_);
-        setPos(p_31954_, p_31955_ + ((1.0F - getBbHeight()) / 2.0F), p_31956_);
+    public ESFallingBlock(Level level, double x, double y, double z, BlockState state, int duration) {
+        this(ESEntities.FALLING_BLOCK.get(), level);
+        setBlock(state);
+        setPos(x, y + ((1.0F - getBbHeight()) / 2.0F), z);
         setDeltaMovement(Vec3.ZERO);
         this.duration = duration;
-        this.xo = p_31954_;
-        this.yo = p_31955_;
-        this.zo = p_31956_;
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
         setStartPos(blockPosition());
     }
 
-    public void setStartPos(BlockPos p_31960_) {
-        this.entityData.set(DATA_START_POS, p_31960_);
+    public void setStartPos(BlockPos pos) {
+        this.entityData.set(DATA_START_POS, pos);
     }
 
     public BlockPos getStartPos() {
@@ -68,28 +68,31 @@ public class ESFallingBlock extends Entity {
     public void tick() {
         if (!isNoGravity())
             setDeltaMovement(getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-        move(MoverType.SELF, getDeltaMovement());
+        setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
         setDeltaMovement(getDeltaMovement().scale(0.98D));
+        for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
+            living.hurt(damageSources().fallingBlock(this), 5);
+        }
         if (this.onGround() && this.tickCount > this.duration)
             discard();
         if (this.tickCount > 300)
             discard();
     }
 
-    protected void addAdditionalSaveData(CompoundTag p_31973_) {
+    protected void addAdditionalSaveData(CompoundTag tag) {
         BlockState blockState = getBlock();
         if (blockState != null)
-            p_31973_.put("Block", NbtUtils.writeBlockState(blockState));
-        p_31973_.putInt("Time", this.duration);
+            tag.put("Block", NbtUtils.writeBlockState(blockState));
+        tag.putInt("Time", this.duration);
     }
 
-    protected void readAdditionalSaveData(CompoundTag p_31964_) {
-        Tag blockStateCompound = p_31964_.get("Block");
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        Tag blockStateCompound = tag.get("Block");
         if (blockStateCompound != null) {
             BlockState blockState = NbtUtils.readBlockState(level().holderLookup(Registries.BLOCK), (CompoundTag) blockStateCompound);
             setBlock(blockState);
         }
-        this.duration = p_31964_.getInt("Time");
+        this.duration = tag.getInt("Time");
     }
 
     public boolean displayFireAnimation() {
@@ -97,7 +100,7 @@ public class ESFallingBlock extends Entity {
     }
 
     public BlockState getBlockState() {
-        Optional<BlockState> bsOp = getEntityData().get(BLOCK_STATE);
-        return bsOp.orElse(null);
+        Optional<BlockState> optionalBlockState = getEntityData().get(BLOCK_STATE);
+        return optionalBlockState.orElse(null);
     }
 }

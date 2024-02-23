@@ -133,6 +133,10 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
         initialPos = position();
     }
 
+    public boolean shouldPlayBossMusic() {
+        return true;
+    }
+
     public ResourceLocation getBossLootTable() {
         ResourceLocation lootTable = null;
         ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());

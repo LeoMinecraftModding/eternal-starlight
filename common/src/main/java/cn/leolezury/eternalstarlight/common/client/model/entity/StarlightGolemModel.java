@@ -3,9 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolemLaserBeamPhase;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolemSpitFlamePhase;
+import cn.leolezury.eternalstarlight.common.entity.boss.golem.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -59,7 +57,13 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
                     animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
                 }
                 case StarlightGolemSpitFlamePhase.ID -> {
-                    animate(entity.spitFlameBeamAnimationState, StarlightGolemAnimation.SPIT_FLAME, ageInTicks);
+                    animate(entity.spitFlameAnimationState, StarlightGolemAnimation.SPIT_FLAME, ageInTicks);
+                }
+                case StarlightGolemSummonFlamePhase.ID -> {
+                    animate(entity.summonFlameAnimationState, StarlightGolemAnimation.ENERGIZED_FLAME, ageInTicks);
+                }
+                case StarlightGolemSmashPhase.ID -> {
+                    animate(entity.smashAnimationState, StarlightGolemAnimation.SMASH, ageInTicks);
                 }
             }
         }

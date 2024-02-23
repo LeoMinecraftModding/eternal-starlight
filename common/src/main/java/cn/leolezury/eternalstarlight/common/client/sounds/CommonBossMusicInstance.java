@@ -48,9 +48,8 @@ public class CommonBossMusicInstance extends AbstractTickableSoundInstance {
         if (this.ticksExisted % 50 == 0) {
             Minecraft.getInstance().getMusicManager().stopPlaying();
         }
-
         if (!this.boss.isSilent() && this.boss.isAlive()) {
-            this.volume = 1.0F;
+            this.volume = this.boss.shouldPlayBossMusic() ? 1.0F : 0.0F;
             this.pitch = 1.0F;
             this.x = this.boss.getX();
             this.y = this.boss.getY();

@@ -1,15 +1,13 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.golem;
 
-import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemFlameAttack;
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 
-public class StarlightGolemSpitFlamePhase extends AttackPhase<StarlightGolem> {
-    public static final int ID = 2;
+public class StarlightGolemSummonFlamePhase extends AttackPhase<StarlightGolem> {
+    public static final int ID = 3;
 
-    public StarlightGolemSpitFlamePhase() {
-        super(ID, 2, 200, 280);
+    public StarlightGolemSummonFlamePhase() {
+        super(ID, 2, 200, 250);
     }
 
     @Override
@@ -24,12 +22,9 @@ public class StarlightGolemSpitFlamePhase extends AttackPhase<StarlightGolem> {
 
     @Override
     public void tick(StarlightGolem entity) {
-        if (entity.getAttackTicks() == 60) {
-            GolemFlameAttack flameAttack = new GolemFlameAttack(ESEntities.GOLEM_FLAME_ATTACK.get(), entity.level(), entity, entity.getX(), entity.getEyePosition().y, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
-            entity.level().addFreshEntity(flameAttack);
-        }
-        if (entity.getAttackTicks() >= 60 && entity.getAttackTicks() % 40 == 0) {
+        if (entity.getAttackTicks() % 30 == 0) {
             CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
+            entity.spawnEnergizedFlame(2, 15, true);
         }
     }
 
