@@ -3,7 +3,7 @@
   "fluid": "minecraft:water",
   "has_beaches": true,
   "has_rivers": true,
-  "height": -60,
+  "height": -55,
   "is_ocean": true,
   "temperatures": [],
   "variance": 5

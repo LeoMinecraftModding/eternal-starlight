@@ -13,11 +13,6 @@
         "Name": "eternal_starlight:cryobyssal_magma_block"
       }
     },
-    "stone": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "eternal_starlight:cryobysslate"
-      }
-    }
+    "stone": "eternal_starlight:cryobysslate"
   }
 }

@@ -426,6 +426,14 @@
       }
     ]
   },
+  "music.biome.the_abyss": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/atlantis",
+        "stream": true
+      }
+    ]
+  },
   "music.boss.common": {
     "sounds": [
       {

@@ -53,6 +53,14 @@ public class ESDimensions {
         );
     }
 
+    private static SurfaceRules.RuleSource makeAbyss() {
+        return SurfaceRules.sequence(
+                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(-25), 1)), SurfaceRules.state(ESBlocks.CRYOBYSSLATE.get().defaultBlockState())),
+                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(-10), 1)), SurfaceRules.state(ESBlocks.ABYSSLATE.get().defaultBlockState())),
+                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(50), 1)), SurfaceRules.state(ESBlocks.THERMABYSSLATE.get().defaultBlockState()))
+        );
+    }
+
     private static SurfaceRules.RuleSource makeSurfaceRule() {
         SurfaceRules.RuleSource bedrock = SurfaceRules.state(Blocks.BEDROCK.defaultBlockState());
         SurfaceRules.RuleSource voidstone = SurfaceRules.state(ESBlocks.VOIDSTONE.get().defaultBlockState());
@@ -62,7 +70,6 @@ public class ESDimensions {
                 SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), sand),
                 SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, 6, CaveSurface.FLOOR), sandstone)
         );
-        SurfaceRules.RuleSource abysslate = SurfaceRules.state(ESBlocks.ABYSSLATE.get().defaultBlockState());
 
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
@@ -70,7 +77,7 @@ public class ESDimensions {
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.STARLIT_SEA, ESBiomes.WARM_SHORE), makeSimpleSurface(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), makeSurface(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTSHADE_MUD.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), desertRule),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), abysslate),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
                 makeSurface(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTSHADE_DIRT.get().defaultBlockState())
         );
     }

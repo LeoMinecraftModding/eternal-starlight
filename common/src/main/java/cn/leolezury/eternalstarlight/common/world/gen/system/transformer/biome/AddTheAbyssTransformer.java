@@ -33,7 +33,7 @@ public class AddTheAbyssTransformer extends NoiseDataTransformer {
                     noise.getValue(worldX * 0.0025, worldZ * 0.0025, false) * 0.50d
                     + noise.getValue(worldX * 0.0075, worldZ * 0.0075, true) * 0.25d
                     + noise.getValue(worldX * 0.025, worldZ * 0.025, true) * 0.025d;
-            if (noiseVal > -0.02 && noiseVal < 0.02) {
+            if (noiseVal > -0.04 && noiseVal < 0.04) {
                 return id;
             }
         }

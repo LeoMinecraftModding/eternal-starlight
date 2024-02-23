@@ -15,7 +15,7 @@
       "max_delay": 12000,
       "min_delay": 1200,
       "replace_current_music": false,
-      "sound": "eternal_starlight:music.dimension.tranquility"
+      "sound": "eternal_starlight:music.biome.the_abyss"
     },
     "particle": {
       "options": {
