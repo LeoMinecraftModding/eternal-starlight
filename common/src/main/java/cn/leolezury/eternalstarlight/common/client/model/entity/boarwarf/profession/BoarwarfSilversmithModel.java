@@ -31,7 +31,7 @@ public class BoarwarfSilversmithModel<T extends Boarwarf> extends AnimatedEntity
 
         PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(20, 16).addBox(-5.0F, -10.0F, -3.0F, 10.0F, 10.0F, 6.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 14.0F, 0.0F));
 
-        PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F))
+        body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F))
                 .texOffs(26, 1).addBox(-2.0F, -2.675F, -6.675F, 4.0F, 3.0F, 2.0F, new CubeDeformation(0.175F)), PartPose.offset(0.0F, -10.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);

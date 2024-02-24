@@ -48,6 +48,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.RATLIN.get(), Ratlin.createAttributes().build());
         strategy.register(ESEntities.YETI.get(), Yeti.createAttributes().build());
         strategy.register(ESEntities.AURORA_DEER.get(), AuroraDeer.createAttributes().build());
+        strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), CrystallizedMoth.createAttributes().build());
         strategy.register(ESEntities.LUMINOFISH.get(), LuminoFish.createAttributes().build());
         strategy.register(ESEntities.LUMINARIS.get(), Luminaris.createAttributes().build());
         strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
@@ -68,6 +69,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.RATLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
         strategy.register(ESEntities.YETI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);
         strategy.register(ESEntities.AURORA_DEER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);
+        strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrystallizedMoth::checkMothSpawnRules);
         strategy.register(ESEntities.LUMINOFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LuminoFish::checkAbyssalWaterAnimalSpawnRules);
         strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkAbyssalWaterAnimalSpawnRules);
         strategy.register(ESEntities.FREEZE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);

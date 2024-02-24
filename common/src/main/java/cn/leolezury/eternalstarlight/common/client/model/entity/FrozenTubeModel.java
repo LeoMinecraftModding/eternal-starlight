@@ -24,7 +24,7 @@ public class FrozenTubeModel<T extends FrozenTube> extends EntityModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition rod = partdefinition.addOrReplaceChild("rod", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+        partdefinition.addOrReplaceChild("rod", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(8, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offset(0.0F, 19.5F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 64, 32);

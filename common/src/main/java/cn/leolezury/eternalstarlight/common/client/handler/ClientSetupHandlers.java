@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profess
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ESExplosionParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ESSmokeParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
+import cn.leolezury.eternalstarlight.common.client.particle.effect.SonarParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
@@ -404,6 +405,7 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.POISON.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
         strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
+        strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
         strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.FLAME_SMOKE.get(), ESSmokeParticle.FlameProvider::new);
         strategy.register(ESParticles.ENERGY_EXPLOSION.get(), ESExplosionParticle.EnergyProvider::new);
@@ -427,6 +429,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.RATLIN.get(), RatlinRenderer::new);
         strategy.register(ESEntities.YETI.get(), YetiRenderer::new);
         strategy.register(ESEntities.AURORA_DEER.get(), AuroraDeerRenderer::new);
+        strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), CrystallizedMothRenderer::new);
         strategy.register(ESEntities.LUMINOFISH.get(), LuminoFishRenderer::new);
         strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
         strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
@@ -477,6 +480,7 @@ public class ClientSetupHandlers {
         strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
         strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);
         strategy.register(AuroraDeerModel.LAYER_LOCATION, AuroraDeerModel::createBodyLayer);
+        strategy.register(CrystallizedMothModel.LAYER_LOCATION, CrystallizedMothModel::createBodyLayer);
         strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
         strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));

@@ -32,21 +32,21 @@ public class RatlinModel<T extends Ratlin> extends AnimatedEntityModel<T> {
 
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-6.5F, -11.0F, -8.0F, 13.0F, 11.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, 0.0F));
 
-        PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(26, 27).addBox(-2.0F, -2.0F, -0.5F, 4.0F, 4.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -4.0F, 5.5F, -0.5236F, 0.0F, 0.0F));
+        body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(26, 27).addBox(-2.0F, -2.0F, -0.5F, 4.0F, 4.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -4.0F, 5.5F, -0.5236F, 0.0F, 0.0F));
 
         PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 27).addBox(-3.5F, -4.0F, -6.0F, 7.0F, 11.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, -7.0F, -8.0F));
 
-        PartDefinition left_ear = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-0.5F, -6.0F, 0.0F, 7.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, 0.0F, -3.0F));
+        head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-0.5F, -6.0F, 0.0F, 7.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, 0.0F, -3.0F));
 
-        PartDefinition right_ear = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(0, 0).addBox(-6.5F, -6.0F, 0.0F, 7.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 0.0F, -3.0F));
+        head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(0, 0).addBox(-6.5F, -6.0F, 0.0F, 7.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 0.0F, -3.0F));
 
-        PartDefinition left_front_leg = root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -3.0F, -4.5F));
+        root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -3.0F, -4.5F));
 
-        PartDefinition right_front_leg = root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -3.0F, -4.5F));
+        root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -3.0F, -4.5F));
 
-        PartDefinition left_rear_leg = root.addOrReplaceChild("left_rear_leg", CubeListBuilder.create().texOffs(26, 38).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -3.0F, 4.5F));
+        root.addOrReplaceChild("left_rear_leg", CubeListBuilder.create().texOffs(26, 38).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, -3.0F, 4.5F));
 
-        PartDefinition right_rear_leg = root.addOrReplaceChild("right_rear_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -3.0F, 4.5F));
+        root.addOrReplaceChild("right_rear_leg", CubeListBuilder.create().texOffs(39, 41).addBox(-2.0F, 0.0F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -3.0F, 4.5F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);
     }

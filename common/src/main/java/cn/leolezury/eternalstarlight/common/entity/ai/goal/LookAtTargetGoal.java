@@ -28,7 +28,7 @@ public class LookAtTargetGoal extends Goal {
 
     public void tick() {
         if (mob.getTarget() != null) {
-            mob.getLookControl().setLookAt(mob.getTarget(), 100F, 100F);
+            mob.getLookControl().setLookAt(mob.getTarget(), 360, 360);
         }
     }
 }

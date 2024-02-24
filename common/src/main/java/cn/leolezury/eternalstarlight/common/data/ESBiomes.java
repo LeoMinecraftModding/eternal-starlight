@@ -48,7 +48,7 @@ public class ESBiomes {
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(11494560).waterFogColor(11494560).backgroundMusic(MUSIC_SWAMP), baseLandSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_FOREST), baseLandSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(TORREYA_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(7229604).foliageColorOverride(7229604).skyColor(7229604).grassColorOverride(7229604).backgroundMusic(MUSIC_FOREST), baseLandSpawnBuilder(), torreyaForestSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), baseLandSpawnBuilder(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+        context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), desertSpawns(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
         context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), baseAquaticSpawnBuilder(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), baseAquaticGenBuilder(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
@@ -93,6 +93,11 @@ public class ESBiomes {
         return baseLandSpawnBuilder()
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.YETI.get(), 10, 3, 6))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.AURORA_DEER.get(), 8, 3, 6));
+    }
+
+    private static MobSpawnSettings.Builder desertSpawns() {
+        return baseLandSpawnBuilder()
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 10, 3, 6));
     }
 
     private static MobSpawnSettings.Builder theAbyssSpawns() {

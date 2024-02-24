@@ -122,8 +122,8 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     @Override
     public void lookAtLaserEnd(Vec3 endPos) {
         setXRot(-ESMathUtil.positionToPitch(position(), endPos));
-        setYBodyRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
         setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
+        setYRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
     }
 
     private class GolemLookAtTargetGoal extends LookAtTargetGoal {
@@ -155,7 +155,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     public boolean hurt(DamageSource damageSource, float f) {
         if (damageSource.is(DamageTypes.GENERIC_KILL)) {
             return super.hurt(damageSource, f);
-        } else if (canHurt() && getAttackState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL)) {
+        } else if (canHurt() && getAttackState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && damageSource.getEntity() != this) {
             hurtCount++;
             return super.hurt(damageSource, f);
         } else {

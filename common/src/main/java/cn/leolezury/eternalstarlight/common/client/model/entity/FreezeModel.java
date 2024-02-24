@@ -29,21 +29,21 @@ public class FreezeModel<T extends Freeze> extends AnimatedEntityModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+        partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
                 .texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 12.0F, 0.0F));
 
         PartDefinition rods = partdefinition.addOrReplaceChild("rods", CubeListBuilder.create(), PartPose.offset(0.0F, 15.0F, 0.0F));
 
-        PartDefinition rod1 = rods.addOrReplaceChild("rod1", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+        rods.addOrReplaceChild("rod1", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(8, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(0.0F, -0.5F, -6.0F, -0.5672F, 0.0F, 0.0F));
 
-        PartDefinition rod2 = rods.addOrReplaceChild("rod2", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+        rods.addOrReplaceChild("rod2", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(8, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-6.0F, -0.5F, 0.0F, 0.0F, 0.0F, 0.5672F));
 
-        PartDefinition rod3 = rods.addOrReplaceChild("rod3", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+        rods.addOrReplaceChild("rod3", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(8, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(6.0F, -0.5F, 0.0F, 0.0F, 0.0F, -0.5672F));
 
-        PartDefinition rod4 = rods.addOrReplaceChild("rod4", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+        rods.addOrReplaceChild("rod4", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(8, 16).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(0.0F, -0.5F, 6.0F, 0.5672F, 0.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 64, 32);

@@ -44,7 +44,7 @@ public class CommonSetupEvents {
         CommonSetupHandlers.SpawnPlacementRegisterStrategy strategy = new CommonSetupHandlers.SpawnPlacementRegisterStrategy() {
             @Override
             public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacements.Type placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
-                event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.OR);
+                event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.AND);
             }
         };
         CommonSetupHandlers.registerSpawnPlacements(strategy);
