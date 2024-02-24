@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
@@ -18,6 +19,10 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
+        tag(ESTags.EnityTypes.ROBOTIC).add(
+                ESEntities.FREEZE.get(),
+                ESEntities.STARLIGHT_GOLEM.get()
+        );
         tag(EntityTypeTags.SKELETONS).add(
                 ESEntities.LONESTAR_SKELETON.get()
         );

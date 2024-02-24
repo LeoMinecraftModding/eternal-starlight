@@ -2,12 +2,14 @@ package cn.leolezury.eternalstarlight.common.entity.monster;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -133,6 +135,11 @@ public class Freeze extends Monster implements RangedAttackMob {
     @Override
     public boolean canFreeze() {
         return false;
+    }
+
+    @Override
+    public boolean isAlliedTo(Entity entity) {
+        return super.isAlliedTo(entity) || entity.getType().is(ESTags.EnityTypes.ROBOTIC);
     }
 
     @Override

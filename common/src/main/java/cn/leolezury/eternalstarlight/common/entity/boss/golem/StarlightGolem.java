@@ -8,8 +8,10 @@ import cn.leolezury.eternalstarlight.common.entity.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -49,14 +51,30 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             new StarlightGolemLaserBeamPhase(),
             new StarlightGolemSpitFlamePhase(),
             new StarlightGolemSummonFlamePhase(),
-            new StarlightGolemSmashPhase()
+            new StarlightGolemSmashPhase(),
+            new StarlightGolemChargeStartPhase(),
+            new StarlightGolemChargePhase(),
+            new StarlightGolemChargeEndPhase()
     ));
 
     public AnimationState laserBeamAnimationState = new AnimationState();
     public AnimationState spitFlameAnimationState = new AnimationState();
     public AnimationState summonFlameAnimationState = new AnimationState();
     public AnimationState smashAnimationState = new AnimationState();
+    public AnimationState chargeStartAnimationState = new AnimationState();
+    public AnimationState chargeAnimationState = new AnimationState();
+    public AnimationState chargeEndAnimationState = new AnimationState();
     public AnimationState deathAnimationState = new AnimationState();
+
+    private int hurtCount;
+
+    public void clearHurtCount() {
+        this.hurtCount = 0;
+    }
+
+    public int getHurtCount() {
+        return hurtCount;
+    }
 
     public boolean canHurt() {
         return getLitEnergyBlocks().isEmpty();
@@ -137,10 +155,8 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     public boolean hurt(DamageSource damageSource, float f) {
         if (damageSource.is(DamageTypes.GENERIC_KILL)) {
             return super.hurt(damageSource, f);
-        } else if (canHurt() && getAttackState() == 5 && !damageSource.is(DamageTypes.FALL)) {
-            if (getAttackTicks() < 500) {
-                setAttackTicks(getAttackTicks() + 40);
-            }
+        } else if (canHurt() && getAttackState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL)) {
+            hurtCount++;
             return super.hurt(damageSource, f);
         } else {
             if (damageSource.getDirectEntity() instanceof LivingEntity) {
@@ -169,6 +185,9 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         spitFlameAnimationState.stop();
         summonFlameAnimationState.stop();
         smashAnimationState.stop();
+        chargeStartAnimationState.stop();
+        chargeAnimationState.stop();
+        chargeEndAnimationState.stop();
     }
 
     @Override
@@ -180,6 +199,9 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                 case StarlightGolemSpitFlamePhase.ID -> spitFlameAnimationState.start(tickCount);
                 case StarlightGolemSummonFlamePhase.ID -> summonFlameAnimationState.start(tickCount);
                 case StarlightGolemSmashPhase.ID -> smashAnimationState.start(tickCount);
+                case StarlightGolemChargeStartPhase.ID -> chargeStartAnimationState.start(tickCount);
+                case StarlightGolemChargePhase.ID -> chargeAnimationState.start(tickCount);
+                case StarlightGolemChargeEndPhase.ID -> chargeEndAnimationState.start(tickCount);
             }
         }
         super.onSyncedDataUpdated(accessor);
@@ -188,6 +210,11 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     @Override
     public boolean isPushable() {
         return false;
+    }
+
+    @Override
+    public boolean isAlliedTo(Entity entity) {
+        return super.isAlliedTo(entity) || entity.getType().is(ESTags.EnityTypes.ROBOTIC);
     }
 
     @Override
@@ -210,12 +237,12 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         return list;
     }
 
-    private void litAllEnergyBlocks() {
+    public void litAllEnergyBlocks() {
         List<BlockPos> list = new ArrayList<>();
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(12, 0, 12), false));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(12, 0, -12), false));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(-12, 0, 12), false));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(-12, 0, -12), false));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, 10), false));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, -10), false));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, 10), false));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, -10), false));
         for (BlockPos pos : list) {
             BlockState state = level().getBlockState(pos);
             if (state.is(ESBlocks.ENERGY_BLOCK.get()) && !state.getValue(BlockStateProperties.LIT)) {
@@ -226,10 +253,10 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     private List<BlockPos> getLitEnergyBlocks() {
         List<BlockPos> list = new ArrayList<>();
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(12, 0, 12), true));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(12, 0, -12), true));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(-12, 0, 12), true));
-        list.addAll(getNearbyEnergyBlocks(new BlockPos((int) position().x, (int) position().y, (int) position().z).offset(-12, 0, -12), true));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, 10), true));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, -10), true));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, 10), true));
+        list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, -10), true));
         return list;
     }
 
@@ -275,6 +302,34 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             if (getRandom().nextInt(15) == 0) {
                 Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
                 level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
+            }
+            if (getAttackState() == StarlightGolemChargePhase.ID && !canHurt()) {
+                // to lazy to change it
+                List<BlockPos> list = getLitEnergyBlocks();
+                for (BlockPos pos : list) {
+                    Vec3 angle = position().add(-pos.getX() - 0.5, -pos.getY() - 1.0, -pos.getZ() - 0.5);
+                    double px = pos.getX() + 0.5;
+                    double py = pos.getY() + 1.0;
+                    double pz = pos.getZ() + 0.5;
+
+                    for (int i = 0; i < 10; i++) {
+                        double dx = angle.x();
+                        double dy = angle.y();
+                        double dz = angle.z();
+
+                        double spread = 5.0D + getRandom().nextFloat() * 2.5D;
+                        double velocity = (3.0D + getRandom().nextFloat() * 0.15D) / 45.0D;
+
+                        dx += getRandom().nextGaussian() * 0.0075D * spread;
+                        dy += getRandom().nextGaussian() * 0.0075D * spread;
+                        dz += getRandom().nextGaussian() * 0.0075D * spread;
+                        dx *= velocity;
+                        dy *= velocity;
+                        dz *= velocity;
+
+                        level().addParticle(ESParticles.ENERGY.get(), px, py, pz, dx, dy, dz);
+                    }
+                }
             }
         }
     }

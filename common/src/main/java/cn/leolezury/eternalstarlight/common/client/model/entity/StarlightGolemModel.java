@@ -65,6 +65,15 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
                 case StarlightGolemSmashPhase.ID -> {
                     animate(entity.smashAnimationState, StarlightGolemAnimation.SMASH, ageInTicks);
                 }
+                case StarlightGolemChargeStartPhase.ID -> {
+                    animate(entity.chargeStartAnimationState, StarlightGolemAnimation.CHARGE_START, ageInTicks);
+                }
+                case StarlightGolemChargePhase.ID -> {
+                    animate(entity.chargeAnimationState, StarlightGolemAnimation.CHARGE, ageInTicks);
+                }
+                case StarlightGolemChargeEndPhase.ID -> {
+                    animate(entity.chargeEndAnimationState, StarlightGolemAnimation.CHARGE_END, ageInTicks);
+                }
             }
         }
         if (entity.deathTime > 0) {

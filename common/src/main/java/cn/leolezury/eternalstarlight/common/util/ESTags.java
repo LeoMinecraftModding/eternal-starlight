@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -51,6 +52,13 @@ public class ESTags {
         public static final TagKey<Block> CORAL_BLOCKS = create("coral_blocks");
         public static final TagKey<Block> YETI_FUR = create("yeti_fur");
         public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
+    }
+
+    public static class EnityTypes {
+        private static TagKey<EntityType<?>> create(String string) {
+            return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(EternalStarlight.MOD_ID, string));
+        }
+        public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
     }
 
     public static class Structures {
