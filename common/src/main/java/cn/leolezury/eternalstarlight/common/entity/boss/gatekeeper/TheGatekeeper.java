@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
@@ -15,8 +14,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -250,15 +247,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         return isActivated();
     }
 
-    @Environment(EnvType.CLIENT)
-    public void handleEntityEvent(byte id) {
-        if (id == ClientHandlers.BOSS_MUSIC_ID) {
-            ClientHandlers.handleEntityEvent(this, id);
-        } else {
-            super.handleEntityEvent(id);
-        }
-    }
-
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
@@ -372,9 +360,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
-            if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
-            }
             if (restockCoolDown > 0) {
                 restockCoolDown--;
             } else {

@@ -1,14 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.boss;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -308,24 +305,12 @@ public class LunarMonstrosity extends ESBoss {
         }
     }
 
-    @Environment(EnvType.CLIENT)
-    public void handleEntityEvent(byte id) {
-        if (id == ClientHandlers.BOSS_MUSIC_ID) {
-            ClientHandlers.handleEntityEvent(this, id);
-        } else {
-            super.handleEntityEvent(id);
-        }
-    }
-
     @Override
     public void aiStep() {
         super.aiStep();
         bossEvent.update();
         refreshDimensions();
         if (!level().isClientSide) {
-            if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
-            }
             setParticleAngle((targetPos.x - getX()) / 10D, (targetPos.y - getY() - 2) / 10D, (targetPos.z - getZ()) / 10D);
             LivingEntity target = getTarget();
             if (toxicBreathCoolDown > 0) {

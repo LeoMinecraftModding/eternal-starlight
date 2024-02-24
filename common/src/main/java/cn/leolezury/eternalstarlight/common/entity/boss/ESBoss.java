@@ -2,12 +2,14 @@ package cn.leolezury.eternalstarlight.common.entity.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Music;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,9 +22,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 public class ESBoss extends Monster implements MultiPhaseAttacker {
+    private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
+
     protected ESBoss(EntityType<? extends Monster> type, Level level) {
         super(type, level);
         if (level.isClientSide) {
@@ -121,10 +123,6 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
         return super.addEffect(effectInstance, entity);
     }
 
-    public <T extends Entity> List<T> getEntitiesNearby(Class<T> entityClass, double r) {
-        return level().getEntitiesOfClass(entityClass, getBoundingBox().inflate(r, r, r), e -> e != this && distanceTo(e) <= r + e.getBbWidth() / 2f);
-    }
-
     public boolean canBossMove() {
         return true;
     }
@@ -137,8 +135,12 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
         return true;
     }
 
+    public Music getBossMusic() {
+        return BOSS_DEFAULT_MUSIC;
+    }
+
     public ResourceLocation getBossLootTable() {
-        ResourceLocation lootTable = null;
+        ResourceLocation lootTable;
         ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
 
         lootTable = resourcelocation.withPrefix("bosses/");

@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.boss.golem;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.ai.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.boss.AttackManager;
@@ -11,8 +10,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -268,23 +265,11 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         }
     }
 
-    @Environment(EnvType.CLIENT)
-    public void handleEntityEvent(byte id) {
-        if (id == ClientHandlers.BOSS_MUSIC_ID) {
-            ClientHandlers.handleEntityEvent(this, id);
-        } else {
-            super.handleEntityEvent(id);
-        }
-    }
-
     @Override
     public void aiStep() {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
-            if (!isSilent()) {
-                this.level().broadcastEntityEvent(this, (byte) ClientHandlers.BOSS_MUSIC_ID);
-            }
             attackManager.tick();
         } else {
             if (getRandom().nextInt(15) == 0) {

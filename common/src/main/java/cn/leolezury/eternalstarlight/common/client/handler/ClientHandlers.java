@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.sounds.CommonBossMusicInstance;
-import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
@@ -25,22 +23,20 @@ import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 @Environment(EnvType.CLIENT)
 public class ClientHandlers {
     public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
-    public static final Map<Integer, CommonBossMusicInstance> BOSS_SOUND_MAP = new HashMap<>();
-    public static final int BOSS_MUSIC_ID = 100;
     private static final ResourceLocation[] BAR_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_background"), new ResourceLocation("boss_bar/blue_background"), new ResourceLocation("boss_bar/red_background"), new ResourceLocation("boss_bar/green_background"), new ResourceLocation("boss_bar/yellow_background"), new ResourceLocation("boss_bar/purple_background"), new ResourceLocation("boss_bar/white_background")};
     private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_progress"), new ResourceLocation("boss_bar/blue_progress"), new ResourceLocation("boss_bar/red_progress"), new ResourceLocation("boss_bar/green_progress"), new ResourceLocation("boss_bar/yellow_progress"), new ResourceLocation("boss_bar/purple_progress"), new ResourceLocation("boss_bar/white_progress")};
     private static final ResourceLocation[] OVERLAY_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_background"), new ResourceLocation("boss_bar/notched_10_background"), new ResourceLocation("boss_bar/notched_12_background"), new ResourceLocation("boss_bar/notched_20_background")};
@@ -106,29 +102,6 @@ public class ClientHandlers {
             }
             RenderSystem.setShaderFogShape(FogShape.SPHERE);
         }*/
-    }
-
-    public static void handleEntityEvent(Entity entity, Byte id) {
-        float volume = Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.RECORDS);
-
-        if (entity instanceof ESBoss boss && entity.isAlive() && id == BOSS_MUSIC_ID) {
-            if (volume <= 0.0F) {
-                BOSS_SOUND_MAP.clear();
-            } else {
-                CommonBossMusicInstance sound;
-                if (BOSS_SOUND_MAP.get(entity.getId()) == null) {
-                    sound = new CommonBossMusicInstance(boss);
-                    BOSS_SOUND_MAP.put(entity.getId(), sound);
-                } else {
-                    sound = BOSS_SOUND_MAP.get(entity.getId());
-                }
-
-                if (!Minecraft.getInstance().getSoundManager().isActive(sound) && sound.isNearest()) {
-                    Minecraft.getInstance().getSoundManager().stop();
-                    Minecraft.getInstance().getSoundManager().play(sound);
-                }
-            }
-        }
     }
 
     public static boolean renderBossBar(GuiGraphics guiGraphics, LerpingBossEvent bossEvent, int x, int y) {
