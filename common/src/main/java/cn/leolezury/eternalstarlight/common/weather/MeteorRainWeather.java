@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -71,7 +72,11 @@ public class MeteorRainWeather extends AbstractWeather {
     public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
         float rainTicks = Math.min(ClientWeatherInfo.ticks + partialTick, ClientWeatherInfo.duration);
         float rainLevel = (ClientWeatherInfo.duration / 2f - Math.abs(ClientWeatherInfo.duration / 2f - rainTicks)) / (ClientWeatherInfo.duration / 2f);
-        ESWeatherRenderer.renderWeather(ESShaders.getMeteorRain(), lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
+        RenderSystem.enableBlend();
+        RenderSystem.setShader(ESShaders::getMeteorRain);
+        RenderSystem.setShaderTexture(0, RAIN_LOCATION);
+        RenderSystem.disableBlend();
+        ESWeatherRenderer.renderWeatherWithRotation(lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ, 0.5F, 0, 2.7F);
         return true;
     }
 
