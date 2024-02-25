@@ -113,7 +113,8 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
         Level level = useOnContext.getLevel();
         Player player = useOnContext.getPlayer();
         BlockPos pos = useOnContext.getClickedPos();
-        if (player instanceof ServerPlayer serverPlayer) {AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
+        if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
+            AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
             boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
             if (challenged && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
                 if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
