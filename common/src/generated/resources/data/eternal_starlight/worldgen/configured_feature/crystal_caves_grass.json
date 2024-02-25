@@ -1,0 +1,74 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "eternal_starlight:crystallized_lunar_grass"
+                },
+                "weight": 6
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:red_crystal_roots"
+                },
+                "weight": 6
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:blue_crystal_roots"
+                },
+                "weight": 6
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:twilvewyrm_herb",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:stellafly_bush",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:glimmerfly_bush",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 128,
+    "xz_spread": 7,
+    "y_spread": 3
+  }
+}

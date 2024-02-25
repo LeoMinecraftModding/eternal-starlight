@@ -395,6 +395,14 @@ public class ESItems {
     public static final RegistryObject<Item, Item> STARLIT_LILY_PAD = registerItem("starlit_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.STARLIT_LILY_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
 
+    // crystal caves grass
+    public static final RegistryObject<Item, Item> CRYSTALLIZED_LUNAR_GRASS = registerItem("crystallized_lunar_grass", () -> new BlockItem(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> RED_CRYSTAL_ROOTS = registerItem("red_crystal_roots", () -> new BlockItem(ESBlocks.RED_CRYSTAL_ROOTS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> BLUE_CRYSTAL_ROOTS = registerItem("blue_crystal_roots", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_ROOTS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TWILVEWRYM_HERB = registerItem("twilvewyrm_herb", () -> new BlockItem(ESBlocks.TWILVEWRYM_HERB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> STELLAFLY_BUSH = registerItem("stellafly_bush", () -> new BlockItem(ESBlocks.STELLAFLY_BUSH.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLIMMERFLY_BUSH = registerItem("glimmerfly_bush", () -> new BlockItem(ESBlocks.GLIMMERFLY_BUSH.get(), new Item.Properties()));
+
     public static final RegistryObject<Item, Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(ESBlocks.NIGHTSHADE_DIRT.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));

@@ -110,6 +110,7 @@ public class ESConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NEAR_WATER_GRASS = create("near_water_grass");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ON_WATER_PLANT = create("on_water_plant");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_CAVES_GRASS = create("crystal_caves_grass");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HOT_SPRING = create("hot_spring");
 
@@ -179,6 +180,7 @@ public class ESConfiguredFeatures {
         FeatureUtils.register(context, DESERT_GRASS, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.DEAD_LUNAR_BUSH.get().defaultBlockState(), 1)), 5));
         FeatureUtils.register(context, NEAR_WATER_GRASS, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.LUNAR_REED.get().defaultBlockState(), 1)), 128));
         FeatureUtils.register(context, ON_WATER_PLANT, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.MOONLIGHT_DUCKWEED.get().defaultBlockState(), 18).add(ESBlocks.MOONLIGHT_LILY_PAD.get().defaultBlockState(), 2).add(ESBlocks.STARLIT_LILY_PAD.get().defaultBlockState(), 1)), 128));
+        FeatureUtils.register(context, CRYSTAL_CAVES_GRASS, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get().defaultBlockState(), 6).add(ESBlocks.RED_CRYSTAL_ROOTS.get().defaultBlockState(), 6).add(ESBlocks.BLUE_CRYSTAL_ROOTS.get().defaultBlockState(), 6).add(ESBlocks.TWILVEWRYM_HERB.get().defaultBlockState(), 1).add(ESBlocks.STELLAFLY_BUSH.get().defaultBlockState(), 1).add(ESBlocks.GLIMMERFLY_BUSH.get().defaultBlockState(), 1)), 128));
         FeatureUtils.register(context, SWAMP_WATER, ESFeatures.SWAMP_WATER.get(), new NoneFeatureConfiguration());
         FeatureUtils.register(context, HOT_SPRING, ESFeatures.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.SPRINGSTONE.get().defaultBlockState(), 10).add(ESBlocks.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build())));
 

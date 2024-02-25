@@ -76,6 +76,7 @@ public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DESERT_GRASS = create("desert_grass");
     public static final ResourceKey<PlacedFeature> NEAR_WATER_GRASS = create("near_water_grass");
     public static final ResourceKey<PlacedFeature> ON_WATER_PLANT = create("on_water_plant");
+    public static final ResourceKey<PlacedFeature> CRYSTAL_CAVES_GRASS = create("crystal_caves_grass");
     public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
     public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
 
@@ -147,6 +148,7 @@ public class ESPlacedFeatures {
         PlacementUtils.register(context, DESERT_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.DESERT_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, NEAR_WATER_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.NEAR_WATER_GRASS), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
         PlacementUtils.register(context, ON_WATER_PLANT, configuredFeatures.getOrThrow(ESConfiguredFeatures.ON_WATER_PLANT), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, CRYSTAL_CAVES_GRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYSTAL_CAVES_GRASS), CountPlacement.of(15), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), BiomeFilter.biome());
         PlacementUtils.register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 

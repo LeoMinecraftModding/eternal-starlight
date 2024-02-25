@@ -21,5 +21,5 @@ void main() {
     vec4 color = texture(Sampler0, texCoord0) * vertexColor;
     vec2 texCoord = texCoord0 * 16.0;
     color.a *= smoothstep(0.7 + sinAnim * 0.3, 0.0, abs(texCoord.x - 0.5));
-    fragColor = color * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd) * 100.0;
+    fragColor = color * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd);
 }

@@ -63,7 +63,8 @@
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:desert_grass",
-      "eternal_starlight:dead_lunar_tree"
+      "eternal_starlight:dead_lunar_tree",
+      "eternal_starlight:crystal_caves_grass"
     ],
     [
       "minecraft:freeze_top_layer",
@@ -82,9 +83,9 @@
       },
       {
         "type": "eternal_starlight:crystallized_moth",
-        "maxCount": 6,
-        "minCount": 3,
-        "weight": 10
+        "maxCount": 7,
+        "minCount": 4,
+        "weight": 20
       }
     ],
     "axolotls": [],

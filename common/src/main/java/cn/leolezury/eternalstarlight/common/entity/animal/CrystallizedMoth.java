@@ -31,6 +31,8 @@ import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,18 +50,17 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
     public CrystallizedMoth(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 16.0F);
+        this.setNoGravity(true);
     }
 
     public AnimationState idleAnimationState = new AnimationState();
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level) {
-            @Override
-            public boolean isStableDestination(BlockPos blockPos) {
-                return super.isStableDestination(blockPos) && level.getBlockState(blockPos.below()).isAir();
-            }
-        };
+        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level);
         navigation.setCanOpenDoors(false);
         navigation.setCanFloat(true);
         navigation.setCanPassDoors(true);
@@ -182,6 +183,6 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
     }
 
     public static boolean checkMothSpawnRules(EntityType<? extends CrystallizedMoth> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return !level.canSeeSky(pos) && pos.getY() < 60;
+        return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 20;
     }
 }

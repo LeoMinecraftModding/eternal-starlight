@@ -248,6 +248,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
         waterlily(ESBlocks.STARLIT_LILY_PAD.get());
         waterlily(ESBlocks.MOONLIGHT_DUCKWEED.get());
 
+        cross(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
+        cross(ESBlocks.RED_CRYSTAL_ROOTS.get());
+        cross(ESBlocks.BLUE_CRYSTAL_ROOTS.get());
+        doublePlant(ESBlocks.TWILVEWRYM_HERB.get());
+        doublePlant(ESBlocks.STELLAFLY_BUSH.get());
+        doublePlant(ESBlocks.GLIMMERFLY_BUSH.get());
+
         simpleBlock(ESBlocks.NIGHTSHADE_DIRT.get());
         grassBlock(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_DIRT.get()));
         simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_MUD.get()));

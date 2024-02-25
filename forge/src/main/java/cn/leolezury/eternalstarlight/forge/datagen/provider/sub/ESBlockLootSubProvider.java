@@ -395,6 +395,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.STARLIT_LILY_PAD.get());
         dropSelf(ESBlocks.MOONLIGHT_DUCKWEED.get());
 
+        dropSelf(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
+        dropSelf(ESBlocks.RED_CRYSTAL_ROOTS.get());
+        dropSelf(ESBlocks.BLUE_CRYSTAL_ROOTS.get());
+        add(ESBlocks.TWILVEWRYM_HERB.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+        add(ESBlocks.STELLAFLY_BUSH.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+        add(ESBlocks.GLIMMERFLY_BUSH.get(), BlockLootSubProvider::createDoublePlantShearsDrop);
+
         add(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTSHADE_DIRT.get()));
         add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTSHADE_MUD.get()));
         dropSelf(ESBlocks.NIGHTSHADE_DIRT.get());

@@ -363,6 +363,13 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItemWithBlockTexture(ESItems.STARLIT_LILY_PAD.get());
         basicItemWithBlockTexture(ESItems.MOONLIGHT_DUCKWEED.get());
 
+        basicItemWithBlockTexture(ESItems.CRYSTALLIZED_LUNAR_GRASS.get());
+        basicItemWithBlockTexture(ESItems.RED_CRYSTAL_ROOTS.get());
+        basicItemWithBlockTexture(ESItems.BLUE_CRYSTAL_ROOTS.get());
+        basicItem(ESItems.TWILVEWRYM_HERB.get(), blockTextureFromItem(ESItems.TWILVEWRYM_HERB.get()).withSuffix("_top"));
+        basicItem(ESItems.STELLAFLY_BUSH.get(), blockTextureFromItem(ESItems.STELLAFLY_BUSH.get()).withSuffix("_top"));
+        basicItem(ESItems.GLIMMERFLY_BUSH.get(), blockTextureFromItem(ESItems.GLIMMERFLY_BUSH.get()).withSuffix("_top"));
+
         basicBlockItem(ESItems.NIGHTSHADE_DIRT.get());
         basicBlockItem(ESItems.NIGHTSHADE_GRASS_BLOCK.get());
         basicBlockItem(ESItems.FANTASY_GRASS_BLOCK.get());

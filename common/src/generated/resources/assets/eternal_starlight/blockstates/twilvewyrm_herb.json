@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "eternal_starlight:block/twilvewyrm_herb_bottom"
+    },
+    "half=upper": {
+      "model": "eternal_starlight:block/twilvewyrm_herb_top"
+    }
+  }
+}

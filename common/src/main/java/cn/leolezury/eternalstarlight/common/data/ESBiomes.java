@@ -97,7 +97,7 @@ public class ESBiomes {
 
     private static MobSpawnSettings.Builder desertSpawns() {
         return baseLandSpawnBuilder()
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 10, 3, 6));
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 20, 4, 7));
     }
 
     private static MobSpawnSettings.Builder theAbyssSpawns() {
@@ -240,6 +240,7 @@ public class ESBiomes {
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STARLIGHT_CRYSTAL_SURFACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DESERT_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DEAD_LUNAR_TREE);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CRYSTAL_CAVES_GRASS);
 
         return builder;
     }
