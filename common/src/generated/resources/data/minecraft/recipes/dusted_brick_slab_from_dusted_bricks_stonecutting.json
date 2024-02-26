@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "eternal_starlight:dusted_bricks"
+  },
+  "result": "eternal_starlight:dusted_brick_slab"
+}

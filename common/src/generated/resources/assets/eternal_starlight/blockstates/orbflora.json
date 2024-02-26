@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "orbflora_age=0": {
+      "model": "eternal_starlight:block/orbflora_age_0"
+    },
+    "orbflora_age=1": {
+      "model": "eternal_starlight:block/orbflora_age_1"
+    },
+    "orbflora_age=2": {
+      "model": "eternal_starlight:block/orbflora"
+    }
+  }
+}

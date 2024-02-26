@@ -47,6 +47,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropOther(ESBlocks.CAVE_MOSS_VEIN.get(), ESBlocks.CAVE_MOSS.get());
         add(ESBlocks.ABYSSAL_KELP.get(), this::createAbyssalKelpDrop);
         add(ESBlocks.ABYSSAL_KELP_PLANT.get(), this::createAbyssalKelpDrop);
+        dropSelf(ESBlocks.ORBFLORA.get());
+        add(ESBlocks.ORBFLORA_PLANT.get(), noDrop());
+        dropSelf(ESBlocks.ORBFLORA_LIGHT.get());
 
         add(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), (block) -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
         add(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), (block) -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
@@ -293,6 +296,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
         dropSelf(ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get());
         dropSelf(ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get());
+
+        add(ESBlocks.DUSTED_GRAVEL.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(block)))));
+        dropSelf(ESBlocks.DUSTED_BRICKS.get());
+        add(ESBlocks.DUSTED_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ESBlocks.DUSTED_BRICK_STAIRS.get());
+        dropSelf(ESBlocks.DUSTED_BRICK_WALL.get());
 
         dropSelf(ESBlocks.GOLEM_STEEL_BLOCK.get());
         dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());

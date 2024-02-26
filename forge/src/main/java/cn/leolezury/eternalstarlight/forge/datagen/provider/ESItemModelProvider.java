@@ -33,6 +33,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.LUNAR_BERRIES.get());
         basicItemWithBlockTexture(ESItems.CAVE_MOSS.get());
         basicItem(ESItems.ABYSSAL_FRUIT.get());
+        basicBlockItem(ESItems.ORBFLORA.get());
+        basicBlockItem(ESItems.ORBFLORA_LIGHT.get());
 
         basicItemWithBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());
         basicItemWithBlockTexture(ESItems.TENTACLES_CORAL.get());
@@ -258,6 +260,13 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ESItems.CUT_TWILIGHT_SANDSTONE_STAIRS.get());
         wall(ESItems.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESItems.CUT_TWILIGHT_SANDSTONE.get());
         basicBlockItem(ESItems.CHISELED_TWILIGHT_SANDSTONE.get());
+
+        basicBlockItem(ESItems.DUSTED_GRAVEL.get());
+        basicItem(ESItems.DUSTED_SHARD.get());
+        basicBlockItem(ESItems.DUSTED_BRICKS.get());
+        basicBlockItem(ESItems.DUSTED_BRICK_SLAB.get());
+        basicBlockItem(ESItems.DUSTED_BRICK_STAIRS.get());
+        wall(ESItems.DUSTED_BRICK_WALL.get(), ESItems.DUSTED_BRICKS.get());
 
         basicBlockItem(ESItems.GOLEM_STEEL_BLOCK.get());
         basicBlockItem(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());

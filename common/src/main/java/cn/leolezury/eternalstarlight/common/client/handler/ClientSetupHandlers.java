@@ -111,6 +111,8 @@ public class ClientSetupHandlers {
             ESBlocks.CAVE_MOSS_VEIN,
             ESBlocks.ABYSSAL_KELP,
             ESBlocks.ABYSSAL_KELP_PLANT,
+            ESBlocks.ORBFLORA,
+            ESBlocks.ORBFLORA_PLANT,
             ESBlocks.DEAD_TENTACLES_CORAL,
             ESBlocks.TENTACLES_CORAL,
             ESBlocks.DEAD_TENTACLES_CORAL_FAN,

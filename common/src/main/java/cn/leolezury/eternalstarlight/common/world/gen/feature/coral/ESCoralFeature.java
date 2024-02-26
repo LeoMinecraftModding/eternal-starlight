@@ -32,7 +32,7 @@ public abstract class ESCoralFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel worldGenLevel = featurePlaceContext.level();
         BlockPos blockPos = featurePlaceContext.origin();
         Optional<Block> optional = BuiltInRegistries.BLOCK.getTag(ESTags.Blocks.CORAL_BLOCKS).flatMap((named) -> named.getRandomElement(randomSource)).map(Holder::value);
-        return optional.isEmpty() ? false : this.placeFeature(worldGenLevel, randomSource, blockPos, ((Block)optional.get()).defaultBlockState());
+        return optional.filter(block -> this.placeFeature(worldGenLevel, randomSource, blockPos, block.defaultBlockState())).isPresent();
     }
 
     protected abstract boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState);

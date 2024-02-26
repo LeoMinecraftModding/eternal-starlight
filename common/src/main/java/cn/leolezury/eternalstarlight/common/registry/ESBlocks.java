@@ -31,6 +31,9 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> CAVE_MOSS_VEIN = BLOCKS.register("cave_moss_vein", () -> new CaveMossVeinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).lightLevel((state) -> 7).mapColor(MapColor.PLANT)));
     public static final RegistryObject<Block, Block> ABYSSAL_KELP = BLOCKS.register("abyssal_kelp", () -> new AbyssalKelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP).lightLevel(CaveVines.emission(14))));
     public static final RegistryObject<Block, Block> ABYSSAL_KELP_PLANT = BLOCKS.register("abyssal_kelp_plant", () -> new AbyssalKelpPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT).lightLevel(CaveVines.emission(14))));
+    public static final RegistryObject<Block, Block> ORBFLORA = BLOCKS.register("orbflora", () -> new OrbfloraBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)));
+    public static final RegistryObject<Block, Block> ORBFLORA_PLANT = BLOCKS.register("orbflora_plant", () -> new OrbfloraPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)));
+    public static final RegistryObject<Block, Block> ORBFLORA_LIGHT = BLOCKS.register("orbflora_light", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OCHRE_FROGLIGHT)));
     public static final RegistryObject<Block, Block> RED_STARLIGHT_CRYSTAL_CLUSTER = BLOCKS.register("red_starlight_crystal_cluster", () -> new StarlightCrystalClusterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel((state) -> 10).sound(SoundType.AMETHYST)));
     public static final RegistryObject<Block, Block> BLUE_STARLIGHT_CRYSTAL_CLUSTER = BLOCKS.register("blue_starlight_crystal_cluster", () -> new StarlightCrystalClusterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel((state) -> 10).sound(SoundType.AMETHYST)));
     public static final RegistryObject<Block, Block> RED_STARLIGHT_CRYSTAL_BLOCK = BLOCKS.register("red_starlight_crystal_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.5F).requiresCorrectToolForDrops().lightLevel((state) -> 10).sound(SoundType.AMETHYST)));
@@ -379,6 +382,13 @@ public class ESBlocks {
     public static final RegistryObject<Block, StairBlock> CUT_TWILIGHT_SANDSTONE_STAIRS = BLOCKS.register("cut_twilight_sandstone_stairs", () -> new StairBlock(CUT_TWILIGHT_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_STAIRS).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, WallBlock> CUT_TWILIGHT_SANDSTONE_WALL = BLOCKS.register("cut_twilight_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> CHISELED_TWILIGHT_SANDSTONE = BLOCKS.register("chiseled_twilight_sandstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_SANDSTONE).mapColor(MapColor.COLOR_PURPLE)));
+
+    // gravel
+    public static final RegistryObject<Block, Block> DUSTED_GRAVEL = BLOCKS.register("dusted_gravel", () -> new ColoredFallingBlock(new ColorRGBA(0x53415e), BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> DUSTED_BRICKS = BLOCKS.register("dusted_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, SlabBlock> DUSTED_BRICK_SLAB = BLOCKS.register("dusted_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_SLAB).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, StairBlock> DUSTED_BRICK_STAIRS = BLOCKS.register("dusted_brick_stairs", () -> new StairBlock(TWILIGHT_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_STAIRS).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, WallBlock> DUSTED_BRICK_WALL = BLOCKS.register("dusted_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
 
     // golem steel
     public static final RegistryObject<Block, Block> GOLEM_STEEL_BLOCK = BLOCKS.register("golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.OrbfloraBlock;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.Direction;
@@ -37,6 +38,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         multifaceBlock(ESBlocks.CAVE_MOSS_VEIN.get());
         vinesWithFruit(ESBlocks.ABYSSAL_KELP.get());
         vinesWithFruit(ESBlocks.ABYSSAL_KELP_PLANT.get());
+        orbflora(ESBlocks.ORBFLORA.get());
+        cross(ESBlocks.ORBFLORA_PLANT.get());
+        simpleBlock(ESBlocks.ORBFLORA_LIGHT.get());
         crystalCluster(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
         crystalCluster(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
         simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -157,6 +161,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stairsBlock(ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(ESBlocks.CUT_TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top"), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         wallBlock(ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
         simpleBlock(ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), models().cubeColumn(name(ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top")));
+
+        simpleBlock(ESBlocks.DUSTED_GRAVEL.get());
+        stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
 
         simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
         simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
@@ -383,6 +390,19 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .end()
                 .end();
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+    }
+
+    private void orbflora(Block block) {
+        ModelFile modelAge0 = models().getExistingFile(new ResourceLocation(EternalStarlight.MOD_ID, "orbflora_age_0"));
+        ModelFile modelAge1 = models().getExistingFile(new ResourceLocation(EternalStarlight.MOD_ID, "orbflora_age_1"));
+        ModelFile modelAge2 = models().getExistingFile(new ResourceLocation(EternalStarlight.MOD_ID, "orbflora"));
+        getVariantBuilder(block)
+                .partialState().with(OrbfloraBlock.ORBFLORA_AGE, 0)
+                .modelForState().modelFile(modelAge0).addModel()
+                .partialState().with(OrbfloraBlock.ORBFLORA_AGE, 1)
+                .modelForState().modelFile(modelAge1).addModel()
+                .partialState().with(OrbfloraBlock.ORBFLORA_AGE, 2)
+                .modelForState().modelFile(modelAge2).addModel();
     }
 
     private void torreyaVines(Block block) {

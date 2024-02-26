@@ -25,7 +25,7 @@
     },
     "sky_color": 5658761,
     "water_color": 6187416,
-    "water_fog_color": 3145761
+    "water_fog_color": 5837552
   },
   "features": [
     [],
@@ -55,7 +55,8 @@
       "eternal_starlight:cave_vine",
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
-      "eternal_starlight:abyssal_kelp"
+      "eternal_starlight:abyssal_kelp",
+      "eternal_starlight:orbflora"
     ],
     [
       "minecraft:freeze_top_layer",

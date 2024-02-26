@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -45,6 +46,16 @@ public class TorreyaVinesBlock extends GrowingPlantHeadBlock {
         } else {
             return blockState2.is(this.getHeadBlock()) || blockState2.is(this.getBodyBlock()) || blockState2.is(BlockTags.LEAVES) || blockState2.isFaceSturdy(levelReader, blockPos2, this.growthDirection);
         }
+    }
+
+    @Override
+    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+        BlockState state = levelAccessor.getBlockState(blockPos.above());
+        if (state.is(ESBlocks.TORREYA_VINES_PLANT.get()) && !levelAccessor.getBlockState(blockPos.above(2)).is(ESBlocks.TORREYA_VINES_PLANT.get()) && !state.getValue(TorreyaVinesPlantBlock.TOP)) {
+            state = state.setValue(TorreyaVinesPlantBlock.TOP, true);
+            levelAccessor.setBlock(blockPos.above(), state, 2);
+        }
+        return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
     }
 
     protected Block getBodyBlock() {

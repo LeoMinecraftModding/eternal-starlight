@@ -49,6 +49,7 @@ public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> CAVE_MOSS = create("cave_moss");
     public static final ResourceKey<PlacedFeature> CAVE_MOSS_VEIN = create("cave_moss_vein");
     public static final ResourceKey<PlacedFeature> ABYSSAL_KELP = create("abyssal_kelp");
+    public static final ResourceKey<PlacedFeature> ORBFLORA = create("orbflora");
     public static final ResourceKey<PlacedFeature> OCEAN_VEGETATION = create("ocean_vegetation");
     public static final ResourceKey<PlacedFeature> ABYSSLATE_PATCH = create("abysslate_patch");
     public static final ResourceKey<PlacedFeature> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
@@ -121,6 +122,7 @@ public class ESPlacedFeatures {
         PlacementUtils.register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(200), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
         PlacementUtils.register(context, CAVE_MOSS_VEIN, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_VEIN), CountPlacement.of(UniformInt.of(104, 157)), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Integer.MIN_VALUE, -13), BiomeFilter.biome());
         PlacementUtils.register(context, ABYSSAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSAL_KELP), NoiseBasedCountPlacement.of(120, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+        PlacementUtils.register(context, ORBFLORA, configuredFeatures.getOrThrow(ESConfiguredFeatures.ORBFLORA), NoiseBasedCountPlacement.of(100, 90.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
         PlacementUtils.register(context, OCEAN_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.OCEAN_VEGETATION), NoiseBasedCountPlacement.of(20, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
         PlacementUtils.register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
         PlacementUtils.register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
