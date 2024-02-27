@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 64,
+    "targets": [
+      {
+        "state": {
+          "Name": "eternal_starlight:twilight_sand"
+        },
+        "target": {
+          "block": "eternal_starlight:dusted_gravel",
+          "predicate_type": "minecraft:block_match"
+        }
+      }
+    ]
+  }
+}

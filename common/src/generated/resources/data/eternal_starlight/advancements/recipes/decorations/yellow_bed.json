@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:yellow_bed"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_yellow_yeti_fur": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:yellow_yeti_fur"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_yellow_yeti_fur"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:yellow_bed"
+    ]
+  }
+}

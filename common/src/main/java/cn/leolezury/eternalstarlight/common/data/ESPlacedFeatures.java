@@ -33,6 +33,7 @@ public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
     public static final ResourceKey<PlacedFeature> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
     public static final ResourceKey<PlacedFeature> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
+    public static final ResourceKey<PlacedFeature> SAND_ORE = create("sand_ore");
     public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
     public static final ResourceKey<PlacedFeature> GRIMSTONE_REDSTONE_ORE = create("grimstone_redstone_ore");
     public static final ResourceKey<PlacedFeature> VOIDSTONE_REDSTONE_ORE = create("voidstone_redstone_ore");
@@ -106,6 +107,7 @@ public class ESPlacedFeatures {
         PlacementUtils.register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
         PlacementUtils.register(context, GLOWING_NIGHTSHADE_MUD_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_NIGHTSHADE_MUD_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         PlacementUtils.register(context, NIGHTSHADE_DIRT_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.NIGHTSHADE_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+        PlacementUtils.register(context, SAND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SAND_ORE), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         PlacementUtils.register(context, SWAMP_SILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_SILVER_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         PlacementUtils.register(context, GRIMSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         PlacementUtils.register(context, VOIDSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));

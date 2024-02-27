@@ -69,6 +69,7 @@ public class ESConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTSHADE_MUD_ORE = create("glowing_nightshade_mud_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTSHADE_DIRT_ORE = create("nightshade_dirt_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SAND_ORE = create("sand_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_SILVER_ORE = create("swamp_silver_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMSTONE_REDSTONE_ORE = create("grimstone_redstone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> VOIDSTONE_REDSTONE_ORE = create("voidstone_redstone_ore");
@@ -127,6 +128,7 @@ public class ESConfiguredFeatures {
         RuleTest grimstoneRule = new BlockMatchTest(ESBlocks.GRIMSTONE.get());
         RuleTest voidstoneRule = new BlockMatchTest(ESBlocks.VOIDSTONE.get());
         RuleTest mudRule = new BlockMatchTest(ESBlocks.NIGHTSHADE_MUD.get());
+        RuleTest gravelRule = new BlockMatchTest(ESBlocks.DUSTED_GRAVEL.get());
 
         FeatureUtils.register(context, ETHER_FLUID_BORDER, ESFeatures.ETHER_FLUID_BORDER.get(), new NoneFeatureConfiguration());
         FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get(), new NoneFeatureConfiguration());
@@ -136,6 +138,7 @@ public class ESConfiguredFeatures {
         FeatureUtils.register(context, GLOWING_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, ESBlocks.GLOWING_VOIDSTONE.get().defaultBlockState(), 20));
         FeatureUtils.register(context, GLOWING_NIGHTSHADE_MUD_ORE, Feature.ORE, new OreConfiguration(mudRule, ESBlocks.GLOWING_NIGHTSHADE_MUD.get().defaultBlockState(), 20));
         FeatureUtils.register(context, NIGHTSHADE_DIRT_ORE, Feature.ORE, new OreConfiguration(slRule, ESBlocks.NIGHTSHADE_DIRT.get().defaultBlockState(), 33));
+        FeatureUtils.register(context, SAND_ORE, Feature.ORE, new OreConfiguration(gravelRule, ESBlocks.TWILIGHT_SAND.get().defaultBlockState(), 64));
         FeatureUtils.register(context, SWAMP_SILVER_ORE, Feature.ORE, new OreConfiguration(mudRule, ESBlocks.SWAMP_SILVER_ORE.get().defaultBlockState(), 7));
         FeatureUtils.register(context, GRIMSTONE_REDSTONE_ORE, Feature.ORE, new OreConfiguration(grimstoneRule, ESBlocks.GRIMSTONE_REDSTONE_ORE.get().defaultBlockState(), 7));
         FeatureUtils.register(context, VOIDSTONE_REDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstoneRule, ESBlocks.VOIDSTONE_REDSTONE_ORE.get().defaultBlockState(), 7));

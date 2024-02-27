@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:voidstone_tile_stairs_from_voidstone_tiles_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_voidstone_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eternal_starlight:voidstone_tiles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_voidstone_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:voidstone_tile_stairs_from_voidstone_tiles_stonecutting"
+    ]
+  }
+}
