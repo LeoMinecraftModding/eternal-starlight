@@ -60,6 +60,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get());
         dropSelf(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get());
 
+        dropSelf(ESBlocks.JINGLING_PICKLE.get());
         dropWhenSilkTouch(ESBlocks.DEAD_TENTACLES_CORAL.get());
         dropWhenSilkTouch(ESBlocks.TENTACLES_CORAL.get());
         dropWhenSilkTouch(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());

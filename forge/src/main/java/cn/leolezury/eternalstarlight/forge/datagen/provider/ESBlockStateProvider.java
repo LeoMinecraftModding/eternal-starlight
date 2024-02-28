@@ -48,6 +48,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get()));
         carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get()));
 
+        cross(ESBlocks.JINGLING_PICKLE.get());
         cross(ESBlocks.DEAD_TENTACLES_CORAL.get());
         cross(ESBlocks.TENTACLES_CORAL.get());
         coralFan(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());

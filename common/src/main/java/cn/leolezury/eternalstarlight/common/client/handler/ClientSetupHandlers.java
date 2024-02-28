@@ -113,6 +113,7 @@ public class ClientSetupHandlers {
             ESBlocks.ABYSSAL_KELP_PLANT,
             ESBlocks.ORBFLORA,
             ESBlocks.ORBFLORA_PLANT,
+            ESBlocks.JINGLING_PICKLE,
             ESBlocks.DEAD_TENTACLES_CORAL,
             ESBlocks.TENTACLES_CORAL,
             ESBlocks.DEAD_TENTACLES_CORAL_FAN,

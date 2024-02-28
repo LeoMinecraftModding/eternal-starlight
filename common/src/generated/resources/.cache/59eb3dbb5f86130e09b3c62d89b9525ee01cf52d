@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-27T22:41:33.6783788	Loot Tables
+// 1.20.4	2024-02-28T22:53:59.2611078	Loot Tables
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
 2c2103ae192a93e5647a50d84339ed2634db9c2a data/eternal_starlight/loot_tables/blocks/abyssal_kelp_plant.json
@@ -134,6 +134,7 @@ dd1efc2c43d016e744c258cdb5acd63883d3cd38 data/eternal_starlight/loot_tables/bloc
 cae67db7df07f096c764b6ade61bf60aeaa191fd data/eternal_starlight/loot_tables/blocks/grimstone_tile_slab.json
 deac8fa4e9124fb8d25bf155daee5b16413d4fb8 data/eternal_starlight/loot_tables/blocks/grimstone_tile_stairs.json
 dbe0b88282abaa2764d0ba3506768d12a51f7f9b data/eternal_starlight/loot_tables/blocks/grimstone_tile_wall.json
+2a48bb713669d0f6b9605e2384aa896fafdf2016 data/eternal_starlight/loot_tables/blocks/jingling_pickle.json
 476a1643912103fdac30c2a03f9da5ad8b0829d3 data/eternal_starlight/loot_tables/blocks/light_blue_yeti_fur.json
 c9ee39f172a8bd10011620c2013f4a30dc65148d data/eternal_starlight/loot_tables/blocks/light_blue_yeti_fur_carpet.json
 af788056f11f8f7b41f266ca02ac6d0d87ae7528 data/eternal_starlight/loot_tables/blocks/light_gray_yeti_fur.json

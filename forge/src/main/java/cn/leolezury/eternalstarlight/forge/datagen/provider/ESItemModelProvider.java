@@ -36,6 +36,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ESItems.ORBFLORA.get());
         basicBlockItem(ESItems.ORBFLORA_LIGHT.get());
 
+        basicItemWithBlockTexture(ESItems.JINGLING_PICKLE.get());
         basicItemWithBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());
         basicItemWithBlockTexture(ESItems.TENTACLES_CORAL.get());
         basicItemWithBlockTexture(ESItems.DEAD_TENTACLES_CORAL_FAN.get());

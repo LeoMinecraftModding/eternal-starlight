@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.coral;
 
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SeaPickleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -47,7 +47,7 @@ public abstract class ESCoralFeature extends Feature<NoneFeatureConfiguration> {
                     levelAccessor.setBlock(blockPos2, block.defaultBlockState(), 2);
                 });
             } else if (randomSource.nextFloat() < 0.05F) {
-                levelAccessor.setBlock(blockPos2, Blocks.SEA_PICKLE.defaultBlockState().setValue(SeaPickleBlock.PICKLES, randomSource.nextInt(4) + 1), 2);
+                levelAccessor.setBlock(blockPos2, ESBlocks.JINGLING_PICKLE.get().defaultBlockState(), 2);
             }
 
             Iterator var7 = Plane.HORIZONTAL.iterator();
