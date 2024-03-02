@@ -33,13 +33,13 @@ public class StarlightCrystalClusterBlock extends Block implements SimpleWaterlo
 
     public StarlightCrystalClusterBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
-        this.upAabb = Block.box((double)3, 0.0D, (double)3, (double)(16 - 3), (double)5, (double)(16 - 3));
-        this.downAabb = Block.box((double)3, (double)(16 - 5), (double)3, (double)(16 - 3), 16.0D, (double)(16 - 3));
-        this.northAabb = Block.box((double)3, (double)3, (double)(16 - 5), (double)(16 - 3), (double)(16 - 3), 16.0D);
-        this.southAabb = Block.box((double)3, (double)3, 0.0D, (double)(16 - 3), (double)(16 - 3), (double)5);
-        this.eastAabb = Block.box(0.0D, (double)3, (double)3, (double)5, (double)(16 - 3), (double)(16 - 3));
-        this.westAabb = Block.box((double)(16 - 5), (double)3, (double)3, 16.0D, (double)(16 - 3), (double)(16 - 3));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
+        this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
+        this.downAabb = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
+        this.northAabb = Block.box(3, 3, (16 - 5), (16 - 3), (16 - 3), 16.0D);
+        this.southAabb = Block.box(3, 3, 0.0D, (16 - 3), (16 - 3), 5);
+        this.eastAabb = Block.box(0.0D, 3, 3, 5, (16 - 3), (16 - 3));
+        this.westAabb = Block.box((16 - 5), 3, 3, 16.0D, (16 - 3), (16 - 3));
     }
 
     @Override

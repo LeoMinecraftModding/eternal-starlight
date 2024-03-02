@@ -18,7 +18,7 @@ public class ScarletLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public MapCodec<? extends LeavesBlock> codec() {
+    public MapCodec<ScarletLeavesBlock> codec() {
         return CODEC;
     }
 

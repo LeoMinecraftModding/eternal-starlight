@@ -119,7 +119,7 @@ public class ESBlocks {
 
     // northland wood
     public static final RegistryObject<Block, Block> NORTHLAND_LEAVES = BLOCKS.register("northland_leaves",
-            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+            () -> new SnowyLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, RotatedPillarBlock> NORTHLAND_LOG = BLOCKS.register("northland_log",
             () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_WOOD = BLOCKS.register("northland_wood",

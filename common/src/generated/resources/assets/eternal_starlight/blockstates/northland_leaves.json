@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "snowy=false": {
       "model": "eternal_starlight:block/northland_leaves"
+    },
+    "snowy=true": {
+      "model": "eternal_starlight:block/northland_leaves_snowy"
     }
   }
 }

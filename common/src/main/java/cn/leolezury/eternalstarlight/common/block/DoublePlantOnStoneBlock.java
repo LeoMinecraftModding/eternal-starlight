@@ -15,7 +15,7 @@ public class DoublePlantOnStoneBlock extends DoublePlantBlock {
     }
 
     @Override
-    public MapCodec<? extends DoublePlantBlock> codec() {
+    public MapCodec<? extends DoublePlantOnStoneBlock> codec() {
         return CODEC;
     }
 

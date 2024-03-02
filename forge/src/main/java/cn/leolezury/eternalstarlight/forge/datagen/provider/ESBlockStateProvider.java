@@ -85,7 +85,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         axisBlock(ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get(), blockTexture(ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get()), blockTexture(ESBlocks.DEAD_LUNAR_LOG.get()).withSuffix("_top"));
         axisBlock(ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get(), blockTexture(ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get()), blockTexture(ESBlocks.DEAD_LUNAR_LOG.get()).withSuffix("_top"));
 
-        leaves(ESBlocks.NORTHLAND_LEAVES.get());
+        snowyLeaves(ESBlocks.NORTHLAND_LEAVES.get());
         woodSet(ESBlocks.NORTHLAND_LOG.get(), ESBlocks.NORTHLAND_WOOD.get(), ESBlocks.NORTHLAND_PLANKS.get(), ESBlocks.STRIPPED_NORTHLAND_LOG.get(), ESBlocks.STRIPPED_NORTHLAND_WOOD.get(), ESBlocks.NORTHLAND_DOOR.get(), false, ESBlocks.NORTHLAND_TRAPDOOR.get(), false, ESBlocks.NORTHLAND_PRESSURE_PLATE.get(), ESBlocks.NORTHLAND_BUTTON.get(), ESBlocks.NORTHLAND_FENCE.get(), ESBlocks.NORTHLAND_FENCE_GATE.get(), ESBlocks.NORTHLAND_SLAB.get(), ESBlocks.NORTHLAND_STAIRS.get(), ESBlocks.NORTHLAND_SIGN.get(), ESBlocks.NORTHLAND_WALL_SIGN.get(), ESBlocks.NORTHLAND_HANGING_SIGN.get(), ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get());
         cross(ESBlocks.NORTHLAND_SAPLING.get());
         pottedPlant(ESBlocks.POTTED_NORTHLAND_SAPLING.get(), blockTexture(ESBlocks.NORTHLAND_SAPLING.get()));
@@ -743,6 +743,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
         ModelFile on = models().cubeAll(name(block) + "_lit", blockTexture(block).withSuffix("_lit"));
         ModelFile off = models().cubeAll(name(block), blockTexture(block));
         onOffBlock(block, BlockStateProperties.LIT, on, off);
+    }
+
+    private void snowyLeaves(Block leaves) {
+        ModelFile modelNormal = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
+        ModelFile modelSnowy = models().singleTexture(name(leaves) + "_snowy", new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves).withSuffix("_snowy")).renderType(CUTOUT_MIPPED);
+        onOffBlock(leaves, BlockStateProperties.SNOWY, modelSnowy, modelNormal);
     }
 
     private void onOffBlock(Block block, BooleanProperty property, ModelFile on, ModelFile off) {
