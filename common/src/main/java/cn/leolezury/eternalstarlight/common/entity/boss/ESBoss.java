@@ -132,7 +132,7 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     }
 
     public boolean shouldPlayBossMusic() {
-        return true;
+        return isAlive();
     }
 
     public Music getBossMusic() {

@@ -402,6 +402,18 @@
       }
     ]
   },
+  "music.biome.scarlet_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/scarlet_forest",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.starlight_forest": {
     "sounds": [
       {
@@ -426,6 +438,14 @@
       }
     ]
   },
+  "music.biome.starlit_sea": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/starlit_sea",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.the_abyss": {
     "sounds": [
       {
@@ -434,10 +454,46 @@
       }
     ]
   },
+  "music.biome.torreya_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/torreya_forest",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      }
+    ]
+  },
   "music.boss.common": {
     "sounds": [
       {
         "name": "eternal_starlight:music/boss/common",
+        "stream": true
+      }
+    ]
+  },
+  "music.boss.gatekeeper": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/boss/gatekeeper",
+        "stream": true
+      }
+    ]
+  },
+  "music.boss.lunar_monstrosity": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/boss/lunar_monstrosity",
+        "stream": true
+      }
+    ]
+  },
+  "music.boss.starlight_golem": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/boss/starlight_golem",
         "stream": true
       }
     ]

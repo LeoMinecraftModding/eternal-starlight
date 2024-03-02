@@ -13,8 +13,14 @@ public class ESSoundEvents {
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIGHT_FOREST = register("music.biome.starlight_forest");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_DARK_SWAMP = register("music.biome.dark_swamp");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST = register("music.biome.starlight_permafrost_forest");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_SCARLET_FOREST = register("music.biome.scarlet_forest");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_TORREYA_FOREST = register("music.biome.torreya_forest");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIT_SEA = register("music.biome.starlit_sea");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_THE_ABYSS = register("music.biome.the_abyss");
     public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS = register("music.boss.common");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_GATEKEEPER = register("music.boss.gatekeeper");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_STARLIGHT_GOLEM = register("music.boss.starlight_golem");
+    public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_LUNAR_MONSTROSITY = register("music.boss.lunar_monstrosity");
 
     public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AMARAMBER = register("item.armor.equip_amaramber");
     public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AETHERSENT = register("item.armor.equip_aethersent");

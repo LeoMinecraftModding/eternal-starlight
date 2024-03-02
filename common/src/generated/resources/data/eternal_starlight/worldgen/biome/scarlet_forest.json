@@ -15,7 +15,7 @@
       "max_delay": 12000,
       "min_delay": 1200,
       "replace_current_music": false,
-      "sound": "eternal_starlight:music.biome.starlight_forest"
+      "sound": "eternal_starlight:music.biome.scarlet_forest"
     },
     "particle": {
       "options": {

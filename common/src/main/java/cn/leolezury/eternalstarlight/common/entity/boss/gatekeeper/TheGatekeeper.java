@@ -13,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.nbt.CompoundTag;
@@ -21,6 +22,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -60,6 +62,8 @@ import java.util.Optional;
 import java.util.Set;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
+    private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.asHolder(), 0, 0, true);
+
     public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
@@ -244,7 +248,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
     @Override
     public boolean shouldPlayBossMusic() {
-        return isActivated();
+        return super.shouldPlayBossMusic() && isActivated();
     }
 
     @Override
@@ -382,6 +386,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         } else {
             level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
         }
+    }
+
+    @Override
+    public Music getBossMusic() {
+        return BOSS_MUSIC;
     }
 
     @Override
