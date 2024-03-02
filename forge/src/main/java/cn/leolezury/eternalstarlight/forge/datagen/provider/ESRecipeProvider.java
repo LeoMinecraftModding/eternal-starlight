@@ -218,6 +218,14 @@ public class ESRecipeProvider extends RecipeProvider {
         addSign(recipeOutput, ESItems.TORREYA_SIGN.get(), ESBlocks.TORREYA_PLANKS.get());
         hangingSign(recipeOutput, ESItems.TORREYA_HANGING_SIGN.get(), ESBlocks.STRIPPED_TORREYA_LOG.get());
         addBoat(recipeOutput, ESItems.TORREYA_BOAT.get(), ESItems.TORREYA_CHEST_BOAT.get(), ESBlocks.TORREYA_PLANKS.get());
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.TORREYA_CAMPFIRE.get())
+                .pattern(" S ")
+                .pattern("SAS")
+                .pattern("LLL")
+                .define('L', ESTags.Items.TORREYA_LOGS)
+                .define('S', Items.STICK)
+                .define('A', ESItems.RAW_AMARAMBER.get())
+                .unlockedBy("has_stick", has(Items.STICK)).unlockedBy("has_fuel", has(ESItems.RAW_AMARAMBER.get())).save(recipeOutput);
     }
 
     private void addStoneRecipes(RecipeOutput recipeOutput) {

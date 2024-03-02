@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-27T22:41:33.6814973	Tags for minecraft:block mod id eternal_starlight
+// 1.20.4	2024-02-29T23:23:59.6708704	Tags for minecraft:block mod id eternal_starlight
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/blocks/coral_blocks.json
@@ -13,6 +13,7 @@ a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/blocks/port
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/blocks/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/blocks/yeti_fur_carpets.json
 0ba82eb57d683ad7ec746142be07ca8f369acecc data/minecraft/tags/blocks/beacon_base_blocks.json
+49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/minecraft/tags/blocks/campfires.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/blocks/candles.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 dd45129bf1592e5525f0d5ef452f39494f73d89e data/minecraft/tags/blocks/climbable.json
@@ -27,7 +28,7 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/blocks/inside_step_
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/blocks/leaves.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/blocks/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/blocks/logs_that_burn.json
-b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/blocks/mineable/axe.json
+0e247af45dd42f8a86d297328ed6172e5c210fb7 data/minecraft/tags/blocks/mineable/axe.json
 d9e836d11f9554418856e52bcaac0812e7fb80df data/minecraft/tags/blocks/mineable/pickaxe.json
 edb9d1fed79f52209c07fee0c224b309fc9cd572 data/minecraft/tags/blocks/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/blocks/moss_replaceable.json

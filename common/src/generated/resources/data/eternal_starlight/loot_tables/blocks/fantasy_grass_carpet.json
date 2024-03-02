@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:torreya_vines"
+          "name": "eternal_starlight:fantasy_grass_carpet"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:blocks/torreya_vines"
+  "random_sequence": "eternal_starlight:blocks/fantasy_grass_carpet"
 }

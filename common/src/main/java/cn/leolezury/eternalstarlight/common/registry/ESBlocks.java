@@ -282,6 +282,7 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> POTTED_TORREYA_SAPLING = BLOCKS.register("potted_torreya_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, TORREYA_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> TORREYA_VINES = BLOCKS.register("torreya_vines", () -> new TorreyaVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel((state) -> 15).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> TORREYA_VINES_PLANT = BLOCKS.register("torreya_vines_plant", () -> new TorreyaVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel((state) -> 0).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> TORREYA_CAMPFIRE = BLOCKS.register("torreya_campfire", () -> new CampfireBlock(true, 1, BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE)));
 
     // grimstone
     public static final RegistryObject<Block, Block> GRIMSTONE = BLOCKS.register("grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
@@ -510,6 +511,7 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> GLIMMERFLY_BUSH = BLOCKS.register("glimmerfly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.RED).lightLevel(state -> 10)));
 
     public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTSHADE_MUD.get(), ESPlacedFeatures.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> FANTASY_GRASS_CARPET = BLOCKS.register("fantasy_grass_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
     public static final RegistryObject<Block, Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new ESGrassBlock(NIGHTSHADE_DIRT.get(), ESPlacedFeatures.FOREST_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 

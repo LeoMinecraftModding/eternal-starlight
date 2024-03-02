@@ -197,8 +197,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.TORREYA_WALL_HANGING_SIGN.get());
         dropSelf(ESBlocks.TORREYA_SAPLING.get());
         dropPottedContents(ESBlocks.POTTED_TORREYA_SAPLING.get());
-        add(ESBlocks.TORREYA_VINES.get(), noDrop());
-        add(ESBlocks.TORREYA_VINES_PLANT.get(), noDrop());
+        dropSelf(ESBlocks.TORREYA_VINES.get());
+        dropOther(ESBlocks.TORREYA_VINES_PLANT.get(), ESBlocks.TORREYA_VINES.get());
+        add(ESBlocks.TORREYA_CAMPFIRE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.RAW_AMARAMBER.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
 
         add(ESBlocks.GRIMSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_GRIMSTONE.get()));
         dropSelf(ESBlocks.COBBLED_GRIMSTONE.get());
@@ -414,6 +415,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
         add(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTSHADE_DIRT.get()));
         add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTSHADE_MUD.get()));
+        dropSelf(ESBlocks.FANTASY_GRASS_CARPET.get());
         dropSelf(ESBlocks.NIGHTSHADE_DIRT.get());
 
         dropSelf(ESBlocks.WHITE_YETI_FUR.get());

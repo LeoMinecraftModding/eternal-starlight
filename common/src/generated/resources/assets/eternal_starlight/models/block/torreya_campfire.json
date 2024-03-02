@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/template_campfire",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fire": "eternal_starlight:block/torreya_campfire_fire",
+    "lit_log": "eternal_starlight:block/torreya_campfire_log_lit",
+    "log": "eternal_starlight:block/torreya_campfire_log"
+  }
+}

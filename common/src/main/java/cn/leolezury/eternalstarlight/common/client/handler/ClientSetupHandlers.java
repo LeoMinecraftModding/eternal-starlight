@@ -28,7 +28,10 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -38,6 +41,7 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.CampfireRenderer;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -154,6 +158,7 @@ public class ClientSetupHandlers {
             ESBlocks.TORREYA_DOOR,
             ESBlocks.TORREYA_VINES,
             ESBlocks.TORREYA_VINES_PLANT,
+            ESBlocks.TORREYA_CAMPFIRE,
             ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.DOOMED_TORCH,
@@ -243,8 +248,9 @@ public class ClientSetupHandlers {
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer()), true, true, true, true)));
 
         BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
-        BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
         BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
+        BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
+        BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 
         ItemProperties.register(ESItems.SHATTERED_SWORD.get(), new ResourceLocation("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
@@ -484,7 +490,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR, SkeletonModel::createBodyLayer);
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-        strategy.register(NightshadeSpiderRenderer.NIGHTSHADE_SPIDER, SpiderModel::createSpiderBodyLayer);
+        strategy.register(NightshadeSpiderModel.LAYER_LOCATION, NightshadeSpiderModel::createBodyLayer);
         strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
         strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
         strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);

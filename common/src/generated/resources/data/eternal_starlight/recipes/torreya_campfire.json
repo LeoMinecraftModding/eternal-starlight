@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "eternal_starlight:raw_amaramber"
+    },
+    "L": {
+      "tag": "eternal_starlight:torreya_logs"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SAS",
+    "LLL"
+  ],
+  "result": {
+    "item": "eternal_starlight:torreya_campfire"
+  }
+}

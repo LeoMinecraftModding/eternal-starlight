@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-27T23:00:00.9480443	Registries
+// 1.20.4	2024-03-01T22:28:44.9746313	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 3a431e3c93a207f75262186f49f92ddf38ddb5da data/eternal_starlight/damage_type/energized_flame.json
@@ -111,7 +111,7 @@ e3194e332d71eed354252c767165f6a0f0bd6db7 data/eternal_starlight/worldgen/configu
 10fa13aa5c5d4c8d9ffb180728ba541040b2ecae data/eternal_starlight/worldgen/configured_feature/scarlet_leaves_pile.json
 628b6f2ea45f63ec17c9f021149bf0469be6153d data/eternal_starlight/worldgen/configured_feature/starlight_crystal.json
 4856600aac21072ffabfe4431f94b06006b610c4 data/eternal_starlight/worldgen/configured_feature/starlight_forest.json
-89cbd204d6d07a268536d178fd504187aacd05b1 data/eternal_starlight/worldgen/configured_feature/starlight_mangrove.json
+819bc08d0691790e3dd20f3fd2bb1fa8ff17aa81 data/eternal_starlight/worldgen/configured_feature/starlight_mangrove.json
 be9ed8326a5b24f97240eb290cc6e684d6904b11 data/eternal_starlight/worldgen/configured_feature/stone_ore.json
 162f10d6c21919c0117e410bbb2ee9bcdc8d3834 data/eternal_starlight/worldgen/configured_feature/stone_spike.json
 5d5508838c41de94c186f3a3ef4103f39247b819 data/eternal_starlight/worldgen/configured_feature/swamp_forest.json

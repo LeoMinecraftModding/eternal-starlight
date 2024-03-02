@@ -185,6 +185,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> TORREYA_BOAT = registerItem("torreya_boat", () -> new ESBoatItem(false, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> TORREYA_CHEST_BOAT = registerItem("torreya_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> TORREYA_VINES = registerItem("torreya_vines", () -> new BlockItem(ESBlocks.TORREYA_VINES.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TORREYA_CAMPFIRE = registerItem("torreya_campfire", () -> new BlockItem(ESBlocks.TORREYA_CAMPFIRE.get(), new Item.Properties().stacksTo(1)));
 
     // grimstone
     public static final RegistryObject<Item, Item> GRIMSTONE = registerItem("grimstone", () -> new BlockItem(ESBlocks.GRIMSTONE.get(), new Item.Properties()));
@@ -417,6 +418,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(ESBlocks.NIGHTSHADE_DIRT.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> FANTASY_GRASS_CARPET = registerItem("fantasy_grass_carpet", () -> new BlockItem(ESBlocks.FANTASY_GRASS_CARPET.get(), new Item.Properties()));
 
     // aethersent
     public static final RegistryObject<Item, Item> AETHERSENT_BLOCK = registerItem("aethersent_block", () -> new BlockItem(ESBlocks.AETHERSENT_BLOCK.get(), new Item.Properties()));
@@ -498,7 +500,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> AMARAMBER_HOE = registerItem("amaramber_hoe",
             () -> new HoeItem(ESItemTiers.AMARAMBER, -2, -1.0F, new Item.Properties()));
     public static final RegistryObject<Item, Item> AMARAMBER_SHOVEL = registerItem("amaramber_shovel",
-            () -> new AxeItem(ESItemTiers.AMARAMBER, 6, -3.1F, new Item.Properties()));
+            () -> new ShovelItem(ESItemTiers.AMARAMBER, 1.5F, -3.0F, new Item.Properties()));
     public static final RegistryObject<Item, Item> AMARAMBER_HELMET = registerItem("amaramber_helmet",
             () -> new ArmorItem(ESArmorMaterials.AMARAMBER, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",

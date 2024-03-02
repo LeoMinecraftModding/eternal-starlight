@@ -109,6 +109,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         pottedPlant(ESBlocks.POTTED_TORREYA_SAPLING.get(), blockTexture(ESBlocks.TORREYA_SAPLING.get()));
         cross(ESBlocks.TORREYA_VINES.get());
         torreyaVines(ESBlocks.TORREYA_VINES_PLANT.get());
+        campfire(ESBlocks.TORREYA_CAMPFIRE.get());
 
         // stones
         simpleBlock(ESBlocks.GRIMSTONE.get());
@@ -266,6 +267,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.NIGHTSHADE_DIRT.get());
         grassBlock(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_DIRT.get()));
         simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_MUD.get()));
+        carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));
 
         tintedCubeAll(ESBlocks.WHITE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
         tintedCubeAll(ESBlocks.ORANGE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
@@ -569,6 +571,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .part().modelFile(modelInside).uvLock(false).rotationY(270).addModel().condition(BlockStateProperties.WEST, false).end()
                 .part().modelFile(modelInside).uvLock(false).rotationX(270).addModel().condition(BlockStateProperties.UP, false).end()
                 .part().modelFile(modelInside).uvLock(false).rotationX(90).addModel().condition(BlockStateProperties.DOWN, false).end();
+    }
+
+    private void campfire(Block block) {
+        campfire(block, blockTexture(block).withSuffix("_log"), blockTexture(block).withSuffix("_log_lit"), blockTexture(block).withSuffix("_fire"));
+    }
+
+    private void campfire(Block block, ResourceLocation log, ResourceLocation litLog, ResourceLocation fire) {
+        ModelFile modelNormal = models().withExistingParent(name(block) + "_off", new ResourceLocation("campfire_off")).texture("log", log).texture("particle", log).renderType(CUTOUT);
+        ModelFile modelLit = models().withExistingParent(name(block), new ResourceLocation("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelLit : modelNormal).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
     }
 
     private void simpleGrassBlock(Block grassBlock, ResourceLocation dirt) {

@@ -538,6 +538,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
         );
         tag(BlockTags.MINEABLE_WITH_AXE).add(
+                ESBlocks.TORREYA_CAMPFIRE.get(),
                 ESBlocks.MOONLIGHT_LILY_PAD.get(),
                 ESBlocks.STARLIT_LILY_PAD.get(),
                 ESBlocks.MOONLIGHT_DUCKWEED.get()
@@ -587,6 +588,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.MOONLIGHT_LILY_PAD.get(),
                 ESBlocks.STARLIT_LILY_PAD.get(),
                 ESBlocks.MOONLIGHT_DUCKWEED.get()
+        );
+        tag(BlockTags.CAMPFIRES).add(
+                ESBlocks.TORREYA_CAMPFIRE.get()
         );
         tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).addTag(ESTags.Blocks.YETI_FUR_CARPETS);
         tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS).addTag(ESTags.Blocks.YETI_FUR);

@@ -163,6 +163,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.TORREYA_BOAT.get());
         basicItem(ESItems.TORREYA_CHEST_BOAT.get());
         basicItemWithBlockTexture(ESItems.TORREYA_VINES.get());
+        basicItem(ESItems.TORREYA_CAMPFIRE.get());
 
         basicBlockItem(ESItems.GRIMSTONE.get());
         basicBlockItem(ESItems.COBBLED_GRIMSTONE.get());
@@ -383,6 +384,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ESItems.NIGHTSHADE_DIRT.get());
         basicBlockItem(ESItems.NIGHTSHADE_GRASS_BLOCK.get());
         basicBlockItem(ESItems.FANTASY_GRASS_BLOCK.get());
+        basicBlockItem(ESItems.FANTASY_GRASS_CARPET.get());
 
         basicBlockItem(ESItems.AETHERSENT_BLOCK.get());
         basicItem(ESItems.AETHERSENT_INGOT.get());

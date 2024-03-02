@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/campfire_off",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "log": "eternal_starlight:block/torreya_campfire_log",
+    "particle": "eternal_starlight:block/torreya_campfire_log"
+  }
+}
