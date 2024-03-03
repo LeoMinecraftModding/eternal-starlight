@@ -266,12 +266,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level) {
-            @Override
-            public boolean isStableDestination(BlockPos blockPos) {
-                return super.isStableDestination(blockPos) && level.getBlockState(blockPos.below()).isAir();
-            }
-        };
+        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level);
         navigation.setCanOpenDoors(true);
         navigation.setCanFloat(true);
         navigation.setCanPassDoors(true);

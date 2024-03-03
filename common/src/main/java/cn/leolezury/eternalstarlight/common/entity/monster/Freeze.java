@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.monster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -61,12 +60,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level) {
-            @Override
-            public boolean isStableDestination(BlockPos blockPos) {
-                return super.isStableDestination(blockPos) && level.getBlockState(blockPos.below()).isAir();
-            }
-        };
+        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level);
         navigation.setCanOpenDoors(true);
         navigation.setCanFloat(true);
         navigation.setCanPassDoors(true);

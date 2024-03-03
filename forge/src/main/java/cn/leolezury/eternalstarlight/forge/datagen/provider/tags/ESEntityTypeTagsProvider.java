@@ -27,7 +27,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 ESEntities.LONESTAR_SKELETON.get()
         );
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
-                ESEntities.ASTRAL_GOLEM.get()
+                ESEntities.ASTRAL_GOLEM.get(),
+                ESEntities.CRYSTALLIZED_MOTH.get(),
+                ESEntities.SHIMMER_LACEWING.get()
         );
     }
 }

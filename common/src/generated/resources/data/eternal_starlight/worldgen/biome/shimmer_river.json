@@ -69,6 +69,12 @@
         "maxCount": 4,
         "minCount": 1,
         "weight": 1
+      },
+      {
+        "type": "eternal_starlight:shimmer_lacewing",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
       }
     ],
     "axolotls": [],
