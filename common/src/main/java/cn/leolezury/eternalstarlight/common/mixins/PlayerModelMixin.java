@@ -49,7 +49,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
 
     @Unique
     private void animatePlayer(float ticks) {
-        AnimationDefinition definition = playerAnimationState.definition();
+        AnimationDefinition definition = playerAnimationState.chooseDefinition();
         boolean resetLeftArm = playerAnimationState.resetLeftArmBeforeAnimation();
         boolean resetRightArm = playerAnimationState.resetRightArmBeforeAnimation();
 
@@ -87,22 +87,6 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
         part.x = (float) (part.x - 2 * (part.x - originalPos.x));
         part.yRot = (float) (part.yRot - 2 * (part.yRot - originalRot.y));
         part.zRot = (float) (part.zRot - 2 * (part.zRot - originalRot.z));
-    }
-
-    @Unique
-    private void transformModelPartLeftAndRight(ModelPart left, ModelPart right, Vec3 leftOriginalPos, Vec3 leftOriginalRot, Vec3 rightOriginalPos, Vec3 rightOriginalRot) {
-        transformModelPart(left, leftOriginalPos, leftOriginalRot);
-        transformModelPart(right, rightOriginalPos, rightOriginalRot);
-    }
-
-    @Unique
-    private Vec3 makeModelPartPos(ModelPart part) {
-        return new Vec3(part.x, part.y, part.z);
-    }
-
-    @Unique
-    private Vec3 makeModelPartRot(ModelPart part) {
-        return new Vec3(part.xRot, part.yRot, part.zRot);
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))

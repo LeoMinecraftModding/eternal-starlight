@@ -54,8 +54,8 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(3, new ShimmerLacewingRandomMoveGoal());
-        goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        goalSelector.addGoal(1, new ShimmerLacewingRandomMoveGoal());
+        goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
     }
 
     private class LacewingMoveControl extends MoveControl {

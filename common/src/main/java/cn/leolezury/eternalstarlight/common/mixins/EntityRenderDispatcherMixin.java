@@ -1,12 +1,10 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
-import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,8 +18,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -34,26 +30,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityRenderDispatcherMixin {
     @Shadow public abstract <T extends Entity> EntityRenderer<? super T> getRenderer(T entity);
 
-    @Inject(method = "renderShadow", at = @At("HEAD"), cancellable = true)
-    private static void es_renderShadow(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, float f, float g, LevelReader levelReader, float h, CallbackInfo ci) {
-        if (entity instanceof Player && PlayerAnimator.renderingFirstPersonPlayer) {
-            // cancel the shadow rendering while rendering a first person player model
-            ci.cancel();
-        }
-    }
-
-
-    @Inject(method = "renderHitbox", at = @At("HEAD"), cancellable = true)
-    private static void es_renderHitbox(PoseStack poseStack, VertexConsumer vertexConsumer, Entity entity, float f, CallbackInfo ci) {
-        if (entity instanceof Player && PlayerAnimator.renderingFirstPersonPlayer) {
-            // cancel the hitbox rendering while rendering a first person player model
-            ci.cancel();
-        }
-    }
-
     @Inject(method = "render", at = @At("RETURN"))
     private <E extends Entity> void es_render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
-        if (entity instanceof LivingEntity living && !PlayerAnimator.renderingFirstPersonPlayer) {
+        if (entity instanceof LivingEntity living) {
             AttributeInstance armor = living.getAttribute(Attributes.ARMOR);
             if (armor == null) return;
 

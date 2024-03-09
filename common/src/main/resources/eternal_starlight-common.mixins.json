@@ -23,12 +23,9 @@
   ],
   "client": [
     "EntityRenderDispatcherMixin",
-    "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
-    "LevelRendererMixin",
-    "PlayerModelMixin",
-    "PlayerRendererMixin"
+    "PlayerModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

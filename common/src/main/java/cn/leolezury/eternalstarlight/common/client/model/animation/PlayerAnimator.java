@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.model.animation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -39,7 +40,7 @@ public class PlayerAnimator {
 
         @Override
         public float animateTicks(AbstractClientPlayer player, float ageInTicks) {
-            return player.getTicksUsingItem() + (ageInTicks - (int) ageInTicks);
+            return Math.min(player.getUseItem().getUseDuration(), player.getTicksUsingItem() + Minecraft.getInstance().getFrameTime());
         }
     }
     public interface AnimationTrigger {
@@ -218,6 +219,9 @@ public class PlayerAnimator {
         float modifyScale(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model, float original);
     }
 
-    public record PlayerAnimationState (AnimationDefinition definition, List<AnimationTransformer> transformers, boolean renderLeftArm, boolean renderRightArm, boolean resetLeftArmBeforeAnimation, boolean resetRightArmBeforeAnimation) {
+    public record PlayerAnimationState (AnimationDefinition definition, AnimationDefinition firstPersonDefinition, List<AnimationTransformer> transformers, boolean renderLeftArm, boolean renderRightArm, boolean resetLeftArmBeforeAnimation, boolean resetRightArmBeforeAnimation) {
+        public AnimationDefinition chooseDefinition() {
+            return renderingFirstPersonPlayer ? firstPersonDefinition() : definition();
+        }
     }
 }

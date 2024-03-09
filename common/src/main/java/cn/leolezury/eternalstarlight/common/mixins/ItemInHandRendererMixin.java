@@ -3,15 +3,32 @@ package cn.leolezury.eternalstarlight.common.mixins;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,6 +39,16 @@ import java.util.Map;
 @Environment(EnvType.CLIENT)
 @Mixin(ItemInHandRenderer.class)
 public abstract class ItemInHandRendererMixin {
+    @Shadow @Final private Minecraft minecraft;
+
+    @Shadow @Final private EntityRenderDispatcher entityRenderDispatcher;
+
+    @Shadow public abstract void renderItem(LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext itemDisplayContext, boolean bl, PoseStack poseStack, MultiBufferSource multiBufferSource, int i);
+
+    @Shadow private ItemStack mainHandItem;
+
+    @Shadow private ItemStack offHandItem;
+
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
     private static void es_evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
@@ -42,16 +69,107 @@ public abstract class ItemInHandRendererMixin {
         }
     }
 
-    @Inject(method = "renderHandsWithItems", at = @At("HEAD"), cancellable = true)
-    private void es_renderHandsWithItems(float f, PoseStack poseStack, MultiBufferSource.BufferSource bufferSource, LocalPlayer localPlayer, int i, CallbackInfo ci) {
+    // wip new player animator
+    @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
+    private void es_renderArmWithItem(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
+        PlayerAnimator.renderingFirstPersonPlayer = true;
+        boolean renderLeft = false;
+        boolean renderRight = false;
         for (Map.Entry<PlayerAnimator.AnimationTrigger, PlayerAnimator.AnimationStateFunction> entry : PlayerAnimator.ANIMATIONS.entrySet()) {
-            if (entry.getKey().shouldPlay(localPlayer)) {
-                PlayerAnimator.PlayerAnimationState state = entry.getValue().get(localPlayer);
-                if (state.renderLeftArm() || state.renderRightArm()) {
-                    ci.cancel();
-                }
+            if (entry.getKey().shouldPlay(abstractClientPlayer)) {
+                PlayerAnimator.PlayerAnimationState state = entry.getValue().get(abstractClientPlayer);
+                renderLeft = renderLeft || state.renderLeftArm();
+                renderRight = renderRight || state.renderRightArm();
+                ci.cancel();
             }
         }
+        if (renderLeft || renderRight) {
+            boolean mainHand = interactionHand == InteractionHand.MAIN_HAND;
+            boolean rightMain = abstractClientPlayer.getMainArm() == HumanoidArm.RIGHT;
+
+            poseStack.pushPose();
+
+            boolean mainArm = renderRight && ((mainHand && rightMain) || (!mainHand && !rightMain));
+            boolean oppositeArm = renderLeft && ((mainHand && !rightMain) || (!mainHand && rightMain));
+
+            // adjusted from the two-handed map rendering
+            float n = Mth.sqrt(h);
+            float k = -0.2F * Mth.sin(h * 3.1415927F);
+            float l = -0.4F * Mth.sin(n * 3.1415927F);
+            poseStack.translate(0.0F, -k / 2.0F, l);
+            poseStack.translate(0.0F, 0.04F + i * -1.2F, -0.72F);
+            poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
+
+            if (mainArm) {
+                HumanoidArm humanoidArm = abstractClientPlayer.getMainArm();
+                es_renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
+            }
+            if (oppositeArm) {
+                HumanoidArm humanoidArm = abstractClientPlayer.getMainArm().getOpposite();
+                es_renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
+            }
+
+            poseStack.popPose();
+        }
+        PlayerAnimator.renderingFirstPersonPlayer = false;
+    }
+
+    // vanilla copy (adjusted)
+    @Unique
+    private void es_renderPlayerArm(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, HumanoidArm humanoidArm) {
+        poseStack.pushPose();
+        boolean bl = humanoidArm != HumanoidArm.LEFT;
+        float h = bl ? 1.0F : -1.0F;
+        AbstractClientPlayer abstractClientPlayer = this.minecraft.player;
+        poseStack.mulPose(Axis.YP.rotationDegrees(92F));
+        poseStack.mulPose(Axis.XP.rotationDegrees(45F));
+        poseStack.translate(h * -0.05F, -0.6, 0.45F);
+
+        if (bl) {
+            es_renderRightHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+        } else {
+            es_renderLeftHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+        }
+        poseStack.popPose();
+    }
+
+    @Unique
+    public void es_renderRightHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+        PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
+        PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
+        es_renderHand(poseStack, multiBufferSource, i, mainHand, false, abstractClientPlayer, playerModel.rightArm, playerModel.rightSleeve);
+    }
+
+    @Unique
+    public void es_renderLeftHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+        PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
+        PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
+        es_renderHand(poseStack, multiBufferSource, i, mainHand, true, abstractClientPlayer, playerModel.leftArm, playerModel.leftSleeve);
+    }
+
+    @Unique
+    private void es_renderHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, boolean leftHand, AbstractClientPlayer abstractClientPlayer, ModelPart modelPart, ModelPart modelPart2) {
+        PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
+        PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
+        playerRenderer.setModelProperties(abstractClientPlayer);
+        playerModel.attackTime = 0.0F;
+        playerModel.crouching = false;
+        playerModel.swimAmount = 0.0F;
+        playerModel.setupAnim(abstractClientPlayer, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+        // only for test
+        // modelPart.resetPose();
+        // modelPart2.resetPose();
+        // end
+        ResourceLocation resourceLocation = abstractClientPlayer.getSkin().texture();
+        modelPart.render(poseStack, multiBufferSource.getBuffer(RenderType.entitySolid(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
+        modelPart2.render(poseStack, multiBufferSource.getBuffer(RenderType.entityTranslucent(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
+        poseStack.pushPose();
+        playerModel.translateToHand(leftHand ? HumanoidArm.LEFT : HumanoidArm.RIGHT, poseStack);
+        poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
+        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+        poseStack.translate((float)(leftHand ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+        renderItem(Minecraft.getInstance().player, mainHand ? mainHandItem : offHandItem, leftHand ? ItemDisplayContext.THIRD_PERSON_LEFT_HAND : ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, leftHand, poseStack, multiBufferSource, i);
+        poseStack.popPose();
     }
 }
 

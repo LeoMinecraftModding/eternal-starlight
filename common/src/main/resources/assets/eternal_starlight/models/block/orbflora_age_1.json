@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"petal": "eternal_starlight:block/orbflora_petal",
 		"light": "eternal_starlight:block/orbflora_light",
