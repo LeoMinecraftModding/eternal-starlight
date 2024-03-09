@@ -2,11 +2,14 @@ package cn.leolezury.eternalstarlight.common.client.shader;
 
 import net.minecraft.client.renderer.ShaderInstance;
 
+import java.util.Random;
+
 public class ESShaders {
     private static ShaderInstance crestSelectionGui;
     private static ShaderInstance meteorRain;
     private static ShaderInstance renderTypeLaserBeam;
     private static ShaderInstance renderTypeStarlightPortal;
+    private static ShaderInstance crystallineInfection;
 
     public static ShaderInstance getCrestSelectionGui() {
         return crestSelectionGui;
@@ -38,5 +41,13 @@ public class ESShaders {
 
     public static void setRenderTypeStarlightPortal(ShaderInstance renderTypeStarlightPortal) {
         ESShaders.renderTypeStarlightPortal = renderTypeStarlightPortal;
+    }
+
+    public static ShaderInstance getCrystallineInfection() {
+        return crystallineInfection;
+    }
+
+    public static void setCrystallineInfection(ShaderInstance crystallineInfection) {
+        ESShaders.crystallineInfection = crystallineInfection;
     }
 }

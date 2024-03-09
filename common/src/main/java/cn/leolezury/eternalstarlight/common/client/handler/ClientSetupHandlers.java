@@ -393,6 +393,7 @@ public class ClientSetupHandlers {
         strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "meteor_rain"), DefaultVertexFormat.PARTICLE, ESShaders::setMeteorRain);
         strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
         strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
+        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "crystalline_infection"), DefaultVertexFormat.POSITION, ESShaders::setCrystallineInfection);
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
