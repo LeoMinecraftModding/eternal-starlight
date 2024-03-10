@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.StarlightGolemRenderer;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;

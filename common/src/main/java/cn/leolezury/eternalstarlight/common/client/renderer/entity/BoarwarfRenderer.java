@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.BoarwarfBiomeLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.profession.*;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

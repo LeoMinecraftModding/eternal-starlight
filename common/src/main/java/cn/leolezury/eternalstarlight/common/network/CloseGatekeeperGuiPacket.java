@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.network;
 
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;

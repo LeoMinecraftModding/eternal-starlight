@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.shader;
 
 import net.minecraft.client.renderer.ShaderInstance;
 
-import java.util.Random;
-
 public class ESShaders {
     private static ShaderInstance crestSelectionGui;
     private static ShaderInstance meteorRain;

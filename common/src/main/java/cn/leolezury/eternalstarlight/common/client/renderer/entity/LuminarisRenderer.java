@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.LuminarisModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.LuminarisGlowLayer;
-import cn.leolezury.eternalstarlight.common.entity.animal.Luminaris;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Luminaris;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterial;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;

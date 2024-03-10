@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;

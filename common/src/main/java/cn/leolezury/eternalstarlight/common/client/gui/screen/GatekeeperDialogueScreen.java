@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogueChoiceButton;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogueTextWidget;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.network.CloseGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;

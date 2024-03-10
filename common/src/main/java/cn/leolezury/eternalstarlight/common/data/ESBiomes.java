@@ -89,7 +89,17 @@ public class ESBiomes {
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 15, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 15, 1, 4))
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4))
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 10, 1, 2));
+    }
+
+    private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
+        return new MobSpawnSettings.Builder()
+                .creatureGenerationProbability(0.2f)
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4))
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 10, 1, 2));
     }
 
     private static MobSpawnSettings.Builder permafrostForestSpawns() {
@@ -112,14 +122,6 @@ public class ESBiomes {
         return baseAquaticSpawnBuilder()
                 .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.LUMINOFISH.get(), 10, 3, 6))
                 .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.LUMINARIS.get(), 8, 3, 6));
-    }
-
-    private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
-        return new MobSpawnSettings.Builder()
-                .creatureGenerationProbability(0.2f)
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4));
     }
 
     public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

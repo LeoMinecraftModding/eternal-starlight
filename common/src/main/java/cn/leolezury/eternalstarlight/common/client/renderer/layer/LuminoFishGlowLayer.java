@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.LuminoFishModel;
-import cn.leolezury.eternalstarlight.common.entity.animal.LuminoFish;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.LuminoFish;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;

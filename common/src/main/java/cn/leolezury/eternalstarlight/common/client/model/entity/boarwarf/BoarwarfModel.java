@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.BoarwarfAnimation;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;

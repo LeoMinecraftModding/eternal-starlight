@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.entity.boss.ESBoss;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;

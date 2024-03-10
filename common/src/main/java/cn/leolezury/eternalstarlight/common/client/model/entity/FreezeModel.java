@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.FreezeAnimation;
-import cn.leolezury.eternalstarlight.common.entity.monster.Freeze;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;

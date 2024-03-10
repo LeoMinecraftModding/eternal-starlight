@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.*;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;

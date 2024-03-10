@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.RatlinModel;
-import cn.leolezury.eternalstarlight.common.entity.animal.Ratlin;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Ratlin;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

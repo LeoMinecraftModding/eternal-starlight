@@ -1,20 +1,21 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemFlameAttack;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
-import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.NightshadeSpider;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.*;
-import cn.leolezury.eternalstarlight.common.entity.monster.Freeze;
-import cn.leolezury.eternalstarlight.common.entity.monster.LonestarSkeleton;
-import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.projectile.*;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -40,6 +41,7 @@ public class ESEntities {
     public static final RegistryObject<EntityType<?>, EntityType<AuroraDeer>> AURORA_DEER = ENTITIES.register("aurora_deer", () -> EntityType.Builder.of(AuroraDeer::new, MobCategory.CREATURE).sized(1F, 1.5F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "aurora_deer").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<CrystallizedMoth>> CRYSTALLIZED_MOTH = ENTITIES.register("crystallized_moth", () -> EntityType.Builder.of(CrystallizedMoth::new, MobCategory.CREATURE).sized(0.5F, 0.5F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "crystallized_moth").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<ShimmerLacewing>> SHIMMER_LACEWING = ENTITIES.register("shimmer_lacewing", () -> EntityType.Builder.of(ShimmerLacewing::new, MobCategory.CREATURE).sized(0.5F, 0.5F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_lacewing").toString()));
+    public static final RegistryObject<EntityType<?>, EntityType<GrimstoneGolem>> GRIMSTONE_GOLEM = ENTITIES.register("grimstone_golem", () -> EntityType.Builder.of(GrimstoneGolem::new, MobCategory.CREATURE).sized(0.5F, 0.9F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "grimstone_golem").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<LuminoFish>> LUMINOFISH = ENTITIES.register("luminofish", () -> EntityType.Builder.of(LuminoFish::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).clientTrackingRange(4).build(new ResourceLocation(EternalStarlight.MOD_ID, "luminofish").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<Luminaris>> LUMINARIS = ENTITIES.register("luminaris", () -> EntityType.Builder.of(Luminaris::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).clientTrackingRange(4).build(new ResourceLocation(EternalStarlight.MOD_ID, "luminaris").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<EyeOfSeeking>> EYE_OF_SEEKING = ENTITIES.register("eye_of_seeking", () -> EntityType.Builder.<EyeOfSeeking>of(EyeOfSeeking::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(4).build(new ResourceLocation(EternalStarlight.MOD_ID, "eye_of_seeking").toString()));

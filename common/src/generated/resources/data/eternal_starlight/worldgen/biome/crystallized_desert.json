@@ -82,6 +82,12 @@
         "weight": 1
       },
       {
+        "type": "eternal_starlight:grimstone_golem",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
         "type": "eternal_starlight:crystallized_moth",
         "maxCount": 7,
         "minCount": 4,

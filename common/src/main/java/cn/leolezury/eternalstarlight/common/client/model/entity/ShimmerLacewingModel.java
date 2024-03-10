@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.ShimmerLacewingAnimation;
-import cn.leolezury.eternalstarlight.common.entity.animal.ShimmerLacewing;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.ShimmerLacewing;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -35,34 +35,34 @@ public class ShimmerLacewingModel<T extends ShimmerLacewing> extends AnimatedEnt
 
         PartDefinition body4 = body3.addOrReplaceChild("body4", CubeListBuilder.create().texOffs(0, 20).addBox(-0.5F, -0.5F, 0.5F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.2F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, -0.2182F, 0.0F, 0.0F));
 
-        PartDefinition body5 = body4.addOrReplaceChild("body5", CubeListBuilder.create().texOffs(19, 10).addBox(-0.5F, -0.5F, 0.5F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, -0.2618F, 0.0F, 0.0F));
+        body4.addOrReplaceChild("body5", CubeListBuilder.create().texOffs(19, 10).addBox(-0.5F, -0.5F, 0.5F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, -0.2618F, 0.0F, 0.0F));
 
-        PartDefinition wing7 = body3.addOrReplaceChild("wing7", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 2.5F, 0.3054F, -0.5236F, 0.0F));
+        body3.addOrReplaceChild("wing7", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 2.5F, 0.3054F, -0.5236F, 0.0F));
 
-        PartDefinition wing8 = body3.addOrReplaceChild("wing8", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 2.5F, 0.3054F, 0.5236F, 0.0F));
+        body3.addOrReplaceChild("wing8", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 2.5F, 0.3054F, 0.5236F, 0.0F));
 
-        PartDefinition wing3 = body2.addOrReplaceChild("wing3", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 0.5F, 1.1781F, -0.3927F, -0.4363F));
+        body2.addOrReplaceChild("wing3", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 0.5F, 1.1781F, -0.3927F, -0.4363F));
 
-        PartDefinition wing4 = body2.addOrReplaceChild("wing4", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.0F, 0.0F, 0.5F, 1.1781F, 0.3927F, 0.4363F));
+        body2.addOrReplaceChild("wing4", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.0F, 0.0F, 0.5F, 1.1781F, 0.3927F, 0.4363F));
 
-        PartDefinition wing5 = body2.addOrReplaceChild("wing5", CubeListBuilder.create().texOffs(0, 7).addBox(0.0F, -1.5F, -1.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, -0.5F, 2.5F, 0.6109F, -0.3491F, -0.2356F));
+        body2.addOrReplaceChild("wing5", CubeListBuilder.create().texOffs(0, 7).addBox(0.0F, -1.5F, -1.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, -0.5F, 2.5F, 0.6109F, -0.3491F, -0.2356F));
 
-        PartDefinition wing6 = body2.addOrReplaceChild("wing6", CubeListBuilder.create().texOffs(0, 7).mirror().addBox(0.0F, -1.5F, -1.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.0F, -0.5F, 2.5F, 0.6109F, 0.3491F, 0.2356F));
+        body2.addOrReplaceChild("wing6", CubeListBuilder.create().texOffs(0, 7).mirror().addBox(0.0F, -1.5F, -1.0F, 0.0F, 3.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.0F, -0.5F, 2.5F, 0.6109F, 0.3491F, 0.2356F));
 
-        PartDefinition wing1 = body1.addOrReplaceChild("wing1", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, 0.0F, 0.5F, 1.3963F, -0.1745F, -0.6981F));
+        body1.addOrReplaceChild("wing1", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, 0.0F, 0.5F, 1.3963F, -0.1745F, -0.6981F));
 
-        PartDefinition wing2 = body1.addOrReplaceChild("wing2", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 15.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.5F, 0.0F, 0.5F, 1.3963F, 0.1745F, 0.6981F));
+        body1.addOrReplaceChild("wing2", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 15.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.5F, 0.0F, 0.5F, 1.3963F, 0.1745F, 0.6981F));
 
-        PartDefinition left_legs = body1.addOrReplaceChild("left_legs", CubeListBuilder.create().texOffs(14, 0).addBox(0.0F, -0.5F, -2.5F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.5F, 1.0F, 0.4712F, 0.1309F, -0.2356F));
+        body1.addOrReplaceChild("left_legs", CubeListBuilder.create().texOffs(14, 0).addBox(0.0F, -0.5F, -2.5F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 1.5F, 1.0F, 0.4712F, 0.1309F, -0.2356F));
 
-        PartDefinition right_legs = body1.addOrReplaceChild("right_legs", CubeListBuilder.create().texOffs(14, 0).mirror().addBox(0.0F, -0.5F, -2.5F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 1.5F, 1.0F, 0.4712F, -0.1309F, 0.2356F));
+        body1.addOrReplaceChild("right_legs", CubeListBuilder.create().texOffs(14, 0).mirror().addBox(0.0F, -0.5F, -2.5F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 1.5F, 1.0F, 0.4712F, -0.1309F, 0.2356F));
 
-        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(8, 20).addBox(-0.5F, -0.5F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+        root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(8, 20).addBox(-0.5F, -0.5F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(22, 0).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, -6.0F, -7.5F, 0.1745F, 0.0F, 0.0F));
 
-        PartDefinition left_eye = root.addOrReplaceChild("left_eye", CubeListBuilder.create().texOffs(12, 22).addBox(-0.5F, -1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.2F)), PartPose.offsetAndRotation(1.0F, -5.0F, -9.0F, 0.9163F, 0.0F, 0.0F));
+        root.addOrReplaceChild("left_eye", CubeListBuilder.create().texOffs(12, 22).addBox(-0.5F, -1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.2F)), PartPose.offsetAndRotation(1.0F, -5.0F, -9.0F, 0.9163F, 0.0F, 0.0F));
 
-        PartDefinition right_eye = root.addOrReplaceChild("right_eye", CubeListBuilder.create().texOffs(12, 22).mirror().addBox(-0.5F, -1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.2F)).mirror(false), PartPose.offsetAndRotation(-1.0F, -5.0F, -9.0F, 0.9163F, 0.0F, 0.0F));
+        root.addOrReplaceChild("right_eye", CubeListBuilder.create().texOffs(12, 22).mirror().addBox(-0.5F, -1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.2F)).mirror(false), PartPose.offsetAndRotation(-1.0F, -5.0F, -9.0F, 0.9163F, 0.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 32, 32);
     }

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.ShimmerLacewingModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.ShimmerLacewingGlowLayer;
-import cn.leolezury.eternalstarlight.common.entity.animal.ShimmerLacewing;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.ShimmerLacewing;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

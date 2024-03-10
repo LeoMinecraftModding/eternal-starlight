@@ -36,11 +36,13 @@ public class FallenLogFeature extends ESFeature<FallenLogFeature.Configuration> 
             } else {
                 setBlockIfEmpty(worldGenLevel, pos, provider.getState(randomsource, pos).setValue(BlockStateProperties.AXIS, ew ? Direction.Axis.X : Direction.Axis.Z));
             }
-            if (randomsource.nextBoolean()) {
-                setBlockIfEmpty(worldGenLevel, pos.offset(ew ? 0 : 1, 0, ew ? 1 : 0), (randomsource.nextBoolean() ? Blocks.VINE : Blocks.GLOW_LICHEN).defaultBlockState().setValue(ew ? BlockStateProperties.NORTH : BlockStateProperties.WEST, true));
-            }
-            if (randomsource.nextBoolean()) {
-                setBlockIfEmpty(worldGenLevel, pos.offset(ew ? 0 : -1, 0, ew ? -1 : 0), (randomsource.nextBoolean() ? Blocks.VINE : Blocks.GLOW_LICHEN).defaultBlockState().setValue(ew ? BlockStateProperties.SOUTH : BlockStateProperties.EAST, true));
+            if (worldGenLevel.getBlockState(pos).is(BlockTags.LOGS)) {
+                if (randomsource.nextBoolean()) {
+                    setBlockIfEmpty(worldGenLevel, pos.offset(ew ? 0 : 1, 0, ew ? 1 : 0), (randomsource.nextBoolean() ? Blocks.VINE : Blocks.GLOW_LICHEN).defaultBlockState().setValue(ew ? BlockStateProperties.NORTH : BlockStateProperties.WEST, true));
+                }
+                if (randomsource.nextBoolean()) {
+                    setBlockIfEmpty(worldGenLevel, pos.offset(ew ? 0 : -1, 0, ew ? -1 : 0), (randomsource.nextBoolean() ? Blocks.VINE : Blocks.GLOW_LICHEN).defaultBlockState().setValue(ew ? BlockStateProperties.SOUTH : BlockStateProperties.EAST, true));
+                }
             }
         }
     }

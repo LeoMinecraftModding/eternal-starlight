@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.LunarMonstrosityModel;
-import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

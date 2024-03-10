@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.NightshadeSpiderModel;
-import cn.leolezury.eternalstarlight.common.entity.monster.NightshadeSpider;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.NightshadeSpider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;

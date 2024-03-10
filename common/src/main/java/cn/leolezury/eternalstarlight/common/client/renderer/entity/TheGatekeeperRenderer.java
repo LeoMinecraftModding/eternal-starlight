@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.TheGatekeeperClothingLayer;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;

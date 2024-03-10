@@ -29,7 +29,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
                 ESEntities.ASTRAL_GOLEM.get(),
                 ESEntities.CRYSTALLIZED_MOTH.get(),
-                ESEntities.SHIMMER_LACEWING.get()
+                ESEntities.SHIMMER_LACEWING.get(),
+                ESEntities.GRIMSTONE_GOLEM.get()
         );
     }
 }

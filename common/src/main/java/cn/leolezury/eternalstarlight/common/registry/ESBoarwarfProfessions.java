@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.AbstractBoarwarfProfession;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.profession.*;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.AbstractBoarwarfProfession;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.Codec;

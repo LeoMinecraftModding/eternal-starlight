@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.BoarwarfType;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterial;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.BoarwarfType;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;

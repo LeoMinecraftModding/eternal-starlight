@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.ShimmerLacewingModel;
-import cn.leolezury.eternalstarlight.common.entity.animal.ShimmerLacewing;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.ShimmerLacewing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;

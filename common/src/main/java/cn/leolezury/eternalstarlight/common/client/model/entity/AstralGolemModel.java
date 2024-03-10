@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.golem.AstralGolemMaterial;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;

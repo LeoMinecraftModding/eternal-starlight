@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
-import cn.leolezury.eternalstarlight.common.entity.boss.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
@@ -30,7 +30,6 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,7 +37,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Set;

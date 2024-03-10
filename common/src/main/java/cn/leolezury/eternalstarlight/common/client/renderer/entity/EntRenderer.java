@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.EntModel;
-import cn.leolezury.eternalstarlight.common.entity.animal.Ent;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Ent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

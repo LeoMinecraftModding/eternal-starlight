@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemEyesLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemGlowLayer;
-import cn.leolezury.eternalstarlight.common.entity.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.prof
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.BoarwarfBlacksmithModel;
-import cn.leolezury.eternalstarlight.common.entity.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

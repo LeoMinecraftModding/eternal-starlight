@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.BookRenderData;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.ESBookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
-import cn.leolezury.eternalstarlight.common.entity.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
