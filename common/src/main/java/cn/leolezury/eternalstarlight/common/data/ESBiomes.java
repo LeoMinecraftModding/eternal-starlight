@@ -90,7 +90,7 @@ public class ESBiomes {
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 15, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 15, 1, 4))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4))
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 10, 1, 2));
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 2, 1, 2));
     }
 
     private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
@@ -99,7 +99,7 @@ public class ESBiomes {
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4))
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 10, 1, 2));
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 2, 1, 2));
     }
 
     private static MobSpawnSettings.Builder permafrostForestSpawns() {

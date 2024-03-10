@@ -24,8 +24,8 @@ public class ESCampfireBlockEntity extends CampfireBlockEntity {
             cookTick(level, blockPos, blockState, campfireBlockEntity);
             AABB box = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(blockPos)).inflate(10);
             for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
-                if (!(living instanceof Enemy)) {
-                    living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20));
+                if (!(living instanceof Enemy) && !living.hasEffect(MobEffects.REGENERATION)) {
+                    living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
                 }
             }
         } else {

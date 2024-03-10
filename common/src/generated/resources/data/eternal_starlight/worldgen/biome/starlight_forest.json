@@ -83,7 +83,7 @@
         "type": "eternal_starlight:grimstone_golem",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 2
       }
     ],
     "axolotls": [],

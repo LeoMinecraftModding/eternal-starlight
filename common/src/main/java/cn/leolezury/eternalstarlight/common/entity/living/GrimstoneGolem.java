@@ -31,8 +31,28 @@ public class GrimstoneGolem extends PathfinderMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1D) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && GrimstoneGolem.this.getMainHandItem().isEmpty();
+            }
+
+            @Override
+            public boolean canContinueToUse() {
+                return super.canContinueToUse() && GrimstoneGolem.this.getMainHandItem().isEmpty();
+            }
+        });
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && GrimstoneGolem.this.getMainHandItem().isEmpty();
+            }
+
+            @Override
+            public boolean canContinueToUse() {
+                return super.canContinueToUse() && GrimstoneGolem.this.getMainHandItem().isEmpty();
+            }
+        });
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }

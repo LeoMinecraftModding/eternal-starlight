@@ -80,8 +80,8 @@ public class ESSkyRenderer {
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
         float rainLevel = level.getRainLevel(partialTicks);
-        if (ClientWeatherInfo.weather != null) {
-            rainLevel = ClientWeatherInfo.weather.modifyRainLevel(rainLevel);
+        if (ClientWeatherInfo.WEATHER != null) {
+            rainLevel = ClientWeatherInfo.WEATHER.modifyRainLevel(rainLevel);
         }
         float f11 = 1.0F - rainLevel;
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);

@@ -23,7 +23,7 @@ public class CancelWeatherPacket {
     public static class Handler {
         public static void handle(CancelWeatherPacket message, Player player) {
             if (message.cancel) {
-                ClientWeatherInfo.weather = null;
+                ClientWeatherInfo.WEATHER = null;
             }
         }
     }

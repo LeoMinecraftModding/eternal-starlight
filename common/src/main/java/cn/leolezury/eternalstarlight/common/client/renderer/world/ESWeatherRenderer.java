@@ -48,7 +48,7 @@ public class ESWeatherRenderer {
     }
 
     public static boolean renderCustomWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-        return ClientWeatherInfo.weather != null && ClientWeatherInfo.weather.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
+        return ClientWeatherInfo.WEATHER != null && ClientWeatherInfo.WEATHER.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
     }
 
     public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ, double offsetX, double offsetY, double offsetZ) {

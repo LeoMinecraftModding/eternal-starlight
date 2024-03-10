@@ -69,8 +69,8 @@ public class MeteorRainWeather extends AbstractWeather {
     @Environment(EnvType.CLIENT)
     @Override
     public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-        float rainTicks = Math.min(ClientWeatherInfo.ticks + partialTick, ClientWeatherInfo.duration);
-        float rainLevel = (ClientWeatherInfo.duration / 2f - Math.abs(ClientWeatherInfo.duration / 2f - rainTicks)) / (ClientWeatherInfo.duration / 2f);
+        float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
+        float rainLevel = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
         ESWeatherRenderer.renderWeather(ESShaders.getMeteorRain(), lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ, -0.5F, 0, -2.7F);
         return true;
     }
@@ -78,8 +78,8 @@ public class MeteorRainWeather extends AbstractWeather {
     @Override
     public float modifyRainLevel(float original) {
         float partialTick = Minecraft.getInstance().getFrameTime();
-        float rainTicks = Math.min(ClientWeatherInfo.ticks + partialTick, ClientWeatherInfo.duration);
-        float rainLevel = (ClientWeatherInfo.duration / 2f - Math.abs(ClientWeatherInfo.duration / 2f - rainTicks)) / (ClientWeatherInfo.duration / 2f);
+        float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
+        float rainLevel = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
         return rainLevel;
     }
 }

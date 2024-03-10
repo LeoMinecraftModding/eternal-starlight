@@ -24,9 +24,9 @@ public record ESWeatherPacket(AbstractWeather weather,
 
     public static class Handler {
         public static void handle(ESWeatherPacket message, Player player) {
-            ClientWeatherInfo.weather = message.weather();
-            ClientWeatherInfo.duration = message.duration();
-            ClientWeatherInfo.ticks = message.ticks();
+            ClientWeatherInfo.WEATHER = message.weather();
+            ClientWeatherInfo.DURATION = message.duration();
+            ClientWeatherInfo.TICKS = message.ticks();
         }
     }
 }
