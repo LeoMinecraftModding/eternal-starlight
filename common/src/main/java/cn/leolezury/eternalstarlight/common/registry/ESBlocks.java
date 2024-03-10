@@ -328,6 +328,7 @@ public class ESBlocks {
 
     // the abyss
     public static final RegistryObject<Block, Block> ABYSSLATE = BLOCKS.register("abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
+    public static final RegistryObject<Block, AbyssFireBlock> ABYSS_FIRE = BLOCKS.register("abyss_fire", () -> new AbyssFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE)));
     public static final RegistryObject<Block, Block> POLISHED_ABYSSLATE = BLOCKS.register("polished_abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE)));
     public static final RegistryObject<Block, SlabBlock> POLISHED_ABYSSLATE_SLAB = BLOCKS.register("polished_abysslate_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE_SLAB)));
     public static final RegistryObject<Block, StairBlock> POLISHED_ABYSSLATE_STAIRS = BLOCKS.register("polished_abysslate_stairs", () -> new StairBlock(POLISHED_ABYSSLATE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DEEPSLATE_STAIRS)));

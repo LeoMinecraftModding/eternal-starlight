@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_fire_side",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fire": "eternal_starlight:block/abyss_fire_1"
+  }
+}

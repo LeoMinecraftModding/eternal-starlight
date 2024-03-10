@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "mixins": [
     "AbstractCandleBlockMixin",
+    "BaseFireBlockMixin",
     "BlockBehaviourMixin",
     "BubbleColumnBlockMixin",
     "CampfireBlockMixin",
@@ -25,7 +26,8 @@
     "EntityRenderDispatcherMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
-    "PlayerModelMixin"
+    "PlayerModelMixin",
+    "ScreenEffectRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

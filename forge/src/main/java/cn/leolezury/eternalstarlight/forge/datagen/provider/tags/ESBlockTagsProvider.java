@@ -21,6 +21,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
         // mod tags
+        tag(ESTags.Blocks.ABYSS_BURNER).add(
+                ESBlocks.ABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
+        );
         tag(ESTags.Blocks.LUNAR_LOGS).add(
                 ESBlocks.LUNAR_LOG.get(),
                 ESBlocks.LUNAR_WOOD.get(),

@@ -52,6 +52,7 @@ public class ESTags {
         public static final TagKey<Block> CORAL_BLOCKS = create("coral_blocks");
         public static final TagKey<Block> YETI_FUR = create("yeti_fur");
         public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
+        public static final TagKey<Block> ABYSS_BURNER = create("abyss_burner");
     }
 
     public static class EnityTypes {
@@ -59,6 +60,7 @@ public class ESTags {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
         public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
+        public static final TagKey<EntityType<?>> IMMUNE_ABYSS_FIRE = create("immune_abyss_fire");
     }
 
     public static class Structures {
