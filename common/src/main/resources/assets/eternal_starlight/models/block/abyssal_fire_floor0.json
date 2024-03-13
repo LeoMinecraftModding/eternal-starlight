@@ -2,6 +2,6 @@
   "parent": "minecraft:block/template_fire_floor",
   "render_type": "minecraft:cutout",
   "textures": {
-    "fire": "eternal_starlight:block/abyss_fire_0"
+    "fire": "eternal_starlight:block/abyssal_fire_0"
   }
 }

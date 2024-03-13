@@ -109,7 +109,6 @@ public class ClientSetupHandlers {
 
     public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
             ESBlocks.BERRIES_VINES,
-            ESBlocks.ABYSS_FIRE,
             ESBlocks.BERRIES_VINES_PLANT,
             ESBlocks.CAVE_MOSS,
             ESBlocks.CAVE_MOSS_PLANT,
@@ -160,6 +159,7 @@ public class ClientSetupHandlers {
             ESBlocks.TORREYA_VINES,
             ESBlocks.TORREYA_VINES_PLANT,
             ESBlocks.TORREYA_CAMPFIRE,
+            ESBlocks.ABYSSAL_FIRE,
             ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.DOOMED_TORCH,

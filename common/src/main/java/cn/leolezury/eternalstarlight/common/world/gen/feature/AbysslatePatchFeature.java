@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -8,6 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -33,7 +35,14 @@ public class AbysslatePatchFeature extends Feature<AbysslatePatchFeature.Configu
                             // then replace with our block
                             if (level.getBlockState(placePos.above()).isAir() || !level.getBlockState(placePos.above()).getFluidState().isEmpty()) {
                                 if (random.nextInt(8) == 0) {
-                                    setBlock(level, placePos, random.nextBoolean() ? config.magma().getState(random, placePos) : config.geyser().getState(random, placePos));
+                                    if (random.nextBoolean()) {
+                                        setBlock(level, placePos, config.magma().getState(random, placePos));
+                                        if (random.nextInt(5) == 0) {
+                                            setBlock(level, placePos.above(), ESBlocks.ABYSSAL_FIRE.get().defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, true));
+                                        }
+                                    } else {
+                                        setBlock(level, placePos, config.geyser().getState(random, placePos));
+                                    }
                                 }
                             }
                         }

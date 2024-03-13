@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,7 +19,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
-        tag(ESTags.EnityTypes.ROBOTIC).add(
+        tag(ESTags.EntityTypes.ROBOTIC).add(
                 ESEntities.FREEZE.get(),
                 ESEntities.STARLIGHT_GOLEM.get()
         );
@@ -33,8 +32,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 ESEntities.SHIMMER_LACEWING.get(),
                 ESEntities.GRIMSTONE_GOLEM.get()
         );
-        tag(ESTags.EnityTypes.IMMUNE_ABYSS_FIRE).add(
-                ESEntities.LUMINOFISH.get()
+        tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE).add(
+                ESEntities.LUMINOFISH.get(),
+                ESEntities.LUMINARIS.get()
         );
     }
 }

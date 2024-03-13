@@ -21,11 +21,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
         // mod tags
-        tag(ESTags.Blocks.ABYSS_BURNER).add(
-                ESBlocks.ABYSSAL_MAGMA_BLOCK.get(),
-                ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
-                ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
-        );
         tag(ESTags.Blocks.LUNAR_LOGS).add(
                 ESBlocks.LUNAR_LOG.get(),
                 ESBlocks.LUNAR_WOOD.get(),
@@ -122,6 +117,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.GREEN_YETI_FUR_CARPET.get(),
                 ESBlocks.RED_YETI_FUR_CARPET.get(),
                 ESBlocks.BLACK_YETI_FUR_CARPET.get()
+        );
+        tag(ESTags.Blocks.ABYSSAL_FIRE_SURVIVES_ON).add(
+                ESBlocks.ABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
+                ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
         );
         // mc tags
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);

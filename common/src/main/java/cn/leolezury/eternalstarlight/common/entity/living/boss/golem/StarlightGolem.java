@@ -217,7 +217,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     @Override
     public boolean isAlliedTo(Entity entity) {
-        return super.isAlliedTo(entity) || entity.getType().is(ESTags.EnityTypes.ROBOTIC);
+        return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.ROBOTIC);
     }
 
     @Override

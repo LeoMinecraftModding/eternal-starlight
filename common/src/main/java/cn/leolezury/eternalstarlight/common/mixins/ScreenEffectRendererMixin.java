@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -20,29 +19,28 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ScreenEffectRenderer.class)
 public abstract class ScreenEffectRendererMixin {
     @Unique
-    private final static Material ABYSS_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(EternalStarlight.MOD_ID,"block/abyss_fire_1"));
+    private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(EternalStarlight.MOD_ID, "block/abyssal_fire_1"));
 
     @Inject(method = "renderScreenEffect", at = @At(value = "TAIL"))
-    private static void injectIf(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
-        if (minecraft.player != null && ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ABYSS_FIRE.get()) && !minecraft.player.isSpectator()) {
-            renderAbyssFire(poseStack);
+    private static void es_renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
+        if (minecraft.player != null && ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ABYSSAL_FIRE.get()) && !minecraft.player.isSpectator()) {
+            renderAbyssalFlame(poseStack);
         }
     }
 
     @Unique
-    private static void renderAbyssFire(PoseStack poseStack) {
+    private static void renderAbyssalFlame(PoseStack poseStack) {
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
         RenderSystem.depthFunc(519);
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
-        TextureAtlasSprite textureAtlasSprite = ABYSS_FIRE_1.sprite();
+        TextureAtlasSprite textureAtlasSprite = ABYSSAL_FIRE_1.sprite();
         RenderSystem.setShaderTexture(0, textureAtlasSprite.atlasLocation());
         float f = textureAtlasSprite.getU0();
         float g = textureAtlasSprite.getU1();
