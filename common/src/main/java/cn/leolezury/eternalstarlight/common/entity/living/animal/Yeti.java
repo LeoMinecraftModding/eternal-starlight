@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -8,11 +10,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
@@ -34,10 +37,24 @@ public class Yeti extends Animal {
     public AnimationState rollAnimationState = new AnimationState();
     public AnimationState rollEndAnimationState = new AnimationState();
     private int rollTicks = 0;
+    public void setRollTicks(int rollTicks) {
+        this.rollTicks = rollTicks;
+    }
+    public int getRollTicks() {
+        return rollTicks;
+    }
+    private int rollCoolDown = 200;
+    public void setRollCoolDown(int rollCoolDown) {
+        this.rollCoolDown = rollCoolDown;
+    }
+    public int getRollCoolDown() {
+        return rollCoolDown;
+    }
     public float rollAngle, prevRollAngle;
 
     public Yeti(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
+        this.getNavigation().setCanFloat(true);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -50,14 +67,25 @@ public class Yeti extends Animal {
         entityData.define(ROLL_STATE, 0);
     }
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new StartRollGoal());
-        this.goalSelector.addGoal(2, new StopRollGoal());
-        this.goalSelector.addGoal(3, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
+        return YetiAi.makeBrain(this.brainProvider().makeBrain(dynamic));
+    }
+
+    public Brain<Yeti> getBrain() {
+        return (Brain<Yeti>) super.getBrain();
+    }
+
+    protected Brain.Provider<Yeti> brainProvider() {
+        return Brain.provider(YetiAi.MEMORY_TYPES, YetiAi.SENSOR_TYPES);
+    }
+
+    protected void customServerAiStep() {
+        this.level().getProfiler().push("YetiBrain");
+        this.getBrain().tick((ServerLevel)this.level(), this);
+        this.level().getProfiler().popPush("YetiActivityUpdate");
+        YetiAi.updateActivity(this);
+        this.level().getProfiler().pop();
+        super.customServerAiStep();
     }
 
     @Override
@@ -65,6 +93,9 @@ public class Yeti extends Animal {
         super.aiStep();
         if (rollTicks > 0) {
             rollTicks--;
+        }
+        if (rollCoolDown > 0) {
+            rollCoolDown--;
         }
         if (level().isClientSide) {
             idleAnimationState.startIfStopped(tickCount);
@@ -97,93 +128,18 @@ public class Yeti extends Animal {
         }
     }
 
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        return YetiAi.getTemptations().test(itemStack);
+    }
+
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        return null;
+        return new Yeti(ESEntities.YETI.get(), serverLevel);
     }
 
     public static boolean checkYetiSpawnRules(EntityType<? extends Yeti> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         return level.getBlockState(pos.below()).is(BlockTags.DIRT);
-    }
-
-    class StartRollGoal extends Goal {
-        private int rollStartTicks = 0;
-
-        public StartRollGoal() {
-            this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
-        }
-
-        @Override
-        public boolean canUse() {
-            return Yeti.this.getRollState() == 0 && !Yeti.this.getMoveControl().hasWanted() && Yeti.this.rollTicks == 0;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return rollStartTicks <= 10;
-        }
-
-        @Override
-        public void start() {
-            Yeti.this.setRollState(1);
-            Yeti.this.rollTicks = 400;
-            rollStartTicks = 0;
-        }
-
-        @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-
-        @Override
-        public void tick() {
-            rollStartTicks++;
-        }
-
-        @Override
-        public void stop() {
-            Yeti.this.setRollState(2);
-        }
-    }
-
-    class StopRollGoal extends Goal {
-        private int rollEndTicks = 0;
-
-        public StopRollGoal() {
-            this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
-        }
-
-        @Override
-        public boolean canUse() {
-            return Yeti.this.getRollState() == 2 && !Yeti.this.getMoveControl().hasWanted() && Yeti.this.rollTicks == 0;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return rollEndTicks <= 10;
-        }
-
-        @Override
-        public void start() {
-            Yeti.this.setRollState(3);
-            rollEndTicks = 0;
-        }
-
-        @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-
-        @Override
-        public void tick() {
-            rollEndTicks++;
-        }
-
-        @Override
-        public void stop() {
-            Yeti.this.setRollState(0);
-            rollTicks = 400;
-        }
     }
 }
