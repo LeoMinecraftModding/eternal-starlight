@@ -3,7 +3,7 @@
   "bed_works": true,
   "coordinate_scale": 1.0,
   "effects": "eternal_starlight:special_effect",
-  "fixed_time": 12000,
+  "fixed_time": 12500,
   "has_ceiling": false,
   "has_raids": false,
   "has_skylight": true,

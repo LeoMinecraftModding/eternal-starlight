@@ -2,6 +2,9 @@ package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.*;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.LunarMonstrositySpawnerBlockEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.StarlightGolemSpawnerBlockEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.TheGatekeeperSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -13,8 +16,9 @@ public class ESBlockEntities {
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESHangingSignBlockEntity>> HANGING_SIGN = BLOCK_ENTITIES.register("hanging_sign", () -> BlockEntityType.Builder.of(ESHangingSignBlockEntity::new, ESBlocks.LUNAR_WALL_HANGING_SIGN.get(), ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(), ESBlocks.NORTHLAND_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.SCARLET_WALL_HANGING_SIGN.get(), ESBlocks.SCARLET_HANGING_SIGN.get(), ESBlocks.TORREYA_WALL_HANGING_SIGN.get(), ESBlocks.TORREYA_HANGING_SIGN.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<AbyssalGeyserBlockEntity>> ABYSSAL_GEYSER = BLOCK_ENTITIES.register("abyssal_geyser", () -> BlockEntityType.Builder.of(AbyssalGeyserBlockEntity::new, ESBlocks.ABYSSAL_GEYSER.get(), ESBlocks.THERMABYSSAL_GEYSER.get(), ESBlocks.CRYOBYSSAL_GEYSER.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESCampfireBlockEntity>> CAMPFIRE = BLOCK_ENTITIES.register("campfire", () -> BlockEntityType.Builder.of(ESCampfireBlockEntity::new, ESBlocks.TORREYA_CAMPFIRE.get()).build(null));
-    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
-    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerEntity::new, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TheGatekeeperSpawnerBlockEntity>> THE_GATEKEEPER_SPAWNER = BLOCK_ENTITIES.register("the_gatekeeper_spawner", () -> BlockEntityType.Builder.of(TheGatekeeperSpawnerBlockEntity::new, ESBlocks.THE_GATEKEEPER_SPAWNER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerBlockEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerBlockEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerBlockEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerBlockEntity::new, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 
     public static void loadClass() {}

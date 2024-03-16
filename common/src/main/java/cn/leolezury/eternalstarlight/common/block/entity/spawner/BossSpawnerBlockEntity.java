@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.block.entity;
+package cn.leolezury.eternalstarlight.common.block.entity.spawner;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+
 public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity {
     protected final EntityType<T> entityType;
     protected boolean spawnedBoss = false;

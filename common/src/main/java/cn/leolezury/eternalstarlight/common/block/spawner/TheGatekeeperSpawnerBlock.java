@@ -1,6 +1,6 @@
-package cn.leolezury.eternalstarlight.common.block;
+package cn.leolezury.eternalstarlight.common.block.spawner;
 
-import cn.leolezury.eternalstarlight.common.block.entity.LunarMonstrositySpawnerEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.TheGatekeeperSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -13,10 +13,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class LunarMonstrositySpawnerBlock extends BaseEntityBlock {
-    public static final MapCodec<LunarMonstrositySpawnerBlock> CODEC = simpleCodec(LunarMonstrositySpawnerBlock::new);
+public class TheGatekeeperSpawnerBlock extends BaseEntityBlock {
+    public static final MapCodec<TheGatekeeperSpawnerBlock> CODEC = simpleCodec(TheGatekeeperSpawnerBlock::new);
 
-    public LunarMonstrositySpawnerBlock(Properties properties) {
+    public TheGatekeeperSpawnerBlock(Properties properties) {
         super(properties);
     }
 
@@ -33,12 +33,12 @@ public class LunarMonstrositySpawnerBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new LunarMonstrositySpawnerEntity(pos, state);
+        return new TheGatekeeperSpawnerBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ESBlockEntities.LUNAR_MONSTROSITY_SPAWNER.get(), LunarMonstrositySpawnerEntity::tick);
+        return createTickerHelper(type, ESBlockEntities.THE_GATEKEEPER_SPAWNER.get(), TheGatekeeperSpawnerBlockEntity::tick);
     }
 }

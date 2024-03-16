@@ -30,6 +30,7 @@ public class EternalStarlight {
         ESPlacers.loadClass();
         ESTreeDecorators.loadClass();
         ESStructurePlacementTypes.loadClass();
+        ESStructurePoolElementTypes.loadClass();
         ESParticles.loadClass();
         ESSoundEvents.loadClass();
         ESRecipeSerializers.loadClass();

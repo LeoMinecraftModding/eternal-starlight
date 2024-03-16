@@ -223,6 +223,7 @@ public class ClientSetupHandlers {
             ESBlocks.GLIMMERFLY_BUSH,
             ESBlocks.SWAMP_ROSE,
             ESBlocks.AMARAMBER_LANTERN,
+            ESBlocks.THE_GATEKEEPER_SPAWNER,
             ESBlocks.STARLIGHT_GOLEM_SPAWNER,
             ESBlocks.LUNAR_MONSTROSITY_SPAWNER
     );

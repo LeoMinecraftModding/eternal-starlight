@@ -1,0 +1,15 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "eternal_starlight:single_pool",
+        "ground_level_delta": 0,
+        "location": "eternal_starlight:portal_ruins/desert",
+        "processors": "eternal_starlight:portal_ruins_vines",
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

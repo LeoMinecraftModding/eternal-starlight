@@ -1,6 +1,6 @@
-package cn.leolezury.eternalstarlight.common.block;
+package cn.leolezury.eternalstarlight.common.block.spawner;
 
-import cn.leolezury.eternalstarlight.common.block.entity.StarlightGolemSpawnerEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.StarlightGolemSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -33,12 +33,12 @@ public class StarlightGolemSpawnerBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StarlightGolemSpawnerEntity(pos, state);
+        return new StarlightGolemSpawnerBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ESBlockEntities.STARLIGHT_GOLEM_SPAWNER.get(), StarlightGolemSpawnerEntity::tick);
+        return createTickerHelper(type, ESBlockEntities.STARLIGHT_GOLEM_SPAWNER.get(), StarlightGolemSpawnerBlockEntity::tick);
     }
 }

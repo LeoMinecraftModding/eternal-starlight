@@ -76,6 +76,9 @@ public class ESTags {
         private static TagKey<Biome> create(String string) {
             return TagKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
+        public static final TagKey<Biome> HAS_PORTAL_RUINS_COMMON = create("has_portal_ruins_common");
+        public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
+        public static final TagKey<Biome> HAS_PORTAL_RUINS_DESERT = create("has_portal_ruins_desert");
         public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
     }
 

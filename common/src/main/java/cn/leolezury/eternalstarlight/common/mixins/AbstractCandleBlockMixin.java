@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// todo don't use mixin if mojang fixed the MapCodec<SomeBlock> problem
 @Mixin(AbstractCandleBlock.class)
 public abstract class AbstractCandleBlockMixin {
     @Shadow protected abstract Iterable<Vec3> getParticleOffsets(BlockState blockState);

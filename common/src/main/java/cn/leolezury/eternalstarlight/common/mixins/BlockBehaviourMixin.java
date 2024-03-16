@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// todo don't use mixin if mojang fixed the MapCodec<SomeBlock> problem
 @Mixin(BlockBehaviour.class)
 public abstract class BlockBehaviourMixin {
     @Inject(method = "entityInside", at = @At(value = "HEAD"))

@@ -172,7 +172,7 @@ public class ESDimensions {
 
     public static void bootstrapDimType(BootstapContext<DimensionType> context) {
         DimensionType type = new DimensionType(
-                OptionalLong.of(12000L), // fixed time
+                OptionalLong.of(12500L), // fixed time
                 true, // has skylight
                 false, // has ceiling
                 false, // ultrawarm

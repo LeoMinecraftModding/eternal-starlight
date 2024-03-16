@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-13T21:42:20.6674438	Loot Tables
+// 1.20.4	2024-03-16T16:17:05.791191	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_tables/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
@@ -351,6 +351,7 @@ f7a6a4a085fcaef7a9dbaaf81e5cb134161d880f data/eternal_starlight/loot_tables/bloc
 aaf3bb05d9334186d7a2ea55e1f3ac875b671e05 data/eternal_starlight/loot_tables/blocks/thermabyssal_magma_block.json
 37fff2c257bd8901a41ae6b67ffe6db053c405ba data/eternal_starlight/loot_tables/blocks/thermabysslate.json
 cb3c04ac6755e8d669ed3a470cffb0064a7399fb data/eternal_starlight/loot_tables/blocks/thermal_springstone.json
+73dc0165954edae8f5b458b53a371c7220d982bb data/eternal_starlight/loot_tables/blocks/the_gatekeeper_spawner.json
 878c15ba6d083e2f9df50ec89798838188ea00af data/eternal_starlight/loot_tables/blocks/torreya_button.json
 982a04a47efcff6519b633eaaa41eb176d050f13 data/eternal_starlight/loot_tables/blocks/torreya_campfire.json
 a01e58fa4aaf14ed559d812ddd522ea43fef5d14 data/eternal_starlight/loot_tables/blocks/torreya_door.json

@@ -128,7 +128,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putString("GatekeeperName", gatekeeperName);
-        compoundTag.putString("FightTarget", fightTarget);
+        if (fightTarget != null) {
+            compoundTag.putString("FightTarget", fightTarget);
+        }
         compoundTag.putBoolean("FightPlayerOnly", fightPlayerOnly);
         compoundTag.putInt("RestockCoolDown", restockCoolDown);
     }
@@ -253,7 +255,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
-        if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
+        if (!level().isClientSide && fightPlayerOnly && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
             AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(new ResourceLocation("end/kill_dragon"));
             boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
             AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
