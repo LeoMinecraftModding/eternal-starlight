@@ -507,6 +507,8 @@ public class ClientSetupHandlers {
         strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
         strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
         strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
+        strategy.register(TheGatekeeperModel.OUTER_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false, 0.5f));
+        strategy.register(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true, 0.5f));
         strategy.register(StarlightGolemModel.LAYER_LOCATION, StarlightGolemModel::createBodyLayer);
         strategy.register(FreezeModel.LAYER_LOCATION, FreezeModel::createBodyLayer);
         strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);

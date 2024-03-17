@@ -31,8 +31,8 @@ public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderL
 
     public TheGatekeeperClothingLayer(RenderLayerParent<T, TheGatekeeperModel<T>> parent, EntityModelSet modelSet) {
         super(parent);
-        this.normalModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.LAYER_LOCATION), false);
-        this.slimModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.SLIM_LAYER_LOCATION), true);
+        this.normalModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.OUTER_LAYER_LOCATION), false);
+        this.slimModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION), true);
     }
 
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
