@@ -1,0 +1,9 @@
+{
+  "asset_name": "amaramber",
+  "description": {
+    "color": "#C3647E",
+    "translate": "trim_material.eternal_starlight.amaramber"
+  },
+  "ingredient": "eternal_starlight:amaramber_ingot",
+  "item_model_index": 1.0
+}

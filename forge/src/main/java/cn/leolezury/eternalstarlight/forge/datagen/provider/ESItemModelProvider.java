@@ -408,6 +408,18 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get());
         basicItem(ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
 
+        basicBlockItem(ESItems.GLACITE.get());
+        basicItem(ESItems.GLACITE_SHARD.get());
+        basicHandheld(ESItems.GLACITE_SWORD.get());
+        basicHandheld(ESItems.GLACITE_PICKAXE.get());
+        basicHandheld(ESItems.GLACITE_AXE.get());
+        largeHandheld(ESItems.GLACITE_SCYTHE.get());
+        inventoryModel(ESItems.GLACITE_SCYTHE.get());
+        basicItem(ESItems.GLACITE_HELMET.get());
+        basicItem(ESItems.GLACITE_CHESTPLATE.get());
+        basicItem(ESItems.GLACITE_LEGGINGS.get());
+        basicItem(ESItems.GLACITE_BOOTS.get());
+
         basicBlockItem(ESItems.SWAMP_SILVER_ORE.get());
         basicBlockItem(ESItems.SWAMP_SILVER_BLOCK.get());
         basicItem(ESItems.SWAMP_SILVER_INGOT.get());

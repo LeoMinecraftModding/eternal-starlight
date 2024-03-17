@@ -1,6 +1,7 @@
-// 1.20.4	2024-02-27T22:41:33.6972643	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-03-17T19:02:31.574141	Tags for minecraft:item mod id eternal_starlight
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
+c3758f1485dcdf3680091ca7ddb6d0c1e3fee6ed data/eternal_starlight/tags/items/glacite_weapons.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/items/light_crystals.json
 268ba819acde1285c21f1f46ecca7bfa826fd7e2 data/eternal_starlight/tags/items/lunar_crystals.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar_logs.json
@@ -21,7 +22,7 @@ b2ccbc05a2d8460e6508a998e38fdb5156eb1760 data/minecraft/tags/items/axes.json
 aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/items/boats.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/items/candles.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/items/chest_boats.json
-c25cc3b13d73ce7b82609fab33fc58f08840bf52 data/minecraft/tags/items/freeze_immune_wearables.json
+739968c9ec0cbeb500fb47ccac16b4b8e69192a5 data/minecraft/tags/items/freeze_immune_wearables.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/items/hanging_signs.json
 577f147c167f56eceee895ce21a4f71420f3f7a5 data/minecraft/tags/items/hoes.json
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/items/leaves.json
@@ -41,7 +42,7 @@ a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/items/stone_craftin
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/items/stone_tool_materials.json
 3fb4b75d961351043815fd7673af59d7c852a37b data/minecraft/tags/items/swords.json
 978041ef31f86d6d3833bd59a4eb74db7e393d42 data/minecraft/tags/items/trimmable_armor.json
-d9b676f9118df62a33eab92e67640099b8e25a66 data/minecraft/tags/items/trim_materials.json
+ae4d00b3791f88b0b362e8bc40f8732e02187ef3 data/minecraft/tags/items/trim_materials.json
 08cb105be24fea8d3fe60a2e14435ac554add4a2 data/minecraft/tags/items/walls.json
 2ef261a2ee8458fa023fcd45efeac2dbf120b140 data/minecraft/tags/items/wooden_buttons.json
 408496cb9fee4fbbfc36c93af2d07fac9f7ff480 data/minecraft/tags/items/wooden_doors.json

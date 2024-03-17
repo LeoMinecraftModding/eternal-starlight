@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-16T16:17:05.791191	Loot Tables
+// 1.20.4	2024-03-17T17:03:58.7466168	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_tables/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
@@ -95,6 +95,7 @@ cd087e0793f77812fc64121d70b55ecba64f9faa data/eternal_starlight/loot_tables/bloc
 9207fc8583c3d05c6ec18d97d556cf9668e7a8b9 data/eternal_starlight/loot_tables/blocks/fantagrass.json
 0b2d4d3660ef1e0d80a403d468324b5820e9101c data/eternal_starlight/loot_tables/blocks/fantasy_grass_block.json
 f6a4e29b3afa1c18c6a589b7c598883e8cc8c2a0 data/eternal_starlight/loot_tables/blocks/fantasy_grass_carpet.json
+0712a96306cfc637dbdb5d36ca89e87c7853304b data/eternal_starlight/loot_tables/blocks/glacite.json
 42fd54b81f10536662513da0447a04d23f1a36aa data/eternal_starlight/loot_tables/blocks/gladespike.json
 586c5dad833d3817b7b6856aa4418d701762667c data/eternal_starlight/loot_tables/blocks/glimmerfly_bush.json
 5adb47ea2789a640b40d0a2bdb9084dc9b46adb0 data/eternal_starlight/loot_tables/blocks/glowing_crescent_grass.json

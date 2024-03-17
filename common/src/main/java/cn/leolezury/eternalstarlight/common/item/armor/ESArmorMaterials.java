@@ -32,6 +32,12 @@ public enum ESArmorMaterials implements ArmorMaterial {
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 3);
     }), 15, ESSoundEvents.ARMOR_EQUIP_THERMAL_SPRINGSTONE.get(), 0.5F, 0.0F, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
+    GLACITE(EternalStarlight.MOD_ID + ":glacite", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.BOOTS, 3);
+        map.put(ArmorItem.Type.LEGGINGS, 5);
+        map.put(ArmorItem.Type.CHESTPLATE, 6);
+        map.put(ArmorItem.Type.HELMET, 3);
+    }), 15, ESSoundEvents.ARMOR_EQUIP_GLACITE.get(), 0.5F, 0.0F, () -> Ingredient.of(ESItems.GLACITE_SHARD.get())),
     SWAMP_SILVER(EternalStarlight.MOD_ID + ":swamp_silver", 33, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);

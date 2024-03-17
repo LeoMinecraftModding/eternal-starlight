@@ -20,7 +20,9 @@ public class ESTrimMaterials {
     public static final ResourceKey<TrimMaterial> BLUE_STARLIGHT_CRYSTAL = create("blue_starlight_crystal");
     public static final ResourceKey<TrimMaterial> AETHERSENT = create("aethersent");
     public static final ResourceKey<TrimMaterial> THERMAL_SPRINGSTONE = create("thermal_springstone");
+    public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
     public static final ResourceKey<TrimMaterial> SWAMP_SILVER = create("swamp_silver");
+    public static final ResourceKey<TrimMaterial> AMARAMBER = create("amaramber");
     public static final ResourceKey<TrimMaterial> GOLEM_STEEL = create("golem_steel");
     public static final ResourceKey<TrimMaterial> MOONRING = create("moonring");
     public static final ResourceKey<TrimMaterial> DOOMEDEN_BONE = create("doomeden_bone");
@@ -30,7 +32,9 @@ public class ESTrimMaterials {
         register(context, BLUE_STARLIGHT_CRYSTAL, ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0x308fb6, 0.8f);
         register(context, AETHERSENT, ESItems.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
         register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
+        register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
         register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0xfdbd77, 0.2f);
+        register(context, AMARAMBER, ESItems.AMARAMBER_INGOT.asHolder(), 0xc3647e, 1.0f);
         register(context, GOLEM_STEEL, ESItems.GOLEM_STEEL_INGOT.asHolder(), 0xfdbd77, 0.3f);
         register(context, MOONRING, ESItems.TENACIOUS_PETAL.asHolder(), 0xfdbd77, 0.8f);
         register(context, DOOMEDEN_BONE, ESItems.BROKEN_DOOMEDEN_BONE.asHolder(), 0xfdbd77, 0.1f);

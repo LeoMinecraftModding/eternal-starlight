@@ -34,6 +34,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addAetherSentRecipes(recipeOutput);
         addSwampSilverRecipes(recipeOutput);
         addThermalSpringstoneRecipes(recipeOutput);
+        addGlaciteRecipes(recipeOutput);
         addSaltpeterRecipes(recipeOutput);
         addAmaramberRecipes(recipeOutput);
 
@@ -546,6 +547,19 @@ public class ESRecipeProvider extends RecipeProvider {
         addBoots(recipeOutput, ESItems.THERMAL_SPRINGSTONE_BOOTS.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
         addSmelt(recipeOutput, 200, ESItems.THERMAL_SPRINGSTONE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), ESItems.THERMAL_SPRINGSTONE.get());
         addBlast(recipeOutput, 100, ESItems.THERMAL_SPRINGSTONE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), ESItems.THERMAL_SPRINGSTONE.get());
+    }
+
+    private void addGlaciteRecipes(RecipeOutput recipeOutput) {
+        addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+        addPickaxe(recipeOutput, ESItems.GLACITE_PICKAXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+        addHoe(recipeOutput, ESItems.GLACITE_SCYTHE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+        addSword(recipeOutput, ESItems.GLACITE_SWORD.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+        addHelmet(recipeOutput, ESItems.GLACITE_HELMET.get(), ESItems.GLACITE_SHARD.get());
+        addChestplate(recipeOutput, ESItems.GLACITE_CHESTPLATE.get(), ESItems.GLACITE_SHARD.get());
+        addLeggings(recipeOutput, ESItems.GLACITE_LEGGINGS.get(), ESItems.GLACITE_SHARD.get());
+        addBoots(recipeOutput, ESItems.GLACITE_BOOTS.get(), ESItems.GLACITE_SHARD.get());
+        addSmelt(recipeOutput, 200, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
+        addBlast(recipeOutput, 100, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
     }
 
     private void addSaltpeterRecipes(RecipeOutput recipeOutput) {

@@ -398,6 +398,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.SWAMP_SILVER_BLOCK.get(),
                 ESBlocks.SPRINGSTONE.get(),
                 ESBlocks.THERMAL_SPRINGSTONE.get(),
+                ESBlocks.GLACITE.get(),
                 ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
                 ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
                 ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),

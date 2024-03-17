@@ -35,6 +35,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
                 ESItems.THERMAL_SPRINGSTONE_HAMMER.get()
         );
+        tag(ESTags.Items.GLACITE_WEAPONS).add(
+                ESItems.GLACITE_SWORD.get(),
+                ESItems.GLACITE_PICKAXE.get(),
+                ESItems.GLACITE_AXE.get(),
+                ESItems.GLACITE_SCYTHE.get()
+        );
         tag(ESTags.Items.DOOMEDEN_KEYS).add(
                 ESItems.EYE_OF_DOOM.get(),
                 ESItems.LIVING_ARM.get(),
@@ -115,7 +121,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
                 ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
                 ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
-                ESItems.THERMAL_SPRINGSTONE_BOOTS.get()
+                ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
+                ESItems.GLACITE_HELMET.get(),
+                ESItems.GLACITE_CHESTPLATE.get(),
+                ESItems.GLACITE_LEGGINGS.get(),
+                ESItems.GLACITE_BOOTS.get()
         );
         tag(ItemTags.SWORDS).add(
                 ESItems.RAGE_OF_STARS.get(),
@@ -159,7 +169,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(),
                 ESItems.AETHERSENT_INGOT.get(),
                 ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
+                ESItems.GLACITE_SHARD.get(),
                 ESItems.SWAMP_SILVER_INGOT.get(),
+                ESItems.AMARAMBER_INGOT.get(),
                 ESItems.GOLEM_STEEL_INGOT.get(),
                 ESItems.TENACIOUS_PETAL.get(),
                 ESItems.BROKEN_DOOMEDEN_BONE.get()

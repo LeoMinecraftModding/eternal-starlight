@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ESArmorMaterials;
+import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
@@ -457,6 +458,26 @@ public class ESItems {
             () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(ESArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_BOOTS = registerItem("thermal_springstone_boots",
             () -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(ESArmorMaterials.THERMAL_SPRINGSTONE, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    // glacite
+    public static final RegistryObject<Item, Item> GLACITE = registerItem("glacite", () -> new BlockItem(ESBlocks.GLACITE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_SHARD = registerItem("glacite_shard", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_SWORD = registerItem("glacite_sword",
+            () -> new SwordItem(ESItemTiers.GLACITE, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_PICKAXE = registerItem("glacite_pickaxe",
+            () -> new PickaxeItem(ESItemTiers.GLACITE,1, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_AXE = registerItem("glacite_axe",
+            () -> new AxeItem(ESItemTiers.GLACITE, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_SCYTHE = registerItem("glacite_scythe",
+            () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.GLACITE, 3, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_HELMET = registerItem("glacite_helmet",
+            () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_CHESTPLATE = registerItem("glacite_chestplate",
+            () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_LEGGINGS = registerItem("glacite_leggings",
+            () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_BOOTS = registerItem("glacite_boots",
+            () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     // swamp silver
     public static final RegistryObject<Item, Item> SWAMP_SILVER_ORE = registerItem("swamp_silver_ore", () -> new BlockItem(ESBlocks.SWAMP_SILVER_ORE.get(), new Item.Properties()));

@@ -306,6 +306,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
         simpleBlock(ESBlocks.SPRINGSTONE.get());
         simpleBlock(ESBlocks.THERMAL_SPRINGSTONE.get());
+        simpleBlock(ESBlocks.GLACITE.get());
         simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
         simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
         simpleBlock(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());

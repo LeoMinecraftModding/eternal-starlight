@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
+import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
@@ -117,6 +118,20 @@ public class CommonHandlers {
 
         if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
             entity.setSecondsOnFire(10);
+        }
+
+        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
+                || entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GlaciteArmorItem
+                || entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GlaciteArmorItem
+                || entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
+        ) {
+            if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
+                livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 80);
+            }
+        }
+
+        if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
+            entity.setTicksFrozen(entity.getTicksFrozen() + 80);
         }
 
         if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem

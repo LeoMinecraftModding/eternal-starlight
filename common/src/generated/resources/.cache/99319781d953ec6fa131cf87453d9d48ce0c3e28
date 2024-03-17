@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-16T16:17:05.8055789	Block States: eternal_starlight
+// 1.20.4	2024-03-17T17:03:58.7645568	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -95,6 +95,7 @@ aba6ed71194d7b80b8960b4de9d0ba6c6295694d assets/eternal_starlight/blockstates/fa
 6176404cfc337d7663fba064d039a6f6a79314cc assets/eternal_starlight/blockstates/fantagrass.json
 0c6bda098ef742e51befa8904f5e9506e5f29c21 assets/eternal_starlight/blockstates/fantasy_grass_block.json
 bb0cc33235c132d8a13932964996ce9c43b3f1f9 assets/eternal_starlight/blockstates/fantasy_grass_carpet.json
+d2f6369cf961c897a30fae6c9c006057a1cb9d34 assets/eternal_starlight/blockstates/glacite.json
 2ac57e361e3b623efe7400f30e124b5fbcdb262c assets/eternal_starlight/blockstates/gladespike.json
 f92bf92049f31e47d856e28c43f5649e1c27a2cc assets/eternal_starlight/blockstates/glimmerfly_bush.json
 f71d1f7523228c78149975be27ffbe1da97aab38 assets/eternal_starlight/blockstates/glowing_crescent_grass.json
@@ -542,6 +543,7 @@ ab205c57935a8488c22ec2e9cba7f980f2c59ef6 assets/eternal_starlight/models/block/f
 c4dca572570cb991cc89d26a8587f772140497cc assets/eternal_starlight/models/block/fantagrass.json
 241c0c3a4e94a8f1f7ee91564f2f2035b866bd95 assets/eternal_starlight/models/block/fantasy_grass_block.json
 8a7965dff3a9b97c86f409651f3c1f7b1ae47505 assets/eternal_starlight/models/block/fantasy_grass_carpet.json
+99e079915e40b40cdafeeff0986955f4f8f85d2d assets/eternal_starlight/models/block/glacite.json
 a4a653677ce17e117f8303472927d60ca2180bc0 assets/eternal_starlight/models/block/gladespike.json
 8e7406194b05afdc1c7ea85759db1be39a6998c2 assets/eternal_starlight/models/block/glimmerfly_bush_bottom.json
 39a9c4ab40be7f967621c91ff2616d579dc75ffc assets/eternal_starlight/models/block/glimmerfly_bush_top.json
