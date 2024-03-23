@@ -478,6 +478,8 @@ public class ESItems {
             () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item, Item> GLACITE_BOOTS = registerItem("glacite_boots",
             () -> new GlaciteArmorItem(ESArmorMaterials.GLACITE, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLACITE_SHIELD = registerItem("glacite_shield",
+            () -> ESPlatform.INSTANCE.createShield(new Item.Properties().durability(500)));
 
     // swamp silver
     public static final RegistryObject<Item, Item> SWAMP_SILVER_ORE = registerItem("swamp_silver_ore", () -> new BlockItem(ESBlocks.SWAMP_SILVER_ORE.get(), new Item.Properties()));

@@ -14,6 +14,7 @@ import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeHammerItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeScytheItem;
+import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeShieldItem;
 import cn.leolezury.eternalstarlight.forge.network.ForgeNetworkHandler;
 import cn.leolezury.eternalstarlight.forge.world.ForgeTeleporter;
 import com.google.auto.service.AutoService;
@@ -175,6 +176,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new ForgeHammerItem(tier, damage, attackSpeed, properties);
+    }
+
+    @Override
+    public ShieldItem createShield(Item.Properties properties) {
+        return new ForgeShieldItem(properties);
     }
 
     @Override

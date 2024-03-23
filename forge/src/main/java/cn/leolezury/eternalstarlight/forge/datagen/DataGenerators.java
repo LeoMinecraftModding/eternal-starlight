@@ -26,6 +26,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ESBlockStateProvider(output, helper));
         generator.addProvider(event.includeClient(), new ESItemModelProvider(output, helper));
+        generator.addProvider(event.includeClient(), new ESAtlasProvider(output, lookupProvider, helper));
         generator.addProvider(event.includeClient(), new ESParticleDescriptionProvider(output, helper));
         generator.addProvider(event.includeClient(), new ESSoundProvider(output, helper));
 

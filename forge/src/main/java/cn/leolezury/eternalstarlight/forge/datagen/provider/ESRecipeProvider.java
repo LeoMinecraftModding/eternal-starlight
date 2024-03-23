@@ -558,6 +558,14 @@ public class ESRecipeProvider extends RecipeProvider {
         addChestplate(recipeOutput, ESItems.GLACITE_CHESTPLATE.get(), ESItems.GLACITE_SHARD.get());
         addLeggings(recipeOutput, ESItems.GLACITE_LEGGINGS.get(), ESItems.GLACITE_SHARD.get());
         addBoots(recipeOutput, ESItems.GLACITE_BOOTS.get(), ESItems.GLACITE_SHARD.get());
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GLACITE_SHIELD.get())
+                .pattern("PSP")
+                .pattern("PPP")
+                .pattern(" P ")
+                .define('S', ESItems.GLACITE_SHARD.get())
+                .define('P', Ingredient.of(ItemTags.PLANKS))
+                .unlockedBy("has_item", has(ESItems.GLACITE_SHARD.get()))
+                .save(recipeOutput);
         addSmelt(recipeOutput, 200, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
         addBlast(recipeOutput, 100, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
     }

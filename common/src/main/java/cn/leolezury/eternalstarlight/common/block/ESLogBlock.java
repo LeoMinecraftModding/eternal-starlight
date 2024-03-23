@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -48,6 +49,9 @@ public class ESLogBlock extends RotatedPillarBlock {
             } else if (blockState.is(ESBlocks.TORREYA_LOG.get())) {
                 stripped = ESBlocks.STRIPPED_TORREYA_LOG.get();
                 player.playSound(SoundEvents.AXE_STRIP);
+                if (player.getRandom().nextInt(20) == 0) {
+                    player.spawnAtLocation(ESItems.RAW_AMARAMBER.get());
+                }
             } else {
                 return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
             }

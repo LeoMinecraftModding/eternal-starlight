@@ -63,6 +63,7 @@ import java.util.Optional;
 public class ESConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> ETHER_FLUID_BORDER = create("ether_fluid_border");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLACITE = create("glacite");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = create("deepslate_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_GRIMSTONE_ORE = create("glowing_grimstone_ore");
@@ -132,6 +133,7 @@ public class ESConfiguredFeatures {
 
         FeatureUtils.register(context, ETHER_FLUID_BORDER, ESFeatures.ETHER_FLUID_BORDER.get(), new NoneFeatureConfiguration());
         FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get(), new NoneFeatureConfiguration());
+        FeatureUtils.register(context, GLACITE, ESFeatures.GLACITE.get(), new NoneFeatureConfiguration());
         FeatureUtils.register(context, STONE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));
         FeatureUtils.register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.DEEPSLATE.defaultBlockState(), 64));
         FeatureUtils.register(context, GLOWING_GRIMSTONE_ORE, Feature.ORE, new OreConfiguration(grimstoneRule, ESBlocks.GLOWING_GRIMSTONE.get().defaultBlockState(), 20));

@@ -15,6 +15,7 @@ import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -49,6 +50,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         CommonHandlers.onLivingTick(event.getEntity());
+    }
+
+    @SubscribeEvent
+    public static void onShieldBlock(ShieldBlockEvent event) {
+        CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
     }
 
     @SubscribeEvent

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "eternal_starlight:glacite_shard"
+    }
+  },
+  "pattern": [
+    "PSP",
+    "PPP",
+    " P "
+  ],
+  "result": {
+    "item": "eternal_starlight:glacite_shield"
+  }
+}

@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringSton
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
+import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ESExplosionParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ESSmokeParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
@@ -295,6 +296,8 @@ public class ClientSetupHandlers {
         });
         ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
+        ItemProperties.register(ESItems.GLACITE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+
         ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), new ResourceLocation("crests_mode"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F);
     }
 
@@ -517,5 +520,6 @@ public class ClientSetupHandlers {
         strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
         strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
         strategy.register(LunarVineModel.LAYER_LOCATION, LunarVineModel::createBodyLayer);
+        strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
     }
 }

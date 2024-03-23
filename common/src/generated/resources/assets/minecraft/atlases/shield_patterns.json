@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "eternal_starlight:entity/glacite_shield"
+    }
+  ]
+}

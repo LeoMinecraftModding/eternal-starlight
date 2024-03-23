@@ -6,6 +6,7 @@
   "mixins": [
     "LiquidBlockMixin",
     "LivingEntityMixin",
+    "PlayerMixin",
     "ProjectileMixin"
   ],
   "client": [

@@ -27,6 +27,7 @@ import java.util.List;
 public class ESPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ETHER_FLUID_BORDER = create("ether_fluid_border");
     public static final ResourceKey<PlacedFeature> STONE_SPIKE = create("stone_spike");
+    public static final ResourceKey<PlacedFeature> GLACITE = create("glacite");
     public static final ResourceKey<PlacedFeature> STONE_ORE = create("stone_ore");
     public static final ResourceKey<PlacedFeature> DEEPSLATE_ORE = create("deepslate_ore");
     public static final ResourceKey<PlacedFeature> GLOWING_GRIMSTONE_ORE = create("glowing_grimstone_ore");
@@ -101,6 +102,7 @@ public class ESPlacedFeatures {
 
         PlacementUtils.register(context, ETHER_FLUID_BORDER, configuredFeatures.getOrThrow(ESConfiguredFeatures.ETHER_FLUID_BORDER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_SPIKE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+        PlacementUtils.register(context, GLACITE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLACITE), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE), BiomeFilter.biome());
         PlacementUtils.register(context, STONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
         PlacementUtils.register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
         PlacementUtils.register(context, GLOWING_GRIMSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_GRIMSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));

@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.mixins;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,8 +19,6 @@ public abstract class LivingEntityMixin {
     @Shadow public abstract boolean isUsingItem();
 
     @Shadow public abstract ItemStack getUseItem();
-
-    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot arg);
 
     @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
     private void es_swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {

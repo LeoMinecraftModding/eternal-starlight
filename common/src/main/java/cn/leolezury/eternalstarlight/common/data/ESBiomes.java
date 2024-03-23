@@ -47,7 +47,7 @@ public class ESBiomes {
         HolderGetter<ConfiguredWorldCarver<?>> carverHolderGetter = context.lookup(Registries.CONFIGURED_CARVER);
         context.register(STARLIGHT_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseLandSpawnBuilder(), forestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(STARLIGHT_DENSE_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseLandSpawnBuilder(), denseForestSettings(featureHolderGetter, carverHolderGetter)).build());
-        context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), permafrostForestSpawns(), snowyForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
+        context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), permafrostForestSpawns(), permafrostForestSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
         context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(7428526).waterFogColor(7428526).backgroundMusic(MUSIC_SWAMP), baseLandSpawnBuilder(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_SCARLET_FOREST), baseLandSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
         context.register(TORREYA_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(7229604).foliageColorOverride(7229604).skyColor(7229604).grassColorOverride(7229604).backgroundMusic(MUSIC_TORREYA_FOREST), baseLandSpawnBuilder(), torreyaForestSettings(featureHolderGetter, carverHolderGetter)).build());
@@ -200,9 +200,10 @@ public class ESBiomes {
         return builder;
     }
 
-    private static BiomeGenerationSettings.Builder snowyForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+    private static BiomeGenerationSettings.Builder permafrostForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.GLACITE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);

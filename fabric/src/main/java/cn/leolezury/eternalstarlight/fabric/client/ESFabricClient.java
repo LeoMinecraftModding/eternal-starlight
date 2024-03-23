@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.FabricItemStackRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -59,5 +61,7 @@ public class ESFabricClient implements ClientModInitializer {
                 new ResourceLocation(EternalStarlight.MOD_ID, "block/ether"),
                 new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow")
         ));
+
+        BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
     }
 }

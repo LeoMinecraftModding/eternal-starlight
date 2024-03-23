@@ -90,6 +90,9 @@ public interface ESPlatform {
     default HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
         return new CommonHammerItem(tier, damage, attackSpeed, properties);
     }
+    default ShieldItem createShield(Item.Properties properties) {
+        return new ShieldItem(properties);
+    }
     default BucketItem createBucket(Supplier<? extends Fluid> fluid, Item.Properties properties) {
         return new BucketItem(fluid.get(), properties);
     }

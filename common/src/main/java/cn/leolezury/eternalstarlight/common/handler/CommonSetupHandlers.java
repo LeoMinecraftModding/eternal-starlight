@@ -35,7 +35,14 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 public class CommonSetupHandlers {
+    public static final List<Supplier<Item>> SHIELDS = List.of(
+            ESItems.GLACITE_SHIELD
+    );
+
     public interface EntityAttributeRegisterStrategy {
         <T extends LivingEntity> void register(EntityType<T> entityType, AttributeSupplier attributeSupplier);
     }

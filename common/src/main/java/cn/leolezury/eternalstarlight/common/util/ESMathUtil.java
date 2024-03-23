@@ -120,4 +120,157 @@ public class ESMathUtil {
         }
         return points;
     }
+
+    public static double distBetweenLineAndDot(Vec3 start, Vec3 end, Vec3 point) {
+        return distBetweenLineAndDot(start.x, start.y, start.z, end.x, end.y, end.z, point.x, point.y, point.z);
+    }
+
+    public static double distBetweenLineAndDot(double x1, double y1, double z1, double x2, double y2, double z2, double px, double py, double pz) {
+        return Math.sqrt(distSqrBetweenLineAndDot(x1, y1, z1, x2, y2, z2, px, py, pz));
+    }
+
+    public static double distSqrBetweenLineAndDot(Vec3 start, Vec3 end, Vec3 point) {
+        return distSqrBetweenLineAndDot(start.x, start.y, start.z, end.x, end.y, end.z, point.x, point.y, point.z);
+    }
+
+    public static double distSqrBetweenLineAndDot(double x1, double y1, double z1, double x2, double y2, double z2, double px, double py, double pz) {
+        double a = px - x1;
+        double b = py - y1;
+        double c = pz - z1;
+        double d = x2 - x1;
+        double e = y2 - y1;
+        double f = z2 - z1;
+
+        double dot = a * d + b * e + c * f;
+        double lenSq = d * d + e * e + f * f;
+        double param = dot / lenSq;
+
+        double closestX, closestY, closestZ;
+
+        if (param < 0) {
+            closestX = x1;
+            closestY = y1;
+            closestZ = z1;
+        } else if (param > 1) {
+            closestX = x2;
+            closestY = y2;
+            closestZ = z2;
+        } else {
+            closestX = x1 + param * d;
+            closestY = y1 + param * e;
+            closestZ = z1 + param * f;
+        }
+
+        double dx = px - closestX;
+        double dy = py - closestY;
+        double dz = pz - closestZ;
+
+        return dx * dx + dy * dy + dz * dz;
+    }
+
+    public static double distBetweenLines(Vec3 start1, Vec3 end1, Vec3 start2, Vec3 end2) {
+        return distBetweenLines(start1.x, start1.y, start1.z, end1.x, end1.y, end1.z, start2.x, start2.y, start2.z, end2.x, end2.y, end2.z);
+    }
+
+    public static double distBetweenLines(double x1, double y1, double z1,
+                                          double x2, double y2, double z2,
+                                          double x3, double y3, double z3,
+                                          double x4, double y4, double z4)
+    {
+        return Math.sqrt(distSqrBetweenLines(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4));
+    }
+
+    public static double distSqrBetweenLines(Vec3 start1, Vec3 end1, Vec3 start2, Vec3 end2) {
+        return distSqrBetweenLines(start1.x, start1.y, start1.z, end1.x, end1.y, end1.z, start2.x, start2.y, start2.z, end2.x, end2.y, end2.z);
+    }
+
+    public static double distSqrBetweenLines(double x1, double y1, double z1,
+                                             double x2, double y2, double z2,
+                                             double x3, double y3, double z3,
+                                             double x4, double y4, double z4)
+    {
+        double ux = x2 - x1;
+        double uy = y2 - y1;
+        double uz = z2 - z1;
+
+        double vx = x4 - x3;
+        double vy = y4 - y3;
+        double vz = z4 - z3;
+
+        double wx = x1 - x3;
+        double wy = y1 - y3;
+        double wz = z1 - z3;
+
+        double a = (ux * ux + uy * uy + uz * uz);
+        double b = (ux * vx + uy * vy + uz * vz);
+        double c = (vx * vx + vy * vy + vz * vz);
+        double d = (ux * wx + uy * wy + uz * wz);
+        double e = (vx * wx + vy * wy + vz * wz);
+        double dt = a * c - b * b;
+
+        double sd = dt;
+        double td = dt;
+
+        double sn;
+        double tn;
+
+        if (Math.abs(dt) < 1e-7) {
+            sn = 0.0;
+            sd = 1.00;
+
+            tn = e;
+            td = c;
+        } else {
+            sn = (b * e - c * d);
+            tn = (a * e - b * d);
+            if (sn < 0.0) {
+                sn = 0.0;
+                tn = e;
+                td = c;
+            } else if (sn > sd) {
+                sn = sd;
+                tn = e + b;
+                td = c;
+            }
+        }
+        if (tn < 0.0) {
+            tn = 0.0;
+            if (-d < 0.0)
+                sn = 0.0;
+            else if (-d > a)
+                sn = sd;
+            else {
+                sn = -d;
+                sd = a;
+            }
+        } else if (tn > td) {
+            tn = td;
+            if ((-d + b) < 0.0)
+                sn = 0.0;
+            else if ((-d + b) > a)
+                sn = sd;
+            else {
+                sn = (-d + b);
+                sd = a;
+            }
+        }
+
+        double sc;
+        double tc;
+
+        if (Math.abs(sn) < 1e-7)
+            sc = 0.0;
+        else
+            sc = sn / sd;
+
+        if (Math.abs(tn) < 1e-7)
+            tc = 0.0;
+        else
+            tc = tn / td;
+
+        double dx = wx + (sc * ux) - (tc * vx);
+        double dy = wy + (sc * uy) - (tc * vy);
+        double dz = wz + (sc * uz) - (tc * vz);
+        return dx * dx + dy * dy + dz * dz;
+    }
 }

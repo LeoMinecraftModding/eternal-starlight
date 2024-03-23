@@ -213,6 +213,12 @@ public class CommonHandlers {
         }
     }
 
+    public static void onShieldBlock(LivingEntity blocker, DamageSource source) {
+        if (blocker.getUseItem().is(ESItems.GLACITE_SHIELD.get()) && source.getDirectEntity() instanceof LivingEntity entity && entity.canFreeze()) {
+            entity.setTicksFrozen(entity.getTicksFrozen() + 100);
+        }
+    }
+
     public static void onArrowHit(Projectile projectile, HitResult result) {
         if (projectile.level() instanceof ServerLevel serverLevel) {
             if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
