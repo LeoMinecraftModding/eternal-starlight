@@ -35,20 +35,20 @@ public class GrimstoneGolemModel<T extends GrimstoneGolem> extends AnimatedEntit
         root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(24, 0).addBox(-2.0F, -12.0F, -5.0F, 4.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 0).addBox(-4.0F, -16.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(9, 44).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 7.0F, 8.0F, new CubeDeformation(0.0F))
+        root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 16).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 7.0F, 8.0F, new CubeDeformation(0.0F))
                 .texOffs(26, 10).addBox(-3.0F, -8.0F, -3.0F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, -3.0F, 0.0F));
+        root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, -3.0F, 0.0F));
 
-        root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.0F, -3.0F, 0.0F));
+        root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.0F, -3.0F, 0.0F));
 
-        root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(16, 29).addBox(-0.5F, 0.0F, -1.0F, 1.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(4.5F, -8.0F, 0.0F));
+        root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(0, 31).addBox(-0.5F, 0.0F, -1.0F, 1.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(4.5F, -8.0F, 0.0F));
 
-        root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(16, 29).mirror().addBox(-0.5F, 0.0F, -1.0F, 1.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-4.5F, -8.0F, 0.0F));
+        root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(0, 31).mirror().addBox(-0.5F, 0.0F, -1.0F, 1.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-4.5F, -8.0F, 0.0F));
 
-        root.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(0, 29).mirror().addBox(-0.5F, 0.0F, -2.0F, 1.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.5F, -15.0F, 0.0F, 0.0F, 0.0F, -0.2618F));
+        root.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(28, 27).mirror().addBox(-0.5F, 0.0F, -2.0F, 1.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.5F, -15.0F, 0.0F, 0.0F, 0.0F, -0.2618F));
 
-        root.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(0, 29).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, -15.0F, 0.0F, 0.0F, 0.0F, 0.2618F));
+        root.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(28, 27).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, -15.0F, 0.0F, 0.0F, 0.0F, 0.2618F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);
     }

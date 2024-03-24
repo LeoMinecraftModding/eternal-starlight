@@ -76,6 +76,18 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
         AdvancementHolder thermalSpringstone = addItemObtain(consumer, killGolem, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
         AdvancementHolder killLunarMonstrosity = addEntityKill(consumer, thermalSpringstone, "kill_lunar_monstrosity", ESEntities.LUNAR_MONSTROSITY.get(), ESItems.PARASOL_GRASS.get());
+
+        AdvancementHolder useBlossomOfStars = Advancement.Builder.advancement().parent(enterDim).display(
+                        ESItems.BLOSSOM_OF_STARS.get(),
+                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".use_blossom_of_stars.title"),
+                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".use_blossom_of_stars.description"),
+                        null,
+                        AdvancementType.TASK,
+                        true, true, true)
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .addCriterion("use_item",
+                        ConsumeItemTrigger.TriggerInstance.usedItem(ESItems.BLOSSOM_OF_STARS.get()))
+                .save(consumer, EternalStarlight.MOD_ID + ":use_blossom_of_stars");
     }
 
     private static AdvancementHolder addItemObtain(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item item) {

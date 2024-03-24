@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID)
@@ -50,6 +51,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         CommonHandlers.onLivingTick(event.getEntity());
+    }
+
+    @SubscribeEvent
+    public static void onBlockBroken(BlockEvent.BreakEvent event) {
+        CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
     }
 
     @SubscribeEvent

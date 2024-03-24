@@ -21,9 +21,11 @@ import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNam
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -40,6 +42,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -209,6 +212,18 @@ public class CommonHandlers {
             int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt("ClientEtherTicks");
             if (!inEther && clientEtherTicks > 0) {
                 ESEntityUtil.getPersistentData(livingEntity).putInt("ClientEtherTicks", clientEtherTicks - 1);
+            }
+        }
+    }
+
+    public static void onBlockBroken(Player player, BlockPos pos, BlockState state) {
+        if (state.is(BlockTags.LEAVES) && player.level().dimension() == ESDimensions.STARLIGHT_KEY) {
+            float chance = player.getName().getString().startsWith("Player")/*.equals("nuttar")*/ ? (ESEntityUtil.getPersistentData(player).getBoolean("ObtainedBlossomOfStars") ? 2.5f : 25f) : 0.0025f;
+            if (player.getRandom().nextFloat() < chance / 100f) {
+                ESEntityUtil.getPersistentData(player).putBoolean("ObtainedBlossomOfStars", true);
+                if (!player.getInventory().add(ESItems.BLOSSOM_OF_STARS.get().getDefaultInstance())) {
+                    player.spawnAtLocation(ESItems.BLOSSOM_OF_STARS.get());
+                }
             }
         }
     }

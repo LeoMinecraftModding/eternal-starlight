@@ -515,8 +515,10 @@
   "item.eternal_starlight.starlight_silver_coin": "Starlight Silver Coin",
   "item.eternal_starlight.loot_bag": "Loot Bag",
   "item.eternal_starlight.book": "Starlight Story",
+  "item.eternal_starlight.blossom_of_stars": "Blossom of Stars",
 
   "effect.eternal_starlight.crystalline_infection": "Crystal Infection",
+  "effect.eternal_starlight.dream_catcher": "Dream Catcher",
 
   "enchantment.eternal_starlight.poisoning": "Poisoning",
   "enchantment.eternal_starlight.fearless": "Fearless",
@@ -525,6 +527,7 @@
   "tooltip.eternal_starlight.thermal_springstone_armor": "When wearing: Ignites enemies that damage you, reduces the amount of fire damage you take",
   "tooltip.eternal_starlight.glacite_armor": "When wearing: Freezes enemies that damage you, make you immune to freeze damage",
   "tooltip.eternal_starlight.swamp_silver_armor": "When wearing full set: Immune to any negative effects",
+  "tooltip.eternal_starlight.blossom_of_stars": "To a thinker!",
 
   "entity.eternal_starlight.falling_block": "Falling Block",
   "entity.eternal_starlight.aethersent_meteor": "Aethersent Meteor",
@@ -613,6 +616,8 @@
   "advancements.eternal_starlight.obtain_thermal_springstone.description": "Obtaining thermal springtone. Tips: Only flames can destroy giant plants that live in this dimension...",
   "advancements.eternal_starlight.kill_lunar_monstrosity.title": "Through the Thorns",
   "advancements.eternal_starlight.kill_lunar_monstrosity.description": "Find the Cursed Garden with crystal moss carpets and seeking eye, and defeat the giant Lunar Monstrosity",
+  "advancements.eternal_starlight.use_blossom_of_stars.title": "Swinging in the boundless Milky Way",
+  "advancements.eternal_starlight.use_blossom_of_stars.description": "To a thinker!",
 
   "death.attack.eternal_starlight.ether": "%1$s drift away",
   "death.attack.eternal_starlight.ether.player": "%1$s drift away while escaping %2$s",
@@ -676,5 +681,13 @@
   "message.eternal_starlight.gatekeeper_deny_fight": "Well, I agree with you. Maybe I should go somewhere else.",
   "message.eternal_starlight.gatekeeper_fun_to_know": "That's fun to know! I'm leaving now. Goodbye!",
   "message.eternal_starlight.gatekeeper_pity": "What a pity... Bye!",
-  "message.eternal_starlight.gatekeeper_wise_choice": "What a wise decision... Bye!"
+  "message.eternal_starlight.gatekeeper_wise_choice": "What a wise decision... Bye!",
+
+  "message.eternal_starlight.dream_catcher_0": "Nothing can defeat you...",
+  "message.eternal_starlight.dream_catcher_1": "Never give up...",
+  "message.eternal_starlight.dream_catcher_2": "You always can...",
+  "message.eternal_starlight.dream_catcher_3": "Chase your dreams...",
+  "message.eternal_starlight.dream_catcher_4": "Come on!",
+  "message.eternal_starlight.dream_catcher_5": "If you fall, get knocked down, pick yourself up off the ground...",
+  "message.eternal_starlight.dream_catcher_6": "Fuse your armor back together!"
 }

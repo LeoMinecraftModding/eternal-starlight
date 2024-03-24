@@ -515,8 +515,10 @@
   "item.eternal_starlight.starlight_silver_coin": "星光银币",
   "item.eternal_starlight.loot_bag": "战利品袋",
   "item.eternal_starlight.book": "星光物语",
+  "item.eternal_starlight.blossom_of_stars": "星之花",
 
   "effect.eternal_starlight.crystalline_infection": "晶体感染",
+  "effect.eternal_starlight.dream_catcher": "逐梦者",
 
   "enchantment.eternal_starlight.poisoning": "浸毒",
   "enchantment.eternal_starlight.fearless": "无畏",
@@ -525,6 +527,7 @@
   "tooltip.eternal_starlight.thermal_springstone_armor": "穿戴时: 灼烧伤害你的敌人, 减少你受到的火焰伤害",
   "tooltip.eternal_starlight.glacite_armor": "穿戴时: 冻伤伤害你的敌人, 使你免疫冻伤",
   "tooltip.eternal_starlight.swamp_silver_armor": "穿全套时: 免疫任何负面效果",
+  "tooltip.eternal_starlight.blossom_of_stars": "献给一位梦想家",
 
   "entity.eternal_starlight.falling_block": "下落的方块",
   "entity.eternal_starlight.aethersent_meteor": "天赐流星",
@@ -613,6 +616,8 @@
   "advancements.eternal_starlight.obtain_thermal_springstone.description": "获得热泉石. 提示: 只有烈火才能摧毁生活在这个维度的巨型植物...",
   "advancements.eternal_starlight.kill_lunar_monstrosity.title": "披荆斩棘",
   "advancements.eternal_starlight.kill_lunar_monstrosity.description": "使用覆地晶藓和寻觅之眼找到诅咒花园并击败月藤巨物",
+  "advancements.eternal_starlight.use_blossom_of_stars.title": "荡漾在无垠的星河",
+  "advancements.eternal_starlight.use_blossom_of_stars.description": "献给一位梦想家！",
 
   "death.attack.eternal_starlight.ether": "%1$s飘然而去",
   "death.attack.eternal_starlight.ether.player": "%1$s在逃离%2$s时飘然而去",
@@ -676,5 +681,13 @@
   "message.eternal_starlight.gatekeeper_deny_fight": "有道理,告辞!",
   "message.eternal_starlight.gatekeeper_fun_to_know": "有趣.但我现在得走了,告辞!",
   "message.eternal_starlight.gatekeeper_pity": "真可惜...再见.",
-  "message.eternal_starlight.gatekeeper_wise_choice": "真是个明智的选择...那么,再见了."
+  "message.eternal_starlight.gatekeeper_wise_choice": "真是个明智的选择...那么,再见了.",
+
+  "message.eternal_starlight.dream_catcher_0": "没有什么可以打败你的...",
+  "message.eternal_starlight.dream_catcher_1": "永不言弃...",
+  "message.eternal_starlight.dream_catcher_2": "你一直可以...",
+  "message.eternal_starlight.dream_catcher_3": "逐梦...",
+  "message.eternal_starlight.dream_catcher_4": "振作起来!",
+  "message.eternal_starlight.dream_catcher_5": "被击倒100次,就要站起来101次!",
+  "message.eternal_starlight.dream_catcher_6": "修好你的盔甲!"
 }

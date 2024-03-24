@@ -43,7 +43,7 @@ public abstract class EntityMixin implements PersistentDataHolder {
 
     @Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
     private void es_load(CompoundTag compoundTag, CallbackInfo info) {
-        if (compoundTag != null && compoundTag.contains("ESData", 10)) {
+        if (compoundTag != null && compoundTag.contains("ESData", CompoundTag.TAG_COMPOUND)) {
             esPersistentData = compoundTag.getCompound("ESData");
         }
     }

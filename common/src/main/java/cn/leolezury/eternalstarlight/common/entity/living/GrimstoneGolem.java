@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living;
 
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -120,6 +121,6 @@ public class GrimstoneGolem extends PathfinderMob {
     }
 
     public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 20;
+        return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 20 && level.getBlockState(pos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT);
     }
 }

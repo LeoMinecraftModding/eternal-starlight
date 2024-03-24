@@ -49,9 +49,9 @@ public class ESItems {
     public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_CARPET = registerItem("blue_crystal_moss_carpet", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_SHARD = registerItem("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_SHARD = registerItem("blue_starlight_crystal_shard", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item, Item> LUNAR_BERRIES = registerItem("lunar_berries", () -> new ItemNameBlockItem(ESBlocks.BERRIES_VINES.get(), (new Item.Properties()).food((new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).build())));
+    public static final RegistryObject<Item, Item> LUNAR_BERRIES = registerItem("lunar_berries", () -> new ItemNameBlockItem(ESBlocks.BERRIES_VINES.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1.2F).build())));
     public static final RegistryObject<Item, Item> CAVE_MOSS = registerItem("cave_moss", () -> new BlockItem(ESBlocks.CAVE_MOSS.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> ABYSSAL_FRUIT = registerItem("abyssal_fruit", () -> new ItemNameBlockItem(ESBlocks.ABYSSAL_KELP.get(), (new Item.Properties()).food((new FoodProperties.Builder()).nutrition(5).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.3F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 600, 0), 0.3F).build())));
+    public static final RegistryObject<Item, Item> ABYSSAL_FRUIT = registerItem("abyssal_fruit", () -> new ItemNameBlockItem(ESBlocks.ABYSSAL_KELP.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.3F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 600, 0), 0.3F).build())));
     public static final RegistryObject<Item, Item> ORBFLORA = registerItem("orbflora", () -> new BlockItem(ESBlocks.ORBFLORA.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> ORBFLORA_LIGHT = registerItem("orbflora_light", () -> new BlockItem(ESBlocks.ORBFLORA_LIGHT.get(), new Item.Properties()));
 
@@ -614,5 +614,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(STARLIGHT)));
+    public static final RegistryObject<Item, Item> BLOSSOM_OF_STARS = registerItem("blossom_of_stars", () -> new BlossomOfStarsItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.1f).effect(new MobEffectInstance(ESMobEffects.DREAM_CATCHER.get(), 2400, 0), 1F).alwaysEat().build()).rarity(STARLIGHT)));
+
     public static void loadClass() {}
 }

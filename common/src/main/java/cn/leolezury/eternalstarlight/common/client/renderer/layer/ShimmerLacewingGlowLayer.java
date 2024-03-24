@@ -19,6 +19,7 @@ import net.minecraft.util.Mth;
 @Environment(EnvType.CLIENT)
 public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderLayer<T, ShimmerLacewingModel<T>> {
     private static final RenderType GLOW = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing_glow.png"));
+    private static final RenderType GLOW_SWAMP = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing_glow_swamp.png"));
     private final ShimmerLacewingModel<T> model;
 
     public ShimmerLacewingGlowLayer(RenderLayerParent<T, ShimmerLacewingModel<T>> parent, EntityModelSet modelSet) {
@@ -31,7 +32,7 @@ public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderL
             getParentModel().copyPropertiesTo(this.model);
             this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer consumer = bufferSource.getBuffer(GLOW);
+            VertexConsumer consumer = bufferSource.getBuffer(entity.getVariant() == ShimmerLacewing.VARIANT_SWAMP ? GLOW_SWAMP : GLOW);
             this.model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, Math.max(0.0F, Mth.cos(ageInTicks * 0.1f + 3.1415927F)));
         }
     }
