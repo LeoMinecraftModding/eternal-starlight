@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.util.Color;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class ManaCrystalItem extends Item  {
+public class ManaCrystalItem extends Item {
     private final ManaType manaType;
 
     public ManaCrystalItem(ManaType type, Properties properties) {

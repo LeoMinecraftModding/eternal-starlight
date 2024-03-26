@@ -48,6 +48,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class CommonHandlers {
@@ -218,7 +219,7 @@ public class CommonHandlers {
 
     public static void onBlockBroken(Player player, BlockPos pos, BlockState state) {
         if (state.is(BlockTags.LEAVES) && player.level().dimension() == ESDimensions.STARLIGHT_KEY) {
-            float chance = player.getName().getString().startsWith("Player")/*.equals("nuttar")*/ ? (ESEntityUtil.getPersistentData(player).getBoolean("ObtainedBlossomOfStars") ? 2.5f : 25f) : 0.0025f;
+            float chance = player.getName().getString().toLowerCase(Locale.ROOT).contains("nuttar") ? (ESEntityUtil.getPersistentData(player).getBoolean("ObtainedBlossomOfStars") ? 2.5f : 25f) : 0.0025f;
             if (player.getRandom().nextFloat() < chance / 100f) {
                 ESEntityUtil.getPersistentData(player).putBoolean("ObtainedBlossomOfStars", true);
                 if (!player.getInventory().add(ESItems.BLOSSOM_OF_STARS.get().getDefaultInstance())) {

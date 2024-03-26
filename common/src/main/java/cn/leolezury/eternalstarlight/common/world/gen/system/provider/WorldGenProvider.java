@@ -52,9 +52,11 @@ public class WorldGenProvider {
     }
 
     public void setRegistryAccess(RegistryAccess access) {
-        this.registryAccess = access;
-        this.biomeDataRegistry = registryAccess.registryOrThrow(ESRegistries.BIOME_DATA);
-        this.dataTransformerRegistry = registryAccess.registryOrThrow(ESRegistries.DATA_TRANSFORMER);
+        if (!(access == this.registryAccess)) {
+            this.registryAccess = access;
+            this.biomeDataRegistry = registryAccess.registryOrThrow(ESRegistries.BIOME_DATA);
+            this.dataTransformerRegistry = registryAccess.registryOrThrow(ESRegistries.DATA_TRANSFORMER);
+        }
     }
 
     public WorldArea getWorldArea(int x, int z) {

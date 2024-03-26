@@ -37,26 +37,26 @@ public class ESDataTransformers {
         context.register(DUPLICATE, new DuplicateSizeTransformer());
         context.register(FINALIZE_BIOMES, new FinalizeBiomesTransformer());
         context.register(APPLY_BIOMES, new AddBiomesTransformer(0.06, List.of(
-                data.getOrThrow(ESBiomeDatas.STARLIGHT_FOREST),
-                data.getOrThrow(ESBiomeDatas.STARLIGHT_DENSE_FOREST),
-                data.getOrThrow(ESBiomeDatas.DARK_SWAMP),
-                data.getOrThrow(ESBiomeDatas.STARLIGHT_PERMAFROST_FOREST),
-                data.getOrThrow(ESBiomeDatas.SCARLET_FOREST),
-                data.getOrThrow(ESBiomeDatas.CRYSTALLIZED_DESERT)
+                data.getOrThrow(ESBiomeData.STARLIGHT_FOREST),
+                data.getOrThrow(ESBiomeData.STARLIGHT_DENSE_FOREST),
+                data.getOrThrow(ESBiomeData.DARK_SWAMP),
+                data.getOrThrow(ESBiomeData.STARLIGHT_PERMAFROST_FOREST),
+                data.getOrThrow(ESBiomeData.SCARLET_FOREST),
+                data.getOrThrow(ESBiomeData.CRYSTALLIZED_DESERT)
         ), List.of(
-                data.getOrThrow(ESBiomeDatas.STARLIT_SEA)
+                data.getOrThrow(ESBiomeData.STARLIT_SEA)
         )));
-        context.register(ADD_OCEAN, new AddOceanTransformer(data.getOrThrow(ESBiomeDatas.STARLIT_SEA)));
-        context.register(ADD_BEACHES, new AddBeachesTransformer(data.getOrThrow(ESBiomeDatas.WARM_SHORE)));
+        context.register(ADD_OCEAN, new AddOceanTransformer(data.getOrThrow(ESBiomeData.STARLIT_SEA)));
+        context.register(ADD_BEACHES, new AddBeachesTransformer(data.getOrThrow(ESBiomeData.WARM_SHORE)));
         context.register(ADD_RIVERS, new AddRiversTransformer(List.of(
-                new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeDatas.SHIMMER_RIVER), 0.03f, 0),
-                new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeDatas.ETHER_RIVER), 0.05f, 4096)
+                new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.03f, 0),
+                new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f, 4096)
         )));
-        context.register(ADD_THE_ABYSS, new AddTheAbyssTransformer(data.getOrThrow(ESBiomeDatas.THE_ABYSS)));
+        context.register(ADD_THE_ABYSS, new AddTheAbyssTransformer(data.getOrThrow(ESBiomeData.THE_ABYSS)));
         context.register(ADD_TRANSITIONS, new AddTransitionBiomesTransformer(List.of(
-                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeDatas.SHIMMER_RIVER), data.getOrThrow(ESBiomeDatas.SHIMMER_RIVER_TRANSITION)),
-                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeDatas.THE_ABYSS), data.getOrThrow(ESBiomeDatas.THE_ABYSS_TRANSITION)),
-                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeDatas.ETHER_RIVER), data.getOrThrow(ESBiomeDatas.TORREYA_FOREST))
+                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeData.SHIMMER_RIVER), data.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)),
+                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeData.THE_ABYSS), data.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)),
+                new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeData.ETHER_RIVER), data.getOrThrow(ESBiomeData.TORREYA_FOREST))
         )));
         context.register(RANDOMIZE_BIOMES, new RandomizeBiomesTransformer());
         context.register(ASSIMILATE_BIOMES, new AssimilateBiomesTransformer(false));
