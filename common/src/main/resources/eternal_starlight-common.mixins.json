@@ -10,6 +10,7 @@
     "BubbleColumnBlockMixin",
     "CampfireBlockMixin",
     "CeilingHangingSignBlockMixin",
+    "CropBlockMixin",
     "CrossbowItemMixin",
     "EntityMixin",
     "FireBlockMixin",

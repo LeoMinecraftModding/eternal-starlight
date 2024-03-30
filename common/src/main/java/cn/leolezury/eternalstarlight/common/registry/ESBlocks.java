@@ -579,5 +579,10 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel((state) -> 10)));
 
+    //farm
+    public static final RegistryObject<Block, NightshadeFarmlandBlock> NIGHTSHADE_FARMLAND = BLOCKS.register("nightshade_farmland", () -> new NightshadeFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
+    public static final RegistryObject<Block, Block> ETHER_DIRT = BLOCKS.register("ether_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
+    public static final RegistryObject<Block, ESCropBlock> DARK_DWARF = BLOCKS.register("dark_dwarf", () -> new ESCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CARROTS), 4, true));
+
     public static void loadClass() {}
 }
