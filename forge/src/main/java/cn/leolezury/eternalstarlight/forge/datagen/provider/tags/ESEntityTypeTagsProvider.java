@@ -34,7 +34,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
         );
         tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE).add(
                 ESEntities.LUMINOFISH.get(),
-                ESEntities.LUMINARIS.get()
+                ESEntities.LUMINARIS.get(),
+                ESEntities.TWILIGHT_GAZE.get()
         );
     }
 }

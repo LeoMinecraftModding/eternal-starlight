@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-24T18:22:11.8572632	Registries
+// 1.20.4	2024-03-30T12:01:25.7252468	Registries
 69d4dca5c8db73d3f47f313e23ab5b1eb6405af1 data/eternal_starlight/damage_type/bite.json
 8df554ca5f15873428a307d46d9955f7581ebc6b data/eternal_starlight/damage_type/crystalline_infection.json
 3a431e3c93a207f75262186f49f92ddf38ddb5da data/eternal_starlight/damage_type/energized_flame.json
@@ -65,7 +65,7 @@ c68daaf42647ffb1c42b89ae8b94dc18088cb257 data/eternal_starlight/worldgen/biome/s
 feea0bb23998d8075deeebb7ed03e2f12900fbde data/eternal_starlight/worldgen/biome/starlight_forest.json
 1f3ef1eb872183eaf8ff4ef28f3a998db7bd8300 data/eternal_starlight/worldgen/biome/starlight_permafrost_forest.json
 248434094178b09281bbe5e97429cadb0914179b data/eternal_starlight/worldgen/biome/starlit_sea.json
-80baba962f2b375da185d50dbf065c9343a5ff18 data/eternal_starlight/worldgen/biome/the_abyss.json
+8eeb8bf4e0a50fcccb95d7617c2b4df16820de0b data/eternal_starlight/worldgen/biome/the_abyss.json
 6407ea1c4be666ec57be2c6ed86b8d7e87ebe4a2 data/eternal_starlight/worldgen/biome/torreya_forest.json
 678236f1a8b2762f6533b76ff9d082ba3d81fa48 data/eternal_starlight/worldgen/biome/warm_shore.json
 7690b169d75ab472c571deb5075c4970bd3b37da data/eternal_starlight/worldgen/configured_carver/caves.json

@@ -126,7 +126,8 @@ public class ESBiomes {
     private static MobSpawnSettings.Builder theAbyssSpawns() {
         return baseAquaticSpawnBuilder()
                 .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.LUMINOFISH.get(), 10, 3, 6))
-                .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.LUMINARIS.get(), 8, 3, 6));
+                .addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.LUMINARIS.get(), 8, 3, 6))
+                .addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.TWILIGHT_GAZE.get(), 5, 3, 6));
     }
 
     public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

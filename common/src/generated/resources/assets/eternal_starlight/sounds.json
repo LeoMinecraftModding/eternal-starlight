@@ -346,6 +346,24 @@
     ],
     "subtitle": "subtitles.entity.starlight_golem.prepare_charge"
   },
+  "entity.twilight_gaze.death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.luminaris.death"
+  },
+  "entity.twilight_gaze.hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "subtitles.entity.luminaris.hurt"
+  },
   "item.armor.equip_aethersent": {
     "sounds": [
       "item/armor/equip_leather1",
