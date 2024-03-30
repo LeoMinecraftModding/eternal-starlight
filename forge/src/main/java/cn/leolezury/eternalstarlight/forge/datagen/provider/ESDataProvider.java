@@ -27,7 +27,7 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.DAMAGE_TYPE, ESDamageTypes::bootstrap)
             .add(Registries.TRIM_MATERIAL, ESTrimMaterials::bootstrap)
             // custom
-            .add(ESRegistries.BIOME_DATA, ESBiomeDatas::bootstrap)
+            .add(ESRegistries.BIOME_DATA, ESBiomeData::bootstrap)
             .add(ESRegistries.DATA_TRANSFORMER, ESDataTransformers::bootstrap)
             .add(ESRegistries.BOARWARF_TYPE, ESBoarwarfTypes::bootstrap)
             .add(ESRegistries.ASTRAL_GOLEM_MATERIAL, ESAstralGolemMaterials::bootstrap)

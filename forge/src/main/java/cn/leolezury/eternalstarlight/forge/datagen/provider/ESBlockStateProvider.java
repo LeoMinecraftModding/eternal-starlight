@@ -749,7 +749,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
     private void snowyLeaves(Block leaves) {
         ModelFile modelNormal = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
-        ModelFile modelSnowy = models().singleTexture(name(leaves) + "_snowy", new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves).withSuffix("_snowy")).renderType(CUTOUT_MIPPED);
+        ModelFile modelSnowy = models().cubeBottomTop(name(leaves) + "_snowy", blockTexture(leaves).withSuffix("_snowy"), blockTexture(leaves), blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         onOffBlock(leaves, BlockStateProperties.SNOWY, modelSnowy, modelNormal);
     }
 

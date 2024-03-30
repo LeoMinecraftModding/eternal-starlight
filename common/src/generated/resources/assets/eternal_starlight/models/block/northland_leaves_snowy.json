@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/leaves",
+  "parent": "minecraft:block/cube_bottom_top",
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "all": "eternal_starlight:block/northland_leaves_snowy"
+    "bottom": "eternal_starlight:block/northland_leaves",
+    "side": "eternal_starlight:block/northland_leaves_snowy",
+    "top": "eternal_starlight:block/northland_leaves"
   }
 }

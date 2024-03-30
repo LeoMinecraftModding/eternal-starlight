@@ -37,10 +37,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
-import java.util.Collections;
-import java.util.Random;
-import java.util.Set;
-import java.util.WeakHashMap;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class ClientHandlers {
@@ -54,6 +51,31 @@ public class ClientHandlers {
     private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
     private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
     private static final ResourceLocation ORB_OF_PROPHECY_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/orb_of_prophecy_use.png");
+    private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
+
+    public static void onClientTick() {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.get())) {
+            List<DreamCatcherText> toRemove = new ArrayList<>();
+            for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
+                text.updatePosition();
+                int width = Minecraft.getInstance().font.width(text.getText());
+                int height = Minecraft.getInstance().font.lineHeight;
+                if (text.getX() - width / 2 > Minecraft.getInstance().getWindow().getGuiScaledWidth() || text.getY() - height / 2 > Minecraft.getInstance().getWindow().getGuiScaledHeight()) {
+                    toRemove.add(text);
+                }
+            }
+            for (DreamCatcherText text : toRemove) {
+                DREAM_CATCHER_TEXTS.remove(text);
+            }
+            if (player.getRandom().nextInt(40) == 0 && DREAM_CATCHER_TEXTS.size() < 20) {
+                Component component = Component.translatable("message." + EternalStarlight.MOD_ID + ".dream_catcher_" + player.getRandom().nextInt(7));
+                DREAM_CATCHER_TEXTS.add(new DreamCatcherText(component, (int) (player.getRandom().nextFloat() * 5 + 1), -Minecraft.getInstance().font.width(component) / 2, player.getRandom().nextInt(Minecraft.getInstance().getWindow().getGuiScaledHeight())));
+            }
+        } else {
+            DREAM_CATCHER_TEXTS.clear();
+        }
+    }
 
     public static Vec3 computeCameraAngles(Vec3 angles) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
@@ -223,6 +245,45 @@ public class ClientHandlers {
                     gui.renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
                 }
             }
+        }
+    }
+
+    public static void renderDreamCatcher(GuiGraphics guiGraphics) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.get())) {
+            for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
+                guiGraphics.drawCenteredString(Minecraft.getInstance().font, text.getText(), text.getX(), text.getY(), 0x5187c4);
+            }
+        }
+    }
+
+    private static class DreamCatcherText {
+        private final Component text;
+        private final int speed;
+        private int x;
+        private final int y;
+
+        public DreamCatcherText(Component component, int speed, int x, int y) {
+            this.text = component;
+            this.speed = speed;
+            this.x = x;
+            this.y = y;
+        }
+
+        public Component getText() {
+            return text;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public void updatePosition() {
+            x += speed;
         }
     }
 

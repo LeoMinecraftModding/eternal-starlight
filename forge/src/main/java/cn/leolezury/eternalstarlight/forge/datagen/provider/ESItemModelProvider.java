@@ -536,6 +536,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.STARLIGHT_SILVER_COIN.get());
         basicItem(ESItems.LOOT_BAG.get());
         basicItem(ESItems.BOOK.get());
+        basicItem(ESItems.BLOSSOM_OF_STARS.get());
     }
 
     private void armorWithTrim(ArmorItem armor) {

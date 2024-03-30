@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "use_item": {
+      "conditions": {
+        "item": {
+          "items": [
+            "eternal_starlight:blossom_of_stars"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.use_blossom_of_stars.description"
+    },
+    "hidden": true,
+    "icon": {
+      "item": "eternal_starlight:blossom_of_stars"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.use_blossom_of_stars.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

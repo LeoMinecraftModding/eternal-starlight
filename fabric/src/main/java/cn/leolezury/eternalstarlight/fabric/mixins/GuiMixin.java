@@ -20,6 +20,7 @@ public abstract class GuiMixin {
     private void es_render(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
         ClientHandlers.renderEtherErosion(((Gui) (Object) this), guiGraphics);
         ClientHandlers.renderOrbOfProphecyUse(((Gui) (Object) this), guiGraphics);
+        ClientHandlers.renderDreamCatcher(guiGraphics);
         ClientHandlers.renderCrystallineInfection(guiGraphics);
     }
 

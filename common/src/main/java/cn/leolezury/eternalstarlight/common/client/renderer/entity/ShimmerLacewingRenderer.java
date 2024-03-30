@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 @Environment(EnvType.CLIENT)
 public class ShimmerLacewingRenderer<T extends ShimmerLacewing> extends MobRenderer<T, ShimmerLacewingModel<T>> {
     private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing.png");
+    private static final ResourceLocation SWAMP_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing_swamp.png");
 
     public ShimmerLacewingRenderer(EntityRendererProvider.Context context) {
         super(context, new ShimmerLacewingModel<>(context.bakeLayer(ShimmerLacewingModel.LAYER_LOCATION)), 0.3f);
@@ -21,6 +22,6 @@ public class ShimmerLacewingRenderer<T extends ShimmerLacewing> extends MobRende
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
+        return entity.getVariant() == ShimmerLacewing.VARIANT_SWAMP ? SWAMP_TEXTURE : ENTITY_TEXTURE;
     }
 }

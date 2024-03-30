@@ -91,6 +91,9 @@ public class ClientSetupEvents {
         event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_use"), (gui, guiGraphics, partialTicks, width, height) -> {
             ClientHandlers.renderOrbOfProphecyUse(gui, guiGraphics);
         });
+        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "dream_catcher"), (gui, guiGraphics, partialTicks, width, height) -> {
+            ClientHandlers.renderDreamCatcher(guiGraphics);
+        });
         event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "crystalline_infection"), (gui, guiGraphics, partialTicks, width, height) -> {
             ClientHandlers.renderCrystallineInfection(guiGraphics);
         });

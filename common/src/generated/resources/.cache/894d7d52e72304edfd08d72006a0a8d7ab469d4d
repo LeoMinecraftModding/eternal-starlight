@@ -1,5 +1,5 @@
-// 1.20.4	2024-03-13T21:42:20.6816209	Tags for minecraft:entity_type mod id eternal_starlight
-1b358a5ddc4e169992763bf5c406a16124be40eb data/eternal_starlight/tags/entity_types/abyssal_fire_immune.json
+// 1.20.4	2024-03-29T21:54:22.9653097	Tags for minecraft:entity_type mod id eternal_starlight
+7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_types/abyssal_fire_immune.json
 be4ff0376ac9ff8a51eab4ae581131fd7b545de1 data/eternal_starlight/tags/entity_types/robotic.json
 5459e6dcff656af9ac3c0cbea22ffdabcbea8451 data/minecraft/tags/entity_types/fall_damage_immune.json
 f417c7429dc958b55fb2ac7c1ba6010f6b10c45d data/minecraft/tags/entity_types/skeletons.json

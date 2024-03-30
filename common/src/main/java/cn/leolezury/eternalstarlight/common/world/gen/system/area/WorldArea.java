@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.area;
 
-import cn.leolezury.eternalstarlight.common.data.ESBiomeDatas;
+import cn.leolezury.eternalstarlight.common.data.ESBiomeData;
 import cn.leolezury.eternalstarlight.common.data.ESDataTransformers;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
@@ -31,7 +31,7 @@ public class WorldArea {
         this.biomes = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(ESBiomeDatas.SCARLET_FOREST));
+                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(ESBiomeData.SCARLET_FOREST));
             }
         }
     }

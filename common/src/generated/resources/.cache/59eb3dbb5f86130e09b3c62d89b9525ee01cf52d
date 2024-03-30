@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-17T17:03:58.7466168	Loot Tables
+// 1.20.4	2024-03-29T21:54:22.9412206	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_tables/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
@@ -422,4 +422,5 @@ f1942f074e62b727cc84eb934ad87b712ec2afe9 data/eternal_starlight/loot_tables/enti
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_tables/entities/shimmer_lacewing.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_tables/entities/starlight_golem.json
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_tables/entities/the_gatekeeper.json
+9742c2717dc30701fa79d4ab3d735a2201afc8b9 data/eternal_starlight/loot_tables/entities/twilight_gaze.json
 35d4d5d8f11489090e0d4bd7438fc7e5d7b7c8c0 data/eternal_starlight/loot_tables/entities/yeti.json
