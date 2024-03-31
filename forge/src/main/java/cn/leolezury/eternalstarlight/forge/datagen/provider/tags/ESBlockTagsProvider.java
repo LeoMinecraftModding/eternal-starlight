@@ -21,10 +21,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider lookupProvider) {
         // mod tags
-        tag(ESTags.Blocks.NIGHTSHADE_TILLABLE_BLOCK).add(
-                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
-                ESBlocks.NIGHTSHADE_DIRT.get()
-        );
         tag(ESTags.Blocks.LUNAR_LOGS).add(
                 ESBlocks.LUNAR_LOG.get(),
                 ESBlocks.LUNAR_WOOD.get(),
@@ -555,6 +551,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 ESBlocks.NIGHTSHADE_DIRT.get(),
+                ESBlocks.NIGHTSHADE_FARMLAND.get(),
                 ESBlocks.NIGHTSHADE_MUD.get(),
                 ESBlocks.GLOWING_NIGHTSHADE_MUD.get(),
                 ESBlocks.TWILIGHT_SAND.get(),

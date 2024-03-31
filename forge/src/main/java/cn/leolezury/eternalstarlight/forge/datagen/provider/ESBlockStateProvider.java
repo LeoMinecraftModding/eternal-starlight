@@ -318,6 +318,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         lantern(ESBlocks.AMARAMBER_LANTERN.get());
         candle(ESBlocks.AMARAMBER_CANDLE.get());
 
+        farmland(ESBlocks.NIGHTSHADE_FARMLAND.get(), ESBlocks.NIGHTSHADE_DIRT.get());
+
         horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
 
         particleOnly(ESBlocks.ETHER.get());
@@ -652,6 +654,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
                         .rotationY(90).modelFile(modelNormal).build();
             }
         });
+    }
+
+    private void farmland(Block farmland, Block dirt) {
+        ModelFile normal = models().withExistingParent(name(farmland), "template_farmland")
+                .texture("dirt", blockTexture(dirt))
+                .texture("top", blockTexture(farmland));
+        ModelFile moist = models().withExistingParent(name(farmland) + "_moist", "template_farmland")
+                .texture("dirt", blockTexture(dirt))
+                .texture("top", blockTexture(farmland).withSuffix("_moist"));
+        getVariantBuilder(farmland).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.MOISTURE) < 7 ? normal : moist).build());
     }
 
     private void lantern(Block lantern) {

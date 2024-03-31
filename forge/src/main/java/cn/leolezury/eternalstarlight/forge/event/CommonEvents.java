@@ -3,17 +3,14 @@ package cn.leolezury.eternalstarlight.forge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.TickEvent;
@@ -21,10 +18,11 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
+
+import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID)
 public class CommonEvents {
@@ -104,11 +102,19 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void onHoeTillBlock(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getLevel().getBlockState(event.getPos()).is(ESTags.Blocks.NIGHTSHADE_TILLABLE_BLOCK) && event.getItemStack().getItem() instanceof HoeItem) {
-            event.getLevel().setBlockAndUpdate(event.getPos(), ESBlocks.NIGHTSHADE_FARMLAND.get().defaultBlockState());
-            event.getItemStack().hurtAndBreak(1, event.getEntity(), reason -> reason.broadcastBreakEvent(event.getHand()));
-            event.getLevel().playSound(event.getEntity(), event.getPos(), SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+    public static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
+        if (event.getToolAction() == ToolActions.AXE_STRIP) {
+            for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
+                if (event.getState().is(entry.getKey())) {
+                    event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
+                }
+            }
+        } else if (event.getToolAction() == ToolActions.HOE_TILL) {
+            for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
+                if (event.getState().is(entry.getKey())) {
+                    event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
+                }
+            }
         }
     }
 }

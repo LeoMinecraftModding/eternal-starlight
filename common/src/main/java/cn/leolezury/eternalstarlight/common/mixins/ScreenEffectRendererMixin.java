@@ -54,7 +54,7 @@ public abstract class ScreenEffectRendererMixin {
         float o = Mth.lerp(l, i, k);
         float p = Mth.lerp(l, j, k);
 
-        for(int r = 0; r < 2; ++r) {
+        for (int r = 0; r < 2; ++r) {
             poseStack.pushPose();
             poseStack.translate((float)(-(r * 2 - 1)) * 0.24F, -0.3F, 0.0F);
             poseStack.mulPose(Axis.YP.rotationDegrees((float)(r * 2 - 1) * 10.0F));

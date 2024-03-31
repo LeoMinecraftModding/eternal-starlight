@@ -593,6 +593,9 @@ public class ESItems {
 
     public static final RegistryObject<Item, Item> FROZEN_TUBE = registerItem("frozen_tube", () -> new FrozenTubeItem(new Item.Properties().stacksTo(16)));
 
+    // agriculture
+    public static final RegistryObject<Item, Item> NIGHTSHADE_FARMLAND = registerItem("nightshade_farmland", () -> new BlockItem(ESBlocks.NIGHTSHADE_FARMLAND.get(), new Item.Properties()));
+
     // magic
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(STARLIGHT)));

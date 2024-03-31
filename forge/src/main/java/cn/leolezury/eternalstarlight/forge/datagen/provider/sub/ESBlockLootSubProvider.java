@@ -469,6 +469,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
         add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
 
+        dropOther(ESBlocks.NIGHTSHADE_FARMLAND.get(), ESBlocks.NIGHTSHADE_DIRT.get());
+
         // nothing
         add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
         add(ESBlocks.ENERGY_BLOCK.get(), noDrop());

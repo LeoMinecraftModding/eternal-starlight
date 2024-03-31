@@ -40,8 +40,6 @@ public class ESTags {
         private static TagKey<Block> create(String string) {
             return TagKey.create(Registries.BLOCK, new ResourceLocation(EternalStarlight.MOD_ID, string));
         }
-        public static final TagKey<Block> NIGHTSHADE_TILLABLE_BLOCK = create("nightshade_tillable_block");
-        public static final TagKey<Block> NIGHTSHADE_CROP_SURVIVE = create("nightshade_crop_survive");
         public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");

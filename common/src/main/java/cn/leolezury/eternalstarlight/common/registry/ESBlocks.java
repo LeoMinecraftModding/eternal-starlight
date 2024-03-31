@@ -569,20 +569,17 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> AMARAMBER_LANTERN = BLOCKS.register("amaramber_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final RegistryObject<Block, Block> AMARAMBER_CANDLE = BLOCKS.register("amaramber_candle", () -> new CandleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CANDLE)));
 
+    // agriculture
+    public static final RegistryObject<Block, Block> NIGHTSHADE_FARMLAND = BLOCKS.register("nightshade_farmland", () -> new FarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
+
     // magic
     public static final RegistryObject<Block, Block> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
-
     public static final RegistryObject<Block, Block> ETHER = BLOCKS.register("ether", () -> ESPlatform.INSTANCE.createLiquidBlock(ESFluids.ETHER_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA)));
     public static final RegistryObject<Block, Block> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<Block, Block> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel((state) -> 10)));
-
-    //farm
-    public static final RegistryObject<Block, NightshadeFarmlandBlock> NIGHTSHADE_FARMLAND = BLOCKS.register("nightshade_farmland", () -> new NightshadeFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
-    public static final RegistryObject<Block, Block> ETHER_DIRT = BLOCKS.register("ether_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-    public static final RegistryObject<Block, ESCropBlock> DARK_DWARF = BLOCKS.register("dark_dwarf", () -> new ESCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CARROTS), 4, true));
 
     public static void loadClass() {}
 }

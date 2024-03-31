@@ -13,6 +13,7 @@
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EntityMixin",
+    "FarmBlockMixin",
     "FireBlockMixin",
     "ItemEntityMixin",
     "LivingEntityMixin",
