@@ -233,6 +233,11 @@ public class ClientSetupHandlers {
             ESBlocks.STARLIGHT_PORTAL
     );
 
+    public static final List<ResourceLocation> TRIMS = List.of(
+            new ResourceLocation(EternalStarlight.MOD_ID, "trims/models/armor/keeper"),
+            new ResourceLocation(EternalStarlight.MOD_ID, "trims/models/armor/forge")
+    );
+
     public static final Map<ResourceLocation, ResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();
 
     public static final Map<ResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();

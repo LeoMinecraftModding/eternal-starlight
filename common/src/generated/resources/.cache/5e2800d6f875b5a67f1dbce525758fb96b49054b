@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-17T19:02:31.574141	Tags for minecraft:item mod id eternal_starlight
+// 1.20.4	2024-03-31T17:25:43.6182127	Tags for minecraft:item mod id eternal_starlight
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
 c3758f1485dcdf3680091ca7ddb6d0c1e3fee6ed data/eternal_starlight/tags/items/glacite_weapons.json
@@ -41,8 +41,9 @@ de9285574993716563894a484c8b166ecacc76ec data/minecraft/tags/items/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/items/stone_crafting_materials.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/items/stone_tool_materials.json
 3fb4b75d961351043815fd7673af59d7c852a37b data/minecraft/tags/items/swords.json
-978041ef31f86d6d3833bd59a4eb74db7e393d42 data/minecraft/tags/items/trimmable_armor.json
+92e905bac6e1e926257eac1caa9fe545763eb7f3 data/minecraft/tags/items/trimmable_armor.json
 ae4d00b3791f88b0b362e8bc40f8732e02187ef3 data/minecraft/tags/items/trim_materials.json
+77c40771e01c263ced67e3ea5099a8d690efbc39 data/minecraft/tags/items/trim_templates.json
 08cb105be24fea8d3fe60a2e14435ac554add4a2 data/minecraft/tags/items/walls.json
 2ef261a2ee8458fa023fcd45efeac2dbf120b140 data/minecraft/tags/items/wooden_buttons.json
 408496cb9fee4fbbfc36c93af2d07fac9f7ff480 data/minecraft/tags/items/wooden_doors.json

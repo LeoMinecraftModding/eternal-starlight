@@ -530,6 +530,9 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.LIGHT_CRYSTAL.get());
         basicItem(ESItems.MANA_CRYSTAL_SHARD.get());
 
+        basicItem(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+        basicItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+
         basicItem(ESItems.ETHER_BUCKET.get());
         basicBlockItem(ESItems.ENERGY_BLOCK.get());
         basicBlockItem(ESItems.THE_GATEKEEPER_SPAWNER.get());

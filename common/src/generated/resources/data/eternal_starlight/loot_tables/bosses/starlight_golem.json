@@ -30,6 +30,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:forge_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:energy_sword"
         }
       ],

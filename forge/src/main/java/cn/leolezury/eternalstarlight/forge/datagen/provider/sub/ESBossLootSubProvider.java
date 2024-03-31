@@ -10,6 +10,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
@@ -37,6 +38,9 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(3, 5))
                                 .add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get())))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(0, 1))
                                 .add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get()))));

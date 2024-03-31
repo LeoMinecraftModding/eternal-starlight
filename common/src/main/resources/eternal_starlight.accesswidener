@@ -67,6 +67,9 @@ accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSele
 accessible class net/minecraft/data/models/ItemModelGenerators$TrimModelData
 accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MODELS Ljava/util/List;
 
+# sprite source list mixin
+mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermutations textures Ljava/util/List;
+
 # sky rendering
 accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
 accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;

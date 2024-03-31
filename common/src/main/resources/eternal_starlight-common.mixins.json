@@ -29,7 +29,9 @@
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "PlayerModelMixin",
-    "ScreenEffectRendererMixin"
+    "ScreenEffectRendererMixin",
+    "SpriteSourceListMixin",
+    "SpriteSourceListMixin$PalettedPermutationsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

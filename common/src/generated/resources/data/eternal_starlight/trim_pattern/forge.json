@@ -1,0 +1,8 @@
+{
+  "asset_id": "eternal_starlight:forge",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.eternal_starlight.forge"
+  },
+  "template_item": "eternal_starlight:forge_armor_trim_smithing_template"
+}

@@ -512,6 +512,8 @@
   "item.eternal_starlight.blaze_crystal": "Blaze Crystal",
   "item.eternal_starlight.light_crystal": "Light Crystal",
   "item.eternal_starlight.mana_crystal_shard": "Mana Crystal Shard",
+  "item.eternal_starlight.keeper_armor_trim_smithing_template": "Smithing Template",
+  "item.eternal_starlight.forge_armor_trim_smithing_template": "Smithing Template",
   "item.eternal_starlight.ether_bucket": "Ether Bucket",
   "item.eternal_starlight.starlight_silver_coin": "Starlight Silver Coin",
   "item.eternal_starlight.loot_bag": "Loot Bag",
@@ -652,6 +654,9 @@
   "trim_material.eternal_starlight.golem_steel": "Golem Steel Material",
   "trim_material.eternal_starlight.moonring": "Moonring Material",
   "trim_material.eternal_starlight.doomeden_bone": "Doomeden Bone Material",
+
+  "trim_pattern.eternal_starlight.keeper": "Keeper Armor Trim",
+  "trim_pattern.eternal_starlight.forge": "Forge Armor Trim",
 
   "mana_type.eternal_starlight.terra": "Terra",
   "mana_type.eternal_starlight.wind": "Wind",

@@ -33,11 +33,11 @@ public class ESTrimMaterials {
         register(context, AETHERSENT, ESItems.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
         register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
         register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
-        register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0xfdbd77, 0.2f);
+        register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
         register(context, AMARAMBER, ESItems.AMARAMBER_INGOT.asHolder(), 0xc3647e, 1.0f);
-        register(context, GOLEM_STEEL, ESItems.GOLEM_STEEL_INGOT.asHolder(), 0xfdbd77, 0.3f);
-        register(context, MOONRING, ESItems.TENACIOUS_PETAL.asHolder(), 0xfdbd77, 0.8f);
-        register(context, DOOMEDEN_BONE, ESItems.BROKEN_DOOMEDEN_BONE.asHolder(), 0xfdbd77, 0.1f);
+        register(context, GOLEM_STEEL, ESItems.GOLEM_STEEL_INGOT.asHolder(), 0x397aaa, 0.2f);
+        register(context, MOONRING, ESItems.TENACIOUS_PETAL.asHolder(), 0xa36d9e, 0.8f);
+        register(context, DOOMEDEN_BONE, ESItems.BROKEN_DOOMEDEN_BONE.asHolder(), 0x978182, 0.1f);
     }
 
     private static void register(BootstapContext<TrimMaterial> context, ResourceKey<TrimMaterial> key, Holder<Item> trimItem, int color, float itemModelIndex) {

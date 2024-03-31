@@ -512,6 +512,8 @@
   "item.eternal_starlight.blaze_crystal": "炎之水晶",
   "item.eternal_starlight.light_crystal": "光之水晶",
   "item.eternal_starlight.mana_crystal_shard": "魔法水晶碎片",
+  "item.eternal_starlight.keeper_armor_trim_smithing_template": "锻造模板",
+  "item.eternal_starlight.forge_armor_trim_smithing_template": "锻造模板",
   "item.eternal_starlight.ether_bucket": "以太桶",
   "item.eternal_starlight.starlight_silver_coin": "星光银币",
   "item.eternal_starlight.loot_bag": "战利品袋",
@@ -652,6 +654,9 @@
   "trim_material.eternal_starlight.golem_steel": "傀儡钢材料",
   "trim_material.eternal_starlight.moonring": "月珥材料",
   "trim_material.eternal_starlight.doomeden_bone": "魔窟断骨材料",
+
+  "trim_pattern.eternal_starlight.keeper": "守御盔甲纹饰",
+  "trim_pattern.eternal_starlight.forge": "锻造盔甲纹饰",
 
   "mana_type.eternal_starlight.terra": "地",
   "mana_type.eternal_starlight.wind": "风",

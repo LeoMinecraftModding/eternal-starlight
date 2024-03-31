@@ -608,6 +608,10 @@ public class ESItems {
     public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = registerItem("light_crystal", () -> new ManaCrystalItem(ManaType.LIGHT, new Item.Properties().durability(300).rarity(STARLIGHT)));
     public static final RegistryObject<Item, Item> MANA_CRYSTAL_SHARD = registerItem("mana_crystal_shard", () -> new Item(new Item.Properties().rarity(STARLIGHT)));
 
+    // trim
+    public static final RegistryObject<Item, Item> KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE = registerItem("keeper_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(new ResourceLocation(EternalStarlight.MOD_ID + ":keeper")));
+    public static final RegistryObject<Item, Item> FORGE_ARMOR_TRIM_SMITHING_TEMPLATE = registerItem("forge_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(new ResourceLocation(EternalStarlight.MOD_ID + ":forge")));
+
     // misc
     public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> ESPlatform.INSTANCE.createBucket(ESFluids.ETHER_STILL, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(ESBlocks.ENERGY_BLOCK.get(), new Item.Properties()));

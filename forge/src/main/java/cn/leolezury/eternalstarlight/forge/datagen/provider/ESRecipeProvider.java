@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ESRecipeProvider extends RecipeProvider {
     public ESRecipeProvider(PackOutput output) {
@@ -37,6 +39,10 @@ public class ESRecipeProvider extends RecipeProvider {
         addGlaciteRecipes(recipeOutput);
         addSaltpeterRecipes(recipeOutput);
         addAmaramberRecipes(recipeOutput);
+
+        smithingTrims().forEach((template) -> trimSmithing(recipeOutput, template.template(), template.id()));
+        copySmithingTemplate(recipeOutput, ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.GRIMSTONE.get(), ESItems.SWAMP_SILVER_INGOT.get());
+        copySmithingTemplate(recipeOutput, ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.VOIDSTONE.get(), ESItems.GOLEM_STEEL_INGOT.get());
 
         // yeti fur
         List<Item> dyeList = List.of(Items.BLACK_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.CYAN_DYE, Items.GRAY_DYE, Items.GREEN_DYE, Items.LIGHT_BLUE_DYE, Items.LIGHT_GRAY_DYE, Items.LIME_DYE, Items.MAGENTA_DYE, Items.ORANGE_DYE, Items.PINK_DYE, Items.PURPLE_DYE, Items.RED_DYE, Items.YELLOW_DYE, Items.WHITE_DYE);
@@ -937,6 +943,14 @@ public class ESRecipeProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder builder = SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.FOOD, output, xp, time, serializer, factory).unlockedBy(getHasName(input), has(input));
         String itemName = getItemName(output);
         builder.save(recipeOutput, getModLocation(itemName + "_from_" + fromName));
+    }
+
+    protected static void copySmithingTemplate(RecipeOutput recipeOutput, ItemLike template, ItemLike ingredient, ItemLike ingotIngredient) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, template, 2).define('#', ingotIngredient).define('C', ingredient).define('S', template).pattern("#S#").pattern("#C#").pattern("###").unlockedBy(getHasName(template), has(template)).save(recipeOutput);
+    }
+
+    public static Stream<VanillaRecipeProvider.TrimTemplate> smithingTrims() {
+        return Stream.of(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get()).map((item) -> new VanillaRecipeProvider.TrimTemplate(item, new ResourceLocation(EternalStarlight.MOD_ID, getItemName(item) + "_smithing_trim")));
     }
 
     protected final String name(ItemLike item) {

@@ -1,0 +1,8 @@
+{
+  "asset_id": "eternal_starlight:keeper",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.eternal_starlight.keeper"
+  },
+  "template_item": "eternal_starlight:keeper_armor_trim_smithing_template"
+}

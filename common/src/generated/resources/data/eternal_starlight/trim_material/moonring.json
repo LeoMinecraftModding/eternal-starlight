@@ -1,7 +1,7 @@
 {
   "asset_name": "moonring",
   "description": {
-    "color": "#FDBD77",
+    "color": "#A36D9E",
     "translate": "trim_material.eternal_starlight.moonring"
   },
   "ingredient": "eternal_starlight:tenacious_petal",

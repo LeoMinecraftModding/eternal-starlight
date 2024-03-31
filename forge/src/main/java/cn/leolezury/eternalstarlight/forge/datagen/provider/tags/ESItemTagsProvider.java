@@ -162,7 +162,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.TRIMMABLE_ARMOR).add(
                 ESItems.AETHERSENT_HOOD.get(),
                 ESItems.SWAMP_SILVER_HELMET.get(),
-                ESItems.SWAMP_SILVER_CHESTPLATE.get()
+                ESItems.SWAMP_SILVER_CHESTPLATE.get(),
+                ESItems.GLACITE_HELMET.get(),
+                ESItems.GLACITE_CHESTPLATE.get(),
+                ESItems.GLACITE_LEGGINGS.get(),
+                ESItems.GLACITE_BOOTS.get()
         );
         tag(ItemTags.TRIM_MATERIALS).add(
                 ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
@@ -175,6 +179,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.GOLEM_STEEL_INGOT.get(),
                 ESItems.TENACIOUS_PETAL.get(),
                 ESItems.BROKEN_DOOMEDEN_BONE.get()
+        );
+        tag(ItemTags.TRIM_TEMPLATES).add(
+                ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(),
+                ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get()
         );
         tag(ItemTags.STONE_TOOL_MATERIALS).add(
                 ESItems.GRIMSTONE.get(),

@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-31T14:06:29.3912754	Item Models: eternal_starlight
+// 1.20.4	2024-03-31T17:25:43.5947667	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -158,6 +158,7 @@ b10ee97a4c4a84d993dff0fd2bf7541aef5f7c7b assets/eternal_starlight/models/item/fa
 8ff0668703ed205ef34bc16e4615b08fb4382df4 assets/eternal_starlight/models/item/fantagrass.json
 9322f7cacc2dca6511af083b6f93932777b8d2b8 assets/eternal_starlight/models/item/fantasy_grass_block.json
 f75d73859b9a583d4fb4838f158fcb1283b07ec9 assets/eternal_starlight/models/item/fantasy_grass_carpet.json
+20688e4aa1888c09c9b172251afc51ee67f23299 assets/eternal_starlight/models/item/forge_armor_trim_smithing_template.json
 64c9d329eda50a9028dea3426fb9c473589f79f9 assets/eternal_starlight/models/item/frozen_tube.json
 a6d922f589397263de5cdbe957a7256285610101 assets/eternal_starlight/models/item/glacite.json
 99e054290a2fe3c8cd7652c1c69bc7c46301b232 assets/eternal_starlight/models/item/glacite_axe.json
@@ -212,6 +213,7 @@ a73962ccfeaca57fadc311cd4384ce8564bfe22f assets/eternal_starlight/models/item/gr
 fa9edd4fae239533ab0cf14a77ffcf0ae3d5731c assets/eternal_starlight/models/item/grimstone_tile_stairs.json
 f289ca560531c1f11d2df95c86788a0c445944b4 assets/eternal_starlight/models/item/grimstone_tile_wall.json
 9257ec5eb0330504076cc8d3849ebf3c8bcd9365 assets/eternal_starlight/models/item/jingling_pickle.json
+e6f5e6609fe11eb51e084ed419f05cf7ca01ae56 assets/eternal_starlight/models/item/keeper_armor_trim_smithing_template.json
 364b79f414cd4a38f8bac34142fa6d13e1a46850 assets/eternal_starlight/models/item/light_blue_yeti_fur.json
 2b788abcd4ea5190107a3dbc7100001d4cb550e4 assets/eternal_starlight/models/item/light_blue_yeti_fur_carpet.json
 8f3034c901bee6a8a5d1a93b4afbeb2610214ae1 assets/eternal_starlight/models/item/light_crystal.json

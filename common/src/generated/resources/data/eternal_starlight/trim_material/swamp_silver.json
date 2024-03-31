@@ -1,7 +1,7 @@
 {
   "asset_name": "swamp_silver",
   "description": {
-    "color": "#FDBD77",
+    "color": "#8797B8",
     "translate": "trim_material.eternal_starlight.swamp_silver"
   },
   "ingredient": "eternal_starlight:swamp_silver_ingot",
