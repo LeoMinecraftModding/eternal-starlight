@@ -22,7 +22,8 @@ public class FrozenTubeItem extends Item {
             Vec3 targetPos = ESMathUtil.rotationToPosition(player.getEyePosition(), 1, -player.getXRot(), player.getYHeadRot() + 90);
             Vec3 launchPos = player.getEyePosition();
             Vec3 delta = targetPos.subtract(launchPos).normalize();
-            FrozenTube tube = new FrozenTube(level, player, delta.x, delta.y, delta.z);
+            FrozenTube tube = new FrozenTube(level, player);
+            tube.shoot(delta.x, delta.y, delta.z, 0.9f, 0.2f);
             tube.setPos(launchPos);
             tube.setOwner(player);
             level.addFreshEntity(tube);

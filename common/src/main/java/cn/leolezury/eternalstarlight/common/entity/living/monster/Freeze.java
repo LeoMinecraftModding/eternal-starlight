@@ -70,7 +70,7 @@ public class Freeze extends Monster implements RangedAttackMob {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new FreezeAttackGoal(this, 0.3, 40, 25));
+        goalSelector.addGoal(1, new FreezeAttackGoal(this, 1.5, 70, 15));
         goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 32.0F));
         goalSelector.addGoal(3, new RandomLookAroundGoal(this));
         goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.3));
@@ -107,7 +107,7 @@ public class Freeze extends Monster implements RangedAttackMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 32).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.FLYING_SPEED, 0.3).add(Attributes.FOLLOW_RANGE, 80);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 32).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.FLYING_SPEED, 0.6).add(Attributes.FOLLOW_RANGE, 80);
     }
 
     @Override
@@ -146,7 +146,8 @@ public class Freeze extends Monster implements RangedAttackMob {
                     Vec3 targetPos = livingEntity.position().add(0, livingEntity.getBbHeight() / 2f, 0);
                     Vec3 launchPos = position().add(0, getBbHeight() / 2f, 0);
                     Vec3 delta = targetPos.subtract(launchPos).normalize();
-                    FrozenTube tube = new FrozenTube(level(), this, delta.x, delta.y, delta.z);
+                    FrozenTube tube = new FrozenTube(level(), this);
+                    tube.shoot(delta.x, delta.y + delta.horizontalDistance() * 0.4, delta.z, 0.9f, 0.2f);
                     tube.setPos(launchPos);
                     tube.setOwner(this);
                     level().addFreshEntity(tube);

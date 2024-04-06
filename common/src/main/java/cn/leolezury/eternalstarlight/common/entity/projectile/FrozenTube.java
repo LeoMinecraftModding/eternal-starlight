@@ -1,63 +1,56 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import net.minecraft.core.particles.ParticleOptions;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
-public class FrozenTube extends AbstractHurtingProjectile {
-    public FrozenTube(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
-        super(type, level);
+public class FrozenTube extends AbstractArrow {
+    private boolean dealtDamage;
+
+    public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
+        super(entityType, level, new ItemStack(ESItems.FROZEN_TUBE.get()));
     }
 
-    public FrozenTube(Level level, LivingEntity entity, double x, double y, double z) {
-        super(ESEntities.FROZEN_TUBE.get(), entity, x, y, z, level);
+    public FrozenTube(Level level, LivingEntity livingEntity) {
+        super(ESEntities.FROZEN_TUBE.get(), livingEntity, level, new ItemStack(ESItems.FROZEN_TUBE.get()));
     }
 
-    protected float getSoundVolume() {
-        return 1.0F;
+    public void tick() {
+        if (this.inGroundTime > 4) {
+            this.dealtDamage = true;
+        }
+
+        super.tick();
     }
 
-    public float getVoicePitch() {
-        return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
-    }
-
-    protected ParticleOptions getTrailParticle() {
-        return ESParticles.STARLIGHT.get();
-    }
-
-    @Override
-    public boolean isPickable() {
-        return false;
-    }
-
-    public boolean isOnFire() {
-        return false;
-    }
-
-    public boolean hurt(DamageSource damageSource, float amount) {
-        return false;
-    }
-
-    protected boolean shouldBurn() {
-        return false;
+    @Nullable
+    protected EntityHitResult findHitEntity(Vec3 vec3, Vec3 vec32) {
+        return this.dealtDamage ? null : super.findHitEntity(vec3, vec32);
     }
 
     @Override
     protected void onHit(HitResult hitResult) {
-        super.onHit(hitResult);
-        playSound(SoundEvents.GLASS_BREAK, getSoundVolume(), getVoicePitch());
+        playSound(SoundEvents.GLASS_BREAK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+        if (level() instanceof ServerLevel serverLevel) {
+            ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 0, 0, 0));
+        }
         for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
             if (entity.canFreeze()) {
                 if (!level().isClientSide) {
@@ -65,31 +58,27 @@ public class FrozenTube extends AbstractHurtingProjectile {
                         entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
                     }
                     entity.setTicksFrozen(entity.getTicksFrozen() + 100);
-                } else {
-                    this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 0.7, 0.7, 0.9);
                 }
             }
         }
         discard();
     }
 
-    @Override
-    public void tick() {
-        Vec3 vec3 = this.getDeltaMovement();
-        double e = vec3.x;
-        double f = vec3.y;
-        double g = vec3.z;
-        double l = vec3.horizontalDistance();
-        this.setYRot((float)(Mth.atan2(e, g) * Mth.RAD_TO_DEG));
-        this.setXRot((float)(Mth.atan2(f, l) * Mth.RAD_TO_DEG));
-        float actualXRot0 = xRotO;
-        float actualYRot0 = yRotO;
-        float actualXRot = getXRot();
-        float actualYRot = getYRot();
-        super.tick();
-        xRotO = actualXRot0;
-        yRotO = actualYRot0;
-        setXRot(actualXRot);
-        setYRot(actualYRot);
+    public void readAdditionalSaveData(CompoundTag compoundTag) {
+        super.readAdditionalSaveData(compoundTag);
+        this.dealtDamage = compoundTag.getBoolean("DealtDamage");
+    }
+
+    public void addAdditionalSaveData(CompoundTag compoundTag) {
+        super.addAdditionalSaveData(compoundTag);
+        compoundTag.putBoolean("DealtDamage", this.dealtDamage);
+    }
+
+    protected float getWaterInertia() {
+        return 0.99F;
+    }
+
+    public boolean shouldRender(double d, double e, double f) {
+        return true;
     }
 }

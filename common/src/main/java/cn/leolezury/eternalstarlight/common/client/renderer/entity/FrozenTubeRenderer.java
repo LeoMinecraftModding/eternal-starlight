@@ -9,6 +9,7 @@ import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -27,11 +28,22 @@ public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
 
     @Override
     public void render(FrozenTube entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
-        VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90.0F));
-        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        this.model.setupAnim();
+        poseStack.pushPose();
+        float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
+        float xRot = -Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
+        float bob = entity.tickCount + partialTicks;
+
+        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yRot));
+        poseStack.scale(-1.0F, -1.0F, 1.0F);
+        poseStack.translate(0.0F, -1.5F, 0.0F);
+
+        this.model.prepareMobModel(entity, 0, 0, partialTicks);
+        this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
+        RenderType renderType = this.model.renderType(getTextureLocation(entity));
+        VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+
+        poseStack.popPose();
         super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
     }
 
