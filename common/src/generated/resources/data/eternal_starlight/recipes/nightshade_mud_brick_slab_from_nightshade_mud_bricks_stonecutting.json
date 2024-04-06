@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "eternal_starlight:nightshade_mud_bricks"
-  },
-  "result": "eternal_starlight:nightshade_mud_brick_slab"
-}

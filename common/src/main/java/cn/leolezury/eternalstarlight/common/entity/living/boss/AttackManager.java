@@ -37,12 +37,14 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
     
     public void tick() {
         if (entity.getAttackState() == 0) {
-            selectPhase().ifPresent(p -> p.start(entity));
+            selectPhase().ifPresent(p -> {
+                p.start(entity);
+                coolDowns.put(p.getId(), p.getCoolDown());
+            });
         } else {
             getActivePhase().ifPresent(p -> {
                 if (!canContinue(p)) {
                     p.stop(entity);
-                    coolDowns.put(p.getId(), p.getCoolDown());
                 } else {
                     p.tick(entity);
                     entity.setAttackTicks(entity.getAttackTicks() + 1);

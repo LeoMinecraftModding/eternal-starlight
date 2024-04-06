@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 33,
+    "targets": [
+      {
+        "state": {
+          "Name": "eternal_starlight:nightfall_dirt"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "eternal_starlight:base_stone_starlight"
+        }
+      }
+    ]
+  }
+}

@@ -199,7 +199,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(),
                 ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(),
                 ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(),
                 ESBlocks.DUSTED_BRICK_SLAB.get(),
@@ -234,7 +234,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_STAIRS.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(),
                 ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(),
                 ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(),
                 ESBlocks.DUSTED_BRICK_STAIRS.get(),
@@ -261,7 +261,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_THERMABYSSLATE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_WALL.get(),
                 ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_WALL.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(),
                 ESBlocks.TWILIGHT_SANDSTONE_WALL.get(),
                 ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(),
                 ESBlocks.DUSTED_BRICK_WALL.get(),
@@ -362,10 +362,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.GOLEM_STEEL_BLOCK.get()
         );
         tag(BlockTags.DIRT).add(
-                ESBlocks.NIGHTSHADE_DIRT.get(),
-                ESBlocks.NIGHTSHADE_MUD.get(),
-                ESBlocks.GLOWING_NIGHTSHADE_MUD.get(),
-                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
+                ESBlocks.NIGHTFALL_DIRT.get(),
+                ESBlocks.NIGHTFALL_MUD.get(),
+                ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
+                ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
                 ESBlocks.FANTASY_GRASS_BLOCK.get()
         );
         tag(BlockTags.SAND).add(
@@ -375,8 +375,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.TWILIGHT_SAND.get()
         );
         tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
-                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
-                ESBlocks.NIGHTSHADE_DIRT.get()
+                ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+                ESBlocks.NIGHTFALL_DIRT.get()
         );
         tag(BlockTags.WITHER_IMMUNE).add(
                 ESBlocks.ENERGY_BLOCK.get()
@@ -495,11 +495,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.CHISELED_POLISHED_CRYOBYSSLATE.get(),
                 ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get(),
                 ESBlocks.CRYOBYSSAL_GEYSER.get(),
-                ESBlocks.PACKED_NIGHTSHADE_MUD.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICKS.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(),
-                ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(),
+                ESBlocks.PACKED_NIGHTFALL_MUD.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICKS.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(),
+                ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(),
                 ESBlocks.TWILIGHT_SANDSTONE.get(),
                 ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(),
                 ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(),
@@ -550,13 +550,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
-                ESBlocks.NIGHTSHADE_DIRT.get(),
-                ESBlocks.NIGHTSHADE_FARMLAND.get(),
-                ESBlocks.NIGHTSHADE_MUD.get(),
-                ESBlocks.GLOWING_NIGHTSHADE_MUD.get(),
+                ESBlocks.NIGHTFALL_DIRT.get(),
+                ESBlocks.NIGHTFALL_FARMLAND.get(),
+                ESBlocks.NIGHTFALL_MUD.get(),
+                ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
                 ESBlocks.TWILIGHT_SAND.get(),
                 ESBlocks.DUSTED_GRAVEL.get(),
-                ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(),
+                ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
                 ESBlocks.FANTASY_GRASS_BLOCK.get(),
                 ESBlocks.SWAMP_SILVER_ORE.get()
         );

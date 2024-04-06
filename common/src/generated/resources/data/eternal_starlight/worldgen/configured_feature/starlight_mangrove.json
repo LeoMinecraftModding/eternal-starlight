@@ -88,7 +88,7 @@
         "max_root_length": 15,
         "max_root_width": 8,
         "muddy_roots_in": [
-          "eternal_starlight:nightshade_mud",
+          "eternal_starlight:nightfall_mud",
           "eternal_starlight:muddy_starlight_mangrove_roots"
         ],
         "muddy_roots_provider": {

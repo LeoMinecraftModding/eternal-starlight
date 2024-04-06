@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "eternal_starlight:nightfall_mud_bricks"
+  },
+  "result": "eternal_starlight:nightfall_mud_brick_wall"
+}

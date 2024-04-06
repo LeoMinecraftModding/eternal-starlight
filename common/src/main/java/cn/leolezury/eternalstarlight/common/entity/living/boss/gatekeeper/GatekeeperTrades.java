@@ -11,6 +11,7 @@ public class GatekeeperTrades {
             new BuyItemTrade(Items.IRON_INGOT, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 2, 20),
             new BuyItemTrade(Items.EMERALD, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 20),
             new SellItemTrade(ESItems.SEEKING_EYE.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 5, 20),
+            new SellItemTrade(ESItems.CHISELED_VOIDSTONE.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 8, 20),
             new SellItemTrade(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 5, 1, 10),
             new SellItemTrade(ESItems.ORB_OF_PROPHECY.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 20)
     };

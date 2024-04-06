@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class CropBlockMixin {
     @Inject(method = "mayPlaceOn", at = @At(value = "HEAD"), cancellable = true)
     private void es_mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-        if (blockState.is(ESBlocks.NIGHTSHADE_FARMLAND.get())) {
+        if (blockState.is(ESBlocks.NIGHTFALL_FARMLAND.get())) {
             cir.setReturnValue(true);
         }
     }

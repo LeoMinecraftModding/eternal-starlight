@@ -269,13 +269,13 @@ public class ESItems {
     public static final RegistryObject<Item, Item> CRYOBYSSAL_GEYSER = registerItem("cryobyssal_geyser", () -> new BlockItem(ESBlocks.CRYOBYSSAL_GEYSER.get(), new Item.Properties()));
 
     // mud
-    public static final RegistryObject<Item, Item> NIGHTSHADE_MUD = registerItem("nightshade_mud", () -> new BlockItem(ESBlocks.NIGHTSHADE_MUD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> GLOWING_NIGHTSHADE_MUD = registerItem("glowing_nightshade_mud", () -> new BlockItem(ESBlocks.GLOWING_NIGHTSHADE_MUD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> PACKED_NIGHTSHADE_MUD = registerItem("packed_nightshade_mud", () -> new BlockItem(ESBlocks.PACKED_NIGHTSHADE_MUD.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICKS = registerItem("nightshade_mud_bricks", () -> new BlockItem(ESBlocks.NIGHTSHADE_MUD_BRICKS.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICK_SLAB = registerItem("nightshade_mud_brick_slab", () -> new BlockItem(ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICK_STAIRS = registerItem("nightshade_mud_brick_stairs", () -> new BlockItem(ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> NIGHTSHADE_MUD_BRICK_WALL = registerItem("nightshade_mud_brick_wall", () -> new BlockItem(ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_MUD = registerItem("nightfall_mud", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> GLOWING_NIGHTFALL_MUD = registerItem("glowing_nightfall_mud", () -> new BlockItem(ESBlocks.GLOWING_NIGHTFALL_MUD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> PACKED_NIGHTFALL_MUD = registerItem("packed_nightfall_mud", () -> new BlockItem(ESBlocks.PACKED_NIGHTFALL_MUD.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_MUD_BRICKS = registerItem("nightfall_mud_bricks", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_MUD_BRICK_SLAB = registerItem("nightfall_mud_brick_slab", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_MUD_BRICK_STAIRS = registerItem("nightfall_mud_brick_stairs", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_MUD_BRICK_WALL = registerItem("nightfall_mud_brick_wall", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), new Item.Properties()));
 
     // sand
     public static final RegistryObject<Item, Item> TWILIGHT_SAND = registerItem("twilight_sand", () -> new BlockItem(ESBlocks.TWILIGHT_SAND.get(), new Item.Properties()));
@@ -416,8 +416,8 @@ public class ESItems {
     public static final RegistryObject<Item, Item> STELLAFLY_BUSH = registerItem("stellafly_bush", () -> new BlockItem(ESBlocks.STELLAFLY_BUSH.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLIMMERFLY_BUSH = registerItem("glimmerfly_bush", () -> new BlockItem(ESBlocks.GLIMMERFLY_BUSH.get(), new Item.Properties()));
 
-    public static final RegistryObject<Item, Item> NIGHTSHADE_DIRT = registerItem("nightshade_dirt", () -> new BlockItem(ESBlocks.NIGHTSHADE_DIRT.get(), new Item.Properties()));
-    public static final RegistryObject<Item, Item> NIGHTSHADE_GRASS_BLOCK = registerItem("nightshade_grass_block", () -> new BlockItem(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_DIRT = registerItem("nightfall_dirt", () -> new BlockItem(ESBlocks.NIGHTFALL_DIRT.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_GRASS_BLOCK = registerItem("nightfall_grass_block", () -> new BlockItem(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> FANTASY_GRASS_CARPET = registerItem("fantasy_grass_carpet", () -> new BlockItem(ESBlocks.FANTASY_GRASS_CARPET.get(), new Item.Properties()));
 
@@ -594,7 +594,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> FROZEN_TUBE = registerItem("frozen_tube", () -> new FrozenTubeItem(new Item.Properties().stacksTo(16)));
 
     // agriculture
-    public static final RegistryObject<Item, Item> NIGHTSHADE_FARMLAND = registerItem("nightshade_farmland", () -> new BlockItem(ESBlocks.NIGHTSHADE_FARMLAND.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NIGHTFALL_FARMLAND = registerItem("nightfall_farmland", () -> new BlockItem(ESBlocks.NIGHTFALL_FARMLAND.get(), new Item.Properties()));
 
     // magic
     public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));

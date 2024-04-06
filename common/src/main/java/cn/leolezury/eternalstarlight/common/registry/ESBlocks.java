@@ -369,13 +369,13 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> CRYOBYSSAL_GEYSER = BLOCKS.register("cryobyssal_geyser", () -> new AbyssalGeyserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
 
     // mud
-    public static final RegistryObject<Block, Block> NIGHTSHADE_MUD = BLOCKS.register("nightshade_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
-    public static final RegistryObject<Block, Block> GLOWING_NIGHTSHADE_MUD = BLOCKS.register("glowing_nightshade_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).lightLevel((state) -> 15)));
-    public static final RegistryObject<Block, Block> PACKED_NIGHTSHADE_MUD = BLOCKS.register("packed_nightshade_mud", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_MUD)));
-    public static final RegistryObject<Block, Block> NIGHTSHADE_MUD_BRICKS = BLOCKS.register("nightshade_mud_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS)));
-    public static final RegistryObject<Block, SlabBlock> NIGHTSHADE_MUD_BRICK_SLAB = BLOCKS.register("nightshade_mud_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_SLAB)));
-    public static final RegistryObject<Block, StairBlock> NIGHTSHADE_MUD_BRICK_STAIRS = BLOCKS.register("nightshade_mud_brick_stairs", () -> new StairBlock(NIGHTSHADE_MUD_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_STAIRS)));
-    public static final RegistryObject<Block, WallBlock> NIGHTSHADE_MUD_BRICK_WALL = BLOCKS.register("nightshade_mud_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_WALL)));
+    public static final RegistryObject<Block, Block> NIGHTFALL_MUD = BLOCKS.register("nightfall_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+    public static final RegistryObject<Block, Block> GLOWING_NIGHTFALL_MUD = BLOCKS.register("glowing_nightfall_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).lightLevel((state) -> 15)));
+    public static final RegistryObject<Block, Block> PACKED_NIGHTFALL_MUD = BLOCKS.register("packed_nightfall_mud", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_MUD)));
+    public static final RegistryObject<Block, Block> NIGHTFALL_MUD_BRICKS = BLOCKS.register("nightfall_mud_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS)));
+    public static final RegistryObject<Block, SlabBlock> NIGHTFALL_MUD_BRICK_SLAB = BLOCKS.register("nightfall_mud_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_SLAB)));
+    public static final RegistryObject<Block, StairBlock> NIGHTFALL_MUD_BRICK_STAIRS = BLOCKS.register("nightfall_mud_brick_stairs", () -> new StairBlock(NIGHTFALL_MUD_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_STAIRS)));
+    public static final RegistryObject<Block, WallBlock> NIGHTFALL_MUD_BRICK_WALL = BLOCKS.register("nightfall_mud_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_WALL)));
 
     // sand
     public static final RegistryObject<Block, Block> TWILIGHT_SAND = BLOCKS.register("twilight_sand", () -> new ColoredFallingBlock(new ColorRGBA(0x907e9b), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.COLOR_PURPLE)));
@@ -514,10 +514,10 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> STELLAFLY_BUSH = BLOCKS.register("stellafly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.BLUE)));
     public static final RegistryObject<Block, Block> GLIMMERFLY_BUSH = BLOCKS.register("glimmerfly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.RED).lightLevel(state -> 10)));
 
-    public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTSHADE_MUD.get(), ESPlacedFeatures.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTFALL_MUD.get(), ESPlacedFeatures.SWAMP_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> FANTASY_GRASS_CARPET = BLOCKS.register("fantasy_grass_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
-    public static final RegistryObject<Block, Block> NIGHTSHADE_DIRT = BLOCKS.register("nightshade_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-    public static final RegistryObject<Block, Block> NIGHTSHADE_GRASS_BLOCK = BLOCKS.register("nightshade_grass_block", () -> new ESGrassBlock(NIGHTSHADE_DIRT.get(), ESPlacedFeatures.FOREST_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final RegistryObject<Block, Block> NIGHTFALL_DIRT = BLOCKS.register("nightfall_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
+    public static final RegistryObject<Block, Block> NIGHTFALL_GRASS_BLOCK = BLOCKS.register("nightfall_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
     // yeti fur
     public static final RegistryObject<Block, Block> WHITE_YETI_FUR = BLOCKS.register("white_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
@@ -570,7 +570,7 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> AMARAMBER_CANDLE = BLOCKS.register("amaramber_candle", () -> new CandleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CANDLE)));
 
     // agriculture
-    public static final RegistryObject<Block, Block> NIGHTSHADE_FARMLAND = BLOCKS.register("nightshade_farmland", () -> new FarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
+    public static final RegistryObject<Block, Block> NIGHTFALL_FARMLAND = BLOCKS.register("nightfall_farmland", () -> new FarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
 
     // magic
     public static final RegistryObject<Block, Block> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));

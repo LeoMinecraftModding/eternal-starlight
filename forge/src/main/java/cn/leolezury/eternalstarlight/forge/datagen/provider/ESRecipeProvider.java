@@ -103,8 +103,8 @@ public class ESRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "light_crystal"));
 
         // misc
-        addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTSHADE_MUD.get());
-        addShapeless(recipeOutput, ESItems.NIGHTSHADE_MUD.get(), ESItems.PACKED_NIGHTSHADE_MUD.get(), 1, ESItems.NIGHTSHADE_MUD.get(), ESItems.LUNAR_BERRIES.get());
+        addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
+        addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get())
                 .pattern("FFF")
                 .pattern("FPF")
@@ -406,13 +406,13 @@ public class ESRecipeProvider extends RecipeProvider {
         addSlab(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get());
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
 
-        addStoneCompress(recipeOutput, ESBlocks.NIGHTSHADE_MUD_BRICKS.get(), ESBlocks.PACKED_NIGHTSHADE_MUD.get());
-        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get());
-        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get());
-        addStairs(recipeOutput, ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get());
-        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get());
-        addSlab(recipeOutput, ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get());
-        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTSHADE_MUD_BRICKS.get(), 2);
+        addStoneCompress(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.PACKED_NIGHTFALL_MUD.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+        addStairs(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+        addSlab(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get(), 2);
 
         addStoneCompress(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SAND.get());
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());

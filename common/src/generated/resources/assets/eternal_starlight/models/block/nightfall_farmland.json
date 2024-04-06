@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "eternal_starlight:block/nightfall_dirt",
+    "top": "eternal_starlight:block/nightfall_farmland"
+  }
+}

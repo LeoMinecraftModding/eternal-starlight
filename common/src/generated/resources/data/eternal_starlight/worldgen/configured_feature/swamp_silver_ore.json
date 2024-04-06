@@ -9,7 +9,7 @@
           "Name": "eternal_starlight:swamp_silver_ore"
         },
         "target": {
-          "block": "eternal_starlight:nightshade_mud",
+          "block": "eternal_starlight:nightfall_mud",
           "predicate_type": "minecraft:block_match"
         }
       }

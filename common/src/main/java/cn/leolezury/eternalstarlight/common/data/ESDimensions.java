@@ -76,10 +76,10 @@ public class ESDimensions {
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ESBiomes.THE_ABYSS)), SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone)),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), makeSimpleSurface(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA), makeSimpleSurface(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), makeSurface(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTSHADE_MUD.get().defaultBlockState())),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), makeSurface(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), desertRule),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
-                makeSurface(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTSHADE_DIRT.get().defaultBlockState())
+                makeSurface(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState())
         );
     }
 

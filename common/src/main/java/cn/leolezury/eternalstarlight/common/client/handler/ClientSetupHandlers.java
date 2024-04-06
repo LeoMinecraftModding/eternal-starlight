@@ -97,7 +97,7 @@ public class ClientSetupHandlers {
     }
 
     public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
-            ESBlocks.NIGHTSHADE_GRASS_BLOCK,
+            ESBlocks.NIGHTFALL_GRASS_BLOCK,
             ESBlocks.LUNAR_LEAVES,
             ESBlocks.NORTHLAND_LEAVES,
             ESBlocks.STARLIGHT_MANGROVE_LEAVES,
@@ -310,7 +310,7 @@ public class ClientSetupHandlers {
         BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
         BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : GrassColor.getDefaultColor();
         BlockColor dyeColor = (state, getter, pos, i) -> state.getBlock().defaultMapColor().col;
-        strategy.register(grassColor, ESBlocks.NIGHTSHADE_GRASS_BLOCK.get());
+        strategy.register(grassColor, ESBlocks.NIGHTFALL_GRASS_BLOCK.get());
         strategy.register(grassColor, ESBlocks.CAVE_MOSS.get());
         strategy.register(grassColor, ESBlocks.CAVE_MOSS_PLANT.get());
         strategy.register(grassColor, ESBlocks.CAVE_MOSS_VEIN.get());
@@ -357,7 +357,7 @@ public class ClientSetupHandlers {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
             return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
         };
-        strategy.register(toBlock, ESBlocks.NIGHTSHADE_GRASS_BLOCK.get());
+        strategy.register(toBlock, ESBlocks.NIGHTFALL_GRASS_BLOCK.get());
         strategy.register(toBlock, ESBlocks.CAVE_MOSS.get());
         strategy.register(toBlock, ESBlocks.CAVE_MOSS_PLANT.get());
         strategy.register(toBlock, ESBlocks.CAVE_MOSS_VEIN.get());
@@ -452,7 +452,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
-        strategy.register(ESEntities.NIGHTSHADE_SPIDER.get(), NightshadeSpiderRenderer::new);
+        strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpiderRenderer::new);
         strategy.register(ESEntities.ENT.get(), EntRenderer::new);
         strategy.register(ESEntities.RATLIN.get(), RatlinRenderer::new);
         strategy.register(ESEntities.YETI.get(), YetiRenderer::new);
@@ -506,7 +506,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR, SkeletonModel::createBodyLayer);
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-        strategy.register(NightshadeSpiderModel.LAYER_LOCATION, NightshadeSpiderModel::createBodyLayer);
+        strategy.register(NightfallSpiderModel.LAYER_LOCATION, NightfallSpiderModel::createBodyLayer);
         strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
         strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
         strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);

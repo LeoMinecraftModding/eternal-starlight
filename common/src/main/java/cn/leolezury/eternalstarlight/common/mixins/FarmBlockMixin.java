@@ -19,16 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class FarmBlockMixin {
     @Inject(method = "getStateForPlacement", at = @At(value = "RETURN"), cancellable = true)
     private void es_getStateForPlacement(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<BlockState> cir) {
-        if (((FarmBlock) (Object) this).defaultBlockState().is(ESBlocks.NIGHTSHADE_FARMLAND.get()) && !((FarmBlock) (Object) this).defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos())) {
-            cir.setReturnValue(ESBlocks.NIGHTSHADE_DIRT.get().defaultBlockState());
+        if (((FarmBlock) (Object) this).defaultBlockState().is(ESBlocks.NIGHTFALL_FARMLAND.get()) && !((FarmBlock) (Object) this).defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos())) {
+            cir.setReturnValue(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState());
         }
     }
     
     @Inject(method = "turnToDirt", at = @At(value = "HEAD"), cancellable = true)
     private static void es_turnToDirt(Entity entity, BlockState blockState, Level level, BlockPos blockPos, CallbackInfo ci) {
-        if (blockState.is(ESBlocks.NIGHTSHADE_FARMLAND.get())) {
+        if (blockState.is(ESBlocks.NIGHTFALL_FARMLAND.get())) {
             ci.cancel();
-            BlockState blockState2 = Block.pushEntitiesUp(blockState, ESBlocks.NIGHTSHADE_DIRT.get().defaultBlockState(), level, blockPos);
+            BlockState blockState2 = Block.pushEntitiesUp(blockState, ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState(), level, blockPos);
             level.setBlockAndUpdate(blockPos, blockState2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
         }

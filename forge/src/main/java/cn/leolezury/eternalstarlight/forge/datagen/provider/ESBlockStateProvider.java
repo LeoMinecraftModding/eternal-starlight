@@ -149,10 +149,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get());
         geyser(ESBlocks.CRYOBYSSLATE.get(), ESBlocks.CRYOBYSSAL_GEYSER.get());
 
-        simpleBlock(ESBlocks.NIGHTSHADE_MUD.get());
-        simpleBlock(ESBlocks.GLOWING_NIGHTSHADE_MUD.get());
-        simpleBlock(ESBlocks.PACKED_NIGHTSHADE_MUD.get());
-        stoneSet(ESBlocks.NIGHTSHADE_MUD_BRICKS.get(), ESBlocks.NIGHTSHADE_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTSHADE_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTSHADE_MUD_BRICK_WALL.get());
+        simpleBlock(ESBlocks.NIGHTFALL_MUD.get());
+        simpleBlock(ESBlocks.GLOWING_NIGHTFALL_MUD.get());
+        simpleBlock(ESBlocks.PACKED_NIGHTFALL_MUD.get());
+        stoneSet(ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get());
 
         simpleBlock(ESBlocks.TWILIGHT_SAND.get());
         sandstoneAndCut(ESBlocks.TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
@@ -264,9 +264,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         doublePlant(ESBlocks.STELLAFLY_BUSH.get());
         doublePlant(ESBlocks.GLIMMERFLY_BUSH.get());
 
-        simpleBlock(ESBlocks.NIGHTSHADE_DIRT.get());
-        grassBlock(ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_DIRT.get()));
-        simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTSHADE_MUD.get()));
+        simpleBlock(ESBlocks.NIGHTFALL_DIRT.get());
+        grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
+        simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_MUD.get()));
         carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));
 
         tintedCubeAll(ESBlocks.WHITE_YETI_FUR.get(), new ResourceLocation(EternalStarlight.MOD_ID, ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
@@ -318,7 +318,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         lantern(ESBlocks.AMARAMBER_LANTERN.get());
         candle(ESBlocks.AMARAMBER_CANDLE.get());
 
-        farmland(ESBlocks.NIGHTSHADE_FARMLAND.get(), ESBlocks.NIGHTSHADE_DIRT.get());
+        farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
         horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
 

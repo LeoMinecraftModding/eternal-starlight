@@ -39,7 +39,7 @@
     [
       "eternal_starlight:stone_ore",
       "eternal_starlight:deepslate_ore",
-      "eternal_starlight:nightshade_dirt_ore",
+      "eternal_starlight:nightfall_dirt_ore",
       "eternal_starlight:glowing_grimstone_ore",
       "eternal_starlight:glowing_voidstone_ore",
       "eternal_starlight:grimstone_redstone_ore",
@@ -104,7 +104,7 @@
     "misc": [],
     "monster": [
       {
-        "type": "eternal_starlight:nightshade_spider",
+        "type": "eternal_starlight:nightfall_spider",
         "maxCount": 2,
         "minCount": 1,
         "weight": 10

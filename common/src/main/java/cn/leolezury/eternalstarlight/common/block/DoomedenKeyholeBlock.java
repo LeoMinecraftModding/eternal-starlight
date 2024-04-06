@@ -35,21 +35,7 @@ public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        if (blockPlaceContext.getPlayer() != null) {
-            Direction direction = Direction.NORTH;
-            Direction[] directions = Direction.orderedByNearest(blockPlaceContext.getPlayer());
-            for (int i = 0; i < 3; i++) {
-                Direction dir = directions[i];
-                if (dir != Direction.UP && dir != Direction.DOWN) {
-                    direction = dir;
-                    break;
-                }
-            }
-            direction = direction.getOpposite();
-            return defaultBlockState().setValue(FACING, direction);
-        }
-
-        return defaultBlockState();
+        return defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
 
     @Override

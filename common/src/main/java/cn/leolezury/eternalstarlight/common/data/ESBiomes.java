@@ -85,7 +85,7 @@ public class ESBiomes {
     private static MobSpawnSettings.Builder baseLandSpawnBuilder() {
         return new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.2f)
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 15, 1, 2))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 15, 1, 4))
@@ -96,7 +96,7 @@ public class ESBiomes {
     private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
         return new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.2f)
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTSHADE_SPIDER.get(), 10, 1, 2))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 10, 1, 2))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 1, 1, 4))
                 .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.GRIMSTONE_GOLEM.get(), 2, 1, 2));
@@ -144,7 +144,7 @@ public class ESBiomes {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTSHADE_DIRT_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTFALL_DIRT_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_GRIMSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_VOIDSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GRIMSTONE_REDSTONE_ORE);
@@ -169,7 +169,7 @@ public class ESBiomes {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTSHADE_DIRT_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTFALL_DIRT_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.SAND_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_GRIMSTONE_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_VOIDSTONE_ORE);
@@ -222,7 +222,7 @@ public class ESBiomes {
 
         builder.addFeature(GenerationStep.Decoration.LAKES, ESPlacedFeatures.SWAMP_WATER);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.SWAMP_SILVER_ORE);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_NIGHTSHADE_MUD_ORE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_NIGHTFALL_MUD_ORE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_GRASS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_STARLIGHT_MANGROVE_LOG);

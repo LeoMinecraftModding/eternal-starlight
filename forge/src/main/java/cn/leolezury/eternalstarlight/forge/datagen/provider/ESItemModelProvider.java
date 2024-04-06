@@ -205,13 +205,13 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ESItems.CHISELED_VOIDSTONE.get());
         basicBlockItem(ESItems.GLOWING_VOIDSTONE.get());
 
-        basicBlockItem(ESItems.NIGHTSHADE_MUD.get());
-        basicBlockItem(ESItems.GLOWING_NIGHTSHADE_MUD.get());
-        basicBlockItem(ESItems.PACKED_NIGHTSHADE_MUD.get());
-        basicBlockItem(ESItems.NIGHTSHADE_MUD_BRICKS.get());
-        basicBlockItem(ESItems.NIGHTSHADE_MUD_BRICK_SLAB.get());
-        basicBlockItem(ESItems.NIGHTSHADE_MUD_BRICK_STAIRS.get());
-        wall(ESItems.NIGHTSHADE_MUD_BRICK_WALL.get(), ESItems.NIGHTSHADE_MUD_BRICKS.get());
+        basicBlockItem(ESItems.NIGHTFALL_MUD.get());
+        basicBlockItem(ESItems.GLOWING_NIGHTFALL_MUD.get());
+        basicBlockItem(ESItems.PACKED_NIGHTFALL_MUD.get());
+        basicBlockItem(ESItems.NIGHTFALL_MUD_BRICKS.get());
+        basicBlockItem(ESItems.NIGHTFALL_MUD_BRICK_SLAB.get());
+        basicBlockItem(ESItems.NIGHTFALL_MUD_BRICK_STAIRS.get());
+        wall(ESItems.NIGHTFALL_MUD_BRICK_WALL.get(), ESItems.NIGHTFALL_MUD_BRICKS.get());
 
         basicBlockItem(ESItems.ABYSSLATE.get());
         basicBlockItem(ESItems.POLISHED_ABYSSLATE.get());
@@ -381,8 +381,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.STELLAFLY_BUSH.get(), blockTextureFromItem(ESItems.STELLAFLY_BUSH.get()).withSuffix("_top"));
         basicItem(ESItems.GLIMMERFLY_BUSH.get(), blockTextureFromItem(ESItems.GLIMMERFLY_BUSH.get()).withSuffix("_top"));
 
-        basicBlockItem(ESItems.NIGHTSHADE_DIRT.get());
-        basicBlockItem(ESItems.NIGHTSHADE_GRASS_BLOCK.get());
+        basicBlockItem(ESItems.NIGHTFALL_DIRT.get());
+        basicBlockItem(ESItems.NIGHTFALL_GRASS_BLOCK.get());
         basicBlockItem(ESItems.FANTASY_GRASS_BLOCK.get());
         basicBlockItem(ESItems.FANTASY_GRASS_CARPET.get());
 
@@ -517,7 +517,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         basicItem(ESItems.FROZEN_TUBE.get());
 
-        basicBlockItem(ESItems.NIGHTSHADE_FARMLAND.get());
+        basicBlockItem(ESItems.NIGHTFALL_FARMLAND.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
         basicBlockItem(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());

@@ -302,12 +302,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         if (target == null) {
             return false;
         }
-        for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(range))) {
-            if (livingEntity.getUUID().equals(target.getUUID())) {
-                return true;
-            }
-        }
-        return false;
+        return distanceTo(target) <= range + getBbWidth() / 2f + target.getBbWidth() / 2f;
     }
 
     public void performMeleeAttack(double range) {
@@ -316,7 +311,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             return;
         }
         for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(range))) {
-            if (livingEntity.getUUID().equals(target.getUUID())) {
+            if (livingEntity.getUUID().equals(target.getUUID()) && canReachTarget(range)) {
                 livingEntity.invulnerableTime = 0;
                 doHurtTarget(livingEntity);
                 spawnMeleeAttackParticles();

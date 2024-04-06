@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.NightshadeSpider;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.NightfallSpider;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
@@ -51,8 +51,8 @@ public class CommonSetupHandlers {
     ));
 
     public static final Supplier<Map<Block, Block>> TILLABLES = Suppliers.memoize(() -> Map.of(
-            ESBlocks.NIGHTSHADE_DIRT.get(), ESBlocks.NIGHTSHADE_FARMLAND.get(),
-            ESBlocks.NIGHTSHADE_GRASS_BLOCK.get(), ESBlocks.NIGHTSHADE_FARMLAND.get()
+            ESBlocks.NIGHTFALL_DIRT.get(), ESBlocks.NIGHTFALL_FARMLAND.get(),
+            ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), ESBlocks.NIGHTFALL_FARMLAND.get()
     ));
 
     public static final List<Supplier<Item>> SHIELDS = List.of(
@@ -67,7 +67,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.BOARWARF.get(), Boarwarf.createAttributes().build());
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolem.createAttributes().build());
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
-        strategy.register(ESEntities.NIGHTSHADE_SPIDER.get(), NightshadeSpider.createNightshadeSpider().build());
+        strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpider.createNightfallSpider().build());
         strategy.register(ESEntities.ENT.get(), Ent.createAttributes().build());
         strategy.register(ESEntities.RATLIN.get(), Ratlin.createAttributes().build());
         strategy.register(ESEntities.YETI.get(), Yeti.createAttributes().build());
@@ -91,7 +91,7 @@ public class CommonSetupHandlers {
     public static void registerSpawnPlacements(SpawnPlacementRegisterStrategy strategy) {
         strategy.register(ESEntities.BOARWARF.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        strategy.register(ESEntities.NIGHTSHADE_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
+        strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         strategy.register(ESEntities.ENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
         strategy.register(ESEntities.RATLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
         strategy.register(ESEntities.YETI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);

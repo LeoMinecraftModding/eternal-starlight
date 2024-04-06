@@ -184,7 +184,7 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "eternal_starlight:nightshade_mud"
+                  "Name": "eternal_starlight:nightfall_mud"
                 }
               }
             }
@@ -326,7 +326,7 @@
             "then_run": {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "eternal_starlight:nightshade_grass_block",
+                "Name": "eternal_starlight:nightfall_grass_block",
                 "Properties": {
                   "snowy": "false"
                 }
@@ -345,7 +345,7 @@
             "then_run": {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "eternal_starlight:nightshade_dirt"
+                "Name": "eternal_starlight:nightfall_dirt"
               }
             }
           }

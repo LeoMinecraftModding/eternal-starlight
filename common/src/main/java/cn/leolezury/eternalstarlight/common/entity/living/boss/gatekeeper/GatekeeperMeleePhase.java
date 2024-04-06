@@ -6,7 +6,7 @@ public class GatekeeperMeleePhase extends AttackPhase<TheGatekeeper> {
     public static final int ID = 1;
 
     public GatekeeperMeleePhase() {
-        super(ID, 1, 40, 10);
+        super(ID, 1, 40, 50);
     }
 
     @Override
