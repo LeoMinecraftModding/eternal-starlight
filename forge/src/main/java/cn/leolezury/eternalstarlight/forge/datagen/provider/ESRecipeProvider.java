@@ -70,6 +70,10 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, Items.PINK_DYE, ESItems.WHISPERBLOOM.get());
         addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.WITHERED_STARLIGHT_FLOWER.get());
 
+        addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.GLADESPIKE.get());
+        addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.VIVIDSTALK.get());
+        addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.TALL_GLADESPIKE.get());
+
         // food
         addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
         addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);

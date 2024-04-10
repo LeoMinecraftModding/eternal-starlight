@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:vividstalk"
+    }
+  ],
+  "result": {
+    "item": "minecraft:red_dye"
+  }
+}
