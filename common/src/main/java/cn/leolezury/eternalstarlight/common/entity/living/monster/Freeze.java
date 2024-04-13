@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class Freeze extends Monster implements RangedAttackMob {
@@ -60,7 +62,12 @@ public class Freeze extends Monster implements RangedAttackMob {
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level);
+        FlyingPathNavigation navigation = new FlyingPathNavigation(this, level) {
+            @Override
+            public boolean isStableDestination(BlockPos blockPos) {
+                return this.level.getBlockState(blockPos).isAir();
+            }
+        };
         navigation.setCanOpenDoors(true);
         navigation.setCanFloat(true);
         navigation.setCanPassDoors(true);
@@ -134,6 +141,11 @@ public class Freeze extends Monster implements RangedAttackMob {
     @Override
     public boolean isAlliedTo(Entity entity) {
         return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.ROBOTIC);
+    }
+
+    @Override
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+
     }
 
     @Override

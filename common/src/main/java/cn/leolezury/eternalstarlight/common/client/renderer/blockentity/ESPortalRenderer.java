@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
-import cn.leolezury.eternalstarlight.common.client.renderer.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;

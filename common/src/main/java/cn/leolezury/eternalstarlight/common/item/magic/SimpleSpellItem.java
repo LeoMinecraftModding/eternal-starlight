@@ -39,10 +39,8 @@ public class SimpleSpellItem extends Item {
             }
             return;
         }
-        if (useItemTicks <= preparationTicks) {
-            spell.onPreparationTick(livingEntity, useItemTicks);
-        } else if (useItemTicks <= preparationTicks + spellTicks) {
-            spell.onSpellTick(livingEntity, useItemTicks - preparationTicks);
+        if (useItemTicks <= preparationTicks + spellTicks) {
+            spell.tick(livingEntity, useItemTicks);
         } else {
             spell.stop(livingEntity, useItemTicks - preparationTicks);
             livingEntity.stopUsingItem();

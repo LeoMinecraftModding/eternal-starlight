@@ -10,7 +10,6 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -82,13 +81,6 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
         }
     }
 
-    @Unique
-    private void transformModelPart(ModelPart part, Vec3 originalPos, Vec3 originalRot) {
-        part.x = (float) (part.x - 2 * (part.x - originalPos.x));
-        part.yRot = (float) (part.yRot - 2 * (part.yRot - originalRot.y));
-        part.zRot = (float) (part.zRot - 2 * (part.zRot - originalRot.z));
-    }
-
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
     private void es_setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
@@ -108,7 +100,10 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
         PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
         for (PlayerAnimator.AnimationTransformer transformer : transformers) {
             if (transformer.shouldApply(playerAnimationState, animatedPlayer, playerModel)) {
-                return transformer.modifyModelPart(playerAnimationState, animatedPlayer, playerModel, name);
+                Optional<ModelPart> modelPart = transformer.modifyModelPart(playerAnimationState, animatedPlayer, playerModel, name);
+                if (modelPart.isPresent()) {
+                    return modelPart;
+                }
             }
         }
         switch (name) {

@@ -2,10 +2,12 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
@@ -13,6 +15,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.shaders.Uniform;
@@ -20,8 +23,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.AttackIndicatorStatus;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.Options;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
@@ -51,6 +56,9 @@ public class ClientHandlers {
     private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
     private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
     private static final ResourceLocation ORB_OF_PROPHECY_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/orb_of_prophecy_use.png");
+    private static final ResourceLocation CROSSHAIR_SPRITE = new ResourceLocation("hud/crosshair");
+    private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_background");
+    private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_progress");
     private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 
     public static void onClientTick() {
@@ -191,6 +199,32 @@ public class ClientHandlers {
             RenderSystem.enableBlend();
             guiGraphics.blitSprite(overlays[bossEvent.getOverlay().ordinal() - 1], 182, 5, 0, 0, x, y, progress, 5);
             RenderSystem.disableBlend();
+        }
+    }
+
+    public static void renderSpellCrosshair(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
+        Options options = Minecraft.getInstance().options;
+        if (options.getCameraType().isFirstPerson()) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            if (player instanceof ESLivingEntity living && living.getSynchedData().hasSpell()) {
+                ESSynchedEntityData.SynchedData data = living.getSynchedData();
+                RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+                if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
+                    float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());
+                    if (data.castTicks() > data.spell().spellProperties().preparationTicks()) {
+                        f = Math.max(0, 1 - (float) (data.castTicks() - data.spell().spellProperties().preparationTicks()) / data.spell().spellProperties().spellTicks());
+                    }
+
+                    int j = screenHeight / 2 - 7 + 16;
+                    int k = screenWidth / 2 - 8;
+
+                    int l = (int)(f * 17.0F);
+                    guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE, k, j, 16, 4);
+                    guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE, 16, 4, 0, 0, k, j, l, 4);
+                }
+
+                RenderSystem.defaultBlendFunc();
+            }
         }
     }
 

@@ -146,6 +146,14 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('T', ESItems.TENACIOUS_PETAL.get())
                 .unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
+                .pattern("NGN")
+                .pattern("GNG")
+                .pattern("NGN")
+                .define('N', ESItems.SWAMP_SILVER_NUGGET.get())
+                .define('G', ESItems.SHIVERING_GEL.get())
+                .unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
+                .save(recipeOutput);
     }
 
     private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

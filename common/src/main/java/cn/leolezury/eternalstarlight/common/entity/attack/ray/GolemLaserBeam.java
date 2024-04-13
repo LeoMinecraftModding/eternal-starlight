@@ -1,5 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
+import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESSpells;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -14,12 +20,37 @@ public class GolemLaserBeam extends RayAttack {
     }
 
     @Override
-    public void updatePosition() {
-        if (tickCount > 120) {
-            discard();
+    public float getAttackDamage() {
+        return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f : 3f;
+    }
+
+    @Override
+    public void onHit(ESEntityUtil.RaytraceResult result) {
+        if (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) {
+            super.onHit(result);
+        } else {
+            for (Entity target : result.entities()) {
+                if (target instanceof LivingEntity living) {
+                    doHurtTarget(living);
+                }
+            }
         }
+    }
+
+    @Override
+    public void updatePosition() {
         getCaster().ifPresentOrElse(caster -> {
-            setPos(caster.position().add(0, caster.getBbHeight() / 2.5f, 0));
+            if (caster instanceof StarlightGolem golem) {
+                setPos(caster.position().add(0, caster.getBbHeight() / 2.5f, 0));
+                if (golem.getAttackState() != StarlightGolemLaserBeamPhase.ID) {
+                    discard();
+                }
+            } else {
+                setPos(caster.getEyePosition());
+                if (caster instanceof ESLivingEntity living && (!living.getSynchedData().hasSpell() || living.getSynchedData().spell() != ESSpells.LASER_BEAM.get())) {
+                    discard();
+                }
+            }
         }, this::discard);
     }
 }

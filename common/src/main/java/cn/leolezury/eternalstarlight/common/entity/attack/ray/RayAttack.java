@@ -161,7 +161,7 @@ public class RayAttack extends Entity {
 
     public void doHurtTarget(LivingEntity target) {
         getCaster().ifPresent(caster -> {
-            if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), 10)) {
+            if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), getAttackDamage())) {
                 target.setSecondsOnFire(3);
             }
         });
@@ -175,6 +175,10 @@ public class RayAttack extends Entity {
 
     public float getRotationSpeed() {
         return 1.6f;
+    }
+
+    public float getAttackDamage() {
+        return 10f;
     }
 
     @Override

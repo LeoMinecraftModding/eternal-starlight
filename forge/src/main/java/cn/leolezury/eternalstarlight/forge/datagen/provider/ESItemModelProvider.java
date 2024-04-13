@@ -517,6 +517,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         basicItem(ESItems.FROZEN_TUBE.get());
 
+        basicItem(ESItems.SHIVERING_GEL.get());
+        basicItem(ESItems.SONAR_BOMB.get());
+
         basicBlockItem(ESItems.NIGHTFALL_FARMLAND.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());

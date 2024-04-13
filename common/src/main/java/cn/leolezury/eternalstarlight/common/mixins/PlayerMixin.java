@@ -18,6 +18,7 @@ public abstract class PlayerMixin {
             useItem.hurtAndBreak(Math.max((int) (amount / 5f), 1), player, (p) -> {
                 p.broadcastBreakEvent(p.getUsedItemHand());
             });
+            player.stopUsingItem();
             player.getCooldowns().addCooldown(useItem.getItem(), 100);
         }
     }

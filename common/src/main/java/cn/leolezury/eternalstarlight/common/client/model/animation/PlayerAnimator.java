@@ -52,6 +52,43 @@ public class PlayerAnimator {
         PlayerAnimationState get(AbstractClientPlayer player);
     }
 
+    public static class CopyOuterLayerAnimationTransformer implements AnimationTransformer {
+        @Override
+        public boolean shouldApply(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
+            return true;
+        }
+
+        @Override
+        public void preAnimate(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
+
+        }
+
+        @Override
+        public void postAnimate(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
+            model.hat.copyFrom(model.head);
+            model.jacket.copyFrom(model.body);
+            model.leftSleeve.copyFrom(model.leftArm);
+            model.rightSleeve.copyFrom(model.rightArm);
+            model.leftPants.copyFrom(model.leftLeg);
+            model.rightPants.copyFrom(model.rightLeg);
+        }
+
+        @Override
+        public Optional<ModelPart> modifyModelPart(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model, String original) {
+            return Optional.empty();
+        }
+
+        @Override
+        public float modifyTicks(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model, float original) {
+            return original;
+        }
+
+        @Override
+        public float modifyScale(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model, float original) {
+            return original;
+        }
+    }
+
     public static class UseItemHandAnimationTransformer implements AnimationTransformer {
         private Vec3 hatOriginalPos;
         private Vec3 hatOriginalRot;

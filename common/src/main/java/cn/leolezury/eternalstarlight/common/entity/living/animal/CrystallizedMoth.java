@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
+import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
@@ -23,14 +24,13 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
-import net.minecraft.world.entity.ai.util.HoverRandomPos;
 import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
@@ -52,7 +52,7 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
         this.moveControl = new MothMoveControl();
         this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 16.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, -1.0F);
         this.setNoGravity(true);
     }
 
@@ -60,7 +60,12 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation pathNavigation = new FlyingPathNavigation(this, level);
+        FlyingPathNavigation pathNavigation = new FlyingPathNavigation(this, level) {
+            @Override
+            public boolean isStableDestination(BlockPos blockPos) {
+                return this.level.getBlockState(blockPos).isAir();
+            }
+        };
         pathNavigation.setCanOpenDoors(false);
         pathNavigation.setCanFloat(true);
         pathNavigation.setCanPassDoors(true);
@@ -78,7 +83,17 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new LookAtTargetGoal(this));
         goalSelector.addGoal(2, new CrystallizedMothAttackGoal());
-        goalSelector.addGoal(3, new CrystallizedMothRandomMoveGoal());
+        goalSelector.addGoal(3, new RandomFlyGoal(this) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && CrystallizedMoth.this.getAttackTicks() <= 0;
+            }
+
+            @Override
+            public boolean canContinueToUse() {
+                return super.canContinueToUse() && CrystallizedMoth.this.getAttackTicks() <= 0;
+            }
+        });
         goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
 
         targetSelector.addGoal(0, new HurtByTargetGoal(this));
@@ -97,41 +112,14 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
                 double size = mob.getBoundingBox().getSize();
                 Vec3 delta = vec3.scale(this.speedModifier * 0.025D / length);
                 mob.setDeltaMovement(mob.getDeltaMovement().add(delta));
-                if (length < size * 0.8F) {
+                if (length < size * 0.5F) {
                     this.operation = Operation.WAIT;
+                    mob.setDeltaMovement(mob.getDeltaMovement().scale(0.2));
                 } else if (length >= size && CrystallizedMoth.this.getAttackTicks() <= 0) {
                     mob.setYRot(-((float) Mth.atan2(delta.x, delta.z)) * Mth.RAD_TO_DEG);
                 }
             }
             mob.setNoGravity(true);
-        }
-    }
-
-    private class CrystallizedMothRandomMoveGoal extends Goal {
-        public CrystallizedMothRandomMoveGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-        }
-        
-        public boolean canUse() {
-            return CrystallizedMoth.this.navigation.isDone() && CrystallizedMoth.this.random.nextInt(5) == 0;
-        }
-        
-        public boolean canContinueToUse() {
-            return CrystallizedMoth.this.navigation.isInProgress() && CrystallizedMoth.this.random.nextInt(30) != 0;
-        }
-
-        public void start() {
-            Vec3 target = this.getRandomPos();
-            if (target != null) {
-                CrystallizedMoth.this.navigation.moveTo(target.x, target.y, target.z, 1d);
-            }
-        }
-
-        @Nullable
-        private Vec3 getRandomPos() {
-            Vec3 vec3 = CrystallizedMoth.this.getViewVector(0.0F);
-            Vec3 vec32 = HoverRandomPos.getPos(CrystallizedMoth.this, 8, 7, vec3.x, vec3.z, Mth.HALF_PI, 3, 1);
-            return vec32 != null ? vec32 : AirAndWaterRandomPos.getPos(CrystallizedMoth.this, 8, 4, -2, vec3.x, vec3.z, Mth.HALF_PI);
         }
     }
 
@@ -162,7 +150,7 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
                 Vec3 pos = target.position().add(0, target.getBbHeight() / 2f, 0);
                 Vec3 subtract = pos.subtract(selfPos);
                 CrystallizedMoth.this.setYRot(-((float) Mth.atan2(subtract.x, subtract.z)) * Mth.RAD_TO_DEG);
-                if (CrystallizedMoth.this.hasLineOfSight(target) && distanceTo(target) < 30) {
+                if (CrystallizedMoth.this.hasLineOfSight(target) && CrystallizedMoth.this.distanceTo(target) < 30) {
                     CrystallizedMoth.this.doHurtTarget(target);
                 }
                 if (CrystallizedMoth.this.level() instanceof ServerLevel serverLevel && CrystallizedMoth.this.getAttackTicks() % 5 == 0) {
@@ -190,6 +178,11 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
         if (level().isClientSide) {
             idleAnimationState.startIfStopped(tickCount);
         }
+    }
+
+    @Override
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+
     }
 
     @Nullable

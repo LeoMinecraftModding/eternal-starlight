@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
+import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
 import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -40,6 +42,9 @@ public abstract class AbstractSpell {
             damageCrystal(player);
         }
         onStart(entity);
+        if (entity instanceof ESLivingEntity livingEntity) {
+            livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, 0));
+        }
     }
 
     public void damageCrystal(Player player) {
@@ -53,9 +58,23 @@ public abstract class AbstractSpell {
         }
     }
 
+    public void tick(LivingEntity entity, int ticks) {
+        if (ticks <= spellProperties().preparationTicks()) {
+            onPreparationTick(entity, ticks);
+        } else if (ticks <= spellProperties().preparationTicks() + spellProperties().spellTicks()) {
+            onSpellTick(entity, ticks - spellProperties().preparationTicks());
+        }
+        if (entity instanceof ESLivingEntity livingEntity) {
+            livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, ticks));
+        }
+    }
+
     public void stop(LivingEntity entity, int ticks) {
         onStop(entity, ticks);
         ESSpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
+        if (entity instanceof ESLivingEntity livingEntity) {
+            livingEntity.setSynchedData(ESSynchedEntityData.SynchedData.getDefault());
+        }
     }
 
     public abstract boolean checkExtraConditions(LivingEntity entity);

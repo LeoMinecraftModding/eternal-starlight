@@ -69,7 +69,6 @@ public abstract class ItemInHandRendererMixin {
         }
     }
 
-    // wip new player animator
     @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
     private void es_renderArmWithItem(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
         PlayerAnimator.renderingFirstPersonPlayer = true;
@@ -123,7 +122,8 @@ public abstract class ItemInHandRendererMixin {
         AbstractClientPlayer abstractClientPlayer = this.minecraft.player;
         poseStack.mulPose(Axis.YP.rotationDegrees(92F));
         poseStack.mulPose(Axis.XP.rotationDegrees(45F));
-        poseStack.translate(h * -0.05F, -0.6, 0.45F);
+        // translate hands here
+        poseStack.translate(h * -0.02F, -0.6, 0.45F);
 
         if (bl) {
             es_renderRightHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
@@ -156,10 +156,6 @@ public abstract class ItemInHandRendererMixin {
         playerModel.crouching = false;
         playerModel.swimAmount = 0.0F;
         playerModel.setupAnim(abstractClientPlayer, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-        // only for test
-        // modelPart.resetPose();
-        // modelPart2.resetPose();
-        // end
         ResourceLocation resourceLocation = abstractClientPlayer.getSkin().texture();
         modelPart.render(poseStack, multiBufferSource.getBuffer(RenderType.entitySolid(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
         modelPart2.render(poseStack, multiBufferSource.getBuffer(RenderType.entityTranslucent(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
@@ -167,7 +163,7 @@ public abstract class ItemInHandRendererMixin {
         playerModel.translateToHand(leftHand ? HumanoidArm.LEFT : HumanoidArm.RIGHT, poseStack);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
         poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
-        poseStack.translate((float)(leftHand ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+        poseStack.translate((float) (leftHand ? -1 : 1) / 16.0F, 0.125F, -0.625F);
         renderItem(Minecraft.getInstance().player, mainHand ? mainHandItem : offHandItem, leftHand ? ItemDisplayContext.THIRD_PERSON_LEFT_HAND : ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, leftHand, poseStack, multiBufferSource, i);
         poseStack.popPose();
     }

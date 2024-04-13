@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -47,21 +45,24 @@ public class FrozenTube extends AbstractArrow {
 
     @Override
     protected void onHit(HitResult hitResult) {
-        playSound(SoundEvents.GLASS_BREAK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-        if (level() instanceof ServerLevel serverLevel) {
-            ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 0, 0, 0));
-        }
-        for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-            if (entity.canFreeze()) {
-                if (!level().isClientSide) {
-                    if (getOwner() instanceof LivingEntity owner) {
-                        entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
+        super.onHit(hitResult);
+        if (hitResult.getType() != HitResult.Type.MISS) {
+            playSound(SoundEvents.GLASS_BREAK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            if (level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
+            }
+            for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
+                if (entity.canFreeze()) {
+                    if (!level().isClientSide) {
+                        if (getOwner() instanceof LivingEntity owner) {
+                            entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
+                        }
+                        entity.setTicksFrozen(entity.getTicksFrozen() + 100);
                     }
-                    entity.setTicksFrozen(entity.getTicksFrozen() + 100);
                 }
             }
+            discard();
         }
-        discard();
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {

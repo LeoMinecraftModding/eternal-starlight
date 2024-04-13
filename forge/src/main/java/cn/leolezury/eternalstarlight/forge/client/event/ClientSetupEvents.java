@@ -80,6 +80,9 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterOverlay(RegisterGuiOverlaysEvent event) {
+        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "spell_crosshair"), (gui, guiGraphics, partialTicks, width, height) -> {
+            ClientHandlers.renderSpellCrosshair(guiGraphics, width, height);
+        });
         event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (gui, guiGraphics, partialTicks, width, height) -> {
             ClientHandlers.renderEtherErosion(gui, guiGraphics);
         });

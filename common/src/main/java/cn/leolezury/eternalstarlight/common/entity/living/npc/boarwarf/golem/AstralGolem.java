@@ -42,6 +42,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
@@ -169,6 +170,11 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
         }
+    }
+
+    @Override
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+
     }
 
     @Override

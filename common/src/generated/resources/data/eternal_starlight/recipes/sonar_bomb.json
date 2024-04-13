@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "eternal_starlight:shivering_gel"
+    },
+    "N": {
+      "item": "eternal_starlight:swamp_silver_nugget"
+    }
+  },
+  "pattern": [
+    "NGN",
+    "GNG",
+    "NGN"
+  ],
+  "result": {
+    "item": "eternal_starlight:sonar_bomb"
+  }
+}

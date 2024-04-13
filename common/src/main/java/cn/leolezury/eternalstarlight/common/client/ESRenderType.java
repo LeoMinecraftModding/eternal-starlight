@@ -1,5 +1,6 @@
-package cn.leolezury.eternalstarlight.common.client.renderer;
+package cn.leolezury.eternalstarlight.common.client;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
@@ -16,7 +17,7 @@ public abstract class ESRenderType extends RenderType {
     }
 
     public static RenderType laserBeam(ResourceLocation location) {
-        return create("laser_beam", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+        return create(EternalStarlight.MOD_ID + ":laser_beam", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
                 .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
                 .setCullState(NO_CULL)
                 .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
@@ -26,7 +27,7 @@ public abstract class ESRenderType extends RenderType {
     }
 
     public static RenderType portal() {
-        return create("starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 786432, true, true, RenderType.CompositeState.builder()
+        return create(EternalStarlight.MOD_ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 786432, true, true, RenderType.CompositeState.builder()
                 .setCullState(NO_CULL)
                 .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
                 .setOutputState(TRANSLUCENT_TARGET)
@@ -42,6 +43,6 @@ public abstract class ESRenderType extends RenderType {
     public static RenderType glow(ResourceLocation location) {
         RenderStateShard.TextureStateShard textureStateShard = new RenderStateShard.TextureStateShard(location, false, false);
         RenderType.CompositeState compositeState = RenderType.CompositeState.builder().setTextureState(textureStateShard).setShaderState(RENDERTYPE_BEACON_BEAM_SHADER).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setCullState(NO_CULL).setOverlayState(OVERLAY).setWriteMaskState(COLOR_WRITE).createCompositeState(false);
-        return create("glow_effect", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
+        return create(EternalStarlight.MOD_ID + ":glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
     }
 }
