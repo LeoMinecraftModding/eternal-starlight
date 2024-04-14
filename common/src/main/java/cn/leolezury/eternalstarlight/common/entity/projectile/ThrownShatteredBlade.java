@@ -88,7 +88,7 @@ public class ThrownShatteredBlade extends AbstractArrow {
         Entity entity = entityHitResult.getEntity();
         float f = 5.0F;
         if (entity instanceof LivingEntity livingEntity) {
-            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingEntity.getMobType());
+            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingEntity.getType());
         }
 
         Entity entity2 = this.getOwner();
@@ -116,6 +116,11 @@ public class ThrownShatteredBlade extends AbstractArrow {
 
     protected boolean tryPickup(Player player) {
         return super.tryPickup(player) || this.isNoPhysics() && this.ownedBy(player) && player.getInventory().add(this.getPickupItem());
+    }
+
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return ESItems.SHATTERED_SWORD_BLADE.get().getDefaultInstance();
     }
 
     public void playerTouch(Player player) {

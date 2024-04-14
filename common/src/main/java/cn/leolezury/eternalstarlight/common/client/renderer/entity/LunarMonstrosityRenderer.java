@@ -19,7 +19,7 @@ public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRen
     }
 
     @Override
-    protected float getFlipDegrees(T p_115337_) {
+    protected float getFlipDegrees(T livingEntity) {
         return 0;
     }
 

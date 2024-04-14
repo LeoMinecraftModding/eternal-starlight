@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import java.util.EnumSet;
 
 public class BoarwarfTradeWithPlayerGoal extends Goal {
-
     private final Boarwarf villager;
 
     public BoarwarfTradeWithPlayerGoal(Boarwarf villager) {

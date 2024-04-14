@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -25,9 +26,9 @@ public record Crest(ManaType type, ResourceLocation texture, Optional<AbstractSp
             MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects)
     ).apply(instance, Crest::new));
 
-    public record MobEffectWithLevel(MobEffect effect, int level) {
+    public record MobEffectWithLevel(Holder<MobEffect> effect, int level) {
         public static final Codec<MobEffectWithLevel> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                BuiltInRegistries.MOB_EFFECT.byNameCodec().fieldOf("effect").forGetter(MobEffectWithLevel::effect),
+                BuiltInRegistries.MOB_EFFECT.holderByNameCodec().fieldOf("effect").forGetter(MobEffectWithLevel::effect),
                 Codec.INT.fieldOf("level").forGetter(MobEffectWithLevel::level)
         ).apply(instance, MobEffectWithLevel::new));
     }

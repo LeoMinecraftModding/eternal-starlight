@@ -78,10 +78,10 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(MATERIAL, "null");
-        entityData.define(BLOCKING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(MATERIAL, "null");
+        builder.define(BLOCKING, false);
     }
 
     @Override
@@ -128,9 +128,9 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData data, @org.jetbrains.annotations.Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData data) {
         homePos = blockPosition();
-        return super.finalizeSpawn(level, instance, spawnType, data, tag);
+        return super.finalizeSpawn(level, instance, spawnType, data);
     }
 
     public AstralGolemMaterial getMaterial() {

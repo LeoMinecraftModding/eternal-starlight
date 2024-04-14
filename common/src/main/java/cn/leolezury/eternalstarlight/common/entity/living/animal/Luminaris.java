@@ -46,9 +46,9 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
     public AnimationState chargeAnimationState = new AnimationState();
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(CHARGING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CHARGING, false);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

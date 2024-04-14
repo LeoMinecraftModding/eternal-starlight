@@ -28,11 +28,12 @@ import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,9 +51,9 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
     public CrystallizedMoth(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
         this.moveControl = new MothMoveControl();
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, -1.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.WATER, -1.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, -1.0F);
         this.setNoGravity(true);
     }
 
@@ -73,9 +74,9 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(ATTACK_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ATTACK_TICKS, 0);
     }
 
     @Override
@@ -178,6 +179,11 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
         if (level().isClientSide) {
             idleAnimationState.startIfStopped(tickCount);
         }
+    }
+
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        return false;
     }
 
     @Override

@@ -35,7 +35,7 @@ public class GolemFlameAttack extends RayAttack {
             if (target instanceof LivingEntity living) {
                 getCaster().ifPresent(caster -> {
                     if (living.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.MOB_ATTACK, this, caster), 5)) {
-                        living.setSecondsOnFire(3);
+                        living.setRemainingFireTicks(living.getRemainingFireTicks() + 60);
                     }
                 });
             }

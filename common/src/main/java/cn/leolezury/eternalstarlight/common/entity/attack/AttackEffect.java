@@ -81,9 +81,9 @@ public class AttackEffect extends Entity {
         compoundTag.putInt("AttackMode", getAttackMode());
     }
 
-    protected void defineSynchedData() {
-        entityData.define(SPAWNED_TICKS, 0);
-        entityData.define(ATTACK_MODE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(SPAWNED_TICKS, 0);
+        builder.define(ATTACK_MODE, 0);
     }
 
     public boolean shouldContinueToTick() {

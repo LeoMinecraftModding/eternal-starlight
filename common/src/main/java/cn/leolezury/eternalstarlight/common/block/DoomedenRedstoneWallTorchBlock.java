@@ -44,11 +44,11 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
     }
 
     public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-        return Blocks.WALL_TORCH.canSurvive(blockState, levelReader, blockPos);
+        return WallTorchBlock.canSurvive(levelReader, blockPos, blockState.getValue(FACING));
     }
 
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        return Blocks.WALL_TORCH.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+        return direction.getOpposite() == blockState.getValue(FACING) && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : blockState;
     }
 
     @Nullable
@@ -73,11 +73,11 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
     }
 
     public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return Blocks.WALL_TORCH.rotate(blockState, rotation);
+        return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState blockState, Mirror mirror) {
-        return Blocks.WALL_TORCH.mirror(blockState, mirror);
+        return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

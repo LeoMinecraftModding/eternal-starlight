@@ -6,6 +6,8 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -53,9 +55,9 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
                         for (RecipeHolder<GeyserSmokingRecipe> recipeHolder : list) {
                             if (item.is(recipeHolder.value().input())) {
                                 int count = item.getCount();
-                                CompoundTag tag = item.getOrCreateTag();
+                                DataComponentMap components = item.getComponents();
                                 ItemStack stack = new ItemStack(recipeHolder.value().output(), count);
-                                stack.setTag(tag);
+                                stack.applyComponents(components);
                                 itemEntity.setItem(stack);
                             }
                         }
@@ -66,14 +68,14 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag compoundTag) {
-        super.load(compoundTag);
+    public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
         this.ticksSinceLastErupt = compoundTag.getInt("TicksSinceLastErupt");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compoundTag) {
-        super.saveAdditional(compoundTag);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
         compoundTag.putInt("TicksSinceLastErupt", this.ticksSinceLastErupt);
     }
 }

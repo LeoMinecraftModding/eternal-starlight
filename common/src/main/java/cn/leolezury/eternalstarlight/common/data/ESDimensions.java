@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTra
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -83,7 +83,7 @@ public class ESDimensions {
         );
     }
 
-    public static void bootstrapNoiseSettings(BootstapContext<NoiseGeneratorSettings> context) {
+    public static void bootstrapNoiseSettings(BootstrapContext<NoiseGeneratorSettings> context) {
         NoiseGeneratorSettings settings = new NoiseGeneratorSettings(
                 NoiseSettings.create(
                         -64,
@@ -121,7 +121,7 @@ public class ESDimensions {
         context.register(STARLIGHT_NOISE_SETTINGS, settings);
     }
 
-    public static void bootstrapLevelStem(BootstapContext<LevelStem> context) {
+    public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
         HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
         HolderGetter<DimensionType> dimensionTypeHolderGetter = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<NoiseGeneratorSettings> noiseSettingsHolderGetter = context.lookup(Registries.NOISE_SETTINGS);
@@ -170,7 +170,7 @@ public class ESDimensions {
         context.register(STARLIGHT_LEVEL_STEM, levelStem);
     }
 
-    public static void bootstrapDimType(BootstapContext<DimensionType> context) {
+    public static void bootstrapDimType(BootstrapContext<DimensionType> context) {
         DimensionType type = new DimensionType(
                 OptionalLong.of(12500L), // fixed time
                 true, // has skylight

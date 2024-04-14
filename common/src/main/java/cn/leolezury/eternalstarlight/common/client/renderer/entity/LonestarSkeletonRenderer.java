@@ -17,8 +17,8 @@ public class LonestarSkeletonRenderer extends SkeletonRenderer {
     public static final ModelLayerLocation LONESTAR_INNER_ARMOR = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton"), "inner_armor");
     public static final ModelLayerLocation LONESTAR_OUTER_ARMOR = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton"), "outer_armor");
 
-    public LonestarSkeletonRenderer(EntityRendererProvider.Context p_174409_) {
-        super(p_174409_, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);
+    public LonestarSkeletonRenderer(EntityRendererProvider.Context context) {
+        super(context, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);
     }
 
     public ResourceLocation getTextureLocation(AbstractSkeleton p_116049_) {

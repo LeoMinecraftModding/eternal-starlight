@@ -68,7 +68,7 @@ public class CommonHandlers {
 
     private static int ticksSinceLastUpdate = 0;
 
-    private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C624-495F-0193-604728718B6B"), "Amaramber Armor Bonus", 7, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C624-495F-0193-604728718B6B"), "Amaramber Armor Bonus", 7, AttributeModifier.Operation.ADD_VALUE);
 
     public static void onServerTick(MinecraftServer server) {
         ticksSinceLastUpdate++;
@@ -113,7 +113,7 @@ public class CommonHandlers {
                 || entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringStoneArmorItem
         ) {
             if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-                livingEntity.setSecondsOnFire(10);
+                livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 200);
             }
             if (source.is(DamageTypeTags.IS_FIRE)) {
                 return amount / 2f;
@@ -121,7 +121,7 @@ public class CommonHandlers {
         }
 
         if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
-            entity.setSecondsOnFire(10);
+            entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
         }
 
         if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
@@ -181,7 +181,7 @@ public class CommonHandlers {
         }
         AttributeInstance instance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
         if (instance != null) {
-            instance.removeModifier(AMARAMBER_BONUS.getId());
+            instance.removeModifier(AMARAMBER_BONUS.id());
             if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
                     && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
                     && livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
@@ -240,10 +240,13 @@ public class CommonHandlers {
             if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
                 if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
                     int level = 0;
-                    if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.get())) {
-                        level += living.getEffect(ESMobEffects.CRYSTALLINE_INFECTION.get()).getAmplifier();
+                    if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
+                        MobEffectInstance instance = living.getEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder());
+                        if (instance != null) {
+                            level += instance.getAmplifier();
+                        }
                     }
-                    living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.get(), 200, level));
+                    living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 200, level));
                 }
             }
             if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {

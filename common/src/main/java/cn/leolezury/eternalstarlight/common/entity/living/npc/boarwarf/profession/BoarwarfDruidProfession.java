@@ -5,11 +5,12 @@ import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.BuyItemTrade;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.SellItemTrade;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 
 public class BoarwarfDruidProfession extends AbstractBoarwarfProfession {
@@ -35,15 +36,15 @@ public class BoarwarfDruidProfession extends AbstractBoarwarfProfession {
         };
     }
 
-    private static ItemStack potion(Potion potion) {
-        return PotionUtils.setPotion(new ItemStack(Items.POTION), potion);
+    private static ItemStack potion(Holder<Potion> potion) {
+        return PotionContents.createItemStack(Items.POTION, potion);
     }
 
-    private static ItemStack splashPotion(Potion potion) {
-        return PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), potion);
+    private static ItemStack splashPotion(Holder<Potion> potion) {
+        return PotionContents.createItemStack(Items.SPLASH_POTION, potion);
     }
 
-    private static ItemStack lingeringPotion(Potion potion) {
-        return PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), potion);
+    private static ItemStack lingeringPotion(Holder<Potion> potion) {
+        return PotionContents.createItemStack(Items.LINGERING_POTION, potion);
     }
 }

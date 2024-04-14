@@ -48,11 +48,11 @@ public class CameraShake extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        getEntityData().define(RADIUS, 0f);
-        getEntityData().define(MAGNITUDE, 0f);
-        getEntityData().define(DURATION, 0);
-        getEntityData().define(FADE_DURATION, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(RADIUS, 0f);
+        builder.define(MAGNITUDE, 0f);
+        builder.define(DURATION, 0);
+        builder.define(FADE_DURATION, 0);
     }
 
     public CameraShake(Level level, Vec3 pos, float radius, float magnitude, int duration, int fadeDuration) {

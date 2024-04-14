@@ -202,7 +202,7 @@ public class ESBookScreen extends Screen {
     public static void renderEntityInInventory(GuiGraphics p_282665_, int p_283622_, int p_283401_, int p_281360_, Quaternionf p_281880_, @Nullable Quaternionf p_282882_, LivingEntity p_282466_) {
         p_282665_.pose().pushPose();
         p_282665_.pose().translate((double)p_283622_, (double)p_283401_, 50.0D);
-        p_282665_.pose().mulPoseMatrix((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
+        p_282665_.pose().mulPose((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
         p_282665_.pose().mulPose(p_281880_);
         Lighting.setupForEntityInInventory();
         EntityRenderDispatcher entityrenderdispatcher = Minecraft.getInstance().getEntityRenderDispatcher();

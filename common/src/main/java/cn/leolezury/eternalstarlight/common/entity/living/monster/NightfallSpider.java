@@ -3,11 +3,14 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class NightfallSpider extends Spider {
     public NightfallSpider(EntityType<? extends NightfallSpider> type, Level level) {
@@ -37,7 +40,7 @@ public class NightfallSpider extends Spider {
         }
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
-        return 0.45F;
+    public Vec3 getVehicleAttachmentPoint(Entity entity) {
+        return entity.getBbWidth() <= this.getBbWidth() ? new Vec3(0.0, 0.21875 * (double)this.getScale(), 0.0) : super.getVehicleAttachmentPoint(entity);
     }
 }

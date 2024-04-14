@@ -13,6 +13,6 @@ public class DreamCatcherEffect extends MobEffect {
 
     public DreamCatcherEffect(MobEffectCategory mobEffectCategory, int color) {
         super(mobEffectCategory, color);
-        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_UUID.toString(), ARMOR_ADDITION, AttributeModifier.Operation.ADDITION);
+        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_UUID.toString(), ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
     }
 }

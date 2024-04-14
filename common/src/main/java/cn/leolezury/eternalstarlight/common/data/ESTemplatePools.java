@@ -8,7 +8,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -33,7 +33,7 @@ public class ESTemplatePools {
     public static final ResourceKey<StructureProcessorList> PORTAL_RUINS_VINES = createProcessor("portal_ruins_vines");
     public static final ResourceKey<StructureProcessorList> GOLEM_FORGE_OXIDIZATION = createProcessor("golem_forge/oxidization");
 
-    public static void bootstrap(BootstapContext<StructureTemplatePool> context) {
+    public static void bootstrap(BootstrapContext<StructureTemplatePool> context) {
         Holder<StructureTemplatePool> emptyPool = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
         HolderGetter<PlacedFeature> features = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<StructureProcessorList> processors = context.lookup(Registries.PROCESSOR_LIST);
@@ -74,7 +74,7 @@ public class ESTemplatePools {
         ), StructureTemplatePool.Projection.RIGID));
     }
 
-    public static void bootstrapProcessors(BootstapContext<StructureProcessorList> context) {
+    public static void bootstrapProcessors(BootstrapContext<StructureProcessorList> context) {
         context.register(PORTAL_RUINS_VINES, new StructureProcessorList(List.of(
                 new RuleProcessor(List.of(
                         new ProcessorRule(

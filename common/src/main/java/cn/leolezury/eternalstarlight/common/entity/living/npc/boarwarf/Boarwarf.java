@@ -93,10 +93,10 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(TYPE, "null");
-        entityData.define(PROFESSION, "null");
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TYPE, "null");
+        builder.define(PROFESSION, "null");
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
         homePos = blockPosition();
 
         level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).forEach((type) -> {
@@ -164,7 +164,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
             }
         });
 
-        return super.finalizeSpawn(level, instance, spawnType, data, tag);
+        return super.finalizeSpawn(level, instance, spawnType, data);
     }
 
     @Override

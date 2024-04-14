@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorIt
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,10 +24,9 @@ public class ForgeThermalSpringStoneArmorItem extends ThermalSpringStoneArmorIte
         super(material, type, properties);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
-    public @Nullable String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return getTexture(stack, entity, slot, type);
+    public @Nullable ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
+        return new ResourceLocation(getTexture(stack, entity, slot));
     }
 
     @OnlyIn(Dist.CLIENT)

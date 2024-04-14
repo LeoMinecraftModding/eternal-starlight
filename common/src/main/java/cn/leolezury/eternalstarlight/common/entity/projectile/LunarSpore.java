@@ -65,7 +65,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
 
-        playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
+        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
         AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
 
         if (getOwner() instanceof LivingEntity entity) {
@@ -105,7 +105,7 @@ public class LunarSpore extends AbstractHurtingProjectile {
             result.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
         }
 
-        playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
+        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
         AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
 
         if (getOwner() instanceof LivingEntity entity) {

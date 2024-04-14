@@ -39,11 +39,11 @@ accessible method net/minecraft/client/renderer/Sheets createSignMaterial (Lnet/
 accessible class net/minecraft/client/particle/ParticleEngine$SpriteParticleRegistration
 accessible class net/minecraft/client/renderer/RenderStateShard$ShaderStateShard
 
+# blocks
+accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
+
 # ESCaveCarver
 extendable method net/minecraft/world/level/levelgen/carver/WorldCarver getCarveState (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;)Lnet/minecraft/world/level/block/state/BlockState;
-
-# AbyssalKelpBlock
-accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
 
 # Entity Ai
 accessible method net/minecraft/world/entity/ai/sensing/SensorType <init> (Ljava/util/function/Supplier;)V

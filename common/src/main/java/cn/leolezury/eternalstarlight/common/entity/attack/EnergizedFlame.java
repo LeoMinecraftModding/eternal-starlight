@@ -39,7 +39,7 @@ public class EnergizedFlame extends AttackEffect {
                 AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
                 for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
                     livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 10);
-                    livingEntity.setSecondsOnFire(5);
+                    livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 60);
                 }
             }
         } else {

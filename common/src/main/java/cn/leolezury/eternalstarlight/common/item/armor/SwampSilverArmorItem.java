@@ -2,29 +2,26 @@ package cn.leolezury.eternalstarlight.common.item.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
+import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
     private static final EnumMap<Type, UUID> ARMOR_MODIFIER_UUID_PER_TYPE = Util.make(new EnumMap(Type.class), (enumMap) -> {
@@ -34,36 +31,42 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
         enumMap.put(Type.HELMET, UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150"));
     });
 
-    private final Multimap<Attribute, AttributeModifier> extraModifiers;
+    private final Supplier<ItemAttributeModifiers> extraModifiers;
 
-    public SwampSilverArmorItem(ArmorMaterial material, Type type, Properties properties) {
-        super(material, type, properties);
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(type);
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Armor modifier", 0.05, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "Armor modifier", 0.1, AttributeModifier.Operation.ADDITION));
-        this.extraModifiers = builder.build();
+    public SwampSilverArmorItem(Holder<ArmorMaterial> materialHolder, Type type, Item.Properties properties) {
+        super(materialHolder, type, properties);
+        this.extraModifiers = Suppliers.memoize(() -> {
+            ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+            EquipmentSlotGroup equipmentSlotGroup = EquipmentSlotGroup.bySlot(type.getSlot());
+            UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(type);
+            builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Armor modifier", 0.05, AttributeModifier.Operation.ADD_VALUE), equipmentSlotGroup);
+            builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "Armor modifier", 0.1, AttributeModifier.Operation.ADD_VALUE), equipmentSlotGroup);
+            return builder.build();
+        });
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
-        Multimap<Attribute, AttributeModifier> modifiers = super.getDefaultAttributeModifiers(equipmentSlot);
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.putAll(modifiers);
-        builder.putAll(extraModifiers);
-        Multimap<Attribute, AttributeModifier> allModifiers = builder.build();
-        return equipmentSlot == this.type.getSlot() ? allModifiers : super.getDefaultAttributeModifiers(equipmentSlot);
+    public ItemAttributeModifiers getDefaultAttributeModifiers() {
+        ItemAttributeModifiers modifiers = super.getDefaultAttributeModifiers();
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+        for (ItemAttributeModifiers.Entry entry : modifiers.modifiers()) {
+            builder.add(entry.attribute(), entry.modifier(), entry.slot());
+        }
+        for (ItemAttributeModifiers.Entry entry : extraModifiers.get().modifiers()) {
+            builder.add(entry.attribute(), entry.modifier(), entry.slot());
+        }
+        return builder.build();
     }
 
     @Override
     public void tick(Level level, LivingEntity livingEntity, ItemStack armor) {
-        List<MobEffect> effectsToRemove = new ArrayList<>();
+        List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
         for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
-            if (!effectInstance.getEffect().isBeneficial()) {
+            if (!effectInstance.getEffect().value().isBeneficial()) {
                 effectsToRemove.add(effectInstance.getEffect());
             }
         }
-        for (MobEffect effect : effectsToRemove) {
+        for (Holder<MobEffect> effect : effectsToRemove) {
             if (livingEntity.hasEffect(effect)) {
                 livingEntity.removeEffect(effect);
             }
@@ -71,8 +74,8 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> component, TooltipFlag flag) {
-        component.add(Component.translatable("tooltip." + EternalStarlight.MOD_ID + ".swamp_silver_armor").withStyle(ChatFormatting.YELLOW));
-        super.appendHoverText(stack, level, component, flag);
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Component.translatable("tooltip." + EternalStarlight.MOD_ID + ".swamp_silver_armor").withStyle(ChatFormatting.YELLOW));
+        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
     }
 }

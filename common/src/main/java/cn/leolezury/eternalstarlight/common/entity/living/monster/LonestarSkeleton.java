@@ -51,8 +51,8 @@ public class LonestarSkeleton extends Skeleton {
             LonestarSkeleton.this.setAggressive(true);
         }
     };
-    private static final AttributeModifier DAMAGE_NERF = new AttributeModifier(UUID.fromString("012CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Nerf", -4, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier DAMAGE_ADDITION = new AttributeModifier(UUID.fromString("210CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Addition", 4, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier DAMAGE_NERF = new AttributeModifier(UUID.fromString("012CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Nerf", -4, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAMAGE_ADDITION = new AttributeModifier(UUID.fromString("210CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Addition", 4, AttributeModifier.Operation.ADD_VALUE);
 
     public LonestarSkeleton(EntityType<? extends LonestarSkeleton> type, Level level) {
         super(type, level);
@@ -64,8 +64,8 @@ public class LonestarSkeleton extends Skeleton {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
-        SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData, compoundTag);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+        SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
         Arrays.fill(this.handDropChances, 0.2F);
         return data;
     }
@@ -81,13 +81,13 @@ public class LonestarSkeleton extends Skeleton {
             if (getMainHandItem().is(ESItems.ENERGY_SWORD.get())) {
                 instance.addPermanentModifier(DAMAGE_NERF);
             } else {
-                instance.removeModifier(DAMAGE_NERF.getId());
+                instance.removeModifier(DAMAGE_NERF.id());
             }
 
             if (getMainHandItem().is(ESItems.WAND_OF_TELEPORTATION.get())) {
                 instance.addPermanentModifier(DAMAGE_ADDITION);
             } else {
-                instance.removeModifier(DAMAGE_ADDITION.getId());
+                instance.removeModifier(DAMAGE_ADDITION.id());
             }
         }
         this.goalSelector.removeGoal(this.meleeGoal);

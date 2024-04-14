@@ -56,7 +56,7 @@ public class YetiAi {
     private static void initCoreActivity(Brain<Yeti> brain) {
         brain.addActivity(Activity.CORE, 0, ImmutableList.of(
                 new Swim(0.8F),
-                new AnimalPanic(1.0F),
+                new AnimalPanic<>(1.0F),
                 new MoveToTargetSink(),
                 new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS))
         );
@@ -64,7 +64,7 @@ public class YetiAi {
 
     private static void initIdleActivity(Brain<Yeti> brain) {
         brain.addActivity(Activity.IDLE, ImmutableList.of(
-                Pair.of(0, new AnimalMakeLove(ESEntities.YETI.get(), 1.0F)),
+                Pair.of(0, new AnimalMakeLove(ESEntities.YETI.get())),
                 Pair.of(1, new FollowTemptation((livingEntity) -> 1.25F, (livingEntity) -> 3.5)),
                 Pair.of(2, new LookAtTargetSink(45, 90)),
                 Pair.of(3, new StartRolling()),

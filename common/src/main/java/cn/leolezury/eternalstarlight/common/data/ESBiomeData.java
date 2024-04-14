@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -26,7 +26,7 @@ public class ESBiomeData {
     public static final ResourceKey<BiomeData> THE_ABYSS_TRANSITION = create("the_abyss_transition");
     public static final ResourceKey<BiomeData> WARM_SHORE = create("warm_shore");
 
-    public static void bootstrap(BootstapContext<BiomeData> context) {
+    public static void bootstrap(BootstrapContext<BiomeData> context) {
         HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
         context.register(STARLIGHT_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST), 61, 10).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());
         context.register(STARLIGHT_DENSE_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST), 61, 10).withTemperatures(BiomeData.Temperature.NEUTRAL, BiomeData.Temperature.HOT, BiomeData.Temperature.COLD).build());

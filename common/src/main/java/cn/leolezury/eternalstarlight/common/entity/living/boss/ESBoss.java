@@ -72,12 +72,12 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(ATTACK_STATE, 0);
-        entityData.define(ATTACK_TICKS, 0);
-        entityData.define(PHASE, 0);
-        entityData.define(ACTIVATED, true);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ATTACK_STATE, 0);
+        builder.define(ATTACK_TICKS, 0);
+        builder.define(PHASE, 0);
+        builder.define(ACTIVATED, true);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
 
     @Override
     public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
-        if (!effectInstance.getEffect().isBeneficial()) {
+        if (!effectInstance.getEffect().value().isBeneficial()) {
             return false;
         }
         return super.addEffect(effectInstance, entity);

@@ -30,6 +30,7 @@ configurations {
 
 repositories {
     maven { url "https://maven.neoforged.net/releases/" }
+    maven { url "https://prmaven.neoforged.net/NeoForge/pr794" }
 }
 
 dependencies {

@@ -59,9 +59,9 @@ public class Yeti extends Animal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(ROLL_STATE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ROLL_STATE, 0);
     }
 
     protected Brain<?> makeBrain(Dynamic<?> dynamic) {

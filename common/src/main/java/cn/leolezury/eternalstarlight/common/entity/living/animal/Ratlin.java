@@ -19,6 +19,7 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ratlin extends Animal {
+    // todo: ALL foods should be tags
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.CAVE_MOSS.get());
 
     public Ratlin(EntityType<? extends Animal> type, Level level) {

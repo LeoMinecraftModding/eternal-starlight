@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.ESRand
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedRandomList;
@@ -42,7 +42,7 @@ public class ESStructures {
     public static final ResourceKey<Structure> PORTAL_RUINS_DESERT = create("portal_ruins_desert");
     public static final ResourceKey<StructureSet> PORTAL_RUINS_DESERT_SET = createSet("portal_ruins_desert");
 
-    public static void bootstrap(BootstapContext<Structure> context) {
+    public static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
 
@@ -80,7 +80,7 @@ public class ESStructures {
                 ConstantHeight.of(VerticalAnchor.aboveBottom(48)), false, Optional.empty(), 116, List.of()));
     }
 
-    public static void bootstrapSets(BootstapContext<StructureSet> context) {
+    public static void bootstrapSets(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structureGetter = context.lookup(Registries.STRUCTURE);
         context.register(PORTAL_RUINS_COMMON_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_COMMON), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 659853901)));
         context.register(PORTAL_RUINS_FOREST_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_FOREST), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 559826911)));

@@ -1,10 +1,16 @@
 package cn.leolezury.eternalstarlight.common.entity.living.npc.trade;
 
 import com.google.common.collect.Lists;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 
 import java.util.List;
@@ -26,7 +32,7 @@ public class DyedArmorTrade implements VillagerTrades.ItemListing {
 
     public MerchantOffer getOffer(Entity entity, RandomSource randomSource) {
         ItemStack stack = new ItemStack(this.item);
-        if (this.item instanceof DyeableArmorItem) {
+        if (stack.is(ItemTags.DYEABLE)) {
             List<DyeItem> list = Lists.newArrayList();
             list.add(getRandomDye(randomSource));
             if (randomSource.nextFloat() > 0.7F) {
@@ -37,10 +43,10 @@ public class DyedArmorTrade implements VillagerTrades.ItemListing {
                 list.add(getRandomDye(randomSource));
             }
 
-            stack = DyeableLeatherItem.dyeArmor(stack, list);
+            stack = DyedItemColor.applyDyes(stack, list);
         }
 
-        return new MerchantOffer(currency, stack, this.maxUses, 0, 0);
+        return new MerchantOffer(new ItemCost(currency.getItem(), currency.getCount()), stack, this.maxUses, 0, 0);
     }
 
     private static DyeItem getRandomDye(RandomSource randomSource) {

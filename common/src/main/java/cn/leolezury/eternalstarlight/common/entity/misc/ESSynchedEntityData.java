@@ -2,25 +2,33 @@ package cn.leolezury.eternalstarlight.common.entity.misc;
 
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 
 public class ESSynchedEntityData {
-    public static final EntityDataSerializer<SynchedData> SYNCHED_DATA_SERIALIZER = new EntityDataSerializer<>() {
+    public static final StreamCodec<RegistryFriendlyByteBuf, SynchedData> STREAM_CODEC = new StreamCodec<RegistryFriendlyByteBuf, SynchedData>() {
         @Override
-        public void write(FriendlyByteBuf friendlyByteBuf, SynchedData object) {
+        public void encode(RegistryFriendlyByteBuf friendlyByteBuf, SynchedData object) {
             friendlyByteBuf.writeById(ESSpells.SPELLS.registry()::getId, object.spell());
             friendlyByteBuf.writeInt(object.castTicks());
             friendlyByteBuf.writeBoolean(object.hasSpell());
         }
 
         @Override
-        public SynchedData read(FriendlyByteBuf friendlyByteBuf) {
+        public SynchedData decode(RegistryFriendlyByteBuf friendlyByteBuf) {
             boolean hasSpell = friendlyByteBuf.readBoolean();
-            AbstractSpell spell = friendlyByteBuf.readById(ESSpells.SPELLS.registry());
+            AbstractSpell spell = friendlyByteBuf.readById(value -> ESSpells.SPELLS.registry().byId(value));
             int ticks = friendlyByteBuf.readInt();
             return new SynchedData(hasSpell, spell, ticks);
+        }
+    };
+
+    public static final EntityDataSerializer<SynchedData> SYNCHED_DATA_SERIALIZER = new EntityDataSerializer<>() {
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, SynchedData> codec() {
+            return STREAM_CODEC;
         }
 
         @Override

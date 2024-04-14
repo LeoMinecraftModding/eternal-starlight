@@ -44,7 +44,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
         T mob = makeMob();
 
         mob.moveTo(getBlockPos(), accessor.getLevel().getRandom().nextFloat() * 360.0F, 0.0F);
-        mob.finalizeSpawn(accessor, accessor.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null, null);
+        mob.finalizeSpawn(accessor, accessor.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null);
 
         initializeCreature(mob);
 

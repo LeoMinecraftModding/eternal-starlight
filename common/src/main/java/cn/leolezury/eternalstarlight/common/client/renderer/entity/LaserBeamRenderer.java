@@ -14,8 +14,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
@@ -70,14 +68,12 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 
     private void renderBeamPart(float length, int tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
         PoseStack.Pose pose = stack.last();
-        Matrix4f matrix4f = pose.pose();
-        Matrix3f matrix3f = pose.normal();
         float factor = (float) Math.sin(tickCount + Minecraft.getInstance().getFrameTime());
         float xOffset = ((tickCount + Minecraft.getInstance().getFrameTime()) * 0.2f) % getTextureWidth();
-        vertex(matrix4f, matrix3f, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
-        vertex(matrix4f, matrix3f, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
+        vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
+        vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
+        vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
+        vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
     }
 
     private void renderBeam(float length, float yaw, float pitch, int tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
@@ -108,7 +104,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
         poseStack.popPose();
     }
 
-    public void vertex(Matrix4f matrix4f, Matrix3f matrix3f, VertexConsumer consumer, float offsetX, float offsetY, float offsetZ, float textureX, float textureY, float alpha, int packedLight) {
-        consumer.vertex(matrix4f, offsetX, offsetY, offsetZ).color(1, 1, 1, 1 * alpha).uv(textureX, textureY).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+    public void vertex(PoseStack.Pose pose, VertexConsumer consumer, float offsetX, float offsetY, float offsetZ, float textureX, float textureY, float alpha, int packedLight) {
+        consumer.vertex(pose, offsetX, offsetY, offsetZ).color(1, 1, 1, 1 * alpha).uv(textureX, textureY).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
     }
 }

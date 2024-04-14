@@ -28,4 +28,9 @@ public class AmaramberArrow extends AbstractArrow {
             this.level().addParticle(ParticleTypes.CRIMSON_SPORE, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
         }
     }
+
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return ESItems.AMARAMBER_ARROW.get().getDefaultInstance();
+    }
 }

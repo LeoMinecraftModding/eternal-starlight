@@ -115,11 +115,11 @@ public class LunarMonstrosity extends ESBoss {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(PARTICLE_ANGLE_X, (float) 0);
-        entityData.define(PARTICLE_ANGLE_Y, (float) 0);
-        entityData.define(PARTICLE_ANGLE_Z, (float) 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PARTICLE_ANGLE_X, (float) 0);
+        builder.define(PARTICLE_ANGLE_Y, (float) 0);
+        builder.define(PARTICLE_ANGLE_Z, (float) 0);
     }
 
     protected void registerGoals() {
@@ -285,7 +285,7 @@ public class LunarMonstrosity extends ESBoss {
         ItemStack itemstack = p_32301_.getItemInHand(p_32302_);
         if (itemstack.is(Items.FLINT_AND_STEEL) && getPhase() == 0) {
             this.level().playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-            setSecondsOnFire(5);
+            setRemainingFireTicks(Math.max(getRemainingFireTicks(), 100));
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             return super.mobInteract(p_32301_, p_32302_);
@@ -293,7 +293,7 @@ public class LunarMonstrosity extends ESBoss {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose pose) {
+    public EntityDimensions getDefaultDimensions(Pose pose) {
         return getAttackState() == 6 ? super.getDimensions(pose).scale(0.1f) : super.getDimensions(pose);
     }
 

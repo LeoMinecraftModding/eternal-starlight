@@ -41,9 +41,9 @@ public class GatekeeperFireball extends Fireball {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(SPAWNED_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SPAWNED_TICKS, 0);
     }
 
     @Nullable

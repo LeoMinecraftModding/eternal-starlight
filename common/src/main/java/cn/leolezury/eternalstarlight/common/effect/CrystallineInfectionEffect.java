@@ -15,12 +15,13 @@ public class CrystallineInfectionEffect extends MobEffect {
 
     public CrystallineInfectionEffect(MobEffectCategory mobEffectCategory, int color) {
         super(mobEffectCategory, color);
-        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_UUID.toString(), ARMOR_ADDITION, AttributeModifier.Operation.ADDITION);
+        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_UUID.toString(), ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
     }
 
     @Override
-    public void applyEffectTick(LivingEntity living, int amplifier) {
+    public boolean applyEffectTick(LivingEntity living, int amplifier) {
         living.hurt(ESDamageTypes.getDamageSource(living.level(), ESDamageTypes.CRYSTALLINE_INFECTION), (amplifier + 1));
+        return true;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class SonarBomb extends ThrowableItemProjectile {
                     ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), getX(), getY(), getZ(), delta.x, delta.y, delta.z));
                 }
             }
-            playSound(SoundEvents.GENERIC_EXPLODE);
+            playSound(SoundEvents.GENERIC_EXPLODE.value());
         }
     }
 

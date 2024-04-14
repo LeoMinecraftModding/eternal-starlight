@@ -113,10 +113,10 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(SIZE, 0);
-        entityData.define(TICKS_SINCE_LANDED, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SIZE, 0);
+        builder.define(TICKS_SINCE_LANDED, 0);
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -166,7 +166,7 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     }
 
     private void land() {
-        playSound(SoundEvents.GENERIC_EXPLODE, getSoundVolume(), getVoicePitch());
+        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
         if (level().isClientSide) {
             level().addParticle(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 0, 0, 0);
             for (int i = 0; i < 20; i++) {

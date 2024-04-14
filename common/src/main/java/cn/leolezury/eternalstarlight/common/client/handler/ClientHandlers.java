@@ -63,7 +63,7 @@ public class ClientHandlers {
 
     public static void onClientTick() {
         LocalPlayer player = Minecraft.getInstance().player;
-        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.get())) {
+        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
             List<DreamCatcherText> toRemove = new ArrayList<>();
             for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
                 text.updatePosition();
@@ -284,7 +284,7 @@ public class ClientHandlers {
 
     public static void renderDreamCatcher(GuiGraphics guiGraphics) {
         LocalPlayer player = Minecraft.getInstance().player;
-        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.get())) {
+        if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
             for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
                 guiGraphics.drawCenteredString(Minecraft.getInstance().font, text.getText(), text.getX(), text.getY(), 0x5187c4);
             }
@@ -328,7 +328,7 @@ public class ClientHandlers {
         int x = window.getGuiScaledWidth();
         int y = window.getGuiScaledHeight();
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        if (player != null && player.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.get())) {
+        if (player != null && player.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
             Uniform randomFloat = shader.getUniform("RandomFloat");
             if (randomFloat != null) {
                 randomFloat.set(new Random().nextFloat(0.0F, 3.0F));

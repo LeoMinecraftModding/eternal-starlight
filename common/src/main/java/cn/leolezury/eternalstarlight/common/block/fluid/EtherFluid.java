@@ -29,7 +29,7 @@ public abstract class EtherFluid extends FlowingFluid {
     public static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("012CFA7C-C624-495F-8C9F-6020A8718B6B");
 
     public static AttributeModifier armorModifier(float amount) {
-        return new AttributeModifier(ARMOR_MODIFIER_UUID, "Ether Fluid Modifier", amount, AttributeModifier.Operation.ADDITION);
+        return new AttributeModifier(ARMOR_MODIFIER_UUID, "Ether Fluid Modifier", amount, AttributeModifier.Operation.ADD_VALUE);
     }
 
     @Override

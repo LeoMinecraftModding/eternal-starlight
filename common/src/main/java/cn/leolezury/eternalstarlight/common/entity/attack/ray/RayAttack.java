@@ -76,11 +76,11 @@ public class RayAttack extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        getEntityData().define(CASTER, -1);
-        getEntityData().define(PITCH, 0f);
-        getEntityData().define(YAW, 0f);
-        getEntityData().define(LENGTH, 0f);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(CASTER, -1);
+        builder.define(PITCH, 0f);
+        builder.define(YAW, 0f);
+        builder.define(LENGTH, 0f);
     }
 
     @Override
@@ -162,7 +162,7 @@ public class RayAttack extends Entity {
     public void doHurtTarget(LivingEntity target) {
         getCaster().ifPresent(caster -> {
             if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), getAttackDamage())) {
-                target.setSecondsOnFire(3);
+                target.setRemainingFireTicks(target.getRemainingFireTicks() + 60);
             }
         });
     }

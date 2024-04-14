@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -34,9 +33,9 @@ public class EnergyBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (state.getValue(LIT)) {
-            level.setBlockAndUpdate(pos, state.setValue(LIT, false));
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        if (blockState.getValue(LIT)) {
+            level.setBlockAndUpdate(blockPos, blockState.setValue(LIT, false));
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return InteractionResult.PASS;

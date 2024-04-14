@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.misc;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -25,151 +24,157 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
     private double ty;
     private double tz;
     private int life;
+    private boolean surviveAfterDeath;
 
-    public EyeOfSeeking(EntityType<? extends EyeOfSeeking> p_36957_, Level p_36958_) {
-        super(p_36957_, p_36958_);
+    public EyeOfSeeking(EntityType<? extends EyeOfSeeking> entityType, Level level) {
+        super(entityType, level);
     }
 
-    public EyeOfSeeking(Level p_36960_, double p_36961_, double p_36962_, double p_36963_) {
-        this(ESEntities.EYE_OF_SEEKING.get(), p_36960_);
-        this.setPos(p_36961_, p_36962_, p_36963_);
+    public EyeOfSeeking(Level level, double d, double e, double f) {
+        this(ESEntities.EYE_OF_SEEKING.get(), level);
+        this.setPos(d, e, f);
     }
 
-    public void setItem(ItemStack p_36973_) {
-        if (!p_36973_.is(ESItems.SEEKING_EYE.get()) || p_36973_.hasTag()) {
-            this.getEntityData().set(DATA_ITEM_STACK, Util.make(p_36973_.copy(), (p_36978_) -> {
-                p_36978_.setCount(1);
-            }));
+    public void setItem(ItemStack itemStack) {
+        if (itemStack.isEmpty()) {
+            this.getEntityData().set(DATA_ITEM_STACK, this.getDefaultItem());
+        } else {
+            this.getEntityData().set(DATA_ITEM_STACK, itemStack.copyWithCount(1));
         }
-    }
 
-    private ItemStack getItemRaw() {
-        return this.getEntityData().get(DATA_ITEM_STACK);
     }
 
     public ItemStack getItem() {
-        ItemStack itemstack = this.getItemRaw();
-        return itemstack.isEmpty() ? new ItemStack(ESItems.SEEKING_EYE.get()) : itemstack;
+        return (ItemStack)this.getEntityData().get(DATA_ITEM_STACK);
     }
 
-    protected void defineSynchedData() {
-        this.getEntityData().define(DATA_ITEM_STACK, ItemStack.EMPTY);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(DATA_ITEM_STACK, this.getDefaultItem());
     }
 
-    public boolean shouldRenderAtSqrDistance(double p_36966_) {
-        double d0 = this.getBoundingBox().getSize() * 4.0D;
-        if (Double.isNaN(d0)) {
-            d0 = 4.0D;
+    public boolean shouldRenderAtSqrDistance(double d) {
+        double e = this.getBoundingBox().getSize() * 4.0;
+        if (Double.isNaN(e)) {
+            e = 4.0;
         }
 
-        d0 *= 64.0D;
-        return p_36966_ < d0 * d0;
+        e *= 64.0;
+        return d < e * e;
     }
 
-    public void signalTo(BlockPos p_36968_) {
-        double d0 = (double)p_36968_.getX();
-        int i = p_36968_.getY();
-        double d1 = (double)p_36968_.getZ();
-        double d2 = d0 - this.getX();
-        double d3 = d1 - this.getZ();
-        double d4 = Math.sqrt(d2 * d2 + d3 * d3);
-        if (d4 > 12.0D) {
-            this.tx = this.getX() + d2 / d4 * 12.0D;
-            this.tz = this.getZ() + d3 / d4 * 12.0D;
-            this.ty = this.getY() + 8.0D;
+    public void signalTo(BlockPos blockPos) {
+        double d = (double)blockPos.getX();
+        int i = blockPos.getY();
+        double e = (double)blockPos.getZ();
+        double f = d - this.getX();
+        double g = e - this.getZ();
+        double h = Math.sqrt(f * f + g * g);
+        if (h > 12.0) {
+            this.tx = this.getX() + f / h * 12.0;
+            this.tz = this.getZ() + g / h * 12.0;
+            this.ty = this.getY() + 8.0;
         } else {
-            this.tx = d0;
+            this.tx = d;
             this.ty = (double)i;
-            this.tz = d1;
+            this.tz = e;
         }
 
         this.life = 0;
+        this.surviveAfterDeath = this.random.nextInt(5) > 0;
     }
 
-    public void lerpMotion(double p_36984_, double p_36985_, double p_36986_) {
-        this.setDeltaMovement(p_36984_, p_36985_, p_36986_);
+    public void lerpMotion(double d, double e, double f) {
+        this.setDeltaMovement(d, e, f);
         if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
-            double d0 = Math.sqrt(p_36984_ * p_36984_ + p_36986_ * p_36986_);
-            this.setYRot((float)(Mth.atan2(p_36984_, p_36986_) * (double)(180F / (float)Math.PI)));
-            this.setXRot((float)(Mth.atan2(p_36985_, d0) * (double)(180F / (float)Math.PI)));
+            double g = Math.sqrt(d * d + f * f);
+            this.setYRot((float)(Mth.atan2(d, f) * 57.2957763671875));
+            this.setXRot((float)(Mth.atan2(e, g) * 57.2957763671875));
             this.yRotO = this.getYRot();
             this.xRotO = this.getXRot();
         }
 
     }
 
-    protected static float lerpRotation(float p_37274_, float p_37275_) {
-        while(p_37275_ - p_37274_ < -180.0F) {
-            p_37274_ -= 360.0F;
+    protected float lerpRotation(float f, float g) {
+        while(g - f < -180.0F) {
+            f -= 360.0F;
         }
 
-        while(p_37275_ - p_37274_ >= 180.0F) {
-            p_37274_ += 360.0F;
+        while(g - f >= 180.0F) {
+            f += 360.0F;
         }
 
-        return Mth.lerp(0.2F, p_37274_, p_37275_);
+        return Mth.lerp(0.2F, f, g);
     }
 
     public void tick() {
         super.tick();
         Vec3 vec3 = this.getDeltaMovement();
-        double d0 = this.getX() + vec3.x;
-        double d1 = this.getY() + vec3.y;
-        double d2 = this.getZ() + vec3.z;
-        double d3 = vec3.horizontalDistance();
-        this.setXRot(lerpRotation(this.xRotO, (float)(Mth.atan2(vec3.y, d3) * (double)(180F / (float)Math.PI))));
-        this.setYRot(lerpRotation(this.yRotO, (float)(Mth.atan2(vec3.x, vec3.z) * (double)(180F / (float)Math.PI))));
+        double d = this.getX() + vec3.x;
+        double e = this.getY() + vec3.y;
+        double f = this.getZ() + vec3.z;
+        double g = vec3.horizontalDistance();
+        this.setXRot(lerpRotation(this.xRotO, (float)(Mth.atan2(vec3.y, g) * 57.2957763671875)));
+        this.setYRot(lerpRotation(this.yRotO, (float)(Mth.atan2(vec3.x, vec3.z) * 57.2957763671875)));
         if (!this.level().isClientSide) {
-            double d4 = this.tx - d0;
-            double d5 = this.tz - d2;
-            float f = (float)Math.sqrt(d4 * d4 + d5 * d5);
-            float f1 = (float)Mth.atan2(d5, d4);
-            double d6 = Mth.lerp(0.0025D, d3, (double)f);
-            double d7 = vec3.y;
-            if (f < 1.0F) {
-                d6 *= 0.8D;
-                d7 *= 0.8D;
+            double h = this.tx - d;
+            double i = this.tz - f;
+            float j = (float)Math.sqrt(h * h + i * i);
+            float k = (float)Mth.atan2(i, h);
+            double l = Mth.lerp(0.0025, g, (double)j);
+            double m = vec3.y;
+            if (j < 1.0F) {
+                l *= 0.8;
+                m *= 0.8;
             }
 
-            int j = this.getY() < this.ty ? 1 : -1;
-            vec3 = new Vec3(Math.cos((double)f1) * d6, d7 + ((double)j - d7) * (double)0.015F, Math.sin((double)f1) * d6);
+            int n = this.getY() < this.ty ? 1 : -1;
+            vec3 = new Vec3(Math.cos((double)k) * l, m + ((double)n - m) * 0.014999999664723873, Math.sin((double)k) * l);
             this.setDeltaMovement(vec3);
         }
 
-        float f2 = 0.25F;
+        float o = 0.25F;
         if (this.isInWater()) {
-            for(int i = 0; i < 4; ++i) {
-                this.level().addParticle(ParticleTypes.BUBBLE, d0 - vec3.x * 0.25D, d1 - vec3.y * 0.25D, d2 - vec3.z * 0.25D, vec3.x, vec3.y, vec3.z);
+            for(int p = 0; p < 4; ++p) {
+                this.level().addParticle(ParticleTypes.BUBBLE, d - vec3.x * 0.25, e - vec3.y * 0.25, f - vec3.z * 0.25, vec3.x, vec3.y, vec3.z);
             }
         } else {
-            this.level().addParticle(ParticleTypes.PORTAL, d0 - vec3.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, d1 - vec3.y * 0.25D - 0.5D, d2 - vec3.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, vec3.x, vec3.y, vec3.z);
+            this.level().addParticle(ParticleTypes.PORTAL, d - vec3.x * 0.25 + this.random.nextDouble() * 0.6 - 0.3, e - vec3.y * 0.25 - 0.5, f - vec3.z * 0.25 + this.random.nextDouble() * 0.6 - 0.3, vec3.x, vec3.y, vec3.z);
         }
 
         if (!this.level().isClientSide) {
-            this.setPos(d0, d1, d2);
+            this.setPos(d, e, f);
             ++this.life;
             if (this.life > 80 && !this.level().isClientSide) {
                 this.playSound(ESSoundEvents.SEEKING_EYE_DEATH.get(), 1.0F, 1.0F);
                 this.discard();
-                this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), this.getItem()));
+                if (this.surviveAfterDeath) {
+                    this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), this.getItem()));
+                } else {
+                    this.level().levelEvent(2003, this.blockPosition(), 0);
+                }
             }
         } else {
-            this.setPosRaw(d0, d1, d2);
+            this.setPosRaw(d, e, f);
         }
 
     }
 
-    public void addAdditionalSaveData(CompoundTag p_36975_) {
-        ItemStack itemstack = this.getItemRaw();
-        if (!itemstack.isEmpty()) {
-            p_36975_.put("Item", itemstack.save(new CompoundTag()));
+    public void addAdditionalSaveData(CompoundTag compoundTag) {
+        compoundTag.put("Item", this.getItem().save(this.registryAccess()));
+    }
+
+    public void readAdditionalSaveData(CompoundTag compoundTag) {
+        if (compoundTag.contains("Item", 10)) {
+            this.setItem((ItemStack)ItemStack.parse(this.registryAccess(), compoundTag.getCompound("Item")).orElse(this.getDefaultItem()));
+        } else {
+            this.setItem(this.getDefaultItem());
         }
 
     }
 
-    public void readAdditionalSaveData(CompoundTag p_36970_) {
-        ItemStack itemstack = ItemStack.of(p_36970_.getCompound("Item"));
-        this.setItem(itemstack);
+    private ItemStack getDefaultItem() {
+        return new ItemStack(ESItems.SEEKING_EYE.get());
     }
 
     public float getLightLevelDependentMagicValue() {

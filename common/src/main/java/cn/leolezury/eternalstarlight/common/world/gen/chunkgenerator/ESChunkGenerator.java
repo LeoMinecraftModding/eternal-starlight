@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.carver.ESExtraCavesCarver;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import com.google.common.collect.Sets;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -44,7 +44,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 
     public long seed = 0;
 
-    public static final Codec<ESChunkGenerator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+    public static final MapCodec<ESChunkGenerator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             BiomeSource.CODEC.fieldOf("biome_source").forGetter(o -> o.biomeSource),
             NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter(NoiseBasedChunkGenerator::generatorSettings)
     ).apply(instance, instance.stable(ESChunkGenerator::new)));
@@ -70,7 +70,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    protected Codec<? extends ChunkGenerator> codec() {
+    protected MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
     }
 

@@ -8,7 +8,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.NoiseHeightTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.SmoothHeightsTransformer;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
@@ -32,7 +32,7 @@ public class ESDataTransformers {
     public static final ResourceKey<DataTransformer> SMOOTH_HEIGHTS_LARGE = create("smooth_heights_large");
     public static final ResourceKey<DataTransformer> SMOOTH_HEIGHTS_SMALL = create("smooth_heights_small");
 
-    public static void bootstrap(BootstapContext<DataTransformer> context) {
+    public static void bootstrap(BootstrapContext<DataTransformer> context) {
         HolderGetter<BiomeData> data = context.lookup(ESRegistries.BIOME_DATA);
         context.register(DUPLICATE, new DuplicateSizeTransformer());
         context.register(FINALIZE_BIOMES, new FinalizeBiomesTransformer());

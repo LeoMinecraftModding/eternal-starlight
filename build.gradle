@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.6-SNAPSHOT" apply false
 }
 
 architectury {
@@ -22,7 +22,7 @@ subprojects {
         mappings loom.officialMojangMappings()
         // The following line declares the yarn mappings you may select this one as well.
         // mappings "net.fabricmc:yarn:1.19.4+build.2:v2"
-        modCompileOnly "dev.emi:emi-xplat-intermediary:${emi_version}:api"
+        // modCompileOnly "dev.emi:emi-xplat-intermediary:${emi_version}:api"
     }
 }
 

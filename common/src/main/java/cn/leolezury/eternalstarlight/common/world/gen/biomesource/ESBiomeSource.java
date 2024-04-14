@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.biome.Climate;
 import java.util.stream.Stream;
 
 public class ESBiomeSource extends BiomeSource {
-    public static final Codec<ESBiomeSource> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+    public static final MapCodec<ESBiomeSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             WorldGenProvider.CODEC.fieldOf("worldgen_provider").forGetter(o -> o.provider),
             RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(o -> o.biomeHolderSet)
     ).apply(instance, instance.stable(ESBiomeSource::new)));
@@ -42,7 +42,7 @@ public class ESBiomeSource extends BiomeSource {
     }
 
     @Override
-    protected Codec<? extends BiomeSource> codec() {
+    protected MapCodec<? extends BiomeSource> codec() {
         return CODEC;
     }
 

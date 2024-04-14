@@ -29,8 +29,8 @@ public abstract class LivingEntityMixin implements ESLivingEntity {
     private static final EntityDataAccessor<ESSynchedEntityData.SynchedData> ES_SYNCHED_DATA = SynchedEntityData.defineId(LivingEntity.class, ESSynchedEntityData.SYNCHED_DATA_SERIALIZER);
 
     @Inject(method = "defineSynchedData", at = @At("RETURN"))
-    private void es_defineSynchedData(CallbackInfo ci) {
-        ((LivingEntity) ((Object) this)).getEntityData().define(ES_SYNCHED_DATA, ESSynchedEntityData.SynchedData.getDefault());
+    private void es_defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+        builder.define(ES_SYNCHED_DATA, ESSynchedEntityData.SynchedData.getDefault());
     }
 
     @Override

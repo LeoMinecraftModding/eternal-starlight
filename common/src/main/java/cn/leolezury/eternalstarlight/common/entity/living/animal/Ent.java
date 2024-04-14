@@ -17,10 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -48,9 +45,9 @@ public class Ent extends Animal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(HAS_LEAVES, true);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HAS_LEAVES, true);
     }
 
     protected void registerGoals() {
@@ -88,9 +85,7 @@ public class Ent extends Animal {
             if (ESPlatform.INSTANCE.isShears(stack) && hasLeaves()) {
                 setHasLeaves(false);
                 spawnAtLocation(ESItems.LUNAR_LEAVES.get());
-                stack.hurtAndBreak(1, player, (p) -> {
-                    p.broadcastBreakEvent(hand);
-                });
+                stack.hurtAndBreak(1, player, hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                 playSound(SoundEvents.SHEEP_SHEAR);
                 return InteractionResult.sidedSuccess(level().isClientSide);
             }

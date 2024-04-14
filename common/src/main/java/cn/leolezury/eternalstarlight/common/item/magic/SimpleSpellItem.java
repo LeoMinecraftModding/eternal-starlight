@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.magic;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -69,7 +70,7 @@ public class SimpleSpellItem extends Item {
         AbstractSpell spell = spellSupplier.get();
         if (!level.isClientSide && spell.canCast(player, false)) {
             player.startUsingItem(interactionHand);
-            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
+            itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             spell.start(player, false);
             return InteractionResultHolder.consume(itemStack);
         }

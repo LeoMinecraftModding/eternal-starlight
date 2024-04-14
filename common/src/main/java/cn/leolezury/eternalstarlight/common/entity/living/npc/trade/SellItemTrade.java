@@ -5,6 +5,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,6 +27,6 @@ public class SellItemTrade implements VillagerTrades.ItemListing {
     @Nullable
     @Override
     public MerchantOffer getOffer(Entity entity, RandomSource random) {
-        return new MerchantOffer(currency, sell, this.maxUses, 0, 0);
+        return new MerchantOffer(new ItemCost(currency.getItem(), currency.getCount()), sell, this.maxUses, 0, 0);
     }
 }

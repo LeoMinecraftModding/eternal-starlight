@@ -49,9 +49,9 @@ public class ESBoat extends Boat {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BOAT_TYPE, Type.LUNAR.ordinal());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BOAT_TYPE, Type.LUNAR.ordinal());
     }
 
     @Override

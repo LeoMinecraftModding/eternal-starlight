@@ -70,6 +70,11 @@ public class FrozenTube extends AbstractArrow {
         this.dealtDamage = compoundTag.getBoolean("DealtDamage");
     }
 
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return ESItems.FROZEN_TUBE.get().getDefaultInstance();
+    }
+
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putBoolean("DealtDamage", this.dealtDamage);

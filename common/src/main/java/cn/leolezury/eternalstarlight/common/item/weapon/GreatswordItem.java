@@ -18,13 +18,13 @@ public class GreatswordItem extends SwordItem {
         super(tier, baseDamage, attackSpeed, properties);
         this.attackDamage = (float)baseDamage + tier.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE));
         // TODO: reimplement this when updated to 1.20.5
         /*Attribute attribute = ESPlatform.INSTANCE.getEntityReachAttribute();
         // Implementation of ENTITY_REACH on fabric is not that easy
         if (attribute != null) {
-            builder.put(ESPlatform.INSTANCE.getEntityReachAttribute(), new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", 2, AttributeModifier.Operation.ADDITION));
+            builder.put(ESPlatform.INSTANCE.getEntityReachAttribute(), new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", 2, AttributeModifier.Operation.ADD_VALUE));
         }*/
         this.defaultModifiers = builder.build();
     }

@@ -5,8 +5,9 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -39,12 +40,12 @@ public class DoomedenKeyholeBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (player.getItemInHand(hand).is(ESTags.Items.DOOMEDEN_KEYS) && !state.getValue(LIT)) {
-            level.setBlockAndUpdate(pos, state.setValue(LIT, true));
-            return InteractionResult.sidedSuccess(level.isClientSide);
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        if (itemStack.is(ESTags.Items.DOOMEDEN_KEYS) && !blockState.getValue(LIT)) {
+            level.setBlockAndUpdate(blockPos, blockState.setValue(LIT, true));
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         } else {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
     }
 

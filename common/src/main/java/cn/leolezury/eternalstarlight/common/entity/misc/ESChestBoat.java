@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,12 +24,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.Nullable;
 
 public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, ContainerEntity {
     private NonNullList<ItemStack> itemStacks = NonNullList.withSize(27, ItemStack.EMPTY);
     @Nullable
-    private ResourceLocation lootTable;
+    private ResourceKey<LootTable> lootTable;
     private long lootTableSeed;
 
     public ESChestBoat(EntityType<? extends Boat> type, Level level) {
@@ -54,12 +55,12 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
 
     protected void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        this.addChestVehicleSaveData(tag);
+        this.addChestVehicleSaveData(tag, this.registryAccess());
     }
 
     protected void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.readChestVehicleSaveData(tag);
+        this.readChestVehicleSaveData(tag, this.registryAccess());
     }
 
     public void destroy(DamageSource source) {
@@ -169,13 +170,13 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
 
     @Nullable
     @Override
-    public ResourceLocation getLootTable() {
+    public ResourceKey<LootTable> getLootTable() {
         return this.lootTable;
     }
 
     @Override
-    public void setLootTable(@Nullable ResourceLocation location) {
-        this.lootTable = location;
+    public void setLootTable(@Nullable ResourceKey<LootTable> resourceKey) {
+        this.lootTable = resourceKey;
     }
 
     @Override

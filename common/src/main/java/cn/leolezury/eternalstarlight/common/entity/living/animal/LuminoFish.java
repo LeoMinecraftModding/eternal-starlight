@@ -41,9 +41,9 @@ public class LuminoFish extends AbstractSchoolingFish {
     public AnimationState swellAnimationState = new AnimationState();
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(SWELL_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SWELL_TICKS, 0);
     }
 
     @Override
