@@ -38,7 +38,7 @@ public class ESArmorMaterials {
         map.put(ArmorItem.Type.LEGGINGS, 5);
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 3);
-    }), 9, ESSoundEvents.ARMOR_EQUIP_GLACITE.asHolder(), () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get()), List.of(new ArmorMaterial.Layer(new ResourceLocation(EternalStarlight.MOD_ID, "glacite"))), 0.5F, 0F));
+    }), 9, ESSoundEvents.ARMOR_EQUIP_GLACITE.asHolder(), () -> Ingredient.of(ESItems.GLACITE_SHARD.get()), List.of(new ArmorMaterial.Layer(new ResourceLocation(EternalStarlight.MOD_ID, "glacite"))), 0.5F, 0F));
     public static final RegistryObject<ArmorMaterial, ArmorMaterial> SWAMP_SILVER = ARMOR_MATERIALS.register("swamp_silver", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);
