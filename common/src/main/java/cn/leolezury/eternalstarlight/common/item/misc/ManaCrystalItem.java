@@ -15,7 +15,7 @@ public class ManaCrystalItem extends Item {
 
     @Override
     public int getBarColor(ItemStack itemStack) {
-        float f = Math.max(0.0F, ((float)this.getMaxDamage() - (float)itemStack.getDamageValue()) / (float)this.getMaxDamage());
+        float f = Math.max(0.0F, ((float)itemStack.getMaxDamage() - (float)itemStack.getDamageValue()) / (float)itemStack.getMaxDamage());
         float r = ((manaType.getColor() >> 16) & 0xFF) / 255f;
         float g = ((manaType.getColor() >> 8) & 0xFF) / 255f;
         float b = (manaType.getColor() & 0xFF) / 255f;

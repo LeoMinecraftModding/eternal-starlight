@@ -82,6 +82,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.MANA_CRYSTAL.get()
         );
         // mc tags
+        // TODO Meat Tag, Animal Tempt Tags, Armor Tags, Enchantable Tags, Or More
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);

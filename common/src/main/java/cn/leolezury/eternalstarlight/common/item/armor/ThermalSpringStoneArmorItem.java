@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -17,8 +18,8 @@ public class ThermalSpringStoneArmorItem extends ArmorItem {
         super(holder, type, properties);
     }
 
-    public static String getTexture(EquipmentSlot slot) {
-        return EternalStarlight.MOD_ID + ":textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png");
+    public static ResourceLocation getTexture(EquipmentSlot slot) {
+        return new ResourceLocation(EternalStarlight.MOD_ID, ":textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png"));
     }
 
     @Override

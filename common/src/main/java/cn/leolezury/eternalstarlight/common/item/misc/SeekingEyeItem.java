@@ -20,8 +20,8 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
 public class SeekingEyeItem extends Item {
-    public SeekingEyeItem(Properties p) {
-        super(p);
+    public SeekingEyeItem(Properties properties) {
+        super(properties);
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {

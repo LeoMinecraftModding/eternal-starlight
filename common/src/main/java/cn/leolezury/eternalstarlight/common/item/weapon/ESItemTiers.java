@@ -1,36 +1,41 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import net.minecraft.util.LazyLoadedValue;
+import com.google.common.base.Suppliers;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public enum ESItemTiers implements Tier {
-    AMARAMBER(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get())),
-    AETHERSENT(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.AETHERSENT_INGOT.get())),
-    THERMAL_SPRINGSTONE(2, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
-    GLACITE(2, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESItems.GLACITE_SHARD.get())),
-    SWAMP_SILVER(3, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get())),
-    DOOMEDEN(3, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ESItems.BROKEN_DOOMEDEN_BONE.get())),
-    PETAL(3, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get())),
-    AURORA_DEER_ANTLER(2, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get()));
+    AMARAMBER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get())),
+    AETHERSENT(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.AETHERSENT_INGOT.get())),
+    THERMAL_SPRINGSTONE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
+    GLACITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESItems.GLACITE_SHARD.get())),
+    SWAMP_SILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get())),
+    DOOMEDEN(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ESItems.BROKEN_DOOMEDEN_BONE.get())),
+    PETAL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get())),
+    AURORA_DEER_ANTLER(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get()));
 
-    private final int level;
+    private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;
     private final float speed;
     private final float damage;
     private final int enchantmentValue;
-    private final LazyLoadedValue<Ingredient> repairIngredient;
+    private final Supplier<Ingredient> repairIngredient;
 
-    ESItemTiers(int level, int durability, float miningSpeed, float damage, int enchantability, Supplier<Ingredient> repairIngredient) {
-        this.level = level;
-        this.uses = durability;
-        this.speed = miningSpeed;
+    ESItemTiers(final TagKey<Block> incorrect, final int uses, final float speed, final float damage, final int enchantmentValue, final Supplier<Ingredient> supplier) {
+        this.incorrectBlocksForDrops = incorrect;
+        this.uses = uses;
+        this.speed = speed;
         this.damage = damage;
-        this.enchantmentValue = enchantability;
-        this.repairIngredient = new LazyLoadedValue<>(repairIngredient);
+        this.enchantmentValue = enchantmentValue;
+        Objects.requireNonNull(supplier);
+        this.repairIngredient = Suppliers.memoize(supplier::get);
     }
 
     public int getUses() {
@@ -45,8 +50,8 @@ public enum ESItemTiers implements Tier {
         return this.damage;
     }
 
-    public int getLevel() {
-        return this.level;
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return this.incorrectBlocksForDrops;
     }
 
     public int getEnchantmentValue() {
