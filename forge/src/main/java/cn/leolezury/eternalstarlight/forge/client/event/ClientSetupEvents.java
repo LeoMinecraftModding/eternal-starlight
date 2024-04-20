@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +14,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 import java.io.IOException;
 import java.util.Map;
@@ -79,26 +80,16 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
-    public static void onRegisterOverlay(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "spell_crosshair"), (gui, guiGraphics, partialTicks, width, height) -> {
-            ClientHandlers.renderSpellCrosshair(guiGraphics, width, height);
-        });
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (gui, guiGraphics, partialTicks, width, height) -> {
-            ClientHandlers.renderEtherErosion(gui, guiGraphics);
-        });
-        event.registerAbove(VanillaGuiOverlay.ARMOR_LEVEL.id(), new ResourceLocation(EternalStarlight.MOD_ID, "ether_armor"), (gui, guiGraphics, partialTicks, width, height) -> {
-            if (gui.shouldDrawSurvivalElements()) {
-                ClientHandlers.renderEtherArmor(guiGraphics, width, height);
+    public static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "spell_crosshair"), (graphics, partialTicks) -> ClientHandlers.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (graphics, partialTicks) -> ClientHandlers.renderEtherErosion(graphics));
+        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, new ResourceLocation(EternalStarlight.MOD_ID, "ether_armor"), (graphics, partialTicks) -> {
+            if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.canHurtPlayer()) {
+                ClientHandlers.renderEtherArmor(graphics, graphics.guiWidth(), graphics.guiHeight());
             }
         });
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_use"), (gui, guiGraphics, partialTicks, width, height) -> {
-            ClientHandlers.renderOrbOfProphecyUse(gui, guiGraphics);
-        });
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "dream_catcher"), (gui, guiGraphics, partialTicks, width, height) -> {
-            ClientHandlers.renderDreamCatcher(guiGraphics);
-        });
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), new ResourceLocation(EternalStarlight.MOD_ID, "crystalline_infection"), (gui, guiGraphics, partialTicks, width, height) -> {
-            ClientHandlers.renderCrystallineInfection(guiGraphics);
-        });
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "crystalline_infection"), (graphics, partialTicks) -> ClientHandlers.renderCrystallineInfection(graphics));
     }
 }

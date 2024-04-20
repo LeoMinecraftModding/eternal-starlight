@@ -73,7 +73,7 @@ public abstract class EntityRenderDispatcherMixin {
             long seed = (long) (Math.pow(living.getId(), 3) * 12345L);
             RandomSource random = RandomSource.create();
             random.setSeed(seed);
-            int numCubes = (int) (living.getBbHeight() / 0.4F) + (int) (infection.getAmount() / 2) + 1;
+            int numCubes = (int) (living.getBbHeight() / 0.4F) + (int) (infection.amount() / 2) + 1;
 
             for (int i = 0; i < numCubes; i++) {
                 poseStack.pushPose();

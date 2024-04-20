@@ -13,8 +13,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import java.util.List;
 
 public class CommonScytheItem extends ScytheItem {
-    public CommonScytheItem(Tier tier, float damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public CommonScytheItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

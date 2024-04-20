@@ -1,30 +1,26 @@
 package cn.leolezury.eternalstarlight.common.network;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
-public class CancelWeatherPacket {
-    private final boolean cancel;
+public record CancelWeatherPacket(boolean cancel) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<CancelWeatherPacket> TYPE = new Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "cancel_weather"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, CancelWeatherPacket> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.BOOL, CancelWeatherPacket::cancel, CancelWeatherPacket::new);
 
-    public CancelWeatherPacket(boolean cancel) {
-        this.cancel = cancel;
-    }
-
-
-    public static CancelWeatherPacket read(FriendlyByteBuf buf) {
-        return new CancelWeatherPacket(buf.readBoolean());
-    }
-
-    public static void write(CancelWeatherPacket message, FriendlyByteBuf buf) {
-        buf.writeBoolean(message.cancel);
-    }
-
-    public static class Handler {
-        public static void handle(CancelWeatherPacket message, Player player) {
-            if (message.cancel) {
-                ClientWeatherInfo.WEATHER = null;
-            }
+    public static void handle(CancelWeatherPacket message, Player player) {
+        if (message.cancel) {
+            ClientWeatherInfo.WEATHER = null;
         }
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

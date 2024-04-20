@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkelet
 import cn.leolezury.eternalstarlight.common.entity.living.monster.NightfallSpider;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.network.ESPackets;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -24,6 +25,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -55,6 +57,22 @@ public class CommonSetupHandlers {
     public static final List<Supplier<Item>> SHIELDS = List.of(
             ESItems.GLACITE_SHIELD
     );
+
+    public interface NetworkRegisterStrategy {
+        <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo);
+    }
+
+    public static void registerPackets(NetworkRegisterStrategy strategy) {
+        strategy.register(ESPackets.TEST);
+        strategy.register(ESPackets.PARTICLE);
+        strategy.register(ESPackets.OPEN_BOOK);
+        strategy.register(ESPackets.WEATHER);
+        strategy.register(ESPackets.CANCEL_WEATHER);
+        strategy.register(ESPackets.OPEN_CREST_GUI);
+        strategy.register(ESPackets.UPDATE_CRESTS);
+        strategy.register(ESPackets.OPEN_GATEKEEPER_GUI);
+        strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
+    }
 
     public interface EntityAttributeRegisterStrategy {
         <T extends LivingEntity> void register(EntityType<T> entityType, AttributeSupplier attributeSupplier);

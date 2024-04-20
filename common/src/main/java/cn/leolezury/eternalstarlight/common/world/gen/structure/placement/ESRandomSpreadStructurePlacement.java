@@ -3,9 +3,9 @@ package cn.leolezury.eternalstarlight.common.world.gen.structure.placement;
 import cn.leolezury.eternalstarlight.common.registry.ESStructurePlacementTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Vec3i;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
@@ -15,9 +15,12 @@ import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement
 import java.util.Optional;
 
 public class ESRandomSpreadStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<ESRandomSpreadStructurePlacement> CODEC = ExtraCodecs.validate(RecordCodecBuilder.mapCodec((instance) -> {
-        return placementCodec(instance).and(instance.group(Codec.intRange(0, 4096).fieldOf("spacing").forGetter(ESRandomSpreadStructurePlacement::spacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(ESRandomSpreadStructurePlacement::separation), Codec.intRange(0, 4096).fieldOf("min_dist_from_spawn").forGetter(ESRandomSpreadStructurePlacement::minDistFromSpawn))).apply(instance, ESRandomSpreadStructurePlacement::new);
-    }), ESRandomSpreadStructurePlacement::validate).codec();
+    public static final MapCodec<ESRandomSpreadStructurePlacement> CODEC = RecordCodecBuilder.<ESRandomSpreadStructurePlacement>mapCodec((instance) -> placementCodec(instance).and(instance.group(
+            Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::spacing),
+            Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::separation),
+            Codec.intRange(0, 4096).fieldOf("minimum_distance_from_spawn").forGetter(placement -> placement.minDistFromSpawn)
+    )).apply(instance, ESRandomSpreadStructurePlacement::new)).validate(ESRandomSpreadStructurePlacement::validate);
+
     private final int minDistFromSpawn;
 
     private static DataResult<ESRandomSpreadStructurePlacement> validate(ESRandomSpreadStructurePlacement placement) {

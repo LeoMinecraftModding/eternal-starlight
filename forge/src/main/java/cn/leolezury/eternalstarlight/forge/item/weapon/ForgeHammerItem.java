@@ -7,8 +7,8 @@ import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
 
 public class ForgeHammerItem extends HammerItem {
-    public ForgeHammerItem(Tier tier, float damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public ForgeHammerItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

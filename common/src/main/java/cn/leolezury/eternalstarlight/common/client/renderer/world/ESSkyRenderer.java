@@ -23,14 +23,16 @@ import org.joml.Matrix4f;
 
 @Environment(EnvType.CLIENT)
 public class ESSkyRenderer {
-    // private static final float TIME_OF_DAY = 0.55833f;
     private static final ResourceLocation DEAD_STAR_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/environment/dead_star.png");
     private static VertexBuffer starBuffer;
 
-    public static boolean renderSky(ClientLevel level, PoseStack stack, Matrix4f matrix, float partialTicks, Camera camera, Runnable setupFog) {
+    public static boolean renderSky(ClientLevel level, Matrix4f modelViewMatrix, Matrix4f matrix, float partialTicks, Camera camera, Runnable setupFog) {
         Minecraft minecraft = Minecraft.getInstance();
         LevelRenderer levelRenderer = minecraft.levelRenderer;
         setupFog.run();
+
+        PoseStack stack = new PoseStack();
+        stack.mulPose(modelViewMatrix);
 
         Vec3 vec3 = level.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
         float f = (float) vec3.x;

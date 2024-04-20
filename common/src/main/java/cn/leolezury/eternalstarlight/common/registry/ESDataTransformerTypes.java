@@ -11,11 +11,10 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.
 import com.mojang.serialization.Codec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ExtraCodecs;
 
 public class ESDataTransformerTypes {
     public static final RegistrationProvider<DataTransformerType<?>> DATA_TRANSFORMER_TYPES = RegistrationProvider.newRegistry(ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "worldgen_data_transformer_type")), EternalStarlight.MOD_ID);
-    public static final Codec<DataTransformerType<?>> CODEC = ExtraCodecs.lazyInitializedCodec(DATA_TRANSFORMER_TYPES.registry()::byNameCodec);
+    public static final Codec<DataTransformerType<?>> CODEC = DATA_TRANSFORMER_TYPES.registry().byNameCodec();
     public static final RegistryObject<DataTransformerType<?>, DataTransformerType<? extends AddBiomesTransformer>> ADD_BIOMES = DATA_TRANSFORMER_TYPES.register("add_biomes", () -> (DataTransformerType<AddBiomesTransformer>) () -> AddBiomesTransformer.CODEC);
     public static final RegistryObject<DataTransformerType<?>, DataTransformerType<? extends AddOceanTransformer>> ADD_OCEAN = DATA_TRANSFORMER_TYPES.register("add_ocean", () -> (DataTransformerType<AddOceanTransformer>) () -> AddOceanTransformer.CODEC);
     public static final RegistryObject<DataTransformerType<?>, DataTransformerType<? extends AddBeachesTransformer>> ADD_BEACHES = DATA_TRANSFORMER_TYPES.register("add_beaches", () -> (DataTransformerType<AddBeachesTransformer>) () -> AddBeachesTransformer.CODEC);

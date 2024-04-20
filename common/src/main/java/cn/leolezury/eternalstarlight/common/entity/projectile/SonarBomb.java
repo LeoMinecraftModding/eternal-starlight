@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -43,7 +43,7 @@ public class SonarBomb extends ThrowableItemProjectile {
                 if (!ownedBy(livingEntity)) {
                     livingEntity.hurt(level().damageSources().mobProjectile(this, getOwner() instanceof LivingEntity owner ? owner : null), 5);
                     Vec3 delta = livingEntity.position().add(0, livingEntity.getBbHeight() / 2, 0).subtract(position()).normalize().scale(1.1);
-                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), getX(), getY(), getZ(), delta.x, delta.y, delta.z));
+                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), getX(), getY(), getZ(), delta.x, delta.y, delta.z));
                 }
             }
             playSound(SoundEvents.GENERIC_EXPLODE.value());

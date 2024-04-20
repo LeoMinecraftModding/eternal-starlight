@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
 import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 public class TorreyaFoliagePlacer extends FoliagePlacer {
-    public static final Codec<TorreyaFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> foliagePlacerParts(instance).apply(instance, TorreyaFoliagePlacer::new));
+    public static final MapCodec<TorreyaFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> foliagePlacerParts(instance).apply(instance, TorreyaFoliagePlacer::new));
 
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 

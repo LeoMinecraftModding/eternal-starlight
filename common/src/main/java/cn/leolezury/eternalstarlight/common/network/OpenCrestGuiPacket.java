@@ -3,12 +3,19 @@ package cn.leolezury.eternalstarlight.common.network;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) {
+public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<OpenCrestGuiPacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "open_crest_gui"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, OpenCrestGuiPacket> STREAM_CODEC = StreamCodec.ofMember(OpenCrestGuiPacket::write, OpenCrestGuiPacket::read);
+
     public static OpenCrestGuiPacket read(FriendlyByteBuf buf) {
         int ownedSize = buf.readInt();
         List<String> ownedCrestList = new ArrayList<>();
@@ -34,9 +41,12 @@ public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) 
         }
     }
 
-    public static class Handler {
-        public static void handle(OpenCrestGuiPacket message, Player player) {
-            ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(message));
-        }
+    public static void handle(OpenCrestGuiPacket message, Player player) {
+        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(message));
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

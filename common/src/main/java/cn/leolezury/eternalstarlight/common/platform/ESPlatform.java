@@ -27,6 +27,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -37,9 +38,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -85,11 +83,11 @@ public interface ESPlatform {
 
     // for initialization
     // ---Items
-    default ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        return new CommonScytheItem(tier, damage, attackSpeed, properties);
+    default ScytheItem createScythe(Tier tier, Item.Properties properties) {
+        return new CommonScytheItem(tier, properties);
     }
-    default HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        return new CommonHammerItem(tier, damage, attackSpeed, properties);
+    default HammerItem createHammer(Tier tier, Item.Properties properties) {
+        return new CommonHammerItem(tier, properties);
     }
     default ShieldItem createShield(Item.Properties properties) {
         return new ShieldItem(properties);
@@ -101,8 +99,6 @@ public interface ESPlatform {
         return new MobBucketItem(entityType.get(), fluid.get(), soundEvent.get(), properties);
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
-    Rarity getStarlightRarity();
-    Rarity getDemonRarity();
     CreativeModeTab getESTab();
     // ---Blocks
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
@@ -155,11 +151,6 @@ public interface ESPlatform {
     default boolean canStrip(ItemStack stack) {
         return stack.getItem() instanceof AxeItem;
     }
-    default boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
-        int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
-        return enchant > 0 && arrow.getItem().getClass() == ArrowItem.class;
-    }
-    EnchantmentCategory getESWeaponEnchantmentCategory();
     Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 
     // client-side
@@ -177,11 +168,11 @@ public interface ESPlatform {
     }
 
     // networking
-    void sendToClient(ServerPlayer player, Object packet);
-    default void sendToAllClients(ServerLevel level, Object packet) {
+    void sendToClient(ServerPlayer player, CustomPacketPayload packet);
+    default void sendToAllClients(ServerLevel level, CustomPacketPayload packet) {
         for (ServerPlayer player : level.players()) {
             sendToClient(player, packet);
         }
     }
-    void sendToServer(Object packet);
+    void sendToServer(CustomPacketPayload packet);
 }

@@ -6,7 +6,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NoiseDataTransformer;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import java.util.Random;
 
 public class AddTheAbyssTransformer extends NoiseDataTransformer {
-    public static final Codec<AddTheAbyssTransformer> CODEC = RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("the_abyss").xmap(AddTheAbyssTransformer::new, transformer -> transformer.abyss).codec();
+    public static final MapCodec<AddTheAbyssTransformer> CODEC = RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("the_abyss").xmap(AddTheAbyssTransformer::new, transformer -> transformer.abyss);
 
     private final Holder<BiomeData> abyss;
     private Integer id = null;

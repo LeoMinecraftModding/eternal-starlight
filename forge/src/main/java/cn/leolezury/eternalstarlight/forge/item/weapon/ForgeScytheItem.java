@@ -7,8 +7,8 @@ import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
 
 public class ForgeScytheItem extends ScytheItem {
-    public ForgeScytheItem(Tier tier, float damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public ForgeScytheItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

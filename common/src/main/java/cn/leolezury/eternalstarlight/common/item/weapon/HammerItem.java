@@ -1,26 +1,21 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
@@ -28,17 +23,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-public class HammerItem extends DiggerItem implements Vanishable {
-    private final float attackDamage;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-
-    public HammerItem(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        super(damage, attackSpeed, tier, BlockTags.MINEABLE_WITH_PICKAXE, properties);
-        this.attackDamage = damage + tier.getAttackDamageBonus();
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADD_VALUE));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE));
-        this.defaultModifiers = builder.build();
+public class HammerItem extends TieredItem {
+    public HammerItem(Tier tier, Properties properties) {
+        super(tier, properties.component(DataComponents.TOOL, tier.createToolProperties(BlockTags.MINEABLE_WITH_PICKAXE)));
     }
 
     protected void spawnBlockParticle(Level level, BlockPos pos, Vec3 particlePos) {
@@ -67,33 +54,23 @@ public class HammerItem extends DiggerItem implements Vanishable {
                     entity.setDeltaMovement(entity.getDeltaMovement().add(0.0D, (double)0.4F * knockbackParam, 0.0D));
                 }
             }
-            level.playSound(null, pos, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 2.0F, 1.0F);
+            player.playSound(SoundEvents.GENERIC_EXPLODE.value());
             player.getCooldowns().addCooldown(this, 60);
-            context.getItemInHand().hurtAndBreak(1, player, (livingEntity) -> {
-                livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            context.getItemInHand().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
         }
         return InteractionResult.SUCCESS;
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
-        stack.hurtAndBreak(1, attacker, (livingEntity) -> {
-            livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         return true;
     }
 
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(1, entity, (livingEntity) -> {
-                livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            stack.hurtAndBreak(1, entity, EquipmentSlot.MAINHAND);
         }
 
         return true;
-    }
-
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
     }
 }

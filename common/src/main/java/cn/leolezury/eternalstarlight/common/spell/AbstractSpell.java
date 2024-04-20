@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.spell;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
 import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +53,7 @@ public abstract class AbstractSpell {
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             ItemStack stack = inventory.getItem(i);
             if (stack.is(spellProperties().type().getCrystalsTag())) {
-                stack.hurtAndBreak(1, player, (p) -> {});
+                stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                 return;
             }
         }

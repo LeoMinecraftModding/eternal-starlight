@@ -7,6 +7,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -85,7 +86,7 @@ public class ESCrestUtil {
                     if (stack.is(crest.type().getCrystalsTag())) {
                         applyCrestEffects(player, crest);
                         if (player.tickCount % 60 == 0) {
-                            stack.hurtAndBreak(1, player, (p) -> {});
+                            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                         }
                         return;
                     }

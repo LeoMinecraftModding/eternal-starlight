@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LonestarSkeletonShootBladeGoal;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
@@ -113,7 +113,7 @@ public class LonestarSkeleton extends Skeleton {
                 for (int i = 0; i < 15; i++) {
                     Vec3 startPos = initialStartPos.offsetRandom(getRandom(), 0.4f);
                     Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
-                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
+                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
                 }
             } else if (getMainHandItem().is(ESItems.WAND_OF_TELEPORTATION.get())) {
                 for (int i = 0; i < 360; i += 5) {

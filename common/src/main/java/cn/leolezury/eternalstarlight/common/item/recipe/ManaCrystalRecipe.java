@@ -3,11 +3,12 @@ package cn.leolezury.eternalstarlight.common.item.recipe;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +38,8 @@ public class ManaCrystalRecipe extends CustomRecipe {
         return container.getWidth() == 3 && container.getHeight() == 3 && checkDay && checkEmpty && checkIngredients;
     }
 
-    public ItemStack assemble(CraftingContainer craftingContainer, RegistryAccess registryAccess) {
+    @Override
+    public ItemStack assemble(CraftingContainer container, HolderLookup.Provider provider) {
         return manaCrystal.getDefaultInstance();
     }
 
@@ -50,30 +52,35 @@ public class ManaCrystalRecipe extends CustomRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<ManaCrystalRecipe> {
-        private static final Codec<ManaCrystalRecipe> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+        private static final MapCodec<ManaCrystalRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(CraftingRecipe::category),
                 ManaType.CODEC.fieldOf("mana_type").forGetter(recipe -> recipe.manaType),
                 BuiltInRegistries.ITEM.byNameCodec().fieldOf("crystal").forGetter(recipe -> recipe.manaCrystal)
         ).apply(instance, ManaCrystalRecipe::new));
 
         @Override
-        public Codec<ManaCrystalRecipe> codec() {
+        public MapCodec<ManaCrystalRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public ManaCrystalRecipe fromNetwork(FriendlyByteBuf friendlyByteBuf) {
-            CraftingBookCategory category = friendlyByteBuf.readEnum(CraftingBookCategory.class);
-            ManaType type = friendlyByteBuf.readEnum(ManaType.class);
-            Item output = friendlyByteBuf.readById(BuiltInRegistries.ITEM);
-            return new ManaCrystalRecipe(category, type, output);
-        }
+        public StreamCodec<RegistryFriendlyByteBuf, ManaCrystalRecipe> streamCodec() {
+            return new StreamCodec<>() {
+                @Override
+                public ManaCrystalRecipe decode(RegistryFriendlyByteBuf friendlyByteBuf) {
+                    CraftingBookCategory category = friendlyByteBuf.readEnum(CraftingBookCategory.class);
+                    ManaType type = friendlyByteBuf.readEnum(ManaType.class);
+                    Item output = friendlyByteBuf.readById(BuiltInRegistries.ITEM::byId);
+                    return new ManaCrystalRecipe(category, type, output);
+                }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf friendlyByteBuf, ManaCrystalRecipe recipe) {
-            friendlyByteBuf.writeEnum(recipe.category());
-            friendlyByteBuf.writeEnum(recipe.manaType);
-            friendlyByteBuf.writeId(BuiltInRegistries.ITEM, recipe.manaCrystal);
+                @Override
+                public void encode(RegistryFriendlyByteBuf friendlyByteBuf, ManaCrystalRecipe recipe) {
+                    friendlyByteBuf.writeEnum(recipe.category());
+                    friendlyByteBuf.writeEnum(recipe.manaType);
+                    friendlyByteBuf.writeById(BuiltInRegistries.ITEM::getId, recipe.manaCrystal);
+                }
+            };
         }
     }
 }

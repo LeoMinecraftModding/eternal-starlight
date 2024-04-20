@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -18,8 +18,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EnergySwordItem extends SwordItem {
-    public EnergySwordItem(Tier tier, int damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public EnergySwordItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EnergySwordItem extends SwordItem {
             for (int i = 0; i < 15; i++) {
                 Vec3 startPos = initialStartPos.offsetRandom(livingEntity.getRandom(), 0.4f);
                 Vec3 endPos = initialEndPos.offsetRandom(livingEntity.getRandom(), 0.8f);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), startPos.x, startPos.y, startPos.z, endPos.x - startPos.x, endPos.y - startPos.y, endPos.z - startPos.z));
             }
             if (livingEntity instanceof Player player) {
                 player.getCooldowns().addCooldown(this, 40);

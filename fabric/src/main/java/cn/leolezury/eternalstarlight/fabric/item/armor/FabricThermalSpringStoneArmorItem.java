@@ -13,6 +13,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +21,7 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 
 public class FabricThermalSpringStoneArmorItem extends ThermalSpringStoneArmorItem {
-    public FabricThermalSpringStoneArmorItem(ArmorMaterial material, Type type, Properties properties) {
+    public FabricThermalSpringStoneArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
         super(material, type, properties);
         ESMiscUtil.runWhenOnClient(() -> this::initializeClient);
     }

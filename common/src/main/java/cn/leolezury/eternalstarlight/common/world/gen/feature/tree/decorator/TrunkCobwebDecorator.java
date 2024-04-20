@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 
 import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 public class TrunkCobwebDecorator extends TreeDecorator {
-    public static final Codec<TrunkCobwebDecorator> CODEC = Codec.unit(() -> TrunkCobwebDecorator.INSTANCE);
+    public static final MapCodec<TrunkCobwebDecorator> CODEC = MapCodec.unit(() -> TrunkCobwebDecorator.INSTANCE);
     public static final TrunkCobwebDecorator INSTANCE = new TrunkCobwebDecorator();
     
     @Override

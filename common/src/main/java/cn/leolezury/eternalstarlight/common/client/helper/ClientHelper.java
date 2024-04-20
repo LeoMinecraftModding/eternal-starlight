@@ -5,10 +5,10 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScre
 import cn.leolezury.eternalstarlight.common.client.gui.screen.ESBookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import net.fabricmc.api.EnvType;
@@ -39,7 +39,7 @@ public class ClientHelper implements IClientHelper {
     }
 
     @Override
-    public void handleParticlePacket(ESParticlePacket message) {
+    public void handleParticlePacket(ParticlePacket message) {
         ClientLevel clientLevel = Minecraft.getInstance().level;
         if (clientLevel != null) {
             clientLevel.addParticle(message.particle(), message.x(), message.y(), message.z(), message.dx(), message.dy(), message.dz());

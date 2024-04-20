@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.forge.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -11,41 +11,25 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
 import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 @Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ForgeNetworkHandler {
     @SubscribeEvent
-    public static <T> void onNetworkInit(RegisterPayloadHandlerEvent event) {
+    public static void onNetworkInit(RegisterPayloadHandlerEvent event) {
         final IPayloadRegistrar registrar = event.registrar(EternalStarlight.MOD_ID)
                 .optional();
-        for (Map.Entry<String, ESPackets.PacketInfo<?>> entry : ESPackets.PACKETS.entrySet()) {
-            registerMessage(registrar, entry);
-        }
-    }
-
-    public static <T> void registerMessage(IPayloadRegistrar registrar, Map.Entry<String, ESPackets.PacketInfo<?>> entry) {
-        ResourceLocation id = new ResourceLocation(EternalStarlight.MOD_ID, entry.getKey());
-        registrar.play(id, byteBuf -> new ESPayload<T>(id, (Function<FriendlyByteBuf, T>) entry.getValue().read(), (BiConsumer<T, FriendlyByteBuf>) entry.getValue().write(), (ESPackets.Handler<T>) entry.getValue().handle(), byteBuf), (arg, context) -> context.workHandler().submitAsync(() -> arg.handler().handle(arg.packet(), context.player().orElse(null))));
-    }
-
-    public static <T> void sendToClient(ServerPlayer serverPlayer, Object packet) {
-        for (String id : ESPackets.PACKETS.keySet()) {
-            ESPackets.PacketInfo<?> handler = ESPackets.PACKETS.get(id);
-            if (packet.getClass() == handler.packetClass()) {
-                PacketDistributor.PLAYER.with(serverPlayer).send(new ESPayload<T>(new ResourceLocation(EternalStarlight.MOD_ID, id), (BiConsumer<T, FriendlyByteBuf>) handler.write(), (ESPackets.Handler<T>) handler.handle(), (T) packet));
+        CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
+            @Override
+            public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
+                registrar.play(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> packetInfo.handler().handle(packet, context.player().orElse(null)));
             }
-        }
+        });
     }
 
-    public static <T> void sendToServer(Object packet) {
-        for (String id : ESPackets.PACKETS.keySet()) {
-            ESPackets.PacketInfo<?> handler = ESPackets.PACKETS.get(id);
-            if (packet.getClass() == handler.packetClass()) {
-                PacketDistributor.SERVER.noArg().send(new ESPayload<T>(new ResourceLocation(EternalStarlight.MOD_ID, id), (BiConsumer<T, FriendlyByteBuf>) handler.write(), (ESPackets.Handler<T>) handler.handle(), (T) packet));
-            }
-        }
+    public static void sendToClient(ServerPlayer serverPlayer, CustomPacketPayload packet) {
+        PacketDistributor.PLAYER.with(serverPlayer).send(packet);
+    }
+
+    public static void sendToServer(CustomPacketPayload packet) {
+        PacketDistributor.SERVER.noArg().send(packet);
     }
 }

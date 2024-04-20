@@ -10,8 +10,8 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 
 public class MoonringGreatswordItem extends GreatswordItem {
-    public MoonringGreatswordItem(Tier tier, int baseDamage, float attackSpeed, Properties properties) {
-        super(tier, baseDamage, attackSpeed, properties);
+    public MoonringGreatswordItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

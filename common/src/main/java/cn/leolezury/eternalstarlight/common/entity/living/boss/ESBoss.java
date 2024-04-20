@@ -1,13 +1,17 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +23,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -139,20 +144,20 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
         return BOSS_DEFAULT_MUSIC;
     }
 
-    public ResourceLocation getBossLootTable() {
+    public ResourceKey<LootTable> getBossLootTable() {
         ResourceLocation lootTable;
         ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
 
         lootTable = resourcelocation.withPrefix("bosses/");
 
-        return lootTable;
+        return ResourceKey.create(Registries.LOOT_TABLE, lootTable);
     }
 
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean isPlayer) {
         super.dropCustomDeathLoot(source, lootingLevel, isPlayer);
         ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-        lootBag.getOrCreateTag().putString("LootTable", getBossLootTable().toString());
+        lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), getBossLootTable()).build());
         ItemEntity item = spawnAtLocation(lootBag);
         if (item != null) {
             item.setGlowingTag(true);

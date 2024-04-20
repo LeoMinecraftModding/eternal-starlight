@@ -1,35 +1,25 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+
+import java.util.UUID;
 
 public class GreatswordItem extends SwordItem {
-    private final float attackDamage;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-
-    public GreatswordItem(Tier tier, int baseDamage, float attackSpeed, Item.Properties properties) {
-        super(tier, baseDamage, attackSpeed, properties);
-        this.attackDamage = (float)baseDamage + tier.getAttackDamageBonus();
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADD_VALUE));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE));
-        // TODO: reimplement this when updated to 1.20.5
-        /*Attribute attribute = ESPlatform.INSTANCE.getEntityReachAttribute();
-        // Implementation of ENTITY_REACH on fabric is not that easy
-        if (attribute != null) {
-            builder.put(ESPlatform.INSTANCE.getEntityReachAttribute(), new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", 2, AttributeModifier.Operation.ADD_VALUE));
-        }*/
-        this.defaultModifiers = builder.build();
+    public GreatswordItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+    public static ItemAttributeModifiers createAttributes(Tier tier, int damage, float speed, float reach) {
+        return ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (float)damage + tier.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(UUID.fromString("A6867629-18D6-F529-892E-21979863B5CF"), "Weapon modifier", reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .build();
     }
 }

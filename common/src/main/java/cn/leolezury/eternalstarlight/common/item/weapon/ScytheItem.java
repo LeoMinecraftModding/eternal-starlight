@@ -1,48 +1,45 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
+import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class ScytheItem extends DiggerItem implements Vanishable {
-    private final float attackDamage;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+public class ScytheItem extends TieredItem {
+    public ScytheItem(Tier tier, Properties properties) {
+        super(tier, properties.component(DataComponents.TOOL, tier.createToolProperties(BlockTags.MINEABLE_WITH_HOE)));
+    }
 
-    public ScytheItem(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        super(damage, attackSpeed, tier, BlockTags.MINEABLE_WITH_HOE, properties);
-        this.attackDamage = damage + tier.getAttackDamageBonus();
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADD_VALUE));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE));
-        // TODO: reimplement this when updated to 1.20.5
-        /*Attribute attribute = ESPlatform.INSTANCE.getEntityReachAttribute();
-        if (attribute != null) {
-            builder.put(ESPlatform.INSTANCE.getEntityReachAttribute(), new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", 2, AttributeModifier.Operation.ADD_VALUE));
-        }*/
-        this.defaultModifiers = builder.build();
+    public static ItemAttributeModifiers createAttributes(Tier tier, int damage, float speed, float reach) {
+        return ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (float)damage + tier.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(UUID.fromString("A9867629-19D6-F529-862E-21979863B5CF"), "Weapon modifier", reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(UUID.fromString("A6867629-18D6-F529-892E-21979863B5CF"), "Weapon modifier", reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .build();
     }
 
     public InteractionResult useOn(UseOnContext context) {
@@ -60,9 +57,7 @@ public class ScytheItem extends DiggerItem implements Vanishable {
                 if (!level.isClientSide) {
                     consumer.accept(context);
                     if (player != null) {
-                        context.getItemInHand().hurtAndBreak(1, player, (entity) -> {
-                            entity.broadcastBreakEvent(context.getHand());
-                        });
+                        context.getItemInHand().hurtAndBreak(1, player, context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                     }
                 }
 
@@ -81,23 +76,15 @@ public class ScytheItem extends DiggerItem implements Vanishable {
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
-        stack.hurtAndBreak(1, attacker, (livingEntity) -> {
-            livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         return true;
     }
 
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(1, entity, (livingEntity) -> {
-                livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            stack.hurtAndBreak(1, entity, EquipmentSlot.MAINHAND);
         }
 
         return true;
-    }
-
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
     }
 }

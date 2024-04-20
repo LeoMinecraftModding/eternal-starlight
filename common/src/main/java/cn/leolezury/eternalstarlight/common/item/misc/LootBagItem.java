@@ -1,5 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -17,16 +20,16 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class LootBagItem extends Item {
-    public LootBagItem(Properties p_41383_) {
-        super(p_41383_);
+    public LootBagItem(Properties properties) {
+        super(properties);
     }
     
-    protected void dropFromLootTable(Level level, Vec3 pos, ResourceLocation lootTable) {
+    protected void dropFromLootTable(Level level, Vec3 pos, ResourceKey<LootTable> lootTable) {
         MinecraftServer server;
         if ((server = level.getServer()) == null) {
             return;
         }
-        LootTable loottable = server.getLootData().getLootTable(lootTable);
+        LootTable loottable = server.reloadableRegistries().getLootTable(lootTable);
         LootParams.Builder paramBuilder = new LootParams.Builder((ServerLevel)level);
         LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
         loottable.getRandomItems(params).forEach((stack) -> spawnAtLocation(stack, level, pos));
@@ -50,8 +53,7 @@ public class LootBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
-            String lootTable = stack.getOrCreateTag().getString("LootTable");
-            dropFromLootTable(level, player.position(), new ResourceLocation(lootTable));
+            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(""))));
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }

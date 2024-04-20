@@ -15,7 +15,6 @@ import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;
 import cn.leolezury.eternalstarlight.fabric.manager.book.chapter.FabricChapterManager;
 import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
-import com.chocohead.mm.api.ClassTinkerers;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
@@ -34,6 +33,7 @@ import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +41,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.portal.PortalInfo;
 
 import java.util.function.Consumer;
@@ -50,10 +49,6 @@ import java.util.function.Supplier;
 
 @AutoService(ESPlatform.class)
 public class FabricPlatform implements ESPlatform {
-    private static final Rarity STARLIGHT_RARITY = ClassTinkerers.getEnum(Rarity.class, "ES_STARLIGHT");
-    private static final Rarity DEMON_RARITY = ClassTinkerers.getEnum(Rarity.class, "ES_DEMON");
-    private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = ClassTinkerers.getEnum(EnchantmentCategory.class, "ES_WEAPON");
-
     @Override
     public Loader getLoader() {
         return Loader.FABRIC;
@@ -66,7 +61,7 @@ public class FabricPlatform implements ESPlatform {
 
     @Override
     public <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
-        return new RegistrationProvider<T>() {
+        return new RegistrationProvider<>() {
             private final Registry<T> registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(key.location());
 
             @Override
@@ -79,7 +74,7 @@ public class FabricPlatform implements ESPlatform {
                 ResourceLocation location = new ResourceLocation(namespace, id);
                 ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(registry.key(), location);
                 I object = Registry.register(registry, location, supplier.get());
-                return new RegistryObject<T, I>() {
+                return new RegistryObject<>() {
                     @Override
                     public Holder<T> asHolder() {
                         return registry.getHolderOrThrow((ResourceKey<T>) this.getResourceKey());
@@ -123,18 +118,8 @@ public class FabricPlatform implements ESPlatform {
     }
 
     @Override
-    public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties) {
+    public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
         return new FabricThermalSpringStoneArmorItem(material, type, properties);
-    }
-
-    @Override
-    public Rarity getStarlightRarity() {
-        return STARLIGHT_RARITY;
-    }
-
-    @Override
-    public Rarity getDemonRarity() {
-        return DEMON_RARITY;
     }
 
     @Override
@@ -173,11 +158,6 @@ public class FabricPlatform implements ESPlatform {
     }
 
     @Override
-    public EnchantmentCategory getESWeaponEnchantmentCategory() {
-        return ES_WEAPON_ENCHANTMENT_CATEGORY;
-    }
-
-    @Override
     public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
         return HoeItemAccessor.getTillingActions().get(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
     }
@@ -188,12 +168,12 @@ public class FabricPlatform implements ESPlatform {
     }
 
     @Override
-    public void sendToClient(ServerPlayer player, Object packet) {
+    public void sendToClient(ServerPlayer player, CustomPacketPayload packet) {
         FabricNetworkHandler.sendToClient(player, packet);
     }
 
     @Override
-    public void sendToServer(Object packet) {
+    public void sendToServer(CustomPacketPayload packet) {
         FabricNetworkHandler.sendToServer(packet);
     }
 }

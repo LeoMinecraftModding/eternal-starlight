@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -156,7 +156,7 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
                 }
                 if (CrystallizedMoth.this.level() instanceof ServerLevel serverLevel && CrystallizedMoth.this.getAttackTicks() % 5 == 0) {
                     Vec3 delta = pos.subtract(selfPos).normalize().scale(0.8);
-                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), selfPos.x, selfPos.y, selfPos.z, delta.x, delta.y, delta.z));
+                    ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), selfPos.x, selfPos.y, selfPos.z, delta.x, delta.y, delta.z));
                 }
                 Vec3 wanted = ESMathUtil.rotationToPosition(pos, 10, 0, ESMathUtil.positionToYaw(pos, selfPos) + 5);
                 CrystallizedMoth.this.getMoveControl().setWantedPosition(wanted.x, wanted.y, wanted.z, 1);

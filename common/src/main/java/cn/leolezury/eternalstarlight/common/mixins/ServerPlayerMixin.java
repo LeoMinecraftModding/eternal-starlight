@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ServerPlayerMixin {
     @Shadow public abstract ServerLevel serverLevel();
 
-    @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;)V"), method = "die")
+    @Inject(method = "die", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;dropAllDeathLoot(Lnet/minecraft/world/damagesource/DamageSource;)V"))
     private void es_die(DamageSource damageSource, CallbackInfo ci) {
         Inventory inventory = ((Player) (Object) this).getInventory();
         for (int i = 0; i < inventory.getContainerSize(); i++) {

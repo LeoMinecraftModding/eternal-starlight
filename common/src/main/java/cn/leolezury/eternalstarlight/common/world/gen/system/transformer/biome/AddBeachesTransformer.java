@@ -6,14 +6,14 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.RegistryFileCodec;
 
 import java.util.Random;
 
 public class AddBeachesTransformer extends NeighborsRelatedTransformer {
-    public static final Codec<AddBeachesTransformer> CODEC = RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("beach").xmap(AddBeachesTransformer::new, transformer -> transformer.beach).codec();
+    public static final MapCodec<AddBeachesTransformer> CODEC = RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("beach").xmap(AddBeachesTransformer::new, transformer -> transformer.beach);
 
     private final Holder<BiomeData> beach;
     private Integer id = null;

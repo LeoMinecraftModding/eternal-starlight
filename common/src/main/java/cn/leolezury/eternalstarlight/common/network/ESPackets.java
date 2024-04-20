@@ -1,34 +1,26 @@
 package cn.leolezury.eternalstarlight.common.network;
 
-import net.minecraft.Util;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 public class ESPackets {
-    public static final Map<String, PacketInfo<?>> PACKETS = Util.make(new HashMap<>(), map -> {
-        // test packet
-        map.put("test_packet", new PacketInfo<>(TestPacket.class, TestPacket::write, TestPacket::read, TestPacket.Handler::handle));
+    public static final PacketInfo<TestPacket> TEST = new PacketInfo<>(TestPacket.TYPE, TestPacket.STREAM_CODEC, TestPacket::handle);
+    public static final PacketInfo<ParticlePacket> PARTICLE = new PacketInfo<>(ParticlePacket.TYPE, ParticlePacket.STREAM_CODEC, ParticlePacket::handle);
+    public static final PacketInfo<OpenBookPacket> OPEN_BOOK = new PacketInfo<>(OpenBookPacket.TYPE, OpenBookPacket.STREAM_CODEC, OpenBookPacket::handle);
+    public static final PacketInfo<WeatherPacket> WEATHER = new PacketInfo<>(WeatherPacket.TYPE, WeatherPacket.STREAM_CODEC, WeatherPacket::handle);
+    public static final PacketInfo<CancelWeatherPacket> CANCEL_WEATHER = new PacketInfo<>(CancelWeatherPacket.TYPE, CancelWeatherPacket.STREAM_CODEC, CancelWeatherPacket::handle);
+    public static final PacketInfo<OpenCrestGuiPacket> OPEN_CREST_GUI = new PacketInfo<>(OpenCrestGuiPacket.TYPE, OpenCrestGuiPacket.STREAM_CODEC, OpenCrestGuiPacket::handle);
+    public static final PacketInfo<UpdateCrestsPacket> UPDATE_CRESTS = new PacketInfo<>(UpdateCrestsPacket.TYPE, UpdateCrestsPacket.STREAM_CODEC, UpdateCrestsPacket::handle);
+    public static final PacketInfo<OpenGatekeeperGuiPacket> OPEN_GATEKEEPER_GUI = new PacketInfo<>(OpenGatekeeperGuiPacket.TYPE, OpenGatekeeperGuiPacket.STREAM_CODEC, OpenGatekeeperGuiPacket::handle);
+    public static final PacketInfo<CloseGatekeeperGuiPacket> CLOSE_GATEKEEPER_GUI = new PacketInfo<>(CloseGatekeeperGuiPacket.TYPE, CloseGatekeeperGuiPacket.STREAM_CODEC, CloseGatekeeperGuiPacket::handle);
 
-        map.put("particle", new PacketInfo<>(ESParticlePacket.class, ESParticlePacket::write, ESParticlePacket::read, ESParticlePacket.Handler::handle));
-        map.put("open_book", new PacketInfo<>(OpenBookPacket.class, OpenBookPacket::write, OpenBookPacket::read, OpenBookPacket.Handler::handle));
-        map.put("update_weather", new PacketInfo<>(ESWeatherPacket.class, ESWeatherPacket::write, ESWeatherPacket::read, ESWeatherPacket.Handler::handle));
-        map.put("cancel_weather", new PacketInfo<>(CancelWeatherPacket.class, CancelWeatherPacket::write, CancelWeatherPacket::read, CancelWeatherPacket.Handler::handle));
-        map.put("open_crest_gui", new PacketInfo<>(OpenCrestGuiPacket.class, OpenCrestGuiPacket::write, OpenCrestGuiPacket::read, OpenCrestGuiPacket.Handler::handle));
-        map.put("update_crests", new PacketInfo<>(UpdateCrestsPacket.class, UpdateCrestsPacket::write, UpdateCrestsPacket::read, UpdateCrestsPacket.Handler::handle));
-        map.put("open_gatekeeper_gui", new PacketInfo<>(OpenGatekeeperGuiPacket.class, OpenGatekeeperGuiPacket::write, OpenGatekeeperGuiPacket::read, OpenGatekeeperGuiPacket.Handler::handle));
-        map.put("close_gatekeeper_gui", new PacketInfo<>(CloseGatekeeperGuiPacket.class, CloseGatekeeperGuiPacket::write, CloseGatekeeperGuiPacket::read, CloseGatekeeperGuiPacket.Handler::handle));
-    });
-
-    public record PacketInfo<T>(Class<T> packetClass, BiConsumer<T, FriendlyByteBuf> write, Function<FriendlyByteBuf, T> read, Handler<T> handle) {
+    public record PacketInfo<T extends CustomPacketPayload>(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 
     }
 
-    public interface Handler<T> {
+    public interface Handler<T extends CustomPacketPayload> {
         void handle(T object, Player player);
     }
 }

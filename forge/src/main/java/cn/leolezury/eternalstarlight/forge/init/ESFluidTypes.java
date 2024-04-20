@@ -17,7 +17,7 @@ import org.joml.Vector3f;
 
 import java.util.function.Consumer;
 
-public class FluidTypeInit {
+public class ESFluidTypes {
     public static final RegistrationProvider<FluidType> FLUID_TYPES = RegistrationProvider.get(NeoForgeRegistries.FLUID_TYPES.key(), EternalStarlight.MOD_ID);
     public static final RegistryObject<FluidType, FluidType> ETHER = FLUID_TYPES.register("ether", () -> new FluidType(FluidType.Properties.create()) {
         @Override

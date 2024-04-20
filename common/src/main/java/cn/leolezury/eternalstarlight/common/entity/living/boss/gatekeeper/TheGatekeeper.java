@@ -7,8 +7,8 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -326,7 +326,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             Vec3 initialEndPos = ESMathUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
             for (int i = 0; i < 15; i++) {
                 Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
             }
         }
     }

@@ -4,13 +4,13 @@ import cn.leolezury.eternalstarlight.common.block.BerriesVinesBlock;
 import cn.leolezury.eternalstarlight.common.block.BerriesVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 public class TrunkBerriesDecorator extends TreeDecorator {
-    public static final Codec<TrunkBerriesDecorator> CODEC = Codec.unit(() -> TrunkBerriesDecorator.INSTANCE);
+    public static final MapCodec<TrunkBerriesDecorator> CODEC = MapCodec.unit(() -> TrunkBerriesDecorator.INSTANCE);
     public static final TrunkBerriesDecorator INSTANCE = new TrunkBerriesDecorator();
 
     protected TreeDecoratorType<?> type() {

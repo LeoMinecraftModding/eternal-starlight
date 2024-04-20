@@ -4,10 +4,10 @@ import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 public class DuplicateSizeTransformer extends DataTransformer {
-    public static final Codec<DuplicateSizeTransformer> CODEC = Codec.unit(DuplicateSizeTransformer::new);
+    public static final MapCodec<DuplicateSizeTransformer> CODEC = MapCodec.unit(DuplicateSizeTransformer::new);
 
     @Override
     public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {

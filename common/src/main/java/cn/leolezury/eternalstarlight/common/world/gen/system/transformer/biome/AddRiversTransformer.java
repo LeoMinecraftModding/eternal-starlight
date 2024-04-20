@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenPr
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NoiseDataTransformer;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.core.Holder;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AddRiversTransformer extends NoiseDataTransformer {
-    public static final Codec<AddRiversTransformer> CODEC = RiverWithOffset.CODEC.listOf().fieldOf("rivers").xmap(AddRiversTransformer::new, transformer -> transformer.rivers).codec();
+    public static final MapCodec<AddRiversTransformer> CODEC = RiverWithOffset.CODEC.listOf().fieldOf("rivers").xmap(AddRiversTransformer::new, transformer -> transformer.rivers);
 
     private final List<RiverWithOffset> rivers;
     private final IntArrayList idList = new IntArrayList();

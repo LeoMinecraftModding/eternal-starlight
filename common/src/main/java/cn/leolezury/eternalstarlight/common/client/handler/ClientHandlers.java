@@ -27,7 +27,6 @@ import net.minecraft.client.AttackIndicatorStatus;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
@@ -202,6 +201,19 @@ public class ClientHandlers {
         }
     }
 
+    // copied from Gui
+    public static void renderTextureOverlay(GuiGraphics guiGraphics, ResourceLocation resourceLocation, float f) {
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.enableBlend();
+        guiGraphics.setColor(1.0F, 1.0F, 1.0F, f);
+        guiGraphics.blit(resourceLocation, 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
+        RenderSystem.disableBlend();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
     public static void renderSpellCrosshair(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
         Options options = Minecraft.getInstance().options;
         if (options.getCameraType().isFirstPerson()) {
@@ -228,12 +240,12 @@ public class ClientHandlers {
         }
     }
 
-    public static void renderEtherErosion(Gui gui, GuiGraphics guiGraphics) {
+    public static void renderEtherErosion(GuiGraphics guiGraphics) {
         float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
         float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getFrameTime(), 140f);
         float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
         if (clientEtherTicksRaw > 0) {
-            gui.renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
+            renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
         }
     }
 
@@ -268,7 +280,7 @@ public class ClientHandlers {
         }
     }
 
-    public static void renderOrbOfProphecyUse(Gui gui, GuiGraphics guiGraphics) {
+    public static void renderOrbOfProphecyUse(GuiGraphics guiGraphics) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             int usingTicks = player.getTicksUsingItem();
@@ -276,7 +288,7 @@ public class ClientHandlers {
             float progress = Math.min(ticks, 150f) / 150f;
             if (player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get())) {
                 if (usingTicks < 150) {
-                    gui.renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
+                    renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
                 }
             }
         }

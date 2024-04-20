@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
 import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import java.util.function.BiFunction;
 
 public class ScarletFoliagePlacer extends FoliagePlacer {
-    public static final Codec<ScarletFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> foliagePlacerParts(instance).apply(instance, ScarletFoliagePlacer::new));
+    public static final MapCodec<ScarletFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> foliagePlacerParts(instance).apply(instance, ScarletFoliagePlacer::new));
 
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 

@@ -21,7 +21,6 @@ import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -31,6 +30,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -42,7 +42,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -72,10 +71,6 @@ import java.util.function.Supplier;
 
 @AutoService(ESPlatform.class)
 public class ForgePlatform implements ESPlatform {
-    private static final Rarity STARLIGHT_RARITY = Rarity.create("STARLIGHT", ChatFormatting.DARK_AQUA);
-    private static final Rarity DEMON_RARITY = Rarity.create("DEMON", ChatFormatting.DARK_RED);
-    private static final EnchantmentCategory ES_WEAPON_ENCHANTMENT_CATEGORY = EnchantmentCategory.create("ES_WEAPON", (item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ScytheItem || item instanceof HammerItem));
-
     public static final List<DeferredRegister<?>> registers = new ArrayList<>();
     public static final List<Registry<?>> newRegistries = new ArrayList<>();
 
@@ -169,13 +164,13 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public ScytheItem createScythe(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        return new ForgeScytheItem(tier, damage, attackSpeed, properties);
+    public ScytheItem createScythe(Tier tier, Item.Properties properties) {
+        return new ForgeScytheItem(tier, properties);
     }
 
     @Override
-    public HammerItem createHammer(Tier tier, float damage, float attackSpeed, Item.Properties properties) {
-        return new ForgeHammerItem(tier, damage, attackSpeed, properties);
+    public HammerItem createHammer(Tier tier, Item.Properties properties) {
+        return new ForgeHammerItem(tier, properties);
     }
 
     @Override
@@ -194,7 +189,7 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(ArmorMaterial material, ArmorItem.Type type, Item.Properties properties) {
+    public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
         return new ForgeThermalSpringStoneArmorItem(material, type, properties);
     }
 
@@ -261,24 +256,6 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public boolean isArrowInfinite(ItemStack arrow, ItemStack bow, Player player) {
-        if (arrow.getItem() instanceof ArrowItem arrowItem) {
-            return arrowItem.isInfinite(arrow, bow, player);
-        }
-        return false;
-    }
-
-    @Override
-    public Rarity getStarlightRarity() {
-        return STARLIGHT_RARITY;
-    }
-
-    @Override
-    public Rarity getDemonRarity() {
-        return DEMON_RARITY;
-    }
-
-    @Override
     public CreativeModeTab getESTab() {
         return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("itemGroup.eternal_starlight")).displayItems((displayParameters, output) -> {
             for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
@@ -288,11 +265,6 @@ public class ForgePlatform implements ESPlatform {
                 }
             }
         }).build();
-    }
-
-    @Override
-    public EnchantmentCategory getESWeaponEnchantmentCategory() {
-        return ES_WEAPON_ENCHANTMENT_CATEGORY;
     }
 
     @Override
@@ -320,12 +292,12 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public void sendToClient(ServerPlayer player, Object packet) {
+    public void sendToClient(ServerPlayer player, CustomPacketPayload packet) {
         ForgeNetworkHandler.sendToClient(player, packet);
     }
 
     @Override
-    public void sendToServer(Object packet) {
+    public void sendToServer(CustomPacketPayload packet) {
         ForgeNetworkHandler.sendToServer(packet);
     }
 }

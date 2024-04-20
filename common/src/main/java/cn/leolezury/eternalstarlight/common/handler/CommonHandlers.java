@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
-import cn.leolezury.eternalstarlight.common.network.ESWeatherPacket;
+import cn.leolezury.eternalstarlight.common.network.WeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEnchantments;
@@ -93,7 +93,7 @@ public class CommonHandlers {
             Weathers weathers = ESWeatherUtil.getOrCreateWeathers(serverLevel);
             weathers.tick();
             weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ESWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
+                ESPlatform.INSTANCE.sendToAllClients(serverLevel, new WeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
             }), () -> {
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, new CancelWeatherPacket(true));
             });

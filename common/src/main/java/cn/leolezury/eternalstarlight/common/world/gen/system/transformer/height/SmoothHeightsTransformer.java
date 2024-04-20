@@ -5,11 +5,12 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenPr
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import java.util.Random;
 
 public class SmoothHeightsTransformer extends IterationWithCullTransformer {
-    public static final Codec<SmoothHeightsTransformer> CODEC = Codec.INT.fieldOf("size").xmap(SmoothHeightsTransformer::new, transformer -> transformer.size).codec();
+    public static final MapCodec<SmoothHeightsTransformer> CODEC = Codec.INT.fieldOf("size").xmap(SmoothHeightsTransformer::new, transformer -> transformer.size);
 
     private final int size;
 

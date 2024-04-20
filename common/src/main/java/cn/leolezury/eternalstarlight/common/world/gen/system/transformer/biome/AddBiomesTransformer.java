@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenPr
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NoiseDataTransformer;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AddBiomesTransformer extends NoiseDataTransformer {
-    public static final Codec<AddBiomesTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+    public static final MapCodec<AddBiomesTransformer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Codec.DOUBLE.fieldOf("xz_scale").forGetter(o -> o.xzScale),
             RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("land_biomes").forGetter(o -> o.landBiomes),
             RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("ocean_biomes").forGetter(o -> o.oceanBiomes)

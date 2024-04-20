@@ -3,13 +3,13 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 public class TorreyaVinesDecorator extends TreeDecorator {
-    public static final Codec<TorreyaVinesDecorator> CODEC = Codec.unit(() -> TorreyaVinesDecorator.INSTANCE);
+    public static final MapCodec<TorreyaVinesDecorator> CODEC = MapCodec.unit(() -> TorreyaVinesDecorator.INSTANCE);
     public static final TorreyaVinesDecorator INSTANCE = new TorreyaVinesDecorator();
 
     protected TreeDecoratorType<?> type() {

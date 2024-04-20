@@ -5,13 +5,18 @@ import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataList) {
+public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataList) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<OpenBookPacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "open_book"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, OpenBookPacket> STREAM_CODEC = StreamCodec.ofMember(OpenBookPacket::write, OpenBookPacket::read);
 
     public static OpenBookPacket read(FriendlyByteBuf buf) {
         BookData.Builder builder = new BookData.Builder();
@@ -56,9 +61,12 @@ public record OpenBookPacket(BookData bookData, List<ChapterData> chapterDataLis
         }
     }
 
-    public static class Handler {
-        public static void handle(OpenBookPacket message, Player player) {
-            ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
-        }
+    public static void handle(OpenBookPacket message, Player player) {
+        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenBook(message));
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

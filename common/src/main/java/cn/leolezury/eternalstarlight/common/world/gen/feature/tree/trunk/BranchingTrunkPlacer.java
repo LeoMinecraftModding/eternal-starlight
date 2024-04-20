@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk;
 import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class BranchingTrunkPlacer extends TrunkPlacer {
-    public static final Codec<BranchingTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) -> trunkPlacerParts(instance)
+    public static final MapCodec<BranchingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> trunkPlacerParts(instance)
             .and(IntProvider.codec(0, 3).fieldOf("trunk_radius").forGetter((placer) -> placer.trunkRadius))
             .and(IntProvider.codec(0, 24).fieldOf("branch_length").forGetter((placer) -> placer.branchLen))
             .and(IntProvider.codec(0, 10).fieldOf("branch_layer_num").forGetter((placer) -> placer.branchLayerNum))

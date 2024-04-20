@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
-import cn.leolezury.eternalstarlight.common.network.ESParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
@@ -39,9 +39,9 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
         if (entity.ticksSinceLastErupt <= 200) { // erupt for 10 sec
             if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
                 Vec3 particlePos = pos.getCenter().add(0, 0.4, 0);
-                ESParticlePacket packet1 = new ESParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
-                ESParticlePacket packet2 = new ESParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
-                ESParticlePacket packet3 = new ESParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+                ParticlePacket packet1 = new ParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+                ParticlePacket packet2 = new ParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+                ParticlePacket packet3 = new ParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet1);
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet2);
                 ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet3);

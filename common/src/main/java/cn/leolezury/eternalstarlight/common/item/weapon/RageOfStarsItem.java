@@ -13,8 +13,8 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class RageOfStarsItem extends SwordItem implements Swingable {
-    public RageOfStarsItem(Tier tier, int damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public RageOfStarsItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

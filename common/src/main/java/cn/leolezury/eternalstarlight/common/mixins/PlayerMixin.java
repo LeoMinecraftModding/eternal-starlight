@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,16 +17,14 @@ public abstract class PlayerMixin {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ESItems.MOONRING_GREATSWORD.get())) {
-            useItem.hurtAndBreak(Math.max((int) (amount / 5f), 1), player, (p) -> {
-                p.broadcastBreakEvent(p.getUsedItemHand());
-            });
+            useItem.hurtAndBreak(Math.max((int) (amount / 5f), 1), player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             player.stopUsingItem();
             player.getCooldowns().addCooldown(useItem.getItem(), 100);
         }
     }
 
     @Inject(at = @At(value = "HEAD"), method = "disableShield", cancellable = true)
-    private void es_disableShield(boolean sprinting, CallbackInfo ci) {
+    private void es_disableShield(CallbackInfo ci) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ESItems.MOONRING_GREATSWORD.get())) {

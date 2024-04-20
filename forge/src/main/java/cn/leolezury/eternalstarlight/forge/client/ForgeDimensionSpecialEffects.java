@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.forge.client;
 
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LightTexture;
@@ -13,8 +12,8 @@ public class ForgeDimensionSpecialEffects extends ESDimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return doRenderSky(level, partialTick, poseStack, camera, projectionMatrix, isFoggy, setupFog);
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        return ESDimensionSpecialEffects.doRenderSky(level, partialTick, modelViewMatrix, camera, projectionMatrix, isFoggy, setupFog);
     }
 
     @Override

@@ -5,12 +5,12 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import java.util.Random;
 
 public class NoiseHeightTransformer extends IterationWithCullTransformer {
-    public static final Codec<NoiseHeightTransformer> CODEC = Codec.unit(NoiseHeightTransformer::new);
+    public static final MapCodec<NoiseHeightTransformer> CODEC = MapCodec.unit(NoiseHeightTransformer::new);
 
     @Override
     public int transform(int[][] original, int[][] related, WorldGenProvider provider, Random random, int x, int z, int areaX, int areaZ, int size) {

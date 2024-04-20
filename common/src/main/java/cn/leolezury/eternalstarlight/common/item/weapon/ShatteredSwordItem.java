@@ -1,11 +1,14 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -14,16 +17,16 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 
 public class ShatteredSwordItem extends SwordItem {
-    public ShatteredSwordItem(Tier tier, int damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public ShatteredSwordItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
-    
+
     public static boolean hasBlade(ItemStack itemStack) {
-        return !itemStack.getOrCreateTag().getBoolean("NoBlade");
+        return itemStack.getOrDefault(ESDataComponents.HAS_BLADE.get(), true);
     }
 
     public static void setHasBlade(ItemStack itemStack, boolean hasBlade) {
-        itemStack.getOrCreateTag().putBoolean("NoBlade", !hasBlade);
+        itemStack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.HAS_BLADE.get(), hasBlade).build());
     }
 
     @Override
@@ -39,7 +42,7 @@ public class ShatteredSwordItem extends SwordItem {
             level.addFreshEntity(blade);
             level.playSound(null, blade, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.0F);
             if (!player.getAbilities().instabuild) {
-                itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
+                itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                 setHasBlade(itemStack, false);
             }
             return InteractionResultHolder.success(itemStack);

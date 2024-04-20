@@ -18,6 +18,8 @@ public class EternalStarlight {
     public static void init() {
         ESFluids.loadClass();
         ESBlocks.loadClass();
+        ESDataComponents.loadClass();
+        ESArmorMaterials.loadClass();
         ESItems.loadClass();
         ESCreativeModeTabs.loadClass();
         ESCriteriaTriggers.loadClass();

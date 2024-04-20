@@ -4,11 +4,11 @@ import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.util.Mth;
 
 public class FinalizeHeightsTransformer extends DataTransformer {
-    public static final Codec<FinalizeHeightsTransformer> CODEC = Codec.unit(FinalizeHeightsTransformer::new);
+    public static final MapCodec<FinalizeHeightsTransformer> CODEC = MapCodec.unit(FinalizeHeightsTransformer::new);
 
     @Override
     public int[][] transform(int[][] original, int[][] related, WorldGenProvider provider, int areaX, int areaZ, int size, long seed, long seedAddition) {

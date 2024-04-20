@@ -5,11 +5,12 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenPr
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import java.util.Random;
 
 public class AssimilateBiomesTransformer extends NeighborsRelatedTransformer {
-    public static final Codec<AssimilateBiomesTransformer> CODEC = Codec.BOOL.fieldOf("only_lonely").xmap(AssimilateBiomesTransformer::new, transformer -> transformer.onlyLonely).codec();
+    public static final MapCodec<AssimilateBiomesTransformer> CODEC = MapCodec.assumeMapUnsafe(Codec.BOOL.fieldOf("only_lonely").xmap(AssimilateBiomesTransformer::new, transformer -> transformer.onlyLonely).codec());
 
     private final boolean onlyLonely;
 

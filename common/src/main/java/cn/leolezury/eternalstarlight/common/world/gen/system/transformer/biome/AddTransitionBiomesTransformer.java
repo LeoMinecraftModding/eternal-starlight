@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenPr
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.Int2IntLinkedOpenHashMap;
 import net.minecraft.core.Holder;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AddTransitionBiomesTransformer extends NeighborsRelatedTransformer {
-    public static final Codec<AddTransitionBiomesTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+    public static final MapCodec<AddTransitionBiomesTransformer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             BiomeWithTransition.CODEC.listOf().fieldOf("transitions").forGetter(o -> o.transitions)
     ).apply(instance, AddTransitionBiomesTransformer::new));
 

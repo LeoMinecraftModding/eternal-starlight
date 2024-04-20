@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -57,7 +58,7 @@ public class Weathers extends SavedData {
     }
 
     public static SavedData.Factory<Weathers> factory(ServerLevel serverLevel) {
-        return new SavedData.Factory<>(() -> new Weathers(serverLevel), (compoundTag) -> load(serverLevel, compoundTag), null);
+        return new SavedData.Factory<>(() -> new Weathers(serverLevel), (compoundTag, lookup) -> load(serverLevel, compoundTag), null);
     }
 
     public void tick() {
@@ -92,7 +93,7 @@ public class Weathers extends SavedData {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compoundTag) {
+    public CompoundTag save(CompoundTag compoundTag, HolderLookup.Provider provider) {
         CompoundTag weathersTag = new CompoundTag();
         for (WeatherInstance instance : weathers) {
             String id = Objects.requireNonNull(ESWeathers.WEATHERS.registry().getKey(instance.getWeather())).toString();

@@ -3,11 +3,12 @@ package cn.leolezury.eternalstarlight.forge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.forge.init.FluidTypeInit;
+import cn.leolezury.eternalstarlight.forge.init.ESFluidTypes;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
-        FluidInteractionRegistry.addInteraction(FluidTypeInit.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), Blocks.QUARTZ_BLOCK.defaultBlockState()));
+        FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), Blocks.QUARTZ_BLOCK.defaultBlockState()));
     }
 
     @SubscribeEvent
@@ -43,7 +44,7 @@ public class CommonSetupEvents {
     public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
         CommonSetupHandlers.SpawnPlacementRegisterStrategy strategy = new CommonSetupHandlers.SpawnPlacementRegisterStrategy() {
             @Override
-            public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacements.Type placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
+            public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacementType placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
                 event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.AND);
             }
         };

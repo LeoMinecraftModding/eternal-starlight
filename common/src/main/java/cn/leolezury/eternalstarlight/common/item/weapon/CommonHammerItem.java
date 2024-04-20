@@ -13,8 +13,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import java.util.List;
 
 public class CommonHammerItem extends HammerItem {
-    public CommonHammerItem(Tier tier, float damage, float attackSpeed, Properties properties) {
-        super(tier, damage, attackSpeed, properties);
+    public CommonHammerItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

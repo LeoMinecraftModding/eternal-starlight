@@ -7,12 +7,14 @@ import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,44 +28,41 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.Objects;
 
-public class OrbOfProphecyItem extends Item implements Vanishable {
+public class OrbOfProphecyItem extends Item {
     public OrbOfProphecyItem(Properties properties) {
         super(properties);
     }
 
     public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
         List<Crest> crests = ESCrestUtil.getCrests(access, tag);
-        List<Crest> itemCrests = ESCrestUtil.getCrests(access, stack.getOrCreateTag().getCompound("Crests"));
+        List<Crest> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
         crests.addAll(itemCrests);
         CompoundTag crestsTag = new CompoundTag();
         ESCrestUtil.setCrests(access, crestsTag, crests);
-        stack.getOrCreateTag().put("Crests", crestsTag);
+        stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(crestsTag)).build());
     }
 
     public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
-        if (access == null) return false;
-        CompoundTag crests = stack.getOrCreateTag().getCompound("Crests");
-        return !ESCrestUtil.getCrests(access, crests).isEmpty();
+        return !getCrests(access, stack).isEmpty();
     }
 
     public static List<Crest> getCrests(RegistryAccess access, ItemStack stack) {
-        CompoundTag crests = stack.getOrCreateTag().getCompound("Crests");
-        return ESCrestUtil.getCrests(access, crests);
+        return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
     }
 
     public static void setTemporary(ItemStack stack) {
-        stack.getOrCreateTag().putBoolean("Temporary", true);
+        stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), true).build());
     }
 
     public static boolean isTemporary(ItemStack stack) {
-        return stack.getOrCreateTag().getBoolean("Temporary");
+        return stack.getOrDefault(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), false);
     }
 
     @Override
@@ -94,7 +93,7 @@ public class OrbOfProphecyItem extends Item implements Vanishable {
                 if (player.experienceLevel >= xpCost) {
                     player.experienceLevel -= xpCost;
                     getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
-                    itemStack.getOrCreateTag().put("Crests", new CompoundTag());
+                    recordCrests(level.registryAccess(), itemStack, new CompoundTag());
                     if (isTemporary(itemStack)) {
                         itemStack.shrink(1);
                     }
