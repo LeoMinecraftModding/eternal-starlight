@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:oxidized_golem_steel_block"
-            ]
+            "items": "eternal_starlight:oxidized_golem_steel_block"
           }
         ]
       },

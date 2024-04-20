@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "eternal_starlight:bosses/boss_common"
+          "value": "eternal_starlight:bosses/boss_common"
         }
       ],
       "rolls": 1.0

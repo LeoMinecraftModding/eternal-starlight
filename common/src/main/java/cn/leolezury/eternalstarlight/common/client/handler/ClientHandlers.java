@@ -55,7 +55,6 @@ public class ClientHandlers {
     private static final ResourceLocation ETHER_ARMOR_HALF = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_half.png");
     private static final ResourceLocation ETHER_ARMOR_FULL = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/hud/ether_armor_full.png");
     private static final ResourceLocation ORB_OF_PROPHECY_USE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/misc/orb_of_prophecy_use.png");
-    private static final ResourceLocation CROSSHAIR_SPRITE = new ResourceLocation("hud/crosshair");
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_background");
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_progress");
     private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
@@ -251,7 +250,7 @@ public class ClientHandlers {
 
     public static void renderEtherArmor(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player.level().isClientSide && ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ETHER.get())) {
+        if (ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ETHER.get())) {
             minecraft.getProfiler().push("armor");
             int initialX = screenWidth / 2 - 91;
             int initialY = screenHeight - 39;

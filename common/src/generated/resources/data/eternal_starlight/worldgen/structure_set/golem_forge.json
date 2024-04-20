@@ -1,7 +1,7 @@
 {
   "placement": {
     "type": "eternal_starlight:es_random_spread",
-    "min_dist_from_spawn": 20,
+    "minimum_distance_from_spawn": 20,
     "salt": 239823921,
     "separation": 20,
     "spacing": 24

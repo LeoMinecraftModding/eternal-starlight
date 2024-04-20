@@ -157,6 +157,7 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean isPlayer) {
         super.dropCustomDeathLoot(source, lootingLevel, isPlayer);
         ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+        // TODO fix "Data components must implement equals and hashCode. Keep in mind they must also be immutable."
         lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), getBossLootTable()).build());
         ItemEntity item = spawnAtLocation(lootBag);
         if (item != null) {

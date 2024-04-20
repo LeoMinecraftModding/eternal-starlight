@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:thermal_springstone"
   },
-  "result": "eternal_starlight:thermal_springstone_ingot"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:thermal_springstone_ingot"
+  }
 }

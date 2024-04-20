@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:lunar_log"
-            ]
+            "items": "eternal_starlight:lunar_log"
           }
         ]
       },

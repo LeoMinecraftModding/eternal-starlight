@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "eternal_starlight:torreya_logs"
+            "items": "#eternal_starlight:torreya_logs"
           }
         ]
       },

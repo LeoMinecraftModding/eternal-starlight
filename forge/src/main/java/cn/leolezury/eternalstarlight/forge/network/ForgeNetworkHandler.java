@@ -20,7 +20,7 @@ public class ForgeNetworkHandler {
         CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
             @Override
             public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-                registrar.play(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> packetInfo.handler().handle(packet, context.player().orElse(null)));
+                registrar.play(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.workHandler().execute(() -> packetInfo.handler().handle(packet, context.player().orElse(null))));
             }
         });
     }

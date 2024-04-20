@@ -4,9 +4,7 @@
     "use_item": {
       "conditions": {
         "item": {
-          "items": [
-            "eternal_starlight:blossom_of_stars"
-          ]
+          "items": "eternal_starlight:blossom_of_stars"
         }
       },
       "trigger": "minecraft:consume_item"
@@ -18,7 +16,8 @@
     },
     "hidden": true,
     "icon": {
-      "item": "eternal_starlight:blossom_of_stars"
+      "count": 1,
+      "id": "eternal_starlight:blossom_of_stars"
     },
     "title": {
       "translate": "advancements.eternal_starlight.use_blossom_of_stars.title"

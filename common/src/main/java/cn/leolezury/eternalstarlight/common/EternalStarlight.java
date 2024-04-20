@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.IClientHelper;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.logging.LogUtils;
@@ -44,7 +43,6 @@ public class EternalStarlight {
         ESBoarwarfProfessions.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
-        ESSynchedEntityData.registerSerializer();
     }
 
     public static IClientHelper getClientHelper() {

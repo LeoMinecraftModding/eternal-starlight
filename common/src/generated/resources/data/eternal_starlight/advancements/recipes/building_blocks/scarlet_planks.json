@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "eternal_starlight:scarlet_logs"
+            "items": "#eternal_starlight:scarlet_logs"
           }
         ]
       },

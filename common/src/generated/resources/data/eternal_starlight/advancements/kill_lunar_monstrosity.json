@@ -22,7 +22,8 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "eternal_starlight:parasol_grass"
+      "count": 1,
+      "id": "eternal_starlight:parasol_grass"
     },
     "title": {
       "translate": "advancements.eternal_starlight.kill_lunar_monstrosity.title"

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:voidstone_tiles"
-            ]
+            "items": "eternal_starlight:voidstone_tiles"
           }
         ]
       },

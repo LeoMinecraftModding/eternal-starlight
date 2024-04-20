@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:green_yeti_fur"
-            ]
+            "items": "eternal_starlight:green_yeti_fur"
           }
         ]
       },

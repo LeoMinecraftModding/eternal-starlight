@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:gladespike"
-            ]
+            "items": "eternal_starlight:gladespike"
           }
         ]
       },

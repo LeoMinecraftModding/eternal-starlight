@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:aethersent_block"
-            ]
+            "items": "eternal_starlight:aethersent_block"
           }
         ]
       },

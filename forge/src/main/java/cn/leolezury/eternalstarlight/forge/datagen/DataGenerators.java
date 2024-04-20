@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.*;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.custom.ESGeyserSmokingProvider;
 import cn.leolezury.eternalstarlight.forge.datagen.provider.tags.*;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -20,7 +19,6 @@ import java.util.concurrent.CompletableFuture;
 public class DataGenerators {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent event) {
-        LogUtils.getLogger().warn("OnGatherData Called!"); // TODO this isn't working
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();

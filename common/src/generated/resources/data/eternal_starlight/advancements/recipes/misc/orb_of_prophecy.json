@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:blue_starlight_crystal_shard"
-            ]
+            "items": "eternal_starlight:blue_starlight_crystal_shard"
           }
         ]
       },

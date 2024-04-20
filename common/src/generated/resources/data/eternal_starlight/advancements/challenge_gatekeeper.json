@@ -10,8 +10,8 @@
       "translate": "advancements.eternal_starlight.challenge_gatekeeper.description"
     },
     "icon": {
-      "item": "minecraft:diamond_sword",
-      "nbt": "{Damage:0}"
+      "count": 1,
+      "id": "minecraft:diamond_sword"
     },
     "title": {
       "translate": "advancements.eternal_starlight.challenge_gatekeeper.title"

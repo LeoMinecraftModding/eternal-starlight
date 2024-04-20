@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:cobbled_voidstone"
   },
-  "result": "eternal_starlight:voidstone"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:voidstone"
+  }
 }

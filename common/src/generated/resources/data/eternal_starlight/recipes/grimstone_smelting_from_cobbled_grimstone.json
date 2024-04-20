@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:cobbled_grimstone"
   },
-  "result": "eternal_starlight:grimstone"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:grimstone"
+  }
 }

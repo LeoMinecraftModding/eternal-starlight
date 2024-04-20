@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "eternal_starlight:starlight_mangrove_logs"
+            "items": "#eternal_starlight:starlight_mangrove_logs"
           }
         ]
       },

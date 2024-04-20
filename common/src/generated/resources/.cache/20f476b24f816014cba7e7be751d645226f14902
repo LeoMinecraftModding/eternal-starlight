@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-16T17:38:20.2127431	Tags for minecraft:worldgen/biome mod id eternal_starlight
+// 1.20.5 Release Candidate 1	2024-04-20T19:53:43.6601	Tags for minecraft:worldgen/biome mod id eternal_starlight
 eaa8cc6b0b29b68c095cdf51295b3a6ba2c4cc68 data/eternal_starlight/tags/worldgen/biome/has_golem_forge.json
 42863eb1e6a736e4fe01b4473479b9844500df78 data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_common.json
 42d7f45693b54847c20b5f5ab083d343e1c0c14d data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_desert.json

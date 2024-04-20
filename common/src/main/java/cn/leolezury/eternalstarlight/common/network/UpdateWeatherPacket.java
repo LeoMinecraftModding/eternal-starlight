@@ -11,25 +11,25 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
-public record WeatherPacket(AbstractWeather weather,
-                            int duration, int ticks) implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<WeatherPacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "weather"));
-    public static final StreamCodec<RegistryFriendlyByteBuf, WeatherPacket> STREAM_CODEC = StreamCodec.ofMember(WeatherPacket::write, WeatherPacket::read);
+public record UpdateWeatherPacket(AbstractWeather weather,
+                                  int duration, int ticks) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<UpdateWeatherPacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "update_weather"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, UpdateWeatherPacket> STREAM_CODEC = StreamCodec.ofMember(UpdateWeatherPacket::write, UpdateWeatherPacket::read);
 
-    public static WeatherPacket read(FriendlyByteBuf buf) {
+    public static UpdateWeatherPacket read(FriendlyByteBuf buf) {
         AbstractWeather abstractWeather = ESWeathers.WEATHERS.registry().byId(buf.readInt());
         int d = buf.readInt();
         int t = buf.readInt();
-        return new WeatherPacket(abstractWeather, d, t);
+        return new UpdateWeatherPacket(abstractWeather, d, t);
     }
 
-    public static void write(WeatherPacket message, FriendlyByteBuf buf) {
+    public static void write(UpdateWeatherPacket message, FriendlyByteBuf buf) {
         buf.writeInt(ESWeathers.WEATHERS.registry().getId(message.weather()));
         buf.writeInt(message.duration);
         buf.writeInt(message.ticks);
     }
 
-    public static void handle(WeatherPacket message, Player player) {
+    public static void handle(UpdateWeatherPacket message, Player player) {
         ClientWeatherInfo.WEATHER = message.weather();
         ClientWeatherInfo.DURATION = message.duration();
         ClientWeatherInfo.TICKS = message.ticks();

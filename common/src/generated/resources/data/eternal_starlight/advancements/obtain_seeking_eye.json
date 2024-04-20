@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:seeking_eye"
-            ]
+            "items": "eternal_starlight:seeking_eye"
           }
         ]
       },
@@ -20,7 +18,8 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "eternal_starlight:seeking_eye"
+      "count": 1,
+      "id": "eternal_starlight:seeking_eye"
     },
     "title": {
       "translate": "advancements.eternal_starlight.obtain_seeking_eye.title"

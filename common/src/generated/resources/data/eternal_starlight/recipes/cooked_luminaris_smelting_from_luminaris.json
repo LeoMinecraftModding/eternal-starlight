@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:luminaris"
   },
-  "result": "eternal_starlight:cooked_luminaris"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:cooked_luminaris"
+  }
 }

@@ -54,7 +54,7 @@ public class ClientHelper implements IClientHelper {
     @Override
     public void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket message) {
         ClientLevel clientLevel = Minecraft.getInstance().level;
-        if (clientLevel.getEntity(message.id()) instanceof TheGatekeeper gatekeeper) {
+        if (clientLevel != null && clientLevel.getEntity(message.id()) instanceof TheGatekeeper gatekeeper) {
             Minecraft.getInstance().setScreen(new GatekeeperDialogueScreen(gatekeeper, message.killedDragon(), message.challenged()));
         }
     }

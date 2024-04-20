@@ -23,7 +23,8 @@
       "translate": "advancements.eternal_starlight.enter_starlight.description"
     },
     "icon": {
-      "item": "eternal_starlight:lunar_log"
+      "count": 1,
+      "id": "eternal_starlight:lunar_log"
     },
     "title": {
       "translate": "advancements.eternal_starlight.enter_starlight.title"

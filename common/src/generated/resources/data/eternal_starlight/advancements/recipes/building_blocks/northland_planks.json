@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "eternal_starlight:northland_logs"
+            "items": "#eternal_starlight:northland_logs"
           }
         ]
       },

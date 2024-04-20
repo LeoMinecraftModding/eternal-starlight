@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:luminofish"
   },
-  "result": "eternal_starlight:cooked_luminofish"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:cooked_luminofish"
+  }
 }

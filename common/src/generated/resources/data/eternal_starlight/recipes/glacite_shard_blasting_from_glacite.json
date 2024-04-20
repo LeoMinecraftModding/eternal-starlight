@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:glacite"
   },
-  "result": "eternal_starlight:glacite_shard"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:glacite_shard"
+  }
 }

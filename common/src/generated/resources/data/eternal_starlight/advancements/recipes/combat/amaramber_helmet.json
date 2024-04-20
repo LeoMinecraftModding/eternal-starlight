@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:amaramber_ingot"
-            ]
+            "items": "eternal_starlight:amaramber_ingot"
           }
         ]
       },

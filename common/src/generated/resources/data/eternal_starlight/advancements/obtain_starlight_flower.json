@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:starlight_flower"
-            ]
+            "items": "eternal_starlight:starlight_flower"
           }
         ]
       },
@@ -20,7 +18,8 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "eternal_starlight:starlight_flower"
+      "count": 1,
+      "id": "eternal_starlight:starlight_flower"
     },
     "title": {
       "translate": "advancements.eternal_starlight.obtain_starlight_flower.title"

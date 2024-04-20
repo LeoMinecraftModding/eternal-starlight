@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:pink_rose_bush"
-            ]
+            "items": "eternal_starlight:pink_rose_bush"
           }
         ]
       },

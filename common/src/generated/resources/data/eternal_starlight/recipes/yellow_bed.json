@@ -15,6 +15,7 @@
     "XXX"
   ],
   "result": {
-    "item": "minecraft:yellow_bed"
+    "count": 1,
+    "id": "minecraft:yellow_bed"
   }
 }

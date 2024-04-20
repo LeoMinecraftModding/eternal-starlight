@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "eternal_starlight:polished_thermabysslate"
   },
-  "result": "eternal_starlight:polished_thermabysslate_bricks"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:polished_thermabysslate_bricks"
+  }
 }

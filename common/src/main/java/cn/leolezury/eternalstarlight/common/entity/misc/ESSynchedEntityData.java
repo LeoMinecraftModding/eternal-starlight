@@ -5,15 +5,14 @@ import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.network.syncher.EntityDataSerializers;
 
 public class ESSynchedEntityData {
     public static final StreamCodec<RegistryFriendlyByteBuf, SynchedData> STREAM_CODEC = new StreamCodec<RegistryFriendlyByteBuf, SynchedData>() {
         @Override
         public void encode(RegistryFriendlyByteBuf friendlyByteBuf, SynchedData object) {
+            friendlyByteBuf.writeBoolean(object.hasSpell());
             friendlyByteBuf.writeById(ESSpells.SPELLS.registry()::getId, object.spell());
             friendlyByteBuf.writeInt(object.castTicks());
-            friendlyByteBuf.writeBoolean(object.hasSpell());
         }
 
         @Override
@@ -36,10 +35,6 @@ public class ESSynchedEntityData {
             return object;
         }
     };
-
-    public static void registerSerializer() {
-        EntityDataSerializers.registerSerializer(SYNCHED_DATA_SERIALIZER);
-    }
 
     // ALL synched stuff should go here
     public record SynchedData (boolean hasSpell, AbstractSpell spell, int castTicks) {

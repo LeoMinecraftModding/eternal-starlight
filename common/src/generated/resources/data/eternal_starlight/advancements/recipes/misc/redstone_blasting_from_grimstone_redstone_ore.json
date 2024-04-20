@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:grimstone_redstone_ore"
-            ]
+            "items": "eternal_starlight:grimstone_redstone_ore"
           }
         ]
       },

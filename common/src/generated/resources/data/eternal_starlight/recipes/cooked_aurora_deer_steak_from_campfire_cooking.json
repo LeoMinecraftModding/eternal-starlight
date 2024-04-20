@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:aurora_deer_steak"
   },
-  "result": "eternal_starlight:cooked_aurora_deer_steak"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:cooked_aurora_deer_steak"
+  }
 }

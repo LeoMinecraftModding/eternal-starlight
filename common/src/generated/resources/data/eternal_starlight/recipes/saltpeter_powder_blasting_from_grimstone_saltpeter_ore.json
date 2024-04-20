@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:grimstone_saltpeter_ore"
   },
-  "result": "eternal_starlight:saltpeter_powder"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:saltpeter_powder"
+  }
 }

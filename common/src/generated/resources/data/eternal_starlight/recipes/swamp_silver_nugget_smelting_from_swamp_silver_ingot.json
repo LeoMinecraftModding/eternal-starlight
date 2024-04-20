@@ -29,5 +29,8 @@
       "item": "eternal_starlight:swamp_silver_boots"
     }
   ],
-  "result": "eternal_starlight:swamp_silver_nugget"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:swamp_silver_nugget"
+  }
 }

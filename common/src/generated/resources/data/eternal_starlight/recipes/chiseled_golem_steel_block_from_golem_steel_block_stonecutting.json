@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "eternal_starlight:golem_steel_block"
   },
-  "result": "eternal_starlight:chiseled_golem_steel_block"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:chiseled_golem_steel_block"
+  }
 }

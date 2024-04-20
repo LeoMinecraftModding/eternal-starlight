@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "eternal_starlight:voidstone_redstone_ore"
   },
-  "result": "minecraft:redstone"
+  "result": {
+    "count": 1,
+    "id": "minecraft:redstone"
+  }
 }

@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "eternal_starlight:dusted_bricks"
   },
-  "result": "eternal_starlight:dusted_brick_stairs"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:dusted_brick_stairs"
+  }
 }

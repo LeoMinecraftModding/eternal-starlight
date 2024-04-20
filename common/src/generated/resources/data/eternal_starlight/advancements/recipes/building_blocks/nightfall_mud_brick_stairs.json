@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:nightfall_mud_bricks"
-            ]
+            "items": "eternal_starlight:nightfall_mud_bricks"
           }
         ]
       },

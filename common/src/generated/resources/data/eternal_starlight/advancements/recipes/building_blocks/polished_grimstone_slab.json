@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:polished_grimstone"
-            ]
+            "items": "eternal_starlight:polished_grimstone"
           }
         ]
       },

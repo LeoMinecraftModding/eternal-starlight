@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:stripped_starlight_mangrove_log"
-            ]
+            "items": "eternal_starlight:stripped_starlight_mangrove_log"
           }
         ]
       },

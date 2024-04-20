@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:withered_starlight_flower"
-            ]
+            "items": "eternal_starlight:withered_starlight_flower"
           }
         ]
       },

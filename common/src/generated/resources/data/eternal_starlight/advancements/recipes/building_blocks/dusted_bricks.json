@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:dusted_shard"
-            ]
+            "items": "eternal_starlight:dusted_shard"
           }
         ]
       },

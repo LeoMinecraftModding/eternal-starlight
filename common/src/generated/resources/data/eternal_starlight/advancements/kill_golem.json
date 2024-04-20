@@ -22,7 +22,8 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "eternal_starlight:energy_block"
+      "count": 1,
+      "id": "eternal_starlight:energy_block"
     },
     "title": {
       "translate": "advancements.eternal_starlight.kill_golem.title"

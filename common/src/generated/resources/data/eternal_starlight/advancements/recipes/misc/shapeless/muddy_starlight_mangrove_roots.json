@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:starlight_mangrove_roots"
-            ]
+            "items": "eternal_starlight:starlight_mangrove_roots"
           }
         ]
       },

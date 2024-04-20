@@ -20,5 +20,8 @@
       "item": "eternal_starlight:amaramber_chestplate"
     }
   ],
-  "result": "eternal_starlight:amaramber_nugget"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:amaramber_nugget"
+  }
 }

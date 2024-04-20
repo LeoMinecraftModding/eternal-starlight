@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorMaterial;
@@ -84,7 +83,7 @@ public class FabricThermalSpringStoneArmorItem extends ThermalSpringStoneArmorIt
 
             parentModel.copyPropertiesTo(armorModel);
             setPartVisibility(armorModel, armorSlot);
-            ArmorRenderer.renderPart(stack, multiBufferSource, light, itemStack, armorModel, new ResourceLocation(getTexture(itemStack, livingEntity, armorSlot, "overlay")));
+            ArmorRenderer.renderPart(stack, multiBufferSource, light, itemStack, armorModel, getTexture(armorSlot));
             /*if (itemStack.getItem() instanceof ArmorItem armorItem) {
                 ArmorTrim.getTrim(livingEntity.level().registryAccess(), itemStack, true).ifPresent((armorTrim) -> {
                     this.renderTrim(armorItem.getMaterial(), stack, multiBufferSource, light, armorTrim, armorModel, itemStack.is(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get()));

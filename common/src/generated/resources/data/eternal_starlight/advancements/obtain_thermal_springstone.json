@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "eternal_starlight:thermal_springstone"
-            ]
+            "items": "eternal_starlight:thermal_springstone"
           }
         ]
       },
@@ -20,7 +18,8 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "eternal_starlight:thermal_springstone"
+      "count": 1,
+      "id": "eternal_starlight:thermal_springstone"
     },
     "title": {
       "translate": "advancements.eternal_starlight.obtain_thermal_springstone.title"

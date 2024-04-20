@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "eternal_starlight:polished_grimstone"
   },
-  "result": "eternal_starlight:polished_grimstone_wall"
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:polished_grimstone_wall"
+  }
 }

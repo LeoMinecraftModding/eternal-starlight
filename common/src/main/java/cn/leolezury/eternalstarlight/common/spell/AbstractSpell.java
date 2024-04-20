@@ -43,7 +43,7 @@ public abstract class AbstractSpell {
             damageCrystal(player);
         }
         onStart(entity);
-        if (entity instanceof ESLivingEntity livingEntity) {
+        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
             livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, 0));
         }
     }
@@ -65,7 +65,7 @@ public abstract class AbstractSpell {
         } else if (ticks <= spellProperties().preparationTicks() + spellProperties().spellTicks()) {
             onSpellTick(entity, ticks - spellProperties().preparationTicks());
         }
-        if (entity instanceof ESLivingEntity livingEntity) {
+        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
             livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, ticks));
         }
     }
@@ -73,7 +73,7 @@ public abstract class AbstractSpell {
     public void stop(LivingEntity entity, int ticks) {
         onStop(entity, ticks);
         ESSpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
-        if (entity instanceof ESLivingEntity livingEntity) {
+        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
             livingEntity.setSynchedData(ESSynchedEntityData.SynchedData.getDefault());
         }
     }
