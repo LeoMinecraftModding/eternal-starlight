@@ -35,7 +35,8 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
                 ESDamageTypes.POISON
         );
         tag(DamageTypeTags.NO_IMPACT).add(
-                ESDamageTypes.POISON
+                ESDamageTypes.POISON,
+                ESDamageTypes.ENERGIZED_FLAME
         );
         tag(DamageTypeTags.IS_PROJECTILE).add(
                 ESDamageTypes.SHATTERED_BLADE

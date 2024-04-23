@@ -19,7 +19,7 @@ public class ThermalSpringStoneArmorItem extends ArmorItem {
     }
 
     public static ResourceLocation getTexture(EquipmentSlot slot) {
-        return new ResourceLocation(EternalStarlight.MOD_ID, ":textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png"));
+        return new ResourceLocation(EternalStarlight.MOD_ID, "textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png"));
     }
 
     @Override

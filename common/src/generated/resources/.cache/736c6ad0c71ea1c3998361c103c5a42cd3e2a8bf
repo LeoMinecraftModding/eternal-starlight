@@ -1,6 +1,6 @@
-// 1.20.5 Release Candidate 1	2024-04-20T19:53:43.6682218	Tags for minecraft:damage_type mod id eternal_starlight
+// 1.20.5 Release Candidate 1	2024-04-23T20:27:28.0583951	Tags for minecraft:damage_type mod id eternal_starlight
 f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_armor.json
 f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_enchantments.json
 f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_shield.json
 17bd394576f6b8f9963f854cc3c25f19698741e9 data/minecraft/tags/damage_type/is_projectile.json
-617133df5d7335285327f8344f24f17d3ec5dbe6 data/minecraft/tags/damage_type/no_impact.json
+e258378537c499a9cd5890ae4958a484b71a0b66 data/minecraft/tags/damage_type/no_impact.json

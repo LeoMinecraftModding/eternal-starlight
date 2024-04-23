@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.fabric.mixins;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
@@ -26,9 +25,9 @@ public abstract class LevelRendererMixin {
 
 
     @Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
-    private void es_renderSky(PoseStack poseStack, Matrix4f matrix4f, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
+    private void es_renderSky(Matrix4f matrix4f, Matrix4f matrix4f2, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
         if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
-            ESSkyRenderer.renderSky(level, poseStack, matrix4f, f, camera, runnable);
+            ESSkyRenderer.renderSky(level, matrix4f, matrix4f2, f, camera, runnable);
             ci.cancel();
         }
     }

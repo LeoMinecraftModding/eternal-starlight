@@ -178,7 +178,7 @@ public class RayAttack extends Entity {
     }
 
     public float getAttackDamage() {
-        return 10f;
+        return 8f;
     }
 
     @Override

@@ -70,6 +70,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     public AnimationState deathAnimationState = new AnimationState();
 
     private int hurtCount;
+    private int lastHurtSound;
 
     public void clearHurtCount() {
         this.hurtCount = 0;
@@ -158,12 +159,13 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     public boolean hurt(DamageSource damageSource, float f) {
         if (damageSource.is(DamageTypes.GENERIC_KILL)) {
             return super.hurt(damageSource, f);
-        } else if (canHurt() && getAttackState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && damageSource.getEntity() != this) {
+        } else if (canHurt() && getAttackState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
             hurtCount++;
             return super.hurt(damageSource, f);
         } else {
-            if (damageSource.getDirectEntity() instanceof LivingEntity) {
+            if (damageSource.getDirectEntity() instanceof LivingEntity && tickCount - lastHurtSound > 20) {
                 playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
+                lastHurtSound = tickCount;
             }
             return false;
         }

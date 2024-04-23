@@ -32,9 +32,10 @@ public class ESFabric implements ModInitializer {
         EternalStarlight.init();
 
         // setup handlers
-        FabricNetworkHandler.registerPackets(false);
+        FabricNetworkHandler.registerPackets();
+        FabricNetworkHandler.registerPacketReceivers(false);
         if (ESPlatform.INSTANCE.isPhysicalClient()) {
-            FabricNetworkHandler.registerPackets(true);
+            FabricNetworkHandler.registerPacketReceivers(true);
         }
         CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
         CommonSetupHandlers.registerSpawnPlacements(SpawnPlacements::register);

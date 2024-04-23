@@ -90,6 +90,5 @@ public class ClientSetupEvents {
         });
         event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
         event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
-        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "crystalline_infection"), (graphics, partialTicks) -> ClientHandlers.renderCrystallineInfection(graphics));
     }
 }

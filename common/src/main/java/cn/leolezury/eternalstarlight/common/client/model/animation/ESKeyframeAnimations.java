@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
 @Environment(EnvType.CLIENT)
 public class ESKeyframeAnimations {
     public static void animate(AnimatedModel model, AnimationDefinition definition, long accumulatedTime, float scale, Vector3f cache) {

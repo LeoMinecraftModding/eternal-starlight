@@ -23,6 +23,7 @@ public class ESTags {
         public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
         public static final TagKey<Item> YETI_FUR = create("yeti_fur");
         public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
+        public static final TagKey<Item> TRIMMABLE_ARMOR = create("trimmable_armor");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
         public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");

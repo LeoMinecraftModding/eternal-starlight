@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -53,7 +54,7 @@ public class LootBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
-            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(""))));
+            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation("")))).resourceKey());
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }

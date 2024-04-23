@@ -32,7 +32,7 @@ public class StarlightGolemLaserBeamPhase extends AttackPhase<StarlightGolem> {
         }
         if (entity.getAttackTicks() >= 60 && entity.getAttackTicks() % 40 == 0) {
             CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
-            entity.spawnEnergizedFlame(3, 15, false);
+            entity.spawnEnergizedFlame(1, 15, false);
         }
     }
 

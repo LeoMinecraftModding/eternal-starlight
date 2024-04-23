@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
@@ -16,11 +15,8 @@ import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.FogShape;
-import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.AttackIndicatorStatus;
@@ -30,7 +26,6 @@ import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -39,7 +34,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Matrix4f;
 
 import java.util.*;
 
@@ -329,29 +323,6 @@ public class ClientHandlers {
 
         public void updatePosition() {
             x += speed;
-        }
-    }
-
-    public static void renderCrystallineInfection(GuiGraphics guiGraphics) {
-        LocalPlayer player = Minecraft.getInstance().player;
-        Window window = Minecraft.getInstance().getWindow();
-        ShaderInstance shader = ESShaders.getCrystallineInfection();
-        int x = window.getGuiScaledWidth();
-        int y = window.getGuiScaledHeight();
-        Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        if (player != null && player.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
-            Uniform randomFloat = shader.getUniform("RandomFloat");
-            if (randomFloat != null) {
-                randomFloat.set(new Random().nextFloat(0.0F, 3.0F));
-            }
-            RenderSystem.setShader(ESShaders::getCrystallineInfection);
-            BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-            bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-            bufferBuilder.vertex(matrix4f, 0, 0, 0).uv(0, 0).endVertex();
-            bufferBuilder.vertex(matrix4f, 0, y, 0).uv(0, 1).endVertex();
-            bufferBuilder.vertex(matrix4f, x, y, 0).uv(1, 1).endVertex();
-            bufferBuilder.vertex(matrix4f, x, 0, 0).uv(1, 0).endVertex();
-            BufferUploader.drawWithShader(bufferBuilder.end());
         }
     }
 }

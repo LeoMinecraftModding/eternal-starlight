@@ -71,7 +71,7 @@ public class ESFallingBlock extends Entity {
         setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
         setDeltaMovement(getDeltaMovement().scale(0.98D));
         for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
-            living.hurt(damageSources().fallingBlock(this), 5);
+            living.hurt(damageSources().fallingBlock(this), 3);
         }
         if (this.onGround() && this.tickCount > this.duration)
             discard();

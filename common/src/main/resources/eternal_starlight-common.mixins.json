@@ -4,11 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
-    "AbstractCandleBlockMixin",
     "BaseFireBlockMixin",
-    "BlockBehaviourMixin",
     "BubbleColumnBlockMixin",
-    "CampfireBlockMixin",
     "CeilingHangingSignBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
@@ -27,6 +24,8 @@
   ],
   "client": [
     "EntityRenderDispatcherMixin",
+    "GameRendererMixin",
+    "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
     "PlayerModelMixin",

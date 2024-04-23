@@ -38,15 +38,13 @@ public class EnergizedFlame extends AttackEffect {
             if (getSpawnedTicks() > 20 && getOwner() != null) {
                 AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
                 for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
-                    livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 10);
+                    livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 2);
                     livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 60);
                 }
             }
         } else {
-            if (getSpawnedTicks() > 20) {
-                level().addParticle(ESParticles.ENERGIZED_FLAME_SMOKE.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
-                level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
-            }
+            level().addParticle(ESParticles.ENERGIZED_FLAME_SMOKE.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
+            level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
         }
     }
 }

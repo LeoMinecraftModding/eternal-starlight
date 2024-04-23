@@ -30,6 +30,16 @@ public class GolemFlameAttack extends RayAttack {
     }
 
     @Override
+    public float getRotationSpeed() {
+        return 0.8f;
+    }
+
+    @Override
+    public float getAttackDamage() {
+        return 4f;
+    }
+
+    @Override
     public void onHit(ESEntityUtil.RaytraceResult result) {
         for (Entity target : result.entities()) {
             if (target instanceof LivingEntity living) {

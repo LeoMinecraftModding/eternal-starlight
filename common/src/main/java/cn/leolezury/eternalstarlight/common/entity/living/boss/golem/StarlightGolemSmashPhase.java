@@ -60,7 +60,7 @@ public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
                             if (!lavaVisited.contains(pos)) {
                                 lavaVisited.add(pos);
                                 for (Direction direction : Direction.values()) {
-                                    if (entity.level().getBlockState(pos.relative(direction)).isAir() && entity.getRandom().nextInt(35) == 0) {
+                                    if (entity.level().getBlockState(pos.relative(direction)).isAir() && entity.getRandom().nextInt(100) == 0) {
                                         entity.level().setBlockAndUpdate(pos.relative(direction), Blocks.LAVA.defaultBlockState());
                                         if (!entity.level().isClientSide) {
                                             ((ServerLevel) entity.level()).sendParticles(ESParticles.LAVA_EXPLOSION.get(), pos.relative(direction).getCenter().x, pos.relative(direction).getCenter().y, pos.relative(direction).getCenter().z, 1, 0, 0, 0, 0);
@@ -86,7 +86,7 @@ public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
                                         entity.level().addFreshEntity(fallingBlock);
                                         for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1))) {
                                             if (!living.getUUID().equals(entity.getUUID())) {
-                                                living.hurt(ESDamageTypes.getDamageSource(entity.level(), ESDamageTypes.GROUND_SMASH), 5);
+                                                living.hurt(ESDamageTypes.getDamageSource(entity.level(), ESDamageTypes.GROUND_SMASH), 4);
                                             }
                                         }
                                         if (!entity.level().isClientSide) {

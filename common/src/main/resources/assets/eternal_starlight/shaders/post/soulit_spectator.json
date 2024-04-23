@@ -1,0 +1,59 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "bits",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "uniforms": [
+        {
+          "name": "Resolution",
+          "values": [ 32.0 ]
+        },
+        {
+          "name": "MosaicSize",
+          "values": [ 2.0 ]
+        }
+      ]
+    },
+    {
+      "name": "box_blur",
+      "intarget": "swap",
+      "outtarget": "minecraft:main",
+      "use_linear_filter": true,
+      "uniforms": [
+        {
+          "name": "BlurDir",
+          "values": [ 1.0, 1.0 ],
+          "RadiusMultiplier" : 0.2
+        }
+      ]
+    },
+    {
+      "name": "color_convolve",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "uniforms": [
+        {
+          "name": "RedMatrix",
+          "values": [ 0.0, 0.0, 0.0 ]
+        },
+        {
+          "name": "GreenMatrix",
+          "values": [ 0.3, 0.3, 0.4 ]
+        },
+        {
+          "name": "BlueMatrix",
+          "values": [ 0.5, 0.5, 0.6 ]
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

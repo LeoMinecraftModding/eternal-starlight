@@ -28,6 +28,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
         copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
         copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
+        tag(ESTags.Items.TRIMMABLE_ARMOR).add(
+                ESItems.AETHERSENT_HOOD.get(),
+                ESItems.SWAMP_SILVER_HELMET.get(),
+                ESItems.SWAMP_SILVER_CHESTPLATE.get(),
+                ESItems.GLACITE_HELMET.get(),
+                ESItems.GLACITE_CHESTPLATE.get(),
+                ESItems.GLACITE_LEGGINGS.get(),
+                ESItems.GLACITE_BOOTS.get()
+        );
         tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS).add(
                 ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
                 ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
@@ -82,7 +91,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.MANA_CRYSTAL.get()
         );
         // mc tags
-        // TODO Meat Tag, Animal Tempt Tags, Armor Tags, Enchantable Tags, Or More
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
@@ -104,6 +112,37 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.SMELTS_TO_GLASS, ItemTags.SMELTS_TO_GLASS);
         copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
         copy(BlockTags.CANDLES, ItemTags.CANDLES);
+        // enchantables
+        tag(ItemTags.DURABILITY_ENCHANTABLE).add(
+                ESItems.STARFALL_LONGBOW.get(),
+                ESItems.GLACITE_SHIELD.get(),
+                ESItems.SALTPETER_MATCHBOX.get(),
+                ESItems.CRYSTAL_CROSSBOW.get(),
+                ESItems.MOONRING_BOW.get(),
+                ESItems.WAND_OF_TELEPORTATION.get(),
+                ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
+                ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
+                ESItems.GLACITE_SCYTHE.get(),
+                ESItems.SWAMP_SILVER_SICKLE.get(),
+                ESItems.PETAL_SCYTHE.get()
+        );
+        tag(ItemTags.BOW_ENCHANTABLE).add(
+                ESItems.STARFALL_LONGBOW.get(),
+                ESItems.MOONRING_BOW.get()
+        );
+        tag(ItemTags.CROSSBOW_ENCHANTABLE).add(
+                ESItems.CRYSTAL_CROSSBOW.get()
+        );
+        tag(ItemTags.SWORD_ENCHANTABLE).add(
+                ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
+                ESItems.GLACITE_SCYTHE.get(),
+                ESItems.PETAL_SCYTHE.get()
+        );
+        tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
+                ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
+                ESItems.GLACITE_SCYTHE.get(),
+                ESItems.PETAL_SCYTHE.get()
+        );
         tag(ItemTags.BOATS).add(
                 ESItems.LUNAR_BOAT.get(),
                 ESItems.NORTHLAND_BOAT.get(),
@@ -127,6 +166,41 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.GLACITE_CHESTPLATE.get(),
                 ESItems.GLACITE_LEGGINGS.get(),
                 ESItems.GLACITE_BOOTS.get()
+        );
+        tag(ItemTags.MEAT).add(
+                ESItems.DOOMEDEN_CARRION.get(),
+                ESItems.LUMINOFISH.get(),
+                ESItems.COOKED_LUMINOFISH.get(),
+                ESItems.LUMINARIS.get(),
+                ESItems.COOKED_LUMINARIS.get(),
+                ESItems.AURORA_DEER_STEAK.get(),
+                ESItems.COOKED_AURORA_DEER_STEAK.get()
+        );
+        tag(ItemTags.HEAD_ARMOR).add(
+                ESItems.AETHERSENT_HOOD.get(),
+                ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
+                ESItems.GLACITE_HELMET.get(),
+                ESItems.SWAMP_SILVER_HELMET.get(),
+                ESItems.AMARAMBER_HELMET.get()
+        );
+        tag(ItemTags.CHEST_ARMOR).add(
+                ESItems.AETHERSENT_CAPE.get(),
+                ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
+                ESItems.GLACITE_CHESTPLATE.get(),
+                ESItems.SWAMP_SILVER_CHESTPLATE.get(),
+                ESItems.AMARAMBER_CHESTPLATE.get()
+        );
+        tag(ItemTags.LEG_ARMOR).add(
+                ESItems.AETHERSENT_BOTTOMS.get(),
+                ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
+                ESItems.GLACITE_LEGGINGS.get(),
+                ESItems.SWAMP_SILVER_LEGGINGS.get()
+        );
+        tag(ItemTags.FOOT_ARMOR).add(
+                ESItems.AETHERSENT_BOOTS.get(),
+                ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
+                ESItems.GLACITE_BOOTS.get(),
+                ESItems.SWAMP_SILVER_BOOTS.get()
         );
         tag(ItemTags.SWORDS).add(
                 ESItems.RAGE_OF_STARS.get(),
@@ -159,15 +233,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         );
         tag(ItemTags.ARROWS).add(
                 ESItems.AMARAMBER_ARROW.get()
-        );
-        tag(ItemTags.TRIMMABLE_ARMOR).add(
-                ESItems.AETHERSENT_HOOD.get(),
-                ESItems.SWAMP_SILVER_HELMET.get(),
-                ESItems.SWAMP_SILVER_CHESTPLATE.get(),
-                ESItems.GLACITE_HELMET.get(),
-                ESItems.GLACITE_CHESTPLATE.get(),
-                ESItems.GLACITE_LEGGINGS.get(),
-                ESItems.GLACITE_BOOTS.get()
         );
         tag(ItemTags.TRIM_MATERIALS).add(
                 ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
