@@ -1,6 +1,7 @@
 {
   "targets": [
-    "swap"
+    "swap",
+    "blurred"
   ],
   "passes": [
     {
@@ -10,30 +11,54 @@
       "uniforms": [
         {
           "name": "Resolution",
-          "values": [ 32.0 ]
+          "values": [ 16.0 ]
         },
         {
           "name": "MosaicSize",
-          "values": [ 2.0 ]
+          "values": [ 4.0 ]
         }
       ]
     },
     {
       "name": "box_blur",
       "intarget": "swap",
-      "outtarget": "minecraft:main",
+      "outtarget": "blurred",
       "use_linear_filter": true,
       "uniforms": [
         {
           "name": "BlurDir",
           "values": [ 1.0, 1.0 ],
-          "RadiusMultiplier" : 0.2
+          "RadiusMultiplier" : 2.0
+        }
+      ]
+    },
+    {
+      "name": "eternal_starlight_distance_blend",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "auxtargets": [
+        {
+          "name": "BlendSampler",
+          "id": "blurred"
+        }
+      ]
+    },
+    {
+      "name": "box_blur",
+      "intarget": "swap",
+      "outtarget": "blurred",
+      "use_linear_filter": true,
+      "uniforms": [
+        {
+          "name": "BlurDir",
+          "values": [ 0.5, 0.5 ],
+          "RadiusMultiplier" : 0.125
         }
       ]
     },
     {
       "name": "color_convolve",
-      "intarget": "minecraft:main",
+      "intarget": "blurred",
       "outtarget": "swap",
       "uniforms": [
         {
