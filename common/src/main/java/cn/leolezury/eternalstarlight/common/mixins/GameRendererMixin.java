@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixins;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +17,8 @@ public abstract class GameRendererMixin {
 
     @Inject(method = "checkEntityPostEffect", at = @At("TAIL"))
     private void es_checkEntityPostEffect(Entity entity, CallbackInfo ci) {
-        loadEffect(new ResourceLocation(EternalStarlight.MOD_ID, "shaders/post/soulit_spectator.json"));
+        if (entity instanceof LunarMonstrosity) {
+            loadEffect(new ResourceLocation(EternalStarlight.MOD_ID, "shaders/post/soulit_spectator.json"));
+        }
     }
 }

@@ -19,6 +19,8 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -35,6 +37,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -47,7 +50,6 @@ import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -67,13 +69,25 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
+
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
+
+    protected static final EntityDataAccessor<Float> FIXED_Y_ROT = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.FLOAT);
+    public float getFixedYRot() {
+        return this.entityData.get(FIXED_Y_ROT);
+    }
+    public void setFixedYRot(float attackYRot) {
+        this.entityData.set(FIXED_Y_ROT, attackYRot);
+    }
 
     private final AttackManager<TheGatekeeper> attackManager = new AttackManager<>(this, List.of(
             new GatekeeperMeleePhase(),
             new GatekeeperDodgePhase(),
             new GatekeeperDashPhase(),
-            new GatekeeperCastFireballPhase()
+            new GatekeeperCastFireballPhase(),
+            new GatekeeperDanceFightPhase(),
+            new GatekeeperSwingSwordPhase(),
+            new GatekeeperComboPhase()
     ));
 
     public AnimationState meleeAnimationStateA = new AnimationState();
@@ -82,6 +96,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     public AnimationState dodgeAnimationState = new AnimationState();
     public AnimationState dashAnimationState = new AnimationState();
     public AnimationState castFireballAnimationState = new AnimationState();
+    public AnimationState danceFightAnimationState = new AnimationState();
+    public AnimationState swingSwordAnimationState = new AnimationState();
+    public AnimationState comboAnimationState = new AnimationState();
     private String gatekeeperName = "TheGatekeeper";
     @Nullable
     private Player customer;
@@ -102,12 +119,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         this.fightTarget = fightTarget;
     }
 
-    public String getFightTargetName() {
-        return fightTarget;
-    }
-
     public Optional<? extends Player> getFightTarget() {
         return level().players().stream().filter(p -> p.getName().getString().equals(fightTarget)).findFirst();
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FIXED_Y_ROT, 0f);
     }
 
     @Override
@@ -178,6 +197,21 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         });
     }
 
+    @Override
+    protected BodyRotationControl createBodyControl() {
+        return new BodyRotationControl(this) {
+            @Override
+            public void clientTick() {
+                if (TheGatekeeper.this.getAttackState() == GatekeeperDashPhase.ID) {
+                    TheGatekeeper.this.setYBodyRot(TheGatekeeper.this.getFixedYRot());
+                    TheGatekeeper.this.setYHeadRot(TheGatekeeper.this.getFixedYRot());
+                } else {
+                    super.clientTick();
+                }
+            }
+        };
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.5F)
@@ -200,7 +234,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
         super.populateDefaultEquipmentSlots(randomSource, difficultyInstance);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
     }
 
     public void stopAllAnimStates() {
@@ -226,6 +260,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
                 case GatekeeperDodgePhase.ID -> dodgeAnimationState.start(tickCount);
                 case GatekeeperDashPhase.ID -> dashAnimationState.start(tickCount);
                 case GatekeeperCastFireballPhase.ID -> castFireballAnimationState.start(tickCount);
+                case GatekeeperDanceFightPhase.ID -> danceFightAnimationState.start(tickCount);
+                case GatekeeperSwingSwordPhase.ID -> swingSwordAnimationState.start(tickCount);
+                case GatekeeperComboPhase.ID -> comboAnimationState.start(tickCount);
             }
         }
         super.onSyncedDataUpdated(accessor);
@@ -239,6 +276,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     @Override
     public boolean canAttack(LivingEntity livingEntity) {
         return super.canAttack(livingEntity) && isActivated();
+    }
+
+    @Override
+    public void setDeltaMovement(Vec3 vec3) {
+        boolean cantMove = getAttackState() == GatekeeperDanceFightPhase.ID || getAttackState() == GatekeeperSwingSwordPhase.ID;
+        super.setDeltaMovement(cantMove ? new Vec3(0, vec3.y, 0) : vec3);
     }
 
     @Override
@@ -281,7 +324,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             fightPlayerOnly = true;
             setFightTargetName(conversationTarget.getName().getString());
             setActivated(true);
-            setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+            setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
         }
         if (operation == 2 && conversationTarget != null) {
             fightPlayerOnly = true;
@@ -305,18 +348,25 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         return distanceTo(target) <= range + getBbWidth() / 2f + target.getBbWidth() / 2f;
     }
 
-    public void performMeleeAttack(double range) {
+    public boolean performMeleeAttack(double range) {
+        return performMeleeAttack(range, true);
+    }
+
+    public boolean performMeleeAttack(double range, boolean particles) {
         LivingEntity target = getTarget();
         if (target == null) {
-            return;
+            return false;
         }
         for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(range))) {
             if (livingEntity.getUUID().equals(target.getUUID()) && canReachTarget(range)) {
-                livingEntity.invulnerableTime = 0;
-                doHurtTarget(livingEntity);
-                spawnMeleeAttackParticles();
+                boolean successful = doHurtTarget(livingEntity);
+                if (particles && successful) {
+                    spawnMeleeAttackParticles();
+                }
+                return successful;
             }
         }
+        return false;
     }
 
     public void spawnMeleeAttackParticles() {

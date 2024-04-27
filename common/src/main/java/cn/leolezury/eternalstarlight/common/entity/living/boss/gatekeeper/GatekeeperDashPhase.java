@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
 
 public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
@@ -23,13 +24,15 @@ public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
         if (target != null) {
             entity.hurtMarked = true;
             entity.setDeltaMovement(entity.getDeltaMovement().add(target.position().subtract(entity.position()).normalize().scale(3)));
+            float yRot = ESMathUtil.positionToYaw(entity.position(), target.position()) - 90;
+            entity.setFixedYRot(yRot);
             entity.getNavigation().stop();
         }
     }
 
     @Override
     public void tick(TheGatekeeper entity) {
-        if (!attacked) {
+        if (!attacked && entity.canReachTarget(2)) {
             entity.performMeleeAttack(2);
             attacked = true;
         }

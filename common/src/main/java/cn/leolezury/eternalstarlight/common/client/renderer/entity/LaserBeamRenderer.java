@@ -61,32 +61,30 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
         // consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
 
         // render beam
-        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount, stack, consumer, packedLight);
+        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount + partialTicks, stack, consumer, packedLight);
 
         stack.popPose();
     }
 
-    private void renderBeamPart(float length, int tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
+    private void renderBeamPart(float length, float tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
         PoseStack.Pose pose = stack.last();
-        float factor = (float) Math.sin(tickCount + Minecraft.getInstance().getFrameTime());
-        float xOffset = ((tickCount + Minecraft.getInstance().getFrameTime()) * 0.2f) % getTextureWidth();
+        float factor = (float) Math.sin(tickCount);
+        float xOffset = (tickCount * 0.2f) % getTextureWidth();
         vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
         vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
         vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
         vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
     }
 
-    private void renderBeam(float length, float yaw, float pitch, int tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
+    private void renderBeam(float length, float yaw, float pitch, float tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
         poseStack.pushPose();
         poseStack.mulPose((new Quaternionf()).rotationX(90.0F * (float) Math.PI / 180f));
         poseStack.mulPose((new Quaternionf()).rotationZ((yaw - 90.0F) * (float) Math.PI / 180f));
         poseStack.mulPose((new Quaternionf()).rotationX(-pitch * (float) Math.PI / 180f));
 
-        float angle = (tickCount + Minecraft.getInstance().getFrameTime());
-
         poseStack.pushPose();
         if (!playerCast) {
-            poseStack.mulPose((new Quaternionf()).rotationY((angle) * (float) Math.PI / 180f));
+            poseStack.mulPose((new Quaternionf()).rotationY(tickCount * (float) Math.PI / 180f));
         }
         renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
         poseStack.popPose();

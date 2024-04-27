@@ -23,6 +23,10 @@ public class ESTags {
         public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
         public static final TagKey<Item> YETI_FUR = create("yeti_fur");
         public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
+        public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
+        public static final TagKey<Item> ENT_FOOD = create("ent_food");
+        public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
+        public static final TagKey<Item> YETI_FOOD = create("yeti_food");
         public static final TagKey<Item> TRIMMABLE_ARMOR = create("trimmable_armor");
         public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
         public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
@@ -63,6 +67,7 @@ public class ESTags {
         }
         public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
         public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
+        public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
     }
 
     public static class Structures {

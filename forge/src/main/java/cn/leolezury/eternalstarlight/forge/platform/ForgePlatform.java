@@ -39,7 +39,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -218,11 +217,6 @@ public class ForgePlatform implements ESPlatform {
     }
 
     @Override
-    public int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
-        return EventHooks.onArrowLoose(stack, level, player, charge, hasAmmo);
-    }
-
-    @Override
     public boolean postMobGriefingEvent(Level level, Entity entity) {
         return EventHooks.getMobGriefingEvent(level, entity);
     }
@@ -239,7 +233,7 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public boolean isShears(ItemStack stack) {
-        return stack.is(Tags.Items.SHEARS);
+        return stack.is(Tags.Items.TOOLS_SHEARS);
     }
 
     @Override

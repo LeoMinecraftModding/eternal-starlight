@@ -3,7 +3,6 @@ pluginManagement {
         maven { url "https://maven.fabricmc.net/" }
         maven { url "https://maven.architectury.dev/" }
         maven { url "https://maven.neoforged.net/releases/" }
-        maven { url "https://prmaven.neoforged.net/NeoForge/pr794" }
         gradlePluginPortal()
     }
 }

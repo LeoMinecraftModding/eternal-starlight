@@ -1,6 +1,8 @@
-// 1.20.5 Release Candidate 1	2024-04-23T21:46:09.3351568	Tags for minecraft:item mod id eternal_starlight
+// 1.20.5	2024-04-27T20:36:21.0139721	Tags for minecraft:item mod id eternal_starlight
+8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/items/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
+8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/items/ent_food.json
 c3758f1485dcdf3680091ca7ddb6d0c1e3fee6ed data/eternal_starlight/tags/items/glacite_weapons.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/items/light_crystals.json
 268ba819acde1285c21f1f46ecca7bfa826fd7e2 data/eternal_starlight/tags/items/lunar_crystals.json
@@ -8,6 +10,7 @@ eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/items/lunar
 eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/items/mana_crystals.json
 9abefef68b045d834c5be44bac87859d26f50ca2 data/eternal_starlight/tags/items/mana_crystal_ingredients.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/items/northland_logs.json
+4c1d8bbce7c883f739a73eb0374620a15297b159 data/eternal_starlight/tags/items/ratlin_food.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/items/scarlet_logs.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/items/starlight_mangrove_logs.json
 c2bade993e49b99929e4d8fa628cf2f9cf91aebf data/eternal_starlight/tags/items/terra_crystals.json
@@ -16,6 +19,7 @@ aaf6b3c5a0f9bab148f9c675dab591974443a4ac data/eternal_starlight/tags/items/therm
 92e905bac6e1e926257eac1caa9fe545763eb7f3 data/eternal_starlight/tags/items/trimmable_armor.json
 ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/items/water_crystals.json
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/items/wind_crystals.json
+e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/items/yeti_food.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/items/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/items/yeti_fur_carpets.json
 e46f6653e970a8854dead0dc4f155ef7dc0539f1 data/minecraft/tags/items/arrows.json

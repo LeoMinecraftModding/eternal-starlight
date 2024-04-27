@@ -22,7 +22,6 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 
     public ESFallingBlockRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.shadowRadius = 0.5F;
         this.dispatcher = context.getBlockRenderDispatcher();
     }
 

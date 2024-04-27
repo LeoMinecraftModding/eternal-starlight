@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +24,16 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 ESEntities.FREEZE.get(),
                 ESEntities.STARLIGHT_GOLEM.get()
         );
+        tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE).add(
+                ESEntities.LUMINOFISH.get(),
+                ESEntities.LUMINARIS.get(),
+                ESEntities.TWILIGHT_GAZE.get()
+        );
+        tag(ESTags.EntityTypes.VULNERABLE_TO_SONAR_BOMB).add(
+                ESEntities.CRYSTALLIZED_MOTH.get(),
+                EntityType.BAT,
+                EntityType.WARDEN
+        );
         tag(EntityTypeTags.SKELETONS).add(
                 ESEntities.LONESTAR_SKELETON.get()
         );
@@ -31,11 +42,6 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 ESEntities.CRYSTALLIZED_MOTH.get(),
                 ESEntities.SHIMMER_LACEWING.get(),
                 ESEntities.GRIMSTONE_GOLEM.get()
-        );
-        tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE).add(
-                ESEntities.LUMINOFISH.get(),
-                ESEntities.LUMINARIS.get(),
-                ESEntities.TWILIGHT_GAZE.get()
         );
     }
 }

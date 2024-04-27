@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSensorTypes;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +41,7 @@ public class YetiAi {
     );
 
     public static Ingredient getTemptations() {
-        return Ingredient.of(ESItems.CAVE_MOSS.get());
+        return Ingredient.of(ESTags.Items.YETI_FOOD);
     }
 
     protected static Brain<?> makeBrain(Brain<Yeti> brain) {

@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -28,6 +29,22 @@ public class ESItemTagsProvider extends ItemTagsProvider {
         copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
         copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
         copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
+        tag(ESTags.Items.AURORA_DEER_FOOD).add(
+                ESItems.LUNAR_BERRIES.get(),
+                ESItems.ABYSSAL_FRUIT.get()
+        );
+        tag(ESTags.Items.ENT_FOOD).add(
+                ESItems.LUNAR_BERRIES.get(),
+                ESItems.ABYSSAL_FRUIT.get()
+        );
+        tag(ESTags.Items.RATLIN_FOOD).addTag(ItemTags.MEAT).add(
+                ESItems.CAVE_MOSS.get(),
+                Items.GLOW_LICHEN
+        );
+        tag(ESTags.Items.YETI_FOOD).add(
+                ESItems.LUNAR_BERRIES.get(),
+                ESItems.CAVE_MOSS.get()
+        );
         tag(ESTags.Items.TRIMMABLE_ARMOR).add(
                 ESItems.AETHERSENT_HOOD.get(),
                 ESItems.SWAMP_SILVER_HELMET.get(),

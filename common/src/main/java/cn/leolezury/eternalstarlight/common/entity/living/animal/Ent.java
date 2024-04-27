@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -31,7 +32,7 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ent extends Animal {
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.LUNAR_BERRIES.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.ENT_FOOD);
     public Ent(EntityType<? extends Animal> type, Level level) {
         super(type, level);
     }

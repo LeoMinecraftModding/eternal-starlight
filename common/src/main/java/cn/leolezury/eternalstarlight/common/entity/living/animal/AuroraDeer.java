@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.ChargeAttackGoal;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +33,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class AuroraDeer extends Animal implements Charger {
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.LUNAR_BERRIES.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.AURORA_DEER_FOOD);
     protected static final EntityDataAccessor<Boolean> LEFT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
     public boolean hasLeftHorn() {
         return entityData.get(LEFT_HORN);

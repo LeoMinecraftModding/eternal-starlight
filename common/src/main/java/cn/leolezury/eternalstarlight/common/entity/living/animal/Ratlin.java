@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -19,8 +19,7 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ratlin extends Animal {
-    // todo: ALL foods should be tags
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESItems.CAVE_MOSS.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.RATLIN_FOOD);
 
     public Ratlin(EntityType<? extends Animal> type, Level level) {
         super(type, level);

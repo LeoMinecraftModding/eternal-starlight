@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -24,7 +24,7 @@ import net.neoforged.neoforge.event.level.LevelEvent;
 
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = EternalStarlight.MOD_ID)
+@EventBusSubscriber(modid = EternalStarlight.MOD_ID)
 public class CommonEvents {
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {

@@ -25,6 +25,7 @@ import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resources.model.BakedModel;
@@ -155,6 +156,16 @@ public class FabricPlatform implements ESPlatform {
         if (info != null) {
             FabricDimensions.teleport(entity, dest, info);
         }
+    }
+
+    @Override
+    public boolean isShears(ItemStack stack) {
+        return stack.is(ConventionalItemTags.SHEARS_TOOLS);
+    }
+
+    @Override
+    public boolean isShield(ItemStack stack) {
+        return stack.is(ConventionalItemTags.SHIELDS_TOOLS);
     }
 
     @Override

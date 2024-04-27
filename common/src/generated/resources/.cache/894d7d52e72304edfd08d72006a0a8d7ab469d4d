@@ -1,5 +1,6 @@
-// 1.20.5 Release Candidate 1	2024-04-20T19:53:43.6191392	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.20.5	2024-04-27T20:46:55.0349739	Tags for minecraft:entity_type mod id eternal_starlight
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_types/abyssal_fire_immune.json
 be4ff0376ac9ff8a51eab4ae581131fd7b545de1 data/eternal_starlight/tags/entity_types/robotic.json
+9e6dda6e4b5269d309c76848e7d43485124e11ee data/eternal_starlight/tags/entity_types/vulnerable_to_sonar_bomb.json
 5459e6dcff656af9ac3c0cbea22ffdabcbea8451 data/minecraft/tags/entity_types/fall_damage_immune.json
 f417c7429dc958b55fb2ac7c1ba6010f6b10c45d data/minecraft/tags/entity_types/skeletons.json

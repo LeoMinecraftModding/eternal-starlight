@@ -35,7 +35,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameRules;
@@ -84,7 +83,7 @@ public interface ESPlatform {
     <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec);
 
     // for initialization
-    // ---Items
+    // items
     default ScytheItem createScythe(Tier tier, Item.Properties properties) {
         return new CommonScytheItem(tier, properties);
     }
@@ -102,7 +101,7 @@ public interface ESPlatform {
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
     CreativeModeTab getESTab();
-    // ---Blocks
+    // blocks
     default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
         return new FlowerPotBlock(flower.get(), properties);
     }
@@ -115,7 +114,7 @@ public interface ESPlatform {
     default EtherFluid.Flowing createFlowingEtherFluid() {
         return new EtherFluid.Flowing();
     }
-    // ---Reload listeners
+    // reload listeners
     default BookManager createBookManager() {
         return new BookManager();
     }
@@ -127,9 +126,6 @@ public interface ESPlatform {
     }
 
     // event-related
-    default int postArrowLooseEvent(ItemStack stack, Level level, Player player, int charge, boolean hasAmmo) {
-        return charge;
-    }
     default boolean postMobGriefingEvent(Level level, Entity entity) {
         return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
     }
@@ -141,12 +137,8 @@ public interface ESPlatform {
     void teleportEntity(ServerLevel dest, Entity entity);
 
     // item stuff
-    default boolean isShears(ItemStack stack) {
-        return stack.is(Items.SHEARS);
-    }
-    default boolean isShield(ItemStack stack) {
-        return stack.is(Items.SHIELD);
-    }
+    boolean isShears(ItemStack stack);
+    boolean isShield(ItemStack stack);
     default boolean canStrip(ItemStack stack) {
         return stack.getItem() instanceof AxeItem;
     }

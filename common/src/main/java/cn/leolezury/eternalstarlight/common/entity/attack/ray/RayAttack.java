@@ -202,12 +202,12 @@ public class RayAttack extends Entity {
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compoundTag) {
-        // no
+
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compoundTag) {
-        // no
+
     }
 
     private void update() {
