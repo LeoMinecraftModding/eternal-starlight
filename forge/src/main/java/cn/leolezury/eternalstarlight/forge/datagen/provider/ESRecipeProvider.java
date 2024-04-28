@@ -156,6 +156,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('G', ESItems.SHIVERING_GEL.get())
                 .unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
                 .save(recipeOutput);
+        addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
     }
 
     private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

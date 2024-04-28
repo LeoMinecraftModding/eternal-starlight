@@ -505,6 +505,9 @@
   "item.eternal_starlight.frozen_tube": "Frozen Tube",
   "item.eternal_starlight.shivering_gel": "Shivering Gel",
   "item.eternal_starlight.sonar_bomb": "Sonar Bomb",
+  "item.eternal_starlight.nightfall_spider_eye": "Nightfall Spider Eye",
+  "item.eternal_starlight.trapped_soul": "Trapped Soul",
+  "item.eternal_starlight.soulit_spectator": "Soulit Spectator",
   "item.eternal_starlight.orb_of_prophecy": "Orb of Prophecy",
   "item.eternal_starlight.mana_crystal": "Mana Crystal",
   "item.eternal_starlight.terra_crystal": "Terra Crystal",
@@ -568,6 +571,7 @@
   "entity.eternal_starlight.shattered_sword_blade": "Shattered Sword Blade",
   "entity.eternal_starlight.amaramber_arrow": "Amaramber Arrow",
   "entity.eternal_starlight.sonar_bomb": "Sonar Bomb",
+  "entity.eternal_starlight.soulit_spectator": "Soulit Spectator",
 
   "subtitles.entity.seeking_eye.launch": "Seeking Eye launches",
   "subtitles.entity.seeking_eye.death": "Seeking Eye drops",

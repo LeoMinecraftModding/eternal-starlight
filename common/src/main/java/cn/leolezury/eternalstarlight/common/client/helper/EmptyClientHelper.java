@@ -1,9 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
-import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
-import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
-import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
-import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.*;
 
 public class EmptyClientHelper implements IClientHelper {
     @Override
@@ -23,6 +20,11 @@ public class EmptyClientHelper implements IClientHelper {
 
     @Override
     public void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket message) {
+
+    }
+
+    @Override
+    public void handleUpdateCamera(UpdateCameraPacket message) {
 
     }
 }

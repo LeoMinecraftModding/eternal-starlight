@@ -72,6 +72,7 @@ public class CommonSetupHandlers {
         strategy.register(ESPackets.UPDATE_CRESTS);
         strategy.register(ESPackets.OPEN_GATEKEEPER_GUI);
         strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
+        strategy.register(ESPackets.UPDATE_CAMERA);
     }
 
     public interface EntityAttributeRegisterStrategy {

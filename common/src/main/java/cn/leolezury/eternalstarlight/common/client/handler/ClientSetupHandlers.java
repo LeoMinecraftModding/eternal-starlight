@@ -481,6 +481,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
         strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
         strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
+        strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);

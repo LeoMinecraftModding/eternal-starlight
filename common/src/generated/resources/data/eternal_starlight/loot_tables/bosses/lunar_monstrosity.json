@@ -30,6 +30,20 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:trapped_soul"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:wand_of_teleportation"
         }
       ],

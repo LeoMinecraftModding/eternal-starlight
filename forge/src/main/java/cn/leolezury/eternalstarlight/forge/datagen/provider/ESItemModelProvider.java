@@ -520,6 +520,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.SHIVERING_GEL.get());
         basicItem(ESItems.SONAR_BOMB.get());
 
+        basicItem(ESItems.NIGHTFALL_SPIDER_EYE.get());
+        basicItem(ESItems.TRAPPED_SOUL.get());
+        basicItem(ESItems.SOULIT_SPECTATOR.get());
+
         basicBlockItem(ESItems.NIGHTFALL_FARMLAND.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());

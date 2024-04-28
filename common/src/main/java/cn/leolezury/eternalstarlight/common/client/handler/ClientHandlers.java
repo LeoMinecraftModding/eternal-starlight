@@ -30,6 +30,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
@@ -52,8 +53,21 @@ public class ClientHandlers {
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_background");
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_progress");
     private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
+    public static int resetCameraIn;
+    public static Entity oldCamera;
+    public static boolean oldHideGui;
 
     public static void onClientTick() {
+        if (oldCamera != null) {
+            resetCameraIn--;
+            Minecraft.getInstance().options.hideGui = true;
+            if (resetCameraIn <= 0) {
+                Minecraft.getInstance().setCameraEntity(oldCamera);
+                Minecraft.getInstance().options.hideGui = oldHideGui;
+                oldCamera = null;
+                resetCameraIn = 0;
+            }
+        }
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
             List<DreamCatcherText> toRemove = new ArrayList<>();

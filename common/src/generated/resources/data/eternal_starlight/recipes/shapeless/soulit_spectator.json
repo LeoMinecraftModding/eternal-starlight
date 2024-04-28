@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:trapped_soul"
+    },
+    {
+      "item": "eternal_starlight:nightfall_spider_eye"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:soulit_spectator"
+  }
+}

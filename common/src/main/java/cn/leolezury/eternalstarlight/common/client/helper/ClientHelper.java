@@ -4,11 +4,10 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.BookRenderData;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.ESBookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
-import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
-import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
-import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
-import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
+import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.resource.book.BookData;
 import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterData;
 import net.fabricmc.api.EnvType;
@@ -17,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +56,24 @@ public class ClientHelper implements IClientHelper {
         ClientLevel clientLevel = Minecraft.getInstance().level;
         if (clientLevel != null && clientLevel.getEntity(message.id()) instanceof TheGatekeeper gatekeeper) {
             Minecraft.getInstance().setScreen(new GatekeeperDialogueScreen(gatekeeper, message.killedDragon(), message.challenged()));
+        }
+    }
+
+    @Override
+    public void handleUpdateCamera(UpdateCameraPacket message) {
+        if (message.cameraId() == -1) {
+            ClientHandlers.resetCameraIn = 0;
+        } else {
+            if (Minecraft.getInstance().level != null && !(Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator)) {
+                Entity camera = Minecraft.getInstance().level.getEntity(message.cameraId());
+                if (camera != null) {
+                    ClientHandlers.resetCameraIn = 260;
+                    ClientHandlers.oldCamera = Minecraft.getInstance().getCameraEntity();
+                    ClientHandlers.oldHideGui = Minecraft.getInstance().options.hideGui;
+                    Minecraft.getInstance().options.hideGui = true;
+                    Minecraft.getInstance().setCameraEntity(camera);
+                }
+            }
         }
     }
 }

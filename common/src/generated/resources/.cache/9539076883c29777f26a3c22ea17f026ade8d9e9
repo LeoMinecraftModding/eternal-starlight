@@ -1,4 +1,4 @@
-// 1.20.5	2024-04-27T20:34:11.0620469	Item Models: eternal_starlight
+// 1.20.5	2024-04-28T21:08:42.2972443	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -277,6 +277,7 @@ db5fcb6054b439771f0cc8fd22354332bf3044b0 assets/eternal_starlight/models/item/ni
 96d5ad6e752927a275316e1bd83dd34dbf4290f6 assets/eternal_starlight/models/item/nightfall_mud_brick_slab.json
 5cc7c13debb4cf9cb6e7fef4fc271720a28605e8 assets/eternal_starlight/models/item/nightfall_mud_brick_stairs.json
 cc4904a3c3b0f4782e3b42b7353e0fd4faa80c27 assets/eternal_starlight/models/item/nightfall_mud_brick_wall.json
+40f6f7d869e6f1b5460da11210cd928df8741f5d assets/eternal_starlight/models/item/nightfall_spider_eye.json
 40fe3e732eb48e8777a0d28c720b63ded2193d91 assets/eternal_starlight/models/item/nightfan.json
 fd20c9a4bbc7d1506ec006f299dc54a28388512c assets/eternal_starlight/models/item/nightfan_bush.json
 b5483c58ca079369a3b25d692f697ae19601568b assets/eternal_starlight/models/item/night_sprouts.json
@@ -403,6 +404,7 @@ febd000c0fd0dde866191295087aefda71567ea7 assets/eternal_starlight/models/item/sh
 0bfe7742d78e84263e5e1b1e7af75ffdc387d554 assets/eternal_starlight/models/item/small_glowing_night_sprouts.json
 74925a0b3dc0cca5e9615db4199926f9b64f0a2d assets/eternal_starlight/models/item/small_night_sprouts.json
 3eb8de761a7fec0608d955e8b229fc078271c52c assets/eternal_starlight/models/item/sonar_bomb.json
+412c2a56108c618337bdceaf98c229558cfd818d assets/eternal_starlight/models/item/soulit_spectator.json
 9ccb4b7789a2e5fcfb1bb09bcf12d8f8570d9fb4 assets/eternal_starlight/models/item/springstone.json
 f2c417a8c31d84e9a1e6bb4a9c811aed24dd307a assets/eternal_starlight/models/item/starfall_longbow.json
 139e9d6d869e5a0e23710fc0c9d29f446ec61a46 assets/eternal_starlight/models/item/starfall_longbow_pulling_0.json
@@ -517,6 +519,7 @@ d580e7cf6d692d6428e732e7518c8c3f6e05ec17 assets/eternal_starlight/models/item/to
 82e9c13ce53c7c6b608a8d4433eb8912250f1bde assets/eternal_starlight/models/item/torreya_trapdoor.json
 02c19cd59ece87d5642498eb7ed7f1a79be8cb48 assets/eternal_starlight/models/item/torreya_vines.json
 9c8cfc29e76e353c1867a0a6c1d563fcc3cf8bf9 assets/eternal_starlight/models/item/torreya_wood.json
+e9f205cdaa9655f4374e7c5323ff9068a1ea4c42 assets/eternal_starlight/models/item/trapped_soul.json
 b48dcc603b063f4b6343c2c6c19f30d508a87635 assets/eternal_starlight/models/item/twilight_sand.json
 de5831c0b61c4533ea8737a79bab4d8ed378315b assets/eternal_starlight/models/item/twilight_sandstone.json
 fdb7af22bc42153ce2bfedfb530c0e10d0df5c0f assets/eternal_starlight/models/item/twilight_sandstone_slab.json

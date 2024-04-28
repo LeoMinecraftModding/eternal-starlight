@@ -45,7 +45,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
     }
 
     public ItemStack getItem() {
-        return (ItemStack)this.getEntityData().get(DATA_ITEM_STACK);
+        return this.getEntityData().get(DATA_ITEM_STACK);
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -63,9 +63,9 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
     }
 
     public void signalTo(BlockPos blockPos) {
-        double d = (double)blockPos.getX();
+        double d = blockPos.getX();
         int i = blockPos.getY();
-        double e = (double)blockPos.getZ();
+        double e = blockPos.getZ();
         double f = d - this.getX();
         double g = e - this.getZ();
         double h = Math.sqrt(f * f + g * g);
@@ -75,7 +75,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
             this.ty = this.getY() + 8.0;
         } else {
             this.tx = d;
-            this.ty = (double)i;
+            this.ty = i;
             this.tz = e;
         }
 
@@ -121,7 +121,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
             double i = this.tz - f;
             float j = (float)Math.sqrt(h * h + i * i);
             float k = (float)Mth.atan2(i, h);
-            double l = Mth.lerp(0.0025, g, (double)j);
+            double l = Mth.lerp(0.0025, g, j);
             double m = vec3.y;
             if (j < 1.0F) {
                 l *= 0.8;
@@ -129,11 +129,10 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
             }
 
             int n = this.getY() < this.ty ? 1 : -1;
-            vec3 = new Vec3(Math.cos((double)k) * l, m + ((double)n - m) * 0.014999999664723873, Math.sin((double)k) * l);
+            vec3 = new Vec3(Math.cos(k) * l, m + ((double)n - m) * 0.014999999664723873, Math.sin(k) * l);
             this.setDeltaMovement(vec3);
         }
 
-        float o = 0.25F;
         if (this.isInWater()) {
             for(int p = 0; p < 4; ++p) {
                 this.level().addParticle(ParticleTypes.BUBBLE, d - vec3.x * 0.25, e - vec3.y * 0.25, f - vec3.z * 0.25, vec3.x, vec3.y, vec3.z);
@@ -166,7 +165,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         if (compoundTag.contains("Item", 10)) {
-            this.setItem((ItemStack)ItemStack.parse(this.registryAccess(), compoundTag.getCompound("Item")).orElse(this.getDefaultItem()));
+            this.setItem(ItemStack.parse(this.registryAccess(), compoundTag.getCompound("Item")).orElse(this.getDefaultItem()));
         } else {
             this.setItem(this.getDefaultItem());
         }

@@ -59,7 +59,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:spider_eye"
+          "name": "eternal_starlight:nightfall_spider_eye"
         }
       ],
       "rolls": 1.0
