@@ -56,8 +56,8 @@ public class Freeze extends Monster implements RangedAttackMob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(ATTACKING, false);
-        builder.define(ATTACK_TICKS, 0);
+        builder.define(ATTACKING, false)
+                .define(ATTACK_TICKS, 0);
     }
 
     @Override

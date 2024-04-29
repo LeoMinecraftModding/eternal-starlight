@@ -117,9 +117,9 @@ public class LunarMonstrosity extends ESBoss {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(PARTICLE_ANGLE_X, (float) 0);
-        builder.define(PARTICLE_ANGLE_Y, (float) 0);
-        builder.define(PARTICLE_ANGLE_Z, (float) 0);
+        builder.define(PARTICLE_ANGLE_X, (float) 0)
+                .define(PARTICLE_ANGLE_Y, (float) 0)
+                .define(PARTICLE_ANGLE_Z, (float) 0);
     }
 
     protected void registerGoals() {

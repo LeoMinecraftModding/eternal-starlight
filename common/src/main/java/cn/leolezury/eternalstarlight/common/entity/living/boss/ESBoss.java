@@ -80,10 +80,10 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(ATTACK_STATE, 0);
-        builder.define(ATTACK_TICKS, 0);
-        builder.define(PHASE, 0);
-        builder.define(ACTIVATED, true);
+        builder.define(ATTACK_STATE, 0)
+                .define(ATTACK_TICKS, 0)
+                .define(PHASE, 0)
+                .define(ACTIVATED, true);
     }
 
     @Override

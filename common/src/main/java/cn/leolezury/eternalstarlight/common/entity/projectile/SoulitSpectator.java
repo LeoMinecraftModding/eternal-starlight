@@ -48,6 +48,7 @@ public class SoulitSpectator extends ThrowableItemProjectile {
         super.tick();
         if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
             if (!loadedChunks.contains(chunkPosition())) {
+                // don't know if it really works
                 serverLevel.getChunkSource().addRegionTicket(CHUNK_LOADING_TICKET_TYPE, chunkPosition(), 3, chunkPosition());
                 loadedChunks.add(chunkPosition());
             }
@@ -72,17 +73,19 @@ public class SoulitSpectator extends ThrowableItemProjectile {
     }
 
     @Override
-    public void setXRot(float f) {
+    public float getViewXRot(float partialTicks) {
         if (getOwner() instanceof LivingEntity livingEntity) {
-            super.setXRot(livingEntity.getXRot());
+            return livingEntity.getViewXRot(partialTicks);
         }
+        return super.getViewXRot(partialTicks);
     }
 
     @Override
-    public void setYRot(float f) {
+    public float getViewYRot(float partialTicks) {
         if (getOwner() instanceof LivingEntity livingEntity) {
-            super.setYRot(livingEntity.getYHeadRot());
+            return livingEntity.getViewYRot(partialTicks);
         }
+        return super.getViewYRot(partialTicks);
     }
 
     @Override

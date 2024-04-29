@@ -82,8 +82,8 @@ public class AttackEffect extends Entity {
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(SPAWNED_TICKS, 0);
-        builder.define(ATTACK_MODE, 0);
+        builder.define(SPAWNED_TICKS, 0)
+                .define(ATTACK_MODE, 0);
     }
 
     public boolean shouldContinueToTick() {

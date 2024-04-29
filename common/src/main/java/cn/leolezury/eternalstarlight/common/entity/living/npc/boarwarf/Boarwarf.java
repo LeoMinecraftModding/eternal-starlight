@@ -95,8 +95,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(TYPE, "null");
-        builder.define(PROFESSION, "null");
+        builder.define(TYPE, "null")
+                .define(PROFESSION, "null");
     }
 
     @Override

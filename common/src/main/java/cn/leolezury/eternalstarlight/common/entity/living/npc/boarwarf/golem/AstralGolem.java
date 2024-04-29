@@ -80,8 +80,8 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(MATERIAL, "null");
-        builder.define(BLOCKING, false);
+        builder.define(MATERIAL, "null")
+                .define(BLOCKING, false);
     }
 
     @Override

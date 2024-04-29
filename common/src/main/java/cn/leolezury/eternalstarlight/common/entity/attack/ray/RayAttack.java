@@ -77,10 +77,10 @@ public class RayAttack extends Entity {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(CASTER, -1);
-        builder.define(PITCH, 0f);
-        builder.define(YAW, 0f);
-        builder.define(LENGTH, 0f);
+        builder.define(CASTER, -1)
+                .define(PITCH, 0f)
+                .define(YAW, 0f)
+                .define(LENGTH, 0f);
     }
 
     @Override

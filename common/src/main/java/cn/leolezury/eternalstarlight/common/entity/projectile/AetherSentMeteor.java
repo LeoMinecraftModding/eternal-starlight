@@ -115,8 +115,8 @@ public class AetherSentMeteor extends AbstractHurtingProjectile {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(SIZE, 0);
-        builder.define(TICKS_SINCE_LANDED, 0);
+        builder.define(SIZE, 0)
+                .define(TICKS_SINCE_LANDED, 0);
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {

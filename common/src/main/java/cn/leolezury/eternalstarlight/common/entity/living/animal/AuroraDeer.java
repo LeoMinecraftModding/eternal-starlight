@@ -59,8 +59,8 @@ public class AuroraDeer extends Animal implements Charger {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(LEFT_HORN, true);
-        builder.define(RIGHT_HORN, true);
+        builder.define(LEFT_HORN, true)
+                .define(RIGHT_HORN, true);
     }
 
     @Override
