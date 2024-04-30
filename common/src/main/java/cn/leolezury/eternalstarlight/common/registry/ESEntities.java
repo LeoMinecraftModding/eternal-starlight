@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Gleech;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.NightfallSpider;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
@@ -33,6 +34,7 @@ public class ESEntities {
     public static final RegistryObject<EntityType<?>, EntityType<CameraShake>> CAMERA_SHAKE = ENTITIES.register("camera_shake", () -> EntityType.Builder.<CameraShake>of(CameraShake::new, MobCategory.MISC).sized(0f, 0f).build(new ResourceLocation(EternalStarlight.MOD_ID, "camera_shake").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<Boarwarf>> BOARWARF = ENTITIES.register("boarwarf", () -> EntityType.Builder.of(Boarwarf::new, MobCategory.CREATURE).sized(0.6F, 1.7F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "boarwarf").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<AstralGolem>> ASTRAL_GOLEM = ENTITIES.register("astral_golem", () -> EntityType.Builder.of(AstralGolem::new, MobCategory.CREATURE).sized(0.5F, 1.25F).build(new ResourceLocation(EternalStarlight.MOD_ID, "astral_golem").toString()));
+    public static final RegistryObject<EntityType<?>, EntityType<Gleech>> GLEECH = ENTITIES.register("gleech", () -> EntityType.Builder.of(Gleech::new, MobCategory.MONSTER).sized(0.4F, 0.3F).eyeHeight(0.13F).passengerAttachments(0.2375F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "gleech").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<LonestarSkeleton>> LONESTAR_SKELETON = ENTITIES.register("lonestar_skeleton", () -> EntityType.Builder.of(LonestarSkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.99F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<NightfallSpider>> NIGHTFALL_SPIDER = ENTITIES.register("nightfall_spider", () -> EntityType.Builder.of(NightfallSpider::new, MobCategory.MONSTER).sized(0.75F, 0.75F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "nightfall_spider").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<Ent>> ENT = ENTITIES.register("ent", () -> EntityType.Builder.of(Ent::new, MobCategory.CREATURE).sized(0.7F, 0.3F).clientTrackingRange(8).build(new ResourceLocation(EternalStarlight.MOD_ID, "ent").toString()));

@@ -76,4 +76,15 @@ public class ClientHelper implements IClientHelper {
             }
         }
     }
+
+    @Override
+    public void handleClientMount(ClientMountPacket message) {
+        if (Minecraft.getInstance().level != null) {
+            Entity rider = Minecraft.getInstance().level.getEntity(message.riderId());
+            Entity vehicle = Minecraft.getInstance().level.getEntity(message.vehicleId());
+            if (rider != null && vehicle != null) {
+                rider.startRiding(vehicle, true);
+            }
+        }
+    }
 }

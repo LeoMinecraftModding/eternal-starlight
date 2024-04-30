@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Gleech;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.NightfallSpider;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
@@ -73,6 +74,7 @@ public class CommonSetupHandlers {
         strategy.register(ESPackets.OPEN_GATEKEEPER_GUI);
         strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
         strategy.register(ESPackets.UPDATE_CAMERA);
+        strategy.register(ESPackets.CLIENT_MOUNT);
     }
 
     public interface EntityAttributeRegisterStrategy {
@@ -82,6 +84,7 @@ public class CommonSetupHandlers {
     public static void createAttributes(EntityAttributeRegisterStrategy strategy) {
         strategy.register(ESEntities.BOARWARF.get(), Boarwarf.createAttributes().build());
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolem.createAttributes().build());
+        strategy.register(ESEntities.GLEECH.get(), Gleech.createAttributes().build());
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpider.createNightfallSpider().build());
         strategy.register(ESEntities.ENT.get(), Ent.createAttributes().build());
@@ -106,6 +109,7 @@ public class CommonSetupHandlers {
 
     public static void registerSpawnPlacements(SpawnPlacementRegisterStrategy strategy) {
         strategy.register(ESEntities.BOARWARF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
+        strategy.register(ESEntities.GLEECH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Gleech::checkGleechSpawnRules);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         strategy.register(ESEntities.ENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);

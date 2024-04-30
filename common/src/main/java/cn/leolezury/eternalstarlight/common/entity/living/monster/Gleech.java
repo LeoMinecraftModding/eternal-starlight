@@ -1,14 +1,20 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.network.ClientMountPacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal;
@@ -19,30 +25,30 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
-
-// todo finish wip mob (size, growth)
 public class Gleech extends Monster {
-    @Nullable
-    private LivingEntity attachedTo;
-
-    @Nullable
-    private UUID attachedToId;
-
-    public LivingEntity getAttachedToTarget() {
-        return attachedTo;
+    protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
+    public boolean isLarval() {
+        return entityData.get(LARVAL);
+    }
+    public void setLarval(boolean larval) {
+        entityData.set(LARVAL, larval);
     }
 
-    public void setAttachedTo(LivingEntity target) {
-        this.attachedToId = target.getUUID();
-        this.attachedTo = target;
-    }
+    private int growthTicks;
+
+    public AnimationState idleAnimationState = new AnimationState();
 
     public Gleech(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LARVAL, false);
     }
 
     protected void registerGoals() {
@@ -84,36 +90,67 @@ public class Gleech extends Monster {
         this.yBodyRot = this.getYRot();
         super.tick();
         if (!level().isClientSide) {
-            if (attachedTo == null && attachedToId != null) {
-                if (((ServerLevel)this.level()).getEntity(attachedToId) instanceof LivingEntity livingEntity) {
-                    attachedTo = livingEntity;
-                }
-                if (attachedTo == null) {
-                    attachedToId = null;
+            setNoGravity(getVehicle() != null);
+            // todo stop riding after some time we cannot attack our vehicle
+            if (getTarget() != null && isLarval()) {
+                startRiding(getTarget(), true);
+                ESPlatform.INSTANCE.sendToAllClients((ServerLevel) level(), new ClientMountPacket(getId(), getTarget().getId()));
+            }
+            if (isLarval()) {
+                growthTicks++;
+                if (growthTicks > 12000) {
+                    growthTicks = 0;
+                    setLarval(false);
                 }
             }
+        } else {
+            idleAnimationState.startIfStopped(tickCount);
+        }
+    }
+
+    @Override
+    public void rideTick() {
+        super.rideTick();
+        if (getVehicle() instanceof LivingEntity livingEntity) {
+            setYRot(livingEntity.getYRot());
+            setPos(ESMathUtil.rotationToPosition(getVehicle().position().add(0, getVehicle().getBbHeight() / 2, 0), (getVehicle().getBbWidth() / 2) * 0.75f, 0, getVehicle().getYRot() + 90));
         }
     }
 
     public void setYBodyRot(float f) {
-        this.setYRot(f);
-        super.setYBodyRot(f);
+        float rotation = f;
+        if (getVehicle() instanceof LivingEntity livingEntity) {
+            rotation = livingEntity.getYRot();
+        }
+        this.setYRot(rotation);
+        super.setYBodyRot(rotation);
+    }
+
+    @Override
+    public void setYRot(float f) {
+        float rotation = f;
+        if (getVehicle() instanceof LivingEntity livingEntity) {
+            rotation = livingEntity.getYRot();
+        }
+        super.setYRot(rotation);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        if (compoundTag.hasUUID("AttachedTo")) {
-            attachedToId = compoundTag.getUUID("AttachedTo");
-        }
+        setLarval(compoundTag.getBoolean("Larval"));
+        growthTicks = compoundTag.getInt("GrowthTicks");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        if (attachedTo != null) {
-            compoundTag.putUUID("AttachedTo", attachedTo.getUUID());
-        }
+        compoundTag.putBoolean("Larval", isLarval());
+        compoundTag.putInt("GrowthTicks", growthTicks);
+    }
+
+    public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        return level.getBlockState(pos.below()).is(BlockTags.SAND);
     }
 }
 

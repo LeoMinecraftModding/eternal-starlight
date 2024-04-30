@@ -8,4 +8,5 @@ public interface IClientHelper {
     void handleOpenCrestGui(OpenCrestGuiPacket message);
     void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket message);
     void handleUpdateCamera(UpdateCameraPacket message);
+    void handleClientMount(ClientMountPacket message);
 }

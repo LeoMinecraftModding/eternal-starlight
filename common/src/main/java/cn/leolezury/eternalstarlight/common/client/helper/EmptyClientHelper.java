@@ -27,4 +27,9 @@ public class EmptyClientHelper implements IClientHelper {
     public void handleUpdateCamera(UpdateCameraPacket message) {
 
     }
+
+    @Override
+    public void handleClientMount(ClientMountPacket message) {
+
+    }
 }

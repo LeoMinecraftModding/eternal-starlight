@@ -455,6 +455,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
+        strategy.register(ESEntities.GLEECH.get(), GleechRenderer::new);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpiderRenderer::new);
         strategy.register(ESEntities.ENT.get(), EntRenderer::new);
@@ -509,6 +510,7 @@ public class ClientSetupHandlers {
         strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
         strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(AstralGolemModel.OUTER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+        strategy.register(GleechModel.LAYER_LOCATION, GleechModel::createBodyLayer);
         strategy.register(LonestarSkeletonRenderer.LONESTAR, SkeletonModel::createBodyLayer);
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
