@@ -32,7 +32,7 @@ public class AddTransitionBiomesTransformer extends NeighborsRelatedTransformer 
     public int transform(WorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
         if (idMap.isEmpty()) {
             for (BiomeWithTransition transition : transitions) {
-                idMap.put(provider.biomeDataRegistry.getId(transition.biome().value()), provider.biomeDataRegistry.getId(transition.transitionBiome().value()));
+                idMap.put(provider.getBiomeDataId(transition.biome().value()), provider.getBiomeDataId(transition.transitionBiome().value()));
             }
         }
         for (int id : idMap.keySet()) {

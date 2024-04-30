@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.system.area;
 
 import cn.leolezury.eternalstarlight.common.data.ESBiomeData;
 import cn.leolezury.eternalstarlight.common.data.ESDataTransformers;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
@@ -31,7 +30,7 @@ public class WorldArea {
         this.biomes = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.biomes[x][z] = provider.biomeDataRegistry.getId(provider.biomeDataRegistry.get(ESBiomeData.SCARLET_FOREST));
+                this.biomes[x][z] = provider.getBiomeDataId(provider.biomeDataRegistry.get(ESBiomeData.STARLIGHT_FOREST));
             }
         }
     }
@@ -45,7 +44,7 @@ public class WorldArea {
         this.heights = new int[this.size][this.size];
         for (int x = 0; x < this.size; x++) {
             for (int z = 0; z < this.size; z++) {
-                this.heights[x][z] = provider.biomeDataRegistry.byId(biomes[x][z]).height();
+                this.heights[x][z] = provider.getBiomeDataById(biomes[x][z]).height();
             }
         }
     }
@@ -72,7 +71,7 @@ public class WorldArea {
     }
 
     public BiomeData getBiomeData(int x, int z) {
-        return provider.registryAccess.registryOrThrow(ESRegistries.BIOME_DATA).byId(getBiome(x, z));
+        return provider.getBiomeDataById(getBiome(x, z));
     }
 
     public int getBiome(int x, int z) {

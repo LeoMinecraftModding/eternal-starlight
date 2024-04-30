@@ -25,13 +25,13 @@ public class AddBeachesTransformer extends NeighborsRelatedTransformer {
     @Override
     public int transform(WorldGenProvider provider, Random random, int original, int up, int down, int left, int right) {
         if (id == null) {
-            id = provider.biomeDataRegistry.getId(beach.value());
+            id = provider.getBiomeDataId(beach.value());
         }
-        if (provider.biomeDataRegistry.byId(original).isOcean()
-                && (provider.biomeDataRegistry.byId(up).canHaveBeaches()
-                || provider.biomeDataRegistry.byId(down).canHaveBeaches()
-                || provider.biomeDataRegistry.byId(left).canHaveBeaches()
-                || provider.biomeDataRegistry.byId(right).canHaveBeaches())
+        if (provider.getBiomeDataById(original).isOcean()
+                && (provider.getBiomeDataById(up).canHaveBeaches()
+                || provider.getBiomeDataById(down).canHaveBeaches()
+                || provider.getBiomeDataById(left).canHaveBeaches()
+                || provider.getBiomeDataById(right).canHaveBeaches())
         ) {
             return id;
         }

@@ -14,7 +14,7 @@ public class NoiseHeightTransformer extends IterationWithCullTransformer {
 
     @Override
     public int transform(int[][] original, int[][] related, WorldGenProvider provider, Random random, int x, int z, int areaX, int areaZ, int size) {
-        BiomeData data = provider.biomeDataRegistry.byId(related[x][z]);
+        BiomeData data = provider.getBiomeDataById(related[x][z]);
         int variance = data.variance();
         int height = original[x][z];
         int worldX = getWorldCoord(x, areaX, size);

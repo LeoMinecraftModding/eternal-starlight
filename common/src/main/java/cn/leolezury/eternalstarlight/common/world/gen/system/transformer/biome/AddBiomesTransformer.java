@@ -10,7 +10,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 
 public class AddBiomesTransformer extends NoiseDataTransformer {
     public static final MapCodec<AddBiomesTransformer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -39,18 +39,18 @@ public class AddBiomesTransformer extends NoiseDataTransformer {
         this.oceanBiomes = oceanBiomes;
     }
 
-    private void initBiomes(Registry<BiomeData> registry, EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, List<Holder<BiomeData>> biomes) {
+    private void initBiomes(Function<BiomeData, Integer> toId, EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, List<Holder<BiomeData>> biomes) {
         for (BiomeData.Temperature temperature : BiomeData.Temperature.values()) {
             map.put(temperature, new ArrayList<>());
         }
         for (Holder<BiomeData> biome : biomes) {
             for (BiomeData.Temperature temperature : biome.value().temperatures()) {
-                map.get(temperature).add(registry.getId(biome.value()));
+                map.get(temperature).add(toId.apply(biome.value()));
             }
         }
     }
 
-    private int getRandomBiome(Registry<BiomeData> registry, BiomeData.Temperature temperature, boolean isOcean, Random random) {
+    private int getRandomBiome(BiomeData.Temperature temperature, boolean isOcean, Random random) {
         ArrayList<Integer> biomeList = (isOcean ? TEMPERATURE_TO_OCEAN_BIOME : TEMPERATURE_TO_LAND_BIOME).get(temperature);
         return biomeList.get(random.nextInt(biomeList.size()));
     }
@@ -58,8 +58,8 @@ public class AddBiomesTransformer extends NoiseDataTransformer {
     @Override
     public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
         if (!init) {
-            initBiomes(provider.biomeDataRegistry, TEMPERATURE_TO_LAND_BIOME, landBiomes);
-            initBiomes(provider.biomeDataRegistry, TEMPERATURE_TO_OCEAN_BIOME, oceanBiomes);
+            initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_LAND_BIOME, landBiomes);
+            initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_OCEAN_BIOME, oceanBiomes);
             init = true;
         }
         BiomeData.Temperature temperature;
@@ -75,7 +75,7 @@ public class AddBiomesTransformer extends NoiseDataTransformer {
         } else {
             temperature = BiomeData.Temperature.COLD_EXTREME;
         }
-        return getRandomBiome(provider.biomeDataRegistry, temperature, provider.biomeDataRegistry.byId(original).isOcean(), random);
+        return getRandomBiome(temperature, provider.getBiomeDataById(original).isOcean(), random);
     }
 
     @Override

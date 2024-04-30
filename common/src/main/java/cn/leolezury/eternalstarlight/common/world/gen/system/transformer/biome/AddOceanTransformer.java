@@ -26,7 +26,7 @@ public class AddOceanTransformer extends NoiseDataTransformer {
     @Override
     public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
         if (id == null) {
-            id = provider.biomeDataRegistry.getId(ocean.value());
+            id = provider.getBiomeDataId(ocean.value());
         }
         return noise.getValue(worldX * 0.15, worldZ * 0.15, true) > 0.3 ? id : original;
     }

@@ -26,9 +26,9 @@ public class AddTheAbyssTransformer extends NoiseDataTransformer {
     @Override
     public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
         if (id == null) {
-            id = provider.biomeDataRegistry.getId(abyss.value());
+            id = provider.getBiomeDataId(abyss.value());
         }
-        if (provider.biomeDataRegistry.byId(original).isOcean()) {
+        if (provider.getBiomeDataById(original).isOcean()) {
             double noiseVal =
                     noise.getValue(worldX * 0.0025, worldZ * 0.0025, false) * 0.50d
                     + noise.getValue(worldX * 0.0075, worldZ * 0.0075, true) * 0.25d

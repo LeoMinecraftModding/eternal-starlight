@@ -65,6 +65,6 @@ public class ESBiomeSource extends BiomeSource {
 
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
-        return provider.biomeDataRegistry.byId(getBiome(x * 4, z * 4)).biome();
+        return provider.getBiomeDataById(getBiome(x * 4, z * 4)).biome();
     }
 }

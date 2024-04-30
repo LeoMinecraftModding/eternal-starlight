@@ -31,10 +31,10 @@ public class AddRiversTransformer extends NoiseDataTransformer {
     public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
         if (idList.isEmpty()) {
             for (RiverWithOffset river : rivers) {
-                idList.add(provider.biomeDataRegistry.getId(river.river().value()));
+                idList.add(provider.getBiomeDataId(river.river().value()));
             }
         }
-        if (provider.biomeDataRegistry.byId(original).canHaveRivers()) {
+        if (provider.getBiomeDataById(original).canHaveRivers()) {
             for (int i = 0; i < rivers.size(); i++) {
                 RiverWithOffset river = rivers.get(i);
                 double noiseVal =

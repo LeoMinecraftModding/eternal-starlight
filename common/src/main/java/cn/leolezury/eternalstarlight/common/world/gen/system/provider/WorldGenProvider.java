@@ -6,11 +6,14 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.RegistryFileCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 
@@ -35,6 +38,8 @@ public class WorldGenProvider {
     public RegistryAccess registryAccess;
     public Registry<BiomeData> biomeDataRegistry;
     public Registry<DataTransformer> dataTransformerRegistry;
+    private final Object2IntLinkedOpenHashMap<ResourceLocation> biomeDataIds = new Object2IntLinkedOpenHashMap<>();
+    private final Int2ObjectLinkedOpenHashMap<ResourceLocation> biomeDataLocations = new Int2ObjectLinkedOpenHashMap<>();
     private final Long2ObjectLinkedOpenHashMap<WorldArea> generatedAreas = new Long2ObjectLinkedOpenHashMap<>();
 
     public WorldGenProvider(List<TransformerWithSeed> biomeTransformers, List<TransformerWithSeed> heightTransformers, int maxHeight, int minHeight) {
@@ -57,6 +62,24 @@ public class WorldGenProvider {
             this.biomeDataRegistry = registryAccess.registryOrThrow(ESRegistries.BIOME_DATA);
             this.dataTransformerRegistry = registryAccess.registryOrThrow(ESRegistries.DATA_TRANSFORMER);
         }
+    }
+
+    // used to prevent id changing caused by datapack reloading
+    public int getBiomeDataId(BiomeData data) {
+        ResourceLocation location = biomeDataRegistry.getKey(data);
+        if (biomeDataIds.containsKey(location)) {
+            return biomeDataIds.getInt(location);
+        } else {
+            int id = biomeDataIds.size();
+            biomeDataIds.put(location, id);
+            biomeDataLocations.put(id, location);
+            return id;
+        }
+    }
+
+    // used to prevent id changing caused by datapack reloading
+    public BiomeData getBiomeDataById(int id) {
+        return biomeDataRegistry.get(biomeDataLocations.get(id));
     }
 
     public WorldArea getWorldArea(int x, int z) {
