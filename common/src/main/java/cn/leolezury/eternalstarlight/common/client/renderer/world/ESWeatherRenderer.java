@@ -50,7 +50,7 @@ public class ESWeatherRenderer {
         return ClientWeatherInfo.WEATHER != null && ClientWeatherInfo.WEATHER.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
     }
 
-    public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ, double offsetX, double offsetY, double offsetZ) {
+    public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ) {
         initialize();
         Minecraft minecraft = Minecraft.getInstance();
         if (!(rainLevel <= 0.0F)) {
@@ -132,9 +132,9 @@ public class ESWeatherRenderer {
                                 float af = ((1.0F - ae * ae) * 0.5F + 0.5F) * rainLevel;
                                 mutableBlockPos.set(p, w, o);
                                 ag = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
-                                bufferBuilder.vertex((double)p - camX - r + 0.5 + offsetX, (double)v - camY + offsetY, (double)o - camZ - s + 0.5 + offsetZ).uv(0.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
+                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)v - camY, (double)o - camZ - s + 0.5).uv(0.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
                                 bufferBuilder.vertex((double)p - camX + r + 0.5, (double)v - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5 + offsetX, (double)u - camY + offsetY, (double)o - camZ + s + 0.5 + offsetZ).uv(1.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
+                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)u - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
                                 bufferBuilder.vertex((double)p - camX - r + 0.5, (double)u - camY, (double)o - camZ - s + 0.5).uv(0.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
                             } else if (precipitation == Biome.Precipitation.SNOW) {
                                 if (m != 1) {
@@ -161,9 +161,9 @@ public class ESWeatherRenderer {
                                 int ao = (an * 3 + 240) / 4;
                                 int ap = (ag * 3 + 240) / 4;
                                 bufferBuilder.vertex((double)p - camX - r + 0.5, (double)v - camY, (double)o - camZ - s + 0.5).uv(0.0F + ai, (float)u * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5 + offsetX, (double)v - camY + offsetY, (double)o - camZ + s + 0.5 + offsetZ).uv(1.0F + ai, (float)u * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
+                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)v - camY, (double)o - camZ + s + 0.5).uv(1.0F + ai, (float)u * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
                                 bufferBuilder.vertex((double)p - camX + r + 0.5, (double)u - camY, (double)o - camZ + s + 0.5).uv(1.0F + ai, (float)v * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
-                                bufferBuilder.vertex((double)p - camX - r + 0.5 + offsetX, (double)u - camY + offsetY, (double)o - camZ - s + 0.5 + offsetZ).uv(0.0F + ai, (float)v * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
+                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)u - camY, (double)o - camZ - s + 0.5).uv(0.0F + ai, (float)v * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
                             }
                         }
                     }

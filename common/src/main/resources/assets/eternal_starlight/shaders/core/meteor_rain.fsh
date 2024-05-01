@@ -16,7 +16,7 @@ in vec4 vertexColor;
 out vec4 fragColor;
 
 void main() {
-    float mod = 5.4 + abs(sin(GameTime * 6000));
-    vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator * mod / 2;
+    float mod = 0.3 + (abs(sin(GameTime * 6.28)));
+    vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator * mod / abs(0.25 + sin(GameTime*3.14) / 2);
     fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
 }
