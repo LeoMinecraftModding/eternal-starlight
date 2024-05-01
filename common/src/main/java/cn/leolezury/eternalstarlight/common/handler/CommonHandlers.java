@@ -15,8 +15,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEnchantments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
-import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
-import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
@@ -53,17 +51,9 @@ import java.util.UUID;
 
 public class CommonHandlers {
     private static TheGatekeeperNameManager gatekeeperNameManager;
-    private static BookManager bookManager;
-    private static ChapterManager chapterManager;
 
     public static String getGatekeeperName() {
         return gatekeeperNameManager.getTheGatekeeperName();
-    }
-    public static BookManager getBookManager() {
-        return bookManager;
-    }
-    public static ChapterManager getChapterManager() {
-        return chapterManager;
     }
 
     private static int ticksSinceLastUpdate = 0;
@@ -261,11 +251,7 @@ public class CommonHandlers {
     }
 
     public static void addReloadListeners(AddReloadListenerStrategy strategy) {
-        bookManager = ESPlatform.INSTANCE.createBookManager();
-        chapterManager = ESPlatform.INSTANCE.createChapterManager();
         gatekeeperNameManager = ESPlatform.INSTANCE.createGatekeeperNameManager();
-        strategy.add(bookManager);
-        strategy.add(chapterManager);
         strategy.add(gatekeeperNameManager);
     }
 }

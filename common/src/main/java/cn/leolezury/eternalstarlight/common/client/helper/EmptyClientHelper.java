@@ -4,11 +4,6 @@ import cn.leolezury.eternalstarlight.common.network.*;
 
 public class EmptyClientHelper implements IClientHelper {
     @Override
-    public void handleOpenBook(OpenBookPacket message) {
-
-    }
-
-    @Override
     public void handleParticlePacket(ParticlePacket message) {
 
     }

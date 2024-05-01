@@ -21,7 +21,7 @@ public class ESBookItem extends Item {
         var logger = LogUtils.getLogger();
         if (level.isClientSide) {
             logger.info("Sending a test packet to the server...");
-            ESPlatform.INSTANCE.sendToServer(new TestPacket(player.getName().getString()));
+            // ESPlatform.INSTANCE.sendToServer(new TestPacket(player.getName().getString()));
         } else {
             logger.info("Sending a test packet to the client...");
             ESPlatform.INSTANCE.sendToClient((ServerPlayer) player, new TestPacket(player.getName().getString()));

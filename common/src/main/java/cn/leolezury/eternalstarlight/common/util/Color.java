@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import java.util.Objects;
 
+// Copyright 2017-2023 Aidan C. Brady
 public class Color {
 
     public static final Color WHITE = rgbad(1F, 1F, 1F, 1F);

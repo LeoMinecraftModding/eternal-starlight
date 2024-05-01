@@ -9,8 +9,6 @@ import cn.leolezury.eternalstarlight.common.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
-import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
@@ -115,12 +113,6 @@ public interface ESPlatform {
         return new EtherFluid.Flowing();
     }
     // reload listeners
-    default BookManager createBookManager() {
-        return new BookManager();
-    }
-    default ChapterManager createChapterManager() {
-        return new ChapterManager();
-    }
     default TheGatekeeperNameManager createGatekeeperNameManager() {
         return new TheGatekeeperNameManager();
     }

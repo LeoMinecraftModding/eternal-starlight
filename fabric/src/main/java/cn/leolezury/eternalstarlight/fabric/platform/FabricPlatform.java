@@ -5,14 +5,10 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.resource.book.BookManager;
-import cn.leolezury.eternalstarlight.common.resource.book.chapter.ChapterManager;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.world.ESTeleporter;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
-import cn.leolezury.eternalstarlight.fabric.manager.book.FabricBookManager;
-import cn.leolezury.eternalstarlight.fabric.manager.book.chapter.FabricChapterManager;
 import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import com.google.auto.service.AutoService;
@@ -133,16 +129,6 @@ public class FabricPlatform implements ESPlatform {
                 }
             }
         }).build();
-    }
-
-    @Override
-    public BookManager createBookManager() {
-        return new FabricBookManager();
-    }
-
-    @Override
-    public ChapterManager createChapterManager() {
-        return new FabricChapterManager();
     }
 
     @Override

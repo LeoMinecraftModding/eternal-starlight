@@ -13,6 +13,7 @@ import org.joml.Matrix4f;
 
 import java.util.*;
 
+// Copyright 2017-2023 Aidan C. Brady
 @Environment(EnvType.CLIENT)
 public class BoltRenderer {
 

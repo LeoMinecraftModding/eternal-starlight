@@ -8,6 +8,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
+// Copyright 2017-2023 Aidan C. Brady
 @Environment(EnvType.CLIENT)
 public class BoltEffect {
 
