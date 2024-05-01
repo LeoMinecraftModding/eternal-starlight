@@ -10,5 +10,7 @@ import net.minecraft.core.registries.Registries;
 public class ESCriteriaTriggers {
     public static final RegistrationProvider<CriterionTrigger<?>> TRIGGERS = RegistrationProvider.get(Registries.TRIGGER_TYPE, EternalStarlight.MOD_ID);
     public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> CHALLENGED_GATEKEEPER = TRIGGERS.register("challenged_gatekeeper", PlayerTrigger::new);
+    public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> THROW_GLEECH_EGG = TRIGGERS.register("throw_gleech_egg", PlayerTrigger::new);
+
     public static void loadClass() {}
 }

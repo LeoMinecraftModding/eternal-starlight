@@ -16,5 +16,6 @@ public class ESWeathers {
     public static final RegistrationProvider<AbstractWeather> WEATHERS = RegistrationProvider.newRegistry(REGISTRY_KEY, EternalStarlight.MOD_ID);
     public static final Codec<AbstractWeather> CODEC = WEATHERS.registry().byNameCodec();
     public static final RegistryObject<AbstractWeather, MeteorRainWeather> METEOR_RAIN = WEATHERS.register("meteor_rain", () -> new MeteorRainWeather(new AbstractWeather.Properties(UniformInt.of(600, 800), UniformInt.of(24000, 180000))));
+
     public static void loadClass() {}
 }

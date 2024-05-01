@@ -1,4 +1,4 @@
-// 1.20.5	2024-04-27T20:34:11.1029141	Advancements
+// 1.20.5	2024-05-01T14:15:46.5413801	Advancements
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancements/challenge_gatekeeper.json
 f0955e5b93b18820a423492cddddb20dca62b245 data/eternal_starlight/advancements/enter_starlight.json
 5f86c48b9ce35f53b6f7497e96bd3350fe195123 data/eternal_starlight/advancements/kill_golem.json
@@ -9,4 +9,5 @@ f1a02d5c004dafd3e24094d9e341141423defeb2 data/eternal_starlight/advancements/obt
 8d216b07c5b8db116ce1517e81acc130ff8bc4f3 data/eternal_starlight/advancements/obtain_swamp_silver.json
 f65d0c6722fe440cf47d8d177560509a55245875 data/eternal_starlight/advancements/obtain_thermal_springstone.json
 a0dc8d246f5d8e11fca25090bc5d41b3d933c502 data/eternal_starlight/advancements/root.json
+1a9d83d5f1628b12af4523ed071fee3d8ce2c43f data/eternal_starlight/advancements/throw_gleech_egg.json
 9f5627a4869baf980b086e2e39a6ff91dc6dfeb1 data/eternal_starlight/advancements/use_blossom_of_stars.json

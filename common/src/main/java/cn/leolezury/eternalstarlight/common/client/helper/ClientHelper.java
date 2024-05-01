@@ -87,4 +87,14 @@ public class ClientHelper implements IClientHelper {
             }
         }
     }
+
+    @Override
+    public void handleClientDismount(ClientDismountPacket message) {
+        if (Minecraft.getInstance().level != null) {
+            Entity rider = Minecraft.getInstance().level.getEntity(message.riderId());
+            if (rider != null) {
+                rider.stopRiding();
+            }
+        }
+    }
 }

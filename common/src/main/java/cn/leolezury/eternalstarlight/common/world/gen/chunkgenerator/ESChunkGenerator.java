@@ -242,7 +242,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
                     worldgenRandom.setLargeFeatureSeed(l + (long)m, chunkPos2.x, chunkPos2.z);
                     if (configuredWorldCarver.isStartChunk(worldgenRandom)) {
                         Objects.requireNonNull(biomeManager2);
-                        // ES: Set carver seed
+                        // ES: set carver seed
                         if (configuredWorldCarver.worldCarver() instanceof ESExtraCavesCarver extraCavesCarver) {
                             extraCavesCarver.setSeed(seed);
                         }

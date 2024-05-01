@@ -36,5 +36,6 @@ public class ESFeatures {
     public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GOLEM_FORGE_CHIMNEY = FEATURES.register("golem_forge_chimney", () -> new GolemForgeChimneyFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CURSED_GARDEN_EXTRA_HEIGHT = FEATURES.register("cursed_garden_extra_height", () -> new CursedGardenExtraHeightFeature(NoneFeatureConfiguration.CODEC));
+
     public static void loadClass() {}
 }

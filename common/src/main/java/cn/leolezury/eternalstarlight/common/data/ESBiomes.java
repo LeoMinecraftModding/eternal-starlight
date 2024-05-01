@@ -115,7 +115,8 @@ public class ESBiomes {
 
     private static MobSpawnSettings.Builder desertSpawns() {
         return baseLandSpawnBuilder()
-                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 20, 4, 7));
+                .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 20, 4, 7))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 12, 1, 3));
     }
 
     private static MobSpawnSettings.Builder riverSpawns() {

@@ -9,4 +9,5 @@ public interface IClientHelper {
     void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket message);
     void handleUpdateCamera(UpdateCameraPacket message);
     void handleClientMount(ClientMountPacket message);
+    void handleClientDismount(ClientDismountPacket message);
 }

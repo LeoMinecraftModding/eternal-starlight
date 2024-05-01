@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "thrown": {
+      "trigger": "eternal_starlight:throw_gleech_egg"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.throw_gleech_egg.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:gleech_egg"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.throw_gleech_egg.title"
+    }
+  },
+  "requirements": [
+    [
+      "thrown"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

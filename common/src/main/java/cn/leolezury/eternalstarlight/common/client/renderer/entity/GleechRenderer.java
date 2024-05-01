@@ -14,7 +14,7 @@ public class GleechRenderer<T extends Gleech> extends MobRenderer<T, GleechModel
     private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/gleech.png");
 
     public GleechRenderer(EntityRendererProvider.Context context) {
-        super(context, new GleechModel<>(context.bakeLayer(GleechModel.LAYER_LOCATION)), 0.5f);
+        super(context, new GleechModel<>(context.bakeLayer(GleechModel.LAYER_LOCATION)), 0.1f);
     }
 
     @Override

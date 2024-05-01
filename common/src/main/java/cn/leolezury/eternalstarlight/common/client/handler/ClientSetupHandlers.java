@@ -456,6 +456,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
         strategy.register(ESEntities.GLEECH.get(), GleechRenderer::new);
+        strategy.register(ESEntities.GLEECH_EGG.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpiderRenderer::new);
         strategy.register(ESEntities.ENT.get(), EntRenderer::new);

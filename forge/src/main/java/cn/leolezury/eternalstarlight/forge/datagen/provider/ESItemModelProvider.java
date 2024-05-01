@@ -524,6 +524,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.TRAPPED_SOUL.get());
         basicItem(ESItems.SOULIT_SPECTATOR.get());
 
+        basicItem(ESItems.GLEECH_EGG.get());
+
         basicBlockItem(ESItems.NIGHTFALL_FARMLAND.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());

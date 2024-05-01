@@ -45,5 +45,6 @@ public class ESArmorMaterials {
         map.put(ArmorItem.Type.CHESTPLATE, 6);
         map.put(ArmorItem.Type.HELMET, 2);
     }), 25, ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.asHolder(), () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get()), List.of(new ArmorMaterial.Layer(new ResourceLocation(EternalStarlight.MOD_ID, "swamp_silver"))), 0.5F, 0.2F));
+
     public static void loadClass() {}
 }

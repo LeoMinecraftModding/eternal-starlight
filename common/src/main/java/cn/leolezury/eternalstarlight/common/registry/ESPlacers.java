@@ -18,5 +18,6 @@ public class ESPlacers {
     public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACERS.register("spheroid", () -> new FoliagePlacerType<>(SpheroidFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<ScarletFoliagePlacer>> FOLIAGE_SCARLET = FOLIAGE_PLACERS.register("scarlet", () -> new FoliagePlacerType<>(ScarletFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>, FoliagePlacerType<TorreyaFoliagePlacer>> FOLIAGE_TORREYA = FOLIAGE_PLACERS.register("torreya", () -> new FoliagePlacerType<>(TorreyaFoliagePlacer.CODEC));
+
     public static void loadClass() {}
 }

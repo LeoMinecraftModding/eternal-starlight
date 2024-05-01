@@ -9,6 +9,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public class GleechModel<T extends Gleech> extends AnimatedEntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "gleech"), "main");
@@ -37,6 +38,10 @@ public class GleechModel<T extends Gleech> extends AnimatedEntityModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         root.xScale = root.yScale = root.zScale = entity.isLarval() ? 0.6f : 1f;
+        if (riding) {
+            root.xRot = -270 * Mth.DEG_TO_RAD;
+            root.zRot = -180 * Mth.DEG_TO_RAD;
+        }
         animate(entity.idleAnimationState, GleechAnimation.IDLE, ageInTicks);
     }
 

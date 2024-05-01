@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.carver;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Aquifer;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
@@ -17,7 +16,7 @@ public class ESCaveCarver extends CaveWorldCarver {
     @Override
     protected boolean canReplaceBlock(CaveCarverConfiguration carverConfiguration, BlockState blockState) {
         // we should not replace water
-        return super.canReplaceBlock(carverConfiguration, blockState) && !blockState.is(Blocks.WATER);
+        return super.canReplaceBlock(carverConfiguration, blockState) && blockState.getFluidState().isEmpty();
     }
 
     @Override
@@ -25,7 +24,6 @@ public class ESCaveCarver extends CaveWorldCarver {
         if (blockPos.getY() <= carverConfiguration.lavaLevel.resolveY(carvingContext)) {
             return LAVA.createLegacyBlock();
         } else {
-            // ES: No more water
             return CAVE_AIR;
         }
     }

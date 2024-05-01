@@ -32,4 +32,9 @@ public class EmptyClientHelper implements IClientHelper {
     public void handleClientMount(ClientMountPacket message) {
 
     }
+
+    @Override
+    public void handleClientDismount(ClientDismountPacket message) {
+
+    }
 }

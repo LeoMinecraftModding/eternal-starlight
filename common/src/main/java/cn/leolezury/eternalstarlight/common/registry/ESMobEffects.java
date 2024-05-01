@@ -13,5 +13,6 @@ public class ESMobEffects {
     public static final RegistrationProvider<MobEffect> MOB_EFFECTS = RegistrationProvider.get(Registries.MOB_EFFECT, EternalStarlight.MOD_ID);
     public static final RegistryObject<MobEffect, MobEffect> CRYSTALLINE_INFECTION = MOB_EFFECTS.register("crystalline_infection", () -> new CrystallineInfectionEffect(MobEffectCategory.HARMFUL, 8001164));
     public static final RegistryObject<MobEffect, MobEffect> DREAM_CATCHER = MOB_EFFECTS.register("dream_catcher", () -> new DreamCatcherEffect(MobEffectCategory.BENEFICIAL, 0x5187c4));
+
     public static void loadClass() {}
 }

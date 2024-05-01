@@ -63,6 +63,17 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                                 LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
                 .save(consumer, EternalStarlight.MOD_ID + ":enter_starlight");
 
+        AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterDim).display(
+                        ESItems.GLEECH_EGG.get(),
+                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".throw_gleech_egg.title"),
+                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".throw_gleech_egg.description"),
+                        null,
+                        AdvancementType.TASK,
+                        true, true, false)
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .addCriterion("thrown", ESCriteriaTriggers.THROW_GLEECH_EGG.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+                .save(consumer, EternalStarlight.MOD_ID + ":throw_gleech_egg");
+
         AdvancementHolder swampSilver = addItemObtain(consumer, enterDim, "obtain_swamp_silver", ESItems.SWAMP_SILVER_INGOT.get());
 
         AdvancementHolder starlightFlower = addItemObtain(consumer, enterDim, "obtain_starlight_flower", ESItems.STARLIGHT_FLOWER.get());

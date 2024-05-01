@@ -36,5 +36,6 @@ public class ESParticles {
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> LAVA_EXPLOSION = PARTICLE_TYPES.register("lava_explosion", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SMOKE = PARTICLE_TYPES.register("energized_flame_smoke", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SPIT = PARTICLE_TYPES.register("energized_flame_spit", () -> new SimpleParticleType(false));
+
     public static void loadClass() {}
 }

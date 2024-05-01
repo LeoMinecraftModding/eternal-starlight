@@ -68,6 +68,7 @@ public class ESTags {
         public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
         public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
         public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
+        public static final TagKey<EntityType<?>> GLEECH_IMMUNE = create("gleech_immune");
     }
 
     public static class Structures {

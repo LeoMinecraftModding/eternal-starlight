@@ -34,8 +34,27 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 EntityType.BAT,
                 EntityType.WARDEN
         );
+        tag(ESTags.EntityTypes.GLEECH_IMMUNE).add(
+                ESEntities.GLEECH.get(),
+                ESEntities.NIGHTFALL_SPIDER.get(),
+                EntityType.SILVERFISH,
+                EntityType.SPIDER,
+                EntityType.CAVE_SPIDER
+        );
         tag(EntityTypeTags.SKELETONS).add(
                 ESEntities.LONESTAR_SKELETON.get()
+        );
+        tag(EntityTypeTags.ARTHROPOD).add(
+                ESEntities.NIGHTFALL_SPIDER.get(),
+                ESEntities.GLEECH.get()
+        );
+        tag(EntityTypeTags.AQUATIC).add(
+                ESEntities.LUMINOFISH.get(),
+                ESEntities.LUMINARIS.get(),
+                ESEntities.TWILIGHT_GAZE.get()
+        );
+        tag(EntityTypeTags.IMMUNE_TO_INFESTED).add(
+                ESEntities.GLEECH.get()
         );
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
                 ESEntities.ASTRAL_GOLEM.get(),

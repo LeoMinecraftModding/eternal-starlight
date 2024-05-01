@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.network.ClientDismountPacket;
 import cn.leolezury.eternalstarlight.common.network.ClientMountPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -20,6 +21,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
@@ -38,6 +40,7 @@ public class Gleech extends Monster {
     }
 
     private int growthTicks;
+    private int attachTicks;
 
     public AnimationState idleAnimationState = new AnimationState();
 
@@ -55,8 +58,14 @@ public class Gleech extends Monster {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true) {
+            @Override
+            public boolean canUse() {
+                return super.canUse() && Gleech.this.getVehicle() == null && Gleech.this.getTarget() == null; // always attack the mob that is hit by the egg
+            }
+        });
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -91,11 +100,6 @@ public class Gleech extends Monster {
         super.tick();
         if (!level().isClientSide) {
             setNoGravity(getVehicle() != null);
-            // todo stop riding after some time we cannot attack our vehicle
-            if (getTarget() != null && isLarval()) {
-                startRiding(getTarget(), true);
-                ESPlatform.INSTANCE.sendToAllClients((ServerLevel) level(), new ClientMountPacket(getId(), getTarget().getId()));
-            }
             if (isLarval()) {
                 growthTicks++;
                 if (growthTicks > 12000) {
@@ -108,9 +112,24 @@ public class Gleech extends Monster {
         }
     }
 
+    public void attachTo(LivingEntity livingEntity) {
+        if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+            startRiding(livingEntity, true);
+            ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ClientMountPacket(getId(), livingEntity.getId()));
+        }
+    }
+
     @Override
     public void rideTick() {
         super.rideTick();
+        if (!level().isClientSide) {
+            attachTicks++;
+            if (attachTicks > 80) {
+                attachTicks = 0;
+                stopRiding();
+                ESPlatform.INSTANCE.sendToAllClients((ServerLevel) level(), new ClientDismountPacket(getId()));
+            }
+        }
         if (getVehicle() instanceof LivingEntity livingEntity) {
             setYRot(livingEntity.getYRot());
             setPos(ESMathUtil.rotationToPosition(getVehicle().position().add(0, getVehicle().getBbHeight() / 2, 0), (getVehicle().getBbWidth() / 2) * 0.75f, 0, getVehicle().getYRot() + 90));
@@ -133,6 +152,11 @@ public class Gleech extends Monster {
             rotation = livingEntity.getYRot();
         }
         super.setYRot(rotation);
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entity) {
+        return super.doHurtTarget(entity);
     }
 
     @Override

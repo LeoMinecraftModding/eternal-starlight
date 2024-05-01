@@ -17,6 +17,7 @@ public class ESPackets {
     public static final PacketInfo<CloseGatekeeperGuiPacket> CLOSE_GATEKEEPER_GUI = new PacketInfo<>(CloseGatekeeperGuiPacket.TYPE, CloseGatekeeperGuiPacket.STREAM_CODEC, CloseGatekeeperGuiPacket::handle);
     public static final PacketInfo<UpdateCameraPacket> UPDATE_CAMERA = new PacketInfo<>(UpdateCameraPacket.TYPE, UpdateCameraPacket.STREAM_CODEC, UpdateCameraPacket::handle);
     public static final PacketInfo<ClientMountPacket> CLIENT_MOUNT = new PacketInfo<>(ClientMountPacket.TYPE, ClientMountPacket.STREAM_CODEC, ClientMountPacket::handle);
+    public static final PacketInfo<ClientDismountPacket> CLIENT_DISMOUNT = new PacketInfo<>(ClientDismountPacket.TYPE, ClientDismountPacket.STREAM_CODEC, ClientDismountPacket::handle);
 
     public record PacketInfo<T extends CustomPacketPayload>(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 
