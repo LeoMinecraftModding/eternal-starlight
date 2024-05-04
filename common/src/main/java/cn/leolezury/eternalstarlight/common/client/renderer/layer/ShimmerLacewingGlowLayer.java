@@ -13,13 +13,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderLayer<T, ShimmerLacewingModel<T>> {
-    private static final RenderType GLOW = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing_glow.png"));
-    private static final RenderType GLOW_SWAMP = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/shimmer_lacewing_glow_swamp.png"));
+    private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow.png"));
+    private static final RenderType GLOW_SWAMP = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow_swamp.png"));
     private final ShimmerLacewingModel<T> model;
 
     public ShimmerLacewingGlowLayer(RenderLayerParent<T, ShimmerLacewingModel<T>> parent, EntityModelSet modelSet) {

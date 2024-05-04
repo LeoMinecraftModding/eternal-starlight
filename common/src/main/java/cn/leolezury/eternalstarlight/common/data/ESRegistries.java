@@ -9,14 +9,13 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 public class ESRegistries {
-    public static final ResourceKey<Registry<BiomeData>> BIOME_DATA = ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "biome_data"));
-    public static final ResourceKey<Registry<DataTransformer>> DATA_TRANSFORMER = ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "worldgen_data_transformer"));
-    public static final ResourceKey<Registry<BoarwarfType>> BOARWARF_TYPE = ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "boarwarf_type"));
-    public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "astral_golem_material"));
-    public static final ResourceKey<Registry<Crest>> CREST = ResourceKey.createRegistryKey(new ResourceLocation(EternalStarlight.MOD_ID, "crest"));
+    public static final ResourceKey<Registry<BiomeData>> BIOME_DATA = ResourceKey.createRegistryKey(EternalStarlight.id("biome_data"));
+    public static final ResourceKey<Registry<DataTransformer>> DATA_TRANSFORMER = ResourceKey.createRegistryKey(EternalStarlight.id("worldgen_data_transformer"));
+    public static final ResourceKey<Registry<BoarwarfType>> BOARWARF_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("boarwarf_type"));
+    public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(EternalStarlight.id("astral_golem_material"));
+    public static final ResourceKey<Registry<Crest>> CREST = ResourceKey.createRegistryKey(EternalStarlight.id("crest"));
 
     static {
         ESPlatform.INSTANCE.registerDatapackRegistry(BIOME_DATA, BiomeData.CODEC, BiomeData.CODEC);

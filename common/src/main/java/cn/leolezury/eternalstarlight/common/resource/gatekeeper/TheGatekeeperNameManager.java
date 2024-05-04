@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TheGatekeeperNameManager extends SimpleJsonResourceReloadListener {
-    private static final ResourceLocation NAMES_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "eternal_starlight/gatekeeper_names/gatekeeper_names.json");
+    private static final ResourceLocation NAMES_LOCATION = EternalStarlight.id("eternal_starlight/gatekeeper_names/gatekeeper_names.json");
     private static final RandomSource RANDOM = RandomSource.create();
     public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final List<String> names = Lists.newArrayList();

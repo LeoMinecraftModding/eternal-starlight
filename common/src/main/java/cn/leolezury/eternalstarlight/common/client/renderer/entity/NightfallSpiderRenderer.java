@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class NightfallSpiderRenderer<T extends NightfallSpider> extends MobRenderer<T, NightfallSpiderModel<T>> {
-    private static final ResourceLocation NIGHTFALL_SPIDER_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/nightfall_spider.png");
+    private static final ResourceLocation NIGHTFALL_SPIDER_LOCATION = EternalStarlight.id("textures/entity/nightfall_spider.png");
 
     public NightfallSpiderRenderer(EntityRendererProvider.Context context) {
         this(context, NightfallSpiderModel.LAYER_LOCATION);

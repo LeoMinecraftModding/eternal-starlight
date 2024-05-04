@@ -16,7 +16,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -113,7 +112,7 @@ public class OrbOfProphecyItem extends Item {
         Player player = useOnContext.getPlayer();
         BlockPos pos = useOnContext.getClickedPos();
         if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
-            AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(new ResourceLocation(EternalStarlight.MOD_ID, "challenge_gatekeeper"));
+            AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
             boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
             if (challenged && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
                 if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {

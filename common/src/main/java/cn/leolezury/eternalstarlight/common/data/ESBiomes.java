@@ -10,7 +10,6 @@ import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -296,6 +295,6 @@ public class ESBiomes {
     }
 
     public static ResourceKey<Biome> create(String name) {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.BIOME, EternalStarlight.id(name));
     }
 }

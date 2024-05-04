@@ -18,6 +18,7 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -70,6 +71,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onProjectileImpact(ProjectileImpactEvent event) {
         CommonHandlers.onArrowHit(event.getProjectile(), event.getRayTraceResult());
+    }
+
+    @SubscribeEvent
+    public static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
+        CommonHandlers.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
     }
 
     @SubscribeEvent

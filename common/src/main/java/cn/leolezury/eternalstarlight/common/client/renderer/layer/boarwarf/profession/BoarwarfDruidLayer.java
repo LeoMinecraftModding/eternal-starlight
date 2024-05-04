@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfDruidLayer<T extends Boarwarf> extends RenderLayer<T, BoarwarfModel<T>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/profession/druid.png");
+    private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/druid.png");
     private final BoarwarfDruidModel<T> professionModel;
 
     public BoarwarfDruidLayer(RenderLayerParent<T, BoarwarfModel<T>> parent, EntityModelSet modelSet) {

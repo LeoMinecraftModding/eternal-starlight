@@ -35,7 +35,7 @@ public class ESItems {
 
     public static final List<ResourceKey<Item>> REGISTERED_ITEMS = new ArrayList<>();
     private static RegistryObject<Item, Item> registerItem(String name, Supplier<? extends Item> supplier) {
-        REGISTERED_ITEMS.add(ResourceKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, name)));
+        REGISTERED_ITEMS.add(ResourceKey.create(Registries.ITEM, EternalStarlight.id(name)));
         return ITEMS.register(name, supplier);
     }
     public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_BLOCK = registerItem("red_starlight_crystal_block", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));

@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class TwilightGazeRenderer<T extends TwilightGaze> extends MobRenderer<T, TwilightGazeModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/twilight_gaze.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/twilight_gaze.png");
 
     public TwilightGazeRenderer(EntityRendererProvider.Context context) {
         super(context, new TwilightGazeModel<>(context.bakeLayer(TwilightGazeModel.LAYER_LOCATION)), 0.3f);

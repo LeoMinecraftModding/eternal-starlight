@@ -13,7 +13,6 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -30,7 +29,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                         ESBlocks.LUNAR_LOG.get(),
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + ".root.title"),
                         Component.translatable("advancements." + EternalStarlight.MOD_ID + ".root.description"),
-                        new ResourceLocation(EternalStarlight.MOD_ID, "textures/block/lunar_log.png"),
+                        EternalStarlight.id("textures/block/lunar_log.png"),
                         AdvancementType.TASK,
                         false, false, false)
                 .requirements(AdvancementRequirements.Strategy.OR)

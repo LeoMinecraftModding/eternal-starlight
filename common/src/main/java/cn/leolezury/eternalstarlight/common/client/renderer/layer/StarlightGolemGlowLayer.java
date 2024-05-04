@@ -14,13 +14,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemGlowLayer<T extends StarlightGolem> extends RenderLayer<T, StarlightGolemModel<T>> {
-    private static final RenderType GLOW = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/starlight_golem/starlight_golem_glow.png"));
-    private static final RenderType GLOW_HALLOWEEN = RenderType.entityTranslucentEmissive(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/starlight_golem/starlight_golem_glow_halloween.png"));
+    private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_glow.png"));
+    private static final RenderType GLOW_HALLOWEEN = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_glow_halloween.png"));
     private final StarlightGolemModel<T> model;
 
     public StarlightGolemGlowLayer(RenderLayerParent<T, StarlightGolemModel<T>> parent, EntityModelSet modelSet) {

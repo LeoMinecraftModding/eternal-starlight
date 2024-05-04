@@ -24,8 +24,8 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderLayer<T, TheGatekeeperModel<T>> {
-    private static final ResourceLocation OVERLAY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/the_gatekeeper_overlay.png");
-    private static final ResourceLocation SLIM_OVERLAY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/the_gatekeeper_overlay_slim.png");
+    private static final ResourceLocation OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay.png");
+    private static final ResourceLocation SLIM_OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay_slim.png");
     private final TheGatekeeperModel<T> normalModel;
     private final TheGatekeeperModel<T> slimModel;
 

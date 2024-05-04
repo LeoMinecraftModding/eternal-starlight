@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 
 public class EternalStarlight {
@@ -43,6 +44,10 @@ public class EternalStarlight {
         ESBoarwarfProfessions.loadClass();
         ESRegistries.loadClass();
         ESFlammabilityRegistry.registerDefaults();
+    }
+
+    public static ResourceLocation id(String string) {
+        return new ResourceLocation(MOD_ID, string);
     }
 
     public static IClientHelper getClientHelper() {

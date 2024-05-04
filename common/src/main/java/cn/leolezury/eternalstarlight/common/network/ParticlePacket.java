@@ -7,13 +7,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
 public record ParticlePacket(ParticleOptions particle,
                              double x, double y, double z,
                              double dx, double dy, double dz) implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<ParticlePacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "particle"));
+    public static final CustomPacketPayload.Type<ParticlePacket> TYPE = new CustomPacketPayload.Type<>(EternalStarlight.id("particle"));
     public static final StreamCodec<RegistryFriendlyByteBuf, ParticlePacket> STREAM_CODEC = StreamCodec.ofMember(ParticlePacket::write, ParticlePacket::read);
 
     public static ParticlePacket read(RegistryFriendlyByteBuf buf) {

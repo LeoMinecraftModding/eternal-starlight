@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class GleechRenderer<T extends Gleech> extends MobRenderer<T, GleechModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/gleech.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/gleech.png");
 
     public GleechRenderer(EntityRendererProvider.Context context) {
         super(context, new GleechModel<>(context.bakeLayer(GleechModel.LAYER_LOCATION)), 0.1f);

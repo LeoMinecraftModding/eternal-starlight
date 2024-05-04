@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LuminarisRenderer<T extends Luminaris> extends MobRenderer<T, LuminarisModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/luminaris.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminaris.png");
 
     public LuminarisRenderer(EntityRendererProvider.Context context) {
         super(context, new LuminarisModel<>(context.bakeLayer(LuminarisModel.LAYER_LOCATION)), 0.3f);

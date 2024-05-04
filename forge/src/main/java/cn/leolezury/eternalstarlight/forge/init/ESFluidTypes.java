@@ -25,12 +25,12 @@ public class ESFluidTypes {
             consumer.accept(new IClientFluidTypeExtensions() {
                 @Override
                 public ResourceLocation getStillTexture() {
-                    return new ResourceLocation(EternalStarlight.MOD_ID, "block/ether");
+                    return EternalStarlight.id("block/ether");
                 }
 
                 @Override
                 public ResourceLocation getFlowingTexture() {
-                    return new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow");
+                    return EternalStarlight.id("block/ether_flow");
                 }
 
                 @Override

@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class FrozenTubeModel<T extends FrozenTube> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "frozen_tube"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("frozen_tube"), "main");
     private final ModelPart rod;
 
     public FrozenTubeModel(ModelPart root) {

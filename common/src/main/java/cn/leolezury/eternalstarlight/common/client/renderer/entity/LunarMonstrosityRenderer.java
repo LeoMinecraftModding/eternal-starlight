@@ -11,8 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRenderer<T, LunarMonstrosityModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lunar_monstrosity.png");
-    private static final ResourceLocation ENTITY_PHASE_2_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lunar_monstrosity_1.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/lunar_monstrosity.png");
+    private static final ResourceLocation ENTITY_PHASE_2_TEXTURE = EternalStarlight.id("textures/entity/lunar_monstrosity_1.png");
 
     public LunarMonstrosityRenderer(EntityRendererProvider.Context context) {
         super(context, new LunarMonstrosityModel<>(context.bakeLayer(LunarMonstrosityModel.LAYER_LOCATION)), 0.5f);

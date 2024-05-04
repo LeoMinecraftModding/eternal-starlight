@@ -13,7 +13,6 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
@@ -59,7 +58,7 @@ public class CrestButton extends Button {
             } else {
                 Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
                 MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)));
-                MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", new ResourceLocation(EternalStarlight.MOD_ID, crest.type().getSerializedName()))).withColor(crest.type().getColor());
+                MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.type().getSerializedName()))).withColor(crest.type().getColor());
                 MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)) + ".desc");
                 setTooltip(Tooltip.create(nameComponent.append("\n").append(typeComponent).append("\n").append(descComponent)));
             }

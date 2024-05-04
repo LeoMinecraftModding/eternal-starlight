@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
@@ -30,7 +29,7 @@ public class ESDamageTypes {
 
 
     public static ResourceKey<DamageType> create(String name) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, EternalStarlight.id(name));
     }
 
     public static DamageSource getDamageSource(Level level, ResourceKey<DamageType> type) {

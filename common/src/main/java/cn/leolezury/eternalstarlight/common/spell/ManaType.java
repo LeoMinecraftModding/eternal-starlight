@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
@@ -28,7 +27,7 @@ public enum ManaType implements StringRepresentable {
     }
 
     public TagKey<Item> getCrystalsTag() {
-        return this == EMPTY ? ESTags.Items.MANA_CRYSTALS : TagKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, name + "_crystals"));
+        return this == EMPTY ? ESTags.Items.MANA_CRYSTALS : TagKey.create(Registries.ITEM, EternalStarlight.id(name + "_crystals"));
     }
 
     public int getColor() {

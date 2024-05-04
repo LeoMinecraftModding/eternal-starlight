@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfChefLayer<T extends Boarwarf> extends RenderLayer<T, BoarwarfModel<T>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/profession/chef.png");
+    private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/chef.png");
     private final BoarwarfChefModel<T> professionModel;
 
     public BoarwarfChefLayer(RenderLayerParent<T, BoarwarfModel<T>> parent, EntityModelSet modelSet) {

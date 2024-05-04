@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -22,7 +21,7 @@ import java.util.function.BiConsumer;
 public class ESChestLootSubProvider implements LootTableSubProvider {
     @Override
     public void generate(HolderLookup.Provider arg, BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
-        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(EternalStarlight.MOD_ID, "chests/cursed_garden")),
+        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("chests/cursed_garden")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(4))
@@ -44,7 +43,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(75))
                                 .add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))));
 
-        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(EternalStarlight.MOD_ID, "chests/cursed_garden_hidden_room")),
+        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("chests/cursed_garden_hidden_room")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(10))
@@ -56,7 +55,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.SKELETON_SKULL).setWeight(75))
                                 .add(LootItem.lootTableItem(Items.WITHER_SKELETON_SKULL).setWeight(25))));
 
-        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(EternalStarlight.MOD_ID, "chests/golem_forge")),
+        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("chests/golem_forge")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(8))
@@ -83,7 +82,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.GOLDEN_CARROT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
                                 .add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))));
 
-        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(EternalStarlight.MOD_ID, "chests/golem_forge_furnace_room")),
+        consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("chests/golem_forge_furnace_room")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(8))

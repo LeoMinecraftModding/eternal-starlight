@@ -11,11 +11,11 @@ import net.minecraft.world.entity.monster.AbstractSkeleton;
 
 @Environment(EnvType.CLIENT)
 public class LonestarSkeletonRenderer extends SkeletonRenderer {
-    private static final ResourceLocation LONESTAR_SKELETON_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/lonestar_skeleton.png");
+    private static final ResourceLocation LONESTAR_SKELETON_LOCATION = EternalStarlight.id("textures/entity/lonestar_skeleton.png");
 
-    public static final ModelLayerLocation LONESTAR = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton"), "main");
-    public static final ModelLayerLocation LONESTAR_INNER_ARMOR = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton"), "inner_armor");
-    public static final ModelLayerLocation LONESTAR_OUTER_ARMOR = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "lonestar_skeleton"), "outer_armor");
+    public static final ModelLayerLocation LONESTAR = new ModelLayerLocation(EternalStarlight.id("lonestar_skeleton"), "main");
+    public static final ModelLayerLocation LONESTAR_INNER_ARMOR = new ModelLayerLocation(EternalStarlight.id("lonestar_skeleton"), "inner_armor");
+    public static final ModelLayerLocation LONESTAR_OUTER_ARMOR = new ModelLayerLocation(EternalStarlight.id("lonestar_skeleton"), "outer_armor");
 
     public LonestarSkeletonRenderer(EntityRendererProvider.Context context) {
         super(context, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);

@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LunarVineRenderer extends EntityRenderer<LunarVine> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/vine.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/vine.png");
     LunarVineModel<LunarVine> model;
 
     public LunarVineRenderer(EntityRendererProvider.Context context) {

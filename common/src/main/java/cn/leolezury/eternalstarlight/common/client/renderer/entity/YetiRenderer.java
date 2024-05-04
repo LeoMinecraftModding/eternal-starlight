@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class YetiRenderer<T extends Yeti> extends MobRenderer<T, YetiModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/yeti.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/yeti.png");
 
     public YetiRenderer(EntityRendererProvider.Context context) {
         super(context, new YetiModel<>(context.bakeLayer(YetiModel.LAYER_LOCATION)), 0.3f);

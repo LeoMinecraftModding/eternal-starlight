@@ -10,7 +10,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -165,7 +164,7 @@ public class ESPlacedFeatures {
 
 
     private static ResourceKey<PlacedFeature> create(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, EternalStarlight.id(name));
     }
 
     public static List<PlacementModifier> orePlacement(PlacementModifier modifier, PlacementModifier modifier1) {

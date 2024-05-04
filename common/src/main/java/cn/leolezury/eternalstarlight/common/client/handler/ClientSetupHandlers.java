@@ -236,8 +236,8 @@ public class ClientSetupHandlers {
     );
 
     public static final List<ResourceLocation> TRIMS = List.of(
-            new ResourceLocation(EternalStarlight.MOD_ID, "trims/models/armor/keeper"),
-            new ResourceLocation(EternalStarlight.MOD_ID, "trims/models/armor/forge")
+            EternalStarlight.id("trims/models/armor/keeper"),
+            EternalStarlight.id("trims/models/armor/forge")
     );
 
     public static final Map<ResourceLocation, ResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();
@@ -245,14 +245,14 @@ public class ClientSetupHandlers {
     public static final Map<ResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
     public static void clientSetup() {
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "glacite_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "glacite_scythe_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_with_crests"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_with_crests_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
-        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe"), "inventory"), new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("glacite_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy"), "inventory"), new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_with_crests"), "inventory"), new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_with_crests_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("bonemore_broadsword"), "inventory"), new ModelResourceLocation(EternalStarlight.id("bonemore_broadsword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("doomeden_sword"), "inventory"), new ModelResourceLocation(EternalStarlight.id("doomeden_sword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("moonring_greatsword"), "inventory"), new ModelResourceLocation(EternalStarlight.id("moonring_greatsword_inventory"), "inventory"));
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("petal_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("petal_scythe_inventory"), "inventory"));
 
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
         PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
@@ -405,10 +405,10 @@ public class ClientSetupHandlers {
     }
 
     public static void registerShaders(ShaderRegisterStrategy strategy) {
-        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
-        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "meteor_rain"), DefaultVertexFormat.PARTICLE, ESShaders::setMeteorRain);
-        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
-        strategy.register(new ResourceLocation(EternalStarlight.MOD_ID, "rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
+        strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
+        strategy.register(EternalStarlight.id("meteor_rain"), DefaultVertexFormat.PARTICLE, ESShaders::setMeteorRain);
+        strategy.register(EternalStarlight.id("rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
+        strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
     }
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
@@ -421,13 +421,13 @@ public class ClientSetupHandlers {
     }
 
     public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_hammer_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "glacite_scythe_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "bonemore_broadsword_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "doomeden_sword_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonring_greatsword_inventory"), "inventory"));
-        registration.accept(new ModelResourceLocation(new ResourceLocation(EternalStarlight.MOD_ID, "petal_scythe_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("bonemore_broadsword_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("doomeden_sword_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("moonring_greatsword_inventory"), "inventory"));
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("petal_scythe_inventory"), "inventory"));
     }
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {

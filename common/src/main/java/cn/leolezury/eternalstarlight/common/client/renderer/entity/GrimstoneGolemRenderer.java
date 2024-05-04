@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class GrimstoneGolemRenderer<T extends GrimstoneGolem> extends MobRenderer<T, GrimstoneGolemModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/grimstone_golem.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/grimstone_golem.png");
 
     public GrimstoneGolemRenderer(EntityRendererProvider.Context context) {
         super(context, new GrimstoneGolemModel<>(context.bakeLayer(GrimstoneGolemModel.LAYER_LOCATION)), 0.3f);

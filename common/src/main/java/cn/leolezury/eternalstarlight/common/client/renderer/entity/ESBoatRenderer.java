@@ -31,11 +31,11 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
     public ESBoatRenderer(EntityRendererProvider.Context context, boolean chest) {
         super(context);
         this.shadowRadius = 0.8F;
-        this.boatResources = Stream.of(ESBoat.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> type, (type) -> Pair.of(new ResourceLocation(EternalStarlight.MOD_ID, getTextureLocation(type, chest)), this.createBoatModel(context, type, chest))));
+        this.boatResources = Stream.of(ESBoat.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> type, (type) -> Pair.of(EternalStarlight.id(getTextureLocation(type, chest)), this.createBoatModel(context, type, chest))));
     }
 
     private static ModelLayerLocation createLocation(String path, String model) {
-        return new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, path), model);
+        return new ModelLayerLocation(EternalStarlight.id(path), model);
     }
 
     public static ModelLayerLocation createBoatModelName(ESBoat.Type pType) {

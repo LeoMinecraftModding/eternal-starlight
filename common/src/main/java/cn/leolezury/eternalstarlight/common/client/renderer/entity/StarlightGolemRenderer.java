@@ -17,8 +17,8 @@ import java.util.Calendar;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRenderer<T, StarlightGolemModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/starlight_golem/starlight_golem.png");
-    private static final ResourceLocation HALLOWEEN_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/starlight_golem/starlight_golem_halloween.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/starlight_golem/starlight_golem.png");
+    private static final ResourceLocation HALLOWEEN_TEXTURE = EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_halloween.png");
 
     public StarlightGolemRenderer(EntityRendererProvider.Context context) {
         super(context, new StarlightGolemModel<>(context.bakeLayer(StarlightGolemModel.LAYER_LOCATION)), 0.5f);

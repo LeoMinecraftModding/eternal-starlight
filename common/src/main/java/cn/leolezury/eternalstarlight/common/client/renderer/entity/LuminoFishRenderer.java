@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LuminoFishRenderer<T extends LuminoFish> extends MobRenderer<T, LuminoFishModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/luminofish.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminofish.png");
 
     public LuminoFishRenderer(EntityRendererProvider.Context context) {
         super(context, new LuminoFishModel<>(context.bakeLayer(LuminoFishModel.LAYER_LOCATION)), 0.3f);

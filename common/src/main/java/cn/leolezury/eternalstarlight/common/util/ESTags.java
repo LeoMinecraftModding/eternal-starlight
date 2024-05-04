@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -14,7 +13,7 @@ import net.minecraft.world.level.material.Fluid;
 public class ESTags {
     public static class Items {
         private static TagKey<Item> create(String string) {
-            return TagKey.create(Registries.ITEM, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.ITEM, EternalStarlight.id(string));
         }
         public static final TagKey<Item> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
@@ -43,7 +42,7 @@ public class ESTags {
 
     public static class Blocks {
         private static TagKey<Block> create(String string) {
-            return TagKey.create(Registries.BLOCK, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));
         }
         public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
@@ -63,7 +62,7 @@ public class ESTags {
 
     public static class EntityTypes {
         private static TagKey<EntityType<?>> create(String string) {
-            return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));
         }
         public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
         public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
@@ -73,7 +72,7 @@ public class ESTags {
 
     public static class Structures {
         private static TagKey<Structure> create(String string) {
-            return TagKey.create(Registries.STRUCTURE, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.STRUCTURE, EternalStarlight.id(string));
         }
         public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
         public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
@@ -82,7 +81,7 @@ public class ESTags {
 
     public static class Biomes {
         private static TagKey<Biome> create(String string) {
-            return TagKey.create(Registries.BIOME, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.BIOME, EternalStarlight.id(string));
         }
         public static final TagKey<Biome> HAS_PORTAL_RUINS_COMMON = create("has_portal_ruins_common");
         public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
@@ -92,7 +91,7 @@ public class ESTags {
 
     public static class Fluids {
         private static TagKey<Fluid> create(String string) {
-            return TagKey.create(Registries.FLUID, new ResourceLocation(EternalStarlight.MOD_ID, string));
+            return TagKey.create(Registries.FLUID, EternalStarlight.id(string));
         }
         public static final TagKey<Fluid> ETHER = create("ether");
     }

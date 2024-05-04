@@ -9,7 +9,6 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -89,10 +88,10 @@ public class ESStructures {
     }
 
     public static ResourceKey<Structure> create(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.STRUCTURE, EternalStarlight.id(name));
     }
 
     public static ResourceKey<StructureSet> createSet(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.STRUCTURE_SET, EternalStarlight.id(name));
     }
 }

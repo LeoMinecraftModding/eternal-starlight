@@ -29,7 +29,7 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterDimEffects(RegisterDimensionSpecialEffectsEvent event) {
-        event.register(new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), ESPlatform.INSTANCE.getDimEffect());
+        event.register(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
     }
 
     @SubscribeEvent
@@ -81,14 +81,14 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "spell_crosshair"), (graphics, partialTicks) -> ClientHandlers.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
-        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "ether_erosion"), (graphics, partialTicks) -> ClientHandlers.renderEtherErosion(graphics));
-        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, new ResourceLocation(EternalStarlight.MOD_ID, "ether_armor"), (graphics, partialTicks) -> {
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("spell_crosshair"), (graphics, partialTicks) -> ClientHandlers.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("ether_erosion"), (graphics, partialTicks) -> ClientHandlers.renderEtherErosion(graphics));
+        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, EternalStarlight.id("ether_armor"), (graphics, partialTicks) -> {
             if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.canHurtPlayer()) {
                 ClientHandlers.renderEtherArmor(graphics, graphics.guiWidth(), graphics.guiHeight());
             }
         });
-        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
-        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, new ResourceLocation(EternalStarlight.MOD_ID, "dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
+        event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
     }
 }

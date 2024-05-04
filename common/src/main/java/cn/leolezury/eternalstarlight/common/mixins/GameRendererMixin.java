@@ -18,7 +18,7 @@ public abstract class GameRendererMixin {
     @Inject(method = "checkEntityPostEffect", at = @At("TAIL"))
     private void es_checkEntityPostEffect(Entity entity, CallbackInfo ci) {
         if (entity instanceof SoulitSpectator) {
-            loadEffect(new ResourceLocation(EternalStarlight.MOD_ID, "shaders/post/soulit_spectator.json"));
+            loadEffect(EternalStarlight.id("shaders/post/soulit_spectator.json"));
         }
     }
 }

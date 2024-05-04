@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/boarwarf/golem/astral_golem_iron.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/golem/astral_golem_iron.png");
 
     public AstralGolemRenderer(EntityRendererProvider.Context context) {
         super(context, new AstralGolemModel<>(context.bakeLayer(AstralGolemModel.LAYER_LOCATION)), 0.5f);

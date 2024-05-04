@@ -19,7 +19,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 
 public class MeteorRainWeather extends AbstractWeather {
-    private static final ResourceLocation RAIN_LOCATION = new ResourceLocation(EternalStarlight.MOD_ID, "textures/environment/meteor_rain.png");
+    private static final ResourceLocation RAIN_LOCATION = EternalStarlight.id("textures/environment/meteor_rain.png");
 
     public MeteorRainWeather(Properties properties) {
         super(properties);

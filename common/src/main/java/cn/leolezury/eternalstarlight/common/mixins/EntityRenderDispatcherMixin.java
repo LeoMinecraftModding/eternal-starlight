@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -40,9 +39,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntityRenderDispatcher.class)
 public abstract class EntityRenderDispatcherMixin {
     @Unique
-    private static final Material ABYSSAL_FIRE_0 = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(EternalStarlight.MOD_ID, "block/abyssal_fire_0"));
+    private static final Material ABYSSAL_FIRE_0 = new Material(TextureAtlas.LOCATION_BLOCKS, EternalStarlight.id("block/abyssal_fire_0"));
     @Unique
-    private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(EternalStarlight.MOD_ID, "block/abyssal_fire_1"));
+    private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, EternalStarlight.id("block/abyssal_fire_1"));
     
     @Shadow public abstract <T extends Entity> EntityRenderer<? super T> getRenderer(T entity);
 

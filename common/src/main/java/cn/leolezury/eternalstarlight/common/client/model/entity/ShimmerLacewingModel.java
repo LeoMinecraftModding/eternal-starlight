@@ -10,11 +10,10 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class ShimmerLacewingModel<T extends ShimmerLacewing> extends AnimatedEntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "shimmer_lacewing"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("shimmer_lacewing"), "main");
     private final ModelPart root;
 
     public ShimmerLacewingModel(ModelPart root) {

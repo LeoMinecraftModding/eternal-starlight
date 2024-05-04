@@ -11,10 +11,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class CrestPageButton extends Button {
-    private static final ResourceLocation NEXT_PAGE_ENABLED = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/next_page_enabled.png");
-    private static final ResourceLocation PREVIOUS_PAGE_ENABLED = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/previous_page_enabled.png");
-    private static final ResourceLocation NEXT_PAGE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/next_page.png");
-    private static final ResourceLocation PREVIOUS_PAGE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/gui/screen/crest_selection/previous_page.png");
+    private static final ResourceLocation NEXT_PAGE_ENABLED = EternalStarlight.id("textures/gui/screen/crest_selection/next_page_enabled.png");
+    private static final ResourceLocation PREVIOUS_PAGE_ENABLED = EternalStarlight.id("textures/gui/screen/crest_selection/previous_page_enabled.png");
+    private static final ResourceLocation NEXT_PAGE = EternalStarlight.id("textures/gui/screen/crest_selection/next_page.png");
+    private static final ResourceLocation PREVIOUS_PAGE = EternalStarlight.id("textures/gui/screen/crest_selection/previous_page.png");
     private final boolean nextPage;
 
     private int prevHoverProgress;

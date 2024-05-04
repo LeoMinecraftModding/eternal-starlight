@@ -6,7 +6,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.world.level.block.Block;
@@ -29,6 +28,6 @@ public class ESConfiguredWorldCarvers {
     }
 
     private static ResourceKey<ConfiguredWorldCarver<?>> create(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_CARVER, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_CARVER, EternalStarlight.id(name));
     }
 }

@@ -19,9 +19,11 @@ import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNam
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
@@ -243,6 +245,12 @@ public class CommonHandlers {
                 Vec3 location = result.getLocation();
                 AetherSentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
             }
+        }
+    }
+
+    public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
+        if (player instanceof ServerPlayer serverPlayer && advancement.id().equals(EternalStarlight.id("enter_starlight"))) {
+            ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("enter_starlight"));
         }
     }
 

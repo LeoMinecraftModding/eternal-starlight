@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record UpdateCrestsPacket(List<String> crests) implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<UpdateCrestsPacket> TYPE = new CustomPacketPayload.Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "update_crests"));
+    public static final CustomPacketPayload.Type<UpdateCrestsPacket> TYPE = new CustomPacketPayload.Type<>(EternalStarlight.id("update_crests"));
     public static final StreamCodec<RegistryFriendlyByteBuf, UpdateCrestsPacket> STREAM_CODEC = StreamCodec.ofMember(UpdateCrestsPacket::write, UpdateCrestsPacket::read);
 
     public static UpdateCrestsPacket read(FriendlyByteBuf buf) {

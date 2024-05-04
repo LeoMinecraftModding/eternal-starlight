@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/spore.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/spore.png");
     private final LunarSporeModel<LunarSpore> model;
 
     public LunarSporeRenderer(EntityRendererProvider.Context context) {

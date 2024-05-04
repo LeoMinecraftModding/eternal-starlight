@@ -8,11 +8,10 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
-import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LuminarisGlowLayer<T extends Luminaris, M extends LuminarisModel<T>> extends EyesLayer<T, M> {
-    private static final RenderType GLOW = RenderType.eyes(new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/luminaris_glow.png"));
+    private static final RenderType GLOW = RenderType.eyes(EternalStarlight.id("textures/entity/luminaris_glow.png"));
 
     public LuminarisGlowLayer(RenderLayerParent<T, M> parent) {
         super(parent);

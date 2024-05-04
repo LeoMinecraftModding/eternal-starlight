@@ -11,13 +11,12 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 
 @Environment(EnvType.CLIENT)
 public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
-    public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_armor"), "inner");
-    public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "thermal_springstone_armor"), "outer");
+    public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(EternalStarlight.id("thermal_springstone_armor"), "inner");
+    public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(EternalStarlight.id("thermal_springstone_armor"), "outer");
 
     public ThermalSpringStoneArmorModel(ModelPart root) {
         super(root);

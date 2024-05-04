@@ -9,7 +9,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 
@@ -46,6 +45,6 @@ public class ESTrimMaterials {
     }
 
     private static ResourceKey<TrimMaterial> create(String name) {
-        return ResourceKey.create(Registries.TRIM_MATERIAL, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.TRIM_MATERIAL, EternalStarlight.id(name));
     }
 }

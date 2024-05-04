@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ScreenEffectRenderer.class)
 public abstract class ScreenEffectRendererMixin {
     @Unique
-    private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(EternalStarlight.MOD_ID, "block/abyssal_fire_1"));
+    private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, EternalStarlight.id("block/abyssal_fire_1"));
 
     @Inject(method = "renderScreenEffect", at = @At(value = "TAIL"))
     private static void es_renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {

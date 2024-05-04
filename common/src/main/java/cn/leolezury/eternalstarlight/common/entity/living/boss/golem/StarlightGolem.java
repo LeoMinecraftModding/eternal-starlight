@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackManager;
@@ -10,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -93,6 +95,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
         super.startSeenByPlayer(serverPlayer);
         bossEvent.addPlayer(serverPlayer);
+        ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("starlight_golem_seen"));
     }
 
     public void stopSeenByPlayer(ServerPlayer serverPlayer) {

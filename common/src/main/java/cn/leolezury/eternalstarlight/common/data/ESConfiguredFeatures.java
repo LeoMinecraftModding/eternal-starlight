@@ -24,7 +24,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -198,7 +197,7 @@ public class ESConfiguredFeatures {
 
 
     public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, EternalStarlight.id(name));
     }
 
     private static RandomPatchConfiguration grassPatch(BlockStateProvider stateProvider, int tries) {

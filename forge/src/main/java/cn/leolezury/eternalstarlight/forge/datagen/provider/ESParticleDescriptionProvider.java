@@ -29,7 +29,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
     }
 
     private ResourceLocation loc(String s) {
-        return new ResourceLocation(EternalStarlight.MOD_ID, s);
+        return EternalStarlight.id(s);
     }
 
     private ResourceLocation mcLoc(String s) {

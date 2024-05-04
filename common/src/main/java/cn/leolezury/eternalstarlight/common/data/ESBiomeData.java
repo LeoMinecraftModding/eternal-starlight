@@ -7,7 +7,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
 public class ESBiomeData {
@@ -45,6 +44,6 @@ public class ESBiomeData {
     }
 
     public static ResourceKey<BiomeData> create(String name) {
-        return ResourceKey.create(ESRegistries.BIOME_DATA, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(ESRegistries.BIOME_DATA, EternalStarlight.id(name));
     }
 }

@@ -50,7 +50,7 @@ public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<Con
     }
 
     public static class Type implements RecipeType<GeyserSmokingRecipe> {
-        public static final ResourceLocation ID = new ResourceLocation(EternalStarlight.MOD_ID, "geyser_smoking");
+        public static final ResourceLocation ID = EternalStarlight.id("geyser_smoking");
 
         @Override
         public String toString() {

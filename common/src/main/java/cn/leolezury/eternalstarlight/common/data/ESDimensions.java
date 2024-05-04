@@ -11,7 +11,6 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.Level;
@@ -28,10 +27,10 @@ import java.util.List;
 import java.util.OptionalLong;
 
 public class ESDimensions {
-    public static final ResourceKey<Level> STARLIGHT_KEY = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(EternalStarlight.MOD_ID, "starlight"));
-    public static final ResourceKey<LevelStem> STARLIGHT_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, new ResourceLocation(EternalStarlight.MOD_ID, "starlight"));
-    public static final ResourceKey<DimensionType> STARLIGHT_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(EternalStarlight.MOD_ID, "starlight"));
-    public static final ResourceKey<NoiseGeneratorSettings> STARLIGHT_NOISE_SETTINGS = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(EternalStarlight.MOD_ID, "starlight"));
+    public static final ResourceKey<Level> STARLIGHT_KEY = ResourceKey.create(Registries.DIMENSION, EternalStarlight.id("starlight"));
+    public static final ResourceKey<LevelStem> STARLIGHT_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, EternalStarlight.id("starlight"));
+    public static final ResourceKey<DimensionType> STARLIGHT_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, EternalStarlight.id("starlight"));
+    public static final ResourceKey<NoiseGeneratorSettings> STARLIGHT_NOISE_SETTINGS = ResourceKey.create(Registries.NOISE_SETTINGS, EternalStarlight.id("starlight"));
 
     private static SurfaceRules.RuleSource makeSurface(BlockState grassBlock, BlockState dirt) {
         return SurfaceRules.sequence(
@@ -184,7 +183,7 @@ public class ESDimensions {
                 384, // max y
                 384, // height
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
-                new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), // special effects
+                EternalStarlight.id("special_effect"), // special effects
                 0f, // ambient light
                 new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 7) // monster spawn things
         );

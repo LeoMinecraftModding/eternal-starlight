@@ -21,7 +21,6 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
@@ -58,11 +57,11 @@ public class ESFabricClient implements ClientModInitializer {
             BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
         }
 
-        DimensionRenderingRegistry.registerDimensionEffects(new ResourceLocation(EternalStarlight.MOD_ID, "special_effect"), ESPlatform.INSTANCE.getDimEffect());
+        DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
 
         FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
-                new ResourceLocation(EternalStarlight.MOD_ID, "block/ether"),
-                new ResourceLocation(EternalStarlight.MOD_ID, "block/ether_flow")
+                EternalStarlight.id("block/ether"),
+                EternalStarlight.id("block/ether_flow")
         ));
 
         BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());

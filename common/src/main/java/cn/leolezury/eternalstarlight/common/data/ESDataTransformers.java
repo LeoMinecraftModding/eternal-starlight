@@ -10,7 +10,6 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.
 import net.minecraft.core.HolderGetter;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
@@ -69,6 +68,6 @@ public class ESDataTransformers {
     }
 
     public static ResourceKey<DataTransformer> create(String name) {
-        return ResourceKey.create(ESRegistries.DATA_TRANSFORMER, new ResourceLocation(EternalStarlight.MOD_ID, name));
+        return ResourceKey.create(ESRegistries.DATA_TRANSFORMER, EternalStarlight.id(name));
     }
 }

@@ -1,11 +1,13 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -107,6 +109,7 @@ public class LunarMonstrosity extends ESBoss {
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
         super.startSeenByPlayer(serverPlayer);
         bossEvent.addPlayer(serverPlayer);
+        ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("lunar_monstrosity_seen"));
     }
 
     public void stopSeenByPlayer(ServerPlayer serverPlayer) {

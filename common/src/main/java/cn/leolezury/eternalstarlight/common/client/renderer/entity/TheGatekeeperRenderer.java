@@ -24,8 +24,8 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<T, TheGatekeeperModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/the_gatekeeper.png");
-    private static final ResourceLocation SLIM_ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/the_gatekeeper_slim.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper.png");
+    private static final ResourceLocation SLIM_ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_slim.png");
     private static final Map<String, GameProfile> PROFILES = new HashMap<>();
     private final TheGatekeeperModel<T> normalModel;
     private final TheGatekeeperModel<T> slimModel;

@@ -101,12 +101,12 @@ public class ESRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
                 .save(recipeOutput);
         addShapeless(recipeOutput, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(), ESItems.MANA_CRYSTAL.get(), 1, ESItems.TERRA_CRYSTAL.get(), ESItems.WIND_CRYSTAL.get(), ESItems.WATER_CRYSTAL.get(), ESItems.LUNAR_CRYSTAL.get(), ESItems.BLAZE_CRYSTAL.get(), ESItems.LIGHT_CRYSTAL.get());
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ESItems.TERRA_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "terra_crystal"));
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ESItems.WIND_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "wind_crystal"));
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ESItems.WATER_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "water_crystal"));
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ESItems.LUNAR_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "lunar_crystal"));
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ESItems.BLAZE_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "blaze_crystal"));
-        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, new ResourceLocation(EternalStarlight.MOD_ID, "light_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ESItems.TERRA_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("terra_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ESItems.WIND_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("wind_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ESItems.WATER_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("water_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ESItems.LUNAR_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("lunar_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ESItems.BLAZE_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("blaze_crystal"));
+        SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("light_crystal"));
 
         // misc
         addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
@@ -965,7 +965,7 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     public static Stream<VanillaRecipeProvider.TrimTemplate> smithingTrims() {
-        return Stream.of(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get()).map((item) -> new VanillaRecipeProvider.TrimTemplate(item, new ResourceLocation(EternalStarlight.MOD_ID, getItemName(item) + "_smithing_trim")));
+        return Stream.of(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get()).map((item) -> new VanillaRecipeProvider.TrimTemplate(item, EternalStarlight.id(getItemName(item) + "_smithing_trim")));
     }
 
     protected final String name(ItemLike item) {
@@ -977,6 +977,6 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     protected final ResourceLocation getModLocation(String id) {
-        return new ResourceLocation(EternalStarlight.MOD_ID, id);
+        return EternalStarlight.id(id);
     }
 }

@@ -17,7 +17,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
     }
 
     private ResourceLocation loc(String s) {
-        return new ResourceLocation(EternalStarlight.MOD_ID, s);
+        return EternalStarlight.id(s);
     }
 
     @Override

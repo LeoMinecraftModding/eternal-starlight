@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class RatlinRenderer<T extends Ratlin> extends MobRenderer<T, RatlinModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/ratlin.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/ratlin.png");
 
     public RatlinRenderer(EntityRendererProvider.Context context) {
         super(context, new RatlinModel<>(context.bakeLayer(RatlinModel.LAYER_LOCATION)), 0.3f);

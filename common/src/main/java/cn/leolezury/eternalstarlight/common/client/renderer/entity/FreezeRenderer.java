@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class FreezeRenderer<T extends Freeze> extends MobRenderer<T, FreezeModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/freeze.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
 
     public FreezeRenderer(EntityRendererProvider.Context context) {
         super(context, new FreezeModel<>(context.bakeLayer(FreezeModel.LAYER_LOCATION)), 0.3f);

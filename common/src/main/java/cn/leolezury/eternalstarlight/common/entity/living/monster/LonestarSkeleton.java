@@ -171,10 +171,10 @@ public class LonestarSkeleton extends Skeleton {
             List<Item> possibleWeapons = new ArrayList<>();
             possibleWeapons.add(ESItems.SHATTERED_SWORD.get());
             if (getTarget() instanceof ServerPlayer serverPlayer) {
-                if (isAdvancementDone(serverPlayer, new ResourceLocation(EternalStarlight.MOD_ID, "kill_golem"))) {
+                if (isAdvancementDone(serverPlayer, EternalStarlight.id("kill_golem"))) {
                     possibleWeapons.add(ESItems.ENERGY_SWORD.get());
                 }
-                if (isAdvancementDone(serverPlayer, new ResourceLocation(EternalStarlight.MOD_ID, "kill_lunar_monstrosity"))) {
+                if (isAdvancementDone(serverPlayer, EternalStarlight.id("kill_lunar_monstrosity"))) {
                     possibleWeapons.add(ESItems.WAND_OF_TELEPORTATION.get());
                 }
             }

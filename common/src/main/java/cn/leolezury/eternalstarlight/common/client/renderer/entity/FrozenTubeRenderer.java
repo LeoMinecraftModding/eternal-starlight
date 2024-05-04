@@ -18,7 +18,7 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
-    private static final ResourceLocation ENTITY_TEXTURE = new ResourceLocation(EternalStarlight.MOD_ID, "textures/entity/freeze.png");
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
     private final FrozenTubeModel<FrozenTube> model;
 
     public FrozenTubeRenderer(EntityRendererProvider.Context context) {

@@ -11,13 +11,12 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(EternalStarlight.MOD_ID, "moonflower"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("moonflower"), "main");
     private final ModelPart root;
     private final ModelPart lowerBody;
     private final ModelPart upperBody;
