@@ -13,8 +13,8 @@ public record CancelWeatherPacket(boolean cancel) implements CustomPacketPayload
     public static final CustomPacketPayload.Type<CancelWeatherPacket> TYPE = new Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "cancel_weather"));
     public static final StreamCodec<RegistryFriendlyByteBuf, CancelWeatherPacket> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.BOOL, CancelWeatherPacket::cancel, CancelWeatherPacket::new);
 
-    public static void handle(CancelWeatherPacket message, Player player) {
-        if (message.cancel) {
+    public static void handle(CancelWeatherPacket packet, Player player) {
+        if (packet.cancel) {
             ClientWeatherInfo.WEATHER = null;
         }
     }

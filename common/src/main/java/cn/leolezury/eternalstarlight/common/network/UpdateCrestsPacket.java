@@ -29,17 +29,17 @@ public record UpdateCrestsPacket(List<String> crests) implements CustomPacketPay
         return new UpdateCrestsPacket(crestList);
     }
 
-    public static void write(UpdateCrestsPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(message.crests().size());
-        for (String string : message.crests()) {
+    public static void write(UpdateCrestsPacket packet, FriendlyByteBuf buf) {
+        buf.writeInt(packet.crests().size());
+        for (String string : packet.crests()) {
             buf.writeUtf(string, 384);
         }
     }
 
-    public static void handle(UpdateCrestsPacket message, Player player) {
+    public static void handle(UpdateCrestsPacket packet, Player player) {
         if (player instanceof ServerPlayer serverPlayer) {
             Registry<Crest> registry = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.CREST);
-            List<Crest> crestList = message.crests().stream().map(s -> registry.get(new ResourceLocation(s))).toList();
+            List<Crest> crestList = packet.crests().stream().map(s -> registry.get(new ResourceLocation(s))).toList();
             for (int i = 0; i < crestList.size(); i++) {
                 Crest crest = crestList.get(i);
                 for (int j = i + 1; j < crestList.size(); j++) {

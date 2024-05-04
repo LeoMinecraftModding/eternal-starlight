@@ -20,14 +20,14 @@ public record OpenGatekeeperGuiPacket(int id, boolean killedDragon, boolean chal
         return new OpenGatekeeperGuiPacket(id, killedDragon, challenged);
     }
 
-    public static void write(OpenGatekeeperGuiPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(message.id());
-        buf.writeBoolean(message.killedDragon());
-        buf.writeBoolean(message.challenged());
+    public static void write(OpenGatekeeperGuiPacket packet, FriendlyByteBuf buf) {
+        buf.writeInt(packet.id());
+        buf.writeBoolean(packet.killedDragon());
+        buf.writeBoolean(packet.challenged());
     }
 
-    public static void handle(OpenGatekeeperGuiPacket message, Player player) {
-        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenGatekeeperGui(message));
+    public static void handle(OpenGatekeeperGuiPacket packet, Player player) {
+        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenGatekeeperGui(packet));
     }
 
     @Override

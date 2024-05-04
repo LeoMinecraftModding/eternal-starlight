@@ -248,7 +248,7 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public CreativeModeTab getESTab() {
-        return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("itemGroup.eternal_starlight")).displayItems((displayParameters, output) -> {
+        return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("name.eternal_starlight")).displayItems((displayParameters, output) -> {
             for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
                 Item item = BuiltInRegistries.ITEM.get(entry);
                 if (item != null) {

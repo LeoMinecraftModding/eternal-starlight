@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface BookAccess {
     int getRelativePage();
+    boolean isLeftPage();
     void setPage(int page);
     List<BookComponentDefinition> getComponents();
 }

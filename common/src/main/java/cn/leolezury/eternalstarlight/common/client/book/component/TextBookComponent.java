@@ -42,6 +42,11 @@ public class TextBookComponent extends BookComponent {
     }
 
     @Override
+    public void singleTick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
+
+    }
+
+    @Override
     public void onClick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
 
     }

@@ -30,19 +30,19 @@ public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) 
         return new OpenCrestGuiPacket(ownedCrestList, crestList);
     }
 
-    public static void write(OpenCrestGuiPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(message.ownedCrests().size());
-        for (String string : message.ownedCrests()) {
+    public static void write(OpenCrestGuiPacket packet, FriendlyByteBuf buf) {
+        buf.writeInt(packet.ownedCrests().size());
+        for (String string : packet.ownedCrests()) {
             buf.writeUtf(string, 384);
         }
-        buf.writeInt(message.crests().size());
-        for (String string : message.crests()) {
+        buf.writeInt(packet.crests().size());
+        for (String string : packet.crests()) {
             buf.writeUtf(string, 384);
         }
     }
 
-    public static void handle(OpenCrestGuiPacket message, Player player) {
-        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(message));
+    public static void handle(OpenCrestGuiPacket packet, Player player) {
+        ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleOpenCrestGui(packet));
     }
 
     @Override

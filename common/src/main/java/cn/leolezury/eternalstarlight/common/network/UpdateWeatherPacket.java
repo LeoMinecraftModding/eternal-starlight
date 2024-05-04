@@ -23,16 +23,16 @@ public record UpdateWeatherPacket(AbstractWeather weather,
         return new UpdateWeatherPacket(abstractWeather, d, t);
     }
 
-    public static void write(UpdateWeatherPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(ESWeathers.WEATHERS.registry().getId(message.weather()));
-        buf.writeInt(message.duration);
-        buf.writeInt(message.ticks);
+    public static void write(UpdateWeatherPacket packet, FriendlyByteBuf buf) {
+        buf.writeInt(ESWeathers.WEATHERS.registry().getId(packet.weather()));
+        buf.writeInt(packet.duration);
+        buf.writeInt(packet.ticks);
     }
 
-    public static void handle(UpdateWeatherPacket message, Player player) {
-        ClientWeatherInfo.WEATHER = message.weather();
-        ClientWeatherInfo.DURATION = message.duration();
-        ClientWeatherInfo.TICKS = message.ticks();
+    public static void handle(UpdateWeatherPacket packet, Player player) {
+        ClientWeatherInfo.WEATHER = packet.weather();
+        ClientWeatherInfo.DURATION = packet.duration();
+        ClientWeatherInfo.TICKS = packet.ticks();
     }
 
     @Override

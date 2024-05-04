@@ -2,10 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
 import cn.leolezury.eternalstarlight.common.util.Color;
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
-import it.unimi.dsi.fastutil.ints.Int2IntMap;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
-import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -21,6 +18,8 @@ import java.util.List;
 public class IndexBookComponent extends BookComponent {
     private final Component introText;
     private final List<IndexItem> indexItems = new ArrayList<>();
+    private final Int2BooleanArrayMap leftHovers = new Int2BooleanArrayMap();
+    private final Int2BooleanArrayMap rightHovers = new Int2BooleanArrayMap();
     private final Int2IntArrayMap oldHoverTicks = new Int2IntArrayMap();
     private final Int2IntArrayMap hoverTicks = new Int2IntArrayMap();
     private final List<FormattedCharSequence> cachedComponents = new ArrayList<>();
@@ -28,10 +27,14 @@ public class IndexBookComponent extends BookComponent {
     private final IntList linesPerIndexItem = new IntArrayList();
     private int indexStartLine;
 
-    public IndexBookComponent(Component introText, int width, int height, IndexItem... indexItems) {
+    public IndexBookComponent(Component introText, List<IndexItem> indexItems, int width, int height) {
         super(width, height);
         this.introText = introText;
-        this.indexItems.addAll(List.of(indexItems));
+        for (IndexItem indexItem : indexItems) {
+            if (indexItem.enabled()) {
+                this.indexItems.add(indexItem);
+            }
+        }
     }
 
     @Override
@@ -61,31 +64,26 @@ public class IndexBookComponent extends BookComponent {
         return -1;
     }
 
+    private boolean isHovered(int index) {
+        return leftHovers.getOrDefault(index, false) || rightHovers.getOrDefault(index, false);
+    }
+
     @Override
     public void render(BookAccess access, GuiGraphics graphics, Font font, int x, int y, int mouseX, int mouseY) {
         int linesPerPage = height / font.lineHeight;
-        int relativeY = mouseY - y;
-        int line = access.getRelativePage() * linesPerPage + Math.min(relativeY / font.lineHeight, linesPerPage - 1);
-        int selected = getIndexItemFromRelativeLine(line - indexStartLine);
-        int startLine = indexStartLine;
-        for (int i = 0; i < selected; i++) {
-            startLine += linesPerIndexItem.getInt(i);
-        }
-        int lineOffset = selected == -1 ? 0 : linesPerIndexItem.getInt(selected);
-        int renderY = y + indexStartLine * font.lineHeight;
-        for (int i = 0; i < indexItems.size(); i++) {
-            int oldHover = oldHoverTicks.getOrDefault(i, 0);
-            int hover = hoverTicks.getOrDefault(i, 0);
-            float hoverTicks = Math.min(Mth.lerp(Minecraft.getInstance().getFrameTime(), oldHover, hover), 20);
-            int color = Color.argbi(0, 1, 1, 1).blend(Color.argb(0x66000000), hoverTicks / 20).argb();
-            graphics.fillGradient(x, renderY, x + width, renderY + linesPerIndexItem.getInt(i) * font.lineHeight, color, color);
-            renderY += linesPerIndexItem.getInt(i) * font.lineHeight;
-        }
         for (int i = access.getRelativePage() * linesPerPage; i < Math.min((access.getRelativePage() + 1) * linesPerPage, cachedComponents.size()); i++) {
             int textY = (i - access.getRelativePage() * linesPerPage) * font.lineHeight;
             FormattedCharSequence toDraw = cachedComponents.get(i);
-            if (selected != -1 && i >= startLine && i < startLine + lineOffset && line >= indexStartLine && mouseX > x && mouseX < x + width) {
-                toDraw = hoveredIndexItemComponents.get(i - indexStartLine);
+            if (i >= indexStartLine) {
+                int currentIndexItem = getIndexItemFromRelativeLine(i - indexStartLine);
+                int oldHover = oldHoverTicks.getOrDefault(currentIndexItem, 0);
+                int hover = hoverTicks.getOrDefault(currentIndexItem, 0);
+                float hoverTicks = Math.min(Mth.lerp(Minecraft.getInstance().getFrameTime(), oldHover, hover), 20);
+                int color = Color.argbi(0, 1, 1, 1).blend(Color.argb(0x66000000), hoverTicks / 20).argb();
+                graphics.fillGradient(x, y + textY, x + width, y + textY + font.lineHeight, color, color);
+                if (isHovered(getIndexItemFromRelativeLine(i - indexStartLine))) {
+                    toDraw = hoveredIndexItemComponents.get(i - indexStartLine);
+                }
             }
             graphics.drawString(font, toDraw, x, y + textY, 0, false);
         }
@@ -96,19 +94,25 @@ public class IndexBookComponent extends BookComponent {
         int linesPerPage = height / font.lineHeight;
         int relativeY = mouseY - y;
         int line = access.getRelativePage() * linesPerPage + Math.min(relativeY / font.lineHeight, linesPerPage - 1);
-        int selected = getIndexItemFromRelativeLine(line - indexStartLine);
-        boolean put = false;
-        oldHoverTicks.putAll(hoverTicks);
-        if (line >= indexStartLine && selected != -1 && mouseX > x && mouseX < x + width) {
-            put = true;
-            int oldTicks = hoverTicks.getOrDefault(selected, 0);
-            if (oldTicks < 20) {
-                hoverTicks.put(selected, oldTicks + 1);
-            }
+        int hovered = getIndexItemFromRelativeLine(line - indexStartLine);
+        Int2BooleanArrayMap hovers = access.isLeftPage() ? leftHovers : rightHovers;
+        for (Int2BooleanMap.Entry entry : hovers.int2BooleanEntrySet()) {
+            hovers.put(entry.getIntKey(), false);
         }
-        for (Int2IntMap.Entry entry : hoverTicks.int2IntEntrySet()) {
-            if (entry.getIntKey() != selected || !put) {
-                hoverTicks.put(entry.getIntKey(), Math.max(entry.getIntValue() - 1, 0));
+        if (line >= indexStartLine && hovered != -1 && mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
+            hovers.put(hovered, true);
+        }
+    }
+
+    @Override
+    public void singleTick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
+        oldHoverTicks.putAll(hoverTicks);
+        for (int i = 0; i < indexItems.size(); i++) {
+            int value = hoverTicks.getOrDefault(i, 0);
+            if (!isHovered(i)) {
+                hoverTicks.put(i, Math.max(value - 1, 0));
+            } else if (value < 20) {
+                hoverTicks.put(i, value + 1);
             }
         }
     }
@@ -119,7 +123,7 @@ public class IndexBookComponent extends BookComponent {
         int relativeY = mouseY - y;
         int line = access.getRelativePage() * linesPerPage + Math.min(relativeY / font.lineHeight, linesPerPage - 1);
         int selected = getIndexItemFromRelativeLine(line - indexStartLine);
-        if (line >= indexStartLine && selected != -1 && mouseX > x && mouseX < x + width) {
+        if (line >= indexStartLine && selected != -1 && mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
             ResourceLocation jumpTo = indexItems.get(selected).jumpTo();
             for (int i = 0; i < access.getComponents().size(); i++) {
                 BookComponentDefinition definition = access.getComponents().get(i);
@@ -135,7 +139,9 @@ public class IndexBookComponent extends BookComponent {
         }
     }
 
-    public record IndexItem(Component text, ResourceLocation jumpTo) {
-
+    public record IndexItem(Component text, ResourceLocation jumpTo, boolean enabled) {
+        public IndexItem(Component text, ResourceLocation jumpTo) {
+            this(text, jumpTo, true);
+        }
     }
 }

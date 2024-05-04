@@ -12,8 +12,8 @@ public record UpdateCameraPacket(int cameraId) implements CustomPacketPayload {
     public static final Type<UpdateCameraPacket> TYPE = new Type<>(new ResourceLocation(EternalStarlight.MOD_ID, "update_camera"));
     public static final StreamCodec<RegistryFriendlyByteBuf, UpdateCameraPacket> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.INT, UpdateCameraPacket::cameraId, UpdateCameraPacket::new);
 
-    public static void handle(UpdateCameraPacket message, Player player) {
-        EternalStarlight.getClientHelper().handleUpdateCamera(message);
+    public static void handle(UpdateCameraPacket packet, Player player) {
+        EternalStarlight.getClientHelper().handleUpdateCamera(packet);
     }
 
     @Override

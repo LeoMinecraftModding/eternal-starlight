@@ -19,5 +19,6 @@ public abstract class BookComponent {
     public abstract int getPageCount(Font font);
     public abstract void render(BookAccess access, GuiGraphics graphics, Font font, int x, int y, int mouseX, int mouseY);
     public abstract void tick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
+    public abstract void singleTick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
     public abstract void onClick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
 }

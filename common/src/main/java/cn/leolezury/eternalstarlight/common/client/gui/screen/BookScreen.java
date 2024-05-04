@@ -22,7 +22,9 @@ public class BookScreen extends Screen {
 
     public BookScreen(Book book) {
         super(Component.empty());
+        book.removeDisabled();
         this.book = book;
+        this.currentPage = -2;
     }
 
     @Override
@@ -44,69 +46,111 @@ public class BookScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double d, double e, int i) {
-        BookComponentDefinition left = getCurrentComponent(true);
-        BookComponentDefinition right = getCurrentComponent(false);
-        if (left != null) {
-            left.component().onClick(createBookAccess(true), font,
-                    getBaseX() + left.xOffsetL(),
-                    getBaseY() + left.yOffsetL(),
-                    (int) d, (int) e);
+    public boolean mouseClicked(double x, double y, int i) {
+        if (bookOpened()) {
+            BookComponentDefinition left = getCurrentComponent(true);
+            BookComponentDefinition right = getCurrentComponent(false);
+            if (left != null) {
+                left.component().onClick(createBookAccess(true), font,
+                        getBaseX() + left.xOffsetL(),
+                        getBaseY() + left.yOffsetL(),
+                        (int) x, (int) y);
+            }
+            if (right != null) {
+                right.component().onClick(createBookAccess(false), font,
+                        getBaseX() + book.width() / 2 + right.xOffsetR(),
+                        getBaseY() + right.yOffsetR(),
+                        (int) x, (int) y);
+            }
+        } else if (currentPage < 0) {
+            if (x >= getBaseX() + book.width() / 2f && x <= getBaseX() + book.width() && y >= getBaseY() && y <= getBaseY() + book.height()) {
+                setPage(0);
+            }
+        } else if (x >= getBaseX() && x <= getBaseX() + book.width() / 2f && y >= getBaseY() && y <= getBaseY() + book.height()) {
+            setPage(pageSize - 1);
         }
-        if (right != null) {
-            right.component().onClick(createBookAccess(false), font,
-                    getBaseX() + book.width() / 2 + right.xOffsetR(),
-                    getBaseY() + right.yOffsetR(),
-                    (int) d, (int) e);
-        }
-        return super.mouseClicked(d, e, i);
+        return super.mouseClicked(x, y, i);
     }
 
     @Override
     public void tick() {
-        BookComponentDefinition left = getCurrentComponent(true);
-        BookComponentDefinition right = getCurrentComponent(false);
-        if (left != null) {
-            left.component().tick(createBookAccess(true), font,
-                    getBaseX() + left.xOffsetL(),
-                    getBaseY() + left.yOffsetL(),
-                    mouseX, mouseY);
-        }
-        if (right != null) {
-            right.component().tick(createBookAccess(false), font,
-                    getBaseX() + book.width() / 2 + right.xOffsetR(),
-                    getBaseY() + right.yOffsetR(),
-                    mouseX, mouseY);
+        if (bookOpened()) {
+            BookComponentDefinition left = getCurrentComponent(true);
+            BookComponentDefinition right = getCurrentComponent(false);
+            if (left != null) {
+                left.component().tick(createBookAccess(true), font,
+                        getBaseX() + left.xOffsetL(),
+                        getBaseY() + left.yOffsetL(),
+                        mouseX, mouseY);
+            }
+            if (right != null) {
+                right.component().tick(createBookAccess(false), font,
+                        getBaseX() + book.width() / 2 + right.xOffsetR(),
+                        getBaseY() + right.yOffsetR(),
+                        mouseX, mouseY);
+            }
+            if (left == null || right == null || left.component() != right.component()) {
+                if (left != null) {
+                    left.component().singleTick(createBookAccess(true), font,
+                            getBaseX() + left.xOffsetL(),
+                            getBaseY() + left.yOffsetL(),
+                            mouseX, mouseY);
+                }
+                if (right != null) {
+                    right.component().singleTick(createBookAccess(false), font,
+                            getBaseX() + book.width() / 2 + right.xOffsetR(),
+                            getBaseY() + right.yOffsetR(),
+                            mouseX, mouseY);
+                }
+            } else {
+                left.component().singleTick(createBookAccess(true), font,
+                        getBaseX() + left.xOffsetL(),
+                        getBaseY() + left.yOffsetL(),
+                        mouseX, mouseY);
+            }
         }
         updateVisibility();
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.render(guiGraphics, i, j, f);
-        guiGraphics.blit(book.background().withSuffix(".png"), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
-        BookComponentDefinition left = getCurrentComponent(true);
-        BookComponentDefinition right = getCurrentComponent(false);
-        if (left != null) {
-            left.component().render(createBookAccess(true), guiGraphics, font,
-                    getBaseX() + left.xOffsetL(),
-                    getBaseY() + left.yOffsetL(),
-                    mouseX, mouseY);
+    public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+        super.renderBackground(guiGraphics, i, j, f);
+        if (bookOpened()) {
+            guiGraphics.blit(book.background(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
+            BookComponentDefinition left = getCurrentComponent(true);
+            BookComponentDefinition right = getCurrentComponent(false);
+            if (left != null) {
+                left.component().render(createBookAccess(true), guiGraphics, font,
+                        getBaseX() + left.xOffsetL(),
+                        getBaseY() + left.yOffsetL(),
+                        mouseX, mouseY);
+            }
+            if (right != null) {
+                right.component().render(createBookAccess(false), guiGraphics, font,
+                        getBaseX() + book.width() / 2 + right.xOffsetR(),
+                        getBaseY() + right.yOffsetR(),
+                        mouseX, mouseY);
+            }
+        } else if (currentPage < 0) {
+            guiGraphics.blit(book.cover(), getBaseX() + book.width() / 2, getBaseY(), 0, 0, book.width() / 2, book.height(), book.width() / 2, book.height());
+        } else {
+            guiGraphics.blit(book.backCover(), getBaseX(), getBaseY(), 0, 0, book.width() / 2, book.height(), book.width() / 2, book.height());
         }
-        if (right != null) {
-            right.component().render(createBookAccess(false), guiGraphics, font,
-                    getBaseX() + book.width() / 2 + right.xOffsetR(),
-                    getBaseY() + right.yOffsetR(),
-                    mouseX, mouseY);
-        }
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
     }
 
     public void flipLeft() {
         setPage(currentPage - 2);
+        updateVisibility();
     }
 
     public void flipRight() {
         setPage(currentPage + 2);
+        updateVisibility();
     }
 
     private int getBaseX() {
@@ -115,6 +159,10 @@ public class BookScreen extends Screen {
 
     private int getBaseY() {
         return (height - book.height()) / 2;
+    }
+
+    private boolean bookOpened() {
+        return currentPage >= 0 && currentPage < pageSize;
     }
 
     private @Nullable BookComponentDefinition getCurrentComponent(boolean left) {
@@ -152,6 +200,11 @@ public class BookScreen extends Screen {
             }
 
             @Override
+            public boolean isLeftPage() {
+                return left;
+            }
+
+            @Override
             public void setPage(int page) {
                 BookScreen.this.setPage(page);
             }
@@ -168,8 +221,9 @@ public class BookScreen extends Screen {
     }
 
     private void updateVisibility() {
-        leftButton.visible = currentPage >= 2;
-        rightButton.visible = pageSize - currentPage > 2;
+        boolean visible = bookOpened();
+        leftButton.visible = visible;
+        rightButton.visible = visible;
     }
 
     private List<BookComponentDefinition> getComponents() {

@@ -6,7 +6,6 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
 public class ESPackets {
-    public static final PacketInfo<TestPacket> TEST = new PacketInfo<>(TestPacket.TYPE, TestPacket.STREAM_CODEC, TestPacket::handle);
     public static final PacketInfo<ParticlePacket> PARTICLE = new PacketInfo<>(ParticlePacket.TYPE, ParticlePacket.STREAM_CODEC, ParticlePacket::handle);
     public static final PacketInfo<UpdateWeatherPacket> UPDATE_WEATHER = new PacketInfo<>(UpdateWeatherPacket.TYPE, UpdateWeatherPacket.STREAM_CODEC, UpdateWeatherPacket::handle);
     public static final PacketInfo<CancelWeatherPacket> CANCEL_WEATHER = new PacketInfo<>(CancelWeatherPacket.TYPE, CancelWeatherPacket.STREAM_CODEC, CancelWeatherPacket::handle);
@@ -17,6 +16,7 @@ public class ESPackets {
     public static final PacketInfo<UpdateCameraPacket> UPDATE_CAMERA = new PacketInfo<>(UpdateCameraPacket.TYPE, UpdateCameraPacket.STREAM_CODEC, UpdateCameraPacket::handle);
     public static final PacketInfo<ClientMountPacket> CLIENT_MOUNT = new PacketInfo<>(ClientMountPacket.TYPE, ClientMountPacket.STREAM_CODEC, ClientMountPacket::handle);
     public static final PacketInfo<ClientDismountPacket> CLIENT_DISMOUNT = new PacketInfo<>(ClientDismountPacket.TYPE, ClientDismountPacket.STREAM_CODEC, ClientDismountPacket::handle);
+    public static final PacketInfo<OpenStarlightStoryPacket> OPEN_STARLIGHT_STORY = new PacketInfo<>(OpenStarlightStoryPacket.TYPE, OpenStarlightStoryPacket.STREAM_CODEC, OpenStarlightStoryPacket::handle);
 
     public record PacketInfo<T extends CustomPacketPayload>(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 

@@ -20,14 +20,14 @@ public record CloseGatekeeperGuiPacket(int id, int operation) implements CustomP
         return new CloseGatekeeperGuiPacket(id, operation);
     }
 
-    public static void write(CloseGatekeeperGuiPacket message, FriendlyByteBuf buf) {
-        buf.writeInt(message.id());
-        buf.writeInt(message.operation());
+    public static void write(CloseGatekeeperGuiPacket packet, FriendlyByteBuf buf) {
+        buf.writeInt(packet.id());
+        buf.writeInt(packet.operation());
     }
 
-    public static void handle(CloseGatekeeperGuiPacket message, Player player) {
-        if (player instanceof ServerPlayer serverPlayer && serverPlayer.serverLevel().getEntity(message.id()) instanceof TheGatekeeper gatekeeper) {
-            gatekeeper.handleDialogueClose(message.operation());
+    public static void handle(CloseGatekeeperGuiPacket packet, Player player) {
+        if (player instanceof ServerPlayer serverPlayer && serverPlayer.serverLevel().getEntity(packet.id()) instanceof TheGatekeeper gatekeeper) {
+            gatekeeper.handleDialogueClose(packet.operation());
         }
     }
 

@@ -33,14 +33,14 @@ public record ParticlePacket(ParticleOptions particle,
         return type.streamCodec().decode(buf);
     }
 
-    public static void write(ParticlePacket message, RegistryFriendlyByteBuf buf) {
-        writeParticle(message.particle(), buf);
-        buf.writeDouble(message.x);
-        buf.writeDouble(message.y);
-        buf.writeDouble(message.z);
-        buf.writeDouble(message.dx);
-        buf.writeDouble(message.dy);
-        buf.writeDouble(message.dz);
+    public static void write(ParticlePacket packet, RegistryFriendlyByteBuf buf) {
+        writeParticle(packet.particle(), buf);
+        buf.writeDouble(packet.x);
+        buf.writeDouble(packet.y);
+        buf.writeDouble(packet.z);
+        buf.writeDouble(packet.dx);
+        buf.writeDouble(packet.dy);
+        buf.writeDouble(packet.dz);
     }
 
     private static <T extends ParticleOptions> void writeParticle(T particle, RegistryFriendlyByteBuf buf) {
@@ -49,8 +49,8 @@ public record ParticlePacket(ParticleOptions particle,
         type.streamCodec().encode(buf, particle);
     }
 
-    public static void handle(ParticlePacket message, Player player) {
-        EternalStarlight.getClientHelper().handleParticlePacket(message);
+    public static void handle(ParticlePacket packet, Player player) {
+        EternalStarlight.getClientHelper().handleParticlePacket(packet);
     }
 
     @Override

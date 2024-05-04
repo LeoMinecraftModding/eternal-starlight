@@ -1,5 +1,5 @@
 {
-  "itemGroup.eternal_starlight": "Eternal Starlight",
+  "name.eternal_starlight": "Eternal Starlight",
 
   "block.eternal_starlight.berries_vines": "Berries Vines",
   "block.eternal_starlight.berries_vines_plant": "Berries Vines Plant",
@@ -710,5 +710,12 @@
   "message.eternal_starlight.dream_catcher_3": "Chase your dreams...",
   "message.eternal_starlight.dream_catcher_4": "Come on!",
   "message.eternal_starlight.dream_catcher_5": "If you fall, get knocked down, pick yourself up off the ground...",
-  "message.eternal_starlight.dream_catcher_6": "Fuse your armor back together!"
+  "message.eternal_starlight.dream_catcher_6": "Fuse your armor back together!",
+
+  "book.eternal_starlight.preface": "\"Look at these flowers! What a fascinating view! view... view...\"\n\"They're echo flowers, they live for thousands of years, repeating, recording and understanding everything they've heard. heard.. heard...\"\n",
+  "book.eternal_starlight.index": "Index:",
+  "book.eternal_starlight.starlight_golem": "Mechanical creations built by the ancient Starlighters, they were created to defend against the colossus that was prophesied to destroy all of the race, and once possessed heavy armor and unparalleled strength. But at last, the Starlighters were horrified to discover that it was they who had built the colossus that was prophesied to destroy all.\nTo this day, no intact golem exists, and only smaller machines remain.",
+  "book.eternal_starlight.lunar_monstrosity": "A plant infused with the power of the moon's radiance by an ancient civilization, used to devour the souls of prisoners held in the labyrinth.",
+  "book.eternal_starlight.twilight_gaze": "Twilight gaze are known for their glowing purple eyes - in the Abyss, where they originate from, these eyes help them see their surroundings in total darkness. They love the environment of the Abyss, and will attempt to return to it if they stray too far from it. This fish will not actively attack humans, but if you harm them, the Twilight gaze will not hesitate to fight back.",
+  "book.eternal_starlight.shimmer_lacewing": "An insect that flits around shimmer river and dark swamp with four pairs of glowing blue or purple wings. Their presence is neither threatening nor useful to other creatures. When the Starlight civilization still existed, this was a small creature loved by children."
 }

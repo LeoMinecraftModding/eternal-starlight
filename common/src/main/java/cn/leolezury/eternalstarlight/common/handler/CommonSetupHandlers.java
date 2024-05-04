@@ -64,7 +64,6 @@ public class CommonSetupHandlers {
     }
 
     public static void registerPackets(NetworkRegisterStrategy strategy) {
-        strategy.register(ESPackets.TEST);
         strategy.register(ESPackets.PARTICLE);
         strategy.register(ESPackets.UPDATE_WEATHER);
         strategy.register(ESPackets.CANCEL_WEATHER);
@@ -75,6 +74,7 @@ public class CommonSetupHandlers {
         strategy.register(ESPackets.UPDATE_CAMERA);
         strategy.register(ESPackets.CLIENT_MOUNT);
         strategy.register(ESPackets.CLIENT_DISMOUNT);
+        strategy.register(ESPackets.OPEN_STARLIGHT_STORY);
     }
 
     public interface EntityAttributeRegisterStrategy {

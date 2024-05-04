@@ -3,10 +3,11 @@ package cn.leolezury.eternalstarlight.common.client.helper;
 import cn.leolezury.eternalstarlight.common.network.*;
 
 public interface IClientHelper {
-    void handleParticlePacket(ParticlePacket message);
-    void handleOpenCrestGui(OpenCrestGuiPacket message);
-    void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket message);
-    void handleUpdateCamera(UpdateCameraPacket message);
-    void handleClientMount(ClientMountPacket message);
-    void handleClientDismount(ClientDismountPacket message);
+    void handleParticlePacket(ParticlePacket packet);
+    void handleOpenCrestGui(OpenCrestGuiPacket packet);
+    void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet);
+    void handleUpdateCamera(UpdateCameraPacket packet);
+    void handleClientMount(ClientMountPacket packet);
+    void handleClientDismount(ClientDismountPacket packet);
+    void handleOpenStarlightStory(OpenStarlightStoryPacket packet);
 }
