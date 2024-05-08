@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,8 +42,8 @@ public abstract class AbstractSpell {
             damageCrystal(player);
         }
         onStart(entity);
-        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
-            livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, 0));
+        if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
+            caster.setSpellData(new SpellCastData(true, this, 0));
         }
     }
 
@@ -65,16 +64,16 @@ public abstract class AbstractSpell {
         } else if (ticks <= spellProperties().preparationTicks() + spellProperties().spellTicks()) {
             onSpellTick(entity, ticks - spellProperties().preparationTicks());
         }
-        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
-            livingEntity.setSynchedData(new ESSynchedEntityData.SynchedData(true, this, ticks));
+        if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
+            caster.setSpellData(new SpellCastData(true, this, ticks));
         }
     }
 
     public void stop(LivingEntity entity, int ticks) {
         onStop(entity, ticks);
         ESSpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
-        if (!entity.level().isClientSide && entity instanceof ESLivingEntity livingEntity) {
-            livingEntity.setSynchedData(ESSynchedEntityData.SynchedData.getDefault());
+        if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
+            caster.setSpellData(SpellCastData.getDefault());
         }
     }
 

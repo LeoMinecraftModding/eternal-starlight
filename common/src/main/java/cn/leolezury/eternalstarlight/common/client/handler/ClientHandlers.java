@@ -1,17 +1,17 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.ESLivingEntity;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESSynchedEntityData;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -225,8 +225,8 @@ public class ClientHandlers {
         Options options = Minecraft.getInstance().options;
         if (options.getCameraType().isFirstPerson()) {
             LocalPlayer player = Minecraft.getInstance().player;
-            if (player instanceof ESLivingEntity living && living.getSynchedData().hasSpell()) {
-                ESSynchedEntityData.SynchedData data = living.getSynchedData();
+            if (player instanceof SpellCaster caster && caster.getSpellData().hasSpell()) {
+                SpellCastData data = caster.getSpellData();
                 RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
                 if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
                     float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.forge.init;
+package cn.leolezury.eternalstarlight.forge.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;

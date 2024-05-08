@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.block.fluid;
 
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
-import cn.leolezury.eternalstarlight.forge.init.ESFluidTypes;
+import cn.leolezury.eternalstarlight.forge.registry.ESFluidTypes;
 import net.neoforged.neoforge.fluids.FluidType;
 
 public abstract class ForgeEtherFluid extends EtherFluid {

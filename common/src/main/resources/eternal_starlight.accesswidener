@@ -58,6 +58,12 @@ accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer
 extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 accessible field net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator globalFluidPicker Ljava/util/function/Supplier;
 
+# spell data synchronization
+accessible field net/minecraft/server/level/ChunkMap entityMap Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+accessible class net/minecraft/server/level/ChunkMap$TrackedEntity
+accessible field net/minecraft/server/level/ChunkMap$TrackedEntity entity Lnet/minecraft/world/entity/Entity;
+accessible field net/minecraft/server/level/ChunkMap$TrackedEntity seenBy Ljava/util/Set;
+
 # fabirc mixin
 accessible class net/minecraft/client/resources/model/ModelManager$ReloadState
 accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection

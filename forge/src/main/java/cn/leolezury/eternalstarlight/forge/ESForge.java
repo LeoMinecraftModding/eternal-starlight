@@ -2,9 +2,8 @@ package cn.leolezury.eternalstarlight.forge;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.forge.init.ESEntityDataSerializers;
-import cn.leolezury.eternalstarlight.forge.init.ESFluidTypes;
 import cn.leolezury.eternalstarlight.forge.platform.ForgePlatform;
+import cn.leolezury.eternalstarlight.forge.registry.ESFluidTypes;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -14,7 +13,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 @Mod(EternalStarlight.MOD_ID)
 public class ESForge {
     public ESForge(IEventBus modEventBus) {
-        ESEntityDataSerializers.loadClass();
         ESFluidTypes.loadClass();
         EternalStarlight.init();
         modEventBus.addListener(this::onRegister);
