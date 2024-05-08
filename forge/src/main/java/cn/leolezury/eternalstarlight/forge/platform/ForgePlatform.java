@@ -35,10 +35,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -48,7 +46,6 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -177,16 +174,6 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public ShieldItem createShield(Item.Properties properties) {
         return new ForgeShieldItem(properties);
-    }
-
-    @Override
-    public BucketItem createBucket(Supplier<? extends Fluid> fluid, Item.Properties properties) {
-        return new BucketItem(fluid, properties);
-    }
-
-    @Override
-    public MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<? extends Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
-        return new MobBucketItem(entityType, fluid, soundEvent, properties);
     }
 
     @Override

@@ -7,18 +7,16 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
-import net.neoforged.neoforge.event.TickEvent;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            ClientHandlers.onClientTick();
-        }
+    public static void onClientTick(ClientTickEvent.Post event) {
+        ClientHandlers.onClientTick();
     }
 
     @SubscribeEvent

@@ -29,10 +29,8 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameRules;
@@ -43,7 +41,6 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
@@ -90,12 +87,6 @@ public interface ESPlatform {
     }
     default ShieldItem createShield(Item.Properties properties) {
         return new ShieldItem(properties);
-    }
-    default BucketItem createBucket(Supplier<? extends Fluid> fluid, Item.Properties properties) {
-        return new BucketItem(fluid.get(), properties);
-    }
-    default MobBucketItem createMobBucket(Supplier<? extends EntityType<?>> entityType, Supplier<? extends Fluid> fluid, Supplier<? extends SoundEvent> soundEvent, Item.Properties properties) {
-        return new MobBucketItem(entityType.get(), fluid.get(), soundEvent.get(), properties);
     }
     ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
     CreativeModeTab getESTab();
