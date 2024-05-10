@@ -1,17 +1,18 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.util.Color;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
 
 @Environment(EnvType.CLIENT)
 public class ESSmokeParticle extends SimpleAnimatedParticle {
     private final float rotSpeed;
 
-    protected ESSmokeParticle(ClientLevel clientLevel, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, SpriteSet spriteSet, float gravity) {
-        super(clientLevel, x, y, z, spriteSet, gravity);
+    protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, SpriteSet spriteSet, float gravity) {
+        super(level, x, y, z, spriteSet, gravity);
         this.xd = dx + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
         this.yd = dy + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
         this.zd = dz + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
@@ -46,42 +47,15 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         return ParticleRenderType.PARTICLE_SHEET_LIT;
     }
 
-    @Environment(EnvType.CLIENT)
-    public static class FlameProvider implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<ESSmokeParticleOptions> {
         private final SpriteSet sprites;
 
-        public FlameProvider(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.sprites = spriteSet;
         }
 
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
-            return new ESSmokeParticle(clientLevel, 1f, x, y, z, dx, dy, dz, true, 1f, 0xff9319, 0x310a02, this.sprites, 0);
-        }
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static class EnergizedFlameProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprites;
-
-        public EnergizedFlameProvider(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
-        }
-
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
-            return new ESSmokeParticle(clientLevel, 1.2f, x, y, z, dx, dy, dz, true, 1.8f, 0xcfffff, 0x310a02, this.sprites, 0);
-        }
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static class EnergizedFlameSpitProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprites;
-
-        public EnergizedFlameSpitProvider(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
-        }
-
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
-            return new ESSmokeParticle(clientLevel, 0.5f, x, y, z, dx, dy, dz, false, 5f, 0xcfffff, 0x310a02, this.sprites, 0);
+        public Particle createParticle(ESSmokeParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites, 0);
         }
     }
 }

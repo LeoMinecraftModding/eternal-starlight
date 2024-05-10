@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;
 
 import java.util.Random;

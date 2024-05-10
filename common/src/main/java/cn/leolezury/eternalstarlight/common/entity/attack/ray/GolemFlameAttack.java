@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -70,7 +70,7 @@ public class GolemFlameAttack extends RayAttack {
             dy *= velocity;
             dz *= velocity;
             endPos.add((random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f);
-            level().addParticle(ESParticles.ENERGIZED_FLAME_SPIT.get(), getX(), position().y, getZ(), dx, dy, dz);
+            level().addParticle(ESSmokeParticleOptions.ENERGIZED_FLAME_SPIT, getX(), position().y, getZ(), dx, dy, dz);
         }
     }
 }

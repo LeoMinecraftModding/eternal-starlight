@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.*;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.FinalizeHeightsTransformer;

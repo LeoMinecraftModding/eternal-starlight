@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;

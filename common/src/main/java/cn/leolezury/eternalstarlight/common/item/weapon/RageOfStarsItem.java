@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,7 +27,7 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
         EntityHitResult entityHitResult = ProjectileUtil.getEntityHitResult(entity, eyePosition, vec3, aabb, (entity1) -> !entity1.isSpectator() && entity1 instanceof LivingEntity, range * range);
         if (entityHitResult != null && entityHitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
             Vec3 location = livingEntity.position();
-            AetherSentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
+            AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
         }
     }
 }

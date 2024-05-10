@@ -8,12 +8,8 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
-import cn.leolezury.eternalstarlight.common.client.particle.effect.ESExplosionParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.effect.ESSmokeParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.effect.ShockwaveParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.effect.SonarParticle;
+import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
@@ -439,16 +435,14 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
         strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
         strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
-        strategy.register(ESParticles.FLAME_SMOKE.get(), ESSmokeParticle.FlameProvider::new);
-        strategy.register(ESParticles.ENERGY_EXPLOSION.get(), ESExplosionParticle.EnergyProvider::new);
-        strategy.register(ESParticles.LAVA_EXPLOSION.get(), ESExplosionParticle.LavaProvider::new);
-        strategy.register(ESParticles.ENERGIZED_FLAME_SMOKE.get(), ESSmokeParticle.EnergizedFlameProvider::new);
-        strategy.register(ESParticles.ENERGIZED_FLAME_SPIT.get(), ESSmokeParticle.EnergizedFlameSpitProvider::new);
+        strategy.register(ESParticles.EXPLOSION.get(), ESExplosionParticle.Provider::new);
+        strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
+        strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
     }
 
     public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
         strategy.register(ESEntities.FALLING_BLOCK.get(), ESFallingBlockRenderer::new);
-        strategy.register(ESEntities.AETHERSENT_METEOR.get(), AetherSentMeteorRenderer::new);
+        strategy.register(ESEntities.AETHERSENT_METEOR.get(), AethersentMeteorRenderer::new);
         strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
         strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
         strategy.register(ESEntities.CAMERA_SHAKE.get(), NothingRenderer::new);

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
@@ -60,7 +60,7 @@ public class GatekeeperFireball extends Fireball {
     }
 
     protected ParticleOptions getTrailParticle() {
-        return ESParticles.FLAME_SMOKE.get();
+        return ESSmokeParticleOptions.FLAME;
     }
 
     @Override

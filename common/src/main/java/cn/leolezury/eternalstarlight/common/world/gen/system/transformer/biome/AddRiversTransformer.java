@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NoiseDataTransformer;
 import com.mojang.serialization.Codec;

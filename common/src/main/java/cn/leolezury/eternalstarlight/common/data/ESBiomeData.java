@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
@@ -169,7 +169,7 @@ public class RayAttack extends Entity {
 
     public void addEndParticles(Vec3 endPos) {
         for (int i = 0; i < 3; i++) {
-            level().addParticle(ESParticles.ENERGY_EXPLOSION.get(), endPos.x + random.nextFloat() - 0.5f, endPos.y + random.nextFloat() - 0.5f, endPos.z + random.nextFloat() - 0.5f, 0, 0, 0);
+            level().addParticle(ESExplosionParticleOptions.ENERGY, endPos.x + random.nextFloat() - 0.5f, endPos.y + random.nextFloat() - 0.5f, endPos.z + random.nextFloat() - 0.5f, 0, 0, 0);
         }
     }
 

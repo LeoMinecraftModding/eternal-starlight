@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.particle.lightning.LightningParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.LightningParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.MapCodec;
@@ -31,11 +33,29 @@ public class ESParticles {
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> BLADE_SHOCKWAVE = PARTICLE_TYPES.register("blade_shockwave", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> CRYSTALLIZED_MOTH_SONAR = PARTICLE_TYPES.register("crystallized_moth_sonar", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<?>, SimpleParticleType> AMARAMBER_FLAME = PARTICLE_TYPES.register("amaramber_flame", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<?>, SimpleParticleType> FLAME_SMOKE = PARTICLE_TYPES.register("flame_smoke", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGY_EXPLOSION = PARTICLE_TYPES.register("energy_explosion", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<?>, SimpleParticleType> LAVA_EXPLOSION = PARTICLE_TYPES.register("lava_explosion", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SMOKE = PARTICLE_TYPES.register("energized_flame_smoke", () -> new SimpleParticleType(false));
-    public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGIZED_FLAME_SPIT = PARTICLE_TYPES.register("energized_flame_spit", () -> new SimpleParticleType(false));
+    public static final RegistryObject<ParticleType<?>, ParticleType<ESExplosionParticleOptions>> EXPLOSION = PARTICLE_TYPES.register("explosion", () -> new ParticleType<>(false) {
+        @Override
+        public MapCodec<ESExplosionParticleOptions> codec() {
+            return ESExplosionParticleOptions.CODEC;
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, ESExplosionParticleOptions> streamCodec() {
+            return ESExplosionParticleOptions.STREAM_CODEC;
+        }
+    });
+    public static final RegistryObject<ParticleType<?>, ParticleType<ESSmokeParticleOptions>> SMOKE = PARTICLE_TYPES.register("smoke", () -> new ParticleType<>(false) {
+        @Override
+        public MapCodec<ESSmokeParticleOptions> codec() {
+            return ESSmokeParticleOptions.CODEC;
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, ESSmokeParticleOptions> streamCodec() {
+            return ESSmokeParticleOptions.STREAM_CODEC;
+        }
+    });
+    public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_EXPLOSION = PARTICLE_TYPES.register("aethersent_explosion", () -> new SimpleParticleType(false));
 
     public static void loadClass() {}
 }

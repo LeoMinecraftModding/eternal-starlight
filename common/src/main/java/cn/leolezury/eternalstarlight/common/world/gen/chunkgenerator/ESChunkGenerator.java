@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.carver.ESExtraCavesCarver;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
+import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
+import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;

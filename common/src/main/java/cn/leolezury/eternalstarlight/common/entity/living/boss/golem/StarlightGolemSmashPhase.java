@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,7 +63,7 @@ public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
                                     if (entity.level().getBlockState(pos.relative(direction)).isAir() && entity.getRandom().nextInt(100) == 0) {
                                         entity.level().setBlockAndUpdate(pos.relative(direction), Blocks.LAVA.defaultBlockState());
                                         if (!entity.level().isClientSide) {
-                                            ((ServerLevel) entity.level()).sendParticles(ESParticles.LAVA_EXPLOSION.get(), pos.relative(direction).getCenter().x, pos.relative(direction).getCenter().y, pos.relative(direction).getCenter().z, 1, 0, 0, 0, 0);
+                                            ((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.LAVA, pos.relative(direction).getCenter().x, pos.relative(direction).getCenter().y, pos.relative(direction).getCenter().z, 1, 0, 0, 0, 0);
                                         }
                                     }
                                 }
@@ -90,7 +90,7 @@ public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
                                             }
                                         }
                                         if (!entity.level().isClientSide) {
-                                            ((ServerLevel) entity.level()).sendParticles(ESParticles.ENERGY_EXPLOSION.get(), pos.getCenter().x, pos.getCenter().y, pos.getCenter().z, 1, 0, 0, 0, 0);
+                                            ((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.ENERGY, pos.getCenter().x, pos.getCenter().y, pos.getCenter().z, 1, 0, 0, 0, 0);
                                             if (entity.getRandom().nextInt(5) == 0) {
                                                 ((ServerLevel) entity.level()).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.getCenter().x, pos.getCenter().y + 0.5, pos.getCenter().z, 1, 0, 0, 0, 0);
                                             }

@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
-import cn.leolezury.eternalstarlight.common.entity.projectile.AetherSentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -47,7 +47,7 @@ public class MeteorRainWeather extends AbstractWeather {
             int targetY = pos.getY();
             int targetZ = pos.getZ();
             RandomSource random = level.getRandom();
-            AetherSentMeteor meteor = new AetherSentMeteor(level, null, targetX + (random.nextFloat() - 0.5) * 3, targetY + 200 + (random.nextFloat() - 0.5) * 5, targetZ + (random.nextFloat() - 0.5) * 3);
+            AethersentMeteor meteor = new AethersentMeteor(level, null, targetX + (random.nextFloat() - 0.5) * 3, targetY + 200 + (random.nextFloat() - 0.5) * 5, targetZ + (random.nextFloat() - 0.5) * 3);
             meteor.setSize(10);
             meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));
             meteor.onlyHurtEnemy = false;

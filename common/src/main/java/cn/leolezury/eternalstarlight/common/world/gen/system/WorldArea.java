@@ -1,9 +1,7 @@
-package cn.leolezury.eternalstarlight.common.world.gen.system.area;
+package cn.leolezury.eternalstarlight.common.world.gen.system;
 
 import cn.leolezury.eternalstarlight.common.data.ESBiomeData;
 import cn.leolezury.eternalstarlight.common.data.ESDataTransformers;
-import cn.leolezury.eternalstarlight.common.world.gen.system.biome.BiomeData;
-import cn.leolezury.eternalstarlight.common.world.gen.system.provider.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.Registry;
 

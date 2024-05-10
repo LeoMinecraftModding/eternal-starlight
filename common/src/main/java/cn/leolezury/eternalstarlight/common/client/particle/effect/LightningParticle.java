@@ -1,7 +1,8 @@
-package cn.leolezury.eternalstarlight.common.client.particle.lightning;
+package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.renderer.effect.BoltEffect;
 import cn.leolezury.eternalstarlight.common.client.renderer.effect.BoltRenderer;
+import cn.leolezury.eternalstarlight.common.particle.LightningParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -48,7 +49,7 @@ public class LightningParticle extends Particle {
     public void render(VertexConsumer consumer, Camera camera, float partialTick) {
         Vec3 vec3 = camera.getPosition();
         PoseStack stack = new PoseStack();
-        MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers().bufferSource();
+        MultiBufferSource.BufferSource source = Minecraft.getInstance().renderBuffers().bufferSource();
         float x = (float)(Mth.lerp(partialTick, this.xo, this.x) - vec3.x);
         float y = (float)(Mth.lerp(partialTick, this.yo, this.y) - vec3.y);
         float z = (float)(Mth.lerp(partialTick, this.zo, this.z) - vec3.z);
@@ -60,9 +61,9 @@ public class LightningParticle extends Particle {
         BoltEffect.BoltRenderInfo lightningBoltData = new BoltEffect.BoltRenderInfo().color(Color.rgbad(color.x, color.y, color.z, 1F - progress)).noise(0.2F, 0.2F).branching(0.3F, 0.6F).spreader(BoltEffect.SegmentSpreader.memory(0.9F));
         BoltEffect bolt = (new BoltEffect(lightningBoltData, Vec3.ZERO, endPos, 4)).size(0.05F).lifespan(lifetime).spawn(BoltEffect.SpawnFunction.CONSECUTIVE);
         boltRenderer.update(this, bolt, partialTick);
-        boltRenderer.render(partialTick, stack, multibuffersource$buffersource);
+        boltRenderer.render(partialTick, stack, source);
 
-        multibuffersource$buffersource.endBatch();
+        source.endBatch();
         stack.popPose();
     }
 
@@ -71,12 +72,11 @@ public class LightningParticle extends Particle {
         return ParticleRenderType.CUSTOM;
     }
 
-    
+
     public static class Provider implements ParticleProvider<LightningParticleOptions> {
         public Provider(SpriteSet spriteSet) {}
 
         public Particle createParticle(LightningParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-
             return new LightningParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.getColor());
         }
     }

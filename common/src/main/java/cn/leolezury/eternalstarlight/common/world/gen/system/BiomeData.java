@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.world.gen.system.biome;
+package cn.leolezury.eternalstarlight.common.world.gen.system;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

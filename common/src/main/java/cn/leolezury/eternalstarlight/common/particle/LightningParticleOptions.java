@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.particle.lightning;
+package cn.leolezury.eternalstarlight.common.particle;
 
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.mojang.serialization.MapCodec;

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -43,7 +43,7 @@ public class EnergizedFlame extends AttackEffect {
                 }
             }
         } else {
-            level().addParticle(ESParticles.ENERGIZED_FLAME_SMOKE.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
+            level().addParticle(ESSmokeParticleOptions.ENERGIZED_FLAME, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
             level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
         }
     }
