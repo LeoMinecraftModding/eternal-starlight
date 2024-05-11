@@ -200,7 +200,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
         if (y <= surfaceHeight) {
             state = defaultBlock;
         } else if (y <= seaLevel) {
-            state = data.fluidBlock().defaultBlockState();
+            state = data.fluidBlock().value().defaultBlockState();
         } else {
             state = AIR;
         }

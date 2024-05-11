@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record BiomeData(Holder<Biome> biome,
-                        Block fluidBlock,
+                        Holder<Block> fluidBlock,
                         List<Temperature> temperatures,
                         int height, int variance,
                         boolean hasBeaches, boolean hasRivers, boolean isOcean) {
     public static final Codec<BiomeData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Biome.CODEC.fieldOf("biome").forGetter(BiomeData::biome),
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("fluid").forGetter(BiomeData::fluidBlock),
+            BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("fluid").forGetter(BiomeData::fluidBlock),
             Temperature.CODEC.listOf().fieldOf("temperatures").forGetter(BiomeData::temperatures),
             Codec.INT.fieldOf("height").forGetter(BiomeData::height),
             Codec.INT.fieldOf("variance").forGetter(BiomeData::variance),
@@ -58,8 +58,8 @@ public record BiomeData(Holder<Biome> biome,
 
     public static class Builder {
         private final Holder<Biome> biome;
-        private Block fluidBlock = Blocks.WATER;
-        private List<Temperature> temperatures = new ArrayList<>();
+        private Holder<Block> fluidBlock = Blocks.WATER.builtInRegistryHolder();
+        private final List<Temperature> temperatures = new ArrayList<>();
         private final int height;
         private final int variance;
         private boolean hasBeaches = true;
@@ -72,7 +72,7 @@ public record BiomeData(Holder<Biome> biome,
             this.variance = variance;
         }
 
-        public Builder withFluid(Block fluid) {
+        public Builder withFluid(Holder<Block> fluid) {
             this.fluidBlock = fluid;
             return this;
         }

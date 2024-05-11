@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
@@ -58,6 +59,7 @@ public class ClientHandlers {
     public static boolean oldHideGui;
 
     public static void onClientTick() {
+        ClientWeatherInfo.tickRainLevel();
         if (oldCamera != null) {
             resetCameraIn--;
             Minecraft.getInstance().options.hideGui = true;

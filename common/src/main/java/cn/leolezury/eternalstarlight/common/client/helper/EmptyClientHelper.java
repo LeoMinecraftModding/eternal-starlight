@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.network.*;
 
-public class EmptyClientHelper implements IClientHelper {
+public class EmptyClientHelper implements ClientHelper {
     @Override
     public void handleParticlePacket(ParticlePacket packet) {
 

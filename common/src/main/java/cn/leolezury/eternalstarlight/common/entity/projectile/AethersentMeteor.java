@@ -7,13 +7,13 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -33,7 +33,6 @@ import org.joml.Vector3f;
 
 import java.util.UUID;
 
-// TODO completely redo this mess
 public class AethersentMeteor extends AbstractHurtingProjectile {
     protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
@@ -43,16 +42,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 
     public void setSize(int size) {
         entityData.set(SIZE, size);
-    }
-
-    protected static final EntityDataAccessor<Integer> TICKS_SINCE_LANDED = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
-
-    public int getTicksSinceLanded() {
-        return entityData.get(TICKS_SINCE_LANDED);
-    }
-
-    public void setTicksSinceLanded(int ticksSinceLanded) {
-        entityData.set(TICKS_SINCE_LANDED, ticksSinceLanded);
     }
 
     @Nullable
@@ -68,14 +57,19 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
         this.target = target;
     }
 
-    @Nullable
-    private Vec3 targetPos;
+    private Vec3 targetPos = Vec3.ZERO;
 
     public void setTargetPos(Vec3 targetPos) {
         this.targetPos = targetPos;
     }
 
-    public boolean onlyHurtEnemy = true;
+    private boolean onlyHurtEnemy = true;
+
+    public void setOnlyHurtEnemy(boolean onlyHurtEnemy) {
+        this.onlyHurtEnemy = onlyHurtEnemy;
+    }
+
+    private boolean natural = true;
 
     public AethersentMeteor(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
         super(type, level);
@@ -105,6 +99,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
                     meteor.setTarget(target);
                     meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));
                     meteor.onlyHurtEnemy = onlyHurtEnemy;
+                    meteor.natural = false;
                     level.addFreshEntity(meteor);
                     if (level instanceof ServerLevel serverLevel) {
                         serverLevel.sendParticles(ParticleTypes.EXPLOSION, meteor.getX(), meteor.getY(), meteor.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
@@ -117,23 +112,25 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(SIZE, 0)
-                .define(TICKS_SINCE_LANDED, 0);
+        builder.define(SIZE, 0);
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         setSize(compoundTag.getInt("Size"));
-        setTicksSinceLanded(compoundTag.getInt("TicksSinceLanded"));
         if (compoundTag.hasUUID("Target")) {
             targetId = compoundTag.getUUID("Target");
         }
         targetPos = new Vec3(compoundTag.getDouble("TargetX"), compoundTag.getDouble("TargetY"), compoundTag.getDouble("TargetZ"));
-        onlyHurtEnemy = compoundTag.getBoolean("OnlyHurtEnemy");
+        if (compoundTag.contains("OnlyHurtEnemy", CompoundTag.TAG_BYTE)) {
+            onlyHurtEnemy = compoundTag.getBoolean("OnlyHurtEnemy");
+        }
+        if (compoundTag.contains("Natural", CompoundTag.TAG_BYTE)) {
+            natural = compoundTag.getBoolean("Natural");
+        }
     }
 
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         compoundTag.putInt("Size", getSize());
-        compoundTag.putInt("TicksSinceLanded", getTicksSinceLanded());
         if (target != null) {
             compoundTag.putUUID("Target", target.getUUID());
         }
@@ -143,49 +140,40 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
             compoundTag.putDouble("TargetZ", targetPos.z);
         }
         compoundTag.putBoolean("OnlyHurtEnemy", onlyHurtEnemy);
-    }
-
-    private void doHurtEntity(float damageScale) {
-        for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize()))) {
-            if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
-                livingEntity.invulnerableTime = 0;
-                livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * damageScale * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
-            }
-        }
+        compoundTag.putBoolean("Natural", natural);
     }
 
     private void handleHit() {
-        doHurtEntity(5);
-        if (target != null) {
-            for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().move(new Vec3(target.position().x - getX(), 0, target.position().z - getZ())).inflate(getSize()))) {
-                if (entity.getUUID().equals(targetId)) {
-                    doHandleHit();
-                }
+        if (natural) {
+            dropAndDiscard();
+        }
+        for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize()))) {
+            if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
+                livingEntity.invulnerableTime = 0;
+                livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
             }
-        } else if (targetPos != null && getBoundingBox().move(new Vec3(targetPos.x - getX(), 0, targetPos.z - getZ())).inflate(getSize()).contains(targetPos)) {
-            doHandleHit();
+        }
+        if (getTarget() != null && getY() < getTarget().getY()) {
+            dropAndDiscard();
+        } else if (getY() < targetPos.y) {
+            dropAndDiscard();
         }
     }
 
-    private void doHandleHit() {
-        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
-        if (level().isClientSide) {
-            level().addParticle(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 0, 0, 0);
-            for (int i = 0; i < 20; i++) {
-                float pitch = random.nextInt(361);
-                float yaw = random.nextInt(361);
-                float len = random.nextInt(getSize());
-                Vec3 particleTarget = ESMathUtil.rotationToPosition(position(), getSize() / 2f, pitch, yaw);
-                Vec3 particleStart = ESMathUtil.rotationToPosition(position(), len, pitch, yaw);
-                Vec3 motion = particleTarget.subtract(particleStart);
-                level().addParticle(new LightningParticleOptions(new Vector3f(0.7f, 0.07f, 0.78f)), particleStart.x, particleStart.y, particleStart.z, motion.x, motion.y, motion.z);
+    private void dropAndDiscard() {
+        if (!isRemoved()) {
+            playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
+            if (!level().isClientSide) {
+                ((ServerLevel) level()).sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+                if (natural && getSize() >= 10) {
+                    spawnAtLocation(ESItems.AETHERSENT_BLOCK.get());
+                    for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
+                        ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
+                        ((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), false, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
+                    }
+                }
+                discard();
             }
-        } else {
-            if (getOwner() == null && getSize() >= 10) {
-                spawnAtLocation(ESItems.AETHERSENT_BLOCK.get());
-                ((ServerLevel) level()).sendParticles(ESParticles.AETHERSENT_EXPLOSION.get(), getX(), getY(), getZ(), 1, 0, 0, 0, 0);
-            }
-            discard();
         }
     }
 
@@ -195,7 +183,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
         CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.0002f * getSize(), 20, 20);
         handleHit();
         if (!level().isClientSide && target == null && targetPos == null) {
-            doHandleHit();
+            dropAndDiscard();
         }
     }
 

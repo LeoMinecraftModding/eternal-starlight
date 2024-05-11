@@ -50,7 +50,7 @@ public class MeteorRainWeather extends AbstractWeather {
             AethersentMeteor meteor = new AethersentMeteor(level, null, targetX + (random.nextFloat() - 0.5) * 3, targetY + 200 + (random.nextFloat() - 0.5) * 5, targetZ + (random.nextFloat() - 0.5) * 3);
             meteor.setSize(10);
             meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));
-            meteor.onlyHurtEnemy = false;
+            meteor.setOnlyHurtEnemy(false);
             level.addFreshEntity(meteor);
             level.sendParticles(ParticleTypes.EXPLOSION, meteor.getX(), meteor.getY(), meteor.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
         }
@@ -75,11 +75,12 @@ public class MeteorRainWeather extends AbstractWeather {
         return true;
     }
 
+    @Environment(EnvType.CLIENT)
     @Override
     public float modifyRainLevel(float original) {
         float partialTick = Minecraft.getInstance().getFrameTime();
         float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
-        float rainLevel = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
-        return rainLevel;
+        ClientWeatherInfo.LEVEL_TARGET = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
+        return ClientWeatherInfo.getRainLevel(partialTick);
     }
 }

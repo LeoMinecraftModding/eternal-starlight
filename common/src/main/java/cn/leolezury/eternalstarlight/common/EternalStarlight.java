@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.common;
 
 import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegistry;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
+import cn.leolezury.eternalstarlight.common.client.helper.ClientSideHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
-import cn.leolezury.eternalstarlight.common.client.helper.IClientHelper;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -50,9 +50,9 @@ public class EternalStarlight {
         return new ResourceLocation(MOD_ID, string);
     }
 
-    public static IClientHelper getClientHelper() {
+    public static ClientHelper getClientHelper() {
         if (ESPlatform.INSTANCE.isPhysicalClient()) {
-            return new ClientHelper();
+            return new ClientSideHelper();
         } else {
             return new EmptyClientHelper();
         }

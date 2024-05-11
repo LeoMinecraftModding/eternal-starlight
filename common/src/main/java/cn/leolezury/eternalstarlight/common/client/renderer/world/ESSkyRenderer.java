@@ -84,6 +84,9 @@ public class ESSkyRenderer {
         float rainLevel = level.getRainLevel(partialTicks);
         if (ClientWeatherInfo.WEATHER != null) {
             rainLevel = ClientWeatherInfo.WEATHER.modifyRainLevel(rainLevel);
+        } else {
+            ClientWeatherInfo.LEVEL_TARGET = rainLevel;
+            rainLevel = ClientWeatherInfo.getRainLevel(partialTicks);
         }
         float f11 = 1.0F - rainLevel;
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
