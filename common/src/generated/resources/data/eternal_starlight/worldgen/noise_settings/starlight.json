@@ -163,13 +163,33 @@
                 "surface_type": "floor"
               },
               "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "eternal_starlight:fantasy_grass_block",
-                  "Properties": {
-                    "snowy": "false"
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:water",
+                      "add_stone_depth": false,
+                      "offset": 0,
+                      "surface_depth_multiplier": 0
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "eternal_starlight:fantasy_grass_block",
+                        "Properties": {
+                          "snowy": "false"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "eternal_starlight:nightfall_mud"
+                    }
                   }
-                }
+                ]
               }
             },
             {
@@ -324,13 +344,33 @@
               "surface_type": "floor"
             },
             "then_run": {
-              "type": "minecraft:block",
-              "result_state": {
-                "Name": "eternal_starlight:nightfall_grass_block",
-                "Properties": {
-                  "snowy": "false"
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:water",
+                    "add_stone_depth": false,
+                    "offset": 0,
+                    "surface_depth_multiplier": 0
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "eternal_starlight:nightfall_grass_block",
+                      "Properties": {
+                        "snowy": "false"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:block",
+                  "result_state": {
+                    "Name": "eternal_starlight:nightfall_dirt"
+                  }
                 }
-              }
+              ]
             }
           },
           {

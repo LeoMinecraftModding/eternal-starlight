@@ -36,7 +36,7 @@ public class ESDimensions {
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
                         SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
-                        SurfaceRules.state(grassBlock)
+                        SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(grassBlock)), SurfaceRules.state(dirt))
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),

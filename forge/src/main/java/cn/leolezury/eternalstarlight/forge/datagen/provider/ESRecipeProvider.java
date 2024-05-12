@@ -633,7 +633,7 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('N', ESItems.SWAMP_SILVER_INGOT.get())
                 .define('A', ESItems.AMARAMBER_CANDLE.get())
                 .unlockedBy("has_item", has(ESItems.AMARAMBER_CANDLE.get()))
-                .save(recipeOutput, getModLocation("amaramber_lantern_from_swamp_silver_nuggets"));
+                .save(recipeOutput, EternalStarlight.id("amaramber_lantern_from_swamp_silver_nuggets"));
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get())
                 .pattern("A")
                 .pattern("S")
@@ -653,18 +653,18 @@ public class ESRecipeProvider extends RecipeProvider {
 
     // misc
     protected final void addSmelt(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_smelting_from_" + name(criteria)));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id(name(output) + "_smelting_from_" + name(criteria)));
     }
     
     protected final void addBlast(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation(name(output) + "_blasting_from_" + name(criteria)));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id(name(output) + "_blasting_from_" + name(criteria)));
     }
 
     protected final void addSingleConversion(RecipeOutput recipeOutput, Item to, Item from) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, to)
                 .requires(from)
                 .unlockedBy("has_item", has(from))
-                .save(recipeOutput, getModLocation("shapeless/" + name(to) + "_from_" + name(from)));
+                .save(recipeOutput, EternalStarlight.id("shapeless/" + name(to) + "_from_" + name(from)));
     }
 
     protected final void addShapeless(RecipeOutput recipeOutput, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
@@ -672,7 +672,7 @@ public class ESRecipeProvider extends RecipeProvider {
         for (ItemLike item : ingredients) {
             builder.requires(item);
         }
-        builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, getModLocation("shapeless/" + name(output)));
+        builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id("shapeless/" + name(output)));
     }
 
     // combat & tools
@@ -924,7 +924,7 @@ public class ESRecipeProvider extends RecipeProvider {
     protected void stonecutting(RecipeOutput recipeOutput, RecipeCategory category, ItemLike output, ItemLike input, int count) {
         SingleItemRecipeBuilder builder = SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), category, output, count).unlockedBy(getHasName(input), has(input));
         String name = getConversionRecipeName(output, input);
-        builder.save(recipeOutput, getModLocation(name + "_stonecutting"));
+        builder.save(recipeOutput, EternalStarlight.id(name + "_stonecutting"));
     }
 
     protected void nineBlockStorageCustomPacking(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String packName, String packGroup) {
@@ -936,30 +936,30 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     protected void nineBlockStorage(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String packName, String packGroup, String unpackName, String unpackGroup) {
-        ShapelessRecipeBuilder.shapeless(unpackCategory, unpacked, 9).requires(packed).group(unpackGroup).unlockedBy(getHasName(packed), has(packed)).save(recipeOutput, getModLocation(unpackName));
-        ShapedRecipeBuilder.shaped(packCategory, packed).define('#', unpacked).pattern("###").pattern("###").pattern("###").group(packGroup).unlockedBy(getHasName(unpacked), has(unpacked)).save(recipeOutput, getModLocation(packName));
+        ShapelessRecipeBuilder.shapeless(unpackCategory, unpacked, 9).requires(packed).group(unpackGroup).unlockedBy(getHasName(packed), has(packed)).save(recipeOutput, EternalStarlight.id(unpackName));
+        ShapedRecipeBuilder.shaped(packCategory, packed).define('#', unpacked).pattern("###").pattern("###").pattern("###").group(packGroup).unlockedBy(getHasName(unpacked), has(unpacked)).save(recipeOutput, EternalStarlight.id(packName));
     }
 
     protected void colorWithDye(RecipeOutput recipeOutput, List<Item> dyes, List<Item> toDye, String name) {
         for (int i = 0; i < dyes.size(); ++i) {
             Item item = dyes.get(i);
             Item item1 = toDye.get(i);
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item1).requires(item).requires(Ingredient.of(toDye.stream().filter((argx) -> !argx.equals(item1)).map(ItemStack::new))).group(name).unlockedBy("has_needed_dye", has(item)).save(recipeOutput, getModLocation("dye_" + getItemName(item1)));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item1).requires(item).requires(Ingredient.of(toDye.stream().filter((argx) -> !argx.equals(item1)).map(ItemStack::new))).group(name).unlockedBy("has_needed_dye", has(item)).save(recipeOutput, EternalStarlight.id("dye_" + getItemName(item1)));
         }
     }
 
     protected void customCarpet(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3).define('#', input).pattern("##").group("carpet").unlockedBy(getHasName(input), has(input)).save(recipeOutput, getModLocation(name(output)));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output, 3).define('#', input).pattern("##").group("carpet").unlockedBy(getHasName(input), has(input)).save(recipeOutput, EternalStarlight.id(name(output)));
     }
 
     protected void bed(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output).define('#', input).define('X', ItemTags.PLANKS).pattern("###").pattern("XXX").group("bed").unlockedBy(getHasName(input), has(input)).save(recipeOutput, getModLocation(name(output)));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, output).define('#', input).define('X', ItemTags.PLANKS).pattern("###").pattern("XXX").group("bed").unlockedBy(getHasName(input), has(input)).save(recipeOutput, EternalStarlight.id(name(output)));
     }
 
     protected <T extends AbstractCookingRecipe> void simpleCooking(RecipeOutput recipeOutput, String fromName, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> factory, int time, ItemLike input, ItemLike output, float xp) {
         SimpleCookingRecipeBuilder builder = SimpleCookingRecipeBuilder.generic(Ingredient.of(input), RecipeCategory.FOOD, output, xp, time, serializer, factory).unlockedBy(getHasName(input), has(input));
         String itemName = getItemName(output);
-        builder.save(recipeOutput, getModLocation(itemName + "_from_" + fromName));
+        builder.save(recipeOutput, EternalStarlight.id(itemName + "_from_" + fromName));
     }
 
     protected static void copySmithingTemplate(RecipeOutput recipeOutput, ItemLike template, ItemLike ingredient, ItemLike ingotIngredient) {
@@ -976,9 +976,5 @@ public class ESRecipeProvider extends RecipeProvider {
 
     protected final ResourceLocation key(ItemLike item) {
         return BuiltInRegistries.ITEM.getKey(item.asItem());
-    }
-
-    protected final ResourceLocation getModLocation(String id) {
-        return EternalStarlight.id(id);
     }
 }
