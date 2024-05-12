@@ -386,6 +386,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicBlockItem(ESItems.FANTASY_GRASS_BLOCK.get());
         basicBlockItem(ESItems.FANTASY_GRASS_CARPET.get());
 
+        basicItem(ESItems.RAW_AETHERSENT.get());
         basicBlockItem(ESItems.AETHERSENT_BLOCK.get());
         basicItem(ESItems.AETHERSENT_INGOT.get());
         basicHandheld(ESItems.RAGE_OF_STARS.get());

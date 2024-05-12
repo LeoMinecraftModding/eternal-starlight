@@ -1,4 +1,4 @@
-// 1.20.6	2024-05-08T23:15:36.8419008	Item Models: eternal_starlight
+// 1.20.6	2024-05-12T11:05:37.1067691	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -363,6 +363,7 @@ b04d149ec0dafb8a69f12136b71c76c6020c1211 assets/eternal_starlight/models/item/pu
 3a2a901bfffcf784ef6dfa7417749736e09da156 assets/eternal_starlight/models/item/purple_yeti_fur.json
 eb0cf80c2db587a578624a201ae9d16134dbee32 assets/eternal_starlight/models/item/purple_yeti_fur_carpet.json
 5b444d60743a55f9b33e1eace42dc9d92c0efca1 assets/eternal_starlight/models/item/rage_of_stars.json
+be6cf58a03a67453be6a28ccb05aca4211f677cc assets/eternal_starlight/models/item/raw_aethersent.json
 20628894347950bb502358fac5b05fbca9fcc119 assets/eternal_starlight/models/item/raw_amaramber.json
 bbed7d0f4aa23e5b6b8e1e104fc3a54a6b8146a8 assets/eternal_starlight/models/item/redstone_doomeden_keyhole.json
 750eea45b36ddf1477a3c7bd17207bac7302f8b8 assets/eternal_starlight/models/item/red_crystallized_lunar_log.json

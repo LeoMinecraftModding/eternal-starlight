@@ -21,9 +21,11 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -166,10 +168,13 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
             if (!level().isClientSide) {
                 ((ServerLevel) level()).sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
                 if (natural && getSize() >= 10) {
-                    spawnAtLocation(ESItems.AETHERSENT_BLOCK.get());
+                    ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
+                    if (entity != null) {
+                        entity.setGlowingTag(true);
+                    }
                     for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
                         ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
-                        ((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), false, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
+                        ((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
                     }
                 }
                 discard();
