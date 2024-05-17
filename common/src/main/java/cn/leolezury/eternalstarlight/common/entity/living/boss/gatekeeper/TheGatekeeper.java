@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackManager;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -43,7 +43,6 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Npc;
@@ -338,35 +337,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             }
         }
         conversationTarget = null;
-    }
-
-    public boolean canReachTarget(double range) {
-        LivingEntity target = getTarget();
-        if (target == null) {
-            return false;
-        }
-        return distanceTo(target) <= range + getBbWidth() / 2f + target.getBbWidth() / 2f;
-    }
-
-    public boolean performMeleeAttack(double range) {
-        return performMeleeAttack(range, true);
-    }
-
-    public boolean performMeleeAttack(double range, boolean particles) {
-        LivingEntity target = getTarget();
-        if (target == null) {
-            return false;
-        }
-        for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(range))) {
-            if (livingEntity.getUUID().equals(target.getUUID()) && canReachTarget(range)) {
-                boolean successful = doHurtTarget(livingEntity);
-                if (particles && successful) {
-                    spawnMeleeAttackParticles();
-                }
-                return successful;
-            }
-        }
-        return false;
     }
 
     public void spawnMeleeAttackParticles() {

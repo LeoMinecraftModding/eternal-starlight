@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 
 public class GatekeeperComboPhase extends AttackPhase<TheGatekeeper> {
     public static final int ID = 7;
@@ -11,7 +11,7 @@ public class GatekeeperComboPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.canReachTarget(2);
+        return coolDownOver && canReachTarget(entity, 2);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class GatekeeperComboPhase extends AttackPhase<TheGatekeeper> {
     public void tick(TheGatekeeper entity) {
         int ticks = entity.getAttackTicks();
         if ((ticks >= 30 && ticks <= 33) || (ticks >= 35 && ticks <= 40)|| (ticks >= 44 && ticks <= 47)|| (ticks >= 60 && ticks <= 65)) {
-            entity.performMeleeAttack(2, false);
+            performMeleeAttack(entity, 2);
         }
     }
 

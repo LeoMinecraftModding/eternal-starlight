@@ -7,10 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.Gleech;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.NightfallSpider;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
@@ -88,6 +85,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.GLEECH.get(), Gleech.createAttributes().build());
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpider.createNightfallSpider().build());
+        strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalker.createAttributes().build());
         strategy.register(ESEntities.ENT.get(), Ent.createAttributes().build());
         strategy.register(ESEntities.RATLIN.get(), Ratlin.createAttributes().build());
         strategy.register(ESEntities.YETI.get(), Yeti.createAttributes().build());
@@ -113,6 +111,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.GLEECH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Gleech::checkGleechSpawnRules);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
+        strategy.register(ESEntities.THIRST_WALKER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         strategy.register(ESEntities.ENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
         strategy.register(ESEntities.RATLIN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
         strategy.register(ESEntities.YETI.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);

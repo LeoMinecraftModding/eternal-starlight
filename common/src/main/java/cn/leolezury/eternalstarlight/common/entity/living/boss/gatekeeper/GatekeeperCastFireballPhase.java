@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.GatekeeperFireball;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,7 +15,7 @@ public class GatekeeperCastFireballPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.canReachTarget(100) && !entity.canReachTarget(6);
+        return coolDownOver && canReachTarget(entity, 100) && !canReachTarget(entity, 6);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;

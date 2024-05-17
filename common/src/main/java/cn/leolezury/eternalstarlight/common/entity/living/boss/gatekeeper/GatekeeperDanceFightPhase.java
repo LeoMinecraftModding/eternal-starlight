@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import net.minecraft.core.BlockPos;
 
@@ -13,7 +13,7 @@ public class GatekeeperDanceFightPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.canReachTarget(3);
+        return coolDownOver && canReachTarget(entity, 3);
     }
 
     @Override
@@ -24,10 +24,10 @@ public class GatekeeperDanceFightPhase extends AttackPhase<TheGatekeeper> {
     @Override
     public void tick(TheGatekeeper entity) {
         if (entity.getAttackTicks() >= 30 && entity.getAttackTicks() <= 50) {
-            entity.performMeleeAttack(2, false);
+            performMeleeAttack(entity, 2);
         }
         if (entity.getAttackTicks() == 73) {
-            entity.performMeleeAttack(5, false);
+            performMeleeAttack(entity, 5);
             for (int x = -5; x <= 5; x++) {
                 for (int y = -2; y <= 2; y++) {
                     for (int z = -5; z <= 5; z++) {

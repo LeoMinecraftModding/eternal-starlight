@@ -1,0 +1,4 @@
+{
+  "type": "minecraft:entity",
+  "random_sequence": "eternal_starlight:entities/thirst_walker"
+}

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -19,7 +19,7 @@ public class GatekeeperSwingSwordPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.canReachTarget(3);
+        return coolDownOver && canReachTarget(entity, 3);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GatekeeperSwingSwordPhase extends AttackPhase<TheGatekeeper> {
                                 ESFallingBlock fallingBlock = new ESFallingBlock(entity.level(), pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, entity.level().getBlockState(pos), 100, false);
                                 fallingBlock.push(0, entity.getRandom().nextDouble() / 12 + 0.2, 0);
                                 entity.level().addFreshEntity(fallingBlock);
-                                if (fallingBlock.getBoundingBox().intersects(target.getBoundingBox()) && !entity.canReachTarget(2)) {
+                                if (fallingBlock.getBoundingBox().intersects(target.getBoundingBox()) && !canReachTarget(entity, 2)) {
                                     target.hurtMarked = true;
                                     target.setDeltaMovement(target.getDeltaMovement().add(entity.position().subtract(target.position()).normalize().scale(0.5)));
                                 }
@@ -54,7 +54,7 @@ public class GatekeeperSwingSwordPhase extends AttackPhase<TheGatekeeper> {
                     }
                 }
             }
-            if (entity.getAttackTicks() >= 47 && entity.getAttackTicks() <= 51 && entity.performMeleeAttack(3, false)) {
+            if (entity.getAttackTicks() >= 47 && entity.getAttackTicks() <= 51 && performMeleeAttack(entity, 3)) {
                 target.hurtMarked = true;
                 target.setDeltaMovement(target.getDeltaMovement().add(entity.position().subtract(target.position()).normalize().scale(-3).add(0, 0.2, 0)));
             }

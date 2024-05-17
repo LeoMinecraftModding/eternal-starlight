@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -14,7 +14,7 @@ public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && entity.canReachTarget(10) && !entity.canReachTarget(3);
+        return coolDownOver && canReachTarget(entity, 10) && !canReachTarget(entity, 3);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
 
     @Override
     public void tick(TheGatekeeper entity) {
-        if (!attacked && entity.canReachTarget(2)) {
-            entity.performMeleeAttack(2);
+        if (!attacked && canReachTarget(entity, 2)) {
+            performMeleeAttack(entity, 2);
             attacked = true;
         }
         entity.getNavigation().stop();

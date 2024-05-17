@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.entity.living.boss;
+package cn.leolezury.eternalstarlight.common.entity.living.phase;
 
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;

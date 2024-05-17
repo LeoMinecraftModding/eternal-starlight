@@ -1,6 +1,8 @@
-package cn.leolezury.eternalstarlight.common.entity.living.boss;
+package cn.leolezury.eternalstarlight.common.entity.living.phase;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Targeting;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
 public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
     private final int id;
@@ -53,5 +55,34 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
         entity.setAttackState(turnsInto);
         onStop(entity);
         entity.setAttackTicks(0);
+    }
+
+    public boolean canReachTarget(T entity, double range) {
+        if (entity instanceof Targeting targeting) {
+            LivingEntity target = targeting.getTarget();
+            if (target == null) {
+                return false;
+            }
+            return entity.distanceTo(target) <= range + entity.getBbWidth() / 2f + target.getBbWidth() / 2f;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean performMeleeAttack(T entity, double range) {
+        if (entity instanceof Targeting targeting) {
+            LivingEntity target = targeting.getTarget();
+            if (target == null) {
+                return false;
+            }
+            for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(range))) {
+                if (livingEntity.getUUID().equals(target.getUUID()) && canReachTarget(entity, range)) {
+                    return entity.doHurtTarget(livingEntity);
+                }
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 }

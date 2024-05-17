@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
-import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces.NeighborsRelatedTransformer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 

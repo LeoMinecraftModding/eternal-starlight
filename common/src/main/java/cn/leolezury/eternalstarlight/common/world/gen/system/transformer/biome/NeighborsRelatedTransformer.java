@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.interfaces;
+package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome;
 
 import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;

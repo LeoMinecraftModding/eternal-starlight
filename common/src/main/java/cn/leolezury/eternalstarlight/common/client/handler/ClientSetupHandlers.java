@@ -455,6 +455,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.GLEECH_EGG.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
         strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpiderRenderer::new);
+        strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalkerRenderer::new);
         strategy.register(ESEntities.ENT.get(), EntRenderer::new);
         strategy.register(ESEntities.RATLIN.get(), RatlinRenderer::new);
         strategy.register(ESEntities.YETI.get(), YetiRenderer::new);
@@ -512,6 +513,7 @@ public class ClientSetupHandlers {
         strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         strategy.register(NightfallSpiderModel.LAYER_LOCATION, NightfallSpiderModel::createBodyLayer);
+        strategy.register(ThirstWalkerModel.LAYER_LOCATION, ThirstWalkerModel::createBodyLayer);
         strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
         strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
         strategy.register(YetiModel.LAYER_LOCATION, YetiModel::createBodyLayer);

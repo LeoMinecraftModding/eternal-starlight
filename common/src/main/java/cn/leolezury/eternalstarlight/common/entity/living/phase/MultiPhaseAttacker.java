@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.entity.living.boss;
+package cn.leolezury.eternalstarlight.common.entity.living.phase;
 
 public interface MultiPhaseAttacker {
     void setAttackState(int state);

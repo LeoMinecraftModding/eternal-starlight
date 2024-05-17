@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiPhaseAttacker;
 import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
