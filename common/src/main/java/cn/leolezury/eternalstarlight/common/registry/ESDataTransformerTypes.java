@@ -12,7 +12,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.resources.ResourceKey;
 
 public class ESDataTransformerTypes {
-    public static final RegistrationProvider<DataTransformerType<?>> DATA_TRANSFORMER_TYPES = RegistrationProvider.newRegistry(ResourceKey.createRegistryKey(EternalStarlight.id("worldgen_data_transformer_type")), EternalStarlight.MOD_ID);
+    public static final RegistrationProvider<DataTransformerType<?>> DATA_TRANSFORMER_TYPES = RegistrationProvider.newRegistry(ResourceKey.createRegistryKey(EternalStarlight.id("worldgen_data_transformer_type")), EternalStarlight.ID);
     public static final Codec<DataTransformerType<?>> CODEC = DATA_TRANSFORMER_TYPES.registry().byNameCodec();
     public static final RegistryObject<DataTransformerType<?>, DataTransformerType<? extends AddBiomesTransformer>> ADD_BIOMES = DATA_TRANSFORMER_TYPES.register("add_biomes", () -> (DataTransformerType<AddBiomesTransformer>) () -> AddBiomesTransformer.CODEC);
     public static final RegistryObject<DataTransformerType<?>, DataTransformerType<? extends AddOceanTransformer>> ADD_OCEAN = DATA_TRANSFORMER_TYPES.register("add_ocean", () -> (DataTransformerType<AddOceanTransformer>) () -> AddOceanTransformer.CODEC);

@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESAtlasProvider extends SpriteSourceProvider {
     public ESAtlasProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, EternalStarlight.MOD_ID, existingFileHelper);
+        super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class HumanoidArmorLayerMixin<T extends LivingEntity, M extends HumanoidM
 
     @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
     private void es_renderTrim(Holder<ArmorMaterial> holder, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, ArmorTrim armorTrim, A humanoidModel, boolean bl, CallbackInfo ci) {
-        if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.MOD_ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
+        if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
             ci.cancel();
         }
     }

@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = EternalStarlight.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT)
 public class ClientEvents {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {

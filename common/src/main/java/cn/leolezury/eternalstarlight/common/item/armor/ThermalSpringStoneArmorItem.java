@@ -24,7 +24,7 @@ public class ThermalSpringStoneArmorItem extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip." + EternalStarlight.MOD_ID + ".thermal_springstone_armor").withStyle(ChatFormatting.GOLD));
+        list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".thermal_springstone_armor").withStyle(ChatFormatting.GOLD));
         super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
     }
 }

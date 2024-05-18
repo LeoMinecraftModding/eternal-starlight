@@ -89,7 +89,7 @@ public class ClientSideHelper implements ClientHelper {
     }
 
     private Component translatedBookText(String id) {
-        return Component.translatable("book." + EternalStarlight.MOD_ID + "." + id);
+        return Component.translatable("book." + EternalStarlight.ID + "." + id);
     }
 
     @Override

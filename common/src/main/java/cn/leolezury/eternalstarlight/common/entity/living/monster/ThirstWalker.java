@@ -3,13 +3,16 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiPhaseAttacker;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -175,6 +178,22 @@ public class ThirstWalker extends Monster implements MultiPhaseAttacker, Neutral
         if (compoundTag.contains("HungerLevel", CompoundTag.TAG_FLOAT)) {
             hungerLevel = compoundTag.getFloat("HungerLevel");
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ESSoundEvents.THIRST_WALKER_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ESSoundEvents.THIRST_WALKER_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ESSoundEvents.THIRST_WALKER_DEATH.get();
     }
 
     @Override

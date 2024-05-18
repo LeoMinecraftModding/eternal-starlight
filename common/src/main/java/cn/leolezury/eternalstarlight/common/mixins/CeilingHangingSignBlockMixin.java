@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class CeilingHangingSignBlockMixin {
     @Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)
     public void es_newBlockEntity(BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<BlockEntity> cir) {
-        if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.MOD_ID)) {
+        if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.ID)) {
             cir.setReturnValue(new ESHangingSignBlockEntity(blockPos, blockState));
         }
     }

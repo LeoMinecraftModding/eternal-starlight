@@ -13,10 +13,7 @@ import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESEnchantments;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
@@ -63,6 +60,11 @@ public class CommonHandlers {
     private static int ticksSinceLastUpdate = 0;
 
     private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C624-495F-0193-604728718B6B"), "Amaramber Armor Bonus", 7, AttributeModifier.Operation.ADD_VALUE);
+
+    private static final AttributeModifier DAGGER_OF_HUNGER_BONUS = new AttributeModifier(UUID.fromString("815CFA7C-C024-917D-0193-604728718B6A"), "Dagger Of Hunger Bonus", 1, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C024-917D-0273-606665718B6A"), "Dagger Of Hunger Speed Bonus", 0.5, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_PENALTY = new AttributeModifier(UUID.fromString("015CFA7C-C024-927D-0193-207728718B6B"), "Dagger Of Hunger Penalty", -1, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_PENALTY = new AttributeModifier(UUID.fromString("115CFA7C-C024-917D-0183-604728718B6F"), "Dagger Of Hunger Speed Penalty", -0.5, AttributeModifier.Operation.ADD_VALUE);
 
     public static void onServerTick(MinecraftServer server) {
         ticksSinceLastUpdate++;
@@ -186,14 +188,42 @@ public class CommonHandlers {
                 tickableArmor.tick(livingEntity.level(), livingEntity, armor);
             }
         }
-        AttributeInstance instance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-        if (instance != null) {
-            instance.removeModifier(AMARAMBER_BONUS.id());
+        AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+        if (armorAttribute != null) {
+            armorAttribute.removeModifier(AMARAMBER_BONUS.id());
             if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
                     && livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
                     && livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
                     && livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-                instance.addPermanentModifier(AMARAMBER_BONUS);
+                armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
+            }
+        }
+        AttributeInstance damageAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+        if (damageAttribute != null) {
+            damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
+            damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
+            if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
+                int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
+                if (state == 0) {
+                    damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_PENALTY);
+                }
+                if (state == 2) {
+                    damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_BONUS);
+                }
+            }
+        }
+        AttributeInstance attackSpeedAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+        if (attackSpeedAttribute != null) {
+            attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
+            attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
+            if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
+                int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
+                if (state == 0) {
+                    attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_PENALTY);
+                }
+                if (state == 2) {
+                    attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_BONUS);
+                }
             }
         }
         if (livingEntity.tickCount % 20 == 0) {
@@ -244,7 +274,7 @@ public class CommonHandlers {
 
     public static void onArrowHit(Projectile projectile, HitResult result) {
         if (projectile.level() instanceof ServerLevel serverLevel) {
-            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":crystal")) {
+            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.ID + ":crystal")) {
                 if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
                     int level = 0;
                     if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
@@ -256,7 +286,7 @@ public class CommonHandlers {
                     living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 200, level));
                 }
             }
-            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.MOD_ID + ":starfall")) {
+            if (ESEntityUtil.getPersistentData(projectile).contains(EternalStarlight.ID + ":starfall")) {
                 Vec3 location = result.getLocation();
                 AethersentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
             }

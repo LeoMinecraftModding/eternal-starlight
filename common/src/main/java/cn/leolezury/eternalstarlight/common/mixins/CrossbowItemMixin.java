@@ -19,7 +19,7 @@ public abstract class CrossbowItemMixin {
     private void es_createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
         if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
             Projectile projectile = cir.getReturnValue();
-            ESEntityUtil.getPersistentData(projectile).putBoolean(EternalStarlight.MOD_ID + ":crystal", true);
+            ESEntityUtil.getPersistentData(projectile).putBoolean(EternalStarlight.ID + ":crystal", true);
             cir.setReturnValue(projectile);
         }
     }

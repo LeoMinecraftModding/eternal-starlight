@@ -9,7 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.material.Fluid;
 
 public class ESFluids {
-    public static final RegistrationProvider<Fluid> FLUIDS = RegistrationProvider.get(Registries.FLUID, EternalStarlight.MOD_ID);
+    public static final RegistrationProvider<Fluid> FLUIDS = RegistrationProvider.get(Registries.FLUID, EternalStarlight.ID);
     public static final RegistryObject<Fluid, EtherFluid.Still> ETHER_STILL = FLUIDS.register("ether", ESPlatform.INSTANCE::createEtherFluid);
     public static final RegistryObject<Fluid, EtherFluid.Flowing> ETHER_FLOWING = FLUIDS.register("flowing_ether", ESPlatform.INSTANCE::createFlowingEtherFluid);
 

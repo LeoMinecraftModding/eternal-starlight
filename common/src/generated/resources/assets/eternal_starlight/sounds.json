@@ -3,13 +3,13 @@
     "sounds": [
       "mob/irongolem/throw"
     ],
-    "subtitle": "subtitles.entity.astral_golem.attack"
+    "subtitle": "subtitles.entity.eternal_starlight.astral_golem.attack"
   },
   "entity.astral_golem.death": {
     "sounds": [
       "mob/irongolem/death"
     ],
-    "subtitle": "subtitles.entity.astral_golem.death"
+    "subtitle": "subtitles.entity.eternal_starlight.astral_golem.death"
   },
   "entity.astral_golem.hurt": {
     "sounds": [
@@ -18,13 +18,13 @@
       "mob/irongolem/hit3",
       "mob/irongolem/hit4"
     ],
-    "subtitle": "subtitles.entity.astral_golem.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.astral_golem.hurt"
   },
   "entity.astral_golem.repair": {
     "sounds": [
       "mob/irongolem/repair"
     ],
-    "subtitle": "subtitles.entity.astral_golem.repair"
+    "subtitle": "subtitles.entity.eternal_starlight.astral_golem.repair"
   },
   "entity.boarwarf.ambient": {
     "sounds": [
@@ -49,7 +49,7 @@
         "volume": 0.66
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.ambient"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.ambient"
   },
   "entity.boarwarf.death": {
     "sounds": [
@@ -70,7 +70,7 @@
         "volume": 0.8
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.death"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.death"
   },
   "entity.boarwarf.hurt": {
     "sounds": [
@@ -87,7 +87,7 @@
         "volume": 0.7
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.hurt"
   },
   "entity.boarwarf.no": {
     "sounds": [
@@ -108,7 +108,7 @@
         "volume": 0.7
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.no"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.no"
   },
   "entity.boarwarf.trade": {
     "sounds": [
@@ -129,7 +129,7 @@
         "volume": 0.85
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.trade"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.trade"
   },
   "entity.boarwarf.yes": {
     "sounds": [
@@ -150,13 +150,13 @@
         "volume": 0.8
       }
     ],
-    "subtitle": "subtitles.entity.boarwarf.yes"
+    "subtitle": "subtitles.entity.eternal_starlight.boarwarf.yes"
   },
   "entity.ent.hurt": {
     "sounds": [
-      "eternal_starlight:mob/ent_hurt"
+      "eternal_starlight:mob/ent/hurt"
     ],
-    "subtitle": "subtitles.entity.ent.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.ent.hurt"
   },
   "entity.luminaris.death": {
     "sounds": [
@@ -165,7 +165,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminaris.death"
+    "subtitle": "subtitles.entity.eternal_starlight.luminaris.death"
   },
   "entity.luminaris.flop": {
     "sounds": [
@@ -186,7 +186,7 @@
         "volume": 0.3
       }
     ],
-    "subtitle": "subtitles.entity.luminaris.flop"
+    "subtitle": "subtitles.entity.eternal_starlight.luminaris.flop"
   },
   "entity.luminaris.hurt": {
     "sounds": [
@@ -195,7 +195,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminaris.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.luminaris.hurt"
   },
   "entity.luminofish.death": {
     "sounds": [
@@ -204,7 +204,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminofish.death"
+    "subtitle": "subtitles.entity.eternal_starlight.luminofish.death"
   },
   "entity.luminofish.flop": {
     "sounds": [
@@ -225,7 +225,7 @@
         "volume": 0.3
       }
     ],
-    "subtitle": "subtitles.entity.luminofish.flop"
+    "subtitle": "subtitles.entity.eternal_starlight.luminofish.flop"
   },
   "entity.luminofish.hurt": {
     "sounds": [
@@ -234,19 +234,19 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminofish.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.luminofish.hurt"
   },
   "entity.lunar_monstrosity.bite": {
     "sounds": [
       "mob/evocation_illager/fangs"
     ],
-    "subtitle": "subtitles.entity.lunar_monstrosity.bite"
+    "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.bite"
   },
   "entity.lunar_monstrosity.death": {
     "sounds": [
       "mob/blaze/death"
     ],
-    "subtitle": "subtitles.entity.lunar_monstrosity.death"
+    "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.death"
   },
   "entity.lunar_monstrosity.hurt": {
     "sounds": [
@@ -271,13 +271,13 @@
         "volume": 0.8
       }
     ],
-    "subtitle": "subtitles.entity.lunar_monstrosity.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.hurt"
   },
   "entity.lunar_monstrosity.roar": {
     "sounds": [
-      "eternal_starlight:mob/lunar_monstrosity_roar"
+      "eternal_starlight:mob/lunar_monstrosity/roar"
     ],
-    "subtitle": "subtitles.entity.lunar_monstrosity.roar"
+    "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.roar"
   },
   "entity.seeking_eye.death": {
     "sounds": [
@@ -290,26 +290,26 @@
         "volume": 1.3
       }
     ],
-    "subtitle": "subtitles.entity.seeking_eye.death"
+    "subtitle": "subtitles.entity.eternal_starlight.seeking_eye.death"
   },
   "entity.seeking_eye.launch": {
     "sounds": [
       "entity/endereye/endereye_launch1",
       "entity/endereye/endereye_launch2"
     ],
-    "subtitle": "subtitles.entity.seeking_eye.launch"
+    "subtitle": "subtitles.entity.eternal_starlight.seeking_eye.launch"
   },
   "entity.starlight_golem.block": {
     "sounds": [
       "random/anvil_land"
     ],
-    "subtitle": "subtitles.entity.starlight_golem.block"
+    "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.block"
   },
   "entity.starlight_golem.death": {
     "sounds": [
       "mob/irongolem/death"
     ],
-    "subtitle": "subtitles.entity.starlight_golem.death"
+    "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.death"
   },
   "entity.starlight_golem.hurt": {
     "sounds": [
@@ -332,19 +332,40 @@
         "volume": 0.8
       }
     ],
-    "subtitle": "subtitles.entity.starlight_golem.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.hurt"
   },
   "entity.starlight_golem.prepare_beam": {
     "sounds": [
       "block/beacon/activate"
     ],
-    "subtitle": "subtitles.entity.starlight_golem.prepare_beam"
+    "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.prepare_beam"
   },
   "entity.starlight_golem.prepare_charge": {
     "sounds": [
       "mob/irongolem/repair"
     ],
-    "subtitle": "subtitles.entity.starlight_golem.prepare_charge"
+    "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.prepare_charge"
+  },
+  "entity.thirst_walker.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/thirst_walker/idle1",
+      "eternal_starlight:mob/thirst_walker/idle2",
+      "eternal_starlight:mob/thirst_walker/idle3"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.thirst_walker.ambient"
+  },
+  "entity.thirst_walker.death": {
+    "sounds": [
+      "eternal_starlight:mob/thirst_walker/death"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.thirst_walker.death"
+  },
+  "entity.thirst_walker.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/thirst_walker/hurt1",
+      "eternal_starlight:mob/thirst_walker/hurt2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.thirst_walker.hurt"
   },
   "entity.twilight_gaze.death": {
     "sounds": [
@@ -353,7 +374,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminaris.death"
+    "subtitle": "subtitles.entity.eternal_starlight.luminaris.death"
   },
   "entity.twilight_gaze.hurt": {
     "sounds": [
@@ -362,7 +383,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.luminaris.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.luminaris.hurt"
   },
   "item.armor.equip_aethersent": {
     "sounds": [
@@ -373,7 +394,7 @@
       "item/armor/equip_leather5",
       "item/armor/equip_leather6"
     ],
-    "subtitle": "subtitles.item.armor.equip_aethersent"
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_aethersent"
   },
   "item.armor.equip_amaramber": {
     "sounds": [
@@ -384,7 +405,7 @@
       "item/armor/equip_leather5",
       "item/armor/equip_leather6"
     ],
-    "subtitle": "subtitles.item.armor.equip_amaramber"
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_amaramber"
   },
   "item.armor.equip_glacite": {
     "sounds": [
@@ -395,7 +416,7 @@
       "item/armor/equip_iron5",
       "item/armor/equip_iron6"
     ],
-    "subtitle": "subtitles.item.armor.equip_glacite"
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_glacite"
   },
   "item.armor.equip_swamp_silver": {
     "sounds": [
@@ -406,7 +427,7 @@
       "item/armor/equip_diamond5",
       "item/armor/equip_diamond6"
     ],
-    "subtitle": "subtitles.item.armor.equip_swamp_silver"
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_swamp_silver"
   },
   "item.armor.equip_thermal_springstone": {
     "sounds": [
@@ -417,7 +438,7 @@
       "item/armor/equip_iron5",
       "item/armor/equip_iron6"
     ],
-    "subtitle": "subtitles.item.armor.equip_thermal_springstone"
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_thermal_springstone"
   },
   "music.biome.dark_swamp": {
     "sounds": [

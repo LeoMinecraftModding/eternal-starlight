@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "eternal_starlight:item/dagger_of_hunger_normal",
+      "predicate": {
+        "minecraft:hunger_state": 0.5
+      }
+    },
+    {
+      "model": "eternal_starlight:item/dagger_of_hunger_saturated",
+      "predicate": {
+        "minecraft:hunger_state": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "eternal_starlight:item/dagger_of_hunger_hungry"
+  }
+}

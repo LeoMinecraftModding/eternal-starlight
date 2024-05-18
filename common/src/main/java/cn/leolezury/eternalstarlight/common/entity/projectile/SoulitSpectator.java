@@ -25,7 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SoulitSpectator extends ThrowableItemProjectile {
-    private static final TicketType<ChunkPos> CHUNK_LOADING_TICKET_TYPE = TicketType.create(EternalStarlight.MOD_ID + ":soulit_spectator", Comparator.comparingLong(ChunkPos::toLong));
+    private static final TicketType<ChunkPos> CHUNK_LOADING_TICKET_TYPE = TicketType.create(EternalStarlight.ID + ":soulit_spectator", Comparator.comparingLong(ChunkPos::toLong));
 
     private boolean noMovement;
     private final List<ChunkPos> loadedChunks = new ArrayList<>();

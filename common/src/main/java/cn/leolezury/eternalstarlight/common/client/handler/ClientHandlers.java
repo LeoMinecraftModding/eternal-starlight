@@ -85,7 +85,7 @@ public class ClientHandlers {
                 DREAM_CATCHER_TEXTS.remove(text);
             }
             if (player.getRandom().nextInt(40) == 0 && DREAM_CATCHER_TEXTS.size() < 20) {
-                Component component = Component.translatable("message." + EternalStarlight.MOD_ID + ".dream_catcher_" + player.getRandom().nextInt(7));
+                Component component = Component.translatable("message." + EternalStarlight.ID + ".dream_catcher_" + player.getRandom().nextInt(7));
                 DREAM_CATCHER_TEXTS.add(new DreamCatcherText(component, (int) (player.getRandom().nextFloat() * 5 + 1), -Minecraft.getInstance().font.width(component) / 2, player.getRandom().nextInt(Minecraft.getInstance().getWindow().getGuiScaledHeight())));
             }
         } else {
@@ -167,13 +167,13 @@ public class ClientHandlers {
         }
         //Component bossDesc;
         if (boss instanceof TheGatekeeper) {
-            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/the_gatekeeper.png");
+            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/the_gatekeeper.png");
             //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".the_gatekeeper.desc");
         } else if (boss instanceof StarlightGolem) {
-            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/starlight_golem.png");
+            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/starlight_golem.png");
             //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".starlight_golem.desc");
         } else if (boss instanceof LunarMonstrosity) {
-            barLocation = new ResourceLocation(EternalStarlight.MOD_ID,"textures/gui/bars/lunar_monstrosity.png");
+            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/lunar_monstrosity.png");
             //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".lunar_monstrosity.desc");
         } else {
             return false;

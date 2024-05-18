@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESItemTagsProvider extends ItemTagsProvider {
     public ESItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, ExistingFileHelper helper) {
-        super(output, future, provider, EternalStarlight.MOD_ID, helper);
+        super(output, future, provider, EternalStarlight.ID, helper);
     }
 
     @Override

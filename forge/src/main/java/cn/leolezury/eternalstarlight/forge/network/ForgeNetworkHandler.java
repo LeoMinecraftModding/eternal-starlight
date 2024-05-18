@@ -11,11 +11,11 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-@EventBusSubscriber(modid = EternalStarlight.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = EternalStarlight.ID, bus = EventBusSubscriber.Bus.MOD)
 public class ForgeNetworkHandler {
     @SubscribeEvent
     public static void onNetworkInit(RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar(EternalStarlight.MOD_ID)
+        final PayloadRegistrar registrar = event.registrar(EternalStarlight.ID)
                 .optional();
         CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
             @Override

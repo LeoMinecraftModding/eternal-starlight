@@ -17,7 +17,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ESItemModelProvider extends ItemModelProvider {
     public ESItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, EternalStarlight.MOD_ID, existingFileHelper);
+        super(output, EternalStarlight.ID, existingFileHelper);
     }
 
     @Override
@@ -527,6 +527,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 
         basicItem(ESItems.GLEECH_EGG.get());
 
+        basicItem(ESItems.TOOTH_OF_HUNGER.get());
+        daggerOfHunger(ESItems.DAGGER_OF_HUNGER.get());
+
         basicBlockItem(ESItems.NIGHTFALL_FARMLAND.get());
 
         orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
@@ -570,6 +573,17 @@ public class ESItemModelProvider extends ItemModelProvider {
         withExistingParent(name(item), "item/handheld")
                 .texture("layer0", itemTexture(item))
                 .override().predicate(new ResourceLocation("no_blade"), 1).model(noBladeModel).end();
+    }
+
+    private void daggerOfHunger(Item item) {
+        ModelFile normal = withExistingParent(name(item) + "_normal", "item/handheld")
+                .texture("layer0", itemTexture(item));
+        ModelFile saturated = withExistingParent(name(item) + "_saturated", "item/handheld")
+                .texture("layer0", itemTexture(item).withSuffix("_saturated"));
+        withExistingParent(name(item), "item/handheld")
+                .texture("layer0", itemTexture(item).withSuffix("_hungry"))
+                .override().predicate(new ResourceLocation("hunger_state"), 0.5f).model(normal).end()
+                .override().predicate(new ResourceLocation("hunger_state"), 1.0f).model(saturated).end();
     }
 
     private void crossbow(Item item) {
@@ -669,7 +683,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder basicHandheld(Item item, ResourceLocation texture, boolean large) {
         return getBuilder(item.toString())
-                .parent(large ? new ModelFile.UncheckedModelFile(EternalStarlight.MOD_ID + ":item/large_handheld") : new ModelFile.UncheckedModelFile("item/handheld"))
+                .parent(large ? new ModelFile.UncheckedModelFile(EternalStarlight.ID + ":item/large_handheld") : new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", texture);
     }
 

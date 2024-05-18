@@ -35,6 +35,6 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(ESRegistries.CREST, ESCrests::bootstrap);
 
     public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(EternalStarlight.MOD_ID, "minecraft"));
+        super(output, registries, BUILDER, Set.of(EternalStarlight.ID, "minecraft"));
     }
 }

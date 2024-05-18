@@ -27,7 +27,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.Map;
 
-@EventBusSubscriber(modid = EternalStarlight.MOD_ID)
+@EventBusSubscriber(modid = EternalStarlight.ID)
 public class CommonEvents {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {

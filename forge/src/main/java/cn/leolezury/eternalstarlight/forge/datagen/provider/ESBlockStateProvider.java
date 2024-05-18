@@ -26,7 +26,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     private static final ResourceLocation TRANSLUCENT = new ResourceLocation("translucent");
 
     public ESBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, EternalStarlight.MOD_ID, exFileHelper);
+        super(output, EternalStarlight.ID, exFileHelper);
     }
 
     @Override

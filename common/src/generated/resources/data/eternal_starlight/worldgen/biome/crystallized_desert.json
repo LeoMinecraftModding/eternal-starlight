@@ -127,6 +127,12 @@
         "type": "eternal_starlight:gleech",
         "maxCount": 3,
         "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "eternal_starlight:thirst_walker",
+        "maxCount": 2,
+        "minCount": 1,
         "weight": 12
       }
     ],

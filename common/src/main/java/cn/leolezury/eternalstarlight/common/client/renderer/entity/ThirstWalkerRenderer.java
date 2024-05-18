@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.ThirstWalkerModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.ThirstWalkerEyesLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.ThirstWalker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,6 +16,7 @@ public class ThirstWalkerRenderer<T extends ThirstWalker> extends MobRenderer<T,
 
     public ThirstWalkerRenderer(EntityRendererProvider.Context context) {
         super(context, new ThirstWalkerModel<>(context.bakeLayer(ThirstWalkerModel.LAYER_LOCATION)), 0.3f);
+        this.addLayer(new ThirstWalkerEyesLayer<>(this));
     }
 
     @Override

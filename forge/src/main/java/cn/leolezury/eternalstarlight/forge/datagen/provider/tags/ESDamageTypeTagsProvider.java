@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
     public ESDamageTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, Registries.DAMAGE_TYPE, lookupProvider, EternalStarlight.MOD_ID, existingFileHelper);
+        super(output, Registries.DAMAGE_TYPE, lookupProvider, EternalStarlight.ID, existingFileHelper);
     }
 
     @Override

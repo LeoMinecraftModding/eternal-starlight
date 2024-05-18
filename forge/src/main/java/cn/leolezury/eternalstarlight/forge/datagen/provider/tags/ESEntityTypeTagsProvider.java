@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
     public ESEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, EternalStarlight.MOD_ID, existingFileHelper);
+        super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
     }
 
     @Override

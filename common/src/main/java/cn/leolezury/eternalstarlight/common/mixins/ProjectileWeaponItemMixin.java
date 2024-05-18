@@ -19,7 +19,7 @@ public class ProjectileWeaponItemMixin {
     private void es_createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
         if (itemStack.is(ESItems.STARFALL_LONGBOW.get())) {
             Projectile projectile = cir.getReturnValue();
-            ESEntityUtil.getPersistentData(projectile).putBoolean(EternalStarlight.MOD_ID + ":starfall", true);
+            ESEntityUtil.getPersistentData(projectile).putBoolean(EternalStarlight.ID + ":starfall", true);
             cir.setReturnValue(projectile);
         }
     }

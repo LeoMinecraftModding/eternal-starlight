@@ -6,7 +6,7 @@ import net.minecraft.world.item.Items;
 
 public class ESGeyserSmokingProvider extends GeyserSmokingProvider {
     public ESGeyserSmokingProvider(PackOutput output) {
-        super(output, EternalStarlight.MOD_ID);
+        super(output, EternalStarlight.ID);
     }
 
     @Override

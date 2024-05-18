@@ -10,7 +10,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
-@Mod(EternalStarlight.MOD_ID)
+@Mod(EternalStarlight.ID)
 public class ESForge {
     public ESForge(IEventBus modEventBus) {
         ESFluidTypes.loadClass();

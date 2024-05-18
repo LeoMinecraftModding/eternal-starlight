@@ -27,8 +27,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
     public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer, ExistingFileHelper helper) {
         AdvancementHolder root = Advancement.Builder.advancement().display(
                         ESBlocks.LUNAR_LOG.get(),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".root.title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".root.description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".root.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".root.description"),
                         EternalStarlight.id("textures/block/lunar_log.png"),
                         AdvancementType.TASK,
                         false, false, false)
@@ -36,23 +36,23 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                 .addCriterion("in_dim",
                         PlayerTrigger.TriggerInstance.located(
                                 LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
-                .save(consumer, EternalStarlight.MOD_ID + ":root");
+                .save(consumer, EternalStarlight.ID + ":root");
 
         AdvancementHolder challengeGatekeeper = Advancement.Builder.advancement().parent(root).display(
                         Items.DIAMOND_SWORD,
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".challenge_gatekeeper.title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".challenge_gatekeeper.description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".challenge_gatekeeper.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".challenge_gatekeeper.description"),
                         null,
                         AdvancementType.TASK,
                         true, true, false)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .addCriterion("challenged", ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
-                .save(consumer, EternalStarlight.MOD_ID + ":challenge_gatekeeper");
+                .save(consumer, EternalStarlight.ID + ":challenge_gatekeeper");
 
         AdvancementHolder enterDim = Advancement.Builder.advancement().parent(challengeGatekeeper).display(
                         ESBlocks.LUNAR_LOG.get(),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".enter_starlight.title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".enter_starlight.description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.description"),
                         null,
                         AdvancementType.TASK,
                         true, true, false)
@@ -60,18 +60,18 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                 .addCriterion("in_dim",
                         PlayerTrigger.TriggerInstance.located(
                                 LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
-                .save(consumer, EternalStarlight.MOD_ID + ":enter_starlight");
+                .save(consumer, EternalStarlight.ID + ":enter_starlight");
 
         AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterDim).display(
                         ESItems.GLEECH_EGG.get(),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".throw_gleech_egg.title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".throw_gleech_egg.description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".throw_gleech_egg.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".throw_gleech_egg.description"),
                         null,
                         AdvancementType.TASK,
                         true, true, false)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .addCriterion("thrown", ESCriteriaTriggers.THROW_GLEECH_EGG.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
-                .save(consumer, EternalStarlight.MOD_ID + ":throw_gleech_egg");
+                .save(consumer, EternalStarlight.ID + ":throw_gleech_egg");
 
         AdvancementHolder swampSilver = addItemObtain(consumer, enterDim, "obtain_swamp_silver", ESItems.SWAMP_SILVER_INGOT.get());
 
@@ -89,25 +89,25 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
         AdvancementHolder useBlossomOfStars = Advancement.Builder.advancement().parent(enterDim).display(
                         ESItems.BLOSSOM_OF_STARS.get(),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".use_blossom_of_stars.title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + ".use_blossom_of_stars.description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.description"),
                         null,
                         AdvancementType.TASK,
                         true, true, true)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .addCriterion("use_item",
                         ConsumeItemTrigger.TriggerInstance.usedItem(ESItems.BLOSSOM_OF_STARS.get()))
-                .save(consumer, EternalStarlight.MOD_ID + ":use_blossom_of_stars");
+                .save(consumer, EternalStarlight.ID + ":use_blossom_of_stars");
     }
 
     private static AdvancementHolder addItemObtain(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item item) {
         return Advancement.Builder.advancement().parent(parent).display(
                         item,
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
                         null, AdvancementType.GOAL, true, true, false)
                 .addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(item))
-                .save(consumer, EternalStarlight.MOD_ID + ":" + id);
+                .save(consumer, EternalStarlight.ID + ":" + id);
     }
 
     private static AdvancementHolder addEntityKill(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, EntityType<?> entity, Item item) {
@@ -117,10 +117,10 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
     private static AdvancementHolder addEntityKill(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, EntityPredicate predicate, Item item) {
         return Advancement.Builder.advancement().parent(parent).display(
                         item,
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".title"),
-                        Component.translatable("advancements." + EternalStarlight.MOD_ID + "." + id + ".description"),
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
                         null, AdvancementType.GOAL, true, true, false)
                 .addCriterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(Optional.ofNullable(predicate)))
-                .save(consumer, EternalStarlight.MOD_ID + ":" + id);
+                .save(consumer, EternalStarlight.ID + ":" + id);
     }
 }

@@ -305,6 +305,8 @@ public class ClientSetupHandlers {
         ItemProperties.register(ESItems.GLACITE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
         ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), new ResourceLocation("crests_mode"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F);
+
+        ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), new ResourceLocation("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
     }
 
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -409,7 +411,7 @@ public class ClientSetupHandlers {
 
     public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
         for (ResourceLocation id : models.keySet()) {
-            if (id.toString().contains(EternalStarlight.MOD_ID + ":thermal_springstone_")) {
+            if (id.toString().contains(EternalStarlight.ID + ":thermal_springstone_")) {
                 models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
             }
             BAKED_MODELS.put(id, models.get(id));

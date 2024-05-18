@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 
 public class EternalStarlight {
-    public static final String MOD_ID = "eternal_starlight";
+    public static final String ID = "eternal_starlight";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {
@@ -47,7 +47,7 @@ public class EternalStarlight {
     }
 
     public static ResourceLocation id(String string) {
-        return new ResourceLocation(MOD_ID, string);
+        return new ResourceLocation(ID, string);
     }
 
     public static ClientHelper getClientHelper() {
