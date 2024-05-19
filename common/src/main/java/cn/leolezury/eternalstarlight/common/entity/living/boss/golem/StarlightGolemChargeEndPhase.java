@@ -10,7 +10,7 @@ public class StarlightGolemChargeEndPhase extends AttackPhase<StarlightGolem> {
     }
 
     @Override
-    public boolean canStart(StarlightGolem entity, boolean coolDownOver) {
+    public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
         return false;
     }
 

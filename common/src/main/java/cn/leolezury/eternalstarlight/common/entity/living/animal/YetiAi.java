@@ -93,7 +93,7 @@ public class YetiAi {
         }
 
         protected boolean checkExtraStartConditions(ServerLevel serverLevel, Yeti yeti) {
-            return yeti.getRollState() == 0 && !yeti.getMoveControl().hasWanted() && yeti.getRollCoolDown() <= 0 && yeti.getRandom().nextInt(10) == 0;
+            return yeti.getRollState() == 0 && !yeti.getMoveControl().hasWanted() && yeti.getRollCooldown() <= 0 && yeti.getRandom().nextInt(10) == 0;
         }
 
         @Override
@@ -135,7 +135,7 @@ public class YetiAi {
         protected void stop(ServerLevel serverLevel, Yeti yeti, long l) {
             yeti.setRollState(0);
             yeti.setRollTicks(400);
-            yeti.setRollCoolDown(600);
+            yeti.setRollCooldown(600);
         }
     }
 }

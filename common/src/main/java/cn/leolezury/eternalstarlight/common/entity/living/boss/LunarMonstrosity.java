@@ -68,11 +68,11 @@ public class LunarMonstrosity extends ESBoss {
     public AnimationState appearAnimationState = new AnimationState();
     public AnimationState switchPhaseAnimationState = new AnimationState();
     public AnimationState deathAnimationState = new AnimationState();
-    int toxicBreathCoolDown = 0;
-    int sporeCoolDown = 0;
-    int vineCoolDown = 0;
-    int biteCoolDown = 0;
-    int sneakCoolDown = 0;
+    int toxicBreathCooldown = 0;
+    int sporeCooldown = 0;
+    int vineCooldown = 0;
+    int biteCooldown = 0;
+    int sneakCooldown = 0;
     private Vec3 targetPos = Vec3.ZERO;
     public Vec3 headPos = Vec3.ZERO;
 
@@ -323,39 +323,39 @@ public class LunarMonstrosity extends ESBoss {
         if (!level().isClientSide) {
             setParticleAngle((targetPos.x - getX()) / 10D, (targetPos.y - getY() - 2) / 10D, (targetPos.z - getZ()) / 10D);
             LivingEntity target = getTarget();
-            if (toxicBreathCoolDown > 0) {
-                toxicBreathCoolDown--;
+            if (toxicBreathCooldown > 0) {
+                toxicBreathCooldown--;
             }
-            if (sporeCoolDown > 0) {
-                sporeCoolDown--;
+            if (sporeCooldown > 0) {
+                sporeCooldown--;
             }
-            if (vineCoolDown > 0) {
-                vineCoolDown--;
+            if (vineCooldown > 0) {
+                vineCooldown--;
             }
-            if (biteCoolDown > 0) {
-                biteCoolDown--;
+            if (biteCooldown > 0) {
+                biteCooldown--;
             }
-            if (sneakCoolDown > 0) {
-                sneakCoolDown--;
+            if (sneakCooldown > 0) {
+                sneakCooldown--;
             }
             if (getAttackState() == 0) {
                 setAttackTicks(0);
                 if (target != null && target.isAlive()) {
-                    if (toxicBreathCoolDown == 0 && getPhase() == 1) {
+                    if (toxicBreathCooldown == 0 && getPhase() == 1) {
                         setAttackState(1);
-                        toxicBreathCoolDown = 400;
-                    } else if (sporeCoolDown == 0) {
+                        toxicBreathCooldown = 400;
+                    } else if (sporeCooldown == 0) {
                         setAttackState(2);
-                        sporeCoolDown = 400;
-                    } else if (vineCoolDown == 0 && getPhase() == 0) {
+                        sporeCooldown = 400;
+                    } else if (vineCooldown == 0 && getPhase() == 0) {
                         setAttackState(3);
-                        vineCoolDown = 400;
-                    } else if (biteCoolDown == 0 && getPhase() == 1) {
+                        vineCooldown = 400;
+                    } else if (biteCooldown == 0 && getPhase() == 1) {
                         setAttackState(4);
-                        biteCoolDown = 400;
-                    } else if (sneakCoolDown == 0) {
+                        biteCooldown = 400;
+                    } else if (sneakCooldown == 0) {
                         setAttackState(5);
-                        sneakCoolDown = 400;
+                        sneakCooldown = 400;
                     }
                 }
             }

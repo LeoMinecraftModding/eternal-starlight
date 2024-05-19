@@ -26,8 +26,8 @@ public class GatekeeperDodgePhase extends AttackPhase<TheGatekeeper> {
     }
 
     @Override
-    public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && isLookedAt(entity);
+    public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
+        return cooldownOver && isLookedAt(entity);
     }
 
     @Override

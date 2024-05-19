@@ -14,8 +14,8 @@ public class GatekeeperCastFireballPhase extends AttackPhase<TheGatekeeper> {
     }
 
     @Override
-    public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && canReachTarget(entity, 100) && !canReachTarget(entity, 6);
+    public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
+        return cooldownOver && canReachTarget(entity, 100) && !canReachTarget(entity, 6);
     }
 
     @Override

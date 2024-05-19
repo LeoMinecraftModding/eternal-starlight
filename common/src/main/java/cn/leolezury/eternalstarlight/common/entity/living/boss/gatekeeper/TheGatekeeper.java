@@ -103,7 +103,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     private Player customer;
     @Nullable
     protected MerchantOffers offers;
-    private int restockCoolDown;
+    private int restockCooldown;
     @Nullable
     private ServerPlayer conversationTarget;
     @Nullable
@@ -134,7 +134,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         gatekeeperName = compoundTag.getString("GatekeeperName");
         fightTarget = compoundTag.getString("FightTarget");
         fightPlayerOnly = compoundTag.getBoolean("FightPlayerOnly");
-        restockCoolDown = compoundTag.getInt("RestockCoolDown");
+        restockCooldown = compoundTag.getInt("RestockCooldown");
         bossEvent.setId(getUUID());
         if (this.offers == null) {
             this.offers = new MerchantOffers();
@@ -150,7 +150,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             compoundTag.putString("FightTarget", fightTarget);
         }
         compoundTag.putBoolean("FightPlayerOnly", fightPlayerOnly);
-        compoundTag.putInt("RestockCoolDown", restockCoolDown);
+        compoundTag.putInt("RestockCooldown", restockCooldown);
     }
 
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
@@ -381,10 +381,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
-            if (restockCoolDown > 0) {
-                restockCoolDown--;
+            if (restockCooldown > 0) {
+                restockCooldown--;
             } else {
-                restockCoolDown = 12000;
+                restockCooldown = 12000;
                 restockAll();
             }
             if (conversationTarget != null && conversationTarget.distanceTo(this) > 20) {

@@ -40,12 +40,12 @@ public class Yeti extends Animal {
     public int getRollTicks() {
         return rollTicks;
     }
-    private int rollCoolDown = 200;
-    public void setRollCoolDown(int rollCoolDown) {
-        this.rollCoolDown = rollCoolDown;
+    private int rollCooldown = 200;
+    public void setRollCooldown(int rollCooldown) {
+        this.rollCooldown = rollCooldown;
     }
-    public int getRollCoolDown() {
-        return rollCoolDown;
+    public int getRollCooldown() {
+        return rollCooldown;
     }
     public float rollAngle, prevRollAngle;
 
@@ -91,8 +91,8 @@ public class Yeti extends Animal {
         if (rollTicks > 0) {
             rollTicks--;
         }
-        if (rollCoolDown > 0) {
-            rollCoolDown--;
+        if (rollCooldown > 0) {
+            rollCooldown--;
         }
         if (level().isClientSide) {
             idleAnimationState.startIfStopped(tickCount);

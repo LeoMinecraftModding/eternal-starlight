@@ -5,11 +5,13 @@ import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientSideHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class EternalStarlight {
     public static final String ID = "eternal_starlight";
@@ -20,6 +22,7 @@ public class EternalStarlight {
         ESBlocks.loadClass();
         ESDataComponents.loadClass();
         ESArmorMaterials.loadClass();
+        ESSpells.loadClass();
         ESItems.loadClass();
         ESCreativeModeTabs.loadClass();
         ESCriteriaTriggers.loadClass();
@@ -39,7 +42,6 @@ public class EternalStarlight {
         ESRecipeSerializers.loadClass();
         ESRecipes.loadClass();
         ESDataTransformerTypes.loadClass();
-        ESSpells.loadClass();
         ESWeathers.loadClass();
         ESBoarwarfProfessions.loadClass();
         ESRegistries.loadClass();
@@ -51,10 +53,8 @@ public class EternalStarlight {
     }
 
     public static ClientHelper getClientHelper() {
-        if (ESPlatform.INSTANCE.isPhysicalClient()) {
-            return new ClientSideHelper();
-        } else {
-            return new EmptyClientHelper();
-        }
+        AtomicReference<ClientHelper> helper = new AtomicReference<>(new EmptyClientHelper());
+        ESMiscUtil.runWhenOnClient(() -> () -> helper.set(new ClientSideHelper()));
+        return helper.get();
     }
 }

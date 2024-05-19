@@ -10,8 +10,8 @@ public class GatekeeperComboPhase extends AttackPhase<TheGatekeeper> {
     }
 
     @Override
-    public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && canReachTarget(entity, 2);
+    public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
+        return cooldownOver && canReachTarget(entity, 2);
     }
 
     @Override

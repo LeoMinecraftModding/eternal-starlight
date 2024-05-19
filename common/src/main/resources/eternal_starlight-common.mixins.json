@@ -28,6 +28,7 @@
     "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",
     "ItemRendererMixin",
+    "MultiPlayerGameModeMixin",
     "PlayerModelMixin",
     "ScreenEffectRendererMixin",
     "SpriteSourceListMixin",

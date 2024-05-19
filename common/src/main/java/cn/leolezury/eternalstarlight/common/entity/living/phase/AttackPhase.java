@@ -8,18 +8,18 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
     private final int id;
     private final int priority;
     private final int duration;
-    private final int coolDown;
+    private final int cooldown;
     private final int turnsInto;
 
-    public AttackPhase(int id, int priority, int duration, int coolDown) {
-        this(id, priority, duration, coolDown, 0);
+    public AttackPhase(int id, int priority, int duration, int cooldown) {
+        this(id, priority, duration, cooldown, 0);
     }
 
-    public AttackPhase(int id, int priority, int duration, int coolDown, int turnsInto) {
+    public AttackPhase(int id, int priority, int duration, int cooldown, int turnsInto) {
         this.id = id;
         this.priority = priority;
         this.duration = duration;
-        this.coolDown = coolDown;
+        this.cooldown = cooldown;
         this.turnsInto = turnsInto;
     }
 
@@ -35,11 +35,11 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
         return duration;
     }
 
-    public int getCoolDown() {
-        return coolDown;
+    public int getCooldown() {
+        return cooldown;
     }
 
-    public abstract boolean canStart(T entity, boolean coolDownOver);
+    public abstract boolean canStart(T entity, boolean cooldownOver);
     public abstract void onStart(T entity);
     public abstract void tick(T entity);
     public abstract boolean canContinue(T entity);

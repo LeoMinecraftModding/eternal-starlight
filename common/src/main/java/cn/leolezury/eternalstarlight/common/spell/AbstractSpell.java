@@ -20,7 +20,7 @@ public abstract class AbstractSpell {
 
     public boolean canCast(LivingEntity entity, boolean checkCrystal) {
         boolean crystalCheck = !checkCrystal || (entity instanceof Player player && hasRightCrystal(player.getInventory()));
-        return crystalCheck && ESSpellUtil.getCoolDownFor(entity, this) <= 0 && checkExtraConditions(entity);
+        return crystalCheck && ESSpellUtil.getCooldownFor(entity, this) <= 0 && checkExtraConditions(entity);
     }
 
     public boolean hasRightCrystal(Inventory inventory) {
@@ -71,7 +71,7 @@ public abstract class AbstractSpell {
 
     public void stop(LivingEntity entity, int ticks) {
         onStop(entity, ticks);
-        ESSpellUtil.setCoolDownFor(entity, this, properties.coolDownTicks());
+        ESSpellUtil.setCooldownFor(entity, this, properties.cooldownTicks());
         if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
             caster.setSpellData(SpellCastData.getDefault());
         }
@@ -84,7 +84,7 @@ public abstract class AbstractSpell {
     public abstract void onStart(LivingEntity entity);
     public abstract void onStop(LivingEntity entity, int ticks);
 
-    public record Properties(ManaType type, int preparationTicks, int spellTicks, int coolDownTicks) {
+    public record Properties(ManaType type, int preparationTicks, int spellTicks, int cooldownTicks) {
 
     }
 }

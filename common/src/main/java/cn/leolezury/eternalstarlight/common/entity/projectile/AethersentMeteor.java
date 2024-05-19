@@ -89,10 +89,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
     public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
         if (!level.isClientSide) {
             CompoundTag tag = ESEntityUtil.getPersistentData(entity);
-            if (tag.getInt("MeteorCoolDown") > 0) {
+            if (tag.getInt("MeteorCooldown") > 0) {
                 return;
             }
-            tag.putInt("MeteorCoolDown", 1);
+            tag.putInt("MeteorCooldown", 1);
             for (int x = -1; x <= 1; x++) {
                 for (int z = -1; z <= 1; z++) {
                     RandomSource random = entity.getRandom();

@@ -178,7 +178,7 @@ public class CommonHandlers {
     }
 
     public static void onLivingTick(LivingEntity livingEntity) {
-        ESSpellUtil.ticksSpellCoolDowns(livingEntity);
+        ESSpellUtil.tickSpells(livingEntity);
         if (livingEntity instanceof Player player) {
             ESCrestUtil.tickCrests(player);
         }
@@ -227,9 +227,9 @@ public class CommonHandlers {
             }
         }
         if (livingEntity.tickCount % 20 == 0) {
-            int coolDown = ESEntityUtil.getPersistentData(livingEntity).getInt("MeteorCoolDown");
-            if (coolDown > 0) {
-                ESEntityUtil.getPersistentData(livingEntity).putInt("MeteorCoolDown", coolDown - 1);
+            int cooldown = ESEntityUtil.getPersistentData(livingEntity).getInt("MeteorCooldown");
+            if (cooldown > 0) {
+                ESEntityUtil.getPersistentData(livingEntity).putInt("MeteorCooldown", cooldown - 1);
             }
         }
         int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt("InEtherTicks");

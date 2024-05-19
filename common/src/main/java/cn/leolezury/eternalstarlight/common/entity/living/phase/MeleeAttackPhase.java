@@ -9,13 +9,13 @@ import java.util.List;
 public class MeleeAttackPhase<T extends LivingEntity & MultiPhaseAttacker> extends AttackPhase<T> {
     private final List<Entry> entries = new ArrayList<>();
 
-    public MeleeAttackPhase(int id, int priority, int duration, int coolDown) {
-        super(id, priority, duration, coolDown);
+    public MeleeAttackPhase(int id, int priority, int duration, int cooldown) {
+        super(id, priority, duration, cooldown);
     }
 
     @Override
-    public boolean canStart(T entity, boolean coolDownOver) {
-        return coolDownOver && !entries.isEmpty() && canReachTarget(entity, entries.getFirst().range());
+    public boolean canStart(T entity, boolean cooldownOver) {
+        return cooldownOver && !entries.isEmpty() && canReachTarget(entity, entries.getFirst().range());
     }
 
     @Override

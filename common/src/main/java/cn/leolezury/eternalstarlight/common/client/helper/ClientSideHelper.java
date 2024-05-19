@@ -58,8 +58,6 @@ public class ClientSideHelper implements ClientHelper {
                 Entity camera = Minecraft.getInstance().level.getEntity(packet.cameraId());
                 if (camera != null) {
                     ClientHandlers.resetCameraIn = 260;
-                    ClientHandlers.oldCamera = Minecraft.getInstance().getCameraEntity();
-                    ClientHandlers.oldHideGui = Minecraft.getInstance().options.hideGui;
                     Minecraft.getInstance().options.hideGui = true;
                     Minecraft.getInstance().setCameraEntity(camera);
                 }

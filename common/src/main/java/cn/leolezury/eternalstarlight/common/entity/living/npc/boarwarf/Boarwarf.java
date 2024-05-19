@@ -49,8 +49,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     private Player customer;
     @Nullable
     protected MerchantOffers offers;
-    private int restockCoolDown = 0;
-    private int chatCoolDown = 0;
+    private int restockCooldown = 0;
+    private int chatCooldown = 0;
     public int chatTicks = 0;
     private int awakeTicks = 0;
     private int sleepTicks = 0;
@@ -104,8 +104,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         super.readAdditionalSaveData(compoundTag);
         setTypeId(new ResourceLocation(compoundTag.getString("Type")));
         setProfessionId(new ResourceLocation(compoundTag.getString("Profession")));
-        restockCoolDown = compoundTag.getInt("RestockCoolDown");
-        chatCoolDown = compoundTag.getInt("ChatCoolDown");
+        restockCooldown = compoundTag.getInt("RestockCooldown");
+        chatCooldown = compoundTag.getInt("ChatCooldown");
         chatTicks = compoundTag.getInt("ChatTicks");
         awakeTicks = compoundTag.getInt("AwakeTicks");
         sleepTicks = compoundTag.getInt("SleepTicks");
@@ -121,8 +121,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putString("Type", getTypeId().toString());
         compoundTag.putString("Profession", getProfessionId().toString());
-        compoundTag.putInt("RestockCoolDown", restockCoolDown);
-        compoundTag.putInt("ChatCoolDown", chatCoolDown);
+        compoundTag.putInt("RestockCooldown", restockCooldown);
+        compoundTag.putInt("ChatCooldown", chatCooldown);
         compoundTag.putInt("ChatTicks", chatTicks);
         compoundTag.putInt("AwakeTicks", awakeTicks);
         compoundTag.putInt("SleepTicks", sleepTicks);
@@ -260,8 +260,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (chatCoolDown < 12000) {
-            chatCoolDown += 12000;
+        if (chatCooldown < 12000) {
+            chatCooldown += 12000;
         }
         if (chatTicks > 0) {
             chatTicks = 0;
@@ -307,16 +307,16 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
                 awakeTicks++;
                 sleepTicks = 0;
             }
-            if (restockCoolDown > 0) {
-                restockCoolDown--;
+            if (restockCooldown > 0) {
+                restockCooldown--;
             } else {
-                restockCoolDown = 12000;
+                restockCooldown = 12000;
                 restockAll();
             }
-            if (chatCoolDown > 0) {
-                chatCoolDown--;
+            if (chatCooldown > 0) {
+                chatCooldown--;
             } else {
-                chatCoolDown = 10000;
+                chatCooldown = 10000;
                 chatTicks = 4000;
             }
             if (chatTicks > 0) {

@@ -14,10 +14,10 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
     private final List<AttackPhase<T>> phaseList = new ArrayList<>();
     private final Int2ObjectArrayMap<List<AttackPhase<T>>> phases = new Int2ObjectArrayMap<>();
     private final IntArrayList priorities = new IntArrayList();
-    private final Int2IntArrayMap coolDowns = new Int2IntArrayMap();
+    private final Int2IntArrayMap cooldowns = new Int2IntArrayMap();
 
-    public Int2IntArrayMap getCoolDowns() {
-        return coolDowns;
+    public Int2IntArrayMap getCooldowns() {
+        return cooldowns;
     }
 
     public AttackManager(T entity, List<AttackPhase<T>> phaseList) {
@@ -39,7 +39,7 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
         if (entity.getAttackState() == 0) {
             selectPhase().ifPresent(p -> {
                 p.start(entity);
-                coolDowns.put(p.getId(), p.getCoolDown());
+                cooldowns.put(p.getId(), p.getCooldown());
             });
         } else {
             getActivePhase().ifPresent(p -> {
@@ -51,14 +51,14 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
                 }
             });
         }
-        for (int id : coolDowns.keySet()) {
-            coolDowns.put(id, Math.max(0, coolDowns.get(id) - 1));
+        for (int id : cooldowns.keySet()) {
+            cooldowns.put(id, Math.max(0, cooldowns.get(id) - 1));
         }
     }
     
     private Optional<AttackPhase<T>> selectPhase() {
         for (int priority : priorities) {
-            List<AttackPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, coolDowns.getOrDefault(p.getId(), 0) <= 0)).toList();
+            List<AttackPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();
             if (!phasesForPriority.isEmpty()) {
                 return Optional.ofNullable(phasesForPriority.get(entity.getRandom().nextInt(phasesForPriority.size())));
             }

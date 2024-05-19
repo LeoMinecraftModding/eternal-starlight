@@ -13,8 +13,8 @@ public class GatekeeperDashPhase extends AttackPhase<TheGatekeeper> {
     }
 
     @Override
-    public boolean canStart(TheGatekeeper entity, boolean coolDownOver) {
-        return coolDownOver && canReachTarget(entity, 10) && !canReachTarget(entity, 3);
+    public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
+        return cooldownOver && canReachTarget(entity, 10) && !canReachTarget(entity, 3);
     }
 
     @Override

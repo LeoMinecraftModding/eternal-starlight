@@ -13,6 +13,10 @@ public record SpellCastData(boolean hasSpell, AbstractSpell spell, int castTicks
         return hasSpell && spell() != null;
     }
 
+    public SpellCastData increaseTick() {
+        return new SpellCastData(hasSpell(), spell(), castTicks() + 1);
+    }
+
     public static SpellCastData fromNetwork(RegistryFriendlyByteBuf buf) {
         boolean hasSpell = buf.readBoolean();
         AbstractSpell spell = buf.readById(ESSpells.SPELLS.registry()::byId);

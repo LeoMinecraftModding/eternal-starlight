@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.magic;
 
+import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
+import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,14 +13,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-import java.util.function.Supplier;
-
 public class SimpleSpellItem extends Item {
-    private final Supplier<? extends AbstractSpell> spellSupplier;
+    private final Holder<? extends AbstractSpell> spell;
 
-    public SimpleSpellItem(Supplier<? extends AbstractSpell> spellSupplier, Properties properties) {
+    public SimpleSpellItem(Holder<? extends AbstractSpell> spell, Properties properties) {
         super(properties);
-        this.spellSupplier = spellSupplier;
+        this.spell = spell;
     }
 
     @Override
@@ -28,35 +28,19 @@ public class SimpleSpellItem extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
-        AbstractSpell spell = spellSupplier.get();
-        int preparationTicks = spell.spellProperties().preparationTicks();
-        int spellTicks = spell.spellProperties().spellTicks();
-        int useItemTicks = livingEntity.getTicksUsingItem();
-        if (!spell.canContinueToCast(livingEntity, useItemTicks)) {
-            spell.stop(livingEntity, useItemTicks - preparationTicks);
+        if (livingEntity instanceof SpellCaster caster && caster.getSpellData().spell() != spell.value()) {
             livingEntity.stopUsingItem();
             if (livingEntity instanceof Player player) {
-                player.getCooldowns().addCooldown(this, spell.spellProperties().coolDownTicks());
-            }
-            return;
-        }
-        if (useItemTicks <= preparationTicks + spellTicks) {
-            spell.tick(livingEntity, useItemTicks);
-        } else {
-            spell.stop(livingEntity, useItemTicks - preparationTicks);
-            livingEntity.stopUsingItem();
-            if (livingEntity instanceof Player player) {
-                player.getCooldowns().addCooldown(this, spell.spellProperties().coolDownTicks());
+                player.getCooldowns().addCooldown(this, spell.value().spellProperties().cooldownTicks());
             }
         }
     }
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int i) {
-        AbstractSpell spell = spellSupplier.get();
-        spell.stop(livingEntity, getUseDuration(itemStack) - i - spell.spellProperties().preparationTicks());
+        spell.value().stop(livingEntity, getUseDuration(itemStack) - i - spell.value().spellProperties().preparationTicks());
         if (livingEntity instanceof Player player) {
-            player.getCooldowns().addCooldown(this, spell.spellProperties().coolDownTicks());
+            player.getCooldowns().addCooldown(this, spell.value().spellProperties().cooldownTicks());
         }
     }
 
@@ -67,11 +51,10 @@ public class SimpleSpellItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
-        AbstractSpell spell = spellSupplier.get();
-        if (!level.isClientSide && spell.canCast(player, false)) {
+        if (!level.isClientSide && spell.value().canCast(player, false)) {
             player.startUsingItem(interactionHand);
             itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-            spell.start(player, false);
+            spell.value().start(player, false);
             return InteractionResultHolder.consume(itemStack);
         }
         return InteractionResultHolder.fail(itemStack);

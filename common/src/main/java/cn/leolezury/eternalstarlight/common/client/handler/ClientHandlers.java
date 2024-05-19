@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
@@ -31,7 +32,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
@@ -55,19 +55,21 @@ public class ClientHandlers {
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_progress");
     private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
     public static int resetCameraIn;
-    public static Entity oldCamera;
-    public static boolean oldHideGui;
 
     public static void onClientTick() {
         ClientWeatherInfo.tickRainLevel();
-        if (oldCamera != null) {
-            resetCameraIn--;
-            Minecraft.getInstance().options.hideGui = true;
-            if (resetCameraIn <= 0) {
-                Minecraft.getInstance().setCameraEntity(oldCamera);
-                Minecraft.getInstance().options.hideGui = oldHideGui;
-                oldCamera = null;
-                resetCameraIn = 0;
+        if (Minecraft.getInstance().player != null) {
+            if (resetCameraIn > 0) {
+                resetCameraIn--;
+                Minecraft.getInstance().options.hideGui = true;
+                if (resetCameraIn <= 0) {
+                    Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
+                    Minecraft.getInstance().options.hideGui = false;
+                    resetCameraIn = 0;
+                }
+            } else if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
+                Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
+                Minecraft.getInstance().options.hideGui = false;
             }
         }
         LocalPlayer player = Minecraft.getInstance().player;

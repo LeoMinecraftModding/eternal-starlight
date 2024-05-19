@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.nbt.CompoundTag;
@@ -9,34 +10,51 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Objects;
 
 public class ESSpellUtil {
-    public static int getCoolDownFor(LivingEntity entity, AbstractSpell spell) {
+    public static int getCooldownFor(LivingEntity entity, AbstractSpell spell) {
         String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
-        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCoolDowns", Tag.TAG_COMPOUND)) {
-            ESEntityUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
+        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
+            ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
         }
-        CompoundTag spellCoolDowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCoolDowns");
-        return spellCoolDowns.getInt(id);
+        CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
+        return spellCooldowns.getInt(id);
     }
 
-    public static void setCoolDownFor(LivingEntity entity, AbstractSpell spell, int coolDown) {
+    public static void setCooldownFor(LivingEntity entity, AbstractSpell spell, int cooldown) {
         String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
-        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCoolDowns", Tag.TAG_COMPOUND)) {
-            ESEntityUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
+        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
+            ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
         }
-        CompoundTag spellCoolDowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCoolDowns");
-        spellCoolDowns.putInt(id, coolDown);
+        CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
+        spellCooldowns.putInt(id, cooldown);
     }
 
-    public static void ticksSpellCoolDowns(LivingEntity entity) {
-        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCoolDowns", Tag.TAG_COMPOUND)) {
-            ESEntityUtil.getPersistentData(entity).put("SpellCoolDowns", new CompoundTag());
+    public static void tickSpells(LivingEntity entity) {
+        // cooldown
+        if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
+            ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
         }
-        CompoundTag spellCoolDowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCoolDowns");
+        CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
         ESSpells.SPELLS.registry().forEach((spell -> {
             String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
-            if (spellCoolDowns.getInt(id) > 0) {
-                spellCoolDowns.putInt(id, spellCoolDowns.getInt(id) - 1);
+            if (spellCooldowns.getInt(id) > 0) {
+                spellCooldowns.putInt(id, spellCooldowns.getInt(id) - 1);
             }
         }));
+        // current spell
+        if (!entity.level().isClientSide && entity instanceof SpellCaster caster && caster.getSpellData().hasSpell()) {
+            caster.setSpellData(caster.getSpellData().increaseTick());
+            AbstractSpell spell = caster.getSpellData().spell();
+            int preparationTicks = spell.spellProperties().preparationTicks();
+            int spellTicks = spell.spellProperties().spellTicks();
+            int useTicks = caster.getSpellData().castTicks();
+            if (!spell.canContinueToCast(entity, useTicks)) {
+                spell.stop(entity, useTicks - preparationTicks);
+            }
+            if (useTicks <= preparationTicks + spellTicks) {
+                spell.tick(entity, useTicks);
+            } else {
+                spell.stop(entity, useTicks - preparationTicks);
+            }
+        }
     }
 }
