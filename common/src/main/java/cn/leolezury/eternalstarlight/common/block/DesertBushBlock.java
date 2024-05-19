@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
@@ -12,18 +13,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ESShortBushOnStoneBlock extends BushBlock {
-    public static final MapCodec<ESShortBushOnStoneBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+public class DesertBushBlock extends BushBlock {
+    public static final MapCodec<DesertBushBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             Codec.INT.fieldOf("height").forGetter((block) -> block.height),
             propertiesCodec()
-    ).apply(instance, ESShortBushOnStoneBlock::new));
+    ).apply(instance, DesertBushBlock::new));
     private final int height;
 
-    public ESShortBushOnStoneBlock(Properties properties) {
+    public DesertBushBlock(Properties properties) {
         this(3, properties);
     }
 
-    public ESShortBushOnStoneBlock(int height, Properties properties) {
+    public DesertBushBlock(int height, Properties properties) {
         super(properties);
         this.height = height;
     }
@@ -35,7 +36,7 @@ public class ESShortBushOnStoneBlock extends BushBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-        return super.mayPlaceOn(blockState, blockGetter, blockPos) || blockState.is(ESTags.Blocks.BASE_STONE_STARLIGHT);
+        return super.mayPlaceOn(blockState, blockGetter, blockPos) || blockState.is(BlockTags.SAND) || blockState.is(ESTags.Blocks.BASE_STONE_STARLIGHT);
     }
 
     @Override

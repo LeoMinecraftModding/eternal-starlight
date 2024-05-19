@@ -305,7 +305,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.STARLIGHT_TORCHFLOWER.get(),
                 ESBlocks.WHISPERBLOOM.get(),
                 ESBlocks.SWAMP_ROSE.get(),
-                ESBlocks.WITHERED_STARLIGHT_FLOWER.get()
+                ESBlocks.WITHERED_STARLIGHT_FLOWER.get(),
+                ESBlocks.DESERT_AMETHYSIA.get(),
+                ESBlocks.WITHERED_DESERT_AMETHYSIA.get()
         );
         tag(BlockTags.FLOWER_POTS).add(
                 ESBlocks.POTTED_LUNAR_SAPLING.get(),
@@ -314,7 +316,16 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POTTED_SCARLET_SAPLING.get(),
                 ESBlocks.POTTED_TORREYA_SAPLING.get(),
                 ESBlocks.POTTED_STARLIGHT_FLOWER.get(),
-                ESBlocks.POTTED_SWAMP_ROSE.get()
+                ESBlocks.POTTED_CONEBLOOM.get(),
+                ESBlocks.POTTED_NIGHTFAN.get(),
+                ESBlocks.POTTED_PINK_ROSE.get(),
+                ESBlocks.POTTED_STARLIGHT_TORCHFLOWER.get(),
+                ESBlocks.POTTED_SWAMP_ROSE.get(),
+                ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get(),
+                ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(),
+                ESBlocks.POTTED_DESERT_AMETHYSIA.get(),
+                ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get(),
+                ESBlocks.POTTED_SUNSET_THORNBLOOM.get()
         );
         tag(BlockTags.PORTALS).add(
                 ESBlocks.STARLIGHT_PORTAL.get()

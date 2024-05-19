@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:sunset_thornbloom"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:orange_dye"
+  }
+}

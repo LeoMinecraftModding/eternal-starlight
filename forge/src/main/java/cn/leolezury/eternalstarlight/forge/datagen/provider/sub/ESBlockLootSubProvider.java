@@ -401,8 +401,16 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.SCARLET_GRASS.get());
 
         dropSelf(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
+        dropPottedContents(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get());
 
         dropSelf(ESBlocks.DEAD_LUNAR_BUSH.get());
+        dropPottedContents(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get());
+        dropSelf(ESBlocks.DESERT_AMETHYSIA.get());
+        dropPottedContents(ESBlocks.POTTED_DESERT_AMETHYSIA.get());
+        dropSelf(ESBlocks.WITHERED_DESERT_AMETHYSIA.get());
+        dropPottedContents(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get());
+        dropSelf(ESBlocks.SUNSET_THORNBLOOM.get());
+        dropPottedContents(ESBlocks.POTTED_SUNSET_THORNBLOOM.get());
 
         dropSelf(ESBlocks.MOONLIGHT_LILY_PAD.get());
         dropSelf(ESBlocks.STARLIT_LILY_PAD.get());

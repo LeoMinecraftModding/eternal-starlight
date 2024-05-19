@@ -46,7 +46,7 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
                 for (int z = -7; z <= 7; z++) {
                     if (x * x + z * z < 7 * 7) {
                         if (random.nextBoolean()) {
-                            if (random.nextInt(30) == 0) {
+                            if (random.nextInt(10) == 0) {
                                 List<Direction> possibleDirs = new ArrayList<>();
                                 for (Direction direction : Direction.values()) {
                                     BlockPos relativePos = origin.offset(x, y, z).relative(direction);

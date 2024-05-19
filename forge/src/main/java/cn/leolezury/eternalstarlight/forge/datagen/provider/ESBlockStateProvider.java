@@ -250,8 +250,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
         cross(ESBlocks.SCARLET_GRASS.get());
 
         cross(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
+        pottedPlant(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.WITHERED_STARLIGHT_FLOWER.get()));
 
         cross(ESBlocks.DEAD_LUNAR_BUSH.get());
+        pottedPlant(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(), blockTexture(ESBlocks.DEAD_LUNAR_BUSH.get()));
+        cross(ESBlocks.DESERT_AMETHYSIA.get());
+        pottedPlant(ESBlocks.POTTED_DESERT_AMETHYSIA.get(), blockTexture(ESBlocks.DESERT_AMETHYSIA.get()));
+        cross(ESBlocks.WITHERED_DESERT_AMETHYSIA.get());
+        pottedPlant(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get(), blockTexture(ESBlocks.WITHERED_DESERT_AMETHYSIA.get()));
+        cross(ESBlocks.SUNSET_THORNBLOOM.get());
+        pottedPlant(ESBlocks.POTTED_SUNSET_THORNBLOOM.get(), blockTexture(ESBlocks.SUNSET_THORNBLOOM.get()));
 
         waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
         waterlily(ESBlocks.STARLIT_LILY_PAD.get());

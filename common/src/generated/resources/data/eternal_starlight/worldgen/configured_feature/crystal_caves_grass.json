@@ -12,19 +12,37 @@
                 "data": {
                   "Name": "eternal_starlight:crystallized_lunar_grass"
                 },
-                "weight": 6
+                "weight": 10
               },
               {
                 "data": {
                   "Name": "eternal_starlight:red_crystal_roots"
                 },
-                "weight": 6
+                "weight": 10
               },
               {
                 "data": {
                   "Name": "eternal_starlight:blue_crystal_roots"
                 },
-                "weight": 6
+                "weight": 10
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:desert_amethysia"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:withered_desert_amethysia"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:sunset_thornbloom"
+                },
+                "weight": 2
               },
               {
                 "data": {

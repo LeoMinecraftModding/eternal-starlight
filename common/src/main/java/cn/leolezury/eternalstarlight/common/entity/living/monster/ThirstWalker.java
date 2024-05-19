@@ -22,9 +22,11 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -36,7 +38,11 @@ public class ThirstWalker extends Monster implements MultiPhaseAttacker, Neutral
     @Nullable
     private UUID persistentAngerTarget;
     private float hungerLevel = 1;
-    public static final int MELEE_ID = 1;
+    private Vec3 fleeTo;
+    private int fleeTicks;
+    private Entity fleeFrom;
+    private static final int MELEE_ID = 1;
+
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState meleeAnimationState = new AnimationState();
 
@@ -118,9 +124,12 @@ public class ThirstWalker extends Monster implements MultiPhaseAttacker, Neutral
         if (flag && this.getMainHandItem().isEmpty() && entity instanceof LivingEntity living) {
             float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
             living.addEffect(new MobEffectInstance(MobEffects.HUNGER, 140 * (int) f), this);
-            hungerLevel = Math.min(hungerLevel + (isIntentionalAttack() ? 0.3f : 0.1f), 1);
+            hungerLevel = Math.min(hungerLevel + (isIntentionalAttack() ? 0.6f : 0.1f), 1);
             if (isIntentionalAttack()) {
                 stopBeingAngry();
+                fleeFrom = entity;
+                fleeTicks = 100;
+                tryFlee();
             }
         }
         return flag;
@@ -130,6 +139,26 @@ public class ThirstWalker extends Monster implements MultiPhaseAttacker, Neutral
     protected void customServerAiStep() {
         super.customServerAiStep();
         this.attackManager.tick();
+        if (fleeTicks > 0) {
+            fleeTicks--;
+            if (this.tickCount % 20 == 0) {
+                tryFlee();
+            }
+        }
+    }
+
+    private void tryFlee() {
+        if (fleeFrom != null) {
+            Vec3 fleePos = LandRandomPos.getPosAway(this, 20, 8, fleeFrom.position());
+            if (fleePos != null) {
+                fleeTo = fleePos;
+            }
+        }
+        if (fleeTo != null) {
+            this.getNavigation().stop();
+            this.getNavigation().moveTo(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
+            this.getMoveControl().setWantedPosition(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
+        }
     }
 
     @Override

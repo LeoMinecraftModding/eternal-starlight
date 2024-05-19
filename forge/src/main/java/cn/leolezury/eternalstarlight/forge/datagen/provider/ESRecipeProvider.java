@@ -71,6 +71,9 @@ public class ESRecipeProvider extends RecipeProvider {
         addSingleConversion(recipeOutput, Items.GREEN_DYE, ESItems.SWAMP_ROSE.get());
         addSingleConversion(recipeOutput, Items.PINK_DYE, ESItems.WHISPERBLOOM.get());
         addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.WITHERED_STARLIGHT_FLOWER.get());
+        addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.DESERT_AMETHYSIA.get());
+        addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.WITHERED_DESERT_AMETHYSIA.get());
+        addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.SUNSET_THORNBLOOM.get());
 
         addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.GLADESPIKE.get());
         addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.VIVIDSTALK.get());

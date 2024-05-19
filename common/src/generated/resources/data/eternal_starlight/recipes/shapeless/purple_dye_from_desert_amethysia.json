@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:desert_amethysia"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:purple_dye"
+  }
+}

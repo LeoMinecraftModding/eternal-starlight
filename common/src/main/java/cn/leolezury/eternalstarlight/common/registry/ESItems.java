@@ -38,6 +38,7 @@ public class ESItems {
         REGISTERED_ITEMS.add(ResourceKey.create(Registries.ITEM, EternalStarlight.id(name)));
         return ITEMS.register(name, supplier);
     }
+
     public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_BLOCK = registerItem("red_starlight_crystal_block", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_BLOCK = registerItem("blue_starlight_crystal_block", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_CLUSTER = registerItem("red_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
@@ -399,6 +400,9 @@ public class ESItems {
 
     // desert grass
     public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(ESBlocks.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> DESERT_AMETHYSIA = registerItem("desert_amethysia", () -> new BlockItem(ESBlocks.DESERT_AMETHYSIA.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> WITHERED_DESERT_AMETHYSIA = registerItem("withered_desert_amethysia", () -> new BlockItem(ESBlocks.WITHERED_DESERT_AMETHYSIA.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> SUNSET_THORNBLOOM = registerItem("sunset_thornbloom", () -> new BlockItem(ESBlocks.SUNSET_THORNBLOOM.get(), new Item.Properties()));
 
     // water grass
     public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
@@ -601,7 +605,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> GLEECH_EGG = registerItem("gleech_egg", () -> new GleechEggItem(new Item.Properties().stacksTo(16)));
 
     public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER = registerItem("tooth_of_hunger", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item, Item> DAGGER_OF_HUNGER = registerItem("dagger_of_hunger", () -> new DaggerOfHungerItem(ESItemTiers.TOOTH_OF_HUNGER, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 3, -2.4f))));
+    public static final RegistryObject<Item, Item> DAGGER_OF_HUNGER = registerItem("dagger_of_hunger", () -> new DaggerOfHungerItem(ESItemTiers.TOOTH_OF_HUNGER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 3, -2.4f))));
 
     // agriculture
     public static final RegistryObject<Item, Item> NIGHTFALL_FARMLAND = registerItem("nightfall_farmland", () -> new BlockItem(ESBlocks.NIGHTFALL_FARMLAND.get(), new Item.Properties()));
