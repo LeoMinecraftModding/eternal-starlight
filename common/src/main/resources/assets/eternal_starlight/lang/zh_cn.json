@@ -666,6 +666,8 @@
   "death.attack.eternal_starlight.ground_smash.player": "%1$s在逃离%2$s时被震碎了",
   "death.attack.eternal_starlight.shattered_blade": "%1$s破碎了",
   "death.attack.eternal_starlight.shattered_blade.player": "%1$s在逃离%2$s时破碎了",
+  "death.attack.eternal_starlight.dagger_of_hunger": "%1$s被蚕食殆尽",
+  "death.attack.eternal_starlight.dagger_of_hunger.player": "%1$s在逃离%2$s时被蚕食殆尽",
   "death.attack.eternal_starlight.laser": "%1$s被一道激光射穿了",
   "death.attack.eternal_starlight.laser.player": "%1$s在逃离%2$s时被一道激光射穿了",
   "death.attack.eternal_starlight.energized_flame": "%1$s超负荷运作",
