@@ -15,10 +15,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
     private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
+    private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
     private final FrozenTubeModel<FrozenTube> model;
 
     public FrozenTubeRenderer(EntityRendererProvider.Context context) {
@@ -44,6 +46,18 @@ public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
         this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
         poseStack.popPose();
+
+        VertexConsumer trailConsumer = bufferSource.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE));
+        float x = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
+        float y = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
+        float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
+        poseStack.pushPose();
+        poseStack.translate(-x, -y, -z);
+        entity.trailEffect.createCurrentPoint(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)));
+        entity.trailEffect.render(trailConsumer, poseStack, 150 / 255f, 154 / 255f, 195 / 255f, 0.5f, light);
+        entity.trailEffect.removeNearest();
+        poseStack.popPose();
+
         super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
     }
 

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -20,6 +21,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class FrozenTube extends AbstractArrow {
+    public final TrailEffect trailEffect = new TrailEffect(0.3f, 30);
     private boolean dealtDamage;
 
     public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
@@ -34,7 +36,10 @@ public class FrozenTube extends AbstractArrow {
         if (this.inGroundTime > 4) {
             this.dealtDamage = true;
         }
-
+        if (level().isClientSide) {
+            Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+            trailEffect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+        }
         super.tick();
     }
 
@@ -63,6 +68,11 @@ public class FrozenTube extends AbstractArrow {
             }
             discard();
         }
+    }
+
+    @Override
+    protected void onHitEntity(EntityHitResult entityHitResult) {
+
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -32,6 +33,7 @@ import net.minecraft.world.phys.Vec3;
 public class Freeze extends Monster implements RangedAttackMob {
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState throwAnimationState = new AnimationState();
+    public final TrailEffect trailEffect = new TrailEffect(0.5f, 80);
     protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(Freeze.class, EntityDataSerializers.BOOLEAN);
     public boolean isAttacking() {
         return entityData.get(ATTACKING);
@@ -183,6 +185,8 @@ public class Freeze extends Monster implements RangedAttackMob {
                     level().addParticle(ESParticles.STARLIGHT.get(), pos.x + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), pos.y, pos.z + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), 0, -0.15, 0);
                 }
             }
+            Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+            trailEffect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
             idleAnimationState.startIfStopped(tickCount);
         }
     }

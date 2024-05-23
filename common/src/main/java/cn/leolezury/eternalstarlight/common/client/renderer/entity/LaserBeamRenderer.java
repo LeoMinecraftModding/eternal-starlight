@@ -48,7 +48,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
         playerCast = Minecraft.getInstance().options.getCameraType().isFirstPerson() && laserBeam.getCaster().isPresent() && Minecraft.getInstance().player != null && laserBeam.getCaster().get().getUUID().equals(Minecraft.getInstance().player.getUUID());
 
         if (playerCast && Minecraft.getInstance().getCameraEntity() != null) {
-            Vec3 offset = ESMathUtil.rotationToPosition(Vec3.ZERO, 0.5f, -Minecraft.getInstance().getCameraEntity().getXRot() - 90, Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90);
+            Vec3 offset = ESMathUtil.rotationToPosition(0.5f, -Minecraft.getInstance().getCameraEntity().getXRot() - 90, Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90);
             stack.translate(offset.x, offset.y, offset.z);
         }
 
