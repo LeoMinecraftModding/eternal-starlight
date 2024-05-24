@@ -95,6 +95,11 @@ public class Gleech extends Monster {
         this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
+    @Override
+    public boolean isBaby() {
+        return isLarval();
+    }
+
     public void tick() {
         this.yBodyRot = this.getYRot();
         super.tick();

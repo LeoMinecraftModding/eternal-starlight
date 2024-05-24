@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowItemMixin {
     @Inject(method = "createProjectile", at = @At("RETURN"), cancellable = true)
-    private void es_createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
+    private void createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
         if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
             Projectile projectile = cir.getReturnValue();
             ESEntityUtil.getPersistentData(projectile).putBoolean(EternalStarlight.ID + ":crystal", true);

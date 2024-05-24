@@ -32,7 +32,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
     private static AbstractClientPlayer animatedPlayer;
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("RETURN"))
-    private void es_setupAnim(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void setupAnim(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (livingEntity instanceof AbstractClientPlayer player) {
             for (Map.Entry<PlayerAnimator.AnimationTrigger, PlayerAnimator.AnimationStateFunction> entry : PlayerAnimator.ANIMATIONS.entrySet()) {
                 if (entry.getKey().shouldPlay(player)) {
@@ -82,7 +82,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
     }
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
-    private void es_setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+    private void setupAnimResetPose(T livingEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
         playerModel.head.resetPose();
         playerModel.body.resetPose();

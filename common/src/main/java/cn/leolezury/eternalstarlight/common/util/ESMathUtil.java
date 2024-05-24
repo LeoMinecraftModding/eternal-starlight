@@ -43,6 +43,10 @@ public class ESMathUtil {
         return startPos.add(rotationToPosition(radius, pitch, yaw));
     }
 
+    public static Vec3 lerpVec(float progress, Vec3 from, Vec3 to) {
+        return new Vec3(Mth.lerp(progress, from.x, to.x), Mth.lerp(progress, from.y, to.y), Mth.lerp(progress, from.z, to.z));
+    }
+
     public static boolean isPointInEllipsoid(double x, double y, double z, double a, double b, double c) {
         double value = (x * x) / (a * a) + (y * y) / (b * b) + (z * z) / (c * c);
         return value <= 1;

@@ -35,21 +35,21 @@ public abstract class EntityMixin implements PersistentDataHolder {
     }
 
     @Inject(method = "saveWithoutId", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
-    private void es_save(CompoundTag compoundTag, CallbackInfoReturnable<Boolean> info) {
+    private void save(CompoundTag compoundTag, CallbackInfoReturnable<Boolean> info) {
         if (esPersistentData != null && compoundTag != null) {
             compoundTag.put("ESData", esPersistentData.copy());
         }
     }
 
     @Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
-    private void es_load(CompoundTag compoundTag, CallbackInfo info) {
+    private void load(CompoundTag compoundTag, CallbackInfo info) {
         if (compoundTag != null && compoundTag.contains("ESData", CompoundTag.TAG_COMPOUND)) {
             esPersistentData = compoundTag.getCompound("ESData");
         }
     }
 
     @Inject(method = "updateInWaterStateAndDoFluidPushing", at = @At("RETURN"), cancellable = true)
-    private void es_updateInWaterStateAndDoFluidPushing(CallbackInfoReturnable<Boolean> cir) {
+    private void updateInWaterStateAndDoFluidPushing(CallbackInfoReturnable<Boolean> cir) {
         if (this.updateFluidHeightAndDoFluidPushing(ESTags.Fluids.ETHER, 0.014)) {
             this.resetFallDistance();
             this.clearFire();

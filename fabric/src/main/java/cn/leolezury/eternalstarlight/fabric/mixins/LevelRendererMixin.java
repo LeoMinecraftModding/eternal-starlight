@@ -25,7 +25,7 @@ public abstract class LevelRendererMixin {
 
 
     @Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
-    private void es_renderSky(Matrix4f matrix4f, Matrix4f matrix4f2, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
+    private void renderSky(Matrix4f matrix4f, Matrix4f matrix4f2, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
         if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
             ESSkyRenderer.renderSky(level, matrix4f, matrix4f2, f, camera, runnable);
             ci.cancel();
@@ -33,7 +33,7 @@ public abstract class LevelRendererMixin {
     }
 
     @Inject(method = "renderSnowAndRain", at = @At(value = "HEAD"), cancellable = true)
-    private void es_renderSnowAndRain(LightTexture lightTexture, float partialTick, double camX, double camY, double camZ, CallbackInfo ci) {
+    private void renderSnowAndRain(LightTexture lightTexture, float partialTick, double camX, double camY, double camZ, CallbackInfo ci) {
         if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
             if (ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ)) {
                 ci.cancel();

@@ -27,7 +27,7 @@ public abstract class LiquidBlockMixin {
     @Shadow protected abstract void fizz(LevelAccessor levelAccessor, BlockPos blockPos);
 
     @Inject(method = "shouldSpreadLiquid", at = @At(value = "HEAD"), cancellable = true)
-    public void es_shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+    public void shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
         if (this.fluid == ESFluids.ETHER_FLOWING.get() || this.fluid == ESFluids.ETHER_STILL.get()) {
             for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
                 BlockPos relativePos = blockPos.relative(direction.getOpposite());

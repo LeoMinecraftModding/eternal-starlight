@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
     @ModifyVariable(method = "render", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-    public BakedModel es_render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
+    public BakedModel render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
         ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (itemDisplayContext == ItemDisplayContext.GUI && ClientSetupHandlers.ITEMS_WITH_INV_ICON.containsKey(new ModelResourceLocation(itemKey, "inventory"))) {
             BakedModel replacedModel = ClientSetupHandlers.BAKED_MODELS.get(ClientSetupHandlers.ITEMS_WITH_INV_ICON.get(new ModelResourceLocation(itemKey, "inventory")));

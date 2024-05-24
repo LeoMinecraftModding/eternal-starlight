@@ -26,7 +26,7 @@ public abstract class ScreenEffectRendererMixin {
     private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, EternalStarlight.id("block/abyssal_fire_1"));
 
     @Inject(method = "renderScreenEffect", at = @At(value = "TAIL"))
-    private static void es_renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
+    private static void renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
         if (minecraft.player != null && ESBlockUtil.isEntityInBlock(minecraft.player, ESBlocks.ABYSSAL_FIRE.get()) && !minecraft.player.isSpectator()) {
             renderAbyssalFlame(poseStack);
         }

@@ -20,7 +20,7 @@ import java.util.List;
 @Mixin(SpriteSourceList.class)
 public class SpriteSourceListMixin {
     @Inject(method = "<init>", at = @At("RETURN"))
-    private void es_init(List<SpriteSource> list, CallbackInfo ci) {
+    private void init(List<SpriteSource> list, CallbackInfo ci) {
         for (SpriteSource source : list) {
             if (source instanceof PalettedPermutationsAccessor permutations && permutations.getPaletteKey().getPath().equals("trims/color_palettes/trim_palette")) {
                 List<ResourceLocation> textures = new ArrayList<>(permutations.getTextures());

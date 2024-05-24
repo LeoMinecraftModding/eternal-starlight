@@ -19,7 +19,7 @@ public abstract class PlayerMixin implements SpellCaster {
     private SpellCastData spellCastData = SpellCastData.getDefault();
 
     @Inject(at = @At(value = "HEAD"), method = "hurtCurrentlyUsedShield")
-    private void es_damageShield(float amount, CallbackInfo callBackInfo) {
+    private void damageShield(float amount, CallbackInfo callBackInfo) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ESItems.MOONRING_GREATSWORD.get())) {
@@ -30,7 +30,7 @@ public abstract class PlayerMixin implements SpellCaster {
     }
 
     @Inject(at = @At(value = "HEAD"), method = "disableShield", cancellable = true)
-    private void es_disableShield(CallbackInfo ci) {
+    private void disableShield(CallbackInfo ci) {
         Player player = (Player) (Object) this;
         ItemStack useItem = player.getUseItem();
         if (useItem.is(ESItems.MOONRING_GREATSWORD.get())) {

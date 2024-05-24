@@ -52,7 +52,7 @@ public abstract class EntityRenderDispatcherMixin {
     @Shadow private Quaternionf cameraOrientation;
 
     @Inject(method = "render", at = @At("RETURN"))
-    private <E extends Entity> void es_render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
+    private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
         if (entity instanceof LivingEntity living) {
             AttributeInstance armor = living.getAttribute(Attributes.ARMOR);
             if (armor == null) return;
@@ -95,7 +95,7 @@ public abstract class EntityRenderDispatcherMixin {
     }
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;displayFireAnimation()Z", shift = At.Shift.BEFORE))
-    private <E extends Entity> void es_renderFlame(E entity, double d, double e, double f, float g, float h, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
+    private <E extends Entity> void renderFlame(E entity, double d, double e, double f, float g, float h, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
         if (ESBlockUtil.isEntityInBlock(entity, ESBlocks.ABYSSAL_FIRE.get())) {
             renderAbyssalFlame(poseStack, multiBufferSource, entity, Mth.rotationAroundAxis(Mth.Y_AXIS, cameraOrientation, new Quaternionf()));
         }

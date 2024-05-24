@@ -14,7 +14,7 @@ import java.util.Map;
 @Mixin(ModelBakery.class)
 public abstract class ModelBakeryMixin {
     @Inject(method = "getBakedTopLevelModels", at = @At(value = "RETURN"))
-    private void es_getBakedTopLevelModels(CallbackInfoReturnable<Map<ResourceLocation, BakedModel>> cir) {
+    private void getBakedTopLevelModels(CallbackInfoReturnable<Map<ResourceLocation, BakedModel>> cir) {
         // idk if it works
         ClientSetupHandlers.modifyBakingResult(cir.getReturnValue());
     }

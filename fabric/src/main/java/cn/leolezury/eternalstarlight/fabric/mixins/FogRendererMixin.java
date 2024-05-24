@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(FogRenderer.class)
 public abstract class FogRendererMixin {
     @Inject(method = "setupFog", at = @At(value = "RETURN"))
-    private static void es_setupFog(Camera camera, FogRenderer.FogMode fogMode, float f, boolean bl, float g, CallbackInfo ci) {
+    private static void setupFog(Camera camera, FogRenderer.FogMode fogMode, float f, boolean bl, float g, CallbackInfo ci) {
         ClientHandlers.onRenderFog(camera);
     }
 }

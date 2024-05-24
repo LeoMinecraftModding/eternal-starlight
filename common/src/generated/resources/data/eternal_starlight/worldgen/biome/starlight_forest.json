@@ -19,7 +19,7 @@
     },
     "particle": {
       "options": {
-        "type": "eternal_starlight:starlight"
+        "type": "eternal_starlight:firefly"
       },
       "probability": 0.001
     },

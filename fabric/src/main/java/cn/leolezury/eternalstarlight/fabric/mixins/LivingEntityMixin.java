@@ -20,7 +20,7 @@ public abstract class LivingEntityMixin {
     @Shadow public abstract ItemStack getUseItem();
 
     @ModifyVariable(method = "hurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-    private float es_hurt(float amount, DamageSource damageSource) {
+    private float hurt(float amount, DamageSource damageSource) {
         if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
             CommonHandlers.onShieldBlock((LivingEntity) (Object) this, damageSource);
         }
@@ -28,12 +28,12 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "tick", at = @At(value = "RETURN"))
-    private void es_tick(CallbackInfo ci) {
+    private void tick(CallbackInfo ci) {
         CommonHandlers.onLivingTick((LivingEntity) (Object) this);
     }
 
     @Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
-    private void es_isBlocking(CallbackInfoReturnable<Boolean> cir) {
+    private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
         if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
             cir.setReturnValue(true);
         }

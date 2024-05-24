@@ -36,7 +36,7 @@ public abstract class ItemInHandRendererMixin {
 
     // Copied from vanilla renderArmWithItem, the crossbow part.
     @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
-    private void es_render(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
+    private void render(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
         if (!abstractClientPlayer.isScoping()) {
             boolean bl = interactionHand == InteractionHand.MAIN_HAND;
             HumanoidArm humanoidArm = bl ? abstractClientPlayer.getMainArm() : abstractClientPlayer.getMainArm().getOpposite();

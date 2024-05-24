@@ -21,14 +21,14 @@ public abstract class LivingEntityMixin {
     @Shadow public abstract ItemStack getUseItem();
 
     @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
-    private void es_swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
+    private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
         if (this.getItemInHand(interactionHand).getItem() instanceof Swingable swingable) {
             swingable.swing(this.getItemInHand(interactionHand), (LivingEntity) ((Object) this));
         }
     }
 
     @Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
-    private void es_isBlocking(CallbackInfoReturnable<Boolean> cir) {
+    private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
         if (isUsingItem() && getUseItem().is(ESItems.MOONRING_GREATSWORD.get())) {
             cir.setReturnValue(true);
         }

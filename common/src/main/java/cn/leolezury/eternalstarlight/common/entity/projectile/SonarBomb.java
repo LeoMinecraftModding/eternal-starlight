@@ -48,6 +48,7 @@ public class SonarBomb extends ThrowableItemProjectile {
                 }
             }
             playSound(SoundEvents.GENERIC_EXPLODE.value());
+            discard();
         }
     }
 

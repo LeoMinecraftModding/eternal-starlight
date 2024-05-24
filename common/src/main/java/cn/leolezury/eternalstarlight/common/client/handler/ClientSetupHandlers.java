@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.Boarwar
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
@@ -438,6 +439,7 @@ public class ClientSetupHandlers {
 
     public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
         strategy.register(ESParticles.STARLIGHT.get(), EndRodParticle.Provider::new);
+        strategy.register(ESParticles.FIREFLY.get(), FireflyParticle.Provider::new);
         strategy.register(ESParticles.SCARLET_LEAVES.get(), ScarletLeavesParticle.Provider::new);
         strategy.register(ESParticles.ENERGY.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.POISON.get(), FlameParticle.Provider::new);

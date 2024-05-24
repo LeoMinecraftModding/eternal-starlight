@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BubbleColumnBlock.class)
 public abstract class BubbleColumnBlockMixin {
     @Inject(method = "getColumnState", at = @At(value = "RETURN"), cancellable = true)
-    private static void es_getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
+    private static void getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
         if (state.is(ESBlocks.THERMAL_SPRINGSTONE.get())) {
             cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(false)));
         }
@@ -25,7 +25,7 @@ public abstract class BubbleColumnBlockMixin {
     }
 
     @Inject(method = "canSurvive", at = @At(value = "RETURN"), cancellable = true)
-    private void es_canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    private void canSurvive(BlockState state, LevelReader levelReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (levelReader.getBlockState(pos.below()).is(ESBlocks.THERMAL_SPRINGSTONE.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()) || levelReader.getBlockState(pos.below()).is(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get())) {
             cir.setReturnValue(true);
         }

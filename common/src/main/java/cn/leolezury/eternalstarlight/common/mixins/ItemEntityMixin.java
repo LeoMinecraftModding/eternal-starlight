@@ -24,7 +24,7 @@ public abstract class ItemEntityMixin {
     @Shadow private int pickupDelay;
 
     @Inject(method = "playerTouch", at = @At("HEAD"), cancellable = true)
-    public void es_playerTouch(Player player, CallbackInfo ci) {
+    public void playerTouch(Player player, CallbackInfo ci) {
         if (((ItemEntity) (Object) this).level().isClientSide) return;
         if (this.pickupDelay == 0 && (this.target == null || this.target.equals(player.getUUID())) && getItem().is(ESItems.MANA_CRYSTAL_SHARD.get())) {
             ci.cancel();

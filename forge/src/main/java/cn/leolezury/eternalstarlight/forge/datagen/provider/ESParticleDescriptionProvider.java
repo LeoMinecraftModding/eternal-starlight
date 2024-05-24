@@ -15,6 +15,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
     @Override
     protected void addDescriptions() {
         spriteSet(ESParticles.STARLIGHT.get(), loc("glitter"), 6, false);
+        spriteSet(ESParticles.FIREFLY.get(), loc("firefly"), 5, false);
         spriteSet(ESParticles.SCARLET_LEAVES.get(), loc("scarlet_leaves"), 5, false);
         sprite(ESParticles.ENERGY.get(), loc("energy"));
         sprite(ESParticles.POISON.get(), loc("poison"));

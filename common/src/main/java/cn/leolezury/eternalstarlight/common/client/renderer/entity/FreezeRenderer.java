@@ -33,7 +33,7 @@ public class FreezeRenderer<T extends Freeze> extends MobRenderer<T, FreezeModel
         poseStack.pushPose();
         poseStack.translate(-x, -y, -z);
         entity.trailEffect.createCurrentPoint(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)));
-        entity.trailEffect.render(trailConsumer, poseStack, 150 / 255f, 154 / 255f, 195 / 255f, 0.5f, light);
+        entity.trailEffect.render(trailConsumer, poseStack, partialTicks, 160 / 255f, 164 / 255f, 195 / 255f, 0.5f, light);
         entity.trailEffect.removeNearest();
         poseStack.popPose();
         super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);

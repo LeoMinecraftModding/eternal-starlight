@@ -25,12 +25,12 @@ public class HumanoidArmorLayerMixin<T extends LivingEntity, M extends HumanoidM
     private ItemStack armorStack;
 
     @Inject(method = "renderArmorPiece", at = @At("HEAD"))
-    private void es_renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
+    private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
         armorStack = livingEntity.getItemBySlot(equipmentSlot);
     }
 
     @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
-    private void es_renderTrim(Holder<ArmorMaterial> holder, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, ArmorTrim armorTrim, A humanoidModel, boolean bl, CallbackInfo ci) {
+    private void renderTrim(Holder<ArmorMaterial> holder, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, ArmorTrim armorTrim, A humanoidModel, boolean bl, CallbackInfo ci) {
         if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
             ci.cancel();
         }

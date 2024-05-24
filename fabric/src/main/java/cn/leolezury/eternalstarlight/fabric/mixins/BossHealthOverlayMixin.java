@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BossHealthOverlay.class)
 public abstract class BossHealthOverlayMixin {
     @Inject(method = "drawBar(Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/world/BossEvent;)V", at = @At(value = "RETURN"))
-    private void es_drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent bossEvent, CallbackInfo ci) {
+    private void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent bossEvent, CallbackInfo ci) {
         if (bossEvent instanceof LerpingBossEvent lerpingBossEvent) {
             ClientHandlers.renderBossBar(guiGraphics, lerpingBossEvent, x, y);
         }

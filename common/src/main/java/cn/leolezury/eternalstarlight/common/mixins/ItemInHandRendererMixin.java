@@ -51,7 +51,7 @@ public abstract class ItemInHandRendererMixin {
 
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
-    private static void es_evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
+    private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
         ItemStack itemStack = player.getMainHandItem();
         ItemStack itemStack1 = player.getOffhandItem();
         boolean flag = itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get());
@@ -70,7 +70,7 @@ public abstract class ItemInHandRendererMixin {
     }
 
     @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
-    private void es_renderArmWithItem(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
+    private void renderArmWithItem(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
         PlayerAnimator.renderingFirstPersonPlayer = true;
         boolean renderLeft = false;
         boolean renderRight = false;
@@ -101,11 +101,11 @@ public abstract class ItemInHandRendererMixin {
 
             if (mainArm) {
                 HumanoidArm humanoidArm = abstractClientPlayer.getMainArm();
-                es_renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
+                renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
             }
             if (oppositeArm) {
                 HumanoidArm humanoidArm = abstractClientPlayer.getMainArm().getOpposite();
-                es_renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
+                renderPlayerArm(poseStack, multiBufferSource, j, mainHand, humanoidArm);
             }
 
             poseStack.popPose();
@@ -115,7 +115,7 @@ public abstract class ItemInHandRendererMixin {
 
     // vanilla copy (adjusted)
     @Unique
-    private void es_renderPlayerArm(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, HumanoidArm humanoidArm) {
+    private void renderPlayerArm(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, HumanoidArm humanoidArm) {
         poseStack.pushPose();
         boolean bl = humanoidArm != HumanoidArm.LEFT;
         float h = bl ? 1.0F : -1.0F;
@@ -126,29 +126,29 @@ public abstract class ItemInHandRendererMixin {
         poseStack.translate(h * -0.02F, -0.6, 0.45F);
 
         if (bl) {
-            es_renderRightHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+            renderRightHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
         } else {
-            es_renderLeftHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+            renderLeftHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
         }
         poseStack.popPose();
     }
 
     @Unique
-    public void es_renderRightHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+    public void renderRightHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
         PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
         PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
-        es_renderHand(poseStack, multiBufferSource, i, mainHand, false, abstractClientPlayer, playerModel.rightArm, playerModel.rightSleeve);
+        renderHand(poseStack, multiBufferSource, i, mainHand, false, abstractClientPlayer, playerModel.rightArm, playerModel.rightSleeve);
     }
 
     @Unique
-    public void es_renderLeftHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+    public void renderLeftHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
         PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
         PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
-        es_renderHand(poseStack, multiBufferSource, i, mainHand, true, abstractClientPlayer, playerModel.leftArm, playerModel.leftSleeve);
+        renderHand(poseStack, multiBufferSource, i, mainHand, true, abstractClientPlayer, playerModel.leftArm, playerModel.leftSleeve);
     }
 
     @Unique
-    private void es_renderHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, boolean leftHand, AbstractClientPlayer abstractClientPlayer, ModelPart modelPart, ModelPart modelPart2) {
+    private void renderHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, boolean leftHand, AbstractClientPlayer abstractClientPlayer, ModelPart modelPart, ModelPart modelPart2) {
         PlayerRenderer playerRenderer = (PlayerRenderer)entityRenderDispatcher.getRenderer(abstractClientPlayer);
         PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
         playerRenderer.setModelProperties(abstractClientPlayer);

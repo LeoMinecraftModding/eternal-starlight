@@ -26,13 +26,13 @@ public class HumanoidArmorLayerMixin<T extends LivingEntity, M extends HumanoidM
     private ItemStack armorStack;
 
     @Inject(method = "renderArmorPiece", at = @At("HEAD"))
-    private void es_renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
+    private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
         armorStack = livingEntity.getItemBySlot(equipmentSlot);
     }
 
-    // god dammit forge method
+    // no remap for forge method
     @Inject(method = "renderTrim(Lnet/minecraft/core/Holder;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/item/armortrim/ArmorTrim;Lnet/minecraft/client/model/Model;Z)V", at = @At("HEAD"), remap = false, cancellable = true)
-    private void es_renderTrim(Holder<ArmorMaterial> arg, PoseStack arg2, MultiBufferSource arg3, int i, ArmorTrim arg4, Model arg5, boolean bl, CallbackInfo ci) {
+    private void renderTrim(Holder<ArmorMaterial> arg, PoseStack arg2, MultiBufferSource arg3, int i, ArmorTrim arg4, Model arg5, boolean bl, CallbackInfo ci) {
         if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
             ci.cancel();
         }

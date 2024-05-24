@@ -15,9 +15,9 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
     }
 
     public void update(TrailPoint point) {
-        trailPoints().add(point);
+        trailPoints().addFirst(point);
         if (trailPoints().size() > length()) {
-            trailPoints().removeFirst();
+            trailPoints().removeLast();
         }
     }
 
@@ -44,13 +44,16 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
     }
 
     @Environment(EnvType.CLIENT)
-    public void render(VertexConsumer consumer, PoseStack stack, float r, float g, float b, float a, int light) {
+    public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, float r, float g, float b, float a, int light) {
         if (trailPoints().size() >= 2) {
             float secX = 1f / (trailPoints().size() - 1);
             float textureX = 0;
             for (int i = 0; i < trailPoints().size() - 1; i++) {
                 TrailPoint from = trailPoints().get(i);
                 TrailPoint to = trailPoints().get(i + 1);
+                if (i == trailPoints().size() - 2 && trailPoints().size() == length() + 1) {
+                    to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
+                }
                 PoseStack.Pose pose = stack.last();
                 consumer.vertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).color(r, g, b, a).uv(textureX, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();
                 consumer.vertex(pose, (float) to.upper().x, (float) to.upper().y, (float) to.upper().z).color(r, g, b, a).uv(textureX + secX, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();

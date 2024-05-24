@@ -14,13 +14,13 @@ import java.util.Optional;
 @Mixin(FireBlock.class)
 public abstract class FireBlockMixin {
     @Inject(method = "getBurnOdds", at = @At("HEAD"), cancellable = true)
-    private void es_getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
+    private void getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         Optional<ESFlammabilityRegistry.Flammability> flammability = ESFlammabilityRegistry.getBlockFlammability(blockState.getBlock());
         flammability.ifPresent(value -> callbackInfoReturnable.setReturnValue(blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? 0 : value.burnOdds()));
     }
 
     @Inject(method = "getIgniteOdds*", at = @At("HEAD"), cancellable = true)
-    private void es_getIgniteOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
+    private void getIgniteOdds(BlockState blockState, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         Optional<ESFlammabilityRegistry.Flammability> flammability = ESFlammabilityRegistry.getBlockFlammability(blockState.getBlock());
         flammability.ifPresent(value -> callbackInfoReturnable.setReturnValue(blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? 0 : value.catchOdds()));
     }
