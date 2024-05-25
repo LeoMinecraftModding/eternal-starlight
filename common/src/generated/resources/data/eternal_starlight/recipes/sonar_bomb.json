@@ -10,9 +10,9 @@
     }
   },
   "pattern": [
+    " N ",
     "NGN",
-    "GNG",
-    "NGN"
+    " N "
   ],
   "result": {
     "count": 1,

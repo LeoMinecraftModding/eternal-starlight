@@ -266,6 +266,24 @@ public class ESItems {
     public static final RegistryObject<Item, Item> CRYOBYSSAL_MAGMA_BLOCK = registerItem("cryobyssal_magma_block", () -> new BlockItem(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> CRYOBYSSAL_GEYSER = registerItem("cryobyssal_geyser", () -> new BlockItem(ESBlocks.CRYOBYSSAL_GEYSER.get(), new Item.Properties()));
 
+    // ether
+    public static final RegistryObject<Item, Item> THIOQUARTZ_BLOCK = registerItem("thioquartz_block", () -> new BlockItem(ESBlocks.THIOQUARTZ_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> BUDDING_THIOQUARTZ = registerItem("budding_thioquartz", () -> new BlockItem(ESBlocks.BUDDING_THIOQUARTZ.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> THIOQUARTZ_CLUSTER = registerItem("thioquartz_cluster", () -> new BlockItem(ESBlocks.THIOQUARTZ_CLUSTER.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> THIOQUARTZ_SHARD = registerItem("thioquartz_shard", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> TOXITE = registerItem("toxite", () -> new BlockItem(ESBlocks.TOXITE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TOXITE_SLAB = registerItem("toxite_slab", () -> new BlockItem(ESBlocks.TOXITE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TOXITE_STAIRS = registerItem("toxite_stairs", () -> new BlockItem(ESBlocks.TOXITE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> TOXITE_WALL = registerItem("toxite_wall", () -> new BlockItem(ESBlocks.TOXITE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_TOXITE = registerItem("polished_toxite", () -> new BlockItem(ESBlocks.POLISHED_TOXITE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_TOXITE_SLAB = registerItem("polished_toxite_slab", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_TOXITE_STAIRS = registerItem("polished_toxite_stairs", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> POLISHED_TOXITE_WALL = registerItem("polished_toxite_wall", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> ALCHEMIST_MASK = registerItem("alchemist_mask",
+            () -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
+    public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",
+            () -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10))));
+
     // mud
     public static final RegistryObject<Item, Item> NIGHTFALL_MUD = registerItem("nightfall_mud", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLOWING_NIGHTFALL_MUD = registerItem("glowing_nightfall_mud", () -> new BlockItem(ESBlocks.GLOWING_NIGHTFALL_MUD.get(), new Item.Properties()));

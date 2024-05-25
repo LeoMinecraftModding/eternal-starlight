@@ -35,6 +35,7 @@ public class ESRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput recipeOutput) {
         addWoodRecipes(recipeOutput);
         addStoneRecipes(recipeOutput);
+        addAlchemistArmorRecipes(recipeOutput);
         addAetherSentRecipes(recipeOutput);
         addSwampSilverRecipes(recipeOutput);
         addThermalSpringstoneRecipes(recipeOutput);
@@ -154,9 +155,9 @@ public class ESRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
+                .pattern(" N ")
                 .pattern("NGN")
-                .pattern("GNG")
-                .pattern("NGN")
+                .pattern(" N ")
                 .define('N', ESItems.SWAMP_SILVER_NUGGET.get())
                 .define('G', ESItems.SHIVERING_GEL.get())
                 .unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
@@ -427,6 +428,21 @@ public class ESRecipeProvider extends RecipeProvider {
         addSlab(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get());
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
 
+        nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
+        addStoneCompress(recipeOutput, ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOXITE_WALL.get(), ESBlocks.TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOXITE_WALL.get(), ESBlocks.TOXITE.get());
+        addStairs(recipeOutput, ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE.get());
+        addSlab(recipeOutput, ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE.get(), 2);
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_WALL.get(), ESBlocks.POLISHED_TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_WALL.get(), ESBlocks.POLISHED_TOXITE.get());
+        addStairs(recipeOutput, ESBlocks.POLISHED_TOXITE_STAIRS.get(), ESBlocks.POLISHED_TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_STAIRS.get(), ESBlocks.POLISHED_TOXITE.get());
+        addSlab(recipeOutput, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get(), 2);
+
         addStoneCompress(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.PACKED_NIGHTFALL_MUD.get());
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
@@ -500,6 +516,24 @@ public class ESRecipeProvider extends RecipeProvider {
         addFence(recipeOutput, ESBlocks.LUNAR_MOSAIC_FENCE.get(), ESBlocks.LUNAR_MOSAIC.get());
         addFenceGate(recipeOutput, ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), ESBlocks.LUNAR_MOSAIC.get());
         customCarpet(recipeOutput, ESBlocks.LUNAR_MAT.get(), ESBlocks.LUNAR_MOSAIC.get());
+    }
+
+    private void addAlchemistArmorRecipes(RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ALCHEMIST_MASK.get())
+                .pattern("###")
+                .pattern("S S")
+                .define('#', Items.LEATHER)
+                .define('S', ESItems.THIOQUARTZ_BLOCK.get())
+                .unlockedBy("has_item", has(ESItems.THIOQUARTZ_BLOCK.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ALCHEMIST_ROBE.get())
+                .pattern("S S")
+                .pattern("#S#")
+                .pattern("#S#")
+                .define('#', Items.LEATHER)
+                .define('S', ESItems.THIOQUARTZ_BLOCK.get())
+                .unlockedBy("has_item", has(ESItems.THIOQUARTZ_BLOCK.get()))
+                .save(recipeOutput);
     }
 
     private void addAetherSentRecipes(RecipeOutput recipeOutput) {

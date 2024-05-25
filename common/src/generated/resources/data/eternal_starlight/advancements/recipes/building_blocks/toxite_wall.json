@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:toxite_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_toxite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:toxite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_toxite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:toxite_wall"
+    ]
+  }
+}

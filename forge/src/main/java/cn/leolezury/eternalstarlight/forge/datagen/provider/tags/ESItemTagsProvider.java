@@ -194,6 +194,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.COOKED_AURORA_DEER_STEAK.get()
         );
         tag(ItemTags.HEAD_ARMOR).add(
+                ESItems.ALCHEMIST_MASK.get(),
                 ESItems.AETHERSENT_HOOD.get(),
                 ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
                 ESItems.GLACITE_HELMET.get(),
@@ -201,6 +202,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.AMARAMBER_HELMET.get()
         );
         tag(ItemTags.CHEST_ARMOR).add(
+                ESItems.ALCHEMIST_ROBE.get(),
                 ESItems.AETHERSENT_CAPE.get(),
                 ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
                 ESItems.GLACITE_CHESTPLATE.get(),

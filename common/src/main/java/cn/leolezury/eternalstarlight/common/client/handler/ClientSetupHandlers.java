@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
+import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
@@ -162,6 +163,7 @@ public class ClientSetupHandlers {
             ESBlocks.ABYSSAL_FIRE,
             ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
+            ESBlocks.THIOQUARTZ_CLUSTER,
             ESBlocks.DOOMED_TORCH,
             ESBlocks.WALL_DOOMED_TORCH,
             ESBlocks.DOOMED_REDSTONE_TORCH,
@@ -501,6 +503,7 @@ public class ClientSetupHandlers {
     public static void registerLayers(RendererLayerRegisterStrategy strategy) {
         strategy.register(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(INNER_ARMOR_DEFORMATION));
         strategy.register(ThermalSpringStoneArmorModel.OUTER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(OUTER_ARMOR_DEFORMATION));
+        strategy.register(AlchemistArmorModel.LAYER_LOCATION, AlchemistArmorModel::createBodyLayer);
         strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.LUNAR), BoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
         strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.NORTHLAND), BoatModel::createBodyModel);

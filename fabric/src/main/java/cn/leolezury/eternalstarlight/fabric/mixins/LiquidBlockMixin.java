@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -32,7 +31,7 @@ public abstract class LiquidBlockMixin {
             for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
                 BlockPos relativePos = blockPos.relative(direction.getOpposite());
                 if (!level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get())) {
-                    level.setBlockAndUpdate(blockPos, Blocks.QUARTZ_BLOCK.defaultBlockState());
+                    level.setBlockAndUpdate(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
                     this.fizz(level, blockPos);
                     cir.setReturnValue(false);
                 }

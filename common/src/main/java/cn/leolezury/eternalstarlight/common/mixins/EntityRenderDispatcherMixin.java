@@ -8,7 +8,6 @@ import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -53,44 +52,49 @@ public abstract class EntityRenderDispatcherMixin {
 
     @Inject(method = "render", at = @At("RETURN"))
     private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
-        if (entity instanceof LivingEntity living) {
-            AttributeInstance armor = living.getAttribute(Attributes.ARMOR);
-            if (armor == null) return;
+        if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
+            AttributeInstance armorInstance = living.getAttribute(Attributes.ARMOR);
+            if (armorInstance != null) {
+                AttributeModifier modifier = armorInstance.getModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_UUID);
+                if (modifier != null) {
+                    EntityRenderer<? super E> entityRenderer = getRenderer(living);
 
-            AttributeModifier infection = armor.getModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_UUID);
-            if (infection == null) return;
-            
-            EntityRenderer<? super E> entityRenderer = getRenderer(living);
-            
-            Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);
-            double x = xOffset + renderOffset.x();
-            double y = yOffset + renderOffset.y();
-            double z = zOffset + renderOffset.z();
-            poseStack.pushPose();
-            poseStack.translate(x, y, z);
+                    Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);
+                    double x = xOffset + renderOffset.x();
+                    double y = yOffset + renderOffset.y();
+                    double z = zOffset + renderOffset.z();
+                    poseStack.pushPose();
+                    poseStack.translate(x, y, z);
 
-            long seed = (long) (Math.pow(living.getId(), 3) * 12345L);
-            RandomSource random = RandomSource.create();
-            random.setSeed(seed);
-            int numCubes = (int) (living.getBbHeight() / 0.4F) + (int) (infection.amount() / 2) + 1;
+                    long seed = (long) (Math.pow(living.getId(), 3) * 54321L);
+                    RandomSource random = RandomSource.create();
+                    random.setSeed(seed);
+                    int crystalCount = (int) (living.getBbHeight() / 0.4F) + (int) (modifier.amount() / 2) + 1;
 
-            for (int i = 0; i < numCubes; i++) {
-                poseStack.pushPose();
-                float blockX = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
-                float blockY = random.nextFloat() * living.getBbHeight();
-                float blockZ = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
-                poseStack.translate(blockX, blockY, blockZ);
-                poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
-                Vec3 center = new Vec3(living.getBbWidth() / 2, living.getBbHeight() / 2, living.getBbWidth() / 2);
-                float pitch = ESMathUtil.positionToPitch(center, new Vec3(blockX, blockY, blockZ));
-                float yaw = ESMathUtil.positionToYaw(center, new Vec3(blockX, blockY, blockZ));
-                poseStack.mulPose(Axis.XP.rotationDegrees(-pitch));
-                poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
-                poseStack.translate(-0.5F, -0.5F, -0.5F);
-                ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
-                poseStack.popPose();
+                    for (int i = 0; i < crystalCount; i++) {
+                        poseStack.pushPose();
+                        float blockX = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
+                        float blockY = random.nextFloat() * living.getBbHeight();
+                        float blockZ = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
+                        Vec3 center = new Vec3(0, living.getBbHeight() / 2, 0);
+                        Vec3 block = ESMathUtil.lerpVec(0.2f, new Vec3(blockX, blockY, blockZ), center);
+                        blockX = (float) block.x;
+                        blockY = (float) block.y;
+                        blockZ = (float) block.z;
+                        poseStack.translate(blockX, blockY, blockZ);
+                        float pitch = ESMathUtil.positionToPitch(center, block);
+                        float yaw = ESMathUtil.positionToYaw(center, block);
+                        poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
+                        poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
+                        poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
+                        poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
+                        poseStack.translate(-0.5F, -0.5F, -0.5F);
+                        ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
+                        poseStack.popPose();
+                    }
+                    poseStack.popPose();
+                }
             }
-            poseStack.popPose();
         }
     }
 

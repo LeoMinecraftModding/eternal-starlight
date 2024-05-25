@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "part=lower": {
+      "model": "eternal_starlight:block/polished_toxite_lower"
+    },
+    "part=middle": {
+      "model": "eternal_starlight:block/polished_toxite"
+    },
+    "part=upper": {
+      "model": "eternal_starlight:block/polished_toxite_upper"
+    }
+  }
+}

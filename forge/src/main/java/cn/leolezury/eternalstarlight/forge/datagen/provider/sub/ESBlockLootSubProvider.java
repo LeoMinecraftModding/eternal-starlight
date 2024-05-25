@@ -282,6 +282,18 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get());
         dropOther(ESBlocks.CRYOBYSSAL_GEYSER.get(), ESItems.CRYOBYSSLATE.get());
 
+        dropSelf(ESBlocks.THIOQUARTZ_BLOCK.get());
+        add(ESBlocks.BUDDING_THIOQUARTZ.get(), noDrop());
+        add(ESBlocks.THIOQUARTZ_CLUSTER.get(), (block) -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.FORTUNE)).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
+        dropSelf(ESBlocks.TOXITE.get());
+        add(ESBlocks.TOXITE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ESBlocks.TOXITE_STAIRS.get());
+        dropSelf(ESBlocks.TOXITE_WALL.get());
+        dropSelf(ESBlocks.POLISHED_TOXITE.get());
+        add(ESBlocks.POLISHED_TOXITE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ESBlocks.POLISHED_TOXITE_STAIRS.get());
+        dropSelf(ESBlocks.POLISHED_TOXITE_WALL.get());
+
         dropSelf(ESBlocks.NIGHTFALL_MUD.get());
         dropSelf(ESBlocks.GLOWING_NIGHTFALL_MUD.get());
         dropSelf(ESBlocks.PACKED_NIGHTFALL_MUD.get());

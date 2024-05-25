@@ -14,6 +14,12 @@ import java.util.List;
 
 public class ESArmorMaterials {
     public static final RegistrationProvider<ArmorMaterial> ARMOR_MATERIALS = RegistrationProvider.get(Registries.ARMOR_MATERIAL, EternalStarlight.ID);
+    public static final RegistryObject<ArmorMaterial, ArmorMaterial> ALCHEMIST = ARMOR_MATERIALS.register("alchemist", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.BOOTS, 2);
+        map.put(ArmorItem.Type.LEGGINGS, 5);
+        map.put(ArmorItem.Type.CHESTPLATE, 6);
+        map.put(ArmorItem.Type.HELMET, 2);
+    }), 15, ESSoundEvents.ARMOR_EQUIP_ALCHEMIST.asHolder(), () -> Ingredient.of(ESItems.THIOQUARTZ_SHARD.get()), List.of(new ArmorMaterial.Layer(EternalStarlight.id("alchemist"))), 0F, 0F));
     public static final RegistryObject<ArmorMaterial, ArmorMaterial> AMARAMBER = ARMOR_MATERIALS.register("amaramber", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 2);
         map.put(ArmorItem.Type.LEGGINGS, 5);

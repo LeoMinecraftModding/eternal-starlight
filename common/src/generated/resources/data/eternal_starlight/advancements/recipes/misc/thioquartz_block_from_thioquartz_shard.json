@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:thioquartz_block_from_thioquartz_shard"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thioquartz_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:thioquartz_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_thioquartz_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:thioquartz_block_from_thioquartz_shard"
+    ]
+  }
+}

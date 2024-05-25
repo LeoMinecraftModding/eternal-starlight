@@ -26,6 +26,7 @@ public class EternalStarlight {
         ESItems.loadClass();
         ESCreativeModeTabs.loadClass();
         ESCriteriaTriggers.loadClass();
+        ESAttributes.loadClass();
         ESEntities.loadClass();
         ESSensorTypes.loadClass();
         ESMobEffects.loadClass();

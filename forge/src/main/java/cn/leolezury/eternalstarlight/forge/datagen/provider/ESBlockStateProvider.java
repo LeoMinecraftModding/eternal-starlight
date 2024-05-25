@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.OrbfloraBlock;
+import cn.leolezury.eternalstarlight.common.block.PolishedToxiteBlock;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.Direction;
@@ -148,6 +149,15 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stoneSet(ESBlocks.POLISHED_CRYOBYSSLATE_BRICKS.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
         simpleBlock(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get());
         geyser(ESBlocks.CRYOBYSSLATE.get(), ESBlocks.CRYOBYSSAL_GEYSER.get());
+
+        simpleBlock(ESBlocks.THIOQUARTZ_BLOCK.get());
+        simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
+        crystalCluster(ESBlocks.THIOQUARTZ_CLUSTER.get());
+        stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
+        polishedToxite(ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
+        slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+        stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+        wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 
         simpleBlock(ESBlocks.NIGHTFALL_MUD.get());
         simpleBlock(ESBlocks.GLOWING_NIGHTFALL_MUD.get());
@@ -405,6 +415,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .end()
                 .end();
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+    }
+
+    private void polishedToxite(Block block, Block stone) {
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
+                ? cubeAll(block) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
+                ? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(block), blockTexture(stone)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(stone), blockTexture(block)))).build());
     }
 
     private void orbflora(Block block) {

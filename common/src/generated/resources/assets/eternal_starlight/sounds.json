@@ -396,6 +396,17 @@
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_aethersent"
   },
+  "item.armor.equip_alchemist": {
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_alchemist"
+  },
   "item.armor.equip_amaramber": {
     "sounds": [
       "item/armor/equip_leather1",

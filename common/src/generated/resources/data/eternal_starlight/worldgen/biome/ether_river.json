@@ -28,7 +28,9 @@
     "water_fog_color": 14417883
   },
   "features": [
-    [],
+    [
+      "eternal_starlight:thioquartz_geode"
+    ],
     [],
     [],
     [],

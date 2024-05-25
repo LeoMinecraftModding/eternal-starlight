@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/polished_toxite",
+    "side": "eternal_starlight:block/polished_toxite_upper",
+    "top": "eternal_starlight:block/toxite"
+  }
+}

@@ -252,6 +252,21 @@ public class ESItemModelProvider extends ItemModelProvider {
         block(ESItems.CRYOBYSSAL_MAGMA_BLOCK.get());
         block(ESItems.CRYOBYSSAL_GEYSER.get());
 
+        block(ESItems.THIOQUARTZ_BLOCK.get());
+        block(ESItems.BUDDING_THIOQUARTZ.get());
+        flatBlockTexture(ESItems.THIOQUARTZ_CLUSTER.get());
+        basicItem(ESItems.THIOQUARTZ_SHARD.get());
+        block(ESItems.TOXITE.get());
+        block(ESItems.TOXITE_SLAB.get());
+        block(ESItems.TOXITE_STAIRS.get());
+        wall(ESItems.TOXITE_WALL.get(), ESItems.TOXITE.get());
+        block(ESItems.POLISHED_TOXITE.get());
+        block(ESItems.POLISHED_TOXITE_SLAB.get());
+        block(ESItems.POLISHED_TOXITE_STAIRS.get());
+        wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
+        basicItem(ESItems.ALCHEMIST_MASK.get());
+        basicItem(ESItems.ALCHEMIST_ROBE.get());
+
         block(ESItems.TWILIGHT_SAND.get());
         block(ESItems.TWILIGHT_SANDSTONE.get());
         block(ESItems.TWILIGHT_SANDSTONE_SLAB.get());

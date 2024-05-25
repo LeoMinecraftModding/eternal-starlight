@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
@@ -27,10 +26,10 @@ public class EtherFluidBorderFeature extends ESFeature<NoneFeatureConfiguration>
                         for (Direction direction : Direction.values()) {
                             BlockPos relativePos = pos.relative(direction);
                             if (!level.getBlockState(relativePos).is(ESBlocks.ETHER.get()) && !level.getFluidState(relativePos).isEmpty()) {
-                                setBlock(level, pos, Blocks.QUARTZ_BLOCK.defaultBlockState());
+                                setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
                                 for (Direction dir : Direction.values()) {
                                     if (context.random().nextInt(5) == 0 && (!level.getFluidState(relativePos.relative(dir)).isEmpty() || level.isEmptyBlock(relativePos.relative(dir)))) {
-                                        setBlock(level, relativePos.relative(dir), Blocks.QUARTZ_BLOCK.defaultBlockState());
+                                        setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
                                     }
                                 }
                             }

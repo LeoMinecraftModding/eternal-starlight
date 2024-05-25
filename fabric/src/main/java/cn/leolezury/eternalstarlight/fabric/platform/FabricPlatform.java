@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
+import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
@@ -8,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.world.ESTeleporter;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
+import cn.leolezury.eternalstarlight.fabric.item.armor.FabricAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
@@ -117,6 +119,11 @@ public class FabricPlatform implements ESPlatform {
     @Override
     public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
         return new FabricThermalSpringStoneArmorItem(material, type, properties);
+    }
+
+    @Override
+    public AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+        return new FabricAlchemistArmorItem(material, type, properties);
     }
 
     @Override

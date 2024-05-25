@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "athioquartz_shard",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:thioquartz_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:thioquartz_shard"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_toxite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:polished_toxite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:polished_toxite_stairs_from_polished_toxite_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_toxite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:polished_toxite_stairs_from_polished_toxite_stonecutting"
+    ]
+  }
+}

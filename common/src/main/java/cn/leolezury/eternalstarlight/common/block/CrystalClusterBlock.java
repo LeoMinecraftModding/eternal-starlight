@@ -20,8 +20,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class StarlightCrystalClusterBlock extends Block implements SimpleWaterloggedBlock {
-    public static final MapCodec<StarlightCrystalClusterBlock> CODEC = simpleCodec(StarlightCrystalClusterBlock::new);
+public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock {
+    public static final MapCodec<CrystalClusterBlock> CODEC = simpleCodec(CrystalClusterBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     protected final VoxelShape northAabb;
@@ -31,7 +31,7 @@ public class StarlightCrystalClusterBlock extends Block implements SimpleWaterlo
     protected final VoxelShape upAabb;
     protected final VoxelShape downAabb;
 
-    public StarlightCrystalClusterBlock(BlockBehaviour.Properties properties) {
+    public CrystalClusterBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
         this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
@@ -43,7 +43,7 @@ public class StarlightCrystalClusterBlock extends Block implements SimpleWaterlo
     }
 
     @Override
-    protected MapCodec<? extends Block> codec() {
+    protected MapCodec<? extends CrystalClusterBlock> codec() {
         return CODEC;
     }
 

@@ -78,13 +78,13 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 
     private void renderBeam(float length, float yaw, float pitch, float tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
         poseStack.pushPose();
-        poseStack.mulPose((new Quaternionf()).rotationX(90.0F * (float) Math.PI / 180f));
-        poseStack.mulPose((new Quaternionf()).rotationZ((yaw - 90.0F) * (float) Math.PI / 180f));
-        poseStack.mulPose((new Quaternionf()).rotationX(-pitch * (float) Math.PI / 180f));
+        poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
+        poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
+        poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
 
         poseStack.pushPose();
         if (!playerCast) {
-            poseStack.mulPose((new Quaternionf()).rotationY(tickCount * (float) Math.PI / 180f));
+            poseStack.mulPose(new Quaternionf().rotationY(tickCount * Mth.DEG_TO_RAD));
         }
         renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
         poseStack.popPose();
@@ -92,7 +92,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
         if (!playerCast) {
             for (int i = 1; i < 3; i++) {
                 poseStack.pushPose();
-                poseStack.mulPose((new Quaternionf()).rotationY((i * 30) * (float) Math.PI / 180f));
+                poseStack.mulPose(new Quaternionf().rotationY((i * 30) * Mth.DEG_TO_RAD));
 
                 renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
                 poseStack.popPose();

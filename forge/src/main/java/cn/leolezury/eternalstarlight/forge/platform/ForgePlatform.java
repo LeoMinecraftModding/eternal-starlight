@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.platform;
 
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
+import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
@@ -11,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.forge.block.ForgeWaterlilyBlock;
 import cn.leolezury.eternalstarlight.forge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
+import cn.leolezury.eternalstarlight.forge.item.armor.ForgeAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeHammerItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeScytheItem;
@@ -179,6 +181,11 @@ public class ForgePlatform implements ESPlatform {
     @Override
     public ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
         return new ForgeThermalSpringStoneArmorItem(material, type, properties);
+    }
+
+    @Override
+    public AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+        return new ForgeAlchemistArmorItem(material, type, properties);
     }
 
     @Override
