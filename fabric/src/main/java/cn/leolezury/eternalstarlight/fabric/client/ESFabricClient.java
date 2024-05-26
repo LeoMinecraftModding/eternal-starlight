@@ -38,7 +38,6 @@ public class ESFabricClient implements ClientModInitializer {
         ClientSetupHandlers.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ClientSetupHandlers.ParticleProviderRegisterStrategy() {
             @Override
             public <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider) {
-                // wtf?
                 ParticleFactoryRegistry.getInstance().register(particle, provider::create);
             }
         };
