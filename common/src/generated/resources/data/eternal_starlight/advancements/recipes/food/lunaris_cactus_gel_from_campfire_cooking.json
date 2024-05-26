@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lunaris_cactus_fruit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:lunaris_cactus_fruit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:lunaris_cactus_gel_from_campfire_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_lunaris_cactus_fruit"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:lunaris_cactus_gel_from_campfire_cooking"
+    ]
+  }
+}

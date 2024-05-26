@@ -222,6 +222,7 @@ public class ClientSetupHandlers {
             ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA,
             ESBlocks.SUNSET_THORNBLOOM,
             ESBlocks.POTTED_SUNSET_THORNBLOOM,
+            ESBlocks.LUNARIS_CACTUS,
             ESBlocks.MOONLIGHT_LILY_PAD,
             ESBlocks.STARLIT_LILY_PAD,
             ESBlocks.MOONLIGHT_DUCKWEED,
@@ -239,6 +240,7 @@ public class ClientSetupHandlers {
     );
 
     public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
+            ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
             ESBlocks.STARLIGHT_PORTAL
     );
 

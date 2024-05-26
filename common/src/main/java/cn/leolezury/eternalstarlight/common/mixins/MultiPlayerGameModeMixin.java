@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
 @Mixin(MultiPlayerGameMode.class)
-public class MultiPlayerGameModeMixin {
+public abstract class MultiPlayerGameModeMixin {
     @Inject(at = @At(value = "HEAD"), method = "performUseItemOn", cancellable = true)
     private void performUseItemOn(LocalPlayer localPlayer, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
         if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {

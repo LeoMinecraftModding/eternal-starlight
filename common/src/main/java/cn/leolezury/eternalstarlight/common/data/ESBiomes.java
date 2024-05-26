@@ -139,7 +139,7 @@ public class ESBiomes {
         BiomeDefaultFeatures.addDefaultGrass(builder);
         BiomeDefaultFeatures.addSavannaExtraGrass(builder);
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.NEAR_WATER_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATERSIDE_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
@@ -190,7 +190,7 @@ public class ESBiomes {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.STARLIGHT_FOREST);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_LUNAR_LOG);
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STONE_SPIKE);
 
@@ -201,7 +201,7 @@ public class ESBiomes {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DENSE_FOREST);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_LUNAR_LOG);
 
         return builder;
@@ -212,7 +212,7 @@ public class ESBiomes {
 
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.GLACITE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);
 
         return builder;
@@ -225,7 +225,7 @@ public class ESBiomes {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.SWAMP_SILVER_ORE);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_NIGHTFALL_MUD_ORE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_FOREST);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_STARLIGHT_MANGROVE_LOG);
 
         return builder;
@@ -235,7 +235,7 @@ public class ESBiomes {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_PUMPKIN);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SCARLET_FOREST_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SCARLET_FOREST_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SCARLET_FOREST);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FALLEN_SCARLET_LOG);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SCARLET_LEAVES_PILE);
@@ -246,7 +246,7 @@ public class ESBiomes {
     private static BiomeGenerationSettings.Builder torreyaForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
 
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.TORREYA_FOREST_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.TORREYA_FOREST_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.TORREYA_FOREST);
 
         return builder;
@@ -257,9 +257,10 @@ public class ESBiomes {
 
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.STARLIGHT_CRYSTAL);
         builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STARLIGHT_CRYSTAL_SURFACE);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DESERT_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DESERT_VEGETATION);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DEAD_LUNAR_TREE);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CRYSTAL_CAVES_GRASS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.LUNARIS_CACTUS);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CRYSTAL_CAVES_VEGETATION);
 
         return builder;
     }
@@ -268,7 +269,7 @@ public class ESBiomes {
         BiomeGenerationSettings.Builder builder = baseAquaticGenBuilder(featureGetter, carverGetter);
 
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ABYSSAL_KELP);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ON_WATER_PLANT);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATER_SURFACE_VEGETATION);
 
         return builder;
     }

@@ -368,7 +368,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> DOOMEDEN_KEYHOLE = registerItem("doomeden_keyhole", () -> new BlockItem(ESBlocks.DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> REDSTONE_DOOMEDEN_KEYHOLE = registerItem("redstone_doomeden_keyhole", () -> new BlockItem(ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
 
-    // common grass
+    // common plant
     public static final RegistryObject<Item, Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(ESBlocks.STARLIGHT_FLOWER.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> CONEBLOOM = registerItem("conebloom", () -> new BlockItem(ESBlocks.CONEBLOOM.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> NIGHTFAN = registerItem("nightfan", () -> new BlockItem(ESBlocks.NIGHTFAN.get(), new Item.Properties()));
@@ -399,7 +399,7 @@ public class ESItems {
     public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
 
-    // swamp grass
+    // swamp plant
     public static final RegistryObject<Item, Item> SWAMP_ROSE = registerItem("swamp_rose", () -> new BlockItem(ESBlocks.SWAMP_ROSE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> FANTABUD = registerItem("fantabud", () -> new BlockItem(ESBlocks.FANTABUD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> GREEN_FANTABUD = registerItem("green_fantabud", () -> new BlockItem(ESBlocks.GREEN_FANTABUD.get(), new Item.Properties()));
@@ -413,21 +413,25 @@ public class ESItems {
     public static final RegistryObject<Item, Item> RED_SCARLET_BUD = registerItem("red_scarlet_bud", () -> new BlockItem(ESBlocks.RED_SCARLET_BUD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SCARLET_GRASS = registerItem("scarlet_grass", () -> new BlockItem(ESBlocks.SCARLET_GRASS.get(), new Item.Properties()));
 
-    // torreya forest grass
+    // torreya forest plant
     public static final RegistryObject<Item, Item> WITHERED_STARLIGHT_FLOWER = registerItem("withered_starlight_flower", () -> new BlockItem(ESBlocks.WITHERED_STARLIGHT_FLOWER.get(), new Item.Properties()));
 
-    // desert grass
+    // desert plant
     public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(ESBlocks.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> DESERT_AMETHYSIA = registerItem("desert_amethysia", () -> new BlockItem(ESBlocks.DESERT_AMETHYSIA.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> WITHERED_DESERT_AMETHYSIA = registerItem("withered_desert_amethysia", () -> new BlockItem(ESBlocks.WITHERED_DESERT_AMETHYSIA.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> SUNSET_THORNBLOOM = registerItem("sunset_thornbloom", () -> new BlockItem(ESBlocks.SUNSET_THORNBLOOM.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNARIS_CACTUS = registerItem("lunaris_cactus", () -> new BlockItem(ESBlocks.LUNARIS_CACTUS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNARIS_CACTUS_GEL_BLOCK = registerItem("lunaris_cactus_gel_block", () -> new BlockItem(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> LUNARIS_CACTUS_FRUIT = registerItem("lunaris_cactus_fruit", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.8F).effect(new MobEffectInstance(MobEffects.POISON, 200, 0), 0.8F).build())));
+    public static final RegistryObject<Item, Item> LUNARIS_CACTUS_GEL = registerItem("lunaris_cactus_gel", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.1f).build())));
 
-    // water grass
+    // water plant
     public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> STARLIT_LILY_PAD = registerItem("starlit_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.STARLIT_LILY_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
 
-    // crystal caves grass
+    // crystal caves plant
     public static final RegistryObject<Item, Item> CRYSTALLIZED_LUNAR_GRASS = registerItem("crystallized_lunar_grass", () -> new BlockItem(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> RED_CRYSTAL_ROOTS = registerItem("red_crystal_roots", () -> new BlockItem(ESBlocks.RED_CRYSTAL_ROOTS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> BLUE_CRYSTAL_ROOTS = registerItem("blue_crystal_roots", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_ROOTS.get(), new Item.Properties()));

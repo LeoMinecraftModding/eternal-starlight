@@ -387,6 +387,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         flatBlockTexture(ESItems.DESERT_AMETHYSIA.get());
         flatBlockTexture(ESItems.WITHERED_DESERT_AMETHYSIA.get());
         flatBlockTexture(ESItems.SUNSET_THORNBLOOM.get());
+        block(ESItems.LUNARIS_CACTUS.get());
+        block(ESItems.LUNARIS_CACTUS_GEL_BLOCK.get());
+        basicItem(ESItems.LUNARIS_CACTUS_FRUIT.get());
+        basicItem(ESItems.LUNARIS_CACTUS_GEL.get());
 
         flatBlockTexture(ESItems.MOONLIGHT_LILY_PAD.get());
         flatBlockTexture(ESItems.STARLIT_LILY_PAD.get());

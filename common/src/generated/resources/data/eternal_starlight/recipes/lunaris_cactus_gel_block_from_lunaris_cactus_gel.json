@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "lunaris_cactus_gel",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:lunaris_cactus_gel_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:lunaris_cactus_gel"
+  }
+}

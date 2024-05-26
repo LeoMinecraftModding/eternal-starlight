@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "fruit=false": {
+      "model": "eternal_starlight:block/lunaris_cactus"
+    },
+    "fruit=true": {
+      "model": "eternal_starlight:block/lunaris_cactus_fruit"
+    }
+  }
+}

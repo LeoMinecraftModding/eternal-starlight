@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.BerriesVines;
+import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -423,6 +424,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropPottedContents(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get());
         dropSelf(ESBlocks.SUNSET_THORNBLOOM.get());
         dropPottedContents(ESBlocks.POTTED_SUNSET_THORNBLOOM.get());
+        add(ESBlocks.LUNARIS_CACTUS.get(), this::createLunarisCactusDrop);
+        dropSelf(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
 
         dropSelf(ESBlocks.MOONLIGHT_LILY_PAD.get());
         dropSelf(ESBlocks.STARLIT_LILY_PAD.get());
@@ -503,6 +506,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return BuiltInRegistries.BLOCK.stream().filter(block -> BuiltInRegistries.BLOCK.getKey(block).getNamespace().equals(EternalStarlight.ID)).collect(Collectors.toList());
+    }
+
+    private LootTable.Builder createLunarisCactusDrop(Block block) {
+        return LootTable.lootTable()
+                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LunarisCactusBlock.FRUIT, false)))))
+                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ESItems.LUNARIS_CACTUS_FRUIT.get())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LunarisCactusBlock.FRUIT, true))));
     }
 
     private LootTable.Builder createBerriesVinesDrop(Block block) {

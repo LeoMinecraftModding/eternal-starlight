@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "eternal_starlight:lunaris_cactus_fruit"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:lunaris_cactus_gel"
+  }
+}

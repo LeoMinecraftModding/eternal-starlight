@@ -1,12 +1,16 @@
 {
-  "feature": "eternal_starlight:permafrost_forest_grass",
+  "feature": "eternal_starlight:lunaris_cactus",
   "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 6
+    },
     {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG"
+      "heightmap": "MOTION_BLOCKING"
     },
     {
       "type": "minecraft:biome"

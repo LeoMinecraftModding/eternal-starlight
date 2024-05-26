@@ -86,6 +86,7 @@ public class ESRecipeProvider extends RecipeProvider {
         addSmelt(recipeOutput, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
         addSmelt(recipeOutput, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
         addSmelt(recipeOutput, 200, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.AURORA_DEER_STEAK.get());
+        addSmelt(recipeOutput, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
 
         // smelt
         addSmelt(recipeOutput, 200, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
@@ -117,6 +118,7 @@ public class ESRecipeProvider extends RecipeProvider {
         // misc
         addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
         addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
+        nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get())
                 .pattern("FFF")
                 .pattern("FPF")
@@ -170,6 +172,7 @@ public class ESRecipeProvider extends RecipeProvider {
         simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), 0.35F);
         simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), 0.35F);
         simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), 0.35F);
+        simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), 0.35F);
     }
 
     private void addWoodRecipes(RecipeOutput recipeOutput) {
@@ -427,6 +430,7 @@ public class ESRecipeProvider extends RecipeProvider {
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILES.get());
         addSlab(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get());
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
+        addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), 1, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
 
         nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
         addStoneCompress(recipeOutput, ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
@@ -706,7 +710,11 @@ public class ESRecipeProvider extends RecipeProvider {
     }
 
     protected final void addShapeless(RecipeOutput recipeOutput, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
-        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, num);
+        addShapeless(recipeOutput, RecipeCategory.MISC, criteria, output, num, ingredients);
+    }
+
+    protected final void addShapeless(RecipeOutput recipeOutput, RecipeCategory category, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
+        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(category, output, num);
         for (ItemLike item : ingredients) {
             builder.requires(item);
         }

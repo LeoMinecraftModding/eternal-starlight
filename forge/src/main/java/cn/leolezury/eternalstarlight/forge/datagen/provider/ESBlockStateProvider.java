@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
 import cn.leolezury.eternalstarlight.common.block.OrbfloraBlock;
 import cn.leolezury.eternalstarlight.common.block.PolishedToxiteBlock;
 import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
@@ -203,8 +204,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stoneSet(ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get());
         simpleBlock(ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
         simpleBlock(ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-        torch(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get());
-        redstoneTorch(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get());
+        doomedenTorch(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get());
+        doomedenRedstoneTorch(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get());
         stoneSet(ESBlocks.DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICK_WALL.get());
         stoneSet(ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get());
         onOffBlock(ESBlocks.DOOMEDEN_LIGHT.get());
@@ -270,6 +271,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         pottedPlant(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get(), blockTexture(ESBlocks.WITHERED_DESERT_AMETHYSIA.get()));
         cross(ESBlocks.SUNSET_THORNBLOOM.get());
         pottedPlant(ESBlocks.POTTED_SUNSET_THORNBLOOM.get(), blockTexture(ESBlocks.SUNSET_THORNBLOOM.get()));
+        lunarisCactus(ESBlocks.LUNARIS_CACTUS.get());
+        translucentCubeAll(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
 
         waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
         waterlily(ESBlocks.STARLIT_LILY_PAD.get());
@@ -436,6 +439,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(modelAge2).addModel();
     }
 
+    private void lunarisCactus(Block block) {
+        ModelFile modelNormal = models().getExistingFile(EternalStarlight.id("lunaris_cactus"));
+        ModelFile modelFruit = models().getExistingFile(EternalStarlight.id("lunaris_cactus_fruit"));
+        getVariantBuilder(block)
+                .partialState().with(LunarisCactusBlock.FRUIT, false)
+                .modelForState().modelFile(modelNormal).addModel()
+                .partialState().with(LunarisCactusBlock.FRUIT, true)
+                .modelForState().modelFile(modelFruit).addModel();
+    }
+
     private void torreyaVines(Block block) {
         ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
         ModelFile modelTop = models().cross(name(block) + "_top", blockTexture(block).withSuffix("_top")).renderType(CUTOUT);
@@ -460,6 +473,22 @@ public class ESBlockStateProvider extends BlockStateProvider {
         ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
         ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
         horizontalBlock(redstone, state -> state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone);
+    }
+
+    private void doomedenTorch(Block normal, Block wall) {
+        ModelFile modelNormal = models().singleTexture(name(normal), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch"), "torch", blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelWall = models().singleTexture(name(wall), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch_wall"), "torch", blockTexture(normal)).renderType(CUTOUT);
+        simpleBlock(normal, modelNormal);
+        horizontalBlock(wall, modelWall, 90);
+    }
+
+    private void doomedenRedstoneTorch(Block normal, Block wall) {
+        ModelFile modelNormal = models().singleTexture(name(normal) + "_lit", EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch"), "torch", blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelNormalOff = models().singleTexture(name(normal), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch"), "torch", blockTexture(normal).withSuffix("_off")).renderType(CUTOUT);
+        ModelFile modelWall = models().singleTexture(name(wall) + "_lit", EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch_wall"), "torch", blockTexture(normal)).renderType(CUTOUT);
+        ModelFile modelWallOff = models().singleTexture(name(wall), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/template_doomeden_torch_wall"), "torch", blockTexture(normal).withSuffix("_off")).renderType(CUTOUT);
+        onOffBlock(normal, BlockStateProperties.LIT, modelNormal, modelNormalOff);
+        horizontalBlock(wall, state -> state.getValue(BlockStateProperties.LIT) ? modelWall : modelWallOff, 90);
     }
 
     private void crystalCluster(Block block) {
@@ -854,6 +883,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
     private void cubeColumn(Block block, ResourceLocation end, ResourceLocation side, ResourceLocation renderType) {
         ModelFile modelFile = models().cubeColumn(name(block), side, end).renderType(renderType);
         simpleBlock(block, modelFile);
+    }
+
+    private void translucentCubeAll(Block block) {
+        simpleBlock(block, models().cubeAll(name(block), blockTexture(block)).renderType(TRANSLUCENT));
     }
 
     private void tintedCubeAll(Block block, ResourceLocation texture, ResourceLocation renderType) {

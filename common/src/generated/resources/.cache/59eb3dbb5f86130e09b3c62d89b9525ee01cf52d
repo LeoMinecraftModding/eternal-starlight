@@ -1,4 +1,4 @@
-// 1.20.6	2024-05-25T16:48:14.9153811	Loot Tables
+// 1.20.6	2024-05-26T13:10:06.2519967	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_tables/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
@@ -146,6 +146,8 @@ af788056f11f8f7b41f266ca02ac6d0d87ae7528 data/eternal_starlight/loot_tables/bloc
 e2d16551d7353e1a52dc3d5e435b792662bb7d96 data/eternal_starlight/loot_tables/blocks/light_gray_yeti_fur_carpet.json
 81f2e4fc8a61a0e58abafce30d9f3f9ec0eeba1f data/eternal_starlight/loot_tables/blocks/lime_yeti_fur.json
 801fdfb9ae779bfd0d31e7e210cfc1889d717c76 data/eternal_starlight/loot_tables/blocks/lime_yeti_fur_carpet.json
+10cb99a8990d18da9abf81ef1caa3de993820ab8 data/eternal_starlight/loot_tables/blocks/lunaris_cactus.json
+dbbbda22b45edff4d576bd37cee04097beb7ed34 data/eternal_starlight/loot_tables/blocks/lunaris_cactus_gel_block.json
 68ac2d5c94ff7b3901b4693382ed00cfcb193a11 data/eternal_starlight/loot_tables/blocks/lunar_bush.json
 733a4305dc4994e91c6e26373af12e0dd4a34fa7 data/eternal_starlight/loot_tables/blocks/lunar_button.json
 4d0e80bf26c8a5dd75457bb31578f3eea2d43746 data/eternal_starlight/loot_tables/blocks/lunar_door.json

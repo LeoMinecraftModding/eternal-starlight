@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:doomed_torch"
+    },
+    {
+      "item": "eternal_starlight:chiseled_polished_doomeden_bricks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:charged_chiseled_polished_doomeden_bricks"
+  }
+}
