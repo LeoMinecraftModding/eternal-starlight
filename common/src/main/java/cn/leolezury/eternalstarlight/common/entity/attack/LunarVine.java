@@ -9,8 +9,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-import java.util.Random;
-
 public class LunarVine extends AttackEffect {
     public LunarVine(EntityType<? extends AttackEffect> type, Level level) {
         super(type, level);
@@ -49,7 +47,6 @@ public class LunarVine extends AttackEffect {
                 }
             }
         } else {
-            Random random = new Random();
             level().addParticle(ESParticles.POISON.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0, 0);
         }
     }

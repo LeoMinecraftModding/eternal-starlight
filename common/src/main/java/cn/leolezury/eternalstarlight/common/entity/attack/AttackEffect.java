@@ -136,7 +136,7 @@ public class AttackEffect extends Entity {
             }
             this.move(MoverType.SELF, this.getDeltaMovement());
             if (!onGround() && !isNoGravity()) {
-                setDeltaMovement(getDeltaMovement().add(0, isNoGravity() ? 0 : -0.2, 0));
+                applyGravity();
             }
             setDeltaMovement(getDeltaMovement().scale(0.8));
         }

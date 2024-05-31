@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
@@ -100,6 +101,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
         strategy.register(ESEntities.FREEZE.get(), Freeze.createAttributes().build());
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
+        strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatred.createAttributes().build());
     }
 
     public interface SpawnPlacementRegisterStrategy {
