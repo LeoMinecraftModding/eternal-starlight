@@ -43,6 +43,20 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
         }
     }
 
+    public boolean trailPointsAllSame() {
+        if (trailPoints().isEmpty()) {
+            return true;
+        }
+        TrailPoint point = trailPoints().getFirst();
+        boolean allSame = true;
+        for (TrailPoint trailPoint : trailPoints()) {
+            if (trailPoint != point) {
+                allSame = false;
+            }
+        }
+        return allSame;
+    }
+
     @Environment(EnvType.CLIENT)
     public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, float r, float g, float b, float a, int light) {
         if (trailPoints().size() >= 2) {

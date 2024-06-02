@@ -54,7 +54,6 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     private final AttackManager<StarlightGolem> attackManager = new AttackManager<>(this, List.of(
             new StarlightGolemLaserBeamPhase(),
-            new StarlightGolemSpitFlamePhase(),
             new StarlightGolemSummonFlamePhase(),
             new StarlightGolemSmashPhase(),
             new StarlightGolemChargeStartPhase(),
@@ -63,7 +62,6 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     ));
 
     public AnimationState laserBeamAnimationState = new AnimationState();
-    public AnimationState spitFlameAnimationState = new AnimationState();
     public AnimationState summonFlameAnimationState = new AnimationState();
     public AnimationState smashAnimationState = new AnimationState();
     public AnimationState chargeStartAnimationState = new AnimationState();
@@ -141,8 +139,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         @Override
         public void tick() {
             boolean affectsLook =
-                    StarlightGolem.this.getAttackState() == StarlightGolemLaserBeamPhase.ID
-                            || StarlightGolem.this.getAttackState() == StarlightGolemSpitFlamePhase.ID;
+                    StarlightGolem.this.getAttackState() == StarlightGolemLaserBeamPhase.ID;
             if (!affectsLook) {
                 super.tick();
             }
@@ -190,7 +187,6 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
 
     public void stopAllAnimStates() {
         laserBeamAnimationState.stop();
-        spitFlameAnimationState.stop();
         summonFlameAnimationState.stop();
         smashAnimationState.stop();
         chargeStartAnimationState.stop();
@@ -204,7 +200,6 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
             stopAllAnimStates();
             switch (getAttackState()) {
                 case StarlightGolemLaserBeamPhase.ID -> laserBeamAnimationState.start(tickCount);
-                case StarlightGolemSpitFlamePhase.ID -> spitFlameAnimationState.start(tickCount);
                 case StarlightGolemSummonFlamePhase.ID -> summonFlameAnimationState.start(tickCount);
                 case StarlightGolemSmashPhase.ID -> smashAnimationState.start(tickCount);
                 case StarlightGolemChargeStartPhase.ID -> chargeStartAnimationState.start(tickCount);

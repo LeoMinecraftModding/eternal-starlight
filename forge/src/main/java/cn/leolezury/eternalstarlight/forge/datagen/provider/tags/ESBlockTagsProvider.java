@@ -315,6 +315,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.DESERT_AMETHYSIA.get(),
                 ESBlocks.WITHERED_DESERT_AMETHYSIA.get()
         );
+        tag(BlockTags.TALL_FLOWERS).add(
+                ESBlocks.NIGHTFAN_BUSH.get(),
+                ESBlocks.PINK_ROSE_BUSH.get()
+        );
         tag(BlockTags.FLOWER_POTS).add(
                 ESBlocks.POTTED_LUNAR_SAPLING.get(),
                 ESBlocks.POTTED_NORTHLAND_SAPLING.get(),

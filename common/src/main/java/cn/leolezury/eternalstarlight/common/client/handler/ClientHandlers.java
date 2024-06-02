@@ -2,7 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
+import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
@@ -19,6 +22,7 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.AttackIndicatorStatus;
@@ -28,10 +32,12 @@ import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.material.FluidState;
@@ -42,6 +48,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class ClientHandlers {
     public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
+    public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
     private static final ResourceLocation[] BAR_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_background"), new ResourceLocation("boss_bar/blue_background"), new ResourceLocation("boss_bar/red_background"), new ResourceLocation("boss_bar/green_background"), new ResourceLocation("boss_bar/yellow_background"), new ResourceLocation("boss_bar/purple_background"), new ResourceLocation("boss_bar/white_background")};
     private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/pink_progress"), new ResourceLocation("boss_bar/blue_progress"), new ResourceLocation("boss_bar/red_progress"), new ResourceLocation("boss_bar/green_progress"), new ResourceLocation("boss_bar/yellow_progress"), new ResourceLocation("boss_bar/purple_progress"), new ResourceLocation("boss_bar/white_progress")};
     private static final ResourceLocation[] OVERLAY_BACKGROUND_SPRITES = new ResourceLocation[]{new ResourceLocation("boss_bar/notched_6_background"), new ResourceLocation("boss_bar/notched_10_background"), new ResourceLocation("boss_bar/notched_12_background"), new ResourceLocation("boss_bar/notched_20_background")};
@@ -58,6 +65,24 @@ public class ClientHandlers {
 
     public static void onClientTick() {
         ClientWeatherInfo.tickRainLevel();
+        List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
+        for (WorldVisualEffect effect : VISUAL_EFFECTS) {
+            if (effect.shouldRemove()) {
+                effectsToRemove.add(effect);
+            } else {
+                effect.tick();
+            }
+        }
+        for (WorldVisualEffect effect : effectsToRemove) {
+            VISUAL_EFFECTS.remove(effect);
+        }
+        if (Minecraft.getInstance().level != null) {
+            for (Entity entity : Minecraft.getInstance().level.entitiesForRendering()) {
+                if (entity instanceof TrailOwner && VISUAL_EFFECTS.stream().noneMatch(effect -> effect instanceof TrailVisualEffect<?> trail && trail.getEntity().getUUID().equals(entity.getUUID()))) {
+                    VISUAL_EFFECTS.add(new TrailVisualEffect<>(entity));
+                }
+            }
+        }
         if (Minecraft.getInstance().player != null) {
             if (resetCameraIn > 0) {
                 resetCameraIn--;
@@ -93,6 +118,19 @@ public class ClientHandlers {
         } else {
             DREAM_CATCHER_TEXTS.clear();
         }
+    }
+
+    public static void onAfterRenderEntities(MultiBufferSource source, PoseStack stack, float partialTicks) {
+        Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+        Vec3 cameraPos = camera.getPosition();
+        stack.pushPose();
+        stack.translate(-cameraPos.x(), -cameraPos.y(), -cameraPos.z());
+        for (WorldVisualEffect effect : VISUAL_EFFECTS) {
+            if (!effect.shouldRemove()) {
+                effect.render(source, stack, partialTicks);
+            }
+        }
+        stack.popPose();
     }
 
     public static Vec3 computeCameraAngles(Vec3 angles) {

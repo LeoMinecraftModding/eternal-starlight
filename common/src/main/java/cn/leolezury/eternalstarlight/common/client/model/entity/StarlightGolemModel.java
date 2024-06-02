@@ -55,9 +55,6 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
                 case StarlightGolemLaserBeamPhase.ID -> {
                     animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
                 }
-                case StarlightGolemSpitFlamePhase.ID -> {
-                    animate(entity.spitFlameAnimationState, StarlightGolemAnimation.SPIT_FLAME, ageInTicks);
-                }
                 case StarlightGolemSummonFlamePhase.ID -> {
                     animate(entity.summonFlameAnimationState, StarlightGolemAnimation.ENERGIZED_FLAME, ageInTicks);
                 }

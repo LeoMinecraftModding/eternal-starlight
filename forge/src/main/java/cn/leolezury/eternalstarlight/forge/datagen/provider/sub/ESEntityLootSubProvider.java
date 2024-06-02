@@ -123,6 +123,8 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
         // our boss uses custom loots
         add(ESEntities.THE_GATEKEEPER.get(), LootTable.lootTable());
         add(ESEntities.STARLIGHT_GOLEM.get(), LootTable.lootTable());
+        add(ESEntities.TANGLED_HATRED.get(), LootTable.lootTable());
+        add(ESEntities.TANGLED_HATRED_PART.get(), LootTable.lootTable());
         add(ESEntities.LUNAR_MONSTROSITY.get(), LootTable.lootTable());
     }
 

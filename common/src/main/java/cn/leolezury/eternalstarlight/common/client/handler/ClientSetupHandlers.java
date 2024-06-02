@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESParticleRenderType;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
@@ -37,6 +38,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -64,6 +66,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -254,6 +257,14 @@ public class ClientSetupHandlers {
     public static final Map<ResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
     public static void clientSetup() {
+        // hacky
+        List<ParticleRenderType> renderTypes = new ArrayList<>(ParticleEngine.RENDER_ORDER);
+        int translucent = renderTypes.indexOf(ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT);
+        if (translucent != -1) {
+            renderTypes.add(translucent + 1, ESParticleRenderType.PARTICLE_SHEET_TRANSLUCENT_BLEND);
+        }
+        ParticleEngine.RENDER_ORDER = renderTypes;
+
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("glacite_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy"), "inventory"), new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));
@@ -489,8 +500,8 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
+        strategy.register(ESEntities.TANGLED_HATRED_PART.get(), NothingRenderer::new);
         strategy.register(ESEntities.GOLEM_LASER_BEAM.get(), StarlightGolemBeamRenderer::new);
-        strategy.register(ESEntities.GOLEM_FLAME_ATTACK.get(), NothingRenderer::new);
         strategy.register(ESEntities.ENERGIZED_FLAME.get(), NothingRenderer::new);
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(ESEntities.LUNAR_VINE.get(), LunarVineRenderer::new);

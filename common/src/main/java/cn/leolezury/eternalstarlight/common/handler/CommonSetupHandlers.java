@@ -102,6 +102,7 @@ public class CommonSetupHandlers {
         strategy.register(ESEntities.FREEZE.get(), Freeze.createAttributes().build());
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatred.createAttributes().build());
+        strategy.register(ESEntities.TANGLED_HATRED_PART.get(), TangledHatred.createAttributes().build());
     }
 
     public interface SpawnPlacementRegisterStrategy {

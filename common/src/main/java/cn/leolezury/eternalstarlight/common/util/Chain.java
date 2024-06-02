@@ -78,6 +78,10 @@ public record Chain(List<Segment> segments) {
             return position;
         }
 
+        public Vec3 getMiddlePosition() {
+            return ESMathUtil.rotationToPosition(position, length / 2f, pitch, yaw);
+        }
+
         public Vec3 getUpperPosition() {
             return ESMathUtil.rotationToPosition(position, length, pitch, yaw);
         }

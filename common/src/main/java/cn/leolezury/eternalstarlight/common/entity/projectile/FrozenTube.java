@@ -1,12 +1,18 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -19,9 +25,10 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector4f;
 
-public class FrozenTube extends AbstractArrow {
-    public final TrailEffect trailEffect = new TrailEffect(0.3f, 30);
+public class FrozenTube extends AbstractArrow implements TrailOwner {
+    private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
     private boolean dealtDamage;
 
     public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
@@ -35,10 +42,6 @@ public class FrozenTube extends AbstractArrow {
     public void tick() {
         if (this.inGroundTime > 4) {
             this.dealtDamage = true;
-        }
-        if (level().isClientSide) {
-            Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-            trailEffect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
         }
         super.tick();
     }
@@ -96,5 +99,27 @@ public class FrozenTube extends AbstractArrow {
 
     public boolean shouldRender(double d, double e, double f) {
         return true;
+    }
+
+    @Override
+    public TrailEffect newTrail() {
+        return new TrailEffect(0.3f, 30);
+    }
+
+    @Override
+    public void updateTrail(TrailEffect effect) {
+        Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+        effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+    }
+
+    @Override
+    public Vector4f getTrailColor() {
+        return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.5f);
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public RenderType getTrailRenderType() {
+        return RenderType.entityTranslucent(TRAIL_TEXTURE);
     }
 }

@@ -1,47 +1,45 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatredPart;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Vector4f;
 
-import java.util.Random;
+public class LunarSpore extends ThrowableProjectile implements TrailOwner {
+    private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
-public class LunarSpore extends AbstractHurtingProjectile {
-    public LunarSpore(EntityType<? extends AbstractHurtingProjectile> type, Level level) {
+    public LunarSpore(EntityType<? extends ThrowableProjectile> type, Level level) {
         super(type, level);
     }
 
     public LunarSpore(Level level, LivingEntity entity, double x, double y, double z) {
-        super(ESEntities.LUNAR_SPORE.get(), entity, x, y, z, level);
-    }
-
-    protected float getSoundVolume() {
-        return 1.0F;
-    }
-
-    public float getVoicePitch() {
-        return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
-    }
-
-    protected ParticleOptions getTrailParticle() {
-        return ESParticles.POISON.get();
+        super(ESEntities.LUNAR_SPORE.get(), x, y, z, level);
+        setOwner(entity);
     }
 
     @Override
@@ -57,71 +55,70 @@ public class LunarSpore extends AbstractHurtingProjectile {
         return false;
     }
 
-    protected boolean shouldBurn() {
-        return false;
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult result) {
-        super.onHitBlock(result);
-
-        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
-        AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
-
-        if (getOwner() instanceof LivingEntity entity) {
-            cloud.setOwner(entity);
-        }
-        cloud.setParticle(ESParticles.POISON.get());
-        cloud.setRadius(1.5F);
-        cloud.setDuration(200);
-        cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
-        this.level().addFreshEntity(cloud);
-
-        if (result.getDirection().equals(Direction.UP)) {
-            for (int i = 0; i < 5; i++) {
-                LunarVine vine = ESEntities.LUNAR_VINE.get().create(level());
-                Random random = new Random();
-                vine.setPos(position().add(random.nextDouble(), 0.2, random.nextDouble()));
-                vine.setAttackMode(0);
-                if (getOwner() instanceof LivingEntity entity) {
-                    vine.setOwner(entity);
+    protected void onHit(HitResult hitResult) {
+        super.onHit(hitResult);
+        if (getOwner() instanceof TangledHatred hatred && hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof TangledHatredPart part) {
+            boolean hasPart = false;
+            for (TangledHatredPart hatredPart : hatred.parts) {
+                if (hatredPart.getUUID().equals(part.getUUID())) {
+                    hasPart = true;
                 }
-                level().addFreshEntity(vine);
+            }
+            if (hasPart) {
+                return;
             }
         }
-        if (!level().isClientSide) {
-            ((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
+        if (hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof Projectile) {
+            return;
         }
-
-        CameraShake.createCameraShake(level(), position(), 45, 0.002f, 20, 10);
-        discard();
+        if (!level().isClientSide) {
+            playSound(SoundEvents.GENERIC_EXPLODE.value());
+            if (level() instanceof ServerLevel serverLevel) {
+                for (int i = 0; i < 4; i++) {
+                    Vec3 vec3 = new Vec3(this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth());
+                    for (int m = 0; m < serverLevel.players().size(); ++m) {
+                        ServerPlayer serverPlayer = serverLevel.players().get(m);
+                        serverLevel.sendParticles(serverPlayer, ESExplosionParticleOptions.LUNAR, true, vec3.x, vec3.y, vec3.z, 3, 0, 0, 0, 0);
+                        serverLevel.sendParticles(serverPlayer, ESSmokeParticleOptions.LUNAR_SHORT, true, vec3.x, vec3.y, vec3.z, 3, 0, 0, 0, 0);
+                        serverLevel.sendParticles(serverPlayer, ESParticles.POISON.get(), true, vec3.x, vec3.y, vec3.z, 10, 0.2, 0.2, 0.2, 0);
+                    }
+                }
+                CameraShake.createCameraShake(level(), position(), 45, 0.001f, 80, 20);
+            }
+            for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
+                if (getOwner() instanceof LivingEntity owner && !owner.getUUID().equals(entity.getUUID())) {
+                    entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, owner), 5);
+                }
+            }
+            discard();
+        }
     }
 
     @Override
-    protected void onHitEntity(EntityHitResult result) {
-        super.onHitEntity(result);
+    public TrailEffect newTrail() {
+        return new TrailEffect(0.4f, 40);
+    }
 
-        if (getOwner() != null && !result.getEntity().getUUID().equals(getOwner().getUUID())) {
-            result.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
-        }
+    @Override
+    public void updateTrail(TrailEffect effect) {
+        Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+        effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+    }
 
-        playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
-        AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
+    @Override
+    public Vector4f getTrailColor() {
+        return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 0.7f);
+    }
 
-        if (getOwner() instanceof LivingEntity entity) {
-            cloud.setOwner(entity);
-        }
-        cloud.setParticle(ESParticles.POISON.get());
-        cloud.setRadius(1.5F);
-        cloud.setDuration(200);
-        cloud.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
-        this.level().addFreshEntity(cloud);
-
-        if (!level().isClientSide) {
-            ((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
-        }
-
-        CameraShake.createCameraShake(level(), position(), 45, 0.002f, 20, 10);
-        discard();
+    @Environment(EnvType.CLIENT)
+    @Override
+    public RenderType getTrailRenderType() {
+        return RenderType.entityTranslucent(TRAIL_TEXTURE);
     }
 }

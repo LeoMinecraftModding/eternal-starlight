@@ -1,4 +1,4 @@
-// 1.20.6	2024-05-25T16:48:14.922401	Tags for minecraft:block mod id eternal_starlight
+// 1.20.6	2024-06-01T22:35:57.7462637	Tags for minecraft:block mod id eternal_starlight
 c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/blocks/abyssal_fire_survives_on.json
 835d24db2fd7a39d9364aea1e959980cc9652a35 data/eternal_starlight/tags/blocks/base_stone_starlight.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/blocks/corals.json
@@ -47,6 +47,7 @@ ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/blocks/smelts_to_gl
 40453d97abfe83ea03e6c52cd45dedbcd72aa930 data/minecraft/tags/blocks/stairs.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/blocks/standing_signs.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/blocks/sword_efficient.json
+aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/blocks/tall_flowers.json
 46558d1b9ca7489c61523fa1bcbbb9a5bb8eec4c data/minecraft/tags/blocks/walls.json
 723d3fb822597ea1fbdb6c36a4e61be3072277df data/minecraft/tags/blocks/wall_hanging_signs.json
 c9087c360474701878473b4ad44880ac103e0b28 data/minecraft/tags/blocks/wall_signs.json

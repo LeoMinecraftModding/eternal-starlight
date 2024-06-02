@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
+import cn.leolezury.eternalstarlight.common.client.ESParticleRenderType;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import net.fabricmc.api.EnvType;
@@ -11,7 +12,7 @@ import net.minecraft.client.particle.*;
 public class ESSmokeParticle extends SimpleAnimatedParticle {
     private final float rotSpeed;
 
-    protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, SpriteSet spriteSet, float gravity) {
+    protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, float alpha, SpriteSet spriteSet, float gravity) {
         super(level, x, y, z, spriteSet, gravity);
         this.xd = dx + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
         this.yd = dy + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
@@ -21,10 +22,10 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         this.xd = this.xd / k * j * 0.4000000059604645;
         this.yd = this.yd / k * j * 0.4000000059604645 + (rise ? 0.10000000149011612 : 0);
         this.zd = this.zd / k * j * 0.4000000059604645;
-        this.rotSpeed = (float) (Math.random() * 0.3f + 0.2f);
+        this.rotSpeed = (float) (Math.random() * 0.1f + 0.15f);
         this.lifetime = (int) (((int) (Math.random() * 20.0D) + 40) * lifeMultiplier);
-        this.quadSize *= 10;
-        this.alpha = 1f;
+        this.quadSize *= 5;
+        this.alpha = alpha;
         this.friction = 1f;
         this.setColor(fromColor);
         this.setFadeColor(toColor);
@@ -38,13 +39,14 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         roll += rotSpeed;
     }
 
-    public int getLightColor(float f) {
+    /*public int getLightColor(float f) {
         return 15728880;
-    }
+    }*/
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_LIT;
+        return ESParticleRenderType.PARTICLE_SHEET_TRANSLUCENT_BLEND;
+        // return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     public static class Provider implements ParticleProvider<ESSmokeParticleOptions> {
@@ -55,7 +57,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         }
 
         public Particle createParticle(ESSmokeParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites, 0);
+            return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites, 0);
         }
     }
 }

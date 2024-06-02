@@ -9,6 +9,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
 @OnlyIn(Dist.CLIENT)
@@ -24,7 +25,6 @@ public class ClientEvents {
         Vec3 angle = ClientHandlers.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
         event.setPitch((float) angle.x);
         event.setYaw((float) angle.y);
-        event.setRoll((float) angle.z);
     }
 
     @SubscribeEvent
@@ -36,6 +36,13 @@ public class ClientEvents {
     public static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
         if (ClientHandlers.renderBossBar(event.getGuiGraphics(), event.getBossEvent(), event.getX(), event.getY())) {
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAfterRenderEntities(RenderLevelStageEvent event) {
+        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
+            ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick());
         }
     }
 }

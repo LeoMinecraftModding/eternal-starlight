@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 
 public class StarlightGolemChargeStartPhase extends AttackPhase<StarlightGolem> {
-    public static final int ID = 5;
+    public static final int ID = 4;
 
     public StarlightGolemChargeStartPhase() {
         super(ID, 1, 20, 1800, StarlightGolemChargePhase.ID);

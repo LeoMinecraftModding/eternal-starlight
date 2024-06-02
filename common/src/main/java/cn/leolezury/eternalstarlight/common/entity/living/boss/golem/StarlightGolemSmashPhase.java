@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
-    public static final int ID = 4;
+    public static final int ID = 3;
 
     private float pitch, yaw;
     private final List<BlockPos> visited = new ArrayList<>();

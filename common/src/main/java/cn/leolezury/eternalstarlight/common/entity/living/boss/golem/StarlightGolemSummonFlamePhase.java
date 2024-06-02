@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 
 public class StarlightGolemSummonFlamePhase extends AttackPhase<StarlightGolem> {
-    public static final int ID = 3;
+    public static final int ID = 2;
 
     public StarlightGolemSummonFlamePhase() {
         super(ID, 2, 210, 250);

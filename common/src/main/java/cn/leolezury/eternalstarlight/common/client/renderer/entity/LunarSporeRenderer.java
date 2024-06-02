@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -22,6 +23,11 @@ public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
     public LunarSporeRenderer(EntityRendererProvider.Context context) {
         super(context);
         model = new LunarSporeModel<>(context.bakeLayer(LunarSporeModel.LAYER_LOCATION));
+    }
+
+    @Override
+    public boolean shouldRender(LunarSpore entity, Frustum frustum, double d, double e, double f) {
+        return true;
     }
 
     @Override
