@@ -242,6 +242,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.CHISELED_VOIDSTONE.get());
         dropSelf(ESBlocks.GLOWING_VOIDSTONE.get());
 
+        dropSelf(ESBlocks.ETERNAL_ICE.get());
+        dropSelf(ESBlocks.ETERNAL_ICE_BRICKS.get());
+        add(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get());
+        dropSelf(ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+
         add(ESBlocks.ABYSSAL_FIRE.get(), noDrop());
 
         dropSelf(ESBlocks.ABYSSLATE.get());

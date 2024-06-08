@@ -1,4 +1,4 @@
-// 1.20.6	2024-06-02T20:09:25.8233084	Loot Tables
+// 1.20.6	2024-06-08T18:59:55.3098216	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_tables/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_tables/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_tables/blocks/abyssal_kelp.json
@@ -92,6 +92,11 @@ c9927f28f70a8bd1eb88ff57cdd90333ba90ce7a data/eternal_starlight/loot_tables/bloc
 ad5362d67684a390e59e822aea848040f7115c38 data/eternal_starlight/loot_tables/blocks/dusted_gravel.json
 b6a08ea55b5f2a51ba553515ab37d17068d77e30 data/eternal_starlight/loot_tables/blocks/enchanted_grimstone_bricks.json
 491c5a2fd8f3d221db5c784b707ed0897e5bc12d data/eternal_starlight/loot_tables/blocks/energy_block.json
+1b775ad65cc2f653093e5efaf1fb233b0afd2263 data/eternal_starlight/loot_tables/blocks/eternal_ice.json
+2be5d0c14eb00440176ffe9e891ba59abc85da7b data/eternal_starlight/loot_tables/blocks/eternal_ice_bricks.json
+b2fb97cb22e9329e9537403b9cb6a4a6998d3ff7 data/eternal_starlight/loot_tables/blocks/eternal_ice_brick_slab.json
+3c79ce59cefff82dd6f74cf8d859d517d7da50c1 data/eternal_starlight/loot_tables/blocks/eternal_ice_brick_stairs.json
+454c16348687fd91bd8b15dad67367ad58a6370c data/eternal_starlight/loot_tables/blocks/eternal_ice_brick_wall.json
 cd087e0793f77812fc64121d70b55ecba64f9faa data/eternal_starlight/loot_tables/blocks/fantabud.json
 7937ccf99e0904fb670ead972ce200d45d16e188 data/eternal_starlight/loot_tables/blocks/fantafern.json
 9207fc8583c3d05c6ec18d97d556cf9668e7a8b9 data/eternal_starlight/loot_tables/blocks/fantagrass.json

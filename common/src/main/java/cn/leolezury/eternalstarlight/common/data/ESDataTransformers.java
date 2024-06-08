@@ -64,7 +64,7 @@ public class ESDataTransformers {
         context.register(FINALIZE_HEIGHTS, new FinalizeHeightsTransformer());
         context.register(NOISE_HEIGHT, new NoiseHeightTransformer());
         context.register(SMOOTH_HEIGHTS_LARGE, new SmoothHeightsTransformer(7));
-        context.register(SMOOTH_HEIGHTS_SMALL, new SmoothHeightsTransformer(1));
+        context.register(SMOOTH_HEIGHTS_SMALL, new SmoothHeightsTransformer(4));
     }
 
     public static ResourceKey<DataTransformer> create(String name) {

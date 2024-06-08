@@ -328,6 +328,13 @@ public class ESBlocks {
     public static final RegistryObject<Block, Block> CHISELED_VOIDSTONE = BLOCKS.register("chiseled_voidstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block, Block> GLOWING_VOIDSTONE = BLOCKS.register("glowing_voidstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).lightLevel((state) -> 10)));
 
+    // eternal ice
+    public static final RegistryObject<Block, Block> ETERNAL_ICE = BLOCKS.register("eternal_ice", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+    public static final RegistryObject<Block, Block> ETERNAL_ICE_BRICKS = BLOCKS.register("eternal_ice_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+    public static final RegistryObject<Block, SlabBlock> ETERNAL_ICE_BRICK_SLAB = BLOCKS.register("eternal_ice_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+    public static final RegistryObject<Block, StairBlock> ETERNAL_ICE_BRICK_STAIRS = BLOCKS.register("eternal_ice_brick_stairs", () -> new StairBlock(ETERNAL_ICE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+    public static final RegistryObject<Block, WallBlock> ETERNAL_ICE_BRICK_WALL = BLOCKS.register("eternal_ice_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+
     // the abyss
     public static final RegistryObject<Block, AbyssalFireBlock> ABYSSAL_FIRE = BLOCKS.register("abyssal_fire", () -> new AbyssalFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE)));
     public static final RegistryObject<Block, Block> ABYSSLATE = BLOCKS.register("abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));

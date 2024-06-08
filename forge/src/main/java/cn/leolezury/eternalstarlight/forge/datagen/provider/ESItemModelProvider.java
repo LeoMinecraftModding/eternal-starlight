@@ -205,6 +205,12 @@ public class ESItemModelProvider extends ItemModelProvider {
         block(ESItems.CHISELED_VOIDSTONE.get());
         block(ESItems.GLOWING_VOIDSTONE.get());
 
+        block(ESItems.ETERNAL_ICE.get());
+        block(ESItems.ETERNAL_ICE_BRICKS.get());
+        block(ESItems.ETERNAL_ICE_BRICK_SLAB.get());
+        block(ESItems.ETERNAL_ICE_BRICK_STAIRS.get());
+        wall(ESItems.ETERNAL_ICE_BRICK_WALL.get(), ESItems.ETERNAL_ICE_BRICKS.get());
+
         block(ESItems.NIGHTFALL_MUD.get());
         block(ESItems.GLOWING_NIGHTFALL_MUD.get());
         block(ESItems.PACKED_NIGHTFALL_MUD.get());

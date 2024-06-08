@@ -59,6 +59,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
         tag(ESTags.Blocks.BASE_STONE_STARLIGHT).add(
                 ESBlocks.GRIMSTONE.get(),
                 ESBlocks.VOIDSTONE.get(),
+                ESBlocks.ETERNAL_ICE.get(),
                 Blocks.STONE,
                 Blocks.DEEPSLATE
         );
@@ -193,6 +194,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.VOIDSTONE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_VOIDSTONE_SLAB.get(),
                 ESBlocks.VOIDSTONE_TILE_SLAB.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(),
@@ -230,6 +232,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.VOIDSTONE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(),
                 ESBlocks.VOIDSTONE_TILE_STAIRS.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(),
@@ -259,6 +262,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.VOIDSTONE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_VOIDSTONE_WALL.get(),
                 ESBlocks.VOIDSTONE_TILE_WALL.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_ABYSSLATE_WALL.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_WALL.get(),
@@ -480,6 +484,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.VOIDSTONE_TILE_WALL.get(),
                 ESBlocks.CHISELED_VOIDSTONE.get(),
                 ESBlocks.GLOWING_VOIDSTONE.get(),
+                ESBlocks.ETERNAL_ICE.get(),
+                ESBlocks.ETERNAL_ICE_BRICKS.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
+                ESBlocks.ETERNAL_ICE_BRICK_WALL.get(),
                 ESBlocks.ABYSSLATE.get(),
                 ESBlocks.POLISHED_ABYSSLATE.get(),
                 ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),

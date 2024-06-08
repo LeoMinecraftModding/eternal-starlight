@@ -130,6 +130,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         stoneSet(ESBlocks.VOIDSTONE_TILES.get(), ESBlocks.VOIDSTONE_TILE_SLAB.get(), ESBlocks.VOIDSTONE_TILE_STAIRS.get(), ESBlocks.VOIDSTONE_TILE_WALL.get());
         simpleBlock(ESBlocks.GLOWING_VOIDSTONE.get());
 
+        simpleBlock(ESBlocks.ETERNAL_ICE.get());
+        stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+
         simpleBlock(ESBlocks.ABYSSLATE.get());
         simpleBlock(ESBlocks.CHISELED_POLISHED_ABYSSLATE.get());
         stoneSet(ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.POLISHED_ABYSSLATE_SLAB.get(), ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(), ESBlocks.POLISHED_ABYSSLATE_WALL.get());

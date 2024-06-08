@@ -1,4 +1,4 @@
-// 1.20.6	2024-05-26T13:10:06.2595592	Item Models: eternal_starlight
+// 1.20.6	2024-06-08T18:59:55.3255482	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -158,6 +158,11 @@ b0e816c796c37e24ef9efbb2e645a37edd762d26 assets/eternal_starlight/models/item/du
 9f55d0b0f7197396caddca121ad3247775ae7753 assets/eternal_starlight/models/item/enchanted_grimstone_bricks.json
 4663cf98e41b90faa681afbf847ee70ee5b85509 assets/eternal_starlight/models/item/energy_block.json
 3928ba295508531f6edd8a8a37ff96b0d0dd459f assets/eternal_starlight/models/item/energy_sword.json
+3d7108057dee8414c312d86fdbd5c91388549844 assets/eternal_starlight/models/item/eternal_ice.json
+9d3196c04decb56eb0e83dfe4b0cf08a46244115 assets/eternal_starlight/models/item/eternal_ice_bricks.json
+6dece976cae34ec8cd92260c70fed98b166585be assets/eternal_starlight/models/item/eternal_ice_brick_slab.json
+f05af1348032c51f12f9e27399ae9cf2fa9778e3 assets/eternal_starlight/models/item/eternal_ice_brick_stairs.json
+080a4bde00c9057fa765a6ec3531bad6c24660bf assets/eternal_starlight/models/item/eternal_ice_brick_wall.json
 810b75cc6e2800c32d883b823cd9e7d3c050677d assets/eternal_starlight/models/item/ether_bucket.json
 59b5fae1b99beb09a16b94c29f62b61c38b9df64 assets/eternal_starlight/models/item/eye_of_doom.json
 3d6781c09c501c5f42e1464251b018e8835429db assets/eternal_starlight/models/item/fantabud.json

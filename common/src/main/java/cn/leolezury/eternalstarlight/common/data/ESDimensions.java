@@ -63,6 +63,7 @@ public class ESDimensions {
     private static SurfaceRules.RuleSource makeSurfaceRule() {
         SurfaceRules.RuleSource bedrock = SurfaceRules.state(Blocks.BEDROCK.defaultBlockState());
         SurfaceRules.RuleSource voidstone = SurfaceRules.state(ESBlocks.VOIDSTONE.get().defaultBlockState());
+        SurfaceRules.RuleSource ice = SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState());
         SurfaceRules.RuleSource sand = SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState());
         SurfaceRules.RuleSource sandstone = SurfaceRules.state(ESBlocks.TWILIGHT_SANDSTONE.get().defaultBlockState());
         SurfaceRules.RuleSource desertRule = SurfaceRules.sequence(
@@ -78,7 +79,8 @@ public class ESDimensions {
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), makeSurface(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), desertRule),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
-                makeSurface(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState())
+                makeSurface(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST), ice)
         );
     }
 

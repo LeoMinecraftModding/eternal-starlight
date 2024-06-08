@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/eternal_ice_brick_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/eternal_ice_bricks"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/eternal_ice_brick_slab_top"
+    }
+  }
+}

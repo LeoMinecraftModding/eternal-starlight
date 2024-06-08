@@ -337,6 +337,15 @@ public class ESRecipeProvider extends RecipeProvider {
         addSlab(recipeOutput, ESBlocks.VOIDSTONE_TILE_SLAB.get(), ESBlocks.VOIDSTONE_TILES.get());
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.VOIDSTONE_TILE_SLAB.get(), ESBlocks.VOIDSTONE_TILES.get(), 2);
 
+        addStoneCompress(recipeOutput, ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_WALL.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_WALL.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
+        addStairs(recipeOutput, ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
+        addSlab(recipeOutput, ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
+        stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICKS.get(), 2);
+
         addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
         addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE.get());
         chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_ABYSSLATE.get(), ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get());
