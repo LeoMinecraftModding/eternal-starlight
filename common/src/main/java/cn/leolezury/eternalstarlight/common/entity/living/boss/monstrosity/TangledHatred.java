@@ -74,7 +74,12 @@ public class TangledHatred extends ESBoss {
     }
 
     private Chain createChain() {
-        return new Chain(position(), 30, 25f / 16f);
+        Chain c = new Chain(position(), 30, 25f / 16f);
+        // bend it in advance
+        for (int i = 0; i < 30; i++) {
+            c.update(position().add(10, 15, 10), position().add(10, 15, 10), position(), 3, 3);
+        }
+        return c;
     }
 
     @Override
@@ -137,7 +142,9 @@ public class TangledHatred extends ESBoss {
     public void aiStep() {
         super.aiStep();
         if (!level().isClientSide) {
-            attackManager.tick();
+            if (!isNoAi()) {
+                attackManager.tick();
+            }
             LivingEntity target = getTarget();
             if (ticksToNextMeleeAttack > 0) ticksToNextMeleeAttack--;
             if (targetPos != null) {
@@ -146,19 +153,19 @@ public class TangledHatred extends ESBoss {
                 }
                 currentTargetPos = ESMathUtil.approachVec(currentTargetPos, targetPos, speed);
             } else {
-                targetPos = this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)).offsetRandom(getRandom(), 10);
+                targetPos = position().offsetRandom(getRandom(), 60);
                 currentTargetPos = ESMathUtil.approachVec(this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)), targetPos, speed);
             }
             if (target != null) {
                 calculateAttackTargetPos().ifPresent(vec3 -> targetPos = vec3);
             }
-            if (target == null && tickCount % 150 == 0) {
-                targetPos = this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)).offsetRandom(getRandom(), 10);
+            if (target == null && tickCount % 60 == 0) {
+                targetPos = position().offsetRandom(getRandom(), 60);
                 if (targetPos.y < position().y) {
                     targetPos = new Vec3(targetPos.x, position().y() + getRandom().nextInt(10, 20), targetPos.z);
                 }
             }
-            this.speed = target != null && ticksToNextMeleeAttack == 0 ? 0.2f : 0.1f;
+            this.speed = target != null && ticksToNextMeleeAttack == 0 ? 0.2f : 0.15f;
             if (target != null && ticksToNextMeleeAttack == 0 && target.getBoundingBox().contains(this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)))) {
                 doHurtTarget(target);
             }
@@ -213,7 +220,7 @@ public class TangledHatred extends ESBoss {
             setSyncedChain(this.chain);
         } else {
             this.oldChain = chain;
-            if (getSyncedChain().segments().size() == this.chain.segments().size()) {
+            if (!getSyncedChain().segments().isEmpty()) {
                 this.chain = getSyncedChain();
             }
         }

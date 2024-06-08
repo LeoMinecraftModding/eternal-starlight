@@ -138,7 +138,9 @@ public class ThirstWalker extends Monster implements MultiPhaseAttacker, Neutral
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
-        this.attackManager.tick();
+        if (!isNoAi()) {
+            this.attackManager.tick();
+        }
         if (fleeTicks > 0) {
             fleeTicks--;
             if (this.tickCount % 20 == 0) {

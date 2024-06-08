@@ -42,7 +42,8 @@ public class TangledHatredRenderer extends EntityRenderer<TangledHatred> {
         float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
         poseStack.pushPose();
         poseStack.translate(-x, -y, -z);
-        for (int i = 0; i < entity.chain.segments().size(); i++) {
+        int numSegments = Math.min(entity.chain.segments().size(), entity.oldChain.segments().size());
+        for (int i = 0; i < numSegments; i++) {
             poseStack.pushPose();
             Chain.Segment segment = entity.chain.segments().get(i);
             Chain.Segment old = entity.oldChain.segments().get(i);

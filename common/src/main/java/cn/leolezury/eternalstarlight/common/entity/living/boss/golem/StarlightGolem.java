@@ -300,7 +300,9 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
-            attackManager.tick();
+            if (!isNoAi()) {
+                attackManager.tick();
+            }
         } else {
             if (getRandom().nextInt(15) == 0) {
                 Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));

@@ -297,7 +297,7 @@ public class LunarMonstrosity extends ESBoss {
 
     @Override
     public EntityDimensions getDefaultDimensions(Pose pose) {
-        return getAttackState() == 6 ? super.getDimensions(pose).scale(0.1f) : super.getDimensions(pose);
+        return getAttackState() == 6 ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
     }
 
     @Override
