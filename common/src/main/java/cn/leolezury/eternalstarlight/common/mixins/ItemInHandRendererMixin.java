@@ -54,17 +54,17 @@ public abstract class ItemInHandRendererMixin {
     private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
         ItemStack itemStack = player.getMainHandItem();
         ItemStack itemStack1 = player.getOffhandItem();
-        boolean flag = itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get());
-        boolean flag1 = itemStack1.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack1.is(ESItems.MOONRING_BOW.get()) || itemStack1.is(ESItems.STARFALL_LONGBOW.get()) || itemStack1.is(ESItems.BOW_OF_BLOOD.get());
+        boolean flag = itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get());
+        boolean flag1 = itemStack1.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack1.is(ESItems.MOONRING_BOW.get()) || itemStack1.is(ESItems.STARFALL_LONGBOW.get()) || itemStack1.is(ESItems.BOW_OF_BLOOD.get());
         if (flag || flag1) {
             if (player.isUsingItem()) {
                 ItemStack itemStack2 = player.getUseItem();
                 InteractionHand interactionhand = player.getUsedItemHand();
-                if (itemStack2.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack2.is(ESItems.MOONRING_BOW.get()) || itemStack2.is(ESItems.STARFALL_LONGBOW.get()) || itemStack2.is(ESItems.BOW_OF_BLOOD.get())) {
+                if (itemStack2.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack2.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack2.is(ESItems.MOONRING_BOW.get()) || itemStack2.is(ESItems.STARFALL_LONGBOW.get()) || itemStack2.is(ESItems.BOW_OF_BLOOD.get())) {
                     cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(interactionhand));
                 }
             } else {
-                cir.setReturnValue((itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) && CrossbowItem.isCharged(itemStack)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
+                cir.setReturnValue(((itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get())) && CrossbowItem.isCharged(itemStack)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
             }
         }
     }

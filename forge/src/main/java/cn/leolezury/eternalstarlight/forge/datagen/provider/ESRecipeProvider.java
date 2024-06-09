@@ -138,6 +138,16 @@ public class ESRecipeProvider extends RecipeProvider {
                 .define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
                 .unlockedBy("has_item", has(ESItems.GOLEM_STEEL_INGOT.get()))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MECHANICAL_CROSSBOW.get())
+                .pattern("#&#")
+                .pattern("~$~")
+                .pattern(" # ")
+                .define('~', Items.STRING)
+                .define('#', Items.STICK)
+                .define('&', ESItems.GOLEM_STEEL_INGOT.get())
+                .define('$', Items.TRIPWIRE_HOOK)
+                .unlockedBy("has_item", has(ESItems.GOLEM_STEEL_INGOT.get()))
+                .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MOONRING_GREATSWORD.get())
                 .pattern("TTT")
                 .pattern("TGT")

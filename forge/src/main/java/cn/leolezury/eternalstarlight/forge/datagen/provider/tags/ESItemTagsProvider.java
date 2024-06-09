@@ -136,6 +136,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.GLACITE_SHIELD.get(),
                 ESItems.SALTPETER_MATCHBOX.get(),
                 ESItems.CRYSTAL_CROSSBOW.get(),
+                ESItems.MECHANICAL_CROSSBOW.get(),
                 ESItems.MOONRING_BOW.get(),
                 ESItems.WAND_OF_TELEPORTATION.get(),
                 ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
@@ -149,7 +150,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.MOONRING_BOW.get()
         );
         tag(ItemTags.CROSSBOW_ENCHANTABLE).add(
-                ESItems.CRYSTAL_CROSSBOW.get()
+                ESItems.CRYSTAL_CROSSBOW.get(),
+                ESItems.MECHANICAL_CROSSBOW.get()
         );
         tag(ItemTags.SWORD_ENCHANTABLE).add(
                 ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),

@@ -299,6 +299,20 @@ public class ClientSetupHandlers {
             return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
         });
 
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack);
+            }
+        });
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, level, entity, i) -> {
+            ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+            return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+        });
+
         ItemProperties.register(ESItems.MOONRING_BOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;

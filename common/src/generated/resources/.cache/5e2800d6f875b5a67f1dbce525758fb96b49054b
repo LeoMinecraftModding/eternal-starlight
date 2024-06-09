@@ -1,4 +1,4 @@
-// 1.20.6	2024-06-09T13:35:47.0966259	Tags for minecraft:item mod id eternal_starlight
+// 1.20.6	2024-06-09T14:09:01.5020769	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/items/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/items/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/items/doomeden_keys.json
@@ -29,8 +29,8 @@ aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/items/boats.json
 988fd23dcd8a56fe93458cf9d9428039c892d620 data/minecraft/tags/items/chest_armor.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/items/chest_boats.json
 0a92ee5a6a09681bb4a7b408b82cc281b1818576 data/minecraft/tags/items/enchantable/bow.json
-9cb0233749ac534fc2d8707b1d94eeae12662545 data/minecraft/tags/items/enchantable/crossbow.json
-d56b6f693587f7ebf62b5cd2558b76ec76cdfd44 data/minecraft/tags/items/enchantable/durability.json
+73e0127140563bac2e802feeb28acbf24cd5520f data/minecraft/tags/items/enchantable/crossbow.json
+a5d487b7cd960a7388c86067c9fe9c4059987e02 data/minecraft/tags/items/enchantable/durability.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/minecraft/tags/items/enchantable/sharp_weapon.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/minecraft/tags/items/enchantable/sword.json
 9ad28389412071a4b6bec06996c0e61929052189 data/minecraft/tags/items/foot_armor.json

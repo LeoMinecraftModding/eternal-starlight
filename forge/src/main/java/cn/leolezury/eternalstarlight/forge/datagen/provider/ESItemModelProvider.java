@@ -499,6 +499,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         handheld(ESItems.ENERGY_SWORD.get());
         basicItem(ESItems.TENACIOUS_PETAL.get());
         crossbow(ESItems.CRYSTAL_CROSSBOW.get());
+        crossbow(ESItems.MECHANICAL_CROSSBOW.get());
         bow(ESItems.MOONRING_BOW.get());
         largeHandheld(ESItems.MOONRING_GREATSWORD.get());
         inventoryModel(ESItems.MOONRING_GREATSWORD.get());

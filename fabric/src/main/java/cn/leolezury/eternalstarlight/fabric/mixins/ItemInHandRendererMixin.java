@@ -45,7 +45,7 @@ public abstract class ItemInHandRendererMixin {
             float m;
             float n;
             float o;
-            if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
+            if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get())) {
                 bl2 = CrossbowItem.isCharged(itemStack);
                 boolean bl3 = humanoidArm == HumanoidArm.RIGHT;
                 int k = bl3 ? 1 : -1;
