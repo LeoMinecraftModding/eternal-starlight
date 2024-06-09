@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "raw_aethersent",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:raw_aethersent_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:raw_aethersent"
+  }
+}

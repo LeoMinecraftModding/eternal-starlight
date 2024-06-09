@@ -50,10 +50,12 @@ public class TangledHatredRenderer extends EntityRenderer<TangledHatred> {
             Vec3 pos = ESMathUtil.lerpVec(partialTicks, old.getLowerPosition(), segment.getLowerPosition());
             float segmentPitch = Mth.lerp(partialTicks, old.getPitch(), segment.getPitch());
             float segmentYaw = Mth.lerp(partialTicks, old.getYaw(), segment.getYaw());
+            float scale = ((float) i / numSegments) * 0.5f + 0.5f;
             poseStack.translate(pos.x, pos.y, pos.z);
             poseStack.scale(-1.0F, -1.0F, 1.0F);
             poseStack.translate(0.0F, -1.5F, 0.0F);
             this.model.setRotation(segmentPitch, segmentYaw);
+            this.model.scaleXZ(scale);
             this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(entity.hurtTime > 0 || entity.deathTime > 0)), 1.0F, 1.0F, 1.0F, 1.0F);
             poseStack.popPose();
         }

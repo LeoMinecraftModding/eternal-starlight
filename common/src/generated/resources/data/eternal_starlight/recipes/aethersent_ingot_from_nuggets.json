@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "aethersent_ingot",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:aethersent_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:aethersent_ingot"
+  }
+}

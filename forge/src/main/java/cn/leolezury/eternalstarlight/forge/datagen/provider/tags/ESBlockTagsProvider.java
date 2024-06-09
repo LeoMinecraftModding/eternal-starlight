@@ -124,6 +124,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
                 ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
         );
+        tag(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLE).addTags(
+                BlockTags.LEAVES,
+                BlockTags.LOGS,
+                BlockTags.DIRT
+        );
         // mc tags
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
         tag(BlockTags.LOGS).addTags(
@@ -195,6 +200,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_VOIDSTONE_SLAB.get(),
                 ESBlocks.VOIDSTONE_TILE_SLAB.get(),
                 ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
+                ESBlocks.NEBULAITE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(),
@@ -233,6 +239,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(),
                 ESBlocks.VOIDSTONE_TILE_STAIRS.get(),
                 ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
+                ESBlocks.NEBULAITE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(),
@@ -263,6 +270,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.POLISHED_VOIDSTONE_WALL.get(),
                 ESBlocks.VOIDSTONE_TILE_WALL.get(),
                 ESBlocks.ETERNAL_ICE_BRICK_WALL.get(),
+                ESBlocks.NEBULAITE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_ABYSSLATE_WALL.get(),
                 ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get(),
                 ESBlocks.POLISHED_THERMABYSSLATE_WALL.get(),
@@ -419,6 +427,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 
         // mc tools stuff
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                ESBlocks.RAW_AETHERSENT_BLOCK.get(),
                 ESBlocks.AETHERSENT_BLOCK.get(),
                 ESBlocks.SWAMP_SILVER_BLOCK.get(),
                 ESBlocks.SPRINGSTONE.get(),
@@ -489,6 +498,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
                 ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
                 ESBlocks.ETERNAL_ICE_BRICK_WALL.get(),
+                ESBlocks.NEBULAITE.get(),
+                ESBlocks.NEBULAITE_BRICKS.get(),
+                ESBlocks.NEBULAITE_BRICK_SLAB.get(),
+                ESBlocks.NEBULAITE_BRICK_STAIRS.get(),
+                ESBlocks.NEBULAITE_BRICK_WALL.get(),
+                ESBlocks.CHISELED_NEBULAITE_BRICKS.get(),
                 ESBlocks.ABYSSLATE.get(),
                 ESBlocks.POLISHED_ABYSSLATE.get(),
                 ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
@@ -606,6 +621,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
                 ESBlocks.MOONLIGHT_DUCKWEED.get()
         );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
+                ESBlocks.RAW_AETHERSENT_BLOCK.get(),
                 ESBlocks.AETHERSENT_BLOCK.get(),
                 ESBlocks.SWAMP_SILVER_BLOCK.get(),
                 ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(),

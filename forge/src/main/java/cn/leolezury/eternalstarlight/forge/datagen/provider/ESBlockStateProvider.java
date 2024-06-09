@@ -133,6 +133,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.ETERNAL_ICE.get());
         stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
 
+        simpleBlock(ESBlocks.NEBULAITE.get());
+        stoneSet(ESBlocks.NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICK_SLAB.get(), ESBlocks.NEBULAITE_BRICK_STAIRS.get(), ESBlocks.NEBULAITE_BRICK_WALL.get());
+        simpleBlock(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
+
         simpleBlock(ESBlocks.ABYSSLATE.get());
         simpleBlock(ESBlocks.CHISELED_POLISHED_ABYSSLATE.get());
         stoneSet(ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.POLISHED_ABYSSLATE_SLAB.get(), ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(), ESBlocks.POLISHED_ABYSSLATE_WALL.get());
@@ -327,6 +331,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         tintedCarpet(ESBlocks.RED_YETI_FUR_CARPET.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
         tintedCarpet(ESBlocks.BLACK_YETI_FUR_CARPET.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
 
+        simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
         simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
         simpleBlock(ESBlocks.SPRINGSTONE.get());
         simpleBlock(ESBlocks.THERMAL_SPRINGSTONE.get());

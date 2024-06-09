@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:voidstone"
+    },
+    {
+      "item": "eternal_starlight:voidstone"
+    },
+    {
+      "item": "eternal_starlight:raw_aethersent"
+    },
+    {
+      "item": "eternal_starlight:raw_aethersent"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:nebulaite"
+  }
+}

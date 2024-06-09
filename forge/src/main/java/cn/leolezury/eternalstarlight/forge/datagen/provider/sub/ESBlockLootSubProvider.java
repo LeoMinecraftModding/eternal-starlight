@@ -248,6 +248,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get());
         dropSelf(ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
 
+        dropSelf(ESBlocks.NEBULAITE.get());
+        dropSelf(ESBlocks.NEBULAITE_BRICKS.get());
+        add(ESBlocks.NEBULAITE_BRICK_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ESBlocks.NEBULAITE_BRICK_STAIRS.get());
+        dropSelf(ESBlocks.NEBULAITE_BRICK_WALL.get());
+        dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
+
         add(ESBlocks.ABYSSAL_FIRE.get(), noDrop());
 
         dropSelf(ESBlocks.ABYSSLATE.get());
@@ -483,6 +490,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.RED_YETI_FUR_CARPET.get());
         dropSelf(ESBlocks.BLACK_YETI_FUR_CARPET.get());
 
+        dropSelf(ESBlocks.RAW_AETHERSENT_BLOCK.get());
         dropSelf(ESBlocks.AETHERSENT_BLOCK.get());
         dropSelf(ESBlocks.SPRINGSTONE.get());
         dropSelf(ESBlocks.THERMAL_SPRINGSTONE.get());

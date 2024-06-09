@@ -335,6 +335,14 @@ public class ESBlocks {
     public static final RegistryObject<Block, StairBlock> ETERNAL_ICE_BRICK_STAIRS = BLOCKS.register("eternal_ice_brick_stairs", () -> new StairBlock(ETERNAL_ICE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
     public static final RegistryObject<Block, WallBlock> ETERNAL_ICE_BRICK_WALL = BLOCKS.register("eternal_ice_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 
+    // nebulaite
+    public static final RegistryObject<Block, Block> NEBULAITE = BLOCKS.register("nebulaite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> NEBULAITE_BRICKS = BLOCKS.register("nebulaite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, SlabBlock> NEBULAITE_BRICK_SLAB = BLOCKS.register("nebulaite_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, StairBlock> NEBULAITE_BRICK_STAIRS = BLOCKS.register("nebulaite_brick_stairs", () -> new StairBlock(NEBULAITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, WallBlock> NEBULAITE_BRICK_WALL = BLOCKS.register("nebulaite_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, Block> CHISELED_NEBULAITE_BRICKS = BLOCKS.register("chiseled_nebulaite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
+
     // the abyss
     public static final RegistryObject<Block, AbyssalFireBlock> ABYSSAL_FIRE = BLOCKS.register("abyssal_fire", () -> new AbyssalFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE)));
     public static final RegistryObject<Block, Block> ABYSSLATE = BLOCKS.register("abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
@@ -583,6 +591,7 @@ public class ESBlocks {
     public static final RegistryObject<Block, CarpetBlock> RED_YETI_FUR_CARPET = BLOCKS.register("red_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final RegistryObject<Block, CarpetBlock> BLACK_YETI_FUR_CARPET = BLOCKS.register("black_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_CARPET)));
 
+    public static final RegistryObject<Block, Block> RAW_AETHERSENT_BLOCK = BLOCKS.register("raw_aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> AETHERSENT_BLOCK = BLOCKS.register("aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> SPRINGSTONE = BLOCKS.register("springstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(MapColor.COLOR_BROWN).strength(3.0F, 3.0F)));
     public static final RegistryObject<Block, ThermalSpringStoneBlock> THERMAL_SPRINGSTONE = BLOCKS.register("thermal_springstone", () -> new ThermalSpringStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.COLOR_BROWN)));

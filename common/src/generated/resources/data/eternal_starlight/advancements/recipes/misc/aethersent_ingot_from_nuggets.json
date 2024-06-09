@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_aethersent_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:aethersent_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:aethersent_ingot_from_nuggets"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_aethersent_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:aethersent_ingot_from_nuggets"
+    ]
+  }
+}

@@ -235,6 +235,14 @@ public class ESItems {
     public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_STAIRS = registerItem("eternal_ice_brick_stairs", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_WALL = registerItem("eternal_ice_brick_wall", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_WALL.get(), new Item.Properties()));
 
+    // nebulaite
+    public static final RegistryObject<Item, Item> NEBULAITE = registerItem("nebulaite", () -> new BlockItem(ESBlocks.NEBULAITE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NEBULAITE_BRICKS = registerItem("nebulaite_bricks", () -> new BlockItem(ESBlocks.NEBULAITE_BRICKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NEBULAITE_BRICK_SLAB = registerItem("nebulaite_brick_slab", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_SLAB.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NEBULAITE_BRICK_STAIRS = registerItem("nebulaite_brick_stairs", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> NEBULAITE_BRICK_WALL = registerItem("nebulaite_brick_wall", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_WALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> CHISELED_NEBULAITE_BRICKS = registerItem("chiseled_nebulaite_bricks", () -> new BlockItem(ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), new Item.Properties()));
+
     // the abyss
     public static final RegistryObject<Item, Item> ABYSSLATE = registerItem("abysslate", () -> new BlockItem(ESBlocks.ABYSSLATE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE = registerItem("polished_abysslate", () -> new BlockItem(ESBlocks.POLISHED_ABYSSLATE.get(), new Item.Properties()));
@@ -453,8 +461,10 @@ public class ESItems {
 
     // aethersent
     public static final RegistryObject<Item, Item> RAW_AETHERSENT = registerItem("raw_aethersent", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> RAW_AETHERSENT_BLOCK = registerItem("raw_aethersent_block", () -> new BlockItem(ESBlocks.RAW_AETHERSENT_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AETHERSENT_BLOCK = registerItem("aethersent_block", () -> new BlockItem(ESBlocks.AETHERSENT_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> AETHERSENT_INGOT = registerItem("aethersent_ingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item, Item> AETHERSENT_NUGGET = registerItem("aethersent_nugget", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> RAGE_OF_STARS = registerItem("rage_of_stars", () -> new RageOfStarsItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.AETHERSENT, 3, -2.4F))));
     public static final RegistryObject<Item, Item> STARFALL_LONGBOW = registerItem("starfall_longbow", () -> new BowItem(new Item.Properties().stacksTo(1).durability(2000)));
     public static final RegistryObject<Item, Item> AETHERSENT_HOOD = registerItem("aethersent_hood",

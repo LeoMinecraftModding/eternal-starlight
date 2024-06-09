@@ -41,6 +41,11 @@ public class TangledHatredModel<T extends TangledHatred> extends EntityModel<T> 
         this.root.yRot = (yaw - 90) * Mth.DEG_TO_RAD;
     }
 
+    public void scaleXZ(float scale) {
+        this.root.xScale = scale;
+        this.root.zScale = scale;
+    }
+
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);

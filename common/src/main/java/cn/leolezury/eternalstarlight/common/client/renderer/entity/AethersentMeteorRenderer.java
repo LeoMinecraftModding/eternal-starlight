@@ -28,7 +28,7 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
     }
 
     public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        BlockState blockstate = ESBlocks.AETHERSENT_BLOCK.get().defaultBlockState();
+        BlockState blockstate = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = meteor.level();
             if (blockstate != level.getBlockState(meteor.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {

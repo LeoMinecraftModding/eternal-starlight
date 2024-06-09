@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_amaramber_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:amaramber_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:amaramber_ingot_from_nuggets"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_amaramber_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:amaramber_ingot_from_nuggets"
+    ]
+  }
+}

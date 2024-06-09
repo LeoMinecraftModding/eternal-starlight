@@ -211,6 +211,13 @@ public class ESItemModelProvider extends ItemModelProvider {
         block(ESItems.ETERNAL_ICE_BRICK_STAIRS.get());
         wall(ESItems.ETERNAL_ICE_BRICK_WALL.get(), ESItems.ETERNAL_ICE_BRICKS.get());
 
+        block(ESItems.NEBULAITE.get());
+        block(ESItems.NEBULAITE_BRICKS.get());
+        block(ESItems.NEBULAITE_BRICK_SLAB.get());
+        block(ESItems.NEBULAITE_BRICK_STAIRS.get());
+        wall(ESItems.NEBULAITE_BRICK_WALL.get(), ESItems.NEBULAITE_BRICKS.get());
+        block(ESItems.CHISELED_NEBULAITE_BRICKS.get());
+
         block(ESItems.NIGHTFALL_MUD.get());
         block(ESItems.GLOWING_NIGHTFALL_MUD.get());
         block(ESItems.PACKED_NIGHTFALL_MUD.get());
@@ -415,8 +422,10 @@ public class ESItemModelProvider extends ItemModelProvider {
         block(ESItems.FANTASY_GRASS_CARPET.get());
 
         basicItem(ESItems.RAW_AETHERSENT.get());
+        block(ESItems.RAW_AETHERSENT_BLOCK.get());
         block(ESItems.AETHERSENT_BLOCK.get());
         basicItem(ESItems.AETHERSENT_INGOT.get());
+        basicItem(ESItems.AETHERSENT_NUGGET.get());
         handheld(ESItems.RAGE_OF_STARS.get());
         bow(ESItems.STARFALL_LONGBOW.get());
         armorWithTrim((ArmorItem) ESItems.AETHERSENT_HOOD.get());

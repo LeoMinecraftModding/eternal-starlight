@@ -3,10 +3,13 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.LightningParticleOptions;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -32,11 +35,14 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile {
     protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
+    private static final Logger log = LoggerFactory.getLogger(AethersentMeteor.class);
 
     public int getSize() {
         return entityData.get(SIZE);
@@ -169,6 +175,16 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
                 ((ServerLevel) level()).sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
                 if (natural && getSize() >= 10) {
                     ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
+                    for (int x = -3; x <= 3; x++) {
+                        for (int y = -3; y <= 3; y++) {
+                            for (int z = -3; z <= 3; z++) {
+                                BlockPos pos = blockPosition().offset(x, y, z);
+                                if (pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLE)) {
+                                    level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
+                                }
+                            }
+                        }
+                    }
                     if (entity != null) {
                         entity.setGlowingTag(true);
                     }

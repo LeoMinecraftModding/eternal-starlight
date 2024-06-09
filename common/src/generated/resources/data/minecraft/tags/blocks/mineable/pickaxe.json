@@ -1,5 +1,6 @@
 {
   "values": [
+    "eternal_starlight:raw_aethersent_block",
     "eternal_starlight:aethersent_block",
     "eternal_starlight:swamp_silver_block",
     "eternal_starlight:springstone",
@@ -69,6 +70,12 @@
     "eternal_starlight:eternal_ice_brick_slab",
     "eternal_starlight:eternal_ice_brick_stairs",
     "eternal_starlight:eternal_ice_brick_wall",
+    "eternal_starlight:nebulaite",
+    "eternal_starlight:nebulaite_bricks",
+    "eternal_starlight:nebulaite_brick_slab",
+    "eternal_starlight:nebulaite_brick_stairs",
+    "eternal_starlight:nebulaite_brick_wall",
+    "eternal_starlight:chiseled_nebulaite_bricks",
     "eternal_starlight:abysslate",
     "eternal_starlight:polished_abysslate",
     "eternal_starlight:polished_abysslate_slab",

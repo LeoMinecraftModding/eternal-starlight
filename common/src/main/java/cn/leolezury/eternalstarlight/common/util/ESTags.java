@@ -12,9 +12,6 @@ import net.minecraft.world.level.material.Fluid;
 
 public class ESTags {
     public static class Items {
-        private static TagKey<Item> create(String string) {
-            return TagKey.create(Registries.ITEM, EternalStarlight.id(string));
-        }
         public static final TagKey<Item> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
@@ -38,12 +35,13 @@ public class ESTags {
         public static final TagKey<Item> LUNAR_CRYSTALS = create("lunar_crystals");
         public static final TagKey<Item> BLAZE_CRYSTALS = create("blaze_crystals");
         public static final TagKey<Item> LIGHT_CRYSTALS = create("light_crystals");
+
+        private static TagKey<Item> create(String string) {
+            return TagKey.create(Registries.ITEM, EternalStarlight.id(string));
+        }
     }
 
     public static class Blocks {
-        private static TagKey<Block> create(String string) {
-            return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));
-        }
         public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
         public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
         public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
@@ -58,41 +56,50 @@ public class ESTags {
         public static final TagKey<Block> YETI_FUR = create("yeti_fur");
         public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
         public static final TagKey<Block> ABYSSAL_FIRE_SURVIVES_ON = create("abyssal_fire_survives_on");
+        public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLE = create("aethersent_meteor_replaceable");
+
+        private static TagKey<Block> create(String string) {
+            return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));
+        }
     }
 
     public static class EntityTypes {
-        private static TagKey<EntityType<?>> create(String string) {
-            return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));
-        }
         public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
         public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
         public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
         public static final TagKey<EntityType<?>> GLEECH_IMMUNE = create("gleech_immune");
+
+        private static TagKey<EntityType<?>> create(String string) {
+            return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));
+        }
     }
 
     public static class Structures {
-        private static TagKey<Structure> create(String string) {
-            return TagKey.create(Registries.STRUCTURE, EternalStarlight.id(string));
-        }
         public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
         public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
         public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
+
+        private static TagKey<Structure> create(String string) {
+            return TagKey.create(Registries.STRUCTURE, EternalStarlight.id(string));
+        }
     }
 
     public static class Biomes {
-        private static TagKey<Biome> create(String string) {
-            return TagKey.create(Registries.BIOME, EternalStarlight.id(string));
-        }
         public static final TagKey<Biome> HAS_PORTAL_RUINS_COMMON = create("has_portal_ruins_common");
         public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
         public static final TagKey<Biome> HAS_PORTAL_RUINS_DESERT = create("has_portal_ruins_desert");
         public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
+
+        private static TagKey<Biome> create(String string) {
+            return TagKey.create(Registries.BIOME, EternalStarlight.id(string));
+        }
     }
 
     public static class Fluids {
+        public static final TagKey<Fluid> ETHER = create("ether");
+
         private static TagKey<Fluid> create(String string) {
             return TagKey.create(Registries.FLUID, EternalStarlight.id(string));
         }
-        public static final TagKey<Fluid> ETHER = create("ether");
     }
 }
