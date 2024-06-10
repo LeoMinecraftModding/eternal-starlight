@@ -18,7 +18,7 @@ public record ESSmokeParticleOptions(Vector3f fromColor, Vector3f toColor, float
     public static final ESSmokeParticleOptions AETHERSENT = new ESSmokeParticleOptions(new Vector3f(115, 51, 153), new Vector3f(46, 14, 64), 0.5f, false, 3, 2.5f);
     public static final ESSmokeParticleOptions LUNAR = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 3, 0f);
     public static final ESSmokeParticleOptions LUNAR_SHORT = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 0.8f, 0f);
-    public static final ESSmokeParticleOptions LUNAR_BREATH = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 0.5f, 4f);
+    public static final ESSmokeParticleOptions LUNAR_BREATH = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 0.6f, 4f);
 
     public static final MapCodec<ESSmokeParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             ExtraCodecs.VECTOR3F.fieldOf("from_color").forGetter(ESSmokeParticleOptions::fromColor),

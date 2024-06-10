@@ -397,6 +397,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
             if (isLeftHanded()) {
                 setLeftHanded(false);
             }
+            if (getTarget() != null && !getTarget().isAlive()) {
+                setTarget(null);
+            }
             if (isActivated() && !isNoAi()) {
                 attackManager.tick();
             }

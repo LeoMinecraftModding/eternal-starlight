@@ -2,20 +2,19 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
-import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
+import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
@@ -27,13 +26,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -47,13 +43,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.EnumSet;
-import java.util.Random;
+import java.util.List;
 
-public class LunarMonstrosity extends ESBoss {
+public class LunarMonstrosity extends ESBoss implements RayAttackUser {
     private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_LUNAR_MONSTROSITY.asHolder(), 0, 0, true);
 
     public LunarMonstrosity(EntityType<? extends ESBoss> entityType, Level level) {
@@ -62,46 +56,28 @@ public class LunarMonstrosity extends ESBoss {
 
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
 
+    private final AttackManager<LunarMonstrosity> attackManager = new AttackManager<>(this, List.of(
+            new LunarMonstrosityToxicBreathPhase(),
+            new LunarMonstrositySporePhase(),
+            new LunarMonstrosityThornPhase(),
+            new LunarMonstrosityBitePhase(),
+            new LunarMonstrosityDigPhase(),
+            new LunarMonstrositySneakPhase(),
+            new LunarMonstrosityEmergePhase(),
+            new LunarMonstrositySoulPhase(),
+            new LunarMonstrosityStunPhase()
+    ));
+
     public AnimationState toxicBreathAnimationState = new AnimationState();
     public AnimationState sporeAnimationState = new AnimationState();
-    public AnimationState vineAnimationState = new AnimationState();
+    public AnimationState thornAnimationState = new AnimationState();
     public AnimationState biteAnimationState = new AnimationState();
-    public AnimationState disappearAnimationState = new AnimationState();
+    public AnimationState digAnimationState = new AnimationState();
     public AnimationState sneakAnimationState = new AnimationState();
-    public AnimationState appearAnimationState = new AnimationState();
+    public AnimationState emergeAnimationState = new AnimationState();
     public AnimationState switchPhaseAnimationState = new AnimationState();
     public AnimationState deathAnimationState = new AnimationState();
-    int toxicBreathCooldown = 0;
-    int sporeCooldown = 0;
-    int vineCooldown = 0;
-    int biteCooldown = 0;
-    int sneakCooldown = 0;
-    private Vec3 targetPos = Vec3.ZERO;
     public Vec3 headPos = Vec3.ZERO;
-
-    @Override
-    public void setAttackState(int attackState) {
-        super.setAttackState(attackState);
-    }
-
-    protected static final EntityDataAccessor<Float> PARTICLE_ANGLE_X = SynchedEntityData.defineId(LunarMonstrosity.class, EntityDataSerializers.FLOAT);
-    public double getParticleAngleX() {
-        return entityData.get(PARTICLE_ANGLE_X);
-    }
-    protected static final EntityDataAccessor<Float> PARTICLE_ANGLE_Y = SynchedEntityData.defineId(LunarMonstrosity.class, EntityDataSerializers.FLOAT);
-    public double getParticleAngleY() {
-        return entityData.get(PARTICLE_ANGLE_Y);
-    }
-    protected static final EntityDataAccessor<Float> PARTICLE_ANGLE_Z = SynchedEntityData.defineId(LunarMonstrosity.class, EntityDataSerializers.FLOAT);
-    public double getParticleAngleZ() {
-        return entityData.get(PARTICLE_ANGLE_Z);
-    }
-
-    public void setParticleAngle(double x, double y, double z) {
-        entityData.set(PARTICLE_ANGLE_X, (float) x);
-        entityData.set(PARTICLE_ANGLE_Y, (float) y);
-        entityData.set(PARTICLE_ANGLE_Z, (float) z);
-    }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -120,19 +96,11 @@ public class LunarMonstrosity extends ESBoss {
         bossEvent.removePlayer(serverPlayer);
     }
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(PARTICLE_ANGLE_X, (float) 0)
-                .define(PARTICLE_ANGLE_Y, (float) 0)
-                .define(PARTICLE_ANGLE_Z, (float) 0);
-    }
-
     protected void registerGoals() {
         super.registerGoals();
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new LunarMonstrosityMeleeAttackGoal(this, 1.0D, false));
-        goalSelector.addGoal(2, new LookAtTargetGoal());
+        goalSelector.addGoal(2, new MonstrosityLookAtTargetGoal());
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 
@@ -142,35 +110,21 @@ public class LunarMonstrosity extends ESBoss {
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
-    class LookAtTargetGoal extends Goal {
-        public LookAtTargetGoal() {
-            setFlags(EnumSet.of(Goal.Flag.LOOK));
+    private class MonstrosityLookAtTargetGoal extends LookAtTargetGoal {
+        public MonstrosityLookAtTargetGoal() {
+            super(LunarMonstrosity.this);
         }
 
         @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-
-        public boolean canUse() {
-            return LunarMonstrosity.this.getTarget() != null;
-        }
-
-        public boolean canContinueToUse() {
-            return LunarMonstrosity.this.getTarget() != null;
-        }
-
         public void tick() {
-            if (LunarMonstrosity.this.getAttackState() == 1) {
-                LunarMonstrosity.this.getLookControl().setLookAt(LunarMonstrosity.this.targetPos.x, LunarMonstrosity.this.targetPos.y, LunarMonstrosity.this.targetPos.z);
-            } else if (LunarMonstrosity.this.getTarget() != null) {
-                LunarMonstrosity.this.getLookControl().setLookAt(LunarMonstrosity.this.getTarget(), 100F, 100F);
+            if (LunarMonstrosity.this.getAttackState() != LunarMonstrosityToxicBreathPhase.ID) {
+                super.tick();
             }
         }
     }
 
-    static class LunarMonstrosityMeleeAttackGoal extends MeleeAttackGoal {
-        public LunarMonstrosityMeleeAttackGoal(PathfinderMob mob, double speed, boolean followingTargetEvenIfNotSeen) {
+    private static class LunarMonstrosityMeleeAttackGoal extends MeleeAttackGoal {
+        private LunarMonstrosityMeleeAttackGoal(PathfinderMob mob, double speed, boolean followingTargetEvenIfNotSeen) {
             super(mob, speed, followingTargetEvenIfNotSeen);
         }
 
@@ -193,6 +147,23 @@ public class LunarMonstrosity extends ESBoss {
         }
     }
 
+    @Override
+    public boolean isRayFollowingHeadRotation() {
+        return false;
+    }
+
+    @Override
+    public Vec3 getRayRotationTarget() {
+        return getTarget() == null ? position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f)) : getTarget().position().add(getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f), getTarget().getBbHeight() * getRandom().nextFloat(), getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f));
+    }
+
+    @Override
+    public void updateRayEnd(Vec3 endPos) {
+        setXRot(-ESMathUtil.positionToPitch(position(), endPos));
+        setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
+        setYRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return createMonsterAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.35F)
@@ -208,10 +179,10 @@ public class LunarMonstrosity extends ESBoss {
         if (deathTime == 0) {
             stopAllAnimStates();
             deathAnimationState.start(tickCount);
-            setAttackState(-3);
+            setAttackState(0);
         }
         ++deathTime;
-        if (deathTime == 100 && !level().isClientSide()) {
+        if (deathTime == 75 && !level().isClientSide()) {
             level().broadcastEntityEvent(this, (byte)60);
             remove(Entity.RemovalReason.KILLED);
         }
@@ -220,12 +191,12 @@ public class LunarMonstrosity extends ESBoss {
     public void stopAllAnimStates() {
         toxicBreathAnimationState.stop();
         sporeAnimationState.stop();
-        vineAnimationState.stop();
-        switchPhaseAnimationState.stop();
+        thornAnimationState.stop();
         biteAnimationState.stop();
-        disappearAnimationState.stop();
+        digAnimationState.stop();
         sneakAnimationState.stop();
-        appearAnimationState.stop();
+        emergeAnimationState.stop();
+        switchPhaseAnimationState.stop();
     }
 
     @Override
@@ -233,14 +204,14 @@ public class LunarMonstrosity extends ESBoss {
         if (accessor.equals(ATTACK_STATE) && getAttackState() != 0) {
             stopAllAnimStates();
             switch (getAttackState()) {
-                case -1 -> switchPhaseAnimationState.start(tickCount);
-                case 1 -> toxicBreathAnimationState.start(tickCount);
-                case 2 -> sporeAnimationState.start(tickCount);
-                case 3 -> vineAnimationState.start(tickCount);
-                case 4 -> biteAnimationState.start(tickCount);
-                case 5 -> disappearAnimationState.start(tickCount);
-                case 6 -> sneakAnimationState.start(tickCount);
-                case 7 -> appearAnimationState.start(tickCount);
+                case LunarMonstrosityToxicBreathPhase.ID -> toxicBreathAnimationState.start(tickCount);
+                case LunarMonstrositySporePhase.ID -> sporeAnimationState.start(tickCount);
+                case LunarMonstrosityThornPhase.ID -> thornAnimationState.start(tickCount);
+                case LunarMonstrosityBitePhase.ID -> biteAnimationState.start(tickCount);
+                case LunarMonstrosityDigPhase.ID -> digAnimationState.start(tickCount);
+                case LunarMonstrositySneakPhase.ID -> sneakAnimationState.start(tickCount);
+                case LunarMonstrosityEmergePhase.ID -> emergeAnimationState.start(tickCount);
+                case LunarMonstrositySoulPhase.ID -> switchPhaseAnimationState.start(tickCount);
             }
         }
         super.onSyncedDataUpdated(accessor);
@@ -248,16 +219,18 @@ public class LunarMonstrosity extends ESBoss {
 
     @Override
     protected void blockedByShield(LivingEntity blocker) {
-        if (getAttackState() == 4 && blocker.getUUID().equals(getTarget().getUUID())) {
-            setAttackState(-2);
+        if (getAttackState() == LunarMonstrosityBitePhase.ID && getTarget() != null && blocker.getUUID().equals(getTarget().getUUID())) {
+            setAttackState(LunarMonstrosityStunPhase.ID);
         }
         super.blockedByShield(blocker);
     }
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        setAttackState(7);
-        setAttackTicks(1);
+        if (getAttackState() == LunarMonstrositySneakPhase.ID) {
+            setAttackState(LunarMonstrosityEmergePhase.ID);
+            setAttackTicks(1);
+        }
         return super.doHurtTarget(target);
     }
 
@@ -266,41 +239,47 @@ public class LunarMonstrosity extends ESBoss {
         if (damageSource.is(DamageTypes.GENERIC_KILL)) {
             return super.hurt(damageSource, amount);
         }
-        if (getAttackState() == 6) {
+        if (getAttackState() == LunarMonstrositySneakPhase.ID) {
             return false;
         }
-        if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
+        if (getAttackState() == 0 && getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
             setPhase(1);
-            setAttackState(-1);
+            setAttackState(LunarMonstrositySoulPhase.ID);
             setAttackTicks(1);
             return super.hurt(damageSource, amount / 2f);
         }
         if (damageSource.getEntity() != null && getTarget() != null) {
-            if (getAttackState() == 4 && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
-                setAttackState(-2);
+            if (getAttackState() == LunarMonstrosityBitePhase.ID && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
+                setAttackState(LunarMonstrosityStunPhase.ID);
+                setAttackTicks(1);
             }
         }
-        if (isOnFire() || getAttackState() == -2) {
+        if (isOnFire() || getAttackState() == LunarMonstrosityStunPhase.ID) {
             return super.hurt(damageSource, amount);
         } else {
             return super.hurt(damageSource, Math.min(1, amount));
         }
     }
 
-    protected InteractionResult mobInteract(Player p_32301_, InteractionHand p_32302_) {
-        ItemStack itemstack = p_32301_.getItemInHand(p_32302_);
+    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
         if (itemstack.is(Items.FLINT_AND_STEEL) && getPhase() == 0) {
-            this.level().playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+            this.level().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
             setRemainingFireTicks(Math.max(getRemainingFireTicks(), 100));
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
-            return super.mobInteract(p_32301_, p_32302_);
+            return super.mobInteract(player, hand);
         }
     }
 
     @Override
     public EntityDimensions getDefaultDimensions(Pose pose) {
-        return getAttackState() == 6 ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
+        return getAttackState() == LunarMonstrositySneakPhase.ID ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
+    }
+
+    @Override
+    public boolean displayFireAnimation() {
+        return getAttackState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
     }
 
     @Override
@@ -308,7 +287,20 @@ public class LunarMonstrosity extends ESBoss {
         return BOSS_MUSIC;
     }
 
-    private void doBiteDamage(float damage) {
+    public boolean canBite() {
+        LivingEntity target = getTarget();
+        if (target == null) return false;
+        for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(3))) {
+            Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
+            vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
+            if (vec3.dot(this.getViewVector(1.0F)) < 0.0D && target.getUUID().equals(livingEntity.getUUID())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void doBiteDamage(float damage) {
         for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(3))) {
             Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
             vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
@@ -324,189 +316,28 @@ public class LunarMonstrosity extends ESBoss {
         bossEvent.update();
         refreshDimensions();
         if (!level().isClientSide) {
-            setParticleAngle((targetPos.x - getX()) / 10D, (targetPos.y - getY() - 2) / 10D, (targetPos.z - getZ()) / 10D);
-            LivingEntity target = getTarget();
-            if (toxicBreathCooldown > 0) {
-                toxicBreathCooldown--;
+            if (getTarget() != null && !getTarget().isAlive()) {
+                setTarget(null);
             }
-            if (sporeCooldown > 0) {
-                sporeCooldown--;
-            }
-            if (vineCooldown > 0) {
-                vineCooldown--;
-            }
-            if (biteCooldown > 0) {
-                biteCooldown--;
-            }
-            if (sneakCooldown > 0) {
-                sneakCooldown--;
-            }
-            if (getAttackState() == 0) {
-                setAttackTicks(0);
-                if (target != null && target.isAlive()) {
-                    if (toxicBreathCooldown == 0 && getPhase() == 1) {
-                        setAttackState(1);
-                        toxicBreathCooldown = 400;
-                    } else if (sporeCooldown == 0) {
-                        setAttackState(2);
-                        sporeCooldown = 400;
-                    } else if (vineCooldown == 0 && getPhase() == 0) {
-                        setAttackState(3);
-                        vineCooldown = 400;
-                    } else if (biteCooldown == 0 && getPhase() == 1) {
-                        setAttackState(4);
-                        biteCooldown = 400;
-                    } else if (sneakCooldown == 0) {
-                        setAttackState(5);
-                        sneakCooldown = 400;
-                    }
-                }
-            }
-            switch (getAttackState()) {
-                case -2 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 101);
-                }
-                case -1 -> {
-                    if (getAttackTicks() == 1) {
-                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), getSoundVolume() / 2, getVoicePitch());
-                    }
-                    if (getAttackTicks() == 75) {
-                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
-                    }
-                    if (getAttackTicks() == 90) {
-                        doBiteDamage(40);
-                    }
-                    setAttackTicks((getAttackTicks() + 1) % 101);
-                }
-                case 1 -> {
-                    if (getAttackTicks() == 1 && target != null) {
-                        targetPos = target.position();
-                    }
-
-                    if (distanceToSqr(targetPos) < 900 && getAttackTicks() >= 60) {
-                        float distance = Mth.sqrt((float) distanceToSqr(targetPos));
-                        for (double i = 0; i <= Mth.ceil(distance); i += 0.5) {
-                            AABB aabb = new AABB(getX() - 1, getY() + 1, getZ() - 1, getX() + 1, getY() + 3, getZ() + 1).move(targetPos.add(position().add(0, 2, 0).scale(-1)).scale(((double) i) / ((double) Mth.ceil(distance))));
-                            for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, aabb)) {
-                                if (!(livingEntity instanceof LunarMonstrosity)) {
-                                    livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.POISON, this), 2);
-                                    livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
-                                }
-                            }
-                        }
-                    }
-
-                    if (target != null) {
-                        targetPos =
-                                targetPos.add(target.position().add(0, target.getBoundingBox().getYsize() / 2.0, 0)
-                                        .add(targetPos.scale(-1)).scale(0.1));
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 201);
-                }
-                case 2 -> {
-                    if (getAttackTicks() % 10 == 0 && target != null) {
-                        double x = target.getX() - getX();
-                        double y = target.getY() - getY() - 2;
-                        double z = target.getZ() - getZ();
-                        LunarSpore spore = new LunarSpore(level(), this, x, y, z);
-                        spore.setPos(position().add(0, 2, 0));
-                        spore.setOwner(this);
-                        spore.setNoGravity(true);
-                        spore.setDeltaMovement(new Vec3(x, y, z).normalize().scale(1.2));
-                        level().addFreshEntity(spore);
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 101);
-                }
-                case 3 -> {
-                    if (getAttackTicks() % 15 == 0 && target != null) {
-                        for (int i = 0; i < 5; i++) {
-                            LunarThorn vine = ESEntities.LUNAR_THORN.get().create(level());
-                            Random random = new Random();
-                            vine.setPos(target.position().add(random.nextDouble(), 0.2, random.nextDouble()));
-                            vine.setAttackMode(1);
-                            vine.setOwner(this);
-                            level().addFreshEntity(vine);
-                        }
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 91);
-                }
-                case 4 -> {
-                    if (getAttackTicks() == 0) {
-                        playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), getSoundVolume(), getVoicePitch());
-                    }
-                    if (getAttackTicks() == 10) {
-                        doBiteDamage(20);
-                    }
-
-                    setAttackTicks((getAttackTicks() + 1) % 21);
-                }
-                case 5 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 31);
-                    if (getAttackTicks() == 0) {
-                        setAttackState(6);
-                        setAttackTicks(1);
-                    }
-                }
-                case 6 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 301);
-                    if (getAttackTicks() == 0) {
-                        setAttackState(7);
-                        setAttackTicks(1);
-                    }
-                }
-                case 7 -> {
-                    setAttackTicks((getAttackTicks() + 1) % 31);
-                }
-            }
-            if (getAttackTicks() == 0) {
-                setAttackState(0);
+            if (!isNoAi()) {
+                attackManager.tick();
             }
         } else {
             level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
             if (deathTime <= 0) {
-                switch (getAttackState()) {
-                    case -2 -> {
-                        level().addParticle(ParticleTypes.CRIT, headPos.x + getRandom().nextDouble() - 0.5, headPos.y, headPos.z + getRandom().nextDouble() - 0.5, getRandom().nextDouble() / 10, 0.8, getRandom().nextDouble() / 10);
-                    }
-                    case 1 -> {
-                        Vec3 angle = new Vec3(getParticleAngleX(), getParticleAngleY(), getParticleAngleZ());
-                        double px = headPos.x + angle.x() * 0.5D;
-                        double py = headPos.y;
-                        double pz = headPos.z + angle.z() * 0.5D;
-
-                        for (int i = 0; i < 10; i++) {
-                            double dx = angle.x();
-                            double dy = angle.y();
-                            double dz = angle.z();
-
-                            double spread = 5.0D + getRandom().nextFloat() * 2.5D;
-                            double velocity = 3.0D + getRandom().nextFloat() * 0.15D;
-
-                            dx += getRandom().nextGaussian() * 0.0075D * spread;
-                            dy += getRandom().nextGaussian() * 0.0075D * spread;
-                            dz += getRandom().nextGaussian() * 0.0075D * spread;
-                            dx *= velocity;
-                            dy *= velocity;
-                            dz *= velocity;
-
-                            level().addParticle(ESSmokeParticleOptions.LUNAR_BREATH, px, py, pz, dx / 5, dy / 5, dz / 5);
+                if (getAttackState() == LunarMonstrositySneakPhase.ID) {
+                    RandomSource randomsource = this.getRandom();
+                    BlockState blockstate = this.getBlockStateOn();
+                    if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
+                        for (int i = 0; i < 30; ++i) {
+                            double d0 = this.getX() + (double) Mth.randomBetween(randomsource, -0.7F, 0.7F);
+                            double d1 = this.getY();
+                            double d2 = this.getZ() + (double) Mth.randomBetween(randomsource, -0.7F, 0.7F);
+                            level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), d0, d1, d2, 0.0D, 0.0D, 0.0D);
                         }
                     }
-                    case 6 -> {
-                        RandomSource randomsource = this.getRandom();
-                        BlockState blockstate = this.getBlockStateOn();
-                        if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
-                            for(int i = 0; i < 30; ++i) {
-                                double d0 = this.getX() + (double)Mth.randomBetween(randomsource, -0.7F, 0.7F);
-                                double d1 = this.getY();
-                                double d2 = this.getZ() + (double)Mth.randomBetween(randomsource, -0.7F, 0.7F);
-                                level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), d0, d1, d2, 0.0D, 0.0D, 0.0D);
-                            }
-                        }
-                    }
+                } else if (getAttackState() == LunarMonstrosityStunPhase.ID) {
+                    level().addParticle(ParticleTypes.CRIT, headPos.x + getRandom().nextDouble() - 0.5, headPos.y, headPos.z + getRandom().nextDouble() - 0.5, getRandom().nextDouble() / 10, 0.8, getRandom().nextDouble() / 10);
                 }
             }
         }

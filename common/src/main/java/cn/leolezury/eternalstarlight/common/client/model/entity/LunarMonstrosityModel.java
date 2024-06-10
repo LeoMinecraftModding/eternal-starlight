@@ -3,13 +3,15 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LunarMonstrosityAnimation;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
@@ -95,42 +97,27 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.eye.visible = entity.getPhase() == 0;
-        if (entity.getAttackTicks() >= 0 && entity.getAttackState() != 0 && entity.deathTime <= 0) {
+        if (entity.getAttackState() != 0 && entity.deathTime <= 0) {
             int state = entity.getAttackState();
             switch (state) {
-                case -2 -> {
-                    // entity.headPos = ModelUtils.getModelPosition(entity, entity.getYRot(), List.of(head, stemTop, stemMiddle, stemAll, root));
-                }
-                case -1 -> {
-                    animate(entity.switchPhaseAnimationState, LunarMonstrosityAnimation.SWITCH_PHASE, ageInTicks);
-                }
-                case 1 -> {
-                    animate(entity.toxicBreathAnimationState, LunarMonstrosityAnimation.TOXIC_BREATH, ageInTicks);
-                    // entity.headPos = ModelUtils.getModelPosition(entity, entity.getYRot(), List.of(head, stemTop, stemMiddle, stemAll, root));
-                }
-                case 2 -> {
-                    animate(entity.sporeAnimationState, LunarMonstrosityAnimation.SPORE, ageInTicks);
-                }
-                case 3 -> {
-                    animate(entity.vineAnimationState, LunarMonstrosityAnimation.VINE, ageInTicks);
-                }
-                case 4 -> {
-                    animate(entity.biteAnimationState, LunarMonstrosityAnimation.BITE, ageInTicks);
-                }
-                case 5 -> {
-                    animate(entity.disappearAnimationState, LunarMonstrosityAnimation.DISAPPEAR, ageInTicks);
-                }
-                case 6 -> {
-                    animate(entity.sneakAnimationState, LunarMonstrosityAnimation.SNEAK, ageInTicks);
-                }
-                case 7 -> {
-                    animate(entity.appearAnimationState, LunarMonstrosityAnimation.APPEAR, ageInTicks);
-                }
+                case LunarMonstrosityToxicBreathPhase.ID -> animate(entity.toxicBreathAnimationState, LunarMonstrosityAnimation.TOXIC_BREATH, ageInTicks);
+                case LunarMonstrositySporePhase.ID -> animate(entity.sporeAnimationState, LunarMonstrosityAnimation.SPORE, ageInTicks);
+                case LunarMonstrosityThornPhase.ID -> animate(entity.thornAnimationState, LunarMonstrosityAnimation.THORN, ageInTicks);
+                case LunarMonstrosityBitePhase.ID -> animate(entity.biteAnimationState, LunarMonstrosityAnimation.BITE, ageInTicks);
+                case LunarMonstrosityDigPhase.ID -> animate(entity.digAnimationState, LunarMonstrosityAnimation.DIG, ageInTicks);
+                case LunarMonstrositySneakPhase.ID -> animate(entity.sneakAnimationState, LunarMonstrosityAnimation.SNEAK, ageInTicks);
+                case LunarMonstrosityEmergePhase.ID -> animate(entity.emergeAnimationState, LunarMonstrosityAnimation.EMERGE, ageInTicks);
+                case LunarMonstrositySoulPhase.ID -> animate(entity.switchPhaseAnimationState, LunarMonstrosityAnimation.SWITCH_PHASE, ageInTicks);
             }
         }
         if (entity.deathTime > 0) {
             animate(entity.deathAnimationState, LunarMonstrosityAnimation.DEATH, ageInTicks);
         }
+    }
+
+    @Override
+    public RenderType renderType(ResourceLocation resourceLocation) {
+        return RenderType.entityTranslucent(resourceLocation);
     }
 
     @Override

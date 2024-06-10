@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
@@ -44,12 +44,13 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarlightGolem extends ESBoss implements LaserCaster {
+public class StarlightGolem extends ESBoss implements RayAttackUser {
     private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.asHolder(), 0, 0, true);
 
     public StarlightGolem(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
+
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
 
     private final AttackManager<StarlightGolem> attackManager = new AttackManager<>(this, List.of(
@@ -108,24 +109,24 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 
-        targetSelector.addGoal(0, (new HurtByTargetGoal(this, StarlightGolem.class)).setAlertOthers());
+        targetSelector.addGoal(0, new HurtByTargetGoal(this, StarlightGolem.class).setAlertOthers());
         targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
     @Override
-    public boolean isLaserFollowingHeadRotation() {
+    public boolean isRayFollowingHeadRotation() {
         return false;
     }
 
     @Override
-    public Vec3 getLaserRotationTarget() {
+    public Vec3 getRayRotationTarget() {
         return getTarget() == null ? position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f)) : getTarget().position().add(getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f), getTarget().getBbHeight() * getRandom().nextFloat(), getTarget().getBbWidth() * (getRandom().nextFloat() - 0.5f));
     }
 
     @Override
-    public void lookAtLaserEnd(Vec3 endPos) {
+    public void updateRayEnd(Vec3 endPos) {
         setXRot(-ESMathUtil.positionToPitch(position(), endPos));
         setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
         setYRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
@@ -300,6 +301,9 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
         super.aiStep();
         bossEvent.update();
         if (!level().isClientSide) {
+            if (getTarget() != null && !getTarget().isAlive()) {
+                setTarget(null);
+            }
             if (!isNoAi()) {
                 attackManager.tick();
             }

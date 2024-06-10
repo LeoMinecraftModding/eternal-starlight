@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.LaserCaster;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
@@ -223,10 +223,10 @@ public class RayAttack extends Entity {
     public void updateRotations() {
         getCaster().ifPresent(caster -> {
             if (caster instanceof LivingEntity living) {
-                if (caster instanceof LaserCaster shooter && !shooter.isLaserFollowingHeadRotation()) {
+                if (caster instanceof RayAttackUser shooter && !shooter.isRayFollowingHeadRotation()) {
                     Vec3 idealEndPos = ESMathUtil.rotationToPosition(position(), getRadius(), getPitch(), getYaw());
-                    shooter.lookAtLaserEnd(idealEndPos);
-                    Vec3 wantedPos = shooter.getLaserRotationTarget();
+                    shooter.updateRayEnd(idealEndPos);
+                    Vec3 wantedPos = shooter.getRayRotationTarget();
 
                     float wantedYaw = ESMathUtil.positionToYaw(position(), wantedPos);
                     float wantedPitch = ESMathUtil.positionToPitch(position(), wantedPos);

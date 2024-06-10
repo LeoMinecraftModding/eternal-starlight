@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.visual;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -60,19 +58,10 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
             this.effect.createCurrentPoint(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)));
         }
 
-        RenderSystem.enableBlend();
-        RenderSystem.enableCull();
-        RenderSystem.enableDepthTest();
-        RenderSystem.depthMask(false);
-        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-
         this.effect.render(source.getBuffer(entity.getTrailRenderType()), stack, partialTicks, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
         if (!entityRemoved) {
             this.effect.removeNearest();
         }
-
-        RenderSystem.depthMask(true);
-        RenderSystem.defaultBlendFunc();
     }
 
     @Override
