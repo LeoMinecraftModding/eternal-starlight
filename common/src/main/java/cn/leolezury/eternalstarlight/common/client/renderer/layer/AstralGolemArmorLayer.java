@@ -18,8 +18,8 @@ public class AstralGolemArmorLayer<T extends LivingEntity, M extends HumanoidMod
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource source, int p_117098_, T model, float p_117100_, float p_117101_, float p_117102_, float p_117103_, float p_117104_, float p_117105_) {
-        this.renderArmorPiece(stack, source, model, EquipmentSlot.CHEST, p_117098_, this.getArmorModel(EquipmentSlot.CHEST));
-        this.renderArmorPiece(stack, source, model, EquipmentSlot.HEAD, p_117098_, this.getArmorModel(EquipmentSlot.HEAD));
+    public void render(PoseStack stack, MultiBufferSource source, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
+        this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.CHEST, i, this.getArmorModel(EquipmentSlot.CHEST));
+        this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.HEAD, i, this.getArmorModel(EquipmentSlot.HEAD));
     }
 }

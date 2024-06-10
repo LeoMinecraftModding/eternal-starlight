@@ -29,6 +29,8 @@ public class ESParticleRenderType {
         @Override
         public void end(Tesselator tesselator) {
             tesselator.end();
+            RenderSystem.depthMask(true);
+            RenderSystem.defaultBlendFunc();
         }
 
         @Override

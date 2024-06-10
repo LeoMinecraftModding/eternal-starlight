@@ -309,7 +309,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
                 level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
             }
             if (getAttackState() == StarlightGolemChargePhase.ID && !canHurt()) {
-                // to lazy to change it
+                // bad code
                 List<BlockPos> list = getLitEnergyBlocks();
                 for (BlockPos pos : list) {
                     Vec3 angle = position().add(-pos.getX() - 0.5, -pos.getY() - 1.0, -pos.getZ() - 0.5);
@@ -345,7 +345,7 @@ public class StarlightGolem extends ESBoss implements LaserCaster {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource p_33034_) {
+    protected SoundEvent getHurtSound(DamageSource source) {
         return ESSoundEvents.STARLIGHT_GOLEM_HURT.get();
     }
 

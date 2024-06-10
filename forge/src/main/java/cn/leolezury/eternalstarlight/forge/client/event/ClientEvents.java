@@ -29,7 +29,7 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onRenderFog(ViewportEvent.RenderFog event) {
-        ClientHandlers.onRenderFog(event.getCamera());
+        ClientHandlers.onRenderFog(event.getCamera(), event.getMode());
     }
 
     @SubscribeEvent

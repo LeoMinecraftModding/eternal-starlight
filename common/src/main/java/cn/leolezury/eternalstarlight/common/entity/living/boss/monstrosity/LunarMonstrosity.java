@@ -1,11 +1,13 @@
-package cn.leolezury.eternalstarlight.common.entity.living.boss;
+package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -57,6 +59,7 @@ public class LunarMonstrosity extends ESBoss {
     public LunarMonstrosity(EntityType<? extends ESBoss> entityType, Level level) {
         super(entityType, level);
     }
+
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
 
     public AnimationState toxicBreathAnimationState = new AnimationState();
@@ -133,7 +136,7 @@ public class LunarMonstrosity extends ESBoss {
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 
-        targetSelector.addGoal(0, (new HurtByTargetGoal(this, LunarMonstrosity.class)).setAlertOthers());
+        targetSelector.addGoal(0, new HurtByTargetGoal(this, LunarMonstrosity.class).setAlertOthers());
         targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
@@ -409,6 +412,8 @@ public class LunarMonstrosity extends ESBoss {
                         LunarSpore spore = new LunarSpore(level(), this, x, y, z);
                         spore.setPos(position().add(0, 2, 0));
                         spore.setOwner(this);
+                        spore.setNoGravity(true);
+                        spore.setDeltaMovement(new Vec3(x, y, z).normalize().scale(1.2));
                         level().addFreshEntity(spore);
                     }
 
@@ -417,7 +422,7 @@ public class LunarMonstrosity extends ESBoss {
                 case 3 -> {
                     if (getAttackTicks() % 15 == 0 && target != null) {
                         for (int i = 0; i < 5; i++) {
-                            LunarVine vine = ESEntities.LUNAR_VINE.get().create(level());
+                            LunarThorn vine = ESEntities.LUNAR_THORN.get().create(level());
                             Random random = new Random();
                             vine.setPos(target.position().add(random.nextDouble(), 0.2, random.nextDouble()));
                             vine.setAttackMode(1);
@@ -460,7 +465,7 @@ public class LunarMonstrosity extends ESBoss {
                 setAttackState(0);
             }
         } else {
-            level().addParticle(ESParticles.POISON.get(), getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
+            level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
             if (deathTime <= 0) {
                 switch (getAttackState()) {
                     case -2 -> {
@@ -487,7 +492,7 @@ public class LunarMonstrosity extends ESBoss {
                             dy *= velocity;
                             dz *= velocity;
 
-                            level().addParticle(ESParticles.POISON.get(), px, py, pz, dx / 5, dy / 5, dz / 5);
+                            level().addParticle(ESSmokeParticleOptions.LUNAR_BREATH, px, py, pz, dx / 5, dy / 5, dz / 5);
                         }
                     }
                     case 6 -> {

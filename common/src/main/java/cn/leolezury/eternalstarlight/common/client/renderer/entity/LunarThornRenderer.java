@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.entity.FrozenTubeModel;
-import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
+import cn.leolezury.eternalstarlight.common.client.model.entity.LunarThornModel;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -17,39 +17,35 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
-    private final FrozenTubeModel<FrozenTube> model;
+public class LunarThornRenderer extends EntityRenderer<LunarThorn> {
+    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/lunar_thorn.png");
+    private final LunarThornModel<LunarThorn> model;
 
-    public FrozenTubeRenderer(EntityRendererProvider.Context context) {
+    public LunarThornRenderer(EntityRendererProvider.Context context) {
         super(context);
-        model = new FrozenTubeModel<>(context.bakeLayer(FrozenTubeModel.LAYER_LOCATION));
+        model = new LunarThornModel<>(context.bakeLayer(LunarThornModel.LAYER_LOCATION));
     }
 
     @Override
-    public void render(FrozenTube entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
+    public void render(LunarThorn entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         poseStack.pushPose();
         float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-        float xRot = -Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
-        float bob = entity.tickCount + partialTicks;
 
         poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yRot));
         poseStack.scale(-1.0F, -1.0F, 1.0F);
         poseStack.translate(0.0F, -1.5F, 0.0F);
 
-        this.model.prepareMobModel(entity, 0, 0, partialTicks);
-        this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
+        this.model.scale(Math.max(Mth.lerp(partialTicks, entity.oldClientScale, entity.clientScale), 0));
         RenderType renderType = this.model.renderType(getTextureLocation(entity));
         VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
         poseStack.popPose();
-
-        super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
+        super.render(entity, yaw, partialTicks, poseStack, bufferSource, packedLight);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(FrozenTube entity) {
+    public ResourceLocation getTextureLocation(LunarThorn entity) {
         return ENTITY_TEXTURE;
     }
 }

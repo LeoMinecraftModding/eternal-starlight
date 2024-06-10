@@ -10,7 +10,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 
@@ -46,8 +45,8 @@ public class FireflyParticle extends TextureSheetParticle {
             ticksSinceMotionChange = 0;
         }
         ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level, CollisionContext.empty(), new Vec3(x, y, z), new Vec3(x + xd, y + yd, z + zd));
-        if (result.blockHit() != null && result.blockHit().getType() == HitResult.Type.BLOCK) {
-            BlockHitResult hitResult = (BlockHitResult) result.blockHit();
+        if (result.blockHitResult() != null) {
+            BlockHitResult hitResult = result.blockHitResult();
             switch (hitResult.getDirection().getAxis()) {
                 case X -> xd = -xd;
                 case Y -> yd = -yd;

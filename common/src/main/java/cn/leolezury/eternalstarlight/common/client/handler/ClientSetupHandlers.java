@@ -471,7 +471,6 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.FIREFLY.get(), FireflyParticle.Provider::new);
         strategy.register(ESParticles.SCARLET_LEAVES.get(), ScarletLeavesParticle.Provider::new);
         strategy.register(ESParticles.ENERGY.get(), FlameParticle.Provider::new);
-        strategy.register(ESParticles.POISON.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
         strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
         strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
@@ -518,7 +517,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.GOLEM_LASER_BEAM.get(), StarlightGolemBeamRenderer::new);
         strategy.register(ESEntities.ENERGIZED_FLAME.get(), NothingRenderer::new);
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
-        strategy.register(ESEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
+        strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
         strategy.register(ESEntities.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
         strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
         strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
@@ -576,7 +575,7 @@ public class ClientSetupHandlers {
         strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);
         strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
         strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
-        strategy.register(LunarVineModel.LAYER_LOCATION, LunarVineModel::createBodyLayer);
+        strategy.register(LunarThornModel.LAYER_LOCATION, LunarThornModel::createBodyLayer);
         strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
         strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
     }

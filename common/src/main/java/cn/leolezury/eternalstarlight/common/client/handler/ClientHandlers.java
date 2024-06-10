@@ -4,11 +4,12 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -32,7 +33,9 @@ import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -40,7 +43,9 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
@@ -62,6 +67,8 @@ public class ClientHandlers {
     private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = new ResourceLocation("hud/crosshair_attack_indicator_progress");
     private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
     public static int resetCameraIn;
+    public static float biomeFogStartDecrement;
+    public static float biomeFogEndDecrement;
 
     public static void onClientTick() {
         ClientWeatherInfo.tickRainLevel();
@@ -97,6 +104,22 @@ public class ClientHandlers {
                 Minecraft.getInstance().options.hideGui = false;
             }
         }
+
+        if (Minecraft.getInstance().player != null) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+            biomeFogStartDecrement -= 0.5f;
+            biomeFogEndDecrement -= 0.5f;
+            Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
+            if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
+                if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
+                    biomeFogStartDecrement += (0.5f + 0.75f);
+                    biomeFogEndDecrement += (0.5f + 0.5f);
+                    biomeFogEndDecrement = Mth.clamp(biomeFogEndDecrement, 0, 80);
+                }
+            }
+        }
+
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
             List<DreamCatcherText> toRemove = new ArrayList<>();
@@ -157,7 +180,7 @@ public class ClientHandlers {
     }
 
     // tail of setupFog
-    public static void onRenderFog(Camera camera) {
+    public static void onRenderFog(Camera camera, FogRenderer.FogMode fogMode) {
         Minecraft minecraft = Minecraft.getInstance();
         LocalPlayer player = minecraft.player;
         if (player == null) {
@@ -174,20 +197,20 @@ public class ClientHandlers {
                 }
             }
         }
-        /*Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
-        boolean noFluidAtCam = player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty();
-        if (camera.getFluidInCamera() == FogType.NONE && noFluidAtCam) {
-            if (biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT)) {
-                RenderSystem.setShaderFogStart(-4.0F);
-                RenderSystem.setShaderFogEnd(96.0F);
-                RenderSystem.setShaderFogColor(0.87f, 0.87f, 1f);
-            } else if (biomeHolder.is(ESTags.Biomes.DARK_SWAMP_VARIANT)) {
-                RenderSystem.setShaderFogStart(-1.0F);
-                RenderSystem.setShaderFogEnd(96.0F);
-                RenderSystem.setShaderFogColor(0.07f, 0, 0.07f);
+
+        if (fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
+            biomeFogStartDecrement = Mth.clamp(biomeFogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5);
+            biomeFogEndDecrement = Mth.clamp(biomeFogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50);
+            RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - biomeFogStartDecrement);
+            RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - biomeFogEndDecrement);
+
+            Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
+            if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
+                if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
+                    RenderSystem.setShaderFogShape(FogShape.SPHERE);
+                }
             }
-            RenderSystem.setShaderFogShape(FogShape.SPHERE);
-        }*/
+        }
     }
 
     public static boolean renderBossBar(GuiGraphics guiGraphics, LerpingBossEvent bossEvent, int x, int y) {
@@ -202,21 +225,16 @@ public class ClientHandlers {
                 break;
             }
         }
-        if (boss == null) {
-            return false;
-        }
-        //Component bossDesc;
-        if (boss instanceof TheGatekeeper) {
-            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/the_gatekeeper.png");
-            //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".the_gatekeeper.desc");
-        } else if (boss instanceof StarlightGolem) {
-            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/starlight_golem.png");
-            //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".starlight_golem.desc");
-        } else if (boss instanceof LunarMonstrosity) {
-            barLocation = new ResourceLocation(EternalStarlight.ID,"textures/gui/bars/lunar_monstrosity.png");
-            //bossDesc = Component.translatable("boss." + EternalStarlight.MOD_ID + ".lunar_monstrosity.desc");
-        } else {
-            return false;
+        switch (boss) {
+            case TheGatekeeper theGatekeeper ->
+                    barLocation = new ResourceLocation(EternalStarlight.ID, "textures/gui/bars/the_gatekeeper.png");
+            case StarlightGolem starlightGolem ->
+                    barLocation = new ResourceLocation(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
+            case LunarMonstrosity lunarMonstrosity ->
+                    barLocation = new ResourceLocation(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity.png");
+            case null, default -> {
+                return false;
+            }
         }
         //event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
         drawBar(guiGraphics, x, y, bossEvent, barLocation);

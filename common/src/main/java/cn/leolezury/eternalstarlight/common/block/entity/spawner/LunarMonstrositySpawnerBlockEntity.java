@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block.entity.spawner;
 
-import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,6 +15,6 @@ public class LunarMonstrositySpawnerBlockEntity extends BossSpawnerBlockEntity<L
 
     @Override
     public ParticleOptions getSpawnerParticle() {
-        return ESParticles.POISON.get();
+        return ESSmokeParticleOptions.LUNAR_SHORT;
     }
 }

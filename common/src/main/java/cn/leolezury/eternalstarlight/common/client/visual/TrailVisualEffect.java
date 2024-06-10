@@ -70,6 +70,9 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
         if (!entityRemoved) {
             this.effect.removeNearest();
         }
+
+        RenderSystem.depthMask(true);
+        RenderSystem.defaultBlendFunc();
     }
 
     @Override

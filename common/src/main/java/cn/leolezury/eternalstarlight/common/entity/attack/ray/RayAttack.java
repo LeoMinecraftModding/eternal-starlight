@@ -21,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -97,9 +96,9 @@ public class RayAttack extends Entity {
             Vec3 endPos = idealEndPos;
             ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), idealEndPos);
             onFirstHit(result);
-            boolean hasBlock = result.blockHit() != null && result.blockHit().getType() != HitResult.Type.MISS;
+            boolean hasBlock = result.blockHitResult() != null && result.blockHitResult().getType() != HitResult.Type.MISS;
             if (hasBlock) {
-                endPos = result.blockHit().getLocation();
+                endPos = result.blockHitResult().getLocation();
             }
             setLength((float) endPos.distanceTo(position()));
             result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), endPos);
@@ -121,8 +120,8 @@ public class RayAttack extends Entity {
 
     public void onFirstHit(ESEntityUtil.RaytraceResult result) {
         getCaster().ifPresent(caster -> {
-            if (result.blockHit() != null && result.blockHit().getType() == HitResult.Type.BLOCK) {
-                BlockPos hitPos = ((BlockHitResult)result.blockHit()).getBlockPos();
+            if (result.blockHitResult() != null) {
+                BlockPos hitPos = result.blockHitResult().getBlockPos();
                 destroyProgresses.put(hitPos, destroyProgresses.containsKey(hitPos) ? destroyProgresses.getInt(hitPos) + 1 : 1);
                 if (destroyProgresses.getInt(hitPos) > 60) {
                     boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster);
@@ -136,7 +135,7 @@ public class RayAttack extends Entity {
             }
         });
         while (destroyProgresses.size() > 32) {
-            destroyProgresses.removeInt(destroyProgresses.keySet().stream().sorted().toList().get(0));
+            destroyProgresses.removeInt(destroyProgresses.keySet().stream().sorted().toList().getFirst());
         }
     }
 

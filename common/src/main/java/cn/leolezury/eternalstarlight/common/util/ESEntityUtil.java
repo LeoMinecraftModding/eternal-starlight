@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -22,7 +23,7 @@ public class ESEntityUtil {
     }
 
     public static RaytraceResult raytrace(LevelAccessor level, CollisionContext context, Vec3 from, Vec3 to) {
-        HitResult hitResult = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, context));
+        BlockHitResult hitResult = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, context));
         RaytraceResult result = new RaytraceResult(new ArrayList<>(), hitResult.getType() == HitResult.Type.BLOCK ? hitResult : null);
         List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(Math.min(from.x, to.x), Math.min(from.y, to.y), Math.min(from.z, to.z), Math.max(from.x, to.x), Math.max(from.y, to.y), Math.max(from.z, to.z)).inflate(1));
         for (Entity entity : entities) {
@@ -39,6 +40,6 @@ public class ESEntityUtil {
         return result;
     }
 
-    public record RaytraceResult (List<Entity> entities, HitResult blockHit) {
+    public record RaytraceResult (List<Entity> entities, BlockHitResult blockHitResult) {
     }
 }

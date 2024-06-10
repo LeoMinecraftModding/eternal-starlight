@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -41,7 +40,6 @@ public class TangledHatredSmokePhase extends AttackPhase<TangledHatred> {
                     ServerPlayer serverPlayer = serverLevel.players().get(m);
                     serverLevel.sendParticles(serverPlayer, ESExplosionParticleOptions.LUNAR, true, vec3.x, vec3.y, vec3.z, 3, 0, 0, 0, 0);
                     serverLevel.sendParticles(serverPlayer, ESSmokeParticleOptions.LUNAR, true, vec3.x, vec3.y, vec3.z, 3, 0, 0, 0, 0);
-                    serverLevel.sendParticles(serverPlayer, ESParticles.POISON.get(), true, vec3.x, vec3.y, vec3.z, 10, 0.2, 0.2, 0.2, 0);
                 }
             }
             for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius))) {

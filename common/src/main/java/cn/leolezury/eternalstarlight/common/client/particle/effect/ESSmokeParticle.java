@@ -22,7 +22,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
         this.xd = this.xd / k * j * 0.4000000059604645;
         this.yd = this.yd / k * j * 0.4000000059604645 + (rise ? 0.10000000149011612 : 0);
         this.zd = this.zd / k * j * 0.4000000059604645;
-        this.rotSpeed = (float) (Math.random() * 0.1f + 0.15f);
+        this.rotSpeed = (float) (Math.random() * 0.05f + 0.075f);
         this.lifetime = (int) (((int) (Math.random() * 20.0D) + 40) * lifeMultiplier);
         this.quadSize *= 5;
         this.alpha = alpha;

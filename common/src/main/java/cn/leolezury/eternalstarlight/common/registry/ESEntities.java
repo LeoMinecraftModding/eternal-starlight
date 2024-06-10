@@ -2,13 +2,13 @@ package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatredPart;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
@@ -58,7 +58,7 @@ public class ESEntities {
     public static final RegistryObject<EntityType<?>, EntityType<GolemLaserBeam>> GOLEM_LASER_BEAM = ENTITIES.register("golem_laser_beam", () -> EntityType.Builder.<GolemLaserBeam>of(GolemLaserBeam::new, MobCategory.MISC).sized(0f, 0f).clientTrackingRange(32).build(EternalStarlight.id("golem_laser_beam").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<EnergizedFlame>> ENERGIZED_FLAME = ENTITIES.register("energized_flame", () -> EntityType.Builder.of(EnergizedFlame::new, MobCategory.MISC).sized(0f, 0f).clientTrackingRange(32).build(EternalStarlight.id("energized_flame").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<LunarSpore>> LUNAR_SPORE = ENTITIES.register("lunar_spore", () -> EntityType.Builder.<LunarSpore>of(LunarSpore::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(EternalStarlight.id("lunar_spore").toString()));
-    public static final RegistryObject<EntityType<?>, EntityType<LunarVine>> LUNAR_VINE = ENTITIES.register("lunar_vine", () -> EntityType.Builder.of(LunarVine::new, MobCategory.MISC).sized(0.3f, 1f).build(EternalStarlight.id("lunar_vine").toString()));
+    public static final RegistryObject<EntityType<?>, EntityType<LunarThorn>> LUNAR_THORN = ENTITIES.register("lunar_thorn", () -> EntityType.Builder.of(LunarThorn::new, MobCategory.MISC).sized(0.3f, 1f).build(EternalStarlight.id("lunar_thorn").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<ThrownShatteredBlade>> THROWN_SHATTERED_BLADE = ENTITIES.register("thrown_shattered_blade", () -> EntityType.Builder.<ThrownShatteredBlade>of(ThrownShatteredBlade::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(6).updateInterval(1).build(EternalStarlight.id("thrown_shattered_blade").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<AmaramberArrow>> AMARAMBER_ARROW = ENTITIES.register("amaramber_arrow", () -> EntityType.Builder.<AmaramberArrow>of(AmaramberArrow::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build(EternalStarlight.id("amaramber_arrow").toString()));
     public static final RegistryObject<EntityType<?>, EntityType<SonarBomb>> SONAR_BOMB = ENTITIES.register("sonar_bomb", () -> EntityType.Builder.<SonarBomb>of(SonarBomb::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(10).updateInterval(1).build(EternalStarlight.id("sonar_bomb").toString()));

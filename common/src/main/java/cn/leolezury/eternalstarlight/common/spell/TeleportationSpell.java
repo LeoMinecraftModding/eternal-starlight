@@ -84,8 +84,8 @@ public class TeleportationSpell extends AbstractSpell {
                 }
             }
         }
-        if (result.blockHit() != null) {
-            Vec3 target = result.blockHit().getLocation();
+        if (result.blockHitResult() != null) {
+            Vec3 target = result.blockHitResult().getLocation();
             entity.teleportTo(target.x, target.y, target.z);
         }
     }

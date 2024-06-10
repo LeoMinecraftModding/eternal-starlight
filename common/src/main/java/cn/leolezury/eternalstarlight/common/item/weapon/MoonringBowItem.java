@@ -1,15 +1,16 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarVine;
+import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class MoonringBowItem extends BowItem {
     public MoonringBowItem(Properties properties) {
@@ -22,40 +23,46 @@ public class MoonringBowItem extends BowItem {
         int k = this.getUseDuration(itemStack) - n;
         float powerForTime = getPowerForTime(k);
         if (!level.isClientSide && livingEntity instanceof Player && powerForTime == 1.0) {
-            float x = -Mth.sin(livingEntity.getYRot() * ((float)Math.PI / 180F));
-            float z = Mth.cos(livingEntity.getYRot() * ((float)Math.PI / 180F));
+            float x = -Mth.sin(livingEntity.getYRot() * Mth.DEG_TO_RAD);
+            float z = Mth.cos(livingEntity.getYRot() * Mth.DEG_TO_RAD);
             for (int i = 0; i < 16; i++) {
-                createVine((ServerLevel) level, livingEntity, livingEntity.getX() + x * i, livingEntity.getY(), livingEntity.getZ() + z * i);
+                createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, 40, i * 5);
             }
         }
     }
 
-    private void createVine(ServerLevel level, LivingEntity owner, double x, double y, double z) {
-        boolean canCreate = true;
-        int blockY = 0;
-        if (!level.getBlockState(new BlockPos((int) x, (int) y, (int) z)).isAir()) {
-            for (int i = (int) y; !level.getBlockState(new BlockPos((int) x, i, (int) z)).isAir(); i++) {
-                if (i > level.getMaxBuildHeight()) {
-                    canCreate = false;
-                    break;
-                }
-                blockY = i;
+    private void createThorn(Level level, LivingEntity owner, double x, double y, double z, double maxDiff, int delay) {
+        BlockPos startPos = BlockPos.containing(x, y, z);
+        boolean successful = false;
+        double finalY = y;
+
+        if (level.getBlockState(startPos).isAir()) {
+            ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level, CollisionContext.of(owner), startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0));
+            if (result.blockHitResult() != null) {
+                finalY = result.blockHitResult().getLocation().y;
+                successful = true;
             }
         } else {
-            for (int i = (int) y; level.getBlockState(new BlockPos((int) x, i, (int) z)).isAir(); i--) {
-                if (i < level.getMinBuildHeight()) {
-                    canCreate = false;
-                    break;
+            int currentDiff = 0;
+            while (!level.getBlockState(startPos).isAir() && currentDiff < maxDiff) {
+                startPos = startPos.above();
+                currentDiff++;
+            }
+            if (level.getBlockState(startPos).isAir()) {
+                ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level, CollisionContext.of(owner), startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0));
+                if (result.blockHitResult() != null) {
+                    finalY = result.blockHitResult().getLocation().y;
+                    successful = true;
                 }
-                blockY = i + 1;
             }
         }
-        if (canCreate) {
-            LunarVine vine = ESEntities.LUNAR_VINE.get().create(level);
-            vine.setPos(x, blockY, z);
-            vine.setAttackMode(0);
-            vine.setOwner(owner);
-            level.addFreshEntity(vine);
+
+        if (successful) {
+            LunarThorn thorn = new LunarThorn(ESEntities.LUNAR_THORN.get(), level);
+            thorn.setPos(x, finalY, z);
+            thorn.setOwner(owner);
+            thorn.setSpawnedTicks(-delay);
+            level.addFreshEntity(thorn);
         }
     }
 }

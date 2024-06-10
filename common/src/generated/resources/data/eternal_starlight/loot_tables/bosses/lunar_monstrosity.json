@@ -16,6 +16,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:moonring_bow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:tenacious_petal"
         }
       ],

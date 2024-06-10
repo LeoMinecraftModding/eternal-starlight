@@ -2,15 +2,18 @@ package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-public class LunarVine extends AttackEffect {
-    public LunarVine(EntityType<? extends AttackEffect> type, Level level) {
+public class LunarThorn extends AttackEffect {
+    public float oldClientScale = 0f;
+    public float clientScale = 0f;
+
+    public LunarThorn(EntityType<? extends AttackEffect> type, Level level) {
         super(type, level);
     }
 
@@ -47,7 +50,15 @@ public class LunarVine extends AttackEffect {
                 }
             }
         } else {
-            level().addParticle(ESParticles.POISON.get(), getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0, 0);
+            float scale = getSpawnedTicks() <= 40 ? getSpawnedTicks() / 40f : 1;
+            if (getSpawnedTicks() >= 160) {
+                scale = (200 - getSpawnedTicks()) / 40f;
+            }
+            oldClientScale = clientScale;
+            clientScale = scale;
+            if (random.nextInt(20) == 0) {
+                level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getRandomX(1.5), getRandomY(), getRandomZ(1.5), 0, 0, 0);
+            }
         }
     }
 }
