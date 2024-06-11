@@ -67,6 +67,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.GLACITE_AXE.get(),
                 ESItems.GLACITE_SCYTHE.get()
         );
+        tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS).add(
+                ESItems.SALTPETER_MATCHBOX.get(),
+                ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
+                Items.FLINT_AND_STEEL,
+                Items.FIRE_CHARGE,
+                Items.BLAZE_ROD,
+                Items.BLAZE_POWDER
+        );
         tag(ESTags.Items.DOOMEDEN_KEYS).add(
                 ESItems.EYE_OF_DOOM.get(),
                 ESItems.LIVING_ARM.get(),
@@ -283,6 +291,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.COBBLED_GRIMSTONE.get(),
                 ESItems.VOIDSTONE.get(),
                 ESItems.COBBLED_VOIDSTONE.get()
+        );
+        tag(ItemTags.CREEPER_IGNITERS).add(
+                ESItems.SALTPETER_MATCHBOX.get()
         );
     }
 }

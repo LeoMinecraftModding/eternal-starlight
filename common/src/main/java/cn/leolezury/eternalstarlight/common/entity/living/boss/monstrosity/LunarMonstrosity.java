@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -39,7 +40,6 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -262,10 +262,18 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
     }
 
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        if (itemstack.is(Items.FLINT_AND_STEEL) && getPhase() == 0) {
-            this.level().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-            setRemainingFireTicks(Math.max(getRemainingFireTicks(), 100));
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.is(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS) && getPhase() == 0) {
+            SoundEvent soundEvent = itemStack.isDamageableItem() ? SoundEvents.FLINTANDSTEEL_USE : SoundEvents.FIRECHARGE_USE;
+            this.level().playSound(player, this.getX(), this.getY(), this.getZ(), soundEvent, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+            if (!this.level().isClientSide) {
+                setRemainingFireTicks(Math.max(getRemainingFireTicks(), 100));
+                if (!itemStack.isDamageableItem()) {
+                    itemStack.shrink(1);
+                } else {
+                    itemStack.hurtAndBreak(1, player, getSlotForHand(hand));
+                }
+            }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             return super.mobInteract(player, hand);
