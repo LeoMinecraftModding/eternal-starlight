@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -19,7 +19,7 @@ import net.minecraft.world.phys.AABB;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
+public class StarlightGolemSmashPhase extends BehaviourPhase<StarlightGolem> {
     public static final int ID = 3;
 
     private float pitch, yaw;
@@ -43,15 +43,15 @@ public class StarlightGolemSmashPhase extends AttackPhase<StarlightGolem> {
 
     @Override
     public void tick(StarlightGolem entity) {
-        if (entity.getAttackTicks() == 30) {
+        if (entity.getBehaviourTicks() == 30) {
             pitch = entity.getTarget() != null ? ESMathUtil.positionToPitch(entity.position(), entity.getTarget().position()) : 0;
             yaw = entity.getYHeadRot() + 90f;
         }
-        if (entity.getAttackTicks() == 40) {
+        if (entity.getBehaviourTicks() == 40) {
             CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
         }
-        if (entity.getAttackTicks() >= 30) {
-            int radius = (int) ((entity.getAttackTicks() - 30f) / 3.5f);
+        if (entity.getBehaviourTicks() >= 30) {
+            int radius = (int) ((entity.getBehaviourTicks() - 30f) / 3.5f);
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     for (int y = -radius; y <= radius; y++) {

@@ -6,7 +6,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
@@ -56,7 +56,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
 
-    private final AttackManager<LunarMonstrosity> attackManager = new AttackManager<>(this, List.of(
+    private final BehaviourManager<LunarMonstrosity> behaviourManager = new BehaviourManager<>(this, List.of(
             new LunarMonstrosityToxicBreathPhase(),
             new LunarMonstrositySporePhase(),
             new LunarMonstrosityThornPhase(),
@@ -117,7 +117,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
         @Override
         public void tick() {
-            if (LunarMonstrosity.this.getAttackState() != LunarMonstrosityToxicBreathPhase.ID) {
+            if (LunarMonstrosity.this.getBehaviourState() != LunarMonstrosityToxicBreathPhase.ID) {
                 super.tick();
             }
         }
@@ -132,7 +132,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         public boolean canUse() {
             boolean canUse = true;
             if (mob instanceof LunarMonstrosity boss) {
-                canUse = boss.getAttackState() == 6;
+                canUse = boss.getBehaviourState() == 6;
             }
             return super.canUse() && canUse;
         }
@@ -141,7 +141,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         public boolean canContinueToUse() {
             boolean canUse = true;
             if (mob instanceof LunarMonstrosity boss) {
-                canUse = boss.getAttackState() == 6;
+                canUse = boss.getBehaviourState() == 6;
             }
             return super.canContinueToUse() && canUse;
         }
@@ -179,7 +179,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         if (deathTime == 0) {
             stopAllAnimStates();
             deathAnimationState.start(tickCount);
-            setAttackState(0);
+            setBehaviourState(0);
         }
         ++deathTime;
         if (deathTime == 75 && !level().isClientSide()) {
@@ -201,9 +201,9 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-        if (accessor.equals(ATTACK_STATE) && getAttackState() != 0) {
+        if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
             stopAllAnimStates();
-            switch (getAttackState()) {
+            switch (getBehaviourState()) {
                 case LunarMonstrosityToxicBreathPhase.ID -> toxicBreathAnimationState.start(tickCount);
                 case LunarMonstrositySporePhase.ID -> sporeAnimationState.start(tickCount);
                 case LunarMonstrosityThornPhase.ID -> thornAnimationState.start(tickCount);
@@ -219,17 +219,17 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     @Override
     protected void blockedByShield(LivingEntity blocker) {
-        if (getAttackState() == LunarMonstrosityBitePhase.ID && getTarget() != null && blocker.getUUID().equals(getTarget().getUUID())) {
-            setAttackState(LunarMonstrosityStunPhase.ID);
+        if (getBehaviourState() == LunarMonstrosityBitePhase.ID && getTarget() != null && blocker.getUUID().equals(getTarget().getUUID())) {
+            setBehaviourState(LunarMonstrosityStunPhase.ID);
         }
         super.blockedByShield(blocker);
     }
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        if (getAttackState() == LunarMonstrositySneakPhase.ID) {
-            setAttackState(LunarMonstrosityEmergePhase.ID);
-            setAttackTicks(1);
+        if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {
+            setBehaviourState(LunarMonstrosityEmergePhase.ID);
+            setBehaviourTicks(0);
         }
         return super.doHurtTarget(target);
     }
@@ -239,22 +239,22 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         if (damageSource.is(DamageTypes.GENERIC_KILL)) {
             return super.hurt(damageSource, amount);
         }
-        if (getAttackState() == LunarMonstrositySneakPhase.ID) {
+        if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {
             return false;
         }
-        if (getAttackState() == 0 && getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
+        if (getBehaviourState() == 0 && getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
             setPhase(1);
-            setAttackState(LunarMonstrositySoulPhase.ID);
-            setAttackTicks(1);
+            setBehaviourState(LunarMonstrositySoulPhase.ID);
+            setBehaviourTicks(0);
             return super.hurt(damageSource, amount / 2f);
         }
         if (damageSource.getEntity() != null && getTarget() != null) {
-            if (getAttackState() == LunarMonstrosityBitePhase.ID && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
-                setAttackState(LunarMonstrosityStunPhase.ID);
-                setAttackTicks(1);
+            if (getBehaviourState() == LunarMonstrosityBitePhase.ID && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
+                setBehaviourState(LunarMonstrosityStunPhase.ID);
+                setBehaviourTicks(0);
             }
         }
-        if (isOnFire() || getAttackState() == LunarMonstrosityStunPhase.ID) {
+        if (isOnFire() || getBehaviourState() == LunarMonstrosityStunPhase.ID) {
             return super.hurt(damageSource, amount);
         } else {
             return super.hurt(damageSource, Math.min(1, amount));
@@ -263,11 +263,11 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.is(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS) && getPhase() == 0) {
+        if (itemStack.is(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS)) {
             SoundEvent soundEvent = itemStack.isDamageableItem() ? SoundEvents.FLINTANDSTEEL_USE : SoundEvents.FIRECHARGE_USE;
             this.level().playSound(player, this.getX(), this.getY(), this.getZ(), soundEvent, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
             if (!this.level().isClientSide) {
-                setRemainingFireTicks(Math.max(getRemainingFireTicks(), 100));
+                setRemainingFireTicks(Math.max(getRemainingFireTicks(), getPhase() == 0 ? 100 : 20));
                 if (!itemStack.isDamageableItem()) {
                     itemStack.shrink(1);
                 } else {
@@ -282,12 +282,12 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     @Override
     public EntityDimensions getDefaultDimensions(Pose pose) {
-        return getAttackState() == LunarMonstrositySneakPhase.ID ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
+        return getBehaviourState() == LunarMonstrositySneakPhase.ID ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
     }
 
     @Override
     public boolean displayFireAnimation() {
-        return getAttackState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
+        return getBehaviourState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
     }
 
     @Override
@@ -328,12 +328,12 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
                 setTarget(null);
             }
             if (!isNoAi()) {
-                attackManager.tick();
+                behaviourManager.tick();
             }
         } else {
             level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);
             if (deathTime <= 0) {
-                if (getAttackState() == LunarMonstrositySneakPhase.ID) {
+                if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {
                     RandomSource randomsource = this.getRandom();
                     BlockState blockstate = this.getBlockStateOn();
                     if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
@@ -344,7 +344,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
                             level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), d0, d1, d2, 0.0D, 0.0D, 0.0D);
                         }
                     }
-                } else if (getAttackState() == LunarMonstrosityStunPhase.ID) {
+                } else if (getBehaviourState() == LunarMonstrosityStunPhase.ID) {
                     level().addParticle(ParticleTypes.CRIT, headPos.x + getRandom().nextDouble() - 0.5, headPos.y, headPos.z + getRandom().nextDouble() - 0.5, getRandom().nextDouble() / 10, 0.8, getRandom().nextDouble() / 10);
                 }
             }

@@ -35,7 +35,11 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
     }
 
     protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state, List<TagKey<Block>> ignored) {
-        if (level.isEmptyBlock(pos) || isValidBlock(level.getBlockState(pos), ignored)) {
+        return this.setBlockIfEmpty(level, pos, state, false, ignored);
+    }
+
+    protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state, boolean replaceFluid, List<TagKey<Block>> ignored) {
+        if (level.isEmptyBlock(pos) || isValidBlock(level.getBlockState(pos), ignored) || (replaceFluid && !level.getFluidState(pos).isEmpty() && level.getBlockState(pos).is(level.getFluidState(pos).createLegacyBlock().getBlock()))) {
             setBlock(level, pos, state);
             return true;
         }

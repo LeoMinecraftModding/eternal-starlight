@@ -44,5 +44,9 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
                 ESBiomes.STARLIGHT_DENSE_FOREST,
                 ESBiomes.STARLIGHT_PERMAFROST_FOREST
         );
+        tag(ESTags.Biomes.HAS_CURSED_GARDEN).add(
+                ESBiomes.STARLIGHT_FOREST,
+                ESBiomes.STARLIGHT_DENSE_FOREST
+        );
     }
 }

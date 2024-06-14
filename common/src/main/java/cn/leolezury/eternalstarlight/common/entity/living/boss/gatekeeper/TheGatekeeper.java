@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -79,7 +79,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         this.entityData.set(FIXED_Y_ROT, attackYRot);
     }
 
-    private final AttackManager<TheGatekeeper> attackManager = new AttackManager<>(this, List.of(
+    private final BehaviourManager<TheGatekeeper> behaviourManager = new BehaviourManager<>(this, List.of(
             new GatekeeperMeleePhase(),
             new GatekeeperDodgePhase(),
             new GatekeeperDashPhase(),
@@ -201,7 +201,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
         return new BodyRotationControl(this) {
             @Override
             public void clientTick() {
-                if (TheGatekeeper.this.getAttackState() == GatekeeperDashPhase.ID) {
+                if (TheGatekeeper.this.getBehaviourState() == GatekeeperDashPhase.ID) {
                     TheGatekeeper.this.setYBodyRot(TheGatekeeper.this.getFixedYRot());
                     TheGatekeeper.this.setYHeadRot(TheGatekeeper.this.getFixedYRot());
                 } else {
@@ -246,9 +246,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
     @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-        if (accessor.equals(ATTACK_STATE) && getAttackState() != 0) {
+        if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
             stopAllAnimStates();
-            switch (getAttackState()) {
+            switch (getBehaviourState()) {
                 case GatekeeperMeleePhase.ID -> {
                     switch (getRandom().nextInt(3)) {
                         case 0 -> meleeAnimationStateA.start(tickCount);
@@ -279,7 +279,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
     @Override
     public void setDeltaMovement(Vec3 vec3) {
-        boolean cantMove = getAttackState() == GatekeeperDanceFightPhase.ID || getAttackState() == GatekeeperSwingSwordPhase.ID;
+        boolean cantMove = getBehaviourState() == GatekeeperDanceFightPhase.ID || getBehaviourState() == GatekeeperSwingSwordPhase.ID;
         super.setDeltaMovement(cantMove ? new Vec3(0, vec3.y, 0) : vec3);
     }
 
@@ -401,7 +401,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
                 setTarget(null);
             }
             if (isActivated() && !isNoAi()) {
-                attackManager.tick();
+                behaviourManager.tick();
             }
         } else {
             level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);

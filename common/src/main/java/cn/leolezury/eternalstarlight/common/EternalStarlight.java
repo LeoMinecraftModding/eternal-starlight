@@ -36,6 +36,8 @@ public class EternalStarlight {
         ESFeatures.loadClass();
         ESPlacers.loadClass();
         ESTreeDecorators.loadClass();
+        ESStructureTypes.loadClass();
+        ESStructurePieceTypes.loadClass();
         ESStructurePlacementTypes.loadClass();
         ESStructurePoolElementTypes.loadClass();
         ESParticles.loadClass();

@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -85,7 +86,18 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
         AdvancementHolder thermalSpringstone = addItemObtain(consumer, killGolem, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
-        AdvancementHolder killLunarMonstrosity = addEntityKill(consumer, thermalSpringstone, "kill_lunar_monstrosity", ESEntities.LUNAR_MONSTROSITY.get(), ESItems.PARASOL_GRASS.get());
+        AdvancementHolder igniteLunarMonstrosity = Advancement.Builder.advancement().parent(thermalSpringstone).display(
+                        ESItems.SALTPETER_MATCHBOX.get(),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".ignite_lunar_monstrosity.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".ignite_lunar_monstrosity.description"),
+                        null,
+                        AdvancementType.TASK,
+                        true, true, false)
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .addCriterion("ignite", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(ItemPredicate.Builder.item().of(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS), Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(ESEntities.LUNAR_MONSTROSITY.get()).build()))))
+                .save(consumer, EternalStarlight.ID + ":ignite_lunar_monstrosity");
+
+        AdvancementHolder killLunarMonstrosity = addEntityKill(consumer, igniteLunarMonstrosity, "kill_lunar_monstrosity", ESEntities.LUNAR_MONSTROSITY.get(), ESItems.PARASOL_GRASS.get());
 
         AdvancementHolder useBlossomOfStars = Advancement.Builder.advancement().parent(enterDim).display(
                         ESItems.BLOSSOM_OF_STARS.get(),

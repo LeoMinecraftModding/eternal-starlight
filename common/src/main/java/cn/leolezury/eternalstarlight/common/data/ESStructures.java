@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.data;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.CursedGardenStructure;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.ESRandomSpreadStructurePlacement;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Vec3i;
@@ -32,14 +33,16 @@ import java.util.Map;
 import java.util.Optional;
 
 public class ESStructures {
-    public static final ResourceKey<Structure> GOLEM_FORGE = create("golem_forge");
-    public static final ResourceKey<StructureSet> GOLEM_FORGE_SET = createSet("golem_forge");
     public static final ResourceKey<Structure> PORTAL_RUINS_COMMON = create("portal_ruins_common");
     public static final ResourceKey<StructureSet> PORTAL_RUINS_COMMON_SET = createSet("portal_ruins_common");
     public static final ResourceKey<Structure> PORTAL_RUINS_FOREST = create("portal_ruins_forest");
     public static final ResourceKey<StructureSet> PORTAL_RUINS_FOREST_SET = createSet("portal_ruins_forest");
     public static final ResourceKey<Structure> PORTAL_RUINS_DESERT = create("portal_ruins_desert");
     public static final ResourceKey<StructureSet> PORTAL_RUINS_DESERT_SET = createSet("portal_ruins_desert");
+    public static final ResourceKey<Structure> GOLEM_FORGE = create("golem_forge");
+    public static final ResourceKey<StructureSet> GOLEM_FORGE_SET = createSet("golem_forge");
+    public static final ResourceKey<Structure> CURSED_GARDEN = create("cursed_garden");
+    public static final ResourceKey<StructureSet> CURSED_GARDEN_SET = createSet("cursed_garden");
 
     public static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
@@ -77,6 +80,13 @@ public class ESStructures {
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,
                 ConstantHeight.of(VerticalAnchor.aboveBottom(48)), false, Optional.empty(), 116, List.of()));
+        context.register(CURSED_GARDEN, new CursedGardenStructure(
+                new Structure.StructureSettings(
+                        biomeGetter.getOrThrow(ESTags.Biomes.HAS_CURSED_GARDEN),
+                        Map.of(),
+                        GenerationStep.Decoration.SURFACE_STRUCTURES,
+                        TerrainAdjustment.BEARD_THIN)
+        ));
     }
 
     public static void bootstrapSets(BootstrapContext<StructureSet> context) {
@@ -85,6 +95,7 @@ public class ESStructures {
         context.register(PORTAL_RUINS_FOREST_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_FOREST), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 559826911)));
         context.register(PORTAL_RUINS_DESERT_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_DESERT), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 855823921)));
         context.register(GOLEM_FORGE_SET, new StructureSet(structureGetter.getOrThrow(GOLEM_FORGE), new ESRandomSpreadStructurePlacement(Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.DEFAULT, 1.0f, 239823921, Optional.empty(), 24, 20, 20)));
+        context.register(CURSED_GARDEN_SET, new StructureSet(structureGetter.getOrThrow(CURSED_GARDEN), new ESRandomSpreadStructurePlacement(Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.DEFAULT, 1.0f, 535637356, Optional.empty(), 28, 24, 25)));
     }
 
     public static ResourceKey<Structure> create(String name) {

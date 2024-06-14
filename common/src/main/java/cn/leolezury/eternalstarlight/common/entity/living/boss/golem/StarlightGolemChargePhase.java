@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 
-public class StarlightGolemChargePhase extends AttackPhase<StarlightGolem> {
+public class StarlightGolemChargePhase extends BehaviourPhase<StarlightGolem> {
     public static final int ID = 5;
 
     public StarlightGolemChargePhase() {

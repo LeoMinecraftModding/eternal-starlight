@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_thermal_springstone",
+  "parent": "eternal_starlight:ignite_lunar_monstrosity",
   "criteria": {
     "kill": {
       "conditions": {

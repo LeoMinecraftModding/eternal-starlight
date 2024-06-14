@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 
-public class LunarMonstrositySoulPhase extends AttackPhase<LunarMonstrosity> {
+public class LunarMonstrositySoulPhase extends BehaviourPhase<LunarMonstrosity> {
     public static final int ID = 8;
 
     public LunarMonstrositySoulPhase() {

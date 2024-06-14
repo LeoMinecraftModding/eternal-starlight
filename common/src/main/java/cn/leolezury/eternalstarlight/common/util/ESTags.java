@@ -90,6 +90,7 @@ public class ESTags {
         public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
         public static final TagKey<Biome> HAS_PORTAL_RUINS_DESERT = create("has_portal_ruins_desert");
         public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
+        public static final TagKey<Biome> HAS_CURSED_GARDEN = create("has_cursed_garden");
 
         private static TagKey<Biome> create(String string) {
             return TagKey.create(Registries.BIOME, EternalStarlight.id(string));

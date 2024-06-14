@@ -49,8 +49,8 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
         this.root().getAllParts().forEach(ModelPart::resetPose);
         head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
         head.xRot = headPitch * Mth.DEG_TO_RAD;
-        if (entity.getAttackTicks() >= 0 && entity.getAttackState() != 0 && entity.deathTime <= 0) {
-            int state = entity.getAttackState();
+        if (entity.getBehaviourTicks() >= 0 && entity.getBehaviourState() != 0 && entity.deathTime <= 0) {
+            int state = entity.getBehaviourState();
             switch (state) {
                 case StarlightGolemLaserBeamPhase.ID -> {
                     animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);

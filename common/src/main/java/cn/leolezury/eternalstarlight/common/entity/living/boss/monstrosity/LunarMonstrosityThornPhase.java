@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LunarMonstrosityThornPhase extends AttackPhase<LunarMonstrosity> {
+public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity> {
     public static final int ID = 3;
 
     public LunarMonstrosityThornPhase() {
@@ -30,11 +30,11 @@ public class LunarMonstrosityThornPhase extends AttackPhase<LunarMonstrosity> {
     @Override
     public void tick(LunarMonstrosity entity) {
         LivingEntity target = entity.getTarget();
-        if (entity.getAttackTicks() % 15 == 0 && target != null) {
+        if (entity.getBehaviourTicks() % 15 == 0 && target != null) {
             double d0 = Math.min(target.getY(), entity.getY());
             double d1 = Math.max(target.getY(), entity.getY()) + 1.0;
             float f = (float)Mth.atan2(target.getZ() - entity.getZ(), target.getX() - entity.getX());
-            for (int i = 0; i < (entity.getAttackTicks() / 15 + 1) * 6; i++) {
+            for (int i = 0; i < (entity.getBehaviourTicks() / 15 + 1) * 6; i++) {
                 double d2 = 1.25 * (double)(i + 1);
                 this.createThorn(entity, entity.getX() + (double)Mth.cos(f) * d2, entity.getZ() + (double)Mth.sin(f) * d2, d0, d1, i);
             }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class MeleeAttackPhase<T extends LivingEntity & MultiPhaseAttacker> extends AttackPhase<T> {
+public class MeleeAttackPhase<T extends LivingEntity & MultiBehaviourUser> extends BehaviourPhase<T> {
     private final List<Entry> entries = new ArrayList<>();
 
     public MeleeAttackPhase(int id, int priority, int duration, int cooldown) {
@@ -26,7 +26,7 @@ public class MeleeAttackPhase<T extends LivingEntity & MultiPhaseAttacker> exten
     @Override
     public void tick(T entity) {
         for (Entry entry : entries) {
-            if (entity.getAttackTicks() == entry.tick()) {
+            if (entity.getBehaviourTicks() == entry.tick()) {
                 performMeleeAttack(entity, entry.range());
             }
         }

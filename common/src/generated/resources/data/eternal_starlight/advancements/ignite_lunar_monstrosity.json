@@ -1,0 +1,40 @@
+{
+  "parent": "eternal_starlight:obtain_thermal_springstone",
+  "criteria": {
+    "ignite": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:lunar_monstrosity"
+            }
+          }
+        ],
+        "item": {
+          "items": "#eternal_starlight:lunar_monstrosity_igniters"
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.ignite_lunar_monstrosity.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:saltpeter_matchbox"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.ignite_lunar_monstrosity.title"
+    }
+  },
+  "requirements": [
+    [
+      "ignite"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiPhaseAttacker;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
 import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ESBoss extends Monster implements MultiPhaseAttacker {
+public class ESBoss extends Monster implements MultiBehaviourUser {
     private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
 
     protected ESBoss(EntityType<? extends Monster> type, Level level) {
@@ -47,20 +47,20 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
         entityData.set(PHASE, phase);
     }
 
-    protected static final EntityDataAccessor<Integer> ATTACK_STATE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
-    public int getAttackState() {
-        return entityData.get(ATTACK_STATE);
+    protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
+    public int getBehaviourState() {
+        return entityData.get(BEHAVIOUR_STATE);
     }
-    public void setAttackState(int attackState) {
-        entityData.set(ATTACK_STATE, attackState);
+    public void setBehaviourState(int behaviourState) {
+        entityData.set(BEHAVIOUR_STATE, behaviourState);
     }
 
-    protected static final EntityDataAccessor<Integer> ATTACK_TICKS = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
-    public int getAttackTicks() {
-        return entityData.get(ATTACK_TICKS);
+    protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
+    public int getBehaviourTicks() {
+        return entityData.get(BEHAVIOUR_TICKS);
     }
-    public void setAttackTicks(int attackTicks) {
-        entityData.set(ATTACK_TICKS, attackTicks);
+    public void setBehaviourTicks(int behaviourTicks) {
+        entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
     }
 
     protected static final EntityDataAccessor<Boolean> ACTIVATED = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.BOOLEAN);
@@ -81,8 +81,8 @@ public class ESBoss extends Monster implements MultiPhaseAttacker {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(ATTACK_STATE, 0)
-                .define(ATTACK_TICKS, 0)
+        builder.define(BEHAVIOUR_STATE, 0)
+                .define(BEHAVIOUR_TICKS, 0)
                 .define(PHASE, 0)
                 .define(ACTIVATED, true);
     }

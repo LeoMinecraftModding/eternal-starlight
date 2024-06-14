@@ -1,0 +1,7 @@
+{
+  "type": "eternal_starlight:cursed_garden",
+  "biomes": "#eternal_starlight:has_cursed_garden",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin"
+}

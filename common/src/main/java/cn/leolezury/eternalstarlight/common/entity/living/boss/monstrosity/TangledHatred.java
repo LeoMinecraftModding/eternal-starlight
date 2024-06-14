@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -54,7 +54,7 @@ public class TangledHatred extends ESBoss {
     private float speed = 0.1f;
     private int ticksToNextMeleeAttack;
 
-    private final AttackManager<TangledHatred> attackManager = new AttackManager<>(this, List.of(
+    private final BehaviourManager<TangledHatred> behaviourManager = new BehaviourManager<>(this, List.of(
             new TangledHatredSmokePhase(),
             new TangledHatredSporePhase()
     ));
@@ -120,7 +120,7 @@ public class TangledHatred extends ESBoss {
     @Override
     public boolean hurt(DamageSource source, float amount) {
         boolean flag = super.hurt(source, amount);
-        if (flag && getAttackState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
+        if (flag && getBehaviourState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
             entity.hurtMarked = true;
             entity.setDeltaMovement(entity.position().subtract(position()).normalize().scale(1.5));
         }
@@ -129,7 +129,7 @@ public class TangledHatred extends ESBoss {
 
     public Optional<Vec3> calculateAttackTargetPos() {
         LivingEntity target = getTarget();
-        if (target != null && getAttackState() == TangledHatredSporePhase.ID) {
+        if (target != null && getBehaviourState() == TangledHatredSporePhase.ID) {
             return Optional.of(target.position().add(0, target.getBbHeight() * 6, 0));
         }
         if (target != null && ticksToNextMeleeAttack == 0) {
@@ -143,7 +143,7 @@ public class TangledHatred extends ESBoss {
         super.aiStep();
         if (!level().isClientSide) {
             if (!isNoAi()) {
-                attackManager.tick();
+                behaviourManager.tick();
             }
             LivingEntity target = getTarget();
             if (ticksToNextMeleeAttack > 0) ticksToNextMeleeAttack--;

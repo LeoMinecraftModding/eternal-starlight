@@ -4,18 +4,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
-public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
+public abstract class BehaviourPhase<T extends LivingEntity & MultiBehaviourUser> {
     private final int id;
     private final int priority;
     private final int duration;
     private final int cooldown;
     private final int turnsInto;
 
-    public AttackPhase(int id, int priority, int duration, int cooldown) {
+    public BehaviourPhase(int id, int priority, int duration, int cooldown) {
         this(id, priority, duration, cooldown, 0);
     }
 
-    public AttackPhase(int id, int priority, int duration, int cooldown, int turnsInto) {
+    public BehaviourPhase(int id, int priority, int duration, int cooldown, int turnsInto) {
         this.id = id;
         this.priority = priority;
         this.duration = duration;
@@ -46,15 +46,15 @@ public abstract class AttackPhase<T extends LivingEntity & MultiPhaseAttacker> {
     public abstract void onStop(T entity);
 
     public void start(T entity) {
-        entity.setAttackState(getId());
-        entity.setAttackTicks(0);
+        entity.setBehaviourState(getId());
+        entity.setBehaviourTicks(0);
         onStart(entity);
     }
 
     public void stop(T entity) {
-        entity.setAttackState(turnsInto);
+        entity.setBehaviourState(turnsInto);
         onStop(entity);
-        entity.setAttackTicks(0);
+        entity.setBehaviourTicks(0);
     }
 
     public boolean canReachTarget(T entity, double range) {

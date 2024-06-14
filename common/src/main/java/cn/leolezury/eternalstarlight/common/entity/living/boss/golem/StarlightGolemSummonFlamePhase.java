@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.AttackPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 
-public class StarlightGolemSummonFlamePhase extends AttackPhase<StarlightGolem> {
+public class StarlightGolemSummonFlamePhase extends BehaviourPhase<StarlightGolem> {
     public static final int ID = 2;
 
     public StarlightGolemSummonFlamePhase() {
@@ -22,7 +22,7 @@ public class StarlightGolemSummonFlamePhase extends AttackPhase<StarlightGolem> 
 
     @Override
     public void tick(StarlightGolem entity) {
-        if (entity.getAttackTicks() % 30 == 0) {
+        if (entity.getBehaviourTicks() % 30 == 0) {
             CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
             entity.spawnEnergizedFlame(2, 15, true);
         }

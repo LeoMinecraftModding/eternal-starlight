@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
+public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
     private final T entity;
-    private final List<AttackPhase<T>> phaseList = new ArrayList<>();
-    private final Int2ObjectArrayMap<List<AttackPhase<T>>> phases = new Int2ObjectArrayMap<>();
+    private final List<BehaviourPhase<T>> phaseList = new ArrayList<>();
+    private final Int2ObjectArrayMap<List<BehaviourPhase<T>>> phases = new Int2ObjectArrayMap<>();
     private final IntArrayList priorities = new IntArrayList();
     private final Int2IntArrayMap cooldowns = new Int2IntArrayMap();
 
@@ -20,10 +20,10 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
         return cooldowns;
     }
 
-    public AttackManager(T entity, List<AttackPhase<T>> phaseList) {
+    public BehaviourManager(T entity, List<BehaviourPhase<T>> phaseList) {
         this.entity = entity;
         this.phaseList.addAll(phaseList);
-        for (AttackPhase<T> phase : phaseList) {
+        for (BehaviourPhase<T> phase : phaseList) {
             if (!phases.containsKey(phase.getPriority())) {
                 phases.put(phase.getPriority(), new ArrayList<>());
             }
@@ -36,7 +36,7 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
     }
     
     public void tick() {
-        if (entity.getAttackState() == 0) {
+        if (entity.getBehaviourState() == 0) {
             selectPhase().ifPresent(p -> {
                 p.start(entity);
                 cooldowns.put(p.getId(), p.getCooldown());
@@ -47,7 +47,7 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
                     p.stop(entity);
                 } else {
                     p.tick(entity);
-                    entity.setAttackTicks(entity.getAttackTicks() + 1);
+                    entity.setBehaviourTicks(entity.getBehaviourTicks() + 1);
                 }
             });
         }
@@ -56,9 +56,9 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
         }
     }
     
-    private Optional<AttackPhase<T>> selectPhase() {
+    private Optional<BehaviourPhase<T>> selectPhase() {
         for (int priority : priorities) {
-            List<AttackPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();
+            List<BehaviourPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();
             if (!phasesForPriority.isEmpty()) {
                 return Optional.ofNullable(phasesForPriority.get(entity.getRandom().nextInt(phasesForPriority.size())));
             }
@@ -66,11 +66,11 @@ public class AttackManager<T extends LivingEntity & MultiPhaseAttacker> {
         return Optional.empty();
     }
     
-    private Optional<AttackPhase<T>> getActivePhase() {
-        return phaseList.stream().filter(p -> entity.getAttackState() == p.getId()).findFirst();
+    private Optional<BehaviourPhase<T>> getActivePhase() {
+        return phaseList.stream().filter(p -> entity.getBehaviourState() == p.getId()).findFirst();
     }
 
-    private boolean canContinue(AttackPhase<T> phase) {
-        return phase.canContinue(entity) && entity.getAttackTicks() <= phase.getDuration();
+    private boolean canContinue(BehaviourPhase<T> phase) {
+        return phase.canContinue(entity) && entity.getBehaviourTicks() <= phase.getDuration();
     }
 }
