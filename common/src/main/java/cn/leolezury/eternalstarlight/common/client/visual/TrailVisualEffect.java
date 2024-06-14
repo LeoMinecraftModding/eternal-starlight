@@ -51,7 +51,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
     @Override
     public void render(MultiBufferSource source, PoseStack stack, float partialTicks) {
         boolean entityRemoved = entity.isRemoved();
-        if (!entityRemoved) {
+        if (!entityRemoved && Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
             float x = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
             float y = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
@@ -59,7 +59,8 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
         }
 
         this.effect.render(source.getBuffer(entity.getTrailRenderType()), stack, partialTicks, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
-        if (!entityRemoved) {
+
+        if (!entityRemoved && Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
             this.effect.removeNearest();
         }
     }

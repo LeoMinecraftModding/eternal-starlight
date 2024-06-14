@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
@@ -73,15 +74,17 @@ public class ClientHandlers {
     public static void onClientTick() {
         ClientWeatherInfo.tickRainLevel();
         List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
-        for (WorldVisualEffect effect : VISUAL_EFFECTS) {
-            if (effect.shouldRemove()) {
-                effectsToRemove.add(effect);
-            } else {
-                effect.tick();
+        if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
+            for (WorldVisualEffect effect : VISUAL_EFFECTS) {
+                if (effect.shouldRemove()) {
+                    effectsToRemove.add(effect);
+                } else {
+                    effect.tick();
+                }
             }
-        }
-        for (WorldVisualEffect effect : effectsToRemove) {
-            VISUAL_EFFECTS.remove(effect);
+            for (WorldVisualEffect effect : effectsToRemove) {
+                VISUAL_EFFECTS.remove(effect);
+            }
         }
         if (Minecraft.getInstance().level != null) {
             for (Entity entity : Minecraft.getInstance().level.entitiesForRendering()) {
@@ -198,17 +201,15 @@ public class ClientHandlers {
             }
         }
 
-        if (fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
+        if (player.level().dimension() == ESDimensions.STARLIGHT_KEY && camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty() && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
             biomeFogStartDecrement = Mth.clamp(biomeFogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5);
             biomeFogEndDecrement = Mth.clamp(biomeFogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50);
             RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - biomeFogStartDecrement);
             RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - biomeFogEndDecrement);
 
             Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
-            if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
-                if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
-                    RenderSystem.setShaderFogShape(FogShape.SPHERE);
-                }
+            if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
+                RenderSystem.setShaderFogShape(FogShape.SPHERE);
             }
         }
     }

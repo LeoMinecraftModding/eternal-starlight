@@ -52,6 +52,7 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
         for (TrailPoint trailPoint : trailPoints()) {
             if (trailPoint != point) {
                 allSame = false;
+                break;
             }
         }
         return allSame;
