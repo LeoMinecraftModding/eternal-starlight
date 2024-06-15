@@ -105,6 +105,3 @@ accessible method net/minecraft/world/level/block/entity/SkullBlockEntity fetchG
 
 # freeze rendertype
 extendable method net/minecraft/client/model/Model renderType (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;
-
-# portal
-accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
