@@ -11,19 +11,19 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.portal.PortalInfo;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class ESTeleporter {
-    protected static Optional<BlockPos> getOrMakePortal(ServerLevel level, Entity entity, BlockPos pos) {
+    protected static Optional<BlockPos> getOrMakePortal(ServerLevel level, Entity entity, BlockPos entrancePos, BlockPos pos) {
         Optional<BlockPos> existingPortal = getExistingPortal(level, pos);
         if (existingPortal.isPresent()) {
             return existingPortal;
         } else {
-            Direction.Axis portalAxis = entity.level().getBlockState(entity.portalEntrancePos).getOptionalValue(ESPortalBlock.AXIS).orElse(Direction.Axis.X);
+            Direction.Axis portalAxis = entity.level().getBlockState(entrancePos).getOptionalValue(ESPortalBlock.AXIS).orElse(Direction.Axis.X);
             return makePortal(level, pos, portalAxis);
         }
     }
@@ -83,7 +83,7 @@ public class ESTeleporter {
     }
 
     @Nullable
-    public static PortalInfo getPortalInfo(Entity entity, ServerLevel dest) {
+    public static DimensionTransition getPortalInfo(Entity entity, BlockPos entrancePos, ServerLevel dest) {
         if (entity.level().dimension() != ESDimensions.STARLIGHT_KEY && dest.dimension() != ESDimensions.STARLIGHT_KEY) {
             return null;
         } else {
@@ -94,7 +94,7 @@ public class ESTeleporter {
             double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
             double coordinateDifference = DimensionType.getTeleportationScale(entity.level().dimensionType(), dest.dimensionType());
             BlockPos blockpos = new BlockPos((int) Mth.clamp(entity.getX() * coordinateDifference, minX, maxX), (int) entity.getY(), (int) Mth.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
-            return getOrMakePortal(dest, entity, blockpos).map((result) -> new PortalInfo(new Vec3(result.getX(), result.getY(), result.getZ()), entity.getDeltaMovement(), entity.getYRot(), entity.getXRot())).orElse(null);
+            return getOrMakePortal(dest, entity, entrancePos, blockpos).map((result) -> new DimensionTransition(dest, Vec3.atCenterOf(result), Vec3.ZERO, entity.getYRot(), entity.getXRot(), DimensionTransition.PLACE_PORTAL_TICKET)).orElse(null);
         }
     }
 }

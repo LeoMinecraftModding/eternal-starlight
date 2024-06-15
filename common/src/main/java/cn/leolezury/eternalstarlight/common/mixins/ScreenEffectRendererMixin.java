@@ -34,8 +34,7 @@ public abstract class ScreenEffectRendererMixin {
 
     @Unique
     private static void renderAbyssalFlame(PoseStack poseStack) {
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
         RenderSystem.depthFunc(519);
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
@@ -58,12 +57,12 @@ public abstract class ScreenEffectRendererMixin {
             poseStack.translate((float)(-(r * 2 - 1)) * 0.24F, -0.3F, 0.0F);
             poseStack.mulPose(Axis.YP.rotationDegrees((float)(r * 2 - 1) * 10.0F));
             Matrix4f matrix4f = poseStack.last().pose();
-            bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR_TEX);
-            bufferBuilder.vertex(matrix4f, -0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).uv(n, p).endVertex();
-            bufferBuilder.vertex(matrix4f, 0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).uv(m, p).endVertex();
-            bufferBuilder.vertex(matrix4f, 0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).uv(m, o).endVertex();
-            bufferBuilder.vertex(matrix4f, -0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).uv(n, o).endVertex();
-            BufferUploader.drawWithShader(bufferBuilder.end());
+            BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+            bufferBuilder.addVertex(matrix4f, -0.5F, -0.5F, -0.5F).setColor(1.0F, 1.0F, 1.0F, 0.9F).setUv(n, p);
+            bufferBuilder.addVertex(matrix4f, 0.5F, -0.5F, -0.5F).setColor(1.0F, 1.0F, 1.0F, 0.9F).setUv(m, p);
+            bufferBuilder.addVertex(matrix4f, 0.5F, 0.5F, -0.5F).setColor(1.0F, 1.0F, 1.0F, 0.9F).setUv(m, o);
+            bufferBuilder.addVertex(matrix4f, -0.5F, 0.5F, -0.5F).setColor(1.0F, 1.0F, 1.0F, 0.9F).setUv(n, o);
+            BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
             poseStack.popPose();
         }
 

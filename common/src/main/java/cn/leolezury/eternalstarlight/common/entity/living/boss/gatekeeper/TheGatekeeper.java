@@ -298,7 +298,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         if (!level().isClientSide && fightPlayerOnly && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
-            AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(new ResourceLocation("end/kill_dragon"));
+            AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
             boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
             AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
             boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();

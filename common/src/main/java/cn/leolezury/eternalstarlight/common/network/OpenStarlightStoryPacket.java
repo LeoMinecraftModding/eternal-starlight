@@ -20,7 +20,7 @@ public record OpenStarlightStoryPacket(List<ResourceLocation> unlocked) implemen
         int size = buf.readInt();
         List<ResourceLocation> unlocked = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            unlocked.add(new ResourceLocation(buf.readUtf()));
+            unlocked.add(ResourceLocation.parse(buf.readUtf()));
         }
         return new OpenStarlightStoryPacket(unlocked);
     }

@@ -313,6 +313,7 @@ public class ESItemModelProvider extends ItemModelProvider {
         block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
         block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
+        block(ESItems.SHADEGRIEVE.get());
         block(ESItems.LUNAR_MOSAIC.get());
         block(ESItems.LUNAR_MOSAIC_SLAB.get());
         block(ESItems.LUNAR_MOSAIC_STAIRS.get());
@@ -601,7 +602,7 @@ public class ESItemModelProvider extends ItemModelProvider {
             ModelFile trimModel = withExistingParent(name(armor) + "_" + trimModelData.name() + "_trim", mcLoc("item/generated"))
                     .texture("layer0", modLoc("item/" + name(armor)))
                     .texture("layer1", mcLoc("trims/items/" + armor.getType().getName() + "_trim_" + trimModelData.name()));
-            armorBuilder.override().predicate(new ResourceLocation("trim_type"), trimModelData.itemModelIndex()).model(trimModel).end();
+            armorBuilder.override().predicate(ResourceLocation.withDefaultNamespace("trim_type"), trimModelData.itemModelIndex()).model(trimModel).end();
         }
     }
 
@@ -610,7 +611,7 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(item).withSuffix("_no_blade"));
         withExistingParent(name(item), "item/handheld")
                 .texture("layer0", itemTexture(item))
-                .override().predicate(new ResourceLocation("no_blade"), 1).model(noBladeModel).end();
+                .override().predicate(ResourceLocation.withDefaultNamespace("no_blade"), 1).model(noBladeModel).end();
     }
 
     private void daggerOfHunger(Item item) {
@@ -620,8 +621,8 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(item).withSuffix("_saturated"));
         withExistingParent(name(item), "item/handheld")
                 .texture("layer0", itemTexture(item).withSuffix("_hungry"))
-                .override().predicate(new ResourceLocation("hunger_state"), 0.5f).model(normal).end()
-                .override().predicate(new ResourceLocation("hunger_state"), 1.0f).model(saturated).end();
+                .override().predicate(ResourceLocation.withDefaultNamespace("hunger_state"), 0.5f).model(normal).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("hunger_state"), 1.0f).model(saturated).end();
     }
 
     private void crossbow(Item item) {
@@ -637,11 +638,11 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(item).withSuffix("_firework"));
         withExistingParent(name(item), "item/crossbow")
                 .texture("layer0", itemTexture(item).withSuffix("_standby"))
-                .override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.58).model(pull1).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 1.0).model(pull2).end()
-                .override().predicate(new ResourceLocation("charged"), 1).model(arrow).end()
-                .override().predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1).model(firework).end();
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).model(pull0).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.58).model(pull1).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 1.0).model(pull2).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("charged"), 1).model(arrow).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("charged"), 1).predicate(ResourceLocation.withDefaultNamespace("firework"), 1).model(firework).end();
     }
 
     private void bow(Item item) {
@@ -653,9 +654,9 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(item).withSuffix("_pulling_2"));
         withExistingParent(name(item), "item/bow")
                 .texture("layer0", itemTexture(item))
-                .override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.65).model(pull1).end()
-                .override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.9).model(pull2).end();
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).model(pull0).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.65).model(pull1).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.9).model(pull2).end();
     }
 
     private void orbOfProphecyInventory(Item item) {
@@ -665,8 +666,8 @@ public class ESItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(item).withSuffix("_temporary_inventory"));
         withExistingParent(name(item) + "_inventory", "item/generated")
                 .texture("layer0", itemTexture(item).withSuffix("_inventory"))
-                .override().predicate(new ResourceLocation("crests_mode"), 0.5f).model(temporaryModel).end()
-                .override().predicate(new ResourceLocation("crests_mode"), 1).model(withCrestModel).end();
+                .override().predicate(ResourceLocation.withDefaultNamespace("crests_mode"), 0.5f).model(temporaryModel).end()
+                .override().predicate(ResourceLocation.withDefaultNamespace("crests_mode"), 1).model(withCrestModel).end();
     }
 
     private void trapdoor(Item item) {
@@ -747,7 +748,7 @@ public class ESItemModelProvider extends ItemModelProvider {
     }
 
     public ResourceLocation texture(ResourceLocation key, String prefix) {
-        return new ResourceLocation(key.getNamespace(), prefix + "/" + key.getPath());
+        return ResourceLocation.fromNamespaceAndPath(key.getNamespace(), prefix + "/" + key.getPath());
     }
 
     private ResourceLocation key(Block block) {

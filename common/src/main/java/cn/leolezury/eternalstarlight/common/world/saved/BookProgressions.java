@@ -31,7 +31,7 @@ public class BookProgressions extends SavedData {
                     int unlockedCount = progressionTag.getInt("UnlockedCount");
                     if (unlockedCount > 0) {
                         for (int j = 0; j < unlockedCount; j++) {
-                            ResourceLocation unlocked = new ResourceLocation(progressionTag.getString("Unlocked" + j));
+                            ResourceLocation unlocked = ResourceLocation.parse(progressionTag.getString("Unlocked" + j));
                             allUnlocked.add(unlocked);
                         }
                     }

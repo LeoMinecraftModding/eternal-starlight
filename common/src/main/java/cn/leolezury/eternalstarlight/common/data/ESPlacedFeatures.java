@@ -86,7 +86,6 @@ public class ESPlacedFeatures {
 
     // structure features
     public static final ResourceKey<PlacedFeature> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
-    public static final ResourceKey<PlacedFeature> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -163,7 +162,6 @@ public class ESPlacedFeatures {
 
         // structure features
         PlacementUtils.register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
-        PlacementUtils.register(context, CURSED_GARDEN_EXTRA_HEIGHT, configuredFeatures.getOrThrow(ESConfiguredFeatures.CURSED_GARDEN_EXTRA_HEIGHT));
     }
 
 

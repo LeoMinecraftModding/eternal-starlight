@@ -78,7 +78,7 @@ public class IndexBookComponent extends BookComponent {
                 int currentIndexItem = getIndexItemFromRelativeLine(i - indexStartLine);
                 int oldHover = oldHoverTicks.getOrDefault(currentIndexItem, 0);
                 int hover = hoverTicks.getOrDefault(currentIndexItem, 0);
-                float hoverTicks = Math.min(Mth.lerp(Minecraft.getInstance().getFrameTime(), oldHover, hover), 20);
+                float hoverTicks = Math.min(Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), oldHover, hover), 20);
                 int color = Color.argbi(0, 1, 1, 1).blend(Color.argb(0x66000000), hoverTicks / 20).argb();
                 graphics.fillGradient(x, y + textY, x + width, y + textY + font.lineHeight, color, color);
                 if (isHovered(getIndexItemFromRelativeLine(i - indexStartLine))) {

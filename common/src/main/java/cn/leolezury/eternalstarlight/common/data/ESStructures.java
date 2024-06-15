@@ -25,8 +25,10 @@ import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
+import net.minecraft.world.level.levelgen.structure.pools.DimensionPadding;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 
 import java.util.List;
 import java.util.Map;
@@ -55,7 +57,7 @@ public class ESStructures {
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_COMMON), Optional.empty(), 1,
-                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of()));
+                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
         context.register(PORTAL_RUINS_FOREST, new JigsawStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_PORTAL_RUINS_FOREST),
@@ -63,7 +65,7 @@ public class ESStructures {
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_FOREST), Optional.empty(), 1,
-                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of()));
+                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
         context.register(PORTAL_RUINS_DESERT, new JigsawStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_PORTAL_RUINS_DESERT),
@@ -71,7 +73,7 @@ public class ESStructures {
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_DESERT), Optional.empty(), 1,
-                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of()));
+                ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
         context.register(GOLEM_FORGE, new JigsawStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
@@ -79,7 +81,7 @@ public class ESStructures {
                         GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,
-                ConstantHeight.of(VerticalAnchor.aboveBottom(48)), false, Optional.empty(), 116, List.of()));
+                ConstantHeight.of(VerticalAnchor.aboveBottom(48)), false, Optional.empty(), 116, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
         context.register(CURSED_GARDEN, new CursedGardenStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_CURSED_GARDEN),

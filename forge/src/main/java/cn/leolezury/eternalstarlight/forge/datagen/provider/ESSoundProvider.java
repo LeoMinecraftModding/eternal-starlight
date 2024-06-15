@@ -13,7 +13,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
     }
 
     private ResourceLocation mcLoc(String s) {
-        return new ResourceLocation(s);
+        return ResourceLocation.withDefaultNamespace(s);
     }
 
     private ResourceLocation loc(String s) {

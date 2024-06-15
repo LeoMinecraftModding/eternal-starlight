@@ -24,7 +24,7 @@ public class GatekeeperCastFireballPhase extends BehaviourPhase<TheGatekeeper> {
         if (target != null) {
             for (int i = 0; i < 6; i++) {
                 Vec3 pos = ESMathUtil.rotationToPosition(entity.position(), 3, 0, (360f / 6f) * i);
-                GatekeeperFireball fireball = new GatekeeperFireball(entity.level(), entity, 0, 1, 0);
+                GatekeeperFireball fireball = new GatekeeperFireball(entity.level(), entity, new Vec3(0, 1, 0));
                 fireball.setTarget(target);
                 fireball.setPos(pos);
                 entity.level().addFreshEntity(fireball);

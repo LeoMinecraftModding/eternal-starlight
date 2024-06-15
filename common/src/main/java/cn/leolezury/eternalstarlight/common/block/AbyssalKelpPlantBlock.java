@@ -43,7 +43,7 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) ESBlocks.ABYSSAL_KELP.get();
+        return ESBlocks.ABYSSAL_KELP.get();
     }
 
     protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {

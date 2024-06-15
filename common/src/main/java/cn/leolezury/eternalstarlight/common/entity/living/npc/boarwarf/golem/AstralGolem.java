@@ -12,8 +12,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
@@ -40,6 +42,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -64,7 +67,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     public BlockPos homePos = BlockPos.ZERO;
     protected static final EntityDataAccessor<String> MATERIAL = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.STRING);
     public ResourceLocation getMaterialId() {
-        return new ResourceLocation(entityData.get(MATERIAL));
+        return ResourceLocation.parse(entityData.get(MATERIAL));
     }
     public void setMaterialId(ResourceLocation material) {
         entityData.set(MATERIAL, material.toString());
@@ -87,7 +90,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        setMaterialId(new ResourceLocation(compoundTag.getString("Material")));
+        setMaterialId(ResourceLocation.read(compoundTag.getString("Material")).getOrThrow());
         homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
     }
 
@@ -208,7 +211,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
     }
 
     private float getAttackDamage() {
-        return (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        return (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE) * (getMaterial() == null ? 1 : getMaterial().attackDamageMultiplier());
     }
     
     public boolean doHurtTarget(Entity target) {
@@ -217,27 +220,33 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
         }
         this.attackAnimationTick = 10;
         this.level().broadcastEntityEvent(this, (byte)4);
-        float f = this.getAttackDamage();
-        float f1 = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
-        float f2 = getMaterial() == null ? 1 : getMaterial().attackDamageMultiplier();
-        boolean flag = target.hurt(this.damageSources().mobAttack(this), f1 * f2);
-        if (flag) {
-            double d2;
-            if (target instanceof LivingEntity) {
-                LivingEntity livingEntity = (LivingEntity)target;
-                d2 = livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
-            } else {
-                d2 = 0.0D;
-            }
-
-            double d0 = d2;
-            double d1 = Math.max(0.0D, 1.0D - d0);
-            target.setDeltaMovement(target.getDeltaMovement().add(0.0D, (double)0.4F * d1, 0.0D));
-            this.doEnchantDamageEffects(this, target);
+        float f = getAttackDamage();
+        DamageSource damageSource = this.damageSources().mobAttack(this);
+        Level var5 = this.level();
+        if (var5 instanceof ServerLevel serverLevel) {
+            f = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), target, damageSource, f);
         }
 
-        this.playSound(ESSoundEvents.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
-        return flag;
+        boolean bl = target.hurt(damageSource, f);
+        if (bl) {
+            float g = this.getKnockback(target, damageSource);
+            if (g > 0.0F && target instanceof LivingEntity) {
+                LivingEntity livingEntity = (LivingEntity)target;
+                livingEntity.knockback((double)(g * 0.5F), (double) Mth.sin(this.getYRot() * 0.017453292F), (double)(-Mth.cos(this.getYRot() * 0.017453292F)));
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
+            }
+
+            Level var7 = this.level();
+            if (var7 instanceof ServerLevel) {
+                ServerLevel serverLevel2 = (ServerLevel)var7;
+                EnchantmentHelper.doPostAttackEffects(serverLevel2, target, damageSource);
+            }
+
+            this.setLastHurtMob(target);
+            this.playAttackSound();
+        }
+
+        return bl;
     }
 
     @Override

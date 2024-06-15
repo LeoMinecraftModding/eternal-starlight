@@ -34,7 +34,6 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 public class ESChunkGenerator extends NoiseBasedChunkGenerator {
@@ -76,7 +75,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 
     // Copied from vanilla NoiseBasedChunkGenerator, only to use our custom doFill
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess) {
+    public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess) {
         if (biomeSource instanceof ESBiomeSource source) {
             source.setRegistryAccess(structureManager.registryAccess());
         }
@@ -101,7 +100,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
                 for (LevelChunkSection levelChunkSection : set) {
                     levelChunkSection.release();
                 }
-            }, executor);
+            });
         }
     }
 
@@ -156,7 +155,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 
     // From the vanilla ChunkGenerator, NoiseBasedChunkGenerator is doing something useless for us
     @Override
-    public CompletableFuture<ChunkAccess> createBiomes(Executor executor, RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunkAccess) {
+    public CompletableFuture<ChunkAccess> createBiomes(RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunkAccess) {
         if (biomeSource instanceof ESBiomeSource source) {
             source.setRegistryAccess(structureManager.registryAccess());
         }

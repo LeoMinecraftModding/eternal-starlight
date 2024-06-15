@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -28,8 +29,8 @@ public class GatekeeperFireball extends Fireball {
         super(entityType, level);
     }
 
-    public GatekeeperFireball(Level level, LivingEntity livingEntity, double d, double e, double f) {
-        super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, d, e, f, level);
+    public GatekeeperFireball(Level level, LivingEntity livingEntity, Vec3 motion) {
+        super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, motion, level);
     }
 
     protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);
@@ -104,13 +105,12 @@ public class GatekeeperFireball extends Fireball {
 
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
+        if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
             Entity entity = entityHitResult.getEntity();
             Entity entity2 = this.getOwner();
-            entity.hurt(this.damageSources().fireball(this, entity2), 8.0F);
-            if (entity2 instanceof LivingEntity) {
-                this.doEnchantDamageEffects((LivingEntity)entity2, entity);
-            }
+            DamageSource damageSource = this.damageSources().fireball(this, entity2);
+            entity.hurt(damageSource, 8.0F);
+            EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
         }
     }
 
@@ -129,10 +129,7 @@ public class GatekeeperFireball extends Fireball {
             setSpawnedTicks(getSpawnedTicks() + 1);
             if (getSpawnedTicks() == 60 && getTarget() != null) {
                 Vec3 power = getTarget().position().subtract(position()).normalize().scale(0.4f);
-                setDeltaMovement(Vec3.ZERO);
-                this.xPower = power.x;
-                this.yPower = power.y;
-                this.zPower = power.z;
+                setDeltaMovement(power);
             }
         }
         if (getSpawnedTicks() < 60 && getOwner() != null) {

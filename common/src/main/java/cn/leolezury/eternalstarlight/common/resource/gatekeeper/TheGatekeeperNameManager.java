@@ -22,10 +22,10 @@ public class TheGatekeeperNameManager extends SimpleJsonResourceReloadListener {
     private static final RandomSource RANDOM = RandomSource.create();
     public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final List<String> names = Lists.newArrayList();
-    private static final String folder = "eternal_starlight/gatekeeper_names";
+    private static final String FOLDER = "eternal_starlight/gatekeeper_names";
 
     public TheGatekeeperNameManager() {
-        super(GSON_INSTANCE, folder);
+        super(GSON_INSTANCE, FOLDER);
     }
 
     @Override

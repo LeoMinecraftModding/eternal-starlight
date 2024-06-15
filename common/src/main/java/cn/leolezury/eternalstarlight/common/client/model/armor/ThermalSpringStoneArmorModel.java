@@ -39,8 +39,8 @@ public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends Humano
     }
 
     @Override
-    public void renderToBuffer(PoseStack stack, VertexConsumer builder, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        super.renderToBuffer(stack, builder, packedLight, packedOverlay, red, green, blue, alpha);
+    public void renderToBuffer(PoseStack stack, VertexConsumer builder, int packedLight, int packedOverlay, int color) {
+        super.renderToBuffer(stack, builder, packedLight, packedOverlay, color);
 
         if (Minecraft.getInstance().level != null) {
             float light;
@@ -51,7 +51,7 @@ public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends Humano
             } else {
                 light = (39 - ticks) / 20f;
             }
-            super.renderToBuffer(stack, builder, (int) (fullBright / 2f + fullBright * light / 2f), packedOverlay, red, green, blue, alpha);
+            super.renderToBuffer(stack, builder, (int) (fullBright / 2f + fullBright * light / 2f), packedOverlay, color);
         }
     }
 }

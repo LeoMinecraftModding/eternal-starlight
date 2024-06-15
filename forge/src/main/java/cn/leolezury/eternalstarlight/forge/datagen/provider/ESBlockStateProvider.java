@@ -22,10 +22,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ESBlockStateProvider extends BlockStateProvider {
     // Render Types
-    private static final ResourceLocation SOLID = new ResourceLocation("solid");
-    private static final ResourceLocation CUTOUT = new ResourceLocation("cutout");
-    private static final ResourceLocation CUTOUT_MIPPED = new ResourceLocation("cutout_mipped");
-    private static final ResourceLocation TRANSLUCENT = new ResourceLocation("translucent");
+    private static final ResourceLocation SOLID = ResourceLocation.withDefaultNamespace("solid");
+    private static final ResourceLocation CUTOUT = ResourceLocation.withDefaultNamespace("cutout");
+    private static final ResourceLocation CUTOUT_MIPPED = ResourceLocation.withDefaultNamespace("cutout_mipped");
+    private static final ResourceLocation TRANSLUCENT = ResourceLocation.withDefaultNamespace("translucent");
 
     public ESBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, EternalStarlight.ID, exFileHelper);
@@ -200,6 +200,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
         simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
+        simpleBlock(ESBlocks.SHADEGRIEVE.get());
         simpleBlock(ESBlocks.LUNAR_MOSAIC.get());
         slabBlock(ESBlocks.LUNAR_MOSAIC_SLAB.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
         stairsBlock(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
@@ -621,8 +622,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void mushroomBlock(Block block, ResourceLocation inner) {
-        ModelFile modelOutside = models().singleTexture(name(block), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
-        ModelFile modelInside = models().singleTexture(name(block) + "_inside", new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/template_single_face"), inner);
+        ModelFile modelOutside = models().singleTexture(name(block), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
+        ModelFile modelInside = models().singleTexture(name(block) + "_inside", ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), inner);
         getMultipartBuilder(block)
                 .part().modelFile(modelOutside).addModel().condition(BlockStateProperties.NORTH, true).end()
                 .part().modelFile(modelOutside).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()
@@ -643,8 +644,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void campfire(Block block, ResourceLocation log, ResourceLocation litLog, ResourceLocation fire) {
-        ModelFile modelNormal = models().withExistingParent(name(block) + "_off", new ResourceLocation("campfire_off")).texture("log", log).texture("particle", log).renderType(CUTOUT);
-        ModelFile modelLit = models().withExistingParent(name(block), new ResourceLocation("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
+        ModelFile modelNormal = models().withExistingParent(name(block) + "_off", ResourceLocation.withDefaultNamespace("campfire_off")).texture("log", log).texture("particle", log).renderType(CUTOUT);
+        ModelFile modelLit = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelLit : modelNormal).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
     }
 
@@ -658,7 +659,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void grassBlock(Block grassBlock, ResourceLocation dirt) {
-        ModelFile modelNormal = models().withExistingParent(name(grassBlock), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/block")).renderType(CUTOUT_MIPPED)
+        ModelFile modelNormal = models().withExistingParent(name(grassBlock), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/block")).renderType(CUTOUT_MIPPED)
                 .texture("particle", dirt).texture("bottom", dirt).texture("top", blockTexture(grassBlock).withSuffix("_top")).texture("side", blockTexture(grassBlock).withSuffix("_side")).texture("overlay", blockTexture(grassBlock).withSuffix("_side_overlay"))
                 .element()
                 .from(0, 0, 0)
@@ -728,8 +729,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void lantern(Block lantern) {
-        ModelFile normal = models().singleTexture(name(lantern), new ResourceLocation("template_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
-        ModelFile hanging = models().singleTexture(name(lantern) + "_hanging", new ResourceLocation("template_hanging_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
+        ModelFile normal = models().singleTexture(name(lantern), ResourceLocation.withDefaultNamespace("template_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
+        ModelFile hanging = models().singleTexture(name(lantern) + "_hanging", ResourceLocation.withDefaultNamespace("template_hanging_lantern"), "lantern", blockTexture(lantern)).renderType(CUTOUT);
         getVariantBuilder(lantern)
                 .partialState().with(BlockStateProperties.HANGING, false)
                 .modelForState().modelFile(normal).addModel()
@@ -789,12 +790,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void coralFan(Block fan) {
-        ModelFile modelFile = models().singleTexture(name(fan), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/coral_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
+        ModelFile modelFile = models().singleTexture(name(fan), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/coral_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
         simpleBlock(fan, modelFile);
     }
 
     private void coralWallFan(Block wall, Block fan) {
-        ModelFile modelFile = models().singleTexture(name(wall), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/coral_wall_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
+        ModelFile modelFile = models().singleTexture(name(wall), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/coral_wall_fan"), "fan", blockTexture(fan)).renderType(CUTOUT);
         getVariantBuilder(wall).forAllStates((state) -> ConfiguredModel.builder().modelFile(modelFile).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build());
     }
 
@@ -821,7 +822,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void snowyLeaves(Block leaves) {
-        ModelFile modelNormal = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
+        ModelFile modelNormal = models().singleTexture(name(leaves), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         ModelFile modelSnowy = models().cubeBottomTop(name(leaves) + "_snowy", blockTexture(leaves).withSuffix("_snowy"), blockTexture(leaves), blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         onOffBlock(leaves, BlockStateProperties.SNOWY, modelSnowy, modelNormal);
     }
@@ -848,14 +849,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void leaves(Block leaves) {
-        ModelFile modelFile = models().singleTexture(name(leaves), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
+        ModelFile modelFile = models().singleTexture(name(leaves), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         simpleBlock(leaves, modelFile);
     }
 
     private void layered(Block layered, ResourceLocation texture) {
         getVariantBuilder(layered).forAllStates((state -> {
             int height = state.getValue(BlockStateProperties.LAYERS) * 2;
-            ModelFile modelFile = height < 16 ? models().withExistingParent(name(layered) + "_height" + height, new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/thin_block"))
+            ModelFile modelFile = height < 16 ? models().withExistingParent(name(layered) + "_height" + height, ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/thin_block"))
                     .texture("particle", texture)
                     .texture("texture", texture)
                     .renderType(CUTOUT_MIPPED)
@@ -874,7 +875,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
     }
 
     private void pottedPlant(Block potted, ResourceLocation location) {
-        ModelFile modelFile = models().singleTexture(name(potted), new ResourceLocation(ModelProvider.BLOCK_FOLDER + "/flower_pot_cross"), "plant", location).renderType(CUTOUT);
+        ModelFile modelFile = models().singleTexture(name(potted), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/flower_pot_cross"), "plant", location).renderType(CUTOUT);
         simpleBlock(potted, modelFile);
     }
 

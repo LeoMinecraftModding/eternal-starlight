@@ -60,7 +60,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
     protected static final EntityDataAccessor<String> TYPE = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
     public ResourceLocation getTypeId() {
-        return new ResourceLocation(entityData.get(TYPE));
+        return ResourceLocation.parse(entityData.get(TYPE));
     }
     public BoarwarfType getBoarwarfType() {
         return level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).get(getTypeId());
@@ -77,7 +77,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
     protected static final EntityDataAccessor<String> PROFESSION = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
     public ResourceLocation getProfessionId() {
-        return new ResourceLocation(entityData.get(PROFESSION));
+        return ResourceLocation.parse(entityData.get(PROFESSION));
     }
     public AbstractBoarwarfProfession getProfession() {
         return ESBoarwarfProfessions.PROFESSIONS.registry().get(getProfessionId());
@@ -102,8 +102,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        setTypeId(new ResourceLocation(compoundTag.getString("Type")));
-        setProfessionId(new ResourceLocation(compoundTag.getString("Profession")));
+        setTypeId(ResourceLocation.read(compoundTag.getString("Type")).getOrThrow());
+        setProfessionId(ResourceLocation.read(compoundTag.getString("Profession")).getOrThrow());
         restockCooldown = compoundTag.getInt("RestockCooldown");
         chatCooldown = compoundTag.getInt("ChatCooldown");
         chatTicks = compoundTag.getInt("ChatTicks");

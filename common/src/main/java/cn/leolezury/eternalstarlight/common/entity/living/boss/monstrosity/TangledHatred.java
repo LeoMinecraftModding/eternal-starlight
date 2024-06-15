@@ -74,9 +74,9 @@ public class TangledHatred extends ESBoss {
     }
 
     private Chain createChain() {
-        Chain c = new Chain(position(), 30, 25f / 16f);
+        Chain c = new Chain(position(), 18, 25f / 16f);
         // bend it in advance
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 18; i++) {
             c.update(position().add(10, 15, 10), position().add(10, 15, 10), position(), 3, 3);
         }
         return c;

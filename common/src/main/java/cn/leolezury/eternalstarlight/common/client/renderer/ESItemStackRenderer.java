@@ -28,7 +28,7 @@ public class ESItemStackRenderer {
             poseStack.scale(1.0F, -1.0F, -1.0F);
             Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/glacite_shield"));
             VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, glaciteShieldModel.renderType(material.atlasLocation()), true, stack.hasFoil()));
-            glaciteShieldModel.renderToBuffer(poseStack, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
+            glaciteShieldModel.renderToBuffer(poseStack, vertexConsumer, light, overlay);
             poseStack.popPose();
         }
     }

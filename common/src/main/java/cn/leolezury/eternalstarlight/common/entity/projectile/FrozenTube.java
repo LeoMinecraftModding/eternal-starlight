@@ -32,11 +32,11 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
     private boolean dealtDamage;
 
     public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
-        super(entityType, level, new ItemStack(ESItems.FROZEN_TUBE.get()));
+        super(entityType, level);
     }
 
-    public FrozenTube(Level level, LivingEntity livingEntity) {
-        super(ESEntities.FROZEN_TUBE.get(), livingEntity, level, new ItemStack(ESItems.FROZEN_TUBE.get()));
+    public FrozenTube(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
+        super(ESEntities.FROZEN_TUBE.get(), livingEntity, level, new ItemStack(ESItems.FROZEN_TUBE.get()), itemStack2);
     }
 
     public void tick() {

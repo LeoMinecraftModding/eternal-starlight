@@ -39,7 +39,7 @@ public record UpdateCrestsPacket(List<String> crests) implements CustomPacketPay
     public static void handle(UpdateCrestsPacket packet, Player player) {
         if (player instanceof ServerPlayer serverPlayer) {
             Registry<Crest> registry = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.CREST);
-            List<Crest> crestList = packet.crests().stream().map(s -> registry.get(new ResourceLocation(s))).toList();
+            List<Crest> crestList = packet.crests().stream().map(s -> registry.get(ResourceLocation.parse(s))).toList();
             for (int i = 0; i < crestList.size(); i++) {
                 Crest crest = crestList.get(i);
                 for (int j = i + 1; j < crestList.size(); j++) {

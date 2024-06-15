@@ -24,11 +24,9 @@ public class CursedGardenStructure extends Structure {
             StructureTemplateManager manager = context.structureTemplateManager();
             ChunkPos chunkPos = context.chunkPos();
             WorldgenRandom random = context.random();
-            int x = chunkPos.getMinBlockX();
-            int z = chunkPos.getMinBlockZ();
-            int y = context.chunkGenerator().getFirstOccupiedHeight(
-                    x, z, Heightmap.Types.WORLD_SURFACE_WG,
-                    context.heightAccessor(), context.randomState()) + 1;
+            int x = chunkPos.getMiddleBlockX();
+            int z = chunkPos.getMiddleBlockZ();
+            int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
             builder.addPiece(new CursedGardenMazePiece(x, y, z));
         });
     }

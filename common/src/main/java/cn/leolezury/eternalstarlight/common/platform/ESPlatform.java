@@ -118,9 +118,6 @@ public interface ESPlatform {
         return true;
     }
 
-    // world
-    void teleportEntity(ServerLevel dest, Entity entity);
-
     // item stuff
     boolean isShears(ItemStack stack);
     boolean isShield(ItemStack stack);

@@ -36,7 +36,7 @@ public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
         float yRot = Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
         float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot());
         this.model.setupAnim(yRot, xRot);
-        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
         super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
     }
 

@@ -2,10 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -50,17 +47,18 @@ public class ESWeatherRenderer {
         return ClientWeatherInfo.WEATHER != null && ClientWeatherInfo.WEATHER.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
     }
 
-    public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ) {
+    public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, @Nullable Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ) {
         initialize();
         Minecraft minecraft = Minecraft.getInstance();
-        if (!(rainLevel <= 0.0F)) {
+        float h = rainLevel;
+        if (!(h <= 0.0F)) {
             lightTexture.turnOnLightLayer();
             Level level = minecraft.level;
             int i = Mth.floor(camX);
             int j = Mth.floor(camY);
             int k = Mth.floor(camZ);
             Tesselator tesselator = Tesselator.getInstance();
-            BufferBuilder bufferBuilder = tesselator.getBuilder();
+            BufferBuilder bufferBuilder = null;
             RenderSystem.disableCull();
             RenderSystem.enableBlend();
             RenderSystem.enableDepthTest();
@@ -72,10 +70,9 @@ public class ESWeatherRenderer {
             RenderSystem.depthMask(Minecraft.useShaderTransparency());
             int m = -1;
             float n = (float)ticks + partialTicks;
+            RenderSystem.setShader(GameRenderer::getParticleShader);
             if (shader != null) {
                 RenderSystem.setShader(() -> shader);
-            } else {
-                RenderSystem.setShader(GameRenderer::getParticleShader);
             }
             BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
@@ -99,26 +96,29 @@ public class ESWeatherRenderer {
                         }
 
                         int w = t;
-                        if (t < j) {
+                        if (w < j) {
                             w = j;
                         }
 
                         if (u != v) {
-                            RandomSource randomSource = RandomSource.create((long) p * p * 3121 + p * 45238971L ^ (long) o * o * 418711 + o * 13761L);
+                            RandomSource randomSource = RandomSource.create((long)(p * p * 3121 + p * 45238971 ^ o * o * 418711 + o * 13761));
                             mutableBlockPos.set(p, u, o);
-                            Biome.Precipitation precipitation = weatherType == null ? biome.getPrecipitationAt(mutableBlockPos) : weatherType;
+                            Biome.Precipitation precipitation = biome.getPrecipitationAt(mutableBlockPos);
+                            if (weatherType != null) {
+                                precipitation = weatherType;
+                            }
                             float z;
                             double ac;
                             int ag;
                             if (precipitation == Biome.Precipitation.RAIN) {
                                 if (m != 0) {
                                     if (m >= 0) {
-                                        tesselator.end();
+                                        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
                                     }
 
                                     m = 0;
                                     RenderSystem.setShaderTexture(0, rainLocation);
-                                    bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+                                    bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
                                 }
 
                                 int x = ticks & 131071;
@@ -129,22 +129,22 @@ public class ESWeatherRenderer {
                                 ac = (double)p + 0.5 - camX;
                                 double ad = (double)o + 0.5 - camZ;
                                 float ae = (float)Math.sqrt(ac * ac + ad * ad) / (float)l;
-                                float af = ((1.0F - ae * ae) * 0.5F + 0.5F) * rainLevel;
+                                float af = ((1.0F - ae * ae) * 0.5F + 0.5F) * h;
                                 mutableBlockPos.set(p, w, o);
                                 ag = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
-                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)v - camY, (double)o - camZ - s + 0.5).uv(0.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)v - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)u * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)u - camY, (double)o - camZ + s + 0.5).uv(1.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
-                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)u - camY, (double)o - camZ - s + 0.5).uv(0.0F, (float)v * 0.25F + ab).color(1.0F, 1.0F, 1.0F, af).uv2(ag).endVertex();
+                                bufferBuilder.addVertex((float)((double)p - camX - r + 0.5), (float)((double)v - camY), (float)((double)o - camZ - s + 0.5)).setUv(0.0F, (float)u * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
+                                bufferBuilder.addVertex((float)((double)p - camX + r + 0.5), (float)((double)v - camY), (float)((double)o - camZ + s + 0.5)).setUv(1.0F, (float)u * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
+                                bufferBuilder.addVertex((float)((double)p - camX + r + 0.5), (float)((double)u - camY), (float)((double)o - camZ + s + 0.5)).setUv(1.0F, (float)v * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
+                                bufferBuilder.addVertex((float)((double)p - camX - r + 0.5), (float)((double)u - camY), (float)((double)o - camZ - s + 0.5)).setUv(0.0F, (float)v * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
                             } else if (precipitation == Biome.Precipitation.SNOW) {
                                 if (m != 1) {
                                     if (m >= 0) {
-                                        tesselator.end();
+                                        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
                                     }
 
                                     m = 1;
                                     RenderSystem.setShaderTexture(0, snowLocation);
-                                    bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+                                    bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
                                 }
 
                                 float ah = -((float)(ticks & 511) + partialTicks) / 512.0F;
@@ -153,17 +153,17 @@ public class ESWeatherRenderer {
                                 double aj = (double)p + 0.5 - camX;
                                 ac = (double)o + 0.5 - camZ;
                                 float ak = (float)Math.sqrt(aj * aj + ac * ac) / (float)l;
-                                float al = ((1.0F - ak * ak) * 0.3F + 0.5F) * rainLevel;
+                                float al = ((1.0F - ak * ak) * 0.3F + 0.5F) * h;
                                 mutableBlockPos.set(p, w, o);
                                 int am = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
                                 int an = am >> 16 & '\uffff';
                                 ag = am & '\uffff';
                                 int ao = (an * 3 + 240) / 4;
                                 int ap = (ag * 3 + 240) / 4;
-                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)v - camY, (double)o - camZ - s + 0.5).uv(0.0F + ai, (float)u * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)v - camY, (double)o - camZ + s + 0.5).uv(1.0F + ai, (float)u * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
-                                bufferBuilder.vertex((double)p - camX + r + 0.5, (double)u - camY, (double)o - camZ + s + 0.5).uv(1.0F + ai, (float)v * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
-                                bufferBuilder.vertex((double)p - camX - r + 0.5, (double)u - camY, (double)o - camZ - s + 0.5).uv(0.0F + ai, (float)v * 0.25F + ah + z).color(1.0F, 1.0F, 1.0F, al).uv2(ap, ao).endVertex();
+                                bufferBuilder.addVertex((float)((double)p - camX - r + 0.5), (float)((double)v - camY), (float)((double)o - camZ - s + 0.5)).setUv(0.0F + ai, (float)u * 0.25F + ah + z).setColor(1.0F, 1.0F, 1.0F, al).setUv2(ap, ao);
+                                bufferBuilder.addVertex((float)((double)p - camX + r + 0.5), (float)((double)v - camY), (float)((double)o - camZ + s + 0.5)).setUv(1.0F + ai, (float)u * 0.25F + ah + z).setColor(1.0F, 1.0F, 1.0F, al).setUv2(ap, ao);
+                                bufferBuilder.addVertex((float)((double)p - camX + r + 0.5), (float)((double)u - camY), (float)((double)o - camZ + s + 0.5)).setUv(1.0F + ai, (float)v * 0.25F + ah + z).setColor(1.0F, 1.0F, 1.0F, al).setUv2(ap, ao);
+                                bufferBuilder.addVertex((float)((double)p - camX - r + 0.5), (float)((double)u - camY), (float)((double)o - camZ - s + 0.5)).setUv(0.0F + ai, (float)v * 0.25F + ah + z).setColor(1.0F, 1.0F, 1.0F, al).setUv2(ap, ao);
                             }
                         }
                     }
@@ -171,8 +171,9 @@ public class ESWeatherRenderer {
             }
 
             if (m >= 0) {
-                tesselator.end();
+                BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
             }
+
             RenderSystem.enableCull();
             RenderSystem.disableBlend();
             lightTexture.turnOffLightLayer();

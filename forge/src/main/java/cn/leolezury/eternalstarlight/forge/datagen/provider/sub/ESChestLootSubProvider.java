@@ -1,13 +1,14 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.registry.ESEnchantments;
+import cn.leolezury.eternalstarlight.common.data.ESEnchantments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -19,8 +20,16 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.function.BiConsumer;
 
 public class ESChestLootSubProvider implements LootTableSubProvider {
+    private final HolderLookup.Provider registries;
+
+    public ESChestLootSubProvider(HolderLookup.Provider lookup) {
+        this.registries = lookup;
+    }
+
     @Override
-    public void generate(HolderLookup.Provider arg, BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
         consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("chests/cursed_garden")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
@@ -35,7 +44,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.VINE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 6))).setWeight(25)))
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(2))
-                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(ESEnchantments.POISONING.get()).withEnchantment(ESEnchantments.FEARLESS.get())).setWeight(40))
+                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(enchantments.getOrThrow(ESEnchantments.POISONING)).withEnchantment(enchantments.getOrThrow(ESEnchantments.FEARLESS))).setWeight(40))
                                 .add(LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(60)))
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(1))
@@ -74,11 +83,11 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.LAVA_BUCKET).setWeight(50))
                                 .add(LootItem.lootTableItem(Items.WATER_BUCKET).setWeight(50))
                                 .add(LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(50))
-                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(ESEnchantments.FEARLESS.get())).setWeight(25))
+                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(enchantments.getOrThrow(ESEnchantments.FEARLESS))).setWeight(25))
                                 .add(LootItem.lootTableItem(Items.NETHERRACK).setWeight(10)))
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(1))
-                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(ESEnchantments.FEARLESS.get())).setWeight(75))
+                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(enchantments.getOrThrow(ESEnchantments.FEARLESS))).setWeight(75))
                                 .add(LootItem.lootTableItem(Items.GOLDEN_CARROT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
                                 .add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))));
 
@@ -95,11 +104,11 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(2))
                                 .add(LootItem.lootTableItem(Items.LAVA_BUCKET).setWeight(50))
-                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(ESEnchantments.FEARLESS.get())).setWeight(25))
+                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(enchantments.getOrThrow(ESEnchantments.FEARLESS))).setWeight(25))
                                 .add(LootItem.lootTableItem(Items.NETHERRACK).setWeight(10)))
                         .withPool(LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(1))
-                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(ESEnchantments.FEARLESS.get())).setWeight(75))
+                                .add(LootItem.lootTableItem(Items.BOOK).apply((new EnchantRandomlyFunction.Builder()).withEnchantment(enchantments.getOrThrow(ESEnchantments.FEARLESS))).setWeight(75))
                                 .add(LootItem.lootTableItem(Items.GOLDEN_CARROT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
                                 .add(LootItem.lootTableItem(ESItems.GOLEM_STEEL_INGOT.get()).setWeight(5))));
     }

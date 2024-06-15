@@ -38,7 +38,7 @@ public class LunarThornRenderer extends EntityRenderer<LunarThorn> {
         this.model.scale(Math.max(Mth.lerp(partialTicks, entity.oldClientScale, entity.clientScale), 0));
         RenderType renderType = this.model.renderType(getTextureLocation(entity));
         VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
-        this.model.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 
         poseStack.popPose();
         super.render(entity, yaw, partialTicks, poseStack, bufferSource, packedLight);

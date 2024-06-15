@@ -13,7 +13,10 @@ import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
@@ -29,7 +32,6 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -40,7 +42,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -48,7 +49,6 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 public class CommonHandlers {
     private static TheGatekeeperNameManager gatekeeperNameManager;
@@ -59,12 +59,12 @@ public class CommonHandlers {
 
     private static int ticksSinceLastUpdate = 0;
 
-    private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C624-495F-0193-604728718B6B"), "Amaramber Armor Bonus", 7, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
-    private static final AttributeModifier DAGGER_OF_HUNGER_BONUS = new AttributeModifier(UUID.fromString("815CFA7C-C024-917D-0193-604728718B6A"), "Dagger Of Hunger Bonus", 1, AttributeModifier.Operation.ADD_VALUE);
-    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_BONUS = new AttributeModifier(UUID.fromString("915CFA7C-C024-917D-0273-606665718B6A"), "Dagger Of Hunger Speed Bonus", 0.5, AttributeModifier.Operation.ADD_VALUE);
-    private static final AttributeModifier DAGGER_OF_HUNGER_PENALTY = new AttributeModifier(UUID.fromString("015CFA7C-C024-927D-0193-207728718B6B"), "Dagger Of Hunger Penalty", -1, AttributeModifier.Operation.ADD_VALUE);
-    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_PENALTY = new AttributeModifier(UUID.fromString("115CFA7C-C024-917D-0183-604728718B6F"), "Dagger Of Hunger Speed Penalty", -0.5, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_BONUS = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.bonus"), 1, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_BONUS = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.speed_bonus"), 0.5, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_PENALTY = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.penalty"), -1, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_PENALTY = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.speed_penalty"), -0.5, AttributeModifier.Operation.ADD_VALUE);
 
     public static void onServerTick(MinecraftServer server) {
         ticksSinceLastUpdate++;
@@ -110,12 +110,6 @@ public class CommonHandlers {
     }
 
     public static float onLivingHurt(LivingEntity entity, DamageSource source, float amount) {
-        if (!entity.level().isClientSide) {
-            int poisoningLevel = EnchantmentHelper.getEnchantmentLevel(ESEnchantments.POISONING.get(), entity);
-            if (poisoningLevel > 0 && source.getEntity() instanceof LivingEntity livingEntity) {
-                livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 60 * poisoningLevel, poisoningLevel - 1));
-            }
-        }
         if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringStoneArmorItem
                 || entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringStoneArmorItem
                 || entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringStoneArmorItem
@@ -240,10 +234,10 @@ public class CommonHandlers {
             }
             AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
             if (inEtherTicks <= 0 && armorInstance != null) {
-                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_UUID);
+                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
             }
             if (livingEntity.tickCount % 20 == 0 && inEtherTicks > 0 && armorInstance != null) {
-                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_UUID);
+                armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
                 armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
             }
         } else {

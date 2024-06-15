@@ -55,7 +55,7 @@ public abstract class EntityRenderDispatcherMixin {
         if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
             AttributeInstance armorInstance = living.getAttribute(Attributes.ARMOR);
             if (armorInstance != null) {
-                AttributeModifier modifier = armorInstance.getModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_UUID);
+                AttributeModifier modifier = armorInstance.getModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_ID);
                 if (modifier != null) {
                     EntityRenderer<? super E> entityRenderer = getRenderer(living);
 

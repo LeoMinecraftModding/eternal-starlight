@@ -1,21 +1,21 @@
 package cn.leolezury.eternalstarlight.common.effect;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-import java.util.UUID;
-
 public class CrystallineInfectionEffect extends MobEffect {
-    public static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("CE8DBC1A-EE2F-54F6-8DF6-F7F1EE4915A9");
+    public static final ResourceLocation ARMOR_MODIFIER_ID = EternalStarlight.id("armor.crystalline_infection");
     public static final double ARMOR_ADDITION = -5D;
 
     public CrystallineInfectionEffect(MobEffectCategory mobEffectCategory, int color) {
         super(mobEffectCategory, color);
-        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_UUID.toString(), ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
+        this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_ID, ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
     }
 
     @Override

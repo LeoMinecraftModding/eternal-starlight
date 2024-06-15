@@ -158,7 +158,7 @@ public class Freeze extends Monster implements RangedAttackMob {
                     Vec3 targetPos = livingEntity.position().add(0, livingEntity.getBbHeight() / 2f, 0);
                     Vec3 launchPos = position().add(0, getBbHeight() / 2f, 0);
                     Vec3 delta = targetPos.subtract(launchPos).normalize();
-                    FrozenTube tube = new FrozenTube(level(), this);
+                    FrozenTube tube = new FrozenTube(level(), this, null);
                     tube.shoot(delta.x, delta.y + delta.horizontalDistance() * 0.4, delta.z, 0.9f, 0.2f);
                     tube.setPos(launchPos);
                     tube.setOwner(this);

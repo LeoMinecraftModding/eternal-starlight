@@ -35,14 +35,11 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile {
     protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
-    private static final Logger log = LoggerFactory.getLogger(AethersentMeteor.class);
 
     public int getSize() {
         return entityData.get(SIZE);

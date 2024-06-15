@@ -41,7 +41,7 @@ public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
         this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
         RenderType renderType = this.model.renderType(getTextureLocation(entity));
         VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 
         poseStack.popPose();
 

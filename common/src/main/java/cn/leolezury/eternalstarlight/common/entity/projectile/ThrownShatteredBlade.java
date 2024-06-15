@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,11 +25,11 @@ public class ThrownShatteredBlade extends AbstractArrow {
     public int clientSideReturnTickCount;
 
     public ThrownShatteredBlade(EntityType<? extends AbstractArrow> entityType, Level level) {
-        super(entityType, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()));
+        super(entityType, level);
     }
 
-    public ThrownShatteredBlade(Level level, LivingEntity livingEntity) {
-        super(ESEntities.THROWN_SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()));
+    public ThrownShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
+        super(ESEntities.THROWN_SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
     }
 
     public void tick() {
@@ -87,25 +88,27 @@ public class ThrownShatteredBlade extends AbstractArrow {
     protected void onHitEntity(EntityHitResult entityHitResult) {
         Entity entity = entityHitResult.getEntity();
         float f = 5.0F;
-        if (entity instanceof LivingEntity livingEntity) {
-            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingEntity.getType());
-        }
-
         Entity entity2 = this.getOwner();
         DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, entity2 == null ? this : entity2);
+
+        if (level() instanceof ServerLevel serverLevel) {
+            f = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, f);
+        }
+
         this.dealtDamage = true;
         if (entity.hurt(damageSource, f)) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
 
-            if (entity instanceof LivingEntity livingEntity2) {
-                if (entity2 instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(livingEntity2, entity2);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity2, livingEntity2);
-                }
+            if (level() instanceof ServerLevel serverLevel) {
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
+            }
 
-                this.doPostHurtEffects(livingEntity2);
+            if (entity instanceof LivingEntity) {
+                LivingEntity livingEntity = (LivingEntity)entity;
+                this.doKnockback(livingEntity, damageSource);
+                this.doPostHurtEffects(livingEntity);
             }
         }
 

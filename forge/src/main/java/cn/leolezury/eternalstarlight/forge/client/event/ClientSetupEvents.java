@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -44,13 +44,16 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onBakingCompleted(ModelEvent.ModifyBakingResult event) {
-        Map<ResourceLocation, BakedModel> models = event.getModels();
+        Map<ModelResourceLocation, BakedModel> models = event.getModels();
         ClientSetupHandlers.modifyBakingResult(models);
     }
 
     @SubscribeEvent
     public static void onRegisterExtraModels(ModelEvent.RegisterAdditional event) {
-        ClientSetupHandlers.registerExtraBakedModels(event::register);
+        ClientSetupHandlers.registerExtraBakedModels(l -> {
+            ModelResourceLocation forged = ModelResourceLocation.standalone(l.id().withPrefix("item/"));
+            event.register(forged);
+        });
     }
 
     @SubscribeEvent

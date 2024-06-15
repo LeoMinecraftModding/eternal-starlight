@@ -18,8 +18,14 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.function.BiConsumer;
 
 public class ESBossLootSubProvider implements LootTableSubProvider {
+    private final HolderLookup.Provider registries;
+
+    public ESBossLootSubProvider(HolderLookup.Provider lookup) {
+        this.registries = lookup;
+    }
+
     @Override
-    public void generate(HolderLookup.Provider arg, BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
         consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/boss_common")),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()

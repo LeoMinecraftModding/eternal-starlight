@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living;
 
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -116,7 +117,8 @@ public class GrimstoneGolem extends PathfinderMob {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource damageSource, int i, boolean bl) {
+    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+        super.dropCustomDeathLoot(serverLevel, damageSource, bl);
         spawnAtLocation(getMainHandItem());
     }
 

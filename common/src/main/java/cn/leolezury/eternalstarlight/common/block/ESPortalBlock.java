@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.world.ESTeleporter;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class ESPortalBlock extends BaseEntityBlock {
+public class ESPortalBlock extends BaseEntityBlock implements Portal {
     public static final MapCodec<ESPortalBlock> CODEC = simpleCodec(ESPortalBlock::new);
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final BooleanProperty CENTER = BooleanProperty.create("center");
@@ -101,59 +103,7 @@ public class ESPortalBlock extends BaseEntityBlock {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
-            if (entity.isOnPortalCooldown()) {
-                entity.setPortalCooldown();
-            } else {
-                if (!entity.level().isClientSide && !pos.equals(entity.portalEntrancePos)) {
-                    entity.portalEntrancePos = pos.immutable();
-                }
-                Level entityWorld = entity.level();
-                MinecraftServer minecraftserver = entityWorld.getServer();
-                ResourceKey<Level> destination = entity.level().dimension() == ESDimensions.STARLIGHT_KEY
-                        ? Level.OVERWORLD : ESDimensions.STARLIGHT_KEY;
-                if (minecraftserver != null) {
-                    ServerLevel destinationWorld = minecraftserver.getLevel(destination);
-                    if (destinationWorld != null && !entity.isPassenger()) {
-                        entity.level().getProfiler().push("starlight_portal");
-                        entity.setPortalCooldown();
-                        if (ESPlatform.INSTANCE.postTravelToDimensionEvent(entity, destination)) {
-                            ESPlatform.INSTANCE.teleportEntity(destinationWorld, entity);
-                        }
-                        entity.level().getProfiler().pop();
-                    }
-                }
-            }
-        }
     }
-
-    /*@Override
-    public void animateTick(BlockState state, Level worldIn, BlockPos pos, RandomSource rand) {
-        if (rand.nextInt(100) == 0) {
-            worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D,
-                    (double)pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT,
-                    SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
-        }
-
-        for (int i = 0; i < 4; ++i) {
-            double x = (double)pos.getX() + rand.nextDouble();
-            double y = (double)pos.getY() + rand.nextDouble();
-            double z = (double)pos.getZ() + rand.nextDouble();
-            double xSpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
-            double ySpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
-            double zSpeed = ((double)rand.nextFloat() - 0.5D) * 0.1D;
-            int j = rand.nextInt(2) * 2 - 1;
-            if (!worldIn.getBlockState(pos.west()).is(this) && !worldIn.getBlockState(pos.east()).is(this)) {
-                x = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-                xSpeed = rand.nextFloat() * 2.0F * (float)j;
-            } else {
-                z = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-                zSpeed = rand.nextFloat() * 2.0F * (float)j;
-            }
-
-            worldIn.addParticle(ParticleInit.STARLIGHT.get(), x, y, z, xSpeed, ySpeed, zSpeed);
-        }
-    }*/
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
@@ -236,6 +186,31 @@ public class ESPortalBlock extends BaseEntityBlock {
             level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
         }
         return true;
+    }
+
+    @Nullable
+    @Override
+    public DimensionTransition getPortalDestination(ServerLevel serverLevel, Entity entity, BlockPos blockPos) {
+        Level entityLevel = entity.level();
+        MinecraftServer server = entityLevel.getServer();
+        ResourceKey<Level> destination = entity.level().dimension() == ESDimensions.STARLIGHT_KEY
+                ? Level.OVERWORLD : ESDimensions.STARLIGHT_KEY;
+        if (server != null) {
+            ServerLevel destinationLevel = server.getLevel(destination);
+            if (!entity.isPassenger() && destinationLevel != null && !entity.isVehicle() && entity.canChangeDimensions(entityLevel, destinationLevel)) {
+                if (entity.isOnPortalCooldown()) {
+                    entity.setPortalCooldown();
+                } else {
+                    if (!entity.isPassenger()) {
+                        entity.setPortalCooldown();
+                        if (ESPlatform.INSTANCE.postTravelToDimensionEvent(entity, destination)) {
+                            return ESTeleporter.getPortalInfo(entity, blockPos, destinationLevel);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public static class Validator {

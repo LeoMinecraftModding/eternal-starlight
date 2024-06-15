@@ -36,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class LonestarSkeleton extends Skeleton {
     private final LonestarSkeletonShootBladeGoal bladeGoal = new LonestarSkeletonShootBladeGoal(this, 1.0, 20, 15.0F);
@@ -51,8 +50,8 @@ public class LonestarSkeleton extends Skeleton {
             LonestarSkeleton.this.setAggressive(true);
         }
     };
-    private static final AttributeModifier DAMAGE_NERF = new AttributeModifier(UUID.fromString("012CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Nerf", -4, AttributeModifier.Operation.ADD_VALUE);
-    private static final AttributeModifier DAMAGE_ADDITION = new AttributeModifier(UUID.fromString("210CFA7C-D624-695F-9C9F-7020A8718B6B"), "Lonestar Skeleton Addition", 4, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAMAGE_NERF = new AttributeModifier(EternalStarlight.id("lonestar_skeleton.damage_nerf"), -4, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier DAMAGE_ADDITION = new AttributeModifier(EternalStarlight.id("lonestar_skeleton.damage_addition"), 4, AttributeModifier.Operation.ADD_VALUE);
 
     public LonestarSkeleton(EntityType<? extends LonestarSkeleton> type, Level level) {
         super(type, level);

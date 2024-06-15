@@ -15,6 +15,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.Music;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -156,8 +157,8 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean isPlayer) {
-        super.dropCustomDeathLoot(source, lootingLevel, isPlayer);
+    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+        super.dropCustomDeathLoot(serverLevel, damageSource, bl);
         ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
         lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
         ItemEntity item = spawnAtLocation(lootBag);

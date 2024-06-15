@@ -109,9 +109,9 @@ public class BoltRenderer {
             float lifeScale = timestamp.subtract(createdTimestamp).value() / bolt.getLifespan();
             BoltEffect.FadeFunction.RenderBounds bounds = bolt.getFadeFunction().getRenderBounds(renderQuads.size(), lifeScale);
             for (int i = bounds.start(); i < bounds.end(); i++) {
-                renderQuads.get(i).getVecs().forEach(v -> buffer.vertex(matrix, (float) v.x, (float) v.y, (float) v.z)
-                      .color(bolt.getColor().r(), bolt.getColor().g(), bolt.getColor().b(), bolt.getColor().a())
-                      .endVertex());
+                renderQuads.get(i).getVecs().forEach(v -> buffer.addVertex(matrix, (float) v.x, (float) v.y, (float) v.z)
+                      .setColor(bolt.getColor().r(), bolt.getColor().g(), bolt.getColor().b(), bolt.getColor().a())
+                      );
             }
         }
 

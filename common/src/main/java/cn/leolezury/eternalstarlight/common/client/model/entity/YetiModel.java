@@ -60,12 +60,12 @@ public class YetiModel<T extends Yeti> extends AnimatedEntityModel<T> {
             switch (entity.getRollState()) {
                 case 1 -> {
                     this.animate(entity.rollStartAnimationState, YetiAnimation.ROLL_START, ageInTicks);
-                    float rollAngle = Mth.rotLerp(Minecraft.getInstance().getFrameTime(), entity.prevRollAngle, entity.rollAngle);
+                    float rollAngle = Mth.rotLerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), entity.prevRollAngle, entity.rollAngle);
                     this.root.xRot = rollAngle * Mth.DEG_TO_RAD;
                 }
                 case 2 -> {
                     this.animate(entity.rollAnimationState, YetiAnimation.ROLL, ageInTicks);
-                    float rollAngle = Mth.rotLerp(Minecraft.getInstance().getFrameTime(), entity.prevRollAngle, entity.rollAngle);
+                    float rollAngle = Mth.rotLerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), entity.prevRollAngle, entity.rollAngle);
                     this.root.xRot = rollAngle * Mth.DEG_TO_RAD;
                 }
                 case 3 -> {

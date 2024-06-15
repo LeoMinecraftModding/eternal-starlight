@@ -56,7 +56,7 @@ public class TangledHatredRenderer extends EntityRenderer<TangledHatred> {
             poseStack.translate(0.0F, -1.5F, 0.0F);
             this.model.setRotation(segmentPitch, segmentYaw);
             this.model.scaleXZ(scale);
-            this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(entity.hurtTime > 0 || entity.deathTime > 0)), 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(entity.hurtTime > 0 || entity.deathTime > 0)));
             poseStack.popPose();
         }
         poseStack.popPose();

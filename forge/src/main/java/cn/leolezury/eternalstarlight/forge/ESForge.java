@@ -21,8 +21,7 @@ public class ESForge {
         }
     }
 
-    // I guess we'll have to put it here
-    // Using @SubscribeEvent in another class would make it stop working in the data generation environment
+    // ? Using @SubscribeEvent in another class would make it stop working in the data generation environment
     public void onRegister(RegisterEvent event) {
         if (event.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
             CommonSetupHandlers.registerChunkGenerator();

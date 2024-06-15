@@ -21,7 +21,7 @@ public class FrozenTubeItem extends Item {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
-            FrozenTube tube = new FrozenTube(level, player);
+            FrozenTube tube = new FrozenTube(level, player, null);
             tube.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
             tube.setPos(tube.position().offsetRandom(player.getRandom(), 0.2f)); // so we can see the trail
             level.addFreshEntity(tube);

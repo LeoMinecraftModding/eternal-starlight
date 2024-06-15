@@ -1,10 +1,12 @@
 package cn.leolezury.eternalstarlight.common.block.fluid;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
@@ -22,13 +24,11 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 
-import java.util.UUID;
-
 public abstract class EtherFluid extends FlowingFluid {
-    public static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("012CFA7C-C624-495F-8C9F-6020A8718B6B");
+    public static final ResourceLocation ARMOR_MODIFIER_ID = EternalStarlight.id("armor.ether");
 
     public static AttributeModifier armorModifier(float amount) {
-        return new AttributeModifier(ARMOR_MODIFIER_UUID, "Ether Fluid Modifier", amount, AttributeModifier.Operation.ADD_VALUE);
+        return new AttributeModifier(ARMOR_MODIFIER_ID, amount, AttributeModifier.Operation.ADD_VALUE);
     }
 
     @Override

@@ -21,7 +21,8 @@ public class MoonringGreatswordItem extends GreatswordItem {
         }
     }
 
-    public int getUseDuration(ItemStack itemStack) {
+    @Override
+    public int getUseDuration(ItemStack itemStack, LivingEntity livingEntity) {
         return 72000;
     }
 

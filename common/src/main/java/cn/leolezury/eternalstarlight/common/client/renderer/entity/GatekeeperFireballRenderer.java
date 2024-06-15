@@ -27,7 +27,7 @@ public class GatekeeperFireballRenderer extends ThrownItemRenderer<GatekeeperFir
     public void render(GatekeeperFireball entity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
         if (entity.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(entity) < 12.25)) {
             poseStack.pushPose();
-            float scale = (Math.min(60f, entity.getSpawnedTicks() + Minecraft.getInstance().getFrameTime()) / 60f) * 3f;
+            float scale = (Math.min(60f, entity.getSpawnedTicks() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true)) / 60f) * 3f;
             poseStack.scale(scale, scale, scale);
             poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
             poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));

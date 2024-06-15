@@ -36,10 +36,10 @@ public abstract class ItemInHandRendererMixin {
 
     // Copied from vanilla renderArmWithItem, the crossbow part.
     @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
-    private void render(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
-        if (!abstractClientPlayer.isScoping()) {
+    private void render(AbstractClientPlayer player, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, MultiBufferSource multiBufferSource, int j, CallbackInfo ci) {
+        if (!player.isScoping()) {
             boolean bl = interactionHand == InteractionHand.MAIN_HAND;
-            HumanoidArm humanoidArm = bl ? abstractClientPlayer.getMainArm() : abstractClientPlayer.getMainArm().getOpposite();
+            HumanoidArm humanoidArm = bl ? player.getMainArm() : player.getMainArm().getOpposite();
             boolean bl2;
             float l;
             float m;
@@ -49,14 +49,14 @@ public abstract class ItemInHandRendererMixin {
                 bl2 = CrossbowItem.isCharged(itemStack);
                 boolean bl3 = humanoidArm == HumanoidArm.RIGHT;
                 int k = bl3 ? 1 : -1;
-                if (abstractClientPlayer.isUsingItem() && abstractClientPlayer.getUseItemRemainingTicks() > 0 && abstractClientPlayer.getUsedItemHand() == interactionHand) {
+                if (player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == interactionHand) {
                     applyItemArmTransform(poseStack, humanoidArm, i);
                     poseStack.translate((float)k * -0.4785682F, -0.094387F, 0.05731531F);
                     poseStack.mulPose(Axis.XP.rotationDegrees(-11.935F));
                     poseStack.mulPose(Axis.YP.rotationDegrees((float)k * 65.3F));
                     poseStack.mulPose(Axis.ZP.rotationDegrees((float)k * -9.785F));
-                    l = (float)itemStack.getUseDuration() - ((float)minecraft.player.getUseItemRemainingTicks() - f + 1.0F);
-                    m = l / (float)CrossbowItem.getChargeDuration(itemStack);
+                    l = (float)itemStack.getUseDuration(player) - ((float)minecraft.player.getUseItemRemainingTicks() - f + 1.0F);
+                    m = l / (float)CrossbowItem.getChargeDuration(itemStack, player);
                     if (m > 1.0F) {
                         m = 1.0F;
                     }
@@ -84,7 +84,7 @@ public abstract class ItemInHandRendererMixin {
                     }
                 }
 
-                renderItem(abstractClientPlayer, itemStack, bl3 ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND : ItemDisplayContext.FIRST_PERSON_LEFT_HAND, !bl3, poseStack, multiBufferSource, j);
+                renderItem(player, itemStack, bl3 ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND : ItemDisplayContext.FIRST_PERSON_LEFT_HAND, !bl3, poseStack, multiBufferSource, j);
 
                 ci.cancel();
             }

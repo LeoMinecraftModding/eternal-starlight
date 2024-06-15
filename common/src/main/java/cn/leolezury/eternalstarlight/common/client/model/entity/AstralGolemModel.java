@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
@@ -20,9 +21,7 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
     public static final ModelLayerLocation INNER_ARMOR_LOCATION = new ModelLayerLocation(EternalStarlight.id("astral_golem"), "inner_armor");
     public static final ModelLayerLocation OUTER_ARMOR_LOCATION = new ModelLayerLocation(EternalStarlight.id("astral_golem"), "outer_armor");
     private float armXRot = 0;
-    private float r = 1.0F;
-    private float g = 1.0F;
-    private float b = 1.0F;
+    private int tintColor = -1;
 
     public AstralGolemModel(ModelPart root) {
         super(root);
@@ -40,7 +39,7 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
 
         partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(24, 16).mirror().addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, 26.0F, 0.0F));
 
-        //useless model parts to replace vanilla model parts
+        // useless model parts to replace vanilla model parts
         partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
         partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -52,13 +51,7 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         AstralGolemMaterial material = entity.getMaterial();
-        if (material != null) {
-            r = ((material.tintColor() >> 16) & 0xFF) / 255f;
-            g = ((material.tintColor() >> 8) & 0xFF) / 255f;
-            b = (material.tintColor() & 0xFF) / 255f;
-        } else {
-            r = g = b = 1.0f;
-        }
+        tintColor = material == null ? -1 : material.tintColor();
         if (entity.getMainHandItem().isEmpty()) {
             leftArm.xRot += armXRot;
             rightArm.xRot += armXRot;
@@ -89,10 +82,10 @@ public class AstralGolemModel<T extends AstralGolem> extends HumanoidModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
-        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
-        rightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
-        leftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red * r, green * g, blue * b, alpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+        head.render(poseStack, vertexConsumer, packedLight, packedOverlay, tintColor == -1 ? color : FastColor.ARGB32.multiply(color, tintColor));
+        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, tintColor == -1 ? color : FastColor.ARGB32.multiply(color, tintColor));
+        rightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, tintColor == -1 ? color : FastColor.ARGB32.multiply(color, tintColor));
+        leftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, tintColor == -1 ? color : FastColor.ARGB32.multiply(color, tintColor));
     }
 }

@@ -49,7 +49,6 @@ public class HammerItem extends TieredItem {
         } else if (player != null) {
             for (LivingEntity entity : level.getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, player, new AABB(pos).inflate(2))) {
                 if (entity.hurt(level.damageSources().playerAttack(player), 8)) {
-                    player.doEnchantDamageEffects(player, entity);
                     double knockbackParam = Math.max(0.0D, 1.0D - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
                     entity.setDeltaMovement(entity.getDeltaMovement().add(0.0D, (double)0.4F * knockbackParam, 0.0D));
                 }

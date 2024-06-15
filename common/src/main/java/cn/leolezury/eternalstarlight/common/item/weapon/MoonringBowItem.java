@@ -20,7 +20,7 @@ public class MoonringBowItem extends BowItem {
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int n) {
         super.releaseUsing(itemStack, level, livingEntity, n);
-        int k = this.getUseDuration(itemStack) - n;
+        int k = this.getUseDuration(itemStack, livingEntity) - n;
         float powerForTime = getPowerForTime(k);
         if (!level.isClientSide && livingEntity instanceof Player && powerForTime == 1.0) {
             float x = -Mth.sin(livingEntity.getYRot() * Mth.DEG_TO_RAD);

@@ -25,17 +25,17 @@ public class ESPortalRenderer<T extends ESPortalBlockEntity> implements BlockEnt
         if (portal.getBlockState().getValue(ESPortalBlock.CENTER)) {
             VertexConsumer vertexConsumer = multiBufferSource.getBuffer(ESRenderType.portal());
             PoseStack.Pose pose = stack.last();
-            float radius = 0.6f * portal.getBlockState().getValue(ESPortalBlock.SIZE) * (Math.min(portal.getClientSideTickCount() + Minecraft.getInstance().getFrameTime(), 60f) / 60f);
+            float radius = 0.6f * portal.getBlockState().getValue(ESPortalBlock.SIZE) * (Math.min(portal.getClientSideTickCount() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), 60f) / 60f);
             if (portal.getBlockState().getValue(ESPortalBlock.AXIS) == Direction.Axis.X) {
-                vertexConsumer.vertex(pose, -radius, -radius, 0.5f).color(1, 1, 1, 1).uv(0, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, -radius, 1 + radius, 0.5f).color(1, 1, 1, 1).uv(0, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, 1 + radius, 1 + radius, 0.5f).color(1, 1, 1, 1).uv(1, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, 1 + radius, -radius, 0.5f).color(1, 1, 1, 1).uv(1, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
+                vertexConsumer.addVertex(pose, -radius, -radius, 0.5f).setColor(1, 1, 1, 1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, -radius, 1 + radius, 0.5f).setColor(1, 1, 1, 1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, 1 + radius, 1 + radius, 0.5f).setColor(1, 1, 1, 1).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, 1 + radius, -radius, 0.5f).setColor(1, 1, 1, 1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
             } else {
-                vertexConsumer.vertex(pose, 0.5f, -radius, -radius).color(1, 1, 1, 1).uv(0, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, 0.5f, 1 + radius, -radius).color(1, 1, 1, 1).uv(0, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, 0.5f, 1 + radius, 1 + radius).color(1, 1, 1, 1).uv(1, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
-                vertexConsumer.vertex(pose, 0.5f, -radius, 1 + radius).color(1, 1, 1, 1).uv(1, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(0xF000F0).normal(pose, 0.0F, 1.0F, 0.0F).endVertex();
+                vertexConsumer.addVertex(pose, 0.5f, -radius, -radius).setColor(1, 1, 1, 1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, 0.5f, 1 + radius, -radius).setColor(1, 1, 1, 1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, 0.5f, 1 + radius, 1 + radius).setColor(1, 1, 1, 1).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+                vertexConsumer.addVertex(pose, 0.5f, -radius, 1 + radius).setColor(1, 1, 1, 1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0xF000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
             }
         }
     }

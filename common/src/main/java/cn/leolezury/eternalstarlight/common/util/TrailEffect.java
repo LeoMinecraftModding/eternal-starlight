@@ -70,10 +70,10 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
                     to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
                 }
                 PoseStack.Pose pose = stack.last();
-                consumer.vertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).color(r, g, b, a).uv(textureX, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();
-                consumer.vertex(pose, (float) to.upper().x, (float) to.upper().y, (float) to.upper().z).color(r, g, b, a).uv(textureX + secX, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();
-                consumer.vertex(pose, (float) to.lower().x, (float) to.lower().y, (float) to.lower().z).color(r, g, b, a).uv(textureX + secX, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();
-                consumer.vertex(pose, (float) from.lower().x, (float) from.lower().y, (float) from.lower().z).color(r, g, b, a).uv(textureX, 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(pose, 0, 1, 0).endVertex();
+                consumer.addVertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).setColor(r, g, b, a).setUv(textureX, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+                consumer.addVertex(pose, (float) to.upper().x, (float) to.upper().y, (float) to.upper().z).setColor(r, g, b, a).setUv(textureX + secX, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+                consumer.addVertex(pose, (float) to.lower().x, (float) to.lower().y, (float) to.lower().z).setColor(r, g, b, a).setUv(textureX + secX, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+                consumer.addVertex(pose, (float) from.lower().x, (float) from.lower().y, (float) from.lower().z).setColor(r, g, b, a).setUv(textureX, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
                 textureX += secX;
             }
         }

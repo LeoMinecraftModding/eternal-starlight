@@ -31,6 +31,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
     }
 
     private ResourceLocation mcLoc(String s) {
-        return new ResourceLocation(s);
+        return ResourceLocation.withDefaultNamespace(s);
     }
 }

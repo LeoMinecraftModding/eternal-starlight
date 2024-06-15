@@ -46,7 +46,7 @@ public class CrestSelectionScreen extends Screen {
         } else {
             registry = null;
         }
-        this.ownedCrests = ownedCrests.stream().map(s -> registry == null ? null : registry.get(new ResourceLocation(s))).sorted((o1, o2) -> registry == null ? 0 : registry.getId(o1) - registry.getId(o2)).toList();
+        this.ownedCrests = ownedCrests.stream().map(s -> registry == null ? null : registry.get(ResourceLocation.read(s).getOrThrow())).sorted((o1, o2) -> registry == null ? 0 : registry.getId(o1) - registry.getId(o2)).toList();
         this.crestIds = crests;
     }
 
@@ -56,7 +56,7 @@ public class CrestSelectionScreen extends Screen {
             Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
             this.previousPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 - 50, 48, 24, false, Component.empty(), (button -> previousPage())));
             this.nextPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 + 50, 48, 24, true, Component.empty(), (button -> nextPage())));
-            List<Crest> crests = crestIds == null ? this.crestButtons.stream().map(CrestButton::getCrest).toList() : crestIds.stream().map(s -> registry.get(new ResourceLocation(s))).toList();
+            List<Crest> crests = crestIds == null ? this.crestButtons.stream().map(CrestButton::getCrest).toList() : crestIds.stream().map(s -> registry.get(ResourceLocation.read(s).getOrThrow())).toList();
             this.crestButtons.clear();
             for (int i = 0; i < 5; i++) {
                 int ordinal = i;
@@ -158,20 +158,19 @@ public class CrestSelectionScreen extends Screen {
             Uniform tickUniform = instance.getUniform("TickCount");
             Uniform ratioUniform = instance.getUniform("Ratio");
             if (tickUniform != null) {
-                tickUniform.set((float) tickCount + Minecraft.getInstance().getFrameTime());
+                tickUniform.set((float) tickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true));
             }
             if (ratioUniform != null) {
                 ratioUniform.set((float) y / x);
             }
         }
         RenderSystem.setShader(ESShaders::getCrestSelectionGui);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.vertex(matrix4f, 0, 0, 0).uv(0, 0).endVertex();
-        bufferBuilder.vertex(matrix4f, 0, y, 0).uv(0, 1).endVertex();
-        bufferBuilder.vertex(matrix4f, x, y, 0).uv(1, 1).endVertex();
-        bufferBuilder.vertex(matrix4f, x, 0, 0).uv(1, 0).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferBuilder.addVertex(matrix4f, 0, 0, 0).setUv(0, 0);
+        bufferBuilder.addVertex(matrix4f, 0, y, 0).setUv(0, 1);
+        bufferBuilder.addVertex(matrix4f, x, y, 0).setUv(1, 1);
+        bufferBuilder.addVertex(matrix4f, x, 0, 0).setUv(1, 0);
+        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
         super.render(guiGraphics, i, j, f);
     }
 

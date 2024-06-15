@@ -126,7 +126,6 @@ public class ESConfiguredFeatures {
 
     // structure features
     public static final ResourceKey<ConfiguredFeature<?, ?>> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CURSED_GARDEN_EXTRA_HEIGHT = create("cursed_garden_extra_height");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<Block> blockHolderGetter = context.lookup(Registries.BLOCK);
@@ -202,7 +201,6 @@ public class ESConfiguredFeatures {
 
         // structure features
         FeatureUtils.register(context, GOLEM_FORGE_CHIMNEY, ESFeatures.GOLEM_FORGE_CHIMNEY.get(), new NoneFeatureConfiguration());
-        FeatureUtils.register(context, CURSED_GARDEN_EXTRA_HEIGHT, ESFeatures.CURSED_GARDEN_EXTRA_HEIGHT.get(), new NoneFeatureConfiguration());
     }
 
 

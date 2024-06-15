@@ -33,8 +33,8 @@ public class GlaciteShieldModel extends Model {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        handle.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        shield.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+        handle.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+        shield.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
 }

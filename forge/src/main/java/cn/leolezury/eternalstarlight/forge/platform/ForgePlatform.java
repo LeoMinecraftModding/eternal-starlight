@@ -18,7 +18,6 @@ import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeHammerItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeScytheItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeShieldItem;
 import cn.leolezury.eternalstarlight.forge.network.ForgeNetworkHandler;
-import cn.leolezury.eternalstarlight.forge.world.ForgeTeleporter;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
@@ -35,7 +34,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -126,7 +124,7 @@ public class ForgePlatform implements ESPlatform {
 
         @Override
         public <I extends T> RegistryObject<T, I> register(String id, Supplier<? extends I> supplier) {
-            ResourceLocation location = new ResourceLocation(namespace, id);
+            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(namespace, id);
             ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(key, location);
             DeferredHolder<T, I> holder = deferredRegister.register(id, supplier);
             return new RegistryObject<T, I>() {
@@ -212,17 +210,12 @@ public class ForgePlatform implements ESPlatform {
 
     @Override
     public boolean postMobGriefingEvent(Level level, Entity entity) {
-        return EventHooks.getMobGriefingEvent(level, entity);
+        return EventHooks.canEntityGrief(level, entity);
     }
 
     @Override
     public boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
         return CommonHooks.onTravelToDimension(entity, dimension);
-    }
-
-    @Override
-    public void teleportEntity(ServerLevel dest, Entity entity) {
-        entity.changeDimension(dest, new ForgeTeleporter(dest));
     }
 
     @Override

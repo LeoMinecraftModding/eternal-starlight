@@ -54,7 +54,7 @@ public class LootBagItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide) {
-            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation("")))).resourceKey());
+            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("empty")))).resourceKey());
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }

@@ -82,7 +82,7 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
         stack.mulPose(Axis.YP.rotationDegrees(90.0F));
         model.setupAnim(boat, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
         VertexConsumer vertexconsumer = buffer.getBuffer(model.renderType(resourcelocation));
-        model.renderToBuffer(stack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(stack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
         if (!boat.isUnderWater()) {
             VertexConsumer vertexconsumer1 = buffer.getBuffer(RenderType.waterMask());
             model.waterPatch().render(stack, vertexconsumer1, light, OverlayTexture.NO_OVERLAY);

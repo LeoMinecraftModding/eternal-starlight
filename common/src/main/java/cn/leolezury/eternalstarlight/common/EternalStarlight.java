@@ -31,7 +31,7 @@ public class EternalStarlight {
         ESSensorTypes.loadClass();
         ESMobEffects.loadClass();
         ESBlockEntities.loadClass();
-        ESEnchantments.loadClass();
+        ESEnchantmentEntityEffects.loadClass();
         ESWorldCarvers.loadClass();
         ESFeatures.loadClass();
         ESPlacers.loadClass();
@@ -52,7 +52,7 @@ public class EternalStarlight {
     }
 
     public static ResourceLocation id(String string) {
-        return new ResourceLocation(ID, string);
+        return ResourceLocation.fromNamespaceAndPath(ID, string);
     }
 
     public static ClientHelper getClientHelper() {

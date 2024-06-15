@@ -1,4 +1,4 @@
-// 1.20.6	2024-06-09T14:09:01.4862087	Item Models: eternal_starlight
+// 1.21	2024-06-15T21:07:21.9340385	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -433,6 +433,7 @@ e7eab93f28ce0b989f50c767fee54102de7715cb assets/eternal_starlight/models/item/sc
 d045885cc57a252d634f14f20d15d935ddd0cc8e assets/eternal_starlight/models/item/scarlet_trapdoor.json
 21cfe2dbea7be94c4263692bcc2ad811dc428666 assets/eternal_starlight/models/item/scarlet_wood.json
 735cf47f9de5e863c10a248bcc300157e877b400 assets/eternal_starlight/models/item/seeking_eye.json
+f663d155a5d5da9ee8816abe82a2608761b38950 assets/eternal_starlight/models/item/shadegrieve.json
 3657dbc99ad7e9c12489ab0a2e7f0b4bd430d819 assets/eternal_starlight/models/item/shattered_sword.json
 febd000c0fd0dde866191295087aefda71567ea7 assets/eternal_starlight/models/item/shattered_sword_blade.json
 8a99a936b947f0e1597a564945a376662a88ae6b assets/eternal_starlight/models/item/shattered_sword_no_blade.json

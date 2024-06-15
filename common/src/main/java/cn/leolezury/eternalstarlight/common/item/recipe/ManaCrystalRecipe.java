@@ -9,13 +9,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -30,16 +26,17 @@ public class ManaCrystalRecipe extends CustomRecipe {
         this.manaCrystal = item;
     }
 
-    public boolean matches(CraftingContainer container, Level level) {
+    @Override
+    public boolean matches(CraftingInput recipeInput, Level level) {
         int day = (int) (level.getDayTime() / 24000L);
         boolean checkDay = day % 6 == List.of(ManaType.values()).indexOf(manaType) - 1;
-        boolean checkEmpty = container.getItem(0).isEmpty() && container.getItem(2).isEmpty() && container.getItem(6).isEmpty() && container.getItem(8).isEmpty();
-        boolean checkIngredients = container.getItem(1).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && container.getItem(3).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && container.getItem(4).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && container.getItem(5).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && container.getItem(7).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS);
-        return container.getWidth() == 3 && container.getHeight() == 3 && checkDay && checkEmpty && checkIngredients;
+        boolean checkEmpty = recipeInput.getItem(0).isEmpty() && recipeInput.getItem(2).isEmpty() && recipeInput.getItem(6).isEmpty() && recipeInput.getItem(8).isEmpty();
+        boolean checkIngredients = recipeInput.getItem(1).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(3).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(4).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(5).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(7).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS);
+        return recipeInput.width() == 3 && recipeInput.height() == 3 && checkDay && checkEmpty && checkIngredients;
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer container, HolderLookup.Provider provider) {
+    public ItemStack assemble(CraftingInput recipeInput, HolderLookup.Provider provider) {
         return manaCrystal.getDefaultInstance();
     }
 

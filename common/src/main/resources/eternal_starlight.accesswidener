@@ -71,6 +71,12 @@ accessible class net/minecraft/server/level/ChunkMap$TrackedEntity
 accessible field net/minecraft/server/level/ChunkMap$TrackedEntity entity Lnet/minecraft/world/entity/Entity;
 accessible field net/minecraft/server/level/ChunkMap$TrackedEntity seenBy Ljava/util/Set;
 
+# sweep attack for scythes and hammers
+accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F
+
+# custom arrow for mech crossbow
+accessible method net/minecraft/world/entity/projectile/AbstractArrow setPierceLevel (B)V
+
 # fabirc mixin
 accessible class net/minecraft/client/resources/model/ModelManager$ReloadState
 accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
@@ -85,6 +91,7 @@ mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermut
 # sky rendering
 accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
 accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible method net/minecraft/client/renderer/LevelRenderer doesMobEffectBlockSky (Lnet/minecraft/client/Camera;)Z
 
 # player animator
 accessible field net/minecraft/client/model/PlayerModel cloak Lnet/minecraft/client/model/geom/ModelPart;

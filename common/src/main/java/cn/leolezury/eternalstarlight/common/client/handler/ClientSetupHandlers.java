@@ -252,9 +252,13 @@ public class ClientSetupHandlers {
             EternalStarlight.id("trims/models/armor/forge")
     );
 
-    public static final Map<ResourceLocation, ResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();
+    public static final Map<ModelResourceLocation, ModelResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();
 
-    public static final Map<ResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
+    public static ModelResourceLocation getInvIcon(ModelResourceLocation item) {
+        return ITEMS_WITH_INV_ICON.containsKey(item) ? new ModelResourceLocation(ITEMS_WITH_INV_ICON.get(item).id().withPrefix("item/"), ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.FABRIC ? "fabric_resource" : "standalone") : item;
+    }
+
+    public static final Map<ModelResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
     public static void clientSetup() {
         // hacky
@@ -283,68 +287,68 @@ public class ClientSetupHandlers {
         BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
         BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 
-        ItemProperties.register(ESItems.SHATTERED_SWORD.get(), new ResourceLocation("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
+        ItemProperties.register(ESItems.SHATTERED_SWORD.get(), ResourceLocation.withDefaultNamespace("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
-        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack);
+                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack, entity);
             }
         });
-        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
             ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
             return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
         });
 
-        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack);
+                return CrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / (float)CrossbowItem.getChargeDuration(stack, entity);
             }
         });
-        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
             ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
             return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
         });
 
-        ItemProperties.register(ESItems.MOONRING_BOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.MOONRING_BOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         });
-        ItemProperties.register(ESItems.MOONRING_BOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.MOONRING_BOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         });
-        ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> {
+        ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         });
-        ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ESItems.GLACITE_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+        ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
-        ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), new ResourceLocation("crests_mode"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F);
+        ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), ResourceLocation.withDefaultNamespace("crests_mode"), (stack, level, entity, i) -> OrbOfProphecyItem.hasCrests(level == null ? null : level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F);
 
-        ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), new ResourceLocation("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
+        ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), ResourceLocation.withDefaultNamespace("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
     }
 
     public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -447,16 +451,16 @@ public class ClientSetupHandlers {
         strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
     }
 
-    public static void modifyBakingResult(Map<ResourceLocation, BakedModel> models) {
-        for (ResourceLocation id : models.keySet()) {
-            if (id.toString().contains(EternalStarlight.ID + ":thermal_springstone_")) {
+    public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {
+        for (ModelResourceLocation id : models.keySet()) {
+            if (id.id().toString().contains(EternalStarlight.ID + ":thermal_springstone_")) {
                 models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
             }
             BAKED_MODELS.put(id, models.get(id));
         }
     }
 
-    public static void registerExtraBakedModels(Consumer<ResourceLocation> registration) {
+    public static void registerExtraBakedModels(Consumer<ModelResourceLocation> registration) {
         registration.accept(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));
@@ -487,7 +491,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.AETHERSENT_METEOR.get(), AethersentMeteorRenderer::new);
         strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
         strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
-        strategy.register(ESEntities.CAMERA_SHAKE.get(), NothingRenderer::new);
+        strategy.register(ESEntities.CAMERA_SHAKE.get(), EmptyRenderer::new);
         strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
         strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
@@ -510,15 +514,15 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.GATEKEEPER_FIREBALL.get(), GatekeeperFireballRenderer::new);
         strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolemRenderer::new);
         strategy.register(ESEntities.GOLEM_LASER_BEAM.get(), StarlightGolemBeamRenderer::new);
-        strategy.register(ESEntities.ENERGIZED_FLAME.get(), NothingRenderer::new);
+        strategy.register(ESEntities.ENERGIZED_FLAME.get(), EmptyRenderer::new);
         strategy.register(ESEntities.FREEZE.get(), FreezeRenderer::new);
         strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
         strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
-        strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), NothingRenderer::new);
+        strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
-        strategy.register(ESEntities.TANGLED_HATRED_PART.get(), NothingRenderer::new);
+        strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
         strategy.register(ESEntities.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
         strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
         strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
