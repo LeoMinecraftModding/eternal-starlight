@@ -1,6 +1,7 @@
-package cn.leolezury.eternalstarlight.forge.datagen.provider.generator;
+package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
@@ -12,11 +13,14 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -26,6 +30,8 @@ import java.util.function.Consumer;
 public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGenerator {
     @Override
     public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer, ExistingFileHelper helper) {
+        HolderLookup.RegistryLookup<Biome> biomes = registries.lookupOrThrow(Registries.BIOME);
+
         AdvancementHolder root = Advancement.Builder.advancement().display(
                         ESBlocks.LUNAR_LOG.get(),
                         Component.translatable("advancements." + EternalStarlight.ID + ".root.title"),
@@ -63,6 +69,12 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                                 LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
                 .save(consumer, EternalStarlight.ID + ":enter_starlight");
 
+        AdvancementHolder enterAbyss = addEnterBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
+
+        AdvancementHolder starlightFlower = addItemObtain(consumer, enterDim, "obtain_starlight_flower", ESItems.STARLIGHT_FLOWER.get());
+
+        AdvancementHolder seekingEye = addItemObtain(consumer, starlightFlower, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
+
         AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterDim).display(
                         ESItems.GLEECH_EGG.get(),
                         Component.translatable("advancements." + EternalStarlight.ID + ".throw_gleech_egg.title"),
@@ -76,9 +88,13 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
         AdvancementHolder swampSilver = addItemObtain(consumer, enterDim, "obtain_swamp_silver", ESItems.SWAMP_SILVER_INGOT.get());
 
-        AdvancementHolder starlightFlower = addItemObtain(consumer, enterDim, "obtain_starlight_flower", ESItems.STARLIGHT_FLOWER.get());
+        AdvancementHolder glacite = addItemObtain(consumer, enterDim, "obtain_glacite", ESItems.GLACITE_SHARD.get());
 
-        AdvancementHolder seekingEye = addItemObtain(consumer, starlightFlower, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
+        AdvancementHolder alchemistMask = addItemObtain(consumer, enterDim, "obtain_alchemist_mask", ESItems.ALCHEMIST_MASK.get());
+
+        AdvancementHolder aethersentIngot = addItemObtain(consumer, enterDim, "obtain_aethersent_ingot", ESItems.AETHERSENT_INGOT.get());
+
+        AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());
 
         AdvancementHolder killGolem = addEntityKill(consumer, seekingEye, "kill_golem", ESEntities.STARLIGHT_GOLEM.get(), ESItems.ENERGY_BLOCK.get());
 
@@ -133,6 +149,16 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
                         Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
                         null, AdvancementType.GOAL, true, true, false)
                 .addCriterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(Optional.ofNullable(predicate)))
+                .save(consumer, EternalStarlight.ID + ":" + id);
+    }
+
+    private static AdvancementHolder addEnterBiome(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item display, Holder<Biome> biome) {
+        return Advancement.Builder.advancement().parent(parent).display(
+                        display,
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
+                        null, AdvancementType.GOAL, true, true, false)
+                .addCriterion("in_biome", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biome)))
                 .save(consumer, EternalStarlight.ID + ":" + id);
     }
 }

@@ -74,16 +74,16 @@ public class ESBlocks {
     // lunar wood
     public static final RegistryObject<Block, LeavesBlock> LUNAR_LEAVES = BLOCKS.register("lunar_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<Block, ESLogBlock> LUNAR_LOG = BLOCKS.register("lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> LUNAR_WOOD = BLOCKS.register("lunar_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> LUNAR_LOG = BLOCKS.register("lunar_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> LUNAR_WOOD = BLOCKS.register("lunar_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> LUNAR_PLANKS = BLOCKS.register("lunar_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_LUNAR_LOG = BLOCKS.register("stripped_lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_LUNAR_WOOD = BLOCKS.register("stripped_lunar_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_LUNAR_LOG = BLOCKS.register("stripped_lunar_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_LUNAR_WOOD = BLOCKS.register("stripped_lunar_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, DoorBlock> LUNAR_DOOR = BLOCKS.register("lunar_door",
             () -> new DoorBlock(ESWoodTypes.LUNAR_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, TrapDoorBlock> LUNAR_TRAPDOOR = BLOCKS.register("lunar_trapdoor",
@@ -112,26 +112,26 @@ public class ESBlocks {
     public static final RegistryObject<Block, FlowerPotBlock> POTTED_LUNAR_SAPLING = BLOCKS.register("potted_lunar_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LUNAR_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     // lunar extras: desert
-    public static final RegistryObject<Block, ESLogBlock> DEAD_LUNAR_LOG = BLOCKS.register("dead_lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> RED_CRYSTALLIZED_LUNAR_LOG = BLOCKS.register("red_crystallized_lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> BLUE_CRYSTALLIZED_LUNAR_LOG = BLOCKS.register("blue_crystallized_lunar_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> DEAD_LUNAR_LOG = BLOCKS.register("dead_lunar_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> RED_CRYSTALLIZED_LUNAR_LOG = BLOCKS.register("red_crystallized_lunar_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> BLUE_CRYSTALLIZED_LUNAR_LOG = BLOCKS.register("blue_crystallized_lunar_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).strength(4.0F).mapColor(MapColor.COLOR_BLACK)));
 
     // northland wood
     public static final RegistryObject<Block, SnowyLeavesBlock> NORTHLAND_LEAVES = BLOCKS.register("northland_leaves",
             () -> new SnowyLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<Block, ESLogBlock> NORTHLAND_LOG = BLOCKS.register("northland_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
-    public static final RegistryObject<Block, ESLogBlock> NORTHLAND_WOOD = BLOCKS.register("northland_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
+    public static final RegistryObject<Block, RotatedPillarBlock> NORTHLAND_LOG = BLOCKS.register("northland_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
+    public static final RegistryObject<Block, RotatedPillarBlock> NORTHLAND_WOOD = BLOCKS.register("northland_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, Block> NORTHLAND_PLANKS = BLOCKS.register("northland_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BROWN)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_NORTHLAND_LOG = BLOCKS.register("stripped_northland_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_NORTHLAND_WOOD = BLOCKS.register("stripped_northland_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_NORTHLAND_LOG = BLOCKS.register("stripped_northland_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BROWN)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_NORTHLAND_WOOD = BLOCKS.register("stripped_northland_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, DoorBlock> NORTHLAND_DOOR = BLOCKS.register("northland_door",
             () -> new DoorBlock(ESWoodTypes.NORTHLAND_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BROWN)));
     public static final RegistryObject<Block, TrapDoorBlock> NORTHLAND_TRAPDOOR = BLOCKS.register("northland_trapdoor",
@@ -162,16 +162,16 @@ public class ESBlocks {
     // starlight mangrove wood
     public static final RegistryObject<Block, LeavesBlock> STARLIGHT_MANGROVE_LEAVES = BLOCKS.register("starlight_mangrove_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block, ESLogBlock> STARLIGHT_MANGROVE_LOG = BLOCKS.register("starlight_mangrove_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> STARLIGHT_MANGROVE_WOOD = BLOCKS.register("starlight_mangrove_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STARLIGHT_MANGROVE_LOG = BLOCKS.register("starlight_mangrove_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STARLIGHT_MANGROVE_WOOD = BLOCKS.register("starlight_mangrove_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> STARLIGHT_MANGROVE_PLANKS = BLOCKS.register("starlight_mangrove_planks",
         () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_STARLIGHT_MANGROVE_LOG = BLOCKS.register("stripped_starlight_mangrove_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_STARLIGHT_MANGROVE_WOOD = BLOCKS.register("stripped_starlight_mangrove_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_STARLIGHT_MANGROVE_LOG = BLOCKS.register("stripped_starlight_mangrove_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_STARLIGHT_MANGROVE_WOOD = BLOCKS.register("stripped_starlight_mangrove_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, DoorBlock> STARLIGHT_MANGROVE_DOOR = BLOCKS.register("starlight_mangrove_door",
             () -> new DoorBlock(ESWoodTypes.STARLIGHT_MANGROVE_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, TrapDoorBlock> STARLIGHT_MANGROVE_TRAPDOOR = BLOCKS.register("starlight_mangrove_trapdoor",
@@ -206,16 +206,16 @@ public class ESBlocks {
             () -> new ScarletLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, LeavesPileBlock> SCARLET_LEAVES_PILE = BLOCKS.register("scarlet_leaves_pile",
             () -> new LeavesPileBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW).noCollission().sound(SoundType.CHERRY_LEAVES).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> SCARLET_LOG = BLOCKS.register("scarlet_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> SCARLET_WOOD = BLOCKS.register("scarlet_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_LOG = BLOCKS.register("scarlet_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_WOOD = BLOCKS.register("scarlet_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, Block> SCARLET_PLANKS = BLOCKS.register("scarlet_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_SCARLET_LOG = BLOCKS.register("stripped_scarlet_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_SCARLET_WOOD = BLOCKS.register("stripped_scarlet_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_SCARLET_LOG = BLOCKS.register("stripped_scarlet_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_RED)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_SCARLET_WOOD = BLOCKS.register("stripped_scarlet_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, DoorBlock> SCARLET_DOOR = BLOCKS.register("scarlet_door",
             () -> new DoorBlock(ESWoodTypes.SCARLET_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<Block, TrapDoorBlock> SCARLET_TRAPDOOR = BLOCKS.register("scarlet_trapdoor",
@@ -246,16 +246,16 @@ public class ESBlocks {
     // torreya wood
     public static final RegistryObject<Block, LeavesBlock> TORREYA_LEAVES = BLOCKS.register("torreya_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
-    public static final RegistryObject<Block, ESLogBlock> TORREYA_LOG = BLOCKS.register("torreya_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> TORREYA_WOOD = BLOCKS.register("torreya_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> TORREYA_LOG = BLOCKS.register("torreya_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> TORREYA_WOOD = BLOCKS.register("torreya_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, Block> TORREYA_PLANKS = BLOCKS.register("torreya_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_TORREYA_LOG = BLOCKS.register("stripped_torreya_log",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
-    public static final RegistryObject<Block, ESLogBlock> STRIPPED_TORREYA_WOOD = BLOCKS.register("stripped_torreya_wood",
-            () -> new ESLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_TORREYA_LOG = BLOCKS.register("stripped_torreya_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_BLACK)));
+    public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_TORREYA_WOOD = BLOCKS.register("stripped_torreya_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, DoorBlock> TORREYA_DOOR = BLOCKS.register("torreya_door",
             () -> new DoorBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_BLACK)));
     public static final RegistryObject<Block, TrapDoorBlock> TORREYA_TRAPDOOR = BLOCKS.register("torreya_trapdoor",

@@ -11,7 +11,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class ESDataProvider extends DatapackBuiltinEntriesProvider {
+public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.ENCHANTMENT, ESEnchantments::bootstrap)
             .add(Registries.CONFIGURED_CARVER, ESConfiguredWorldCarvers::bootstrap)
@@ -35,7 +35,7 @@ public class ESDataProvider extends DatapackBuiltinEntriesProvider {
             .add(ESRegistries.ASTRAL_GOLEM_MATERIAL, ESAstralGolemMaterials::bootstrap)
             .add(ESRegistries.CREST, ESCrests::bootstrap);
 
-    public ESDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public ESRegistryProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(EternalStarlight.ID, "minecraft"));
     }
 }

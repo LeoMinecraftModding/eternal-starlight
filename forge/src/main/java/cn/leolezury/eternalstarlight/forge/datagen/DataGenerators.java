@@ -36,16 +36,16 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ESEntityTypeTagsProvider(output, lookupProvider, helper));
         generator.addProvider(event.includeServer(), new ESFluidTagsProvider(output, lookupProvider, helper));
 
-        DatapackBuiltinEntriesProvider dataProvider = new ESDataProvider(output, lookupProvider);
-        CompletableFuture<HolderLookup.Provider> lookup = dataProvider.getRegistryProvider();
-        generator.addProvider(event.includeServer(), dataProvider);
+        DatapackBuiltinEntriesProvider registryProvider = new ESRegistryProvider(output, lookupProvider);
+        CompletableFuture<HolderLookup.Provider> lookup = registryProvider.getRegistryProvider();
+        generator.addProvider(event.includeServer(), registryProvider);
         generator.addProvider(event.includeServer(), new ESDamageTypeTagsProvider(output, lookup, helper));
         generator.addProvider(event.includeServer(), new ESBiomeTagsProvider(output, lookup, helper));
         generator.addProvider(event.includeServer(), new ESEnchantmentTagsProvider(output, lookup, helper));
 
         generator.addProvider(event.includeServer(), new ESLootProvider(output, lookup));
+        generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookup, helper));
         generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookupProvider, helper));
 
         // custom
         generator.addProvider(event.includeServer(), new ESGeyserSmokingProvider(output));
