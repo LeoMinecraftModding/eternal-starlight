@@ -7,7 +7,10 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -16,6 +19,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
@@ -132,7 +136,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         public boolean canUse() {
             boolean canUse = true;
             if (mob instanceof LunarMonstrosity boss) {
-                canUse = boss.getBehaviourState() == 6;
+                canUse = boss.getBehaviourState() == LunarMonstrositySneakPhase.ID;
             }
             return super.canUse() && canUse;
         }
@@ -141,7 +145,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         public boolean canContinueToUse() {
             boolean canUse = true;
             if (mob instanceof LunarMonstrosity boss) {
-                canUse = boss.getBehaviourState() == 6;
+                canUse = boss.getBehaviourState() == LunarMonstrositySneakPhase.ID;
             }
             return super.canContinueToUse() && canUse;
         }
@@ -242,7 +246,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {
             return false;
         }
-        if (getBehaviourState() == 0 && getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
+        if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
             setPhase(1);
             setBehaviourState(LunarMonstrositySoulPhase.ID);
             setBehaviourTicks(0);
@@ -318,6 +322,20 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
         }
     }
 
+    public void knockbackNearbyEntities(float strength, boolean damage) {
+        for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(8))) {
+            Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
+            living.hurtMarked = true;
+            living.setDeltaMovement(living.getDeltaMovement().add(motion));
+            if (damage) {
+                living.hurt(damageSources().mobAttack(this), strength * 3);
+            }
+        }
+        if (level() instanceof ServerLevel serverLevel) {
+            ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.LUNAR, getX(), getY(), getZ(), 0, 0.2, 0));
+        }
+    }
+
     @Override
     public void aiStep() {
         super.aiStep();
@@ -329,6 +347,9 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
             }
             if (!isNoAi()) {
                 behaviourManager.tick();
+            }
+            if (getBehaviourState() != LunarMonstrositySneakPhase.ID) {
+                getNavigation().stop();
             }
         } else {
             level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);

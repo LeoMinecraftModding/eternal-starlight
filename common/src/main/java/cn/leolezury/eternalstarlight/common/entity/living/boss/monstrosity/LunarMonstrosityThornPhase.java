@@ -38,6 +38,7 @@ public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity>
                 double d2 = 1.25 * (double)(i + 1);
                 this.createThorn(entity, entity.getX() + (double)Mth.cos(f) * d2, entity.getZ() + (double)Mth.sin(f) * d2, d0, d1, i);
             }
+            entity.knockbackNearbyEntities(1.5f, true);
         }
     }
 

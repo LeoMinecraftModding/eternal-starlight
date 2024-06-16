@@ -60,6 +60,12 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if ((tickCount > 200 || getDeltaMovement().length() < 0.001) && !level().isClientSide) discard();
+    }
+
+    @Override
     protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
         if (getOwner() instanceof TangledHatred hatred && hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof TangledHatredPart part) {

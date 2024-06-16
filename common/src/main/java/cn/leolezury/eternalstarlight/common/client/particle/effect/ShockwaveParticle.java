@@ -58,8 +58,8 @@ public class ShockwaveParticle extends SimpleAnimatedParticle {
             this.sprites = spriteSet;
         }
 
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
-            return new ShockwaveParticle(clientLevel, x, y, z, dx, dy, dz, this.sprites);
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
+            return new ShockwaveParticle(level, x, y, z, dx, dy, dz, this.sprites);
         }
     }
 }

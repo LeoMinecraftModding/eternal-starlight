@@ -481,6 +481,7 @@ public class ClientSetupHandlers {
         strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
         strategy.register(ESParticles.EXPLOSION.get(), ESExplosionParticle.Provider::new);
         strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
+        strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
         strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
         strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
         strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
