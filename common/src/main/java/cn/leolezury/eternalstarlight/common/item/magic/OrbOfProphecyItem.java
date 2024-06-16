@@ -79,7 +79,7 @@ public class OrbOfProphecyItem extends Item {
         }
     }
 
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
         return 72000;
     }
 

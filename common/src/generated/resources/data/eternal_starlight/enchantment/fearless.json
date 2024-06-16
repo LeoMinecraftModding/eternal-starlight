@@ -23,10 +23,10 @@
           "type": "eternal_starlight:push_towards_entity",
           "max_speed": {
             "type": "minecraft:linear",
-            "base": 0.2,
-            "per_level_above_first": 0.2
+            "base": 0.4,
+            "per_level_above_first": 0.3
           },
-          "min_speed": 0.2
+          "min_speed": 0.4
         },
         "enchanted": "attacker"
       }

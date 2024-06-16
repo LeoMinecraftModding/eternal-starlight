@@ -46,6 +46,7 @@ public class ShockwaveParticle extends SimpleAnimatedParticle {
         Quaternionf quaternionf = new Quaternionf();
         quaternionf.rotateY(rot).rotateX(-(pitch + 1.5707964F));
         this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
+        quaternionf = new Quaternionf();
         quaternionf.rotateY(-3.1415927F + rot).rotateX(pitch + 1.5707964F);
         this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
     }

@@ -49,6 +49,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
         Quaternionf quaternionf = new Quaternionf();
         quaternionf.rotateY(rot).rotateX(-pitch);
         this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
+        quaternionf = new Quaternionf();
         quaternionf.rotateY(-3.1415927F + rot).rotateX(pitch);
         this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
     }

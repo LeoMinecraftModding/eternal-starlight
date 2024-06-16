@@ -24,7 +24,7 @@ public class EnergySwordItem extends SwordItem {
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int ticksLeft) {
-        if (getUseDuration(itemStack) - ticksLeft >= 10 && livingEntity.level() instanceof ServerLevel serverLevel) {
+        if (getUseDuration(itemStack, livingEntity) - ticksLeft >= 10 && livingEntity.level() instanceof ServerLevel serverLevel) {
             Vec3 initialStartPos = livingEntity.getEyePosition();
             float lookYaw = livingEntity.getYHeadRot() + 90.0f;
             float lookPitch = -livingEntity.getXRot();
@@ -54,7 +54,7 @@ public class EnergySwordItem extends SwordItem {
         }
     }
 
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
         return 72000;
     }
 

@@ -38,13 +38,13 @@ public class SimpleSpellItem extends Item {
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int i) {
-        spell.value().stop(livingEntity, getUseDuration(itemStack) - i - spell.value().spellProperties().preparationTicks());
+        spell.value().stop(livingEntity, getUseDuration(itemStack, livingEntity) - i - spell.value().spellProperties().preparationTicks());
         if (livingEntity instanceof Player player) {
             player.getCooldowns().addCooldown(this, spell.value().spellProperties().cooldownTicks());
         }
     }
 
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
         return 72000;
     }
 

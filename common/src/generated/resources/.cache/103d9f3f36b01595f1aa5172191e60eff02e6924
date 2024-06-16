@@ -1,4 +1,4 @@
-// 1.21	2024-06-15T23:17:26.1190363	Registries
+// 1.21	2024-06-16T10:54:04.1067919	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -11,7 +11,7 @@ c9fe1d7617f62f165b0f23d77f83b908fc282569 data/eternal_starlight/damage_type/pois
 946d23be6e8f30d7e96bb08c68bf031cc7566792 data/eternal_starlight/damage_type/shattered_blade.json
 44ecbf92eaecb397dddf1db7e52d4c405d078965 data/eternal_starlight/dimension/starlight.json
 d4ee800c71ffcc0c4eb50edd0aa164b7acc1762c data/eternal_starlight/dimension_type/starlight.json
-e3bde98986b8e0f02768c5992cafe0f310f91bf7 data/eternal_starlight/enchantment/fearless.json
+2ffb286ce2fb13dc8c924e54655133bff384c40c data/eternal_starlight/enchantment/fearless.json
 85557d24ef8976cbd8b678601372c44594f5a3ea data/eternal_starlight/enchantment/poisoning.json
 e086191dcc4420f51a0e7f9cb64cf44f2dd0da93 data/eternal_starlight/eternal_starlight/astral_golem_material/iron.json
 a359713bf0db678136ee8347b61002dc4b823182 data/eternal_starlight/eternal_starlight/astral_golem_material/swamp_silver.json
