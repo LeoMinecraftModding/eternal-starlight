@@ -633,6 +633,9 @@ public class ESItems {
     public static final RegistryObject<Item, Item> AURORA_DEER_STEAK = registerItem("aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.BEEF)));
     public static final RegistryObject<Item, Item> COOKED_AURORA_DEER_STEAK = registerItem("cooked_aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.COOKED_BEEF)));
 
+    public static final RegistryObject<Item, Item> RATLIN_MEAT = registerItem("ratlin_meat", () -> new Item(new Item.Properties().food(Foods.MUTTON)));
+    public static final RegistryObject<Item, Item> COOKED_RATLIN_MEAT = registerItem("cooked_ratlin_meat", () -> new Item(new Item.Properties().food(Foods.COOKED_MUTTON)));
+
     public static final RegistryObject<Item, Item> FROZEN_TUBE = registerItem("frozen_tube", () -> new FrozenTubeItem(new Item.Properties().stacksTo(16)));
 
     public static final RegistryObject<Item, Item> SHIVERING_GEL = registerItem("shivering_gel", () -> new Item(new Item.Properties()));

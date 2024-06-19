@@ -202,7 +202,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
                 ESItems.LUMINARIS.get(),
                 ESItems.COOKED_LUMINARIS.get(),
                 ESItems.AURORA_DEER_STEAK.get(),
-                ESItems.COOKED_AURORA_DEER_STEAK.get()
+                ESItems.COOKED_AURORA_DEER_STEAK.get(),
+                ESItems.RATLIN_MEAT.get(),
+                ESItems.COOKED_RATLIN_MEAT.get()
         );
         tag(ItemTags.HEAD_ARMOR).add(
                 ESItems.ALCHEMIST_MASK.get(),

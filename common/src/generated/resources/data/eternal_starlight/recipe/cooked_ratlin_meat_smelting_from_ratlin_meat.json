@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:ratlin_meat"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:cooked_ratlin_meat"
+  }
+}

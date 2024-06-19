@@ -3,13 +3,13 @@ package cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height
 import cn.leolezury.eternalstarlight.common.registry.ESDataTransformerTypes;
 import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformerType;
-import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.IterationWithCullTransformer;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.SkippingIterationTransformer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
 import java.util.Random;
 
-public class SmoothHeightsTransformer extends IterationWithCullTransformer {
+public class SmoothHeightsTransformer extends SkippingIterationTransformer {
     public static final MapCodec<SmoothHeightsTransformer> CODEC = Codec.INT.fieldOf("size").xmap(SmoothHeightsTransformer::new, transformer -> transformer.size);
 
     private final int size;

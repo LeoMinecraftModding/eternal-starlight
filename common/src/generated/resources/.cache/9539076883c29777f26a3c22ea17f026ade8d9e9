@@ -1,4 +1,4 @@
-// 1.21	2024-06-15T23:17:26.105028	Item Models: eternal_starlight
+// 1.21	2024-06-19T21:22:01.2064686	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -100,6 +100,7 @@ e5922d9cdec25ffd0c4b642850df91ce37b44c55 assets/eternal_starlight/models/item/co
 d2aa32a295b619c1175ab7584d4d1a2cecad816d assets/eternal_starlight/models/item/cooked_aurora_deer_steak.json
 dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/cooked_luminaris.json
 535ae2fcfb3aa8b3d300509977556ba145dcdce5 assets/eternal_starlight/models/item/cooked_luminofish.json
+df345951415b24130c20856f2bf494de8d88b12d assets/eternal_starlight/models/item/cooked_ratlin_meat.json
 6c070c5d2e1c3e3ba28da6d35951d30ed3002f72 assets/eternal_starlight/models/item/crescent_grass.json
 7ddb335c47119122e79dafb94614bce46cc11f57 assets/eternal_starlight/models/item/cryobyssal_geyser.json
 eef40b64a1a8177cdce1c93254c22981bf00b872 assets/eternal_starlight/models/item/cryobyssal_magma_block.json
@@ -396,6 +397,7 @@ b04d149ec0dafb8a69f12136b71c76c6020c1211 assets/eternal_starlight/models/item/pu
 3a2a901bfffcf784ef6dfa7417749736e09da156 assets/eternal_starlight/models/item/purple_yeti_fur.json
 eb0cf80c2db587a578624a201ae9d16134dbee32 assets/eternal_starlight/models/item/purple_yeti_fur_carpet.json
 5b444d60743a55f9b33e1eace42dc9d92c0efca1 assets/eternal_starlight/models/item/rage_of_stars.json
+4ca0af33e073761e7a5476e7409975bd2cc42282 assets/eternal_starlight/models/item/ratlin_meat.json
 be6cf58a03a67453be6a28ccb05aca4211f677cc assets/eternal_starlight/models/item/raw_aethersent.json
 f0645654ebdcbc082bbb86baeccbd523c361b269 assets/eternal_starlight/models/item/raw_aethersent_block.json
 20628894347950bb502358fac5b05fbca9fcc119 assets/eternal_starlight/models/item/raw_amaramber.json

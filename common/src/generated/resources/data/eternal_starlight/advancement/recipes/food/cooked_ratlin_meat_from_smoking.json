@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ratlin_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:ratlin_meat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:cooked_ratlin_meat_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ratlin_meat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:cooked_ratlin_meat_from_smoking"
+    ]
+  }
+}

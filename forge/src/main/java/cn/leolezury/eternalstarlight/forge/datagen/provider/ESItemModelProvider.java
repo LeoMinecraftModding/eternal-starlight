@@ -555,6 +555,9 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.AURORA_DEER_STEAK.get());
         basicItem(ESItems.COOKED_AURORA_DEER_STEAK.get());
 
+        basicItem(ESItems.RATLIN_MEAT.get());
+        basicItem(ESItems.COOKED_RATLIN_MEAT.get());
+
         basicItem(ESItems.FROZEN_TUBE.get());
 
         basicItem(ESItems.SHIVERING_GEL.get());

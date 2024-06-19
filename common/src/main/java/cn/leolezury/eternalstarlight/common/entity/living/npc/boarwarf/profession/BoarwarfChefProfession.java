@@ -21,11 +21,13 @@ public class BoarwarfChefProfession extends AbstractBoarwarfProfession {
                 new BuyItemTrade(ESItems.LUNAR_BERRIES.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 5, 50),
                 new BuyItemTrade(ESItems.ABYSSAL_FRUIT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 4, 50),
                 new BuyItemTrade(ESItems.AURORA_DEER_STEAK.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
+                new BuyItemTrade(ESItems.RATLIN_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
                 new BuyItemTrade(ESItems.LUMINOFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
                 new BuyItemTrade(ESItems.LUMINARIS.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
                 new BuyItemTrade(ESItems.LUMINOFISH_BUCKET.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 30),
                 new BuyItemTrade(ESItems.LUMINARIS_BUCKET.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 30),
                 new SellItemTrade(ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
+                new SellItemTrade(ESItems.COOKED_RATLIN_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
                 new SellItemTrade(ESItems.COOKED_LUMINOFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
                 new SellItemTrade(ESItems.COOKED_LUMINARIS.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20)
         };

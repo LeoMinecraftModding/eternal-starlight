@@ -72,7 +72,7 @@ public class ESTeleporter {
             }
             // search downwards
             pos.setY(blockPos.getY());
-            for (int height = blockPos.getY(); height < maxHeight; height++) {
+            for (int height = blockPos.getY(); height > minHeight; height--) {
                 pos.setY(height);
                 if (border.isWithinBounds(pos) && ESPortalBlock.placePortal(level, pos, axis, 2)) {
                     return Optional.of(pos.relative(Direction.UP));

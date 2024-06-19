@@ -103,6 +103,9 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (entity.canUsePortal(true) && !level.isClientSide) {
+            entity.setAsInsidePortal(this, pos);
+        }
     }
 
     @Override
@@ -141,7 +144,7 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
         }
         return false;
     }
-    
+
     public static boolean placePortal(LevelAccessor level, BlockPos bottomPos, Direction.Axis axis, int size) {
         List<BlockPos> framePositions = new ArrayList<>();
         List<BlockPos> hollowPositions = new ArrayList<>();
@@ -176,16 +179,17 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
                 return false;
             }
         }
+        boolean flag = true;
         for (BlockPos blockPos : framePositions) {
-            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
+            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
         }
-        return true;
+        return flag;
     }
 
     @Nullable
@@ -197,16 +201,9 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
                 ? Level.OVERWORLD : ESDimensions.STARLIGHT_KEY;
         if (server != null) {
             ServerLevel destinationLevel = server.getLevel(destination);
-            if (!entity.isPassenger() && destinationLevel != null && !entity.isVehicle() && entity.canChangeDimensions(entityLevel, destinationLevel)) {
-                if (entity.isOnPortalCooldown()) {
-                    entity.setPortalCooldown();
-                } else {
-                    if (!entity.isPassenger()) {
-                        entity.setPortalCooldown();
-                        if (ESPlatform.INSTANCE.postTravelToDimensionEvent(entity, destination)) {
-                            return ESTeleporter.getPortalInfo(entity, blockPos, destinationLevel);
-                        }
-                    }
+            if (destinationLevel != null) {
+                if (ESPlatform.INSTANCE.postTravelToDimensionEvent(entity, destination)) {
+                    return ESTeleporter.getPortalInfo(entity, blockPos, destinationLevel);
                 }
             }
         }

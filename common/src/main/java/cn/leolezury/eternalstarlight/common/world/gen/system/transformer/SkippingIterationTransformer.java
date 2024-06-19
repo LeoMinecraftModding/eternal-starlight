@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 
 import java.util.Random;
 
-public abstract class IterationWithCullTransformer extends DataTransformer {
+public abstract class SkippingIterationTransformer extends DataTransformer {
     public abstract int transform(int[][] original, int[][] related, WorldGenProvider provider, Random random, int x, int z, int areaX, int areaZ, int size);
 
     @Override

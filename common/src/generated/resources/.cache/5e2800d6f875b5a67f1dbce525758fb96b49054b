@@ -1,4 +1,4 @@
-// 1.21	2024-06-15T23:17:26.1346817	Tags for minecraft:item mod id eternal_starlight
+// 1.21	2024-06-19T21:22:01.2477341	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/item/doomeden_keys.json
@@ -44,7 +44,7 @@ ff9a6ab987ff15343766be75eef4e14dd094ac4e data/minecraft/tags/item/head_armor.jso
 7cb9e8cb5cad44c6e6341805674113d51983f6c9 data/minecraft/tags/item/leg_armor.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/item/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/item/logs_that_burn.json
-985d8ddd3abc0875430444f6171fdc3866236cbd data/minecraft/tags/item/meat.json
+3abec2a00ad1fef2d151f3596ccaf5249459742e data/minecraft/tags/item/meat.json
 7373d53b4e14f4583866fd3967d59f2a9f1ecde3 data/minecraft/tags/item/pickaxes.json
 a034799a9a254fe3ae790f0047b291599e115314 data/minecraft/tags/item/planks.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/sand.json
