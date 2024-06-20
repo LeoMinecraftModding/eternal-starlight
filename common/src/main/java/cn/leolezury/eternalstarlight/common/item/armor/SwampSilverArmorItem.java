@@ -31,7 +31,7 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
             EquipmentSlotGroup equipmentSlotGroup = EquipmentSlotGroup.bySlot(type.getSlot());
             ResourceLocation resourceLocation = ResourceLocation.withDefaultNamespace("armor." + type.getName());
             builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(resourceLocation, 0.05, AttributeModifier.Operation.ADD_VALUE), equipmentSlotGroup);
-            builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(resourceLocation, 0.1, AttributeModifier.Operation.ADD_VALUE), equipmentSlotGroup);
+            builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(resourceLocation, 0.01, AttributeModifier.Operation.ADD_VALUE), equipmentSlotGroup);
             return builder.build();
         });
     }

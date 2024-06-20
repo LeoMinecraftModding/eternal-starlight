@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -168,28 +169,28 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
                 }
             }
         }
+        WorldBorder border = level.getWorldBorder();
         BlockPos center = bottomPos.above(size);
         for (BlockPos blockPos : framePositions) {
-            if (!level.isEmptyBlock(blockPos.offset(bottomPos))) {
+            if (!level.isEmptyBlock(blockPos.offset(bottomPos)) || !border.isWithinBounds(blockPos.offset(bottomPos))) {
                 return false;
             }
         }
         for (BlockPos blockPos : hollowPositions) {
-            if (!level.isEmptyBlock(blockPos.offset(bottomPos))) {
+            if (!level.isEmptyBlock(blockPos.offset(bottomPos)) || !border.isWithinBounds(blockPos.offset(bottomPos))) {
                 return false;
             }
         }
-        boolean flag = true;
         for (BlockPos blockPos : framePositions) {
-            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.CHISELED_VOIDSTONE.get().defaultBlockState(), 3);
         }
         for (BlockPos blockPos : hollowPositions) {
-            flag &= level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
+            level.setBlock(blockPos.offset(bottomPos), ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState().setValue(AXIS, axis).setValue(CENTER, blockPos.offset(bottomPos).equals(center)).setValue(SIZE, size), 3);
         }
-        return flag;
+        return true;
     }
 
     @Nullable

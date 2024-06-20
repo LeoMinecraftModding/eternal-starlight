@@ -524,7 +524,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
-        strategy.register(ESEntities.THROWN_SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
+        strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
         strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
         strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);

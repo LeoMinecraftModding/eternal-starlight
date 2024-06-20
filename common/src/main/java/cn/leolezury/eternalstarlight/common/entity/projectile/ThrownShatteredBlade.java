@@ -29,7 +29,7 @@ public class ThrownShatteredBlade extends AbstractArrow {
     }
 
     public ThrownShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
-        super(ESEntities.THROWN_SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
+        super(ESEntities.SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
     }
 
     public void tick() {
@@ -91,7 +91,7 @@ public class ThrownShatteredBlade extends AbstractArrow {
         Entity entity2 = this.getOwner();
         DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, entity2 == null ? this : entity2);
 
-        if (level() instanceof ServerLevel serverLevel) {
+        if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
             f = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, f);
         }
 
@@ -105,8 +105,7 @@ public class ThrownShatteredBlade extends AbstractArrow {
                 EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
             }
 
-            if (entity instanceof LivingEntity) {
-                LivingEntity livingEntity = (LivingEntity)entity;
+            if (entity instanceof LivingEntity livingEntity) {
                 this.doKnockback(livingEntity, damageSource);
                 this.doPostHurtEffects(livingEntity);
             }
