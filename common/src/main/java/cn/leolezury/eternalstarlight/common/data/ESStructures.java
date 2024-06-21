@@ -77,7 +77,7 @@ public class ESStructures {
         context.register(GOLEM_FORGE, new JigsawStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
-                        Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.FREEZE.get(), 1, 1, 4)))),
+                        Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.FREEZE.get(), 10, 1, 4)))),
                         GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN),
                 poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,
@@ -85,7 +85,7 @@ public class ESStructures {
         context.register(CURSED_GARDEN, new CursedGardenStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_CURSED_GARDEN),
-                        Map.of(),
+                        Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.TANGLED.get(), 10, 1, 2)))),
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN)
         ));

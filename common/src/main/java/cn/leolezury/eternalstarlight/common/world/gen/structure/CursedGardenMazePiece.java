@@ -57,12 +57,12 @@ public class CursedGardenMazePiece extends StructurePiece {
             for (int z = 0; z < MAZE_SIZE; z++) {
                 for (int blockX = x * STRUCTURE_SCALE; blockX < x * STRUCTURE_SCALE + STRUCTURE_SCALE; blockX++) {
                     for (int blockZ = z * STRUCTURE_SCALE; blockZ < z * STRUCTURE_SCALE + STRUCTURE_SCALE; blockZ++) {
+                        placeBlock(level, x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1 ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, 0, blockZ, box);
                         if (maze[x][z]) {
                             for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
                                 placeBlock(level, (y < STRUCTURE_HEIGHT / 7 + random.nextInt(STRUCTURE_HEIGHT / 7) && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, y + 1, blockZ, box);
                             }
                         } else {
-                            placeBlock(level, ESBlocks.SHADEGRIEVE.get().defaultBlockState(), blockX, 0, blockZ, box);
                             for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
                                 placeBlock(level, Blocks.AIR.defaultBlockState(), blockX, y + 1, blockZ, box);
                             }

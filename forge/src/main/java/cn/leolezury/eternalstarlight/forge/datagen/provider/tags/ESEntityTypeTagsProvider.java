@@ -42,7 +42,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 EntityType.CAVE_SPIDER
         );
         tag(EntityTypeTags.SKELETONS).add(
-                ESEntities.LONESTAR_SKELETON.get()
+                ESEntities.LONESTAR_SKELETON.get(),
+                ESEntities.TANGLED.get()
         );
         tag(EntityTypeTags.ARTHROPOD).add(
                 ESEntities.NIGHTFALL_SPIDER.get(),

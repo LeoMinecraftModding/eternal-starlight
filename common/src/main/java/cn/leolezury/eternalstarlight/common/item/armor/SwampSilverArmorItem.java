@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
@@ -51,15 +52,23 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 
     @Override
     public void tick(Level level, LivingEntity livingEntity, ItemStack armor) {
-        List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
-        for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
-            if (!effectInstance.getEffect().value().isBeneficial()) {
-                effectsToRemove.add(effectInstance.getEffect());
+        AtomicBoolean fullSet = new AtomicBoolean(true);
+        livingEntity.getArmorSlots().forEach(stack -> {
+            if (!(stack.getItem() instanceof SwampSilverArmorItem)) {
+                fullSet.set(false);
             }
-        }
-        for (Holder<MobEffect> effect : effectsToRemove) {
-            if (livingEntity.hasEffect(effect)) {
-                livingEntity.removeEffect(effect);
+        });
+        if (fullSet.get()) {
+            List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
+            for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
+                if (!effectInstance.getEffect().value().isBeneficial()) {
+                    effectsToRemove.add(effectInstance.getEffect());
+                }
+            }
+            for (Holder<MobEffect> effect : effectsToRemove) {
+                if (livingEntity.hasEffect(effect)) {
+                    livingEntity.removeEffect(effect);
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-// 1.21	2024-06-15T23:17:26.105028	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.21	2024-06-21T21:48:46.5047708	Tags for minecraft:entity_type mod id eternal_starlight
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_type/abyssal_fire_immune.json
 0c2f80824fcdaa8414ab4e318eaddffd67b2b3a2 data/eternal_starlight/tags/entity_type/gleech_immune.json
 be4ff0376ac9ff8a51eab4ae581131fd7b545de1 data/eternal_starlight/tags/entity_type/robotic.json
@@ -7,4 +7,4 @@ be4ff0376ac9ff8a51eab4ae581131fd7b545de1 data/eternal_starlight/tags/entity_type
 3f853abb02779d1f23df9823ebb9d8707f24ddc9 data/minecraft/tags/entity_type/arthropod.json
 5459e6dcff656af9ac3c0cbea22ffdabcbea8451 data/minecraft/tags/entity_type/fall_damage_immune.json
 f627b828af90e448f9c5322878730dddd94748ff data/minecraft/tags/entity_type/immune_to_infested.json
-f417c7429dc958b55fb2ac7c1ba6010f6b10c45d data/minecraft/tags/entity_type/skeletons.json
+81a6c1860d98805184066dd01894829e9b9830ec data/minecraft/tags/entity_type/skeletons.json

@@ -1,4 +1,4 @@
-// 1.21	2024-06-19T21:22:01.1917519	Loot Tables
+// 1.21	2024-06-21T21:37:19.9717105	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -457,6 +457,7 @@ e84177efa08c636a037bd1a440289d31e3c42fc0 data/eternal_starlight/loot_table/entit
 318be7f64d350c9f5cd183325a91a5ab456b2dda data/eternal_starlight/loot_table/entities/ratlin.json
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_table/entities/shimmer_lacewing.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_table/entities/starlight_golem.json
+99da4d81849fe012168ca37129c8458e017342a8 data/eternal_starlight/loot_table/entities/tangled.json
 cdfda6f90f96ac9dd5c8997e86411f844ff69411 data/eternal_starlight/loot_table/entities/tangled_hatred.json
 7701c465f5d7d4b5d9ae5e5df32771fceca22950 data/eternal_starlight/loot_table/entities/tangled_hatred_part.json
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_table/entities/the_gatekeeper.json

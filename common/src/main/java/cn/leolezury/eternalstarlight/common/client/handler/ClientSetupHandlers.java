@@ -522,6 +522,7 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
+        strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
         strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
@@ -582,6 +583,7 @@ public class ClientSetupHandlers {
         strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
         strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
         strategy.register(LunarThornModel.LAYER_LOCATION, LunarThornModel::createBodyLayer);
+        strategy.register(TangledModel.LAYER_LOCATION, TangledModel::createBodyLayer);
         strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
         strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
     }
