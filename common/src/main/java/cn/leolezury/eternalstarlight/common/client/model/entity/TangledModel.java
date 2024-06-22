@@ -49,6 +49,7 @@ public class TangledModel<T extends Tangled> extends AnimatedEntityModel<T> {
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
+        head.visible = entity.deathTime <= 0;
         head.xRot = headPitch * Mth.DEG_TO_RAD;
         head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
         animate(entity.idleAnimationState, TangledAnimation.IDLE, ageInTicks);

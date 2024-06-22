@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
+    "AbstractSkullBlockMixin",
     "AxeItemMixin",
     "BaseFireBlockMixin",
     "BubbleColumnBlockMixin",
@@ -33,6 +34,7 @@
     "MultiPlayerGameModeMixin",
     "PlayerModelMixin",
     "ScreenEffectRendererMixin",
+    "SkullBlockRendererMixin",
     "SpriteSourceListMixin",
     "SpriteSourceListMixin$PalettedPermutationsAccessor"
   ],

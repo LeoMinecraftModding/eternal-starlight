@@ -62,8 +62,13 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
-    public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
+    public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         ClientSetupHandlers.registerEntityRenderers(event::registerEntityRenderer);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterSkullModels(EntityRenderersEvent.CreateSkullModels event) {
+        ClientSetupHandlers.registerSkullModels(event::registerSkullModel, event.getEntityModelSet());
     }
 
     @SubscribeEvent

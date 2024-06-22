@@ -115,6 +115,17 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
         AdvancementHolder killLunarMonstrosity = addEntityKill(consumer, igniteLunarMonstrosity, "kill_lunar_monstrosity", ESEntities.LUNAR_MONSTROSITY.get(), ESItems.PARASOL_GRASS.get());
 
+        AdvancementHolder chainTangledSkullExplosion = Advancement.Builder.advancement().parent(killLunarMonstrosity).display(
+                        ESItems.TANGLED_SKULL.get(),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".chain_tangled_skull_explosion.title"),
+                        Component.translatable("advancements." + EternalStarlight.ID + ".chain_tangled_skull_explosion.description"),
+                        null,
+                        AdvancementType.CHALLENGE,
+                        true, true, false)
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .addCriterion("explode", ESCriteriaTriggers.CHAIN_TANGLED_SKULL_EXPLOSION.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+                .save(consumer, EternalStarlight.ID + ":chain_tangled_skull_explosion");
+
         AdvancementHolder useBlossomOfStars = Advancement.Builder.advancement().parent(enterDim).display(
                         ESItems.BLOSSOM_OF_STARS.get(),
                         Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.title"),

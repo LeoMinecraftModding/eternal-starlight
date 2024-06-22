@@ -121,6 +121,11 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(Items.BONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F))))));
 
+        add(ESEntities.TANGLED_SKULL.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .when(LootItemRandomChanceCondition.randomChance(0.3F))
+                        .add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get()))));
+
         // no loot
 
         // how dare you hurt the cute npc

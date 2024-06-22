@@ -45,6 +45,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 ESEntities.LONESTAR_SKELETON.get(),
                 ESEntities.TANGLED.get()
         );
+        tag(EntityTypeTags.UNDEAD).add(
+                ESEntities.TANGLED_SKULL.get()
+        );
         tag(EntityTypeTags.ARTHROPOD).add(
                 ESEntities.NIGHTFALL_SPIDER.get(),
                 ESEntities.GLEECH.get()

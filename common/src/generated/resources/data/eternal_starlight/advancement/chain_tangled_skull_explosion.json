@@ -1,0 +1,27 @@
+{
+  "parent": "eternal_starlight:kill_lunar_monstrosity",
+  "criteria": {
+    "explode": {
+      "trigger": "eternal_starlight:chain_tangled_skull_explosion"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.chain_tangled_skull_explosion.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:tangled_skull"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.chain_tangled_skull_explosion.title"
+    }
+  },
+  "requirements": [
+    [
+      "explode"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

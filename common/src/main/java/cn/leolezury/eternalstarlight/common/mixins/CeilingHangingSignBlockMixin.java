@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// todo don't use mixin if mojang fixed the MapCodec<SomeBlock> problem
 @Mixin(CeilingHangingSignBlock.class)
 public abstract class CeilingHangingSignBlockMixin {
     @Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)

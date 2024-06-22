@@ -67,6 +67,9 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
                                 .setRolls(UniformGenerator.between(1, 2))
                                 .add(LootItem.lootTableItem(ESItems.TRAPPED_SOUL.get())))
                         .withPool(LootPool.lootPool()
+                                .setRolls(UniformGenerator.between(5, 8))
+                                .add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get())))
+                        .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(0, 1))
                                 .add(LootItem.lootTableItem(ESItems.WAND_OF_TELEPORTATION.get()))));
     }

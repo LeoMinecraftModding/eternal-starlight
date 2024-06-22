@@ -493,6 +493,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ESBlocks.RED_YETI_FUR_CARPET.get());
         dropSelf(ESBlocks.BLACK_YETI_FUR_CARPET.get());
 
+        dropSelf(ESBlocks.TANGLED_SKULL.get());
+        dropOther(ESBlocks.TANGLED_WALL_SKULL.get(), ESBlocks.TANGLED_SKULL.get());
+
         dropSelf(ESBlocks.RAW_AETHERSENT_BLOCK.get());
         dropSelf(ESBlocks.AETHERSENT_BLOCK.get());
         dropSelf(ESBlocks.SPRINGSTONE.get());

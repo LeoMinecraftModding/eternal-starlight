@@ -12,6 +12,7 @@
     "ProjectileMixin"
   ],
   "client": [
+    "BlockEntityWithoutLevelRendererMixin",
     "BossHealthOverlayMixin",
     "CameraMixin",
     "FogRendererMixin",
@@ -20,7 +21,8 @@
     "LevelRendererMixin",
     "ModelBakeryMixin",
     "ModelManagerMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "SkullBlockRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

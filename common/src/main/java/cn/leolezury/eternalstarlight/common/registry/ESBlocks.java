@@ -592,6 +592,9 @@ public class ESBlocks {
     public static final RegistryObject<Block, CarpetBlock> RED_YETI_FUR_CARPET = BLOCKS.register("red_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final RegistryObject<Block, CarpetBlock> BLACK_YETI_FUR_CARPET = BLOCKS.register("black_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_CARPET)));
 
+    public static final RegistryObject<Block, SkullBlock> TANGLED_SKULL = BLOCKS.register("tangled_skull", () -> new SkullBlock(ESSkullType.TANGLED, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL)));
+    public static final RegistryObject<Block, WallSkullBlock> TANGLED_WALL_SKULL = BLOCKS.register("tangled_wall_skull", () -> new WallSkullBlock(ESSkullType.TANGLED, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_WALL_SKULL)));
+
     public static final RegistryObject<Block, Block> RAW_AETHERSENT_BLOCK = BLOCKS.register("raw_aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> AETHERSENT_BLOCK = BLOCKS.register("aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistryObject<Block, Block> SPRINGSTONE = BLOCKS.register("springstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(MapColor.COLOR_BROWN).strength(3.0F, 3.0F)));

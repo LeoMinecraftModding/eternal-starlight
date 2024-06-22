@@ -1,11 +1,13 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.ESSkullType;
 import cn.leolezury.eternalstarlight.common.client.ESParticleRenderType;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
+import cn.leolezury.eternalstarlight.common.client.model.block.TangledHeadModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
@@ -28,10 +30,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.HumanoidArmorModel;
-import net.minecraft.client.model.SkeletonModel;
+import net.minecraft.client.model.*;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -41,10 +41,7 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.blockentity.CampfireRenderer;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -64,6 +61,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
@@ -89,6 +87,10 @@ public class ClientSetupHandlers {
 
     public interface EntityRendererRegisterStrategy {
         <T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererProvider<T> entityRendererProvider);
+    }
+
+    public interface SkullRendererRegisterStrategy {
+        void register(SkullBlock.Type type, SkullModelBase model);
     }
 
     public interface RendererLayerRegisterStrategy {
@@ -285,7 +287,10 @@ public class ClientSetupHandlers {
         BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
         BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
         BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
+        BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
         BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
+
+        SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
         ItemProperties.register(ESItems.SHATTERED_SWORD.get(), ResourceLocation.withDefaultNamespace("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
@@ -523,12 +528,17 @@ public class ClientSetupHandlers {
         strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
         strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
         strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
+        strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
         strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
         strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
         strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
         strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
         strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
+    }
+
+    public static void registerSkullModels(SkullRendererRegisterStrategy strategy, EntityModelSet modelSet) {
+        strategy.register(ESSkullType.TANGLED, new TangledHeadModel(modelSet.bakeLayer(TangledHeadModel.LAYER_LOCATION)));
     }
 
     private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
@@ -584,6 +594,8 @@ public class ClientSetupHandlers {
         strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
         strategy.register(LunarThornModel.LAYER_LOCATION, LunarThornModel::createBodyLayer);
         strategy.register(TangledModel.LAYER_LOCATION, TangledModel::createBodyLayer);
+        strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
+        strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
         strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
         strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
     }

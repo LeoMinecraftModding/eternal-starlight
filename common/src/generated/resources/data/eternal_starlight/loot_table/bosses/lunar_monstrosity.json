@@ -54,6 +54,20 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:tangled_skull"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 5.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:wand_of_teleportation"
         }
       ],

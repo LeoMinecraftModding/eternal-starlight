@@ -332,6 +332,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
         tintedCarpet(ESBlocks.RED_YETI_FUR_CARPET.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
         tintedCarpet(ESBlocks.BLACK_YETI_FUR_CARPET.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"));
 
+        particleOnly(ESBlocks.TANGLED_SKULL.get(), blockTexture(Blocks.SOUL_SAND));
+        particleOnly(ESBlocks.TANGLED_WALL_SKULL.get(), blockTexture(Blocks.SOUL_SAND));
+
         simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
         simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
         simpleBlock(ESBlocks.SPRINGSTONE.get());

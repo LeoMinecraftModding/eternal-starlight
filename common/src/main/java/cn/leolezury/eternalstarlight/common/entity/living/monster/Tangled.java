@@ -3,9 +3,12 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,8 +23,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -127,6 +132,35 @@ public class Tangled extends Monster implements MultiBehaviourUser {
         super.onSyncedDataUpdated(accessor);
     }
 
+    @Override
+    protected void tickDeath() {
+        if (!level().isClientSide && this.deathTime == 0 && getRandom().nextBoolean()) {
+            TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level());
+            skull.setPos(getX(), getY(0.75), getZ());
+            skull.setTarget(getTarget());
+            skull.setLastHurtByMob(getTarget());
+            level().addFreshEntity(skull);
+        }
+        ++this.deathTime;
+        if (this.deathTime >= 20 && !this.level().isClientSide() && !this.isRemoved()) {
+            this.level().broadcastEntityEvent(this, (byte)60);
+            this.remove(RemovalReason.KILLED);
+        }
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+        super.dropCustomDeathLoot(serverLevel, damageSource, bl);
+        Entity entity = damageSource.getEntity();
+        if (entity instanceof Creeper creeper) {
+            if (creeper.canDropMobsSkull()) {
+                ItemStack itemStack = ESItems.TANGLED_SKULL.get().getDefaultInstance();
+                creeper.increaseDroppedSkulls();
+                this.spawnAtLocation(itemStack);
+            }
+        }
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
@@ -136,10 +170,5 @@ public class Tangled extends Monster implements MultiBehaviourUser {
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.SKELETON_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.SKELETON_DEATH;
     }
 }

@@ -1,4 +1,4 @@
-// 1.21	2024-06-21T23:49:18.3475658	Registries
+// 1.21	2024-06-22T12:09:06.9395256	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -196,7 +196,7 @@ b3a58c6ed0f0d9f2f3039c50292931d124bc398f data/eternal_starlight/worldgen/placed_
 5fd6ae73b2d4327958f208cb6d405b18f0cf3dd8 data/eternal_starlight/worldgen/placed_feature/water_surface_plant.json
 3f193ef83545d2ad7c1ebea8c8cab08a71e13af7 data/eternal_starlight/worldgen/processor_list/golem_forge/oxidization.json
 57595cba3889644cd81fa83952a30837a0a90cef data/eternal_starlight/worldgen/processor_list/portal_ruins_vines.json
-7a5fb66ca76b69812d0ae764f3114a00cd128ffd data/eternal_starlight/worldgen/structure/cursed_garden.json
+d5d508aa25095a084897b13a44899e69bb7b1bc8 data/eternal_starlight/worldgen/structure/cursed_garden.json
 9ab21bc9aa7a5fdaf73170ef882f477a4be499ac data/eternal_starlight/worldgen/structure/golem_forge.json
 fb92463956e5fd9946099d841b2c5c492419a169 data/eternal_starlight/worldgen/structure/portal_ruins_common.json
 d8f2073f79e8852f2b6dc8dd568bd2832df1b9b7 data/eternal_starlight/worldgen/structure/portal_ruins_desert.json

@@ -567,6 +567,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         basicItem(ESItems.TRAPPED_SOUL.get());
         basicItem(ESItems.SOULIT_SPECTATOR.get());
 
+        templateSkull(ESItems.TANGLED_SKULL.get());
+
         basicItem(ESItems.GLEECH_EGG.get());
 
         basicItem(ESItems.TOOTH_OF_HUNGER.get());
@@ -699,6 +701,11 @@ public class ESItemModelProvider extends ItemModelProvider {
         getBuilder(name(cube))
                 .parent(getExistingFile(mcLoc("block/cube_all")))
                 .texture("all", blockTextureFromItem(cube));
+    }
+
+    private void templateSkull(Item skull) {
+        getBuilder(name(skull))
+                .parent(getExistingFile(mcLoc("item/template_skull")));
     }
 
     private void block(Item item) {

@@ -85,7 +85,7 @@ public class ESStructures {
         context.register(CURSED_GARDEN, new CursedGardenStructure(
                 new Structure.StructureSettings(
                         biomeGetter.getOrThrow(ESTags.Biomes.HAS_CURSED_GARDEN),
-                        Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.TANGLED.get(), 10, 1, 2)))),
+                        Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.TANGLED.get(), 20, 1, 2)))),
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN)
         ));

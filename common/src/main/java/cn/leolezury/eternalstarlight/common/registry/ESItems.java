@@ -645,6 +645,8 @@ public class ESItems {
     public static final RegistryObject<Item, Item> TRAPPED_SOUL = registerItem("trapped_soul", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item, Item> SOULIT_SPECTATOR = registerItem("soulit_spectator", () -> new SoulitSpectatorItem(new Item.Properties().rarity(Rarity.RARE).durability(750)));
 
+    public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
+
     public static final RegistryObject<Item, Item> GLEECH_EGG = registerItem("gleech_egg", () -> new GleechEggItem(new Item.Properties().stacksTo(16)));
 
     public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER = registerItem("tooth_of_hunger", () -> new Item(new Item.Properties()));
