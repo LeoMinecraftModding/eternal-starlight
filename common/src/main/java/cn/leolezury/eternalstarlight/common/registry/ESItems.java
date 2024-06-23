@@ -345,6 +345,7 @@ public class ESItems {
 
     // tenacious petal
     public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
+    public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> LUNAR_MOSAIC = registerItem("lunar_mosaic", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> LUNAR_MOSAIC_SLAB = registerItem("lunar_mosaic_slab", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_SLAB.get(), new Item.Properties()));
     public static final RegistryObject<Item, Item> LUNAR_MOSAIC_STAIRS = registerItem("lunar_mosaic_stairs", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), new Item.Properties()));

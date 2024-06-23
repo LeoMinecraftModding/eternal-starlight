@@ -36,7 +36,7 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) ESBlocks.BERRIES_VINES.get();
+        return ESBlocks.BERRIES_VINES.get();
     }
 
     protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {

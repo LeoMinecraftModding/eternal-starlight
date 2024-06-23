@@ -169,6 +169,8 @@ public class ClientSetupHandlers {
             ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
             ESBlocks.THIOQUARTZ_CLUSTER,
+            ESBlocks.SHADEGRIEVE,
+            ESBlocks.BLOOMING_SHADEGRIEVE,
             ESBlocks.DOOMED_TORCH,
             ESBlocks.WALL_DOOMED_TORCH,
             ESBlocks.DOOMED_REDSTONE_TORCH,

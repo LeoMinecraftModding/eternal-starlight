@@ -30,6 +30,6 @@ public class CaveMossPlantBlock extends GrowingPlantBodyBlock {
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) ESBlocks.CAVE_MOSS.get();
+        return ESBlocks.CAVE_MOSS.get();
     }
 }

@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
-import cn.leolezury.eternalstarlight.common.block.OrbfloraBlock;
-import cn.leolezury.eternalstarlight.common.block.PolishedToxiteBlock;
-import cn.leolezury.eternalstarlight.common.block.TorreyaVinesPlantBlock;
+import cn.leolezury.eternalstarlight.common.block.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -200,7 +197,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
         simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
         simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 
-        simpleBlock(ESBlocks.SHADEGRIEVE.get());
+        shadegrieve(ESBlocks.SHADEGRIEVE.get());
+        shadegrieve(ESBlocks.BLOOMING_SHADEGRIEVE.get());
         simpleBlock(ESBlocks.LUNAR_MOSAIC.get());
         slabBlock(ESBlocks.LUNAR_MOSAIC_SLAB.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
         stairsBlock(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
@@ -828,6 +826,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
         ModelFile modelNormal = models().singleTexture(name(leaves), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         ModelFile modelSnowy = models().cubeBottomTop(name(leaves) + "_snowy", blockTexture(leaves).withSuffix("_snowy"), blockTexture(leaves), blockTexture(leaves)).renderType(CUTOUT_MIPPED);
         onOffBlock(leaves, BlockStateProperties.SNOWY, modelSnowy, modelNormal);
+    }
+
+    private void shadegrieve(Block block) {
+        ModelFile modelNormal = cubeAll(block);
+        ModelFile modelTop = models().withExistingParent(name(block) + "_top", EternalStarlight.id("template_top_shadegrieve")).renderType(CUTOUT)
+                .texture("cube", blockTexture(block)).texture("particle", blockTexture(block)).texture("upper", blockTexture(block).withSuffix("_upper"));
+        onOffBlock(block, ShadegrieveBlock.TOP, modelTop, modelNormal);
     }
 
     private void onOffBlock(Block block, BooleanProperty property, ModelFile on, ModelFile off) {

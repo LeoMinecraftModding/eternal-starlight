@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "top=false": {
       "model": "eternal_starlight:block/shadegrieve"
+    },
+    "top=true": {
+      "model": "eternal_starlight:block/shadegrieve_top"
     }
   }
 }

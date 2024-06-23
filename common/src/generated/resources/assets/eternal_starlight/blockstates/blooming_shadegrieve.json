@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "top=false": {
+      "model": "eternal_starlight:block/blooming_shadegrieve"
+    },
+    "top=true": {
+      "model": "eternal_starlight:block/blooming_shadegrieve_top"
+    }
+  }
+}

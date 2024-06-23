@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure;
 
+import cn.leolezury.eternalstarlight.common.block.ShadegrieveBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESStructurePieceTypes;
 import cn.leolezury.eternalstarlight.common.util.MazeGenerator;
@@ -59,8 +60,9 @@ public class CursedGardenMazePiece extends StructurePiece {
                     for (int blockZ = z * STRUCTURE_SCALE; blockZ < z * STRUCTURE_SCALE + STRUCTURE_SCALE; blockZ++) {
                         placeBlock(level, x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1 ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, 0, blockZ, box);
                         if (maze[x][z]) {
+                            int leavesHeight = STRUCTURE_HEIGHT / 7 + random.nextInt(STRUCTURE_HEIGHT / 7);
                             for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
-                                placeBlock(level, (y < STRUCTURE_HEIGHT / 7 + random.nextInt(STRUCTURE_HEIGHT / 7) && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, y + 1, blockZ, box);
+                                placeBlock(level, (y <= leavesHeight && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? (random.nextInt(3) == 0 ? ESBlocks.BLOOMING_SHADEGRIEVE.get() : ESBlocks.SHADEGRIEVE.get()).defaultBlockState().setValue(ShadegrieveBlock.TOP, y == leavesHeight) : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, y + 1, blockZ, box);
                             }
                         } else {
                             for (int y = 0; y < STRUCTURE_HEIGHT; y++) {

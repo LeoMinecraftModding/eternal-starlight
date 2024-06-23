@@ -40,7 +40,7 @@ public class OrbfloraPlantBlock extends GrowingPlantBodyBlock implements LiquidB
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) ESBlocks.ORBFLORA.get();
+        return ESBlocks.ORBFLORA.get();
     }
 
     @Override

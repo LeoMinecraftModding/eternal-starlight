@@ -5,8 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -45,10 +43,6 @@ public class CaveMossVeinBlock extends MultifaceBlock implements BonemealableBlo
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
         return super.updateShape(state, direction, state1, level, pos, pos1);
-    }
-
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        return !context.getItemInHand().is(Items.GLOW_LICHEN) || super.canBeReplaced(state, context);
     }
 
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {

@@ -1,4 +1,4 @@
-// 1.21	2024-06-22T17:40:59.5980548	Loot Tables
+// 1.21	2024-06-23T21:36:55.3971916	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -12,6 +12,7 @@ d2768b2c67b2d06f7f9c6d98b6aed611a3354c77 data/eternal_starlight/loot_table/block
 4a6bd63e8701407f5cf1068745242043e17020c3 data/eternal_starlight/loot_table/blocks/berries_vines_plant.json
 a33c1217dea3a5be7f12aa1dc90bc7bb5e35aed6 data/eternal_starlight/loot_table/blocks/black_yeti_fur.json
 c41c8e74aac50f82069d690f7ffc9cd3d77d307d data/eternal_starlight/loot_table/blocks/black_yeti_fur_carpet.json
+8c61a0f196fb85b3b769ab05cefec82075b48be9 data/eternal_starlight/loot_table/blocks/blooming_shadegrieve.json
 d482caff91a5f877a22b046cb32a89acc1ad87e1 data/eternal_starlight/loot_table/blocks/blue_crystallized_lunar_log.json
 63f1924635d4366f6c6f9f36a69b624f89090e2f data/eternal_starlight/loot_table/blocks/blue_crystal_moss_carpet.json
 70c2f98a65e154dcdc97d334a96658842c0fa958 data/eternal_starlight/loot_table/blocks/blue_crystal_roots.json

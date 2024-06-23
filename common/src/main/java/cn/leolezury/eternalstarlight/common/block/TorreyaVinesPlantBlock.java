@@ -27,11 +27,11 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 
     @Override
     protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) ESBlocks.TORREYA_VINES.get();
+        return ESBlocks.TORREYA_VINES.get();
     }
 
     @Override
@@ -46,9 +46,9 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        BlockState state = super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
-        if (!levelAccessor.getBlockState(blockPos.above()).is(this) && state.hasProperty(TOP)) {
+    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor level, BlockPos blockPos, BlockPos blockPos2) {
+        BlockState state = super.updateShape(blockState, direction, blockState2, level, blockPos, blockPos2);
+        if (!level.getBlockState(blockPos.above()).is(this)) {
             state = state.setValue(TOP, true);
         }
         return state;

@@ -1,0 +1,9 @@
+{
+  "parent": "eternal_starlight:block/template_top_shadegrieve",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cube": "eternal_starlight:block/shadegrieve",
+    "particle": "eternal_starlight:block/shadegrieve",
+    "upper": "eternal_starlight:block/shadegrieve_upper"
+  }
+}
