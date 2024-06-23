@@ -271,6 +271,7 @@ public class ClientSetupHandlers {
         }
         ParticleEngine.RENDER_ORDER = renderTypes;
 
+        ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("glacite_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
         ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy"), "inventory"), new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));
@@ -466,6 +467,7 @@ public class ClientSetupHandlers {
     }
 
     public static void registerExtraBakedModels(Consumer<ModelResourceLocation> registration) {
+        registration.accept(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));
         registration.accept(new ModelResourceLocation(EternalStarlight.id("orb_of_prophecy_inventory"), "inventory"));

@@ -22,6 +22,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -158,7 +159,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
     @Override
     public boolean hurt(DamageSource damageSource, float f) {
-        if (damageSource.is(DamageTypes.GENERIC_KILL)) {
+        if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             return super.hurt(damageSource, f);
         } else if (canHurt() && getBehaviourState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
             hurtCount++;

@@ -440,7 +440,8 @@ public class ESItemModelProvider extends ItemModelProvider {
         handheld(ESItems.THERMAL_SPRINGSTONE_SWORD.get());
         handheld(ESItems.THERMAL_SPRINGSTONE_PICKAXE.get());
         handheld(ESItems.THERMAL_SPRINGSTONE_AXE.get());
-        handheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
+        largeHandheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
+        inventoryModel(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
         inventoryModel(ESItems.THERMAL_SPRINGSTONE_HAMMER.get());
         basicItem(ESItems.THERMAL_SPRINGSTONE_HELMET.get());
         basicItem(ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get());

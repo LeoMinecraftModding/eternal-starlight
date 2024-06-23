@@ -232,7 +232,7 @@ public class ClientHandlers {
             case StarlightGolem starlightGolem ->
                     barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
             case LunarMonstrosity lunarMonstrosity ->
-                    barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity.png");
+                    barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity" + (lunarMonstrosity.getPhase() > 0 ? "_soul.png" : ".png"));
             case null, default -> {
                 return false;
             }
@@ -257,7 +257,7 @@ public class ClientHandlers {
         if (k > 0) {
             drawBar(guiGraphics, x, y, event, k, BAR_PROGRESS_SPRITES, OVERLAY_PROGRESS_SPRITES);
         }
-        guiGraphics.blit(barLocation, x - 36, y - 32, 0.0F, 0.0F, 256, 64, 256, 64);
+        guiGraphics.blit(barLocation, x - 1, y - 5, 0.0F, 0.0F, 184, 16, 184, 16);
     }
 
     private static void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent bossEvent, int progress, ResourceLocation[] bars, ResourceLocation[] overlays) {

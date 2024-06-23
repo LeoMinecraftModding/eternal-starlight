@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
@@ -26,6 +25,5 @@ public abstract class SkullBlockRendererMixin {
         HashMap<SkullBlock.Type, SkullModelBase> map = new HashMap<>(modelByType);
         ClientSetupHandlers.registerSkullModels(map::put, context.getModelSet());
         modelByType = map;
-        LogUtils.getLogger().warn("Modified Skull Models! {}", modelByType);
     }
 }

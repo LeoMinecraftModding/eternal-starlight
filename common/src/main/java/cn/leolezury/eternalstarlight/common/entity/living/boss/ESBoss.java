@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,9 +17,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Music;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -30,8 +32,12 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ESBoss extends Monster implements MultiBehaviourUser {
     private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
+    private final List<ServerPlayer> fightParticipants = new ArrayList<>();
 
     protected ESBoss(EntityType<? extends Monster> type, Level level) {
         super(type, level);
@@ -110,12 +116,25 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.GENERIC_KILL)) {
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             return super.hurt(source, amount);
         } else if (source.equals(level().damageSources().fall())) {
             return false;
         }
+        if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player)) {
+            fightParticipants.add(player);
+        }
         return super.hurt(source, Math.min(amount, 20));
+    }
+
+    @Override
+    public void die(DamageSource source) {
+        for (ServerPlayer player : fightParticipants) {
+            if (player.isAlive() && player.level().dimension() == level().dimension()) {
+                CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(player, this, source);
+            }
+        }
+        super.die(source);
     }
 
     @Override
@@ -159,12 +178,16 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
     @Override
     protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
         super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-        ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-        lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
-        ItemEntity item = spawnAtLocation(lootBag);
-        if (item != null) {
-            item.setGlowingTag(true);
-            item.setExtendedLifetime();
+        for (ServerPlayer player : fightParticipants) {
+            if (player.isAlive() && player.level().dimension() == level().dimension()) {
+                ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+                lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+                ItemEntity item = player.spawnAtLocation(lootBag);
+                if (item != null) {
+                    item.setGlowingTag(true);
+                    item.setExtendedLifetime();
+                }
+            }
         }
     }
 

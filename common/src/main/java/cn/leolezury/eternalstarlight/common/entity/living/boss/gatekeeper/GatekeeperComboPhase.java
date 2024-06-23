@@ -6,7 +6,7 @@ public class GatekeeperComboPhase extends BehaviourPhase<TheGatekeeper> {
     public static final int ID = 7;
 
     public GatekeeperComboPhase() {
-        super(ID, 1, 75, 50);
+        super(ID, 1, 75, 80);
     }
 
     @Override

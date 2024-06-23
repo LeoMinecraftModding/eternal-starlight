@@ -24,13 +24,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -240,7 +240,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
     @Override
     public boolean hurt(DamageSource damageSource, float amount) {
-        if (damageSource.is(DamageTypes.GENERIC_KILL)) {
+        if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             return super.hurt(damageSource, amount);
         }
         if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {

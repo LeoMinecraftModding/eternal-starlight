@@ -55,6 +55,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 
     protected void initializeCreature(T mob) {
         mob.restrictTo(getBlockPos(), 50);
+        mob.setPersistenceRequired();
     }
 
     protected int getRange() {
