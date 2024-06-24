@@ -1,152 +1,548 @@
 {
-	"parent": "block/block",
-	"render_type": "minecraft:cutout",
-	"textures": {
-		"petal": "eternal_starlight:block/orbflora_petal",
-		"light": "eternal_starlight:block/orbflora_light",
-		"particle": "eternal_starlight:block/orbflora_light"
-	},
-	"elements": [
-		{
-			"from": [3.7, 3, 0],
-			"to": [3.7, 19, 16],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [4, 3, 8]},
-			"faces": {
-				"east": {"uv": [0, 0, 16, 16], "texture": "#petal"},
-				"west": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#petal"}
-			}
-		},
-		{
-			"from": [0, 3, 3.7],
-			"to": [16, 19, 3.7],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3, 4]},
-			"faces": {
-				"north": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#petal"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [12.3, 3, 0],
-			"to": [12.3, 19, 16],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [12, 3, 8]},
-			"faces": {
-				"east": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#petal"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [0, 3, 12.3],
-			"to": [16, 19, 12.3],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3, 12]},
-			"faces": {
-				"north": {"uv": [16, 16, 0, 0], "rotation": 180, "texture": "#petal"},
-				"south": {"uv": [16, 0, 0, 16], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [3.7, -13, 0],
-			"to": [3.7, 3, 16],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [4, 3, 8]},
-			"faces": {
-				"east": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#petal"},
-				"west": {"uv": [16, 16, 0, 0], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [0, -13, 3.7],
-			"to": [16, 3, 3.7],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3, 4]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#petal"},
-				"south": {"uv": [0, 16, 16, 0], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [12.3, -13, 0],
-			"to": [12.3, 3, 16],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [12, 3, 8]},
-			"faces": {
-				"east": {"uv": [16, 16, 0, 0], "texture": "#petal"},
-				"west": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#petal"}
-			}
-		},
-		{
-			"from": [0, -13, 12.3],
-			"to": [16, 3, 12.3],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3, 12]},
-			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#petal"},
-				"south": {"uv": [16, 16, 0, 0], "texture": "#petal"}
-			}
-		},
-		{
-			"from": [4, 0, 4],
-			"to": [12, 6, 12],
-			"faces": {
-				"north": {"uv": [0, 0, 8, 6], "texture": "#light"},
-				"east": {"uv": [0, 0, 8, 6], "texture": "#light"},
-				"south": {"uv": [0, 0, 8, 6], "texture": "#light"},
-				"west": {"uv": [0, 0, 8, 6], "texture": "#light"},
-				"up": {"uv": [0, 0, 8, 8], "texture": "#light"},
-				"down": {"uv": [0, 0, 8, 8], "texture": "#light"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"translation": [0, 3.75, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"thirdperson_lefthand": {
-			"translation": [0, 3.75, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_righthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"ground": {
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"gui": {
-			"rotation": [30, 45, 0],
-			"translation": [0, 2.25, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"fixed": {
-			"rotation": [90, 0, 0],
-			"translation": [0, 0, 3],
-			"scale": [0.5, 0.5, 0.5]
-		}
-	},
-	"groups": [
-		{
-			"name": "upper_petals",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [0, 1, 2, 3]
-		},
-		{
-			"name": "lower_petals",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [4, 5, 6, 7]
-		},
-		{
-			"name": "light",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [8]
-		}
-	]
+  "parent": "block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "petal": "eternal_starlight:block/orbflora_petal",
+    "light": "eternal_starlight:block/orbflora_light",
+    "particle": "eternal_starlight:block/orbflora_light"
+  },
+  "elements": [
+    {
+      "from": [
+        3.7,
+        3,
+        0
+      ],
+      "to": [
+        3.7,
+        19,
+        16
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 22.5,
+        "axis": "z",
+        "origin": [
+          4,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#petal"
+        },
+        "west": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        3,
+        3.7
+      ],
+      "to": [
+        16,
+        19,
+        3.7
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": -22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          3,
+          4
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        12.3,
+        3,
+        0
+      ],
+      "to": [
+        12.3,
+        19,
+        16
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": -22.5,
+        "axis": "z",
+        "origin": [
+          12,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        3,
+        12.3
+      ],
+      "to": [
+        16,
+        19,
+        12.3
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          3,
+          12
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "south": {
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        3.7,
+        -13,
+        0
+      ],
+      "to": [
+        3.7,
+        3,
+        16
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": -22.5,
+        "axis": "z",
+        "origin": [
+          4,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "west": {
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -13,
+        3.7
+      ],
+      "to": [
+        16,
+        3,
+        3.7
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          3,
+          4
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "south": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        12.3,
+        -13,
+        0
+      ],
+      "to": [
+        12.3,
+        3,
+        16
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 22.5,
+        "axis": "z",
+        "origin": [
+          12,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "texture": "#petal"
+        },
+        "west": {
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -13,
+        12.3
+      ],
+      "to": [
+        16,
+        3,
+        12.3
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": -22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          3,
+          12
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "rotation": 180,
+          "texture": "#petal"
+        },
+        "south": {
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "texture": "#petal"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        6,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            6
+          ],
+          "texture": "#light"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            6
+          ],
+          "texture": "#light"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            6
+          ],
+          "texture": "#light"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            6
+          ],
+          "texture": "#light"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#light"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#light"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        3.75,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        3.75,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "firstperson_righthand": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "firstperson_lefthand": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        2.25,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        3
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "upper_petals",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "name": "lower_petals",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "name": "light",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        8
+      ]
+    }
+  ]
 }

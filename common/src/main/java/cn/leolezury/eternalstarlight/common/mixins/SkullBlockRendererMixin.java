@@ -17,12 +17,14 @@ import java.util.Map;
 
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {
-    @Shadow @Final public static Map<SkullBlock.Type, ResourceLocation> SKIN_BY_TYPE;
+	@Shadow
+	@Final
+	public static Map<SkullBlock.Type, ResourceLocation> SKIN_BY_TYPE;
 
-    @Inject(method = "getRenderType", at = @At(value = "RETURN"), cancellable = true)
-    private static void getRenderType(SkullBlock.Type type, ResolvableProfile resolvableProfile, CallbackInfoReturnable<RenderType> cir) {
-        if (type == ESSkullType.TANGLED) {
-            cir.setReturnValue(RenderType.entityTranslucent(SKIN_BY_TYPE.get(type)));
-        }
-    }
+	@Inject(method = "getRenderType", at = @At(value = "RETURN"), cancellable = true)
+	private static void getRenderType(SkullBlock.Type type, ResolvableProfile resolvableProfile, CallbackInfoReturnable<RenderType> cir) {
+		if (type == ESSkullType.TANGLED) {
+			cir.setReturnValue(RenderType.entityTranslucent(SKIN_BY_TYPE.get(type)));
+		}
+	}
 }

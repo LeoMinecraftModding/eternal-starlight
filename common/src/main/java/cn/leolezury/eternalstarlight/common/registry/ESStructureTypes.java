@@ -8,8 +8,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 
 public class ESStructureTypes {
-    public static final RegistrationProvider<StructureType<?>> STRUCTURE_TYPES = RegistrationProvider.get(Registries.STRUCTURE_TYPE, EternalStarlight.ID);
-    public static final RegistryObject<StructureType<?>, StructureType<CursedGardenStructure>> CURSED_GARDEN = STRUCTURE_TYPES.register("cursed_garden", () -> () -> CursedGardenStructure.CODEC);
+	public static final RegistrationProvider<StructureType<?>> STRUCTURE_TYPES = RegistrationProvider.get(Registries.STRUCTURE_TYPE, EternalStarlight.ID);
+	public static final RegistryObject<StructureType<?>, StructureType<CursedGardenStructure>> CURSED_GARDEN = STRUCTURE_TYPES.register("cursed_garden", () -> () -> CursedGardenStructure.CODEC);
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

@@ -16,45 +16,45 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShadegrieveBlock extends Block {
-    public static final MapCodec<ShadegrieveBlock> CODEC = simpleCodec(ShadegrieveBlock::new);
-    public static final BooleanProperty TOP = BooleanProperty.create("top");
+	public static final MapCodec<ShadegrieveBlock> CODEC = simpleCodec(ShadegrieveBlock::new);
+	public static final BooleanProperty TOP = BooleanProperty.create("top");
 
-    public ShadegrieveBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(TOP, false));
-    }
+	public ShadegrieveBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.stateDefinition.any().setValue(TOP, false));
+	}
 
-    @Override
-    protected MapCodec<ShadegrieveBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<ShadegrieveBlock> codec() {
+		return CODEC;
+	}
 
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = super.getStateForPlacement(context);
-        if (state == null) return null;
-        boolean sturdy = true;
-        Level level = context.getLevel();
-        BlockPos blockPos = context.getClickedPos();
-        List<Direction> xzDirections = Arrays.stream(Direction.values()).filter(dir -> dir.getAxis() != Direction.Axis.Y).toList();
-        for (Direction dir : xzDirections) {
-            sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
-        }
-        return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
-    }
+	@Nullable
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockState state = super.getStateForPlacement(context);
+		if (state == null) return null;
+		boolean sturdy = true;
+		Level level = context.getLevel();
+		BlockPos blockPos = context.getClickedPos();
+		List<Direction> xzDirections = Arrays.stream(Direction.values()).filter(dir -> dir.getAxis() != Direction.Axis.Y).toList();
+		for (Direction dir : xzDirections) {
+			sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
+		}
+		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
+	}
 
-    @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState blockState2, LevelAccessor level, BlockPos blockPos, BlockPos blockPos2) {
-        boolean sturdy = true;
-        List<Direction> xzDirections = Arrays.stream(Direction.values()).filter(dir -> dir.getAxis() != Direction.Axis.Y).toList();
-        for (Direction dir : xzDirections) {
-            sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
-        }
-        return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
-    }
+	@Override
+	public BlockState updateShape(BlockState state, Direction direction, BlockState blockState2, LevelAccessor level, BlockPos blockPos, BlockPos blockPos2) {
+		boolean sturdy = true;
+		List<Direction> xzDirections = Arrays.stream(Direction.values()).filter(dir -> dir.getAxis() != Direction.Axis.Y).toList();
+		for (Direction dir : xzDirections) {
+			sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
+		}
+		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(TOP);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(TOP);
+	}
 }

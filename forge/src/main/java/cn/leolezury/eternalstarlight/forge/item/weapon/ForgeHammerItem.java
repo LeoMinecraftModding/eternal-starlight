@@ -7,12 +7,12 @@ import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
 
 public class ForgeHammerItem extends HammerItem {
-    public ForgeHammerItem(Tier tier, Properties properties) {
-        super(tier, properties);
-    }
+	public ForgeHammerItem(Tier tier, Properties properties) {
+		super(tier, properties);
+	}
 
-    @Override
-    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return super.canPerformAction(stack, toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction);
-    }
+	@Override
+	public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
+		return super.canPerformAction(stack, toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction);
+	}
 }

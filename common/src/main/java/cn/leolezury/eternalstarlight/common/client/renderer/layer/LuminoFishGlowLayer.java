@@ -11,14 +11,14 @@ import net.minecraft.client.renderer.entity.layers.EyesLayer;
 
 @Environment(EnvType.CLIENT)
 public class LuminoFishGlowLayer<T extends LuminoFish, M extends LuminoFishModel<T>> extends EyesLayer<T, M> {
-    private static final RenderType GLOW = RenderType.eyes(EternalStarlight.id("textures/entity/luminofish_glow.png"));
+	private static final RenderType GLOW = RenderType.eyes(EternalStarlight.id("textures/entity/luminofish_glow.png"));
 
-    public LuminoFishGlowLayer(RenderLayerParent<T, M> parent) {
-        super(parent);
-    }
+	public LuminoFishGlowLayer(RenderLayerParent<T, M> parent) {
+		super(parent);
+	}
 
-    @Override
-    public RenderType renderType() {
-        return GLOW;
-    }
+	@Override
+	public RenderType renderType() {
+		return GLOW;
+	}
 }

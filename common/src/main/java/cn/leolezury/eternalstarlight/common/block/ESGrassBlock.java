@@ -21,62 +21,62 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class ESGrassBlock extends ESSpreadingSnowyDirtBlock implements BonemealableBlock {
-    public static final MapCodec<ESGrassBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("spreads_on").forGetter((block) -> block.spreadsOn),
-            ResourceKey.codec(Registries.PLACED_FEATURE).fieldOf("grass").forGetter((block) -> block.grassFeature),
-            propertiesCodec()
-    ).apply(instance, ESGrassBlock::new));
+	public static final MapCodec<ESGrassBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+		BuiltInRegistries.BLOCK.byNameCodec().fieldOf("spreads_on").forGetter((block) -> block.spreadsOn),
+		ResourceKey.codec(Registries.PLACED_FEATURE).fieldOf("grass").forGetter((block) -> block.grassFeature),
+		propertiesCodec()
+	).apply(instance, ESGrassBlock::new));
 
-    private final ResourceKey<PlacedFeature> grassFeature;
+	private final ResourceKey<PlacedFeature> grassFeature;
 
-    public ESGrassBlock(Block spreadOn, ResourceKey<PlacedFeature> grassFeature, BlockBehaviour.Properties properties) {
-        super(spreadOn, properties);
-        this.grassFeature = grassFeature;
-    }
+	public ESGrassBlock(Block spreadOn, ResourceKey<PlacedFeature> grassFeature, BlockBehaviour.Properties properties) {
+		super(spreadOn, properties);
+		this.grassFeature = grassFeature;
+	}
 
-    @Override
-    protected MapCodec<? extends SnowyDirtBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends SnowyDirtBlock> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return levelReader.getBlockState(blockPos.above()).isAir();
-    }
+	@Override
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		return levelReader.getBlockState(blockPos.above()).isAir();
+	}
 
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        return true;
-    }
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
-        BlockPos blockpos = pos.above();
-        BlockState blockstate = Blocks.SHORT_GRASS.defaultBlockState();
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
+		BlockPos blockpos = pos.above();
+		BlockState blockstate = Blocks.SHORT_GRASS.defaultBlockState();
 
-        label46:
-        for(int i = 0; i < 128; ++i) {
-            BlockPos blockpos1 = blockpos;
+		label46:
+		for (int i = 0; i < 128; ++i) {
+			BlockPos blockpos1 = blockpos;
 
-            for(int j = 0; j < i / 16; ++j) {
-                blockpos1 = blockpos1.offset(randomSource.nextInt(3) - 1, (randomSource.nextInt(3) - 1) * randomSource.nextInt(3) / 2, randomSource.nextInt(3) - 1);
-                if (!serverLevel.getBlockState(blockpos1.below()).is(this) || serverLevel.getBlockState(blockpos1).isCollisionShapeFullBlock(serverLevel, blockpos1)) {
-                    continue label46;
-                }
-            }
+			for (int j = 0; j < i / 16; ++j) {
+				blockpos1 = blockpos1.offset(randomSource.nextInt(3) - 1, (randomSource.nextInt(3) - 1) * randomSource.nextInt(3) / 2, randomSource.nextInt(3) - 1);
+				if (!serverLevel.getBlockState(blockpos1.below()).is(this) || serverLevel.getBlockState(blockpos1).isCollisionShapeFullBlock(serverLevel, blockpos1)) {
+					continue label46;
+				}
+			}
 
-            BlockState blockstate1 = serverLevel.getBlockState(blockpos1);
-            if (blockstate1.is(blockstate.getBlock()) && randomSource.nextInt(10) == 0) {
-                ((BonemealableBlock)blockstate.getBlock()).performBonemeal(serverLevel, randomSource, blockpos1, blockstate1);
-            }
+			BlockState blockstate1 = serverLevel.getBlockState(blockpos1);
+			if (blockstate1.is(blockstate.getBlock()) && randomSource.nextInt(10) == 0) {
+				((BonemealableBlock) blockstate.getBlock()).performBonemeal(serverLevel, randomSource, blockpos1, blockstate1);
+			}
 
-            if (blockstate1.isAir()) {
-                Holder<PlacedFeature> holder;
+			if (blockstate1.isAir()) {
+				Holder<PlacedFeature> holder;
 
-                HolderGetter<PlacedFeature> placedFeatureHolderGetter =  serverLevel.holderLookup(Registries.PLACED_FEATURE);
-                holder = placedFeatureHolderGetter.getOrThrow(grassFeature);
+				HolderGetter<PlacedFeature> placedFeatureHolderGetter = serverLevel.holderLookup(Registries.PLACED_FEATURE);
+				holder = placedFeatureHolderGetter.getOrThrow(grassFeature);
 
-                holder.value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, blockpos1);
-            }
-        }
+				holder.value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, blockpos1);
+			}
+		}
 
-    }
+	}
 }

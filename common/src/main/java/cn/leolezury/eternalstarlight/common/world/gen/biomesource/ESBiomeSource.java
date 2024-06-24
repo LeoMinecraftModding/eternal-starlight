@@ -16,55 +16,55 @@ import net.minecraft.world.level.biome.Climate;
 import java.util.stream.Stream;
 
 public class ESBiomeSource extends BiomeSource {
-    public static final MapCodec<ESBiomeSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-            WorldGenProvider.CODEC.fieldOf("worldgen_provider").forGetter(o -> o.provider),
-            RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(o -> o.biomeHolderSet)
-    ).apply(instance, instance.stable(ESBiomeSource::new)));
+	public static final MapCodec<ESBiomeSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+		WorldGenProvider.CODEC.fieldOf("worldgen_provider").forGetter(o -> o.provider),
+		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(o -> o.biomeHolderSet)
+	).apply(instance, instance.stable(ESBiomeSource::new)));
 
-    private final WorldGenProvider provider;
-    private final HolderSet<Biome> biomeHolderSet;
+	private final WorldGenProvider provider;
+	private final HolderSet<Biome> biomeHolderSet;
 
-    public ESBiomeSource(WorldGenProvider provider, HolderSet<Biome> biomeHolderSet) {
-        this.provider = provider;
-        this.biomeHolderSet = biomeHolderSet;
-    }
+	public ESBiomeSource(WorldGenProvider provider, HolderSet<Biome> biomeHolderSet) {
+		this.provider = provider;
+		this.biomeHolderSet = biomeHolderSet;
+	}
 
-    public void setSeed(long seed) {
-        this.provider.setSeed(seed);
-    }
+	public void setSeed(long seed) {
+		this.provider.setSeed(seed);
+	}
 
-    public void setRegistryAccess(RegistryAccess access) {
-        this.provider.setRegistryAccess(access);
-    }
+	public void setRegistryAccess(RegistryAccess access) {
+		this.provider.setRegistryAccess(access);
+	}
 
-    public void setCacheSize(int size) {
-        this.provider.setCacheSize(size);
-    }
+	public void setCacheSize(int size) {
+		this.provider.setCacheSize(size);
+	}
 
-    @Override
-    protected MapCodec<? extends BiomeSource> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends BiomeSource> codec() {
+		return CODEC;
+	}
 
-    @Override
-    protected Stream<Holder<Biome>> collectPossibleBiomes() {
-        return biomeHolderSet.stream();
-    }
+	@Override
+	protected Stream<Holder<Biome>> collectPossibleBiomes() {
+		return biomeHolderSet.stream();
+	}
 
-    public BiomeData getBiomeData(int x, int z) {
-        return this.provider.getWorldArea(x, z).getBiomeData(x, z);
-    }
+	public BiomeData getBiomeData(int x, int z) {
+		return this.provider.getWorldArea(x, z).getBiomeData(x, z);
+	}
 
-    public int getBiome(int x, int z) {
-        return this.provider.getWorldArea(x, z).getBiome(x, z);
-    }
+	public int getBiome(int x, int z) {
+		return this.provider.getWorldArea(x, z).getBiome(x, z);
+	}
 
-    public int getHeight(int x, int z) {
-        return this.provider.getWorldArea(x, z).getHeight(x, z);
-    }
+	public int getHeight(int x, int z) {
+		return this.provider.getWorldArea(x, z).getHeight(x, z);
+	}
 
-    @Override
-    public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
-        return provider.getBiomeDataById(getBiome(x * 4, z * 4)).biome();
-    }
+	@Override
+	public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
+		return provider.getBiomeDataById(getBiome(x * 4, z * 4)).biome();
+	}
 }

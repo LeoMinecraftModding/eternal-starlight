@@ -8,9 +8,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class ESRecipes {
-    public static final RegistrationProvider<RecipeType<?>> RECIPES = RegistrationProvider.get(Registries.RECIPE_TYPE, EternalStarlight.ID);
+	public static final RegistrationProvider<RecipeType<?>> RECIPES = RegistrationProvider.get(Registries.RECIPE_TYPE, EternalStarlight.ID);
 
-    public static final RegistryObject<RecipeType<?>, RecipeType<GeyserSmokingRecipe>> GEYSER_SMOKING = RECIPES.register("geyser_smoking", GeyserSmokingRecipe.Type::new);
+	public static final RegistryObject<RecipeType<?>, RecipeType<GeyserSmokingRecipe>> GEYSER_SMOKING = RECIPES.register("geyser_smoking", GeyserSmokingRecipe.Type::new);
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

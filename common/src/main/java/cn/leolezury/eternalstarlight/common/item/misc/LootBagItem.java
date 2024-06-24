@@ -21,44 +21,44 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class LootBagItem extends Item {
-    public LootBagItem(Properties properties) {
-        super(properties);
-    }
-    
-    protected void dropFromLootTable(Level level, Vec3 pos, ResourceKey<LootTable> lootTable) {
-        MinecraftServer server;
-        if ((server = level.getServer()) == null) {
-            return;
-        }
-        LootTable loottable = server.reloadableRegistries().getLootTable(lootTable);
-        LootParams.Builder paramBuilder = new LootParams.Builder((ServerLevel)level);
-        LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
-        loottable.getRandomItems(params).forEach((stack) -> spawnAtLocation(stack, level, pos));
-    }
+	public LootBagItem(Properties properties) {
+		super(properties);
+	}
 
-    @Nullable
-    public ItemEntity spawnAtLocation(ItemStack stack, Level level, Vec3 pos) {
-        if (stack.isEmpty()) {
-            return null;
-        } else if (level.isClientSide) {
-            return null;
-        } else {
-            ItemEntity itementity = new ItemEntity(level, pos.x, pos.y, pos.z, stack);
-            itementity.setDefaultPickUpDelay();
-            level.addFreshEntity(itementity);
-            return itementity;
-        }
-    }
+	protected void dropFromLootTable(Level level, Vec3 pos, ResourceKey<LootTable> lootTable) {
+		MinecraftServer server;
+		if ((server = level.getServer()) == null) {
+			return;
+		}
+		LootTable loottable = server.reloadableRegistries().getLootTable(lootTable);
+		LootParams.Builder paramBuilder = new LootParams.Builder((ServerLevel) level);
+		LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
+		loottable.getRandomItems(params).forEach((stack) -> spawnAtLocation(stack, level, pos));
+	}
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        if (!level.isClientSide) {
-            dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("empty")))).resourceKey());
-            if (!player.getAbilities().instabuild) {
-                stack.shrink(1);
-            }
-        }
-        return InteractionResultHolder.consume(stack);
-    }
+	@Nullable
+	public ItemEntity spawnAtLocation(ItemStack stack, Level level, Vec3 pos) {
+		if (stack.isEmpty()) {
+			return null;
+		} else if (level.isClientSide) {
+			return null;
+		} else {
+			ItemEntity itementity = new ItemEntity(level, pos.x, pos.y, pos.z, stack);
+			itementity.setDefaultPickUpDelay();
+			level.addFreshEntity(itementity);
+			return itementity;
+		}
+	}
+
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		ItemStack stack = player.getItemInHand(hand);
+		if (!level.isClientSide) {
+			dropFromLootTable(level, player.position(), stack.getOrDefault(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("empty")))).resourceKey());
+			if (!player.getAbilities().instabuild) {
+				stack.shrink(1);
+			}
+		}
+		return InteractionResultHolder.consume(stack);
+	}
 }

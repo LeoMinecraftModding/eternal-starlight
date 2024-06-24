@@ -10,13 +10,13 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class AmaramberArrowRenderer extends ArrowRenderer<AmaramberArrow> {
-    public static final ResourceLocation ARROW_LOCATION = EternalStarlight.id("textures/entity/amaramber_arrow.png");
+	public static final ResourceLocation ARROW_LOCATION = EternalStarlight.id("textures/entity/amaramber_arrow.png");
 
-    public AmaramberArrowRenderer(EntityRendererProvider.Context context) {
-        super(context);
-    }
+	public AmaramberArrowRenderer(EntityRendererProvider.Context context) {
+		super(context);
+	}
 
-    public ResourceLocation getTextureLocation(AmaramberArrow arrow) {
-        return ARROW_LOCATION;
-    }
+	public ResourceLocation getTextureLocation(AmaramberArrow arrow) {
+		return ARROW_LOCATION;
+	}
 }

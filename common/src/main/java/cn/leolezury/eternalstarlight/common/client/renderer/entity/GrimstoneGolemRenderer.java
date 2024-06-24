@@ -12,15 +12,15 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class GrimstoneGolemRenderer<T extends GrimstoneGolem> extends MobRenderer<T, GrimstoneGolemModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/grimstone_golem.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/grimstone_golem.png");
 
-    public GrimstoneGolemRenderer(EntityRendererProvider.Context context) {
-        super(context, new GrimstoneGolemModel<>(context.bakeLayer(GrimstoneGolemModel.LAYER_LOCATION)), 0.3f);
-        this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
-    }
+	public GrimstoneGolemRenderer(EntityRendererProvider.Context context) {
+		super(context, new GrimstoneGolemModel<>(context.bakeLayer(GrimstoneGolemModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

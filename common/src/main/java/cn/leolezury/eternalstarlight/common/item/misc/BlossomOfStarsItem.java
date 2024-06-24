@@ -10,13 +10,13 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class BlossomOfStarsItem extends Item {
-    public BlossomOfStarsItem(Properties properties) {
-        super(properties);
-    }
+	public BlossomOfStarsItem(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".blossom_of_stars").withColor(0x5187c4).withStyle(ChatFormatting.ITALIC));
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-    }
+	@Override
+	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".blossom_of_stars").withColor(0x5187c4).withStyle(ChatFormatting.ITALIC));
+		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+	}
 }

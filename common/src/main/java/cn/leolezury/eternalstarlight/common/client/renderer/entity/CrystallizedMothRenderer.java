@@ -11,14 +11,14 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class CrystallizedMothRenderer<T extends CrystallizedMoth> extends MobRenderer<T, CrystallizedMothModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/crystallized_moth.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/crystallized_moth.png");
 
-    public CrystallizedMothRenderer(EntityRendererProvider.Context context) {
-        super(context, new CrystallizedMothModel<>(context.bakeLayer(CrystallizedMothModel.LAYER_LOCATION)), 0.3f);
-    }
+	public CrystallizedMothRenderer(EntityRendererProvider.Context context) {
+		super(context, new CrystallizedMothModel<>(context.bakeLayer(CrystallizedMothModel.LAYER_LOCATION)), 0.3f);
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

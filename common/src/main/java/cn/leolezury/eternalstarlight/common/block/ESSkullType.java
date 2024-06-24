@@ -3,16 +3,16 @@ package cn.leolezury.eternalstarlight.common.block;
 import net.minecraft.world.level.block.SkullBlock;
 
 public enum ESSkullType implements SkullBlock.Type {
-    TANGLED("tangled");
+	TANGLED("tangled");
 
-    private final String name;
+	private final String name;
 
-    ESSkullType(String name) {
-        this.name = name;
-    }
+	ESSkullType(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public String getSerializedName() {
-        return name;
-    }
+	@Override
+	public String getSerializedName() {
+		return name;
+	}
 }

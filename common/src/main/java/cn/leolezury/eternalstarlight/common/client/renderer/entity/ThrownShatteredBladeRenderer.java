@@ -19,27 +19,27 @@ import net.minecraft.world.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
 public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShatteredBlade> {
-    private final ItemRenderer itemRenderer;
-    
-    public ThrownShatteredBladeRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        this.itemRenderer = context.getItemRenderer();
-    }
+	private final ItemRenderer itemRenderer;
 
-    @Override
-    public void render(ThrownShatteredBlade entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        poseStack.pushPose();
-        ItemStack itemStack = new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get());
-        BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, entity.getId());
-        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90.0F + (entity.tickCount + partialTicks) * 5));
-        itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, poseStack, multiBufferSource, light, OverlayTexture.NO_OVERLAY, bakedModel);
-        poseStack.popPose();
-        super.render(entity, yaw, partialTicks, poseStack, multiBufferSource, light);
-    }
+	public ThrownShatteredBladeRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.itemRenderer = context.getItemRenderer();
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(ThrownShatteredBlade entity) {
-        return null;
-    }
+	@Override
+	public void render(ThrownShatteredBlade entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+		poseStack.pushPose();
+		ItemStack itemStack = new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get());
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, entity.getId());
+		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90.0F + (entity.tickCount + partialTicks) * 5));
+		itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, poseStack, multiBufferSource, light, OverlayTexture.NO_OVERLAY, bakedModel);
+		poseStack.popPose();
+		super.render(entity, yaw, partialTicks, poseStack, multiBufferSource, light);
+	}
+
+	@Override
+	public ResourceLocation getTextureLocation(ThrownShatteredBlade entity) {
+		return null;
+	}
 }

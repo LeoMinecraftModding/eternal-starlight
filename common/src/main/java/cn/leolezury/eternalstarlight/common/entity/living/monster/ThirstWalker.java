@@ -33,226 +33,232 @@ import java.util.List;
 import java.util.UUID;
 
 public class ThirstWalker extends Monster implements MultiBehaviourUser, NeutralMob {
-    private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
-    private int remainingPersistentAngerTime;
-    @Nullable
-    private UUID persistentAngerTarget;
-    private float hungerLevel = 1;
-    private Vec3 fleeTo;
-    private int fleeTicks;
-    private Entity fleeFrom;
-    private static final int MELEE_ID = 1;
+	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
+	private int remainingPersistentAngerTime;
+	@Nullable
+	private UUID persistentAngerTarget;
+	private float hungerLevel = 1;
+	private Vec3 fleeTo;
+	private int fleeTicks;
+	private Entity fleeFrom;
+	private static final int MELEE_ID = 1;
 
-    public AnimationState idleAnimationState = new AnimationState();
-    public AnimationState meleeAnimationState = new AnimationState();
+	public AnimationState idleAnimationState = new AnimationState();
+	public AnimationState meleeAnimationState = new AnimationState();
 
-    protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
-    public int getBehaviourState() {
-        return entityData.get(BEHAVIOUR_STATE);
-    }
-    public void setBehaviourState(int attackState) {
-        entityData.set(BEHAVIOUR_STATE, attackState);
-    }
+	protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
-    protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
-    public int getBehaviourTicks() {
-        return entityData.get(BEHAVIOUR_TICKS);
-    }
-    public void setBehaviourTicks(int behaviourTicks) {
-        entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
-    }
+	public int getBehaviourState() {
+		return entityData.get(BEHAVIOUR_STATE);
+	}
 
-    protected static final EntityDataAccessor<Boolean> INTENTIONAL_ATTACK = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.BOOLEAN);
-    public boolean isIntentionalAttack() {
-        return entityData.get(INTENTIONAL_ATTACK);
-    }
-    public void setIntentionalAttack(boolean intentionalAttack) {
-        entityData.set(INTENTIONAL_ATTACK, intentionalAttack);
-    }
+	public void setBehaviourState(int attackState) {
+		entityData.set(BEHAVIOUR_STATE, attackState);
+	}
 
-    private final BehaviourManager<ThirstWalker> behaviourManager = new BehaviourManager<>(this, List.of(
-            new MeleeAttackPhase<ThirstWalker>(MELEE_ID, 1, 20, 10).with(2, 7)
-    ));
+	protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
-    public ThirstWalker(EntityType<? extends Monster> entityType, Level level) {
-        super(entityType, level);
-    }
+	public int getBehaviourTicks() {
+		return entityData.get(BEHAVIOUR_TICKS);
+	}
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(BEHAVIOUR_STATE, 0)
-                .define(BEHAVIOUR_TICKS, 0)
-                .define(INTENTIONAL_ATTACK, false);
-    }
+	public void setBehaviourTicks(int behaviourTicks) {
+		entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
+	}
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false) {
-            @Override
-            protected void checkAndPerformAttack(LivingEntity livingEntity) {
+	protected static final EntityDataAccessor<Boolean> INTENTIONAL_ATTACK = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.BOOLEAN);
 
-            }
-        });
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(1, new ResetUniversalAngerTargetGoal<>(this, false));
-    }
+	public boolean isIntentionalAttack() {
+		return entityData.get(INTENTIONAL_ATTACK);
+	}
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 40.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.3)
-                .add(Attributes.ATTACK_DAMAGE, 7.0)
-                .add(Attributes.FOLLOW_RANGE, 64.0)
-                .add(Attributes.STEP_HEIGHT, 1.0);
-    }
+	public void setIntentionalAttack(boolean intentionalAttack) {
+		entityData.set(INTENTIONAL_ATTACK, intentionalAttack);
+	}
 
-    @Override
-    public void setTarget(@Nullable LivingEntity livingEntity) {
-        super.setTarget(livingEntity);
-        if (livingEntity != null) {
-            setIntentionalAttack(false);
-        }
-    }
+	private final BehaviourManager<ThirstWalker> behaviourManager = new BehaviourManager<>(this, List.of(
+		new MeleeAttackPhase<ThirstWalker>(MELEE_ID, 1, 20, 10).with(2, 7)
+	));
 
-    @Override
-    public boolean doHurtTarget(Entity entity) {
-        boolean flag = super.doHurtTarget(entity);
-        if (flag && this.getMainHandItem().isEmpty() && entity instanceof LivingEntity living) {
-            float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
-            living.addEffect(new MobEffectInstance(MobEffects.HUNGER, 140 * (int) f), this);
-            hungerLevel = Math.min(hungerLevel + (isIntentionalAttack() ? 0.6f : 0.1f), 1);
-            if (isIntentionalAttack()) {
-                stopBeingAngry();
-                fleeFrom = entity;
-                fleeTicks = 100;
-                tryFlee();
-            }
-        }
-        return flag;
-    }
+	public ThirstWalker(EntityType<? extends Monster> entityType, Level level) {
+		super(entityType, level);
+	}
 
-    @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        if (getTarget() != null && !getTarget().isAlive()) {
-            setTarget(null);
-        }
-        if (!isNoAi()) {
-            this.behaviourManager.tick();
-        }
-        if (fleeTicks > 0) {
-            fleeTicks--;
-            if (this.tickCount % 20 == 0) {
-                tryFlee();
-            }
-        }
-    }
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(BEHAVIOUR_STATE, 0)
+			.define(BEHAVIOUR_TICKS, 0)
+			.define(INTENTIONAL_ATTACK, false);
+	}
 
-    private void tryFlee() {
-        if (fleeFrom != null) {
-            Vec3 fleePos = LandRandomPos.getPosAway(this, 20, 8, fleeFrom.position());
-            if (fleePos != null) {
-                fleeTo = fleePos;
-            }
-        }
-        if (fleeTo != null) {
-            this.getNavigation().stop();
-            this.getNavigation().moveTo(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
-            this.getMoveControl().setWantedPosition(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
-        }
-    }
+	protected void registerGoals() {
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false) {
+			@Override
+			protected void checkAndPerformAttack(LivingEntity livingEntity) {
 
-    @Override
-    public void tick() {
-        super.tick();
-        if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
-            this.updatePersistentAnger(serverLevel, true);
-            if (hungerLevel < 0.3 && getTarget() == null) {
-                List<Player> players = level().getNearbyEntities(Player.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(20));
-                if (!players.isEmpty()) {
-                    Player target = players.get(getRandom().nextInt(players.size()));
-                    setTarget(target);
-                    setIntentionalAttack(true);
-                }
-            }
-            hungerLevel = Math.max(hungerLevel - 0.001f, 0);
-        }
-        if (level().isClientSide) {
-            idleAnimationState.startIfStopped(tickCount);
-        }
-    }
+			}
+		});
+		this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F));
+		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+		this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(1, new ResetUniversalAngerTargetGoal<>(this, false));
+	}
 
-    @Override
-    public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-        if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
-            if (getBehaviourState() == MELEE_ID) {
-                meleeAnimationState.start(tickCount);
-            } else {
-                meleeAnimationState.stop();
-            }
-        }
-        super.onSyncedDataUpdated(accessor);
-    }
+	public static AttributeSupplier.Builder createAttributes() {
+		return Monster.createMonsterAttributes()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.3)
+			.add(Attributes.ATTACK_DAMAGE, 7.0)
+			.add(Attributes.FOLLOW_RANGE, 64.0)
+			.add(Attributes.STEP_HEIGHT, 1.0);
+	}
 
-    @Override
-    public void addAdditionalSaveData(CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        this.addPersistentAngerSaveData(compoundTag);
-        compoundTag.putFloat("HungerLevel", hungerLevel);
-    }
+	@Override
+	public void setTarget(@Nullable LivingEntity livingEntity) {
+		super.setTarget(livingEntity);
+		if (livingEntity != null) {
+			setIntentionalAttack(false);
+		}
+	}
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        this.readPersistentAngerSaveData(this.level(), compoundTag);
-        if (compoundTag.contains("HungerLevel", CompoundTag.TAG_FLOAT)) {
-            hungerLevel = compoundTag.getFloat("HungerLevel");
-        }
-    }
+	@Override
+	public boolean doHurtTarget(Entity entity) {
+		boolean flag = super.doHurtTarget(entity);
+		if (flag && this.getMainHandItem().isEmpty() && entity instanceof LivingEntity living) {
+			float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+			living.addEffect(new MobEffectInstance(MobEffects.HUNGER, 140 * (int) f), this);
+			hungerLevel = Math.min(hungerLevel + (isIntentionalAttack() ? 0.6f : 0.1f), 1);
+			if (isIntentionalAttack()) {
+				stopBeingAngry();
+				fleeFrom = entity;
+				fleeTicks = 100;
+				tryFlee();
+			}
+		}
+		return flag;
+	}
 
-    @Nullable
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return ESSoundEvents.THIRST_WALKER_AMBIENT.get();
-    }
+	@Override
+	protected void customServerAiStep() {
+		super.customServerAiStep();
+		if (getTarget() != null && !getTarget().isAlive()) {
+			setTarget(null);
+		}
+		if (!isNoAi()) {
+			this.behaviourManager.tick();
+		}
+		if (fleeTicks > 0) {
+			fleeTicks--;
+			if (this.tickCount % 20 == 0) {
+				tryFlee();
+			}
+		}
+	}
 
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return ESSoundEvents.THIRST_WALKER_HURT.get();
-    }
+	private void tryFlee() {
+		if (fleeFrom != null) {
+			Vec3 fleePos = LandRandomPos.getPosAway(this, 20, 8, fleeFrom.position());
+			if (fleePos != null) {
+				fleeTo = fleePos;
+			}
+		}
+		if (fleeTo != null) {
+			this.getNavigation().stop();
+			this.getNavigation().moveTo(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
+			this.getMoveControl().setWantedPosition(fleeTo.x, fleeTo.y, fleeTo.z, 1.5);
+		}
+	}
 
-    @Override
-    protected SoundEvent getDeathSound() {
-        return ESSoundEvents.THIRST_WALKER_DEATH.get();
-    }
+	@Override
+	public void tick() {
+		super.tick();
+		if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+			this.updatePersistentAnger(serverLevel, true);
+			if (hungerLevel < 0.3 && getTarget() == null) {
+				List<Player> players = level().getNearbyEntities(Player.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(20));
+				if (!players.isEmpty()) {
+					Player target = players.get(getRandom().nextInt(players.size()));
+					setTarget(target);
+					setIntentionalAttack(true);
+				}
+			}
+			hungerLevel = Math.max(hungerLevel - 0.001f, 0);
+		}
+		if (level().isClientSide) {
+			idleAnimationState.startIfStopped(tickCount);
+		}
+	}
 
-    @Override
-    public int getRemainingPersistentAngerTime() {
-        return remainingPersistentAngerTime;
-    }
+	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
+		if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
+			if (getBehaviourState() == MELEE_ID) {
+				meleeAnimationState.start(tickCount);
+			} else {
+				meleeAnimationState.stop();
+			}
+		}
+		super.onSyncedDataUpdated(accessor);
+	}
 
-    @Override
-    public void setRemainingPersistentAngerTime(int i) {
-        this.remainingPersistentAngerTime = i;
-    }
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		this.addPersistentAngerSaveData(compoundTag);
+		compoundTag.putFloat("HungerLevel", hungerLevel);
+	}
 
-    @Nullable
-    @Override
-    public UUID getPersistentAngerTarget() {
-        return persistentAngerTarget;
-    }
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		this.readPersistentAngerSaveData(this.level(), compoundTag);
+		if (compoundTag.contains("HungerLevel", CompoundTag.TAG_FLOAT)) {
+			hungerLevel = compoundTag.getFloat("HungerLevel");
+		}
+	}
 
-    @Override
-    public void setPersistentAngerTarget(@Nullable UUID uuid) {
-        this.persistentAngerTarget = uuid;
-    }
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return ESSoundEvents.THIRST_WALKER_AMBIENT.get();
+	}
 
-    @Override
-    public void startPersistentAngerTimer() {
-        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
-    }
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return ESSoundEvents.THIRST_WALKER_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.THIRST_WALKER_DEATH.get();
+	}
+
+	@Override
+	public int getRemainingPersistentAngerTime() {
+		return remainingPersistentAngerTime;
+	}
+
+	@Override
+	public void setRemainingPersistentAngerTime(int i) {
+		this.remainingPersistentAngerTime = i;
+	}
+
+	@Nullable
+	@Override
+	public UUID getPersistentAngerTarget() {
+		return persistentAngerTarget;
+	}
+
+	@Override
+	public void setPersistentAngerTarget(@Nullable UUID uuid) {
+		this.persistentAngerTarget = uuid;
+	}
+
+	@Override
+	public void startPersistentAngerTimer() {
+		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+	}
 }

@@ -14,36 +14,36 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class FrozenTubeModel<T extends FrozenTube> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("frozen_tube"), "main");
-    private final ModelPart rod;
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("frozen_tube"), "main");
+	private final ModelPart rod;
 
-    public FrozenTubeModel(ModelPart root) {
-        this.rod = root.getChild("rod");
-    }
+	public FrozenTubeModel(ModelPart root) {
+		this.rod = root.getChild("rod");
+	}
 
-    public static LayerDefinition createBodyLayer() {
-        MeshDefinition meshdefinition = new MeshDefinition();
-        PartDefinition partdefinition = meshdefinition.getRoot();
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
 
-        partdefinition.addOrReplaceChild("rod", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
-                .texOffs(8, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offset(0.0F, 23.5F, 0.0F));
+		partdefinition.addOrReplaceChild("rod", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+			.texOffs(8, 16).addBox(-1.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.3F)), PartPose.offset(0.0F, 23.5F, 0.0F));
 
-        return LayerDefinition.create(meshdefinition, 64, 32);
-    }
+		return LayerDefinition.create(meshdefinition, 64, 32);
+	}
 
-    @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        rod.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-        rod.xRot = headPitch * Mth.DEG_TO_RAD;
-    }
+	@Override
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		rod.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+		rod.xRot = headPitch * Mth.DEG_TO_RAD;
+	}
 
-    @Override
-    public RenderType renderType(ResourceLocation resourceLocation) {
-        return RenderType.entityTranslucent(resourceLocation);
-    }
+	@Override
+	public RenderType renderType(ResourceLocation resourceLocation) {
+		return RenderType.entityTranslucent(resourceLocation);
+	}
 
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        rod.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-    }
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		rod.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
 }

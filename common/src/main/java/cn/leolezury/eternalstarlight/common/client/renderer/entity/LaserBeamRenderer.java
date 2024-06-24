@@ -18,91 +18,91 @@ import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
 public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRenderer<T> {
-    public LaserBeamRenderer(EntityRendererProvider.Context context) {
-        super(context);
-    }
-    
-    public float getTextureWidth() {
-        return 32;
-    }
+	public LaserBeamRenderer(EntityRendererProvider.Context context) {
+		super(context);
+	}
 
-    public float getBeamRadius() {
-        return 1;
-    }
+	public float getTextureWidth() {
+		return 32;
+	}
 
-    private boolean playerCast = false;
+	public float getBeamRadius() {
+		return 1;
+	}
 
-    @Override
-    public void render(T laserBeam, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        Vec3 endPos = ESMathUtil.rotationToPosition(laserBeam.position(), laserBeam.getLength(), Mth.rotLerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()), Mth.rotLerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()));
-        double targetX = endPos.x;
-        double targetY = endPos.y;
-        double targetZ = endPos.z;
+	private boolean playerCast = false;
 
-        double posX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
-        double posY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
-        double posZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());
+	@Override
+	public void render(T laserBeam, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+		Vec3 endPos = ESMathUtil.rotationToPosition(laserBeam.position(), laserBeam.getLength(), Mth.rotLerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()), Mth.rotLerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()));
+		double targetX = endPos.x;
+		double targetY = endPos.y;
+		double targetZ = endPos.z;
 
-        stack.pushPose();
+		double posX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
+		double posY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
+		double posZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());
 
-        playerCast = Minecraft.getInstance().options.getCameraType().isFirstPerson() && laserBeam.getCaster().isPresent() && Minecraft.getInstance().player != null && laserBeam.getCaster().get().getUUID().equals(Minecraft.getInstance().player.getUUID());
+		stack.pushPose();
 
-        if (playerCast && Minecraft.getInstance().getCameraEntity() != null) {
-            Vec3 offset = ESMathUtil.rotationToPosition(0.5f, -Minecraft.getInstance().getCameraEntity().getXRot() - 90, Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90);
-            stack.translate(offset.x, offset.y, offset.z);
-        }
+		playerCast = Minecraft.getInstance().options.getCameraType().isFirstPerson() && laserBeam.getCaster().isPresent() && Minecraft.getInstance().player != null && laserBeam.getCaster().get().getUUID().equals(Minecraft.getInstance().player.getUUID());
 
-        float yaw = Mth.lerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()) * Mth.DEG_TO_RAD;
-        float pitch = Mth.lerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()) * Mth.DEG_TO_RAD;
+		if (playerCast && Minecraft.getInstance().getCameraEntity() != null) {
+			Vec3 offset = ESMathUtil.rotationToPosition(0.5f, -Minecraft.getInstance().getCameraEntity().getXRot() - 90, Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90);
+			stack.translate(offset.x, offset.y, offset.z);
+		}
 
-        float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
+		float yaw = Mth.lerp(partialTicks, laserBeam.prevYaw, laserBeam.getYaw()) * Mth.DEG_TO_RAD;
+		float pitch = Mth.lerp(partialTicks, laserBeam.prevPitch, laserBeam.getPitch()) * Mth.DEG_TO_RAD;
 
-        VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
-        // consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
+		float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
 
-        // render beam
-        renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount + partialTicks, stack, consumer, packedLight);
+		VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
+		// consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
 
-        stack.popPose();
-    }
+		// render beam
+		renderBeam(length, 180f / (float) Math.PI * yaw, 180f / (float) Math.PI * pitch, laserBeam.tickCount + partialTicks, stack, consumer, packedLight);
 
-    private void renderBeamPart(float length, float tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
-        PoseStack.Pose pose = stack.last();
-        float factor = (float) Math.sin(tickCount);
-        float xOffset = (tickCount * 0.2f) % getTextureWidth();
-        vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
-        vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
-        vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
-        vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
-    }
+		stack.popPose();
+	}
 
-    private void renderBeam(float length, float yaw, float pitch, float tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
-        poseStack.pushPose();
-        poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
-        poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
-        poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
+	private void renderBeamPart(float length, float tickCount, PoseStack stack, VertexConsumer consumer, int packedLight) {
+		PoseStack.Pose pose = stack.last();
+		float factor = (float) Math.sin(tickCount);
+		float xOffset = (tickCount * 0.2f) % getTextureWidth();
+		vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 0, 1, packedLight);
+		vertex(pose, consumer, -getBeamRadius() * 0.8f - factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 0, 1, packedLight);
+		vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, length, 0, 1 - xOffset, 1, 1, packedLight);
+		vertex(pose, consumer, getBeamRadius() * 0.8f + factor * getBeamRadius() * 0.2f, 0, 0, -xOffset, 1, 1, packedLight);
+	}
 
-        poseStack.pushPose();
-        if (!playerCast) {
-            poseStack.mulPose(new Quaternionf().rotationY(tickCount * Mth.DEG_TO_RAD));
-        }
-        renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
-        poseStack.popPose();
+	private void renderBeam(float length, float yaw, float pitch, float tickCount, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight) {
+		poseStack.pushPose();
+		poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
+		poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
+		poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
 
-        if (!playerCast) {
-            for (int i = 1; i < 3; i++) {
-                poseStack.pushPose();
-                poseStack.mulPose(new Quaternionf().rotationY((i * 30) * Mth.DEG_TO_RAD));
+		poseStack.pushPose();
+		if (!playerCast) {
+			poseStack.mulPose(new Quaternionf().rotationY(tickCount * Mth.DEG_TO_RAD));
+		}
+		renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
+		poseStack.popPose();
 
-                renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
-                poseStack.popPose();
-            }
-        }
+		if (!playerCast) {
+			for (int i = 1; i < 3; i++) {
+				poseStack.pushPose();
+				poseStack.mulPose(new Quaternionf().rotationY((i * 30) * Mth.DEG_TO_RAD));
 
-        poseStack.popPose();
-    }
+				renderBeamPart(length, tickCount, poseStack, vertexConsumer, packedLight);
+				poseStack.popPose();
+			}
+		}
 
-    public void vertex(PoseStack.Pose pose, VertexConsumer consumer, float offsetX, float offsetY, float offsetZ, float textureX, float textureY, float alpha, int packedLight) {
-        consumer.addVertex(pose, offsetX, offsetY, offsetZ).setColor(1, 1, 1, 1 * alpha).setUv(textureX, textureY).setOverlay(OverlayTexture.NO_OVERLAY).setLight(packedLight).setNormal(pose, 0.0F, 1.0F, 0.0F);
-    }
+		poseStack.popPose();
+	}
+
+	public void vertex(PoseStack.Pose pose, VertexConsumer consumer, float offsetX, float offsetY, float offsetZ, float textureX, float textureY, float alpha, int packedLight) {
+		consumer.addVertex(pose, offsetX, offsetY, offsetZ).setColor(1, 1, 1, 1 * alpha).setUv(textureX, textureY).setOverlay(OverlayTexture.NO_OVERLAY).setLight(packedLight).setNormal(pose, 0.0F, 1.0F, 0.0F);
+	}
 }

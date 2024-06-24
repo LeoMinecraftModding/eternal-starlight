@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AxeItem.class)
 public abstract class AxeItemMixin {
-    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
-    private void useOn(UseOnContext useOnContext, CallbackInfoReturnable<InteractionResult> cir) {
-        if (useOnContext.getLevel().getBlockState(useOnContext.getClickedPos()).is(ESBlocks.TORREYA_LOG.get()) && useOnContext.getPlayer() != null) {
-            if (useOnContext.getPlayer().getRandom().nextInt(20) == 0) {
-                useOnContext.getPlayer().spawnAtLocation(ESItems.RAW_AMARAMBER.get());
-            }
-        }
-    }
+	@Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
+	private void useOn(UseOnContext useOnContext, CallbackInfoReturnable<InteractionResult> cir) {
+		if (useOnContext.getLevel().getBlockState(useOnContext.getClickedPos()).is(ESBlocks.TORREYA_LOG.get()) && useOnContext.getPlayer() != null) {
+			if (useOnContext.getPlayer().getRandom().nextInt(20) == 0) {
+				useOnContext.getPlayer().spawnAtLocation(ESItems.RAW_AMARAMBER.get());
+			}
+		}
+	}
 }

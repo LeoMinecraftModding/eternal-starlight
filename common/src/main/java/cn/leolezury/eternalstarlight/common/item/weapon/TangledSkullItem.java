@@ -14,27 +14,27 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 public class TangledSkullItem extends StandingAndWallBlockItem {
-    public TangledSkullItem(Block block, Block wallBlock, Properties properties, Direction direction) {
-        super(block, wallBlock, properties, direction);
-    }
+	public TangledSkullItem(Block block, Block wallBlock, Properties properties, Direction direction) {
+		super(block, wallBlock, properties, direction);
+	}
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
-        ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (!level.isClientSide) {
-            TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level);
-            skull.setPos(player.getEyePosition());
-            skull.setShotMovement(ESMathUtil.rotationToPosition(1, -player.getXRot(), player.getYHeadRot() + 90.0f));
-            level.addFreshEntity(skull);
-        }
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+		ItemStack itemStack = player.getItemInHand(interactionHand);
+		if (!level.isClientSide) {
+			TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level);
+			skull.setPos(player.getEyePosition());
+			skull.setShotMovement(ESMathUtil.rotationToPosition(1, -player.getXRot(), player.getYHeadRot() + 90.0f));
+			level.addFreshEntity(skull);
+		}
 
-        player.awardStat(Stats.ITEM_USED.get(this));
-        if (!player.getAbilities().instabuild) {
-            itemStack.shrink(1);
-        }
+		player.awardStat(Stats.ITEM_USED.get(this));
+		if (!player.getAbilities().instabuild) {
+			itemStack.shrink(1);
+		}
 
-        player.getCooldowns().addCooldown(this, 60);
+		player.getCooldowns().addCooldown(this, 60);
 
-        return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
-    }
+		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+	}
 }

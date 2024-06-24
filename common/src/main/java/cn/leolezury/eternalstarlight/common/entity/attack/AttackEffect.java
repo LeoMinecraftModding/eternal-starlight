@@ -16,121 +16,133 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class AttackEffect extends Entity {
-    public AttackEffect(EntityType<?> type, Level level) {
-        super(type, level);
-    }
-    @Nullable
-    private LivingEntity owner;
-    @Nullable
-    private UUID ownerId;
-    public LivingEntity getOwner() {
-        return owner;
-    }
-    public void setOwner(LivingEntity owner) {
-        this.ownerId = owner.getUUID();
-        this.owner = owner;
-    }
-    @Nullable
-    private LivingEntity target;
-    @Nullable
-    private UUID targetId;
-    public LivingEntity getTarget() {
-        return target;
-    }
-    public void setTarget(LivingEntity target) {
-        this.targetId = target.getUUID();
-        this.target = target;
-    }
-    protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
-    public int getSpawnedTicks() {
-        return entityData.get(SPAWNED_TICKS);
-    }
-    public void setSpawnedTicks(int spawnedTicks) {
-        entityData.set(SPAWNED_TICKS, spawnedTicks);
-    }
-    protected static final EntityDataAccessor<Integer> ATTACK_MODE = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
-    public int getAttackMode() {
-        return entityData.get(ATTACK_MODE);
-    }
-    public void setAttackMode(int attackMode) {
-        entityData.set(ATTACK_MODE, attackMode);
-    }
+	public AttackEffect(EntityType<?> type, Level level) {
+		super(type, level);
+	}
 
-    protected void readAdditionalSaveData(CompoundTag compoundTag) {
-        if (compoundTag.hasUUID("Owner")) {
-            ownerId = compoundTag.getUUID("Owner");
-        }
-        if (compoundTag.hasUUID("Target")) {
-            targetId = compoundTag.getUUID("Target");
-        }
-        setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
-        setAttackMode(compoundTag.getInt("AttackMode"));
-    }
+	@Nullable
+	private LivingEntity owner;
+	@Nullable
+	private UUID ownerId;
 
-    protected void addAdditionalSaveData(CompoundTag compoundTag) {
-        if (owner != null) {
-            compoundTag.putUUID("Owner", owner.getUUID());
-        }
-        if (target != null) {
-            compoundTag.putUUID("Target", target.getUUID());
-        }
-        compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
-        compoundTag.putInt("AttackMode", getAttackMode());
-    }
+	public LivingEntity getOwner() {
+		return owner;
+	}
 
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(SPAWNED_TICKS, 0)
-                .define(ATTACK_MODE, 0);
-    }
+	public void setOwner(LivingEntity owner) {
+		this.ownerId = owner.getUUID();
+		this.owner = owner;
+	}
 
-    public boolean shouldContinueToTick() {
-        return false;
-    }
+	@Nullable
+	private LivingEntity target;
+	@Nullable
+	private UUID targetId;
 
-    protected float getSoundVolume() {
-        return 1.0F;
-    }
+	public LivingEntity getTarget() {
+		return target;
+	}
 
-    public float getVoicePitch() {
-        return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
-    }
+	public void setTarget(LivingEntity target) {
+		this.targetId = target.getUUID();
+		this.target = target;
+	}
 
-    @Override
-    public boolean hurt(DamageSource damageSource, float amount) {
-        if (damageSource.equals(damageSources().genericKill())) {
-            discard();
-        }
-        return false;
-    }
+	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
 
-    @Override
-    public void tick() {
-        super.tick();
-        if (!level().isClientSide) {
-            if (owner == null && ownerId != null) {
-                if (((ServerLevel)this.level()).getEntity(ownerId) instanceof LivingEntity livingEntity) {
-                    owner = livingEntity;
-                }
-                if (owner == null) {
-                    ownerId = null;
-                }
-            }
-            if (target == null && targetId != null) {
-                if (((ServerLevel)this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
-                    target = livingEntity;
-                }
-                if (target == null) {
-                    targetId = null;
-                }
-            }
-            if (shouldContinueToTick()) {
-                setSpawnedTicks(getSpawnedTicks() + 1);
-            }
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            if (!onGround() && !isNoGravity()) {
-                applyGravity();
-            }
-            setDeltaMovement(getDeltaMovement().scale(0.8));
-        }
-    }
+	public int getSpawnedTicks() {
+		return entityData.get(SPAWNED_TICKS);
+	}
+
+	public void setSpawnedTicks(int spawnedTicks) {
+		entityData.set(SPAWNED_TICKS, spawnedTicks);
+	}
+
+	protected static final EntityDataAccessor<Integer> ATTACK_MODE = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
+
+	public int getAttackMode() {
+		return entityData.get(ATTACK_MODE);
+	}
+
+	public void setAttackMode(int attackMode) {
+		entityData.set(ATTACK_MODE, attackMode);
+	}
+
+	protected void readAdditionalSaveData(CompoundTag compoundTag) {
+		if (compoundTag.hasUUID("Owner")) {
+			ownerId = compoundTag.getUUID("Owner");
+		}
+		if (compoundTag.hasUUID("Target")) {
+			targetId = compoundTag.getUUID("Target");
+		}
+		setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
+		setAttackMode(compoundTag.getInt("AttackMode"));
+	}
+
+	protected void addAdditionalSaveData(CompoundTag compoundTag) {
+		if (owner != null) {
+			compoundTag.putUUID("Owner", owner.getUUID());
+		}
+		if (target != null) {
+			compoundTag.putUUID("Target", target.getUUID());
+		}
+		compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
+		compoundTag.putInt("AttackMode", getAttackMode());
+	}
+
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(SPAWNED_TICKS, 0)
+			.define(ATTACK_MODE, 0);
+	}
+
+	public boolean shouldContinueToTick() {
+		return false;
+	}
+
+	protected float getSoundVolume() {
+		return 1.0F;
+	}
+
+	public float getVoicePitch() {
+		return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
+	}
+
+	@Override
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (damageSource.equals(damageSources().genericKill())) {
+			discard();
+		}
+		return false;
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (!level().isClientSide) {
+			if (owner == null && ownerId != null) {
+				if (((ServerLevel) this.level()).getEntity(ownerId) instanceof LivingEntity livingEntity) {
+					owner = livingEntity;
+				}
+				if (owner == null) {
+					ownerId = null;
+				}
+			}
+			if (target == null && targetId != null) {
+				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+					target = livingEntity;
+				}
+				if (target == null) {
+					targetId = null;
+				}
+			}
+			if (shouldContinueToTick()) {
+				setSpawnedTicks(getSpawnedTicks() + 1);
+			}
+			this.move(MoverType.SELF, this.getDeltaMovement());
+			if (!onGround() && !isNoGravity()) {
+				applyGravity();
+			}
+			setDeltaMovement(getDeltaMovement().scale(0.8));
+		}
+	}
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ESAdvancementProvider extends AdvancementProvider {
-    public ESAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
-        super(output, registries, existingFileHelper, List.of(new ESAdvancementGenerator()));
-    }
+	public ESAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
+		super(output, registries, existingFileHelper, List.of(new ESAdvancementGenerator()));
+	}
 }

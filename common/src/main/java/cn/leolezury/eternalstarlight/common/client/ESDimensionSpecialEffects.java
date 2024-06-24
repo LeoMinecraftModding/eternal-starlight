@@ -13,19 +13,19 @@ import org.joml.Matrix4f;
 
 @Environment(EnvType.CLIENT)
 public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
-    public ESDimensionSpecialEffects(float cloudHeight, boolean placebo, SkyType fogType, boolean brightenLightMap, boolean entityLightingBottomsLit) {
-        super(cloudHeight, placebo, fogType, brightenLightMap, entityLightingBottomsLit);
-    }
+	public ESDimensionSpecialEffects(float cloudHeight, boolean placebo, SkyType fogType, boolean brightenLightMap, boolean entityLightingBottomsLit) {
+		super(cloudHeight, placebo, fogType, brightenLightMap, entityLightingBottomsLit);
+	}
 
-    @Override
-    public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
-        return biomeFogColor.multiply(daylight * 0.94F + 0.06F, (daylight * 0.94F + 0.06F), (daylight * 0.91F + 0.09F));
-    }
+	@Override
+	public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
+		return biomeFogColor.multiply(daylight * 0.94F + 0.06F, (daylight * 0.94F + 0.06F), (daylight * 0.91F + 0.09F));
+	}
 
-    @Override
-    public boolean isFoggyAt(int x, int y) {
-        // nope
-        // at least for now
+	@Override
+	public boolean isFoggyAt(int x, int y) {
+		// nope
+		// at least for now
         /*
         Player player = Minecraft.getInstance().player;
 
@@ -34,14 +34,14 @@ public class ESDimensionSpecialEffects extends DimensionSpecialEffects {
             return biomeHolder.is(ESTags.Biomes.PERMAFROST_FOREST_VARIANT) || biomeHolder.is(ESTags.Biomes.DARK_SWAMP_VARIANT);
         }
         */
-        return false;
-    }
+		return false;
+	}
 
-    public static boolean doRenderSky(ClientLevel level, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return ESSkyRenderer.renderSky(level, modelViewMatrix, projectionMatrix, partialTick, camera, setupFog);
-    }
+	public static boolean doRenderSky(ClientLevel level, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+		return ESSkyRenderer.renderSky(level, modelViewMatrix, projectionMatrix, partialTick, camera, setupFog);
+	}
 
-    public static boolean doRenderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-        return ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
-    }
+	public static boolean doRenderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
+		return ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
+	}
 }

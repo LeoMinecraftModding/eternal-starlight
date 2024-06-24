@@ -18,14 +18,17 @@ import java.util.Map;
 
 @Mixin(BlockEntityWithoutLevelRenderer.class)
 public abstract class BlockEntityWithoutLevelRendererMixin {
-    @Shadow private Map<SkullBlock.Type, SkullModelBase> skullModels;
+	@Shadow
+	private Map<SkullBlock.Type, SkullModelBase> skullModels;
 
-    @Shadow @Final private EntityModelSet entityModelSet;
+	@Shadow
+	@Final
+	private EntityModelSet entityModelSet;
 
-    @Inject(method = "onResourceManagerReload", at = @At(value = "RETURN"))
-    private void onResourceManagerReload(ResourceManager resourceManager, CallbackInfo ci) {
-        HashMap<SkullBlock.Type, SkullModelBase> map = new HashMap<>(skullModels);
-        ClientSetupHandlers.registerSkullModels(map::put, entityModelSet);
-        skullModels = map;
-    }
+	@Inject(method = "onResourceManagerReload", at = @At(value = "RETURN"))
+	private void onResourceManagerReload(ResourceManager resourceManager, CallbackInfo ci) {
+		HashMap<SkullBlock.Type, SkullModelBase> map = new HashMap<>(skullModels);
+		ClientSetupHandlers.registerSkullModels(map::put, entityModelSet);
+		skullModels = map;
+	}
 }

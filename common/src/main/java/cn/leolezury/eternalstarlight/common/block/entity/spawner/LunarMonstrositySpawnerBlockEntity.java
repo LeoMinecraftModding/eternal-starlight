@@ -9,12 +9,12 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class LunarMonstrositySpawnerBlockEntity extends BossSpawnerBlockEntity<LunarMonstrosity> {
-    public LunarMonstrositySpawnerBlockEntity(BlockPos pos, BlockState state) {
-        super(ESBlockEntities.LUNAR_MONSTROSITY_SPAWNER.get(), ESEntities.LUNAR_MONSTROSITY.get(), pos, state);
-    }
+	public LunarMonstrositySpawnerBlockEntity(BlockPos pos, BlockState state) {
+		super(ESBlockEntities.LUNAR_MONSTROSITY_SPAWNER.get(), ESEntities.LUNAR_MONSTROSITY.get(), pos, state);
+	}
 
-    @Override
-    public ParticleOptions getSpawnerParticle() {
-        return ESSmokeParticleOptions.LUNAR_SHORT;
-    }
+	@Override
+	public ParticleOptions getSpawnerParticle() {
+		return ESSmokeParticleOptions.LUNAR_SHORT;
+	}
 }

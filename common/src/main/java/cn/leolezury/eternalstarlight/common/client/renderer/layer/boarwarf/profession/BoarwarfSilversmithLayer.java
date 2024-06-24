@@ -19,22 +19,22 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfSilversmithLayer<T extends Boarwarf> extends RenderLayer<T, BoarwarfModel<T>> {
-    private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/silversmith.png");
-    private final BoarwarfSilversmithModel<T> professionModel;
+	private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/silversmith.png");
+	private final BoarwarfSilversmithModel<T> professionModel;
 
-    public BoarwarfSilversmithLayer(RenderLayerParent<T, BoarwarfModel<T>> parent, EntityModelSet modelSet) {
-        super(parent);
-        this.professionModel = new BoarwarfSilversmithModel<>(modelSet.bakeLayer(BoarwarfSilversmithModel.LAYER_LOCATION));
-    }
+	public BoarwarfSilversmithLayer(RenderLayerParent<T, BoarwarfModel<T>> parent, EntityModelSet modelSet) {
+		super(parent);
+		this.professionModel = new BoarwarfSilversmithModel<>(modelSet.bakeLayer(BoarwarfSilversmithModel.LAYER_LOCATION));
+	}
 
-    public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.SILVERSMITH.get()) {
-            getParentModel().copyPropertiesTo(this.professionModel);
-            this.professionModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.professionModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            this.professionModel.copyPropertiesFrom(getParentModel());
-            VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(TEXTURE));
-            this.professionModel.renderToBuffer(poseStack, vertexConsumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
-        }
-    }
+	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.SILVERSMITH.get()) {
+			getParentModel().copyPropertiesTo(this.professionModel);
+			this.professionModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+			this.professionModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			this.professionModel.copyPropertiesFrom(getParentModel());
+			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(TEXTURE));
+			this.professionModel.renderToBuffer(poseStack, vertexConsumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
+		}
+	}
 }

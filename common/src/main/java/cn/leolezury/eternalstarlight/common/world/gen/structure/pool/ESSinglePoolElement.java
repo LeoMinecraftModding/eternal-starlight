@@ -18,35 +18,35 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class ESSinglePoolElement extends SinglePoolElement {
-    private final int groundLevelDelta;
+	private final int groundLevelDelta;
 
-    public static final MapCodec<ESSinglePoolElement> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-            templateCodec(),
-            processorsCodec(),
-            projectionCodec(),
-            overrideLiquidSettingsCodec(),
-            Codec.INT.fieldOf("ground_level_delta").forGetter(o -> o.groundLevelDelta)
-    ).apply(instance, ESSinglePoolElement::new));
+	public static final MapCodec<ESSinglePoolElement> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+		templateCodec(),
+		processorsCodec(),
+		projectionCodec(),
+		overrideLiquidSettingsCodec(),
+		Codec.INT.fieldOf("ground_level_delta").forGetter(o -> o.groundLevelDelta)
+	).apply(instance, ESSinglePoolElement::new));
 
-    protected ESSinglePoolElement(Either<ResourceLocation, StructureTemplate> either, Holder<StructureProcessorList> holder, StructureTemplatePool.Projection projection, Optional<LiquidSettings> overrideLiquidSettings, int groundLevelDelta) {
-        super(either, holder, projection, overrideLiquidSettings);
-        this.groundLevelDelta = groundLevelDelta;
-    }
+	protected ESSinglePoolElement(Either<ResourceLocation, StructureTemplate> either, Holder<StructureProcessorList> holder, StructureTemplatePool.Projection projection, Optional<LiquidSettings> overrideLiquidSettings, int groundLevelDelta) {
+		super(either, holder, projection, overrideLiquidSettings);
+		this.groundLevelDelta = groundLevelDelta;
+	}
 
-    @Override
-    public int getGroundLevelDelta() {
-        return groundLevelDelta;
-    }
+	@Override
+	public int getGroundLevelDelta() {
+		return groundLevelDelta;
+	}
 
-    public static Function<StructureTemplatePool.Projection, SinglePoolElement> make(String string, Holder<StructureProcessorList> holder, int groundLevelDelta) {
-        return (projection) -> new ESSinglePoolElement(Either.left(ResourceLocation.parse(string)), holder, projection, Optional.empty(), groundLevelDelta);
-    }
+	public static Function<StructureTemplatePool.Projection, SinglePoolElement> make(String string, Holder<StructureProcessorList> holder, int groundLevelDelta) {
+		return (projection) -> new ESSinglePoolElement(Either.left(ResourceLocation.parse(string)), holder, projection, Optional.empty(), groundLevelDelta);
+	}
 
-    public StructurePoolElementType<?> getType() {
-        return ESStructurePoolElementTypes.SINGLE_POOL.get();
-    }
+	public StructurePoolElementType<?> getType() {
+		return ESStructurePoolElementTypes.SINGLE_POOL.get();
+	}
 
-    public String toString() {
-        return "ESSingle[" + this.template + "]";
-    }
+	public String toString() {
+		return "ESSingle[" + this.template + "]";
+	}
 }

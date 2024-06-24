@@ -27,47 +27,47 @@ import net.minecraft.world.level.block.Block;
 import java.util.Map;
 
 public class ESFabric implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        EternalStarlight.init();
+	@Override
+	public void onInitialize() {
+		EternalStarlight.init();
 
-        // setup handlers
-        FabricNetworkHandler.registerPackets();
-        FabricNetworkHandler.registerPacketReceivers(false);
-        if (ESPlatform.INSTANCE.isPhysicalClient()) {
-            FabricNetworkHandler.registerPacketReceivers(true);
-        }
-        CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
-        CommonSetupHandlers.registerSpawnPlacements(SpawnPlacements::register);
-        CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
-            @Override
-            public void register(ItemLike item, int time) {
-                FuelRegistry.INSTANCE.add(item, time);
-            }
+		// setup handlers
+		FabricNetworkHandler.registerPackets();
+		FabricNetworkHandler.registerPacketReceivers(false);
+		if (ESPlatform.INSTANCE.isPhysicalClient()) {
+			FabricNetworkHandler.registerPacketReceivers(true);
+		}
+		CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
+		CommonSetupHandlers.registerSpawnPlacements(SpawnPlacements::register);
+		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
+			@Override
+			public void register(ItemLike item, int time) {
+				FuelRegistry.INSTANCE.add(item, time);
+			}
 
-            @Override
-            public void register(TagKey<Item> itemTag, int time) {
-                FuelRegistry.INSTANCE.add(itemTag, time);
-            }
-        });
-        CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
-        CommonSetupHandlers.registerChunkGenerator();
-        CommonSetupHandlers.registerBiomeSource();
+			@Override
+			public void register(TagKey<Item> itemTag, int time) {
+				FuelRegistry.INSTANCE.add(itemTag, time);
+			}
+		});
+		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
+		CommonSetupHandlers.registerChunkGenerator();
+		CommonSetupHandlers.registerBiomeSource();
 
 
-        // common handlers
-        ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
-        ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
-        ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));
-        PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> CommonHandlers.onBlockBroken(player, pos, state));
+		// common handlers
+		ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
+		ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
+		ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> CommonHandlers.onBlockBroken(player, pos, state));
 
-        CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
+		CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
-        for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
-            StrippableBlockRegistry.register(entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
-            TillableBlockRegistry.register(entry.getKey(), HoeItem::onlyIfAirAbove, entry.getValue().defaultBlockState());
-        }
-    }
+		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
+			StrippableBlockRegistry.register(entry.getKey(), entry.getValue());
+		}
+		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
+			TillableBlockRegistry.register(entry.getKey(), HoeItem::onlyIfAirAbove, entry.getValue().defaultBlockState());
+		}
+	}
 }

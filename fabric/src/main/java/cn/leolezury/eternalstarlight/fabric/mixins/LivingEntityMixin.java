@@ -15,27 +15,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Shadow public abstract boolean isUsingItem();
+	@Shadow
+	public abstract boolean isUsingItem();
 
-    @Shadow public abstract ItemStack getUseItem();
+	@Shadow
+	public abstract ItemStack getUseItem();
 
-    @ModifyVariable(method = "hurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-    private float hurt(float amount, DamageSource damageSource) {
-        if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
-            CommonHandlers.onShieldBlock((LivingEntity) (Object) this, damageSource);
-        }
-        return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
-    }
+	@ModifyVariable(method = "hurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
+	private float hurt(float amount, DamageSource damageSource) {
+		if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
+			CommonHandlers.onShieldBlock((LivingEntity) (Object) this, damageSource);
+		}
+		return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
+	}
 
-    @Inject(method = "tick", at = @At(value = "RETURN"))
-    private void tick(CallbackInfo ci) {
-        CommonHandlers.onLivingTick((LivingEntity) (Object) this);
-    }
+	@Inject(method = "tick", at = @At(value = "RETURN"))
+	private void tick(CallbackInfo ci) {
+		CommonHandlers.onLivingTick((LivingEntity) (Object) this);
+	}
 
-    @Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
-    private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
-        if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
-            cir.setReturnValue(true);
-        }
-    }
+	@Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
+	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
+		if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
+			cir.setReturnValue(true);
+		}
+	}
 }

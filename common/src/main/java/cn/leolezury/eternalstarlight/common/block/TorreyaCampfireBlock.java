@@ -12,22 +12,22 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class TorreyaCampfireBlock extends CampfireBlock {
-    public TorreyaCampfireBlock(boolean spawnParticles, int fireDamage, Properties properties) {
-        super(spawnParticles, fireDamage, properties);
-    }
+	public TorreyaCampfireBlock(boolean spawnParticles, int fireDamage, Properties properties) {
+		super(spawnParticles, fireDamage, properties);
+	}
 
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new ESCampfireBlockEntity(blockPos, blockState);
-    }
+	@Override
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new ESCampfireBlockEntity(blockPos, blockState);
+	}
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide) {
-            return blockState.getValue(LIT) ? createTickerHelper(blockEntityType, ESBlockEntities.CAMPFIRE.get(), ESCampfireBlockEntity::particleTick) : null;
-        } else {
-            return createTickerHelper(blockEntityType, ESBlockEntities.CAMPFIRE.get(), ESCampfireBlockEntity::serverTick);
-        }
-    }
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+		if (level.isClientSide) {
+			return blockState.getValue(LIT) ? createTickerHelper(blockEntityType, ESBlockEntities.CAMPFIRE.get(), ESCampfireBlockEntity::particleTick) : null;
+		} else {
+			return createTickerHelper(blockEntityType, ESBlockEntities.CAMPFIRE.get(), ESCampfireBlockEntity::serverTick);
+		}
+	}
 }

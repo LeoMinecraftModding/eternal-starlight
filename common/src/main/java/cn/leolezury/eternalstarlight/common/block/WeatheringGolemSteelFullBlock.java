@@ -8,24 +8,24 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WeatheringGolemSteelFullBlock extends Block implements WeatheringGolemSteel {
-    public static final MapCodec<WeatheringGolemSteelFullBlock> CODEC = simpleCodec(WeatheringGolemSteelFullBlock::new);
-    
-    public WeatheringGolemSteelFullBlock(Properties properties) {
-        super(properties);
-    }
+	public static final MapCodec<WeatheringGolemSteelFullBlock> CODEC = simpleCodec(WeatheringGolemSteelFullBlock::new);
 
-    @Override
-    protected MapCodec<? extends Block> codec() {
-        return super.codec();
-    }
+	public WeatheringGolemSteelFullBlock(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        this.changeOverTime(blockState, serverLevel, blockPos, randomSource);
-    }
+	@Override
+	protected MapCodec<? extends Block> codec() {
+		return super.codec();
+	}
 
-    @Override
-    public boolean isRandomlyTicking(BlockState blockState) {
-        return !isOxidized();
-    }
+	@Override
+	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+		this.changeOverTime(blockState, serverLevel, blockPos, randomSource);
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState blockState) {
+		return !isOxidized();
+	}
 }

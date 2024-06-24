@@ -9,11 +9,11 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class AmaramberArrowItem extends ArrowItem {
-    public AmaramberArrowItem(Properties properties) {
-        super(properties);
-    }
+	public AmaramberArrowItem(Properties properties) {
+		super(properties);
+	}
 
-    public AbstractArrow createArrow(Level level, ItemStack itemStack, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
-        return new AmaramberArrow(level, livingEntity, itemStack.copyWithCount(1), itemStack2);
-    }
+	public AbstractArrow createArrow(Level level, ItemStack itemStack, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
+		return new AmaramberArrow(level, livingEntity, itemStack.copyWithCount(1), itemStack2);
+	}
 }

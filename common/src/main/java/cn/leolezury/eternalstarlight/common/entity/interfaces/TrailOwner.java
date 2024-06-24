@@ -7,9 +7,12 @@ import net.minecraft.client.renderer.RenderType;
 import org.joml.Vector4f;
 
 public interface TrailOwner {
-    TrailEffect newTrail();
-    void updateTrail(TrailEffect effect);
-    Vector4f getTrailColor();
-    @Environment(EnvType.CLIENT)
-    RenderType getTrailRenderType();
+	TrailEffect newTrail();
+
+	void updateTrail(TrailEffect effect);
+
+	Vector4f getTrailColor();
+
+	@Environment(EnvType.CLIENT)
+	RenderType getTrailRenderType();
 }

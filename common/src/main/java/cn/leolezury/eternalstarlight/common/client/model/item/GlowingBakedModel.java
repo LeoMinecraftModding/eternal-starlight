@@ -15,31 +15,31 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class GlowingBakedModel extends ESBakedModelWrapper<BakedModel> {
-    public GlowingBakedModel(BakedModel origin) {
-        super(origin);
-    }
+	public GlowingBakedModel(BakedModel origin) {
+		super(origin);
+	}
 
-    @Override
-    public List<BakedQuad> getQuads(@Nullable BlockState blockState, @Nullable Direction direction, RandomSource randomSource) {
-        return transformQuads(super.getQuads(blockState, direction, randomSource));
-    }
+	@Override
+	public List<BakedQuad> getQuads(@Nullable BlockState blockState, @Nullable Direction direction, RandomSource randomSource) {
+		return transformQuads(super.getQuads(blockState, direction, randomSource));
+	}
 
-    private static List<BakedQuad> transformQuads(List<BakedQuad> oldQuads) {
-        List<BakedQuad> quads = new ArrayList<>();
-        for (BakedQuad quad : oldQuads) {
-            quads.add(applyGlowEffect(quad));
-        }
-        return quads;
-    }
+	private static List<BakedQuad> transformQuads(List<BakedQuad> oldQuads) {
+		List<BakedQuad> quads = new ArrayList<>();
+		for (BakedQuad quad : oldQuads) {
+			quads.add(applyGlowEffect(quad));
+		}
+		return quads;
+	}
 
-    private static BakedQuad applyGlowEffect(BakedQuad quad) {
-        int[] vertexData = quad.getVertices().clone();
-        int step = vertexData.length / 4;
+	private static BakedQuad applyGlowEffect(BakedQuad quad) {
+		int[] vertexData = quad.getVertices().clone();
+		int step = vertexData.length / 4;
 
-        vertexData[6] = 0xF000F0;
-        vertexData[6 + step] = 0xF000F0;
-        vertexData[6 + 2 * step] = 0xF000F0;
-        vertexData[6 + 3 * step] = 0xF000F0;
-        return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade());
-    }
+		vertexData[6] = 0xF000F0;
+		vertexData[6 + step] = 0xF000F0;
+		vertexData[6 + 2 * step] = 0xF000F0;
+		vertexData[6 + 3 * step] = 0xF000F0;
+		return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade());
+	}
 }

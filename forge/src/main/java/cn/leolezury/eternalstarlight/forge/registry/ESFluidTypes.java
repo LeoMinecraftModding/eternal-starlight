@@ -18,34 +18,35 @@ import org.joml.Vector3f;
 import java.util.function.Consumer;
 
 public class ESFluidTypes {
-    public static final RegistrationProvider<FluidType> FLUID_TYPES = RegistrationProvider.get(NeoForgeRegistries.FLUID_TYPES.key(), EternalStarlight.ID);
-    public static final RegistryObject<FluidType, FluidType> ETHER = FLUID_TYPES.register("ether", () -> new FluidType(FluidType.Properties.create()) {
-        @Override
-        public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-            consumer.accept(new IClientFluidTypeExtensions() {
-                @Override
-                public ResourceLocation getStillTexture() {
-                    return EternalStarlight.id("block/ether");
-                }
+	public static final RegistrationProvider<FluidType> FLUID_TYPES = RegistrationProvider.get(NeoForgeRegistries.FLUID_TYPES.key(), EternalStarlight.ID);
+	public static final RegistryObject<FluidType, FluidType> ETHER = FLUID_TYPES.register("ether", () -> new FluidType(FluidType.Properties.create()) {
+		@Override
+		public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+			consumer.accept(new IClientFluidTypeExtensions() {
+				@Override
+				public ResourceLocation getStillTexture() {
+					return EternalStarlight.id("block/ether");
+				}
 
-                @Override
-                public ResourceLocation getFlowingTexture() {
-                    return EternalStarlight.id("block/ether_flow");
-                }
+				@Override
+				public ResourceLocation getFlowingTexture() {
+					return EternalStarlight.id("block/ether_flow");
+				}
 
-                @Override
-                public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
-                    return new Vector3f(232 / 255F, 255 / 255F, 222 / 255F);
-                }
+				@Override
+				public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+					return new Vector3f(232 / 255F, 255 / 255F, 222 / 255F);
+				}
 
-                @Override
-                public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
-                    RenderSystem.setShaderFogStart(0.0F);
-                    RenderSystem.setShaderFogEnd(3.0F);
-                }
-            });
-        }
-    });
+				@Override
+				public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+					RenderSystem.setShaderFogStart(0.0F);
+					RenderSystem.setShaderFogEnd(3.0F);
+				}
+			});
+		}
+	});
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

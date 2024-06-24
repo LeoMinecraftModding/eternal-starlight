@@ -10,10 +10,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 public class ESTreeDecorators {
-    public static final RegistrationProvider<TreeDecoratorType<?>> TREE_DECORATORS = RegistrationProvider.get(Registries.TREE_DECORATOR_TYPE, EternalStarlight.ID);
-    public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TrunkBerriesDecorator>> TRUNK_BERRIES = TREE_DECORATORS.register("trunk_berries", () -> new TreeDecoratorType<>(TrunkBerriesDecorator.CODEC));
-    public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TrunkCobwebDecorator>> TRUNK_COBWEB = TREE_DECORATORS.register("trunk_cobweb", () -> new TreeDecoratorType<>(TrunkCobwebDecorator.CODEC));
-    public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TorreyaVinesDecorator>> TORRETA_VINES = TREE_DECORATORS.register("torreya_vines", () -> new TreeDecoratorType<>(TorreyaVinesDecorator.CODEC));
+	public static final RegistrationProvider<TreeDecoratorType<?>> TREE_DECORATORS = RegistrationProvider.get(Registries.TREE_DECORATOR_TYPE, EternalStarlight.ID);
+	public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TrunkBerriesDecorator>> TRUNK_BERRIES = TREE_DECORATORS.register("trunk_berries", () -> new TreeDecoratorType<>(TrunkBerriesDecorator.CODEC));
+	public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TrunkCobwebDecorator>> TRUNK_COBWEB = TREE_DECORATORS.register("trunk_cobweb", () -> new TreeDecoratorType<>(TrunkCobwebDecorator.CODEC));
+	public static final RegistryObject<TreeDecoratorType<?>, TreeDecoratorType<TorreyaVinesDecorator>> TORRETA_VINES = TREE_DECORATORS.register("torreya_vines", () -> new TreeDecoratorType<>(TorreyaVinesDecorator.CODEC));
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

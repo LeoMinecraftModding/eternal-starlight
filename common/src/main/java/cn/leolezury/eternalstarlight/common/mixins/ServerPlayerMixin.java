@@ -20,28 +20,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin {
-    @Shadow public abstract ServerLevel serverLevel();
+	@Shadow
+	public abstract ServerLevel serverLevel();
 
-    @Inject(method = "die", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;dropAllDeathLoot(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V"))
-    private void die(DamageSource damageSource, CallbackInfo ci) {
-        Inventory inventory = ((Player) (Object) this).getInventory();
-        for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack item = inventory.getItem(i);
-            if (item.is(ESItems.ORB_OF_PROPHECY.get()) && !ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
-                CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
-                OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), item, tag);
-                return;
-            }
-        }
-        ItemStack itemStack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
-        if (!ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
-            CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
-            OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), itemStack, tag);
-            OrbOfProphecyItem.setTemporary(itemStack);
-            if (!inventory.add(itemStack)) {
-                ItemEntity itemEntity = new ItemEntity(serverLevel(), ((Player) (Object) this).getX(), ((Player) (Object) this).getY(), ((Player) (Object) this).getZ(), itemStack);
-                serverLevel().addFreshEntity(itemEntity);
-            }
-        }
-    }
+	@Inject(method = "die", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;dropAllDeathLoot(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V"))
+	private void die(DamageSource damageSource, CallbackInfo ci) {
+		Inventory inventory = ((Player) (Object) this).getInventory();
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			ItemStack item = inventory.getItem(i);
+			if (item.is(ESItems.ORB_OF_PROPHECY.get()) && !ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
+				CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
+				OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), item, tag);
+				return;
+			}
+		}
+		ItemStack itemStack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
+		if (!ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
+			CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
+			OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), itemStack, tag);
+			OrbOfProphecyItem.setTemporary(itemStack);
+			if (!inventory.add(itemStack)) {
+				ItemEntity itemEntity = new ItemEntity(serverLevel(), ((Player) (Object) this).getX(), ((Player) (Object) this).getY(), ((Player) (Object) this).getZ(), itemStack);
+				serverLevel().addFreshEntity(itemEntity);
+			}
+		}
+	}
 }

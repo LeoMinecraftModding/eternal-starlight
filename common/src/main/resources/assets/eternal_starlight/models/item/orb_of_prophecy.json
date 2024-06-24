@@ -1,75 +1,189 @@
 {
-	"textures": {
-		"layer0": "eternal_starlight:item/orb_of_prophecy",
-		"particle": "eternal_starlight:item/orb_of_prophecy"
-	},
-	"overrides": [
-		{
-			"model": "eternal_starlight:item/orb_of_prophecy_temporary",
-			"predicate": {
-				"minecraft:crests_mode": 0.5
-			}
-		},
-		{
-			"model": "eternal_starlight:item/orb_of_prophecy_with_crests",
-			"predicate": {
-				"minecraft:crests_mode": 1.0
-			}
-		}
-	],
-	"gui_light": "front",
-	"elements": [
-		{
-			"from": [3, 6, 3],
-			"to": [13, 16, 13],
-			"faces": {
-				"north": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
-				"east": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
-				"south": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
-				"west": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
-				"up": {"uv": [3, 3, 13, 13], "texture": "#layer0"},
-				"down": {"uv": [3, 3, 13, 13], "texture": "#layer0"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"translation": [0, -3.5, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"thirdperson_lefthand": {
-			"translation": [0, -3.5, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_righthand": {
-			"rotation": [10, 0, 0],
-			"translation": [-2.5, -2.5, 0]
-		},
-		"firstperson_lefthand": {
-			"rotation": [10, 0, 0],
-			"translation": [-2.5, -2.5, 0]
-		},
-		"ground": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"gui": {
-			"rotation": [30, -45, 0],
-			"translation": [0, -2.5, 0]
-		},
-		"head": {
-			"translation": [0, 8.5, 0]
-		},
-		"fixed": {
-			"translation": [0, -3, 0]
-		}
-	},
-	"groups": [
-		{
-			"name": "group",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"nbt": "{}",
-			"children": [0]
-		}
-	]
+  "textures": {
+    "layer0": "eternal_starlight:item/orb_of_prophecy",
+    "particle": "eternal_starlight:item/orb_of_prophecy"
+  },
+  "overrides": [
+    {
+      "model": "eternal_starlight:item/orb_of_prophecy_temporary",
+      "predicate": {
+        "minecraft:crests_mode": 0.5
+      }
+    },
+    {
+      "model": "eternal_starlight:item/orb_of_prophecy_with_crests",
+      "predicate": {
+        "minecraft:crests_mode": 1.0
+      }
+    }
+  ],
+  "gui_light": "front",
+  "elements": [
+    {
+      "from": [
+        3,
+        6,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "east": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "south": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "west": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#layer0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        -3.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        -3.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        10,
+        0,
+        0
+      ],
+      "translation": [
+        -2.5,
+        -2.5,
+        0
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        10,
+        0,
+        0
+      ],
+      "translation": [
+        -2.5,
+        -2.5,
+        0
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        -45,
+        0
+      ],
+      "translation": [
+        0,
+        -2.5,
+        0
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        8.5,
+        0
+      ]
+    },
+    "fixed": {
+      "translation": [
+        0,
+        -3,
+        0
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "group",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "nbt": "{}",
+      "children": [
+        0
+      ]
+    }
+  ]
 }

@@ -19,30 +19,30 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 @Mixin(SpriteSourceList.class)
 public class SpriteSourceListMixin {
-    @Inject(method = "<init>", at = @At("RETURN"))
-    private void init(List<SpriteSource> list, CallbackInfo ci) {
-        for (SpriteSource source : list) {
-            if (source instanceof PalettedPermutationsAccessor permutations && permutations.getPaletteKey().getPath().equals("trims/color_palettes/trim_palette")) {
-                List<ResourceLocation> textures = new ArrayList<>(permutations.getTextures());
-                for (ResourceLocation location : ClientSetupHandlers.TRIMS) {
-                    ResourceLocation legLocation = location.withSuffix("_leggings");
-                    textures.add(location);
-                    textures.add(legLocation);
-                }
-                permutations.setTextures(textures);
-            }
-        }
-    }
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void init(List<SpriteSource> list, CallbackInfo ci) {
+		for (SpriteSource source : list) {
+			if (source instanceof PalettedPermutationsAccessor permutations && permutations.getPaletteKey().getPath().equals("trims/color_palettes/trim_palette")) {
+				List<ResourceLocation> textures = new ArrayList<>(permutations.getTextures());
+				for (ResourceLocation location : ClientSetupHandlers.TRIMS) {
+					ResourceLocation legLocation = location.withSuffix("_leggings");
+					textures.add(location);
+					textures.add(legLocation);
+				}
+				permutations.setTextures(textures);
+			}
+		}
+	}
 
-    @Mixin(PalettedPermutations.class)
-    private interface PalettedPermutationsAccessor {
-        @Accessor
-        List<ResourceLocation> getTextures();
+	@Mixin(PalettedPermutations.class)
+	private interface PalettedPermutationsAccessor {
+		@Accessor
+		List<ResourceLocation> getTextures();
 
-        @Accessor("textures")
-        void setTextures(List<ResourceLocation> value);
+		@Accessor("textures")
+		void setTextures(List<ResourceLocation> value);
 
-        @Accessor
-        ResourceLocation getPaletteKey();
-    }
+		@Accessor
+		ResourceLocation getPaletteKey();
+	}
 }

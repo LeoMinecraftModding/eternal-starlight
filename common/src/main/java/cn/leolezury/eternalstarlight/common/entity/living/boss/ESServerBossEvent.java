@@ -11,48 +11,48 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ESServerBossEvent extends ServerBossEvent {
-    private final Mob boss;
-    private final Set<ServerPlayer> unseenPlayers = new HashSet<>();
-    private UUID id;
+	private final Mob boss;
+	private final Set<ServerPlayer> unseenPlayers = new HashSet<>();
+	private UUID id;
 
-    public ESServerBossEvent(Mob boss, UUID id, BossEvent.BossBarColor color, boolean darkenScreen) {
-        super(boss.getDisplayName(), color, BossEvent.BossBarOverlay.PROGRESS);
-        setVisible(true);
-        setId(id);
-        setDarkenScreen(darkenScreen);
-        this.boss = boss;
-    }
+	public ESServerBossEvent(Mob boss, UUID id, BossEvent.BossBarColor color, boolean darkenScreen) {
+		super(boss.getDisplayName(), color, BossEvent.BossBarOverlay.PROGRESS);
+		setVisible(true);
+		setId(id);
+		setDarkenScreen(darkenScreen);
+		this.boss = boss;
+	}
 
-    public void setId(UUID uuid) {
-        this.id = uuid;
-    }
+	public void setId(UUID uuid) {
+		this.id = uuid;
+	}
 
-    public UUID getId() {
-        return this.id;
-    }
+	public UUID getId() {
+		return this.id;
+	}
 
-    public void update() {
-        setProgress(this.boss.getHealth() / this.boss.getMaxHealth());
-        Iterator<ServerPlayer> it = this.unseenPlayers.iterator();
-        while (it.hasNext()) {
-            ServerPlayer player = it.next();
-            if (this.boss.getSensing().hasLineOfSight(player)) {
-                super.addPlayer(player);
-                it.remove();
-            }
-        }
-    }
+	public void update() {
+		setProgress(this.boss.getHealth() / this.boss.getMaxHealth());
+		Iterator<ServerPlayer> it = this.unseenPlayers.iterator();
+		while (it.hasNext()) {
+			ServerPlayer player = it.next();
+			if (this.boss.getSensing().hasLineOfSight(player)) {
+				super.addPlayer(player);
+				it.remove();
+			}
+		}
+	}
 
-    public void addPlayer(ServerPlayer player) {
-        if (this.boss.getSensing().hasLineOfSight(player)) {
-            super.addPlayer(player);
-        } else {
-            this.unseenPlayers.add(player);
-        }
-    }
+	public void addPlayer(ServerPlayer player) {
+		if (this.boss.getSensing().hasLineOfSight(player)) {
+			super.addPlayer(player);
+		} else {
+			this.unseenPlayers.add(player);
+		}
+	}
 
-    public void removePlayer(ServerPlayer player) {
-        super.removePlayer(player);
-        this.unseenPlayers.remove(player);
-    }
+	public void removePlayer(ServerPlayer player) {
+		super.removePlayer(player);
+		this.unseenPlayers.remove(player);
+	}
 }

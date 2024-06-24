@@ -13,14 +13,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementsMixin {
-    @Shadow public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancementHolder);
+	@Shadow
+	public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancementHolder);
 
-    @Shadow private ServerPlayer player;
+	@Shadow
+	private ServerPlayer player;
 
-    @Inject(at = @At(value = "TAIL"), method = "award")
-    private void award(AdvancementHolder advancementHolder, String string, CallbackInfoReturnable<Boolean> cir) {
-        if (getOrStartProgress(advancementHolder).isDone()) {
-            CommonHandlers.onCompleteAdvancement(player, advancementHolder);
-        }
-    }
+	@Inject(at = @At(value = "TAIL"), method = "award")
+	private void award(AdvancementHolder advancementHolder, String string, CallbackInfoReturnable<Boolean> cir) {
+		if (getOrStartProgress(advancementHolder).isDone()) {
+			CommonHandlers.onCompleteAdvancement(player, advancementHolder);
+		}
+	}
 }

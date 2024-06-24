@@ -8,8 +8,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElementType;
 
 public class ESStructurePoolElementTypes {
-    public static final RegistrationProvider<StructurePoolElementType<?>> STRUCTURE_POOL_ELEMENT_TYPES = RegistrationProvider.get(Registries.STRUCTURE_POOL_ELEMENT, EternalStarlight.ID);
-    public static final RegistryObject<StructurePoolElementType<?>, StructurePoolElementType<ESSinglePoolElement>> SINGLE_POOL = STRUCTURE_POOL_ELEMENT_TYPES.register("single_pool", () -> () -> ESSinglePoolElement.CODEC);
+	public static final RegistrationProvider<StructurePoolElementType<?>> STRUCTURE_POOL_ELEMENT_TYPES = RegistrationProvider.get(Registries.STRUCTURE_POOL_ELEMENT, EternalStarlight.ID);
+	public static final RegistryObject<StructurePoolElementType<?>, StructurePoolElementType<ESSinglePoolElement>> SINGLE_POOL = STRUCTURE_POOL_ELEMENT_TYPES.register("single_pool", () -> () -> ESSinglePoolElement.CODEC);
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

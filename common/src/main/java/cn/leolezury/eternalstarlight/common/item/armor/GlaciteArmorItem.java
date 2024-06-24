@@ -12,13 +12,13 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class GlaciteArmorItem extends ArmorItem {
-    public GlaciteArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
-        super(holder, type, properties);
-    }
+	public GlaciteArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
+		super(holder, type, properties);
+	}
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".glacite_armor").withStyle(ChatFormatting.AQUA));
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-    }
+	@Override
+	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".glacite_armor").withStyle(ChatFormatting.AQUA));
+		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+	}
 }

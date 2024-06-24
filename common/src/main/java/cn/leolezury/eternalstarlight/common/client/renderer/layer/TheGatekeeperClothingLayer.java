@@ -24,32 +24,32 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderLayer<T, TheGatekeeperModel<T>> {
-    private static final ResourceLocation OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay.png");
-    private static final ResourceLocation SLIM_OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay_slim.png");
-    private final TheGatekeeperModel<T> normalModel;
-    private final TheGatekeeperModel<T> slimModel;
+	private static final ResourceLocation OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay.png");
+	private static final ResourceLocation SLIM_OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay_slim.png");
+	private final TheGatekeeperModel<T> normalModel;
+	private final TheGatekeeperModel<T> slimModel;
 
-    public TheGatekeeperClothingLayer(RenderLayerParent<T, TheGatekeeperModel<T>> parent, EntityModelSet modelSet) {
-        super(parent);
-        this.normalModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.OUTER_LAYER_LOCATION), false);
-        this.slimModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION), true);
-    }
+	public TheGatekeeperClothingLayer(RenderLayerParent<T, TheGatekeeperModel<T>> parent, EntityModelSet modelSet) {
+		super(parent);
+		this.normalModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.OUTER_LAYER_LOCATION), false);
+		this.slimModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION), true);
+	}
 
-    public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        TheGatekeeperModel<T> model = normalModel;
-        ResourceLocation texture = OVERLAY_TEXTURE;
-        SkinManager skinManager = Minecraft.getInstance().getSkinManager();
-        Optional<GameProfile> profile = TheGatekeeperRenderer.getGameProfile(entity);
-        if (profile.isPresent()) {
-            texture = skinManager.getInsecureSkin(profile.get()).model() == PlayerSkin.Model.SLIM ? SLIM_OVERLAY_TEXTURE : OVERLAY_TEXTURE;
-            model = skinManager.getInsecureSkin(profile.get()).model() == PlayerSkin.Model.SLIM ? slimModel : normalModel;
-        }
-        if (!entity.isInvisible()) {
-            getParentModel().copyPropertiesTo(model);
-            model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-            model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
-            model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
-        }
-    }
+	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		TheGatekeeperModel<T> model = normalModel;
+		ResourceLocation texture = OVERLAY_TEXTURE;
+		SkinManager skinManager = Minecraft.getInstance().getSkinManager();
+		Optional<GameProfile> profile = TheGatekeeperRenderer.getGameProfile(entity);
+		if (profile.isPresent()) {
+			texture = skinManager.getInsecureSkin(profile.get()).model() == PlayerSkin.Model.SLIM ? SLIM_OVERLAY_TEXTURE : OVERLAY_TEXTURE;
+			model = skinManager.getInsecureSkin(profile.get()).model() == PlayerSkin.Model.SLIM ? slimModel : normalModel;
+		}
+		if (!entity.isInvisible()) {
+			getParentModel().copyPropertiesTo(model);
+			model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+			model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+			model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
+		}
+	}
 }

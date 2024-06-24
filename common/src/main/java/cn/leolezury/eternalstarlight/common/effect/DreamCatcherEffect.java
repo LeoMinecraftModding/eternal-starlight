@@ -7,10 +7,10 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class DreamCatcherEffect extends MobEffect {
-    public static final double ARMOR_ADDITION = 5D;
+	public static final double ARMOR_ADDITION = 5D;
 
-    public DreamCatcherEffect(MobEffectCategory mobEffectCategory, int color) {
-        super(mobEffectCategory, color);
-        this.addAttributeModifier(Attributes.ARMOR, EternalStarlight.id("armor.dream_catcher"), ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
-    }
+	public DreamCatcherEffect(MobEffectCategory mobEffectCategory, int color) {
+		super(mobEffectCategory, color);
+		this.addAttributeModifier(Attributes.ARMOR, EternalStarlight.id("armor.dream_catcher"), ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
+	}
 }

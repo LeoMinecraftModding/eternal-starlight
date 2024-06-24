@@ -9,8 +9,9 @@ import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.ai.sensing.TemptingSensor;
 
 public class ESSensorTypes {
-    public static final RegistrationProvider<SensorType<?>> SENSOR_TYPES = RegistrationProvider.get(Registries.SENSOR_TYPE, EternalStarlight.ID);
-    public static final RegistryObject<SensorType<?>, SensorType<TemptingSensor>> YETI_TEMPTATIONS = SENSOR_TYPES.register("yeti_temptations", () -> new SensorType<>(() -> new TemptingSensor(YetiAi.getTemptations())));
+	public static final RegistrationProvider<SensorType<?>> SENSOR_TYPES = RegistrationProvider.get(Registries.SENSOR_TYPE, EternalStarlight.ID);
+	public static final RegistryObject<SensorType<?>, SensorType<TemptingSensor>> YETI_TEMPTATIONS = SENSOR_TYPES.register("yeti_temptations", () -> new SensorType<>(() -> new TemptingSensor(YetiAi.getTemptations())));
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

@@ -9,18 +9,18 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TheGatekeeperSpawnerBlockEntity extends BossSpawnerBlockEntity<TheGatekeeper> {
-    public TheGatekeeperSpawnerBlockEntity(BlockPos pos, BlockState state) {
-        super(ESBlockEntities.THE_GATEKEEPER_SPAWNER.get(), ESEntities.THE_GATEKEEPER.get(), pos, state);
-    }
+	public TheGatekeeperSpawnerBlockEntity(BlockPos pos, BlockState state) {
+		super(ESBlockEntities.THE_GATEKEEPER_SPAWNER.get(), ESEntities.THE_GATEKEEPER.get(), pos, state);
+	}
 
-    @Override
-    protected void initializeCreature(TheGatekeeper mob) {
-        super.initializeCreature(mob);
-        mob.setFightPlayerOnly(true);
-    }
+	@Override
+	protected void initializeCreature(TheGatekeeper mob) {
+		super.initializeCreature(mob);
+		mob.setFightPlayerOnly(true);
+	}
 
-    @Override
-    public ParticleOptions getSpawnerParticle() {
-        return ParticleTypes.CRIT;
-    }
+	@Override
+	public ParticleOptions getSpawnerParticle() {
+		return ParticleTypes.CRIT;
+	}
 }

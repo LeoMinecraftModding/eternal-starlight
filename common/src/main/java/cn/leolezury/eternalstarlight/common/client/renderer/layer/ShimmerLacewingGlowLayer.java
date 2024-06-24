@@ -18,22 +18,22 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderLayer<T, ShimmerLacewingModel<T>> {
-    private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow.png"));
-    private static final RenderType GLOW_SWAMP = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow_swamp.png"));
-    private final ShimmerLacewingModel<T> model;
+	private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow.png"));
+	private static final RenderType GLOW_SWAMP = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/shimmer_lacewing_glow_swamp.png"));
+	private final ShimmerLacewingModel<T> model;
 
-    public ShimmerLacewingGlowLayer(RenderLayerParent<T, ShimmerLacewingModel<T>> parent, EntityModelSet modelSet) {
-        super(parent);
-        this.model = new ShimmerLacewingModel<>(modelSet.bakeLayer(ShimmerLacewingModel.LAYER_LOCATION));
-    }
+	public ShimmerLacewingGlowLayer(RenderLayerParent<T, ShimmerLacewingModel<T>> parent, EntityModelSet modelSet) {
+		super(parent);
+		this.model = new ShimmerLacewingModel<>(modelSet.bakeLayer(ShimmerLacewingModel.LAYER_LOCATION));
+	}
 
-    public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!entity.isInvisible()) {
-            getParentModel().copyPropertiesTo(this.model);
-            this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer consumer = bufferSource.getBuffer(entity.getVariant() == ShimmerLacewing.VARIANT_SWAMP ? GLOW_SWAMP : GLOW);
-            this.model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), FastColor.ARGB32.color((int) (Math.max(0.0F, Mth.cos(ageInTicks * 0.1f + 3.1415927F)) * 255), 255, 255, 255));
-        }
-    }
+	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		if (!entity.isInvisible()) {
+			getParentModel().copyPropertiesTo(this.model);
+			this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+			this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			VertexConsumer consumer = bufferSource.getBuffer(entity.getVariant() == ShimmerLacewing.VARIANT_SWAMP ? GLOW_SWAMP : GLOW);
+			this.model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), FastColor.ARGB32.color((int) (Math.max(0.0F, Mth.cos(ageInTicks * 0.1f + 3.1415927F)) * 255), 255, 255, 255));
+		}
+	}
 }

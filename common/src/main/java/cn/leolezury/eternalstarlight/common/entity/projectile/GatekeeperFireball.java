@@ -25,135 +25,138 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class GatekeeperFireball extends Fireball {
-    public GatekeeperFireball(EntityType<? extends Fireball> entityType, Level level) {
-        super(entityType, level);
-    }
+	public GatekeeperFireball(EntityType<? extends Fireball> entityType, Level level) {
+		super(entityType, level);
+	}
 
-    public GatekeeperFireball(Level level, LivingEntity livingEntity, Vec3 motion) {
-        super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, motion, level);
-    }
+	public GatekeeperFireball(Level level, LivingEntity livingEntity, Vec3 motion) {
+		super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, motion, level);
+	}
 
-    protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);
-    public int getSpawnedTicks() {
-        return entityData.get(SPAWNED_TICKS);
-    }
-    public void setSpawnedTicks(int spawnedTicks) {
-        entityData.set(SPAWNED_TICKS, spawnedTicks);
-    }
+	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(SPAWNED_TICKS, 0);
-    }
+	public int getSpawnedTicks() {
+		return entityData.get(SPAWNED_TICKS);
+	}
 
-    @Nullable
-    private LivingEntity target;
-    @Nullable
-    private UUID targetId;
+	public void setSpawnedTicks(int spawnedTicks) {
+		entityData.set(SPAWNED_TICKS, spawnedTicks);
+	}
 
-    public LivingEntity getTarget() {
-        return target;
-    }
-    public void setTarget(LivingEntity target) {
-        this.targetId = target.getUUID();
-        this.target = target;
-    }
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(SPAWNED_TICKS, 0);
+	}
 
-    protected ParticleOptions getTrailParticle() {
-        return ESSmokeParticleOptions.FLAME;
-    }
+	@Nullable
+	private LivingEntity target;
+	@Nullable
+	private UUID targetId;
 
-    @Override
-    public boolean isPickable() {
-        return false;
-    }
+	public LivingEntity getTarget() {
+		return target;
+	}
 
-    public boolean isOnFire() {
-        return false;
-    }
+	public void setTarget(LivingEntity target) {
+		this.targetId = target.getUUID();
+		this.target = target;
+	}
 
-    public boolean hurt(DamageSource damageSource, float amount) {
-        return false;
-    }
+	protected ParticleOptions getTrailParticle() {
+		return ESSmokeParticleOptions.FLAME;
+	}
 
-    protected boolean shouldBurn() {
-        return false;
-    }
+	@Override
+	public boolean isPickable() {
+		return false;
+	}
 
-    private boolean canReachTarget(double range) {
-        LivingEntity target = getTarget();
-        if (target == null) {
-            return false;
-        }
-        for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(range))) {
-            if (livingEntity.getUUID().equals(target.getUUID())) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public boolean isOnFire() {
+		return false;
+	}
 
-    protected void onHit(HitResult hitResult) {
-        super.onHit(hitResult);
-        if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
-            boolean bl = ESPlatform.INSTANCE.postMobGriefingEvent(level(), this);
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
-            this.discard();
-        }
-    }
+	public boolean hurt(DamageSource damageSource, float amount) {
+		return false;
+	}
 
-    protected void onHitEntity(EntityHitResult entityHitResult) {
-        super.onHitEntity(entityHitResult);
-        if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
-            Entity entity = entityHitResult.getEntity();
-            Entity entity2 = this.getOwner();
-            DamageSource damageSource = this.damageSources().fireball(this, entity2);
-            entity.hurt(damageSource, 8.0F);
-            EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
-        }
-    }
+	protected boolean shouldBurn() {
+		return false;
+	}
 
-    @Override
-    public void tick() {
-        super.tick();
-        if (!level().isClientSide) {
-            if (target == null && targetId != null) {
-                if (((ServerLevel)this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
-                    target = livingEntity;
-                }
-                if (target == null) {
-                    targetId = null;
-                }
-            }
-            setSpawnedTicks(getSpawnedTicks() + 1);
-            if (getSpawnedTicks() == 60 && getTarget() != null) {
-                Vec3 power = getTarget().position().subtract(position()).normalize().scale(0.4f);
-                setDeltaMovement(power);
-            }
-        }
-        if (getSpawnedTicks() < 60 && getOwner() != null) {
-            Entity owner = getOwner();
-            float yaw = ESMathUtil.positionToYaw(owner.position(), position());
-            float pitch = ESMathUtil.positionToPitch(owner.position(), position());
-            Vec3 newPos = ESMathUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
-            setPos(newPos);
-        }
-    }
+	private boolean canReachTarget(double range) {
+		LivingEntity target = getTarget();
+		if (target == null) {
+			return false;
+		}
+		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(range))) {
+			if (livingEntity.getUUID().equals(target.getUUID())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        if (compoundTag.hasUUID("Target")) {
-            targetId = compoundTag.getUUID("Target");
-        }
-        setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
-    }
+	protected void onHit(HitResult hitResult) {
+		super.onHit(hitResult);
+		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
+			boolean bl = ESPlatform.INSTANCE.postMobGriefingEvent(level(), this);
+			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
+			this.discard();
+		}
+	}
 
-    public void addAdditionalSaveData(CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        if (target != null) {
-            compoundTag.putUUID("Target", target.getUUID());
-        }
-        compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
-    }
+	protected void onHitEntity(EntityHitResult entityHitResult) {
+		super.onHitEntity(entityHitResult);
+		if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
+			Entity entity = entityHitResult.getEntity();
+			Entity entity2 = this.getOwner();
+			DamageSource damageSource = this.damageSources().fireball(this, entity2);
+			entity.hurt(damageSource, 8.0F);
+			EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
+		}
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (!level().isClientSide) {
+			if (target == null && targetId != null) {
+				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+					target = livingEntity;
+				}
+				if (target == null) {
+					targetId = null;
+				}
+			}
+			setSpawnedTicks(getSpawnedTicks() + 1);
+			if (getSpawnedTicks() == 60 && getTarget() != null) {
+				Vec3 power = getTarget().position().subtract(position()).normalize().scale(0.4f);
+				setDeltaMovement(power);
+			}
+		}
+		if (getSpawnedTicks() < 60 && getOwner() != null) {
+			Entity owner = getOwner();
+			float yaw = ESMathUtil.positionToYaw(owner.position(), position());
+			float pitch = ESMathUtil.positionToPitch(owner.position(), position());
+			Vec3 newPos = ESMathUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
+			setPos(newPos);
+		}
+	}
+
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.hasUUID("Target")) {
+			targetId = compoundTag.getUUID("Target");
+		}
+		setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
+	}
+
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		if (target != null) {
+			compoundTag.putUUID("Target", target.getUUID());
+		}
+		compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
+	}
 }

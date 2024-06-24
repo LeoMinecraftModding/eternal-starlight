@@ -25,57 +25,57 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class AbyssalGeyserBlockEntity extends BlockEntity {
-    private int ticksSinceLastErupt = 0;
-    private final RandomSource random;
+	private int ticksSinceLastErupt = 0;
+	private final RandomSource random;
 
-    public AbyssalGeyserBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(ESBlockEntities.ABYSSAL_GEYSER.get(), blockPos, blockState);
-        this.random = new LegacyRandomSource(blockPos.asLong());
-    }
+	public AbyssalGeyserBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(ESBlockEntities.ABYSSAL_GEYSER.get(), blockPos, blockState);
+		this.random = new LegacyRandomSource(blockPos.asLong());
+	}
 
-    public static void tick(Level level, BlockPos pos, BlockState state, AbyssalGeyserBlockEntity entity) {
-        entity.ticksSinceLastErupt++;
-        entity.ticksSinceLastErupt = entity.ticksSinceLastErupt % 800; // 30 sec + 10 sec
-        if (entity.ticksSinceLastErupt <= 200) { // erupt for 10 sec
-            if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                Vec3 particlePos = pos.getCenter().add(0, 0.4, 0);
-                ParticlePacket packet1 = new ParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
-                ParticlePacket packet2 = new ParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
-                ParticlePacket packet3 = new ParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet1);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet2);
-                ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet3);
-                if (entity.ticksSinceLastErupt == 200) {
-                    // convert items above
-                    List<RecipeHolder<GeyserSmokingRecipe>> list = level.getRecipeManager().getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get());
-                    AABB itemBox = new AABB(pos);
-                    itemBox = itemBox.setMaxY(itemBox.maxY + 2);
-                    for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, itemBox)) {
-                        ItemStack item = itemEntity.getItem();
-                        for (RecipeHolder<GeyserSmokingRecipe> recipeHolder : list) {
-                            if (item.is(recipeHolder.value().input())) {
-                                int count = item.getCount();
-                                DataComponentMap components = item.getComponents();
-                                ItemStack stack = new ItemStack(recipeHolder.value().output(), count);
-                                stack.applyComponents(components);
-                                itemEntity.setItem(stack);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	public static void tick(Level level, BlockPos pos, BlockState state, AbyssalGeyserBlockEntity entity) {
+		entity.ticksSinceLastErupt++;
+		entity.ticksSinceLastErupt = entity.ticksSinceLastErupt % 800; // 30 sec + 10 sec
+		if (entity.ticksSinceLastErupt <= 200) { // erupt for 10 sec
+			if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+				Vec3 particlePos = pos.getCenter().add(0, 0.4, 0);
+				ParticlePacket packet1 = new ParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+				ParticlePacket packet2 = new ParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+				ParticlePacket packet3 = new ParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5);
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet1);
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet2);
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet3);
+				if (entity.ticksSinceLastErupt == 200) {
+					// convert items above
+					List<RecipeHolder<GeyserSmokingRecipe>> list = level.getRecipeManager().getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get());
+					AABB itemBox = new AABB(pos);
+					itemBox = itemBox.setMaxY(itemBox.maxY + 2);
+					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, itemBox)) {
+						ItemStack item = itemEntity.getItem();
+						for (RecipeHolder<GeyserSmokingRecipe> recipeHolder : list) {
+							if (item.is(recipeHolder.value().input())) {
+								int count = item.getCount();
+								DataComponentMap components = item.getComponents();
+								ItemStack stack = new ItemStack(recipeHolder.value().output(), count);
+								stack.applyComponents(components);
+								itemEntity.setItem(stack);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
-    @Override
-    public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
-        super.loadAdditional(compoundTag, provider);
-        this.ticksSinceLastErupt = compoundTag.getInt("TicksSinceLastErupt");
-    }
+	@Override
+	public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+		super.loadAdditional(compoundTag, provider);
+		this.ticksSinceLastErupt = compoundTag.getInt("TicksSinceLastErupt");
+	}
 
-    @Override
-    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
-        super.saveAdditional(compoundTag, provider);
-        compoundTag.putInt("TicksSinceLastErupt", this.ticksSinceLastErupt);
-    }
+	@Override
+	protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+		super.saveAdditional(compoundTag, provider);
+		compoundTag.putInt("TicksSinceLastErupt", this.ticksSinceLastErupt);
+	}
 }

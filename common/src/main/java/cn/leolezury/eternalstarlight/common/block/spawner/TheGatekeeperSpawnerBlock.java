@@ -14,31 +14,31 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class TheGatekeeperSpawnerBlock extends BaseEntityBlock {
-    public static final MapCodec<TheGatekeeperSpawnerBlock> CODEC = simpleCodec(TheGatekeeperSpawnerBlock::new);
+	public static final MapCodec<TheGatekeeperSpawnerBlock> CODEC = simpleCodec(TheGatekeeperSpawnerBlock::new);
 
-    public TheGatekeeperSpawnerBlock(Properties properties) {
-        super(properties);
-    }
+	public TheGatekeeperSpawnerBlock(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
-    }
+	@Override
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
+	}
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TheGatekeeperSpawnerBlockEntity(pos, state);
-    }
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new TheGatekeeperSpawnerBlockEntity(pos, state);
+	}
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ESBlockEntities.THE_GATEKEEPER_SPAWNER.get(), TheGatekeeperSpawnerBlockEntity::tick);
-    }
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, ESBlockEntities.THE_GATEKEEPER_SPAWNER.get(), TheGatekeeperSpawnerBlockEntity::tick);
+	}
 }

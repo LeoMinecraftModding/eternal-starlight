@@ -4,7 +4,7 @@
 # against bad commits.
 
 name: build
-on: [pull_request, push]
+on: [ pull_request, push ]
 
 jobs:
   build:
@@ -41,10 +41,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fabric-artifacts
-          path: fabric/build/libs/*-?.?.?.jar
+          path: fabric/build/libs/*[0-9].jar
       - name: capture forge build artifacts
         # if: ${{ runner.os == 'Linux' && matrix.java == '21' }} # Only upload artifacts built from latest java on one OS
         uses: actions/upload-artifact@v4
         with:
           name: forge-artifacts
-          path: forge/build/libs/*-?.?.?.jar
+          path: forge/build/libs/*[0-9].jar

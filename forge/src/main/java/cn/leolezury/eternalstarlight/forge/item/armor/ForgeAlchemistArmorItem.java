@@ -20,29 +20,29 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 
 public class ForgeAlchemistArmorItem extends AlchemistArmorItem {
-    public ForgeAlchemistArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
-        super(material, type, properties);
-    }
+	public ForgeAlchemistArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
+		super(material, type, properties);
+	}
 
-    @Override
-    public @Nullable ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-        return TEXTURE;
-    }
+	@Override
+	public @Nullable ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
+		return TEXTURE;
+	}
 
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            private AlchemistArmorModel<LivingEntity> model;
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(new IClientItemExtensions() {
+			private AlchemistArmorModel<LivingEntity> model;
 
-            @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                if (model == null) {
-                    model = new AlchemistArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(AlchemistArmorModel.LAYER_LOCATION));
-                }
+			@Override
+			public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+				if (model == null) {
+					model = new AlchemistArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(AlchemistArmorModel.LAYER_LOCATION));
+				}
 
-                return model;
-            }
-        });
-    }
+				return model;
+			}
+		});
+	}
 }

@@ -14,17 +14,17 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class ThermalSpringStoneArmorItem extends ArmorItem {
-    public ThermalSpringStoneArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
-        super(holder, type, properties);
-    }
+	public ThermalSpringStoneArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
+		super(holder, type, properties);
+	}
 
-    public static ResourceLocation getTexture(EquipmentSlot slot) {
-        return EternalStarlight.id("textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png"));
-    }
+	public static ResourceLocation getTexture(EquipmentSlot slot) {
+		return EternalStarlight.id("textures/armor/thermal_springstone_layer_" + ((slot == EquipmentSlot.LEGS) ? "2.png" : "1.png"));
+	}
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".thermal_springstone_armor").withStyle(ChatFormatting.GOLD));
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-    }
+	@Override
+	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".thermal_springstone_armor").withStyle(ChatFormatting.GOLD));
+		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+	}
 }

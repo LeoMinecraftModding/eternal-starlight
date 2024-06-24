@@ -20,24 +20,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin {
-    @Shadow private @Nullable ClientLevel level;
-    @Shadow private int ticks;
+	@Shadow
+	private @Nullable ClientLevel level;
+	@Shadow
+	private int ticks;
 
 
-    @Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
-    private void renderSky(Matrix4f matrix4f, Matrix4f matrix4f2, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
-        if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
-            ESSkyRenderer.renderSky(level, matrix4f, matrix4f2, f, camera, runnable);
-            ci.cancel();
-        }
-    }
+	@Inject(method = "renderSky", at = @At(value = "HEAD"), cancellable = true)
+	private void renderSky(Matrix4f matrix4f, Matrix4f matrix4f2, float f, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
+		if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
+			ESSkyRenderer.renderSky(level, matrix4f, matrix4f2, f, camera, runnable);
+			ci.cancel();
+		}
+	}
 
-    @Inject(method = "renderSnowAndRain", at = @At(value = "HEAD"), cancellable = true)
-    private void renderSnowAndRain(LightTexture lightTexture, float partialTick, double camX, double camY, double camZ, CallbackInfo ci) {
-        if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
-            if (ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ)) {
-                ci.cancel();
-            }
-        }
-    }
+	@Inject(method = "renderSnowAndRain", at = @At(value = "HEAD"), cancellable = true)
+	private void renderSnowAndRain(LightTexture lightTexture, float partialTick, double camX, double camY, double camZ, CallbackInfo ci) {
+		if (level.dimension() == ESDimensions.STARLIGHT_KEY) {
+			if (ESWeatherRenderer.renderCustomWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ)) {
+				ci.cancel();
+			}
+		}
+	}
 }

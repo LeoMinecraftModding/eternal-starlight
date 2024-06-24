@@ -50,102 +50,123 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public interface ESPlatform {
-    ESPlatform INSTANCE = Util.make(() -> {
-        final ServiceLoader<ESPlatform> loader = ServiceLoader.load(ESPlatform.class);
-        final Iterator<ESPlatform> iterator = loader.iterator();
-        if (!iterator.hasNext()) {
-            throw new RuntimeException("Platform instance not found!");
-        } else {
-            final ESPlatform platform = iterator.next();
-            if (iterator.hasNext()) {
-                throw new RuntimeException("More than one platform instance was found!");
-            }
-            return platform;
-        }
-    });
+	ESPlatform INSTANCE = Util.make(() -> {
+		final ServiceLoader<ESPlatform> loader = ServiceLoader.load(ESPlatform.class);
+		final Iterator<ESPlatform> iterator = loader.iterator();
+		if (!iterator.hasNext()) {
+			throw new RuntimeException("Platform instance not found!");
+		} else {
+			final ESPlatform platform = iterator.next();
+			if (iterator.hasNext()) {
+				throw new RuntimeException("More than one platform instance was found!");
+			}
+			return platform;
+		}
+	});
 
-    enum Loader {
-        FORGE,
-        FABRIC
-    }
+	enum Loader {
+		FORGE,
+		FABRIC
+	}
 
-    // some loader-related stuff
-    Loader getLoader();
-    boolean isPhysicalClient();
+	// some loader-related stuff
+	Loader getLoader();
 
-    // registry utils
-    <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace);
-    <T> RegistrationProvider<T> createNewRegistryProvider(ResourceKey<? extends Registry<T>> key, String namespace);
-    <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec);
+	boolean isPhysicalClient();
 
-    // for initialization
-    // items
-    default ScytheItem createScythe(Tier tier, Item.Properties properties) {
-        return new CommonScytheItem(tier, properties);
-    }
-    default HammerItem createHammer(Tier tier, Item.Properties properties) {
-        return new CommonHammerItem(tier, properties);
-    }
-    default ShieldItem createShield(Item.Properties properties) {
-        return new ShieldItem(properties);
-    }
-    ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
-    AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
-    CreativeModeTab getESTab();
-    // blocks
-    default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
-        return new FlowerPotBlock(flower.get(), properties);
-    }
-    default BushBlock createWaterlily(BlockBehaviour.Properties properties) {
-        return new WaterlilyBlock(properties);
-    }
-    default EtherFluid.Still createEtherFluid() {
-        return new EtherFluid.Still();
-    }
-    default EtherFluid.Flowing createFlowingEtherFluid() {
-        return new EtherFluid.Flowing();
-    }
-    // reload listeners
-    default TheGatekeeperNameManager createGatekeeperNameManager() {
-        return new TheGatekeeperNameManager();
-    }
+	// registry utils
+	<T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace);
 
-    // event-related
-    default boolean postMobGriefingEvent(Level level, Entity entity) {
-        return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
-    }
-    default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
-        return true;
-    }
+	<T> RegistrationProvider<T> createNewRegistryProvider(ResourceKey<? extends Registry<T>> key, String namespace);
 
-    // item stuff
-    boolean isShears(ItemStack stack);
-    boolean isShield(ItemStack stack);
-    default boolean canStrip(ItemStack stack) {
-        return stack.getItem() instanceof AxeItem;
-    }
-    Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
+	<T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec);
 
-    // client-side
-    @Environment(EnvType.CLIENT)
-    default DimensionSpecialEffects getDimEffect() {
-        return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
-    }
-    @Environment(EnvType.CLIENT)
-    default BakedModel getGlowingBakedModel(BakedModel origin) {
-        return new GlowingBakedModel(origin);
-    }
-    @Environment(EnvType.CLIENT)
-    default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
-        dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
-    }
+	// for initialization
+	// items
+	default ScytheItem createScythe(Tier tier, Item.Properties properties) {
+		return new CommonScytheItem(tier, properties);
+	}
 
-    // networking
-    void sendToClient(ServerPlayer player, CustomPacketPayload packet);
-    default void sendToAllClients(ServerLevel level, CustomPacketPayload packet) {
-        for (ServerPlayer player : level.players()) {
-            sendToClient(player, packet);
-        }
-    }
-    void sendToServer(CustomPacketPayload packet);
+	default HammerItem createHammer(Tier tier, Item.Properties properties) {
+		return new CommonHammerItem(tier, properties);
+	}
+
+	default ShieldItem createShield(Item.Properties properties) {
+		return new ShieldItem(properties);
+	}
+
+	ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+
+	AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+
+	CreativeModeTab getESTab();
+
+	// blocks
+	default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
+		return new FlowerPotBlock(flower.get(), properties);
+	}
+
+	default BushBlock createWaterlily(BlockBehaviour.Properties properties) {
+		return new WaterlilyBlock(properties);
+	}
+
+	default EtherFluid.Still createEtherFluid() {
+		return new EtherFluid.Still();
+	}
+
+	default EtherFluid.Flowing createFlowingEtherFluid() {
+		return new EtherFluid.Flowing();
+	}
+
+	// reload listeners
+	default TheGatekeeperNameManager createGatekeeperNameManager() {
+		return new TheGatekeeperNameManager();
+	}
+
+	// event-related
+	default boolean postMobGriefingEvent(Level level, Entity entity) {
+		return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+	}
+
+	default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
+		return true;
+	}
+
+	// item stuff
+	boolean isShears(ItemStack stack);
+
+	boolean isShield(ItemStack stack);
+
+	default boolean canStrip(ItemStack stack) {
+		return stack.getItem() instanceof AxeItem;
+	}
+
+	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
+
+	// client-side
+	@Environment(EnvType.CLIENT)
+	default DimensionSpecialEffects getDimEffect() {
+		return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
+	}
+
+	@Environment(EnvType.CLIENT)
+	default BakedModel getGlowingBakedModel(BakedModel origin) {
+		return new GlowingBakedModel(origin);
+	}
+
+	@Environment(EnvType.CLIENT)
+	default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
+		dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
+	}
+
+	// networking
+	void sendToClient(ServerPlayer player, CustomPacketPayload packet);
+
+	default void sendToAllClients(ServerLevel level, CustomPacketPayload packet) {
+		for (ServerPlayer player : level.players()) {
+			sendToClient(player, packet);
+		}
+	}
+
+	void sendToServer(CustomPacketPayload packet);
 }

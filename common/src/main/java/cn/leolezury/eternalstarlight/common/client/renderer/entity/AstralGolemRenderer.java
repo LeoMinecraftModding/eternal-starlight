@@ -14,16 +14,16 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/golem/astral_golem_iron.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/golem/astral_golem_iron.png");
 
-    public AstralGolemRenderer(EntityRendererProvider.Context context) {
-        super(context, new AstralGolemModel<>(context.bakeLayer(AstralGolemModel.LAYER_LOCATION)), 0.5f);
-        this.addLayer(new AstralGolemArmorLayer<>(this, new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.INNER_ARMOR_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.OUTER_ARMOR_LOCATION)), context.getModelManager()));
-    }
+	public AstralGolemRenderer(EntityRendererProvider.Context context) {
+		super(context, new AstralGolemModel<>(context.bakeLayer(AstralGolemModel.LAYER_LOCATION)), 0.5f);
+		this.addLayer(new AstralGolemArmorLayer<>(this, new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.INNER_ARMOR_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(AstralGolemModel.OUTER_ARMOR_LOCATION)), context.getModelManager()));
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        AstralGolemMaterial material = entity.getMaterial();
-        return material == null ? ENTITY_TEXTURE : material.texture();
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		AstralGolemMaterial material = entity.getMaterial();
+		return material == null ? ENTITY_TEXTURE : material.texture();
+	}
 }

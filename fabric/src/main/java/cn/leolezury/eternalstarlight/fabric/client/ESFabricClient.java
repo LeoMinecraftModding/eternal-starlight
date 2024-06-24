@@ -27,45 +27,45 @@ import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 public class ESFabricClient implements ClientModInitializer {
-    @Override
-    public void onInitializeClient() {
-        ClientSetupHandlers.clientSetup();
-        ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
-        ClientSetupHandlers.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
-        ModelLoadingPlugin.register(new ESModelLoadingPlugin());
-        ClientSetupHandlers.registerItemColors(ColorProviderRegistry.ITEM::register);
-        ClientSetupHandlers.registerShaders((location, format, loaded) -> CoreShaderRegistrationCallback.EVENT.register(context -> context.register(location, format, loaded)));
-        ClientSetupHandlers.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ClientSetupHandlers.ParticleProviderRegisterStrategy() {
-            @Override
-            public <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider) {
-                ParticleFactoryRegistry.getInstance().register(particle, provider::create);
-            }
-        };
-        ClientSetupHandlers.registerParticleProviders(particleProviderRegisterStrategy);
+	@Override
+	public void onInitializeClient() {
+		ClientSetupHandlers.clientSetup();
+		ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
+		ClientSetupHandlers.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
+		ModelLoadingPlugin.register(new ESModelLoadingPlugin());
+		ClientSetupHandlers.registerItemColors(ColorProviderRegistry.ITEM::register);
+		ClientSetupHandlers.registerShaders((location, format, loaded) -> CoreShaderRegistrationCallback.EVENT.register(context -> context.register(location, format, loaded)));
+		ClientSetupHandlers.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ClientSetupHandlers.ParticleProviderRegisterStrategy() {
+			@Override
+			public <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider) {
+				ParticleFactoryRegistry.getInstance().register(particle, provider::create);
+			}
+		};
+		ClientSetupHandlers.registerParticleProviders(particleProviderRegisterStrategy);
 
-        ClientSetupHandlers.registerEntityRenderers(EntityRendererRegistry::register);
-        ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
-        WorldRenderEvents.AFTER_ENTITIES.register(context -> ClientHandlers.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(true)));
+		ClientSetupHandlers.registerEntityRenderers(EntityRendererRegistry::register);
+		ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> ClientHandlers.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(true)));
 
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());
-        }
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutout());
-        }
-        for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_TRANSLUCENT) {
-            BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
-        }
+		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {
+			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());
+		}
+		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT) {
+			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutout());
+		}
+		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_TRANSLUCENT) {
+			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
+		}
 
-        DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
+		DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
 
-        FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
-                EternalStarlight.id("block/ether"),
-                EternalStarlight.id("block/ether_flow")
-        ));
+		FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
+			EternalStarlight.id("block/ether"),
+			EternalStarlight.id("block/ether_flow")
+		));
 
-        BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> ClientHandlers.onClientTick());
-    }
+		ClientTickEvents.END_CLIENT_TICK.register(client -> ClientHandlers.onClientTick());
+	}
 }

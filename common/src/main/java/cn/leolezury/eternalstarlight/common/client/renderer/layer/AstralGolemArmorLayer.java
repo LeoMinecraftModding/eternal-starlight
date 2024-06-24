@@ -13,13 +13,13 @@ import net.minecraft.world.entity.LivingEntity;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemArmorLayer<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends HumanoidArmorLayer<T, M, A> {
-    public AstralGolemArmorLayer(RenderLayerParent parent, A inner, A outer, ModelManager mgr) {
-        super(parent, inner, outer, mgr);
-    }
+	public AstralGolemArmorLayer(RenderLayerParent parent, A inner, A outer, ModelManager mgr) {
+		super(parent, inner, outer, mgr);
+	}
 
-    @Override
-    public void render(PoseStack stack, MultiBufferSource source, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
-        this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.CHEST, i, this.getArmorModel(EquipmentSlot.CHEST));
-        this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.HEAD, i, this.getArmorModel(EquipmentSlot.HEAD));
-    }
+	@Override
+	public void render(PoseStack stack, MultiBufferSource source, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
+		this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.CHEST, i, this.getArmorModel(EquipmentSlot.CHEST));
+		this.renderArmorPiece(stack, source, livingEntity, EquipmentSlot.HEAD, i, this.getArmorModel(EquipmentSlot.HEAD));
+	}
 }

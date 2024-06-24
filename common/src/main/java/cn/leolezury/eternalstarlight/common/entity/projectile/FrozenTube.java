@@ -28,98 +28,98 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
 public class FrozenTube extends AbstractArrow implements TrailOwner {
-    private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-    private boolean dealtDamage;
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+	private boolean dealtDamage;
 
-    public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
-        super(entityType, level);
-    }
+	public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
+		super(entityType, level);
+	}
 
-    public FrozenTube(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
-        super(ESEntities.FROZEN_TUBE.get(), livingEntity, level, new ItemStack(ESItems.FROZEN_TUBE.get()), itemStack2);
-    }
+	public FrozenTube(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
+		super(ESEntities.FROZEN_TUBE.get(), livingEntity, level, new ItemStack(ESItems.FROZEN_TUBE.get()), itemStack2);
+	}
 
-    public void tick() {
-        if (this.inGroundTime > 4) {
-            this.dealtDamage = true;
-        }
-        super.tick();
-    }
+	public void tick() {
+		if (this.inGroundTime > 4) {
+			this.dealtDamage = true;
+		}
+		super.tick();
+	}
 
-    @Nullable
-    protected EntityHitResult findHitEntity(Vec3 vec3, Vec3 vec32) {
-        return this.dealtDamage ? null : super.findHitEntity(vec3, vec32);
-    }
+	@Nullable
+	protected EntityHitResult findHitEntity(Vec3 vec3, Vec3 vec32) {
+		return this.dealtDamage ? null : super.findHitEntity(vec3, vec32);
+	}
 
-    @Override
-    protected void onHit(HitResult hitResult) {
-        super.onHit(hitResult);
-        if (hitResult.getType() != HitResult.Type.MISS) {
-            playSound(SoundEvents.GLASS_BREAK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-            if (level() instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
-            }
-            for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-                if (entity.canFreeze()) {
-                    if (!level().isClientSide) {
-                        if (getOwner() instanceof LivingEntity owner) {
-                            entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
-                        }
-                        entity.setTicksFrozen(entity.getTicksFrozen() + 100);
-                    }
-                }
-            }
-            discard();
-        }
-    }
+	@Override
+	protected void onHit(HitResult hitResult) {
+		super.onHit(hitResult);
+		if (hitResult.getType() != HitResult.Type.MISS) {
+			playSound(SoundEvents.GLASS_BREAK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			if (level() instanceof ServerLevel serverLevel) {
+				serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
+			}
+			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
+				if (entity.canFreeze()) {
+					if (!level().isClientSide) {
+						if (getOwner() instanceof LivingEntity owner) {
+							entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
+						}
+						entity.setTicksFrozen(entity.getTicksFrozen() + 100);
+					}
+				}
+			}
+			discard();
+		}
+	}
 
-    @Override
-    protected void onHitEntity(EntityHitResult entityHitResult) {
+	@Override
+	protected void onHitEntity(EntityHitResult entityHitResult) {
 
-    }
+	}
 
-    public void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        this.dealtDamage = compoundTag.getBoolean("DealtDamage");
-    }
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		this.dealtDamage = compoundTag.getBoolean("DealtDamage");
+	}
 
-    @Override
-    protected ItemStack getDefaultPickupItem() {
-        return ESItems.FROZEN_TUBE.get().getDefaultInstance();
-    }
+	@Override
+	protected ItemStack getDefaultPickupItem() {
+		return ESItems.FROZEN_TUBE.get().getDefaultInstance();
+	}
 
-    public void addAdditionalSaveData(CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        compoundTag.putBoolean("DealtDamage", this.dealtDamage);
-    }
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putBoolean("DealtDamage", this.dealtDamage);
+	}
 
-    protected float getWaterInertia() {
-        return 0.99F;
-    }
+	protected float getWaterInertia() {
+		return 0.99F;
+	}
 
-    public boolean shouldRender(double d, double e, double f) {
-        return true;
-    }
+	public boolean shouldRender(double d, double e, double f) {
+		return true;
+	}
 
-    @Override
-    public TrailEffect newTrail() {
-        return new TrailEffect(0.3f, 30);
-    }
+	@Override
+	public TrailEffect newTrail() {
+		return new TrailEffect(0.3f, 30);
+	}
 
-    @Override
-    public void updateTrail(TrailEffect effect) {
-        Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-        effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
-    }
+	@Override
+	public void updateTrail(TrailEffect effect) {
+		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+	}
 
-    @Override
-    public Vector4f getTrailColor() {
-        return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.5f);
-    }
+	@Override
+	public Vector4f getTrailColor() {
+		return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.5f);
+	}
 
-    @Environment(EnvType.CLIENT)
-    @Override
-    public RenderType getTrailRenderType() {
-        return RenderType.entityTranslucent(TRAIL_TEXTURE);
-    }
+	@Environment(EnvType.CLIENT)
+	@Override
+	public RenderType getTrailRenderType() {
+		return RenderType.entityTranslucent(TRAIL_TEXTURE);
+	}
 }

@@ -1,4 +1,3 @@
-
 package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
@@ -13,18 +12,18 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
-    public ESEnchantmentTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
-    }
+	public ESEnchantmentTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+		super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
+	}
 
-    @Override
-    protected void addTags(HolderLookup.Provider lookupProvider) {
-        this.tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
-                ESEnchantments.POISONING
-        );
-        this.tag(EnchantmentTags.TREASURE).add(
-                ESEnchantments.POISONING,
-                ESEnchantments.FEARLESS
-        );
-    }
+	@Override
+	protected void addTags(HolderLookup.Provider lookupProvider) {
+		this.tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
+			ESEnchantments.POISONING
+		);
+		this.tag(EnchantmentTags.TREASURE).add(
+			ESEnchantments.POISONING,
+			ESEnchantments.FEARLESS
+		);
+	}
 }

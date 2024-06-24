@@ -9,22 +9,22 @@ import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.CaveWorldCarver;
 
 public class ESCaveCarver extends CaveWorldCarver {
-    public ESCaveCarver(Codec<CaveCarverConfiguration> codec) {
-        super(codec);
-    }
+	public ESCaveCarver(Codec<CaveCarverConfiguration> codec) {
+		super(codec);
+	}
 
-    @Override
-    protected boolean canReplaceBlock(CaveCarverConfiguration carverConfiguration, BlockState blockState) {
-        // we should not replace water
-        return super.canReplaceBlock(carverConfiguration, blockState) && blockState.getFluidState().isEmpty();
-    }
+	@Override
+	protected boolean canReplaceBlock(CaveCarverConfiguration carverConfiguration, BlockState blockState) {
+		// we should not replace water
+		return super.canReplaceBlock(carverConfiguration, blockState) && blockState.getFluidState().isEmpty();
+	}
 
-    @Override
-    public BlockState getCarveState(CarvingContext carvingContext, CaveCarverConfiguration carverConfiguration, BlockPos blockPos, Aquifer aquifer) {
-        if (blockPos.getY() <= carverConfiguration.lavaLevel.resolveY(carvingContext)) {
-            return LAVA.createLegacyBlock();
-        } else {
-            return CAVE_AIR;
-        }
-    }
+	@Override
+	public BlockState getCarveState(CarvingContext carvingContext, CaveCarverConfiguration carverConfiguration, BlockPos blockPos, Aquifer aquifer) {
+		if (blockPos.getY() <= carverConfiguration.lavaLevel.resolveY(carvingContext)) {
+			return LAVA.createLegacyBlock();
+		} else {
+			return CAVE_AIR;
+		}
+	}
 }

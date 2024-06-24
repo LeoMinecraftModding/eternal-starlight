@@ -19,32 +19,32 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @Environment(EnvType.CLIENT)
 public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
-    private final BlockRenderDispatcher dispatcher;
+	private final BlockRenderDispatcher dispatcher;
 
-    public AethersentMeteorRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        this.shadowRadius = 0.5F;
-        this.dispatcher = context.getBlockRenderDispatcher();
-    }
+	public AethersentMeteorRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.shadowRadius = 0.5F;
+		this.dispatcher = context.getBlockRenderDispatcher();
+	}
 
-    public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        BlockState blockstate = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
-        if (blockstate.getRenderShape() == RenderShape.MODEL) {
-            Level level = meteor.level();
-            if (blockstate != level.getBlockState(meteor.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
-                stack.pushPose();
-                BlockPos blockpos = BlockPos.containing(meteor.getX(), meteor.getBoundingBox().maxY, meteor.getZ());
-                float scale = meteor.getSize() / 10f;
-                stack.translate(-0.5D * scale, 0.0D, -0.5D * scale);
-                stack.scale(scale, scale, scale);
-                ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(meteor.blockPosition()));
-                stack.popPose();
-                super.render(meteor, yaw, delta, stack, bufferSource, packedLight);
-            }
-        }
-    }
+	public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+		BlockState blockstate = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
+		if (blockstate.getRenderShape() == RenderShape.MODEL) {
+			Level level = meteor.level();
+			if (blockstate != level.getBlockState(meteor.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
+				stack.pushPose();
+				BlockPos blockpos = BlockPos.containing(meteor.getX(), meteor.getBoundingBox().maxY, meteor.getZ());
+				float scale = meteor.getSize() / 10f;
+				stack.translate(-0.5D * scale, 0.0D, -0.5D * scale);
+				stack.scale(scale, scale, scale);
+				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(meteor.blockPosition()));
+				stack.popPose();
+				super.render(meteor, yaw, delta, stack, bufferSource, packedLight);
+			}
+		}
+	}
 
-    public ResourceLocation getTextureLocation(AethersentMeteor meteor) {
-        return TextureAtlas.LOCATION_BLOCKS;
-    }
+	public ResourceLocation getTextureLocation(AethersentMeteor meteor) {
+		return TextureAtlas.LOCATION_BLOCKS;
+	}
 }

@@ -9,13 +9,13 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import java.util.function.Consumer;
 
 public class ForgeShieldItem extends ShieldItem {
-    public ForgeShieldItem(Properties properties) {
-        super(properties);
-    }
+	public ForgeShieldItem(Properties properties) {
+		super(properties);
+	}
 
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION);
-    }
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION);
+	}
 }

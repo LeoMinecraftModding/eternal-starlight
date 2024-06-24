@@ -14,104 +14,104 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 public class ESBoat extends Boat {
-    private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(ESBoat.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(ESBoat.class, EntityDataSerializers.INT);
 
-    public ESBoat(EntityType<? extends Boat> type, Level level) {
-        super(type, level);
-        this.blocksBuilding = true;
-    }
+	public ESBoat(EntityType<? extends Boat> type, Level level) {
+		super(type, level);
+		this.blocksBuilding = true;
+	}
 
-    public ESBoat(Level level, double x, double y, double z) {
-        this(ESEntities.BOAT.get(), level);
-        this.setPos(x, y, z);
-        this.xo = x;
-        this.yo = y;
-        this.zo = z;
-    }
+	public ESBoat(Level level, double x, double y, double z) {
+		this(ESEntities.BOAT.get(), level);
+		this.setPos(x, y, z);
+		this.xo = x;
+		this.yo = y;
+		this.zo = z;
+	}
 
-    public ESBoat.Type getESBoatType() {
-        return ESBoat.Type.byId(this.entityData.get(BOAT_TYPE));
-    }
+	public ESBoat.Type getESBoatType() {
+		return ESBoat.Type.byId(this.entityData.get(BOAT_TYPE));
+	}
 
-    @Override
-    public Item getDropItem() {
-        return switch (this.getESBoatType()) {
-            case LUNAR -> ESItems.LUNAR_BOAT.get();
-            case NORTHLAND -> ESItems.NORTHLAND_BOAT.get();
-            case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_BOAT.get();
-            case SCARLET -> ESItems.SCARLET_BOAT.get();
-            case TORREYA -> ESItems.TORREYA_BOAT.get();
-        };
-    }
+	@Override
+	public Item getDropItem() {
+		return switch (this.getESBoatType()) {
+			case LUNAR -> ESItems.LUNAR_BOAT.get();
+			case NORTHLAND -> ESItems.NORTHLAND_BOAT.get();
+			case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_BOAT.get();
+			case SCARLET -> ESItems.SCARLET_BOAT.get();
+			case TORREYA -> ESItems.TORREYA_BOAT.get();
+		};
+	}
 
-    public void setSLBoatType(ESBoat.Type boatType) {
-        this.entityData.set(BOAT_TYPE, boatType.ordinal());
-    }
+	public void setSLBoatType(ESBoat.Type boatType) {
+		this.entityData.set(BOAT_TYPE, boatType.ordinal());
+	}
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(BOAT_TYPE, Type.LUNAR.ordinal());
-    }
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(BOAT_TYPE, Type.LUNAR.ordinal());
+	}
 
-    @Override
-    protected void addAdditionalSaveData(CompoundTag compound) {
-        compound.putString("Type", this.getESBoatType().getName());
-    }
+	@Override
+	protected void addAdditionalSaveData(CompoundTag compound) {
+		compound.putString("Type", this.getESBoatType().getName());
+	}
 
-    @Override
-    protected void readAdditionalSaveData(CompoundTag compound) {
-        if (compound.contains("Type", 8)) {
-            this.setSLBoatType(ESBoat.Type.getTypeFromString(compound.getString("Type")));
-        }
-    }
+	@Override
+	protected void readAdditionalSaveData(CompoundTag compound) {
+		if (compound.contains("Type", 8)) {
+			this.setSLBoatType(ESBoat.Type.getTypeFromString(compound.getString("Type")));
+		}
+	}
 
-    public enum Type {
-        LUNAR(ESBlocks.LUNAR_PLANKS.get(), "lunar"),
-        NORTHLAND(ESBlocks.NORTHLAND_PLANKS.get(), "northland"),
-        STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
-        SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
-        TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya");
+	public enum Type {
+		LUNAR(ESBlocks.LUNAR_PLANKS.get(), "lunar"),
+		NORTHLAND(ESBlocks.NORTHLAND_PLANKS.get(), "northland"),
+		STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
+		SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
+		TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya");
 
-        private final String name;
-        private final Block block;
+		private final String name;
+		private final Block block;
 
-        Type(Block block, String name) {
-            this.name = name;
-            this.block = block;
-        }
+		Type(Block block, String name) {
+			this.name = name;
+			this.block = block;
+		}
 
-        public String getName() {
-            return this.name;
-        }
+		public String getName() {
+			return this.name;
+		}
 
-        public Block asPlank() {
-            return this.block;
-        }
+		public Block asPlank() {
+			return this.block;
+		}
 
-        public String toString() {
-            return this.name;
-        }
+		public String toString() {
+			return this.name;
+		}
 
-        public static ESBoat.Type byId(int id) {
-            ESBoat.Type[] SLBoat$type = values();
-            if (id < 0 || id >= SLBoat$type.length) {
-                id = 0;
-            }
+		public static ESBoat.Type byId(int id) {
+			ESBoat.Type[] SLBoat$type = values();
+			if (id < 0 || id >= SLBoat$type.length) {
+				id = 0;
+			}
 
-            return SLBoat$type[id];
-        }
+			return SLBoat$type[id];
+		}
 
-        public static ESBoat.Type getTypeFromString(String nameIn) {
-            ESBoat.Type[] boatTypeArray = values();
+		public static ESBoat.Type getTypeFromString(String nameIn) {
+			ESBoat.Type[] boatTypeArray = values();
 
-            for (Type type : boatTypeArray) {
-                if (type.getName().equals(nameIn)) {
-                    return type;
-                }
-            }
+			for (Type type : boatTypeArray) {
+				if (type.getName().equals(nameIn)) {
+					return type;
+				}
+			}
 
-            return boatTypeArray[0];
-        }
-    }
+			return boatTypeArray[0];
+		}
+	}
 }

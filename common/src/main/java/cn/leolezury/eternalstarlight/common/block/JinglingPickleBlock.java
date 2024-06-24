@@ -28,92 +28,92 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class JinglingPickleBlock extends BushBlock implements BonemealableBlock, SimpleWaterloggedBlock {
-    public static final MapCodec<JinglingPickleBlock> CODEC = simpleCodec(JinglingPickleBlock::new);
-    private static final VoxelShape SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 12.0, 10.0);
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final MapCodec<JinglingPickleBlock> CODEC = simpleCodec(JinglingPickleBlock::new);
+	private static final VoxelShape SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 12.0, 10.0);
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public @NotNull MapCodec<JinglingPickleBlock> codec() {
-        return CODEC;
-    }
+	public @NotNull MapCodec<JinglingPickleBlock> codec() {
+		return CODEC;
+	}
 
-    public JinglingPickleBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, true));
-    }
+	public JinglingPickleBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, true));
+	}
 
-    @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        BlockState state = super.getStateForPlacement(blockPlaceContext);
-        if (state == null) return null;
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-        boolean bl = fluidState.getType() == Fluids.WATER;
-        return state.setValue(WATERLOGGED, bl);
-    }
+	@Nullable
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		BlockState state = super.getStateForPlacement(blockPlaceContext);
+		if (state == null) return null;
+		FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+		boolean bl = fluidState.getType() == Fluids.WATER;
+		return state.setValue(WATERLOGGED, bl);
+	}
 
-    public static boolean isDead(BlockState blockState) {
-        return !blockState.getValue(WATERLOGGED);
-    }
+	public static boolean isDead(BlockState blockState) {
+		return !blockState.getValue(WATERLOGGED);
+	}
 
-    protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-        return !blockState.getCollisionShape(blockGetter, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(blockGetter, blockPos, Direction.UP);
-    }
+	protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+		return !blockState.getCollisionShape(blockGetter, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(blockGetter, blockPos, Direction.UP);
+	}
 
-    public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-        BlockPos blockPos2 = blockPos.below();
-        return this.mayPlaceOn(levelReader.getBlockState(blockPos2), levelReader, blockPos2);
-    }
+	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
+		BlockPos blockPos2 = blockPos.below();
+		return this.mayPlaceOn(levelReader.getBlockState(blockPos2), levelReader, blockPos2);
+	}
 
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        if (!blockState.canSurvive(levelAccessor, blockPos)) {
-            return Blocks.AIR.defaultBlockState();
-        } else {
-            if (blockState.getValue(WATERLOGGED)) {
-                levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
-            }
+	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+		if (!blockState.canSurvive(levelAccessor, blockPos)) {
+			return Blocks.AIR.defaultBlockState();
+		} else {
+			if (blockState.getValue(WATERLOGGED)) {
+				levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+			}
 
-            return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
-        }
-    }
+			return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+		}
+	}
 
-    @Override
-    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return SHAPE;
-    }
+	@Override
+	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+		return SHAPE;
+	}
 
-    public FluidState getFluidState(BlockState blockState) {
-        return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
-    }
+	public FluidState getFluidState(BlockState blockState) {
+		return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(WATERLOGGED);
+	}
 
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return true;
-    }
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		return true;
+	}
 
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return true;
-    }
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		return true;
+	}
 
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        if (!isDead(blockState) && serverLevel.getBlockState(blockPos.below()).is(ESTags.Blocks.CORAL_BLOCKS)) {
-            for (int x = -5; x <= 5; x++) {
-                for (int y = -5; y <= 5; y++) {
-                    for (int z = -5; z <= 5; z++) {
-                        if (ESMathUtil.isPointInEllipsoid(x, y, z, 5, 5, 5)) {
-                            BlockPos pos = blockPos.offset(x, y, z);
-                            if (serverLevel.getBlockState(pos.below()).is(ESTags.Blocks.CORAL_BLOCKS) && serverLevel.getBlockState(pos).is(Blocks.WATER) && randomSource.nextInt(15) == 0) {
-                                serverLevel.setBlockAndUpdate(pos, ESBlocks.JINGLING_PICKLE.get().defaultBlockState());
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		if (!isDead(blockState) && serverLevel.getBlockState(blockPos.below()).is(ESTags.Blocks.CORAL_BLOCKS)) {
+			for (int x = -5; x <= 5; x++) {
+				for (int y = -5; y <= 5; y++) {
+					for (int z = -5; z <= 5; z++) {
+						if (ESMathUtil.isPointInEllipsoid(x, y, z, 5, 5, 5)) {
+							BlockPos pos = blockPos.offset(x, y, z);
+							if (serverLevel.getBlockState(pos.below()).is(ESTags.Blocks.CORAL_BLOCKS) && serverLevel.getBlockState(pos).is(Blocks.WATER) && randomSource.nextInt(15) == 0) {
+								serverLevel.setBlockAndUpdate(pos, ESBlocks.JINGLING_PICKLE.get().defaultBlockState());
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
-    public boolean isPathfindable(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, PathComputationType pathComputationType) {
-        return false;
-    }
+	public boolean isPathfindable(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, PathComputationType pathComputationType) {
+		return false;
+	}
 }

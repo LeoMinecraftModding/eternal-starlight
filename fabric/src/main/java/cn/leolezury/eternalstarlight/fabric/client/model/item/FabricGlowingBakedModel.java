@@ -12,34 +12,34 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Supplier;
 
 public class FabricGlowingBakedModel extends ForwardingBakedModel {
-    private static final int light = 0xF000F0;
+	private static final int light = 0xF000F0;
 
-    public FabricGlowingBakedModel(BakedModel model) {
-        wrapped = model;
-    }
+	public FabricGlowingBakedModel(BakedModel model) {
+		wrapped = model;
+	}
 
-    @Override
-    public boolean isVanillaAdapter() {
-        return false;
-    }
+	@Override
+	public boolean isVanillaAdapter() {
+		return false;
+	}
 
-    @Override
-    public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
-        context.pushTransform(quad -> {
-            quad.lightmap(light, light, light, light);
-            return true;
-        });
-        super.emitBlockQuads(blockView, state, pos, randomSupplier, context);
-        context.popTransform();
-    }
+	@Override
+	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
+		context.pushTransform(quad -> {
+			quad.lightmap(light, light, light, light);
+			return true;
+		});
+		super.emitBlockQuads(blockView, state, pos, randomSupplier, context);
+		context.popTransform();
+	}
 
-    @Override
-    public void emitItemQuads(ItemStack stack, Supplier<RandomSource> randomSupplier, RenderContext context) {
-        context.pushTransform(quad -> {
-            quad.lightmap(light, light, light, light);
-            return true;
-        });
-        super.emitItemQuads(stack, randomSupplier, context);
-        context.popTransform();
-    }
+	@Override
+	public void emitItemQuads(ItemStack stack, Supplier<RandomSource> randomSupplier, RenderContext context) {
+		context.pushTransform(quad -> {
+			quad.lightmap(light, light, light, light);
+			return true;
+		});
+		super.emitItemQuads(stack, randomSupplier, context);
+		context.popTransform();
+	}
 }

@@ -19,36 +19,36 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.PlantType;
 
 public class ForgeWaterlilyBlock extends BushBlock {
-    public static final MapCodec<ForgeWaterlilyBlock> CODEC = simpleCodec(ForgeWaterlilyBlock::new);
-    protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 1.5, 15.0);
+	public static final MapCodec<ForgeWaterlilyBlock> CODEC = simpleCodec(ForgeWaterlilyBlock::new);
+	protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 1.5, 15.0);
 
-    public MapCodec<ForgeWaterlilyBlock> codec() {
-        return CODEC;
-    }
+	public MapCodec<ForgeWaterlilyBlock> codec() {
+		return CODEC;
+	}
 
-    public ForgeWaterlilyBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-    }
+	public ForgeWaterlilyBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+	}
 
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        super.entityInside(state, level, pos, entity);
-        if (level instanceof ServerLevel && entity instanceof Boat) {
-            level.destroyBlock(new BlockPos(pos), true, entity);
-        }
-    }
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+		super.entityInside(state, level, pos, entity);
+		if (level instanceof ServerLevel && entity instanceof Boat) {
+			level.destroyBlock(new BlockPos(pos), true, entity);
+		}
+	}
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return AABB;
-    }
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return AABB;
+	}
 
-    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        FluidState fluidState = level.getFluidState(pos);
-        FluidState fluidState2 = level.getFluidState(pos.above());
-        return (fluidState.getType() == Fluids.WATER || state.getBlock() instanceof IceBlock) && fluidState2.getType() == Fluids.EMPTY;
-    }
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		FluidState fluidState = level.getFluidState(pos);
+		FluidState fluidState2 = level.getFluidState(pos.above());
+		return (fluidState.getType() == Fluids.WATER || state.getBlock() instanceof IceBlock) && fluidState2.getType() == Fluids.EMPTY;
+	}
 
-    @Override
-    public PlantType getPlantType(BlockGetter level, BlockPos pos) {
-        return PlantType.WATER;
-    }
+	@Override
+	public PlantType getPlantType(BlockGetter level, BlockPos pos) {
+		return PlantType.WATER;
+	}
 }

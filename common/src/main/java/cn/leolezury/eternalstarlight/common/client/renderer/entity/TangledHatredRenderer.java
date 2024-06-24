@@ -20,51 +20,51 @@ import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class TangledHatredRenderer extends EntityRenderer<TangledHatred> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tangled_hatred.png");
-    
-    private final TangledHatredModel<TangledHatred> model;
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tangled_hatred.png");
 
-    public TangledHatredRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        model = new TangledHatredModel<>(context.bakeLayer(TangledHatredModel.LAYER_LOCATION));
-    }
+	private final TangledHatredModel<TangledHatred> model;
 
-    @Override
-    public boolean shouldRender(TangledHatred entity, Frustum frustum, double d, double e, double f) {
-        return true;
-    }
+	public TangledHatredRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		model = new TangledHatredModel<>(context.bakeLayer(TangledHatredModel.LAYER_LOCATION));
+	}
 
-    @Override
-    public void render(TangledHatred entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-        float x = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
-        float y = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
-        float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
-        poseStack.pushPose();
-        poseStack.translate(-x, -y, -z);
-        int numSegments = Math.min(entity.chain.segments().size(), entity.oldChain.segments().size());
-        for (int i = 0; i < numSegments; i++) {
-            poseStack.pushPose();
-            Chain.Segment segment = entity.chain.segments().get(i);
-            Chain.Segment old = entity.oldChain.segments().get(i);
-            Vec3 pos = ESMathUtil.lerpVec(partialTicks, old.getLowerPosition(), segment.getLowerPosition());
-            float segmentPitch = Mth.lerp(partialTicks, old.getPitch(), segment.getPitch());
-            float segmentYaw = Mth.lerp(partialTicks, old.getYaw(), segment.getYaw());
-            float scale = ((float) i / numSegments) * 0.5f + 0.5f;
-            poseStack.translate(pos.x, pos.y, pos.z);
-            poseStack.scale(-1.0F, -1.0F, 1.0F);
-            poseStack.translate(0.0F, -1.5F, 0.0F);
-            this.model.setRotation(segmentPitch, segmentYaw);
-            this.model.scaleXZ(scale);
-            this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(entity.hurtTime > 0 || entity.deathTime > 0)));
-            poseStack.popPose();
-        }
-        poseStack.popPose();
-        super.render(entity, yaw, partialTicks, poseStack, bufferSource, packedLight);
-    }
+	@Override
+	public boolean shouldRender(TangledHatred entity, Frustum frustum, double d, double e, double f) {
+		return true;
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(TangledHatred entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public void render(TangledHatred entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+		VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
+		float x = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
+		float y = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
+		float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
+		poseStack.pushPose();
+		poseStack.translate(-x, -y, -z);
+		int numSegments = Math.min(entity.chain.segments().size(), entity.oldChain.segments().size());
+		for (int i = 0; i < numSegments; i++) {
+			poseStack.pushPose();
+			Chain.Segment segment = entity.chain.segments().get(i);
+			Chain.Segment old = entity.oldChain.segments().get(i);
+			Vec3 pos = ESMathUtil.lerpVec(partialTicks, old.getLowerPosition(), segment.getLowerPosition());
+			float segmentPitch = Mth.lerp(partialTicks, old.getPitch(), segment.getPitch());
+			float segmentYaw = Mth.lerp(partialTicks, old.getYaw(), segment.getYaw());
+			float scale = ((float) i / numSegments) * 0.5f + 0.5f;
+			poseStack.translate(pos.x, pos.y, pos.z);
+			poseStack.scale(-1.0F, -1.0F, 1.0F);
+			poseStack.translate(0.0F, -1.5F, 0.0F);
+			this.model.setRotation(segmentPitch, segmentYaw);
+			this.model.scaleXZ(scale);
+			this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(entity.hurtTime > 0 || entity.deathTime > 0)));
+			poseStack.popPose();
+		}
+		poseStack.popPose();
+		super.render(entity, yaw, partialTicks, poseStack, bufferSource, packedLight);
+	}
+
+	@Override
+	public ResourceLocation getTextureLocation(TangledHatred entity) {
+		return ENTITY_TEXTURE;
+	}
 }

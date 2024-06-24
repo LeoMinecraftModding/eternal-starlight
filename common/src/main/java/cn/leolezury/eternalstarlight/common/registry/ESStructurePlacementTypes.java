@@ -8,8 +8,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 
 public class ESStructurePlacementTypes {
-    public static final RegistrationProvider<StructurePlacementType<?>> STRUCTURE_PLACEMENT_TYPES = RegistrationProvider.get(Registries.STRUCTURE_PLACEMENT, EternalStarlight.ID);
-    public static final RegistryObject<StructurePlacementType<?>, StructurePlacementType<ESRandomSpreadStructurePlacement>> ES_RANDOM_SPREAD = STRUCTURE_PLACEMENT_TYPES.register("es_random_spread", () -> () -> ESRandomSpreadStructurePlacement.CODEC);
+	public static final RegistrationProvider<StructurePlacementType<?>> STRUCTURE_PLACEMENT_TYPES = RegistrationProvider.get(Registries.STRUCTURE_PLACEMENT, EternalStarlight.ID);
+	public static final RegistryObject<StructurePlacementType<?>, StructurePlacementType<ESRandomSpreadStructurePlacement>> ES_RANDOM_SPREAD = STRUCTURE_PLACEMENT_TYPES.register("es_random_spread", () -> () -> ESRandomSpreadStructurePlacement.CODEC);
 
-    public static void loadClass() {}
+	public static void loadClass() {
+	}
 }

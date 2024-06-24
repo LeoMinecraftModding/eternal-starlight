@@ -15,26 +15,26 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class ESCampfireBlockEntity extends CampfireBlockEntity {
-    public ESCampfireBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(blockPos, blockState);
-    }
+	public ESCampfireBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(blockPos, blockState);
+	}
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, CampfireBlockEntity campfireBlockEntity) {
-        if (blockState.getValue(BlockStateProperties.LIT)) {
-            cookTick(level, blockPos, blockState, campfireBlockEntity);
-            AABB box = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(blockPos)).inflate(10);
-            for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
-                if (!(living instanceof Enemy) && !living.hasEffect(MobEffects.REGENERATION)) {
-                    living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
-                }
-            }
-        } else {
-            cooldownTick(level, blockPos, blockState, campfireBlockEntity);
-        }
-    }
+	public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, CampfireBlockEntity campfireBlockEntity) {
+		if (blockState.getValue(BlockStateProperties.LIT)) {
+			cookTick(level, blockPos, blockState, campfireBlockEntity);
+			AABB box = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(blockPos)).inflate(10);
+			for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
+				if (!(living instanceof Enemy) && !living.hasEffect(MobEffects.REGENERATION)) {
+					living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
+				}
+			}
+		} else {
+			cooldownTick(level, blockPos, blockState, campfireBlockEntity);
+		}
+	}
 
-    @Override
-    public BlockEntityType<?> getType() {
-        return ESBlockEntities.CAMPFIRE.get();
-    }
+	@Override
+	public BlockEntityType<?> getType() {
+		return ESBlockEntities.CAMPFIRE.get();
+	}
 }

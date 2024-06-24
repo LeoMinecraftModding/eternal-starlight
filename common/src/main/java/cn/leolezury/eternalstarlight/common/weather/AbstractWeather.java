@@ -12,36 +12,43 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.valueproviders.IntProvider;
 
 public abstract class AbstractWeather {
-    private final Properties properties;
-    public Properties weatherProperties() {
-        return properties;
-    }
+	private final Properties properties;
 
-    public AbstractWeather(Properties properties) {
-        this.properties = properties;
-    }
+	public Properties weatherProperties() {
+		return properties;
+	}
 
-    public abstract boolean canStart(ServerLevel level);
-    public abstract boolean canContinue(ServerLevel level, int ticks);
-    public abstract void serverWeatherTick(ServerLevel level, int ticks);
-    public abstract void tickBlock(ServerLevel level, int ticks, BlockPos pos);
-    public abstract void onStart(ServerLevel level);
-    public abstract void onStop(ServerLevel level, int ticks);
+	public AbstractWeather(Properties properties) {
+		this.properties = properties;
+	}
 
-    @Environment(EnvType.CLIENT)
-    public abstract boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ);
-    @Environment(EnvType.CLIENT)
-    public abstract float modifyRainLevel(float original);
+	public abstract boolean canStart(ServerLevel level);
 
-    public String getDescriptionId() {
-        return Util.makeDescriptionId("weather", ESWeathers.WEATHERS.registry().getKey(this));
-    }
+	public abstract boolean canContinue(ServerLevel level, int ticks);
 
-    public Component getDescription() {
-        return Component.translatable(getDescriptionId());
-    }
+	public abstract void serverWeatherTick(ServerLevel level, int ticks);
 
-    public record Properties(IntProvider duration, IntProvider interval) {
+	public abstract void tickBlock(ServerLevel level, int ticks, BlockPos pos);
 
-    }
+	public abstract void onStart(ServerLevel level);
+
+	public abstract void onStop(ServerLevel level, int ticks);
+
+	@Environment(EnvType.CLIENT)
+	public abstract boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ);
+
+	@Environment(EnvType.CLIENT)
+	public abstract float modifyRainLevel(float original);
+
+	public String getDescriptionId() {
+		return Util.makeDescriptionId("weather", ESWeathers.WEATHERS.registry().getKey(this));
+	}
+
+	public Component getDescription() {
+		return Component.translatable(getDescriptionId());
+	}
+
+	public record Properties(IntProvider duration, IntProvider interval) {
+
+	}
 }

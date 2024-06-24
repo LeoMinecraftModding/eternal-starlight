@@ -11,17 +11,17 @@ import net.minecraft.world.entity.Entity;
 
 @Environment(EnvType.CLIENT)
 public class EmptyRenderer extends EntityRenderer<Entity> {
-    public EmptyRenderer(EntityRendererProvider.Context context) {
-        super(context);
-    }
+	public EmptyRenderer(EntityRendererProvider.Context context) {
+		super(context);
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(Entity entity) {
-        return null;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(Entity entity) {
+		return null;
+	}
 
-    @Override
-    public void render(Entity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+	@Override
+	public void render(Entity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
 
-    }
+	}
 }

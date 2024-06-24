@@ -5,8 +5,11 @@ import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentD
 import java.util.List;
 
 public interface BookAccess {
-    int getRelativePage();
-    boolean isLeftPage();
-    void setPage(int page);
-    List<BookComponentDefinition> getComponents();
+	int getRelativePage();
+
+	boolean isLeftPage();
+
+	void setPage(int page);
+
+	List<BookComponentDefinition> getComponents();
 }

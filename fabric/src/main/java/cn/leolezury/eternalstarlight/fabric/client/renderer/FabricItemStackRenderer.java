@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class FabricItemStackRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
-    @Override
-    public void render(ItemStack stack, ItemDisplayContext mode, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
-        ESItemStackRenderer.render(stack, mode, matrices, vertexConsumers, light, overlay);
-    }
+	@Override
+	public void render(ItemStack stack, ItemDisplayContext mode, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+		ESItemStackRenderer.render(stack, mode, matrices, vertexConsumers, light, overlay);
+	}
 }

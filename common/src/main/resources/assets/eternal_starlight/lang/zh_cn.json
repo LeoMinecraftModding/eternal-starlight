@@ -1,6 +1,5 @@
 {
   "name.eternal_starlight": "永恒星光",
-
   "block.eternal_starlight.berries_vines": "浆果藤曼",
   "block.eternal_starlight.berries_vines_plant": "浆果藤曼植株",
   "block.eternal_starlight.cave_moss": "洞穴苔藓",
@@ -442,7 +441,6 @@
   "block.eternal_starlight.the_gatekeeper_spawner": "守门人刷怪笼",
   "block.eternal_starlight.starlight_golem_spawner": "星光傀儡刷怪笼",
   "block.eternal_starlight.lunar_monstrosity_spawner": "月藤巨物刷怪笼",
-
   "item.eternal_starlight.red_starlight_crystal_shard": "红色星辉水晶碎片",
   "item.eternal_starlight.blue_starlight_crystal_shard": "蓝色星辉水晶碎片",
   "item.eternal_starlight.lunar_berries": "月辉浆果",
@@ -570,16 +568,12 @@
   "item.eternal_starlight.loot_bag": "战利品袋",
   "item.eternal_starlight.book": "星光物语",
   "item.eternal_starlight.blossom_of_stars": "星之花",
-
   "effect.eternal_starlight.crystalline_infection": "晶体感染",
   "effect.eternal_starlight.dream_catcher": "逐梦者",
-
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "投掷型药水距离",
   "attribute.name.eternal_starlight.generic.ether_resistance": "以太抗性",
-
   "enchantment.eternal_starlight.poisoning": "浸毒",
   "enchantment.eternal_starlight.fearless": "无畏",
-
   "tooltip.eternal_starlight.aethersent_armor": "穿全套时：受伤时在敌人头顶召唤流星",
   "tooltip.eternal_starlight.thermal_springstone_armor": "穿戴时：灼烧伤害你的敌人，减少你受到的火焰伤害",
   "tooltip.eternal_starlight.glacite_armor": "穿戴时：冻伤伤害你的敌人，使你免疫冻伤",
@@ -589,7 +583,6 @@
   "tooltip.eternal_starlight.dagger_of_hunger.attack_bonus": "匕首的饥饿值提升会使攻击伤害提升，攻击速度加快",
   "tooltip.eternal_starlight.dagger_of_hunger.hurt_player": "匕首过于饥饿时会伤害你以恢复它的饥饿值",
   "tooltip.eternal_starlight.blossom_of_stars": "献给一位梦想家",
-
   "entity.eternal_starlight.falling_block": "下落的方块",
   "entity.eternal_starlight.aethersent_meteor": "天赐流星",
   "entity.eternal_starlight.boat": "船",
@@ -634,7 +627,6 @@
   "entity.eternal_starlight.amaramber_arrow": "绯夜脂箭",
   "entity.eternal_starlight.sonar_bomb": "声波炸弹",
   "entity.eternal_starlight.soulit_spectator": "移魂之眼",
-
   "subtitles.entity.eternal_starlight.seeking_eye.launch": "寻觅之眼：发射",
   "subtitles.entity.eternal_starlight.seeking_eye.death": "寻觅之眼：掉落",
   "subtitles.entity.eternal_starlight.boarwarf.ambient": "鬣猪人：哼叫",
@@ -674,7 +666,6 @@
   "subtitles.entity.eternal_starlight.lunar_monstrosity.death": "月藤巨物：死亡",
   "subtitles.entity.eternal_starlight.lunar_monstrosity.bite": "月藤巨物：撕咬",
   "subtitles.entity.eternal_starlight.lunar_monstrosity.roar": "月藤巨物：吼叫",
-
   "advancements.eternal_starlight.root.title": "永恒星光",
   "advancements.eternal_starlight.root.description": "探索星光维度！",
   "advancements.eternal_starlight.challenge_gatekeeper.title": "宝剑锋从磨砺出",
@@ -713,7 +704,6 @@
   "advancements.eternal_starlight.chain_tangled_skull_explosion.description": "杀死一个怨颅并利用他的爆炸杀死另一个怨颅",
   "advancements.eternal_starlight.use_blossom_of_stars.title": "荡漾在无垠的星河",
   "advancements.eternal_starlight.use_blossom_of_stars.description": "献给一位梦想家！",
-
   "death.attack.eternal_starlight.ether": "%1$s飘然而去",
   "death.attack.eternal_starlight.ether.player": "%1$s在逃离%2$s时飘然而去",
   "death.attack.eternal_starlight.meteor": "%1$s被陨石砸中了",
@@ -734,7 +724,6 @@
   "death.attack.eternal_starlight.poison.player": "%1$s在逃离%2$s时因剧毒而死",
   "death.attack.eternal_starlight.bite": "%1$s被咬死了",
   "death.attack.eternal_starlight.bite.player": "%1$s在逃离%2$s时被咬死了",
-
   "trim_material.eternal_starlight.red_starlight_crystal": "红色星光水晶材料",
   "trim_material.eternal_starlight.blue_starlight_crystal": "蓝色星光水晶材料",
   "trim_material.eternal_starlight.aethersent": "天赐材料",
@@ -745,27 +734,21 @@
   "trim_material.eternal_starlight.golem_steel": "傀儡钢材料",
   "trim_material.eternal_starlight.moonring": "月珥材料",
   "trim_material.eternal_starlight.doomeden_bone": "魔窟断骨材料",
-
   "trim_pattern.eternal_starlight.keeper": "守御盔甲纹饰",
   "trim_pattern.eternal_starlight.forge": "锻造盔甲纹饰",
-
   "mana_type.eternal_starlight.terra": "地",
   "mana_type.eternal_starlight.wind": "风",
   "mana_type.eternal_starlight.water": "水",
   "mana_type.eternal_starlight.lunar": "月",
   "mana_type.eternal_starlight.blaze": "炎",
   "mana_type.eternal_starlight.light": "光",
-
   "crest.eternal_starlight.boulders_shield": "巨石之盾",
   "crest.eternal_starlight.boulders_shield.desc": "提供抗性提升效果",
-
   "weather.eternal_starlight.meteor_rain": "流星雨",
-
   "commands.eternal_starlight.weather.set": "已将天气设置为%s",
   "commands.eternal_starlight.weather.fail": "无法将天气设置为%s",
   "commands.eternal_starlight.weather.clear": "已将天气清除",
   "commands.eternal_starlight.weather.clear_fail": "无法将天气清除",
-
   "message.eternal_starlight.gatekeeper_give_orb": "拿好了，你可以用这件物品来开启传送门。别整丢了。",
   "message.eternal_starlight.gatekeeper_hello": "你好，冒险者！请问有什么我可以做的吗？",
   "message.eternal_starlight.gatekeeper_killed_dragon_hello": "你好，勇者！请问有什么我可以做的吗？",
@@ -782,7 +765,6 @@
   "message.eternal_starlight.gatekeeper_fun_to_know": "有趣。但我现在得走了，告辞！",
   "message.eternal_starlight.gatekeeper_pity": "真可惜...再见。",
   "message.eternal_starlight.gatekeeper_wise_choice": "真是个明智的选择...那么，再见了。",
-
   "message.eternal_starlight.dream_catcher_0": "没有什么可以打败你的...",
   "message.eternal_starlight.dream_catcher_1": "永不言弃...",
   "message.eternal_starlight.dream_catcher_2": "你一直可以...",
@@ -790,7 +772,6 @@
   "message.eternal_starlight.dream_catcher_4": "振作起来！",
   "message.eternal_starlight.dream_catcher_5": "被击倒100次,就要站起来101次！",
   "message.eternal_starlight.dream_catcher_6": "修好你的盔甲！",
-
   "book.eternal_starlight.preface": "“快看那片花丛！多么美丽的风景... 景... 景...”\n“这种花朵叫回音花，千百年来他们未曾凋谢，重复着，记录着，理解着他们所听到的一切... 切... 切...”\n",
   "book.eternal_starlight.index": "目录：",
   "book.eternal_starlight.starlight_golem": "古老星光人们建造的机械造物，它们为了抵御预言中毁灭全族的巨兽而生，曾经拥有厚重的装甲和无与伦比的力量。但随着天启降临，群星错位的迷狂之夜里，星光人惊恐的发现，是他们亲手造出了预言里毁灭一切的巨兽。\n时至今日，已经没有完好的傀儡存在了。",

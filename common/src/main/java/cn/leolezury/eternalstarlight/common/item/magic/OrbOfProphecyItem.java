@@ -35,94 +35,94 @@ import java.util.List;
 import java.util.Objects;
 
 public class OrbOfProphecyItem extends Item {
-    public OrbOfProphecyItem(Properties properties) {
-        super(properties);
-    }
+	public OrbOfProphecyItem(Properties properties) {
+		super(properties);
+	}
 
-    public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
-        List<Crest> crests = ESCrestUtil.getCrests(access, tag);
-        List<Crest> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
-        crests.addAll(itemCrests);
-        CompoundTag crestsTag = new CompoundTag();
-        ESCrestUtil.setCrests(access, crestsTag, crests);
-        stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(crestsTag)).build());
-    }
+	public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
+		List<Crest> crests = ESCrestUtil.getCrests(access, tag);
+		List<Crest> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
+		crests.addAll(itemCrests);
+		CompoundTag crestsTag = new CompoundTag();
+		ESCrestUtil.setCrests(access, crestsTag, crests);
+		stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(crestsTag)).build());
+	}
 
-    public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
-        return !getCrests(access, stack).isEmpty();
-    }
+	public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
+		return !getCrests(access, stack).isEmpty();
+	}
 
-    public static List<Crest> getCrests(RegistryAccess access, ItemStack stack) {
-        return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
-    }
+	public static List<Crest> getCrests(RegistryAccess access, ItemStack stack) {
+		return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
+	}
 
-    public static void setTemporary(ItemStack stack) {
-        stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), true).build());
-    }
+	public static void setTemporary(ItemStack stack) {
+		stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), true).build());
+	}
 
-    public static boolean isTemporary(ItemStack stack) {
-        return stack.getOrDefault(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), false);
-    }
+	public static boolean isTemporary(ItemStack stack) {
+		return stack.getOrDefault(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), false);
+	}
 
-    @Override
-    public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
-        if (livingEntity.getPose() != Pose.STANDING) {
-            livingEntity.stopUsingItem();
-        }
-        if (livingEntity.getTicksUsingItem() >= 140 && livingEntity instanceof ServerPlayer player) {
-            Registry<Crest> registry = player.level().registryAccess().registryOrThrow(ESRegistries.CREST);
-            List<String> ownedCrests = ESCrestUtil.getCrests(player, "OwnedCrests").stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
-            List<String> crests = ESCrestUtil.getCrests(player).stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
-            ESPlatform.INSTANCE.sendToClient(player, new OpenCrestGuiPacket(ownedCrests, crests));
-            player.stopUsingItem();
-            player.getCooldowns().addCooldown(this, 20);
-        }
-    }
+	@Override
+	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
+		if (livingEntity.getPose() != Pose.STANDING) {
+			livingEntity.stopUsingItem();
+		}
+		if (livingEntity.getTicksUsingItem() >= 140 && livingEntity instanceof ServerPlayer player) {
+			Registry<Crest> registry = player.level().registryAccess().registryOrThrow(ESRegistries.CREST);
+			List<String> ownedCrests = ESCrestUtil.getCrests(player, "OwnedCrests").stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
+			List<String> crests = ESCrestUtil.getCrests(player).stream().map(c -> Objects.requireNonNull(registry.getKey(c)).toString()).toList();
+			ESPlatform.INSTANCE.sendToClient(player, new OpenCrestGuiPacket(ownedCrests, crests));
+			player.stopUsingItem();
+			player.getCooldowns().addCooldown(this, 20);
+		}
+	}
 
-    public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
-        return 72000;
-    }
+	public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
+		return 72000;
+	}
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
-        ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (player.getPose() == Pose.STANDING) {
-            if (hasCrests(level.registryAccess(), itemStack)) {
-                int xpCost = isTemporary(itemStack) ? 2 : 1;
-                if (player.experienceLevel >= xpCost) {
-                    player.experienceLevel -= xpCost;
-                    getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
-                    recordCrests(level.registryAccess(), itemStack, new CompoundTag());
-                    if (isTemporary(itemStack)) {
-                        itemStack.shrink(1);
-                    }
-                    return InteractionResultHolder.success(itemStack);
-                }
-            } else {
-                player.startUsingItem(interactionHand);
-                return InteractionResultHolder.consume(itemStack);
-            }
-        }
-        return InteractionResultHolder.pass(itemStack);
-    }
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+		ItemStack itemStack = player.getItemInHand(interactionHand);
+		if (player.getPose() == Pose.STANDING) {
+			if (hasCrests(level.registryAccess(), itemStack)) {
+				int xpCost = isTemporary(itemStack) ? 2 : 1;
+				if (player.experienceLevel >= xpCost) {
+					player.experienceLevel -= xpCost;
+					getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
+					recordCrests(level.registryAccess(), itemStack, new CompoundTag());
+					if (isTemporary(itemStack)) {
+						itemStack.shrink(1);
+					}
+					return InteractionResultHolder.success(itemStack);
+				}
+			} else {
+				player.startUsingItem(interactionHand);
+				return InteractionResultHolder.consume(itemStack);
+			}
+		}
+		return InteractionResultHolder.pass(itemStack);
+	}
 
-    @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-        Level level = useOnContext.getLevel();
-        Player player = useOnContext.getPlayer();
-        BlockPos pos = useOnContext.getClickedPos();
-        if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
-            AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
-            boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
-            if ((challenged || serverPlayer.getAbilities().instabuild) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
-                if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
-                    if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
-                        level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        return InteractionResult.SUCCESS;
-                    }
-                }
-            }
-        }
-        return InteractionResult.PASS;
-    }
+	@Override
+	public InteractionResult useOn(UseOnContext useOnContext) {
+		Level level = useOnContext.getLevel();
+		Player player = useOnContext.getPlayer();
+		BlockPos pos = useOnContext.getClickedPos();
+		if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
+			AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
+			boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
+			if ((challenged || serverPlayer.getAbilities().instabuild) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+				if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
+					if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
+						level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+						return InteractionResult.SUCCESS;
+					}
+				}
+			}
+		}
+		return InteractionResult.PASS;
+	}
 }

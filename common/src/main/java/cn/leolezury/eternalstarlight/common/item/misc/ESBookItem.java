@@ -12,15 +12,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class ESBookItem extends Item {
-    public ESBookItem(Properties properties) {
-        super(properties);
-    }
+	public ESBookItem(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
-            ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(ESBookUtil.getUnlockedPartsFor(serverPlayer)));
-        }
-        return super.use(level, player, hand);
-    }
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
+			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(ESBookUtil.getUnlockedPartsFor(serverPlayer)));
+		}
+		return super.use(level, player, hand);
+	}
 }

@@ -14,17 +14,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public interface AbyssalKelp {
-    BooleanProperty BERRIES = BlockStateProperties.BERRIES;
+	BooleanProperty BERRIES = BlockStateProperties.BERRIES;
 
-    static InteractionResult use(BlockState state, Level level, BlockPos pos) {
-        if (state.getValue(BERRIES)) {
-            Block.popResource(level, pos, new ItemStack(ESItems.ABYSSAL_FRUIT.get(), 1));
-            float f = Mth.randomBetween(level.random, 0.8F, 1.2F);
-            level.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
-            level.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(false)), 2);
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        } else {
-            return InteractionResult.PASS;
-        }
-    }
+	static InteractionResult use(BlockState state, Level level, BlockPos pos) {
+		if (state.getValue(BERRIES)) {
+			Block.popResource(level, pos, new ItemStack(ESItems.ABYSSAL_FRUIT.get(), 1));
+			float f = Mth.randomBetween(level.random, 0.8F, 1.2F);
+			level.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
+			level.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(false)), 2);
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		} else {
+			return InteractionResult.PASS;
+		}
+	}
 }

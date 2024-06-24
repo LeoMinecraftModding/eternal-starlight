@@ -31,155 +31,157 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Gleech extends Monster {
-    protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
-    public boolean isLarval() {
-        return entityData.get(LARVAL);
-    }
-    public void setLarval(boolean larval) {
-        entityData.set(LARVAL, larval);
-    }
+	protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
 
-    private int growthTicks;
-    private int attachTicks;
+	public boolean isLarval() {
+		return entityData.get(LARVAL);
+	}
 
-    public AnimationState idleAnimationState = new AnimationState();
+	public void setLarval(boolean larval) {
+		entityData.set(LARVAL, larval);
+	}
 
-    public Gleech(EntityType<? extends Monster> entityType, Level level) {
-        super(entityType, level);
-    }
+	private int growthTicks;
+	private int attachTicks;
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(LARVAL, false);
-    }
+	public AnimationState idleAnimationState = new AnimationState();
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true) {
-            @Override
-            public boolean canUse() {
-                return super.canUse() && Gleech.this.getVehicle() == null && Gleech.this.getTarget() == null; // always attack the mob that is hit by the egg
-            }
-        });
-    }
+	public Gleech(EntityType<? extends Monster> entityType, Level level) {
+		super(entityType, level);
+	}
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 8.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.25)
-                .add(Attributes.ATTACK_DAMAGE, 1.0);
-    }
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(LARVAL, false);
+	}
 
-    protected Entity.MovementEmission getMovementEmission() {
-        return MovementEmission.EVENTS;
-    }
+	protected void registerGoals() {
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
+		this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0));
+		this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true) {
+			@Override
+			public boolean canUse() {
+				return super.canUse() && Gleech.this.getVehicle() == null && Gleech.this.getTarget() == null; // always attack the mob that is hit by the egg
+			}
+		});
+	}
 
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.SILVERFISH_AMBIENT;
-    }
+	public static AttributeSupplier.Builder createAttributes() {
+		return Monster.createMonsterAttributes()
+			.add(Attributes.MAX_HEALTH, 8.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 1.0);
+	}
 
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.SILVERFISH_HURT;
-    }
+	protected Entity.MovementEmission getMovementEmission() {
+		return MovementEmission.EVENTS;
+	}
 
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.SILVERFISH_DEATH;
-    }
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.SILVERFISH_AMBIENT;
+	}
 
-    protected void playStepSound(BlockPos blockPos, BlockState blockState) {
-        this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
-    }
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return SoundEvents.SILVERFISH_HURT;
+	}
 
-    @Override
-    public boolean isBaby() {
-        return isLarval();
-    }
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.SILVERFISH_DEATH;
+	}
 
-    public void tick() {
-        this.yBodyRot = this.getYRot();
-        super.tick();
-        if (!level().isClientSide) {
-            setNoGravity(getVehicle() != null);
-            if (isLarval()) {
-                growthTicks++;
-                if (growthTicks > 12000) {
-                    growthTicks = 0;
-                    setLarval(false);
-                }
-            }
-        } else {
-            idleAnimationState.startIfStopped(tickCount);
-        }
-    }
+	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
+		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+	}
 
-    public void attachTo(LivingEntity livingEntity) {
-        if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
-            startRiding(livingEntity, true);
-            ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ClientMountPacket(getId(), livingEntity.getId()));
-        }
-    }
+	@Override
+	public boolean isBaby() {
+		return isLarval();
+	}
 
-    @Override
-    public void rideTick() {
-        super.rideTick();
-        if (!level().isClientSide) {
-            attachTicks++;
-            if (attachTicks > 80) {
-                attachTicks = 0;
-                stopRiding();
-                ESPlatform.INSTANCE.sendToAllClients((ServerLevel) level(), new ClientDismountPacket(getId()));
-            }
-        }
-        if (getVehicle() instanceof LivingEntity livingEntity) {
-            setYRot(livingEntity.getYRot());
-            setPos(ESMathUtil.rotationToPosition(getVehicle().position().add(0, getVehicle().getBbHeight() / 2, 0), (getVehicle().getBbWidth() / 2) * 0.75f, 0, getVehicle().getYRot() + 90));
-        }
-    }
+	public void tick() {
+		this.yBodyRot = this.getYRot();
+		super.tick();
+		if (!level().isClientSide) {
+			setNoGravity(getVehicle() != null);
+			if (isLarval()) {
+				growthTicks++;
+				if (growthTicks > 12000) {
+					growthTicks = 0;
+					setLarval(false);
+				}
+			}
+		} else {
+			idleAnimationState.startIfStopped(tickCount);
+		}
+	}
 
-    public void setYBodyRot(float f) {
-        float rotation = f;
-        if (getVehicle() instanceof LivingEntity livingEntity) {
-            rotation = livingEntity.getYRot();
-        }
-        this.setYRot(rotation);
-        super.setYBodyRot(rotation);
-    }
+	public void attachTo(LivingEntity livingEntity) {
+		if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+			startRiding(livingEntity, true);
+			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ClientMountPacket(getId(), livingEntity.getId()));
+		}
+	}
 
-    @Override
-    public void setYRot(float f) {
-        float rotation = f;
-        if (getVehicle() instanceof LivingEntity livingEntity) {
-            rotation = livingEntity.getYRot();
-        }
-        super.setYRot(rotation);
-    }
+	@Override
+	public void rideTick() {
+		super.rideTick();
+		if (!level().isClientSide) {
+			attachTicks++;
+			if (attachTicks > 80) {
+				attachTicks = 0;
+				stopRiding();
+				ESPlatform.INSTANCE.sendToAllClients((ServerLevel) level(), new ClientDismountPacket(getId()));
+			}
+		}
+		if (getVehicle() instanceof LivingEntity livingEntity) {
+			setYRot(livingEntity.getYRot());
+			setPos(ESMathUtil.rotationToPosition(getVehicle().position().add(0, getVehicle().getBbHeight() / 2, 0), (getVehicle().getBbWidth() / 2) * 0.75f, 0, getVehicle().getYRot() + 90));
+		}
+	}
 
-    @Override
-    public boolean doHurtTarget(Entity entity) {
-        return super.doHurtTarget(entity);
-    }
+	public void setYBodyRot(float f) {
+		float rotation = f;
+		if (getVehicle() instanceof LivingEntity livingEntity) {
+			rotation = livingEntity.getYRot();
+		}
+		this.setYRot(rotation);
+		super.setYBodyRot(rotation);
+	}
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        setLarval(compoundTag.getBoolean("Larval"));
-        growthTicks = compoundTag.getInt("GrowthTicks");
-    }
+	@Override
+	public void setYRot(float f) {
+		float rotation = f;
+		if (getVehicle() instanceof LivingEntity livingEntity) {
+			rotation = livingEntity.getYRot();
+		}
+		super.setYRot(rotation);
+	}
 
-    @Override
-    public void addAdditionalSaveData(CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        compoundTag.putBoolean("Larval", isLarval());
-        compoundTag.putInt("GrowthTicks", growthTicks);
-    }
+	@Override
+	public boolean doHurtTarget(Entity entity) {
+		return super.doHurtTarget(entity);
+	}
 
-    public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return level.getBlockState(pos.below()).is(BlockTags.SAND);
-    }
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		setLarval(compoundTag.getBoolean("Larval"));
+		growthTicks = compoundTag.getInt("GrowthTicks");
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putBoolean("Larval", isLarval());
+		compoundTag.putInt("GrowthTicks", growthTicks);
+	}
+
+	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return level.getBlockState(pos.below()).is(BlockTags.SAND);
+	}
 }
 

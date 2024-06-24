@@ -13,30 +13,30 @@ import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ThermalSpringStoneBlock extends Block {
-    public static final MapCodec<ThermalSpringStoneBlock> CODEC = simpleCodec(ThermalSpringStoneBlock::new);
+	public static final MapCodec<ThermalSpringStoneBlock> CODEC = simpleCodec(ThermalSpringStoneBlock::new);
 
-    public ThermalSpringStoneBlock(Properties properties) {
-        super(properties);
-    }
+	public ThermalSpringStoneBlock(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    protected MapCodec<? extends Block> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends Block> codec() {
+		return CODEC;
+	}
 
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
-        BubbleColumnBlock.updateColumn(level, pos.above(), state);
-    }
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+		BubbleColumnBlock.updateColumn(level, pos.above(), state);
+	}
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos pos1) {
-        if (direction == Direction.UP && newState.is(Blocks.WATER)) {
-            level.scheduleTick(pos, this, 20);
-        }
+	public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos pos1) {
+		if (direction == Direction.UP && newState.is(Blocks.WATER)) {
+			level.scheduleTick(pos, this, 20);
+		}
 
-        return super.updateShape(state, direction, newState, level, pos, pos1);
-    }
+		return super.updateShape(state, direction, newState, level, pos, pos1);
+	}
 
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state1, boolean b) {
-        level.scheduleTick(pos, this, 20);
-    }
+	public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state1, boolean b) {
+		level.scheduleTick(pos, this, 20);
+	}
 }

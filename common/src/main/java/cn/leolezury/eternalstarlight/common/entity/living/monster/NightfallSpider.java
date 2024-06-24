@@ -13,34 +13,34 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class NightfallSpider extends Spider {
-    public NightfallSpider(EntityType<? extends NightfallSpider> type, Level level) {
-        super(type, level);
-    }
+	public NightfallSpider(EntityType<? extends NightfallSpider> type, Level level) {
+		super(type, level);
+	}
 
-    public static AttributeSupplier.Builder createNightfallSpider() {
-        return Spider.createAttributes().add(Attributes.MAX_HEALTH, 10.0D);
-    }
+	public static AttributeSupplier.Builder createNightfallSpider() {
+		return Spider.createAttributes().add(Attributes.MAX_HEALTH, 10.0D);
+	}
 
-    public boolean doHurtTarget(Entity entity) {
-        if (super.doHurtTarget(entity)) {
-            if (entity instanceof LivingEntity) {
-                int effectTime = 0;
-                if (this.level().getDifficulty() == Difficulty.NORMAL) {
-                    effectTime = 7;
-                } else if (this.level().getDifficulty() == Difficulty.HARD) {
-                    effectTime = 15;
-                }
-                if (effectTime > 0) {
-                    ((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.GLOWING, effectTime * 20, 0), this);
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public boolean doHurtTarget(Entity entity) {
+		if (super.doHurtTarget(entity)) {
+			if (entity instanceof LivingEntity) {
+				int effectTime = 0;
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+					effectTime = 7;
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+					effectTime = 15;
+				}
+				if (effectTime > 0) {
+					((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.GLOWING, effectTime * 20, 0), this);
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    public Vec3 getVehicleAttachmentPoint(Entity entity) {
-        return entity.getBbWidth() <= this.getBbWidth() ? new Vec3(0.0, 0.21875 * (double)this.getScale(), 0.0) : super.getVehicleAttachmentPoint(entity);
-    }
+	public Vec3 getVehicleAttachmentPoint(Entity entity) {
+		return entity.getBbWidth() <= this.getBbWidth() ? new Vec3(0.0, 0.21875 * (double) this.getScale(), 0.0) : super.getVehicleAttachmentPoint(entity);
+	}
 }

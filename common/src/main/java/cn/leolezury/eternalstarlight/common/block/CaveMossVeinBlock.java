@@ -19,53 +19,53 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 public class CaveMossVeinBlock extends MultifaceBlock implements BonemealableBlock, SimpleWaterloggedBlock {
-    public static final MapCodec<CaveMossVeinBlock> CODEC = simpleCodec(CaveMossVeinBlock::new);
-    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    private final MultifaceSpreader spreader = new MultifaceSpreader(this);
+	public static final MapCodec<CaveMossVeinBlock> CODEC = simpleCodec(CaveMossVeinBlock::new);
+	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	private final MultifaceSpreader spreader = new MultifaceSpreader(this);
 
-    @Override
-    protected MapCodec<? extends MultifaceBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends MultifaceBlock> codec() {
+		return CODEC;
+	}
 
-    public CaveMossVeinBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
-    }
+	public CaveMossVeinBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(WATERLOGGED);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(WATERLOGGED);
+	}
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState state1, LevelAccessor level, BlockPos pos, BlockPos pos1) {
-        if (state.getValue(WATERLOGGED)) {
-            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-        }
-        return super.updateShape(state, direction, state1, level, pos, pos1);
-    }
+	public BlockState updateShape(BlockState state, Direction direction, BlockState state1, LevelAccessor level, BlockPos pos, BlockPos pos1) {
+		if (state.getValue(WATERLOGGED)) {
+			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+		}
+		return super.updateShape(state, direction, state1, level, pos, pos1);
+	}
 
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        return Direction.stream().anyMatch((direction) -> this.spreader.canSpreadInAnyDirection(state, level, pos, direction.getOpposite()));
-    }
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+		return Direction.stream().anyMatch((direction) -> this.spreader.canSpreadInAnyDirection(state, level, pos, direction.getOpposite()));
+	}
 
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        return true;
-    }
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        this.spreader.spreadFromRandomFaceTowardRandomDirection(state, level, pos, randomSource);
-    }
+	public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		this.spreader.spreadFromRandomFaceTowardRandomDirection(state, level, pos, randomSource);
+	}
 
-    public FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }
+	public FluidState getFluidState(BlockState state) {
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	}
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return state.getFluidState().isEmpty();
-    }
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter blockGetter, BlockPos pos) {
+		return state.getFluidState().isEmpty();
+	}
 
-    public MultifaceSpreader getSpreader() {
-        return this.spreader;
-    }
+	public MultifaceSpreader getSpreader() {
+		return this.spreader;
+	}
 }

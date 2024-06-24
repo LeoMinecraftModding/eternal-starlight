@@ -16,15 +16,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(Camera.class)
 public abstract class CameraMixin {
-    @Shadow protected abstract void setRotation(float f, float g);
+	@Shadow
+	protected abstract void setRotation(float f, float g);
 
-    @Shadow public abstract float getXRot();
+	@Shadow
+	public abstract float getXRot();
 
-    @Shadow public abstract float getYRot();
+	@Shadow
+	public abstract float getYRot();
 
-    @Inject(method = "setup", at = @At(value = "RETURN"))
-    private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
-        Vec3 angles = ClientHandlers.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
-        setRotation((float) angles.y, (float) angles.x);
-    }
+	@Inject(method = "setup", at = @At(value = "RETURN"))
+	private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
+		Vec3 angles = ClientHandlers.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
+		setRotation((float) angles.y, (float) angles.x);
+	}
 }

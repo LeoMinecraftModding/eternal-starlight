@@ -12,13 +12,13 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class AethersentArmorItem extends ArmorItem {
-    public AethersentArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
-        super(holder, type, properties);
-    }
+	public AethersentArmorItem(Holder<ArmorMaterial> holder, Type type, Properties properties) {
+		super(holder, type, properties);
+	}
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".aethersent_armor").withStyle(ChatFormatting.DARK_PURPLE));
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-    }
+	@Override
+	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".aethersent_armor").withStyle(ChatFormatting.DARK_PURPLE));
+		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+	}
 }

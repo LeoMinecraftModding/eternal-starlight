@@ -23,49 +23,49 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock, BerriesVines {
-    public static final MapCodec<BerriesVinesPlantBlock> CODEC = simpleCodec(BerriesVinesPlantBlock::new);
+	public static final MapCodec<BerriesVinesPlantBlock> CODEC = simpleCodec(BerriesVinesPlantBlock::new);
 
-    public BerriesVinesPlantBlock(BlockBehaviour.Properties properties) {
-        super(properties, Direction.DOWN, SHAPE, false);
-        this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, false));
-    }
+	public BerriesVinesPlantBlock(BlockBehaviour.Properties properties) {
+		super(properties, Direction.DOWN, SHAPE, false);
+		this.registerDefaultState(this.stateDefinition.any().setValue(BERRIES, false));
+	}
 
-    @Override
-    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
-        return null;
-    }
+	@Override
+	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+		return null;
+	}
 
-    protected GrowingPlantHeadBlock getHeadBlock() {
-        return ESBlocks.BERRIES_VINES.get();
-    }
+	protected GrowingPlantHeadBlock getHeadBlock() {
+		return ESBlocks.BERRIES_VINES.get();
+	}
 
-    protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
-        return blockState.setValue(BERRIES, state.getValue(BERRIES));
-    }
+	protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
+		return blockState.setValue(BERRIES, state.getValue(BERRIES));
+	}
 
-    @Override
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return new ItemStack(ESItems.LUNAR_BERRIES.get());
-    }
+	@Override
+	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		return new ItemStack(ESItems.LUNAR_BERRIES.get());
+	}
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        return BerriesVines.use(state, level, pos);
-    }
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+		return BerriesVines.use(state, level, pos);
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BERRIES);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(BERRIES);
+	}
 
-    @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return !blockState.getValue(BERRIES);
-    }
+	@Override
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		return !blockState.getValue(BERRIES);
+	}
 
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        return true;
-    }
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, Boolean.valueOf(true)), 2);
-    }
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, Boolean.valueOf(true)), 2);
+	}
 }

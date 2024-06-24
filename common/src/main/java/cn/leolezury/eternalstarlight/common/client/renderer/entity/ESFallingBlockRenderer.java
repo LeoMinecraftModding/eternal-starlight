@@ -18,30 +18,30 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @Environment(EnvType.CLIENT)
 public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
-    private final BlockRenderDispatcher dispatcher;
+	private final BlockRenderDispatcher dispatcher;
 
-    public ESFallingBlockRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        this.dispatcher = context.getBlockRenderDispatcher();
-    }
+	public ESFallingBlockRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.dispatcher = context.getBlockRenderDispatcher();
+	}
 
-    public void render(ESFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-        BlockState blockstate = block.getBlockState();
-        if (blockstate == null) return;
-        if (blockstate.getRenderShape() == RenderShape.MODEL) {
-            Level level = block.level();
-            if (blockstate != level.getBlockState(block.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
-                stack.pushPose();
-                BlockPos blockpos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
-                stack.translate(-0.5D, 0.0D, -0.5D);
-                ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(block.getStartPos()));
-                stack.popPose();
-                super.render(block, yaw, delta, stack, bufferSource, packedLight);
-            }
-        }
-    }
+	public void render(ESFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+		BlockState blockstate = block.getBlockState();
+		if (blockstate == null) return;
+		if (blockstate.getRenderShape() == RenderShape.MODEL) {
+			Level level = block.level();
+			if (blockstate != level.getBlockState(block.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
+				stack.pushPose();
+				BlockPos blockpos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
+				stack.translate(-0.5D, 0.0D, -0.5D);
+				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(block.getStartPos()));
+				stack.popPose();
+				super.render(block, yaw, delta, stack, bufferSource, packedLight);
+			}
+		}
+	}
 
-    public ResourceLocation getTextureLocation(ESFallingBlock block) {
-        return TextureAtlas.LOCATION_BLOCKS;
-    }
+	public ResourceLocation getTextureLocation(ESFallingBlock block) {
+		return TextureAtlas.LOCATION_BLOCKS;
+	}
 }

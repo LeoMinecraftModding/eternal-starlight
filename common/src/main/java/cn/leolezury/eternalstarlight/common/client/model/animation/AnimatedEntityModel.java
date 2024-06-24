@@ -9,8 +9,8 @@ import net.minecraft.world.entity.Entity;
 
 @Environment(EnvType.CLIENT)
 public abstract class AnimatedEntityModel<E extends Entity> extends EntityModel<E> implements AnimatedModel {
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        root().render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-    }
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root().render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+	}
 }

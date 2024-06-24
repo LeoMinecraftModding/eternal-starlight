@@ -18,12 +18,15 @@ import java.util.Map;
 
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {
-    @Shadow @Mutable @Final private Map<SkullBlock.Type, SkullModelBase> modelByType;
+	@Shadow
+	@Mutable
+	@Final
+	private Map<SkullBlock.Type, SkullModelBase> modelByType;
 
-    @Inject(method = "<init>", at = @At(value = "RETURN"))
-    private void init(BlockEntityRendererProvider.Context context, CallbackInfo ci) {
-        HashMap<SkullBlock.Type, SkullModelBase> map = new HashMap<>(modelByType);
-        ClientSetupHandlers.registerSkullModels(map::put, context.getModelSet());
-        modelByType = map;
-    }
+	@Inject(method = "<init>", at = @At(value = "RETURN"))
+	private void init(BlockEntityRendererProvider.Context context, CallbackInfo ci) {
+		HashMap<SkullBlock.Type, SkullModelBase> map = new HashMap<>(modelByType);
+		ClientSetupHandlers.registerSkullModels(map::put, context.getModelSet());
+		modelByType = map;
+	}
 }

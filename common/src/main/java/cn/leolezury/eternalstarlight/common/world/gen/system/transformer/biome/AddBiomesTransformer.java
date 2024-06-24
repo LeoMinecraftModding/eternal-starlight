@@ -19,66 +19,66 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class AddBiomesTransformer extends NoiseDataTransformer {
-    public static final MapCodec<AddBiomesTransformer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codec.DOUBLE.fieldOf("xz_scale").forGetter(o -> o.xzScale),
-            RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("land_biomes").forGetter(o -> o.landBiomes),
-            RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("ocean_biomes").forGetter(o -> o.oceanBiomes)
-    ).apply(instance, AddBiomesTransformer::new));
+	public static final MapCodec<AddBiomesTransformer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+		Codec.DOUBLE.fieldOf("xz_scale").forGetter(o -> o.xzScale),
+		RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("land_biomes").forGetter(o -> o.landBiomes),
+		RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).listOf().fieldOf("ocean_biomes").forGetter(o -> o.oceanBiomes)
+	).apply(instance, AddBiomesTransformer::new));
 
-    private boolean init = false;
-    private final double xzScale;
-    private final List<Holder<BiomeData>> landBiomes;
-    private final List<Holder<BiomeData>> oceanBiomes;
-    private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_LAND_BIOME = new EnumMap<>(BiomeData.Temperature.class);
-    private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_OCEAN_BIOME = new EnumMap<>(BiomeData.Temperature.class);
+	private boolean init = false;
+	private final double xzScale;
+	private final List<Holder<BiomeData>> landBiomes;
+	private final List<Holder<BiomeData>> oceanBiomes;
+	private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_LAND_BIOME = new EnumMap<>(BiomeData.Temperature.class);
+	private final EnumMap<BiomeData.Temperature, ArrayList<Integer>> TEMPERATURE_TO_OCEAN_BIOME = new EnumMap<>(BiomeData.Temperature.class);
 
-    public AddBiomesTransformer(double xzScale, List<Holder<BiomeData>> landBiomes, List<Holder<BiomeData>> oceanBiomes) {
-        this.xzScale = xzScale;
-        this.landBiomes = landBiomes;
-        this.oceanBiomes = oceanBiomes;
-    }
+	public AddBiomesTransformer(double xzScale, List<Holder<BiomeData>> landBiomes, List<Holder<BiomeData>> oceanBiomes) {
+		this.xzScale = xzScale;
+		this.landBiomes = landBiomes;
+		this.oceanBiomes = oceanBiomes;
+	}
 
-    private void initBiomes(Function<BiomeData, Integer> toId, EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, List<Holder<BiomeData>> biomes) {
-        for (BiomeData.Temperature temperature : BiomeData.Temperature.values()) {
-            map.put(temperature, new ArrayList<>());
-        }
-        for (Holder<BiomeData> biome : biomes) {
-            for (BiomeData.Temperature temperature : biome.value().temperatures()) {
-                map.get(temperature).add(toId.apply(biome.value()));
-            }
-        }
-    }
+	private void initBiomes(Function<BiomeData, Integer> toId, EnumMap<BiomeData.Temperature, ArrayList<Integer>> map, List<Holder<BiomeData>> biomes) {
+		for (BiomeData.Temperature temperature : BiomeData.Temperature.values()) {
+			map.put(temperature, new ArrayList<>());
+		}
+		for (Holder<BiomeData> biome : biomes) {
+			for (BiomeData.Temperature temperature : biome.value().temperatures()) {
+				map.get(temperature).add(toId.apply(biome.value()));
+			}
+		}
+	}
 
-    private int getRandomBiome(BiomeData.Temperature temperature, boolean isOcean, Random random) {
-        ArrayList<Integer> biomeList = (isOcean ? TEMPERATURE_TO_OCEAN_BIOME : TEMPERATURE_TO_LAND_BIOME).get(temperature);
-        return biomeList.get(random.nextInt(biomeList.size()));
-    }
+	private int getRandomBiome(BiomeData.Temperature temperature, boolean isOcean, Random random) {
+		ArrayList<Integer> biomeList = (isOcean ? TEMPERATURE_TO_OCEAN_BIOME : TEMPERATURE_TO_LAND_BIOME).get(temperature);
+		return biomeList.get(random.nextInt(biomeList.size()));
+	}
 
-    @Override
-    public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
-        if (!init) {
-            initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_LAND_BIOME, landBiomes);
-            initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_OCEAN_BIOME, oceanBiomes);
-            init = true;
-        }
-        BiomeData.Temperature temperature;
-        double noiseVal = noise.getValue(worldX * xzScale, worldZ * xzScale, false);
-        if (noiseVal >= 0.6) {
-            temperature = BiomeData.Temperature.HOT_EXTREME;
-        } else if (noiseVal >= 0.2) {
-            temperature = BiomeData.Temperature.HOT;
-        } else if (noiseVal >= -0.2) {
-            temperature = BiomeData.Temperature.NEUTRAL;
-        } else if (noiseVal >= -0.6) {
-            temperature = BiomeData.Temperature.COLD;
-        } else {
-            temperature = BiomeData.Temperature.COLD_EXTREME;
-        }
-        return getRandomBiome(temperature, provider.getBiomeDataById(original).isOcean(), random);
-    }
+	@Override
+	public int transform(WorldGenProvider provider, Random random, int original, int worldX, int worldZ, PerlinSimplexNoise noise) {
+		if (!init) {
+			initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_LAND_BIOME, landBiomes);
+			initBiomes(provider::getBiomeDataId, TEMPERATURE_TO_OCEAN_BIOME, oceanBiomes);
+			init = true;
+		}
+		BiomeData.Temperature temperature;
+		double noiseVal = noise.getValue(worldX * xzScale, worldZ * xzScale, false);
+		if (noiseVal >= 0.6) {
+			temperature = BiomeData.Temperature.HOT_EXTREME;
+		} else if (noiseVal >= 0.2) {
+			temperature = BiomeData.Temperature.HOT;
+		} else if (noiseVal >= -0.2) {
+			temperature = BiomeData.Temperature.NEUTRAL;
+		} else if (noiseVal >= -0.6) {
+			temperature = BiomeData.Temperature.COLD;
+		} else {
+			temperature = BiomeData.Temperature.COLD_EXTREME;
+		}
+		return getRandomBiome(temperature, provider.getBiomeDataById(original).isOcean(), random);
+	}
 
-    @Override
-    public DataTransformerType<?> type() {
-        return ESDataTransformerTypes.ADD_BIOMES.get();
-    }
+	@Override
+	public DataTransformerType<?> type() {
+		return ESDataTransformerTypes.ADD_BIOMES.get();
+	}
 }

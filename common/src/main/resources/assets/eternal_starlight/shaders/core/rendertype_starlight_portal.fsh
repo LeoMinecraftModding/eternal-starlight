@@ -21,7 +21,7 @@ void main() {
     float anim3 = sin(-GameTime * 1000 + 2.);
 
     float shape = 0.;
-    
+
     vec2 pos = (vec2(0.5) - st) * 1.5;
 
     float r = length(pos) * 3.;
@@ -37,10 +37,10 @@ void main() {
     shape += 1. -smoothstep(layer2, layer2 + 0.5, r);
     shape += 1. -smoothstep(layer3, layer3 + 0.5, r);
     shape += smoothstep(0.65, 0., length(pos));
-    
+
     vec3 color = vec3(0.1, 0.1, 0.1);
     vec3 curveColor = vec3(0.1, 0.1, 0.325);
-    
+
     color += curveColor * (smoothstep(1., 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
     color += curveColor * (smoothstep(anim0, 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
 

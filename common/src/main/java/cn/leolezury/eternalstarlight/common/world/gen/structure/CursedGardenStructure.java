@@ -23,52 +23,52 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import java.util.Optional;
 
 public class CursedGardenStructure extends Structure {
-    public static final MapCodec<CursedGardenStructure> CODEC = simpleCodec(CursedGardenStructure::new);
+	public static final MapCodec<CursedGardenStructure> CODEC = simpleCodec(CursedGardenStructure::new);
 
-    public CursedGardenStructure(StructureSettings structureSettings) {
-        super(structureSettings);
-    }
+	public CursedGardenStructure(StructureSettings structureSettings) {
+		super(structureSettings);
+	}
 
-    @Override
-    protected Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
-        return onTopOfChunkCenter(context, Heightmap.Types.WORLD_SURFACE_WG, builder -> {
-            StructureTemplateManager manager = context.structureTemplateManager();
-            ChunkPos chunkPos = context.chunkPos();
-            WorldgenRandom random = context.random();
-            int x = chunkPos.getMiddleBlockX();
-            int z = chunkPos.getMiddleBlockZ();
-            int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
-            builder.addPiece(new CursedGardenMazePiece(x, y, z));
-        });
-    }
+	@Override
+	protected Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+		return onTopOfChunkCenter(context, Heightmap.Types.WORLD_SURFACE_WG, builder -> {
+			StructureTemplateManager manager = context.structureTemplateManager();
+			ChunkPos chunkPos = context.chunkPos();
+			WorldgenRandom random = context.random();
+			int x = chunkPos.getMiddleBlockX();
+			int z = chunkPos.getMiddleBlockZ();
+			int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
+			builder.addPiece(new CursedGardenMazePiece(x, y, z));
+		});
+	}
 
-    @Override
-    public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox boundingBox, ChunkPos chunkPos, PiecesContainer piecesContainer) {
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-        BoundingBox piecesBox = piecesContainer.calculateBoundingBox();
+	@Override
+	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox boundingBox, ChunkPos chunkPos, PiecesContainer piecesContainer) {
+		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		BoundingBox piecesBox = piecesContainer.calculateBoundingBox();
 
-        for (int x = boundingBox.minX(); x <= boundingBox.maxX(); x++) {
-            for (int z = boundingBox.minZ(); z <= boundingBox.maxZ(); z++) {
-                for (int y = piecesBox.minY(); y <= piecesBox.maxY(); y++) {
-                    pos.set(x, y, z);
-                    if (piecesBox.isInside(pos) && piecesContainer.isInsidePiece(pos)) {
-                        if ((level.isEmptyBlock(pos) || level.getBlockState(pos).is(Blocks.VINE)) && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(Blocks.VINE)) && level.getBlockState(pos.below()).is(ESBlocks.SHADEGRIEVE.get())) {
-                            if (random.nextInt(70) == 0) {
-                                Tangled tangled = new Tangled(ESEntities.TANGLED.get(), level.getLevel());
-                                tangled.setPos(pos.getBottomCenter());
-                                tangled.setPersistenceRequired();
-                                level.addFreshEntity(tangled);
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
+		for (int x = boundingBox.minX(); x <= boundingBox.maxX(); x++) {
+			for (int z = boundingBox.minZ(); z <= boundingBox.maxZ(); z++) {
+				for (int y = piecesBox.minY(); y <= piecesBox.maxY(); y++) {
+					pos.set(x, y, z);
+					if (piecesBox.isInside(pos) && piecesContainer.isInsidePiece(pos)) {
+						if ((level.isEmptyBlock(pos) || level.getBlockState(pos).is(Blocks.VINE)) && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(Blocks.VINE)) && level.getBlockState(pos.below()).is(ESBlocks.SHADEGRIEVE.get())) {
+							if (random.nextInt(70) == 0) {
+								Tangled tangled = new Tangled(ESEntities.TANGLED.get(), level.getLevel());
+								tangled.setPos(pos.getBottomCenter());
+								tangled.setPersistenceRequired();
+								level.addFreshEntity(tangled);
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 
-    @Override
-    public StructureType<?> type() {
-        return ESStructureTypes.CURSED_GARDEN.get();
-    }
+	@Override
+	public StructureType<?> type() {
+		return ESStructureTypes.CURSED_GARDEN.get();
+	}
 }

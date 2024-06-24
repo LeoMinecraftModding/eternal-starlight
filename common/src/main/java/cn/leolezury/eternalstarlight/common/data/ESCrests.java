@@ -9,15 +9,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
 
 public class ESCrests {
-    public static final ResourceKey<Crest> BOULDERS_SHIELD = create("boulders_shield");
-    public static final ResourceKey<Crest> GUIDANCE_OF_STARS = create("guidance_of_stars");
+	public static final ResourceKey<Crest> BOULDERS_SHIELD = create("boulders_shield");
+	public static final ResourceKey<Crest> GUIDANCE_OF_STARS = create("guidance_of_stars");
 
-    public static void bootstrap(BootstrapContext<Crest> context) {
-        context.register(BOULDERS_SHIELD, new Crest(ManaType.TERRA, EternalStarlight.id("textures/crest/boulders_shield.png"), null, new Crest.MobEffectWithLevel(MobEffects.DAMAGE_RESISTANCE, 0)));
-        context.register(GUIDANCE_OF_STARS, new Crest(ManaType.LUNAR, EternalStarlight.id("textures/crest/guidance_of_stars.png"), ESSpells.GUIDANCE_OF_STARS.get()));
-    }
+	public static void bootstrap(BootstrapContext<Crest> context) {
+		context.register(BOULDERS_SHIELD, new Crest(ManaType.TERRA, EternalStarlight.id("textures/crest/boulders_shield.png"), null, new Crest.MobEffectWithLevel(MobEffects.DAMAGE_RESISTANCE, 0)));
+		context.register(GUIDANCE_OF_STARS, new Crest(ManaType.LUNAR, EternalStarlight.id("textures/crest/guidance_of_stars.png"), ESSpells.GUIDANCE_OF_STARS.get()));
+	}
 
-    public static ResourceKey<Crest> create(String name) {
-        return ResourceKey.create(ESRegistries.CREST, EternalStarlight.id(name));
-    }
+	public static ResourceKey<Crest> create(String name) {
+		return ResourceKey.create(ESRegistries.CREST, EternalStarlight.id(name));
+	}
 }

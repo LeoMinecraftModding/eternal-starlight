@@ -17,31 +17,31 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/lunar_spore.png");
-    private final LunarSporeModel<LunarSpore> model;
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/lunar_spore.png");
+	private final LunarSporeModel<LunarSpore> model;
 
-    public LunarSporeRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        model = new LunarSporeModel<>(context.bakeLayer(LunarSporeModel.LAYER_LOCATION));
-    }
+	public LunarSporeRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		model = new LunarSporeModel<>(context.bakeLayer(LunarSporeModel.LAYER_LOCATION));
+	}
 
-    @Override
-    public boolean shouldRender(LunarSpore entity, Frustum frustum, double d, double e, double f) {
-        return true;
-    }
+	@Override
+	public boolean shouldRender(LunarSpore entity, Frustum frustum, double d, double e, double f) {
+		return true;
+	}
 
-    @Override
-    public void render(LunarSpore entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
-        VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-        float yRot = Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-        float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot());
-        this.model.setupAnim(yRot, xRot);
-        this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
-        super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-    }
+	@Override
+	public void render(LunarSpore entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
+		VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
+		float yRot = Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
+		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot());
+		this.model.setupAnim(yRot, xRot);
+		this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(LunarSpore entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(LunarSpore entity) {
+		return ENTITY_TEXTURE;
+	}
 }

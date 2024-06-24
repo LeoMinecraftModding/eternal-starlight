@@ -7,12 +7,12 @@ import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ESSkullBlockEntity extends SkullBlockEntity {
-    public ESSkullBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state);
-    }
+	public ESSkullBlockEntity(BlockPos pos, BlockState state) {
+		super(pos, state);
+	}
 
-    @Override
-    public BlockEntityType<?> getType() {
-        return ESBlockEntities.SKULL.get();
-    }
+	@Override
+	public BlockEntityType<?> getType() {
+		return ESBlockEntities.SKULL.get();
+	}
 }

@@ -21,85 +21,85 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock {
-    public static final MapCodec<CrystalClusterBlock> CODEC = simpleCodec(CrystalClusterBlock::new);
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    protected final VoxelShape northAabb;
-    protected final VoxelShape southAabb;
-    protected final VoxelShape eastAabb;
-    protected final VoxelShape westAabb;
-    protected final VoxelShape upAabb;
-    protected final VoxelShape downAabb;
+	public static final MapCodec<CrystalClusterBlock> CODEC = simpleCodec(CrystalClusterBlock::new);
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	protected final VoxelShape northAabb;
+	protected final VoxelShape southAabb;
+	protected final VoxelShape eastAabb;
+	protected final VoxelShape westAabb;
+	protected final VoxelShape upAabb;
+	protected final VoxelShape downAabb;
 
-    public CrystalClusterBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
-        this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
-        this.downAabb = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
-        this.northAabb = Block.box(3, 3, (16 - 5), (16 - 3), (16 - 3), 16.0D);
-        this.southAabb = Block.box(3, 3, 0.0D, (16 - 3), (16 - 3), 5);
-        this.eastAabb = Block.box(0.0D, 3, 3, 5, (16 - 3), (16 - 3));
-        this.westAabb = Block.box((16 - 5), 3, 3, 16.0D, (16 - 3), (16 - 3));
-    }
+	public CrystalClusterBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
+		this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
+		this.downAabb = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
+		this.northAabb = Block.box(3, 3, (16 - 5), (16 - 3), (16 - 3), 16.0D);
+		this.southAabb = Block.box(3, 3, 0.0D, (16 - 3), (16 - 3), 5);
+		this.eastAabb = Block.box(0.0D, 3, 3, 5, (16 - 3), (16 - 3));
+		this.westAabb = Block.box((16 - 5), 3, 3, 16.0D, (16 - 3), (16 - 3));
+	}
 
-    @Override
-    protected MapCodec<? extends CrystalClusterBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends CrystalClusterBlock> codec() {
+		return CODEC;
+	}
 
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-        Direction direction = state.getValue(FACING);
-        switch (direction) {
-            case NORTH:
-                return this.northAabb;
-            case SOUTH:
-                return this.southAabb;
-            case EAST:
-                return this.eastAabb;
-            case WEST:
-                return this.westAabb;
-            case DOWN:
-                return this.downAabb;
-            case UP:
-            default:
-                return this.upAabb;
-        }
-    }
+	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
+		Direction direction = state.getValue(FACING);
+		switch (direction) {
+			case NORTH:
+				return this.northAabb;
+			case SOUTH:
+				return this.southAabb;
+			case EAST:
+				return this.eastAabb;
+			case WEST:
+				return this.westAabb;
+			case DOWN:
+				return this.downAabb;
+			case UP:
+			default:
+				return this.upAabb;
+		}
+	}
 
-    public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
-        Direction direction = state.getValue(FACING);
-        BlockPos blockpos = pos.relative(direction.getOpposite());
-        return levelReader.getBlockState(blockpos).isFaceSturdy(levelReader, blockpos, direction);
-    }
+	public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
+		Direction direction = state.getValue(FACING);
+		BlockPos blockpos = pos.relative(direction.getOpposite());
+		return levelReader.getBlockState(blockpos).isFaceSturdy(levelReader, blockpos, direction);
+	}
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState blockState, LevelAccessor levelAccessor, BlockPos pos, BlockPos blockPos) {
-        if (state.getValue(WATERLOGGED)) {
-            levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
-        }
+	public BlockState updateShape(BlockState state, Direction direction, BlockState blockState, LevelAccessor levelAccessor, BlockPos pos, BlockPos blockPos) {
+		if (state.getValue(WATERLOGGED)) {
+			levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+		}
 
-        return direction == state.getValue(FACING).getOpposite() && !state.canSurvive(levelAccessor, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, blockState, levelAccessor, pos, blockPos);
-    }
+		return direction == state.getValue(FACING).getOpposite() && !state.canSurvive(levelAccessor, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, blockState, levelAccessor, pos, blockPos);
+	}
 
-    @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        LevelAccessor levelaccessor = context.getLevel();
-        BlockPos blockpos = context.getClickedPos();
-        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER)).setValue(FACING, context.getClickedFace());
-    }
+	@Nullable
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		LevelAccessor levelaccessor = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER)).setValue(FACING, context.getClickedFace());
+	}
 
-    public BlockState rotate(BlockState state, Rotation rotation) {
-        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
-    }
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+	}
 
-    public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
+	}
 
-    public FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }
+	public FluidState getFluidState(BlockState state) {
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(WATERLOGGED, FACING);
+	}
 }

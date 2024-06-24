@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WallHangingSignBlock.class)
 public abstract class WallHangingSignBlockMixin {
-    @Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)
-    public void newBlockEntity(BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<BlockEntity> cir) {
-        if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.ID)) {
-            cir.setReturnValue(new ESHangingSignBlockEntity(blockPos, blockState));
-        }
-    }
+	@Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)
+	public void newBlockEntity(BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<BlockEntity> cir) {
+		if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.ID)) {
+			cir.setReturnValue(new ESHangingSignBlockEntity(blockPos, blockState));
+		}
+	}
 }

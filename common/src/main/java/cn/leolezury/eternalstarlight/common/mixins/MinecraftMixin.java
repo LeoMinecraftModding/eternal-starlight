@@ -28,37 +28,43 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
-    @Shadow @Nullable public LocalPlayer player;
+	@Shadow
+	@Nullable
+	public LocalPlayer player;
 
-    @Shadow @Nullable public ClientLevel level;
+	@Shadow
+	@Nullable
+	public ClientLevel level;
 
-    @Shadow public abstract MusicManager getMusicManager();
+	@Shadow
+	public abstract MusicManager getMusicManager();
 
-    @Unique private final List<Music> possibleBossMusics = new ArrayList<>();
+	@Unique
+	private final List<Music> possibleBossMusics = new ArrayList<>();
 
-    @Inject(at = @At(value = "RETURN"), method = "getSituationalMusic", cancellable = true)
-    private void getSituationalMusic(CallbackInfoReturnable<Music> cir) {
-        if (player != null && player.level().dimension() == ESDimensions.STARLIGHT_KEY && (cir.getReturnValue() == Musics.GAME || cir.getReturnValue() == Musics.CREATIVE || cir.getReturnValue() == Musics.UNDER_WATER)) {
-            Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
-            if (biomeHolder.isBound()) {
-                cir.setReturnValue(biomeHolder.value().getBackgroundMusic().orElse(Musics.GAME));
-            }
-        }
-        if (level != null) {
-            List<ESBoss> bosses = level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
-            bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
-            for (ESBoss boss : bosses) {
-                possibleBossMusics.add(boss.getBossMusic());
-                if (boss.shouldPlayBossMusic()) {
-                    cir.setReturnValue(boss.getBossMusic());
-                    return;
-                }
-            }
-            for (Music music : possibleBossMusics) {
-                if (getMusicManager().isPlayingMusic(music)) {
-                    getMusicManager().stopPlaying(music);
-                }
-            }
-        }
-    }
+	@Inject(at = @At(value = "RETURN"), method = "getSituationalMusic", cancellable = true)
+	private void getSituationalMusic(CallbackInfoReturnable<Music> cir) {
+		if (player != null && player.level().dimension() == ESDimensions.STARLIGHT_KEY && (cir.getReturnValue() == Musics.GAME || cir.getReturnValue() == Musics.CREATIVE || cir.getReturnValue() == Musics.UNDER_WATER)) {
+			Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));
+			if (biomeHolder.isBound()) {
+				cir.setReturnValue(biomeHolder.value().getBackgroundMusic().orElse(Musics.GAME));
+			}
+		}
+		if (level != null) {
+			List<ESBoss> bosses = level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
+			bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
+			for (ESBoss boss : bosses) {
+				possibleBossMusics.add(boss.getBossMusic());
+				if (boss.shouldPlayBossMusic()) {
+					cir.setReturnValue(boss.getBossMusic());
+					return;
+				}
+			}
+			for (Music music : possibleBossMusics) {
+				if (getMusicManager().isPlayingMusic(music)) {
+					getMusicManager().stopPlaying(music);
+				}
+			}
+		}
+	}
 }

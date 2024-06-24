@@ -13,19 +13,19 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class NightfallSpiderRenderer<T extends NightfallSpider> extends MobRenderer<T, NightfallSpiderModel<T>> {
-    private static final ResourceLocation NIGHTFALL_SPIDER_LOCATION = EternalStarlight.id("textures/entity/nightfall_spider.png");
+	private static final ResourceLocation NIGHTFALL_SPIDER_LOCATION = EternalStarlight.id("textures/entity/nightfall_spider.png");
 
-    public NightfallSpiderRenderer(EntityRendererProvider.Context context) {
-        this(context, NightfallSpiderModel.LAYER_LOCATION);
-        this.shadowRadius *= 0.7F;
-    }
+	public NightfallSpiderRenderer(EntityRendererProvider.Context context) {
+		this(context, NightfallSpiderModel.LAYER_LOCATION);
+		this.shadowRadius *= 0.7F;
+	}
 
-    public NightfallSpiderRenderer(EntityRendererProvider.Context context, ModelLayerLocation location) {
-        super(context, new NightfallSpiderModel<>(context.bakeLayer(location)), 0.8F);
-        this.addLayer(new NightfallSpiderEyesLayer<>(this));
-    }
+	public NightfallSpiderRenderer(EntityRendererProvider.Context context, ModelLayerLocation location) {
+		super(context, new NightfallSpiderModel<>(context.bakeLayer(location)), 0.8F);
+		this.addLayer(new NightfallSpiderEyesLayer<>(this));
+	}
 
-    public ResourceLocation getTextureLocation(T entity) {
-        return NIGHTFALL_SPIDER_LOCATION;
-    }
+	public ResourceLocation getTextureLocation(T entity) {
+		return NIGHTFALL_SPIDER_LOCATION;
+	}
 }

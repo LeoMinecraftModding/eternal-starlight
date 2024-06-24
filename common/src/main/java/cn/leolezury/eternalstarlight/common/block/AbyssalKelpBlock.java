@@ -31,85 +31,85 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer, AbyssalKelp {
-    public static final MapCodec<AbyssalKelpBlock> CODEC = simpleCodec(AbyssalKelpBlock::new);
-    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
+	public static final MapCodec<AbyssalKelpBlock> CODEC = simpleCodec(AbyssalKelpBlock::new);
+	protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
 
-    public AbyssalKelpBlock(Properties properties) {
-        super(properties, Direction.UP, SHAPE, true, 0.14);
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(BERRIES, false));
-    }
+	public AbyssalKelpBlock(Properties properties) {
+		super(properties, Direction.UP, SHAPE, true, 0.14);
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(BERRIES, false));
+	}
 
-    @Override
-    public MapCodec<? extends GrowingPlantHeadBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	public MapCodec<? extends GrowingPlantHeadBlock> codec() {
+		return CODEC;
+	}
 
-    @Override
-    protected Block getBodyBlock() {
-        return ESBlocks.ABYSSAL_KELP_PLANT.get();
-    }
+	@Override
+	protected Block getBodyBlock() {
+		return ESBlocks.ABYSSAL_KELP_PLANT.get();
+	}
 
-    protected BlockState updateBodyAfterConvertedFromHead(BlockState state, BlockState blockState) {
-        return blockState.setValue(BERRIES, state.getValue(BERRIES));
-    }
+	protected BlockState updateBodyAfterConvertedFromHead(BlockState state, BlockState blockState) {
+		return blockState.setValue(BERRIES, state.getValue(BERRIES));
+	}
 
-    protected BlockState getGrowIntoState(BlockState state, RandomSource randomSource) {
-        return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
-    }
+	protected BlockState getGrowIntoState(BlockState state, RandomSource randomSource) {
+		return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
+	}
 
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
-        return new ItemStack(ESItems.ABYSSAL_FRUIT.get());
-    }
+	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
+		return new ItemStack(ESItems.ABYSSAL_FRUIT.get());
+	}
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        return AbyssalKelp.use(state, level, pos);
-    }
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+		return AbyssalKelp.use(state, level, pos);
+	}
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(BERRIES);
-    }
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(BERRIES);
+	}
 
-    @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return !blockState.getValue(BERRIES);
-    }
+	@Override
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+		return !blockState.getValue(BERRIES);
+	}
 
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        return true;
-    }
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
-        serverLevel.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(true)), 2);
-    }
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
+		serverLevel.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(true)), 2);
+	}
 
-    protected boolean canGrowInto(BlockState blockState) {
-        return blockState.is(Blocks.WATER);
-    }
+	protected boolean canGrowInto(BlockState blockState) {
+		return blockState.is(Blocks.WATER);
+	}
 
-    public boolean canAttachTo(BlockState blockState) {
-        return !blockState.is(Blocks.MAGMA_BLOCK);
-    }
+	public boolean canAttachTo(BlockState blockState) {
+		return !blockState.is(Blocks.MAGMA_BLOCK);
+	}
 
-    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
-        return false;
-    }
+	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+		return false;
+	}
 
-    public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
-        return false;
-    }
+	public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+		return false;
+	}
 
-    protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
-        return 1;
-    }
+	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
+		return 1;
+	}
 
-    @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-        return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
-    }
+	@Nullable
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+		return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
+	}
 
-    public FluidState getFluidState(BlockState blockState) {
-        return Fluids.WATER.getSource(false);
-    }
+	public FluidState getFluidState(BlockState blockState) {
+		return Fluids.WATER.getSource(false);
+	}
 }

@@ -29,109 +29,109 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class TwilightGaze extends WaterAnimal {
-    private BlockPos abyssPos;
+	private BlockPos abyssPos;
 
-    public TwilightGaze(EntityType<? extends TwilightGaze> type, Level level) {
-        super(type, level);
-        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
-        this.lookControl = new SmoothSwimmingLookControl(this, 10);
-    }
+	public TwilightGaze(EntityType<? extends TwilightGaze> type, Level level) {
+		super(type, level);
+		this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+		this.lookControl = new SmoothSwimmingLookControl(this, 10);
+	}
 
-    public AnimationState swimAnimationState = new AnimationState();
+	public AnimationState swimAnimationState = new AnimationState();
 
-    @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnData) {
-        this.setAirSupply(this.getMaxAirSupply());
-        this.setXRot(0.0F);
-        return super.finalizeSpawn(level, difficulty, spawnType, spawnData);
-    }
+	@Nullable
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnData) {
+		this.setAirSupply(this.getMaxAirSupply());
+		this.setXRot(0.0F);
+		return super.finalizeSpawn(level, difficulty, spawnType, spawnData);
+	}
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.2, true));
-        this.goalSelector.addGoal(1, new TwilightGazeRandomSwimmingGoal(1.0, 10));
-        this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.targetSelector.addGoal(0, new HurtByTargetGoal(this, TwilightGaze.class).setAlertOthers());
-    }
-    
-    private class TwilightGazeRandomSwimmingGoal extends RandomSwimmingGoal {
-        public TwilightGazeRandomSwimmingGoal(double d, int i) {
-            super(TwilightGaze.this, d, i);
-        }
+	protected void registerGoals() {
+		this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.2, true));
+		this.goalSelector.addGoal(1, new TwilightGazeRandomSwimmingGoal(1.0, 10));
+		this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.targetSelector.addGoal(0, new HurtByTargetGoal(this, TwilightGaze.class).setAlertOthers());
+	}
 
-        @Nullable
-        @Override
-        protected Vec3 getPosition() {
-            Vec3 pos = super.getPosition();
-            if (TwilightGaze.this.abyssPos == null) {
-                return pos;
-            }
-            return pos == null ? null : (TwilightGaze.this.level().getBiome(BlockPos.containing(pos)).is(ESBiomes.THE_ABYSS) ? pos : TwilightGaze.this.abyssPos.getCenter());
-        }
-    }
+	private class TwilightGazeRandomSwimmingGoal extends RandomSwimmingGoal {
+		public TwilightGazeRandomSwimmingGoal(double d, int i) {
+			super(TwilightGaze.this, d, i);
+		}
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 1.2).add(Attributes.ATTACK_DAMAGE, 3.0);
-    }
+		@Nullable
+		@Override
+		protected Vec3 getPosition() {
+			Vec3 pos = super.getPosition();
+			if (TwilightGaze.this.abyssPos == null) {
+				return pos;
+			}
+			return pos == null ? null : (TwilightGaze.this.level().getBiome(BlockPos.containing(pos)).is(ESBiomes.THE_ABYSS) ? pos : TwilightGaze.this.abyssPos.getCenter());
+		}
+	}
 
-    protected PathNavigation createNavigation(Level level) {
-        return new WaterBoundPathNavigation(this, level);
-    }
+	public static AttributeSupplier.Builder createAttributes() {
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 1.2).add(Attributes.ATTACK_DAMAGE, 3.0);
+	}
 
-    public int getMaxHeadXRot() {
-        return 1;
-    }
+	protected PathNavigation createNavigation(Level level) {
+		return new WaterBoundPathNavigation(this, level);
+	}
 
-    public int getMaxHeadYRot() {
-        return 1;
-    }
+	public int getMaxHeadXRot() {
+		return 1;
+	}
 
-    protected boolean canRide(Entity entity) {
-        return true;
-    }
+	public int getMaxHeadYRot() {
+		return 1;
+	}
 
-    @Override
-    public void startSeenByPlayer(ServerPlayer serverPlayer) {
-        super.startSeenByPlayer(serverPlayer);
-        ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("twilight_gaze"));
-    }
+	protected boolean canRide(Entity entity) {
+		return true;
+	}
 
-    @Override
-    public void aiStep() {
-        super.aiStep();
-        if (!level().isClientSide) {
-            if (tickCount % 20 == 0 && level().getBiome(blockPosition()).is(ESBiomes.THE_ABYSS)) {
-                abyssPos = blockPosition();
-            }
-        } else {
-            swimAnimationState.startIfStopped(tickCount);
-        }
-    }
+	@Override
+	public void startSeenByPlayer(ServerPlayer serverPlayer) {
+		super.startSeenByPlayer(serverPlayer);
+		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("twilight_gaze"));
+	}
 
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return ESSoundEvents.TWILIGHT_GAZE_HURT.get();
-    }
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		if (!level().isClientSide) {
+			if (tickCount % 20 == 0 && level().getBiome(blockPosition()).is(ESBiomes.THE_ABYSS)) {
+				abyssPos = blockPosition();
+			}
+		} else {
+			swimAnimationState.startIfStopped(tickCount);
+		}
+	}
 
-    @Nullable
-    protected SoundEvent getDeathSound() {
-        return ESSoundEvents.TWILIGHT_GAZE_DEATH.get();
-    }
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return ESSoundEvents.TWILIGHT_GAZE_HURT.get();
+	}
 
-    public void travel(Vec3 vec3) {
-        if (this.isEffectiveAi() && this.isInWater()) {
-            this.moveRelative(this.getSpeed(), vec3);
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            this.setDeltaMovement(this.getDeltaMovement().scale(0.9));
-            if (this.getTarget() == null) {
-                this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.005, 0.0));
-            }
-        } else {
-            super.travel(vec3);
-        }
-    }
+	@Nullable
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.TWILIGHT_GAZE_DEATH.get();
+	}
 
-    public boolean canBeLeashed(Player pPlayer) {
-        return true;
-    }
+	public void travel(Vec3 vec3) {
+		if (this.isEffectiveAi() && this.isInWater()) {
+			this.moveRelative(this.getSpeed(), vec3);
+			this.move(MoverType.SELF, this.getDeltaMovement());
+			this.setDeltaMovement(this.getDeltaMovement().scale(0.9));
+			if (this.getTarget() == null) {
+				this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.005, 0.0));
+			}
+		} else {
+			super.travel(vec3);
+		}
+	}
+
+	public boolean canBeLeashed(Player pPlayer) {
+		return true;
+	}
 }
 

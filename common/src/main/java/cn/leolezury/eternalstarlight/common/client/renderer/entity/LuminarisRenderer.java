@@ -14,24 +14,24 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LuminarisRenderer<T extends Luminaris> extends MobRenderer<T, LuminarisModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminaris.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminaris.png");
 
-    public LuminarisRenderer(EntityRendererProvider.Context context) {
-        super(context, new LuminarisModel<>(context.bakeLayer(LuminarisModel.LAYER_LOCATION)), 0.3f);
-        this.addLayer(new LuminarisGlowLayer<>(this));
-    }
+	public LuminarisRenderer(EntityRendererProvider.Context context) {
+		super(context, new LuminarisModel<>(context.bakeLayer(LuminarisModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new LuminarisGlowLayer<>(this));
+	}
 
-    @Override
-    protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
-        super.setupRotations(livingEntity, poseStack, f, g, h, i);
-        if (!livingEntity.isInWater()) {
-            poseStack.translate(0.1F, 0.1F, -0.1F);
-            poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
-        }
-    }
+	@Override
+	protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
+		super.setupRotations(livingEntity, poseStack, f, g, h, i);
+		if (!livingEntity.isInWater()) {
+			poseStack.translate(0.1F, 0.1F, -0.1F);
+			poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
+		}
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

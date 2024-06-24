@@ -13,33 +13,33 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import java.util.concurrent.CompletableFuture;
 
 public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
-    public ESDamageTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, Registries.DAMAGE_TYPE, lookupProvider, EternalStarlight.ID, existingFileHelper);
-    }
+	public ESDamageTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+		super(output, Registries.DAMAGE_TYPE, lookupProvider, EternalStarlight.ID, existingFileHelper);
+	}
 
-    @Override
-    protected void addTags(HolderLookup.Provider lookupProvider) {
-        tag(DamageTypeTags.BYPASSES_ARMOR).add(
-                ESDamageTypes.ETHER,
-                ESDamageTypes.CRYSTALLINE_INFECTION,
-                ESDamageTypes.POISON
-        );
-        tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(
-                ESDamageTypes.ETHER,
-                ESDamageTypes.CRYSTALLINE_INFECTION,
-                ESDamageTypes.POISON
-        );
-        tag(DamageTypeTags.BYPASSES_SHIELD).add(
-                ESDamageTypes.ETHER,
-                ESDamageTypes.CRYSTALLINE_INFECTION,
-                ESDamageTypes.POISON
-        );
-        tag(DamageTypeTags.NO_IMPACT).add(
-                ESDamageTypes.POISON,
-                ESDamageTypes.ENERGIZED_FLAME
-        );
-        tag(DamageTypeTags.IS_PROJECTILE).add(
-                ESDamageTypes.SHATTERED_BLADE
-        );
-    }
+	@Override
+	protected void addTags(HolderLookup.Provider lookupProvider) {
+		tag(DamageTypeTags.BYPASSES_ARMOR).add(
+			ESDamageTypes.ETHER,
+			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.POISON
+		);
+		tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(
+			ESDamageTypes.ETHER,
+			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.POISON
+		);
+		tag(DamageTypeTags.BYPASSES_SHIELD).add(
+			ESDamageTypes.ETHER,
+			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.POISON
+		);
+		tag(DamageTypeTags.NO_IMPACT).add(
+			ESDamageTypes.POISON,
+			ESDamageTypes.ENERGIZED_FLAME
+		);
+		tag(DamageTypeTags.IS_PROJECTILE).add(
+			ESDamageTypes.SHATTERED_BLADE
+		);
+	}
 }

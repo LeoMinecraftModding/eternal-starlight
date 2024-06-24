@@ -7,9 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.function.Supplier;
 
 public interface RegistryObject<R, T extends R> extends Supplier<T> {
-    Holder<R> asHolder();
-    ResourceKey<T> getResourceKey();
-    ResourceLocation getId();
-    @Override
-    T get();
+	Holder<R> asHolder();
+
+	ResourceKey<T> getResourceKey();
+
+	ResourceLocation getId();
+
+	@Override
+	T get();
 }

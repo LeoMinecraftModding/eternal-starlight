@@ -6,8 +6,8 @@ import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resources.ResourceLocation;
 
 public class FabricGatekeeperNameManager extends TheGatekeeperNameManager implements IdentifiableResourceReloadListener {
-    @Override
-    public ResourceLocation getFabricId() {
-        return EternalStarlight.id("gatekeeper_names");
-    }
+	@Override
+	public ResourceLocation getFabricId() {
+		return EternalStarlight.id("gatekeeper_names");
+	}
 }

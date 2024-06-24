@@ -12,15 +12,15 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class ThirstWalkerRenderer<T extends ThirstWalker> extends MobRenderer<T, ThirstWalkerModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/thirst_walker.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/thirst_walker.png");
 
-    public ThirstWalkerRenderer(EntityRendererProvider.Context context) {
-        super(context, new ThirstWalkerModel<>(context.bakeLayer(ThirstWalkerModel.LAYER_LOCATION)), 0.3f);
-        this.addLayer(new ThirstWalkerEyesLayer<>(this));
-    }
+	public ThirstWalkerRenderer(EntityRendererProvider.Context context) {
+		super(context, new ThirstWalkerModel<>(context.bakeLayer(ThirstWalkerModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new ThirstWalkerEyesLayer<>(this));
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

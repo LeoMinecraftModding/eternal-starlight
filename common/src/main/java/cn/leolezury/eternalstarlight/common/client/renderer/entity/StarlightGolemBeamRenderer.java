@@ -9,19 +9,19 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemBeamRenderer extends LaserBeamRenderer<GolemLaserBeam> {
-    private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/golem_laser_beam.png");
+	private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/golem_laser_beam.png");
 
-    public StarlightGolemBeamRenderer(EntityRendererProvider.Context context) {
-        super(context);
-    }
+	public StarlightGolemBeamRenderer(EntityRendererProvider.Context context) {
+		super(context);
+	}
 
-    @Override
-    public float getBeamRadius() {
-        return 0.75f;
-    }
+	@Override
+	public float getBeamRadius() {
+		return 0.75f;
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(GolemLaserBeam entity) {
-        return StarlightGolemBeamRenderer.TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(GolemLaserBeam entity) {
+		return StarlightGolemBeamRenderer.TEXTURE;
+	}
 }

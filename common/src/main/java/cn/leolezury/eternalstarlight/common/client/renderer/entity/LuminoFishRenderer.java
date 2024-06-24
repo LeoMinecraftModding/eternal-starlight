@@ -14,24 +14,24 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LuminoFishRenderer<T extends LuminoFish> extends MobRenderer<T, LuminoFishModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminofish.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminofish.png");
 
-    public LuminoFishRenderer(EntityRendererProvider.Context context) {
-        super(context, new LuminoFishModel<>(context.bakeLayer(LuminoFishModel.LAYER_LOCATION)), 0.3f);
-        this.addLayer(new LuminoFishGlowLayer<>(this));
-    }
+	public LuminoFishRenderer(EntityRendererProvider.Context context) {
+		super(context, new LuminoFishModel<>(context.bakeLayer(LuminoFishModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new LuminoFishGlowLayer<>(this));
+	}
 
-    @Override
-    protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
-        super.setupRotations(livingEntity, poseStack, f, g, h, i);
-        if (!livingEntity.isInWater()) {
-            poseStack.translate(0.1F, 0.1F, -0.1F);
-            poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
-        }
-    }
+	@Override
+	protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
+		super.setupRotations(livingEntity, poseStack, f, g, h, i);
+		if (!livingEntity.isInWater()) {
+			poseStack.translate(0.1F, 0.1F, -0.1F);
+			poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
+		}
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

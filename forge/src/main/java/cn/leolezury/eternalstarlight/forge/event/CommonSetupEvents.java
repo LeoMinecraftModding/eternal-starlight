@@ -22,31 +22,31 @@ import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber(modid = EternalStarlight.ID, bus = EventBusSubscriber.Bus.MOD)
 public class CommonSetupEvents {
-    @SubscribeEvent
-    public static void setup(FMLCommonSetupEvent event) {
-        FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState()));
-    }
+	@SubscribeEvent
+	public static void setup(FMLCommonSetupEvent event) {
+		FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState()));
+	}
 
-    @SubscribeEvent
-    public static void onNewRegistry(NewRegistryEvent event) {
-        for (Registry<?> registry : ForgePlatform.newRegistries) {
-            event.register(registry);
-        }
-    }
+	@SubscribeEvent
+	public static void onNewRegistry(NewRegistryEvent event) {
+		for (Registry<?> registry : ForgePlatform.newRegistries) {
+			event.register(registry);
+		}
+	}
 
-    @SubscribeEvent
-    public static void onAttributeCreate(EntityAttributeCreationEvent event) {
-        CommonSetupHandlers.createAttributes(event::put);
-    }
+	@SubscribeEvent
+	public static void onAttributeCreate(EntityAttributeCreationEvent event) {
+		CommonSetupHandlers.createAttributes(event::put);
+	}
 
-    @SubscribeEvent
-    public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
-        CommonSetupHandlers.SpawnPlacementRegisterStrategy strategy = new CommonSetupHandlers.SpawnPlacementRegisterStrategy() {
-            @Override
-            public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacementType placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
-                event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.AND);
-            }
-        };
-        CommonSetupHandlers.registerSpawnPlacements(strategy);
-    }
+	@SubscribeEvent
+	public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
+		CommonSetupHandlers.SpawnPlacementRegisterStrategy strategy = new CommonSetupHandlers.SpawnPlacementRegisterStrategy() {
+			@Override
+			public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacementType placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
+				event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.AND);
+			}
+		};
+		CommonSetupHandlers.registerSpawnPlacements(strategy);
+	}
 }

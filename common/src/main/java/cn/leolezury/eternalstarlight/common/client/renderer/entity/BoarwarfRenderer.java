@@ -13,20 +13,20 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class BoarwarfRenderer<T extends Boarwarf> extends MobRenderer<T, BoarwarfModel<T>> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/boarwarf.png");
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/boarwarf.png");
 
-    public BoarwarfRenderer(EntityRendererProvider.Context context) {
-        super(context, new BoarwarfModel<>(context.bakeLayer(BoarwarfModel.LAYER_LOCATION)), 0.5f);
-        this.addLayer(new BoarwarfBiomeLayer<>(this, context.getModelSet()));
-        this.addLayer(new BoarwarfBlacksmithLayer<>(this, context.getModelSet()));
-        this.addLayer(new BoarwarfChefLayer<>(this, context.getModelSet()));
-        this.addLayer(new BoarwarfDruidLayer<>(this, context.getModelSet()));
-        this.addLayer(new BoarwarfDyerLayer<>(this, context.getModelSet()));
-        this.addLayer(new BoarwarfSilversmithLayer<>(this, context.getModelSet()));
-    }
+	public BoarwarfRenderer(EntityRendererProvider.Context context) {
+		super(context, new BoarwarfModel<>(context.bakeLayer(BoarwarfModel.LAYER_LOCATION)), 0.5f);
+		this.addLayer(new BoarwarfBiomeLayer<>(this, context.getModelSet()));
+		this.addLayer(new BoarwarfBlacksmithLayer<>(this, context.getModelSet()));
+		this.addLayer(new BoarwarfChefLayer<>(this, context.getModelSet()));
+		this.addLayer(new BoarwarfDruidLayer<>(this, context.getModelSet()));
+		this.addLayer(new BoarwarfDyerLayer<>(this, context.getModelSet()));
+		this.addLayer(new BoarwarfSilversmithLayer<>(this, context.getModelSet()));
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(T entity) {
+		return ENTITY_TEXTURE;
+	}
 }

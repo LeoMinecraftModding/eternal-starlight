@@ -21,18 +21,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HumanoidArmorLayer.class)
 public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> {
-    @Unique
-    private ItemStack armorStack;
+	@Unique
+	private ItemStack armorStack;
 
-    @Inject(method = "renderArmorPiece", at = @At("HEAD"))
-    private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
-        armorStack = livingEntity.getItemBySlot(equipmentSlot);
-    }
+	@Inject(method = "renderArmorPiece", at = @At("HEAD"))
+	private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
+		armorStack = livingEntity.getItemBySlot(equipmentSlot);
+	}
 
-    @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
-    private void renderTrim(Holder<ArmorMaterial> holder, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, ArmorTrim armorTrim, A humanoidModel, boolean bl, CallbackInfo ci) {
-        if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
-            ci.cancel();
-        }
-    }
+	@Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
+	private void renderTrim(Holder<ArmorMaterial> holder, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, ArmorTrim armorTrim, A humanoidModel, boolean bl, CallbackInfo ci) {
+		if (BuiltInRegistries.ITEM.getKey(armorStack.getItem()).getNamespace().equals(EternalStarlight.ID) && !armorStack.is(ESTags.Items.TRIMMABLE_ARMOR)) {
+			ci.cancel();
+		}
+	}
 }

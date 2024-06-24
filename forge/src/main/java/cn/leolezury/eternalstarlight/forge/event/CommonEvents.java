@@ -29,100 +29,100 @@ import java.util.Map;
 
 @EventBusSubscriber(modid = EternalStarlight.ID)
 public class CommonEvents {
-    @SubscribeEvent
-    public static void onServerTick(ServerTickEvent.Post event) {
-        CommonHandlers.onServerTick(event.getServer());
-    }
+	@SubscribeEvent
+	public static void onServerTick(ServerTickEvent.Post event) {
+		CommonHandlers.onServerTick(event.getServer());
+	}
 
-    @SubscribeEvent
-    public static void onLevelTick(LevelTickEvent.Post event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
-            CommonHandlers.onLevelTick(serverLevel);
-        }
-    }
+	@SubscribeEvent
+	public static void onLevelTick(LevelTickEvent.Post event) {
+		if (event.getLevel() instanceof ServerLevel serverLevel) {
+			CommonHandlers.onLevelTick(serverLevel);
+		}
+	}
 
-    @SubscribeEvent
-    public static void onLevelLoad(LevelEvent.Load event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
-            CommonHandlers.onLevelLoad(serverLevel);
-        }
-    }
+	@SubscribeEvent
+	public static void onLevelLoad(LevelEvent.Load event) {
+		if (event.getLevel() instanceof ServerLevel serverLevel) {
+			CommonHandlers.onLevelLoad(serverLevel);
+		}
+	}
 
-    @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
-        event.setAmount(CommonHandlers.onLivingHurt(event.getEntity(), event.getSource(), event.getAmount()));
-    }
+	@SubscribeEvent
+	public static void onLivingHurt(LivingHurtEvent event) {
+		event.setAmount(CommonHandlers.onLivingHurt(event.getEntity(), event.getSource(), event.getAmount()));
+	}
 
-    @SubscribeEvent
-    public static void onLivingTick(EntityTickEvent.Post event) {
-        if (event.getEntity() instanceof LivingEntity living) {
-            CommonHandlers.onLivingTick(living);
-        }
-    }
+	@SubscribeEvent
+	public static void onLivingTick(EntityTickEvent.Post event) {
+		if (event.getEntity() instanceof LivingEntity living) {
+			CommonHandlers.onLivingTick(living);
+		}
+	}
 
-    @SubscribeEvent
-    public static void onBlockBroken(BlockEvent.BreakEvent event) {
-        CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
-    }
+	@SubscribeEvent
+	public static void onBlockBroken(BlockEvent.BreakEvent event) {
+		CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
+	}
 
-    @SubscribeEvent
-    public static void onShieldBlock(ShieldBlockEvent event) {
-        CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
-    }
+	@SubscribeEvent
+	public static void onShieldBlock(ShieldBlockEvent event) {
+		CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
+	}
 
-    @SubscribeEvent
-    public static void onProjectileImpact(ProjectileImpactEvent event) {
-        CommonHandlers.onArrowHit(event.getProjectile(), event.getRayTraceResult());
-    }
+	@SubscribeEvent
+	public static void onProjectileImpact(ProjectileImpactEvent event) {
+		CommonHandlers.onArrowHit(event.getProjectile(), event.getRayTraceResult());
+	}
 
-    @SubscribeEvent
-    public static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
-        CommonHandlers.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
-    }
+	@SubscribeEvent
+	public static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
+		CommonHandlers.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
+	}
 
-    @SubscribeEvent
-    public static void onAddReloadListener(AddReloadListenerEvent event) {
-        CommonHandlers.addReloadListeners(event::addListener);
-    }
+	@SubscribeEvent
+	public static void onAddReloadListener(AddReloadListenerEvent event) {
+		CommonHandlers.addReloadListeners(event::addListener);
+	}
 
-    @SubscribeEvent
-    public static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
-        CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
-            @Override
-            public void register(ItemLike item, int time) {
-                if (event.getItemStack().is(item.asItem())) {
-                    event.setBurnTime(time);
-                }
-            }
+	@SubscribeEvent
+	public static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
+			@Override
+			public void register(ItemLike item, int time) {
+				if (event.getItemStack().is(item.asItem())) {
+					event.setBurnTime(time);
+				}
+			}
 
-            @Override
-            public void register(TagKey<Item> itemTag, int time) {
-                if (event.getItemStack().is(itemTag)) {
-                    event.setBurnTime(time);
-                }
-            }
-        });
-    }
+			@Override
+			public void register(TagKey<Item> itemTag, int time) {
+				if (event.getItemStack().is(itemTag)) {
+					event.setBurnTime(time);
+				}
+			}
+		});
+	}
 
-    @SubscribeEvent
-    public static void onCommandRegister(RegisterCommandsEvent event) {
-        CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
-    }
+	@SubscribeEvent
+	public static void onCommandRegister(RegisterCommandsEvent event) {
+		CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
+	}
 
-    @SubscribeEvent
-    public static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
-        if (event.getToolAction() == ToolActions.AXE_STRIP) {
-            for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
-                if (event.getState().is(entry.getKey())) {
-                    event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
-                }
-            }
-        } else if (event.getToolAction() == ToolActions.HOE_TILL) {
-            for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
-                if (event.getState().is(entry.getKey())) {
-                    event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
-                }
-            }
-        }
-    }
+	@SubscribeEvent
+	public static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
+		if (event.getToolAction() == ToolActions.AXE_STRIP) {
+			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
+				if (event.getState().is(entry.getKey())) {
+					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
+				}
+			}
+		} else if (event.getToolAction() == ToolActions.HOE_TILL) {
+			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
+				if (event.getState().is(entry.getKey())) {
+					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
+				}
+			}
+		}
+	}
 }

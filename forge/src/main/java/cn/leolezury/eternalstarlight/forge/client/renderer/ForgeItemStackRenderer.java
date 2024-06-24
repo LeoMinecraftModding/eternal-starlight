@@ -14,20 +14,20 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import java.util.function.Supplier;
 
 public class ForgeItemStackRenderer extends BlockEntityWithoutLevelRenderer {
-    public static final Supplier<ForgeItemStackRenderer> INSTANCE = Suppliers.memoize(ForgeItemStackRenderer::new);
-    public static final IClientItemExtensions CLIENT_ITEM_EXTENSION = Util.make(() -> new IClientItemExtensions() {
-        @Override
-        public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-            return INSTANCE.get();
-        }
-    });
-    
-    public ForgeItemStackRenderer() {
-        super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
-    }
+	public static final Supplier<ForgeItemStackRenderer> INSTANCE = Suppliers.memoize(ForgeItemStackRenderer::new);
+	public static final IClientItemExtensions CLIENT_ITEM_EXTENSION = Util.make(() -> new IClientItemExtensions() {
+		@Override
+		public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+			return INSTANCE.get();
+		}
+	});
 
-    @Override
-    public void renderByItem(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        ESItemStackRenderer.render(stack, context, poseStack, multiBufferSource, light, overlay);
-    }
+	public ForgeItemStackRenderer() {
+		super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+	}
+
+	@Override
+	public void renderByItem(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+		ESItemStackRenderer.render(stack, context, poseStack, multiBufferSource, light, overlay);
+	}
 }

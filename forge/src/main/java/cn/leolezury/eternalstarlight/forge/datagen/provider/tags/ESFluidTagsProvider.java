@@ -12,15 +12,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ESFluidTagsProvider extends FluidTagsProvider {
-    public ESFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
-    }
+	public ESFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+		super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
+	}
 
-    @Override
-    protected void addTags(HolderLookup.Provider arg) {
-        tag(ESTags.Fluids.ETHER).add(
-                ESFluids.ETHER_STILL.get(),
-                ESFluids.ETHER_FLOWING.get()
-        );
-    }
+	@Override
+	protected void addTags(HolderLookup.Provider arg) {
+		tag(ESTags.Fluids.ETHER).add(
+			ESFluids.ETHER_STILL.get(),
+			ESFluids.ETHER_FLOWING.get()
+		);
+	}
 }

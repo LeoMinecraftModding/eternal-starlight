@@ -14,31 +14,31 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class StarlightGolemSpawnerBlock extends BaseEntityBlock {
-    public static final MapCodec<StarlightGolemSpawnerBlock> CODEC = simpleCodec(StarlightGolemSpawnerBlock::new);
+	public static final MapCodec<StarlightGolemSpawnerBlock> CODEC = simpleCodec(StarlightGolemSpawnerBlock::new);
 
-    public StarlightGolemSpawnerBlock(Properties properties) {
-        super(properties);
-    }
+	public StarlightGolemSpawnerBlock(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
-    }
+	@Override
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
+	}
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StarlightGolemSpawnerBlockEntity(pos, state);
-    }
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new StarlightGolemSpawnerBlockEntity(pos, state);
+	}
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ESBlockEntities.STARLIGHT_GOLEM_SPAWNER.get(), StarlightGolemSpawnerBlockEntity::tick);
-    }
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, ESBlockEntities.STARLIGHT_GOLEM_SPAWNER.get(), StarlightGolemSpawnerBlockEntity::tick);
+	}
 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ESModelLoadingPlugin implements ModelLoadingPlugin {
-    public static final List<ModelResourceLocation> MODELS = new ArrayList<>();
+	public static final List<ModelResourceLocation> MODELS = new ArrayList<>();
 
-    @Override
-    public void onInitializeModelLoader(Context pluginContext) {
-        pluginContext.addModels(MODELS.stream().map(l -> l.id().withPrefix("item/")).toList());
-    }
+	@Override
+	public void onInitializeModelLoader(Context pluginContext) {
+		pluginContext.addModels(MODELS.stream().map(l -> l.id().withPrefix("item/")).toList());
+	}
 }

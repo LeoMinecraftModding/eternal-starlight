@@ -13,23 +13,23 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @EventBusSubscriber(modid = EternalStarlight.ID, bus = EventBusSubscriber.Bus.MOD)
 public class ForgeNetworkHandler {
-    @SubscribeEvent
-    public static void onNetworkInit(RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar(EternalStarlight.ID)
-                .optional();
-        CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
-            @Override
-            public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-                registrar.playBidirectional(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
-            }
-        });
-    }
+	@SubscribeEvent
+	public static void onNetworkInit(RegisterPayloadHandlersEvent event) {
+		final PayloadRegistrar registrar = event.registrar(EternalStarlight.ID)
+			.optional();
+		CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
+			@Override
+			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
+				registrar.playBidirectional(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
+			}
+		});
+	}
 
-    public static void sendToClient(ServerPlayer serverPlayer, CustomPacketPayload packet) {
-        PacketDistributor.sendToPlayer(serverPlayer, packet);
-    }
+	public static void sendToClient(ServerPlayer serverPlayer, CustomPacketPayload packet) {
+		PacketDistributor.sendToPlayer(serverPlayer, packet);
+	}
 
-    public static void sendToServer(CustomPacketPayload packet) {
-        PacketDistributor.sendToServer(packet);
-    }
+	public static void sendToServer(CustomPacketPayload packet) {
+		PacketDistributor.sendToServer(packet);
+	}
 }

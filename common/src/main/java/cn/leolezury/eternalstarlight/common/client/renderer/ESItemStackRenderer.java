@@ -17,19 +17,19 @@ import net.minecraft.world.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
 public class ESItemStackRenderer {
-    private static GlaciteShieldModel glaciteShieldModel;
+	private static GlaciteShieldModel glaciteShieldModel;
 
-    public static void render(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        if (stack.is(ESItems.GLACITE_SHIELD.get())) {
-            if (glaciteShieldModel == null) {
-                glaciteShieldModel = new GlaciteShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(GlaciteShieldModel.LAYER_LOCATION));
-            }
-            poseStack.pushPose();
-            poseStack.scale(1.0F, -1.0F, -1.0F);
-            Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/glacite_shield"));
-            VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, glaciteShieldModel.renderType(material.atlasLocation()), true, stack.hasFoil()));
-            glaciteShieldModel.renderToBuffer(poseStack, vertexConsumer, light, overlay);
-            poseStack.popPose();
-        }
-    }
+	public static void render(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+		if (stack.is(ESItems.GLACITE_SHIELD.get())) {
+			if (glaciteShieldModel == null) {
+				glaciteShieldModel = new GlaciteShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(GlaciteShieldModel.LAYER_LOCATION));
+			}
+			poseStack.pushPose();
+			poseStack.scale(1.0F, -1.0F, -1.0F);
+			Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/glacite_shield"));
+			VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, glaciteShieldModel.renderType(material.atlasLocation()), true, stack.hasFoil()));
+			glaciteShieldModel.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+			poseStack.popPose();
+		}
+	}
 }

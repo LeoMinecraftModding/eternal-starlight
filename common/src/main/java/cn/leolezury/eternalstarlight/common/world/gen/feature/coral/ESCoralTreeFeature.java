@@ -12,45 +12,45 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ESCoralTreeFeature extends ESCoralFeature {
-    public ESCoralTreeFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
-    }
+	public ESCoralTreeFeature(Codec<NoneFeatureConfiguration> codec) {
+		super(codec);
+	}
 
-    protected boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
-        int i = randomSource.nextInt(3) + 1;
+	protected boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
+		int i = randomSource.nextInt(3) + 1;
 
-        for(int j = 0; j < i; ++j) {
-            if (!this.placeCoralBlock(levelAccessor, randomSource, mutableBlockPos, blockState)) {
-                return true;
-            }
+		for (int j = 0; j < i; ++j) {
+			if (!this.placeCoralBlock(levelAccessor, randomSource, mutableBlockPos, blockState)) {
+				return true;
+			}
 
-            mutableBlockPos.move(Direction.UP);
-        }
+			mutableBlockPos.move(Direction.UP);
+		}
 
-        BlockPos blockPos2 = mutableBlockPos.immutable();
-        int k = randomSource.nextInt(3) + 2;
-        List<Direction> list = Direction.Plane.HORIZONTAL.shuffledCopy(randomSource);
-        List<Direction> list2 = list.subList(0, k);
-        Iterator var11 = list2.iterator();
+		BlockPos blockPos2 = mutableBlockPos.immutable();
+		int k = randomSource.nextInt(3) + 2;
+		List<Direction> list = Direction.Plane.HORIZONTAL.shuffledCopy(randomSource);
+		List<Direction> list2 = list.subList(0, k);
+		Iterator var11 = list2.iterator();
 
-        while(var11.hasNext()) {
-            Direction direction = (Direction)var11.next();
-            mutableBlockPos.set(blockPos2);
-            mutableBlockPos.move(direction);
-            int l = randomSource.nextInt(5) + 2;
-            int m = 0;
+		while (var11.hasNext()) {
+			Direction direction = (Direction) var11.next();
+			mutableBlockPos.set(blockPos2);
+			mutableBlockPos.move(direction);
+			int l = randomSource.nextInt(5) + 2;
+			int m = 0;
 
-            for(int n = 0; n < l && this.placeCoralBlock(levelAccessor, randomSource, mutableBlockPos, blockState); ++n) {
-                ++m;
-                mutableBlockPos.move(Direction.UP);
-                if (n == 0 || m >= 2 && randomSource.nextFloat() < 0.25F) {
-                    mutableBlockPos.move(direction);
-                    m = 0;
-                }
-            }
-        }
+			for (int n = 0; n < l && this.placeCoralBlock(levelAccessor, randomSource, mutableBlockPos, blockState); ++n) {
+				++m;
+				mutableBlockPos.move(Direction.UP);
+				if (n == 0 || m >= 2 && randomSource.nextFloat() < 0.25F) {
+					mutableBlockPos.move(direction);
+					m = 0;
+				}
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

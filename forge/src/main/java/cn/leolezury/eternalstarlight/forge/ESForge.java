@@ -12,21 +12,21 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 
 @Mod(EternalStarlight.ID)
 public class ESForge {
-    public ESForge(IEventBus modEventBus) {
-        ESFluidTypes.loadClass();
-        EternalStarlight.init();
-        modEventBus.addListener(this::onRegister);
-        for (DeferredRegister<?> register : ForgePlatform.registers) {
-            register.register(modEventBus);
-        }
-    }
+	public ESForge(IEventBus modEventBus) {
+		ESFluidTypes.loadClass();
+		EternalStarlight.init();
+		modEventBus.addListener(this::onRegister);
+		for (DeferredRegister<?> register : ForgePlatform.registers) {
+			register.register(modEventBus);
+		}
+	}
 
-    // ? Using @SubscribeEvent in another class would make it stop working in the data generation environment
-    public void onRegister(RegisterEvent event) {
-        if (event.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
-            CommonSetupHandlers.registerChunkGenerator();
-        } else if (event.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
-            CommonSetupHandlers.registerBiomeSource();
-        }
-    }
+	// ? Using @SubscribeEvent in another class would make it stop working in the data generation environment
+	public void onRegister(RegisterEvent event) {
+		if (event.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
+			CommonSetupHandlers.registerChunkGenerator();
+		} else if (event.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
+			CommonSetupHandlers.registerBiomeSource();
+		}
+	}
 }

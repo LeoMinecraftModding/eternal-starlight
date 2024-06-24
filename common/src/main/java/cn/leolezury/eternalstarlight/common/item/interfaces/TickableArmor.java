@@ -5,5 +5,5 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public interface TickableArmor {
-    void tick(Level level, LivingEntity livingEntity, ItemStack armor);
+	void tick(Level level, LivingEntity livingEntity, ItemStack armor);
 }

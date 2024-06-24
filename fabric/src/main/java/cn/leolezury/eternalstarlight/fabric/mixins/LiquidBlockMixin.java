@@ -19,23 +19,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LiquidBlock.class)
 public abstract class LiquidBlockMixin {
-    @Shadow @Final protected FlowingFluid fluid;
+	@Shadow
+	@Final
+	protected FlowingFluid fluid;
 
-    @Shadow @Final public static ImmutableList<Direction> POSSIBLE_FLOW_DIRECTIONS;
+	@Shadow
+	@Final
+	public static ImmutableList<Direction> POSSIBLE_FLOW_DIRECTIONS;
 
-    @Shadow protected abstract void fizz(LevelAccessor levelAccessor, BlockPos blockPos);
+	@Shadow
+	protected abstract void fizz(LevelAccessor levelAccessor, BlockPos blockPos);
 
-    @Inject(method = "shouldSpreadLiquid", at = @At(value = "HEAD"), cancellable = true)
-    public void shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
-        if (this.fluid == ESFluids.ETHER_FLOWING.get() || this.fluid == ESFluids.ETHER_STILL.get()) {
-            for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
-                BlockPos relativePos = blockPos.relative(direction.getOpposite());
-                if (!level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get())) {
-                    level.setBlockAndUpdate(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
-                    this.fizz(level, blockPos);
-                    cir.setReturnValue(false);
-                }
-            }
-        }
-    }
+	@Inject(method = "shouldSpreadLiquid", at = @At(value = "HEAD"), cancellable = true)
+	public void shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+		if (this.fluid == ESFluids.ETHER_FLOWING.get() || this.fluid == ESFluids.ETHER_STILL.get()) {
+			for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
+				BlockPos relativePos = blockPos.relative(direction.getOpposite());
+				if (!level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get())) {
+					level.setBlockAndUpdate(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
+					this.fizz(level, blockPos);
+					cir.setReturnValue(false);
+				}
+			}
+		}
+	}
 }

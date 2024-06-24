@@ -11,13 +11,13 @@ import net.minecraft.client.renderer.entity.layers.EyesLayer;
 
 @Environment(EnvType.CLIENT)
 public class ThirstWalkerEyesLayer<T extends ThirstWalker, M extends ThirstWalkerModel<T>> extends EyesLayer<T, M> {
-    private static final RenderType EYES = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/thirst_walker_eyes.png"));
+	private static final RenderType EYES = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/thirst_walker_eyes.png"));
 
-    public ThirstWalkerEyesLayer(RenderLayerParent<T, M> parent) {
-        super(parent);
-    }
+	public ThirstWalkerEyesLayer(RenderLayerParent<T, M> parent) {
+		super(parent);
+	}
 
-    public RenderType renderType() {
-        return EYES;
-    }
+	public RenderType renderType() {
+		return EYES;
+	}
 }

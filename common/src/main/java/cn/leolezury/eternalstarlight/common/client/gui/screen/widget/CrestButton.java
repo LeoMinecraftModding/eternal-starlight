@@ -17,100 +17,100 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class CrestButton extends Button {
-    private static final int CREST_WIDTH = 72;
-    private static final int CREST_HEIGHT = 72;
-    private final boolean orbit;
-    private Crest crest;
+	private static final int CREST_WIDTH = 72;
+	private static final int CREST_HEIGHT = 72;
+	private final boolean orbit;
+	private Crest crest;
 
-    private int prevHoverProgress;
-    private int hoverProgress;
+	private int prevHoverProgress;
+	private int hoverProgress;
 
-    private float prevX;
-    private float prevY;
+	private float prevX;
+	private float prevY;
 
-    private float orbitCenterX;
-    private float orbitCenterY;
-    private float angle;
-    private float prevAngle;
+	private float orbitCenterX;
+	private float orbitCenterY;
+	private float angle;
+	private float prevAngle;
 
-    public CrestButton(int x, int y, int width, int height, Component component, OnPress onPress) {
-        this(x, y, width, height, false, component, onPress);
-    }
+	public CrestButton(int x, int y, int width, int height, Component component, OnPress onPress) {
+		this(x, y, width, height, false, component, onPress);
+	}
 
-    public CrestButton(int x, int y, int width, int height, boolean orbit, Component component, OnPress onPress) {
-        super(x, y, width, height, component, onPress, DEFAULT_NARRATION);
-        this.orbit = orbit;
-    }
+	public CrestButton(int x, int y, int width, int height, boolean orbit, Component component, OnPress onPress) {
+		super(x, y, width, height, component, onPress, DEFAULT_NARRATION);
+		this.orbit = orbit;
+	}
 
-    public void setAngle(float angle) {
-        this.angle = angle;
-    }
+	public void setAngle(float angle) {
+		this.angle = angle;
+	}
 
-    public void setOrbitCenter(float orbitCenterX, float orbitCenterY) {
-        this.orbitCenterX = orbitCenterX;
-        this.orbitCenterY = orbitCenterY;
-    }
+	public void setOrbitCenter(float orbitCenterX, float orbitCenterY) {
+		this.orbitCenterX = orbitCenterX;
+		this.orbitCenterY = orbitCenterY;
+	}
 
-    public CrestButton setCrest(Crest crest) {
-        if (this.crest != crest && Minecraft.getInstance().level != null) {
-            if (crest == null) {
-                setTooltip(Tooltip.create(Component.empty()));
-            } else {
-                Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-                MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)));
-                MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.type().getSerializedName()))).withColor(crest.type().getColor());
-                MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)) + ".desc");
-                setTooltip(Tooltip.create(nameComponent.append("\n").append(typeComponent).append("\n").append(descComponent)));
-            }
-        }
-        this.crest = crest;
-        return this;
-    }
+	public CrestButton setCrest(Crest crest) {
+		if (this.crest != crest && Minecraft.getInstance().level != null) {
+			if (crest == null) {
+				setTooltip(Tooltip.create(Component.empty()));
+			} else {
+				Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
+				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)));
+				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.type().getSerializedName()))).withColor(crest.type().getColor());
+				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)) + ".desc");
+				setTooltip(Tooltip.create(nameComponent.append("\n").append(typeComponent).append("\n").append(descComponent)));
+			}
+		}
+		this.crest = crest;
+		return this;
+	}
 
-    public Crest getCrest() {
-        return crest;
-    }
+	public Crest getCrest() {
+		return crest;
+	}
 
-    public boolean isEmpty() {
-        return this.crest == null;
-    }
+	public boolean isEmpty() {
+		return this.crest == null;
+	}
 
-    public void tick() {
-        prevHoverProgress = hoverProgress;
-        prevX = getX();
-        prevY = getY();
-        prevAngle = angle;
-        if (isHovered()) {
-            if (hoverProgress < 5) {
-                hoverProgress++;
-            }
-        } else {
-            if (hoverProgress > 0) {
-                hoverProgress--;
-            }
-        }
-        this.active = crest != null;
-    }
+	public void tick() {
+		prevHoverProgress = hoverProgress;
+		prevX = getX();
+		prevY = getY();
+		prevAngle = angle;
+		if (isHovered()) {
+			if (hoverProgress < 5) {
+				hoverProgress++;
+			}
+		} else {
+			if (hoverProgress > 0) {
+				hoverProgress--;
+			}
+		}
+		this.active = crest != null;
+	}
 
-    @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
-        float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
-        float x, y;
-        if (orbit) {
-            float currentAngle = Mth.lerp(partialTicks, prevAngle, angle);
-            Vec3 centerPos = ESMathUtil.rotationToPosition(new Vec3(orbitCenterX, 0, orbitCenterY), 60, 0, currentAngle);
-            x = (float) (centerPos.x - CREST_WIDTH / 2f);
-            y = (float) (centerPos.z - CREST_HEIGHT / 2f);
-            setPosition((int) x, (int) y);
-        } else {
-            x = Mth.lerp(partialTicks, prevX, getX());
-            y = Mth.lerp(partialTicks, prevY, getY());
-        }
-        if (crest != null) {
-            float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
-            float width = CREST_WIDTH * progress;
-            float height = CREST_HEIGHT * progress;
-            ESGuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
-        }
-    }
+	@Override
+	protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+		float x, y;
+		if (orbit) {
+			float currentAngle = Mth.lerp(partialTicks, prevAngle, angle);
+			Vec3 centerPos = ESMathUtil.rotationToPosition(new Vec3(orbitCenterX, 0, orbitCenterY), 60, 0, currentAngle);
+			x = (float) (centerPos.x - CREST_WIDTH / 2f);
+			y = (float) (centerPos.z - CREST_HEIGHT / 2f);
+			setPosition((int) x, (int) y);
+		} else {
+			x = Mth.lerp(partialTicks, prevX, getX());
+			y = Mth.lerp(partialTicks, prevY, getY());
+		}
+		if (crest != null) {
+			float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
+			float width = CREST_WIDTH * progress;
+			float height = CREST_HEIGHT * progress;
+			ESGuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
+		}
+	}
 }

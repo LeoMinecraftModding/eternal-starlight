@@ -7,42 +7,42 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 
 public class StarlightGolemLaserBeamPhase extends BehaviourPhase<StarlightGolem> {
-    public static final int ID = 1;
+	public static final int ID = 1;
 
-    public StarlightGolemLaserBeamPhase() {
-        super(ID, 2, 200, 400);
-    }
+	public StarlightGolemLaserBeamPhase() {
+		super(ID, 2, 200, 400);
+	}
 
-    @Override
-    public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-        return cooldownOver && entity.getTarget() != null;
-    }
+	@Override
+	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
+		return cooldownOver && entity.getTarget() != null;
+	}
 
-    @Override
-    public void onStart(StarlightGolem entity) {
+	@Override
+	public void onStart(StarlightGolem entity) {
 
-    }
+	}
 
-    @Override
-    public void tick(StarlightGolem entity) {
-        if (entity.getBehaviourTicks() == 60) {
-            entity.playSound(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_BEAM.get());
-            GolemLaserBeam beam = new GolemLaserBeam(ESEntities.GOLEM_LASER_BEAM.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight() / 2.5f, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
-            entity.level().addFreshEntity(beam);
-        }
-        if (entity.getBehaviourTicks() >= 60 && entity.getBehaviourTicks() % 40 == 0) {
-            CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
-            entity.spawnEnergizedFlame(1, 15, false);
-        }
-    }
+	@Override
+	public void tick(StarlightGolem entity) {
+		if (entity.getBehaviourTicks() == 60) {
+			entity.playSound(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_BEAM.get());
+			GolemLaserBeam beam = new GolemLaserBeam(ESEntities.GOLEM_LASER_BEAM.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight() / 2.5f, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
+			entity.level().addFreshEntity(beam);
+		}
+		if (entity.getBehaviourTicks() >= 60 && entity.getBehaviourTicks() % 40 == 0) {
+			CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
+			entity.spawnEnergizedFlame(1, 15, false);
+		}
+	}
 
-    @Override
-    public boolean canContinue(StarlightGolem entity) {
-        return true;
-    }
+	@Override
+	public boolean canContinue(StarlightGolem entity) {
+		return true;
+	}
 
-    @Override
-    public void onStop(StarlightGolem entity) {
+	@Override
+	public void onStop(StarlightGolem entity) {
 
-    }
+	}
 }

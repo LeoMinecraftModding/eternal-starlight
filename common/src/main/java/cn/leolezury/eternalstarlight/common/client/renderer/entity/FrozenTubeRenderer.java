@@ -18,38 +18,38 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
-    private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
-    private final FrozenTubeModel<FrozenTube> model;
+	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
+	private final FrozenTubeModel<FrozenTube> model;
 
-    public FrozenTubeRenderer(EntityRendererProvider.Context context) {
-        super(context);
-        model = new FrozenTubeModel<>(context.bakeLayer(FrozenTubeModel.LAYER_LOCATION));
-    }
+	public FrozenTubeRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		model = new FrozenTubeModel<>(context.bakeLayer(FrozenTubeModel.LAYER_LOCATION));
+	}
 
-    @Override
-    public void render(FrozenTube entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
-        poseStack.pushPose();
-        float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-        float xRot = -Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
-        float bob = entity.tickCount + partialTicks;
+	@Override
+	public void render(FrozenTube entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
+		poseStack.pushPose();
+		float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
+		float xRot = -Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
+		float bob = entity.tickCount + partialTicks;
 
-        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yRot));
-        poseStack.scale(-1.0F, -1.0F, 1.0F);
-        poseStack.translate(0.0F, -1.5F, 0.0F);
+		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yRot));
+		poseStack.scale(-1.0F, -1.0F, 1.0F);
+		poseStack.translate(0.0F, -1.5F, 0.0F);
 
-        this.model.prepareMobModel(entity, 0, 0, partialTicks);
-        this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
-        RenderType renderType = this.model.renderType(getTextureLocation(entity));
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		this.model.prepareMobModel(entity, 0, 0, partialTicks);
+		this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
+		RenderType renderType = this.model.renderType(getTextureLocation(entity));
+		VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+		this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 
-        poseStack.popPose();
+		poseStack.popPose();
 
-        super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-    }
+		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
+	}
 
-    @Override
-    public ResourceLocation getTextureLocation(FrozenTube entity) {
-        return ENTITY_TEXTURE;
-    }
+	@Override
+	public ResourceLocation getTextureLocation(FrozenTube entity) {
+		return ENTITY_TEXTURE;
+	}
 }
