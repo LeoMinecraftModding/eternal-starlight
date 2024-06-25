@@ -58,17 +58,31 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 		return allSame;
 	}
 
+	public float trailLength(float partialTicks) {
+		float sum = 0;
+		for (int i = 0; i < trailPoints().size() - 1; i++) {
+			TrailPoint from = trailPoints().get(i);
+			TrailPoint to = trailPoints().get(i + 1);
+			if (i == trailPoints().size() - 2 && trailPoints().size() == length() + 1) {
+				to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
+			}
+			sum += (float) to.center().distanceTo(from.center());
+		}
+		return sum;
+	}
+
 	@Environment(EnvType.CLIENT)
 	public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, float r, float g, float b, float a, int light) {
 		if (trailPoints().size() >= 2) {
-			float secX = 1f / (trailPoints().size() - 1);
 			float textureX = 0;
+			float trailLength = trailLength(partialTicks);
 			for (int i = 0; i < trailPoints().size() - 1; i++) {
 				TrailPoint from = trailPoints().get(i);
 				TrailPoint to = trailPoints().get(i + 1);
 				if (i == trailPoints().size() - 2 && trailPoints().size() == length() + 1) {
 					to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
 				}
+				float secX = (float) to.center().distanceTo(from.center()) / trailLength;
 				PoseStack.Pose pose = stack.last();
 				consumer.addVertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).setColor(r, g, b, a).setUv(textureX, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) to.upper().x, (float) to.upper().y, (float) to.upper().z).setColor(r, g, b, a).setUv(textureX + secX, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
@@ -80,6 +94,8 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 	}
 
 	public record TrailPoint(Vec3 upper, Vec3 lower) {
-
+		public Vec3 center() {
+			return upper().add(lower().subtract(upper()).scale(0.5));
+		}
 	}
 }

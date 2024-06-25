@@ -6,10 +6,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVisualEffect {
@@ -18,16 +21,28 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 	private boolean shouldRemove;
 
 	public TrailVisualEffect(Entity entity) {
-		this.entity = (T) entity;
-		this.effect = ((T) entity).newTrail();
+		if (entity instanceof TrailOwner) {
+			this.entity = (T) entity;
+			this.effect = ((T) entity).newTrail();
+		} else {
+			throw new UnsupportedOperationException("Entity using TrailVisualEffect must implement TrailOwner");
+		}
 	}
 
 	public T getEntity() {
 		return entity;
 	}
 
+	public static void clientTick(ClientLevel level, List<WorldVisualEffect> visualEffects) {
+		for (Entity entity : level.entitiesForRendering()) {
+			if (entity instanceof TrailOwner && visualEffects.stream().noneMatch(effect -> effect instanceof TrailVisualEffect<?> trail && trail.getEntity().getUUID().equals(entity.getUUID()))) {
+				visualEffects.add(new TrailVisualEffect<>(entity));
+			}
+		}
+	}
+
 	@Override
-	public void tick() {
+	public void worldTick() {
 		if (Minecraft.getInstance().level == null) {
 			shouldRemove = true;
 			return;

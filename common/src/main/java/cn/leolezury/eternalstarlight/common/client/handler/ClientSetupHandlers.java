@@ -18,6 +18,8 @@ import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletL
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
+import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
+import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
@@ -35,6 +37,7 @@ import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
@@ -99,6 +102,10 @@ public class ClientSetupHandlers {
 
 	public interface ShaderRegisterStrategy {
 		void register(ResourceLocation location, VertexFormat format, Consumer<ShaderInstance> loaded);
+	}
+
+	public interface WorldVisualEffectSpawnFunction {
+		void clientTick(ClientLevel level, List<WorldVisualEffect> visualEffects);
 	}
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
@@ -254,6 +261,10 @@ public class ClientSetupHandlers {
 	public static final List<ResourceLocation> TRIMS = List.of(
 		EternalStarlight.id("trims/models/armor/keeper"),
 		EternalStarlight.id("trims/models/armor/forge")
+	);
+
+	public static final List<WorldVisualEffectSpawnFunction> VISUAL_EFFECT_SPAWN_FUNCTIONS = List.of(
+		TrailVisualEffect::clientTick
 	);
 
 	public static final Map<ModelResourceLocation, ModelResourceLocation> ITEMS_WITH_INV_ICON = new HashMap<>();

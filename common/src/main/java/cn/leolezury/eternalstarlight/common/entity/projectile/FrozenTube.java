@@ -103,7 +103,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	@Override
 	public TrailEffect newTrail() {
-		return new TrailEffect(0.3f, 30);
+		return new TrailEffect(0.3f, 15);
 	}
 
 	@Override

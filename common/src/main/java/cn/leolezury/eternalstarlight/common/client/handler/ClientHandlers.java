@@ -2,12 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
-import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
@@ -41,7 +39,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.biome.Biome;
@@ -79,7 +76,7 @@ public class ClientHandlers {
 				if (effect.shouldRemove()) {
 					effectsToRemove.add(effect);
 				} else {
-					effect.tick();
+					effect.worldTick();
 				}
 			}
 			for (WorldVisualEffect effect : effectsToRemove) {
@@ -87,10 +84,8 @@ public class ClientHandlers {
 			}
 		}
 		if (Minecraft.getInstance().level != null) {
-			for (Entity entity : Minecraft.getInstance().level.entitiesForRendering()) {
-				if (entity instanceof TrailOwner && VISUAL_EFFECTS.stream().noneMatch(effect -> effect instanceof TrailVisualEffect<?> trail && trail.getEntity().getUUID().equals(entity.getUUID()))) {
-					VISUAL_EFFECTS.add(new TrailVisualEffect<>(entity));
-				}
+			for (ClientSetupHandlers.WorldVisualEffectSpawnFunction function : ClientSetupHandlers.VISUAL_EFFECT_SPAWN_FUNCTIONS) {
+				function.clientTick(Minecraft.getInstance().level, VISUAL_EFFECTS);
 			}
 		}
 		if (Minecraft.getInstance().player != null) {
