@@ -71,6 +71,8 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_BITE = register("entity.lunar_monstrosity.bite");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_ROAR = register("entity.lunar_monstrosity.roar");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_MOAN = register("entity.tangled_skull.moan");
+
 	public static RegistryObject<SoundEvent, SoundEvent> register(String name) {
 		return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(EternalStarlight.id(name)));
 	}

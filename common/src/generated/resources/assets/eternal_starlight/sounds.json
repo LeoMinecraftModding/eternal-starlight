@@ -346,6 +346,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.prepare_charge"
   },
+  "entity.tangled_skull.moan": {
+    "sounds": [
+      "eternal_starlight:mob/tangled_skull/moan"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.tangled_skull.moan"
+  },
   "entity.thirst_walker.ambient": {
     "sounds": [
       "eternal_starlight:mob/thirst_walker/idle1",

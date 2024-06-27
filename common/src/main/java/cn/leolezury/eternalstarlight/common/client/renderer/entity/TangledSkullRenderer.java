@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TangledSkullModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -30,6 +31,9 @@ public class TangledSkullRenderer<T extends TangledSkull> extends MobRenderer<T,
 		swell *= swell;
 		float xz = (1.0F + swell * 0.4F) * factor;
 		float y = (1.0F + swell * 0.1F) / factor;
+		if (entity.isShotFromMonstrosity()) {
+			y = ESMathUtil.easeOutElastic(Math.min((entity.tickCount + f) / 30, 1));
+		}
 		poseStack.scale(xz, y, xz);
 	}
 

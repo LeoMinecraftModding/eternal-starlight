@@ -24,6 +24,12 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			ESEntities.FREEZE.get(),
 			ESEntities.STARLIGHT_GOLEM.get()
 		);
+		tag(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS).add(
+			ESEntities.TANGLED.get(),
+			ESEntities.TANGLED_SKULL.get(),
+			ESEntities.TANGLED_HATRED.get(),
+			ESEntities.LUNAR_MONSTROSITY.get()
+		);
 		tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE).add(
 			ESEntities.LUMINOFISH.get(),
 			ESEntities.LUMINARIS.get(),

@@ -24,6 +24,7 @@ public class TangledSkullItem extends StandingAndWallBlockItem {
 		if (!level.isClientSide) {
 			TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level);
 			skull.setPos(player.getEyePosition());
+			skull.setShot(true);
 			skull.setShotMovement(ESMathUtil.rotationToPosition(1, -player.getXRot(), player.getYHeadRot() + 90.0f));
 			level.addFreshEntity(skull);
 		}

@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.Chain;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -125,6 +126,11 @@ public class TangledHatred extends ESBoss {
 			entity.setDeltaMovement(entity.position().subtract(position()).normalize().scale(1.5));
 		}
 		return flag;
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity entity) {
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	public Optional<Vec3> calculateAttackTargetPos() {

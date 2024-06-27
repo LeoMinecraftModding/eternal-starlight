@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class LunarThorn extends AttackEffect {
 	public float oldClientScale = 0f;
@@ -20,6 +21,11 @@ public class LunarThorn extends AttackEffect {
 	@Override
 	public boolean shouldContinueToTick() {
 		return true;
+	}
+
+	@Override
+	public void setDeltaMovement(Vec3 vec3) {
+		super.setDeltaMovement(Vec3.ZERO);
 	}
 
 	@Override

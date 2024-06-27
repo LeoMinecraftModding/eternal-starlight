@@ -1,22 +1,34 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -27,13 +39,17 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.EnumSet;
 
 public class TangledSkull extends Monster {
+	public int skullDeathTime;
+
 	protected static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isCharging() {
@@ -44,18 +60,44 @@ public class TangledSkull extends Monster {
 		entityData.set(CHARGING, charging);
 	}
 
-	public int skullDeathTime;
+	protected static final EntityDataAccessor<Boolean> SHOT = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
-	@Nullable
-	private Vec3 shotMovement;
+	public boolean isShot() {
+		return entityData.get(SHOT);
+	}
 
-	public void setShotMovement(@Nullable Vec3 shotMovement) {
-		this.shotMovement = shotMovement;
+	public void setShot(boolean shot) {
+		entityData.set(SHOT, shot);
+	}
+
+	protected static final EntityDataAccessor<Boolean> SHOT_FROM_MONSTROSITY = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
+
+	public boolean isShotFromMonstrosity() {
+		return entityData.get(SHOT_FROM_MONSTROSITY);
+	}
+
+	public void setShotFromMonstrosity(boolean shotFromMonstrosity) {
+		entityData.set(SHOT_FROM_MONSTROSITY, shotFromMonstrosity);
+	}
+
+	protected static final EntityDataAccessor<Vector3f> SHOT_MOVEMENT = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.VECTOR3);
+
+	public Vec3 getShotMovement() {
+		return new Vec3(entityData.get(SHOT_MOVEMENT));
+	}
+
+	public void setShotMovement(Vec3 shotMovement) {
+		entityData.set(SHOT_MOVEMENT, shotMovement.toVector3f());
 	}
 
 	public TangledSkull(EntityType<? extends Monster> entityType, Level level) {
 		super(entityType, level);
 		this.moveControl = new TangledSkullMoveControl(this);
+	}
+
+	@Override
+	protected BodyRotationControl createBodyControl() {
+		return new TangledSkullRotationControl(this);
 	}
 
 	protected void registerGoals() {
@@ -162,7 +204,10 @@ public class TangledSkull extends Monster {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(CHARGING, false);
+		builder.define(CHARGING, false)
+			.define(SHOT, false)
+			.define(SHOT_FROM_MONSTROSITY, false)
+			.define(SHOT_MOVEMENT, Vec3.ZERO.toVector3f());
 	}
 
 	public void tick() {
@@ -171,11 +216,24 @@ public class TangledSkull extends Monster {
 		this.noPhysics = false;
 		this.setNoGravity(true);
 		if (!level().isClientSide) {
-			if (shotMovement != null) {
-				setDeltaMovement(shotMovement);
+			if (isShotFromMonstrosity() && tickCount == 30) {
+				playSound(ESSoundEvents.TANGLED_SKULL_MOAN.get(), 5, 1);
+			}
+			if (isShot()) {
+				setDeltaMovement(getShotMovement());
 				HitResult result = ProjectileUtil.getHitResultOnMoveVector(this, entity -> true);
-				if (result.getType() != HitResult.Type.MISS) {
+				if (isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity() instanceof LivingEntity living && !living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
+					living.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60));
+					living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60));
+					living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60));
+					living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60));
+				}
+				boolean ally = isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
+				if (result.getType() != HitResult.Type.MISS && !ally) {
 					this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, Level.ExplosionInteraction.NONE);
+					if (isShotFromMonstrosity() && level() instanceof ServerLevel serverLevel) {
+						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.SOUL, getX(), getY(), getZ(), 0, 0.2, 0));
+					}
 					discard();
 				}
 			}
@@ -206,27 +264,52 @@ public class TangledSkull extends Monster {
 	@Nullable
 	@Override
 	public LivingEntity getTarget() {
-		return shotMovement == null ? super.getTarget() : null;
+		return isShot() ? null : super.getTarget();
 	}
 
 	@Override
 	public void setDeltaMovement(Vec3 vec3) {
-		super.setDeltaMovement(shotMovement == null ? vec3 : shotMovement);
+		if (isShot()) {
+			super.setDeltaMovement(isShotFromMonstrosity() && tickCount < 30 ? Vec3.ZERO : getShotMovement());
+		} else {
+			super.setDeltaMovement(vec3);
+		}
+	}
+
+	@Override
+	public boolean hurt(DamageSource source, float amount) {
+		if (isShotFromMonstrosity() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return false;
+		}
+		return super.hurt(source, amount);
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity entity) {
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		if (shotMovement != null) {
-			compoundTag.putDouble("ShotMovementX", shotMovement.x);
-			compoundTag.putDouble("ShotMovementY", shotMovement.y);
-			compoundTag.putDouble("ShotMovementZ", shotMovement.z);
+		compoundTag.putBoolean("Shot", isShot());
+		compoundTag.putBoolean("ShotFromMonstrosity", isShotFromMonstrosity());
+		if (isShot()) {
+			compoundTag.putDouble("ShotMovementX", getShotMovement().x);
+			compoundTag.putDouble("ShotMovementY", getShotMovement().y);
+			compoundTag.putDouble("ShotMovementZ", getShotMovement().z);
 		}
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains("Shot", CompoundTag.TAG_BYTE)) {
+			setShot(compoundTag.getBoolean("Shot"));
+		}
+		if (compoundTag.contains("ShotFromMonstrosity", CompoundTag.TAG_BYTE)) {
+			setShotFromMonstrosity(compoundTag.getBoolean("ShotFromMonstrosity"));
+		}
 		if (compoundTag.contains("ShotMovementX", CompoundTag.TAG_DOUBLE) && compoundTag.contains("ShotMovementY", CompoundTag.TAG_DOUBLE) && compoundTag.contains("ShotMovementZ", CompoundTag.TAG_DOUBLE)) {
 			setShotMovement(new Vec3(compoundTag.getDouble("ShotMovementX"), compoundTag.getDouble("ShotMovementY"), compoundTag.getDouble("ShotMovementZ")));
 		}
@@ -265,15 +348,34 @@ public class TangledSkull extends Monster {
 					if (TangledSkull.this.getTarget() == null) {
 						Vec3 vec32 = TangledSkull.this.getDeltaMovement();
 						TangledSkull.this.setYRot(-((float) Mth.atan2(vec32.x, vec32.z)) * 57.295776F);
-						TangledSkull.this.yBodyRot = TangledSkull.this.getYRot();
 					} else {
 						double e = TangledSkull.this.getTarget().getX() - TangledSkull.this.getX();
 						double f = TangledSkull.this.getTarget().getZ() - TangledSkull.this.getZ();
 						TangledSkull.this.setYRot(-((float) Mth.atan2(e, f)) * 57.295776F);
-						TangledSkull.this.yBodyRot = TangledSkull.this.getYRot();
 					}
+					TangledSkull.this.yBodyRot = TangledSkull.this.getYRot();
 				}
+			}
+		}
+	}
 
+	private class TangledSkullRotationControl extends BodyRotationControl {
+		public TangledSkullRotationControl(final TangledSkull skull) {
+			super(skull);
+		}
+
+		@Override
+		public void clientTick() {
+			if (TangledSkull.this.isShot()) {
+				Vec3 movement = TangledSkull.this.getShotMovement();
+				float pitch = ESMathUtil.positionToPitch(movement);
+				float yaw = ESMathUtil.positionToYaw(movement);
+				TangledSkull.this.setYRot(yaw - 90);
+				TangledSkull.this.yHeadRot = yaw - 90;
+				TangledSkull.this.yBodyRot = yaw - 90;
+				TangledSkull.this.setXRot(-pitch);
+			} else {
+				super.clientTick();
 			}
 		}
 	}

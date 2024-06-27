@@ -44,6 +44,7 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -243,7 +244,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return super.hurt(damageSource, amount);
 		}
-		if (getBehaviourState() == LunarMonstrositySneakPhase.ID) {
+		if (getBehaviourState() == LunarMonstrositySneakPhase.ID || (damageSource.getEntity() != null && damageSource.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS))) {
 			return false;
 		}
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
@@ -263,6 +264,11 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		} else {
 			return super.hurt(damageSource, Math.min(1, amount));
 		}
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity entity) {
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	protected InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -324,16 +330,24 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	public void knockbackNearbyEntities(float strength, boolean damage) {
 		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(8))) {
-			Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
-			living.hurtMarked = true;
-			living.setDeltaMovement(living.getDeltaMovement().add(motion));
-			if (damage) {
-				living.hurt(damageSources().mobAttack(this), strength * 3);
+			if (!living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
+				Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
+				living.hurtMarked = true;
+				living.setDeltaMovement(living.getDeltaMovement().add(motion));
+				if (damage) {
+					living.hurt(damageSources().mobAttack(this), strength * 3);
+				}
 			}
 		}
 		if (level() instanceof ServerLevel serverLevel) {
 			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.LUNAR, getX(), getY(), getZ(), 0, 0.2, 0));
 		}
+	}
+
+	@Override
+	public boolean ignoreExplosion(Explosion explosion) {
+		LivingEntity cause = explosion.getIndirectSourceEntity();
+		return cause != null && cause.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	@Override

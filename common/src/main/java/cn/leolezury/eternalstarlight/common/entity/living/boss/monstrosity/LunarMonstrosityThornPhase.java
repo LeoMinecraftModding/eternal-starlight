@@ -1,10 +1,13 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,6 +42,19 @@ public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity>
 				this.createThorn(entity, entity.getX() + (double) Mth.cos(f) * d2, entity.getZ() + (double) Mth.sin(f) * d2, d0, d1, i);
 			}
 			entity.knockbackNearbyEntities(1.5f, true);
+			if (entity.getPhase() == 1) {
+				TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), entity.level());
+				skull.setPos(entity.position().add((entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8, entity.getBbHeight() * entity.getRandom().nextFloat() + 1.5, (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8));
+				skull.setShot(true);
+				skull.setShotFromMonstrosity(true);
+				skull.setShotMovement(entity.getRayRotationTarget().subtract(skull.position()).normalize().scale(1.5));
+				entity.level().addFreshEntity(skull);
+				if (entity.level() instanceof ServerLevel serverLevel) {
+					for (int i = 0; i < 7; i++) {
+						serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, skull.getRandomX(1), skull.getRandomY(), skull.getRandomZ(1), 5, 0, 0, 0, 0);
+					}
+				}
+			}
 		}
 	}
 

@@ -84,5 +84,6 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.LUNAR_MONSTROSITY_DEATH.get(), definition().with(sound(mcLoc("mob/blaze/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.death"));
 		add(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), definition().with(sound(mcLoc("mob/evocation_illager/fangs"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.bite"));
 		add(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), definition().with(sound(loc("mob/lunar_monstrosity/roar"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.roar"));
+		add(ESSoundEvents.TANGLED_SKULL_MOAN.get(), definition().with(sound(loc("mob/tangled_skull/moan"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_skull.moan"));
 	}
 }

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -163,6 +164,11 @@ public class Tangled extends Monster implements MultiBehaviourUser {
 				this.spawnAtLocation(itemStack);
 			}
 		}
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity entity) {
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	@Nullable
