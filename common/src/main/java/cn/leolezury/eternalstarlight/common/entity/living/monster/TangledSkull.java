@@ -318,17 +318,12 @@ public class TangledSkull extends Monster {
 	@Nullable
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.SKELETON_AMBIENT;
+		return ESSoundEvents.TANGLED_SKULL_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.SKELETON_HURT;
-	}
-
-	@Override
-	protected SoundEvent getDeathSound() {
-		return SoundEvents.SKELETON_DEATH;
 	}
 
 	private class TangledSkullMoveControl extends MoveControl {

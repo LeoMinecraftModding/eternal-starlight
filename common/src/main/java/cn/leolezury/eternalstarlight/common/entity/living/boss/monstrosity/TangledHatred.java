@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.Chain;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -15,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -29,6 +31,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +71,7 @@ public class TangledHatred extends ESBoss {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 100.0)
+			.add(Attributes.MAX_HEALTH, 90.0)
 			.add(Attributes.MOVEMENT_SPEED, 0)
 			.add(Attributes.ATTACK_DAMAGE, 5.0)
 			.add(Attributes.FOLLOW_RANGE, 100);
@@ -120,7 +123,7 @@ public class TangledHatred extends ESBoss {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		boolean flag = super.hurt(source, amount);
+		boolean flag = super.hurt(source, amount * (isOnFire() ? 1.5f : 1f));
 		if (flag && getBehaviourState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
 			entity.hurtMarked = true;
 			entity.setDeltaMovement(entity.position().subtract(position()).normalize().scale(1.5));
@@ -180,7 +183,7 @@ public class TangledHatred extends ESBoss {
 			}
 			if (level() instanceof ServerLevel serverLevel) {
 				for (Chain.Segment segment : chain.segments()) {
-					if (!level().getBlockState(BlockPos.containing(segment.getLowerPosition())).isAir() || !level().getBlockState(BlockPos.containing(segment.getMiddlePosition())).isAir() || !level().getBlockState(BlockPos.containing(segment.getUpperPosition())).isAir()) {
+					if (isDeadOrDying() || !level().getBlockState(BlockPos.containing(segment.getLowerPosition())).isAir() || !level().getBlockState(BlockPos.containing(segment.getMiddlePosition())).isAir() || !level().getBlockState(BlockPos.containing(segment.getUpperPosition())).isAir()) {
 						Vec3 base = segment.getMiddlePosition();
 						for (int j = 0; j < 2; j++) {
 							Vec3 vec3 = base.offsetRandom(getRandom(), 2);
@@ -233,6 +236,11 @@ public class TangledHatred extends ESBoss {
 	}
 
 	@Override
+	public boolean shouldPlayBossMusic() {
+		return false;
+	}
+
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		if (compoundTag.contains("Chain", CompoundTag.TAG_COMPOUND)) {
@@ -246,5 +254,21 @@ public class TangledHatred extends ESBoss {
 		CompoundTag chainTag = new CompoundTag();
 		this.chain.save(chainTag);
 		compoundTag.put("Chain", chainTag);
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return ESSoundEvents.TANGLED_HATRED_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return ESSoundEvents.TANGLED_HATRED_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.TANGLED_HATRED_HURT.get();
 	}
 }

@@ -244,7 +244,7 @@
   },
   "entity.lunar_monstrosity.death": {
     "sounds": [
-      "mob/blaze/death"
+      "eternal_starlight:mob/lunar_monstrosity/death"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.death"
   },
@@ -345,6 +345,24 @@
       "mob/irongolem/repair"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.prepare_charge"
+  },
+  "entity.tangled_hatred.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/tangled_hatred/idle"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.tangled_hatred.ambient"
+  },
+  "entity.tangled_hatred.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/tangled_hatred/hurt"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.tangled_hatred.hurt"
+  },
+  "entity.tangled_skull.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/tangled_skull/idle"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.tangled_skull.ambient"
   },
   "entity.tangled_skull.moan": {
     "sounds": [

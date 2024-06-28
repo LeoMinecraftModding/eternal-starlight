@@ -81,9 +81,14 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_BEAM.get(), definition().with(sound(mcLoc("block/beacon/activate"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.prepare_beam"));
 
 		add(ESSoundEvents.LUNAR_MONSTROSITY_HURT.get(), definition().with(sound(mcLoc("mob/irongolem/damage1")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage1")).pitch(1.2).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.2).volume(0.8)).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.hurt"));
-		add(ESSoundEvents.LUNAR_MONSTROSITY_DEATH.get(), definition().with(sound(mcLoc("mob/blaze/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.death"));
+		add(ESSoundEvents.LUNAR_MONSTROSITY_DEATH.get(), definition().with(sound(loc("mob/lunar_monstrosity/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.death"));
 		add(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get(), definition().with(sound(mcLoc("mob/evocation_illager/fangs"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.bite"));
 		add(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), definition().with(sound(loc("mob/lunar_monstrosity/roar"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.roar"));
+
+		add(ESSoundEvents.TANGLED_HATRED_AMBIENT.get(), definition().with(sound(loc("mob/tangled_hatred/idle"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_hatred.ambient"));
+		add(ESSoundEvents.TANGLED_HATRED_HURT.get(), definition().with(sound(loc("mob/tangled_hatred/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_hatred.hurt"));
+
+		add(ESSoundEvents.TANGLED_SKULL_AMBIENT.get(), definition().with(sound(loc("mob/tangled_skull/idle"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_skull.ambient"));
 		add(ESSoundEvents.TANGLED_SKULL_MOAN.get(), definition().with(sound(loc("mob/tangled_skull/moan"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_skull.moan"));
 	}
 }

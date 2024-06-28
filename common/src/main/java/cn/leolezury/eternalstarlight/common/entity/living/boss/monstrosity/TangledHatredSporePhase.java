@@ -12,7 +12,7 @@ public class TangledHatredSporePhase extends BehaviourPhase<TangledHatred> {
 	public static final int ID = 2;
 
 	public TangledHatredSporePhase() {
-		super(ID, 1, 100, 400);
+		super(ID, 1, 100, 450);
 	}
 
 	@Override

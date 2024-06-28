@@ -181,4 +181,9 @@ public class Tangled extends Monster implements MultiBehaviourUser {
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.SKELETON_HURT;
 	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.SKELETON_DEATH;
+	}
 }

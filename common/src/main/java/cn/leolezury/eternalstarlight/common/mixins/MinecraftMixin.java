@@ -50,7 +50,7 @@ public abstract class MinecraftMixin {
 				cir.setReturnValue(biomeHolder.value().getBackgroundMusic().orElse(Musics.GAME));
 			}
 		}
-		if (level != null) {
+		if (player != null && level != null) {
 			List<ESBoss> bosses = level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
 			bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
 			for (ESBoss boss : bosses) {
