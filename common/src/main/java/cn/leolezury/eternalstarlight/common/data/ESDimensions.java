@@ -141,8 +141,7 @@ public class ESDimensions {
 		for (int i = 0; i < 5; i++) {
 			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_BEACHES), 0));
 		}
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_RIVERS), 0));
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_THE_ABYSS), 0));
+		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_RIVERS_AND_ABYSS), 0));
 		for (int i = 0; i < 3; i++) {
 			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_TRANSITIONS), 0));
 		}

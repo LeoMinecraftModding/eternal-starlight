@@ -53,10 +53,10 @@ public class WorldArea {
 
 	public void finalizeAll(Registry<DataTransformer> registry) {
 		int tempSize = this.size; // 2048
-		transformBiomes(registry.get(ESDataTransformers.FINALIZE_BIOMES), 0);
+		transformBiomes(registry.getOrThrow(ESDataTransformers.FINALIZE_BIOMES), 0);
 		int finalSize = this.size; // 1024
 		this.size = tempSize; // 2048
-		transformHeights(registry.get(ESDataTransformers.FINALIZE_HEIGHTS), 0);
+		transformHeights(registry.getOrThrow(ESDataTransformers.FINALIZE_HEIGHTS), 0);
 		this.size = finalSize; // 1024
 		this.finalBiomes = new int[this.size * this.size];
 		for (int i = 0; i < this.size; i++) {

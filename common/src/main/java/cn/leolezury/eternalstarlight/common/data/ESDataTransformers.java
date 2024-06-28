@@ -3,11 +3,14 @@ package cn.leolezury.eternalstarlight.common.data;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
+import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.MergedIterationTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.biome.*;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.FinalizeHeightsTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.NoiseHeightTransformer;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.height.SmoothHeightsTransformer;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 
@@ -19,9 +22,8 @@ public class ESDataTransformers {
 	public static final ResourceKey<DataTransformer> APPLY_BIOMES = create("apply_biomes");
 	public static final ResourceKey<DataTransformer> ADD_OCEAN = create("add_ocean");
 	public static final ResourceKey<DataTransformer> ADD_BEACHES = create("add_beaches");
-	public static final ResourceKey<DataTransformer> ADD_RIVERS = create("add_rivers");
+	public static final ResourceKey<DataTransformer> ADD_RIVERS_AND_ABYSS = create("add_rivers_and_abyss");
 	public static final ResourceKey<DataTransformer> ADD_TRANSITIONS = create("add_transitions");
-	public static final ResourceKey<DataTransformer> ADD_THE_ABYSS = create("add_the_abyss");
 	public static final ResourceKey<DataTransformer> RANDOMIZE_BIOMES = create("randomize_biomes");
 	public static final ResourceKey<DataTransformer> ASSIMILATE_BIOMES = create("assimilate_biomes");
 	public static final ResourceKey<DataTransformer> ASSIMILATE_LONELY_BIOMES = create("assimilate_lonely_biomes");
@@ -47,11 +49,13 @@ public class ESDataTransformers {
 		)));
 		context.register(ADD_OCEAN, new AddOceanTransformer(data.getOrThrow(ESBiomeData.STARLIT_SEA)));
 		context.register(ADD_BEACHES, new AddBeachesTransformer(data.getOrThrow(ESBiomeData.WARM_SHORE)));
-		context.register(ADD_RIVERS, new AddRiversTransformer(List.of(
-			new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.03f, 0),
-			new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f, 4096)
+		context.register(ADD_RIVERS_AND_ABYSS, new MergedIterationTransformer(HolderSet.direct(
+			Holder.direct(new AddRiversTransformer(List.of(
+				new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.03f, 0),
+				new AddRiversTransformer.RiverWithOffset(data.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f, 4096)
+			))),
+			Holder.direct(new AddTheAbyssTransformer(data.getOrThrow(ESBiomeData.THE_ABYSS)))
 		)));
-		context.register(ADD_THE_ABYSS, new AddTheAbyssTransformer(data.getOrThrow(ESBiomeData.THE_ABYSS)));
 		context.register(ADD_TRANSITIONS, new AddTransitionBiomesTransformer(List.of(
 			new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeData.SHIMMER_RIVER), data.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)),
 			new AddTransitionBiomesTransformer.BiomeWithTransition(data.getOrThrow(ESBiomeData.THE_ABYSS), data.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)),

@@ -1,0 +1,24 @@
+{
+  "transformer_type": "eternal_starlight:merged_iteration",
+  "transformers": [
+    {
+      "rivers": [
+        {
+          "offset": 0,
+          "river": "eternal_starlight:shimmer_river",
+          "size": 0.03
+        },
+        {
+          "offset": 4096,
+          "river": "eternal_starlight:ether_river",
+          "size": 0.05
+        }
+      ],
+      "transformer_type": "eternal_starlight:add_rivers"
+    },
+    {
+      "the_abyss": "eternal_starlight:the_abyss",
+      "transformer_type": "eternal_starlight:add_the_abyss"
+    }
+  ]
+}

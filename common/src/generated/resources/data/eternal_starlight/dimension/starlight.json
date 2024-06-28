@@ -154,11 +154,7 @@
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_rivers"
-          },
-          {
-            "seed_addition": 0,
-            "transformer": "eternal_starlight:add_the_abyss"
+            "transformer": "eternal_starlight:add_rivers_and_abyss"
           },
           {
             "seed_addition": 0,
