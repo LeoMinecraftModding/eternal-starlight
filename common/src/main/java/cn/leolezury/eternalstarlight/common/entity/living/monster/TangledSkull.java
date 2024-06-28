@@ -278,7 +278,7 @@ public class TangledSkull extends Monster {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (isShotFromMonstrosity() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+		if (isShot() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return false;
 		}
 		return super.hurt(source, amount);
