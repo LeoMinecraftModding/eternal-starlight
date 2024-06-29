@@ -509,6 +509,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		largeHandheld(ESItems.PETAL_SCYTHE.get());
 		inventoryModel(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
+		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
 		basicItem(ESItems.SEEKING_EYE.get());
 
 		basicItem(ESItems.LUMINOFISH_BUCKET.get());
@@ -611,6 +612,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 				.texture("layer1", mcLoc("trims/items/" + armor.getType().getName() + "_trim_" + trimModelData.name()));
 			armorBuilder.override().predicate(ResourceLocation.withDefaultNamespace("trim_type"), trimModelData.itemModelIndex()).model(trimModel).end();
 		}
+	}
+
+	private void chainOfSouls(Item item) {
+		ModelFile extendedModel = withExistingParent(name(item) + "_extended", "item/handheld")
+			.texture("layer0", itemTexture(item).withSuffix("_extended"));
+		withExistingParent(name(item), "item/handheld")
+			.texture("layer0", itemTexture(item))
+			.override().predicate(ResourceLocation.withDefaultNamespace("extended"), 1).model(extendedModel).end();
 	}
 
 	private void shatteredSword(Item item) {

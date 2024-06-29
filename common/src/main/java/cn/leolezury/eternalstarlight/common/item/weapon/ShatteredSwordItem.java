@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShatteredBlade;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.component.DataComponentPatch;
@@ -33,7 +33,7 @@ public class ShatteredSwordItem extends SwordItem {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (hasBlade(itemStack)) {
-			ThrownShatteredBlade blade = new ThrownShatteredBlade(level, player, itemStack);
+			ShatteredBlade blade = new ShatteredBlade(level, player, itemStack);
 			blade.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F, 1.0F);
 			if (player.getAbilities().instabuild) {
 				blade.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;

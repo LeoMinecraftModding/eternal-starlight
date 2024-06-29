@@ -20,15 +20,15 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ThrownShatteredBlade extends AbstractArrow {
+public class ShatteredBlade extends AbstractArrow {
 	private boolean dealtDamage;
 	public int clientSideReturnTickCount;
 
-	public ThrownShatteredBlade(EntityType<? extends AbstractArrow> entityType, Level level) {
+	public ShatteredBlade(EntityType<? extends AbstractArrow> entityType, Level level) {
 		super(entityType, level);
 	}
 
-	public ThrownShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
+	public ShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
 		super(ESEntities.SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
 	}
 

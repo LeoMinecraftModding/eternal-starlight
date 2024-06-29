@@ -11,12 +11,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -49,8 +49,8 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onLivingHurt(LivingHurtEvent event) {
-		event.setAmount(CommonHandlers.onLivingHurt(event.getEntity(), event.getSource(), event.getAmount()));
+	public static void onLivingHurt(LivingDamageEvent.Pre event) {
+		event.getContainer().setNewDamage(CommonHandlers.onLivingHurt(event.getEntity(), event.getContainer().getSource(), event.getContainer().getOriginalDamage()));
 	}
 
 	@SubscribeEvent
@@ -66,7 +66,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onShieldBlock(ShieldBlockEvent event) {
+	public static void onShieldBlock(LivingShieldBlockEvent event) {
 		CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
 	}
 
@@ -111,13 +111,13 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
-		if (event.getToolAction() == ToolActions.AXE_STRIP) {
+		if (event.getItemAbility() == ItemAbilities.AXE_STRIP) {
 			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}
 			}
-		} else if (event.getToolAction() == ToolActions.HOE_TILL) {
+		} else if (event.getItemAbility() == ItemAbilities.HOE_TILL) {
 			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));

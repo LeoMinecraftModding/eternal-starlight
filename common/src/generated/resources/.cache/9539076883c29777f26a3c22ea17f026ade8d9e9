@@ -1,4 +1,4 @@
-// 1.21	2024-06-23T21:36:55.4047557	Item Models: eternal_starlight
+// 1.21	2024-06-29T15:21:21.9178243	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -79,6 +79,8 @@ eeb338cf5acefe3f9b255b7a676d21c3aed8fa82 assets/eternal_starlight/models/item/br
 6b85c3c62d67e2fc8d4f2900194e71ebf94df0e7 assets/eternal_starlight/models/item/brown_yeti_fur_carpet.json
 0cfe0363e4876ab11258ff8dc7b12d150b6475e4 assets/eternal_starlight/models/item/budding_thioquartz.json
 70c04adea827512e258f5af8d41726010b2db688 assets/eternal_starlight/models/item/cave_moss.json
+ff2090930762d2289025ada46eda8f9598272315 assets/eternal_starlight/models/item/chain_of_souls.json
+01e634d18fe72c7013db921b417dd811202a5129 assets/eternal_starlight/models/item/chain_of_souls_extended.json
 91e3a6a4a2275f2113b92b3ed550145ca0907ab6 assets/eternal_starlight/models/item/charged_chiseled_polished_doomeden_bricks.json
 f4d995966d695cc91771620ceb6e9d1dfe2b0f03 assets/eternal_starlight/models/item/chiseled_golem_steel_block.json
 287712cc9d5aaa53e25281a897cf0f0064154bfc assets/eternal_starlight/models/item/chiseled_grimstone.json

@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.MultiBufferSource;
 @Environment(EnvType.CLIENT)
 public interface WorldVisualEffect {
 	void worldTick();
+
 	void render(MultiBufferSource source, PoseStack stack, float partialTicks);
+
 	boolean shouldRemove();
 }

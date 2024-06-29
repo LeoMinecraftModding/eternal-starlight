@@ -9,7 +9,6 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.forge.block.ForgeWaterlilyBlock;
 import cn.leolezury.eternalstarlight.forge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeAlchemistArmorItem;
@@ -42,7 +41,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -53,8 +51,8 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.ToolActions;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -194,11 +192,6 @@ public class ForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public BushBlock createWaterlily(BlockBehaviour.Properties properties) {
-		return new ForgeWaterlilyBlock(properties);
-	}
-
-	@Override
 	public EtherFluid.Still createEtherFluid() {
 		return new ForgeEtherFluid.Still();
 	}
@@ -220,17 +213,17 @@ public class ForgePlatform implements ESPlatform {
 
 	@Override
 	public boolean isShears(ItemStack stack) {
-		return stack.is(Tags.Items.TOOLS_SHEARS);
+		return stack.is(Tags.Items.TOOLS_SHEAR);
 	}
 
 	@Override
 	public boolean isShield(ItemStack stack) {
-		return stack.canPerformAction(ToolActions.SHIELD_BLOCK);
+		return stack.canPerformAction(ItemAbilities.SHIELD_BLOCK);
 	}
 
 	@Override
 	public boolean canStrip(ItemStack stack) {
-		return stack.canPerformAction(ToolActions.AXE_STRIP);
+		return stack.canPerformAction(ItemAbilities.AXE_STRIP);
 	}
 
 	@Override
@@ -249,7 +242,7 @@ public class ForgePlatform implements ESPlatform {
 	public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
 		Level level = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
-		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ToolActions.HOE_TILL, false);
+		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ItemAbilities.HOE_TILL, false);
 		return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
 	}
 

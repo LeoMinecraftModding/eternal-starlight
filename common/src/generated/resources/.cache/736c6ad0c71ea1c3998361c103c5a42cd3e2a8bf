@@ -1,6 +1,6 @@
-// 1.21	2024-06-15T23:17:26.1346817	Tags for minecraft:damage_type mod id eternal_starlight
-f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_armor.json
-f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_enchantments.json
-f87bf3436a1e389110066355412b5879f95338a1 data/minecraft/tags/damage_type/bypasses_shield.json
+// 1.21	2024-06-29T20:07:31.9656503	Tags for minecraft:damage_type mod id eternal_starlight
+3c68e811d000bba158f439e0bbed2a0af269a7b4 data/minecraft/tags/damage_type/bypasses_armor.json
+3c68e811d000bba158f439e0bbed2a0af269a7b4 data/minecraft/tags/damage_type/bypasses_enchantments.json
+3c68e811d000bba158f439e0bbed2a0af269a7b4 data/minecraft/tags/damage_type/bypasses_shield.json
 17bd394576f6b8f9963f854cc3c25f19698741e9 data/minecraft/tags/damage_type/is_projectile.json
-e258378537c499a9cd5890ae4958a484b71a0b66 data/minecraft/tags/damage_type/no_impact.json
+55072dca66fe461e759ffcd3f3564104a51902eb data/minecraft/tags/damage_type/no_impact.json

@@ -6,6 +6,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ESBlockUtil {
 	public static boolean isEntityInBlock(Entity entity, Block block) {
 		AABB box = entity.getBoundingBox();
@@ -24,5 +27,21 @@ public class ESBlockUtil {
 			}
 		}
 		return false;
+	}
+
+	public static List<BlockPos> getBlocksInBoundingBox(AABB box) {
+		List<BlockPos> posList = new ArrayList<>();
+		BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
+		BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+		for (int i = fromPos.getX(); i <= toPos.getX(); ++i) {
+			for (int j = fromPos.getY(); j <= toPos.getY(); ++j) {
+				for (int k = fromPos.getZ(); k <= toPos.getZ(); ++k) {
+					mutableBlockPos.set(i, j, k);
+					posList.add(mutableBlockPos.immutable());
+				}
+			}
+		}
+		return posList;
 	}
 }

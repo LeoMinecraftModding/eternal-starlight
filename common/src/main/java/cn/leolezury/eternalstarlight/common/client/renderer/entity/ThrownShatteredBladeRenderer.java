@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShatteredBlade;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
-public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShatteredBlade> {
+public class ThrownShatteredBladeRenderer extends EntityRenderer<ShatteredBlade> {
 	private final ItemRenderer itemRenderer;
 
 	public ThrownShatteredBladeRenderer(EntityRendererProvider.Context context) {
@@ -27,7 +27,7 @@ public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShattered
 	}
 
 	@Override
-	public void render(ThrownShatteredBlade entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+	public void render(ShatteredBlade entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
 		poseStack.pushPose();
 		ItemStack itemStack = new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get());
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, entity.getId());
@@ -39,7 +39,7 @@ public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShattered
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(ThrownShatteredBlade entity) {
+	public ResourceLocation getTextureLocation(ShatteredBlade entity) {
 		return null;
 	}
 }

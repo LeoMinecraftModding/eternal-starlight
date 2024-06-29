@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.goal;
 
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
-import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBlade;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShatteredBlade;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.sounds.SoundEvents;
@@ -132,7 +132,7 @@ public class LonestarSkeletonShootBladeGoal extends Goal {
 						this.usingSword = false;
 						this.usingSwordTicks = 0;
 						this.mob.swing(InteractionHand.MAIN_HAND);
-						ThrownShatteredBlade blade = new ThrownShatteredBlade(mob.level(), mob, null);
+						ShatteredBlade blade = new ShatteredBlade(mob.level(), mob, null);
 						blade.shootFromRotation(mob, mob.getXRot(), mob.getYRot(), 0.0F, 2.5F, 1.0F);
 						this.mob.level().addFreshEntity(blade);
 						this.mob.level().playSound(null, blade.blockPosition(), SoundEvents.TRIDENT_THROW.value(), SoundSource.HOSTILE);

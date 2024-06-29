@@ -37,9 +37,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -104,10 +102,6 @@ public interface ESPlatform {
 	// blocks
 	default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
 		return new FlowerPotBlock(flower.get(), properties);
-	}
-
-	default BushBlock createWaterlily(BlockBehaviour.Properties properties) {
-		return new WaterlilyBlock(properties);
 	}
 
 	default EtherFluid.Still createEtherFluid() {

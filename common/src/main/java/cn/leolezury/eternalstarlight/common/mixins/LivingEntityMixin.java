@@ -61,7 +61,7 @@ public abstract class LivingEntityMixin {
 		cir.setReturnValue(cir.getReturnValue().add(ESAttributes.THROWN_POTION_DISTANCE.asHolder()).add(ESAttributes.ETHER_RESISTANCE.asHolder()));
 	}
 
-	@Inject(method = "eat", at = @At("HEAD"))
+	@Inject(method = "eat*", at = @At("HEAD"))
 	private void eat(Level level, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
 		if (itemStack.is(ESItems.LUNARIS_CACTUS_GEL.get())) {
 			List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();

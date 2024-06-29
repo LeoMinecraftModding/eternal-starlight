@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.forge.item.weapon;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 public class ForgeHammerItem extends HammerItem {
 	public ForgeHammerItem(Tier tier, Properties properties) {
@@ -12,7 +12,7 @@ public class ForgeHammerItem extends HammerItem {
 	}
 
 	@Override
-	public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-		return super.canPerformAction(stack, toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction);
+	public boolean canPerformAction(ItemStack stack, ItemAbility ability) {
+		return super.canPerformAction(stack, ability) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability) || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(ability);
 	}
 }

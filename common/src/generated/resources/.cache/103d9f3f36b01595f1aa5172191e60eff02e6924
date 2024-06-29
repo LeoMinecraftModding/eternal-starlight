@@ -1,4 +1,4 @@
-// 1.21	2024-06-28T23:05:04.5521347	Registries
+// 1.21	2024-06-29T20:07:31.9517359	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -9,6 +9,7 @@ af027df926bdfe93086193e8e0b2f60ea47d72ed data/eternal_starlight/damage_type/lase
 3e1bcb4dc51ef7cccc14651c06e0fb636719bbe5 data/eternal_starlight/damage_type/meteor.json
 c9fe1d7617f62f165b0f23d77f83b908fc282569 data/eternal_starlight/damage_type/poison.json
 946d23be6e8f30d7e96bb08c68bf031cc7566792 data/eternal_starlight/damage_type/shattered_blade.json
+64036c89113dcd4eee30c5feccbc9f54202da1b8 data/eternal_starlight/damage_type/soul_absorb.json
 c5e6376381e2cb9c166b44875d45baf640da42f0 data/eternal_starlight/dimension/starlight.json
 d4ee800c71ffcc0c4eb50edd0aa164b7acc1762c data/eternal_starlight/dimension_type/starlight.json
 2ffb286ce2fb13dc8c924e54655133bff384c40c data/eternal_starlight/enchantment/fearless.json

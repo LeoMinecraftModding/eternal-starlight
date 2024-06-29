@@ -227,6 +227,15 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 				float b = 0.73f + random.nextFloat() * 0.1f;
 				level().addParticle(new LightningParticleOptions(new Vector3f(r, g, b)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
 			}
+		} else {
+			if (target == null && targetId != null) {
+				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+					target = livingEntity;
+				}
+				if (target == null) {
+					targetId = null;
+				}
+			}
 		}
 	}
 

@@ -20,8 +20,10 @@ import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
+import cn.leolezury.eternalstarlight.common.item.weapon.ChainOfSoulsItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -308,6 +310,20 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), ResourceLocation.withDefaultNamespace("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
+		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), ResourceLocation.withDefaultNamespace("extended"), (stack, level, entity, i) -> {
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				boolean bl = entity.getMainHandItem() == stack;
+				boolean bl2 = entity.getOffhandItem() == stack;
+				if (entity.getMainHandItem().getItem() instanceof ChainOfSoulsItem) {
+					bl2 = false;
+				}
+
+				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getGrappling() != null ? 1.0F : 0.0F;
+			}
+		});
+
 		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
 				return 0.0F;
@@ -550,6 +566,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}
 
 	public static void registerSkullModels(SkullRendererRegisterStrategy strategy, EntityModelSet modelSet) {

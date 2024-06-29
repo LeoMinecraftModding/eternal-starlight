@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(MultiPlayerGameMode.class)
 public abstract class MultiPlayerGameModeMixin {
-	@Inject(at = @At(value = "HEAD"), method = "performUseItemOn", cancellable = true)
+	@Inject(method = "performUseItemOn", at = @At(value = "HEAD"), cancellable = true)
 	private void performUseItemOn(LocalPlayer localPlayer, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(InteractionResult.SUCCESS);
@@ -30,7 +30,7 @@ public abstract class MultiPlayerGameModeMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "useItem", cancellable = true)
+	@Inject(method = "useItem", at = @At(value = "HEAD"), cancellable = true)
 	private void useItem(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(InteractionResult.PASS);
@@ -38,14 +38,14 @@ public abstract class MultiPlayerGameModeMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "attack", cancellable = true)
+	@Inject(method = "attack", at = @At(value = "HEAD"), cancellable = true)
 	private void attack(Player player, Entity entity, CallbackInfo ci) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			ci.cancel();
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "interact", cancellable = true)
+	@Inject(method = "interact", at = @At(value = "HEAD"), cancellable = true)
 	private void interact(Player player, Entity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(InteractionResult.PASS);
@@ -53,7 +53,7 @@ public abstract class MultiPlayerGameModeMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "startDestroyBlock", cancellable = true)
+	@Inject(method = "startDestroyBlock", at = @At(value = "HEAD"), cancellable = true)
 	private void startDestroyBlock(BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(false);
@@ -61,7 +61,7 @@ public abstract class MultiPlayerGameModeMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "continueDestroyBlock", cancellable = true)
+	@Inject(method = "continueDestroyBlock", at = @At(value = "HEAD"), cancellable = true)
 	private void continueDestroyBlock(BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(false);
@@ -69,7 +69,7 @@ public abstract class MultiPlayerGameModeMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "destroyBlock", cancellable = true)
+	@Inject(method = "destroyBlock", at = @At(value = "HEAD"), cancellable = true)
 	private void destroyBlock(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
 		if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 			cir.setReturnValue(false);

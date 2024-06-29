@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
-	@Inject(at = @At(value = "HEAD"), method = "hurtCurrentlyUsedShield")
+	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))
 	private void damageShield(float amount, CallbackInfo callBackInfo) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
@@ -21,7 +21,7 @@ public abstract class PlayerMixin {
 		}
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "disableShield")
+	@Inject(method = "disableShield", at = @At(value = "HEAD"))
 	private void disableShield(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();

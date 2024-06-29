@@ -42,7 +42,7 @@ public abstract class MinecraftMixin {
 	@Unique
 	private final List<Music> possibleBossMusics = new ArrayList<>();
 
-	@Inject(at = @At(value = "RETURN"), method = "getSituationalMusic", cancellable = true)
+	@Inject(method = "getSituationalMusic", at = @At(value = "RETURN"), cancellable = true)
 	private void getSituationalMusic(CallbackInfoReturnable<Music> cir) {
 		if (player != null && player.level().dimension() == ESDimensions.STARLIGHT_KEY && (cir.getReturnValue() == Musics.GAME || cir.getReturnValue() == Musics.CREATIVE || cir.getReturnValue() == Musics.UNDER_WATER)) {
 			Holder<Biome> biomeHolder = player.level().getBiome(new BlockPos(player.getBlockX(), player.getBlockY(), player.getBlockZ()));

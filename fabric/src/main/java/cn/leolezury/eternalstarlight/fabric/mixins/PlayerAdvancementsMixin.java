@@ -19,7 +19,7 @@ public abstract class PlayerAdvancementsMixin {
 	@Shadow
 	private ServerPlayer player;
 
-	@Inject(at = @At(value = "TAIL"), method = "award")
+	@Inject(method = "award", at = @At(value = "TAIL"))
 	private void award(AdvancementHolder advancementHolder, String string, CallbackInfoReturnable<Boolean> cir) {
 		if (getOrStartProgress(advancementHolder).isDone()) {
 			CommonHandlers.onCompleteAdvancement(player, advancementHolder);
