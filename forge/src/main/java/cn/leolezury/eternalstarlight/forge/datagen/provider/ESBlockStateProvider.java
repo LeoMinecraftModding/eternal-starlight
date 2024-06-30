@@ -357,6 +357,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 		spawner(ESBlocks.THE_GATEKEEPER_SPAWNER.get());
 		spawner(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get());
+		spawner(ESBlocks.TANGLED_HATRED_SPAWNER.get());
 		spawner(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get());
 		portal(ESBlocks.STARLIGHT_PORTAL.get());
 	}

@@ -71,7 +71,7 @@ public class TangledHatred extends ESBoss {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 90.0)
+			.add(Attributes.MAX_HEALTH, 60.0)
 			.add(Attributes.MOVEMENT_SPEED, 0)
 			.add(Attributes.ATTACK_DAMAGE, 5.0)
 			.add(Attributes.FOLLOW_RANGE, 100);
@@ -123,7 +123,10 @@ public class TangledHatred extends ESBoss {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		boolean flag = super.hurt(source, amount * (isOnFire() ? 1.5f : 1f));
+		if (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
+			return false;
+		}
+		boolean flag = super.hurt(source, amount * (isOnFire() ? 1.6f : 1f));
 		if (flag && getBehaviourState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
 			entity.hurtMarked = true;
 			entity.setDeltaMovement(entity.position().subtract(position()).normalize().scale(1.5));
@@ -162,14 +165,14 @@ public class TangledHatred extends ESBoss {
 				}
 				currentTargetPos = ESMathUtil.approachVec(currentTargetPos, targetPos, speed);
 			} else {
-				targetPos = position().offsetRandom(getRandom(), 60);
+				targetPos = position().offsetRandom(getRandom(), 15);
 				currentTargetPos = ESMathUtil.approachVec(this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)), targetPos, speed);
 			}
 			if (target != null) {
 				calculateAttackTargetPos().ifPresent(vec3 -> targetPos = vec3);
 			}
 			if (target == null && tickCount % 60 == 0) {
-				targetPos = position().offsetRandom(getRandom(), 60);
+				targetPos = position().offsetRandom(getRandom(), 15);
 				if (targetPos.y < position().y) {
 					targetPos = new Vec3(targetPos.x, position().y() + getRandom().nextInt(10, 20), targetPos.z);
 				}

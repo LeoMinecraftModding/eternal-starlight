@@ -22,7 +22,8 @@ public class CursedGardenMazePiece extends StructurePiece {
 	public static final int MAZE_SIZE = 37;
 	public static final int STRUCTURE_SCALE = 3;
 	public static final int STRUCTURE_SIZE = MAZE_SIZE * STRUCTURE_SCALE;
-	public static final int STRUCTURE_HEIGHT = 35;
+	public static final int STRUCTURE_HEIGHT = 30;
+	public static final int CENTER_SIZE = 20;
 
 	public CursedGardenMazePiece(int x, int y, int z) {
 		super(ESStructurePieceTypes.CURSED_GARDEN_MAZE.get(), 0, new BoundingBox(
@@ -51,15 +52,20 @@ public class CursedGardenMazePiece extends StructurePiece {
 		MazeGenerator mazeGenerator = new MazeGenerator(MAZE_SIZE, RandomSource.create(level.getSeed() + blockPos.asLong()));
 		boolean[][] maze = mazeGenerator.generateMaze(1, 1);
 		maze[0][(MAZE_SIZE - 1) / 2] = false;
+		maze[1][(MAZE_SIZE - 1) / 2] = false;
 		maze[(MAZE_SIZE - 1) / 2][0] = false;
+		maze[(MAZE_SIZE - 1) / 2][1] = false;
 		maze[MAZE_SIZE - 1][(MAZE_SIZE - 1) / 2] = false;
+		maze[MAZE_SIZE - 2][(MAZE_SIZE - 1) / 2] = false;
 		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 1] = false;
+		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 2] = false;
 		for (int x = 0; x < MAZE_SIZE; x++) {
 			for (int z = 0; z < MAZE_SIZE; z++) {
 				for (int blockX = x * STRUCTURE_SCALE; blockX < x * STRUCTURE_SCALE + STRUCTURE_SCALE; blockX++) {
 					for (int blockZ = z * STRUCTURE_SCALE; blockZ < z * STRUCTURE_SCALE + STRUCTURE_SCALE; blockZ++) {
 						placeBlock(level, x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1 ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, 0, blockZ, box);
-						if (maze[x][z]) {
+						boolean bossRoom = Math.pow(blockX - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(blockZ - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE;
+						if (maze[x][z] && !bossRoom) {
 							int leavesHeight = STRUCTURE_HEIGHT / 7 + random.nextInt(STRUCTURE_HEIGHT / 7);
 							for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
 								placeBlock(level, (y <= leavesHeight && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? (random.nextInt(3) == 0 ? ESBlocks.BLOOMING_SHADEGRIEVE.get() : ESBlocks.SHADEGRIEVE.get()).defaultBlockState().setValue(ShadegrieveBlock.TOP, y == leavesHeight) : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, y + 1, blockZ, box);
@@ -68,6 +74,12 @@ public class CursedGardenMazePiece extends StructurePiece {
 							for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
 								placeBlock(level, Blocks.AIR.defaultBlockState(), blockX, y + 1, blockZ, box);
 							}
+						}
+						if (blockX == STRUCTURE_SIZE / 2 - CENTER_SIZE / 3 && blockZ == STRUCTURE_SIZE / 2) {
+							placeBlock(level, ESBlocks.TANGLED_HATRED_SPAWNER.get().defaultBlockState(), blockX, 1, blockZ, box);
+						}
+						if (blockX == STRUCTURE_SIZE / 2 + CENTER_SIZE / 3 && blockZ == STRUCTURE_SIZE / 2) {
+							placeBlock(level, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get().defaultBlockState(), blockX, 1, blockZ, box);
 						}
 					}
 				}

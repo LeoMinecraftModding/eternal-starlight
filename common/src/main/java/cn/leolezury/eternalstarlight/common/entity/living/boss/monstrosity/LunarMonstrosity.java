@@ -240,29 +240,29 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
-	public boolean hurt(DamageSource damageSource, float amount) {
-		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			return super.hurt(damageSource, amount);
+	public boolean hurt(DamageSource source, float amount) {
+		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return super.hurt(source, amount);
 		}
-		if (getBehaviourState() == LunarMonstrositySneakPhase.ID || (damageSource.getEntity() != null && damageSource.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS))) {
+		if (getBehaviourState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS))) {
 			return false;
 		}
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
 			setPhase(1);
 			setBehaviourState(LunarMonstrositySoulPhase.ID);
 			setBehaviourTicks(0);
-			return super.hurt(damageSource, amount / 2f);
+			return super.hurt(source, amount / 2f);
 		}
-		if (damageSource.getEntity() != null && getTarget() != null) {
-			if (getBehaviourState() == LunarMonstrosityBitePhase.ID && damageSource.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
+		if (source.getEntity() != null && getTarget() != null) {
+			if (getBehaviourState() == LunarMonstrosityBitePhase.ID && source.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
 				setBehaviourState(LunarMonstrosityStunPhase.ID);
 				setBehaviourTicks(0);
 			}
 		}
 		if (isOnFire() || getBehaviourState() == LunarMonstrosityStunPhase.ID) {
-			return super.hurt(damageSource, amount);
+			return super.hurt(source, amount);
 		} else {
-			return super.hurt(damageSource, Math.min(1, amount));
+			return super.hurt(source, Math.min(1, amount));
 		}
 	}
 
@@ -329,7 +329,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	}
 
 	public void knockbackNearbyEntities(float strength, boolean damage) {
-		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(8))) {
+		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(5, 0, 5))) {
 			if (!living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
 				Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
 				living.hurtMarked = true;

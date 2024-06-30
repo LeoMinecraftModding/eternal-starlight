@@ -1,4 +1,4 @@
-// 1.21	2024-06-30T11:24:48.1666463	Item Models: eternal_starlight
+// 1.21	2024-06-30T14:26:01.6943708	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -523,6 +523,7 @@ c6ecb28ce517bdb360217269712423f11f762856 assets/eternal_starlight/models/item/sw
 ceb783cf78e7b94b1198f5cb13cfde8c9e982514 assets/eternal_starlight/models/item/tall_crescent_grass.json
 eab8d251a64b2c09423adbd06cb397b479e804f1 assets/eternal_starlight/models/item/tall_gladespike.json
 65811665101c2443c7b307bbb686161ee40e5a50 assets/eternal_starlight/models/item/tall_glowing_crescent_grass.json
+3a6c77a9f7a2b3468f6020b777a66f7398df4777 assets/eternal_starlight/models/item/tangled_hatred_spawner.json
 43d32e7d031485f83a1b4eb56ecb3cc40a456163 assets/eternal_starlight/models/item/tangled_skull.json
 312f41f06cdd2afa6667a1196d107643d2c6baf0 assets/eternal_starlight/models/item/tenacious_petal.json
 f8193be01977984cf8e5f49f21a527a9ea720e78 assets/eternal_starlight/models/item/tenacious_vine.json

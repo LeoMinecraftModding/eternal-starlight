@@ -32,9 +32,7 @@ public class CursedGardenStructure extends Structure {
 	@Override
 	protected Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
 		return onTopOfChunkCenter(context, Heightmap.Types.WORLD_SURFACE_WG, builder -> {
-			StructureTemplateManager manager = context.structureTemplateManager();
 			ChunkPos chunkPos = context.chunkPos();
-			WorldgenRandom random = context.random();
 			int x = chunkPos.getMiddleBlockX();
 			int z = chunkPos.getMiddleBlockZ();
 			int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
@@ -53,7 +51,7 @@ public class CursedGardenStructure extends Structure {
 					pos.set(x, y, z);
 					if (piecesBox.isInside(pos) && piecesContainer.isInsidePiece(pos)) {
 						if ((level.isEmptyBlock(pos) || level.getBlockState(pos).is(Blocks.VINE)) && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(Blocks.VINE)) && level.getBlockState(pos.below()).is(ESBlocks.SHADEGRIEVE.get())) {
-							if (random.nextInt(70) == 0) {
+							if (random.nextInt(85) == 0) {
 								Tangled tangled = new Tangled(ESEntities.TANGLED.get(), level.getLevel());
 								tangled.setPos(pos.getBottomCenter());
 								tangled.setPersistenceRequired();

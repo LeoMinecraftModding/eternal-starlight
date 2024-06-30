@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.*;
 import cn.leolezury.eternalstarlight.common.block.spawner.LunarMonstrositySpawnerBlock;
 import cn.leolezury.eternalstarlight.common.block.spawner.StarlightGolemSpawnerBlock;
+import cn.leolezury.eternalstarlight.common.block.spawner.TangledHatredSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.block.spawner.TheGatekeeperSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.data.ESConfiguredFeatures;
 import cn.leolezury.eternalstarlight.common.data.ESPlacedFeatures;
@@ -621,6 +622,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 	public static final RegistryObject<Block, TheGatekeeperSpawnerBlock> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, StarlightGolemSpawnerBlock> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, TangledHatredSpawnerBlock> TANGLED_HATRED_SPAWNER = BLOCKS.register("tangled_hatred_spawner", () -> new TangledHatredSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel((state) -> 10)));
 

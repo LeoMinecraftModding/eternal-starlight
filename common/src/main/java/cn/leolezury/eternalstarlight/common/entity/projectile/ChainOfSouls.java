@@ -96,33 +96,34 @@ public class ChainOfSouls extends Projectile implements Grappling {
 			}
 
 			if (target != null) {
-				this.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
-
-				if (target instanceof LivingEntity && !(target instanceof ArmorStand)) {
-					Player playerOwner = getPlayerOwner();
-					if (playerOwner != null) {
-						if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SOUL_ABSORB, this, playerOwner), 3)) {
-							playerOwner.heal(1.5f);
-							playSound(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get());
-							if (level() instanceof ServerLevel serverLevel) {
-								for (int i = 0; i < 7; i++) {
-									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
-								}
-								for (int i = 0; i < 7; i++) {
-									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
-								}
-							}
-						}
-						absorbSoulTicks++;
-						if (absorbSoulTicks > 50) {
-							discard();
-						}
-					}
-				}
-
-				if (!target.isAlive()) {
+				setDeltaMovement(Vec3.ZERO);
+				if (!target.isAlive() || target.isRemoved() || target.distanceToSqr(this) > MAX_RANGE * MAX_RANGE) {
 					target = null;
 					targetId = null;
+				} else {
+					this.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
+
+					if (target instanceof LivingEntity && !(target instanceof ArmorStand)) {
+						Player playerOwner = getPlayerOwner();
+						if (playerOwner != null) {
+							if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SOUL_ABSORB, this, playerOwner), 3)) {
+								playerOwner.heal(1.5f);
+								playSound(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get());
+								if (level() instanceof ServerLevel serverLevel) {
+									for (int i = 0; i < 7; i++) {
+										serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
+									}
+									for (int i = 0; i < 7; i++) {
+										serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
+									}
+								}
+							}
+							absorbSoulTicks++;
+							if (absorbSoulTicks > 50) {
+								discard();
+							}
+						}
+					}
 				}
 			} else {
 				absorbSoulTicks = 0;
@@ -168,7 +169,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if (target == null) {
+		if (target == null && !level().isClientSide) {
 			this.setTarget(hitResult.getEntity());
 			Player player = this.getPlayerOwner();
 			if (player != null && !reachedTarget()) {
@@ -183,12 +184,14 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	protected void onHitBlock(BlockHitResult hitResult) {
 		super.onHitBlock(hitResult);
 		this.setDeltaMovement(Vec3.ZERO);
-		Player player = this.getPlayerOwner();
-		if (player != null && !reachedTarget()) {
-			double d = player.getEyePosition().subtract(hitResult.getLocation()).length();
-			this.setLength(Math.max((float) d * 0.5F - 3.0F, 1.5F));
+		if (!level().isClientSide) {
+			Player player = this.getPlayerOwner();
+			if (player != null && !reachedTarget()) {
+				double d = player.getEyePosition().subtract(hitResult.getLocation()).length();
+				this.setLength(Math.max((float) d * 0.5F - 3.0F, 1.5F));
+			}
+			this.setReachedTarget(true);
 		}
-		this.setReachedTarget(true);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {

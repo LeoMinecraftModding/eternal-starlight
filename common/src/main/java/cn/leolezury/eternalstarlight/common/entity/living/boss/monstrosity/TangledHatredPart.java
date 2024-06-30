@@ -1,10 +1,12 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -44,10 +46,15 @@ public class TangledHatredPart extends LivingEntity {
 	}
 
 	@Override
-	public boolean hurt(DamageSource damageSource, float f) {
+	public boolean addEffect(MobEffectInstance instance, @Nullable Entity entity) {
+		return false;
+	}
+
+	@Override
+	public boolean hurt(DamageSource source, float amount) {
 		if (parent != null) {
-			if (damageSource.getDirectEntity() != null && (damageSource.getEntity() == null || !damageSource.getEntity().getUUID().equals(parent.getUUID()))) {
-				parent.hurt(damageSource, f);
+			if (source.getDirectEntity() != null && (source.getEntity() == null || !source.getEntity().getUUID().equals(parent.getUUID()))) {
+				return parent.hurt(source, amount);
 			}
 		}
 		return false;
@@ -56,6 +63,7 @@ public class TangledHatredPart extends LivingEntity {
 	@Override
 	public void tick() {
 		super.tick();
+		setHealth(getMaxHealth());
 		if (!level().isClientSide && tickCount > 10) {
 			if (parent == null || parent.isDeadOrDying() || parent.isRemoved()) {
 				discard();

@@ -41,7 +41,7 @@ public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity>
 				double d2 = 1.25 * (double) (i + 1);
 				this.createThorn(entity, entity.getX() + (double) Mth.cos(f) * d2, entity.getZ() + (double) Mth.sin(f) * d2, d0, d1, i);
 			}
-			entity.knockbackNearbyEntities(1.5f, true);
+			entity.knockbackNearbyEntities(1.5f, entity.getBehaviourTicks() >= 60);
 			if (entity.getPhase() == 1) {
 				TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), entity.level());
 				skull.setPos(entity.position().add((entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8, entity.getBbHeight() * entity.getRandom().nextFloat() + 1.5, (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8));

@@ -1,4 +1,4 @@
-// 1.21	2024-06-30T11:24:48.1646421	Loot Tables
+// 1.21	2024-06-30T14:26:01.6785939	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -373,6 +373,7 @@ a41cfe55b2b79e95515abce03524f0157a439e7c data/eternal_starlight/loot_table/block
 924e65c4be3285764f4e159791c96c6365a3f98a data/eternal_starlight/loot_table/blocks/tall_crescent_grass.json
 25bfc8876b6175cfd9c8691f6e990680fbe2b2b8 data/eternal_starlight/loot_table/blocks/tall_gladespike.json
 c38355ed32c9344f203be636e52074d2661d3dde data/eternal_starlight/loot_table/blocks/tall_glowing_crescent_grass.json
+ff83c7ad746e340042c467ad98a71697dbafba48 data/eternal_starlight/loot_table/blocks/tangled_hatred_spawner.json
 1e90a87a39fc0dbbf70e9f46aa90caddd55a3a61 data/eternal_starlight/loot_table/blocks/tangled_skull.json
 67ef42dc951c9a251da803de488ca53c575f1c95 data/eternal_starlight/loot_table/blocks/tangled_wall_skull.json
 2b6ad702608b2dc917401783cba00abae787753b data/eternal_starlight/loot_table/blocks/tentacles_coral.json

@@ -680,6 +680,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(ESBlocks.ENERGY_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWNER = registerItem("tangled_hatred_spawner", () -> new BlockItem(ESBlocks.TANGLED_HATRED_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
