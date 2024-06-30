@@ -42,6 +42,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.ARMOR_EQUIP_GLACITE.get(), definition().with(sound(mcLoc("item/armor/equip_iron1")), sound(mcLoc("item/armor/equip_iron2")), sound(mcLoc("item/armor/equip_iron3")), sound(mcLoc("item/armor/equip_iron4")), sound(mcLoc("item/armor/equip_iron5")), sound(mcLoc("item/armor/equip_iron6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_glacite"));
 		add(ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.get(), definition().with(sound(mcLoc("item/armor/equip_diamond1")), sound(mcLoc("item/armor/equip_diamond2")), sound(mcLoc("item/armor/equip_diamond3")), sound(mcLoc("item/armor/equip_diamond4")), sound(mcLoc("item/armor/equip_diamond5")), sound(mcLoc("item/armor/equip_diamond6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_swamp_silver"));
 
+		add(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get(), definition().with(sound(loc("item/chain_of_souls/absorb"))).subtitle("subtitles.item." + EternalStarlight.ID + ".chain_of_souls.absorb"));
+
 		add(ESSoundEvents.SEEKING_EYE_LAUNCH.get(), definition().with(sound(mcLoc("entity/endereye/endereye_launch1")), sound(mcLoc("entity/endereye/endereye_launch2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.launch"));
 		add(ESSoundEvents.SEEKING_EYE_DEATH.get(), definition().with(sound(mcLoc("entity/endereye/dead1")).volume(1.3), sound(mcLoc("entity/endereye/dead2")).volume(1.3)).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.death"));
 

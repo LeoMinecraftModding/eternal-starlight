@@ -54,7 +54,7 @@ public class ESBiomes {
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), etherRiverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040).backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(5837552).backgroundMusic(MUSIC_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4394646).backgroundMusic(MUSIC_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLandSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
 	}
 

@@ -53,6 +53,15 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(UniformGenerator.between(0, 1))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get()))));
 
+		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/tangled_hatred")),
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.setRolls(UniformGenerator.between(3, 5))
+					.add(LootItem.lootTableItem(ESItems.TENACIOUS_VINE.get())))
+				.withPool(LootPool.lootPool()
+					.setRolls(UniformGenerator.between(1, 2))
+					.add(LootItem.lootTableItem(ESItems.TRAPPED_SOUL.get()))));
+
 		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/lunar_monstrosity")),
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()

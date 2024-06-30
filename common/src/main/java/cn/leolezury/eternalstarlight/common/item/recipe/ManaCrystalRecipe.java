@@ -29,10 +29,14 @@ public class ManaCrystalRecipe extends CustomRecipe {
 	@Override
 	public boolean matches(CraftingInput recipeInput, Level level) {
 		int day = (int) (level.getDayTime() / 24000L);
-		boolean checkDay = day % 6 == List.of(ManaType.values()).indexOf(manaType) - 1;
-		boolean checkEmpty = recipeInput.getItem(0).isEmpty() && recipeInput.getItem(2).isEmpty() && recipeInput.getItem(6).isEmpty() && recipeInput.getItem(8).isEmpty();
-		boolean checkIngredients = recipeInput.getItem(1).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(3).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(4).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(5).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(7).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS);
-		return recipeInput.width() == 3 && recipeInput.height() == 3 && checkDay && checkEmpty && checkIngredients;
+		if (recipeInput.width() == 3 && recipeInput.height() == 3) {
+			boolean checkDay = day % 6 == List.of(ManaType.values()).indexOf(manaType) - 1;
+			boolean checkEmpty = recipeInput.getItem(0).isEmpty() && recipeInput.getItem(2).isEmpty() && recipeInput.getItem(6).isEmpty() && recipeInput.getItem(8).isEmpty();
+			boolean checkIngredients = recipeInput.getItem(1).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(3).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(4).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(5).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS) && recipeInput.getItem(7).is(ESTags.Items.MANA_CRYSTAL_INGREDIENTS);
+			return checkDay && checkEmpty && checkIngredients;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -41,7 +45,7 @@ public class ManaCrystalRecipe extends CustomRecipe {
 	}
 
 	public boolean canCraftInDimensions(int i, int j) {
-		return i >= 2 && j >= 2;
+		return i == 3 && j == 3;
 	}
 
 	public RecipeSerializer<?> getSerializer() {

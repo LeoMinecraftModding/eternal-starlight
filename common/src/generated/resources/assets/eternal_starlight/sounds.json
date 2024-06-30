@@ -475,6 +475,12 @@
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_thermal_springstone"
   },
+  "item.chain_of_souls.absorb": {
+    "sounds": [
+      "eternal_starlight:item/chain_of_souls/absorb"
+    ],
+    "subtitle": "subtitles.item.eternal_starlight.chain_of_souls.absorb"
+  },
   "music.biome.dark_swamp": {
     "sounds": [
       {

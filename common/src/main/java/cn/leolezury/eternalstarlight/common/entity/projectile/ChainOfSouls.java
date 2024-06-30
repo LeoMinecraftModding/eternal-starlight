@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -93,25 +94,29 @@ public class ChainOfSouls extends Projectile implements Grappling {
 					targetId = null;
 				}
 			}
-			if (target != null && target instanceof LivingEntity && !(target instanceof ArmorStand)) {
+
+			if (target != null) {
 				this.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
 
-				Player playerOwner = getPlayerOwner();
-				if (playerOwner != null) {
-					if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SOUL_ABSORB, this, playerOwner), 3)) {
-						playerOwner.heal(1.5f);
-						if (level() instanceof ServerLevel serverLevel) {
-							for (int i = 0; i < 7; i++) {
-								serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
-							}
-							for (int i = 0; i < 7; i++) {
-								serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
+				if (target instanceof LivingEntity && !(target instanceof ArmorStand)) {
+					Player playerOwner = getPlayerOwner();
+					if (playerOwner != null) {
+						if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SOUL_ABSORB, this, playerOwner), 3)) {
+							playerOwner.heal(1.5f);
+							playSound(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get());
+							if (level() instanceof ServerLevel serverLevel) {
+								for (int i = 0; i < 7; i++) {
+									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
+								}
+								for (int i = 0; i < 7; i++) {
+									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
+								}
 							}
 						}
-					}
-					absorbSoulTicks++;
-					if (absorbSoulTicks > 50) {
-						discard();
+						absorbSoulTicks++;
+						if (absorbSoulTicks > 50) {
+							discard();
+						}
 					}
 				}
 

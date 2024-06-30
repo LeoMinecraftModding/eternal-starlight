@@ -167,6 +167,15 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('T', ESItems.TENACIOUS_PETAL.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CHAIN_OF_SOULS.get())
+			.pattern("SP")
+			.pattern(" V")
+			.pattern(" V")
+			.define('S', ESItems.TRAPPED_SOUL.get())
+			.define('P', ESItems.TENACIOUS_PETAL.get())
+			.define('V', ESItems.TENACIOUS_VINE.get())
+			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
 			.pattern(" N ")
 			.pattern("NGN")
