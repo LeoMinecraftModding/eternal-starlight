@@ -51,6 +51,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			ESEntities.LONESTAR_SKELETON.get(),
 			ESEntities.TANGLED.get()
 		);
+		tag(EntityTypeTags.ARROWS).add(
+			ESEntities.AMARAMBER_ARROW.get()
+		);
 		tag(EntityTypeTags.UNDEAD).add(
 			ESEntities.TANGLED_SKULL.get()
 		);
@@ -65,6 +68,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		);
 		tag(EntityTypeTags.IMMUNE_TO_INFESTED).add(
 			ESEntities.GLEECH.get()
+		);
+		tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(
+			ESEntities.FREEZE.get()
 		);
 		tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
 			ESEntities.ASTRAL_GOLEM.get(),

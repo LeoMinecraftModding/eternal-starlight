@@ -139,11 +139,6 @@ public class Freeze extends Monster implements RangedAttackMob {
 	}
 
 	@Override
-	public boolean canFreeze() {
-		return false;
-	}
-
-	@Override
 	public boolean isAlliedTo(Entity entity) {
 		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.ROBOTIC);
 	}

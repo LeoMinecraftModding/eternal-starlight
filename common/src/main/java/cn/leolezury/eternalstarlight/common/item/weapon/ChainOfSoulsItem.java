@@ -30,15 +30,15 @@ public class ChainOfSoulsItem extends Item {
 			if (!level.isClientSide) {
 				itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(interactionHand));
 			}
-			this.shoot(level, player);
+			this.shoot(level, player, itemStack);
 		}
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide);
 	}
 
-	private void shoot(Level level, Player player) {
+	private void shoot(Level level, Player player, ItemStack weapon) {
 		if (!level.isClientSide) {
-			level.addFreshEntity(new ChainOfSouls(level, player));
+			level.addFreshEntity(new ChainOfSouls(level, player, weapon));
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));

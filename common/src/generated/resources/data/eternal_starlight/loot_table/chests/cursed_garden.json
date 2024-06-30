@@ -143,7 +143,7 @@
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
-              "options": "eternal_starlight:fearless"
+              "options": "eternal_starlight:soul_snatcher"
             }
           ],
           "name": "minecraft:book",

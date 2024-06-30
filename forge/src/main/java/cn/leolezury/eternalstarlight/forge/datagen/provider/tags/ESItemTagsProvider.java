@@ -80,6 +80,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.LIVING_ARM.get(),
 			ESItems.DOOMEDEN_SWORD.get()
 		);
+		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE).add(
+			ESItems.CHAIN_OF_SOULS.get()
+		);
 		tag(ESTags.Items.MANA_CRYSTAL_INGREDIENTS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()
 		);
@@ -147,8 +150,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MECHANICAL_CROSSBOW.get(),
 			ESItems.MOONRING_BOW.get(),
 			ESItems.WAND_OF_TELEPORTATION.get(),
+			ESItems.CHAIN_OF_SOULS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
-			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 			ESItems.GLACITE_SCYTHE.get(),
 			ESItems.SWAMP_SILVER_SICKLE.get(),
 			ESItems.PETAL_SCYTHE.get()
@@ -242,10 +245,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.DOOMEDEN_SWORD.get(),
 			ESItems.SHATTERED_SWORD.get(),
 			ESItems.ENERGY_SWORD.get(),
-			ESItems.MOONRING_GREATSWORD.get()
+			ESItems.MOONRING_GREATSWORD.get(),
+			ESItems.DAGGER_OF_HUNGER.get()
 		);
 		tag(ItemTags.PICKAXES).add(
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 			ESItems.SWAMP_SILVER_PICKAXE.get()
 		);
 		tag(ItemTags.AXES).add(

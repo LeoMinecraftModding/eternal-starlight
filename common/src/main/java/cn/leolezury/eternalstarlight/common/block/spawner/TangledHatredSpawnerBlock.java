@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.block.spawner;
 
-import cn.leolezury.eternalstarlight.common.block.entity.spawner.LunarMonstrositySpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.TangledHatredSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;

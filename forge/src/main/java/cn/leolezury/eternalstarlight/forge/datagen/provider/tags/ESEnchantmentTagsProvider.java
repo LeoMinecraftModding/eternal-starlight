@@ -23,7 +23,8 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 		);
 		this.tag(EnchantmentTags.TREASURE).add(
 			ESEnchantments.POISONING,
-			ESEnchantments.FEARLESS
+			ESEnchantments.FEARLESS,
+			ESEnchantments.SOUL_SNATCHER
 		);
 	}
 }

@@ -2,6 +2,9 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.enchantment.effects.PushTowardsEntity;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -19,10 +22,13 @@ import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.AllOf;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
 import net.minecraft.world.item.enchantment.effects.DamageItem;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 public class ESEnchantments {
 	public static final ResourceKey<Enchantment> POISONING = create("poisoning");
 	public static final ResourceKey<Enchantment> FEARLESS = create("fearless");
+	public static final ResourceKey<Enchantment> SOUL_SNATCHER = create("soul_snatcher");
 
 	public static void bootstrap(BootstrapContext<Enchantment> context) {
 		HolderGetter<Item> items = context.lookup(Registries.ITEM);
@@ -33,6 +39,9 @@ public class ESEnchantments {
 			.withEffect(EnchantmentEffectComponents.KNOCKBACK, new AddValue(LevelBasedValue.perLevel(0.5F)))
 			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new PushTowardsEntity(LevelBasedValue.constant(0.4F), LevelBasedValue.perLevel(0.4F, 0.3F)))
 			.build(FEARLESS.location()));
+		context.register(SOUL_SNATCHER, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE), 10, 3, Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25), 1, EquipmentSlotGroup.HAND))
+			.withEffect(EnchantmentEffectComponents.DAMAGE, new AddValue(LevelBasedValue.perLevel(0.5F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.CHAIN_OF_SOULS.get())))
+			.build(SOUL_SNATCHER.location()));
 	}
 
 	public static ResourceKey<Enchantment> create(String name) {

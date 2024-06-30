@@ -1,7 +1,8 @@
-// 1.21	2024-06-19T21:22:01.2477341	Tags for minecraft:item mod id eternal_starlight
+// 1.21	2024-06-30T20:23:39.957961	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/item/doomeden_keys.json
+c7ae886b0814b7a913208d29c0a878557a41e93c data/eternal_starlight/tags/item/enchantable/chain_of_souls.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/ent_food.json
 c3758f1485dcdf3680091ca7ddb6d0c1e3fee6ed data/eternal_starlight/tags/item/glacite_weapons.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/item/light_crystals.json
@@ -32,7 +33,7 @@ ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/item/chest_boats.js
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 0a92ee5a6a09681bb4a7b408b82cc281b1818576 data/minecraft/tags/item/enchantable/bow.json
 73e0127140563bac2e802feeb28acbf24cd5520f data/minecraft/tags/item/enchantable/crossbow.json
-a5d487b7cd960a7388c86067c9fe9c4059987e02 data/minecraft/tags/item/enchantable/durability.json
+b33b1f0572c2a127c3177b39921fa0b9c861fb95 data/minecraft/tags/item/enchantable/durability.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/minecraft/tags/item/enchantable/sharp_weapon.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/minecraft/tags/item/enchantable/sword.json
 9ad28389412071a4b6bec06996c0e61929052189 data/minecraft/tags/item/foot_armor.json
@@ -45,7 +46,7 @@ ff9a6ab987ff15343766be75eef4e14dd094ac4e data/minecraft/tags/item/head_armor.jso
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/item/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/item/logs_that_burn.json
 3abec2a00ad1fef2d151f3596ccaf5249459742e data/minecraft/tags/item/meat.json
-7373d53b4e14f4583866fd3967d59f2a9f1ecde3 data/minecraft/tags/item/pickaxes.json
+1fb4bb6881626508b10a1e99e840070eb7810481 data/minecraft/tags/item/pickaxes.json
 a034799a9a254fe3ae790f0047b291599e115314 data/minecraft/tags/item/planks.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/item/saplings.json
@@ -57,7 +58,7 @@ ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/smelts_to_glas
 f4a521d9c053fc9ef5b372b2a9c3ae87d63fb9b7 data/minecraft/tags/item/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting_materials.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_tool_materials.json
-3fb4b75d961351043815fd7673af59d7c852a37b data/minecraft/tags/item/swords.json
+92585ba61caae774fb38bebde04243517b1dee16 data/minecraft/tags/item/swords.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/item/tall_flowers.json
 ae4d00b3791f88b0b362e8bc40f8732e02187ef3 data/minecraft/tags/item/trim_materials.json
 77c40771e01c263ced67e3ea5099a8d690efbc39 data/minecraft/tags/item/trim_templates.json

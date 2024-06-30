@@ -1,0 +1,41 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.eternal_starlight.soul_snatcher"
+  },
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.5,
+            "per_level_above_first": 0.5
+          }
+        },
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "eternal_starlight:chain_of_souls"
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 75,
+    "per_level_above_first": 25
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 25
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/chain_of_souls",
+  "weight": 10
+}

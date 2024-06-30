@@ -1,12 +1,14 @@
-// 1.21	2024-06-27T19:38:33.170239	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.21	2024-06-30T20:03:36.727659	Tags for minecraft:entity_type mod id eternal_starlight
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_type/abyssal_fire_immune.json
 0c2f80824fcdaa8414ab4e318eaddffd67b2b3a2 data/eternal_starlight/tags/entity_type/gleech_immune.json
 0caf3584211a170497575428d4e4e0fb0a4b93a8 data/eternal_starlight/tags/entity_type/lunar_monstrosity_allys.json
 be4ff0376ac9ff8a51eab4ae581131fd7b545de1 data/eternal_starlight/tags/entity_type/robotic.json
 9e6dda6e4b5269d309c76848e7d43485124e11ee data/eternal_starlight/tags/entity_type/vulnerable_to_sonar_bomb.json
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/minecraft/tags/entity_type/aquatic.json
+e46f6653e970a8854dead0dc4f155ef7dc0539f1 data/minecraft/tags/entity_type/arrows.json
 3f853abb02779d1f23df9823ebb9d8707f24ddc9 data/minecraft/tags/entity_type/arthropod.json
 5459e6dcff656af9ac3c0cbea22ffdabcbea8451 data/minecraft/tags/entity_type/fall_damage_immune.json
+f6eb1b878dcda83e8e0f0c5388c37999f2e0ec47 data/minecraft/tags/entity_type/freeze_immune_entity_types.json
 f627b828af90e448f9c5322878730dddd94748ff data/minecraft/tags/entity_type/immune_to_infested.json
 81a6c1860d98805184066dd01894829e9b9830ec data/minecraft/tags/entity_type/skeletons.json
 7eb61ae180e260644189722a024bdde800e91c2d data/minecraft/tags/entity_type/undead.json
