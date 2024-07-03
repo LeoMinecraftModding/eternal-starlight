@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure;
 
 import cn.leolezury.eternalstarlight.common.block.ShadegrieveBlock;
+import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESStructurePieceTypes;
 import cn.leolezury.eternalstarlight.common.util.MazeGenerator;
@@ -17,6 +18,9 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CursedGardenMazePiece extends StructurePiece {
 	public static final int MAZE_SIZE = 37;
@@ -85,9 +89,12 @@ public class CursedGardenMazePiece extends StructurePiece {
 				}
 			}
 		}
+
+		List<BlockPos> chestPositions = new ArrayList<>();
+
 		for (int x = 1; x < STRUCTURE_SIZE; x++) {
 			for (int z = 1; z < STRUCTURE_SIZE; z++) {
-				if (!getBlock(level, x, 1, z, box).isAir()) {
+				if (!getBlock(level, x, 1, z, box).isAir() && !getBlock(level, x, 1, z, box).is(Blocks.VINE)) {
 					for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
 						int vineX = x + direction.getStepX();
 						int vineZ = z + direction.getStepZ();
@@ -99,6 +106,11 @@ public class CursedGardenMazePiece extends StructurePiece {
 								if (getBlock(level, vineX, y, vineZ, box).isAir() && (getBlock(level, x, y, z, box).is(ESBlocks.VOIDSTONE_BRICKS.get()) || getBlock(level, x, y, z, box).is(ESBlocks.SHADEGRIEVE.get()))) {
 									placeBlock(level, Blocks.VINE.defaultBlockState().setValue(VineBlock.PROPERTY_BY_DIRECTION.get(direction), true), vineX, y, vineZ, box);
 								}
+							}
+							boolean bossRoom = Math.pow(vineX - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(vineZ - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE;
+							if (!bossRoom && random.nextInt(45) == 0 && chestPositions.stream().noneMatch(pos -> new BlockPos(vineX, 1, vineZ).distSqr(pos) <= 10 * 10)) {
+								chestPositions.add(new BlockPos(vineX, 1, vineZ));
+								createChest(level, box, random, vineX, 1, vineZ, ESLootTables.CURSED_GARDEN_CHEST);
 							}
 						}
 					}

@@ -1,9 +1,8 @@
 package cn.leolezury.eternalstarlight.forge.datagen.provider.sub;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
@@ -26,23 +25,24 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
-		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/boss_common")),
+		consumer.accept(ESLootTables.BOSS_COMMON,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(3, 5))
-					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
-					.add(LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
 					.add(LootItem.lootTableItem(Items.COAL).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
 					.add(LootItem.lootTableItem(Items.GOLD_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
 					.add(LootItem.lootTableItem(Items.IRON_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
+					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
+					.add(LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(30))
+					.add(LootItem.lootTableItem(ESItems.GLACITE_SHARD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.AETHERSENT_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(15))));
 
-		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/starlight_golem")),
+		consumer.accept(ESLootTables.BOSS_STARLIGHT_GOLEM,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.add(NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/boss_common")))))
+					.add(NestedLootTable.lootTableReference(ESLootTables.BOSS_COMMON)))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(3, 5))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get())))
@@ -53,7 +53,7 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(UniformGenerator.between(0, 1))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get()))));
 
-		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/tangled_hatred")),
+		consumer.accept(ESLootTables.BOSS_TANGLED_HATRED,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(3, 5))
@@ -62,10 +62,10 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(UniformGenerator.between(1, 2))
 					.add(LootItem.lootTableItem(ESItems.TRAPPED_SOUL.get()))));
 
-		consumer.accept(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/lunar_monstrosity")),
+		consumer.accept(ESLootTables.BOSS_LUNAR_MONSTROSITY,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.add(NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id("bosses/boss_common")))))
+					.add(NestedLootTable.lootTableReference(ESLootTables.BOSS_COMMON)))
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.MOONRING_BOW.get())))

@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -96,6 +97,15 @@ public class ESTags {
 
 		private static TagKey<Biome> create(String string) {
 			return TagKey.create(Registries.BIOME, EternalStarlight.id(string));
+		}
+	}
+
+	public static class Enchantments {
+		public static final TagKey<Enchantment> GOLEM_FORGE_LOOT = create("golem_forge_loot");
+		public static final TagKey<Enchantment> CURSED_GARDEN_LOOT = create("cursed_garden_loot");
+
+		private static TagKey<Enchantment> create(String string) {
+			return TagKey.create(Registries.ENCHANTMENT, EternalStarlight.id(string));
 		}
 	}
 

@@ -27,6 +27,22 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
+                "max": 6.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:vine",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
                 "max": 3.0,
                 "min": 1.0
               },
@@ -115,22 +131,6 @@
           ],
           "name": "eternal_starlight:glowing_crescent_grass",
           "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 6.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:vine",
-          "weight": 25
         }
       ],
       "rolls": 4.0
@@ -143,7 +143,7 @@
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
-              "options": "eternal_starlight:soul_snatcher"
+              "options": "#eternal_starlight:cursed_garden_loot"
             }
           ],
           "name": "minecraft:book",
@@ -164,9 +164,30 @@
           ],
           "name": "eternal_starlight:lunar_berries",
           "weight": 60
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "eternal_starlight:saltpeter_powder",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:saltpeter_matchbox",
+          "weight": 10
         }
       ],
-      "rolls": 2.0
+      "rolls": 3.0
     },
     {
       "bonus_rolls": 0.0,
@@ -178,14 +199,30 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 12.0,
+                "max": 8.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:glistering_melon_slice",
-          "weight": 75
+          "name": "eternal_starlight:amaramber_ingot",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "eternal_starlight:aethersent_ingot",
+          "weight": 15
         },
         {
           "type": "minecraft:item",
@@ -200,8 +237,8 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:swamp_silver_nugget",
-          "weight": 75
+          "name": "eternal_starlight:swamp_silver_ingot",
+          "weight": 45
         },
         {
           "type": "minecraft:item",
@@ -220,7 +257,7 @@
           "weight": 25
         }
       ],
-      "rolls": 1.0
+      "rolls": 2.0
     }
   ],
   "random_sequence": "eternal_starlight:chests/cursed_garden"

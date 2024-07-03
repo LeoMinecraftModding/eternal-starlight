@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.forge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESEnchantments;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EnchantmentTagsProvider;
@@ -18,10 +19,18 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
-		this.tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
+		tag(ESTags.Enchantments.GOLEM_FORGE_LOOT).add(
+			ESEnchantments.FEARLESS
+		);
+		tag(ESTags.Enchantments.CURSED_GARDEN_LOOT).add(
+			ESEnchantments.FEARLESS,
+			ESEnchantments.POISONING,
+			ESEnchantments.SOUL_SNATCHER
+		);
+		tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
 			ESEnchantments.POISONING
 		);
-		this.tag(EnchantmentTags.TREASURE).add(
+		tag(EnchantmentTags.TREASURE).add(
 			ESEnchantments.POISONING,
 			ESEnchantments.FEARLESS,
 			ESEnchantments.SOUL_SNATCHER
