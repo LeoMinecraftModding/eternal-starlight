@@ -44,5 +44,11 @@ public class ClientEvents {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
 			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(true));
 		}
+		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
+			ClientHandlers.onAfterRenderParticles();
+		}
+		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_WEATHER) {
+			ClientHandlers.onAfterRenderWeather();
+		}
 	}
 }

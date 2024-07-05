@@ -8,16 +8,21 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int length) {
+public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailPoint> horizontalPoints, float width, int length) {
 	public TrailEffect(float width, int length) {
-		this(new ArrayList<>(), width, length);
+		this(new ArrayList<>(), new ArrayList<>(), width, length);
 	}
 
-	public void update(TrailPoint point) {
-		trailPoints().addFirst(point);
-		if (trailPoints().size() > length()) {
-			trailPoints().removeLast();
+	private List<TrailPoint> getPoints(boolean vertical) {
+		return vertical ? verticalPoints() : horizontalPoints();
+	}
+
+	public void update(TrailPoint point, boolean vertical) {
+		getPoints(vertical).addFirst(point);
+		if (getPoints(vertical).size() > length()) {
+			getPoints(vertical).removeLast();
 		}
 	}
 
@@ -26,7 +31,10 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 		float pitch = ESMathUtil.positionToPitch(delta);
 		Vec3 upper = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch - 90, yaw);
 		Vec3 lower = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch + 90, yaw);
-		update(new TrailPoint(upper, lower));
+		update(new TrailPoint(upper, lower), true);
+		Vec3 upper1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw - 90);
+		Vec3 lower1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw + 90);
+		update(new TrailPoint(upper1, lower1), false);
 	}
 
 	public void createCurrentPoint(Vec3 pos, Vec3 delta) {
@@ -34,22 +42,32 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 		float pitch = ESMathUtil.positionToPitch(delta);
 		Vec3 upper = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch - 90, yaw);
 		Vec3 lower = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch + 90, yaw);
-		trailPoints().addFirst(new TrailPoint(upper, lower));
+		verticalPoints().addFirst(new TrailPoint(upper, lower));
+		Vec3 upper1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw - 90);
+		Vec3 lower1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw + 90);
+		horizontalPoints().addFirst(new TrailPoint(upper1, lower1));
 	}
 
 	public void removeNearest() {
-		if (!trailPoints().isEmpty()) {
-			trailPoints().removeFirst();
+		if (!verticalPoints().isEmpty()) {
+			verticalPoints().removeFirst();
+		}
+		if (!horizontalPoints().isEmpty()) {
+			horizontalPoints().removeFirst();
 		}
 	}
 
 	public boolean trailPointsAllSame() {
-		if (trailPoints().isEmpty()) {
+		return trailPointsAllSame(true) && trailPointsAllSame(false);
+	}
+
+	public boolean trailPointsAllSame(boolean vertical) {
+		if (getPoints(vertical).isEmpty()) {
 			return true;
 		}
-		TrailPoint point = trailPoints().getFirst();
+		TrailPoint point = getPoints(vertical).getFirst();
 		boolean allSame = true;
-		for (TrailPoint trailPoint : trailPoints()) {
+		for (TrailPoint trailPoint : getPoints(vertical)) {
 			if (trailPoint != point) {
 				allSame = false;
 				break;
@@ -58,12 +76,12 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 		return allSame;
 	}
 
-	public float trailLength(float partialTicks) {
+	public float trailLength(float partialTicks, boolean vertical) {
 		float sum = 0;
-		for (int i = 0; i < trailPoints().size() - 1; i++) {
-			TrailPoint from = trailPoints().get(i);
-			TrailPoint to = trailPoints().get(i + 1);
-			if (i == trailPoints().size() - 2 && trailPoints().size() == length() + 1) {
+		for (int i = 0; i < getPoints(vertical).size() - 1; i++) {
+			TrailPoint from = getPoints(vertical).get(i);
+			TrailPoint to = getPoints(vertical).get(i + 1);
+			if (i == getPoints(vertical).size() - 2 && getPoints(vertical).size() == length() + 1) {
 				to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
 			}
 			sum += (float) to.center().distanceTo(from.center());
@@ -73,13 +91,19 @@ public record TrailEffect(ArrayList<TrailPoint> trailPoints, float width, int le
 
 	@Environment(EnvType.CLIENT)
 	public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, float r, float g, float b, float a, int light) {
-		if (trailPoints().size() >= 2) {
+		render(consumer, stack, partialTicks, true, r, g, b, a, light);
+		render(consumer, stack, partialTicks, false, r, g, b, a, light);
+	}
+
+	@Environment(EnvType.CLIENT)
+	public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, boolean vertical, float r, float g, float b, float a, int light) {
+		if (getPoints(vertical).size() >= 2) {
 			float textureX = 0;
-			float trailLength = trailLength(partialTicks);
-			for (int i = 0; i < trailPoints().size() - 1; i++) {
-				TrailPoint from = trailPoints().get(i);
-				TrailPoint to = trailPoints().get(i + 1);
-				if (i == trailPoints().size() - 2 && trailPoints().size() == length() + 1) {
+			float trailLength = trailLength(partialTicks, vertical);
+			for (int i = 0; i < getPoints(vertical).size() - 1; i++) {
+				TrailPoint from = getPoints(vertical).get(i);
+				TrailPoint to = getPoints(vertical).get(i + 1);
+				if (i == getPoints(vertical).size() - 2 && getPoints(vertical).size() == length() + 1) {
 					to = new TrailPoint(ESMathUtil.lerpVec(partialTicks, to.upper(), from.upper()), ESMathUtil.lerpVec(partialTicks, to.lower(), from.lower()));
 				}
 				float secX = (float) to.center().distanceTo(from.center()) / trailLength;

@@ -6,8 +6,10 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
@@ -27,16 +29,24 @@ public abstract class ESRenderType extends RenderType {
 	}
 
 	public static RenderType portal() {
-		return create(EternalStarlight.ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 786432, true, true, RenderType.CompositeState.builder()
-			.setCullState(NO_CULL)
-			.setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
-			.setOutputState(TRANSLUCENT_TARGET)
+		return create(EternalStarlight.ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
+			.setTextureState(NO_TEXTURE)
+			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+			.setCullState(NO_CULL)
 			.setLightmapState(LIGHTMAP)
 			.setOverlayState(OVERLAY)
-			.setWriteMaskState(COLOR_WRITE)
-			.setDepthTestState(LEQUAL_DEPTH_TEST)
-			.setLayeringState(VIEW_OFFSET_Z_LAYERING)
+			.createCompositeState(true));
+	}
+
+	public static RenderType particle() {
+		return create(EternalStarlight.ID + ":particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+			.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
+			.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
+			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+			.setCullState(NO_CULL)
+			.setLightmapState(LIGHTMAP)
+			.setOverlayState(OVERLAY)
 			.createCompositeState(true));
 	}
 

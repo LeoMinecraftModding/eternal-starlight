@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
@@ -22,6 +23,7 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -34,6 +36,7 @@ import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +48,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 
 import java.util.*;
 
@@ -64,9 +68,11 @@ public class ClientHandlers {
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
-	public static int resetCameraIn;
-	public static float biomeFogStartDecrement;
-	public static float biomeFogEndDecrement;
+	public static int RESET_CAMERA_IN;
+	public static float FOG_START_DECREMENT;
+	public static float FOG_END_DECREMENT;
+	public static MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.BIG_BUFFER_SIZE));
+	private static Matrix4f MODEL_VIEW_MATRIX = new Matrix4f();
 
 	public static void onClientTick() {
 		ClientWeatherInfo.tickRainLevel();
@@ -89,13 +95,13 @@ public class ClientHandlers {
 			}
 		}
 		if (Minecraft.getInstance().player != null) {
-			if (resetCameraIn > 0) {
-				resetCameraIn--;
+			if (RESET_CAMERA_IN > 0) {
+				RESET_CAMERA_IN--;
 				Minecraft.getInstance().options.hideGui = true;
-				if (resetCameraIn <= 0) {
+				if (RESET_CAMERA_IN <= 0) {
 					Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
 					Minecraft.getInstance().options.hideGui = false;
-					resetCameraIn = 0;
+					RESET_CAMERA_IN = 0;
 				}
 			} else if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 				Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
@@ -106,14 +112,14 @@ public class ClientHandlers {
 		if (Minecraft.getInstance().player != null) {
 			LocalPlayer player = Minecraft.getInstance().player;
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-			biomeFogStartDecrement -= 0.5f;
-			biomeFogEndDecrement -= 0.5f;
+			FOG_START_DECREMENT -= 0.5f;
+			FOG_END_DECREMENT -= 0.5f;
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
 				if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
-					biomeFogStartDecrement += (0.5f + 0.75f);
-					biomeFogEndDecrement += (0.5f + 0.5f);
-					biomeFogEndDecrement = Mth.clamp(biomeFogEndDecrement, 0, 80);
+					FOG_START_DECREMENT += (0.5f + 0.75f);
+					FOG_END_DECREMENT += (0.5f + 0.5f);
+					FOG_END_DECREMENT = Mth.clamp(FOG_END_DECREMENT, 0, 80);
 				}
 			}
 		}
@@ -152,6 +158,27 @@ public class ClientHandlers {
 			}
 		}
 		stack.popPose();
+	}
+
+	public static void onAfterRenderParticles() {
+		MODEL_VIEW_MATRIX = RenderSystem.getModelViewMatrix();
+	}
+
+	public static void onAfterRenderWeather() {
+		RenderSystem.enableCull();
+		RenderSystem.enableBlend();
+		RenderSystem.enableDepthTest();
+		RenderSystem.depthMask(false);
+		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
+		RenderSystem.getModelViewMatrix().set(MODEL_VIEW_MATRIX);
+		if (Minecraft.useShaderTransparency()) {
+			Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+		}
+		DELAYED_BUFFER_SOURCE.endBatch();
+		RenderSystem.getModelViewMatrix().set(matrix4f);
+		if (Minecraft.useShaderTransparency() && Minecraft.getInstance().levelRenderer.getCloudsTarget() != null) {
+			Minecraft.getInstance().levelRenderer.getCloudsTarget().bindWrite(false);
+		}
 	}
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
@@ -197,10 +224,10 @@ public class ClientHandlers {
 		}
 
 		if (player.level().dimension() == ESDimensions.STARLIGHT_KEY && camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty() && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
-			biomeFogStartDecrement = Mth.clamp(biomeFogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5);
-			biomeFogEndDecrement = Mth.clamp(biomeFogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50);
-			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - biomeFogStartDecrement);
-			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - biomeFogEndDecrement);
+			FOG_START_DECREMENT = Mth.clamp(FOG_START_DECREMENT, 0, RenderSystem.getShaderFogStart() + 5);
+			FOG_END_DECREMENT = Mth.clamp(FOG_END_DECREMENT, 0, RenderSystem.getShaderFogEnd() - 50);
+			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - FOG_START_DECREMENT);
+			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - FOG_END_DECREMENT);
 
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {

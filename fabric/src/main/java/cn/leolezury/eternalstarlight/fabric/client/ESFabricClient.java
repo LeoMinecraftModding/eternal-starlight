@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.fabric.client;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -58,6 +60,8 @@ public class ESFabricClient implements ClientModInitializer {
 		}
 
 		DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
+		DimensionRenderingRegistry.registerSkyRenderer(ESDimensions.STARLIGHT_KEY, context -> ESSkyRenderer.renderSky(context.world(), context.positionMatrix(), context.projectionMatrix(), context.tickCounter().getGameTimeDeltaPartialTick(true), context.camera(), () -> {
+		}));
 
 		FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
 			EternalStarlight.id("block/ether"),

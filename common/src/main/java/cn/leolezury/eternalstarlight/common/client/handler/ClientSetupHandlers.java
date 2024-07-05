@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
-import cn.leolezury.eternalstarlight.common.client.ESParticleRenderType;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
@@ -43,7 +42,6 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.*;
@@ -69,7 +67,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -279,14 +276,6 @@ public class ClientSetupHandlers {
 	public static final Map<ModelResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
 	public static void clientSetup() {
-		// hacky
-		List<ParticleRenderType> renderTypes = new ArrayList<>(ParticleEngine.RENDER_ORDER);
-		int translucent = renderTypes.indexOf(ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT);
-		if (translucent != -1) {
-			renderTypes.add(translucent + 1, ESParticleRenderType.PARTICLE_SHEET_TRANSLUCENT_BLEND);
-		}
-		ParticleEngine.RENDER_ORDER = renderTypes;
-
 		ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe_inventory"), "inventory"));
 		ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_hammer_inventory"), "inventory"));
 		ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("glacite_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("glacite_scythe_inventory"), "inventory"));

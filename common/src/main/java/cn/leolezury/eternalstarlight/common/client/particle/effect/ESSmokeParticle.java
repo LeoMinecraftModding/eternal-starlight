@@ -1,10 +1,13 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.client.ESParticleRenderType;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 
@@ -39,14 +42,14 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 		roll += rotSpeed;
 	}
 
-    /*public int getLightColor(float f) {
-        return 15728880;
-    }*/
+	@Override
+	public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
+		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.particle()), camera, f);
+	}
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return ESParticleRenderType.PARTICLE_SHEET_TRANSLUCENT_BLEND;
-		// return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
 	public static class Provider implements ParticleProvider<ESSmokeParticleOptions> {

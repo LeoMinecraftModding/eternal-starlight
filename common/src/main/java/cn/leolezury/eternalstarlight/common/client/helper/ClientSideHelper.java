@@ -52,12 +52,12 @@ public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleUpdateCamera(UpdateCameraPacket packet) {
 		if (packet.cameraId() == -1) {
-			ClientHandlers.resetCameraIn = 0;
+			ClientHandlers.RESET_CAMERA_IN = 0;
 		} else {
 			if (Minecraft.getInstance().level != null && !(Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator)) {
 				Entity camera = Minecraft.getInstance().level.getEntity(packet.cameraId());
 				if (camera != null) {
-					ClientHandlers.resetCameraIn = 260;
+					ClientHandlers.RESET_CAMERA_IN = 260;
 					Minecraft.getInstance().options.hideGui = true;
 					Minecraft.getInstance().setCameraEntity(camera);
 				}

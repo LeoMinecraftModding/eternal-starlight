@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.visual;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -73,7 +74,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 			this.effect.createCurrentPoint(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)));
 		}
 
-		this.effect.render(source.getBuffer(entity.getTrailRenderType()), stack, partialTicks, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, partialTicks, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 
 		if (!entityRemoved && Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
 			this.effect.removeNearest();

@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -39,9 +41,10 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 	}
 
 	@Override
-	public void render(VertexConsumer vertexConsumer, Camera camera, float partialTicks) {
+	public void render(VertexConsumer consumer, Camera camera, float partialTicks) {
 		Quaternionf quaternionf = new Quaternionf();
 		quaternionf.rotateX(Mth.PI / 2);
+		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.particle());
 		this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
 		quaternionf = new Quaternionf();
 		quaternionf.rotateY(-3.1415927F).rotateX(-Mth.PI / 2);
