@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.CrestPageBu
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import com.mojang.blaze3d.platform.Window;
@@ -29,16 +30,16 @@ import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class CrestSelectionScreen extends Screen {
 	private final List<CrestButton> crestButtons = new ArrayList<>();
-	private final List<Crest> ownedCrests;
-	private List<String> crestIds;
+	private final List<Crest.Instance> ownedCrests;
+	private List<OpenCrestGuiPacket.CrestInstance> crestIds;
 	private CrestButton selectedCrestButton;
 	private CrestPageButton nextPage;
 	private CrestPageButton previousPage;
-	private Crest selectedCrest;
+	private Crest.Instance selectedCrest;
 	private int selected;
 	private int tickCount;
 
-	public CrestSelectionScreen(List<String> ownedCrests, List<String> crests) {
+	public CrestSelectionScreen(List<OpenCrestGuiPacket.CrestInstance> ownedCrests, List<OpenCrestGuiPacket.CrestInstance> crests) {
 		super(Component.empty());
 		Registry<Crest> registry;
 		if (Minecraft.getInstance().level != null) {
@@ -46,7 +47,7 @@ public class CrestSelectionScreen extends Screen {
 		} else {
 			registry = null;
 		}
-		this.ownedCrests = ownedCrests.stream().map(s -> registry == null ? null : registry.get(ResourceLocation.read(s).getOrThrow())).sorted((o1, o2) -> registry == null ? 0 : registry.getId(o1) - registry.getId(o2)).toList();
+		this.ownedCrests = ownedCrests.stream().map(instance -> registry == null ? null : new Crest.Instance(registry.get(ResourceLocation.read(instance.id()).getOrThrow()), instance.level())).sorted((o1, o2) -> registry == null ? 0 : registry.getId(o1.crest()) - registry.getId(o2.crest())).toList();
 		this.crestIds = crests;
 	}
 
@@ -56,7 +57,7 @@ public class CrestSelectionScreen extends Screen {
 			Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
 			this.previousPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 - 50, 48, 24, false, Component.empty(), (button -> previousPage())));
 			this.nextPage = this.addRenderableWidget(new CrestPageButton(this.width / 4 - 24, this.height / 2 - 12 + 50, 48, 24, true, Component.empty(), (button -> nextPage())));
-			List<Crest> crests = crestIds == null ? this.crestButtons.stream().map(CrestButton::getCrest).toList() : crestIds.stream().map(s -> registry.get(ResourceLocation.read(s).getOrThrow())).toList();
+			List<Crest.Instance> crests = crestIds == null ? this.crestButtons.stream().map(CrestButton::getCrest).toList() : crestIds.stream().map(instance -> new Crest.Instance(registry.get(ResourceLocation.read(instance.id()).getOrThrow()), instance.level())).toList();
 			this.crestButtons.clear();
 			for (int i = 0; i < 5; i++) {
 				int ordinal = i;
@@ -120,7 +121,7 @@ public class CrestSelectionScreen extends Screen {
 
 	private void cancelCrest(int ordinal) {
 		if (!crestButtons.get(ordinal).isEmpty()) {
-			List<Crest> crests = new ArrayList<>();
+			List<Crest.Instance> crests = new ArrayList<>();
 			crestButtons.get(ordinal).setCrest(null);
 			for (CrestButton crestButton : crestButtons) {
 				if (!crestButton.isEmpty()) {
@@ -135,7 +136,7 @@ public class CrestSelectionScreen extends Screen {
 	}
 
 	private void selectCrest() {
-		if (crestButtons.stream().anyMatch((crestButton -> !crestButton.isEmpty() && crestButton.getCrest().type() == selectedCrest.type()))) {
+		if (crestButtons.stream().anyMatch((crestButton -> !crestButton.isEmpty() && crestButton.getCrest().crest().type() == selectedCrest.crest().type()))) {
 			return;
 		}
 		for (CrestButton crestButton : crestButtons) {
@@ -184,10 +185,10 @@ public class CrestSelectionScreen extends Screen {
 		super.onClose();
 		if (Minecraft.getInstance().level != null) {
 			Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-			List<String> crests = new ArrayList<>();
+			List<OpenCrestGuiPacket.CrestInstance> crests = new ArrayList<>();
 			for (CrestButton button : crestButtons) {
 				if (!button.isEmpty()) {
-					crests.add(Objects.requireNonNull(registry.getKey(button.getCrest())).toString());
+					crests.add(new OpenCrestGuiPacket.CrestInstance(Objects.requireNonNull(registry.getKey(button.getCrest().crest())).toString(), button.getCrest().level()));
 				}
 			}
 			ESPlatform.INSTANCE.sendToServer(new UpdateCrestsPacket(crests));

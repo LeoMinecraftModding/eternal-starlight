@@ -1,9 +1,19 @@
 {
   "type": "terra",
+  "attribute_modifiers": [
+    {
+      "amount": -0.007,
+      "amount_addition": -0.005,
+      "attribute": "minecraft:generic.movement_speed",
+      "id": "eternal_starlight:crest.boulders_shield.speed",
+      "operation": "add_value"
+    }
+  ],
   "mob_effects": [
     {
       "effect": "minecraft:resistance",
-      "level": 0
+      "level": 0,
+      "level_addition": 1
     }
   ],
   "texture": "eternal_starlight:textures/crest/boulders_shield.png"

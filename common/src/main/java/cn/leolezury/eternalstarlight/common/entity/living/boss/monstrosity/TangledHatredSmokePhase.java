@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

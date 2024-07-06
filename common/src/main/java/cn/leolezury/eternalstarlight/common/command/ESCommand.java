@@ -10,6 +10,7 @@ public class ESCommand {
 	public static void register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandBuildContext) {
 		commandDispatcher.register(
 			LiteralArgumentBuilder.<CommandSourceStack>literal(EternalStarlight.ID)
-				.then(ESWeatherCommand.register(commandDispatcher, commandBuildContext)));
+				.then(ESWeatherCommand.register(commandDispatcher, commandBuildContext))
+				.then(ESCrestCommand.register(commandDispatcher, commandBuildContext)));
 	}
 }

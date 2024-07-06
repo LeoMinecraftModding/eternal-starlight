@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
@@ -54,11 +55,12 @@ public class EnchantedGrimstoneBricksBlock extends HorizontalDirectionalBlock {
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 		if (!level.isClientSide && player.getItemInHand(interactionHand).is(Items.SHIELD)) {
-			if (!player.getAbilities().instabuild) {
-				player.getItemInHand(interactionHand).shrink(1);
+			if (ESCrestUtil.giveCrest(player, new Crest.Instance(level.registryAccess().registryOrThrow(ESRegistries.CREST).get(ESCrests.BOULDERS_SHIELD), 1))) {
+				if (!player.getAbilities().instabuild) {
+					player.getItemInHand(interactionHand).shrink(1);
+				}
+				return ItemInteractionResult.SUCCESS;
 			}
-			ESCrestUtil.giveCrest(player, level.registryAccess().registryOrThrow(ESRegistries.CREST).get(ESCrests.BOULDERS_SHIELD));
-			return ItemInteractionResult.SUCCESS;
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}

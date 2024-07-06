@@ -10,17 +10,24 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.function.Consumer;
 
 public class CrestButton extends Button {
 	private static final int CREST_WIDTH = 72;
 	private static final int CREST_HEIGHT = 72;
 	private final boolean orbit;
-	private Crest crest;
+	private Crest.Instance crest;
 
 	private int prevHoverProgress;
 	private int hoverProgress;
@@ -51,23 +58,51 @@ public class CrestButton extends Button {
 		this.orbitCenterY = orbitCenterY;
 	}
 
-	public CrestButton setCrest(Crest crest) {
+	public CrestButton setCrest(Crest.Instance crest) {
 		if (this.crest != crest && Minecraft.getInstance().level != null) {
 			if (crest == null) {
 				setTooltip(Tooltip.create(Component.empty()));
 			} else {
 				Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)));
-				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.type().getSerializedName()))).withColor(crest.type().getColor());
-				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest)) + ".desc");
-				setTooltip(Tooltip.create(nameComponent.append("\n").append(typeComponent).append("\n").append(descComponent)));
+				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest())));
+				MutableComponent levelComponent = Component.translatable("enchantment.level." + crest.level());
+				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.crest().type().getSerializedName()))).withColor(crest.crest().type().getColor());
+				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest())) + ".desc");
+				MutableComponent merged = nameComponent.append(" ").append(levelComponent).append("\n").append(typeComponent).append("\n").append(descComponent);
+				if (crest.crest().attributeModifiers().isPresent()) {
+					for (Crest.LevelBasedAttributeModifier modifier : crest.crest().attributeModifiers().get()) {
+						addModifierTooltip((c) -> merged.append("\n").append(c), modifier.attribute(), modifier.getModifier(crest.level()));
+					}
+				}
+				setTooltip(Tooltip.create(merged));
 			}
 		}
 		this.crest = crest;
 		return this;
 	}
 
-	public Crest getCrest() {
+	private void addModifierTooltip(Consumer<Component> consumer, Holder<Attribute> holder, AttributeModifier attributeModifier) {
+		double d = attributeModifier.amount();
+
+		double e;
+		if (attributeModifier.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_BASE && attributeModifier.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
+			if (holder.is(Attributes.KNOCKBACK_RESISTANCE)) {
+				e = d * 10.0;
+			} else {
+				e = d;
+			}
+		} else {
+			e = d * 100.0;
+		}
+
+		if (d > 0.0) {
+			consumer.accept(Component.translatable("attribute.modifier.plus." + attributeModifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(holder.value().getDescriptionId())).withStyle(holder.value().getStyle(true)));
+		} else if (d < 0.0) {
+			consumer.accept(Component.translatable("attribute.modifier.take." + attributeModifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(-e), Component.translatable(holder.value().getDescriptionId())).withStyle(holder.value().getStyle(false)));
+		}
+	}
+
+	public Crest.Instance getCrest() {
 		return crest;
 	}
 
@@ -110,7 +145,7 @@ public class CrestButton extends Button {
 			float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
 			float width = CREST_WIDTH * progress;
 			float height = CREST_HEIGHT * progress;
-			ESGuiUtil.blit(guiGraphics, crest.texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
+			ESGuiUtil.blit(guiGraphics, crest.crest().texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
 		}
 	}
 }

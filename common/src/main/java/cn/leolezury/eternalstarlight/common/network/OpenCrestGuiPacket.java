@@ -11,33 +11,39 @@ import net.minecraft.world.entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public record OpenCrestGuiPacket(List<String> ownedCrests, List<String> crests) implements CustomPacketPayload {
+public record OpenCrestGuiPacket(List<CrestInstance> ownedCrests, List<CrestInstance> crests) implements CustomPacketPayload {
 	public static final CustomPacketPayload.Type<OpenCrestGuiPacket> TYPE = new CustomPacketPayload.Type<>(EternalStarlight.id("open_crest_gui"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, OpenCrestGuiPacket> STREAM_CODEC = StreamCodec.ofMember(OpenCrestGuiPacket::write, OpenCrestGuiPacket::read);
 
 	public static OpenCrestGuiPacket read(FriendlyByteBuf buf) {
 		int ownedSize = buf.readInt();
-		List<String> ownedCrestList = new ArrayList<>();
+		List<CrestInstance> ownedCrestList = new ArrayList<>();
 		for (int i = 0; i < ownedSize; i++) {
-			ownedCrestList.add(buf.readUtf(384));
+			ownedCrestList.add(new CrestInstance(buf.readUtf(384), buf.readInt()));
 		}
 		int size = buf.readInt();
-		List<String> crestList = new ArrayList<>();
+		List<CrestInstance> crestList = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			crestList.add(buf.readUtf(384));
+			crestList.add(new CrestInstance(buf.readUtf(384), buf.readInt()));
 		}
 		return new OpenCrestGuiPacket(ownedCrestList, crestList);
 	}
 
 	public static void write(OpenCrestGuiPacket packet, FriendlyByteBuf buf) {
 		buf.writeInt(packet.ownedCrests().size());
-		for (String string : packet.ownedCrests()) {
-			buf.writeUtf(string, 384);
+		for (CrestInstance instance : packet.ownedCrests()) {
+			buf.writeUtf(instance.id(), 384);
+			buf.writeInt(instance.level());
 		}
 		buf.writeInt(packet.crests().size());
-		for (String string : packet.crests()) {
-			buf.writeUtf(string, 384);
+		for (CrestInstance instance : packet.crests()) {
+			buf.writeUtf(instance.id(), 384);
+			buf.writeInt(instance.level());
 		}
+	}
+
+	public record CrestInstance(String id, int level) {
+
 	}
 
 	public static void handle(OpenCrestGuiPacket packet, Player player) {

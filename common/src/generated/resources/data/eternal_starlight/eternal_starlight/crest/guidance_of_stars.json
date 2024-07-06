@@ -1,6 +1,5 @@
 {
   "type": "lunar",
-  "mob_effects": [],
   "spell": "eternal_starlight:guidance_of_stars",
   "texture": "eternal_starlight:textures/crest/guidance_of_stars.png"
 }

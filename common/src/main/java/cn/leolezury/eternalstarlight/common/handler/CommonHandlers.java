@@ -173,7 +173,7 @@ public class CommonHandlers {
 
 	public static void onLivingTick(LivingEntity livingEntity) {
 		ESSpellUtil.tickSpells(livingEntity);
-		if (livingEntity instanceof Player player) {
+		if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
 			ESCrestUtil.tickCrests(player);
 		}
 		List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
