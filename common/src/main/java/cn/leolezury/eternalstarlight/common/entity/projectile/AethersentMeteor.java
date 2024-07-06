@@ -17,6 +17,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -251,6 +252,12 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	public EntityDimensions getDimensions(Pose pose) {
 		return super.getDimensions(pose).scale(getSize() / 10f);
+	}
+
+	@Nullable
+	@Override
+	protected ParticleOptions getTrailParticle() {
+		return null;
 	}
 
 	protected float getSoundVolume() {
