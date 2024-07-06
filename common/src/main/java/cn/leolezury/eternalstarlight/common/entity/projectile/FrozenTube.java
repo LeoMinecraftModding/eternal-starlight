@@ -114,7 +114,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.5f);
+		return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.7f);
 	}
 
 	@Environment(EnvType.CLIENT)

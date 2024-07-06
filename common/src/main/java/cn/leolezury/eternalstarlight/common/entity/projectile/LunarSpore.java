@@ -118,7 +118,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 0.7f);
+		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 0.75f);
 	}
 
 	@Environment(EnvType.CLIENT)

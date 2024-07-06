@@ -81,7 +81,7 @@ public class ClientHandlers {
 			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
 				if (effect.shouldRemove()) {
 					effectsToRemove.add(effect);
-				} else {
+				} else if (!Minecraft.getInstance().isPaused()) {
 					effect.worldTick();
 				}
 			}

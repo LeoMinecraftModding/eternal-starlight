@@ -1,14 +1,21 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -21,10 +28,12 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class GatekeeperFireball extends Fireball {
+public class GatekeeperFireball extends Fireball implements TrailOwner {
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	public GatekeeperFireball(EntityType<? extends Fireball> entityType, Level level) {
 		super(entityType, level);
 	}
@@ -158,5 +167,32 @@ public class GatekeeperFireball extends Fireball {
 			compoundTag.putUUID("Target", target.getUUID());
 		}
 		compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
+	}
+
+	@Override
+	public TrailEffect newTrail() {
+		return new TrailEffect(0.5f, 18);
+	}
+
+	@Override
+	public void updateTrail(TrailEffect effect) {
+		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+	}
+
+	@Override
+	public Vector4f getTrailColor() {
+		return new Vector4f(250 / 255f, 150 / 255f, 5 / 255f, 0.8f);
+	}
+
+	@Override
+	public boolean isTrailFullBright() {
+		return true;
+	}
+
+	@Environment(EnvType.CLIENT)
+	@Override
+	public RenderType getTrailRenderType() {
+		return RenderType.entityTranslucent(TRAIL_TEXTURE);
 	}
 }

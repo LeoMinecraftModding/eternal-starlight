@@ -90,12 +90,6 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, float r, float g, float b, float a, int light) {
-		render(consumer, stack, partialTicks, true, r, g, b, a, light);
-		render(consumer, stack, partialTicks, false, r, g, b, a, light);
-	}
-
-	@Environment(EnvType.CLIENT)
 	public void render(VertexConsumer consumer, PoseStack stack, float partialTicks, boolean vertical, float r, float g, float b, float a, int light) {
 		if (getPoints(vertical).size() >= 2) {
 			float textureX = 0;
@@ -120,6 +114,10 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 	public record TrailPoint(Vec3 upper, Vec3 lower) {
 		public Vec3 center() {
 			return upper().add(lower().subtract(upper()).scale(0.5));
+		}
+
+		public float width() {
+			return (float) (upper().distanceTo(lower()) / 2f);
 		}
 	}
 }

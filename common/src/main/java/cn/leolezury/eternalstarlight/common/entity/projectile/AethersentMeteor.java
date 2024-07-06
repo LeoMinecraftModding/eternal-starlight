@@ -1,20 +1,28 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
-import cn.leolezury.eternalstarlight.common.particle.LightningParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -34,11 +42,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class AethersentMeteor extends AbstractHurtingProjectile {
+public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
 	public int getSize() {
@@ -219,15 +228,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 		if (tickCount % 10 == 0) {
 			refreshDimensions();
 		}
-		if (level().isClientSide) {
-			Vec3 motion = getDeltaMovement();
-			for (int i = 0; i < 5; i++) {
-				float r = 0.65f + random.nextFloat() * 0.1f;
-				float g = 0.02f + random.nextFloat() * 0.1f;
-				float b = 0.73f + random.nextFloat() * 0.1f;
-				level().addParticle(new LightningParticleOptions(new Vector3f(r, g, b)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
-			}
-		} else {
+		if (!level().isClientSide) {
 			if (target == null && targetId != null) {
 				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
 					target = livingEntity;
@@ -236,7 +237,15 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 					targetId = null;
 				}
 			}
-		}
+		}/* else {
+			Vec3 motion = getDeltaMovement();
+			for (int i = 0; i < 5; i++) {
+				float r = 0.65f + random.nextFloat() * 0.1f;
+				float g = 0.02f + random.nextFloat() * 0.1f;
+				float b = 0.73f + random.nextFloat() * 0.1f;
+				level().addParticle(new LightningParticleOptions(new Vector3f(r, g, b)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
+			}
+		}*/
 	}
 
 	@Override
@@ -267,5 +276,51 @@ public class AethersentMeteor extends AbstractHurtingProjectile {
 
 	protected boolean shouldBurn() {
 		return false;
+	}
+
+	@Override
+	public TrailEffect newTrail() {
+		return new TrailEffect(Math.max(getSize() / 10f, 0.4f), 15);
+	}
+
+	@Override
+	public void updateTrail(TrailEffect effect) {
+		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
+		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+	}
+
+	@Environment(EnvType.CLIENT)
+	@Override
+	public TrailEffect.TrailPoint adjustPoint(TrailEffect.TrailPoint point, boolean vertical, float partialTicks) {
+		Vec3 center = point.center();
+		float width = point.width();
+		if (Minecraft.getInstance().getCameraEntity() != null) {
+			float yRot = Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90;
+			Vec3 upper = ESMathUtil.rotationToPosition(center, width, 0, yRot + 90);
+			Vec3 lower = ESMathUtil.rotationToPosition(center, width, 0, yRot - 90);
+			return new TrailEffect.TrailPoint(upper, lower);
+		}
+		return point;
+	}
+
+	@Override
+	public Vector4f getTrailColor() {
+		return new Vector4f(144 / 255f, 94 / 255f, 168 / 255f, 0.9f);
+	}
+
+	@Override
+	public boolean isTrailFullBright() {
+		return true;
+	}
+
+	@Override
+	public boolean shouldRenderHorizontal() {
+		return false;
+	}
+
+	@Environment(EnvType.CLIENT)
+	@Override
+	public RenderType getTrailRenderType() {
+		return RenderType.entityTranslucent(TRAIL_TEXTURE);
 	}
 }
