@@ -2,10 +2,14 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -142,6 +146,9 @@ public class ESCrestUtil {
 				})
 			)
 		);
+		if (!getCrests(player).isEmpty() && player.level() instanceof ServerLevel serverLevel && player.tickCount % 10 == 0) {
+			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(OrbitalTrailParticleOptions.magic(player), player.getX(), player.getY() - 1, player.getZ(), 0, 0.04, 0));
+		}
 	}
 
 	public static void applyCrestEffects(Player player, Crest.Instance crest) {

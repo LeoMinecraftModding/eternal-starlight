@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.LightningParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.*;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.MapCodec;
@@ -65,6 +62,17 @@ public class ESParticles {
 		@Override
 		public StreamCodec<? super RegistryFriendlyByteBuf, RingExplosionParticleOptions> streamCodec() {
 			return RingExplosionParticleOptions.STREAM_CODEC;
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<OrbitalTrailParticleOptions>> ORBITAL_TRAIL = PARTICLE_TYPES.register("orbital_trail", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<OrbitalTrailParticleOptions> codec() {
+			return OrbitalTrailParticleOptions.CODEC;
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, OrbitalTrailParticleOptions> streamCodec() {
+			return OrbitalTrailParticleOptions.STREAM_CODEC;
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_SMOKE = PARTICLE_TYPES.register("aethersent_smoke", () -> new SimpleParticleType(false));
