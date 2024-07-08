@@ -32,8 +32,9 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 		Vec3 upper = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch - 90, yaw);
 		Vec3 lower = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch + 90, yaw);
 		update(new TrailPoint(upper, lower), true);
-		Vec3 upper1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw - 90);
-		Vec3 lower1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw + 90);
+		Vec3 offset = upper.subtract(lower).cross(delta).normalize().scale(width() / 2);
+		Vec3 upper1 = pos.add(offset);
+		Vec3 lower1 = pos.add(offset.scale(-1));
 		update(new TrailPoint(upper1, lower1), false);
 	}
 
@@ -43,8 +44,9 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 		Vec3 upper = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch - 90, yaw);
 		Vec3 lower = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch + 90, yaw);
 		verticalPoints().addFirst(new TrailPoint(upper, lower));
-		Vec3 upper1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw - 90);
-		Vec3 lower1 = ESMathUtil.rotationToPosition(pos, width() / 2f, pitch, yaw + 90);
+		Vec3 offset = upper.subtract(lower).cross(delta).normalize().scale(width() / 2);
+		Vec3 upper1 = pos.add(offset);
+		Vec3 lower1 = pos.add(offset.scale(-1));
 		horizontalPoints().addFirst(new TrailPoint(upper1, lower1));
 	}
 

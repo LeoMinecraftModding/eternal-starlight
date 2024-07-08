@@ -16,16 +16,12 @@ public record Chain(List<Segment> segments) {
 		}
 	}
 
-	public void update(Vec3 targetPos, Vec3 headRotationTarget, Vec3 attachPos, float rotationSpeed, float headRotationSpeed) {
-		Vec3 rotationTarget = Vec3.ZERO;
+	public void update(Vec3 targetPos, Vec3 attachPos, float rotationSpeed) {
+		Vec3 rotationTarget = targetPos;
 		Vec3 lastLowerPos = targetPos;
 		for (int i = 0; i < segments().size(); i++) {
 			Segment segment = segments().get(i);
-			if (i == 0) {
-				segment.rotateTowards(headRotationTarget, headRotationSpeed);
-			} else {
-				segment.rotateTowards(rotationTarget, rotationSpeed);
-			}
+			segment.rotateTowards(rotationTarget, rotationSpeed);
 			segment.setUpperPosition(lastLowerPos);
 			rotationTarget = segment.getUpperPosition();
 			lastLowerPos = segment.getLowerPosition();

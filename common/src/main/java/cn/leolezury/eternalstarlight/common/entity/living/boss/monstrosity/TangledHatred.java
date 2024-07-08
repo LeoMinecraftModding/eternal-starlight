@@ -17,6 +17,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -55,7 +56,6 @@ public class TangledHatred extends ESBoss {
 	public final List<TangledHatredPart> parts = new ArrayList<>();
 	private Vec3 targetPos = null;
 	private Vec3 currentTargetPos = null;
-	private float speed = 0.1f;
 	private int ticksToNextMeleeAttack;
 
 	private final BehaviourManager<TangledHatred> behaviourManager = new BehaviourManager<>(this, List.of(
@@ -178,10 +178,21 @@ public class TangledHatred extends ESBoss {
 				if (currentTargetPos == null) {
 					currentTargetPos = position();
 				}
-				currentTargetPos = ESMathUtil.approachVec(currentTargetPos, targetPos, speed);
 			} else {
 				targetPos = position().offsetRandom(getRandom(), 10);
-				currentTargetPos = ESMathUtil.approachVec(this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)), targetPos, speed);
+			}
+			if (this.chain.getEndPos().isPresent()) {
+				Vec3 endPos = this.chain.getEndPos().get();
+				float targetPitch = ESMathUtil.positionToPitch(position(), targetPos);
+				float targetYaw = ESMathUtil.positionToYaw(position(), targetPos);
+				float currentPitch = ESMathUtil.positionToPitch(position(), endPos);
+				float currentYaw = ESMathUtil.positionToYaw(position(), endPos);
+				float speed = 0.3f;
+				float turnSpeed = 0.5f;
+				float pitch = Mth.approachDegrees(currentPitch, targetPitch, turnSpeed);
+				float yaw = Mth.approachDegrees(currentYaw, targetYaw, turnSpeed);
+				float radius = Mth.approach((float) endPos.distanceTo(position()), (float) targetPos.distanceTo(position()), speed);
+				currentTargetPos = ESMathUtil.rotationToPosition(position(), radius, pitch, yaw);
 			}
 			if (target != null) {
 				calculateAttackTargetPos().ifPresent(vec3 -> targetPos = vec3);
@@ -192,12 +203,11 @@ public class TangledHatred extends ESBoss {
 					targetPos = new Vec3(targetPos.x, position().y() + getRandom().nextInt(5, 15), targetPos.z);
 				}
 			}
-			this.speed = target != null && ticksToNextMeleeAttack == 0 ? 0.2f : 0.15f;
 			if (target != null && ticksToNextMeleeAttack == 0 && target.getBoundingBox().contains(this.chain.getEndPos().orElse(position().add(0, getBbHeight(), 0)))) {
 				doHurtTarget(target);
 			}
 			if (currentTargetPos != null) {
-				this.chain.update(currentTargetPos, targetPos, position(), 3, 4);
+				this.chain.update(currentTargetPos, position(), 3);
 			}
 			if (level() instanceof ServerLevel serverLevel) {
 				for (Chain.Segment segment : chain.segments()) {
