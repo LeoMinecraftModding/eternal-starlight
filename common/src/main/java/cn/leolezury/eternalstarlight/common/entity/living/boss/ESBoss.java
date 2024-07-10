@@ -195,8 +195,13 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
 					item.setGlowingTag(true);
 					item.setExtendedLifetime();
 				}
+				dropExtraLoot(player);
 			}
 		}
+	}
+
+	public void dropExtraLoot(ServerPlayer player) {
+
 	}
 
 	@Override

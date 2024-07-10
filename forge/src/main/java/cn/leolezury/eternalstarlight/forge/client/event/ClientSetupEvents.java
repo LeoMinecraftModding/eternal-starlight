@@ -4,10 +4,12 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -98,5 +100,13 @@ public class ClientSetupEvents {
 		});
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("current_crest"), (graphics, partialTicks) -> ClientHandlers.renderCurrentCrest(graphics));
+	}
+
+	@SubscribeEvent
+	public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ClientSetupHandlers.KEY_MAPPINGS.entrySet()) {
+			event.register(mapping.getValue());
+		}
 	}
 }

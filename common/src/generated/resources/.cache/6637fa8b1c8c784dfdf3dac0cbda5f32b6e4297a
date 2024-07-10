@@ -1,4 +1,4 @@
-// 1.21	2024-06-15T23:17:26.105028	Tags for minecraft:block mod id eternal_starlight
+// 1.21	2024-07-10T20:40:21.6652637	Tags for minecraft:block mod id eternal_starlight
 c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/block/abyssal_fire_survives_on.json
 1eef840b8164c4fe4c7c91c1c2f8fadddbc920c0 data/eternal_starlight/tags/block/aethersent_meteor_replaceable.json
 4d7918ebeae3188181e21326d4f069e3d6305f7e data/eternal_starlight/tags/block/base_stone_starlight.json
@@ -24,7 +24,7 @@ a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_s
 71d3acffc40aa3aa12927d61cf5b48e738b1ac97 data/minecraft/tags/block/dirt.json
 4fad66675787b4f308e4629dd82bbf1aae4a1570 data/minecraft/tags/block/dragon_immune.json
 2e6a976a86010e675762413d1e443724a82ff7ac data/minecraft/tags/block/fence_gates.json
-29359773ec8ed8570903d3a3fa2c14e737b319c0 data/minecraft/tags/block/flower_pots.json
+2127ff20dfe51ebd88823155f4902a1868c93c17 data/minecraft/tags/block/flower_pots.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/frog_prefer_jump_to.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_sound_blocks.json
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/block/leaves.json

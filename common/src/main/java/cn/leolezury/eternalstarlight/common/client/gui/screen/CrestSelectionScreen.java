@@ -136,6 +136,9 @@ public class CrestSelectionScreen extends Screen {
 	}
 
 	private void selectCrest() {
+		if (selectedCrest.crest().attributeModifiers().isEmpty() && selectedCrest.crest().effects().isEmpty()) {
+			return;
+		}
 		if (crestButtons.stream().anyMatch((crestButton -> !crestButton.isEmpty() && crestButton.getCrest().crest().type() == selectedCrest.crest().type()))) {
 			return;
 		}

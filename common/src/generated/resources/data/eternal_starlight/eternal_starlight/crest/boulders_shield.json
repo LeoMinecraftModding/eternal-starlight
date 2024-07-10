@@ -9,6 +9,7 @@
       "operation": "add_value"
     }
   ],
+  "max_level": 2,
   "mob_effects": [
     {
       "effect": "minecraft:resistance",

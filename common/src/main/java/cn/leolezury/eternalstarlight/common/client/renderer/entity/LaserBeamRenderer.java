@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.RayAttack;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
@@ -39,12 +41,26 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 		double targetY = endPos.y;
 		double targetZ = endPos.z;
 
-		double posX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
-		double posY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
-		double posZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());
+		double entityX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
+		double entityY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
+		double entityZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());
+
+		double posX = entityX;
+		double posY = entityY;
+		double posZ = entityZ;
 
 		stack.pushPose();
-
+		if (laserBeam.getCaster().isPresent()) {
+			Entity caster = laserBeam.getCaster().get();
+			posX = Mth.lerp(partialTicks, caster.xo, caster.getX());
+			posY = Mth.lerp(partialTicks, caster.yo, caster.getY());
+			posZ = Mth.lerp(partialTicks, caster.zo, caster.getZ());
+			Vec3 pos = laserBeam.getPositionForCaster(caster, new Vec3(posX, posY, posZ));
+			posX = pos.x;
+			posY = pos.y;
+			posZ = pos.z;
+			stack.translate(posX - entityX, posY - entityY, posZ - entityZ);
+		}
 		playerCast = Minecraft.getInstance().options.getCameraType().isFirstPerson() && laserBeam.getCaster().isPresent() && Minecraft.getInstance().player != null && laserBeam.getCaster().get().getUUID().equals(Minecraft.getInstance().player.getUUID());
 
 		if (playerCast && Minecraft.getInstance().getCameraEntity() != null) {
@@ -57,7 +73,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 
 		float length = (float) Math.sqrt(Math.pow(targetX - posX, 2) + Math.pow(targetY - posY, 2) + Math.pow(targetZ - posZ, 2));
 
-		VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
+		VertexConsumer consumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
 		// consumer = bufferSource.getBuffer(ESRenderType.laserBeam(getTextureLocation(laserBeam)));
 
 		// render beam

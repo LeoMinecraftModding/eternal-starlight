@@ -39,6 +39,14 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.GLACITE_SHARD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.AETHERSENT_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(15))));
 
+		consumer.accept(ESLootTables.BOSS_THE_GATEKEEPER,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(Items.COAL).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
+					.add(LootItem.lootTableItem(Items.GOLD_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
+					.add(LootItem.lootTableItem(Items.IRON_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
+					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(5, 10))).setWeight(75))));
+
 		consumer.accept(ESLootTables.BOSS_STARLIGHT_GOLEM,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()

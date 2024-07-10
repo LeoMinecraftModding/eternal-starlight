@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:challenge_gatekeeper",
+  "parent": "eternal_starlight:obtain_orb_of_prophecy",
   "criteria": {
     "in_dim": {
       "conditions": {

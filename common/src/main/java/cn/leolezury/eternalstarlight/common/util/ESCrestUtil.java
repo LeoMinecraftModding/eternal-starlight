@@ -2,13 +2,16 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,6 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class ESCrestUtil {
 	public static List<Crest.Instance> getCrests(Player player) {
@@ -70,7 +74,7 @@ public class ESCrestUtil {
 	public static boolean giveCrest(Player player, Crest.Instance crest) {
 		List<Crest.Instance> crests = getCrests(player, "OwnedCrests");
 		for (Crest.Instance instance : crests) {
-			if (instance.crest() == crest.crest() && instance.level() > crest.level()) {
+			if (instance.crest() == crest.crest() && instance.level() >= crest.level()) {
 				return false;
 			}
 		}
@@ -80,8 +84,13 @@ public class ESCrestUtil {
 		return true;
 	}
 
+	public static boolean upgradeCrest(Player player, ResourceKey<Crest> key) {
+		Optional<Crest.Instance> instance = Crest.Instance.of(player.registryAccess(), key, getCrestLevel(player, key) + 1);
+		return instance.isPresent() && giveCrest(player, instance.get());
+	}
+
 	public static boolean removeCrest(Player player, Crest crest) {
-		return removeCrest(player, crest, "OwnedCrests") && removeCrest(player, crest, "Crests");
+		return removeCrest(player, crest, "OwnedCrests") || removeCrest(player, crest, "Crests");
 	}
 
 	public static boolean removeCrest(Player player, Crest crest, String tagId) {
@@ -113,8 +122,37 @@ public class ESCrestUtil {
 		return result;
 	}
 
+	public static int getCrestLevel(Player player, ResourceKey<Crest> key) {
+		Crest crest = player.registryAccess().registryOrThrow(ESRegistries.CREST).get(key);
+		return getCrestLevel(player, crest);
+	}
+
+	public static int getCrestLevel(Player player, Crest crest) {
+		for (Crest.Instance instance : getCrests(player, "OwnedCrests")) {
+			if (instance.crest() == crest) {
+				return instance.level();
+			}
+		}
+		return 0;
+	}
+
 	public static void tickCrests(Player player) {
-		getCrests(player).forEach(crest -> {
+		List<Crest.Instance> ownedCrestInstances = getCrests(player, "OwnedCrests");
+		List<Crest.Instance> crestInstances = getCrests(player);
+		ItemStack mainHand = player.getMainHandItem();
+		ItemStack offHand = player.getOffhandItem();
+		if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
+			CurrentCrestComponent component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
+			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest() == component.crest().value())) {
+				mainHand.remove(ESDataComponents.CURRENT_CREST.get());
+			}
+		} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
+			CurrentCrestComponent component = offHand.get(ESDataComponents.CURRENT_CREST.get());
+			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest() == component.crest().value())) {
+				offHand.remove(ESDataComponents.CURRENT_CREST.get());
+			}
+		}
+		crestInstances.forEach(crest -> {
 			if (player.getAbilities().instabuild) {
 				applyCrestEffects(player, crest);
 			} else {
@@ -138,7 +176,7 @@ public class ESCrestUtil {
 					if (instance != null) {
 						instance.getModifiers().forEach(m -> {
 							if (m.id().toString().startsWith(modifier.id().toString())
-								&& getCrests(player).stream().noneMatch(c1 -> c1.crest().attributeModifiers().isPresent() && c1.crest().attributeModifiers().get().stream().anyMatch(mod -> mod.getModifierId(c1.level()).equals(m.id())))) {
+								&& crestInstances.stream().noneMatch(c1 -> c1.crest().attributeModifiers().isPresent() && c1.crest().attributeModifiers().get().stream().anyMatch(mod -> mod.getModifierId(c1.level()).equals(m.id())))) {
 								instance.removeModifier(m.id());
 							}
 						});
@@ -146,7 +184,7 @@ public class ESCrestUtil {
 				})
 			)
 		);
-		if (!getCrests(player).isEmpty() && player.level() instanceof ServerLevel serverLevel && player.tickCount % 10 == 0) {
+		if (!crestInstances.isEmpty() && player.level() instanceof ServerLevel serverLevel && player.tickCount % 100 == 0) {
 			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(OrbitalTrailParticleOptions.magic(player), player.getX(), player.getY() - 1, player.getZ(), 0, 0.04, 0));
 		}
 	}

@@ -44,12 +44,12 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 
 	@Override
 	public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
-		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.particle()), camera, f);
+		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, f);
 	}
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.CUSTOM;
 	}
 
 	public static class Provider implements ParticleProvider<ESSmokeParticleOptions> {

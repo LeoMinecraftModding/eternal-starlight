@@ -67,12 +67,12 @@ public class CursedGardenMazePiece extends StructurePiece {
 			for (int z = 0; z < MAZE_SIZE; z++) {
 				for (int blockX = x * STRUCTURE_SCALE; blockX < x * STRUCTURE_SCALE + STRUCTURE_SCALE; blockX++) {
 					for (int blockZ = z * STRUCTURE_SCALE; blockZ < z * STRUCTURE_SCALE + STRUCTURE_SCALE; blockZ++) {
-						placeBlock(level, x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1 ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, 0, blockZ, box);
+						placeBlock(level, x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1 ? ESBlocks.SHADEGRIEVE.get().defaultBlockState() : ESBlocks.GRIMSTONE_TILES.get().defaultBlockState(), blockX, 0, blockZ, box);
 						boolean bossRoom = Math.pow(blockX - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(blockZ - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE;
 						if (maze[x][z] && !bossRoom) {
 							int leavesHeight = STRUCTURE_HEIGHT / 7 + random.nextInt(STRUCTURE_HEIGHT / 7);
 							for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
-								placeBlock(level, (y <= leavesHeight && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? (random.nextInt(3) == 0 ? ESBlocks.BLOOMING_SHADEGRIEVE.get() : ESBlocks.SHADEGRIEVE.get()).defaultBlockState().setValue(ShadegrieveBlock.TOP, y == leavesHeight) : ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), blockX, y + 1, blockZ, box);
+								placeBlock(level, (y <= leavesHeight && x != 0 && x != MAZE_SIZE - 1 && z != 0 && z != MAZE_SIZE - 1) ? (random.nextInt(3) == 0 ? ESBlocks.BLOOMING_SHADEGRIEVE.get() : ESBlocks.SHADEGRIEVE.get()).defaultBlockState().setValue(ShadegrieveBlock.TOP, y == leavesHeight) : ESBlocks.GRIMSTONE_TILES.get().defaultBlockState(), blockX, y + 1, blockZ, box);
 							}
 						} else {
 							for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
@@ -103,7 +103,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 							int yFrom = random.nextInt(yTo - 3);
 							direction = direction.getAxis() == Direction.Axis.X ? direction.getOpposite() : direction;
 							for (int y = yFrom; y < yTo; y++) {
-								if (getBlock(level, vineX, y, vineZ, box).isAir() && (getBlock(level, x, y, z, box).is(ESBlocks.VOIDSTONE_BRICKS.get()) || getBlock(level, x, y, z, box).is(ESBlocks.SHADEGRIEVE.get()))) {
+								if (getBlock(level, vineX, y, vineZ, box).isAir() && (getBlock(level, x, y, z, box).is(ESBlocks.GRIMSTONE_TILES.get()) || getBlock(level, x, y, z, box).is(ESBlocks.SHADEGRIEVE.get()))) {
 									placeBlock(level, Blocks.VINE.defaultBlockState().setValue(VineBlock.PROPERTY_BY_DIRECTION.get(direction), true), vineX, y, vineZ, box);
 								}
 							}

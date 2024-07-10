@@ -1,0 +1,6 @@
+{
+  "type": "blaze",
+  "max_level": 3,
+  "spell": "eternal_starlight:laser_beam",
+  "texture": "eternal_starlight:textures/crest/blazing_beam.png"
+}

@@ -236,20 +236,28 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.LUNAR_GRASS.get());
 		cross(ESBlocks.GLOWING_LUNAR_GRASS.get());
 		cross(ESBlocks.CRESCENT_GRASS.get());
+		pottedPlant(ESBlocks.POTTED_CRESCENT_GRASS.get(), blockTexture(ESBlocks.CRESCENT_GRASS.get()));
 		cross(ESBlocks.GLOWING_CRESCENT_GRASS.get());
+		pottedPlant(ESBlocks.POTTED_GLOWING_CRESCENT_GRASS.get(), blockTexture(ESBlocks.GLOWING_CRESCENT_GRASS.get()));
 		cross(ESBlocks.PARASOL_GRASS.get());
+		pottedPlant(ESBlocks.POTTED_PARASOL_GRASS.get(), blockTexture(ESBlocks.PARASOL_GRASS.get()));
 		cross(ESBlocks.GLOWING_PARASOL_GRASS.get());
+		pottedPlant(ESBlocks.POTTED_GLOWING_PARASOL_GRASS.get(), blockTexture(ESBlocks.GLOWING_PARASOL_GRASS.get()));
 		cross(ESBlocks.LUNAR_BUSH.get());
 		cross(ESBlocks.GLOWING_LUNAR_BUSH.get());
 		doublePlant(ESBlocks.TALL_CRESCENT_GRASS.get());
 		doublePlant(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get());
 		doublePlant(ESBlocks.LUNAR_REED.get());
 		cross(ESBlocks.WHISPERBLOOM.get());
+		pottedPlant(ESBlocks.POTTED_WHISPERBLOOM.get(), blockTexture(ESBlocks.WHISPERBLOOM.get()));
 		cross(ESBlocks.GLADESPIKE.get());
+		pottedPlant(ESBlocks.POTTED_GLADESPIKE.get(), blockTexture(ESBlocks.GLADESPIKE.get()));
 		cross(ESBlocks.VIVIDSTALK.get());
+		pottedPlant(ESBlocks.POTTED_VIVIDSTALK.get(), blockTexture(ESBlocks.VIVIDSTALK.get()));
 		doublePlant(ESBlocks.TALL_GLADESPIKE.get());
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
 		mushroomBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
+		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 
 		cross(ESBlocks.SWAMP_ROSE.get());
@@ -257,7 +265,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.FANTABUD.get());
 		cross(ESBlocks.GREEN_FANTABUD.get());
 		cross(ESBlocks.FANTAFERN.get());
+		pottedPlant(ESBlocks.POTTED_FANTAFERN.get(), blockTexture(ESBlocks.FANTAFERN.get()));
 		cross(ESBlocks.GREEN_FANTAFERN.get());
+		pottedPlant(ESBlocks.POTTED_GREEN_FANTAFERN.get(), blockTexture(ESBlocks.GREEN_FANTAFERN.get()));
 		cross(ESBlocks.FANTAGRASS.get());
 		cross(ESBlocks.GREEN_FANTAGRASS.get());
 

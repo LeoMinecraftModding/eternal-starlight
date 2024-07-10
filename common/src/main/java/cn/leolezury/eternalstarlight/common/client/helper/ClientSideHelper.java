@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.book.Book;
 import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.DisplayBookComponent;
@@ -28,6 +29,13 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
+	@Override
+	public void handleS2cNoParam(NoParametersPacket packet) {
+		switch (packet.id()) {
+			case "cancel_weather" -> ClientWeatherInfo.WEATHER = null;
+		}
+	}
+
 	@Override
 	public void handleParticlePacket(ParticlePacket packet) {
 		ClientLevel clientLevel = Minecraft.getInstance().level;

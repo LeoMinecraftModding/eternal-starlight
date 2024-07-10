@@ -15,7 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
-import net.neoforged.neoforge.event.entity.SpawnPlacementRegisterEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.jetbrains.annotations.Nullable;
@@ -40,11 +40,11 @@ public class CommonSetupEvents {
 	}
 
 	@SubscribeEvent
-	public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
+	public static void onSpawnPlacementRegister(RegisterSpawnPlacementsEvent event) {
 		CommonSetupHandlers.SpawnPlacementRegisterStrategy strategy = new CommonSetupHandlers.SpawnPlacementRegisterStrategy() {
 			@Override
 			public <T extends Mob> void register(EntityType<T> entityType, @Nullable SpawnPlacementType placementType, @Nullable Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
-				event.register(entityType, placementType, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.AND);
+				event.register(entityType, placementType, heightmap, predicate, RegisterSpawnPlacementsEvent.Operation.AND);
 			}
 		};
 		CommonSetupHandlers.registerSpawnPlacements(strategy);

@@ -4,6 +4,11 @@ import cn.leolezury.eternalstarlight.common.network.*;
 
 public class EmptyClientHelper implements ClientHelper {
 	@Override
+	public void handleS2cNoParam(NoParametersPacket packet) {
+
+	}
+
+	@Override
 	public void handleParticlePacket(ParticlePacket packet) {
 
 	}

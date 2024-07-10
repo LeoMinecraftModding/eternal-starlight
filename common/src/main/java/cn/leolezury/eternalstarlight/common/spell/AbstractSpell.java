@@ -20,11 +20,11 @@ public abstract class AbstractSpell {
 	}
 
 	public boolean canCast(LivingEntity entity, boolean checkCrystal) {
-		boolean crystalCheck = !checkCrystal || (entity instanceof Player player && hasRightCrystal(player.getInventory()));
+		boolean crystalCheck = !checkCrystal || (entity instanceof Player player && (player.getAbilities().instabuild || hasNeededCrystal(player.getInventory())));
 		return crystalCheck && ESSpellUtil.getCooldownFor(entity, this) <= 0 && checkExtraConditions(entity);
 	}
 
-	public boolean hasRightCrystal(Inventory inventory) {
+	public boolean hasNeededCrystal(Inventory inventory) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack stack = inventory.getItem(i);
 			if (stack.is(spellProperties().type().getCrystalsTag())) {
@@ -39,12 +39,16 @@ public abstract class AbstractSpell {
 	}
 
 	public void start(LivingEntity entity, boolean damageCrystal) {
-		if (damageCrystal && entity instanceof Player player) {
+		start(entity, 1, damageCrystal);
+	}
+
+	public void start(LivingEntity entity, int strength, boolean damageCrystal) {
+		if (damageCrystal && entity instanceof Player player && !player.getAbilities().instabuild) {
 			damageCrystal(player);
 		}
 		onStart(entity);
 		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setSpellData(new SpellCastData(true, this, 0));
+			caster.setSpellData(new SpellCastData(true, this, strength, 0));
 		}
 	}
 
@@ -64,9 +68,6 @@ public abstract class AbstractSpell {
 			onPreparationTick(entity, ticks);
 		} else if (ticks <= spellProperties().preparationTicks() + spellProperties().spellTicks()) {
 			onSpellTick(entity, ticks - spellProperties().preparationTicks());
-		}
-		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setSpellData(new SpellCastData(true, this, ticks));
 		}
 	}
 

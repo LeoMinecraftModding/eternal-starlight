@@ -75,6 +75,17 @@ public class ESParticles {
 			return OrbitalTrailParticleOptions.STREAM_CODEC;
 		}
 	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<GlowParticleOptions> codec() {
+			return GlowParticleOptions.CODEC;
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GlowParticleOptions> streamCodec() {
+			return GlowParticleOptions.STREAM_CODEC;
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_SMOKE = PARTICLE_TYPES.register("aethersent_smoke", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SMOKE_TRAIL = PARTICLE_TYPES.register("smoke_trail", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_EXPLOSION = PARTICLE_TYPES.register("aethersent_explosion", () -> new SimpleParticleType(false));

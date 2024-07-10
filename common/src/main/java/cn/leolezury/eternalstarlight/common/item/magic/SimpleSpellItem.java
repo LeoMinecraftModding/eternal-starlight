@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.magic;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
+import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -28,7 +29,7 @@ public class SimpleSpellItem extends Item {
 
 	@Override
 	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
-		if (livingEntity instanceof SpellCaster caster && caster.getSpellData().spell() != spell.value()) {
+		if (livingEntity instanceof SpellCaster caster && (caster.getSpellData().spell() != spell.value() || !caster.getSpellData().hasSpell())) {
 			livingEntity.stopUsingItem();
 			if (livingEntity instanceof Player player) {
 				player.getCooldowns().addCooldown(this, spell.value().spellProperties().cooldownTicks());
@@ -55,6 +56,9 @@ public class SimpleSpellItem extends Item {
 			player.startUsingItem(interactionHand);
 			itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 			spell.value().start(player, false);
+			if (player instanceof SpellCaster caster) {
+				caster.setSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+			}
 			return InteractionResultHolder.consume(itemStack);
 		}
 		return InteractionResultHolder.fail(itemStack);

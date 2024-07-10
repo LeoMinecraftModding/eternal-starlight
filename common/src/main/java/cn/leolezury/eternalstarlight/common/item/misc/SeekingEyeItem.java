@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
 import cn.leolezury.eternalstarlight.common.entity.misc.EyeOfSeeking;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -14,7 +13,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -26,21 +24,16 @@ public class SeekingEyeItem extends Item {
 
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack itemStack = player.getItemInHand(hand);
-		if (hand != InteractionHand.MAIN_HAND) {
-			return InteractionResultHolder.fail(itemStack);
-		}
 		player.startUsingItem(hand);
-		if (level instanceof ServerLevel) {
-			ServerLevel serverLevel = (ServerLevel) level;
-			TagKey<Structure> structureTagKey = ESTags.Structures.BOSS_STRUCTURES;
-			if (player.getItemInHand(InteractionHand.OFF_HAND).is(Items.REDSTONE)) {
-				structureTagKey = ESTags.Structures.GOLEM_FORGE;
+		if (level instanceof ServerLevel serverLevel) {
+			TagKey<Structure> key = ESTags.Structures.BOSS_STRUCTURES;
+			if (player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND).is(ESTags.Items.GOLEM_FORGE_LOCATORS)) {
+				key = ESTags.Structures.GOLEM_FORGE;
 			}
-			if (player.getItemInHand(InteractionHand.OFF_HAND).is(ESItems.RED_CRYSTAL_MOSS_CARPET.get()) || player.getItemInHand(InteractionHand.OFF_HAND).is(ESItems.BLUE_CRYSTAL_MOSS_CARPET.get())) {
-				structureTagKey = ESTags.Structures.CURSED_GARDEN;
+			if (player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND).is(ESTags.Items.CURSED_GARDEN_LOCATORS)) {
+				key = ESTags.Structures.CURSED_GARDEN;
 			}
-			// else if
-			BlockPos blockPos = serverLevel.findNearestMapStructure(structureTagKey, player.blockPosition(), 100, false);
+			BlockPos blockPos = serverLevel.findNearestMapStructure(key, player.blockPosition(), 100, false);
 			if (blockPos != null) {
 				EyeOfSeeking eyeOfSeeking = new EyeOfSeeking(level, player.getX(), player.getY(0.5D), player.getZ());
 				eyeOfSeeking.setItem(itemStack);
@@ -58,7 +51,6 @@ public class SeekingEyeItem extends Item {
 				return InteractionResultHolder.success(itemStack);
 			}
 		}
-
 		return InteractionResultHolder.consume(itemStack);
 	}
 }

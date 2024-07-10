@@ -14,6 +14,24 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public abstract class ESRenderType extends RenderType {
+	public static final RenderType PORTAL = create(EternalStarlight.ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
+		.setTextureState(NO_TEXTURE)
+		.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+		.setCullState(NO_CULL)
+		.setLightmapState(LIGHTMAP)
+		.setOverlayState(OVERLAY)
+		.createCompositeState(true));
+
+	public static final RenderType PARTICLE = create(EternalStarlight.ID + ":particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
+		.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
+		.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+		.setCullState(NO_CULL)
+		.setLightmapState(LIGHTMAP)
+		.setOverlayState(OVERLAY)
+		.createCompositeState(true));
+
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
 		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
 	}
@@ -25,28 +43,6 @@ public abstract class ESRenderType extends RenderType {
 			.setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
 			.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeLaserBeam))
 			.setLightmapState(LIGHTMAP)
-			.createCompositeState(true));
-	}
-
-	public static RenderType portal() {
-		return create(EternalStarlight.ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
-			.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
-			.setTextureState(NO_TEXTURE)
-			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-			.setCullState(NO_CULL)
-			.setLightmapState(LIGHTMAP)
-			.setOverlayState(OVERLAY)
-			.createCompositeState(true));
-	}
-
-	public static RenderType particle() {
-		return create(EternalStarlight.ID + ":particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
-			.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
-			.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
-			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-			.setCullState(NO_CULL)
-			.setLightmapState(LIGHTMAP)
-			.setOverlayState(OVERLAY)
 			.createCompositeState(true));
 	}
 

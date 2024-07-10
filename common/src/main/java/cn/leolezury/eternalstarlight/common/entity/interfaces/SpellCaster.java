@@ -6,4 +6,8 @@ public interface SpellCaster {
 	SpellCastData getSpellData();
 
 	void setSpellData(SpellCastData data);
+
+	SpellCastData.SpellSource getSpellSource();
+
+	void setSpellSource(SpellCastData.SpellSource source);
 }

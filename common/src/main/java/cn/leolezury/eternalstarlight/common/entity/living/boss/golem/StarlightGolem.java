@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
@@ -12,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
+import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -342,6 +344,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void dropExtraLoot(ServerPlayer player) {
+		ESCrestUtil.upgradeCrest(player, ESCrests.BLAZING_BEAM);
 	}
 
 	@Override

@@ -21,6 +21,8 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 	@Unique
 	private SpellCastData spellCastData = SpellCastData.getDefault();
 	@Unique
+	private SpellCastData.SpellSource spellSource = e -> true;
+	@Unique
 	private Entity grappling;
 
 	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))
@@ -70,6 +72,16 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 	@Override
 	public void setSpellData(SpellCastData data) {
 		this.spellCastData = data;
+	}
+
+	@Override
+	public SpellCastData.SpellSource getSpellSource() {
+		return spellSource;
+	}
+
+	@Override
+	public void setSpellSource(SpellCastData.SpellSource spellSource) {
+		this.spellSource = spellSource;
 	}
 
 	@Override

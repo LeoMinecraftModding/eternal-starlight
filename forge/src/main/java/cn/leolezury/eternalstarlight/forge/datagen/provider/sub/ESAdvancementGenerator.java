@@ -56,7 +56,9 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("challenged", ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":challenge_gatekeeper");
 
-		AdvancementHolder enterDim = Advancement.Builder.advancement().parent(challengeGatekeeper).display(
+		AdvancementHolder obtainOrbOfProphecy = addItemObtain(consumer, challengeGatekeeper, "obtain_orb_of_prophecy", ESItems.ORB_OF_PROPHECY.get());
+
+		AdvancementHolder enterDim = Advancement.Builder.advancement().parent(obtainOrbOfProphecy).display(
 				ESBlocks.LUNAR_LOG.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.description"),

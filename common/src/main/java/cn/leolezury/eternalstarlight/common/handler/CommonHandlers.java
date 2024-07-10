@@ -2,14 +2,17 @@ package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
+import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
-import cn.leolezury.eternalstarlight.common.network.CancelWeatherPacket;
+import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -23,6 +26,8 @@ import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -104,7 +109,7 @@ public class CommonHandlers {
 			weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
 				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
 			}), () -> {
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new CancelWeatherPacket(true));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
 			});
 		}
 	}
@@ -290,6 +295,60 @@ public class CommonHandlers {
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
 		if (player instanceof ServerPlayer serverPlayer && advancement.id().equals(EternalStarlight.id("enter_starlight"))) {
 			ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("enter_starlight"));
+		}
+	}
+
+	public static void onC2sNoParamPacket(ServerPlayer player, String id) {
+		switch (id) {
+			case "switch_crest" -> {
+				List<Crest.Instance> crests = ESCrestUtil.getCrests(player, "OwnedCrests");
+				ItemStack mainHand = player.getMainHandItem();
+				ItemStack offHand = player.getOffhandItem();
+				ItemStack spellItem;
+				CurrentCrestComponent component = null;
+				Crest nextCrest = null;
+				if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
+					component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
+					spellItem = mainHand;
+				} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
+					component = offHand.get(ESDataComponents.CURRENT_CREST.get());
+					spellItem = offHand;
+				} else if (mainHand.is(ESItems.ORB_OF_PROPHECY.get())) {
+					spellItem = mainHand;
+				} else if (offHand.is(ESItems.ORB_OF_PROPHECY.get())) {
+					spellItem = offHand;
+				} else {
+					spellItem = null;
+				}
+				if (component != null) {
+					find:
+					for (int i = 0; i < crests.size(); i++) {
+						if (crests.get(i).crest() == component.crest().value() && i < crests.size() - 1) {
+							for (int j = i + 1; j < crests.size(); j++) {
+								if (crests.get(j).crest().spell().isPresent()) {
+									nextCrest = crests.get(j).crest();
+									break find;
+								}
+							}
+						}
+					}
+				} else {
+					for (Crest.Instance instance : crests) {
+						if (instance.crest().spell().isPresent()) {
+							nextCrest = instance.crest();
+							break;
+						}
+					}
+				}
+				if (spellItem != null) {
+					if (nextCrest != null) {
+						Registry<Crest> registry = player.registryAccess().registryOrThrow(ESRegistries.CREST);
+						registry.getResourceKey(nextCrest).ifPresent(crestResourceKey -> spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), new CurrentCrestComponent(registry.getHolderOrThrow(crestResourceKey))).build()));
+					} else {
+						spellItem.remove(ESDataComponents.CURRENT_CREST.get());
+					}
+				}
+			}
 		}
 	}
 

@@ -83,6 +83,10 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 		this.surviveAfterDeath = this.random.nextInt(5) > 0;
 	}
 
+	public void setSurviveAfterDeath(boolean surviveAfterDeath) {
+		this.surviveAfterDeath = surviveAfterDeath;
+	}
+
 	public void lerpMotion(double d, double e, double f) {
 		this.setDeltaMovement(d, e, f);
 		if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
@@ -161,6 +165,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.put("Item", this.getItem().save(this.registryAccess()));
+		compoundTag.putBoolean("SurviveAfterDeath", surviveAfterDeath);
 	}
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -169,7 +174,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 		} else {
 			this.setItem(this.getDefaultItem());
 		}
-
+		this.surviveAfterDeath = compoundTag.getBoolean("SurviveAfterDeath");
 	}
 
 	private ItemStack getDefaultItem() {

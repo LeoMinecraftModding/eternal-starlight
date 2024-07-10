@@ -1,12 +1,16 @@
 package cn.leolezury.eternalstarlight.common.crest;
 
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -15,13 +19,14 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.List;
 import java.util.Optional;
 
-public record Crest(ManaType type, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers) {
-	public Crest(ManaType element, ResourceLocation texture, AbstractSpell spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers) {
-		this(element, texture, Optional.ofNullable(spell), Optional.of(effects), Optional.of(attributeModifiers));
+public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers) {
+	public Crest(ManaType type, int maxLevel, ResourceLocation texture, AbstractSpell spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers) {
+		this(type, maxLevel, texture, Optional.ofNullable(spell), Optional.of(effects), Optional.of(attributeModifiers));
 	}
 
 	public static final Codec<Crest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		ManaType.CODEC.fieldOf("type").forGetter(Crest::type),
+		Codec.INT.fieldOf("max_level").forGetter(Crest::maxLevel),
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(Crest::texture),
 		ESSpells.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
 		MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects),
@@ -55,6 +60,10 @@ public record Crest(ManaType type, ResourceLocation texture, Optional<AbstractSp
 	}
 
 	public record Instance(Crest crest, int level) {
-
+		public static Optional<Instance> of(RegistryAccess access, ResourceKey<Crest> key, int level) {
+			Registry<Crest> registry = access.registryOrThrow(ESRegistries.CREST);
+			Crest crest = registry.get(key);
+			return crest == null ? Optional.empty() : Optional.of(new Instance(crest, Math.min(crest.maxLevel(), level)));
+		}
 	}
 }

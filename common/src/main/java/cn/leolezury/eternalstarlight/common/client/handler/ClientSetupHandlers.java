@@ -26,10 +26,13 @@ import cn.leolezury.eternalstarlight.common.item.weapon.ChainOfSoulsItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.Util;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
@@ -66,6 +69,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.HashMap;
 import java.util.List;
@@ -200,25 +204,35 @@ public class ClientSetupHandlers {
 		ESBlocks.LUNAR_GRASS,
 		ESBlocks.GLOWING_LUNAR_GRASS,
 		ESBlocks.CRESCENT_GRASS,
+		ESBlocks.POTTED_CRESCENT_GRASS,
 		ESBlocks.GLOWING_CRESCENT_GRASS,
+		ESBlocks.POTTED_GLOWING_CRESCENT_GRASS,
 		ESBlocks.PARASOL_GRASS,
+		ESBlocks.POTTED_PARASOL_GRASS,
 		ESBlocks.GLOWING_PARASOL_GRASS,
+		ESBlocks.POTTED_GLOWING_PARASOL_GRASS,
 		ESBlocks.LUNAR_BUSH,
 		ESBlocks.GLOWING_LUNAR_BUSH,
 		ESBlocks.TALL_CRESCENT_GRASS,
 		ESBlocks.TALL_GLOWING_CRESCENT_GRASS,
 		ESBlocks.LUNAR_REED,
 		ESBlocks.WHISPERBLOOM,
+		ESBlocks.POTTED_WHISPERBLOOM,
 		ESBlocks.GLADESPIKE,
+		ESBlocks.POTTED_GLADESPIKE,
 		ESBlocks.VIVIDSTALK,
+		ESBlocks.POTTED_VIVIDSTALK,
 		ESBlocks.TALL_GLADESPIKE,
 		ESBlocks.GLOWING_MUSHROOM,
+		ESBlocks.POTTED_GLOWING_MUSHROOM,
 		ESBlocks.SWAMP_ROSE,
 		ESBlocks.POTTED_SWAMP_ROSE,
 		ESBlocks.FANTABUD,
 		ESBlocks.GREEN_FANTABUD,
 		ESBlocks.FANTAFERN,
+		ESBlocks.POTTED_FANTAFERN,
 		ESBlocks.GREEN_FANTAFERN,
+		ESBlocks.POTTED_GREEN_FANTAFERN,
 		ESBlocks.FANTAGRASS,
 		ESBlocks.GREEN_FANTAGRASS,
 		ESBlocks.ORANGE_SCARLET_BUD,
@@ -274,6 +288,10 @@ public class ClientSetupHandlers {
 	}
 
 	public static final Map<ModelResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
+
+	public static final Map<ResourceLocation, KeyMapping> KEY_MAPPINGS = Map.of(
+		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KeyMapping.CATEGORY_GAMEPLAY)
+	);
 
 	public static void clientSetup() {
 		ITEMS_WITH_INV_ICON.put(new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe"), "inventory"), new ModelResourceLocation(EternalStarlight.id("thermal_springstone_scythe_inventory"), "inventory"));
@@ -509,6 +527,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
+		strategy.register(ESParticles.GLOW.get(), GlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);

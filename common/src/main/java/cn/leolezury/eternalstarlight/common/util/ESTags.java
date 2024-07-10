@@ -30,6 +30,8 @@ public class ESTags {
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
+		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
+		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> MANA_CRYSTAL_INGREDIENTS = create("mana_crystal_ingredients");
 		public static final TagKey<Item> MANA_CRYSTALS = create("mana_crystals");
 		public static final TagKey<Item> TERRA_CRYSTALS = create("terra_crystals");

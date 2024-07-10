@@ -402,19 +402,27 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.LUNAR_GRASS.get());
 		dropSelf(ESBlocks.GLOWING_LUNAR_GRASS.get());
 		dropSelf(ESBlocks.CRESCENT_GRASS.get());
+		dropPottedContents(ESBlocks.POTTED_CRESCENT_GRASS.get());
 		dropSelf(ESBlocks.GLOWING_CRESCENT_GRASS.get());
+		dropPottedContents(ESBlocks.POTTED_GLOWING_CRESCENT_GRASS.get());
 		dropSelf(ESBlocks.PARASOL_GRASS.get());
+		dropPottedContents(ESBlocks.POTTED_PARASOL_GRASS.get());
 		dropSelf(ESBlocks.GLOWING_PARASOL_GRASS.get());
+		dropPottedContents(ESBlocks.POTTED_GLOWING_PARASOL_GRASS.get());
 		dropSelf(ESBlocks.LUNAR_BUSH.get());
 		dropSelf(ESBlocks.GLOWING_LUNAR_BUSH.get());
 		add(ESBlocks.TALL_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.LUNAR_REED.get(), this::createDoublePlantShearsDrop);
 		dropSelf(ESBlocks.WHISPERBLOOM.get());
+		dropPottedContents(ESBlocks.POTTED_WHISPERBLOOM.get());
 		dropSelf(ESBlocks.GLADESPIKE.get());
+		dropPottedContents(ESBlocks.POTTED_GLADESPIKE.get());
 		dropSelf(ESBlocks.VIVIDSTALK.get());
+		dropPottedContents(ESBlocks.POTTED_VIVIDSTALK.get());
 		add(ESBlocks.TALL_GLADESPIKE.get(), this::createDoublePlantShearsDrop);
 		dropSelf(ESBlocks.GLOWING_MUSHROOM.get());
+		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
 
@@ -423,7 +431,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.FANTABUD.get());
 		dropSelf(ESBlocks.GREEN_FANTABUD.get());
 		dropSelf(ESBlocks.FANTAFERN.get());
+		dropPottedContents(ESBlocks.POTTED_FANTAFERN.get());
 		dropSelf(ESBlocks.GREEN_FANTAFERN.get());
+		dropPottedContents(ESBlocks.POTTED_GREEN_FANTAFERN.get());
 		dropSelf(ESBlocks.FANTAGRASS.get());
 		dropSelf(ESBlocks.GREEN_FANTAGRASS.get());
 

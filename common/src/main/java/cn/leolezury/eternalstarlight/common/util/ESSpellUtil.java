@@ -47,7 +47,7 @@ public class ESSpellUtil {
 			int preparationTicks = spell.spellProperties().preparationTicks();
 			int spellTicks = spell.spellProperties().spellTicks();
 			int useTicks = caster.getSpellData().castTicks();
-			if (!spell.canContinueToCast(entity, useTicks)) {
+			if (!spell.canContinueToCast(entity, useTicks) || !caster.getSpellSource().canContinue(entity)) {
 				spell.stop(entity, useTicks - preparationTicks);
 			}
 			if (useTicks <= preparationTicks + spellTicks) {

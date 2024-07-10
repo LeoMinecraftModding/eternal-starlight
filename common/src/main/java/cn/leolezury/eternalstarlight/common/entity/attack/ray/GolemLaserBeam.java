@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class GolemLaserBeam extends RayAttack {
 	public GolemLaserBeam(EntityType<? extends RayAttack> type, Level world) {
@@ -21,7 +22,7 @@ public class GolemLaserBeam extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f : 3f;
+		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getSpellData().strength() * 0.5f : 0);
 	}
 
 	@Override
@@ -40,17 +41,21 @@ public class GolemLaserBeam extends RayAttack {
 	@Override
 	public void updatePosition() {
 		getCaster().ifPresentOrElse(caster -> {
+			setPos(getPositionForCaster(caster, caster.position()));
 			if (caster instanceof StarlightGolem golem) {
-				setPos(caster.position().add(0, caster.getBbHeight() / 2.5f, 0));
 				if (golem.getBehaviourState() != StarlightGolemLaserBeamPhase.ID || golem.isDeadOrDying()) {
 					discard();
 				}
 			} else {
-				setPos(caster.getEyePosition());
 				if (caster instanceof SpellCaster spellCaster && (!spellCaster.getSpellData().hasSpell() || spellCaster.getSpellData().spell() != ESSpells.LASER_BEAM.get())) {
 					discard();
 				}
 			}
 		}, this::discard);
+	}
+
+	@Override
+	public Vec3 getPositionForCaster(Entity caster, Vec3 casterPos) {
+		return caster instanceof StarlightGolem ? casterPos.add(0, caster.getBbHeight() / 2.5f, 0) : casterPos.add(0, caster.getEyeHeight(caster.getPose()), 0);
 	}
 }

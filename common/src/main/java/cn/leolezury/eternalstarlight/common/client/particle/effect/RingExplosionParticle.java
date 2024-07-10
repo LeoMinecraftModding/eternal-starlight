@@ -32,7 +32,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 	}
 
 	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.CUSTOM;
 	}
 
 	public void tick() {
@@ -44,7 +44,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 	public void render(VertexConsumer consumer, Camera camera, float partialTicks) {
 		Quaternionf quaternionf = new Quaternionf();
 		quaternionf.rotateX(Mth.PI / 2);
-		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.particle());
+		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE);
 		this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
 		quaternionf = new Quaternionf();
 		quaternionf.rotateY(-3.1415927F).rotateX(-Mth.PI / 2);

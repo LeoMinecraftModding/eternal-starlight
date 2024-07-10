@@ -1,10 +1,12 @@
-// 1.21	2024-06-30T20:23:39.957961	Tags for minecraft:item mod id eternal_starlight
+// 1.21	2024-07-10T20:40:21.696959	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
+0a6cde89c197f045d272f3e185766b4af269c539 data/eternal_starlight/tags/item/cursed_garden_locators.json
 714a0b34ba93e8eb0e210d956437e16016ebc0bc data/eternal_starlight/tags/item/doomeden_keys.json
 c7ae886b0814b7a913208d29c0a878557a41e93c data/eternal_starlight/tags/item/enchantable/chain_of_souls.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/ent_food.json
 c3758f1485dcdf3680091ca7ddb6d0c1e3fee6ed data/eternal_starlight/tags/item/glacite_weapons.json
+e0cd0402fcd0d7ce13ed1beae0d116cf592790d6 data/eternal_starlight/tags/item/golem_forge_locators.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/item/light_crystals.json
 268ba819acde1285c21f1f46ecca7bfa826fd7e2 data/eternal_starlight/tags/item/lunar_crystals.json
 eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/item/lunar_logs.json

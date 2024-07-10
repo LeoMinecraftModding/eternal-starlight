@@ -4,22 +4,24 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
+import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
+import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESFluids;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -38,12 +40,15 @@ import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.FogType;
@@ -67,11 +72,12 @@ public class ClientHandlers {
 	private static final ResourceLocation ORB_OF_PROPHECY_USE = EternalStarlight.id("textures/misc/orb_of_prophecy_use.png");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
+	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 	public static int RESET_CAMERA_IN;
 	public static float FOG_START_DECREMENT;
 	public static float FOG_END_DECREMENT;
-	public static MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.BIG_BUFFER_SIZE));
+	public static MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f MODEL_VIEW_MATRIX = new Matrix4f();
 
 	public static void onClientTick() {
@@ -94,6 +100,48 @@ public class ClientHandlers {
 				function.clientTick(Minecraft.getInstance().level, VISUAL_EFFECTS);
 			}
 		}
+
+		if (Minecraft.getInstance().player != null) {
+			Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
+			List<ResourceKey<Crest>> toRemove = new ArrayList<>();
+			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
+				if (registry.get(key) == null) {
+					toRemove.add(key);
+				}
+			}
+			for (ResourceKey<Crest> key : toRemove) {
+				GUI_CRESTS.remove(key);
+			}
+			registry.forEach(crest -> {
+				if (registry.getResourceKey(crest).isPresent() && !GUI_CRESTS.containsKey(registry.getResourceKey(crest).get())) {
+					GUI_CRESTS.put(registry.getResourceKey(crest).get(), new GuiCrest());
+				}
+			});
+			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
+				entry.getValue().tick();
+			}
+			ItemStack mainHand = Minecraft.getInstance().player.getMainHandItem();
+			ItemStack offHand = Minecraft.getInstance().player.getOffhandItem();
+			CurrentCrestComponent component = null;
+			if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
+				component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
+			} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
+				component = offHand.get(ESDataComponents.CURRENT_CREST.get());
+			}
+			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
+				entry.getValue().shouldShow = false;
+			}
+			if (component != null && component.crest().isBound()) {
+				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.crest().value());
+				if (key.isPresent() && GUI_CRESTS.containsKey(key.get())) {
+					GUI_CRESTS.get(key.get()).shouldShow = true;
+				}
+			}
+			if (ClientSetupHandlers.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
+				ESPlatform.INSTANCE.sendToServer(new NoParametersPacket("switch_crest"));
+			}
+		}
+
 		if (Minecraft.getInstance().player != null) {
 			if (RESET_CAMERA_IN > 0) {
 				RESET_CAMERA_IN--;
@@ -369,13 +417,25 @@ public class ClientHandlers {
 
 	public static void renderOrbOfProphecyUse(GuiGraphics guiGraphics) {
 		LocalPlayer player = Minecraft.getInstance().player;
-		if (player != null) {
+		if (player != null && player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get()) && !player.getUseItem().has(ESDataComponents.CURRENT_CREST.get())) {
 			int usingTicks = player.getTicksUsingItem();
 			float ticks = Math.min(usingTicks + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), 150f);
 			float progress = Math.min(ticks, 150f) / 150f;
-			if (player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get())) {
-				if (usingTicks < 150) {
-					renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
+			if (usingTicks < 150) {
+				renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
+			}
+		}
+	}
+
+	public static void renderCurrentCrest(GuiGraphics guiGraphics) {
+		if (Minecraft.getInstance().player != null) {
+			Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
+			float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
+				GuiCrest guiCrest = entry.getValue();
+				Crest crest = registry.get(entry.getKey());
+				if (crest != null) {
+					ESGuiUtil.blit(guiGraphics, crest.texture(), guiCrest.getX(partialTicks), guiCrest.getY(partialTicks), 72, 72, 72, 72);
 				}
 			}
 		}
@@ -387,6 +447,24 @@ public class ClientHandlers {
 			for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
 				guiGraphics.drawCenteredString(Minecraft.getInstance().font, text.getText(), text.getX(), text.getY(), 0x5187c4);
 			}
+		}
+	}
+
+	private static class GuiCrest {
+		private boolean shouldShow = false;
+		private float prevAngle, angle;
+
+		public void tick() {
+			prevAngle = angle;
+			angle = Mth.approachDegrees(angle, shouldShow ? 45 : -135, 15);
+		}
+
+		public float getX(float partialTicks) {
+			return (float) Math.cos(Mth.lerp(partialTicks, prevAngle, angle) * Mth.DEG_TO_RAD) * 36 * Mth.SQRT_OF_TWO - 36;
+		}
+
+		public float getY(float partialTicks) {
+			return (float) Math.sin(Mth.lerp(partialTicks, prevAngle, angle) * Mth.DEG_TO_RAD) * 36 * Mth.SQRT_OF_TWO - 36;
 		}
 	}
 

@@ -569,16 +569,16 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("###")
 			.pattern("S S")
 			.define('#', Items.LEATHER)
-			.define('S', ESItems.THIOQUARTZ_BLOCK.get())
-			.unlockedBy("has_item", has(ESItems.THIOQUARTZ_BLOCK.get()))
+			.define('S', ESItems.THIOQUARTZ_SHARD.get())
+			.unlockedBy("has_item", has(ESItems.THIOQUARTZ_SHARD.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ALCHEMIST_ROBE.get())
 			.pattern("S S")
 			.pattern("#S#")
 			.pattern("#S#")
 			.define('#', Items.LEATHER)
-			.define('S', ESItems.THIOQUARTZ_BLOCK.get())
-			.unlockedBy("has_item", has(ESItems.THIOQUARTZ_BLOCK.get()))
+			.define('S', ESItems.THIOQUARTZ_SHARD.get())
+			.unlockedBy("has_item", has(ESItems.THIOQUARTZ_SHARD.get()))
 			.save(recipeOutput);
 	}
 
@@ -638,6 +638,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		addChestplate(recipeOutput, ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		addLeggings(recipeOutput, ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		addBoots(recipeOutput, ESItems.SWAMP_SILVER_BOOTS.get(), ESItems.SWAMP_SILVER_INGOT.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.SHIELD)
+			.pattern("PIP")
+			.pattern("PPP")
+			.pattern(" P ")
+			.define('P', ItemTags.PLANKS)
+			.define('I', ESItems.SWAMP_SILVER_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.save(recipeOutput, EternalStarlight.id("shield_from_swamp_silver_ingot"));
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_NUGGET.get(), ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_BOOTS.get());

@@ -255,7 +255,11 @@ public class RayAttack extends Entity {
 
 	public void updatePosition() {
 		getCaster().ifPresent(caster -> {
-			setPos(caster.position());
+			setPos(getPositionForCaster(caster, caster.position()));
 		});
+	}
+
+	public Vec3 getPositionForCaster(Entity caster, Vec3 casterPos) {
+		return casterPos;
 	}
 }
