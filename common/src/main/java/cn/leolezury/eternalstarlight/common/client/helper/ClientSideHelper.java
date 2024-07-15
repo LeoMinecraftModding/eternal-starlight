@@ -46,7 +46,7 @@ public class ClientSideHelper implements ClientHelper {
 
 	@Override
 	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
-		Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.ownedCrests(), packet.crests()));
+		Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests().crests(), packet.ownedCrests().crests()));
 	}
 
 	@Override

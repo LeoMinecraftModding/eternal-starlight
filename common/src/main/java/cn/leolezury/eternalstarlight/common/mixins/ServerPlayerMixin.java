@@ -28,15 +28,15 @@ public abstract class ServerPlayerMixin {
 		Inventory inventory = ((Player) (Object) this).getInventory();
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack item = inventory.getItem(i);
-			if (item.is(ESItems.ORB_OF_PROPHECY.get()) && !ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
-				CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
+			if (item.is(ESItems.ORB_OF_PROPHECY.get()) && !ESCrestUtil.getCrests((Player) (Object) this, ESCrestUtil.OWNED_CRESTS).crests().isEmpty()) {
+				CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound(ESCrestUtil.OWNED_CRESTS);
 				OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), item, tag);
 				return;
 			}
 		}
 		ItemStack itemStack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
-		if (!ESCrestUtil.getCrests((Player) (Object) this, "OwnedCrests").isEmpty()) {
-			CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound("OwnedCrests");
+		if (!ESCrestUtil.getCrests((Player) (Object) this, ESCrestUtil.OWNED_CRESTS).crests().isEmpty()) {
+			CompoundTag tag = ESEntityUtil.getPersistentData((Player) (Object) this).getCompound(ESCrestUtil.OWNED_CRESTS);
 			OrbOfProphecyItem.recordCrests(serverLevel().registryAccess(), itemStack, tag);
 			OrbOfProphecyItem.setTemporary(itemStack);
 			if (!inventory.add(itemStack)) {

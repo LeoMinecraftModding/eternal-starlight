@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.client.model.item;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel;
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.minecraft.client.resources.model.BakedModel;
@@ -12,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Supplier;
 
 public class FabricGlowingBakedModel extends ForwardingBakedModel {
-	private static final int light = 0xF000F0;
-
 	public FabricGlowingBakedModel(BakedModel model) {
 		wrapped = model;
 	}
@@ -26,7 +25,7 @@ public class FabricGlowingBakedModel extends ForwardingBakedModel {
 	@Override
 	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
 		context.pushTransform(quad -> {
-			quad.lightmap(light, light, light, light);
+			quad.lightmap(ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT);
 			return true;
 		});
 		super.emitBlockQuads(blockView, state, pos, randomSupplier, context);
@@ -36,7 +35,7 @@ public class FabricGlowingBakedModel extends ForwardingBakedModel {
 	@Override
 	public void emitItemQuads(ItemStack stack, Supplier<RandomSource> randomSupplier, RenderContext context) {
 		context.pushTransform(quad -> {
-			quad.lightmap(light, light, light, light);
+			quad.lightmap(ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT, ClientHandlers.FULL_BRIGHT);
 			return true;
 		});
 		super.emitItemQuads(stack, randomSupplier, context);

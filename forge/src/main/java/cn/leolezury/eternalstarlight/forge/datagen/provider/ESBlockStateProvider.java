@@ -199,6 +199,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());
 		shadegrieve(ESBlocks.BLOOMING_SHADEGRIEVE.get());
+		particleOnly(ESBlocks.LUNAR_VINE.get(), itemTextureFromBlock(ESBlocks.LUNAR_VINE.get()));
 		simpleBlock(ESBlocks.LUNAR_MOSAIC.get());
 		slabBlock(ESBlocks.LUNAR_MOSAIC_SLAB.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
 		stairsBlock(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
@@ -969,6 +970,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void carpet(Block block, ResourceLocation wool) {
 		ModelFile modelFile = models().carpet(name(block), wool);
 		simpleBlock(block, modelFile);
+	}
+
+	public ResourceLocation itemTextureFromBlock(Block block) {
+		ResourceLocation name = key(block);
+		return ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.ITEM_FOLDER + "/" + name.getPath());
 	}
 
 	private ResourceLocation key(Block block) {

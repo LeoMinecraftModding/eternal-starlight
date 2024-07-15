@@ -354,6 +354,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.SHADEGRIEVE.get());
 		dropSelf(ESBlocks.BLOOMING_SHADEGRIEVE.get());
+		dropSelf(ESBlocks.LUNAR_VINE.get());
 		dropSelf(ESBlocks.LUNAR_MOSAIC.get());
 		add(ESBlocks.LUNAR_MOSAIC_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.LUNAR_MOSAIC_STAIRS.get());

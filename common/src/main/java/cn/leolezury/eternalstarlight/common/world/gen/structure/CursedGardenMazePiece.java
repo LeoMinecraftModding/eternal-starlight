@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure;
 
+import cn.leolezury.eternalstarlight.common.block.LunarVineBlock;
 import cn.leolezury.eternalstarlight.common.block.ShadegrieveBlock;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
@@ -28,6 +29,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 	public static final int STRUCTURE_SIZE = MAZE_SIZE * STRUCTURE_SCALE;
 	public static final int STRUCTURE_HEIGHT = 30;
 	public static final int CENTER_SIZE = 20;
+	public static final int LUNAR_VINE_SIZE = 22;
 
 	public CursedGardenMazePiece(int x, int y, int z) {
 		super(ESStructurePieceTypes.CURSED_GARDEN_MAZE.get(), 0, new BoundingBox(
@@ -94,20 +96,22 @@ public class CursedGardenMazePiece extends StructurePiece {
 
 		for (int x = 1; x < STRUCTURE_SIZE; x++) {
 			for (int z = 1; z < STRUCTURE_SIZE; z++) {
-				if (!getBlock(level, x, 1, z, box).isAir() && !getBlock(level, x, 1, z, box).is(Blocks.VINE)) {
+				if (!getBlock(level, x, 1, z, box).isAir() && !getBlock(level, x, 1, z, box).is(Blocks.VINE) && !getBlock(level, x, 1, z, box).is(ESBlocks.LUNAR_VINE.get())) {
 					for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
 						int vineX = x + direction.getStepX();
 						int vineZ = z + direction.getStepZ();
 						if (getBlock(level, vineX, 1, vineZ, box).isAir()) {
+							double distSqr = Math.pow(vineX - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(vineZ - (double) STRUCTURE_SIZE / 2, 2);
+							boolean lunarVines = distSqr < LUNAR_VINE_SIZE * LUNAR_VINE_SIZE;
+							boolean bossRoom = distSqr < CENTER_SIZE * CENTER_SIZE;
 							int yTo = STRUCTURE_HEIGHT - random.nextInt(STRUCTURE_HEIGHT / 5 * 4);
 							int yFrom = random.nextInt(yTo - 3);
 							direction = direction.getAxis() == Direction.Axis.X ? direction.getOpposite() : direction;
 							for (int y = yFrom; y < yTo; y++) {
 								if (getBlock(level, vineX, y, vineZ, box).isAir() && (getBlock(level, x, y, z, box).is(ESBlocks.GRIMSTONE_TILES.get()) || getBlock(level, x, y, z, box).is(ESBlocks.SHADEGRIEVE.get()))) {
-									placeBlock(level, Blocks.VINE.defaultBlockState().setValue(VineBlock.PROPERTY_BY_DIRECTION.get(direction), true), vineX, y, vineZ, box);
+									placeBlock(level, lunarVines ? ESBlocks.LUNAR_VINE.get().defaultBlockState().setValue(LunarVineBlock.FACING, direction) : Blocks.VINE.defaultBlockState().setValue(VineBlock.PROPERTY_BY_DIRECTION.get(direction), true), vineX, y, vineZ, box);
 								}
 							}
-							boolean bossRoom = Math.pow(vineX - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(vineZ - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE;
 							if (!bossRoom && random.nextInt(45) == 0 && chestPositions.stream().noneMatch(pos -> new BlockPos(vineX, 1, vineZ).distSqr(pos) <= 10 * 10)) {
 								chestPositions.add(new BlockPos(vineX, 1, vineZ));
 								createChest(level, box, random, vineX, 1, vineZ, ESLootTables.CURSED_GARDEN_CHEST);

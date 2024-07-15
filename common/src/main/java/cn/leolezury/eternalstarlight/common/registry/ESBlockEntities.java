@@ -22,6 +22,7 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerBlockEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerBlockEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TangledHatredSpawnerBlockEntity>> TANGLED_HATRED_SPAWNER = BLOCK_ENTITIES.register("tangled_hatred_spawner", () -> BlockEntityType.Builder.of(TangledHatredSpawnerBlockEntity::new, ESBlocks.TANGLED_HATRED_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerBlockEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerBlockEntity::new, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarVineBlockEntity>> LUNAR_VINE = BLOCK_ENTITIES.register("lunar_vine", () -> BlockEntityType.Builder.of(LunarVineBlockEntity::new, ESBlocks.LUNAR_VINE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 
 	public static void loadClass() {

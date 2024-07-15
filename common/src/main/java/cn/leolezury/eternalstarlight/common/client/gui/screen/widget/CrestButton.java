@@ -64,13 +64,13 @@ public class CrestButton extends Button {
 				setTooltip(Tooltip.create(Component.empty()));
 			} else {
 				Registry<Crest> registry = Minecraft.getInstance().level.registryAccess().registryOrThrow(ESRegistries.CREST);
-				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest())));
+				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest().value())));
 				MutableComponent levelComponent = Component.translatable("enchantment.level." + crest.level());
-				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.crest().type().getSerializedName()))).withColor(crest.crest().type().getColor());
-				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest())) + ".desc");
+				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.crest().value().type().getSerializedName()))).withColor(crest.crest().value().type().getColor());
+				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest().value())) + ".desc");
 				MutableComponent merged = nameComponent.append(" ").append(levelComponent).append("\n").append(typeComponent).append("\n").append(descComponent);
-				if (crest.crest().attributeModifiers().isPresent()) {
-					for (Crest.LevelBasedAttributeModifier modifier : crest.crest().attributeModifiers().get()) {
+				if (crest.crest().value().attributeModifiers().isPresent()) {
+					for (Crest.LevelBasedAttributeModifier modifier : crest.crest().value().attributeModifiers().get()) {
 						addModifierTooltip((c) -> merged.append("\n").append(c), modifier.attribute(), modifier.getModifier(crest.level()));
 					}
 				}
@@ -145,7 +145,7 @@ public class CrestButton extends Button {
 			float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
 			float width = CREST_WIDTH * progress;
 			float height = CREST_HEIGHT * progress;
-			ESGuiUtil.blit(guiGraphics, crest.crest().texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
+			ESGuiUtil.blit(guiGraphics, crest.crest().value().texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
 		}
 	}
 }

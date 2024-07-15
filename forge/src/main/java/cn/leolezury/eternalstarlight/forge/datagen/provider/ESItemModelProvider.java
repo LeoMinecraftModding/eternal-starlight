@@ -315,6 +315,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
+		basicItem(ESItems.LUNAR_VINE.get());
 		block(ESItems.LUNAR_MOSAIC.get());
 		block(ESItems.LUNAR_MOSAIC_SLAB.get());
 		block(ESItems.LUNAR_MOSAIC_STAIRS.get());

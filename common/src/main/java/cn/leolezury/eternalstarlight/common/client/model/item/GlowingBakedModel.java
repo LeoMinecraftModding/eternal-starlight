@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.model.item;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.item.wrapper.ESBakedModelWrapper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -36,10 +37,10 @@ public class GlowingBakedModel extends ESBakedModelWrapper<BakedModel> {
 		int[] vertexData = quad.getVertices().clone();
 		int step = vertexData.length / 4;
 
-		vertexData[6] = 0xF000F0;
-		vertexData[6 + step] = 0xF000F0;
-		vertexData[6 + 2 * step] = 0xF000F0;
-		vertexData[6 + 3 * step] = 0xF000F0;
+		vertexData[6] = ClientHandlers.FULL_BRIGHT;
+		vertexData[6 + step] = ClientHandlers.FULL_BRIGHT;
+		vertexData[6 + 2 * step] = ClientHandlers.FULL_BRIGHT;
+		vertexData[6 + 3 * step] = ClientHandlers.FULL_BRIGHT;
 		return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade());
 	}
 }

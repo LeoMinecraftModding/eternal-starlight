@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -98,7 +99,7 @@ public class FireflyParticle extends TextureSheetParticle {
 
 	@Override
 	public int getLightColor(float partialTicks) {
-		return 0xF000F0;
+		return ClientHandlers.FULL_BRIGHT;
 	}
 
 	public static class Provider implements ParticleProvider<SimpleParticleType> {

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.Color;
@@ -78,7 +79,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 	}
 
 	private static void vertex(VertexConsumer vertexConsumer, PoseStack.Pose pose, float x, float y, float z, float uvX, float uvY) {
-		vertexConsumer.addVertex(pose, x, y, z).setColor(Color.WHITE.argb()).setUv(uvX, uvY).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, x, y, z).setColor(Color.WHITE.argb()).setUv(uvX, uvY).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
 	}
 
 	private Vec3 getPlayerHandPos(Player player, float f, float g) {

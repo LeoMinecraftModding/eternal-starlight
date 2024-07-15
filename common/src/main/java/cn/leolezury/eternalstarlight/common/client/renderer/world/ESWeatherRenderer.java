@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
@@ -131,7 +132,7 @@ public class ESWeatherRenderer {
 								float ae = (float) Math.sqrt(ac * ac + ad * ad) / (float) l;
 								float af = ((1.0F - ae * ae) * 0.5F + 0.5F) * h;
 								mutableBlockPos.set(p, w, o);
-								ag = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
+								ag = fullBright ? ClientHandlers.FULL_BRIGHT : LevelRenderer.getLightColor(level, mutableBlockPos);
 								bufferBuilder.addVertex((float) ((double) p - camX - r + 0.5), (float) ((double) v - camY), (float) ((double) o - camZ - s + 0.5)).setUv(0.0F, (float) u * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
 								bufferBuilder.addVertex((float) ((double) p - camX + r + 0.5), (float) ((double) v - camY), (float) ((double) o - camZ + s + 0.5)).setUv(1.0F, (float) u * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
 								bufferBuilder.addVertex((float) ((double) p - camX + r + 0.5), (float) ((double) u - camY), (float) ((double) o - camZ + s + 0.5)).setUv(1.0F, (float) v * 0.25F + ab).setColor(1.0F, 1.0F, 1.0F, af).setLight(ag);
@@ -155,7 +156,7 @@ public class ESWeatherRenderer {
 								float ak = (float) Math.sqrt(aj * aj + ac * ac) / (float) l;
 								float al = ((1.0F - ak * ak) * 0.3F + 0.5F) * h;
 								mutableBlockPos.set(p, w, o);
-								int am = fullBright ? 0xF000F0 : LevelRenderer.getLightColor(level, mutableBlockPos);
+								int am = fullBright ? ClientHandlers.FULL_BRIGHT : LevelRenderer.getLightColor(level, mutableBlockPos);
 								int an = am >> 16 & '\uffff';
 								ag = am & '\uffff';
 								int ao = (an * 3 + 240) / 4;

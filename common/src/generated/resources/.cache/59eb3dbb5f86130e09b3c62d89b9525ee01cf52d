@@ -1,4 +1,4 @@
-// 1.21	2024-07-10T20:40:21.6652637	Loot Tables
+// 1.21	2024-07-15T11:16:10.3644068	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -179,6 +179,7 @@ a59146f9f5491749f8a0bc78f9d213b3a4e919b4 data/eternal_starlight/loot_table/block
 6fd3b8b9954990538911942f4134e7c91739b239 data/eternal_starlight/loot_table/blocks/lunar_slab.json
 385f1deedc541541aa355cfd237d56f1d848a885 data/eternal_starlight/loot_table/blocks/lunar_stairs.json
 e4213e907985291c9418689aade032a9b8028d43 data/eternal_starlight/loot_table/blocks/lunar_trapdoor.json
+993ea4cbaf5b0e0a8875cbbcef16013fdf6577ad data/eternal_starlight/loot_table/blocks/lunar_vine.json
 f70f278c9d836903f034ca949042d9156a7ce587 data/eternal_starlight/loot_table/blocks/lunar_wall_hanging_sign.json
 8c3d56ca0d2921cb7f6be0ca86071aed68469b97 data/eternal_starlight/loot_table/blocks/lunar_wall_sign.json
 ae25b88123a0ed928821ccb9401206b0252ca6e7 data/eternal_starlight/loot_table/blocks/lunar_wood.json

@@ -85,8 +85,8 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.createCurrentPoint(new Vec3(x, y, z), new Vec3(x, y, z).subtract(new Vec3(xo, yo, zo)));
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, true, color.rf(), color.gf(), color.bf(), a, 0xF000F0);
-		// this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, false, color.r(), color.g(), color.b(), a, 0xF000F0);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
+		// this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, false, color.r(), color.g(), color.b(), a, ClientHandlers.FULL_BRIGHT);
 		this.effect.removeNearest();
 		stack.popPose();
 	}

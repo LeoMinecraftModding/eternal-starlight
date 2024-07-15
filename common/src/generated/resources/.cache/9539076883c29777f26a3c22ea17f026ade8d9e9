@@ -1,4 +1,4 @@
-// 1.21	2024-06-30T14:26:01.6943708	Item Models: eternal_starlight
+// 1.21	2024-07-15T11:16:10.3799981	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -278,6 +278,7 @@ fa155ae2a6647636c9a1a0c5ef3b399b3a4558e6 assets/eternal_starlight/models/item/lu
 3fdf297eb4d74e92ab7b7a71a0f7644a963515c4 assets/eternal_starlight/models/item/lunar_slab.json
 f4b608a5ba53c102ea80144568b83247a9c3f348 assets/eternal_starlight/models/item/lunar_stairs.json
 2d14ef45eba573f2e82be34c8f42ba89881f6895 assets/eternal_starlight/models/item/lunar_trapdoor.json
+d44e97c44e57d2b52cee9663418e8bab8d49f4de assets/eternal_starlight/models/item/lunar_vine.json
 25ee05d669e3f3d3014d330330133b3696100f7f assets/eternal_starlight/models/item/lunar_wood.json
 7e83d0390b1bb67b060754c590ef8429cc9b1164 assets/eternal_starlight/models/item/magenta_yeti_fur.json
 21ae6095ce868121c431781dc7b57ed86cdccb20 assets/eternal_starlight/models/item/magenta_yeti_fur_carpet.json

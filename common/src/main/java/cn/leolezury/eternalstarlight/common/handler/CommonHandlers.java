@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
@@ -26,7 +25,7 @@ import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -301,12 +300,13 @@ public class CommonHandlers {
 	public static void onC2sNoParamPacket(ServerPlayer player, String id) {
 		switch (id) {
 			case "switch_crest" -> {
-				List<Crest.Instance> crests = ESCrestUtil.getCrests(player, "OwnedCrests");
+				Crest.Set set = ESCrestUtil.getOwnedCrests(player);
+				List<Crest.Instance> crests = set.crests();
 				ItemStack mainHand = player.getMainHandItem();
 				ItemStack offHand = player.getOffhandItem();
 				ItemStack spellItem;
 				CurrentCrestComponent component = null;
-				Crest nextCrest = null;
+				Holder<Crest> nextCrest = null;
 				if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
 					component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
 					spellItem = mainHand;
@@ -323,9 +323,9 @@ public class CommonHandlers {
 				if (component != null) {
 					find:
 					for (int i = 0; i < crests.size(); i++) {
-						if (crests.get(i).crest() == component.crest().value() && i < crests.size() - 1) {
+						if (crests.get(i).crest().is(component.crest()) && i < crests.size() - 1) {
 							for (int j = i + 1; j < crests.size(); j++) {
-								if (crests.get(j).crest().spell().isPresent()) {
+								if (crests.get(j).crest().value().spell().isPresent()) {
 									nextCrest = crests.get(j).crest();
 									break find;
 								}
@@ -334,16 +334,15 @@ public class CommonHandlers {
 					}
 				} else {
 					for (Crest.Instance instance : crests) {
-						if (instance.crest().spell().isPresent()) {
+						if (instance.crest().value().spell().isPresent()) {
 							nextCrest = instance.crest();
 							break;
 						}
 					}
 				}
 				if (spellItem != null) {
-					if (nextCrest != null) {
-						Registry<Crest> registry = player.registryAccess().registryOrThrow(ESRegistries.CREST);
-						registry.getResourceKey(nextCrest).ifPresent(crestResourceKey -> spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), new CurrentCrestComponent(registry.getHolderOrThrow(crestResourceKey))).build()));
+					if (nextCrest != null && nextCrest.isBound()) {
+						spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), new CurrentCrestComponent(nextCrest)).build());
 					} else {
 						spellItem.remove(ESDataComponents.CURRENT_CREST.get());
 					}

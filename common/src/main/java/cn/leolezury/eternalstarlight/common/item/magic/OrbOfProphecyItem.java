@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
@@ -15,10 +14,10 @@ import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -35,7 +34,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 public class OrbOfProphecyItem extends Item {
 	public OrbOfProphecyItem(Properties properties) {
@@ -43,11 +42,12 @@ public class OrbOfProphecyItem extends Item {
 	}
 
 	public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
-		List<Crest.Instance> crests = ESCrestUtil.getCrests(access, tag);
-		List<Crest.Instance> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
-		CompoundTag crestsTag = new CompoundTag();
-		ESCrestUtil.setCrests(access, crestsTag, ESCrestUtil.mergeCrests(crests, itemCrests));
-		stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(crestsTag)).build());
+		List<Crest.Instance> crests = ESCrestUtil.getCrests(access, tag).crests();
+		List<Crest.Instance> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag()).crests();
+		Optional<Tag> crestsTag = ESCrestUtil.setCrests(access, ESCrestUtil.mergeCrests(crests, itemCrests));
+		if (crestsTag.isPresent() && crestsTag.get() instanceof CompoundTag compoundTag) {
+			stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(compoundTag)).build());
+		}
 	}
 
 	public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
@@ -55,7 +55,7 @@ public class OrbOfProphecyItem extends Item {
 	}
 
 	public static List<Crest.Instance> getCrests(RegistryAccess access, ItemStack stack) {
-		return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag());
+		return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag()).crests();
 	}
 
 	public static void setTemporary(ItemStack stack) {
@@ -74,10 +74,7 @@ public class OrbOfProphecyItem extends Item {
 		if (!level.isClientSide) {
 			if (!itemStack.has(ESDataComponents.CURRENT_CREST.get())) {
 				if (livingEntity.getTicksUsingItem() >= 140 && livingEntity instanceof ServerPlayer player) {
-					Registry<Crest> registry = player.level().registryAccess().registryOrThrow(ESRegistries.CREST);
-					List<OpenCrestGuiPacket.CrestInstance> ownedCrests = ESCrestUtil.getCrests(player, "OwnedCrests").stream().map(c -> new OpenCrestGuiPacket.CrestInstance(Objects.requireNonNull(registry.getKey(c.crest())).toString(), c.level())).toList();
-					List<OpenCrestGuiPacket.CrestInstance> crests = ESCrestUtil.getCrests(player).stream().map(c -> new OpenCrestGuiPacket.CrestInstance(Objects.requireNonNull(registry.getKey(c.crest())).toString(), c.level())).toList();
-					ESPlatform.INSTANCE.sendToClient(player, new OpenCrestGuiPacket(ownedCrests, crests));
+					ESPlatform.INSTANCE.sendToClient(player, new OpenCrestGuiPacket(ESCrestUtil.getCrests(player), ESCrestUtil.getOwnedCrests(player)));
 					player.stopUsingItem();
 					player.getCooldowns().addCooldown(this, 20);
 				}
@@ -150,7 +147,7 @@ public class OrbOfProphecyItem extends Item {
 				if (component != null && component.crest().isBound()) {
 					Crest crest = component.crest().value();
 					if (crest.spell().isPresent() && crest.spell().get().canCast(player, true)) {
-						crest.spell().get().start(player, ESCrestUtil.getCrestLevel(player, crest), true);
+						crest.spell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						player.startUsingItem(interactionHand);
 						if (player instanceof SpellCaster caster) {
 							caster.setSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));

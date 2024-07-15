@@ -41,10 +41,10 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
 		entries.add(new MergedProvider.Entry(new SpikeProvider(2.5f, 18f), Vec3.ZERO));
 		ValueMapGenerator.place(new MergedProvider(entries), (pos, value) -> setBlockIfEmpty(level, pos.offset(origin), crystalState));
 		// randomly place decorations
-		for (int x = -7; x <= 7; x++) {
-			for (int y = -10; y <= 10; y++) {
-				for (int z = -7; z <= 7; z++) {
-					if (x * x + z * z < 7 * 7) {
+		for (int x = -5; x <= 5; x++) {
+			for (int y = -4; y <= 4; y++) {
+				for (int z = -5; z <= 5; z++) {
+					if (x * x + z * z < 5 * 5) {
 						if (random.nextBoolean()) {
 							if (random.nextInt(10) == 0) {
 								List<Direction> possibleDirs = new ArrayList<>();

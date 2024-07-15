@@ -26,10 +26,10 @@ public class AbysslatePatchFeature extends Feature<AbysslatePatchFeature.Configu
 		BlockPos pos = context.origin();
 		RandomSource random = context.random();
 		Configuration config = context.config();
-		for (int x = -4; x <= 4; x++) {
-			for (int y = -3; y <= 3; y++) {
-				for (int z = -4; z <= 4; z++) {
-					if (ESMathUtil.isPointInEllipsoid(x, y, z, 5 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1, 5 + random.nextInt(3) - 1)) {
+		for (int x = -3; x <= 3; x++) {
+			for (int y = -2; y <= 2; y++) {
+				for (int z = -3; z <= 3; z++) {
+					if (ESMathUtil.isPointInEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
 						BlockPos placePos = pos.offset(x, y, z);
 						if (level.getBlockState(placePos).is(config.stone())) {
 							// then replace with our block

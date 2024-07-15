@@ -25,9 +25,9 @@ public class LeavesPileFeature extends Feature<LeavesPileFeature.Configuration> 
 		RandomSource random = context.random();
 		boolean canPlace = false;
 		// scan for logs
-		for (int x = -5; x <= 5; x++) {
-			for (int y = -5; y <= 5; y++) {
-				for (int z = -5; z <= 5; z++) {
+		for (int x = -4; x <= 4; x++) {
+			for (int y = -2; y <= 2; y++) {
+				for (int z = -4; z <= 4; z++) {
 					if (level.getBlockState(pos.offset(x, y, z)).is(BlockTags.LOGS)) {
 						canPlace = true;
 					}
@@ -38,10 +38,10 @@ public class LeavesPileFeature extends Feature<LeavesPileFeature.Configuration> 
 			return false;
 		}
 		// scan for available dirt blocks
-		for (int x = -5; x <= 5; x++) {
-			for (int y = -5; y <= 5; y++) {
-				for (int z = -5; z <= 5; z++) {
-					if (x * x + z * z <= 5 * 5 && level.getBlockState(pos.offset(x, y, z)).is(BlockTags.DIRT) && level.getBlockState(pos.offset(x, y + 1, z)).isAir() && random.nextBoolean()) {
+		for (int x = -4; x <= 4; x++) {
+			for (int y = -2; y <= 2; y++) {
+				for (int z = -4; z <= 4; z++) {
+					if (x * x + z * z <= 4 * 4 && level.getBlockState(pos.offset(x, y, z)).is(BlockTags.DIRT) && level.getBlockState(pos.offset(x, y + 1, z)).isAir() && random.nextBoolean()) {
 						BlockPos placePos = pos.offset(x, y + 1, z);
 						BlockState pileState = context.config().pile().getState(random, placePos);
 						if (pileState.hasProperty(BlockStateProperties.LAYERS)) {

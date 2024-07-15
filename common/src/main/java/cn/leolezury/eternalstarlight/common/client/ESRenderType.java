@@ -32,6 +32,15 @@ public abstract class ESRenderType extends RenderType {
 		.setOverlayState(OVERLAY)
 		.createCompositeState(true));
 
+	public static final RenderType GLOW_PARTICLE = create(EternalStarlight.ID + ":glow_particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
+		.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
+		.setTransparencyState(LIGHTNING_TRANSPARENCY)
+		.setCullState(NO_CULL)
+		.setLightmapState(LIGHTMAP)
+		.setOverlayState(OVERLAY)
+		.createCompositeState(true));
+
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
 		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
 	}

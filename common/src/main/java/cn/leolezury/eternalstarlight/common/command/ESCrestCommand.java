@@ -11,6 +11,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.ResourceArgument;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 
 public class ESCrestCommand {
@@ -18,16 +19,16 @@ public class ESCrestCommand {
 		return Commands.literal("crest").requires((commandSourceStack) -> {
 			return commandSourceStack.hasPermission(2);
 		}).then(Commands.literal("give").then(Commands.argument("crest", ResourceArgument.resource(commandBuildContext, ESRegistries.CREST)).executes((commandContext) -> {
-			return giveCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST).value(), 1);
+			return giveCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST), 1);
 		}).then(Commands.argument("level", IntegerArgumentType.integer(1)).executes((commandContext) -> {
-			return giveCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST).value(), IntegerArgumentType.getInteger(commandContext, "level"));
+			return giveCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST), IntegerArgumentType.getInteger(commandContext, "level"));
 		})))).then(Commands.literal("remove").then(Commands.argument("crest", ResourceArgument.resource(commandBuildContext, ESRegistries.CREST)).executes((commandContext) -> {
-			return removeCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST).value());
+			return removeCrest(commandContext.getSource(), ResourceArgument.getResource(commandContext, "crest", ESRegistries.CREST));
 		})));
 	}
 
-	private static int giveCrest(CommandSourceStack commandSourceStack, Crest crest, int level) {
-		if (ESCrestUtil.giveCrest(commandSourceStack.getPlayer(), new Crest.Instance(crest, level))) {
+	private static int giveCrest(CommandSourceStack commandSourceStack, Holder<Crest> crest, int level) {
+		if (level <= crest.value().maxLevel() && ESCrestUtil.giveCrest(commandSourceStack.getPlayer(), new Crest.Instance(crest, level))) {
 			commandSourceStack.sendSuccess(() -> Component.translatable("commands." + EternalStarlight.ID + ".crest.give"), true);
 		} else {
 			commandSourceStack.sendFailure(Component.translatable("commands." + EternalStarlight.ID + ".crest.give_fail"));
@@ -35,7 +36,7 @@ public class ESCrestCommand {
 		return 1;
 	}
 
-	private static int removeCrest(CommandSourceStack commandSourceStack, Crest crest) {
+	private static int removeCrest(CommandSourceStack commandSourceStack, Holder<Crest> crest) {
 		if (ESCrestUtil.removeCrest(commandSourceStack.getPlayer(), crest)) {
 			commandSourceStack.sendSuccess(() -> Component.translatable("commands." + EternalStarlight.ID + ".crest.remove"), true);
 		} else {

@@ -10,6 +10,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -59,11 +60,22 @@ public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optio
 		}
 	}
 
-	public record Instance(Crest crest, int level) {
+	public record Instance(Holder<Crest> crest, int level) {
+		public static final Codec<Instance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			RegistryFixedCodec.create(ESRegistries.CREST).fieldOf("crest").forGetter(Instance::crest),
+			Codec.INT.fieldOf("level").forGetter(Instance::level)
+		).apply(instance, Instance::new));
+
 		public static Optional<Instance> of(RegistryAccess access, ResourceKey<Crest> key, int level) {
 			Registry<Crest> registry = access.registryOrThrow(ESRegistries.CREST);
-			Crest crest = registry.get(key);
-			return crest == null ? Optional.empty() : Optional.of(new Instance(crest, Math.min(crest.maxLevel(), level)));
+			Optional<Holder.Reference<Crest>> holder = registry.getHolder(key);
+			return holder.map(ref -> new Instance(ref, Math.min(level, ref.value().maxLevel())));
 		}
+	}
+
+	public record Set(List<Instance> crests) {
+		public static final Codec<Set> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			Instance.CODEC.listOf().fieldOf("crests").forGetter(Set::crests)
+		).apply(instance, Set::new));
 	}
 }

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -44,14 +45,13 @@ public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends Humano
 
 		if (Minecraft.getInstance().level != null) {
 			float light;
-			int fullBright = 0xF000F0;
 			long ticks = Minecraft.getInstance().level.getGameTime() % 40;
 			if (ticks < 20) {
 				light = ticks / 20f;
 			} else {
 				light = (39 - ticks) / 20f;
 			}
-			super.renderToBuffer(stack, builder, (int) (fullBright / 2f + fullBright * light / 2f), packedOverlay, color);
+			super.renderToBuffer(stack, builder, (int) (ClientHandlers.FULL_BRIGHT / 2f + ClientHandlers.FULL_BRIGHT * light / 2f), packedOverlay, color);
 		}
 	}
 }

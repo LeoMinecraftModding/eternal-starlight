@@ -7,9 +7,10 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -22,65 +23,57 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ESCrestUtil {
-	public static List<Crest.Instance> getCrests(Player player) {
-		return getCrests(player, "Crests");
+	public static final String CRESTS = "Crests";
+	public static final String OWNED_CRESTS = "OwnedCrests";
+
+	public static Crest.Set getCrests(Player player) {
+		return getCrests(player, CRESTS);
 	}
 
-	public static List<Crest.Instance> getCrests(Player player, String tagId) {
-		if (!ESEntityUtil.getPersistentData(player).contains(tagId, Tag.TAG_COMPOUND)) {
-			ESEntityUtil.getPersistentData(player).put(tagId, new CompoundTag());
+	public static Crest.Set getOwnedCrests(Player player) {
+		return getCrests(player, OWNED_CRESTS);
+	}
+
+	public static Crest.Set getCrests(Player player, String tagId) {
+		CompoundTag tag = ESEntityUtil.getPersistentData(player).getCompound(tagId);
+		return getCrests(player.registryAccess(), tag);
+	}
+
+	public static Crest.Set getCrests(HolderLookup.Provider provider, CompoundTag tag) {
+		return Crest.Set.CODEC.parse(provider.createSerializationContext(NbtOps.INSTANCE), tag).resultOrPartial().orElse(new Crest.Set(new ArrayList<>()));
+	}
+
+	public static boolean setCrests(Player player, List<Crest.Instance> crests) {
+		return setCrests(player, crests, CRESTS);
+	}
+
+	public static boolean setCrests(Player player, List<Crest.Instance> crests, String tagId) {
+		Optional<Tag> optionalTag = setCrests(player.registryAccess(), crests);
+		if (optionalTag.isEmpty()) {
+			return false;
 		}
-		CompoundTag crests = ESEntityUtil.getPersistentData(player).getCompound(tagId);
-		return getCrests(player.level().registryAccess(), crests);
+		ESEntityUtil.getPersistentData(player).put(tagId, optionalTag.get());
+		return true;
 	}
 
-	public static List<Crest.Instance> getCrests(RegistryAccess access, CompoundTag tag) {
-		List<Crest.Instance> result = new ArrayList<>();
-		Registry<Crest> registry = access.registryOrThrow(ESRegistries.CREST);
-		registry.forEach((crest -> {
-			String id = Objects.requireNonNull(registry.getKey(crest)).toString();
-			if (tag.getBoolean(id)) {
-				result.add(new Crest.Instance(crest, tag.getCompound("levels").getInt(id)));
-			}
-		}));
-		return result;
-	}
-
-	public static void setCrests(Player player, List<Crest.Instance> crests) {
-		setCrests(player, crests, "Crests");
-	}
-
-	public static void setCrests(Player player, List<Crest.Instance> crests, String tagId) {
-		CompoundTag crestsTag = new CompoundTag();
-		setCrests(player.level().registryAccess(), crestsTag, crests);
-		ESEntityUtil.getPersistentData(player).put(tagId, crestsTag);
-	}
-
-	public static void setCrests(RegistryAccess access, CompoundTag tag, List<Crest.Instance> crests) {
-		Registry<Crest> registry = access.registryOrThrow(ESRegistries.CREST);
-		CompoundTag levels = new CompoundTag();
-		crests.forEach((crest -> {
-			String id = Objects.requireNonNull(registry.getKey(crest.crest())).toString();
-			tag.putBoolean(id, true);
-			levels.putInt(id, crest.level());
-		}));
-		tag.put("levels", levels);
+	public static Optional<Tag> setCrests(HolderLookup.Provider provider, List<Crest.Instance> crests) {
+		return Crest.Set.CODEC.encodeStart(provider.createSerializationContext(NbtOps.INSTANCE), new Crest.Set(crests)).resultOrPartial();
 	}
 
 	public static boolean giveCrest(Player player, Crest.Instance crest) {
-		List<Crest.Instance> crests = getCrests(player, "OwnedCrests");
+		Crest.Set set = getCrests(player, OWNED_CRESTS);
+		List<Crest.Instance> crests = new ArrayList<>(set.crests());
 		for (Crest.Instance instance : crests) {
-			if (instance.crest() == crest.crest() && instance.level() >= crest.level()) {
+			if (instance.crest().is(crest.crest()) && instance.level() >= crest.level()) {
 				return false;
 			}
 		}
-		crests.removeIf(c -> c.crest() == crest.crest());
+		crests.removeIf(c -> c.crest().is(crest.crest()));
 		crests.add(crest);
-		setCrests(player, crests, "OwnedCrests");
+		setCrests(player, crests, OWNED_CRESTS);
 		return true;
 	}
 
@@ -89,16 +82,17 @@ public class ESCrestUtil {
 		return instance.isPresent() && giveCrest(player, instance.get());
 	}
 
-	public static boolean removeCrest(Player player, Crest crest) {
-		return removeCrest(player, crest, "OwnedCrests") || removeCrest(player, crest, "Crests");
+	public static boolean removeCrest(Player player, Holder<Crest> crest) {
+		return removeCrest(player, crest, OWNED_CRESTS) || removeCrest(player, crest, CRESTS);
 	}
 
-	public static boolean removeCrest(Player player, Crest crest, String tagId) {
-		List<Crest.Instance> crests = getCrests(player, tagId);
-		if (crests.stream().noneMatch(c -> c.crest() == crest)) {
+	public static boolean removeCrest(Player player, Holder<Crest> crest, String tagId) {
+		Crest.Set set = getCrests(player, tagId);
+		List<Crest.Instance> crests = new ArrayList<>(set.crests());
+		if (crests.stream().noneMatch(c -> c.crest().is(crest))) {
 			return false;
 		}
-		crests.removeIf(c -> c.crest() == crest);
+		crests.removeIf(c -> c.crest().is(crest));
 		setCrests(player, crests, tagId);
 		return true;
 	}
@@ -109,7 +103,7 @@ public class ESCrestUtil {
 			boolean hasSame = false;
 			int level = instance.level();
 			for (int i = 0; i < result.size(); i++) {
-				if (result.get(i).crest() == instance.crest()) {
+				if (result.get(i).crest().is(instance.crest())) {
 					level = Math.max(level, result.get(i).level());
 					result.set(i, new Crest.Instance(instance.crest(), level));
 					hasSame = true;
@@ -123,13 +117,14 @@ public class ESCrestUtil {
 	}
 
 	public static int getCrestLevel(Player player, ResourceKey<Crest> key) {
-		Crest crest = player.registryAccess().registryOrThrow(ESRegistries.CREST).get(key);
-		return getCrestLevel(player, crest);
+		Optional<Holder.Reference<Crest>> crest = player.registryAccess().registryOrThrow(ESRegistries.CREST).getHolder(key);
+		return crest.map(ref -> getCrestLevel(player, ref)).orElse(0);
 	}
 
-	public static int getCrestLevel(Player player, Crest crest) {
-		for (Crest.Instance instance : getCrests(player, "OwnedCrests")) {
-			if (instance.crest() == crest) {
+	public static int getCrestLevel(Player player, Holder<Crest> crest) {
+		Crest.Set set = getCrests(player, OWNED_CRESTS);
+		for (Crest.Instance instance : set.crests()) {
+			if (instance.crest().is(crest)) {
 				return instance.level();
 			}
 		}
@@ -137,18 +132,20 @@ public class ESCrestUtil {
 	}
 
 	public static void tickCrests(Player player) {
-		List<Crest.Instance> ownedCrestInstances = getCrests(player, "OwnedCrests");
-		List<Crest.Instance> crestInstances = getCrests(player);
+		Crest.Set ownedSet = getCrests(player, OWNED_CRESTS);
+		Crest.Set set = getCrests(player);
+		List<Crest.Instance> ownedCrestInstances = ownedSet.crests();
+		List<Crest.Instance> crestInstances = set.crests();
 		ItemStack mainHand = player.getMainHandItem();
 		ItemStack offHand = player.getOffhandItem();
 		if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
 			CurrentCrestComponent component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
-			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest() == component.crest().value())) {
+			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest().is(component.crest()))) {
 				mainHand.remove(ESDataComponents.CURRENT_CREST.get());
 			}
 		} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
 			CurrentCrestComponent component = offHand.get(ESDataComponents.CURRENT_CREST.get());
-			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest() == component.crest().value())) {
+			if (component != null && component.crest().isBound() && ownedCrestInstances.stream().noneMatch(c -> c.crest().is(component.crest()))) {
 				offHand.remove(ESDataComponents.CURRENT_CREST.get());
 			}
 		}
@@ -159,7 +156,7 @@ public class ESCrestUtil {
 				Inventory inventory = player.getInventory();
 				for (int i = 0; i < inventory.getContainerSize(); i++) {
 					ItemStack stack = inventory.getItem(i);
-					if (stack.is(crest.crest().type().getCrystalsTag())) {
+					if (stack.is(crest.crest().value().type().getCrystalsTag())) {
 						applyCrestEffects(player, crest);
 						if (player.tickCount % 60 == 0) {
 							stack.hurtAndBreak(crest.level(), player, EquipmentSlot.MAINHAND);
@@ -176,7 +173,7 @@ public class ESCrestUtil {
 					if (instance != null) {
 						instance.getModifiers().forEach(m -> {
 							if (m.id().toString().startsWith(modifier.id().toString())
-								&& crestInstances.stream().noneMatch(c1 -> c1.crest().attributeModifiers().isPresent() && c1.crest().attributeModifiers().get().stream().anyMatch(mod -> mod.getModifierId(c1.level()).equals(m.id())))) {
+								&& crestInstances.stream().noneMatch(c1 -> c1.crest().value().attributeModifiers().isPresent() && c1.crest().value().attributeModifiers().get().stream().anyMatch(mod -> mod.getModifierId(c1.level()).equals(m.id())))) {
 								instance.removeModifier(m.id());
 							}
 						});
@@ -190,10 +187,10 @@ public class ESCrestUtil {
 	}
 
 	public static void applyCrestEffects(Player player, Crest.Instance crest) {
-		crest.crest().effects().ifPresent(effects ->
+		crest.crest().value().effects().ifPresent(effects ->
 			effects.forEach(mobEffect -> player.addEffect(new MobEffectInstance(mobEffect.effect(), 20, mobEffect.level() + (crest.level() - 1) * mobEffect.levelAddition())))
 		);
-		crest.crest().attributeModifiers().ifPresent(modifiers ->
+		crest.crest().value().attributeModifiers().ifPresent(modifiers ->
 			modifiers.forEach(modifier -> {
 				AttributeInstance instance = player.getAttributes().getInstance(modifier.attribute());
 				if (instance != null && !instance.hasModifier(modifier.getModifierId(crest.level()))) {

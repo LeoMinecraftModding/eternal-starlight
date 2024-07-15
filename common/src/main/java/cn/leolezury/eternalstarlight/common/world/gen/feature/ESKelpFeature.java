@@ -36,7 +36,7 @@ public class ESKelpFeature extends Feature<NoneFeatureConfiguration> {
 				blockState2 = blockState2.setValue(AbyssalKelp.BERRIES, randomSource.nextInt(5) == 0);
 				if (worldGenLevel.getBlockState(blockPos2).is(Blocks.WATER) && worldGenLevel.getBlockState(blockPos2.above()).is(Blocks.WATER) && blockState2.canSurvive(worldGenLevel, blockPos2)) {
 					if (l == k) {
-						worldGenLevel.setBlock(blockPos2, (BlockState) blockState.setValue(KelpBlock.AGE, randomSource.nextInt(4) + 20), 2);
+						worldGenLevel.setBlock(blockPos2, blockState.setValue(KelpBlock.AGE, randomSource.nextInt(4) + 20), 2);
 						++i;
 					} else {
 						worldGenLevel.setBlock(blockPos2, blockState2, 2);
@@ -44,7 +44,7 @@ public class ESKelpFeature extends Feature<NoneFeatureConfiguration> {
 				} else if (l > 0) {
 					BlockPos blockPos3 = blockPos2.below();
 					if (blockState.canSurvive(worldGenLevel, blockPos3) && !worldGenLevel.getBlockState(blockPos3.below()).is(ESBlocks.ABYSSAL_KELP.get())) {
-						worldGenLevel.setBlock(blockPos3, (BlockState) blockState.setValue(KelpBlock.AGE, randomSource.nextInt(4) + 20), 2);
+						worldGenLevel.setBlock(blockPos3, blockState.setValue(KelpBlock.AGE, randomSource.nextInt(4) + 20), 2);
 						++i;
 					}
 					break;

@@ -335,6 +335,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			setActivated(false);
 			ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
 			ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(conversationTarget);
+			ESCrestUtil.upgradeCrest(conversationTarget, ESCrests.GUIDANCE_OF_STARS);
 			if (!conversationTarget.getInventory().add(stack)) {
 				ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), stack);
 				level().addFreshEntity(entity);
@@ -410,11 +411,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		} else {
 			level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
 		}
-	}
-
-	@Override
-	public void dropExtraLoot(ServerPlayer player) {
-		ESCrestUtil.upgradeCrest(player, ESCrests.GUIDANCE_OF_STARS);
 	}
 
 	@Override

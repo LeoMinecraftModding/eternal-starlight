@@ -62,7 +62,7 @@ public class GlowParticle extends TextureSheetParticle {
 
 	@Override
 	public int getLightColor(float f) {
-		return 15728880;
+		return ClientHandlers.FULL_BRIGHT;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class GlowParticle extends TextureSheetParticle {
 		float a = alpha;
 		float progress = Math.min(age + f, lifetime) / lifetime;
 		this.alpha = Mth.lerp((float) Math.pow((Math.abs(progress - 0.5) * 2), 5), alpha, 0);
-		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, f);
+		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE), camera, f);
 		this.alpha = a;
 	}
 
