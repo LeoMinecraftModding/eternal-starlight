@@ -729,6 +729,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('A', ESItems.AMARAMBER_CANDLE.get())
 			.unlockedBy("has_item", has(ESItems.AMARAMBER_CANDLE.get()))
 			.save(recipeOutput, EternalStarlight.id("amaramber_lantern_from_swamp_silver_nuggets"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.TORCH, 6)
+			.pattern("N")
+			.pattern("S")
+			.define('S', Items.STICK)
+			.define('N', ESItems.AMARAMBER_NUGGET.get())
+			.unlockedBy("has_item", has(ESItems.AMARAMBER_NUGGET.get()))
+			.save(recipeOutput, EternalStarlight.id("torch_from_amaramber_nugget"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get())
 			.pattern("A")
 			.pattern("S")

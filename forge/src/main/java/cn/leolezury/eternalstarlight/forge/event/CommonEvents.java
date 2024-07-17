@@ -50,7 +50,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onLivingHurt(LivingDamageEvent.Pre event) {
-		event.getContainer().setNewDamage(CommonHandlers.onLivingHurt(event.getEntity(), event.getContainer().getSource(), event.getContainer().getOriginalDamage()));
+		event.setNewDamage(CommonHandlers.onLivingHurt(event.getEntity(), event.getContainer().getSource(), event.getContainer().getNewDamage()));
 	}
 
 	@SubscribeEvent
@@ -67,7 +67,9 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onShieldBlock(LivingShieldBlockEvent event) {
-		CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
+		if (event.getOriginalBlock()) {
+			CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
+		}
 	}
 
 	@SubscribeEvent

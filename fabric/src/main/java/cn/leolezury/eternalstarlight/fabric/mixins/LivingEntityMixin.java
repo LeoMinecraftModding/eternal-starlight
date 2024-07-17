@@ -21,12 +21,16 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	public abstract ItemStack getUseItem();
 
-	@ModifyVariable(method = "hurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-	private float hurt(float amount, DamageSource damageSource) {
+	@ModifyVariable(method = "actuallyHurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
+	private float actuallyHurt(float amount, DamageSource damageSource) {
+		return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
+	}
+
+	@Inject(method = "hurt", at = @At(value = "HEAD"))
+	private void hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
 			CommonHandlers.onShieldBlock((LivingEntity) (Object) this, damageSource);
 		}
-		return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
 	}
 
 	@Inject(method = "tick", at = @At(value = "RETURN"))

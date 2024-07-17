@@ -142,6 +142,8 @@ public class CommonSetupHandlers {
 		strategy.register(ESTags.Items.YETI_FUR_CARPETS, 100);
 		strategy.register(ESBlocks.SALTPETER_BLOCK.get(), 16000);
 		strategy.register(ESItems.SALTPETER_POWDER.get(), 1600);
+		strategy.register(ESItems.RAW_AMARAMBER.get(), 2400);
+		strategy.register(ESItems.AMARAMBER_NUGGET.get(), 240);
 	}
 
 	public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
