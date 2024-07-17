@@ -70,7 +70,7 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 		TrailPoint point = getPoints(vertical).getFirst();
 		boolean allSame = true;
 		for (TrailPoint trailPoint : getPoints(vertical)) {
-			if (trailPoint != point) {
+			if (!trailPoint.isApproximatelySame(point)) {
 				allSame = false;
 				break;
 			}
@@ -120,6 +120,10 @@ public record TrailEffect(ArrayList<TrailPoint> verticalPoints, ArrayList<TrailP
 
 		public float width() {
 			return (float) (upper().distanceTo(lower()) / 2f);
+		}
+
+		public boolean isApproximatelySame(TrailPoint point) {
+			return point.upper().distanceTo(upper()) <= 0.001 && point.lower().distanceTo(lower()) <= 0.001;
 		}
 	}
 }

@@ -129,7 +129,7 @@ public class CrestButton extends Button {
 
 	@Override
 	protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
-		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 		float x, y;
 		if (orbit) {
 			float currentAngle = Mth.lerp(partialTicks, prevAngle, angle);

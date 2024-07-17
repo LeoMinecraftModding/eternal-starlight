@@ -66,7 +66,7 @@ public class ScarletLeavesParticle extends TextureSheetParticle {
 			this.sprites = spriteSet;
 		}
 
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xs, double ys, double zs) {
+		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double x, double y, double z, double xs, double ys, double zs) {
 			return new ScarletLeavesParticle(clientLevel, x, y, z, this.sprites);
 		}
 	}

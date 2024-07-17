@@ -146,7 +146,7 @@ public class CrestSelectionScreen extends Screen {
 			Uniform tickUniform = instance.getUniform("TickCount");
 			Uniform ratioUniform = instance.getUniform("Ratio");
 			if (tickUniform != null) {
-				tickUniform.set((float) tickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true));
+				tickUniform.set((float) tickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 			}
 			if (ratioUniform != null) {
 				ratioUniform.set((float) y / x);

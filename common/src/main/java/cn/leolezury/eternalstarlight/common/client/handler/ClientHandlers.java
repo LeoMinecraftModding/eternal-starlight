@@ -232,7 +232,7 @@ public class ClientHandlers {
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
 		LocalPlayer localPlayer = Minecraft.getInstance().player;
-		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 
 		if (localPlayer != null) {
 			float ticks = localPlayer.tickCount + partialTicks;
@@ -378,7 +378,7 @@ public class ClientHandlers {
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
 		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
-		float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), 140f);
+		float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
 		float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
 		if (clientEtherTicksRaw > 0) {
 			renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
@@ -420,7 +420,7 @@ public class ClientHandlers {
 		LocalPlayer player = Minecraft.getInstance().player;
 		if (player != null && player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get()) && !player.getUseItem().has(ESDataComponents.CURRENT_CREST.get())) {
 			int usingTicks = player.getTicksUsingItem();
-			float ticks = Math.min(usingTicks + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true), 150f);
+			float ticks = Math.min(usingTicks + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 150f);
 			float progress = Math.min(ticks, 150f) / 150f;
 			if (usingTicks < 150) {
 				renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
@@ -431,7 +431,7 @@ public class ClientHandlers {
 	public static void renderCurrentCrest(GuiGraphics guiGraphics) {
 		if (Minecraft.getInstance().player != null) {
 			Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
-			float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+			float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
 				GuiCrest guiCrest = entry.getValue();
 				Crest crest = registry.get(entry.getKey());

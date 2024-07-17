@@ -40,7 +40,7 @@ public class PlayerAnimator {
 
 		@Override
 		public float animateTicks(AbstractClientPlayer player, float ageInTicks) {
-			return Math.min(player.getUseItem().getUseDuration(player), player.getTicksUsingItem() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true));
+			return Math.min(player.getUseItem().getUseDuration(player), player.getTicksUsingItem() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 	}
 

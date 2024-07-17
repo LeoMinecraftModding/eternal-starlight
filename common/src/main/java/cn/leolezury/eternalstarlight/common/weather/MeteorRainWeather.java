@@ -78,7 +78,7 @@ public class MeteorRainWeather extends AbstractWeather {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public float modifyRainLevel(float original) {
-		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 		float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
 		ClientWeatherInfo.LEVEL_TARGET = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
 		return ClientWeatherInfo.getRainLevel(partialTick);

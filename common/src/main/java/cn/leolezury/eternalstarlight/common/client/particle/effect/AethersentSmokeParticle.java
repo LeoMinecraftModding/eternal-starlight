@@ -75,7 +75,7 @@ public class AethersentSmokeParticle extends TextureSheetParticle {
 			this.sprites = spriteSet;
 		}
 
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
+		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
 			return new AethersentSmokeParticle(clientLevel, x, y, z, dx, dy, dz, this.sprites);
 		}
 	}

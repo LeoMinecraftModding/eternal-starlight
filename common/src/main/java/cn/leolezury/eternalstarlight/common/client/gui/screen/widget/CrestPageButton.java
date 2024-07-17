@@ -43,7 +43,7 @@ public class CrestPageButton extends Button {
 		guiGraphics.setColor(1.0F, 1.0F, 1.0F, this.alpha);
 		RenderSystem.enableBlend();
 		RenderSystem.enableDepthTest();
-		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
+		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 		float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
 		float width = getWidth() * progress;
 		float height = getHeight() * progress;

@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -37,7 +37,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 
 	public void tick() {
 		super.tick();
-		alpha = ESMathUtil.easeOutQuintInterpolation((float) age / lifetime, 1, 0.1f);
+		alpha = Easing.OUT_QUINT.interpolate((float) age / lifetime, 1, 0.1f);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 	}
 
 	public float getQuadSize(float partialTicks) {
-		return this.quadSize * ESMathUtil.easeOutQuintInterpolation((age + partialTicks) / lifetime, 1, scale);
+		return this.quadSize * Easing.OUT_QUINT.interpolate((age + partialTicks) / lifetime, 1, scale);
 	}
 
 	public static class Provider implements ParticleProvider<RingExplosionParticleOptions> {

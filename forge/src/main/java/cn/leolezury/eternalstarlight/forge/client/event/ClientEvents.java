@@ -42,7 +42,7 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void onAfterRenderEntities(RenderLevelStageEvent event) {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
-			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(true));
+			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
 			ClientHandlers.onAfterRenderParticles();

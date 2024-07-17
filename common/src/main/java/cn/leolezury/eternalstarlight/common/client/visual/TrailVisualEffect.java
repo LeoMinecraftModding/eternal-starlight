@@ -62,6 +62,18 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 			shouldRemove = true;
 		}
 		entity.updateTrail(effect);
+		/*new AdvancedParticleOptions()
+			.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, -0.2f, 0.2f, 1),
+				SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.2f, 1),
+				SmoothSegmentedValue.of(Easing.IN_OUT_SINE, -0.2f, 0.2f, 1))
+			.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 1.5f, 0.6f).add(Easing.IN_OUT_ELASTIC, 1.5f, 0, 0.4f))
+			.lifetime((int) (250 + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 150))
+			.color(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 100 * 0.3f / 255f, 198 * 0.3f / 255f, 1),
+				SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 228 * 0.3f / 255f, 124 * 0.3f / 255f, 1),
+				SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 254 * 0.3f / 255f, 180 * 0.3f / 255f, 1),
+				SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_SINE, 1f, 0, 0.3f))
+			.defaultOperators()
+			.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ());*/
 	}
 
 	@Override

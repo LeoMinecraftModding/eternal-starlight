@@ -61,7 +61,7 @@ public class AethersentExplosionParticle extends NoRenderParticle {
 		public Provider(SpriteSet spriteSet) {
 		}
 
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
+		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
 			return new AethersentExplosionParticle(clientLevel, d, e, f);
 		}
 	}

@@ -51,24 +51,6 @@ public class ESMathUtil {
 		return new Vec3(Mth.approach((float) from.x, (float) to.x, speed), Mth.approach((float) from.y, (float) to.y, speed), Mth.approach((float) from.z, (float) to.z, speed));
 	}
 
-	public static float easeOutQuintInterpolation(float f, float from, float to) {
-		return Mth.lerp(easeOutQuint(f), from, to);
-	}
-
-	public static float easeOutQuint(float f) {
-		return (float) (1 - Math.pow(1 - f, 5));
-	}
-
-	public static float easeOutElastic(float f) {
-		float c4 = (float) ((2 * Math.PI) / 3);
-
-		return f == 0
-			? 0
-			: (float) (f == 1
-			? 1
-			: Math.pow(2, -10 * f) * Math.sin((f * 10 - 0.75) * c4) + 1);
-	}
-
 	public static boolean isPointInEllipsoid(double x, double y, double z, double a, double b, double c) {
 		double value = (x * x) / (a * a) + (y * y) / (b * b) + (z * z) / (c * c);
 		return value <= 1;

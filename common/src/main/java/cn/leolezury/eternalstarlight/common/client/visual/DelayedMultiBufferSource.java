@@ -3,9 +3,12 @@ package cn.leolezury.eternalstarlight.common.client.visual;
 import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 
+@Environment(EnvType.CLIENT)
 public class DelayedMultiBufferSource extends MultiBufferSource.BufferSource {
 	public DelayedMultiBufferSource(ByteBufferBuilder builder) {
 		super(builder, new Object2ObjectLinkedOpenHashMap<>());
