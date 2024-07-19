@@ -39,9 +39,7 @@ public class EnchantedGrimstoneBricksBlock extends HorizontalDirectionalBlock {
 	protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 		if (!level.isClientSide && player.getItemInHand(interactionHand).is(Items.SHIELD)) {
 			if (ESCrestUtil.upgradeCrest(player, ESCrests.BOULDERS_SHIELD)) {
-				if (!player.getAbilities().instabuild) {
-					player.getItemInHand(interactionHand).shrink(1);
-				}
+				player.getItemInHand(interactionHand).consume(1, player);
 				return ItemInteractionResult.SUCCESS;
 			}
 		}

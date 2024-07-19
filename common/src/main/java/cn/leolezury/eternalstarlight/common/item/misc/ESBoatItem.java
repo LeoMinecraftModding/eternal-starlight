@@ -34,10 +34,10 @@ public class ESBoatItem extends Item {
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
+		ItemStack itemStack = player.getItemInHand(hand);
 		HitResult result = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
 		if (result.getType() == HitResult.Type.MISS) {
-			return InteractionResultHolder.pass(itemstack);
+			return InteractionResultHolder.pass(itemStack);
 		} else {
 			Vec3 vector3d = player.getViewVector(1.0F);
 			List<Entity> list = level.getEntities(player, player.getBoundingBox().expandTowards(vector3d.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
@@ -47,7 +47,7 @@ public class ESBoatItem extends Item {
 				for (Entity entity : list) {
 					AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius());
 					if (aabb.contains(vector3d1)) {
-						return InteractionResultHolder.pass(itemstack);
+						return InteractionResultHolder.pass(itemStack);
 					}
 				}
 			}
@@ -57,21 +57,19 @@ public class ESBoatItem extends Item {
 				boat.setSLBoatType(this.type);
 				boat.setYRot(player.getYRot());
 				if (!level.noCollision(boat, boat.getBoundingBox())) {
-					return InteractionResultHolder.fail(itemstack);
+					return InteractionResultHolder.fail(itemStack);
 				} else {
 					if (!level.isClientSide()) {
 						level.addFreshEntity(boat);
 						level.gameEvent(player, GameEvent.ENTITY_PLACE, result.getLocation());
-						if (!player.getAbilities().instabuild) {
-							itemstack.shrink(1);
-						}
+						itemStack.consume(1, player);
 					}
 
 					player.awardStat(Stats.ITEM_USED.get(this));
-					return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+					return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
 				}
 			} else {
-				return InteractionResultHolder.pass(itemstack);
+				return InteractionResultHolder.pass(itemStack);
 			}
 		}
 	}

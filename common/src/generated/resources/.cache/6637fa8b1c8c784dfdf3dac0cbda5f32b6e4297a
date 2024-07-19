@@ -1,4 +1,4 @@
-// 1.21	2024-07-10T20:40:21.6652637	Tags for minecraft:block mod id eternal_starlight
+// 1.21	2024-07-19T12:53:07.5979575	Tags for minecraft:block mod id eternal_starlight
 c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/block/abyssal_fire_survives_on.json
 1eef840b8164c4fe4c7c91c1c2f8fadddbc920c0 data/eternal_starlight/tags/block/aethersent_meteor_replaceable.json
 4d7918ebeae3188181e21326d4f069e3d6305f7e data/eternal_starlight/tags/block/base_stone_starlight.json
@@ -31,7 +31,7 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_s
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs_that_burn.json
 0e247af45dd42f8a86d297328ed6172e5c210fb7 data/minecraft/tags/block/mineable/axe.json
-a8a569b50b19be6abe84ec5e3d4dc5b58cd5224c data/minecraft/tags/block/mineable/pickaxe.json
+a0b934bd79fcfe55a96d85b2f99d26a60919d159 data/minecraft/tags/block/mineable/pickaxe.json
 9ef48c1c3b7aa77f78059d8f57b99365671c721e data/minecraft/tags/block/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/block/moss_replaceable.json
 7d311232ea8d47282861d0002baf6ebf14da42e9 data/minecraft/tags/block/mushroom_grow_block.json

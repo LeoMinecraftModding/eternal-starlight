@@ -528,6 +528,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
+		dropSelf(ESBlocks.STELLAR_RACK.get());
+
 		// nothing
 		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
 		add(ESBlocks.ENERGY_BLOCK.get(), noDrop());

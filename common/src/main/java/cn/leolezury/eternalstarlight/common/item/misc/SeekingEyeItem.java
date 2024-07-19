@@ -42,9 +42,7 @@ public class SeekingEyeItem extends Item {
 				level.addFreshEntity(eyeOfSeeking);
 
 				level.playSound(null, player.getX(), player.getY(), player.getZ(), ESSoundEvents.SEEKING_EYE_LAUNCH.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-				if (!player.getAbilities().instabuild) {
-					itemStack.shrink(1);
-				}
+				itemStack.consume(1, player);
 
 				player.awardStat(Stats.ITEM_USED.get(this));
 				player.swing(hand, true);

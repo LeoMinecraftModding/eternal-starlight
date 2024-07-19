@@ -27,9 +27,15 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 
 	@Override
 	public void tick() {
+		this.stoppedByCollision = false;
 		super.tick();
 		this.setSpriteFromAge(sprites);
 		this.options.operateTick(this);
+	}
+
+	@Override
+	protected int getLightColor(float f) {
+		return ClientHandlers.FULL_BRIGHT;
 	}
 
 	@Override
@@ -50,6 +56,30 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 	}
 
 	@Override
+	public Vec3 getOldPos() {
+		return new Vec3(xo, yo, zo);
+	}
+
+	@Override
+	public void setOldPos(Vec3 pos) {
+		xo = pos.x;
+		yo = pos.y;
+		zo = pos.z;
+	}
+
+	@Override
+	public Vec3 getPos() {
+		return new Vec3(x, y, z);
+	}
+
+	@Override
+	public void setPos(Vec3 pos) {
+		x = pos.x;
+		y = pos.y;
+		z = pos.z;
+	}
+
+	@Override
 	public Vec3 getSpeed() {
 		return new Vec3(xd, yd, zd);
 	}
@@ -59,6 +89,26 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 		xd = speed.x;
 		yd = speed.y;
 		zd = speed.z;
+	}
+
+	@Override
+	public float getOldRoll() {
+		return oRoll;
+	}
+
+	@Override
+	public void setOldRoll(float roll) {
+		this.oRoll = roll;
+	}
+
+	@Override
+	public float getRoll() {
+		return roll;
+	}
+
+	@Override
+	public void setRoll(float roll) {
+		this.roll = roll;
 	}
 
 	@Override
@@ -102,7 +152,7 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 		}
 
 		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
-			return new AdvancedParticle(clientLevel, d, e, f, spriteSet, null);
+			return new AdvancedParticle(clientLevel, d, e, f, spriteSet, new AdvancedParticleOptions().defaultOperators());
 		}
 	}
 }

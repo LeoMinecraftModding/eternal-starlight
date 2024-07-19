@@ -22,7 +22,7 @@ public class ESPortalRenderer<T extends ESPortalBlockEntity> implements BlockEnt
 	}
 
 	@Override
-	public void render(T portal, float f, PoseStack stack, MultiBufferSource multiBufferSource, int i, int j) {
+	public void render(T portal, float f, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay) {
 		if (portal.getBlockState().getValue(ESPortalBlock.CENTER)) {
 			VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PORTAL);
 			PoseStack.Pose pose = stack.last();

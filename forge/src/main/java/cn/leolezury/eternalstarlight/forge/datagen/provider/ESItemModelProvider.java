@@ -582,6 +582,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.NIGHTFALL_FARMLAND.get());
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
+		block(ESItems.STELLAR_RACK.get());
 		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
 		basicItem(ESItems.MANA_CRYSTAL.get());
 		basicItem(ESItems.TERRA_CRYSTAL.get());

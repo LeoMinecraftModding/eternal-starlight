@@ -30,6 +30,7 @@ public abstract class ESRenderType extends RenderType {
 		.setCullState(NO_CULL)
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
+		.setWriteMaskState(COLOR_WRITE)
 		.createCompositeState(true));
 
 	public static final RenderType GLOW_PARTICLE = create(EternalStarlight.ID + ":glow_particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
@@ -39,6 +40,7 @@ public abstract class ESRenderType extends RenderType {
 		.setCullState(NO_CULL)
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
+		.setWriteMaskState(COLOR_WRITE)
 		.createCompositeState(true));
 
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
@@ -55,9 +57,27 @@ public abstract class ESRenderType extends RenderType {
 			.createCompositeState(true));
 	}
 
+	public static RenderType translucentGlow(ResourceLocation location) {
+		return create(EternalStarlight.ID + ":translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
+			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
+			.setTransparencyState(LIGHTNING_TRANSPARENCY)
+			.setCullState(NO_CULL)
+			.setWriteMaskState(COLOR_WRITE)
+			.setOverlayState(OVERLAY)
+			.createCompositeState(true));
+	}
+
 	public static RenderType glow(ResourceLocation location) {
 		RenderStateShard.TextureStateShard textureStateShard = new RenderStateShard.TextureStateShard(location, false, false);
-		RenderType.CompositeState compositeState = RenderType.CompositeState.builder().setTextureState(textureStateShard).setShaderState(RENDERTYPE_BEACON_BEAM_SHADER).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setCullState(NO_CULL).setOverlayState(OVERLAY).setWriteMaskState(COLOR_WRITE).createCompositeState(false);
+		RenderType.CompositeState compositeState = RenderType.CompositeState.builder()
+			.setTextureState(textureStateShard)
+			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
+			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+			.setCullState(NO_CULL)
+			.setOverlayState(OVERLAY)
+			.setWriteMaskState(COLOR_WRITE)
+			.createCompositeState(false);
 		return create(EternalStarlight.ID + ":glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
 	}
 }

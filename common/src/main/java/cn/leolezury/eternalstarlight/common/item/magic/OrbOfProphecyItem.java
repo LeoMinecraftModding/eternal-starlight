@@ -134,8 +134,8 @@ public class OrbOfProphecyItem extends Item {
 					player.experienceLevel -= xpCost;
 					getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
 					itemStack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.EMPTY).build());
-					if (isTemporary(itemStack) && !player.getAbilities().instabuild) {
-						itemStack.shrink(1);
+					if (isTemporary(itemStack)) {
+						itemStack.consume(1, player);
 					}
 					return InteractionResultHolder.success(itemStack);
 				}

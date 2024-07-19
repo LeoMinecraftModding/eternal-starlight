@@ -17,6 +17,7 @@ import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyP
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.LunarVineRenderer;
+import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.StellarRackRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
@@ -315,6 +316,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
@@ -535,6 +537,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
+		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
 
 	public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {

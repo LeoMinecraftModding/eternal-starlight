@@ -362,8 +362,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
+		stellarRack(ESBlocks.STELLAR_RACK.get());
 		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
-
 		particleOnly(ESBlocks.ETHER.get());
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 		spawner(ESBlocks.THE_GATEKEEPER_SPAWNER.get());
@@ -404,6 +404,23 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		slabBlock(slab, blockTexture(stone), blockTexture(stone));
 		stairsBlock(stairs, blockTexture(stone));
 		wallBlock(wall, blockTexture(stone));
+	}
+
+	private void stellarRack(Block block) {
+		ModelFile modelFile = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/block"))
+			.texture("particle", blockTexture(block).withSuffix("_bottom"))
+			.texture("bottom", blockTexture(block).withSuffix("_bottom"))
+			.texture("top", blockTexture(block).withSuffix("_top"))
+			.texture("side", blockTexture(block).withSuffix("_side"))
+			.element().from(0, 0, 0).to(16, 12, 16)
+			.face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#bottom").cullface(Direction.DOWN).end()
+			.face(Direction.UP).uvs(0, 0, 16, 16).texture("#top").end()
+			.face(Direction.NORTH).uvs(0, 4, 16, 16).texture("#side").cullface(Direction.NORTH).end()
+			.face(Direction.SOUTH).uvs(0, 4, 16, 16).texture("#side").cullface(Direction.SOUTH).end()
+			.face(Direction.WEST).uvs(0, 4, 16, 16).texture("#side").cullface(Direction.WEST).end()
+			.face(Direction.EAST).uvs(0, 4, 16, 16).texture("#side").cullface(Direction.EAST).end()
+			.end();
+		simpleBlock(block, modelFile);
 	}
 
 	private void portal(Block block) {

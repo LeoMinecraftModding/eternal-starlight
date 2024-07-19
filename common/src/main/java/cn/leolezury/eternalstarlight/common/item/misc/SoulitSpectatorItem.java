@@ -29,9 +29,7 @@ public class SoulitSpectatorItem extends Item {
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));
-		if (!player.getAbilities().instabuild) {
-			itemStack.hurtAndBreak(1, player, interactionHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-		}
+		itemStack.hurtAndBreak(1, player, interactionHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 
 		player.getCooldowns().addCooldown(this, 60);
 

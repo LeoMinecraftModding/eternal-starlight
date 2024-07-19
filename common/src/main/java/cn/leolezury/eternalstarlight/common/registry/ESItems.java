@@ -661,6 +661,7 @@ public class ESItems {
 
 	// magic
 	public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> STELLAR_RACK = registerItem("stellar_rack", () -> new BlockItem(ESBlocks.STELLAR_RACK.get(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = registerItem("enchanted_grimstone_bricks", () -> new BlockItem(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MANA_CRYSTAL = registerItem("mana_crystal", () -> new ManaCrystalItem(ManaType.EMPTY, new Item.Properties().durability(1800).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> TERRA_CRYSTAL = registerItem("terra_crystal", () -> new ManaCrystalItem(ManaType.TERRA, new Item.Properties().durability(300).rarity(Rarity.RARE)));

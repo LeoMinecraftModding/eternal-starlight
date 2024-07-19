@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.network.*;
+import net.minecraft.world.phys.Vec3;
 
 public class EmptyClientHelper implements ClientHelper {
 	@Override
@@ -40,6 +41,16 @@ public class EmptyClientHelper implements ClientHelper {
 
 	@Override
 	public void handleOpenStarlightStory(OpenStarlightStoryPacket packet) {
+
+	}
+
+	@Override
+	public void spawnStellarRackParticles(Vec3 center) {
+
+	}
+
+	@Override
+	public void spawnStellarRackItemParticles(Vec3 center) {
 
 	}
 }

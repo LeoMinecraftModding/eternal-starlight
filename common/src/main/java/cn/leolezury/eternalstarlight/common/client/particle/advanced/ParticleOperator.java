@@ -7,9 +7,25 @@ import org.joml.Vector4f;
 
 @Environment(EnvType.CLIENT)
 public interface ParticleOperator {
+	Vec3 getOldPos();
+
+	void setOldPos(Vec3 pos);
+
+	Vec3 getPos();
+
+	void setPos(Vec3 pos);
+
 	Vec3 getSpeed();
 
 	void setSpeed(Vec3 speed);
+
+	float getOldRoll();
+
+	void setOldRoll(float roll);
+
+	float getRoll();
+
+	void setRoll(float roll);
 
 	float getQuadSize();
 

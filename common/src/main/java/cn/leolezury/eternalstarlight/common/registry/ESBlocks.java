@@ -628,6 +628,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, FarmBlock> NIGHTFALL_FARMLAND = BLOCKS.register("nightfall_farmland", () -> new FarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
 
 	// magic
+	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));
 	public static final RegistryObject<Block, EnchantedGrimstoneBricksBlock> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 	public static final RegistryObject<Block, EtherLiquidBlock> ETHER = BLOCKS.register("ether", () -> new EtherLiquidBlock(ESFluids.ETHER_STILL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA)));
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
