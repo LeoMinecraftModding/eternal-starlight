@@ -17,31 +17,31 @@ import net.neoforged.neoforge.client.event.ViewportEvent;
 @EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT)
 public class ClientEvents {
 	@SubscribeEvent
-	public static void onClientTick(ClientTickEvent.Post event) {
+	private static void onClientTick(ClientTickEvent.Post event) {
 		ClientHandlers.onClientTick();
 	}
 
 	@SubscribeEvent
-	public static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
+	private static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
 		Vec3 angle = ClientHandlers.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
 		event.setPitch((float) angle.x);
 		event.setYaw((float) angle.y);
 	}
 
 	@SubscribeEvent
-	public static void onRenderFog(ViewportEvent.RenderFog event) {
+	private static void onRenderFog(ViewportEvent.RenderFog event) {
 		ClientHandlers.onRenderFog(event.getCamera(), event.getMode());
 	}
 
 	@SubscribeEvent
-	public static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
+	private static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
 		if (ClientHandlers.renderBossBar(event.getGuiGraphics(), event.getBossEvent(), event.getX(), event.getY())) {
 			event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onAfterRenderEntities(RenderLevelStageEvent event) {
+	private static void onAfterRenderEntities(RenderLevelStageEvent event) {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
 			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}

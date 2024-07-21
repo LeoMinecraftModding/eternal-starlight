@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.client.model.item;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,6 +12,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 
+@Environment(EnvType.CLIENT)
 public class GlaciteShieldModel extends Model {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("glacite_shield"), "main");
 	private final ModelPart handle;

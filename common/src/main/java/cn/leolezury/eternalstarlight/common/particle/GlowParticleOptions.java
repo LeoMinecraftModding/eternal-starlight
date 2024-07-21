@@ -16,6 +16,7 @@ import org.joml.Vector3f;
 import java.util.List;
 
 public record GlowParticleOptions(Vector3f fromColor, Vector3f toColor, float alpha, float lifeScale) implements ParticleOptions {
+	public static final GlowParticleOptions GLOW = new GlowParticleOptions(new Vector3f(255, 255, 255), new Vector3f(255, 255, 255), 0.8f, 1.2f);
 	private static final List<Vector3f> SEEK_COLORS = List.of(
 		new Vector3f(49, 177, 204),
 		new Vector3f(89, 47, 108),

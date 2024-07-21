@@ -11,6 +11,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -88,6 +89,10 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(0, 1))
-					.add(LootItem.lootTableItem(ESItems.WAND_OF_TELEPORTATION.get()))));
+					.add(LootItem.lootTableItem(ESItems.WAND_OF_TELEPORTATION.get())))
+				.withPool(LootPool.lootPool()
+					.setRolls(UniformGenerator.between(0, 1))
+					.when(LootItemRandomChanceCondition.randomChance(0.4f))
+					.add(LootItem.lootTableItem(ESItems.LUNAR_STRIKER.get()))));
 	}
 }

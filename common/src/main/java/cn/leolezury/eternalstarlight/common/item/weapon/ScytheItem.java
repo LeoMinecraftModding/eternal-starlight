@@ -75,16 +75,7 @@ public class ScytheItem extends TieredItem {
 		};
 	}
 
-	public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
-		stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
-		return true;
-	}
-
-	public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
-		if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0F) {
-			stack.hurtAndBreak(1, entity, EquipmentSlot.MAINHAND);
-		}
-
-		return true;
+	public void postHurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity2) {
+		itemStack.hurtAndBreak(1, livingEntity2, EquipmentSlot.MAINHAND);
 	}
 }

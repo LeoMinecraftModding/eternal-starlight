@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.LunarStrikerModel;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,18 +18,29 @@ import net.minecraft.world.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
 public class ESItemStackRenderer {
-	private static GlaciteShieldModel glaciteShieldModel;
+	private static GlaciteShieldModel GLACITE_SHIELD_MODEL;
+	private static LunarStrikerModel LUNAR_STRIKER_MODEL;
 
 	public static void render(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
 		if (stack.is(ESItems.GLACITE_SHIELD.get())) {
-			if (glaciteShieldModel == null) {
-				glaciteShieldModel = new GlaciteShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(GlaciteShieldModel.LAYER_LOCATION));
+			if (GLACITE_SHIELD_MODEL == null) {
+				GLACITE_SHIELD_MODEL = new GlaciteShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(GlaciteShieldModel.LAYER_LOCATION));
 			}
 			poseStack.pushPose();
 			poseStack.scale(1.0F, -1.0F, -1.0F);
 			Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/glacite_shield"));
-			VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, glaciteShieldModel.renderType(material.atlasLocation()), true, stack.hasFoil()));
-			glaciteShieldModel.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+			VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, GLACITE_SHIELD_MODEL.renderType(material.atlasLocation()), true, stack.hasFoil()));
+			GLACITE_SHIELD_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+			poseStack.popPose();
+		}
+		if (stack.is(ESItems.LUNAR_STRIKER.get())) {
+			if (LUNAR_STRIKER_MODEL == null) {
+				LUNAR_STRIKER_MODEL = new LunarStrikerModel(Minecraft.getInstance().getEntityModels().bakeLayer(LunarStrikerModel.LAYER_LOCATION));
+			}
+			poseStack.pushPose();
+			poseStack.scale(1.0F, -1.0F, -1.0F);
+			VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, LUNAR_STRIKER_MODEL.renderType(LunarStrikerModel.TEXTURE), false, stack.hasFoil());
+			LUNAR_STRIKER_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
 			poseStack.popPose();
 		}
 	}

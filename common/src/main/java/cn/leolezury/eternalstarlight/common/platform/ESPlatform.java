@@ -5,9 +5,8 @@ import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
-import cn.leolezury.eternalstarlight.common.item.weapon.CommonHammerItem;
-import cn.leolezury.eternalstarlight.common.item.weapon.CommonScytheItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
+import cn.leolezury.eternalstarlight.common.item.weapon.LunarStrikerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -82,15 +81,15 @@ public interface ESPlatform {
 	// for initialization
 	// items
 	default ScytheItem createScythe(Tier tier, Item.Properties properties) {
-		return new CommonScytheItem(tier, properties);
+		return new ScytheItem(tier, properties);
 	}
 
 	default HammerItem createHammer(Tier tier, Item.Properties properties) {
-		return new CommonHammerItem(tier, properties);
+		return new HammerItem(tier, properties);
 	}
 
-	default ShieldItem createShield(Item.Properties properties) {
-		return new ShieldItem(properties);
+	default LunarStrikerItem createLunarStriker(Item.Properties properties) {
+		return new LunarStrikerItem(properties);
 	}
 
 	ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "item": "eternal_starlight:tenacious_petal"
+    },
+    "S": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    },
+    "V": {
+      "item": "eternal_starlight:tenacious_vine"
+    }
+  },
+  "pattern": [
+    "S S",
+    "PSP",
+    " V "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:lunar_striker"
+  }
+}

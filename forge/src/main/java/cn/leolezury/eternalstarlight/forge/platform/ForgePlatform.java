@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
+import cn.leolezury.eternalstarlight.common.item.weapon.LunarStrikerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
@@ -14,8 +15,8 @@ import cn.leolezury.eternalstarlight.forge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.armor.ForgeThermalSpringStoneArmorItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeHammerItem;
+import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeLunarStrikerItem;
 import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeScytheItem;
-import cn.leolezury.eternalstarlight.forge.item.weapon.ForgeShieldItem;
 import cn.leolezury.eternalstarlight.forge.network.ForgeNetworkHandler;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -170,8 +171,8 @@ public class ForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public ShieldItem createShield(Item.Properties properties) {
-		return new ForgeShieldItem(properties);
+	public LunarStrikerItem createLunarStriker(Item.Properties properties) {
+		return new ForgeLunarStrikerItem(properties);
 	}
 
 	@Override

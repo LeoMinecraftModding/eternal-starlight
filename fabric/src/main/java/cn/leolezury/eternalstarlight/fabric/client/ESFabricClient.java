@@ -78,6 +78,7 @@ public class ESFabricClient implements ClientModInitializer {
 		));
 
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.LUNAR_STRIKER.get(), new FabricItemStackRenderer());
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> ClientHandlers.onClientTick());
 	}

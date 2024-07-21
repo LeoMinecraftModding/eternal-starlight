@@ -30,65 +30,65 @@ import java.util.Map;
 @EventBusSubscriber(modid = EternalStarlight.ID)
 public class CommonEvents {
 	@SubscribeEvent
-	public static void onServerTick(ServerTickEvent.Post event) {
+	private static void onServerTick(ServerTickEvent.Post event) {
 		CommonHandlers.onServerTick(event.getServer());
 	}
 
 	@SubscribeEvent
-	public static void onLevelTick(LevelTickEvent.Post event) {
+	private static void onLevelTick(LevelTickEvent.Post event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
 			CommonHandlers.onLevelTick(serverLevel);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onLevelLoad(LevelEvent.Load event) {
+	private static void onLevelLoad(LevelEvent.Load event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
 			CommonHandlers.onLevelLoad(serverLevel);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onLivingHurt(LivingDamageEvent.Pre event) {
+	private static void onLivingHurt(LivingDamageEvent.Pre event) {
 		event.setNewDamage(CommonHandlers.onLivingHurt(event.getEntity(), event.getContainer().getSource(), event.getContainer().getNewDamage()));
 	}
 
 	@SubscribeEvent
-	public static void onLivingTick(EntityTickEvent.Post event) {
+	private static void onLivingTick(EntityTickEvent.Post event) {
 		if (event.getEntity() instanceof LivingEntity living) {
 			CommonHandlers.onLivingTick(living);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onBlockBroken(BlockEvent.BreakEvent event) {
+	private static void onBlockBroken(BlockEvent.BreakEvent event) {
 		CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
 	}
 
 	@SubscribeEvent
-	public static void onShieldBlock(LivingShieldBlockEvent event) {
+	private static void onShieldBlock(LivingShieldBlockEvent event) {
 		if (event.getOriginalBlock()) {
 			CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
 		}
 	}
 
 	@SubscribeEvent
-	public static void onProjectileImpact(ProjectileImpactEvent event) {
+	private static void onProjectileImpact(ProjectileImpactEvent event) {
 		CommonHandlers.onArrowHit(event.getProjectile(), event.getRayTraceResult());
 	}
 
 	@SubscribeEvent
-	public static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
+	private static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
 		CommonHandlers.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
 	}
 
 	@SubscribeEvent
-	public static void onAddReloadListener(AddReloadListenerEvent event) {
+	private static void onAddReloadListener(AddReloadListenerEvent event) {
 		CommonHandlers.addReloadListeners(event::addListener);
 	}
 
 	@SubscribeEvent
-	public static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+	private static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
 		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
 			@Override
 			public void register(ItemLike item, int time) {
@@ -107,12 +107,12 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onCommandRegister(RegisterCommandsEvent event) {
+	private static void onCommandRegister(RegisterCommandsEvent event) {
 		CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
 	}
 
 	@SubscribeEvent
-	public static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
+	private static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
 		if (event.getItemAbility() == ItemAbilities.AXE_STRIP) {
 			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
