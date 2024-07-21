@@ -167,7 +167,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.GLACITE_SCYTHE.get(),
 			ESItems.SWAMP_SILVER_SICKLE.get(),
 			ESItems.PETAL_SCYTHE.get(),
-			ESItems.LUNAR_STRIKER.get()
+			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(ItemTags.BOW_ENCHANTABLE).add(
 			ESItems.STARFALL_LONGBOW.get(),
@@ -181,13 +181,13 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.GLACITE_SCYTHE.get(),
 			ESItems.PETAL_SCYTHE.get(),
-			ESItems.LUNAR_STRIKER.get()
+			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.GLACITE_SCYTHE.get(),
 			ESItems.PETAL_SCYTHE.get(),
-			ESItems.LUNAR_STRIKER.get()
+			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(ItemTags.BOATS).add(
 			ESItems.LUNAR_BOAT.get(),

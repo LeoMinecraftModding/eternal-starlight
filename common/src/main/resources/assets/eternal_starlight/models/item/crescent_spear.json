@@ -2,7 +2,7 @@
   "parent": "builtin/entity",
   "gui_light": "front",
   "textures": {
-    "particle": "eternal_starlight:item/lunar_striker_inventory"
+    "particle": "eternal_starlight:item/crescent_spear_inventory"
   },
   "display": {
     "thirdperson_righthand": {
@@ -130,7 +130,7 @@
       "predicate": {
         "throwing": 1
       },
-      "model": "eternal_starlight:item/lunar_striker_throwing"
+      "model": "eternal_starlight:item/crescent_spear_throwing"
     }
   ]
 }

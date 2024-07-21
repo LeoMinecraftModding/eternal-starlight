@@ -10,8 +10,8 @@ import cn.leolezury.eternalstarlight.common.client.model.block.TangledHeadModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
+import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpear;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.LunarStrikerModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
@@ -317,7 +317,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("doomeden_sword");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("petal_scythe");
-		registerSimpleSpecialModel("lunar_striker");
+		registerSimpleSpecialModel("crescent_spear");
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
@@ -410,7 +410,7 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), ResourceLocation.withDefaultNamespace("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
-		ItemProperties.register(ESItems.LUNAR_STRIKER.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -531,7 +531,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_sword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("lunar_striker_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
 	}
 
 	public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
@@ -662,7 +662,7 @@ public class ClientSetupHandlers {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
-		strategy.register(LunarStrikerModel.LAYER_LOCATION, LunarStrikerModel::createBodyLayer);
+		strategy.register(CrescentSpear.LAYER_LOCATION, CrescentSpear::createBodyLayer);
 
 		// block entities
 		strategy.register(LunarVineRenderer.VineModel.LAYER_LOCATION, LunarVineRenderer.VineModel::createLayer);

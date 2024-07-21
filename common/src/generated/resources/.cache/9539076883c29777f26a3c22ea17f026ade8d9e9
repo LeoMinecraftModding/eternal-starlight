@@ -1,4 +1,4 @@
-// 1.21	2024-07-21T17:25:19.7039769	Item Models: eternal_starlight
+// 1.21	2024-07-21T21:14:07.3052192	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -105,6 +105,7 @@ dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/co
 535ae2fcfb3aa8b3d300509977556ba145dcdce5 assets/eternal_starlight/models/item/cooked_luminofish.json
 df345951415b24130c20856f2bf494de8d88b12d assets/eternal_starlight/models/item/cooked_ratlin_meat.json
 6c070c5d2e1c3e3ba28da6d35951d30ed3002f72 assets/eternal_starlight/models/item/crescent_grass.json
+3528ea9f1a6efe73ac5aba5b4be05312fa30995d assets/eternal_starlight/models/item/crescent_spear_inventory.json
 7ddb335c47119122e79dafb94614bce46cc11f57 assets/eternal_starlight/models/item/cryobyssal_geyser.json
 eef40b64a1a8177cdce1c93254c22981bf00b872 assets/eternal_starlight/models/item/cryobyssal_magma_block.json
 de3ad123be78b147a98def85368f2af88ed5998a assets/eternal_starlight/models/item/cryobysslate.json
@@ -277,7 +278,6 @@ b523da40ae9aa08576000c605cf593aa454a18c8 assets/eternal_starlight/models/item/lu
 fa155ae2a6647636c9a1a0c5ef3b399b3a4558e6 assets/eternal_starlight/models/item/lunar_sign.json
 3fdf297eb4d74e92ab7b7a71a0f7644a963515c4 assets/eternal_starlight/models/item/lunar_slab.json
 f4b608a5ba53c102ea80144568b83247a9c3f348 assets/eternal_starlight/models/item/lunar_stairs.json
-2187752eb4e35a336915f2c5fcd789f18629e275 assets/eternal_starlight/models/item/lunar_striker_inventory.json
 2d14ef45eba573f2e82be34c8f42ba89881f6895 assets/eternal_starlight/models/item/lunar_trapdoor.json
 d44e97c44e57d2b52cee9663418e8bab8d49f4de assets/eternal_starlight/models/item/lunar_vine.json
 25ee05d669e3f3d3014d330330133b3696100f7f assets/eternal_starlight/models/item/lunar_wood.json

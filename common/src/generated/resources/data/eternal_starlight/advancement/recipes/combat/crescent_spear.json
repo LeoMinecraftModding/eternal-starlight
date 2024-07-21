@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:lunar_striker"
+        "recipe": "eternal_starlight:crescent_spear"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:lunar_striker"
+      "eternal_starlight:crescent_spear"
     ]
   }
 }

@@ -1,12 +1,12 @@
 package cn.leolezury.eternalstarlight.forge.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.item.weapon.LunarStrikerItem;
+import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
-public class ForgeLunarStrikerItem extends LunarStrikerItem {
-	public ForgeLunarStrikerItem(Properties properties) {
+public class ForgeCrescentSpearItem extends CrescentSpearItem {
+	public ForgeCrescentSpearItem(Properties properties) {
 		super(properties);
 	}
 

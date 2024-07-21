@@ -73,21 +73,21 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V", shift = At.Shift.AFTER))
 	private void checkAutoSpinAttack(CallbackInfo ci) {
-		doLunarStrikerDamage();
+		doCrescentSpearDamage();
 	}
 
 	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;level()Lnet/minecraft/world/level/Level;", shift = At.Shift.AFTER))
 	private void checkAutoSpinAttackTail(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
 		if (entity.horizontalCollision) {
-			doLunarStrikerDamage();
+			doCrescentSpearDamage();
 		}
 	}
 
 	@Unique
-	private void doLunarStrikerDamage() {
+	private void doCrescentSpearDamage() {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		if (autoSpinAttackItemStack != null && autoSpinAttackItemStack.is(ESItems.LUNAR_STRIKER.get())) {
+		if (autoSpinAttackItemStack != null && autoSpinAttackItemStack.is(ESItems.CRESCENT_SPEAR.get())) {
 			if (!entity.level().isClientSide) {
 				for (LivingEntity living : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(3))) {
 					if (!living.isAlliedTo(entity) && entity instanceof Player player) {

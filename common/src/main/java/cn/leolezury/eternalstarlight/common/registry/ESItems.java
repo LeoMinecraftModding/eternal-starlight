@@ -588,7 +588,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 3, -1F, 0.5F))));
 	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(ESSpells.TELEPORTATION.asHolder(), new Item.Properties().durability(800).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(400).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> LUNAR_STRIKER = registerItem("lunar_striker", () -> ESPlatform.INSTANCE.createLunarStriker(new Item.Properties().attributes(LunarStrikerItem.createAttributes()).component(DataComponents.TOOL, LunarStrikerItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 
 	// mob stuff

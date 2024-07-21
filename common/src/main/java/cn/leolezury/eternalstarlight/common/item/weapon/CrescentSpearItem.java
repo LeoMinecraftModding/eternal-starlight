@@ -23,8 +23,8 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class LunarStrikerItem extends Item {
-	public LunarStrikerItem(Properties properties) {
+public class CrescentSpearItem extends Item {
+	public CrescentSpearItem(Properties properties) {
 		super(properties);
 	}
 

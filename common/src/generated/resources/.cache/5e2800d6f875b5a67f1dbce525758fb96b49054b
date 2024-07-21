@@ -1,4 +1,4 @@
-// 1.21	2024-07-21T17:25:19.7197433	Tags for minecraft:item mod id eternal_starlight
+// 1.21	2024-07-21T21:14:07.3209727	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 0a6cde89c197f045d272f3e185766b4af269c539 data/eternal_starlight/tags/item/cursed_garden_locators.json
@@ -35,9 +35,9 @@ ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/item/chest_boats.js
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 0a92ee5a6a09681bb4a7b408b82cc281b1818576 data/minecraft/tags/item/enchantable/bow.json
 73e0127140563bac2e802feeb28acbf24cd5520f data/minecraft/tags/item/enchantable/crossbow.json
-308eb8442d918e4e4ab60b84a9d723c86b417eaa data/minecraft/tags/item/enchantable/durability.json
-4f0b0e3161f9c7ba1008b0e9ba69de16804ed75d data/minecraft/tags/item/enchantable/sharp_weapon.json
-4f0b0e3161f9c7ba1008b0e9ba69de16804ed75d data/minecraft/tags/item/enchantable/sword.json
+53c57be4a90b36c16457acd0d64a67eda85aa200 data/minecraft/tags/item/enchantable/durability.json
+9676bc7140270f4521509c4e2ea3c49d66428d4a data/minecraft/tags/item/enchantable/sharp_weapon.json
+9676bc7140270f4521509c4e2ea3c49d66428d4a data/minecraft/tags/item/enchantable/sword.json
 9ad28389412071a4b6bec06996c0e61929052189 data/minecraft/tags/item/foot_armor.json
 739968c9ec0cbeb500fb47ccac16b4b8e69192a5 data/minecraft/tags/item/freeze_immune_wearables.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/item/hanging_signs.json

@@ -93,6 +93,6 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(0, 1))
 					.when(LootItemRandomChanceCondition.randomChance(0.4f))
-					.add(LootItem.lootTableItem(ESItems.LUNAR_STRIKER.get()))));
+					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get()))));
 	}
 }

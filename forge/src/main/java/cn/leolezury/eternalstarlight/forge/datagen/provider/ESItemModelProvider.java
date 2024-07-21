@@ -512,7 +512,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryModel(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
 		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
-		inventoryModel(ESItems.LUNAR_STRIKER.get());
+		inventoryModel(ESItems.CRESCENT_SPEAR.get());
 		basicItem(ESItems.SEEKING_EYE.get());
 
 		basicItem(ESItems.LUMINOFISH_BUCKET.get());
