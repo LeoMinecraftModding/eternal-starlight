@@ -2,9 +2,12 @@ package cn.leolezury.eternalstarlight.fabric.mixins;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.material.Fluid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,6 +23,9 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract ItemStack getUseItem();
+
+	@Shadow
+	protected abstract void jumpInLiquid(TagKey<Fluid> tagKey);
 
 	@ModifyVariable(method = "actuallyHurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
 	private float actuallyHurt(float amount, DamageSource damageSource) {
@@ -42,6 +48,13 @@ public abstract class LivingEntityMixin {
 	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
 			cir.setReturnValue(true);
+		}
+	}
+
+	@Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isInLava()Z", ordinal = 0, shift = At.Shift.AFTER))
+	private void aiStep(CallbackInfo ci) {
+		if (((LivingEntity) (Object) this).getFluidHeight(ESTags.Fluids.ETHER) > 0) {
+			jumpInLiquid(ESTags.Fluids.ETHER);
 		}
 	}
 }

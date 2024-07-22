@@ -132,6 +132,16 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 	}
 
 	@Override
+	public int getLifetime() {
+		return super.getLifetime();
+	}
+
+	@Override
+	public void setLifetime(int lifetime) {
+		super.setLifetime(lifetime);
+	}
+
+	@Override
 	public Vector4f getColor() {
 		return new Vector4f(rCol, gCol, bCol, alpha);
 	}
