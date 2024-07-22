@@ -25,6 +25,7 @@ public class CommonSetupEvents {
 	@SubscribeEvent
 	private static void setup(FMLCommonSetupEvent event) {
 		FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState()));
+		CommonSetupHandlers.commonSetup();
 	}
 
 	@SubscribeEvent

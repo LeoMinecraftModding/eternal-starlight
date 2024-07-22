@@ -1,17 +1,21 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.GleechEgg;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 
-public class GleechEggItem extends Item {
+public class GleechEggItem extends Item implements ProjectileItem {
 	public GleechEggItem(Properties properties) {
 		super(properties);
 	}
@@ -31,5 +35,12 @@ public class GleechEggItem extends Item {
 		itemStack.consume(1, player);
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+	}
+
+	@Override
+	public Projectile asProjectile(Level level, Position position, ItemStack itemStack, Direction direction) {
+		GleechEgg egg = new GleechEgg(level, position.x(), position.y(), position.z());
+		egg.setItem(itemStack);
+		return egg;
 	}
 }

@@ -62,9 +62,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
 				if (entity.canFreeze()) {
 					if (!level().isClientSide) {
-						if (getOwner() instanceof LivingEntity owner) {
-							entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner), 5);
-						}
+						entity.hurt(getOwner() instanceof LivingEntity owner ? ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner) : level().damageSources().freeze(), 5);
 						entity.setTicksFrozen(entity.getTicksFrozen() + 100);
 					}
 				}

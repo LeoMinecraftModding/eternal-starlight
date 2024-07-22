@@ -32,6 +32,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.Nullable;
 
@@ -56,6 +57,12 @@ public class CommonSetupHandlers {
 	public static final List<Supplier<Item>> SHIELDS = List.of(
 		ESItems.GLACITE_SHIELD
 	);
+
+	public static void commonSetup() {
+		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());
+	}
 
 	public interface NetworkRegisterStrategy {
 		<T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo);
