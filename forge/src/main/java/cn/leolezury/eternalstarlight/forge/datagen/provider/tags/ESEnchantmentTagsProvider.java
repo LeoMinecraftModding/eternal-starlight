@@ -27,6 +27,11 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 			ESEnchantments.POISONING,
 			ESEnchantments.SOUL_SNATCHER
 		);
+		tag(EnchantmentTags.TOOLTIP_ORDER).add(
+			ESEnchantments.FEARLESS,
+			ESEnchantments.POISONING,
+			ESEnchantments.SOUL_SNATCHER
+		);
 		tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
 			ESEnchantments.POISONING
 		);
