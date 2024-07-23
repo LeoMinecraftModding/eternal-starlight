@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
@@ -11,6 +12,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
@@ -83,6 +85,9 @@ public class StellarRackBlockEntity extends RandomizableContainerBlockEntity {
 					EternalStarlight.getClientHelper().spawnStellarRackItemParticles(entity.getBlockPos().getBottomCenter().add(0, 0.9, 0).add(vec3));
 				}
 			}
+		}
+		if (level.getGameTime() % 600 == 0) {
+			level.playSound(null, pos, ESSoundEvents.STELLAR_RACK_AMBIENT.get(), SoundSource.BLOCKS, 1f, 1f);
 		}
 	}
 

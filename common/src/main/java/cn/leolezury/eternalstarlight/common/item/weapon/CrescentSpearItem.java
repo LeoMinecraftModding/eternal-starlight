@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
@@ -17,8 +18,11 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -29,7 +33,7 @@ public class CrescentSpearItem extends Item {
 	}
 
 	public static ItemAttributeModifiers createAttributes() {
-		return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.9, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
+		return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
 	}
 
 	public static Tool createToolProperties() {
@@ -62,8 +66,9 @@ public class CrescentSpearItem extends Item {
 	public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int i) {
 		if (livingEntity instanceof Player player) {
 			int useTime = this.getUseDuration(itemStack, livingEntity) - i;
-			if (useTime >= 10) {
-				float spinStrength = EnchantmentHelper.getTridentSpinAttackStrength(itemStack, player) + 2.75f;
+			BlockHitResult result = level.clip(new ClipContext(player.position(), player.position().add(0, -5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, player));
+			if (useTime >= 10 && result.getType() != HitResult.Type.MISS) {
+				float spinStrength = EnchantmentHelper.getTridentSpinAttackStrength(itemStack, player) + 1.75f;
 
 				if (!level.isClientSide) {
 					itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(livingEntity.getUsedItemHand()));
@@ -80,6 +85,9 @@ public class CrescentSpearItem extends Item {
 				zSpeed *= spinStrength / length;
 				player.push(xSpeed, ySpeed, zSpeed);
 				player.startAutoSpinAttack(20, 8.0F, itemStack);
+				player.getCooldowns().addCooldown(this, 35);
+
+				player.playSound(ESSoundEvents.CRESCENT_SPEAR_THROW.get());
 
 				if (player.onGround()) {
 					player.move(MoverType.SELF, new Vec3(0.0, 1.2, 0.0));

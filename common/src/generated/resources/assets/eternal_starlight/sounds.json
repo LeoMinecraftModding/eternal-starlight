@@ -1,4 +1,10 @@
 {
+  "block.stellar_rack.ambient": {
+    "sounds": [
+      "eternal_starlight:block/stellar_rack/idle"
+    ],
+    "subtitle": "subtitles.block.eternal_starlight.stellar_rack.ambient"
+  },
   "entity.astral_golem.attack": {
     "sounds": [
       "mob/irongolem/throw"
@@ -480,6 +486,12 @@
       "eternal_starlight:item/chain_of_souls/absorb"
     ],
     "subtitle": "subtitles.item.eternal_starlight.chain_of_souls.absorb"
+  },
+  "item.crescent_spear.throw": {
+    "sounds": [
+      "eternal_starlight:item/crescent_spear/throw"
+    ],
+    "subtitle": "subtitles.item.eternal_starlight.crescent_spear.throw"
   },
   "music.biome.dark_swamp": {
     "sounds": [

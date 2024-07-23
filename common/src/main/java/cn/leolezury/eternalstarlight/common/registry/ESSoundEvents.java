@@ -30,6 +30,8 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> CHAIN_OF_SOULS_ABSORB = register("item.chain_of_souls.absorb");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> CRESCENT_SPEAR_THROW = register("item.crescent_spear.throw");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKING_EYE_LAUNCH = register("entity.seeking_eye.launch");
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKING_EYE_DEATH = register("entity.seeking_eye.death");
 
@@ -78,6 +80,8 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_AMBIENT = register("entity.tangled_skull.ambient");
 	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_MOAN = register("entity.tangled_skull.moan");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> STELLAR_RACK_AMBIENT = register("block.stellar_rack.ambient");
 
 	public static RegistryObject<SoundEvent, SoundEvent> register(String name) {
 		return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(EternalStarlight.id(name)));

@@ -44,6 +44,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get(), definition().with(sound(loc("item/chain_of_souls/absorb"))).subtitle("subtitles.item." + EternalStarlight.ID + ".chain_of_souls.absorb"));
 
+		add(ESSoundEvents.CRESCENT_SPEAR_THROW.get(), definition().with(sound(loc("item/crescent_spear/throw"))).subtitle("subtitles.item." + EternalStarlight.ID + ".crescent_spear.throw"));
+
 		add(ESSoundEvents.SEEKING_EYE_LAUNCH.get(), definition().with(sound(mcLoc("entity/endereye/endereye_launch1")), sound(mcLoc("entity/endereye/endereye_launch2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.launch"));
 		add(ESSoundEvents.SEEKING_EYE_DEATH.get(), definition().with(sound(mcLoc("entity/endereye/dead1")).volume(1.3), sound(mcLoc("entity/endereye/dead2")).volume(1.3)).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.death"));
 
@@ -92,5 +94,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.TANGLED_SKULL_AMBIENT.get(), definition().with(sound(loc("mob/tangled_skull/idle"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_skull.ambient"));
 		add(ESSoundEvents.TANGLED_SKULL_MOAN.get(), definition().with(sound(loc("mob/tangled_skull/moan"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".tangled_skull.moan"));
+
+		add(ESSoundEvents.STELLAR_RACK_AMBIENT.get(), definition().with(sound(loc("block/stellar_rack/idle"))).subtitle("subtitles.block." + EternalStarlight.ID + ".stellar_rack.ambient"));
 	}
 }
