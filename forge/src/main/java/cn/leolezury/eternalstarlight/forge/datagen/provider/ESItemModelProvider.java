@@ -325,7 +325,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
 		largeHandheld(ESItems.BONEMORE_BROADSWORD.get());
-		inventoryModel(ESItems.BONEMORE_BROADSWORD.get());
+		inventoryHandheld(ESItems.BONEMORE_BROADSWORD.get());
 		bow(ESItems.BOW_OF_BLOOD.get());
 		handheld(ESItems.LIVING_ARM.get());
 		flatBlockTexture(ESItems.DOOMED_TORCH.get());
@@ -335,7 +335,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.EYE_OF_DOOM.get());
 		basicItem(ESItems.DOOMEDEN_RAG.get());
 		handheld(ESItems.DOOMEDEN_FLESH_GRINDER.get());
-		inventoryModel(ESItems.DOOMEDEN_SWORD.get());
+		inventoryHandheld(ESItems.DOOMEDEN_SWORD.get());
 		block(ESItems.DOOMEDEN_BRICKS.get());
 		block(ESItems.DOOMEDEN_BRICK_SLAB.get());
 		block(ESItems.DOOMEDEN_BRICK_STAIRS.get());
@@ -443,8 +443,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.THERMAL_SPRINGSTONE_PICKAXE.get());
 		handheld(ESItems.THERMAL_SPRINGSTONE_AXE.get());
 		largeHandheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
-		inventoryModel(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
-		inventoryModel(ESItems.THERMAL_SPRINGSTONE_HAMMER.get());
+		inventoryHandheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
+		inventoryHandheld(ESItems.THERMAL_SPRINGSTONE_HAMMER.get());
 		basicItem(ESItems.THERMAL_SPRINGSTONE_HELMET.get());
 		basicItem(ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get());
 		basicItem(ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get());
@@ -456,7 +456,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.GLACITE_PICKAXE.get());
 		handheld(ESItems.GLACITE_AXE.get());
 		largeHandheld(ESItems.GLACITE_SCYTHE.get());
-		inventoryModel(ESItems.GLACITE_SCYTHE.get());
+		inventoryHandheld(ESItems.GLACITE_SCYTHE.get());
 		basicItem(ESItems.GLACITE_HELMET.get());
 		basicItem(ESItems.GLACITE_CHESTPLATE.get());
 		basicItem(ESItems.GLACITE_LEGGINGS.get());
@@ -507,12 +507,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
 		bow(ESItems.MOONRING_BOW.get());
 		largeHandheld(ESItems.MOONRING_GREATSWORD.get());
-		inventoryModel(ESItems.MOONRING_GREATSWORD.get());
+		inventoryHandheld(ESItems.MOONRING_GREATSWORD.get());
 		largeHandheld(ESItems.PETAL_SCYTHE.get());
-		inventoryModel(ESItems.PETAL_SCYTHE.get());
+		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
 		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
-		inventoryModel(ESItems.CRESCENT_SPEAR.get());
+		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
 		basicItem(ESItems.SEEKING_EYE.get());
 
 		basicItem(ESItems.LUMINOFISH_BUCKET.get());
@@ -732,18 +732,18 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(item, blockTextureFromItem(item));
 	}
 
-	private ItemModelBuilder basicItem(Item item, ResourceLocation texture) {
-		return getBuilder(item.toString())
+	private void basicItem(Item item, ResourceLocation texture) {
+		getBuilder(item.toString())
 			.parent(new ModelFile.UncheckedModelFile("item/generated"))
 			.texture("layer0", texture);
 	}
 
-	private ItemModelBuilder largeHandheld(Item item) {
-		return handheld(item, itemTexture(item), true);
+	private void largeHandheld(Item item) {
+		handheld(item, itemTexture(item), true);
 	}
 
-	private ItemModelBuilder handheld(Item item) {
-		return handheld(item, itemTexture(item), false);
+	private void handheld(Item item) {
+		handheld(item, itemTexture(item), false);
 	}
 
 	private ItemModelBuilder handheld(Item item, ResourceLocation texture, boolean large) {
@@ -752,9 +752,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", texture);
 	}
 
-	private ItemModelBuilder inventoryModel(Item item) {
-		return getBuilder(item.toString() + "_inventory")
-			.parent(new ModelFile.UncheckedModelFile("item/generated"))
+	private void inventoryHandheld(Item item) {
+		getBuilder(item.toString() + "_inventory")
+			.parent(new ModelFile.UncheckedModelFile("item/handheld"))
 			.texture("layer0", itemTexture(item) + "_inventory");
 	}
 
