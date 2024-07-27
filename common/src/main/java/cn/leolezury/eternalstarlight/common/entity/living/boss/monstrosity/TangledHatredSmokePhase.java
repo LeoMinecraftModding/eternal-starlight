@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -12,7 +12,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
-public class TangledHatredSmokePhase extends BehaviourPhase<TangledHatred> {
+public class TangledHatredSmokePhase extends BehaviorPhase<TangledHatred> {
 	public static final int ID = 1;
 
 	public TangledHatredSmokePhase() {
@@ -32,7 +32,7 @@ public class TangledHatredSmokePhase extends BehaviourPhase<TangledHatred> {
 	@Override
 	public void tick(TangledHatred entity) {
 		if (entity.level() instanceof ServerLevel serverLevel) {
-			int radius = entity.getBehaviourTicks() / 5;
+			int radius = entity.getBehaviorTicks() / 5;
 			for (int angle = 0; angle <= 360; angle += 15) {
 				Vec3 vec3 = ESMathUtil.rotationToPosition(entity.position(), radius, 0, angle).offsetRandom(entity.getRandom(), 2);
 				for (int m = 0; m < serverLevel.players().size(); ++m) {

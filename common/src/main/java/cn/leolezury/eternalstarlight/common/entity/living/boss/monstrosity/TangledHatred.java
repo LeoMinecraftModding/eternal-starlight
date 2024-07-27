@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -58,7 +58,7 @@ public class TangledHatred extends ESBoss {
 	private Vec3 currentTargetPos = null;
 	private int ticksToNextMeleeAttack;
 
-	private final BehaviourManager<TangledHatred> behaviourManager = new BehaviourManager<>(this, List.of(
+	private final BehaviorManager<TangledHatred> behaviorManager = new BehaviorManager<>(this, List.of(
 		new TangledHatredSmokePhase(),
 		new TangledHatredSporePhase()
 	));
@@ -142,7 +142,7 @@ public class TangledHatred extends ESBoss {
 			return false;
 		}
 		boolean flag = super.hurt(source, amount * (isOnFire() ? 1.6f : 1f));
-		if (flag && getBehaviourState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
+		if (flag && getBehaviorState() == TangledHatredSmokePhase.ID && source.getDirectEntity() instanceof LivingEntity entity) {
 			entity.hurtMarked = true;
 			entity.setDeltaMovement(entity.position().subtract(position()).normalize().scale(1.5));
 		}
@@ -156,7 +156,7 @@ public class TangledHatred extends ESBoss {
 
 	public Optional<Vec3> calculateAttackTargetPos() {
 		LivingEntity target = getTarget();
-		if (target != null && getBehaviourState() == TangledHatredSporePhase.ID) {
+		if (target != null && getBehaviorState() == TangledHatredSporePhase.ID) {
 			return Optional.of(target.position().add(0, target.getBbHeight() * 6, 0));
 		}
 		if (target != null && ticksToNextMeleeAttack == 0) {
@@ -170,7 +170,7 @@ public class TangledHatred extends ESBoss {
 		super.aiStep();
 		if (!level().isClientSide) {
 			if (!isNoAi()) {
-				behaviourManager.tick();
+				behaviorManager.tick();
 			}
 			LivingEntity target = getTarget();
 			if (ticksToNextMeleeAttack > 0) ticksToNextMeleeAttack--;

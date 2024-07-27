@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ThirstWalker extends Monster implements MultiBehaviourUser, NeutralMob {
+public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralMob {
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 	private int remainingPersistentAngerTime;
 	@Nullable
@@ -46,24 +46,24 @@ public class ThirstWalker extends Monster implements MultiBehaviourUser, Neutral
 	public AnimationState idleAnimationState = new AnimationState();
 	public AnimationState meleeAnimationState = new AnimationState();
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
-	public int getBehaviourState() {
-		return entityData.get(BEHAVIOUR_STATE);
+	public int getBehaviorState() {
+		return entityData.get(BEHAVIOR_STATE);
 	}
 
-	public void setBehaviourState(int attackState) {
-		entityData.set(BEHAVIOUR_STATE, attackState);
+	public void setBehaviorState(int attackState) {
+		entityData.set(BEHAVIOR_STATE, attackState);
 	}
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
-	public int getBehaviourTicks() {
-		return entityData.get(BEHAVIOUR_TICKS);
+	public int getBehaviorTicks() {
+		return entityData.get(BEHAVIOR_TICKS);
 	}
 
-	public void setBehaviourTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
+	public void setBehaviorTicks(int behaviourTicks) {
+		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
 	protected static final EntityDataAccessor<Boolean> INTENTIONAL_ATTACK = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.BOOLEAN);
@@ -76,7 +76,7 @@ public class ThirstWalker extends Monster implements MultiBehaviourUser, Neutral
 		entityData.set(INTENTIONAL_ATTACK, intentionalAttack);
 	}
 
-	private final BehaviourManager<ThirstWalker> behaviourManager = new BehaviourManager<>(this, List.of(
+	private final BehaviorManager<ThirstWalker> behaviorManager = new BehaviorManager<>(this, List.of(
 		new MeleeAttackPhase<ThirstWalker>(MELEE_ID, 1, 20, 10).with(2, 7)
 	));
 
@@ -87,8 +87,8 @@ public class ThirstWalker extends Monster implements MultiBehaviourUser, Neutral
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(BEHAVIOUR_STATE, 0)
-			.define(BEHAVIOUR_TICKS, 0)
+		builder.define(BEHAVIOR_STATE, 0)
+			.define(BEHAVIOR_TICKS, 0)
 			.define(INTENTIONAL_ATTACK, false);
 	}
 
@@ -148,7 +148,7 @@ public class ThirstWalker extends Monster implements MultiBehaviourUser, Neutral
 			setTarget(null);
 		}
 		if (!isNoAi()) {
-			this.behaviourManager.tick();
+			this.behaviorManager.tick();
 		}
 		if (fleeTicks > 0) {
 			fleeTicks--;
@@ -194,8 +194,8 @@ public class ThirstWalker extends Monster implements MultiBehaviourUser, Neutral
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
-			if (getBehaviourState() == MELEE_ID) {
+		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+			if (getBehaviorState() == MELEE_ID) {
 				meleeAnimationState.start(tickCount);
 			} else {
 				meleeAnimationState.stop();

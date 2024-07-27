@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
@@ -56,7 +56,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
 
-	private final BehaviourManager<StarlightGolem> behaviourManager = new BehaviourManager<>(this, List.of(
+	private final BehaviorManager<StarlightGolem> behaviorManager = new BehaviorManager<>(this, List.of(
 		new StarlightGolemLaserBeamPhase(),
 		new StarlightGolemSummonFlamePhase(),
 		new StarlightGolemSmashPhase(),
@@ -143,7 +143,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		@Override
 		public void tick() {
 			boolean affectsLook =
-				StarlightGolem.this.getBehaviourState() == StarlightGolemLaserBeamPhase.ID;
+				StarlightGolem.this.getBehaviorState() == StarlightGolemLaserBeamPhase.ID;
 			if (!affectsLook) {
 				super.tick();
 			}
@@ -163,7 +163,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public boolean hurt(DamageSource damageSource, float f) {
 		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return super.hurt(damageSource, f);
-		} else if (canHurt() && getBehaviourState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
+		} else if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
 			hurtCount++;
 			return super.hurt(damageSource, f);
 		} else {
@@ -180,7 +180,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		if (deathTime == 0) {
 			stopAllAnimStates();
 			deathAnimationState.start(tickCount);
-			setBehaviourState(0);
+			setBehaviorState(0);
 		}
 		++deathTime;
 		if (deathTime == 100 && !level().isClientSide()) {
@@ -200,9 +200,9 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
+		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
 			stopAllAnimStates();
-			switch (getBehaviourState()) {
+			switch (getBehaviorState()) {
 				case StarlightGolemLaserBeamPhase.ID -> laserBeamAnimationState.start(tickCount);
 				case StarlightGolemSummonFlamePhase.ID -> summonFlameAnimationState.start(tickCount);
 				case StarlightGolemSmashPhase.ID -> smashAnimationState.start(tickCount);
@@ -308,14 +308,14 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				setTarget(null);
 			}
 			if (!isNoAi()) {
-				behaviourManager.tick();
+				behaviorManager.tick();
 			}
 		} else {
 			if (getRandom().nextInt(15) == 0) {
 				Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
 				level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
 			}
-			if (getBehaviourState() == StarlightGolemChargePhase.ID && !canHurt()) {
+			if (getBehaviorState() == StarlightGolemChargePhase.ID && !canHurt()) {
 				// bad code
 				List<BlockPos> list = getLitEnergyBlocks();
 				for (BlockPos pos : list) {

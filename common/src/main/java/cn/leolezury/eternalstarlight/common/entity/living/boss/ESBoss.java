@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -35,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ESBoss extends Monster implements MultiBehaviourUser {
+public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
 	private final List<ServerPlayer> fightParticipants = new ArrayList<>();
 
@@ -56,24 +56,24 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
 		entityData.set(PHASE, phase);
 	}
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
 
-	public int getBehaviourState() {
-		return entityData.get(BEHAVIOUR_STATE);
+	public int getBehaviorState() {
+		return entityData.get(BEHAVIOR_STATE);
 	}
 
-	public void setBehaviourState(int behaviourState) {
-		entityData.set(BEHAVIOUR_STATE, behaviourState);
+	public void setBehaviorState(int behaviourState) {
+		entityData.set(BEHAVIOR_STATE, behaviourState);
 	}
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
 
-	public int getBehaviourTicks() {
-		return entityData.get(BEHAVIOUR_TICKS);
+	public int getBehaviorTicks() {
+		return entityData.get(BEHAVIOR_TICKS);
 	}
 
-	public void setBehaviourTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
+	public void setBehaviorTicks(int behaviourTicks) {
+		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
 	protected static final EntityDataAccessor<Boolean> ACTIVATED = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.BOOLEAN);
@@ -96,8 +96,8 @@ public class ESBoss extends Monster implements MultiBehaviourUser {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(BEHAVIOUR_STATE, 0)
-			.define(BEHAVIOUR_TICKS, 0)
+		builder.define(BEHAVIOR_STATE, 0)
+			.define(BEHAVIOR_TICKS, 0)
 			.define(PHASE, 0)
 			.define(ACTIVATED, true);
 	}

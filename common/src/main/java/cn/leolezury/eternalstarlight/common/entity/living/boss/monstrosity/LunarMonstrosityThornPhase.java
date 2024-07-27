@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity> {
+public class LunarMonstrosityThornPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 3;
 
 	public LunarMonstrosityThornPhase() {
@@ -33,15 +33,15 @@ public class LunarMonstrosityThornPhase extends BehaviourPhase<LunarMonstrosity>
 	@Override
 	public void tick(LunarMonstrosity entity) {
 		LivingEntity target = entity.getTarget();
-		if (entity.getBehaviourTicks() % 15 == 0 && target != null) {
+		if (entity.getBehaviorTicks() % 15 == 0 && target != null) {
 			double d0 = Math.min(target.getY(), entity.getY());
 			double d1 = Math.max(target.getY(), entity.getY()) + 1.0;
 			float f = (float) Mth.atan2(target.getZ() - entity.getZ(), target.getX() - entity.getX());
-			for (int i = 0; i < (entity.getBehaviourTicks() / 15 + 1) * 6; i++) {
+			for (int i = 0; i < (entity.getBehaviorTicks() / 15 + 1) * 6; i++) {
 				double d2 = 1.25 * (double) (i + 1);
 				this.createThorn(entity, entity.getX() + (double) Mth.cos(f) * d2, entity.getZ() + (double) Mth.sin(f) * d2, d0, d1, i);
 			}
-			entity.knockbackNearbyEntities(1.5f, entity.getBehaviourTicks() >= 60);
+			entity.knockbackNearbyEntities(1.5f, entity.getBehaviorTicks() >= 60);
 			if (entity.getPhase() == 1) {
 				TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), entity.level());
 				skull.setPos(entity.position().add((entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8, entity.getBbHeight() * entity.getRandom().nextFloat() + 1.5, (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth() * 8));

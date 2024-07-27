@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import net.minecraft.core.BlockPos;
 
-public class GatekeeperDanceFightPhase extends BehaviourPhase<TheGatekeeper> {
+public class GatekeeperDanceFightPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 5;
 
 	public GatekeeperDanceFightPhase() {
@@ -23,10 +23,10 @@ public class GatekeeperDanceFightPhase extends BehaviourPhase<TheGatekeeper> {
 
 	@Override
 	public void tick(TheGatekeeper entity) {
-		if (entity.getBehaviourTicks() >= 30 && entity.getBehaviourTicks() <= 50) {
+		if (entity.getBehaviorTicks() >= 30 && entity.getBehaviorTicks() <= 50) {
 			performMeleeAttack(entity, 2);
 		}
-		if (entity.getBehaviourTicks() == 73) {
+		if (entity.getBehaviorTicks() == 73) {
 			performMeleeAttack(entity, 5);
 			for (int x = -5; x <= 5; x++) {
 				for (int y = -2; y <= 2; y++) {

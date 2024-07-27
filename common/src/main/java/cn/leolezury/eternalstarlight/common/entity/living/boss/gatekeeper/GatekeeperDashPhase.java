@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
 
-public class GatekeeperDashPhase extends BehaviourPhase<TheGatekeeper> {
+public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 3;
 	private boolean attacked = false;
 

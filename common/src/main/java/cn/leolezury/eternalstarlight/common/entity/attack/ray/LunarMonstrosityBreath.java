@@ -57,7 +57,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 		getCaster().ifPresentOrElse(caster -> {
 			if (caster instanceof LunarMonstrosity monstrosity) {
 				setPos(caster.position().add(0, caster.getBbHeight(), 0));
-				if (monstrosity.getBehaviourState() != LunarMonstrosityToxicBreathPhase.ID || monstrosity.isDeadOrDying()) {
+				if (monstrosity.getBehaviorState() != LunarMonstrosityToxicBreathPhase.ID || monstrosity.isDeadOrDying()) {
 					discard();
 				}
 			}

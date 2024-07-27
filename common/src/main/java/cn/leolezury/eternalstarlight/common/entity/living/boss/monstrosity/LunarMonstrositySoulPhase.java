@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 
-public class LunarMonstrositySoulPhase extends BehaviourPhase<LunarMonstrosity> {
+public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 8;
 
 	public LunarMonstrositySoulPhase() {
@@ -22,7 +22,7 @@ public class LunarMonstrositySoulPhase extends BehaviourPhase<LunarMonstrosity> 
 
 	@Override
 	public void tick(LunarMonstrosity entity) {
-		if (entity.getBehaviourTicks() == 70) {
+		if (entity.getBehaviorTicks() == 70) {
 			entity.playSound(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), 0.5f, 1);
 			entity.knockbackNearbyEntities(2.5f, false);
 		}

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.phys.Vec3;
 
-public class TangledHatredSporePhase extends BehaviourPhase<TangledHatred> {
+public class TangledHatredSporePhase extends BehaviorPhase<TangledHatred> {
 	public static final int ID = 2;
 
 	public TangledHatredSporePhase() {
@@ -28,8 +28,8 @@ public class TangledHatredSporePhase extends BehaviourPhase<TangledHatred> {
 	@Override
 	public void tick(TangledHatred entity) {
 		if (entity.level() instanceof ServerLevel serverLevel) {
-			int segment = entity.getBehaviourTicks() / 40;
-			if (entity.getBehaviourTicks() == segment * 40 + 15 && entity.chain.segments().size() > segment) {
+			int segment = entity.getBehaviorTicks() / 40;
+			if (entity.getBehaviorTicks() == segment * 40 + 15 && entity.chain.segments().size() > segment) {
 				Vec3 base = entity.chain.segments().get(segment).getMiddlePosition();
 				entity.playSound(SoundEvents.GENERIC_EXPLODE.value());
 				for (int j = 0; j < 10; j++) {

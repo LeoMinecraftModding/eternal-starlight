@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.LunarMonstrosityBreath;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 
-public class LunarMonstrosityToxicBreathPhase extends BehaviourPhase<LunarMonstrosity> {
+public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 1;
 
 	public LunarMonstrosityToxicBreathPhase() {
@@ -24,11 +24,11 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviourPhase<LunarMonstr
 
 	@Override
 	public void tick(LunarMonstrosity entity) {
-		if (entity.getBehaviourTicks() == 20) {
+		if (entity.getBehaviorTicks() == 20) {
 			LunarMonstrosityBreath breath = new LunarMonstrosityBreath(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight() / 2.5f, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
 			entity.level().addFreshEntity(breath);
 		}
-		if (entity.getBehaviourTicks() >= 20 && entity.getBehaviourTicks() % 20 == 0) {
+		if (entity.getBehaviorTicks() >= 20 && entity.getBehaviorTicks() % 20 == 0) {
 			CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
 		}
 	}

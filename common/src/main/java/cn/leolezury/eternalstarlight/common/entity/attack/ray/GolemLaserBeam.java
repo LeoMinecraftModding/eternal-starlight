@@ -43,7 +43,7 @@ public class GolemLaserBeam extends RayAttack {
 		getCaster().ifPresentOrElse(caster -> {
 			setPos(getPositionForCaster(caster, caster.position()));
 			if (caster instanceof StarlightGolem golem) {
-				if (golem.getBehaviourState() != StarlightGolemLaserBeamPhase.ID || golem.isDeadOrDying()) {
+				if (golem.getBehaviorState() != StarlightGolemLaserBeamPhase.ID || golem.isDeadOrDying()) {
 					discard();
 				}
 			} else {

@@ -4,18 +4,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
-public abstract class BehaviourPhase<T extends LivingEntity & MultiBehaviourUser> {
+public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> {
 	private final int id;
 	private final int priority;
 	private final int duration;
 	private final int cooldown;
 	private final int turnsInto;
 
-	public BehaviourPhase(int id, int priority, int duration, int cooldown) {
+	public BehaviorPhase(int id, int priority, int duration, int cooldown) {
 		this(id, priority, duration, cooldown, 0);
 	}
 
-	public BehaviourPhase(int id, int priority, int duration, int cooldown, int turnsInto) {
+	public BehaviorPhase(int id, int priority, int duration, int cooldown, int turnsInto) {
 		this.id = id;
 		this.priority = priority;
 		this.duration = duration;
@@ -50,15 +50,15 @@ public abstract class BehaviourPhase<T extends LivingEntity & MultiBehaviourUser
 	public abstract void onStop(T entity);
 
 	public void start(T entity) {
-		entity.setBehaviourState(getId());
-		entity.setBehaviourTicks(0);
+		entity.setBehaviorState(getId());
+		entity.setBehaviorTicks(0);
 		onStart(entity);
 	}
 
 	public void stop(T entity) {
-		entity.setBehaviourState(turnsInto);
+		entity.setBehaviorState(turnsInto);
 		onStop(entity);
-		entity.setBehaviourTicks(0);
+		entity.setBehaviorTicks(0);
 	}
 
 	public boolean canReachTarget(T entity, double range) {

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 
-public class LunarMonstrositySneakPhase extends BehaviourPhase<LunarMonstrosity> {
+public class LunarMonstrositySneakPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 6;
 
 	public LunarMonstrositySneakPhase() {

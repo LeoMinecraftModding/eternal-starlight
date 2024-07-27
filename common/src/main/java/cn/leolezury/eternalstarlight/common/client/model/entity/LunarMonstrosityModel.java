@@ -97,8 +97,8 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		this.eye.visible = entity.getPhase() == 0;
-		if (entity.getBehaviourState() != 0 && entity.deathTime <= 0) {
-			int state = entity.getBehaviourState();
+		if (entity.getBehaviorState() != 0 && entity.deathTime <= 0) {
+			int state = entity.getBehaviorState();
 			switch (state) {
 				case LunarMonstrosityToxicBreathPhase.ID -> animate(entity.toxicBreathAnimationState, LunarMonstrosityAnimation.TOXIC_BREATH, ageInTicks);
 				case LunarMonstrositySporePhase.ID -> animate(entity.sporeAnimationState, LunarMonstrosityAnimation.SPORE, ageInTicks);

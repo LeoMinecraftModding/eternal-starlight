@@ -48,7 +48,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 	@Override
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor level, BlockPos blockPos, BlockPos blockPos2) {
 		BlockState state = super.updateShape(blockState, direction, blockState2, level, blockPos, blockPos2);
-		if (!level.getBlockState(blockPos.above()).is(this)) {
+		if (!level.getBlockState(blockPos.above()).is(this) && state.hasProperty(TOP)) {
 			state = state.setValue(TOP, true);
 		}
 		return state;

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
+public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 	private final T entity;
-	private final List<BehaviourPhase<T>> phaseList = new ArrayList<>();
-	private final Int2ObjectArrayMap<List<BehaviourPhase<T>>> phases = new Int2ObjectArrayMap<>();
+	private final List<BehaviorPhase<T>> phaseList = new ArrayList<>();
+	private final Int2ObjectArrayMap<List<BehaviorPhase<T>>> phases = new Int2ObjectArrayMap<>();
 	private final IntArrayList priorities = new IntArrayList();
 	private final Int2IntArrayMap cooldowns = new Int2IntArrayMap();
 
@@ -20,10 +20,10 @@ public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
 		return cooldowns;
 	}
 
-	public BehaviourManager(T entity, List<BehaviourPhase<T>> phaseList) {
+	public BehaviorManager(T entity, List<BehaviorPhase<T>> phaseList) {
 		this.entity = entity;
 		this.phaseList.addAll(phaseList);
-		for (BehaviourPhase<T> phase : phaseList) {
+		for (BehaviorPhase<T> phase : phaseList) {
 			if (!phases.containsKey(phase.getPriority())) {
 				phases.put(phase.getPriority(), new ArrayList<>());
 			}
@@ -36,7 +36,7 @@ public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
 	}
 
 	public void tick() {
-		if (entity.getBehaviourState() == 0) {
+		if (entity.getBehaviorState() == 0) {
 			selectPhase().ifPresent(p -> {
 				p.start(entity);
 				cooldowns.put(p.getId(), p.getCooldown());
@@ -47,7 +47,7 @@ public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
 					p.stop(entity);
 				} else {
 					p.tick(entity);
-					entity.setBehaviourTicks(entity.getBehaviourTicks() + 1);
+					entity.setBehaviorTicks(entity.getBehaviorTicks() + 1);
 				}
 			});
 		}
@@ -56,9 +56,9 @@ public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
 		}
 	}
 
-	private Optional<BehaviourPhase<T>> selectPhase() {
+	private Optional<BehaviorPhase<T>> selectPhase() {
 		for (int priority : priorities) {
-			List<BehaviourPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();
+			List<BehaviorPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();
 			if (!phasesForPriority.isEmpty()) {
 				return Optional.ofNullable(phasesForPriority.get(entity.getRandom().nextInt(phasesForPriority.size())));
 			}
@@ -66,11 +66,11 @@ public class BehaviourManager<T extends LivingEntity & MultiBehaviourUser> {
 		return Optional.empty();
 	}
 
-	private Optional<BehaviourPhase<T>> getActivePhase() {
-		return phaseList.stream().filter(p -> entity.getBehaviourState() == p.getId()).findFirst();
+	private Optional<BehaviorPhase<T>> getActivePhase() {
+		return phaseList.stream().filter(p -> entity.getBehaviorState() == p.getId()).findFirst();
 	}
 
-	private boolean canContinue(BehaviourPhase<T> phase) {
-		return phase.canContinue(entity) && entity.getBehaviourTicks() <= phase.getDuration();
+	private boolean canContinue(BehaviorPhase<T> phase) {
+		return phase.canContinue(entity) && entity.getBehaviorTicks() <= phase.getDuration();
 	}
 }

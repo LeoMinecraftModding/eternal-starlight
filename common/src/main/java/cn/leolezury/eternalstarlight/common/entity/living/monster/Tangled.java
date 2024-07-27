@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
-import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviourManager;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
-import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviourUser;
+import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -33,33 +33,33 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Tangled extends Monster implements MultiBehaviourUser {
+public class Tangled extends Monster implements MultiBehaviorUser {
 	private static final int MELEE_ID = 1;
 
 	public AnimationState idleAnimationState = new AnimationState();
 	public AnimationState meleeAnimationState = new AnimationState();
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_STATE = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
 
-	public int getBehaviourState() {
-		return entityData.get(BEHAVIOUR_STATE);
+	public int getBehaviorState() {
+		return entityData.get(BEHAVIOR_STATE);
 	}
 
-	public void setBehaviourState(int attackState) {
-		entityData.set(BEHAVIOUR_STATE, attackState);
+	public void setBehaviorState(int attackState) {
+		entityData.set(BEHAVIOR_STATE, attackState);
 	}
 
-	protected static final EntityDataAccessor<Integer> BEHAVIOUR_TICKS = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
 
-	public int getBehaviourTicks() {
-		return entityData.get(BEHAVIOUR_TICKS);
+	public int getBehaviorTicks() {
+		return entityData.get(BEHAVIOR_TICKS);
 	}
 
-	public void setBehaviourTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOUR_TICKS, behaviourTicks);
+	public void setBehaviorTicks(int behaviourTicks) {
+		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
-	private final BehaviourManager<Tangled> behaviourManager = new BehaviourManager<>(this, List.of(
+	private final BehaviorManager<Tangled> behaviorManager = new BehaviorManager<>(this, List.of(
 		new MeleeAttackPhase<Tangled>(MELEE_ID, 1, 20, 10).with(2, 15)
 	));
 
@@ -70,8 +70,8 @@ public class Tangled extends Monster implements MultiBehaviourUser {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(BEHAVIOUR_STATE, 0)
-			.define(BEHAVIOUR_TICKS, 0);
+		builder.define(BEHAVIOR_STATE, 0)
+			.define(BEHAVIOR_TICKS, 0);
 	}
 
 	protected void registerGoals() {
@@ -104,7 +104,7 @@ public class Tangled extends Monster implements MultiBehaviourUser {
 			setTarget(null);
 		}
 		if (!isNoAi()) {
-			this.behaviourManager.tick();
+			this.behaviorManager.tick();
 		}
 	}
 
@@ -127,8 +127,8 @@ public class Tangled extends Monster implements MultiBehaviourUser {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOUR_STATE) && getBehaviourState() != 0) {
-			if (getBehaviourState() == MELEE_ID) {
+		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+			if (getBehaviorState() == MELEE_ID) {
 				meleeAnimationState.start(tickCount);
 			} else {
 				meleeAnimationState.stop();

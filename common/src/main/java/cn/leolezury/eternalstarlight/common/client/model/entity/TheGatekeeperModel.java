@@ -103,8 +103,8 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		animateWalk(entity.getMainHandItem().isEmpty() ? TheGatekeeperAnimation.WALK_1 : TheGatekeeperAnimation.WALK_2, limbSwing, limbSwingAmount, 2.5f, 1.2f);
-		if (entity.getBehaviourTicks() >= 0 && entity.getBehaviourState() != 0 && entity.deathTime <= 0) {
-			int state = entity.getBehaviourState();
+		if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathTime <= 0) {
+			int state = entity.getBehaviorState();
 			switch (state) {
 				case GatekeeperMeleePhase.ID -> {
 					leftArm.resetPose();
