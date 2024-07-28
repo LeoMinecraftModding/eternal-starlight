@@ -25,6 +25,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class AbyssalGeyserBlockEntity extends BlockEntity {
+	private static final String TAG_TICKS_SINCE_LAST_ERUPT = "ticks_since_last_erupt";
+
 	private int ticksSinceLastErupt = 0;
 	private final RandomSource random;
 
@@ -70,12 +72,12 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 	@Override
 	public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.loadAdditional(compoundTag, provider);
-		this.ticksSinceLastErupt = compoundTag.getInt("TicksSinceLastErupt");
+		this.ticksSinceLastErupt = compoundTag.getInt(TAG_TICKS_SINCE_LAST_ERUPT);
 	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.saveAdditional(compoundTag, provider);
-		compoundTag.putInt("TicksSinceLastErupt", this.ticksSinceLastErupt);
+		compoundTag.putInt(TAG_TICKS_SINCE_LAST_ERUPT, this.ticksSinceLastErupt);
 	}
 }

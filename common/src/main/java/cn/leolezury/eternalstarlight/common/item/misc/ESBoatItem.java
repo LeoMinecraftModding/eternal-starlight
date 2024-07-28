@@ -54,7 +54,7 @@ public class ESBoatItem extends Item {
 
 			if (result.getType() == HitResult.Type.BLOCK) {
 				ESBoat boat = this.getBoat(level, result);
-				boat.setSLBoatType(this.type);
+				boat.setStarlightBoatType(this.type);
 				boat.setYRot(player.getYRot());
 				if (!level.noCollision(boat, boat.getBoundingBox())) {
 					return InteractionResultHolder.fail(itemStack);

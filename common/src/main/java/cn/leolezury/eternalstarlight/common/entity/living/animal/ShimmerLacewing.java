@@ -36,6 +36,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class ShimmerLacewing extends Animal implements FlyingAnimal {
+	private static final String TAG_VARIANT = "variant";
+
 	public static final int VARIANT_NORMAL = 0;
 	public static final int VARIANT_SWAMP = 1;
 	protected static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(ShimmerLacewing.class, EntityDataSerializers.INT);
@@ -143,8 +145,8 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		if (compoundTag.contains("Variant", CompoundTag.TAG_INT)) {
-			entityData.set(VARIANT, compoundTag.getInt("Variant"));
+		if (compoundTag.contains(TAG_VARIANT, CompoundTag.TAG_INT)) {
+			entityData.set(VARIANT, compoundTag.getInt(TAG_VARIANT));
 		}
 	}
 
@@ -156,7 +158,7 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putInt("Variant", getVariant());
+		compoundTag.putInt(TAG_VARIANT, getVariant());
 	}
 
 	@Nullable

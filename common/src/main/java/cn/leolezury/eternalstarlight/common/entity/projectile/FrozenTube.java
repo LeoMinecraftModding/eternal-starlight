@@ -28,6 +28,8 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
 public class FrozenTube extends AbstractArrow implements TrailOwner {
+	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
+
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	private boolean dealtDamage;
 
@@ -78,7 +80,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		this.dealtDamage = compoundTag.getBoolean("DealtDamage");
+		this.dealtDamage = compoundTag.getBoolean(TAG_DEALT_DAMAGE);
 	}
 
 	@Override
@@ -88,7 +90,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("DealtDamage", this.dealtDamage);
+		compoundTag.putBoolean(TAG_DEALT_DAMAGE, this.dealtDamage);
 	}
 
 	protected float getWaterInertia() {

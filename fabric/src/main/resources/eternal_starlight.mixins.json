@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "cn.leolezury.eternalstarlight.fabric.mixins",
+  "package": "cn.leolezury.eternalstarlight.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
@@ -13,16 +13,16 @@
     "ProjectileMixin"
   ],
   "client": [
-    "BossHealthOverlayMixin",
-    "CameraMixin",
-    "FogRendererMixin",
-    "GuiMixin",
-    "ItemInHandRendererMixin",
-    "LevelRendererMixin",
-    "ModelBakeryMixin",
-    "ModelManagerMixin",
-    "PlayerRendererMixin",
-    "SkullBlockRendererMixin"
+    "client.BossHealthOverlayMixin",
+    "client.CameraMixin",
+    "client.FogRendererMixin",
+    "client.GuiMixin",
+    "client.ItemInHandRendererMixin",
+    "client.LevelRendererMixin",
+    "client.ModelBakeryMixin",
+    "client.ModelManagerMixin",
+    "client.PlayerRendererMixin",
+    "client.SkullBlockRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

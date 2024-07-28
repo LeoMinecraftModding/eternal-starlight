@@ -20,12 +20,13 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Optional;
 
 public class ESFallingBlock extends Entity {
+	private static final String TAG_BLOCK_STATE = "block_state";
+	private static final String TAG_DURATION = "duration";
+	private static final String TAG_DAMAGE = "damage";
+
 	protected static final EntityDataAccessor<BlockPos> DATA_START_POS = SynchedEntityData.defineId(ESFallingBlock.class, EntityDataSerializers.BLOCK_POS);
-
 	private static final EntityDataAccessor<Optional<BlockState>> BLOCK_STATE = SynchedEntityData.defineId(ESFallingBlock.class, EntityDataSerializers.OPTIONAL_BLOCK_STATE);
-
 	private int duration;
-
 	private boolean damage;
 
 	public ESFallingBlock(EntityType<ESFallingBlock> type, Level level) {
@@ -91,19 +92,19 @@ public class ESFallingBlock extends Entity {
 	protected void addAdditionalSaveData(CompoundTag tag) {
 		BlockState blockState = getBlock();
 		if (blockState != null)
-			tag.put("Block", NbtUtils.writeBlockState(blockState));
-		tag.putInt("Time", this.duration);
-		tag.putBoolean("Damage", this.damage);
+			tag.put(TAG_BLOCK_STATE, NbtUtils.writeBlockState(blockState));
+		tag.putInt(TAG_DURATION, this.duration);
+		tag.putBoolean(TAG_DAMAGE, this.damage);
 	}
 
 	protected void readAdditionalSaveData(CompoundTag tag) {
-		Tag blockStateCompound = tag.get("Block");
+		Tag blockStateCompound = tag.get(TAG_BLOCK_STATE);
 		if (blockStateCompound != null) {
 			BlockState blockState = NbtUtils.readBlockState(level().holderLookup(Registries.BLOCK), (CompoundTag) blockStateCompound);
 			setBlock(blockState);
 		}
-		this.duration = tag.getInt("Time");
-		this.damage = tag.getBoolean("Damage");
+		this.duration = tag.getInt(TAG_DURATION);
+		this.damage = tag.getBoolean(TAG_DAMAGE);
 	}
 
 	public boolean displayFireAnimation() {

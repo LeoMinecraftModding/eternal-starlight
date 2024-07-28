@@ -31,6 +31,9 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Gleech extends Monster {
+	private static final String TAG_LARVAL = "larval";
+	private static final String TAG_GROWTH_TICKS = "growth_ticks";
+
 	protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isLarval() {
@@ -169,15 +172,15 @@ public class Gleech extends Monster {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		setLarval(compoundTag.getBoolean("Larval"));
-		growthTicks = compoundTag.getInt("GrowthTicks");
+		setLarval(compoundTag.getBoolean(TAG_LARVAL));
+		growthTicks = compoundTag.getInt(TAG_GROWTH_TICKS);
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("Larval", isLarval());
-		compoundTag.putInt("GrowthTicks", growthTicks);
+		compoundTag.putBoolean(TAG_LARVAL, isLarval());
+		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 	}
 
 	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

@@ -48,6 +48,15 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
+	public static final String TAG_METEOR_COOLDOWN = "meteor_cooldown";
+	private static final String TAG_SIZE = "size";
+	private static final String TAG_TARGET = "target";
+	private static final String TAG_TARGET_X = "target_x";
+	private static final String TAG_TARGET_Y = "target_y";
+	private static final String TAG_TARGET_Z = "target_z";
+	private static final String TAG_ONLY_HURT_ENEMY = "only_hurt_enemy";
+	private static final String TAG_NATURAL = "natural";
+
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
@@ -102,10 +111,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
 		if (!level.isClientSide) {
 			CompoundTag tag = ESEntityUtil.getPersistentData(entity);
-			if (tag.getInt("MeteorCooldown") > 0) {
+			if (tag.getInt(TAG_METEOR_COOLDOWN) > 0) {
 				return;
 			}
-			tag.putInt("MeteorCooldown", 1);
+			tag.putInt(TAG_METEOR_COOLDOWN, 1);
 			for (int x = -1; x <= 1; x++) {
 				for (int z = -1; z <= 1; z++) {
 					RandomSource random = entity.getRandom();
@@ -131,31 +140,31 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	}
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		setSize(compoundTag.getInt("Size"));
-		if (compoundTag.hasUUID("Target")) {
-			targetId = compoundTag.getUUID("Target");
+		setSize(compoundTag.getInt(TAG_SIZE));
+		if (compoundTag.hasUUID(TAG_TARGET)) {
+			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
-		targetPos = new Vec3(compoundTag.getDouble("TargetX"), compoundTag.getDouble("TargetY"), compoundTag.getDouble("TargetZ"));
-		if (compoundTag.contains("OnlyHurtEnemy", CompoundTag.TAG_BYTE)) {
-			onlyHurtEnemy = compoundTag.getBoolean("OnlyHurtEnemy");
+		targetPos = new Vec3(compoundTag.getDouble(TAG_TARGET_X), compoundTag.getDouble(TAG_TARGET_Y), compoundTag.getDouble(TAG_TARGET_Z));
+		if (compoundTag.contains(TAG_ONLY_HURT_ENEMY, CompoundTag.TAG_BYTE)) {
+			onlyHurtEnemy = compoundTag.getBoolean(TAG_ONLY_HURT_ENEMY);
 		}
-		if (compoundTag.contains("Natural", CompoundTag.TAG_BYTE)) {
-			natural = compoundTag.getBoolean("Natural");
+		if (compoundTag.contains(TAG_NATURAL, CompoundTag.TAG_BYTE)) {
+			natural = compoundTag.getBoolean(TAG_NATURAL);
 		}
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
-		compoundTag.putInt("Size", getSize());
+		compoundTag.putInt(TAG_SIZE, getSize());
 		if (target != null) {
-			compoundTag.putUUID("Target", target.getUUID());
+			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
 		if (targetPos != null) {
-			compoundTag.putDouble("TargetX", targetPos.x);
-			compoundTag.putDouble("TargetY", targetPos.y);
-			compoundTag.putDouble("TargetZ", targetPos.z);
+			compoundTag.putDouble(TAG_TARGET_X, targetPos.x);
+			compoundTag.putDouble(TAG_TARGET_Y, targetPos.y);
+			compoundTag.putDouble(TAG_TARGET_Z, targetPos.z);
 		}
-		compoundTag.putBoolean("OnlyHurtEnemy", onlyHurtEnemy);
-		compoundTag.putBoolean("Natural", natural);
+		compoundTag.putBoolean(TAG_ONLY_HURT_ENEMY, onlyHurtEnemy);
+		compoundTag.putBoolean(TAG_NATURAL, natural);
 	}
 
 	private void handleHit() {

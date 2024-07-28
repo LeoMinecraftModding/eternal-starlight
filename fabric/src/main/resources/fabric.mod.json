@@ -15,10 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "cn.leolezury.eternalstarlight.fabric.ESFabric"
+      "cn.leolezury.eternalstarlight.fabric.ESFabricEntrypoint"
     ],
     "client": [
-      "cn.leolezury.eternalstarlight.fabric.client.ESFabricClient"
+      "cn.leolezury.eternalstarlight.fabric.client.ESFabricClientEntrypoint"
     ]
   },
   "mixins": [

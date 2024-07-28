@@ -48,6 +48,12 @@ import org.joml.Vector3f;
 import java.util.EnumSet;
 
 public class TangledSkull extends Monster {
+	private static final String TAG_SHOT = "shot";
+	private static final String TAG_SHOT_FROM_MONSTROSITY = "shot_from_monstrosity";
+	private static final String TAG_SHOT_MOVEMENT_X = "shot_movement_x";
+	private static final String TAG_SHOT_MOVEMENT_Y = "shot_movement_y";
+	private static final String TAG_SHOT_MOVEMENT_Z = "shot_movement_z";
+
 	public int skullDeathTime;
 
 	protected static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
@@ -292,26 +298,26 @@ public class TangledSkull extends Monster {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("Shot", isShot());
-		compoundTag.putBoolean("ShotFromMonstrosity", isShotFromMonstrosity());
+		compoundTag.putBoolean(TAG_SHOT, isShot());
+		compoundTag.putBoolean(TAG_SHOT_FROM_MONSTROSITY, isShotFromMonstrosity());
 		if (isShot()) {
-			compoundTag.putDouble("ShotMovementX", getShotMovement().x);
-			compoundTag.putDouble("ShotMovementY", getShotMovement().y);
-			compoundTag.putDouble("ShotMovementZ", getShotMovement().z);
+			compoundTag.putDouble(TAG_SHOT_MOVEMENT_X, getShotMovement().x);
+			compoundTag.putDouble(TAG_SHOT_MOVEMENT_Y, getShotMovement().y);
+			compoundTag.putDouble(TAG_SHOT_MOVEMENT_Z, getShotMovement().z);
 		}
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		if (compoundTag.contains("Shot", CompoundTag.TAG_BYTE)) {
-			setShot(compoundTag.getBoolean("Shot"));
+		if (compoundTag.contains(TAG_SHOT, CompoundTag.TAG_BYTE)) {
+			setShot(compoundTag.getBoolean(TAG_SHOT));
 		}
-		if (compoundTag.contains("ShotFromMonstrosity", CompoundTag.TAG_BYTE)) {
-			setShotFromMonstrosity(compoundTag.getBoolean("ShotFromMonstrosity"));
+		if (compoundTag.contains(TAG_SHOT_FROM_MONSTROSITY, CompoundTag.TAG_BYTE)) {
+			setShotFromMonstrosity(compoundTag.getBoolean(TAG_SHOT_FROM_MONSTROSITY));
 		}
-		if (compoundTag.contains("ShotMovementX", CompoundTag.TAG_DOUBLE) && compoundTag.contains("ShotMovementY", CompoundTag.TAG_DOUBLE) && compoundTag.contains("ShotMovementZ", CompoundTag.TAG_DOUBLE)) {
-			setShotMovement(new Vec3(compoundTag.getDouble("ShotMovementX"), compoundTag.getDouble("ShotMovementY"), compoundTag.getDouble("ShotMovementZ")));
+		if (compoundTag.contains(TAG_SHOT_MOVEMENT_X, CompoundTag.TAG_DOUBLE) && compoundTag.contains(TAG_SHOT_MOVEMENT_Y, CompoundTag.TAG_DOUBLE) && compoundTag.contains(TAG_SHOT_MOVEMENT_Z, CompoundTag.TAG_DOUBLE)) {
+			setShotMovement(new Vec3(compoundTag.getDouble(TAG_SHOT_MOVEMENT_X), compoundTag.getDouble(TAG_SHOT_MOVEMENT_Y), compoundTag.getDouble(TAG_SHOT_MOVEMENT_Z)));
 		}
 	}
 

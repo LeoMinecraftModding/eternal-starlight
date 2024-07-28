@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class TangledHatred extends ESBoss {
+	private static final String TAG_CHAIN = "chain";
+
 	protected static final EntityDataAccessor<CompoundTag> CHAIN = SynchedEntityData.defineId(TangledHatred.class, EntityDataSerializers.COMPOUND_TAG);
 
 	public Chain getSyncedChain() {
@@ -271,8 +273,8 @@ public class TangledHatred extends ESBoss {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		if (compoundTag.contains("Chain", CompoundTag.TAG_COMPOUND)) {
-			this.chain = Chain.load(compoundTag.getCompound("Chain"));
+		if (compoundTag.contains(TAG_CHAIN, CompoundTag.TAG_COMPOUND)) {
+			this.chain = Chain.load(compoundTag.getCompound(TAG_CHAIN));
 		}
 	}
 
@@ -281,7 +283,7 @@ public class TangledHatred extends ESBoss {
 		super.addAdditionalSaveData(compoundTag);
 		CompoundTag chainTag = new CompoundTag();
 		this.chain.save(chainTag);
-		compoundTag.put("Chain", chainTag);
+		compoundTag.put(TAG_CHAIN, chainTag);
 	}
 
 	@Nullable

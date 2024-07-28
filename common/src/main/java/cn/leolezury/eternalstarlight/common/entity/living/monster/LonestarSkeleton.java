@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// todo: overhaul this mess
 public class LonestarSkeleton extends Skeleton {
 	private final LonestarSkeletonShootBladeGoal bladeGoal = new LonestarSkeletonShootBladeGoal(this, 1.0, 20, 15.0F);
 	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {

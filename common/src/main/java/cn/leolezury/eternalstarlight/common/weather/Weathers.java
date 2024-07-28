@@ -12,6 +12,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Weathers extends SavedData {
+	private static final String TAG_WEATHERS = "weathers";
+
 	private final ServerLevel serverLevel;
 	private final List<WeatherInstance> weathers = new ArrayList<>();
 
@@ -78,8 +80,8 @@ public class Weathers extends SavedData {
 
 	public static Weathers load(ServerLevel serverLevel, CompoundTag compoundTag) {
 		Weathers weathersData = new Weathers(serverLevel);
-		if (compoundTag.contains("Weathers", CompoundTag.TAG_COMPOUND)) {
-			CompoundTag weathersTag = compoundTag.getCompound("Weathers");
+		if (compoundTag.contains(TAG_WEATHERS, CompoundTag.TAG_COMPOUND)) {
+			CompoundTag weathersTag = compoundTag.getCompound(TAG_WEATHERS);
 			ESWeathers.WEATHERS.registry().forEach(weather -> {
 				WeatherInstance instance = new WeatherInstance(serverLevel, weather);
 				String id = Objects.requireNonNull(ESWeathers.WEATHERS.registry().getKey(weather)).toString();
@@ -101,7 +103,7 @@ public class Weathers extends SavedData {
 			instance.save(weatherTag);
 			weathersTag.put(id, weatherTag);
 		}
-		compoundTag.put("Weathers", weathersTag);
+		compoundTag.put(TAG_WEATHERS, weathersTag);
 		return compoundTag;
 	}
 }

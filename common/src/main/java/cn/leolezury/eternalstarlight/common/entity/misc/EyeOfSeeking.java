@@ -19,6 +19,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EyeOfSeeking extends Entity implements ItemSupplier {
+	private static final String TAG_ITEM = "item";
+	private static final String TAG_SURVIVE_AFTER_DEATH = "survive_after_death";
+
 	private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(EyeOfSeeking.class, EntityDataSerializers.ITEM_STACK);
 	private double tx;
 	private double ty;
@@ -164,17 +167,17 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
-		compoundTag.put("Item", this.getItem().save(this.registryAccess()));
-		compoundTag.putBoolean("SurviveAfterDeath", surviveAfterDeath);
+		compoundTag.put(TAG_ITEM, this.getItem().save(this.registryAccess()));
+		compoundTag.putBoolean(TAG_SURVIVE_AFTER_DEATH, surviveAfterDeath);
 	}
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		if (compoundTag.contains("Item", 10)) {
-			this.setItem(ItemStack.parse(this.registryAccess(), compoundTag.getCompound("Item")).orElse(this.getDefaultItem()));
+		if (compoundTag.contains(TAG_ITEM, 10)) {
+			this.setItem(ItemStack.parse(this.registryAccess(), compoundTag.getCompound(TAG_ITEM)).orElse(this.getDefaultItem()));
 		} else {
 			this.setItem(this.getDefaultItem());
 		}
-		this.surviveAfterDeath = compoundTag.getBoolean("SurviveAfterDeath");
+		this.surviveAfterDeath = compoundTag.getBoolean(TAG_SURVIVE_AFTER_DEATH);
 	}
 
 	private ItemStack getDefaultItem() {

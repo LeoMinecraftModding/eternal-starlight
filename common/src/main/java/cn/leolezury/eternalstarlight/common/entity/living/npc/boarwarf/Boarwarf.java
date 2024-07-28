@@ -41,6 +41,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Boarwarf extends PathfinderMob implements Npc, Merchant {
+	private static final String TAG_TYPE = "type";
+	private static final String TAG_PROFESSION = "profession";
+	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
+	private static final String TAG_CHAT_COOLDOWN = "chat_cooldown";
+	private static final String TAG_CHAT_TICKS = "chat_ticks";
+	private static final String TAG_AWAKE_TICKS = "awake_ticks";
+	private static final String TAG_SLEEP_TICKS = "sleep_ticks";
+	private static final String TAG_HOME_X = "home_x";
+	private static final String TAG_HOME_Y = "home_y";
+	private static final String TAG_HOME_Z = "home_z";
+	private static final String TAG_BOARWARF_CREDIT = "boarwarf_credit";
+
 	public Boarwarf(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);
 	}
@@ -110,14 +122,14 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		setTypeId(ResourceLocation.read(compoundTag.getString("Type")).getOrThrow());
-		setProfessionId(ResourceLocation.read(compoundTag.getString("Profession")).getOrThrow());
-		restockCooldown = compoundTag.getInt("RestockCooldown");
-		chatCooldown = compoundTag.getInt("ChatCooldown");
-		chatTicks = compoundTag.getInt("ChatTicks");
-		awakeTicks = compoundTag.getInt("AwakeTicks");
-		sleepTicks = compoundTag.getInt("SleepTicks");
-		homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
+		setTypeId(ResourceLocation.read(compoundTag.getString(TAG_TYPE)).getOrThrow());
+		setProfessionId(ResourceLocation.read(compoundTag.getString(TAG_PROFESSION)).getOrThrow());
+		restockCooldown = compoundTag.getInt(TAG_RESTOCK_COOLDOWN);
+		chatCooldown = compoundTag.getInt(TAG_CHAT_COOLDOWN);
+		chatTicks = compoundTag.getInt(TAG_CHAT_TICKS);
+		awakeTicks = compoundTag.getInt(TAG_AWAKE_TICKS);
+		sleepTicks = compoundTag.getInt(TAG_SLEEP_TICKS);
+		homePos = new BlockPos(compoundTag.getInt(TAG_HOME_X), compoundTag.getInt(TAG_HOME_Y), compoundTag.getInt(TAG_HOME_Z));
 		if (this.offers == null) {
 			this.offers = new MerchantOffers();
 			this.addTrades();
@@ -127,16 +139,16 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putString("Type", getTypeId().toString());
-		compoundTag.putString("Profession", getProfessionId().toString());
-		compoundTag.putInt("RestockCooldown", restockCooldown);
-		compoundTag.putInt("ChatCooldown", chatCooldown);
-		compoundTag.putInt("ChatTicks", chatTicks);
-		compoundTag.putInt("AwakeTicks", awakeTicks);
-		compoundTag.putInt("SleepTicks", sleepTicks);
-		compoundTag.putInt("HomeX", homePos.getX());
-		compoundTag.putInt("HomeY", homePos.getY());
-		compoundTag.putInt("HomeZ", homePos.getZ());
+		compoundTag.putString(TAG_TYPE, getTypeId().toString());
+		compoundTag.putString(TAG_PROFESSION, getProfessionId().toString());
+		compoundTag.putInt(TAG_RESTOCK_COOLDOWN, restockCooldown);
+		compoundTag.putInt(TAG_CHAT_COOLDOWN, chatCooldown);
+		compoundTag.putInt(TAG_CHAT_TICKS, chatTicks);
+		compoundTag.putInt(TAG_AWAKE_TICKS, awakeTicks);
+		compoundTag.putInt(TAG_SLEEP_TICKS, sleepTicks);
+		compoundTag.putInt(TAG_HOME_X, homePos.getX());
+		compoundTag.putInt(TAG_HOME_Y, homePos.getY());
+		compoundTag.putInt(TAG_HOME_Z, homePos.getZ());
 	}
 
 	@Override
@@ -200,8 +212,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
 	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand playerHand) {
-		ItemStack itemstack = player.getItemInHand(playerHand);
-		if (/*TODO: itemstack.getItem() != SPAWN_EGG.get() && */this.isAlive() && !this.hasCustomer()) {
+		if (this.isAlive() && !this.hasCustomer()) {
 			if (!this.getOffers().isEmpty() && !this.level().isClientSide && getBoarwarfCredit(player) >= -30) {
 				int credit = getBoarwarfCredit(player);
 				if (credit > 0) {
@@ -229,7 +240,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
 	public void angerNearbyAstralGolems(LivingEntity target, boolean replaceCurrentTarget) {
 		for (AstralGolem golem : level().getEntitiesOfClass(AstralGolem.class, getBoundingBox().inflate(30))) {
-			if ((replaceCurrentTarget || golem.getTarget() == null) && !(target instanceof Player player && player.getAbilities().instabuild)) {
+			if ((replaceCurrentTarget || golem.getTarget() == null) && !(target instanceof Player player && player.hasInfiniteMaterials())) {
 				golem.setTarget(target);
 			}
 		}
@@ -259,11 +270,11 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	public static int getBoarwarfCredit(Player player) {
-		return ESEntityUtil.getPersistentData(player).getInt("boarwarf_credit");
+		return ESEntityUtil.getPersistentData(player).getInt(TAG_BOARWARF_CREDIT);
 	}
 
 	public static void setBoarwarfCredit(Player player, int credit) {
-		ESEntityUtil.getPersistentData(player).putInt("boarwarf_credit", credit);
+		ESEntityUtil.getPersistentData(player).putInt(TAG_BOARWARF_CREDIT, credit);
 	}
 
 	@Override
@@ -278,7 +289,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 			angerNearbyAstralGolems(livingEntity, true);
 		}
 		if (source.getEntity() instanceof Player player) {
-			if (!player.getAbilities().instabuild) {
+			if (!player.hasInfiniteMaterials()) {
 				int credit = (int) (getBoarwarfCredit(player) - amount);
 				if (credit > -10000) {
 					setBoarwarfCredit(player, credit);
@@ -291,7 +302,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public void die(DamageSource source) {
 		if (source.getEntity() instanceof Player player) {
-			if (!player.getAbilities().instabuild) {
+			if (!player.hasInfiniteMaterials()) {
 				int credit = getBoarwarfCredit(player) - 20;
 				if (credit > -10000) {
 					setBoarwarfCredit(player, credit);

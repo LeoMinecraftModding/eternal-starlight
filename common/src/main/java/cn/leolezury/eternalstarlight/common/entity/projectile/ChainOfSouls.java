@@ -35,6 +35,11 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChainOfSouls extends Projectile implements Grappling {
+	private static final String TAG_REACHED_TARGET = "reached_target";
+	private static final String TAG_LENGTH = "length";
+	private static final String TAG_TARGET = "target";
+	private static final String TAG_WEAPON = "weapon";
+
 	private static final float MAX_RANGE = 100.0F;
 	private static final double SPEED = 5.0;
 
@@ -209,24 +214,24 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
-		compoundTag.putBoolean("ReachedTarget", this.reachedTarget());
-		compoundTag.putFloat("Length", this.length());
+		compoundTag.putBoolean(TAG_REACHED_TARGET, this.reachedTarget());
+		compoundTag.putFloat(TAG_LENGTH, this.length());
 		if (target != null) {
-			compoundTag.putUUID("Target", target.getUUID());
+			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
 		if (this.firedFromWeapon != null) {
-			compoundTag.put("Weapon", firedFromWeapon.save(registryAccess(), new CompoundTag()));
+			compoundTag.put(TAG_WEAPON, firedFromWeapon.save(registryAccess(), new CompoundTag()));
 		}
 	}
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		this.setReachedTarget(compoundTag.getBoolean("ReachedTarget"));
-		this.setLength(compoundTag.getFloat("Length"));
-		if (compoundTag.hasUUID("Target")) {
-			targetId = compoundTag.getUUID("Target");
+		this.setReachedTarget(compoundTag.getBoolean(TAG_REACHED_TARGET));
+		this.setLength(compoundTag.getFloat(TAG_LENGTH));
+		if (compoundTag.hasUUID(TAG_TARGET)) {
+			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
-		if (compoundTag.contains("Weapon", CompoundTag.TAG_COMPOUND)) {
-			firedFromWeapon = ItemStack.parse(registryAccess(), compoundTag.getCompound("Weapon")).orElse(null);
+		if (compoundTag.contains(TAG_WEAPON, CompoundTag.TAG_COMPOUND)) {
+			firedFromWeapon = ItemStack.parse(registryAccess(), compoundTag.getCompound(TAG_WEAPON)).orElse(null);
 		} else {
 			firedFromWeapon = null;
 		}

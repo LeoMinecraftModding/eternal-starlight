@@ -36,6 +36,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ESBoss extends Monster implements MultiBehaviorUser {
+	private static final String TAG_INITIAL_X = "initial_x";
+	private static final String TAG_INITIAL_Y = "initial_y";
+	private static final String TAG_INITIAL_Z = "initial_z";
+	private static final String TAG_SPAWNED = "spawned";
+	private static final String TAG_PHASE = "phase";
+	private static final String TAG_ACTIVATED = "activated";
+
 	private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
 	private final List<ServerPlayer> fightParticipants = new ArrayList<>();
 
@@ -105,21 +112,21 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		initialPos = new Vec3(compoundTag.getDouble("InitialX"), compoundTag.getDouble("InitialY"), compoundTag.getDouble("InitialZ"));
-		spawned = compoundTag.getBoolean("Spawned");
-		setPhase(compoundTag.getInt("Phase"));
-		setActivated(compoundTag.getBoolean("Activated"));
+		initialPos = new Vec3(compoundTag.getDouble(TAG_INITIAL_X), compoundTag.getDouble(TAG_INITIAL_Y), compoundTag.getDouble(TAG_INITIAL_Z));
+		spawned = compoundTag.getBoolean(TAG_SPAWNED);
+		setPhase(compoundTag.getInt(TAG_PHASE));
+		setActivated(compoundTag.getBoolean(TAG_ACTIVATED));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putDouble("InitialX", initialPos.x);
-		compoundTag.putDouble("InitialY", initialPos.y);
-		compoundTag.putDouble("InitialZ", initialPos.z);
-		compoundTag.putBoolean("Spawned", spawned);
-		compoundTag.putInt("Phase", getPhase());
-		compoundTag.putBoolean("Activated", isActivated());
+		compoundTag.putDouble(TAG_INITIAL_X, initialPos.x);
+		compoundTag.putDouble(TAG_INITIAL_Y, initialPos.y);
+		compoundTag.putDouble(TAG_INITIAL_Z, initialPos.z);
+		compoundTag.putBoolean(TAG_SPAWNED, spawned);
+		compoundTag.putInt(TAG_PHASE, getPhase());
+		compoundTag.putBoolean(TAG_ACTIVATED, isActivated());
 	}
 
 	@Override

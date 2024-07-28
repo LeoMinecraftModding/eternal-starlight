@@ -4,6 +4,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 
 public class WeatherInstance {
+	private static final String TAG_ACTIVE = "active";
+	private static final String TAG_WEATHER_TICKS = "weather_ticks";
+	private static final String TAG_DURATION = "duration";
+	private static final String TAG_INTERVAL_TICKS = "interval_ticks";
+	private static final String TAG_INTERVAL = "interval";
+
 	private final ServerLevel serverLevel;
 	private final AbstractWeather weather;
 
@@ -25,19 +31,19 @@ public class WeatherInstance {
 	}
 
 	public void load(CompoundTag compoundTag) {
-		this.active = compoundTag.getBoolean("Active");
-		this.ticksSinceStarted = compoundTag.getInt("WeatherTick");
-		this.currentDuration = compoundTag.getInt("Duration");
-		this.ticksUntilNext = compoundTag.getInt("IntervalTick");
-		this.currentInterval = compoundTag.getInt("Interval");
+		this.active = compoundTag.getBoolean(TAG_ACTIVE);
+		this.ticksSinceStarted = compoundTag.getInt(TAG_WEATHER_TICKS);
+		this.currentDuration = compoundTag.getInt(TAG_DURATION);
+		this.ticksUntilNext = compoundTag.getInt(TAG_INTERVAL_TICKS);
+		this.currentInterval = compoundTag.getInt(TAG_INTERVAL);
 	}
 
 	public void save(CompoundTag compoundTag) {
-		compoundTag.putBoolean("Active", this.active);
-		compoundTag.putInt("WeatherTick", this.ticksSinceStarted);
-		compoundTag.putInt("Duration", this.currentDuration);
-		compoundTag.putInt("IntervalTick", this.ticksUntilNext);
-		compoundTag.putInt("Interval", this.currentInterval);
+		compoundTag.putBoolean(TAG_ACTIVE, this.active);
+		compoundTag.putInt(TAG_WEATHER_TICKS, this.ticksSinceStarted);
+		compoundTag.putInt(TAG_DURATION, this.currentDuration);
+		compoundTag.putInt(TAG_INTERVAL_TICKS, this.ticksUntilNext);
+		compoundTag.putInt(TAG_INTERVAL, this.currentInterval);
 	}
 
 	public void start() {

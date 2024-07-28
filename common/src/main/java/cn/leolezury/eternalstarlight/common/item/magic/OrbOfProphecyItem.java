@@ -168,7 +168,7 @@ public class OrbOfProphecyItem extends Item {
 		if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
 			AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
 			boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
-			if ((challenged || serverPlayer.getAbilities().instabuild) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+			if ((challenged || serverPlayer.hasInfiniteMaterials()) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
 				if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
 					if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
 						level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);

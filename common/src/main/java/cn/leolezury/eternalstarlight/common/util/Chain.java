@@ -9,6 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 public record Chain(List<Segment> segments) {
+	private static final String TAG_X = "x";
+	private static final String TAG_Y = "y";
+	private static final String TAG_Z = "z";
+	private static final String TAG_LENGTH = "length";
+	private static final String TAG_PITCH = "pitch";
+	private static final String TAG_YAW = "yaw";
+	private static final String TAG_SEGMENTS_SIZE = "segments_size";
+	private static final String TAG_SEGMENT = "segment";
+
 	public Chain(Vec3 position, int numSegments, float segmentLength) {
 		this(new ArrayList<>());
 		for (int i = 0; i < numSegments; i++) {
@@ -39,21 +48,21 @@ public record Chain(List<Segment> segments) {
 	}
 
 	public void save(CompoundTag tag) {
-		tag.putInt("SegmentsSize", segments().size());
+		tag.putInt(TAG_SEGMENTS_SIZE, segments().size());
 		for (int i = 0; i < segments().size(); i++) {
 			Segment segment = segments().get(i);
 			CompoundTag segmentTag = new CompoundTag();
 			segment.save(segmentTag);
-			tag.put("Segment" + i, segmentTag);
+			tag.put(TAG_SEGMENT + i, segmentTag);
 		}
 	}
 
 	public static Chain load(CompoundTag tag) {
 		List<Segment> segments = new ArrayList<>();
-		int segmentsSize = tag.getInt("SegmentsSize");
+		int segmentsSize = tag.getInt(TAG_SEGMENTS_SIZE);
 		for (int i = 0; i < segmentsSize; i++) {
-			if (tag.contains("Segment" + i, CompoundTag.TAG_COMPOUND)) {
-				CompoundTag segmentTag = tag.getCompound("Segment" + i);
+			if (tag.contains(TAG_SEGMENT + i, CompoundTag.TAG_COMPOUND)) {
+				CompoundTag segmentTag = tag.getCompound(TAG_SEGMENT + i);
 				Segment segment = Segment.load(segmentTag);
 				segments.add(segment);
 			}
@@ -127,19 +136,19 @@ public record Chain(List<Segment> segments) {
 		}
 
 		public void save(CompoundTag tag) {
-			tag.putFloat("X", (float) getLowerPosition().x);
-			tag.putFloat("Y", (float) getLowerPosition().y);
-			tag.putFloat("Z", (float) getLowerPosition().z);
-			tag.putFloat("Length", getLength());
-			tag.putFloat("Pitch", getPitch());
-			tag.putFloat("Yaw", getYaw());
+			tag.putFloat(TAG_X, (float) getLowerPosition().x);
+			tag.putFloat(TAG_Y, (float) getLowerPosition().y);
+			tag.putFloat(TAG_Z, (float) getLowerPosition().z);
+			tag.putFloat(TAG_LENGTH, getLength());
+			tag.putFloat(TAG_PITCH, getPitch());
+			tag.putFloat(TAG_YAW, getYaw());
 		}
 
 		public static Segment load(CompoundTag tag) {
-			Vec3 pos = new Vec3(tag.getFloat("X"), tag.getFloat("Y"), tag.getFloat("Z"));
-			float length = tag.getFloat("Length");
-			float pitch = tag.getFloat("Pitch");
-			float yaw = tag.getFloat("Yaw");
+			Vec3 pos = new Vec3(tag.getFloat(TAG_X), tag.getFloat(TAG_Y), tag.getFloat(TAG_Z));
+			float length = tag.getFloat(TAG_LENGTH);
+			float pitch = tag.getFloat(TAG_PITCH);
+			float yaw = tag.getFloat(TAG_YAW);
 			return new Segment(pos, length, pitch, yaw);
 		}
 	}

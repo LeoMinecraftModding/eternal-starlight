@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
@@ -377,7 +378,7 @@ public class ClientHandlers {
 	}
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
-		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt("ClientEtherTicks");
+		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS);
 		float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
 		float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
 		if (clientEtherTicksRaw > 0) {

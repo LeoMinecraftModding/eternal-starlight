@@ -26,15 +26,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class ESCrestUtil {
-	public static final String CRESTS = "Crests";
-	public static final String OWNED_CRESTS = "OwnedCrests";
+	public static final String TAG_CRESTS = "crests";
+	public static final String TAG_OWNED_CRESTS = "owned_crests";
 
 	public static Crest.Set getCrests(Player player) {
-		return getCrests(player, CRESTS);
+		return getCrests(player, TAG_CRESTS);
 	}
 
 	public static Crest.Set getOwnedCrests(Player player) {
-		return getCrests(player, OWNED_CRESTS);
+		return getCrests(player, TAG_OWNED_CRESTS);
 	}
 
 	public static Crest.Set getCrests(Player player, String tagId) {
@@ -47,7 +47,7 @@ public class ESCrestUtil {
 	}
 
 	public static boolean setCrests(Player player, List<Crest.Instance> crests) {
-		return setCrests(player, crests, CRESTS);
+		return setCrests(player, crests, TAG_CRESTS);
 	}
 
 	public static boolean setCrests(Player player, List<Crest.Instance> crests, String tagId) {
@@ -64,7 +64,7 @@ public class ESCrestUtil {
 	}
 
 	public static boolean giveCrest(Player player, Crest.Instance crest) {
-		Crest.Set set = getCrests(player, OWNED_CRESTS);
+		Crest.Set set = getCrests(player, TAG_OWNED_CRESTS);
 		List<Crest.Instance> crests = new ArrayList<>(set.crests());
 		for (Crest.Instance instance : crests) {
 			if (instance.crest().is(crest.crest()) && instance.level() >= crest.level()) {
@@ -73,7 +73,7 @@ public class ESCrestUtil {
 		}
 		crests.removeIf(c -> c.crest().is(crest.crest()));
 		crests.add(crest);
-		setCrests(player, crests, OWNED_CRESTS);
+		setCrests(player, crests, TAG_OWNED_CRESTS);
 		return true;
 	}
 
@@ -83,7 +83,7 @@ public class ESCrestUtil {
 	}
 
 	public static boolean removeCrest(Player player, Holder<Crest> crest) {
-		return removeCrest(player, crest, OWNED_CRESTS) || removeCrest(player, crest, CRESTS);
+		return removeCrest(player, crest, TAG_OWNED_CRESTS) || removeCrest(player, crest, TAG_CRESTS);
 	}
 
 	public static boolean removeCrest(Player player, Holder<Crest> crest, String tagId) {
@@ -122,7 +122,7 @@ public class ESCrestUtil {
 	}
 
 	public static int getCrestLevel(Player player, Holder<Crest> crest) {
-		Crest.Set set = getCrests(player, OWNED_CRESTS);
+		Crest.Set set = getCrests(player, TAG_OWNED_CRESTS);
 		for (Crest.Instance instance : set.crests()) {
 			if (instance.crest().is(crest)) {
 				return instance.level();
@@ -132,7 +132,7 @@ public class ESCrestUtil {
 	}
 
 	public static void tickCrests(Player player) {
-		Crest.Set ownedSet = getCrests(player, OWNED_CRESTS);
+		Crest.Set ownedSet = getCrests(player, TAG_OWNED_CRESTS);
 		Crest.Set set = getCrests(player);
 		List<Crest.Instance> ownedCrestInstances = ownedSet.crests();
 		List<Crest.Instance> crestInstances = set.crests();
@@ -150,7 +150,7 @@ public class ESCrestUtil {
 			}
 		}
 		crestInstances.forEach(crest -> {
-			if (player.getAbilities().instabuild) {
+			if (player.hasInfiniteMaterials()) {
 				applyCrestEffects(player, crest);
 			} else {
 				Inventory inventory = player.getInventory();

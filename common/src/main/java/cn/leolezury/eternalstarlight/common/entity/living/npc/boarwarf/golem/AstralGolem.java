@@ -51,6 +51,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class AstralGolem extends AbstractGolem implements NeutralMob {
+	private static final String TAG_MATERIAL = "material";
+	private static final String TAG_HOME_X = "home_x";
+	private static final String TAG_HOME_Y = "home_y";
+	private static final String TAG_HOME_Z = "home_z";
+
 	public AstralGolem(EntityType<? extends AbstractGolem> golem, Level level) {
 		super(golem, level);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
@@ -97,17 +102,17 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		setMaterialId(ResourceLocation.read(compoundTag.getString("Material")).getOrThrow());
-		homePos = new BlockPos(compoundTag.getInt("HomeX"), compoundTag.getInt("HomeY"), compoundTag.getInt("HomeZ"));
+		setMaterialId(ResourceLocation.read(compoundTag.getString(TAG_MATERIAL)).getOrThrow());
+		homePos = new BlockPos(compoundTag.getInt(TAG_HOME_X), compoundTag.getInt(TAG_HOME_Y), compoundTag.getInt(TAG_HOME_Z));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putString("Material", getMaterialId().toString());
-		compoundTag.putInt("HomeX", homePos.getX());
-		compoundTag.putInt("HomeY", homePos.getY());
-		compoundTag.putInt("HomeZ", homePos.getZ());
+		compoundTag.putString(TAG_MATERIAL, getMaterialId().toString());
+		compoundTag.putInt(TAG_HOME_X, homePos.getX());
+		compoundTag.putInt(TAG_HOME_Y, homePos.getY());
+		compoundTag.putInt(TAG_HOME_Z, homePos.getZ());
 	}
 
 	@Override
@@ -173,7 +178,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 			} else {
 				float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
 				this.playSound(ESSoundEvents.ASTRAL_GOLEM_REPAIR.get(), 1.0F, f1);
-				if (!player.getAbilities().instabuild) {
+				if (!player.hasInfiniteMaterials()) {
 					itemstack.shrink(1);
 					Boarwarf.setBoarwarfCredit(player, Boarwarf.getBoarwarfCredit(player) + 10);
 				}
@@ -239,7 +244,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 			float g = this.getKnockback(target, damageSource);
 			if (g > 0.0F && target instanceof LivingEntity) {
 				LivingEntity livingEntity = (LivingEntity) target;
-				livingEntity.knockback((double) (g * 0.5F), (double) Mth.sin(this.getYRot() * 0.017453292F), (double) (-Mth.cos(this.getYRot() * 0.017453292F)));
+				livingEntity.knockback(g * 0.5F, Mth.sin(this.getYRot() * 0.017453292F), -Mth.cos(this.getYRot() * 0.017453292F));
 				this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
 			}
 
@@ -259,7 +264,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		float f = getMaterial() == null ? 1 : getMaterial().defenseMultiplier();
-		if (source.getEntity() instanceof Player player && !player.getAbilities().instabuild) {
+		if (source.getEntity() instanceof Player player && !player.hasInfiniteMaterials()) {
 			if (Boarwarf.getBoarwarfCredit(player) > -10000) {
 				Boarwarf.setBoarwarfCredit(player, (int) (Boarwarf.getBoarwarfCredit(player) - amount));
 			}
@@ -269,7 +274,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 	@Override
 	public void die(DamageSource source) {
-		if (source.getEntity() instanceof Player player && !player.getAbilities().instabuild) {
+		if (source.getEntity() instanceof Player player && !player.hasInfiniteMaterials()) {
 			if (Boarwarf.getBoarwarfCredit(player) > -10000) {
 				Boarwarf.setBoarwarfCredit(player, Boarwarf.getBoarwarfCredit(player) - 10);
 			}

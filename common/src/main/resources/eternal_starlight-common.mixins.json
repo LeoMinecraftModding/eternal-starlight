@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "cn.leolezury.eternalstarlight.common.mixins",
+  "package": "cn.leolezury.eternalstarlight.common.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
@@ -16,27 +16,27 @@
     "FireBlockMixin",
     "ItemEntityMixin",
     "LivingEntityMixin",
-    "MinecraftMixin",
     "PlayerMixin",
     "ProjectileMixin",
     "ProjectileWeaponItemMixin",
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
-    "WallHangingSignBlockMixin"
+    "WallHangingSignBlockMixin",
+    "client.MinecraftMixin"
   ],
   "client": [
-    "EntityRenderDispatcherMixin",
-    "GameRendererMixin",
-    "HumanoidArmorLayerMixin",
-    "ItemInHandRendererMixin",
-    "ItemRendererMixin",
-    "MultiPlayerGameModeMixin",
-    "PlayerModelMixin",
-    "ScreenEffectRendererMixin",
-    "SkullBlockRendererMixin",
-    "SpriteSourceListMixin",
-    "SpriteSourceListMixin$PalettedPermutationsAccessor"
+    "client.EntityRenderDispatcherMixin",
+    "client.GameRendererMixin",
+    "client.HumanoidArmorLayerMixin",
+    "client.ItemInHandRendererMixin",
+    "client.ItemRendererMixin",
+    "client.MultiPlayerGameModeMixin",
+    "client.PlayerModelMixin",
+    "client.ScreenEffectRendererMixin",
+    "client.SkullBlockRendererMixin",
+    "client.SpriteSourceListMixin",
+    "client.SpriteSourceListMixin$PalettedPermutationsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

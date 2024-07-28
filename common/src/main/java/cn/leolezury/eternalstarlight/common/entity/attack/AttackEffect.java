@@ -16,6 +16,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class AttackEffect extends Entity {
+	private static final String TAG_OWNER = "owner";
+	private static final String TAG_TARGET = "target";
+	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
+	private static final String TAG_ATTACK_MODE = "attack_mode";
+
 	public AttackEffect(EntityType<?> type, Level level) {
 		super(type, level);
 	}
@@ -69,25 +74,25 @@ public class AttackEffect extends Entity {
 	}
 
 	protected void readAdditionalSaveData(CompoundTag compoundTag) {
-		if (compoundTag.hasUUID("Owner")) {
-			ownerId = compoundTag.getUUID("Owner");
+		if (compoundTag.hasUUID(TAG_OWNER)) {
+			ownerId = compoundTag.getUUID(TAG_OWNER);
 		}
-		if (compoundTag.hasUUID("Target")) {
-			targetId = compoundTag.getUUID("Target");
+		if (compoundTag.hasUUID(TAG_TARGET)) {
+			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
-		setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
-		setAttackMode(compoundTag.getInt("AttackMode"));
+		setSpawnedTicks(compoundTag.getInt(TAG_SPAWNED_TICKS));
+		setAttackMode(compoundTag.getInt(TAG_ATTACK_MODE));
 	}
 
 	protected void addAdditionalSaveData(CompoundTag compoundTag) {
 		if (owner != null) {
-			compoundTag.putUUID("Owner", owner.getUUID());
+			compoundTag.putUUID(TAG_OWNER, owner.getUUID());
 		}
 		if (target != null) {
-			compoundTag.putUUID("Target", target.getUUID());
+			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
-		compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
-		compoundTag.putInt("AttackMode", getAttackMode());
+		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
+		compoundTag.putInt(TAG_ATTACK_MODE, getAttackMode());
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {

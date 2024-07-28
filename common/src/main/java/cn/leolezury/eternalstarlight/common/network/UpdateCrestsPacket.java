@@ -22,7 +22,7 @@ public record UpdateCrestsPacket(Crest.Set crests) implements CustomPacketPayloa
 	public static void handle(UpdateCrestsPacket packet, Player player) {
 		if (!player.level().isClientSide) {
 			List<Crest.Instance> crestList = packet.crests().crests();
-			List<Crest.Instance> ownedCrests = ESCrestUtil.getCrests(player, ESCrestUtil.OWNED_CRESTS).crests();
+			List<Crest.Instance> ownedCrests = ESCrestUtil.getCrests(player, ESCrestUtil.TAG_OWNED_CRESTS).crests();
 			if (crestList.stream().anyMatch(crest -> ownedCrests.stream().noneMatch(c -> c.crest().is(crest.crest())))) {
 				return;
 			}

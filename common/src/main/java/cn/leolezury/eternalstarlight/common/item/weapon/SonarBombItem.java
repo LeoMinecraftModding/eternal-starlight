@@ -32,7 +32,7 @@ public class SonarBombItem extends Item implements ProjectileItem {
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));
-		if (!player.getAbilities().instabuild) {
+		if (!player.hasInfiniteMaterials()) {
 			itemStack.shrink(1);
 		}
 

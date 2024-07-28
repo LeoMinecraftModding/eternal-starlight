@@ -25,6 +25,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SoulitSpectator extends ThrowableItemProjectile {
+	private static final String TAG_NO_MOVEMENT = "no_movement";
+
 	private static final TicketType<ChunkPos> CHUNK_LOADING_TICKET_TYPE = TicketType.create(EternalStarlight.ID + ":soulit_spectator", Comparator.comparingLong(ChunkPos::toLong));
 
 	private boolean noMovement;
@@ -102,13 +104,13 @@ public class SoulitSpectator extends ThrowableItemProjectile {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		noMovement = compoundTag.getBoolean("NoMovement");
+		noMovement = compoundTag.getBoolean(TAG_NO_MOVEMENT);
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("NoMovement", noMovement);
+		compoundTag.putBoolean(TAG_NO_MOVEMENT, noMovement);
 	}
 
 	@Override

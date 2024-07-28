@@ -17,6 +17,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 
 public class EtherLiquidBlock extends LiquidBlock {
+	public static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
+	public static final String TAG_CLIENT_IN_ETHER_TICKS = "client_in_ether_ticks";
+
 	public EtherLiquidBlock(FlowingFluid flowingFluid, Properties properties) {
 		super(flowingFluid, properties);
 	}
@@ -39,15 +42,15 @@ public class EtherLiquidBlock extends LiquidBlock {
 			}
 			CompoundTag compoundTag = ESEntityUtil.getPersistentData(livingEntity);
 			if (armorInstance == null || armorInstance.getValue() > 0) {
-				int inEtherTicks = compoundTag.getInt("InEtherTicks");
+				int inEtherTicks = compoundTag.getInt(TAG_IN_ETHER_TICKS);
 				if (livingEntity.getRandom().nextFloat() <= factor) {
-					compoundTag.putInt("InEtherTicks", inEtherTicks + 1);
+					compoundTag.putInt(TAG_IN_ETHER_TICKS, inEtherTicks + 1);
 				}
 			}
 			if (level.isClientSide) {
-				int clientEtherTicks = compoundTag.getInt("ClientEtherTicks");
+				int clientEtherTicks = compoundTag.getInt(TAG_CLIENT_IN_ETHER_TICKS);
 				if (clientEtherTicks < 140) {
-					compoundTag.putInt("ClientEtherTicks", clientEtherTicks + 1);
+					compoundTag.putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks + 1);
 				}
 			}
 		} else {

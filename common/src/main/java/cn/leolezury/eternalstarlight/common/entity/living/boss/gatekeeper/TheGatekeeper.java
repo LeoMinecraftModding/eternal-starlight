@@ -65,6 +65,11 @@ import java.util.Optional;
 import java.util.Set;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
+	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
+	private static final String TAG_FIGHT_TARGET = "flight_target";
+	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
+	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
+
 	private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.asHolder(), 0, 0, true);
 
 	public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
@@ -135,10 +140,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		gatekeeperName = compoundTag.getString("GatekeeperName");
-		fightTarget = compoundTag.getString("FightTarget");
-		fightPlayerOnly = compoundTag.getBoolean("FightPlayerOnly");
-		restockCooldown = compoundTag.getInt("RestockCooldown");
+		gatekeeperName = compoundTag.getString(TAG_GATEKEEPER_NAME);
+		fightTarget = compoundTag.getString(TAG_FIGHT_TARGET);
+		fightPlayerOnly = compoundTag.getBoolean(TAG_FIGHT_PLAYER_ONLY);
+		restockCooldown = compoundTag.getInt(TAG_RESTOCK_COOLDOWN);
 		bossEvent.setId(getUUID());
 		if (this.offers == null) {
 			this.offers = new MerchantOffers();
@@ -149,12 +154,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putString("GatekeeperName", gatekeeperName);
+		compoundTag.putString(TAG_GATEKEEPER_NAME, gatekeeperName);
 		if (fightTarget != null) {
-			compoundTag.putString("FightTarget", fightTarget);
+			compoundTag.putString(TAG_FIGHT_TARGET, fightTarget);
 		}
-		compoundTag.putBoolean("FightPlayerOnly", fightPlayerOnly);
-		compoundTag.putInt("RestockCooldown", restockCooldown);
+		compoundTag.putBoolean(TAG_FIGHT_PLAYER_ONLY, fightPlayerOnly);
+		compoundTag.putInt(TAG_RESTOCK_COOLDOWN, restockCooldown);
 	}
 
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {

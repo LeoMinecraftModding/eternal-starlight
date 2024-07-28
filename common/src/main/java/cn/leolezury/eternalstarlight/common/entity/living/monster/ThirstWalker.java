@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralMob {
+	private static final String TAG_HUNGER_LEVEL = "hunger_level";
+
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 	private int remainingPersistentAngerTime;
 	@Nullable
@@ -208,15 +210,15 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		this.addPersistentAngerSaveData(compoundTag);
-		compoundTag.putFloat("HungerLevel", hungerLevel);
+		compoundTag.putFloat(TAG_HUNGER_LEVEL, hungerLevel);
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
-		if (compoundTag.contains("HungerLevel", CompoundTag.TAG_FLOAT)) {
-			hungerLevel = compoundTag.getFloat("HungerLevel");
+		if (compoundTag.contains(TAG_HUNGER_LEVEL, CompoundTag.TAG_FLOAT)) {
+			hungerLevel = compoundTag.getFloat(TAG_HUNGER_LEVEL);
 		}
 	}
 

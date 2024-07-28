@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "cn.leolezury.eternalstarlight.neoforge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+    "ExtendedBlockMixin"
+  ],
+  "client": [
+    "client.HumanoidArmorLayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

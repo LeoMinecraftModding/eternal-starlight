@@ -33,6 +33,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class AuroraDeer extends Animal implements Charger {
+	private static final String TAG_LEFT_HORN = "left_horn";
+	private static final String TAG_RIGHT_HORN = "right_horn";
+
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.AURORA_DEER_FOOD);
 	protected static final EntityDataAccessor<Boolean> LEFT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
 
@@ -179,15 +182,15 @@ public class AuroraDeer extends Animal implements Charger {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		entityData.set(LEFT_HORN, compoundTag.getBoolean("LeftHorn"));
-		entityData.set(RIGHT_HORN, compoundTag.getBoolean("RightHorn"));
+		entityData.set(LEFT_HORN, compoundTag.getBoolean(TAG_LEFT_HORN));
+		entityData.set(RIGHT_HORN, compoundTag.getBoolean(TAG_RIGHT_HORN));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("LeftHorn", hasLeftHorn());
-		compoundTag.putBoolean("RightHorn", hasRightHorn());
+		compoundTag.putBoolean(TAG_LEFT_HORN, hasLeftHorn());
+		compoundTag.putBoolean(TAG_RIGHT_HORN, hasRightHorn());
 	}
 
 	public static boolean checkAuroraDeerSpawnRules(EntityType<? extends AuroraDeer> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

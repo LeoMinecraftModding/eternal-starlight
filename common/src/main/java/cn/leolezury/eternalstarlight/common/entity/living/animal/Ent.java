@@ -32,6 +32,8 @@ import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class Ent extends Animal {
+	private static final String TAG_HAS_LEAVES = "has_leaves";
+
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.ENT_FOOD);
 
 	public Ent(EntityType<? extends Animal> type, Level level) {
@@ -68,13 +70,13 @@ public class Ent extends Animal {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		setHasLeaves(compoundTag.getBoolean("HasLeaves"));
+		setHasLeaves(compoundTag.getBoolean(TAG_HAS_LEAVES));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("HasLeaves", hasLeaves());
+		compoundTag.putBoolean(TAG_HAS_LEAVES, hasLeaves());
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

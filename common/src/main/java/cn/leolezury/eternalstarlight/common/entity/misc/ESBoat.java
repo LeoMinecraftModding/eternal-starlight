@@ -14,6 +14,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 public class ESBoat extends Boat {
+	private static final String TAG_TYPE = "type";
+
 	private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(ESBoat.class, EntityDataSerializers.INT);
 
 	public ESBoat(EntityType<? extends Boat> type, Level level) {
@@ -44,7 +46,7 @@ public class ESBoat extends Boat {
 		};
 	}
 
-	public void setSLBoatType(ESBoat.Type boatType) {
+	public void setStarlightBoatType(ESBoat.Type boatType) {
 		this.entityData.set(BOAT_TYPE, boatType.ordinal());
 	}
 
@@ -56,13 +58,13 @@ public class ESBoat extends Boat {
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag compound) {
-		compound.putString("Type", this.getESBoatType().getName());
+		compound.putString(TAG_TYPE, this.getESBoatType().getName());
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag compound) {
-		if (compound.contains("Type", 8)) {
-			this.setSLBoatType(ESBoat.Type.getTypeFromString(compound.getString("Type")));
+		if (compound.contains(TAG_TYPE, CompoundTag.TAG_STRING)) {
+			this.setStarlightBoatType(ESBoat.Type.getTypeFromString(compound.getString(TAG_TYPE)));
 		}
 	}
 

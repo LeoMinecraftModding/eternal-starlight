@@ -10,30 +10,32 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Objects;
 
 public class ESSpellUtil {
+	private static final String TAG_SPELL_COOLDOWNS = "spell_cooldowns";
+
 	public static int getCooldownFor(LivingEntity entity, AbstractSpell spell) {
 		String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
-		if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
-			ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
+		if (!ESEntityUtil.getPersistentData(entity).contains(TAG_SPELL_COOLDOWNS, Tag.TAG_COMPOUND)) {
+			ESEntityUtil.getPersistentData(entity).put(TAG_SPELL_COOLDOWNS, new CompoundTag());
 		}
-		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
+		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound(TAG_SPELL_COOLDOWNS);
 		return spellCooldowns.getInt(id);
 	}
 
 	public static void setCooldownFor(LivingEntity entity, AbstractSpell spell, int cooldown) {
 		String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
-		if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
-			ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
+		if (!ESEntityUtil.getPersistentData(entity).contains(TAG_SPELL_COOLDOWNS, Tag.TAG_COMPOUND)) {
+			ESEntityUtil.getPersistentData(entity).put(TAG_SPELL_COOLDOWNS, new CompoundTag());
 		}
-		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
+		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound(TAG_SPELL_COOLDOWNS);
 		spellCooldowns.putInt(id, cooldown);
 	}
 
 	public static void tickSpells(LivingEntity entity) {
 		// cooldown
-		if (!ESEntityUtil.getPersistentData(entity).contains("SpellCooldowns", Tag.TAG_COMPOUND)) {
-			ESEntityUtil.getPersistentData(entity).put("SpellCooldowns", new CompoundTag());
+		if (!ESEntityUtil.getPersistentData(entity).contains(TAG_SPELL_COOLDOWNS, Tag.TAG_COMPOUND)) {
+			ESEntityUtil.getPersistentData(entity).put(TAG_SPELL_COOLDOWNS, new CompoundTag());
 		}
-		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound("SpellCooldowns");
+		CompoundTag spellCooldowns = ESEntityUtil.getPersistentData(entity).getCompound(TAG_SPELL_COOLDOWNS);
 		ESSpells.SPELLS.registry().forEach((spell -> {
 			String id = Objects.requireNonNull(ESSpells.SPELLS.registry().getKey(spell)).toString();
 			if (spellCooldowns.getInt(id) > 0) {

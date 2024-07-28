@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
-import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringStoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
@@ -62,7 +62,7 @@ public interface ESPlatform {
 	});
 
 	enum Loader {
-		FORGE,
+		NEOFORGE,
 		FABRIC
 	}
 
@@ -92,7 +92,7 @@ public interface ESPlatform {
 		return new CrescentSpearItem(properties);
 	}
 
-	ThermalSpringStoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	ThermalSpringstoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
 
 	AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
 
@@ -129,10 +129,6 @@ public interface ESPlatform {
 	boolean isShears(ItemStack stack);
 
 	boolean isShield(ItemStack stack);
-
-	default boolean canStrip(ItemStack stack) {
-		return stack.getItem() instanceof AxeItem;
-	}
 
 	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 

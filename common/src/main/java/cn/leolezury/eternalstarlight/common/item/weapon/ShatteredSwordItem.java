@@ -35,19 +35,19 @@ public class ShatteredSwordItem extends SwordItem {
 		if (hasBlade(itemStack)) {
 			ShatteredBlade blade = new ShatteredBlade(level, player, itemStack);
 			blade.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F, 1.0F);
-			if (player.getAbilities().instabuild) {
+			if (player.hasInfiniteMaterials()) {
 				blade.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 			}
 
 			level.addFreshEntity(blade);
 			level.playSound(null, blade.blockPosition(), SoundEvents.TRIDENT_THROW.value(), SoundSource.PLAYERS);
-			if (!player.getAbilities().instabuild) {
+			if (!player.hasInfiniteMaterials()) {
 				itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 				setHasBlade(itemStack, false);
 			}
 			return InteractionResultHolder.success(itemStack);
 		} else {
-			if (player.getAbilities().instabuild) {
+			if (player.hasInfiniteMaterials()) {
 				setHasBlade(itemStack, true);
 				return InteractionResultHolder.consume(itemStack);
 			} else {

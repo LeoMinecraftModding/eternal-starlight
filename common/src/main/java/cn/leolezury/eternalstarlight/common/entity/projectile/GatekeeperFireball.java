@@ -33,6 +33,9 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class GatekeeperFireball extends Fireball implements TrailOwner {
+	private static final String TAG_TARGET = "target";
+	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
+
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
 	public GatekeeperFireball(EntityType<? extends Fireball> entityType, Level level) {
@@ -156,18 +159,18 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		if (compoundTag.hasUUID("Target")) {
-			targetId = compoundTag.getUUID("Target");
+		if (compoundTag.hasUUID(TAG_TARGET)) {
+			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
-		setSpawnedTicks(compoundTag.getInt("SpawnedTicks"));
+		setSpawnedTicks(compoundTag.getInt(TAG_SPAWNED_TICKS));
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		if (target != null) {
-			compoundTag.putUUID("Target", target.getUUID());
+			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
-		compoundTag.putInt("SpawnedTicks", getSpawnedTicks());
+		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
 	}
 
 	@Override

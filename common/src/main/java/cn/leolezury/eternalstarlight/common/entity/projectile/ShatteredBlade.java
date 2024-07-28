@@ -21,6 +21,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class ShatteredBlade extends AbstractArrow {
+	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
+
 	private boolean dealtDamage;
 	public int clientSideReturnTickCount;
 
@@ -133,12 +135,12 @@ public class ShatteredBlade extends AbstractArrow {
 
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		this.dealtDamage = compoundTag.getBoolean("DealtDamage");
+		this.dealtDamage = compoundTag.getBoolean(TAG_DEALT_DAMAGE);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putBoolean("DealtDamage", this.dealtDamage);
+		compoundTag.putBoolean(TAG_DEALT_DAMAGE, this.dealtDamage);
 	}
 
 	public void tickDespawn() {

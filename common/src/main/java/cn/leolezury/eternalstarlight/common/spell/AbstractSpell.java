@@ -20,7 +20,7 @@ public abstract class AbstractSpell {
 	}
 
 	public boolean canCast(LivingEntity entity, boolean checkCrystal) {
-		boolean crystalCheck = !checkCrystal || (entity instanceof Player player && (player.getAbilities().instabuild || hasNeededCrystal(player.getInventory())));
+		boolean crystalCheck = !checkCrystal || (entity instanceof Player player && (player.hasInfiniteMaterials() || hasNeededCrystal(player.getInventory())));
 		return crystalCheck && ESSpellUtil.getCooldownFor(entity, this) <= 0 && checkExtraConditions(entity);
 	}
 
@@ -43,7 +43,7 @@ public abstract class AbstractSpell {
 	}
 
 	public void start(LivingEntity entity, int strength, boolean damageCrystal) {
-		if (damageCrystal && entity instanceof Player player && !player.getAbilities().instabuild) {
+		if (damageCrystal && entity instanceof Player player && !player.hasInfiniteMaterials()) {
 			damageCrystal(player);
 		}
 		onStart(entity);
