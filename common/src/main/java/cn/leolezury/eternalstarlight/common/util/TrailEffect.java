@@ -52,7 +52,9 @@ public class TrailEffect {
 	}
 
 	public void update(TrailPoint point, boolean vertical) {
-		getPoints(vertical).addFirst(point);
+		if (getPoints(vertical).isEmpty() || getPoints(vertical).getFirst().center().distanceTo(point.center()) > 0.1) {
+			getPoints(vertical).addFirst(point);
+		}
 		if (getPoints(vertical).size() > MAX_CAPACITY) {
 			getPoints(vertical).removeLast();
 		}
@@ -96,13 +98,10 @@ public class TrailEffect {
 		for (int i = 0; i < points.size() - 1; i++) {
 			TrailPoint from = points.get(i);
 			TrailPoint to = points.get(i + 1);
-			Vec3 upper = from.upper().subtract(from.center());
-			Vec3 lower = from.lower().subtract(from.center());
 			float distance = (float) from.center().distanceTo(to.center());
 			totalLength += distance;
 			if (totalLength > renderLength) {
-				Vec3 center = ESMathUtil.lerpVec((totalLength - renderLength) / distance, to.center(), from.center());
-				points.set(i + 1, new TrailPoint(center.add(upper), center.add(lower)));
+				points.set(i + 1, interpolateTrailPoint((totalLength - renderLength) / distance, to, from));
 				modified.addAll(points.subList(0, i + 2));
 				totalLength = renderLength;
 				break;
@@ -121,8 +120,12 @@ public class TrailEffect {
 			currentLength += distance;
 		}
 		if (points.size() > 1) {
-			points.set(points.size() - 1, points.getLast().withWidth(0));
+			points.set(points.size() - 1, points.getLast().withWidth(0.01f));
 		}
+	}
+
+	private TrailPoint interpolateTrailPoint(float progress, TrailPoint first, TrailPoint second) {
+		return new TrailPoint(ESMathUtil.lerpVec(progress, first.upper(), second.upper()), ESMathUtil.lerpVec(progress, first.lower(), second.lower()));
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -143,7 +146,7 @@ public class TrailEffect {
 
 	public record TrailPoint(Vec3 upper, Vec3 lower) {
 		public Vec3 center() {
-			return upper().add(lower().subtract(upper()).scale(0.5));
+			return lower().add(upper().subtract(lower()).scale(0.5));
 		}
 
 		public float width() {
@@ -151,9 +154,10 @@ public class TrailEffect {
 		}
 
 		public TrailPoint withWidth(float width) {
-			Vec3 upperVec = upper().subtract(center());
-			Vec3 lowerVec = lower().subtract(center());
-			return new TrailPoint(center().add(upperVec.normalize().scale(width / 2)), center().add(lowerVec.normalize().scale(width / 2)));
+			Vec3 center = center();
+			Vec3 upperVec = upper().subtract(center);
+			Vec3 lowerVec = lower().subtract(center);
+			return new TrailPoint(center.add(upperVec.normalize().scale(width / 2)), center.add(lowerVec.normalize().scale(width / 2)));
 		}
 	}
 }

@@ -84,8 +84,8 @@ public class OrbitalTrailParticle extends Particle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(x, y, z).subtract(new Vec3(xo, yo, zo)), partialTicks);
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.translucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
+		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(this.x, this.y, this.z).subtract(new Vec3(this.xo, this.yo, this.zo)), partialTicks);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
 		stack.popPose();
 	}
 

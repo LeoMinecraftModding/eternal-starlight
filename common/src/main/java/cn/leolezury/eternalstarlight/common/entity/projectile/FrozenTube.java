@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -123,6 +124,6 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return RenderType.entityTranslucent(TRAIL_TEXTURE);
+		return ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE);
 	}
 }

@@ -29,15 +29,17 @@ public abstract class ItemEntityMixin {
 
 	@Inject(method = "playerTouch", at = @At("HEAD"), cancellable = true)
 	public void playerTouch(Player player, CallbackInfo ci) {
-		if (((ItemEntity) (Object) this).level().isClientSide) return;
+		ItemEntity itemEntity = ((ItemEntity) (Object) this);
+		if (itemEntity.level().isClientSide) return;
 		if (this.pickupDelay == 0 && (this.target == null || this.target.equals(player.getUUID())) && getItem().is(ESItems.MANA_CRYSTAL_SHARD.get())) {
 			ci.cancel();
-			((ItemEntity) (Object) this).discard();
+			player.take(itemEntity, getItem().getCount());
+			itemEntity.discard();
 			Inventory inventory = player.getInventory();
 			for (int i = 0; i < inventory.getContainerSize(); i++) {
 				ItemStack stack = inventory.getItem(i);
-				if (stack.is(ESTags.Items.MANA_CRYSTALS)) {
-					stack.setDamageValue(stack.getDamageValue() - getItem().getCount());
+				if (stack.is(ESTags.Items.MANA_CRYSTALS) && stack.isDamaged()) {
+					stack.setDamageValue(Math.max(stack.getDamageValue() - getItem().getCount(), 0));
 					return;
 				}
 			}

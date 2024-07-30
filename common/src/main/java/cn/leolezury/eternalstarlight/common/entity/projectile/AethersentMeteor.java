@@ -341,6 +341,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return ESRenderType.translucentGlow(TRAIL_TEXTURE);
+		return ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE);
 	}
 }

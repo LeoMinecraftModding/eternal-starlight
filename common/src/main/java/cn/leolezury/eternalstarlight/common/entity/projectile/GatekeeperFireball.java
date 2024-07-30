@@ -201,6 +201,6 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return ESRenderType.translucentGlow(TRAIL_TEXTURE);
+		return ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE);
 	}
 }
