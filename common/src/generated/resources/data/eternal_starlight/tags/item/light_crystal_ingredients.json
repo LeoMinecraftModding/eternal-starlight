@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:torch",
+    "minecraft:soul_torch",
+    "minecraft:torchflower",
+    "eternal_starlight:starlight_flower",
+    "eternal_starlight:starlight_torchflower",
+    "eternal_starlight:orbflora_light",
+    "eternal_starlight:thermal_springstone",
+    "eternal_starlight:thermal_springstone_ingot"
+  ]
+}

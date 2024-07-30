@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -55,9 +54,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onLivingTick(EntityTickEvent.Post event) {
-		if (event.getEntity() instanceof LivingEntity living) {
-			CommonHandlers.onLivingTick(living);
-		}
+		CommonHandlers.onEntityTick(event.getEntity());
 	}
 
 	@SubscribeEvent

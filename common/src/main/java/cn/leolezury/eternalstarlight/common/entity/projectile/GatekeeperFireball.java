@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -182,6 +183,9 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
 		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+		if (isRemoved()) {
+			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
+		}
 	}
 
 	@Override
@@ -197,6 +201,6 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return RenderType.entityTranslucent(TRAIL_TEXTURE);
+		return ESRenderType.translucentGlow(TRAIL_TEXTURE);
 	}
 }

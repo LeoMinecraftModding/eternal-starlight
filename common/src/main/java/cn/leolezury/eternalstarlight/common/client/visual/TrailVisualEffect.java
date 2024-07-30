@@ -58,7 +58,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 			shouldRemove = true;
 			return;
 		}
-		if (entity.isRemoved() && effect.trailPointsAllSame()) {
+		if (entity.isRemoved() && effect.getLength() <= 0) {
 			shouldRemove = true;
 		}
 		entity.updateTrail(effect);
@@ -67,27 +67,21 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 	@Override
 	public void render(MultiBufferSource source, PoseStack stack, float partialTicks) {
 		boolean entityRemoved = entity.isRemoved();
-		if (!entityRemoved && Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
-			float x = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
-			float y = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
-			float z = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
-			this.effect.createCurrentPoint(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)));
-		}
+		float x = (float) (entityRemoved ? entity.getX() : Mth.lerp(partialTicks, entity.xOld, entity.getX()));
+		float y = (float) (entityRemoved ? entity.getY() : Mth.lerp(partialTicks, entity.yOld, entity.getY()));
+		float z = (float) (entityRemoved ? entity.getZ() : Mth.lerp(partialTicks, entity.zOld, entity.getZ()));
+		this.effect.prepareRender(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(x, y, z).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)), partialTicks);
 
-		List<TrailEffect.TrailPoint> adjustedVertical = this.effect.verticalPoints().stream().map(p -> entity.adjustPoint(p, true, partialTicks)).toList();
-		this.effect.verticalPoints().clear();
-		this.effect.verticalPoints().addAll(adjustedVertical);
-		List<TrailEffect.TrailPoint> adjustedHorizontal = this.effect.horizontalPoints().stream().map(p -> entity.adjustPoint(p, false, partialTicks)).toList();
-		this.effect.horizontalPoints().clear();
-		this.effect.horizontalPoints().addAll(adjustedHorizontal);
+		List<TrailEffect.TrailPoint> adjustedVertical = this.effect.getVerticalRenderPoints().stream().map(p -> entity.adjustPoint(p, true, partialTicks)).toList();
+		this.effect.getVerticalRenderPoints().clear();
+		this.effect.getVerticalRenderPoints().addAll(adjustedVertical);
+		List<TrailEffect.TrailPoint> adjustedHorizontal = this.effect.getHorizontalRenderPoints().stream().map(p -> entity.adjustPoint(p, false, partialTicks)).toList();
+		this.effect.getHorizontalRenderPoints().clear();
+		this.effect.getHorizontalRenderPoints().addAll(adjustedHorizontal);
 
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, partialTicks, true, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, true, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 		if (entity.shouldRenderHorizontal()) {
-			this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, partialTicks, false, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
-		}
-
-		if (!entityRemoved && Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
-			this.effect.removeNearest();
+			this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, false, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 		}
 	}
 

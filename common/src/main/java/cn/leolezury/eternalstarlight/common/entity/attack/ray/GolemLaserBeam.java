@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,24 +26,14 @@ public class GolemLaserBeam extends RayAttack {
 	}
 
 	@Override
-	public void onHit(ESEntityUtil.RaytraceResult result) {
-		if (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) {
-			super.onHit(result);
-		} else {
-			for (Entity target : result.entities()) {
-				if (target instanceof LivingEntity living) {
-					doHurtTarget(living);
-				}
-			}
-		}
-	}
-
-	@Override
 	public void updatePosition() {
+		if (tickCount % 15 == 0) {
+			playSound(ESSoundEvents.LASER_BEAM_HUM.get());
+		}
 		getCaster().ifPresentOrElse(caster -> {
 			setPos(getPositionForCaster(caster, caster.position()));
 			if (caster instanceof StarlightGolem golem) {
-				if (golem.getBehaviorState() != StarlightGolemLaserBeamPhase.ID || golem.isDeadOrDying()) {
+				if (golem.getBehaviorState() != StarlightGolemLaserBeamPhase.ID || !golem.isAlive()) {
 					discard();
 				}
 			} else {

@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
+import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
@@ -21,6 +22,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
@@ -37,6 +39,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -179,79 +182,86 @@ public class CommonHandlers {
 		return amount;
 	}
 
-	public static void onLivingTick(LivingEntity livingEntity) {
-		ESSpellUtil.tickSpells(livingEntity);
-		if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
-			ESCrestUtil.tickCrests(player);
-		}
-		List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
-		for (ItemStack armor : armors) {
-			if (armor.getItem() instanceof TickableArmor tickableArmor) {
-				tickableArmor.tick(livingEntity.level(), livingEntity, armor);
+	public static void onEntityTick(Entity entity) {
+		if (entity instanceof ItemEntity item) {
+			if (item.level().isClientSide && (item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
+				EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
 			}
 		}
-		AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-		if (armorAttribute != null) {
-			armorAttribute.removeModifier(AMARAMBER_BONUS.id());
-			if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
-				&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
-				&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
-				&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-				armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
+		if (entity instanceof LivingEntity livingEntity) {
+			ESSpellUtil.tickSpells(livingEntity);
+			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
+				ESCrestUtil.tickCrests(player);
 			}
-		}
-		AttributeInstance damageAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
-		if (damageAttribute != null) {
-			damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
-			damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
-			if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
-				int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
-				if (state == 0) {
-					damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_PENALTY);
-				}
-				if (state == 2) {
-					damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_BONUS);
+			List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
+			for (ItemStack armor : armors) {
+				if (armor.getItem() instanceof TickableArmor tickableArmor) {
+					tickableArmor.tick(livingEntity.level(), livingEntity, armor);
 				}
 			}
-		}
-		AttributeInstance attackSpeedAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
-		if (attackSpeedAttribute != null) {
-			attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
-			attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
-			if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
-				int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
-				if (state == 0) {
-					attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_PENALTY);
-				}
-				if (state == 2) {
-					attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_BONUS);
+			AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+			if (armorAttribute != null) {
+				armorAttribute.removeModifier(AMARAMBER_BONUS.id());
+				if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
+					&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
+					&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
+					&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+					armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
 				}
 			}
-		}
-		if (livingEntity.tickCount % 20 == 0) {
-			int cooldown = ESEntityUtil.getPersistentData(livingEntity).getInt(AethersentMeteor.TAG_METEOR_COOLDOWN);
-			if (cooldown > 0) {
-				ESEntityUtil.getPersistentData(livingEntity).putInt(AethersentMeteor.TAG_METEOR_COOLDOWN, cooldown - 1);
+			AttributeInstance damageAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+			if (damageAttribute != null) {
+				damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
+				damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
+				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
+					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
+					if (state == 0) {
+						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_PENALTY);
+					}
+					if (state == 2) {
+						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_BONUS);
+					}
+				}
 			}
-		}
-		int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS);
-		boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
-		if (!livingEntity.level().isClientSide) {
-			if (!inEther && inEtherTicks > 0) {
-				ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS, inEtherTicks - 1);
+			AttributeInstance attackSpeedAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+			if (attackSpeedAttribute != null) {
+				attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
+				attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
+				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
+					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
+					if (state == 0) {
+						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_PENALTY);
+					}
+					if (state == 2) {
+						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_BONUS);
+					}
+				}
 			}
-			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-			if (inEtherTicks <= 0 && armorInstance != null) {
-				armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
+			if (livingEntity.tickCount % 20 == 0) {
+				int cooldown = ESEntityUtil.getPersistentData(livingEntity).getInt(AethersentMeteor.TAG_METEOR_COOLDOWN);
+				if (cooldown > 0) {
+					ESEntityUtil.getPersistentData(livingEntity).putInt(AethersentMeteor.TAG_METEOR_COOLDOWN, cooldown - 1);
+				}
 			}
-			if (livingEntity.tickCount % 20 == 0 && inEtherTicks > 0 && armorInstance != null) {
-				armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
-				armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
-			}
-		} else {
-			int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS);
-			if (!inEther && clientEtherTicks > 0) {
-				ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
+			int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS);
+			boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
+			if (!livingEntity.level().isClientSide) {
+				if (!inEther && inEtherTicks > 0) {
+					ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS, inEtherTicks - 1);
+				}
+				AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+				if (inEtherTicks <= 0 && armorInstance != null) {
+					armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
+				}
+				if (livingEntity.tickCount % 20 == 0 && inEtherTicks > 0 && armorInstance != null) {
+					armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
+					armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
+				}
+			} else {
+				int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS);
+				if (!inEther && clientEtherTicks > 0) {
+					ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
+				}
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
@@ -16,7 +17,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -84,10 +84,8 @@ public class OrbitalTrailParticle extends Particle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.createCurrentPoint(new Vec3(x, y, z), new Vec3(x, y, z).subtract(new Vec3(xo, yo, zo)));
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
-		// this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucent(TRAIL_TEXTURE)), stack, partialTicks, false, color.r(), color.g(), color.b(), a, ClientHandlers.FULL_BRIGHT);
-		this.effect.removeNearest();
+		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(x, y, z).subtract(new Vec3(xo, yo, zo)), partialTicks);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.translucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
 		stack.popPose();
 	}
 

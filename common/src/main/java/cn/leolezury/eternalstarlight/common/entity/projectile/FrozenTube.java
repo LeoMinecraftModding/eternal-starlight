@@ -30,7 +30,7 @@ import org.joml.Vector4f;
 public class FrozenTube extends AbstractArrow implements TrailOwner {
 	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
 	private boolean dealtDamage;
 
 	public FrozenTube(EntityType<? extends AbstractArrow> entityType, Level level) {
@@ -110,11 +110,14 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
 		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+		if (isRemoved()) {
+			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
+		}
 	}
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 0.7f);
+		return new Vector4f(160 / 255f, 164 / 255f, 195 / 255f, 1f);
 	}
 
 	@Environment(EnvType.CLIENT)

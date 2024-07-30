@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.network.*;
+import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.world.phys.Vec3;
 
 public interface ClientHelper {
@@ -23,4 +24,6 @@ public interface ClientHelper {
 	void spawnStellarRackParticles(Vec3 center);
 
 	void spawnStellarRackItemParticles(Vec3 center);
+
+	void spawnManaCrystalItemParticles(ManaType type, Vec3 center);
 }

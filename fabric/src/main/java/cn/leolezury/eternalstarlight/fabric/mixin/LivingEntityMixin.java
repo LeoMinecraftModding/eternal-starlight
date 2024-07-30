@@ -39,11 +39,6 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "tick", at = @At(value = "RETURN"))
-	private void tick(CallbackInfo ci) {
-		CommonHandlers.onLivingTick((LivingEntity) (Object) this);
-	}
-
 	@Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
 	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {

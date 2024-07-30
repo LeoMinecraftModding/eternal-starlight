@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
@@ -57,7 +58,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	private static final String TAG_ONLY_HURT_ENEMY = "only_hurt_enemy";
 	private static final String TAG_NATURAL = "natural";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
 	public int getSize() {
@@ -303,13 +304,16 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
 		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+		if (isRemoved()) {
+			effect.setLength(Math.max(effect.getLength() - 1.2f, 0));
+		}
 	}
 
 	@Environment(EnvType.CLIENT)
 	@Override
 	public TrailEffect.TrailPoint adjustPoint(TrailEffect.TrailPoint point, boolean vertical, float partialTicks) {
 		Vec3 center = point.center();
-		float width = point.width();
+		float width = point.width() / 2;
 		if (Minecraft.getInstance().getCameraEntity() != null) {
 			float yRot = Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90;
 			Vec3 upper = ESMathUtil.rotationToPosition(center, width, 0, yRot + 90);
@@ -321,7 +325,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(144 / 255f, 94 / 255f, 168 / 255f, 0.9f);
+		return new Vector4f(144 / 255f, 94 / 255f, 168 / 255f, 1f);
 	}
 
 	@Override
@@ -337,6 +341,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return RenderType.entityTranslucent(TRAIL_TEXTURE);
+		return ESRenderType.translucentGlow(TRAIL_TEXTURE);
 	}
 }

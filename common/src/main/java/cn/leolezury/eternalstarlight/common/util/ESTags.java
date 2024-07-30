@@ -34,11 +34,17 @@ public class ESTags {
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> MANA_CRYSTAL_INGREDIENTS = create("mana_crystal_ingredients");
 		public static final TagKey<Item> MANA_CRYSTALS = create("mana_crystals");
+		public static final TagKey<Item> TERRA_CRYSTAL_INGREDIENTS = create("terra_crystal_ingredients");
 		public static final TagKey<Item> TERRA_CRYSTALS = create("terra_crystals");
+		public static final TagKey<Item> WIND_CRYSTAL_INGREDIENTS = create("wind_crystal_ingredients");
 		public static final TagKey<Item> WIND_CRYSTALS = create("wind_crystals");
+		public static final TagKey<Item> WATER_CRYSTAL_INGREDIENTS = create("water_crystal_ingredients");
 		public static final TagKey<Item> WATER_CRYSTALS = create("water_crystals");
+		public static final TagKey<Item> LUNAR_CRYSTAL_INGREDIENTS = create("lunar_crystal_ingredients");
 		public static final TagKey<Item> LUNAR_CRYSTALS = create("lunar_crystals");
+		public static final TagKey<Item> BLAZE_CRYSTAL_INGREDIENTS = create("blaze_crystal_ingredients");
 		public static final TagKey<Item> BLAZE_CRYSTALS = create("blaze_crystals");
+		public static final TagKey<Item> LIGHT_CRYSTAL_INGREDIENTS = create("light_crystal_ingredients");
 		public static final TagKey<Item> LIGHT_CRYSTALS = create("light_crystals");
 
 		private static TagKey<Item> create(String string) {

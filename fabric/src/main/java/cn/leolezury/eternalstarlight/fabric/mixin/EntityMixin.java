@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
@@ -8,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
@@ -32,5 +34,10 @@ public abstract class EntityMixin {
 			this.wasTouchingWater = true;
 			cir.setReturnValue(true);
 		}
+	}
+
+	@Inject(method = "tick", at = @At(value = "RETURN"))
+	private void tick(CallbackInfo ci) {
+		CommonHandlers.onEntityTick((Entity) (Object) this);
 	}
 }

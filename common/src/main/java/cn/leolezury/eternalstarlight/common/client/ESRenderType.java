@@ -6,11 +6,14 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.Util;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
 public abstract class ESRenderType extends RenderType {
@@ -43,41 +46,35 @@ public abstract class ESRenderType extends RenderType {
 		.setWriteMaskState(COLOR_WRITE)
 		.createCompositeState(true));
 
-	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
-		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
-	}
-
-	public static RenderType laserBeam(ResourceLocation location) {
-		return create(EternalStarlight.ID + ":laser_beam", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
-			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
-			.setCullState(NO_CULL)
-			.setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
-			.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeLaserBeam))
-			.setLightmapState(LIGHTMAP)
-			.createCompositeState(true));
-	}
-
-	public static RenderType translucentGlow(ResourceLocation location) {
-		return create(EternalStarlight.ID + ":translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_GLOW = Util.memoize(location ->
+		create(EternalStarlight.ID + ":translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setTransparencyState(LIGHTNING_TRANSPARENCY)
 			.setCullState(NO_CULL)
 			.setWriteMaskState(COLOR_WRITE)
 			.setOverlayState(OVERLAY)
-			.createCompositeState(true));
-	}
+			.createCompositeState(true)));
 
-	public static RenderType glow(ResourceLocation location) {
-		RenderStateShard.TextureStateShard textureStateShard = new RenderStateShard.TextureStateShard(location, false, false);
-		RenderType.CompositeState compositeState = RenderType.CompositeState.builder()
-			.setTextureState(textureStateShard)
+	public static final Function<ResourceLocation, RenderType> GLOW = Util.memoize(location ->
+		create(EternalStarlight.ID + ":glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
 			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
 			.setCullState(NO_CULL)
 			.setOverlayState(OVERLAY)
 			.setWriteMaskState(COLOR_WRITE)
-			.createCompositeState(false);
-		return create(EternalStarlight.ID + ":glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, compositeState);
+			.createCompositeState(false)));
+
+	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
+		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
+	}
+
+	public static RenderType translucentGlow(ResourceLocation location) {
+		return TRANSLUCENT_GLOW.apply(location);
+	}
+
+	public static RenderType glow(ResourceLocation location) {
+		return GLOW.apply(location);
 	}
 }

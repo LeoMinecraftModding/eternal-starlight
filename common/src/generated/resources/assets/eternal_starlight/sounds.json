@@ -164,6 +164,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.ent.hurt"
   },
+  "entity.laser_beam.hum": {
+    "sounds": [
+      "eternal_starlight:entity/laser_beam/hum"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.laser_beam.hum"
+  },
   "entity.luminaris.death": {
     "sounds": [
       "entity/fish/hurt1",

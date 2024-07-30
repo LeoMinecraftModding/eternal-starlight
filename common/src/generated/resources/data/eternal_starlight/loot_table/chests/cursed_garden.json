@@ -131,6 +131,16 @@
           ],
           "name": "eternal_starlight:glowing_crescent_grass",
           "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:blaze_crystal",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:lunar_crystal",
+          "weight": 20
         }
       ],
       "rolls": 4.0

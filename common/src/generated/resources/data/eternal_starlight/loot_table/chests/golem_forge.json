@@ -163,6 +163,11 @@
           ],
           "name": "eternal_starlight:swamp_silver_ingot",
           "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:blaze_crystal",
+          "weight": 20
         }
       ],
       "rolls": 8.0

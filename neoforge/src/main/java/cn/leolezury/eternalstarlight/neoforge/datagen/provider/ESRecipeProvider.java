@@ -109,12 +109,60 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(), ESItems.MANA_CRYSTAL.get(), 1, ESItems.TERRA_CRYSTAL.get(), ESItems.WIND_CRYSTAL.get(), ESItems.WATER_CRYSTAL.get(), ESItems.LUNAR_CRYSTAL.get(), ESItems.BLAZE_CRYSTAL.get(), ESItems.LIGHT_CRYSTAL.get());
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ESItems.TERRA_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("terra_crystal"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ESItems.WIND_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("wind_crystal"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ESItems.WATER_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("water_crystal"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ESItems.LUNAR_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("lunar_crystal"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ESItems.BLAZE_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("blaze_crystal"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("light_crystal"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ESItems.TERRA_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("terra_crystal_special"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ESItems.WIND_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("wind_crystal_special"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ESItems.WATER_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("water_crystal_special"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ESItems.LUNAR_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("lunar_crystal_special"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ESItems.BLAZE_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("blaze_crystal_special"));
+		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("light_crystal_special"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.TERRA_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.TERRA_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.WIND_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.WIND_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.WATER_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.WATER_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.LUNAR_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.LUNAR_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.BLAZE_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.BLAZE_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.LIGHT_CRYSTAL.get())
+			.pattern(" S ")
+			.pattern("SCS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('C', ESTags.Items.LIGHT_CRYSTAL_INGREDIENTS)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
 
 		// misc
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());

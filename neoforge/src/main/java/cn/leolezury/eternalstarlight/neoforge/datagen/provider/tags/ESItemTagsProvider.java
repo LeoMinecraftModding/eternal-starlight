@@ -106,25 +106,87 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESTags.Items.BLAZE_CRYSTALS,
 			ESTags.Items.LIGHT_CRYSTALS
 		);
+		tag(ESTags.Items.TERRA_CRYSTAL_INGREDIENTS).add(
+			Items.DIRT,
+			Items.MUD,
+			Items.PODZOL,
+			Items.COARSE_DIRT,
+			Items.ROOTED_DIRT,
+			ESItems.NIGHTFALL_DIRT.get(),
+			ESItems.NIGHTFALL_GRASS_BLOCK.get(),
+			ESItems.NIGHTFALL_MUD.get(),
+			ESItems.GLOWING_NIGHTFALL_MUD.get(),
+			ESItems.FANTASY_GRASS_BLOCK.get(),
+			ESItems.CONEBLOOM.get()
+		);
 		tag(ESTags.Items.TERRA_CRYSTALS).add(
 			ESItems.TERRA_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
+		);
+		tag(ESTags.Items.WIND_CRYSTAL_INGREDIENTS).add(
+			Items.WIND_CHARGE,
+			Items.BREEZE_ROD,
+			ESItems.WHISPERBLOOM.get()
 		);
 		tag(ESTags.Items.WIND_CRYSTALS).add(
 			ESItems.WIND_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
 		);
+		tag(ESTags.Items.WATER_CRYSTAL_INGREDIENTS).add(
+			Items.ICE,
+			Items.PACKED_ICE,
+			Items.BLUE_ICE,
+			Items.KELP,
+			Items.SEAGRASS,
+			Items.SEA_PICKLE,
+			ESItems.ABYSSAL_FRUIT.get(),
+			ESItems.ORBFLORA.get(),
+			ESItems.JINGLING_PICKLE.get(),
+			ESItems.MOONLIGHT_DUCKWEED.get(),
+			ESItems.MOONLIGHT_LILY_PAD.get(),
+			ESItems.STARLIT_LILY_PAD.get()
+		);
 		tag(ESTags.Items.WATER_CRYSTALS).add(
 			ESItems.WATER_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
+		);
+		tag(ESTags.Items.LUNAR_CRYSTAL_INGREDIENTS).add(
+			Items.ENDER_EYE,
+			Items.END_STONE,
+			ESItems.STARLIGHT_FLOWER.get(),
+			ESItems.LUNAR_BERRIES.get(),
+			ESItems.LUNARIS_CACTUS.get(),
+			ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(),
+			ESItems.LUNARIS_CACTUS_FRUIT.get(),
+			ESItems.LUNAR_GRASS.get(),
+			ESItems.GLOWING_LUNAR_GRASS.get(),
+			ESItems.LUNAR_REED.get()
 		);
 		tag(ESTags.Items.LUNAR_CRYSTALS).add(
 			ESItems.LUNAR_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
 		);
+		tag(ESTags.Items.BLAZE_CRYSTAL_INGREDIENTS).add(
+			Items.BLAZE_ROD,
+			Items.BLAZE_POWDER,
+			Items.FIRE_CHARGE,
+			ESItems.SUNSET_THORNBLOOM.get(),
+			ESItems.THERMAL_SPRINGSTONE.get(),
+			ESItems.THERMAL_SPRINGSTONE_INGOT.get()
+		);
 		tag(ESTags.Items.BLAZE_CRYSTALS).add(
 			ESItems.BLAZE_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
+		);
+		tag(ESTags.Items.LIGHT_CRYSTAL_INGREDIENTS).add(
+			Items.TORCH,
+			Items.SOUL_TORCH,
+			Items.TORCHFLOWER,
+			ESItems.STARLIGHT_FLOWER.get(),
+			ESItems.STARLIGHT_TORCHFLOWER.get(),
+			ESItems.ORBFLORA_LIGHT.get(),
+			ESItems.THERMAL_SPRINGSTONE.get(),
+			ESItems.THERMAL_SPRINGSTONE_INGOT.get()
 		);
 		tag(ESTags.Items.LIGHT_CRYSTALS).add(
 			ESItems.LIGHT_CRYSTAL.get(),

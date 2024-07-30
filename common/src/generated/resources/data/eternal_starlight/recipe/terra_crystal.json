@@ -1,6 +1,21 @@
 {
-  "type": "eternal_starlight:mana_crystal",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "crystal": "eternal_starlight:terra_crystal",
-  "mana_type": "terra"
+  "key": {
+    "C": {
+      "tag": "eternal_starlight:terra_crystal_ingredients"
+    },
+    "S": {
+      "item": "eternal_starlight:red_starlight_crystal_shard"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:terra_crystal"
+  }
 }

@@ -152,7 +152,7 @@ public class RayAttack extends Entity {
 
 	public void onHit(ESEntityUtil.RaytraceResult result) {
 		for (Entity target : result.entities()) {
-			if (target instanceof LivingEntity living) {
+			if (target instanceof LivingEntity living && (getCaster().isEmpty() || !living.getUUID().equals(getCaster().get().getUUID()))) {
 				doHurtTarget(living);
 			}
 		}
@@ -172,7 +172,7 @@ public class RayAttack extends Entity {
 	public void doHurtTarget(LivingEntity target) {
 		getCaster().ifPresent(caster -> {
 			if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), getAttackDamage())) {
-				target.setRemainingFireTicks(target.getRemainingFireTicks() + 60);
+				target.setRemainingFireTicks(Math.max(target.getRemainingFireTicks(), 100));
 			}
 		});
 	}

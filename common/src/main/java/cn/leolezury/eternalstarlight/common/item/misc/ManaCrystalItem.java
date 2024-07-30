@@ -13,6 +13,10 @@ public class ManaCrystalItem extends Item {
 		this.manaType = type;
 	}
 
+	public ManaType getManaType() {
+		return manaType;
+	}
+
 	@Override
 	public int getBarColor(ItemStack itemStack) {
 		float f = Math.max(0.0F, ((float) itemStack.getMaxDamage() - (float) itemStack.getDamageValue()) / (float) itemStack.getMaxDamage());
