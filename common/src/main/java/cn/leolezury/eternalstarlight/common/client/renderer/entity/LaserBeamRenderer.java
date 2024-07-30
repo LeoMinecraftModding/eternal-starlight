@@ -75,7 +75,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 
 		float length = laserBeam.getLength();
 
-		VertexConsumer consumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.glow(getTextureLocation(laserBeam)));
+		VertexConsumer consumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityGlow(getTextureLocation(laserBeam)));
 
 		renderBeam(length, yaw, pitch, laserBeam.tickCount + partialTicks, stack, consumer, packedLight);
 

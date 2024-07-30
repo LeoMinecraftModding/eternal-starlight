@@ -47,7 +47,7 @@ public abstract class ESRenderType extends RenderType {
 		.createCompositeState(true));
 
 	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		create(EternalStarlight.ID + ":entity_translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setTransparencyState(LIGHTNING_TRANSPARENCY)
@@ -57,7 +57,7 @@ public abstract class ESRenderType extends RenderType {
 			.createCompositeState(true)));
 
 	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_NO_DEPTH = Util.memoize(location ->
-		create(EternalStarlight.ID + ":translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		create(EternalStarlight.ID + ":entity_translucent_no_depth", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
@@ -66,8 +66,8 @@ public abstract class ESRenderType extends RenderType {
 			.setOverlayState(OVERLAY)
 			.createCompositeState(true)));
 
-	public static final Function<ResourceLocation, RenderType> GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+	public static final Function<ResourceLocation, RenderType> ENTITY_GLOW = Util.memoize(location ->
+		create(EternalStarlight.ID + ":entity_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
 			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
@@ -88,7 +88,7 @@ public abstract class ESRenderType extends RenderType {
 		return TRANSLUCENT_NO_DEPTH.apply(location);
 	}
 
-	public static RenderType glow(ResourceLocation location) {
-		return GLOW.apply(location);
+	public static RenderType entityGlow(ResourceLocation location) {
+		return ENTITY_GLOW.apply(location);
 	}
 }
