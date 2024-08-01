@@ -276,6 +276,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.PURPLE_SCARLET_BUD.get());
 		cross(ESBlocks.RED_SCARLET_BUD.get());
 		cross(ESBlocks.SCARLET_GRASS.get());
+		cross(ESBlocks.MAUVE_FERN.get());
 
 		cross(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.WITHERED_STARLIGHT_FLOWER.get()));
@@ -288,6 +289,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get(), blockTexture(ESBlocks.WITHERED_DESERT_AMETHYSIA.get()));
 		cross(ESBlocks.SUNSET_THORNBLOOM.get());
 		pottedPlant(ESBlocks.POTTED_SUNSET_THORNBLOOM.get(), blockTexture(ESBlocks.SUNSET_THORNBLOOM.get()));
+		cross(ESBlocks.AMETHYSIA_GRASS.get());
 		lunarisCactus(ESBlocks.LUNARIS_CACTUS.get());
 		translucentCubeAll(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
 

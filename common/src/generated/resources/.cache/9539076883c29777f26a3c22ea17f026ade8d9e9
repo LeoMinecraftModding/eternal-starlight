@@ -1,4 +1,4 @@
-// 1.21	2024-07-24T13:23:00.8355116	Item Models: eternal_starlight
+// 1.21	2024-08-01T17:09:57.1834517	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -52,6 +52,7 @@ dbceddc88d84e32dfa19389f0c6990d68925359f assets/eternal_starlight/models/item/am
 9bf68b92a1b24c28506868e0bc417d4ec9860d5b assets/eternal_starlight/models/item/amaramber_lantern.json
 349b25c1dce69cd42256bcc40fc7d04116366255 assets/eternal_starlight/models/item/amaramber_nugget.json
 5ad81742cf8c57313b31cf7253e74b7b8bf53b64 assets/eternal_starlight/models/item/amaramber_shovel.json
+17dd627ce131196d0c577e817e3d15e43198ce2f assets/eternal_starlight/models/item/amethysia_grass.json
 1cbe476a77a890864c248c40eec1d5bb2c4d3831 assets/eternal_starlight/models/item/aurora_deer_antler.json
 ace7137656dc7e967304a332b6064537f5fa1e8d assets/eternal_starlight/models/item/aurora_deer_steak.json
 c9424547368f2f5421191786565cd3a2045aaf0c assets/eternal_starlight/models/item/black_yeti_fur.json
@@ -285,6 +286,7 @@ d44e97c44e57d2b52cee9663418e8bab8d49f4de assets/eternal_starlight/models/item/lu
 21ae6095ce868121c431781dc7b57ed86cdccb20 assets/eternal_starlight/models/item/magenta_yeti_fur_carpet.json
 8660d2caf09f59c633b0eba72b6149e88f01e98e assets/eternal_starlight/models/item/mana_crystal.json
 5cafb9d9fe8ba5f3d14d43bc8814320f53e2384b assets/eternal_starlight/models/item/mana_crystal_shard.json
+bb00bb40f0abe89dfc753efc7bd8658553f9e500 assets/eternal_starlight/models/item/mauve_fern.json
 6966ae462534fba9d53ef46931dde3be140f3484 assets/eternal_starlight/models/item/mechanical_crossbow.json
 54351bd9f4bc88f964eca8fc649fed98d2cb4c03 assets/eternal_starlight/models/item/mechanical_crossbow_arrow.json
 49c6ed676063578396b1276af2bed18329a3dd39 assets/eternal_starlight/models/item/mechanical_crossbow_firework.json

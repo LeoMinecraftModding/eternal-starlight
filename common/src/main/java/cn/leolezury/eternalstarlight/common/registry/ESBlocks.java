@@ -535,6 +535,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ESShortBushBlock> PURPLE_SCARLET_BUD = BLOCKS.register("purple_scarlet_bud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, ESShortBushBlock> RED_SCARLET_BUD = BLOCKS.register("red_scarlet_bud", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_RED)));
 	public static final RegistryObject<Block, TallGrassBlock> SCARLET_GRASS = BLOCKS.register("scarlet_grass", () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, DesertBushBlock> MAUVE_FERN = BLOCKS.register("mauve_fern", () -> new DesertBushBlock(13, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE)));
 
 	// torreya forest plant
 	public static final RegistryObject<Block, FlowerBlock> WITHERED_STARLIGHT_FLOWER = BLOCKS.register("withered_starlight_flower", () -> new FlowerBlock(MobEffects.WITHER, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_ORANGE)));
@@ -549,6 +550,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_WITHERED_DESERT_AMETHYSIA = BLOCKS.register("potted_withered_desert_amethysia", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, WITHERED_DESERT_AMETHYSIA, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, DesertBushBlock> SUNSET_THORNBLOOM = BLOCKS.register("sunset_thornbloom", () -> new DesertBushBlock(10, BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH).mapColor(MapColor.COLOR_ORANGE)));
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_SUNSET_THORNBLOOM = BLOCKS.register("potted_sunset_thornbloom", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SUNSET_THORNBLOOM, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_ORANGE)));
+	public static final RegistryObject<Block, DesertBushBlock> AMETHYSIA_GRASS = BLOCKS.register("amethysia_grass", () -> new DesertBushBlock(10, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, LunarisCactusBlock> LUNARIS_CACTUS = BLOCKS.register("lunaris_cactus", () -> new LunarisCactusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CACTUS).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, LunarisCactusGelBlock> LUNARIS_CACTUS_GEL_BLOCK = BLOCKS.register("lunaris_cactus_gel_block", () -> new LunarisCactusGelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 

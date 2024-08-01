@@ -28,7 +28,9 @@
     "water_fog_color": 6187416
   },
   "features": [
-    [],
+    [
+      "eternal_starlight:fallen_northland_log"
+    ],
     [
       "eternal_starlight:hot_spring"
     ],
@@ -61,8 +63,7 @@
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:permafrost_forest",
-      "eternal_starlight:permafrost_forest_vegetation",
-      "eternal_starlight:fallen_northland_log"
+      "eternal_starlight:permafrost_forest_vegetation"
     ],
     [
       "minecraft:freeze_top_layer",

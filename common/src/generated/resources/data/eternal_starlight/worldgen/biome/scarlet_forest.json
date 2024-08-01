@@ -28,7 +28,9 @@
     "water_fog_color": 6187416
   },
   "features": [
-    [],
+    [
+      "eternal_starlight:fallen_scarlet_log"
+    ],
     [
       "eternal_starlight:hot_spring"
     ],
@@ -61,7 +63,6 @@
       "minecraft:patch_pumpkin",
       "eternal_starlight:scarlet_forest_vegetation",
       "eternal_starlight:scarlet_forest",
-      "eternal_starlight:fallen_scarlet_log",
       "eternal_starlight:scarlet_leaves_pile"
     ],
     [

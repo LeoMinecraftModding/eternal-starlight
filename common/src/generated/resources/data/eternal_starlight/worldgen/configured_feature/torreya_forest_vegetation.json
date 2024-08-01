@@ -13,6 +13,12 @@
                   "Name": "eternal_starlight:withered_starlight_flower"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:mauve_fern"
+                },
+                "weight": 1
               }
             ]
           }

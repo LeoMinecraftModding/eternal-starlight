@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.block.BerriesVines;
 import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
@@ -14,9 +15,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -24,10 +27,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -396,22 +396,22 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_STARLIGHT_TORCHFLOWER.get());
 		add(ESBlocks.NIGHTFAN_BUSH.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.PINK_ROSE_BUSH.get(), this::createDoublePlantShearsDrop);
-		dropSelf(ESBlocks.NIGHT_SPROUTS.get());
-		dropSelf(ESBlocks.SMALL_NIGHT_SPROUTS.get());
-		dropSelf(ESBlocks.GLOWING_NIGHT_SPROUTS.get());
-		dropSelf(ESBlocks.SMALL_GLOWING_NIGHT_SPROUTS.get());
-		dropSelf(ESBlocks.LUNAR_GRASS.get());
-		dropSelf(ESBlocks.GLOWING_LUNAR_GRASS.get());
-		dropSelf(ESBlocks.CRESCENT_GRASS.get());
+		plant(ESBlocks.NIGHT_SPROUTS.get());
+		plant(ESBlocks.SMALL_NIGHT_SPROUTS.get());
+		plant(ESBlocks.GLOWING_NIGHT_SPROUTS.get());
+		plant(ESBlocks.SMALL_GLOWING_NIGHT_SPROUTS.get());
+		plant(ESBlocks.LUNAR_GRASS.get());
+		plant(ESBlocks.GLOWING_LUNAR_GRASS.get());
+		plant(ESBlocks.CRESCENT_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_CRESCENT_GRASS.get());
-		dropSelf(ESBlocks.GLOWING_CRESCENT_GRASS.get());
+		plant(ESBlocks.GLOWING_CRESCENT_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_GLOWING_CRESCENT_GRASS.get());
-		dropSelf(ESBlocks.PARASOL_GRASS.get());
+		plant(ESBlocks.PARASOL_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_PARASOL_GRASS.get());
-		dropSelf(ESBlocks.GLOWING_PARASOL_GRASS.get());
+		plant(ESBlocks.GLOWING_PARASOL_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_GLOWING_PARASOL_GRASS.get());
-		dropSelf(ESBlocks.LUNAR_BUSH.get());
-		dropSelf(ESBlocks.GLOWING_LUNAR_BUSH.get());
+		plant(ESBlocks.LUNAR_BUSH.get());
+		plant(ESBlocks.GLOWING_LUNAR_BUSH.get());
 		add(ESBlocks.TALL_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.LUNAR_REED.get(), this::createDoublePlantShearsDrop);
@@ -419,7 +419,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_WHISPERBLOOM.get());
 		dropSelf(ESBlocks.GLADESPIKE.get());
 		dropPottedContents(ESBlocks.POTTED_GLADESPIKE.get());
-		dropSelf(ESBlocks.VIVIDSTALK.get());
+		plant(ESBlocks.VIVIDSTALK.get());
 		dropPottedContents(ESBlocks.POTTED_VIVIDSTALK.get());
 		add(ESBlocks.TALL_GLADESPIKE.get(), this::createDoublePlantShearsDrop);
 		dropSelf(ESBlocks.GLOWING_MUSHROOM.get());
@@ -429,30 +429,32 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.SWAMP_ROSE.get());
 		dropPottedContents(ESBlocks.POTTED_SWAMP_ROSE.get());
-		dropSelf(ESBlocks.FANTABUD.get());
-		dropSelf(ESBlocks.GREEN_FANTABUD.get());
-		dropSelf(ESBlocks.FANTAFERN.get());
+		plant(ESBlocks.FANTABUD.get());
+		plant(ESBlocks.GREEN_FANTABUD.get());
+		plant(ESBlocks.FANTAFERN.get());
 		dropPottedContents(ESBlocks.POTTED_FANTAFERN.get());
-		dropSelf(ESBlocks.GREEN_FANTAFERN.get());
+		plant(ESBlocks.GREEN_FANTAFERN.get());
 		dropPottedContents(ESBlocks.POTTED_GREEN_FANTAFERN.get());
-		dropSelf(ESBlocks.FANTAGRASS.get());
-		dropSelf(ESBlocks.GREEN_FANTAGRASS.get());
+		plant(ESBlocks.FANTAGRASS.get());
+		plant(ESBlocks.GREEN_FANTAGRASS.get());
 
-		dropSelf(ESBlocks.ORANGE_SCARLET_BUD.get());
-		dropSelf(ESBlocks.PURPLE_SCARLET_BUD.get());
-		dropSelf(ESBlocks.RED_SCARLET_BUD.get());
-		dropSelf(ESBlocks.SCARLET_GRASS.get());
+		plant(ESBlocks.ORANGE_SCARLET_BUD.get());
+		plant(ESBlocks.PURPLE_SCARLET_BUD.get());
+		plant(ESBlocks.RED_SCARLET_BUD.get());
+		plant(ESBlocks.SCARLET_GRASS.get());
+		plant(ESBlocks.MAUVE_FERN.get());
 
 		dropSelf(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
 		dropPottedContents(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get());
 
-		dropSelf(ESBlocks.DEAD_LUNAR_BUSH.get());
+		deadBush(ESBlocks.DEAD_LUNAR_BUSH.get());
 		dropPottedContents(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get());
 		dropSelf(ESBlocks.DESERT_AMETHYSIA.get());
 		dropPottedContents(ESBlocks.POTTED_DESERT_AMETHYSIA.get());
 		dropSelf(ESBlocks.WITHERED_DESERT_AMETHYSIA.get());
 		dropPottedContents(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get());
 		dropSelf(ESBlocks.SUNSET_THORNBLOOM.get());
+		plant(ESBlocks.AMETHYSIA_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_SUNSET_THORNBLOOM.get());
 		add(ESBlocks.LUNARIS_CACTUS.get(), this::createLunarisCactusDrop);
 		dropSelf(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
@@ -461,11 +463,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.STARLIT_LILY_PAD.get());
 		dropSelf(ESBlocks.MOONLIGHT_DUCKWEED.get());
 
-		dropSelf(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
+		plant(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
 		dropSelf(ESBlocks.RED_CRYSTAL_ROOTS.get());
 		dropSelf(ESBlocks.BLUE_CRYSTAL_ROOTS.get());
 		add(ESBlocks.TWILVEWRYM_HERB.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.STELLAFLY_BUSH.get(), this::createDoublePlantShearsDrop);
+		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantShearsDrop);
 		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantShearsDrop);
 
 		add(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
@@ -543,6 +546,23 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	@Override
 	protected Iterable<Block> getKnownBlocks() {
 		return BuiltInRegistries.BLOCK.stream().filter(block -> BuiltInRegistries.BLOCK.getKey(block).getNamespace().equals(EternalStarlight.ID)).collect(Collectors.toList());
+	}
+
+	private void plant(Block block) {
+		add(block, this::createSickleOrShearsOnlyDrop);
+	}
+
+	private LootTable.Builder createSickleOrShearsOnlyDrop(ItemLike arg) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SCYTHES)))).add(LootItem.lootTableItem(arg)));
+	}
+
+	private void deadBush(Block block) {
+		add(block, b -> createPlantDrops(b, Items.STICK));
+	}
+
+	public LootTable.Builder createPlantDrops(Block block, Item additional) {
+		HolderLookup.RegistryLookup<Enchantment> registryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+		return this.createShearsDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(additional).when(LootItemRandomChanceCondition.randomChance(0.125F)).apply(ApplyBonusCount.addUniformBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE), 2))));
 	}
 
 	private LootTable.Builder createLunarisCactusDrop(Block block) {

@@ -28,7 +28,9 @@
     "water_fog_color": 6187416
   },
   "features": [
-    [],
+    [
+      "eternal_starlight:fallen_lunar_log"
+    ],
     [
       "eternal_starlight:hot_spring"
     ],
@@ -59,8 +61,7 @@
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:dense_forest",
-      "eternal_starlight:forest_vegetation",
-      "eternal_starlight:fallen_lunar_log"
+      "eternal_starlight:forest_vegetation"
     ],
     [
       "minecraft:freeze_top_layer",

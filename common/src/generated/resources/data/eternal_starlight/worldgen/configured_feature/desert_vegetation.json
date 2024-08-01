@@ -12,7 +12,7 @@
                 "data": {
                   "Name": "eternal_starlight:dead_lunar_bush"
                 },
-                "weight": 5
+                "weight": 3
               },
               {
                 "data": {
@@ -31,6 +31,18 @@
                   "Name": "eternal_starlight:sunset_thornbloom"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:amethysia_grass"
+                },
+                "weight": 30
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:mauve_fern"
+                },
+                "weight": 27
               }
             ]
           }
@@ -46,7 +58,7 @@
         }
       ]
     },
-    "tries": 8,
+    "tries": 64,
     "xz_spread": 7,
     "y_spread": 3
   }

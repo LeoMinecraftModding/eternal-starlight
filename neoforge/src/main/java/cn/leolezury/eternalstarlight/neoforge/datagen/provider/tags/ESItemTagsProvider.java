@@ -29,6 +29,17 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
 		copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
 		copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
+		tag(ESTags.Items.SCYTHES).add(
+			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
+			ESItems.GLACITE_SCYTHE.get(),
+			ESItems.SWAMP_SILVER_SICKLE.get(),
+			ESItems.PETAL_SCYTHE.get(),
+			ESItems.AURORA_DEER_ANTLER.get()
+		);
+		tag(ESTags.Items.GREATSWORDS).add(
+			ESItems.BONEMORE_BROADSWORD.get(),
+			ESItems.MOONRING_GREATSWORD.get()
+		);
 		tag(ESTags.Items.AURORA_DEER_FOOD).add(
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get()
@@ -225,12 +236,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MOONRING_BOW.get(),
 			ESItems.WAND_OF_TELEPORTATION.get(),
 			ESItems.CHAIN_OF_SOULS.get(),
-			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
-			ESItems.GLACITE_SCYTHE.get(),
-			ESItems.SWAMP_SILVER_SICKLE.get(),
-			ESItems.PETAL_SCYTHE.get(),
 			ESItems.CRESCENT_SPEAR.get()
-		);
+		).addTag(ESTags.Items.SCYTHES);
 		tag(ItemTags.BOW_ENCHANTABLE).add(
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.MOONRING_BOW.get()
@@ -240,17 +247,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MECHANICAL_CROSSBOW.get()
 		);
 		tag(ItemTags.SWORD_ENCHANTABLE).add(
-			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
-			ESItems.GLACITE_SCYTHE.get(),
-			ESItems.PETAL_SCYTHE.get(),
 			ESItems.CRESCENT_SPEAR.get()
-		);
+		).addTag(ESTags.Items.SCYTHES);
 		tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
-			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
-			ESItems.GLACITE_SCYTHE.get(),
-			ESItems.PETAL_SCYTHE.get(),
 			ESItems.CRESCENT_SPEAR.get()
-		);
+		).addTag(ESTags.Items.SCYTHES);
 		tag(ItemTags.BOATS).add(
 			ESItems.LUNAR_BOAT.get(),
 			ESItems.NORTHLAND_BOAT.get(),
@@ -318,13 +319,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.RAGE_OF_STARS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 			ESItems.SWAMP_SILVER_SWORD.get(),
-			ESItems.BONEMORE_BROADSWORD.get(),
 			ESItems.DOOMEDEN_SWORD.get(),
 			ESItems.SHATTERED_SWORD.get(),
 			ESItems.ENERGY_SWORD.get(),
-			ESItems.MOONRING_GREATSWORD.get(),
 			ESItems.DAGGER_OF_HUNGER.get()
-		);
+		).addTag(ESTags.Items.GREATSWORDS);
 		tag(ItemTags.PICKAXES).add(
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
@@ -336,12 +335,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AMARAMBER_AXE.get()
 		);
 		tag(ItemTags.HOES).add(
-			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
-			ESItems.SWAMP_SILVER_SICKLE.get(),
-			ESItems.AMARAMBER_HOE.get(),
-			ESItems.PETAL_SCYTHE.get(),
-			ESItems.AURORA_DEER_ANTLER.get()
-		);
+			ESItems.AMARAMBER_HOE.get()
+		).addTag(ESTags.Items.SCYTHES);
 		tag(ItemTags.SHOVELS).add(
 			ESItems.AMARAMBER_SHOVEL.get()
 		);

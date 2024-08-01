@@ -396,6 +396,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.PURPLE_SCARLET_BUD.get());
 		flatBlockTexture(ESItems.RED_SCARLET_BUD.get());
 		flatBlockTexture(ESItems.SCARLET_GRASS.get());
+		flatBlockTexture(ESItems.MAUVE_FERN.get());
 
 		flatBlockTexture(ESItems.WITHERED_STARLIGHT_FLOWER.get());
 
@@ -403,6 +404,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.DESERT_AMETHYSIA.get());
 		flatBlockTexture(ESItems.WITHERED_DESERT_AMETHYSIA.get());
 		flatBlockTexture(ESItems.SUNSET_THORNBLOOM.get());
+		flatBlockTexture(ESItems.AMETHYSIA_GRASS.get());
 		block(ESItems.LUNARIS_CACTUS.get());
 		block(ESItems.LUNARIS_CACTUS_GEL_BLOCK.get());
 		basicItem(ESItems.LUNARIS_CACTUS_FRUIT.get());
