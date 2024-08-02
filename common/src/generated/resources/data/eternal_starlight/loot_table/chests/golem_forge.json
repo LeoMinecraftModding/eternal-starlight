@@ -11,8 +11,24 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
+                "max": 20.0,
                 "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:stick",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 9.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -27,8 +43,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 9.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -43,8 +59,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 9.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -59,13 +75,45 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
+                "max": 8.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:redstone",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:grimstone",
+          "name": "minecraft:gunpowder",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 15.0,
+                "min": 6.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:arrow",
           "weight": 50
         },
         {
@@ -75,14 +123,14 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 12.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:grimstone_brick_slab",
-          "weight": 50
+          "name": "minecraft:spectral_arrow",
+          "weight": 40
         },
         {
           "type": "minecraft:item",
@@ -91,14 +139,14 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 10.0,
+                "min": 4.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:grimstone_brick_stairs",
-          "weight": 50
+          "name": "eternal_starlight:amaramber_arrow",
+          "weight": 35
         },
         {
           "type": "minecraft:item",
@@ -170,7 +218,7 @@
           "weight": 20
         }
       ],
-      "rolls": 8.0
+      "rolls": 5.0
     },
     {
       "bonus_rolls": 0.0,
@@ -208,6 +256,38 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "eternal_starlight:cooked_ratlin_meat",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "eternal_starlight:cooked_aurora_deer_steak",
+          "weight": 12
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
                 "max": 8.0,
                 "min": 1.0
               },
@@ -230,8 +310,8 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:thioquartz_shard",
-          "weight": 10
+          "name": "eternal_starlight:frozen_tube",
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -298,7 +378,7 @@
           "weight": 20
         }
       ],
-      "rolls": 5.0
+      "rolls": 4.0
     },
     {
       "bonus_rolls": 0.0,
@@ -332,11 +412,43 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:golden_apple",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_golden_apple",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_potion",
+              "id": "minecraft:strong_healing"
+            }
+          ],
+          "name": "minecraft:potion",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:oxidized_golem_steel_ingot",
           "weight": 5
         }
       ],
-      "rolls": 2.0
+      "rolls": 3.0
     }
   ],
   "random_sequence": "eternal_starlight:chests/golem_forge"
