@@ -1,17 +1,16 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatredPart;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
@@ -95,7 +94,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 						serverLevel.sendParticles(serverPlayer, ESSmokeParticleOptions.LUNAR_SHORT, true, vec3.x, vec3.y, vec3.z, 3, 0, 0, 0, 0);
 					}
 				}
-				CameraShake.createCameraShake(level(), position(), 45, 0.001f, 80, 20);
+				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
 				if (getOwner() instanceof LivingEntity owner && !owner.getUUID().equals(entity.getUUID())) {
@@ -128,6 +127,6 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE);
+		return RenderType.entityTranslucent(TRAIL_TEXTURE);
 	}
 }

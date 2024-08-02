@@ -34,11 +34,14 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
 		BlockState carpetState = isRed ? ESBlocks.RED_CRYSTAL_MOSS_CARPET.get().defaultBlockState() : ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get().defaultBlockState();
 		// generate the spike
 		List<MergedProvider.Entry> entries = new ArrayList<>();
-		int count = random.nextInt(3, 6);
-		for (int i = 0; i < count; i++) {
-			entries.add(new MergedProvider.Entry(new RotatedProvider(new SpikeProvider(2f, 12f), random.nextInt(40, 60), (360f / count) * i), Vec3.ZERO));
+		int count = random.nextInt(3, 7);
+		if (count == 4 && random.nextBoolean()) {
+			count = 3;
 		}
-		entries.add(new MergedProvider.Entry(new SpikeProvider(2.5f, 18f), Vec3.ZERO));
+		for (int i = 0; i < count; i++) {
+			entries.add(new MergedProvider.Entry(new RotatedProvider(new SpikeProvider(1.5f + random.nextFloat(), 10f + random.nextFloat() * 3), random.nextInt(40, 60), (360f / count) * i), Vec3.ZERO));
+		}
+		entries.add(new MergedProvider.Entry(new SpikeProvider(2f + random.nextFloat(), 16f + random.nextFloat() * 5), Vec3.ZERO));
 		ValueMapGenerator.place(new MergedProvider(entries), (pos, value) -> setBlockIfEmpty(level, pos.offset(origin), crystalState));
 		// randomly place decorations
 		for (int x = -5; x <= 5; x++) {

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -34,9 +33,6 @@ public class LunarThorn extends AttackEffect {
 		if (!level().isClientSide) {
 			if (getSpawnedTicks() >= 200) {
 				discard();
-			}
-			if (getSpawnedTicks() == 10) {
-				CameraShake.createCameraShake(level(), position(), 30, 0.001f, 20, 10);
 			}
 			if (getSpawnedTicks() > 40 && getOwner() != null) {
 				if (getAttackMode() == 0) {

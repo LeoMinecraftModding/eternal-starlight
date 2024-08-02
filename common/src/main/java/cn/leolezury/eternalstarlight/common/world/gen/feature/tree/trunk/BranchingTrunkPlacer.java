@@ -68,68 +68,40 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 		for (int y = 0; y <= height; y++) {
 			boolean shouldAddLayer = (y >= height / 2 && y < height - distBetweenLayers && y % distBetweenLayers == 0) || y == height - 2;
 			boolean bigLayer = y == height - 2;
-			if (radius == 0) {
-				BlockPos pos = origin.offset(0, y, 0);
-				if (shouldAddLayer) {
-					BlockPos branchLayerPos;
-					float yawOffset = random.nextFloat() * 360;
-					for (int i = 0; i < numBranches; i++) {
-						branchLayerPos = pos.offset(0, random.nextInt(5) - 2, 0);
-						Vec3 vec3 = ESMathUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i + yawOffset);
-						BlockPos endPos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
-						List<int[]> points = ESMathUtil.getBresenham3DPoints(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ(), endPos.getX(), endPos.getY(), endPos.getZ());
-						for (int[] point : points) {
-							placeLog(level, placer, random, new BlockPos(point[0], point[1], point[2]), config);
-						}
-						int len = points.size();
-						placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0], points.get(len - 1)[1], points.get(len - 1)[2]), config);
-						placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
-						placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-						placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
-						placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-						leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 1 : 0, false));
+			for (int x = -radius; x <= radius; x++) {
+				for (int z = -radius; z <= radius; z++) {
+					if (radius != 0 && (x == radius && (z == radius || z == -radius) || x == -radius && (z == radius || z == -radius))) {
+						continue;
 					}
-				}
-				placeLog(level, placer, random, pos, config);
-				if (y == height) {
-					placeLog(level, placer, random, pos.offset(1, 0, 1), config);
-					placeLog(level, placer, random, pos.offset(1, 0, -1), config);
-					placeLog(level, placer, random, pos.offset(-1, 0, 1), config);
-					placeLog(level, placer, random, pos.offset(-1, 0, -1), config);
-				}
-			} else {
-				for (int x = -radius; x <= radius; x++) {
-					for (int z = -radius; z <= radius; z++) {
-						if (x == radius && (z == radius || z == -radius) || x == -radius && (z == radius || z == -radius)) {
-							continue;
-						}
-						BlockPos pos = origin.offset(x, y, z);
-						if (shouldAddLayer && x == 0 & z == 0) {
-							BlockPos branchLayerPos;
-							float yawOffset = random.nextFloat() * 360;
-							for (int i = 0; i < numBranches; i++) {
-								branchLayerPos = pos.offset(0, random.nextInt(5) - 2, 0);
-								Vec3 vec3 = ESMathUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i + yawOffset);
-								BlockPos endPos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
-								List<int[]> points = ESMathUtil.getBresenham3DPoints(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ(), endPos.getX(), endPos.getY(), endPos.getZ());
-								for (int[] point : points) {
-									placeLog(level, placer, random, new BlockPos(point[0], point[1], point[2]), config);
-								}
-								int len = points.size();
-								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
-								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
-								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
-								leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 1 : 0, false));
+					BlockPos pos = origin.offset(x, y, z);
+					if (shouldAddLayer && x == 0 & z == 0) {
+						BlockPos branchLayerPos;
+						float yawOffset = random.nextFloat() * 360;
+						for (int i = 0; i < numBranches; i++) {
+							branchLayerPos = pos.offset(0, random.nextInt(5) - 2, 0);
+							Vec3 vec3 = ESMathUtil.rotationToPosition(new Vec3(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ()), (lenBranches - (bigLayer ? 2 : 0) / 2f) * (float) SQRT_3, 30, (360f / (float) numBranches) * i + yawOffset);
+							BlockPos endPos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
+							List<int[]> points = ESMathUtil.getBresenham3DPoints(branchLayerPos.getX(), branchLayerPos.getY(), branchLayerPos.getZ(), endPos.getX(), endPos.getY(), endPos.getZ());
+							for (int[] point : points) {
+								placeLog(level, placer, random, new BlockPos(point[0], point[1], point[2]), config);
 							}
+							int len = points.size();
+							if (radius == 0) {
+								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0], points.get(len - 1)[1], points.get(len - 1)[2]), config);
+							}
+							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
+							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
+							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
+							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
+							leafAttachments.add(new FoliagePlacer.FoliageAttachment(endPos, bigLayer ? 1 : 0, false));
 						}
-						placeLog(level, placer, random, pos, config);
-						if (y == height) {
-							placeLog(level, placer, random, pos.offset(1, 0, 1), config);
-							placeLog(level, placer, random, pos.offset(1, 0, -1), config);
-							placeLog(level, placer, random, pos.offset(-1, 0, 1), config);
-							placeLog(level, placer, random, pos.offset(-1, 0, -1), config);
-						}
+					}
+					placeLog(level, placer, random, pos, config);
+					if (y == height) {
+						placeLog(level, placer, random, pos.offset(1, 0, 1), config);
+						placeLog(level, placer, random, pos.offset(1, 0, -1), config);
+						placeLog(level, placer, random, pos.offset(-1, 0, 1), config);
+						placeLog(level, placer, random, pos.offset(-1, 0, -1), config);
 					}
 				}
 			}

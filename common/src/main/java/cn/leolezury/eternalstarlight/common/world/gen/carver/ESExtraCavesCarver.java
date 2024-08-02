@@ -45,7 +45,7 @@ public class ESExtraCavesCarver extends WorldCarver<CarverConfiguration> {
 						int worldX = chunkPos.x * 16 + x;
 						int worldZ = chunkPos.z * 16 + z;
 						BlockPos pos = new BlockPos(worldX, y, worldZ);
-						if (noise.getValue(worldX / 50d, y / 30d, worldZ / 50d) < -0.4) {
+						if (noise.getValue(worldX / 50d, y / 30d, worldZ / 50d) < -0.3) {
 							BlockState state = chunkAccess.getBlockState(pos);
 							if (state.is(BlockTags.OVERWORLD_CARVER_REPLACEABLES) && state.getFluidState().isEmpty()) {
 								chunkAccess.setBlockState(pos, y > carverConfiguration.lavaLevel.resolveY(carvingContext) ? AIR : LAVA.createLegacyBlock(), false);

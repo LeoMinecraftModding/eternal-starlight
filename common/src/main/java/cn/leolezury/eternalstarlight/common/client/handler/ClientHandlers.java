@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
+import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
@@ -13,7 +14,6 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
@@ -63,6 +63,7 @@ public class ClientHandlers {
 	public static final int FULL_BRIGHT = 0xf000f0;
 	public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
 	public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
+	public static final List<ScreenShake> SCREEN_SHAKES = new ArrayList<>();
 	private static final ResourceLocation[] BAR_BACKGROUND_SPRITES = new ResourceLocation[]{ResourceLocation.withDefaultNamespace("boss_bar/pink_background"), ResourceLocation.withDefaultNamespace("boss_bar/blue_background"), ResourceLocation.withDefaultNamespace("boss_bar/red_background"), ResourceLocation.withDefaultNamespace("boss_bar/green_background"), ResourceLocation.withDefaultNamespace("boss_bar/yellow_background"), ResourceLocation.withDefaultNamespace("boss_bar/purple_background"), ResourceLocation.withDefaultNamespace("boss_bar/white_background")};
 	private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{ResourceLocation.withDefaultNamespace("boss_bar/pink_progress"), ResourceLocation.withDefaultNamespace("boss_bar/blue_progress"), ResourceLocation.withDefaultNamespace("boss_bar/red_progress"), ResourceLocation.withDefaultNamespace("boss_bar/green_progress"), ResourceLocation.withDefaultNamespace("boss_bar/yellow_progress"), ResourceLocation.withDefaultNamespace("boss_bar/purple_progress"), ResourceLocation.withDefaultNamespace("boss_bar/white_progress")};
 	private static final ResourceLocation[] OVERLAY_BACKGROUND_SPRITES = new ResourceLocation[]{ResourceLocation.withDefaultNamespace("boss_bar/notched_6_background"), ResourceLocation.withDefaultNamespace("boss_bar/notched_10_background"), ResourceLocation.withDefaultNamespace("boss_bar/notched_12_background"), ResourceLocation.withDefaultNamespace("boss_bar/notched_20_background")};
@@ -85,6 +86,7 @@ public class ClientHandlers {
 	public static void onClientTick() {
 		ClientWeatherInfo.tickRainLevel();
 		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
+		List<ScreenShake> screenShakesToRemove = new ArrayList<>();
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
 			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
 				if (effect.shouldRemove()) {
@@ -95,6 +97,17 @@ public class ClientHandlers {
 			}
 			for (WorldVisualEffect effect : effectsToRemove) {
 				VISUAL_EFFECTS.remove(effect);
+			}
+
+			for (ScreenShake effect : SCREEN_SHAKES) {
+				if (effect.shouldRemove()) {
+					screenShakesToRemove.add(effect);
+				} else if (!Minecraft.getInstance().isPaused()) {
+					effect.tick();
+				}
+			}
+			for (ScreenShake effect : screenShakesToRemove) {
+				SCREEN_SHAKES.remove(effect);
 			}
 		}
 		if (Minecraft.getInstance().level != null) {
@@ -197,6 +210,22 @@ public class ClientHandlers {
 		}
 	}
 
+	public static float getScreenShakeYawOffset() {
+		float sum = 0;
+		for (ScreenShake screenShake : SCREEN_SHAKES) {
+			sum += screenShake.getYawOffset();
+		}
+		return sum;
+	}
+
+	public static float getScreenShakePitchOffset() {
+		float sum = 0;
+		for (ScreenShake screenShake : SCREEN_SHAKES) {
+			sum += screenShake.getPitchOffset();
+		}
+		return sum;
+	}
+
 	public static void onAfterRenderEntities(MultiBufferSource source, PoseStack stack, float partialTicks) {
 		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 		Vec3 cameraPos = camera.getPosition();
@@ -232,26 +261,7 @@ public class ClientHandlers {
 	}
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
-		LocalPlayer localPlayer = Minecraft.getInstance().player;
-		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-
-		if (localPlayer != null) {
-			float ticks = localPlayer.tickCount + partialTicks;
-			if (!Minecraft.getInstance().isPaused()) {
-				float shakeAmount = 0;
-				if (Minecraft.getInstance().level != null) {
-					for (CameraShake cameraShake : Minecraft.getInstance().level.getEntitiesOfClass(CameraShake.class, localPlayer.getBoundingBox().inflate(50))) {
-						if (cameraShake.distanceTo(localPlayer) < cameraShake.getRadius()) {
-							shakeAmount += cameraShake.getShakeAmount(localPlayer, partialTicks);
-						}
-					}
-				}
-				shakeAmount = Math.min(shakeAmount, 1);
-
-				return new Vec3(angles.x + shakeAmount * Math.cos(ticks * 3) * 20, angles.y + shakeAmount * Math.cos(ticks * 4) * 20, angles.z + shakeAmount * Math.cos(ticks * 5) * 20);
-			}
-		}
-		return angles;
+		return angles.add(getScreenShakePitchOffset(), getScreenShakeYawOffset(), 0);
 	}
 
 	// tail of setupFog

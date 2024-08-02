@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -13,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -169,6 +169,9 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	}
 
 	private void handleHit() {
+		if (level() instanceof ServerLevel serverLevel) {
+			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
+		}
 		if (natural) {
 			dropAndDiscard();
 		}
@@ -218,7 +221,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
-		CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.0002f * getSize(), 20, 20);
 		handleHit();
 		if (!level().isClientSide && target == null && targetPos == null) {
 			dropAndDiscard();
@@ -228,7 +230,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		CameraShake.createCameraShake(level(), position(), getSize() * 20, 0.0002f * getSize(), 20, 20);
 		handleHit();
 	}
 
@@ -248,15 +249,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 					targetId = null;
 				}
 			}
-		}/* else {
-			Vec3 motion = getDeltaMovement();
-			for (int i = 0; i < 5; i++) {
-				float r = 0.65f + random.nextFloat() * 0.1f;
-				float g = 0.02f + random.nextFloat() * 0.1f;
-				float b = 0.73f + random.nextFloat() * 0.1f;
-				level().addParticle(new LightningParticleOptions(new Vector3f(r, g, b)), getX(), getY(), getZ(), -motion.x * 3, -motion.y * 3, -motion.z * 3);
-			}
-		}*/
+		}
 	}
 
 	@Override

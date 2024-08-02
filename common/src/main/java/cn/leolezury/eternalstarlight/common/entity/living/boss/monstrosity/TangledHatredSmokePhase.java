@@ -2,9 +2,9 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -26,7 +26,9 @@ public class TangledHatredSmokePhase extends BehaviorPhase<TangledHatred> {
 
 	@Override
 	public void onStart(TangledHatred entity) {
-		CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.005f, 100, 20);
+		if (entity.level() instanceof ServerLevel serverLevel) {
+			ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 45, 100, 0.2f, 0.2f, 4.5f, 5).send(serverLevel);
+		}
 	}
 
 	@Override

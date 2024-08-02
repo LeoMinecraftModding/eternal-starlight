@@ -8,10 +8,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature<FC> {
@@ -19,7 +17,7 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
 		super(codec);
 	}
 
-	protected boolean isValidBlock(BlockState state, List<TagKey<Block>> tags) {
+	protected boolean anyMatch(BlockState state, List<TagKey<Block>> tags) {
 		for (TagKey<Block> tag : tags) {
 			if (state.is(tag)) {
 				return true;
@@ -28,20 +26,16 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
 		return false;
 	}
 
-	protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state) {
+	protected void setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state) {
 		if (level.isEmptyBlock(pos)) {
 			setBlock(level, pos, state);
-			return true;
 		}
-		return false;
 	}
 
-	protected boolean setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state, boolean replaceFluid, List<TagKey<Block>> ignored) {
-		if (level.isEmptyBlock(pos) || isValidBlock(level.getBlockState(pos), ignored) || (replaceFluid && !level.getFluidState(pos).isEmpty() && level.getBlockState(pos).is(level.getFluidState(pos).createLegacyBlock().getBlock()))) {
+	protected void setBlockIfEmpty(WorldGenLevel level, BlockPos pos, BlockState state, boolean replaceFluid, Predicate<BlockState> shouldIgnore) {
+		if (level.isEmptyBlock(pos) || shouldIgnore.test(level.getBlockState(pos)) || (replaceFluid && !level.getFluidState(pos).isEmpty() && level.getBlockState(pos).is(level.getFluidState(pos).createLegacyBlock().getBlock()))) {
 			setBlock(level, pos, state);
-			return true;
 		}
-		return false;
 	}
 
 	protected BlockPos getChunkCoordinate(BlockPos origin) {

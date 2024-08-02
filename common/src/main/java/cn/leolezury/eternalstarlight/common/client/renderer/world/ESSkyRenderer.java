@@ -26,6 +26,8 @@ import org.joml.Vector3f;
 @Environment(EnvType.CLIENT)
 public class ESSkyRenderer {
 	private static final ResourceLocation DEAD_STAR_LOCATION = EternalStarlight.id("textures/environment/dead_star.png");
+	private static final float TIME = 12500f;
+	private static final float FIXED_TIME = (float) (Mth.frac(TIME / 24000.0 - 0.25) * 2.0 + 0.5 - Math.cos(Mth.frac(TIME / 24000.0 - 0.25) * Math.PI) / 2.0) / 3.0F;
 	private static VertexBuffer starBuffer;
 
 	public static boolean renderSky(ClientLevel level, Matrix4f modelViewMatrix, Matrix4f matrix, float partialTicks, Camera camera, Runnable setupFog) {
@@ -55,7 +57,7 @@ public class ESSkyRenderer {
 			levelRenderer.skyBuffer.drawWithShader(poseStack.last().pose(), matrix, shaderInstance);
 			VertexBuffer.unbind();
 			RenderSystem.enableBlend();
-			float[] fs = level.effects().getSunriseColor(level.getTimeOfDay(partialTicks), partialTicks);
+			float[] fs = level.effects().getSunriseColor(FIXED_TIME, partialTicks);
 			float j;
 			float l;
 			float p;
@@ -101,7 +103,7 @@ public class ESSkyRenderer {
 			j = 1.0F - rainLevel;
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, j);
 			poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(-90.0F));
-			poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
+			poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(FIXED_TIME * 360.0F));
 			Matrix4f matrix4f4 = poseStack.last().pose();
 			l = 60.0F;
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);

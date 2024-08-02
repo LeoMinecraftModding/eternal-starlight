@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -48,6 +49,7 @@ public class SonarBomb extends ThrowableItemProjectile {
 				}
 			}
 			playSound(SoundEvents.GENERIC_EXPLODE.value());
+			ScreenShakeVfx.createInstance(level().dimension(), position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
 			discard();
 		}
 	}

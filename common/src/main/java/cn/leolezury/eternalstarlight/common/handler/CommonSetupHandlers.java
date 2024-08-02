@@ -71,6 +71,7 @@ public class CommonSetupHandlers {
 	public static void registerPackets(NetworkRegisterStrategy strategy) {
 		strategy.register(ESPackets.NO_PARAMETERS);
 		strategy.register(ESPackets.PARTICLE);
+		strategy.register(ESPackets.VFX);
 		strategy.register(ESPackets.UPDATE_WEATHER);
 		strategy.register(ESPackets.OPEN_CREST_GUI);
 		strategy.register(ESPackets.UPDATE_CRESTS);

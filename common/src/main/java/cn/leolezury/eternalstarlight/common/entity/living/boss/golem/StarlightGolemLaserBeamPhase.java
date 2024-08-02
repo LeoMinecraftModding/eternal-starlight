@@ -2,9 +2,10 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import net.minecraft.server.level.ServerLevel;
 
 public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> {
 	public static final int ID = 1;
@@ -31,7 +32,9 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 			entity.level().addFreshEntity(beam);
 		}
 		if (entity.getBehaviorTicks() >= 60 && entity.getBehaviorTicks() % 40 == 0) {
-			CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 60, 0.3f, 0.3f, 4.5f, 5).send(serverLevel);
+			}
 			entity.spawnEnergizedFlame(1, 15, false);
 		}
 	}

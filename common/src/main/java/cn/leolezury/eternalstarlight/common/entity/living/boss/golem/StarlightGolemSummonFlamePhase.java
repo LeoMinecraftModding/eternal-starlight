@@ -1,7 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import net.minecraft.server.level.ServerLevel;
 
 public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem> {
 	public static final int ID = 2;
@@ -23,7 +24,9 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 	@Override
 	public void tick(StarlightGolem entity) {
 		if (entity.getBehaviorTicks() % 30 == 0) {
-			CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.02f, 40, 20);
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 45, 50, 0.24f, 0.24f, 4.5f, 5).send(serverLevel);
+			}
 			entity.spawnEnergizedFlame(2, 15, true);
 		}
 	}

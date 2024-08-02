@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
-import cn.leolezury.eternalstarlight.common.entity.misc.CameraShake;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
@@ -132,7 +131,6 @@ public class TangledHatred extends ESBoss {
 		boolean flag = super.doHurtTarget(entity);
 		if (flag && !level().isClientSide) {
 			ticksToNextMeleeAttack = 40;
-			CameraShake.createCameraShake(entity.level(), entity.position(), 45, 0.005f, 40, 20);
 			this.chain.getEndPos().ifPresent(vec3 -> ((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.LUNAR, vec3.x, vec3.y, vec3.z, 3, 0.1, 0.1, 0.1, 0));
 		}
 		return flag;

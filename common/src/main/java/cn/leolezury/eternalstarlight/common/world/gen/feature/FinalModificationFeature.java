@@ -9,8 +9,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class EtherFluidBorderFeature extends ESFeature<NoneFeatureConfiguration> {
-	public EtherFluidBorderFeature(Codec<NoneFeatureConfiguration> codec) {
+public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration> {
+	public FinalModificationFeature(Codec<NoneFeatureConfiguration> codec) {
 		super(codec);
 	}
 

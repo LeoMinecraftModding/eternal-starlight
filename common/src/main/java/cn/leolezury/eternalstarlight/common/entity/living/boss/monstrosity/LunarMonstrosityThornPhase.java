@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -37,6 +38,9 @@ public class LunarMonstrosityThornPhase extends BehaviorPhase<LunarMonstrosity> 
 			double d0 = Math.min(target.getY(), entity.getY());
 			double d1 = Math.max(target.getY(), entity.getY()) + 1.0;
 			float f = (float) Mth.atan2(target.getZ() - entity.getZ(), target.getX() - entity.getX());
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
+			}
 			for (int i = 0; i < (entity.getBehaviorTicks() / 15 + 1) * 6; i++) {
 				double d2 = 1.25 * (double) (i + 1);
 				this.createThorn(entity, entity.getX() + (double) Mth.cos(f) * d2, entity.getZ() + (double) Mth.sin(f) * d2, d0, d1, i);

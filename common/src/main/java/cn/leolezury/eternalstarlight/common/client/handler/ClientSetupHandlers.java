@@ -562,7 +562,6 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.AETHERSENT_METEOR.get(), AethersentMeteorRenderer::new);
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
 		strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
-		strategy.register(ESEntities.CAMERA_SHAKE.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
 		strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);

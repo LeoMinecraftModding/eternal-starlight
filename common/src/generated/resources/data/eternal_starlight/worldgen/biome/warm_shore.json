@@ -61,7 +61,7 @@
     ],
     [
       "minecraft:freeze_top_layer",
-      "eternal_starlight:ether_fluid_border"
+      "eternal_starlight:final_modification"
     ]
   ],
   "has_precipitation": true,

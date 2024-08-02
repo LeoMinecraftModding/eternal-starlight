@@ -25,7 +25,7 @@
     },
     "sky_color": 5658761,
     "water_color": 6187416,
-    "water_fog_color": 4394646
+    "water_fog_color": 3409191
   },
   "features": [
     [],
@@ -61,7 +61,7 @@
     ],
     [
       "minecraft:freeze_top_layer",
-      "eternal_starlight:ether_fluid_border"
+      "eternal_starlight:final_modification"
     ]
   ],
   "has_precipitation": true,

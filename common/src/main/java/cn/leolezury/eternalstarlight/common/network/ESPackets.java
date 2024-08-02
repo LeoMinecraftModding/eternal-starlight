@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 public class ESPackets {
 	public static final PacketInfo<NoParametersPacket> NO_PARAMETERS = new PacketInfo<>(NoParametersPacket.TYPE, NoParametersPacket.STREAM_CODEC, NoParametersPacket::handle);
 	public static final PacketInfo<ParticlePacket> PARTICLE = new PacketInfo<>(ParticlePacket.TYPE, ParticlePacket.STREAM_CODEC, ParticlePacket::handle);
+	public static final PacketInfo<VfxPacket> VFX = new PacketInfo<>(VfxPacket.TYPE, VfxPacket.STREAM_CODEC, VfxPacket::handle);
 	public static final PacketInfo<UpdateWeatherPacket> UPDATE_WEATHER = new PacketInfo<>(UpdateWeatherPacket.TYPE, UpdateWeatherPacket.STREAM_CODEC, UpdateWeatherPacket::handle);
 	public static final PacketInfo<OpenCrestGuiPacket> OPEN_CREST_GUI = new PacketInfo<>(OpenCrestGuiPacket.TYPE, OpenCrestGuiPacket.STREAM_CODEC, OpenCrestGuiPacket::handle);
 	public static final PacketInfo<UpdateCrestsPacket> UPDATE_CRESTS = new PacketInfo<>(UpdateCrestsPacket.TYPE, UpdateCrestsPacket.STREAM_CODEC, UpdateCrestsPacket::handle);

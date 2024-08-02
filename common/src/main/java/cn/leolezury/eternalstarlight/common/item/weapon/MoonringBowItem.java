@@ -3,7 +3,9 @@ package cn.leolezury.eternalstarlight.common.item.weapon;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +27,9 @@ public class MoonringBowItem extends BowItem {
 		if (!level.isClientSide && livingEntity instanceof Player && powerForTime == 1.0) {
 			float x = -Mth.sin(livingEntity.getYRot() * Mth.DEG_TO_RAD);
 			float z = Mth.cos(livingEntity.getYRot() * Mth.DEG_TO_RAD);
+			if (level instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(livingEntity.level().dimension(), livingEntity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
+			}
 			for (int i = 0; i < 16; i++) {
 				createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, 40, i * 5);
 			}

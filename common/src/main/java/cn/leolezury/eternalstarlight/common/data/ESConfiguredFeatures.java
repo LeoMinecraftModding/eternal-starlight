@@ -66,7 +66,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ESConfiguredFeatures {
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ETHER_FLUID_BORDER = create("ether_fluid_border");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FINAL_MODIFICATION = create("final_modification");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GLACITE = create("glacite");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
@@ -137,7 +137,7 @@ public class ESConfiguredFeatures {
 		RuleTest mudRule = new BlockMatchTest(ESBlocks.NIGHTFALL_MUD.get());
 		RuleTest gravelRule = new BlockMatchTest(ESBlocks.DUSTED_GRAVEL.get());
 
-		FeatureUtils.register(context, ETHER_FLUID_BORDER, ESFeatures.ETHER_FLUID_BORDER.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, FINAL_MODIFICATION, ESFeatures.FINAL_MODIFICATION.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, GLACITE, ESFeatures.GLACITE.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STONE_ORE, Feature.ORE, new OreConfiguration(slRule, Blocks.STONE.defaultBlockState(), 64));

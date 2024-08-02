@@ -2,6 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import net.minecraft.server.level.ServerLevel;
 
 public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 8;
@@ -25,6 +27,9 @@ public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 		if (entity.getBehaviorTicks() == 70) {
 			entity.playSound(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), 0.5f, 1);
 			entity.knockbackNearbyEntities(2.5f, false);
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
+			}
 		}
 	}
 

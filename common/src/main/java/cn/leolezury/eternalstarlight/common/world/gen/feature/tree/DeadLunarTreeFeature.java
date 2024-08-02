@@ -53,7 +53,7 @@ public class DeadLunarTreeFeature extends ESFeature<NoneFeatureConfiguration> {
 		// make a trunk
 		BlockPos topPos = pos.offset(random.nextInt(5) - 2, random.nextInt(10, 15), random.nextInt(5) - 2);
 		placeBlockLine(level, pos, topPos, random);
-		// make branches and we're done
+		// make branches
 		placeBranches(level, topPos, random);
 		placeBranches(level, new BlockPos(Mth.lerpInt(0.75f, pos.getX(), topPos.getX()), Mth.lerpInt(0.75f, pos.getY(), topPos.getY()), Mth.lerpInt(0.75f, pos.getZ(), topPos.getZ())), random);
 		return true;
