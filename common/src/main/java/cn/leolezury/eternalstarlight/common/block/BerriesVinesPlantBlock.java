@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -35,10 +34,12 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 		return null;
 	}
 
+	@Override
 	protected GrowingPlantHeadBlock getHeadBlock() {
 		return ESBlocks.BERRIES_VINES.get();
 	}
 
+	@Override
 	protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
 		return blockState.setValue(BERRIES, state.getValue(BERRIES));
 	}
@@ -48,10 +49,12 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 		return new ItemStack(ESItems.LUNAR_BERRIES.get());
 	}
 
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-		return BerriesVines.use(state, level, pos);
+	@Override
+	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+		return BerriesVines.use(blockState, level, blockPos);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(BERRIES);
 	}
@@ -61,10 +64,12 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 		return !blockState.getValue(BERRIES);
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, Boolean.valueOf(true)), 2);
 	}

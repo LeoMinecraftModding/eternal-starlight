@@ -29,10 +29,12 @@ public class TorreyaVinesBlock extends GrowingPlantHeadBlock {
 		return CODEC;
 	}
 
+	@Override
 	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
 		return 1;
 	}
 
+	@Override
 	protected boolean canGrowInto(BlockState state) {
 		return state.isAir();
 	}
@@ -58,10 +60,12 @@ public class TorreyaVinesBlock extends GrowingPlantHeadBlock {
 		return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
 	}
 
+	@Override
 	protected Block getBodyBlock() {
 		return ESBlocks.TORREYA_VINES_PLANT.get();
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
 		return new ItemStack(ESItems.TORREYA_VINES.get());
 	}

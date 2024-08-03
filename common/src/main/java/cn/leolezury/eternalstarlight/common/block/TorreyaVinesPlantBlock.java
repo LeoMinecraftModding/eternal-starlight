@@ -30,6 +30,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 		return CODEC;
 	}
 
+	@Override
 	protected GrowingPlantHeadBlock getHeadBlock() {
 		return ESBlocks.TORREYA_VINES.get();
 	}
@@ -59,6 +60,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 		return new ItemStack(ESItems.TORREYA_VINES.get());
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(TOP);
 	}

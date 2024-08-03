@@ -38,6 +38,7 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 		return true;
 	}
 
+	@Override
 	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
 		return canSurviveOnBlock(levelReader.getBlockState(blockPos.below()));
 	}
@@ -46,6 +47,7 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 		return blockState.is(ESTags.Blocks.ABYSSAL_FIRE_SURVIVES_ON);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
 		if (this.canSurvive(blockState, levelAccessor, blockPos)) {
 			if (blockState.getValue(WATERLOGGED)) {
@@ -57,10 +59,12 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 		return Blocks.AIR.defaultBlockState();
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(WATERLOGGED);
 	}

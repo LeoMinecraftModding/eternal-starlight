@@ -47,6 +47,7 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 		return CODEC;
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
 		Direction direction = state.getValue(FACING);
 		switch (direction) {
@@ -66,12 +67,14 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 		}
 	}
 
+	@Override
 	public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
 		Direction direction = state.getValue(FACING);
 		BlockPos blockpos = pos.relative(direction.getOpposite());
 		return levelReader.getBlockState(blockpos).isFaceSturdy(levelReader, blockpos, direction);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState blockState, LevelAccessor levelAccessor, BlockPos pos, BlockPos blockPos) {
 		if (state.getValue(WATERLOGGED)) {
 			levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
@@ -87,18 +90,22 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER)).setValue(FACING, context.getClickedFace());
 	}
 
+	@Override
 	public BlockState rotate(BlockState state, Rotation rotation) {
 		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 
+	@Override
 	public BlockState mirror(BlockState state, Mirror mirror) {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(WATERLOGGED, FACING);
 	}

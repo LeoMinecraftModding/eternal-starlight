@@ -54,15 +54,18 @@ public class JinglingPickleBlock extends BushBlock implements BonemealableBlock,
 		return !blockState.getValue(WATERLOGGED);
 	}
 
+	@Override
 	protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
 		return !blockState.getCollisionShape(blockGetter, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(blockGetter, blockPos, Direction.UP);
 	}
 
+	@Override
 	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
 		BlockPos blockPos2 = blockPos.below();
 		return this.mayPlaceOn(levelReader.getBlockState(blockPos2), levelReader, blockPos2);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
 		if (!blockState.canSurvive(levelAccessor, blockPos)) {
 			return Blocks.AIR.defaultBlockState();
@@ -80,22 +83,27 @@ public class JinglingPickleBlock extends BushBlock implements BonemealableBlock,
 		return SHAPE;
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(WATERLOGGED);
 	}
 
+	@Override
 	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 		return true;
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		if (!isDead(blockState) && serverLevel.getBlockState(blockPos.below()).is(ESTags.Blocks.CORAL_BLOCKS)) {
 			for (int x = -5; x <= 5; x++) {
@@ -113,7 +121,8 @@ public class JinglingPickleBlock extends BushBlock implements BonemealableBlock,
 		}
 	}
 
-	public boolean isPathfindable(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, PathComputationType pathComputationType) {
+	@Override
+	protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
 		return false;
 	}
 }

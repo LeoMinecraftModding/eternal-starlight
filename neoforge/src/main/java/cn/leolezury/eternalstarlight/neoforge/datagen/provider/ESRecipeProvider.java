@@ -438,6 +438,21 @@ public class ESRecipeProvider extends RecipeProvider {
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICK_SLAB.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICKS.get());
 
+		addStoneCompress(recipeOutput, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.STELLAGMITE_WALL.get(), ESBlocks.STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.STELLAGMITE_WALL.get(), ESBlocks.STELLAGMITE.get());
+		addStairs(recipeOutput, ESBlocks.STELLAGMITE_STAIRS.get(), ESBlocks.STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.STELLAGMITE_STAIRS.get(), ESBlocks.STELLAGMITE.get());
+		addSlab(recipeOutput, ESBlocks.STELLAGMITE_SLAB.get(), ESBlocks.STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.STELLAGMITE_SLAB.get(), ESBlocks.STELLAGMITE.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_WALL.get(), ESBlocks.POLISHED_STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_WALL.get(), ESBlocks.POLISHED_STELLAGMITE.get());
+		addStairs(recipeOutput, ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), ESBlocks.POLISHED_STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), ESBlocks.POLISHED_STELLAGMITE.get());
+		addSlab(recipeOutput, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get(), 2);
+
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_ABYSSLATE.get(), ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get());

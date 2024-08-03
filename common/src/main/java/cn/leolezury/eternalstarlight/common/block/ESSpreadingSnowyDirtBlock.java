@@ -40,6 +40,7 @@ public abstract class ESSpreadingSnowyDirtBlock extends SnowyDirtBlock {
 		return canBeGrass(state, levelReader, pos) && !levelReader.getFluidState(blockpos).is(FluidTags.WATER);
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource randomSource) {
 		if (!canBeGrass(state, serverLevel, pos)) {
 			serverLevel.setBlockAndUpdate(pos, spreadsOn.defaultBlockState());

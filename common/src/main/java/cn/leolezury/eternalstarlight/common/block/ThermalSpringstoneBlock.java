@@ -24,10 +24,12 @@ public class ThermalSpringstoneBlock extends Block {
 		return CODEC;
 	}
 
+	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
 		BubbleColumnBlock.updateColumn(level, pos.above(), state);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos pos1) {
 		if (direction == Direction.UP && newState.is(Blocks.WATER)) {
 			level.scheduleTick(pos, this, 20);
@@ -36,6 +38,7 @@ public class ThermalSpringstoneBlock extends Block {
 		return super.updateShape(state, direction, newState, level, pos, pos1);
 	}
 
+	@Override
 	public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state1, boolean b) {
 		level.scheduleTick(pos, this, 20);
 	}

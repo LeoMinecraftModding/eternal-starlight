@@ -32,6 +32,7 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 		return CODEC;
 	}
 
+	@Override
 	public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
 		Direction[] var6 = Direction.values();
 		int var7 = var6.length;
@@ -42,6 +43,7 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 		}
 	}
 
+	@Override
 	public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
 		if (!bl) {
 			Direction[] var6 = Direction.values();
@@ -54,6 +56,7 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 		}
 	}
 
+	@Override
 	public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
 		return blockState.getValue(LIT) && Direction.UP != direction ? 15 : 0;
 	}
@@ -68,6 +71,7 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	}
 
+	@Override
 	public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl) {
 		if (blockState.getValue(LIT) == this.hasNeighborSignal(level, blockPos) && !level.getBlockTicks().willTickThisTick(blockPos, this)) {
 			level.scheduleTick(blockPos, this, 2);
@@ -75,16 +79,19 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 
 	}
 
+	@Override
 	public int getDirectSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
 		return direction == Direction.DOWN ? blockState.getSignal(blockGetter, blockPos, direction) : 0;
 	}
 
+	@Override
 	public boolean isSignalSource(BlockState blockState) {
 		return true;
 	}
 
+	@Override
 	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
-		if ((Boolean) blockState.getValue(LIT)) {
+		if (blockState.getValue(LIT)) {
 			double d = (double) blockPos.getX() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2;
 			double e = (double) blockPos.getY() + 0.7 + (randomSource.nextDouble() - 0.5) * 0.2;
 			double f = (double) blockPos.getZ() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2;
@@ -92,6 +99,7 @@ public class DoomedenRedstoneTorchBlock extends BaseTorchBlock {
 		}
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(LIT);
 	}

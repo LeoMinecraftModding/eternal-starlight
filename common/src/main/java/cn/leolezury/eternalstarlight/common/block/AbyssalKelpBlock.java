@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -49,22 +48,27 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 		return ESBlocks.ABYSSAL_KELP_PLANT.get();
 	}
 
+	@Override
 	protected BlockState updateBodyAfterConvertedFromHead(BlockState state, BlockState blockState) {
 		return blockState.setValue(BERRIES, state.getValue(BERRIES));
 	}
 
+	@Override
 	protected BlockState getGrowIntoState(BlockState state, RandomSource randomSource) {
 		return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
 		return new ItemStack(ESItems.ABYSSAL_FRUIT.get());
 	}
 
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-		return AbyssalKelp.use(state, level, pos);
+	@Override
+	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+		return AbyssalKelp.use(blockState, level, blockPos);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(BERRIES);
@@ -75,30 +79,37 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 		return !blockState.getValue(BERRIES);
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
 		serverLevel.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(true)), 2);
 	}
 
+	@Override
 	protected boolean canGrowInto(BlockState blockState) {
 		return blockState.is(Blocks.WATER);
 	}
 
+	@Override
 	public boolean canAttachTo(BlockState blockState) {
 		return !blockState.is(Blocks.MAGMA_BLOCK);
 	}
 
+	@Override
 	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
 		return false;
 	}
 
+	@Override
 	public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
 		return false;
 	}
 
+	@Override
 	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
 		return 1;
 	}
@@ -109,6 +120,7 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 		return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return Fluids.WATER.getSource(false);
 	}

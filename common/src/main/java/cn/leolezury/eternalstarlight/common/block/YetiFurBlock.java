@@ -14,6 +14,7 @@ import net.minecraft.world.phys.Vec3;
 public class YetiFurBlock extends HalfTransparentBlock {
 	public static final MapCodec<YetiFurBlock> CODEC = simpleCodec(YetiFurBlock::new);
 
+	@Override
 	public MapCodec<YetiFurBlock> codec() {
 		return CODEC;
 	}
@@ -22,6 +23,7 @@ public class YetiFurBlock extends HalfTransparentBlock {
 		super(properties);
 	}
 
+	@Override
 	public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float f) {
 		if (entity.isSuppressingBounce()) {
 			super.fallOn(level, blockState, blockPos, entity, f);
@@ -31,6 +33,7 @@ public class YetiFurBlock extends HalfTransparentBlock {
 
 	}
 
+	@Override
 	public void updateEntityAfterFallOn(BlockGetter blockGetter, Entity entity) {
 		if (entity.isSuppressingBounce()) {
 			super.updateEntityAfterFallOn(blockGetter, entity);
@@ -46,9 +49,9 @@ public class YetiFurBlock extends HalfTransparentBlock {
 			double d = entity instanceof LivingEntity ? 0.8 : 0.6;
 			entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
 		}
-
 	}
 
+	@Override
 	public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
 		double d = Math.abs(entity.getDeltaMovement().y);
 		if (d < 0.1 && !entity.isSteppingCarefully()) {

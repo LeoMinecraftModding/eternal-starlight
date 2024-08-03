@@ -26,10 +26,12 @@ public class CaveMossBlock extends GrowingPlantHeadBlock implements Bonemealable
 		return CODEC;
 	}
 
+	@Override
 	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
 		return 1;
 	}
 
+	@Override
 	protected boolean canGrowInto(BlockState state) {
 		return state.isAir();
 	}
@@ -39,10 +41,12 @@ public class CaveMossBlock extends GrowingPlantHeadBlock implements Bonemealable
 		return ESBlocks.CAVE_MOSS_PLANT.get();
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
 		BlockPos growthDest = pos.relative(this.growthDirection);
 		if (this.canGrowInto(serverLevel.getBlockState(growthDest))) {

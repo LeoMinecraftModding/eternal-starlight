@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -46,18 +45,22 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 		return ESBlocks.ABYSSAL_KELP.get();
 	}
 
+	@Override
 	protected BlockState updateHeadAfterConvertedFromBody(BlockState state, BlockState blockState) {
 		return blockState.setValue(BERRIES, state.getValue(BERRIES));
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state) {
 		return new ItemStack(ESItems.ABYSSAL_FRUIT.get());
 	}
 
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-		return AbyssalKelp.use(state, level, pos);
+	@Override
+	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+		return AbyssalKelp.use(blockState, level, blockPos);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(BERRIES);
 	}
@@ -67,26 +70,32 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 		return !blockState.getValue(BERRIES);
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, Boolean.valueOf(true)), 2);
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return Fluids.WATER.getSource(false);
 	}
 
+	@Override
 	public boolean canAttachTo(BlockState blockState) {
 		return this.getHeadBlock().canAttachTo(blockState);
 	}
 
+	@Override
 	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
 		return false;
 	}
 
+	@Override
 	public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
 		return false;
 	}

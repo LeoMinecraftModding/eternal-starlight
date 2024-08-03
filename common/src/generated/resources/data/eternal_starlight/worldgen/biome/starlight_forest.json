@@ -51,7 +51,9 @@
       "eternal_starlight:grimstone_saltpeter_ore",
       "eternal_starlight:voidstone_saltpeter_ore"
     ],
-    [],
+    [
+      "eternal_starlight:stellagmite"
+    ],
     [],
     [
       "minecraft:patch_grass_forest",

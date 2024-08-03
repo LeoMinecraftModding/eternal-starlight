@@ -244,6 +244,20 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NEBULAITE_BRICK_WALL = registerItem("nebulaite_brick_wall", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_NEBULAITE_BRICKS = registerItem("chiseled_nebulaite_bricks", () -> new BlockItem(ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), new Item.Properties()));
 
+	// stellagmite
+	public static final RegistryObject<Item, Item> STELLAGMITE = registerItem("stellagmite", () -> new BlockItem(ESBlocks.STELLAGMITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STELLAGMITE_SLAB = registerItem("stellagmite_slab", () -> new BlockItem(ESBlocks.STELLAGMITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STELLAGMITE_STAIRS = registerItem("stellagmite_stairs", () -> new BlockItem(ESBlocks.STELLAGMITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STELLAGMITE_WALL = registerItem("stellagmite_wall", () -> new BlockItem(ESBlocks.STELLAGMITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MOLTEN_STELLAGMITE = registerItem("molten_stellagmite", () -> new BlockItem(ESBlocks.MOLTEN_STELLAGMITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MOLTEN_STELLAGMITE_SLAB = registerItem("molten_stellagmite_slab", () -> new BlockItem(ESBlocks.MOLTEN_STELLAGMITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MOLTEN_STELLAGMITE_STAIRS = registerItem("molten_stellagmite_stairs", () -> new BlockItem(ESBlocks.MOLTEN_STELLAGMITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MOLTEN_STELLAGMITE_WALL = registerItem("molten_stellagmite_wall", () -> new BlockItem(ESBlocks.MOLTEN_STELLAGMITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE = registerItem("polished_stellagmite", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_SLAB = registerItem("polished_stellagmite_slab", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_STAIRS = registerItem("polished_stellagmite_stairs", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_WALL = registerItem("polished_stellagmite_wall", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_WALL.get(), new Item.Properties()));
+
 	// the abyss
 	public static final RegistryObject<Item, Item> ABYSSLATE = registerItem("abysslate", () -> new BlockItem(ESBlocks.ABYSSLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE = registerItem("polished_abysslate", () -> new BlockItem(ESBlocks.POLISHED_ABYSSLATE.get(), new Item.Properties()));

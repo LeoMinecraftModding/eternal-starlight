@@ -41,10 +41,12 @@ public class OrbfloraBlock extends GrowingPlantHeadBlock implements LiquidBlockC
 		return CODEC;
 	}
 
+	@Override
 	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
 		return 1;
 	}
 
+	@Override
 	protected boolean canGrowInto(BlockState state) {
 		return state.is(Blocks.WATER);
 	}
@@ -54,10 +56,12 @@ public class OrbfloraBlock extends GrowingPlantHeadBlock implements LiquidBlockC
 		return ESBlocks.ORBFLORA_PLANT.get();
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
 		BlockPos growthDest = pos.relative(this.growthDirection);
 		if (this.canGrowInto(serverLevel.getBlockState(growthDest))) {
@@ -89,6 +93,7 @@ public class OrbfloraBlock extends GrowingPlantHeadBlock implements LiquidBlockC
 		}
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(ORBFLORA_AGE);
@@ -110,6 +115,7 @@ public class OrbfloraBlock extends GrowingPlantHeadBlock implements LiquidBlockC
 		return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return Fluids.WATER.getSource(false);
 	}

@@ -259,6 +259,19 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.NEBULAITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
+		dropSelf(ESBlocks.STELLAGMITE.get());
+		add(ESBlocks.STELLAGMITE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.STELLAGMITE_STAIRS.get());
+		dropSelf(ESBlocks.STELLAGMITE_WALL.get());
+		dropOther(ESBlocks.MOLTEN_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
+		add(ESBlocks.MOLTEN_STELLAGMITE_SLAB.get(), block -> createSlabItemTable(ESBlocks.STELLAGMITE_SLAB.get()));
+		dropOther(ESBlocks.MOLTEN_STELLAGMITE_STAIRS.get(), ESBlocks.STELLAGMITE_STAIRS.get());
+		dropOther(ESBlocks.MOLTEN_STELLAGMITE_WALL.get(), ESBlocks.STELLAGMITE_WALL.get());
+		dropSelf(ESBlocks.POLISHED_STELLAGMITE.get());
+		add(ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.POLISHED_STELLAGMITE_STAIRS.get());
+		dropSelf(ESBlocks.POLISHED_STELLAGMITE_WALL.get());
+
 		add(ESBlocks.ABYSSAL_FIRE.get(), noDrop());
 
 		dropSelf(ESBlocks.ABYSSLATE.get());

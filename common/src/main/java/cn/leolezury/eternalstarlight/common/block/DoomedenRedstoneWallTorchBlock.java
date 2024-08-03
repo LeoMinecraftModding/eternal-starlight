@@ -35,18 +35,22 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
 		return CODEC;
 	}
 
+	@Override
 	public String getDescriptionId() {
 		return this.asItem().getDescriptionId();
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return WallTorchBlock.getShape(blockState);
 	}
 
+	@Override
 	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
 		return WallTorchBlock.canSurvive(levelReader, blockPos, blockState.getValue(FACING));
 	}
 
+	@Override
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
 		return direction.getOpposite() == blockState.getValue(FACING) && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : blockState;
 	}
@@ -54,13 +58,13 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
 		BlockState blockState = Blocks.WALL_TORCH.getStateForPlacement(blockPlaceContext);
-		return blockState == null ? null : (BlockState) this.defaultBlockState().setValue(FACING, (Direction) blockState.getValue(FACING));
+		return blockState == null ? null : this.defaultBlockState().setValue(FACING, (Direction) blockState.getValue(FACING));
 	}
 
+	@Override
 	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
-		if ((Boolean) blockState.getValue(LIT)) {
-			Direction direction = ((Direction) blockState.getValue(FACING)).getOpposite();
-			double d = 0.27;
+		if (blockState.getValue(LIT)) {
+			Direction direction = blockState.getValue(FACING).getOpposite();
 			double e = (double) blockPos.getX() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.27 * (double) direction.getStepX();
 			double f = (double) blockPos.getY() + 0.7 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.22;
 			double g = (double) blockPos.getZ() + 0.5 + (randomSource.nextDouble() - 0.5) * 0.2 + 0.27 * (double) direction.getStepZ();
@@ -68,18 +72,22 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
 		}
 	}
 
+	@Override
 	public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
 		return blockState.getValue(LIT) && blockState.getValue(FACING) != direction ? 15 : 0;
 	}
 
+	@Override
 	public BlockState rotate(BlockState blockState, Rotation rotation) {
 		return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
 	}
 
+	@Override
 	public BlockState mirror(BlockState blockState, Mirror mirror) {
 		return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, LIT);
 	}

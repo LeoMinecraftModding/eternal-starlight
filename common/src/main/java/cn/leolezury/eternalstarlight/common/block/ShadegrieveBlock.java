@@ -54,6 +54,7 @@ public class ShadegrieveBlock extends Block {
 		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(TOP);
 	}

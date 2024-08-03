@@ -52,7 +52,9 @@
       "eternal_starlight:swamp_silver_ore",
       "eternal_starlight:glowing_nightfall_mud_ore"
     ],
-    [],
+    [
+      "eternal_starlight:stellagmite"
+    ],
     [],
     [
       "minecraft:patch_grass_forest",

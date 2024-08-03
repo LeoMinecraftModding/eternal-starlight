@@ -279,7 +279,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			if (!this.level().isClientSide) {
 				setRemainingFireTicks(Math.max(getRemainingFireTicks(), getPhase() == 0 ? 100 : 20));
 				if (!itemStack.isDamageableItem()) {
-					itemStack.shrink(1);
+					itemStack.consume(1, player);
 				} else {
 					itemStack.hurtAndBreak(1, player, getSlotForHand(hand));
 				}

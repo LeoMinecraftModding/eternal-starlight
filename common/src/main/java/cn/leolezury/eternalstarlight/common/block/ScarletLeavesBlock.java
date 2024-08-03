@@ -22,6 +22,7 @@ public class ScarletLeavesBlock extends LeavesBlock {
 		return CODEC;
 	}
 
+	@Override
 	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
 		super.animateTick(blockState, level, blockPos, randomSource);
 		if (randomSource.nextInt(10) == 0) {

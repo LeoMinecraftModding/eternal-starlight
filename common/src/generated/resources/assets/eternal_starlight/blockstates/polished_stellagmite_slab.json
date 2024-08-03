@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/polished_stellagmite_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/polished_stellagmite"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/polished_stellagmite_slab_top"
+    }
+  }
+}

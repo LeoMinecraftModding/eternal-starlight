@@ -218,6 +218,19 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.NEBULAITE_BRICK_WALL.get(), ESItems.NEBULAITE_BRICKS.get());
 		block(ESItems.CHISELED_NEBULAITE_BRICKS.get());
 
+		block(ESItems.STELLAGMITE.get());
+		block(ESItems.STELLAGMITE_SLAB.get());
+		block(ESItems.STELLAGMITE_STAIRS.get());
+		wall(ESItems.STELLAGMITE_WALL.get(), ESItems.STELLAGMITE.get());
+		block(ESItems.MOLTEN_STELLAGMITE.get());
+		block(ESItems.MOLTEN_STELLAGMITE_SLAB.get());
+		block(ESItems.MOLTEN_STELLAGMITE_STAIRS.get());
+		wall(ESItems.MOLTEN_STELLAGMITE_WALL.get(), ESItems.MOLTEN_STELLAGMITE.get());
+		block(ESItems.POLISHED_STELLAGMITE.get());
+		block(ESItems.POLISHED_STELLAGMITE_SLAB.get());
+		block(ESItems.POLISHED_STELLAGMITE_STAIRS.get());
+		wall(ESItems.POLISHED_STELLAGMITE_WALL.get(), ESItems.POLISHED_STELLAGMITE.get());
+
 		block(ESItems.NIGHTFALL_MUD.get());
 		block(ESItems.GLOWING_NIGHTFALL_MUD.get());
 		block(ESItems.PACKED_NIGHTFALL_MUD.get());

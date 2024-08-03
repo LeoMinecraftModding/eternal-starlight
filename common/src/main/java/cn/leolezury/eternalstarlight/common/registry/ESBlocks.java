@@ -344,6 +344,20 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WallBlock> NEBULAITE_BRICK_WALL = BLOCKS.register("nebulaite_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, Block> CHISELED_NEBULAITE_BRICKS = BLOCKS.register("chiseled_nebulaite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
 
+	// stellagmite
+	public static final RegistryObject<Block, StellagmiteBlock> STELLAGMITE = BLOCKS.register("stellagmite", () -> new StellagmiteBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+	public static final RegistryObject<Block, StellagmiteSlabBlock> STELLAGMITE_SLAB = BLOCKS.register("stellagmite_slab", () -> new StellagmiteSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)));
+	public static final RegistryObject<Block, StellagmiteStairBlock> STELLAGMITE_STAIRS = BLOCKS.register("stellagmite_stairs", () -> new StellagmiteStairBlock(STELLAGMITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
+	public static final RegistryObject<Block, StellagmiteWallBlock> STELLAGMITE_WALL = BLOCKS.register("stellagmite_wall", () -> new StellagmiteWallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+	public static final RegistryObject<Block, Block> MOLTEN_STELLAGMITE = BLOCKS.register("molten_stellagmite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, SlabBlock> MOLTEN_STELLAGMITE_SLAB = BLOCKS.register("molten_stellagmite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, StairBlock> MOLTEN_STELLAGMITE_STAIRS = BLOCKS.register("molten_stellagmite_stairs", () -> new StairBlock(MOLTEN_STELLAGMITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, WallBlock> MOLTEN_STELLAGMITE_WALL = BLOCKS.register("molten_stellagmite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, Block> POLISHED_STELLAGMITE = BLOCKS.register("polished_stellagmite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+	public static final RegistryObject<Block, SlabBlock> POLISHED_STELLAGMITE_SLAB = BLOCKS.register("polished_stellagmite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)));
+	public static final RegistryObject<Block, StairBlock> POLISHED_STELLAGMITE_STAIRS = BLOCKS.register("polished_stellagmite_stairs", () -> new StairBlock(POLISHED_STELLAGMITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
+	public static final RegistryObject<Block, WallBlock> POLISHED_STELLAGMITE_WALL = BLOCKS.register("polished_stellagmite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+
 	// the abyss
 	public static final RegistryObject<Block, AbyssalFireBlock> ABYSSAL_FIRE = BLOCKS.register("abyssal_fire", () -> new AbyssalFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE)));
 	public static final RegistryObject<Block, Block> ABYSSLATE = BLOCKS.register("abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
