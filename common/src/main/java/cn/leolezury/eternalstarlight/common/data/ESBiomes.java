@@ -134,9 +134,7 @@ public class ESBiomes {
 	public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
-		BiomeDefaultFeatures.addForestGrass(builder);
 		BiomeDefaultFeatures.addSavannaGrass(builder);
-		BiomeDefaultFeatures.addDefaultGrass(builder);
 		BiomeDefaultFeatures.addSavannaExtraGrass(builder);
 		BiomeDefaultFeatures.addSurfaceFreezing(builder);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATERSIDE_VEGETATION);

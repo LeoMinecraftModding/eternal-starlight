@@ -55,9 +55,7 @@
     ],
     [],
     [
-      "minecraft:patch_grass_forest",
       "minecraft:patch_tall_grass",
-      "minecraft:patch_grass_badlands",
       "minecraft:patch_grass_savanna",
       "eternal_starlight:waterside_vegetation",
       "eternal_starlight:cave_vine",

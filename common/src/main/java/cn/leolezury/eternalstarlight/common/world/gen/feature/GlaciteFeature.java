@@ -24,12 +24,12 @@ public class GlaciteFeature extends ESFeature<NoneFeatureConfiguration> {
 		BlockPos pos = context.origin();
 		RandomSource random = context.random();
 		BlockPos toPos = pos.offset(random.nextInt(13, 16) * (random.nextBoolean() ? -1 : 1), random.nextInt(10, 16) * (random.nextBoolean() ? -1 : 1), random.nextInt(13, 16) * (random.nextBoolean() ? -1 : 1));
-		if (level.getWorldBorder().isWithinBounds(toPos)) {
-			BlockHitResult result = level.clip(new ClipContext(pos.getCenter(), toPos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()));
-			if (result.getType() != HitResult.Type.MISS) {
-				toPos = result.getBlockPos();
-			} else return false;
-		} else return false;
+		BlockHitResult result = level.clip(new ClipContext(pos.getCenter(), toPos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()));
+		if (result.getType() != HitResult.Type.MISS) {
+			toPos = result.getBlockPos();
+		} else {
+			return false;
+		}
 		if (pos.distSqr(toPos) < 12 * 12) {
 			return false;
 		}

@@ -150,10 +150,6 @@
           },
           {
             "seed_addition": 0,
-            "transformer": "eternal_starlight:add_beaches"
-          },
-          {
-            "seed_addition": 0,
             "transformer": "eternal_starlight:add_rivers_and_abyss"
           },
           {

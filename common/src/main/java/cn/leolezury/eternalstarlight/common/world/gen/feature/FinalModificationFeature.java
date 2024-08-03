@@ -33,6 +33,7 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
 								}
 							}
+							break;
 						}
 					}
 				}

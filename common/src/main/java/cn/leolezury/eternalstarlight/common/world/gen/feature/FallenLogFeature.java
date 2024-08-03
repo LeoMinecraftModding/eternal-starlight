@@ -30,7 +30,7 @@ public class FallenLogFeature extends Feature<FallenLogFeature.Configuration> {
 		int length = random.nextInt(5, 9);
 		for (int i = 0; i < length; i++) {
 			BlockPos logPos = pos.relative(direction, i);
-			int height = level.getHeight(Heightmap.Types.OCEAN_FLOOR, logPos.getX(), logPos.getZ());
+			int height = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, logPos.getX(), logPos.getZ());
 			logPos = new BlockPos(logPos.getX(), height, logPos.getZ());
 			BlockState state = level.getBlockState(logPos);
 			BlockState placeState = provider.getState(random, logPos);

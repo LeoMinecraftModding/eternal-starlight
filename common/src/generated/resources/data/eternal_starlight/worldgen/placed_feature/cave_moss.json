@@ -3,7 +3,7 @@
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 200
+      "count": 25
     },
     {
       "type": "minecraft:in_square"
@@ -27,7 +27,7 @@
         "blocks": "minecraft:air"
       },
       "direction_of_search": "up",
-      "max_steps": 32,
+      "max_steps": 12,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
         "direction": "down"

@@ -128,7 +128,8 @@ public class ESSkyRenderer {
 			RenderSystem.defaultBlendFunc();
 			poseStack.popPose();
 			RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-			double d = minecraft.player.getEyePosition(partialTicks).y - level.getLevelData().getHorizonHeight(level);
+
+			/*double d = minecraft.player.getEyePosition(partialTicks).y - level.getLevelData().getHorizonHeight(level);
 			if (d < 0.0) {
 				poseStack.pushPose();
 				poseStack.translate(0.0F, 12.0F, 0.0F);
@@ -136,7 +137,7 @@ public class ESSkyRenderer {
 				levelRenderer.darkBuffer.drawWithShader(poseStack.last().pose(), matrix, shaderInstance);
 				VertexBuffer.unbind();
 				poseStack.popPose();
-			}
+			}*/
 
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			RenderSystem.depthMask(true);
