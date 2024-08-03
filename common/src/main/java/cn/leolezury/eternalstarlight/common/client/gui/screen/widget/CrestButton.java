@@ -3,8 +3,11 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
+import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -67,6 +70,14 @@ public class CrestButton extends Button {
 				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest().value())));
 				MutableComponent levelComponent = Component.translatable("enchantment.level." + crest.level());
 				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.crest().value().type().getSerializedName()))).withColor(crest.crest().value().type().getColor());
+				if (crest.crest().value().spell().isPresent()) {
+					AbstractSpell spell = crest.crest().value().spell().get();
+					MutableComponent spellTypeComponent = Component.translatable("message." + EternalStarlight.ID + ".crest_spell_elements").withStyle(ChatFormatting.AQUA);
+					for (ManaType type : spell.spellProperties().types()) {
+						spellTypeComponent.append(" ").append(Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(type.getSerializedName()))).withColor(type.getColor()));
+					}
+					typeComponent.append("\n").append(spellTypeComponent);
+				}
 				MutableComponent descComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest().value())) + ".desc");
 				MutableComponent merged = nameComponent.append(" ").append(levelComponent).append("\n").append(typeComponent).append("\n").append(descComponent);
 				if (crest.crest().value().attributeModifiers().isPresent()) {

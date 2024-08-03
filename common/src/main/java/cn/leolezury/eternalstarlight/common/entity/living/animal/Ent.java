@@ -43,11 +43,11 @@ public class Ent extends Animal {
 	protected static final EntityDataAccessor<Boolean> HAS_LEAVES = SynchedEntityData.defineId(Ent.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean hasLeaves() {
-		return entityData.get(HAS_LEAVES);
+		return this.getEntityData().get(HAS_LEAVES);
 	}
 
 	public void setHasLeaves(boolean hasLeaves) {
-		entityData.set(HAS_LEAVES, hasLeaves);
+		this.getEntityData().set(HAS_LEAVES, hasLeaves);
 	}
 
 	@Override

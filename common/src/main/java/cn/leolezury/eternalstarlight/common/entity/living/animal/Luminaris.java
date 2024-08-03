@@ -34,12 +34,12 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
 	protected static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(Luminaris.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isCharging() {
-		return entityData.get(CHARGING);
+		return this.getEntityData().get(CHARGING);
 	}
 
 	@Override
 	public void setCharging(boolean charging) {
-		entityData.set(CHARGING, charging);
+		this.getEntityData().set(CHARGING, charging);
 	}
 
 	public AnimationState swimAnimationState = new AnimationState();

@@ -50,11 +50,11 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);
 
 	public int getSpawnedTicks() {
-		return entityData.get(SPAWNED_TICKS);
+		return this.getEntityData().get(SPAWNED_TICKS);
 	}
 
 	public void setSpawnedTicks(int spawnedTicks) {
-		entityData.set(SPAWNED_TICKS, spawnedTicks);
+		this.getEntityData().set(SPAWNED_TICKS, spawnedTicks);
 	}
 
 	@Override

@@ -43,11 +43,11 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	protected static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(ShimmerLacewing.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
-		return entityData.get(VARIANT);
+		return this.getEntityData().get(VARIANT);
 	}
 
 	public void setVariant(int variant) {
-		entityData.set(VARIANT, variant);
+		this.getEntityData().set(VARIANT, variant);
 	}
 
 	public ShimmerLacewing(EntityType<? extends Animal> entityType, Level level) {
@@ -146,7 +146,7 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		if (compoundTag.contains(TAG_VARIANT, CompoundTag.TAG_INT)) {
-			entityData.set(VARIANT, compoundTag.getInt(TAG_VARIANT));
+			this.getEntityData().set(VARIANT, compoundTag.getInt(TAG_VARIANT));
 		}
 	}
 

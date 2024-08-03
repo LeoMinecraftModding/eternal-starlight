@@ -56,41 +56,41 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected static final EntityDataAccessor<Integer> PHASE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
 
 	public int getPhase() {
-		return entityData.get(PHASE);
+		return this.getEntityData().get(PHASE);
 	}
 
 	public void setPhase(int phase) {
-		entityData.set(PHASE, phase);
+		this.getEntityData().set(PHASE, phase);
 	}
 
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
 
 	public int getBehaviorState() {
-		return entityData.get(BEHAVIOR_STATE);
+		return this.getEntityData().get(BEHAVIOR_STATE);
 	}
 
 	public void setBehaviorState(int behaviourState) {
-		entityData.set(BEHAVIOR_STATE, behaviourState);
+		this.getEntityData().set(BEHAVIOR_STATE, behaviourState);
 	}
 
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);
 
 	public int getBehaviorTicks() {
-		return entityData.get(BEHAVIOR_TICKS);
+		return this.getEntityData().get(BEHAVIOR_TICKS);
 	}
 
 	public void setBehaviorTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
+		this.getEntityData().set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
 	protected static final EntityDataAccessor<Boolean> ACTIVATED = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isActivated() {
-		return entityData.get(ACTIVATED);
+		return this.getEntityData().get(ACTIVATED);
 	}
 
 	public void setActivated(boolean activated) {
-		entityData.set(ACTIVATED, activated);
+		this.getEntityData().set(ACTIVATED, activated);
 	}
 
 	private Vec3 initialPos = Vec3.ZERO;

@@ -35,21 +35,21 @@ public class Freeze extends Monster implements RangedAttackMob {
 	protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(Freeze.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isAttacking() {
-		return entityData.get(ATTACKING);
+		return this.getEntityData().get(ATTACKING);
 	}
 
 	public void setAttacking(boolean attacking) {
-		entityData.set(ATTACKING, attacking);
+		this.getEntityData().set(ATTACKING, attacking);
 	}
 
 	protected static final EntityDataAccessor<Integer> ATTACK_TICKS = SynchedEntityData.defineId(Freeze.class, EntityDataSerializers.INT);
 
 	public int getAttackTicks() {
-		return entityData.get(ATTACK_TICKS);
+		return this.getEntityData().get(ATTACK_TICKS);
 	}
 
 	public void setAttackTicks(int attackTicks) {
-		entityData.set(ATTACK_TICKS, attackTicks);
+		this.getEntityData().set(ATTACK_TICKS, attackTicks);
 	}
 
 	public Freeze(EntityType<? extends Monster> entityType, Level level) {

@@ -81,11 +81,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	protected static final EntityDataAccessor<Float> FIXED_Y_ROT = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.FLOAT);
 
 	public float getFixedYRot() {
-		return this.entityData.get(FIXED_Y_ROT);
+		return this.getEntityData().get(FIXED_Y_ROT);
 	}
 
 	public void setFixedYRot(float attackYRot) {
-		this.entityData.set(FIXED_Y_ROT, attackYRot);
+		this.getEntityData().set(FIXED_Y_ROT, attackYRot);
 	}
 
 	private final BehaviorManager<TheGatekeeper> behaviorManager = new BehaviorManager<>(this, List.of(

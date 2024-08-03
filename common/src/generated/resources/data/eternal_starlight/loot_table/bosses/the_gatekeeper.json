@@ -6,6 +6,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:book"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,
@@ -69,7 +79,11 @@
           "weight": 75
         }
       ],
-      "rolls": 1.0
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 5.0
+      }
     }
   ],
   "random_sequence": "eternal_starlight:bosses/the_gatekeeper"

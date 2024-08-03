@@ -52,11 +52,11 @@ public class ESFallingBlock extends Entity {
 	}
 
 	public void setStartPos(BlockPos pos) {
-		this.entityData.set(DATA_START_POS, pos);
+		this.getEntityData().set(DATA_START_POS, pos);
 	}
 
 	public BlockPos getStartPos() {
-		return this.entityData.get(DATA_START_POS);
+		return this.getEntityData().get(DATA_START_POS);
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {

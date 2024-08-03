@@ -59,41 +59,41 @@ public class TangledSkull extends Monster {
 	protected static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isCharging() {
-		return entityData.get(CHARGING);
+		return this.getEntityData().get(CHARGING);
 	}
 
 	public void setCharging(boolean charging) {
-		entityData.set(CHARGING, charging);
+		this.getEntityData().set(CHARGING, charging);
 	}
 
 	protected static final EntityDataAccessor<Boolean> SHOT = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isShot() {
-		return entityData.get(SHOT);
+		return this.getEntityData().get(SHOT);
 	}
 
 	public void setShot(boolean shot) {
-		entityData.set(SHOT, shot);
+		this.getEntityData().set(SHOT, shot);
 	}
 
 	protected static final EntityDataAccessor<Boolean> SHOT_FROM_MONSTROSITY = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isShotFromMonstrosity() {
-		return entityData.get(SHOT_FROM_MONSTROSITY);
+		return this.getEntityData().get(SHOT_FROM_MONSTROSITY);
 	}
 
 	public void setShotFromMonstrosity(boolean shotFromMonstrosity) {
-		entityData.set(SHOT_FROM_MONSTROSITY, shotFromMonstrosity);
+		this.getEntityData().set(SHOT_FROM_MONSTROSITY, shotFromMonstrosity);
 	}
 
 	protected static final EntityDataAccessor<Vector3f> SHOT_MOVEMENT = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.VECTOR3);
 
 	public Vec3 getShotMovement() {
-		return new Vec3(entityData.get(SHOT_MOVEMENT));
+		return new Vec3(this.getEntityData().get(SHOT_MOVEMENT));
 	}
 
 	public void setShotMovement(Vec3 shotMovement) {
-		entityData.set(SHOT_MOVEMENT, shotMovement.toVector3f());
+		this.getEntityData().set(SHOT_MOVEMENT, shotMovement.toVector3f());
 	}
 
 	public TangledSkull(EntityType<? extends Monster> entityType, Level level) {

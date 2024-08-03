@@ -31,41 +31,41 @@ public class RayAttack extends Entity {
 	protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.INT);
 
 	public Optional<Entity> getCaster() {
-		return Optional.ofNullable(level().getEntity(entityData.get(CASTER)));
+		return Optional.ofNullable(level().getEntity(this.getEntityData().get(CASTER)));
 	}
 
 	public void setCaster(Entity caster) {
-		entityData.set(CASTER, caster.getId());
+		this.getEntityData().set(CASTER, caster.getId());
 	}
 
 	protected static final EntityDataAccessor<Float> PITCH = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
 
 	public float getPitch() {
-		return entityData.get(PITCH);
+		return this.getEntityData().get(PITCH);
 	}
 
 	public void setPitch(float pitch) {
-		entityData.set(PITCH, pitch);
+		this.getEntityData().set(PITCH, pitch);
 	}
 
 	protected static final EntityDataAccessor<Float> YAW = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
 
 	public float getYaw() {
-		return entityData.get(YAW);
+		return this.getEntityData().get(YAW);
 	}
 
 	public void setYaw(float yaw) {
-		entityData.set(YAW, yaw);
+		this.getEntityData().set(YAW, yaw);
 	}
 
 	protected static final EntityDataAccessor<Float> LENGTH = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
 
 	public float getLength() {
-		return entityData.get(LENGTH);
+		return this.getEntityData().get(LENGTH);
 	}
 
 	public void setLength(float length) {
-		entityData.set(LENGTH, length);
+		this.getEntityData().set(LENGTH, length);
 	}
 
 	public float prevPitch, prevYaw;
@@ -178,8 +178,8 @@ public class RayAttack extends Entity {
 	}
 
 	public void addEndParticles(Vec3 endPos) {
-		for (int i = 0; i < 3; i++) {
-			level().addParticle(ESExplosionParticleOptions.ENERGY, endPos.x + random.nextFloat() - 0.5f, endPos.y + random.nextFloat() - 0.5f, endPos.z + random.nextFloat() - 0.5f, 0, 0, 0);
+		for (int i = 0; i < 4; i++) {
+			level().addParticle(ESExplosionParticleOptions.ENERGY, true, endPos.x + random.nextFloat() - 0.5f, endPos.y + random.nextFloat() - 0.5f, endPos.z + random.nextFloat() - 0.5f, 0, 0, 0);
 		}
 	}
 

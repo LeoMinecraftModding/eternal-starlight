@@ -122,40 +122,40 @@ public abstract class ItemInHandRendererMixin {
 
 	// vanilla copy (adjusted)
 	@Unique
-	private void renderPlayerArm(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, HumanoidArm humanoidArm) {
+	private void renderPlayerArm(PoseStack poseStack, MultiBufferSource buffer, int light, boolean mainHand, HumanoidArm humanoidArm) {
 		poseStack.pushPose();
-		boolean bl = humanoidArm != HumanoidArm.LEFT;
-		float h = bl ? 1.0F : -1.0F;
-		AbstractClientPlayer abstractClientPlayer = this.minecraft.player;
-		poseStack.mulPose(Axis.YP.rotationDegrees(92F));
-		poseStack.mulPose(Axis.XP.rotationDegrees(45F));
+		boolean rightArm = humanoidArm != HumanoidArm.LEFT;
+		float leftRight = rightArm ? 1.0F : -1.0F;
+		AbstractClientPlayer player = this.minecraft.player;
+		poseStack.mulPose(Axis.YP.rotationDegrees(92));
+		poseStack.mulPose(Axis.XP.rotationDegrees(88));
 		// translate hands here
-		poseStack.translate(h * -0.02F, -0.6, 0.45F);
+		poseStack.translate(leftRight * -0.01F, -0.4, 0.45F);
 
-		if (bl) {
-			renderRightHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+		if (rightArm) {
+			renderRightHand(poseStack, buffer, light, mainHand, player);
 		} else {
-			renderLeftHand(poseStack, multiBufferSource, i, mainHand, abstractClientPlayer);
+			renderLeftHand(poseStack, buffer, light, mainHand, player);
 		}
 		poseStack.popPose();
 	}
 
 	@Unique
-	public void renderRightHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+	public void renderRightHand(PoseStack poseStack, MultiBufferSource buffer, int light, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
 		PlayerRenderer playerRenderer = (PlayerRenderer) entityRenderDispatcher.getRenderer(abstractClientPlayer);
 		PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
-		renderHand(poseStack, multiBufferSource, i, mainHand, false, abstractClientPlayer, playerModel.rightArm, playerModel.rightSleeve);
+		renderHand(poseStack, buffer, light, mainHand, false, abstractClientPlayer, playerModel.rightArm, playerModel.rightSleeve);
 	}
 
 	@Unique
-	public void renderLeftHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
+	public void renderLeftHand(PoseStack poseStack, MultiBufferSource buffer, int light, boolean mainHand, AbstractClientPlayer abstractClientPlayer) {
 		PlayerRenderer playerRenderer = (PlayerRenderer) entityRenderDispatcher.getRenderer(abstractClientPlayer);
 		PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
-		renderHand(poseStack, multiBufferSource, i, mainHand, true, abstractClientPlayer, playerModel.leftArm, playerModel.leftSleeve);
+		renderHand(poseStack, buffer, light, mainHand, true, abstractClientPlayer, playerModel.leftArm, playerModel.leftSleeve);
 	}
 
 	@Unique
-	private void renderHand(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, boolean mainHand, boolean leftHand, AbstractClientPlayer abstractClientPlayer, ModelPart modelPart, ModelPart modelPart2) {
+	private void renderHand(PoseStack poseStack, MultiBufferSource buffer, int light, boolean mainHand, boolean leftHand, AbstractClientPlayer abstractClientPlayer, ModelPart modelPart, ModelPart modelPart2) {
 		PlayerRenderer playerRenderer = (PlayerRenderer) entityRenderDispatcher.getRenderer(abstractClientPlayer);
 		PlayerModel<AbstractClientPlayer> playerModel = playerRenderer.getModel();
 		playerRenderer.setModelProperties(abstractClientPlayer);
@@ -164,14 +164,14 @@ public abstract class ItemInHandRendererMixin {
 		playerModel.swimAmount = 0.0F;
 		playerModel.setupAnim(abstractClientPlayer, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
 		ResourceLocation resourceLocation = abstractClientPlayer.getSkin().texture();
-		modelPart.render(poseStack, multiBufferSource.getBuffer(RenderType.entitySolid(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
-		modelPart2.render(poseStack, multiBufferSource.getBuffer(RenderType.entityTranslucent(resourceLocation)), i, OverlayTexture.NO_OVERLAY);
+		modelPart.render(poseStack, buffer.getBuffer(RenderType.entitySolid(resourceLocation)), light, OverlayTexture.NO_OVERLAY);
+		modelPart2.render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(resourceLocation)), light, OverlayTexture.NO_OVERLAY);
 		poseStack.pushPose();
 		playerModel.translateToHand(leftHand ? HumanoidArm.LEFT : HumanoidArm.RIGHT, poseStack);
 		poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
 		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 		poseStack.translate((float) (leftHand ? -1 : 1) / 16.0F, 0.125F, -0.625F);
-		renderItem(Minecraft.getInstance().player, mainHand ? mainHandItem : offHandItem, leftHand ? ItemDisplayContext.THIRD_PERSON_LEFT_HAND : ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, leftHand, poseStack, multiBufferSource, i);
+		renderItem(Minecraft.getInstance().player, mainHand ? mainHandItem : offHandItem, leftHand ? ItemDisplayContext.THIRD_PERSON_LEFT_HAND : ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, leftHand, poseStack, buffer, light);
 		poseStack.popPose();
 	}
 }

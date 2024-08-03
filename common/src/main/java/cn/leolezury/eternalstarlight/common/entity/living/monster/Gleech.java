@@ -37,11 +37,11 @@ public class Gleech extends Monster {
 	protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isLarval() {
-		return entityData.get(LARVAL);
+		return this.getEntityData().get(LARVAL);
 	}
 
 	public void setLarval(boolean larval) {
-		entityData.set(LARVAL, larval);
+		this.getEntityData().set(LARVAL, larval);
 	}
 
 	private int growthTicks;

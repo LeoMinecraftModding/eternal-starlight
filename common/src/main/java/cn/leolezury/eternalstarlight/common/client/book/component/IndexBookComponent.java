@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.client.book.component;
 import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import it.unimi.dsi.fastutil.ints.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -15,6 +17,7 @@ import net.minecraft.util.Mth;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class IndexBookComponent extends BookComponent {
 	private final Component introText;
 	private final List<IndexItem> indexItems = new ArrayList<>();

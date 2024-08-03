@@ -2,14 +2,20 @@ package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
 import cn.leolezury.eternalstarlight.common.util.Color;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -18,13 +24,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.StreamSupport;
 
+@Environment(EnvType.CLIENT)
 public class DisplayBookComponent extends BookComponent {
 	private final List<TextDisplay> textDisplays = new ArrayList<>();
 	private final List<EntityDisplay> entityDisplays = new ArrayList<>();
 	private final Map<EntityDisplay, LivingEntity> entities = new HashMap<>();
 	private final List<ItemDisplay> itemDisplays = new ArrayList<>();
+	private final List<ItemTagDisplay> itemTagDisplays = new ArrayList<>();
 	private final List<ImageDisplay> imageDisplays = new ArrayList<>();
+
+	private int tickCount;
 
 	public DisplayBookComponent(int width, int height) {
 		super(width, height);
@@ -59,6 +70,12 @@ public class DisplayBookComponent extends BookComponent {
 		for (ItemDisplay display : itemDisplays) {
 			graphics.renderItem(display.stack(), x + display.x(), y + display.y());
 		}
+		for (ItemTagDisplay display : itemTagDisplays) {
+			List<Item> items = StreamSupport.stream(BuiltInRegistries.ITEM.getTagOrEmpty(display.tag()).spliterator(), false).map(Holder::value).toList();
+			if (!items.isEmpty()) {
+				graphics.renderItem(items.get((tickCount / 20) % items.size()).getDefaultInstance(), x + display.x(), y + display.y());
+			}
+		}
 		for (TextDisplay display : textDisplays) {
 			graphics.pose().pushPose();
 			graphics.pose().translate(x + display.x(), y + display.y(), 0);
@@ -70,7 +87,7 @@ public class DisplayBookComponent extends BookComponent {
 
 	@Override
 	public void tick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
-
+		tickCount++;
 	}
 
 	@Override
@@ -98,6 +115,11 @@ public class DisplayBookComponent extends BookComponent {
 		return this;
 	}
 
+	public DisplayBookComponent itemTagDisplay(TagKey<Item> tag, int x, int y) {
+		itemTagDisplays.add(new ItemTagDisplay(tag, x, y));
+		return this;
+	}
+
 	public DisplayBookComponent imageDisplay(ResourceLocation location, int x, int y, int width, int height) {
 		imageDisplays.add(new ImageDisplay(location, x, y, width, height));
 		return this;
@@ -112,6 +134,10 @@ public class DisplayBookComponent extends BookComponent {
 	}
 
 	private record ItemDisplay(ItemStack stack, int x, int y) {
+
+	}
+
+	private record ItemTagDisplay(TagKey<Item> tag, int x, int y) {
 
 	}
 

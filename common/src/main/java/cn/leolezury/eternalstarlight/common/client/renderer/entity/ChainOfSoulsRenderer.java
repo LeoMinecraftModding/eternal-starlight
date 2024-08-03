@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -32,23 +33,30 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		super(context);
 	}
 
-	public void render(ChainOfSouls chain, float f, float g, PoseStack stack, MultiBufferSource bufferSource, int i) {
+	public void render(ChainOfSouls chain, float yaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light) {
 		Player player = chain.getPlayerOwner();
 		if (player != null) {
 			stack.pushPose();
-			float attackAnim = player.getAttackAnim(g);
-			Vec3 vec3 = getPlayerHandPos(player, Mth.sin(Mth.sqrt(attackAnim) * 3.1415927F), g);
-			Vec3 vec32 = new Vec3(Mth.lerp(g, chain.xo, chain.getX()), Mth.lerp(g, chain.yo, chain.getY()) + (double) chain.getEyeHeight(), Mth.lerp(g, chain.zo, chain.getZ()));
-			float h = (float) chain.tickCount + g;
-			float j = h * 0.15F % 1.0F;
-			Vec3 vec33 = vec3.subtract(vec32);
-			float k = (float) (vec33.length() + 0.1);
-			vec33 = vec33.normalize();
-			float l = (float) Math.acos(vec33.y);
-			float m = (float) Math.atan2(vec33.z, vec33.x);
+			float attackAnim = player.getAttackAnim(partialTicks);
+			Entity target = chain.level().getEntity(chain.getTargetId());
+			Vec3 handPos = getPlayerHandPos(player, Mth.sin(Mth.sqrt(attackAnim) * 3.1415927F), partialTicks);
+			Vec3 endPos = new Vec3(Mth.lerp(partialTicks, chain.xo, chain.getX()), Mth.lerp(partialTicks, chain.yo, chain.getY()), Mth.lerp(partialTicks, chain.zo, chain.getZ()));
+			if (target != null) {
+				Vec3 targetPos = new Vec3(Mth.lerp(partialTicks, target.xo, target.getX()), Mth.lerp(partialTicks, target.yo, target.getY()) + target.getBbHeight() / 2, Mth.lerp(partialTicks, target.zo, target.getZ()));
+				Vec3 diff = targetPos.subtract(endPos);
+				stack.translate(diff.x(), diff.y(), diff.z());
+				endPos = targetPos;
+			}
+			float age = (float) chain.tickCount + partialTicks;
+			float j = age * 0.15F % 1.0F;
+			Vec3 offset = handPos.subtract(endPos);
+			float k = (float) (offset.length() + 0.1);
+			offset = offset.normalize();
+			float l = (float) Math.acos(offset.y);
+			float m = (float) Math.atan2(offset.z, offset.x);
 			stack.mulPose(Axis.YP.rotationDegrees((1.5707964F - m) * 57.295776F));
 			stack.mulPose(Axis.XP.rotationDegrees(l * 57.295776F));
-			float n = h * 0.05F * -1.5F;
+			float n = age * 0.05F * -1.5F;
 			float width = 0.2F;
 			float p = Mth.cos(n + 3.1415927F) * width;
 			float q = Mth.sin(n + 3.1415927F) * width;
@@ -58,23 +66,20 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 			float u = Mth.sin(n + 1.5707964F) * width;
 			float v = Mth.cos(n + 4.712389F) * width;
 			float w = Mth.sin(n + 4.712389F) * width;
-			float x = k;
-			float y = 0.0F;
-			float z = 0.4999F;
 			float aa = -1.0F + j;
 			float ab = k * 2.5F + aa;
-			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(ENTITY_TEXTURE));
+			VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(ENTITY_TEXTURE));
 			PoseStack.Pose pose = stack.last();
-			vertex(vertexConsumer, pose, p, x, q, 0.4999F, ab);
+			vertex(vertexConsumer, pose, p, k, q, 0.4999F, ab);
 			vertex(vertexConsumer, pose, p, 0.0F, q, 0.4999F, aa);
 			vertex(vertexConsumer, pose, r, 0.0F, s, 0.0F, aa);
-			vertex(vertexConsumer, pose, r, x, s, 0.0F, ab);
-			vertex(vertexConsumer, pose, t, x, u, 0.4999F, ab);
+			vertex(vertexConsumer, pose, r, k, s, 0.0F, ab);
+			vertex(vertexConsumer, pose, t, k, u, 0.4999F, ab);
 			vertex(vertexConsumer, pose, t, 0.0F, u, 0.4999F, aa);
 			vertex(vertexConsumer, pose, v, 0.0F, w, 0.0F, aa);
-			vertex(vertexConsumer, pose, v, x, w, 0.0F, ab);
+			vertex(vertexConsumer, pose, v, k, w, 0.0F, ab);
 			stack.popPose();
-			super.render(chain, f, g, stack, bufferSource, i);
+			super.render(chain, yaw, partialTicks, stack, buffer, light);
 		}
 	}
 

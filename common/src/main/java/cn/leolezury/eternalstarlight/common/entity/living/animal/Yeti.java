@@ -24,11 +24,11 @@ public class Yeti extends Animal {
 	protected static final EntityDataAccessor<Integer> ROLL_STATE = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.INT);
 
 	public int getRollState() {
-		return entityData.get(ROLL_STATE);
+		return this.getEntityData().get(ROLL_STATE);
 	}
 
 	public void setRollState(int rollState) {
-		entityData.set(ROLL_STATE, rollState);
+		this.getEntityData().set(ROLL_STATE, rollState);
 	}
 
 	public AnimationState idleAnimationState = new AnimationState();

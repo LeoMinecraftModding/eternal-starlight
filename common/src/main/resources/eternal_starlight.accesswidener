@@ -67,6 +67,10 @@ accessible field net/minecraft/client/renderer/LevelRenderer renderBuffers Lnet/
 accessible field net/minecraft/client/particle/ParticleEngine spriteSets Ljava/util/Map;
 accessible field net/minecraft/client/particle/Particle stoppedByCollision Z
 
+# spellcasting camera
+accessible method net/minecraft/client/Camera move (FFF)V
+accessible method net/minecraft/client/Camera getMaxZoom (F)F
+
 # astral golem
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer renderArmorPiece (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer getArmorModel (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/client/model/HumanoidModel;

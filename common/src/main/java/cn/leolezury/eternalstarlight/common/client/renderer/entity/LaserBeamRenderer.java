@@ -68,9 +68,8 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 			&& ((laserBeam.getCaster().get() instanceof RayAttackUser user && user.isRayFollowingHeadRotation())
 			|| !(laserBeam.getCaster().get() instanceof RayAttackUser))
 			&& laserBeam.getCaster().get() instanceof LivingEntity living) {
-			// slightly modify the rotation so that we can see the laser beam slice in third person
-			yaw = (living.getViewYRot(partialTicks) + 90 - 0.1f) * Mth.DEG_TO_RAD;
-			pitch = (-living.getViewXRot(partialTicks) - 0.1f) * Mth.DEG_TO_RAD;
+			yaw = (living.getViewYRot(partialTicks) + 90) * Mth.DEG_TO_RAD;
+			pitch = -living.getViewXRot(partialTicks) * Mth.DEG_TO_RAD;
 		}
 
 		float length = laserBeam.getLength();

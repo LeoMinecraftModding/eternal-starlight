@@ -9,6 +9,12 @@ import net.minecraft.world.level.saveddata.SavedData;
 import java.util.*;
 
 public class BookProgressions extends SavedData {
+	private static final String TAG_PROGRESSION_COUNT = "progression_count";
+	private static final String TAG_PROGRESSION = "progression";
+	private static final String TAG_ID = "id";
+	private static final String TAG_UNLOCKED_COUNT = "unlocked_count";
+	private static final String TAG_UNLOCKED = "unlocked";
+
 	private final Map<UUID, List<ResourceLocation>> progressions = new HashMap<>();
 
 	public Map<UUID, List<ResourceLocation>> getProgressions() {
@@ -21,17 +27,17 @@ public class BookProgressions extends SavedData {
 
 	public static BookProgressions load(ServerLevel serverLevel, CompoundTag compoundTag) {
 		BookProgressions progression = new BookProgressions();
-		int progressionCount = compoundTag.getInt("ProgressionCount");
+		int progressionCount = compoundTag.getInt(TAG_PROGRESSION_COUNT);
 		if (progressionCount > 0) {
 			for (int i = 0; i < progressionCount; i++) {
-				if (compoundTag.contains("Progression" + i, CompoundTag.TAG_COMPOUND)) {
-					CompoundTag progressionTag = compoundTag.getCompound("Progression" + i);
-					UUID id = progressionTag.getUUID("ID");
+				if (compoundTag.contains(TAG_PROGRESSION + i, CompoundTag.TAG_COMPOUND)) {
+					CompoundTag progressionTag = compoundTag.getCompound(TAG_PROGRESSION + i);
+					UUID id = progressionTag.getUUID(TAG_ID);
 					List<ResourceLocation> allUnlocked = new ArrayList<>();
-					int unlockedCount = progressionTag.getInt("UnlockedCount");
+					int unlockedCount = progressionTag.getInt(TAG_UNLOCKED_COUNT);
 					if (unlockedCount > 0) {
 						for (int j = 0; j < unlockedCount; j++) {
-							ResourceLocation unlocked = ResourceLocation.parse(progressionTag.getString("Unlocked" + j));
+							ResourceLocation unlocked = ResourceLocation.parse(progressionTag.getString(TAG_UNLOCKED + j));
 							allUnlocked.add(unlocked);
 						}
 					}
@@ -44,16 +50,16 @@ public class BookProgressions extends SavedData {
 
 	@Override
 	public CompoundTag save(CompoundTag compoundTag, HolderLookup.Provider provider) {
-		compoundTag.putInt("ProgressionCount", progressions.size());
+		compoundTag.putInt(TAG_PROGRESSION_COUNT, progressions.size());
 		int i = 0;
 		for (Map.Entry<UUID, List<ResourceLocation>> entry : progressions.entrySet()) {
 			CompoundTag progressionTag = new CompoundTag();
-			progressionTag.putUUID("ID", entry.getKey());
-			progressionTag.putInt("UnlockedCount", entry.getValue().size());
+			progressionTag.putUUID(TAG_ID, entry.getKey());
+			progressionTag.putInt(TAG_UNLOCKED_COUNT, entry.getValue().size());
 			for (int j = 0; j < entry.getValue().size(); j++) {
-				progressionTag.putString("Unlocked" + j, entry.getValue().get(j).toString());
+				progressionTag.putString(TAG_UNLOCKED + j, entry.getValue().get(j).toString());
 			}
-			compoundTag.put("Progression" + i, progressionTag);
+			compoundTag.put(TAG_PROGRESSION + i, progressionTag);
 			i++;
 		}
 		return compoundTag;

@@ -46,6 +46,10 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 		consumer.accept(ESLootTables.BOSS_THE_GATEKEEPER,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(ESItems.BOOK.get())))
+				.withPool(LootPool.lootPool()
+					.setRolls(UniformGenerator.between(5, 8))
 					.add(LootItem.lootTableItem(Items.COAL).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
 					.add(LootItem.lootTableItem(Items.GOLD_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
 					.add(LootItem.lootTableItem(Items.IRON_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))

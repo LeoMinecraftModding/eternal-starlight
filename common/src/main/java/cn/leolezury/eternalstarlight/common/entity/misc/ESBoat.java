@@ -32,7 +32,7 @@ public class ESBoat extends Boat {
 	}
 
 	public ESBoat.Type getESBoatType() {
-		return ESBoat.Type.byId(this.entityData.get(BOAT_TYPE));
+		return ESBoat.Type.byId(this.getEntityData().get(BOAT_TYPE));
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ESBoat extends Boat {
 	}
 
 	public void setStarlightBoatType(ESBoat.Type boatType) {
-		this.entityData.set(BOAT_TYPE, boatType.ordinal());
+		this.getEntityData().set(BOAT_TYPE, boatType.ordinal());
 	}
 
 	@Override

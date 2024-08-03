@@ -43,13 +43,13 @@ public class TangledHatred extends ESBoss {
 	protected static final EntityDataAccessor<CompoundTag> CHAIN = SynchedEntityData.defineId(TangledHatred.class, EntityDataSerializers.COMPOUND_TAG);
 
 	public Chain getSyncedChain() {
-		return Chain.load(this.entityData.get(CHAIN));
+		return Chain.load(this.getEntityData().get(CHAIN));
 	}
 
 	public void setSyncedChain(Chain chain) {
 		CompoundTag tag = new CompoundTag();
 		chain.save(tag);
-		this.entityData.set(CHAIN, tag);
+		this.getEntityData().set(CHAIN, tag);
 	}
 
 	public Chain chain;

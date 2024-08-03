@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -9,6 +11,7 @@ import net.minecraft.util.FormattedCharSequence;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class TextBookComponent extends BookComponent {
 	private final Component text;
 	private final List<FormattedCharSequence> cachedComponents = new ArrayList<>();

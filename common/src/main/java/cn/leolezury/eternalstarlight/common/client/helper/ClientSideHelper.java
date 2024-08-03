@@ -20,6 +20,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.Color;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
 import com.google.common.collect.Lists;
@@ -116,17 +117,26 @@ public class ClientSideHelper implements ClientHelper {
 		TextBookComponent preface = new TextBookComponent(translatedBookText("preface"), 105, 130);
 
 		IndexBookComponent index = new IndexBookComponent(translatedBookText("index"), List.of(
+			new IndexBookComponent.IndexItem(Component.literal("•").append(translatedBookText("main_story_title")), EternalStarlight.id("main_story"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId())), EternalStarlight.id("starlight_golem_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId())), EternalStarlight.id("lunar_monstrosity_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.TWILIGHT_GAZE.get().getDescriptionId())), EternalStarlight.id("twilight_gaze_display"), packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
 			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.SHIMMER_LACEWING.get().getDescriptionId())), EternalStarlight.id("shimmer_lacewing_display"), packet.unlocked().contains(EternalStarlight.id("shimmer_lacewing")))
 		), 105, 130);
 
+		TextBookComponent mainStory = new TextBookComponent(translatedBookText("main_story"), 105, 130);
+
 		DisplayBookComponent golemDisplay = new DisplayBookComponent(105, 130)
 			.entityDisplay(ESEntities.STARLIGHT_GOLEM.get(), 52, 75, -25, 210, 20, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame.png"), 18, 20, 68, 68)
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 92, 96, 11)
 			.textDisplay(Component.translatable(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), 52, 115, 1.2f);
+
+		DisplayBookComponent golemLocator = new DisplayBookComponent(105, 130)
+			.textDisplay(translatedBookText("locators"), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemTagDisplay(ESTags.Items.GOLEM_FORGE_LOCATORS, 44, 82);
 
 		TextBookComponent golem = new TextBookComponent(translatedBookText("starlight_golem"), 105, 130);
 
@@ -137,6 +147,12 @@ public class ClientSideHelper implements ClientHelper {
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame.png"), 18, 20, 68, 68)
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 92, 96, 11)
 			.textDisplay(Component.translatable(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), 52, 115, 1.1f);
+
+		DisplayBookComponent lunarMonstrosityLocator = new DisplayBookComponent(105, 130)
+			.textDisplay(translatedBookText("locators"), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemTagDisplay(ESTags.Items.CURSED_GARDEN_LOCATORS, 44, 82);
 
 		TextBookComponent lunarMonstrosity = new TextBookComponent(translatedBookText("lunar_monstrosity"), 105, 130);
 
@@ -162,10 +178,13 @@ public class ClientSideHelper implements ClientHelper {
 			new BookComponentDefinition(title, EternalStarlight.id("title"), 11, 6, 5, 6),
 			new BookComponentDefinition(preface, EternalStarlight.id("preface"), 11, 6, 5, 6),
 			new BookComponentDefinition(index, EternalStarlight.id("index"), 11, 6, 5, 6),
+			new BookComponentDefinition(mainStory, EternalStarlight.id("main_story"), 11, 6, 5, 6),
 			new BookComponentDefinition(golemDisplay, EternalStarlight.id("starlight_golem_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
+			new BookComponentDefinition(golemLocator, EternalStarlight.id("starlight_golem_locator"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(golem, EternalStarlight.id("starlight_golem"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(golemSeen, EternalStarlight.id("starlight_golem_seen"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight")) && packet.unlocked().contains(EternalStarlight.id("starlight_golem_seen"))),
 			new BookComponentDefinition(lunarMonstrosityDisplay, EternalStarlight.id("lunar_monstrosity_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
+			new BookComponentDefinition(lunarMonstrosityLocator, EternalStarlight.id("lunar_monstrosity_locator"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(lunarMonstrosity, EternalStarlight.id("lunar_monstrosity"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(lunarMonstrositySeen, EternalStarlight.id("lunar_monstrosity_seen"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight")) && packet.unlocked().contains(EternalStarlight.id("lunar_monstrosity_seen"))),
 			new BookComponentDefinition(twilightGazeDisplay, EternalStarlight.id("twilight_gaze_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),

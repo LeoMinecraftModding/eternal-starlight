@@ -62,11 +62,11 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
 	public int getSize() {
-		return entityData.get(SIZE);
+		return this.getEntityData().get(SIZE);
 	}
 
 	public void setSize(int size) {
-		entityData.set(SIZE, size);
+		this.getEntityData().set(SIZE, size);
 	}
 
 	@Nullable

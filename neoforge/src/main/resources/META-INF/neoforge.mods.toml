@@ -16,7 +16,7 @@ authors = "LeoLezury"
 description = '''
 A Minecraft dimension mod with structures for you to explore and bosses for you to defeat!
 '''
-#logoFile = "logo.png"
+logoFile = "banner.png"
 
 [[dependencies.eternal_starlight]]
 modId = "neoforge"

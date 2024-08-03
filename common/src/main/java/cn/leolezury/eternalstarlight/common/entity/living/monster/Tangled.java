@@ -42,21 +42,21 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
 
 	public int getBehaviorState() {
-		return entityData.get(BEHAVIOR_STATE);
+		return this.getEntityData().get(BEHAVIOR_STATE);
 	}
 
 	public void setBehaviorState(int attackState) {
-		entityData.set(BEHAVIOR_STATE, attackState);
+		this.getEntityData().set(BEHAVIOR_STATE, attackState);
 	}
 
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
 
 	public int getBehaviorTicks() {
-		return entityData.get(BEHAVIOR_TICKS);
+		return this.getEntityData().get(BEHAVIOR_TICKS);
 	}
 
 	public void setBehaviorTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
+		this.getEntityData().set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
 	private final BehaviorManager<Tangled> behaviorManager = new BehaviorManager<>(this, List.of(

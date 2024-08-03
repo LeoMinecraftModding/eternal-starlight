@@ -51,31 +51,31 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_STATE = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
 	public int getBehaviorState() {
-		return entityData.get(BEHAVIOR_STATE);
+		return this.getEntityData().get(BEHAVIOR_STATE);
 	}
 
 	public void setBehaviorState(int attackState) {
-		entityData.set(BEHAVIOR_STATE, attackState);
+		this.getEntityData().set(BEHAVIOR_STATE, attackState);
 	}
 
 	protected static final EntityDataAccessor<Integer> BEHAVIOR_TICKS = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.INT);
 
 	public int getBehaviorTicks() {
-		return entityData.get(BEHAVIOR_TICKS);
+		return this.getEntityData().get(BEHAVIOR_TICKS);
 	}
 
 	public void setBehaviorTicks(int behaviourTicks) {
-		entityData.set(BEHAVIOR_TICKS, behaviourTicks);
+		this.getEntityData().set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
 	protected static final EntityDataAccessor<Boolean> INTENTIONAL_ATTACK = SynchedEntityData.defineId(ThirstWalker.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isIntentionalAttack() {
-		return entityData.get(INTENTIONAL_ATTACK);
+		return this.getEntityData().get(INTENTIONAL_ATTACK);
 	}
 
 	public void setIntentionalAttack(boolean intentionalAttack) {
-		entityData.set(INTENTIONAL_ATTACK, intentionalAttack);
+		this.getEntityData().set(INTENTIONAL_ATTACK, intentionalAttack);
 	}
 
 	private final BehaviorManager<ThirstWalker> behaviorManager = new BehaviorManager<>(this, List.of(

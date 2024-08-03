@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.misc.EyeOfSeeking;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -13,15 +15,19 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.Structure;
+
+import java.util.List;
 
 public class SeekingEyeItem extends Item {
 	public SeekingEyeItem(Properties properties) {
 		super(properties);
 	}
 
+	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack itemStack = player.getItemInHand(hand);
 		player.startUsingItem(hand);
@@ -50,5 +56,11 @@ public class SeekingEyeItem extends Item {
 			}
 		}
 		return InteractionResultHolder.consume(itemStack);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> components, TooltipFlag tooltipFlag) {
+		super.appendHoverText(itemStack, tooltipContext, components, tooltipFlag);
+		components.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeking_eye").withColor(0x6bc2d1));
 	}
 }

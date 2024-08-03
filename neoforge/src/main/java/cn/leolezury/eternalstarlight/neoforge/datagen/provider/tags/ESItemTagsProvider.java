@@ -103,8 +103,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.VINE,
 			ESItems.CAVE_MOSS.get(),
 			ESItems.LUNAR_BERRIES.get(),
+			ESItems.RED_CRYSTAL_MOSS_CARPET.get(),
 			ESItems.BLUE_CRYSTAL_MOSS_CARPET.get(),
-			ESItems.RED_CRYSTAL_ROOTS.get()
+			ESItems.RED_CRYSTAL_ROOTS.get(),
+			ESItems.BLUE_CRYSTAL_ROOTS.get()
 		);
 		tag(ESTags.Items.MANA_CRYSTAL_INGREDIENTS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()

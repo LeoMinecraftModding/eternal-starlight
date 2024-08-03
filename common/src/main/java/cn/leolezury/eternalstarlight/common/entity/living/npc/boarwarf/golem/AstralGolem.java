@@ -75,21 +75,21 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 	protected static final EntityDataAccessor<String> MATERIAL = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.STRING);
 
 	public ResourceLocation getMaterialId() {
-		return ResourceLocation.parse(entityData.get(MATERIAL));
+		return ResourceLocation.parse(this.getEntityData().get(MATERIAL));
 	}
 
 	public void setMaterialId(ResourceLocation material) {
-		entityData.set(MATERIAL, material.toString());
+		this.getEntityData().set(MATERIAL, material.toString());
 	}
 
 	protected static final EntityDataAccessor<Boolean> BLOCKING = SynchedEntityData.defineId(AstralGolem.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isGolemBlocking() {
-		return entityData.get(BLOCKING);
+		return this.getEntityData().get(BLOCKING);
 	}
 
 	public void setBlocking(boolean blocking) {
-		entityData.set(BLOCKING, blocking);
+		this.getEntityData().set(BLOCKING, blocking);
 	}
 
 	@Override

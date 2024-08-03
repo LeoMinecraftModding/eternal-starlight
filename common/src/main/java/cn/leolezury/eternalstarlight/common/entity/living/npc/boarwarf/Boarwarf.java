@@ -73,7 +73,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	protected static final EntityDataAccessor<String> TYPE = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
 
 	public ResourceLocation getTypeId() {
-		return ResourceLocation.parse(entityData.get(TYPE));
+		return ResourceLocation.parse(this.getEntityData().get(TYPE));
 	}
 
 	public BoarwarfType getBoarwarfType() {
@@ -81,7 +81,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	public void setTypeId(ResourceLocation typeId) {
-		entityData.set(TYPE, typeId.toString());
+		this.getEntityData().set(TYPE, typeId.toString());
 	}
 
 	public void setBoarwarfType(BoarwarfType type) {
@@ -94,7 +94,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	protected static final EntityDataAccessor<String> PROFESSION = SynchedEntityData.defineId(Boarwarf.class, EntityDataSerializers.STRING);
 
 	public ResourceLocation getProfessionId() {
-		return ResourceLocation.parse(entityData.get(PROFESSION));
+		return ResourceLocation.parse(this.getEntityData().get(PROFESSION));
 	}
 
 	public AbstractBoarwarfProfession getProfession() {
@@ -102,7 +102,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	public void setProfessionId(ResourceLocation professionId) {
-		entityData.set(PROFESSION, professionId.toString());
+		this.getEntityData().set(PROFESSION, professionId.toString());
 	}
 
 	public void setProfession(AbstractBoarwarfProfession profession) {

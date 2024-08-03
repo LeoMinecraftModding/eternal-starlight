@@ -40,13 +40,13 @@ public class AuroraDeer extends Animal implements Charger {
 	protected static final EntityDataAccessor<Boolean> LEFT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean hasLeftHorn() {
-		return entityData.get(LEFT_HORN);
+		return this.getEntityData().get(LEFT_HORN);
 	}
 
 	protected static final EntityDataAccessor<Boolean> RIGHT_HORN = SynchedEntityData.defineId(AuroraDeer.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean hasRightHorn() {
-		return entityData.get(RIGHT_HORN);
+		return this.getEntityData().get(RIGHT_HORN);
 	}
 
 	public AuroraDeer(EntityType<? extends Animal> entityType, Level level) {
@@ -71,8 +71,8 @@ public class AuroraDeer extends Animal implements Charger {
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
-		entityData.set(LEFT_HORN, true);
-		entityData.set(RIGHT_HORN, true);
+		this.getEntityData().set(LEFT_HORN, true);
+		this.getEntityData().set(RIGHT_HORN, true);
 		return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
 	}
 
@@ -171,7 +171,7 @@ public class AuroraDeer extends Animal implements Charger {
 			if (!hasLeftHorn() && !hasRightHorn()) {
 				return;
 			}
-			entityData.set(accessor, false);
+			this.getEntityData().set(accessor, false);
 			if (level() instanceof ServerLevel serverLevel) {
 				serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + getBbHeight() / 2f, this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
 			}
@@ -182,8 +182,8 @@ public class AuroraDeer extends Animal implements Charger {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		entityData.set(LEFT_HORN, compoundTag.getBoolean(TAG_LEFT_HORN));
-		entityData.set(RIGHT_HORN, compoundTag.getBoolean(TAG_RIGHT_HORN));
+		this.getEntityData().set(LEFT_HORN, compoundTag.getBoolean(TAG_LEFT_HORN));
+		this.getEntityData().set(RIGHT_HORN, compoundTag.getBoolean(TAG_RIGHT_HORN));
 	}
 
 	@Override

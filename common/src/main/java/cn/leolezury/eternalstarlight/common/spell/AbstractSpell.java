@@ -8,6 +8,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
+
 public abstract class AbstractSpell {
 	private final Properties properties;
 
@@ -27,7 +29,7 @@ public abstract class AbstractSpell {
 	public boolean hasNeededCrystal(Inventory inventory) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack stack = inventory.getItem(i);
-			if (stack.is(spellProperties().type().getCrystalsTag())) {
+			if (spellProperties().types().stream().anyMatch(t -> stack.is(t.getCrystalsTag()))) {
 				return true;
 			}
 		}
@@ -56,7 +58,7 @@ public abstract class AbstractSpell {
 		Inventory inventory = player.getInventory();
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack stack = inventory.getItem(i);
-			if (stack.is(spellProperties().type().getCrystalsTag())) {
+			if (spellProperties().types().stream().anyMatch(t -> stack.is(t.getCrystalsTag()))) {
 				stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 				return;
 			}
@@ -68,6 +70,9 @@ public abstract class AbstractSpell {
 			onPreparationTick(entity, ticks);
 		} else if (ticks <= spellProperties().preparationTicks() + spellProperties().spellTicks()) {
 			onSpellTick(entity, ticks - spellProperties().preparationTicks());
+		}
+		if (ticks % 15 == 0 && entity instanceof Player player) {
+			damageCrystal(player);
 		}
 	}
 
@@ -91,7 +96,7 @@ public abstract class AbstractSpell {
 
 	public abstract void onStop(LivingEntity entity, int ticks);
 
-	public record Properties(ManaType type, int preparationTicks, int spellTicks, int cooldownTicks) {
+	public record Properties(List<ManaType> types, int preparationTicks, int spellTicks, int cooldownTicks) {
 
 	}
 }

@@ -21,7 +21,7 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 	@Unique
 	private SpellCastData spellCastData = SpellCastData.getDefault();
 	@Unique
-	private SpellCastData.SpellSource spellSource = e -> true;
+	private SpellCastData.SpellSource spellSource = e -> false;
 	@Unique
 	private Entity grappling;
 

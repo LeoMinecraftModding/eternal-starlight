@@ -43,8 +43,9 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private static final float MAX_RANGE = 100.0F;
 	private static final double SPEED = 5.0;
 
-	public static final EntityDataAccessor<Boolean> REACHED_TARGET;
-	public static final EntityDataAccessor<Float> LENGTH;
+	public static final EntityDataAccessor<Boolean> REACHED_TARGET = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Float> LENGTH = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.FLOAT);
+	public static final EntityDataAccessor<Integer> TARGET_ID = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.INT);
 
 	@Nullable
 	private ItemStack firedFromWeapon;
@@ -78,8 +79,9 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		builder.define(REACHED_TARGET, false);
-		builder.define(LENGTH, 0.0F);
+		builder.define(REACHED_TARGET, false)
+			.define(LENGTH, 0.0F)
+			.define(TARGET_ID, -1);
 	}
 
 	public boolean shouldRenderAtSqrDistance(double d) {
@@ -106,6 +108,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 			}
 
 			if (target != null) {
+				setTargetId(target.getId());
 				setDeltaMovement(Vec3.ZERO);
 				if (!target.isAlive() || target.isRemoved() || target.distanceToSqr(this) > MAX_RANGE * MAX_RANGE) {
 					target = null;
@@ -241,8 +244,12 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		this.getEntityData().set(REACHED_TARGET, reachedTarget);
 	}
 
-	private void setLength(float f) {
-		this.getEntityData().set(LENGTH, f);
+	private void setLength(float length) {
+		this.getEntityData().set(LENGTH, length);
+	}
+
+	private void setTargetId(int targetId) {
+		this.getEntityData().set(TARGET_ID, targetId);
 	}
 
 	@Override
@@ -253,6 +260,10 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	public float length() {
 		return this.getEntityData().get(LENGTH);
+	}
+
+	public int getTargetId() {
+		return this.getEntityData().get(TARGET_ID);
 	}
 
 	protected Entity.MovementEmission getMovementEmission() {
@@ -296,10 +307,5 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		if (this.getPlayerOwner() == null) {
 			this.kill();
 		}
-	}
-
-	static {
-		REACHED_TARGET = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.BOOLEAN);
-		LENGTH = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.FLOAT);
 	}
 }

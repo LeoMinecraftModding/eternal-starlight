@@ -30,11 +30,11 @@ public class LuminoFish extends AbstractSchoolingFish {
 	protected static final EntityDataAccessor<Integer> SWELL_TICKS = SynchedEntityData.defineId(LuminoFish.class, EntityDataSerializers.INT);
 
 	public int getSwellTicks() {
-		return entityData.get(SWELL_TICKS);
+		return this.getEntityData().get(SWELL_TICKS);
 	}
 
 	public void setSwellTicks(int swellTicks) {
-		entityData.set(SWELL_TICKS, swellTicks);
+		this.getEntityData().set(SWELL_TICKS, swellTicks);
 	}
 
 	public AnimationState swimAnimationState = new AnimationState();

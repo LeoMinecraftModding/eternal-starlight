@@ -44,11 +44,11 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
 	protected static final EntityDataAccessor<Integer> ATTACK_TICKS = SynchedEntityData.defineId(CrystallizedMoth.class, EntityDataSerializers.INT);
 
 	public int getAttackTicks() {
-		return entityData.get(ATTACK_TICKS);
+		return this.getEntityData().get(ATTACK_TICKS);
 	}
 
 	public void setAttackTicks(int attackTicks) {
-		entityData.set(ATTACK_TICKS, attackTicks);
+		this.getEntityData().set(ATTACK_TICKS, attackTicks);
 	}
 
 	public CrystallizedMoth(EntityType<? extends Animal> entityType, Level level) {

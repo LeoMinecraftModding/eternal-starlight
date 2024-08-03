@@ -56,21 +56,21 @@ public class AttackEffect extends Entity {
 	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
 
 	public int getSpawnedTicks() {
-		return entityData.get(SPAWNED_TICKS);
+		return this.getEntityData().get(SPAWNED_TICKS);
 	}
 
 	public void setSpawnedTicks(int spawnedTicks) {
-		entityData.set(SPAWNED_TICKS, spawnedTicks);
+		this.getEntityData().set(SPAWNED_TICKS, spawnedTicks);
 	}
 
 	protected static final EntityDataAccessor<Integer> ATTACK_MODE = SynchedEntityData.defineId(AttackEffect.class, EntityDataSerializers.INT);
 
 	public int getAttackMode() {
-		return entityData.get(ATTACK_MODE);
+		return this.getEntityData().get(ATTACK_MODE);
 	}
 
 	public void setAttackMode(int attackMode) {
-		entityData.set(ATTACK_MODE, attackMode);
+		this.getEntityData().set(ATTACK_MODE, attackMode);
 	}
 
 	protected void readAdditionalSaveData(CompoundTag compoundTag) {
