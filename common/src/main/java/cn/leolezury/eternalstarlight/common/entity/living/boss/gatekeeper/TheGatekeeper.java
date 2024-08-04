@@ -162,16 +162,19 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		compoundTag.putInt(TAG_RESTOCK_COOLDOWN, restockCooldown);
 	}
 
+	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
 	}
 
+	@Override
 	public void stopSeenByPlayer(ServerPlayer serverPlayer) {
 		super.stopSeenByPlayer(serverPlayer);
 		bossEvent.removePlayer(serverPlayer);
 	}
 
+	@Override
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(0, new FloatGoal(this));

@@ -18,14 +18,17 @@ public class LookAtTargetGoal extends Goal {
 		return true;
 	}
 
+	@Override
 	public boolean canUse() {
 		return mob.getTarget() != null;
 	}
 
+	@Override
 	public boolean canContinueToUse() {
 		return mob.getTarget() != null;
 	}
 
+	@Override
 	public void tick() {
 		if (mob.getTarget() != null) {
 			mob.getLookControl().setLookAt(mob.getTarget(), 360, 360);

@@ -77,6 +77,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		this.target = target;
 	}
 
+	@Override
 	protected ParticleOptions getTrailParticle() {
 		return ESSmokeParticleOptions.FLAME;
 	}
@@ -86,14 +87,17 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		return false;
 	}
 
+	@Override
 	public boolean isOnFire() {
 		return false;
 	}
 
+	@Override
 	public boolean hurt(DamageSource damageSource, float amount) {
 		return false;
 	}
 
+	@Override
 	protected boolean shouldBurn() {
 		return false;
 	}
@@ -111,6 +115,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		return false;
 	}
 
+	@Override
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
 		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
@@ -120,6 +125,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		}
 	}
 
+	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
 		if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
@@ -158,6 +164,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		}
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		if (compoundTag.hasUUID(TAG_TARGET)) {
@@ -166,6 +173,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		setSpawnedTicks(compoundTag.getInt(TAG_SPAWNED_TICKS));
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		if (target != null) {

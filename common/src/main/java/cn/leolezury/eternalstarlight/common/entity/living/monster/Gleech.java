@@ -59,6 +59,7 @@ public class Gleech extends Monster {
 		builder.define(LARVAL, false);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
@@ -80,22 +81,27 @@ public class Gleech extends Monster {
 			.add(Attributes.ATTACK_DAMAGE, 1.0);
 	}
 
+	@Override
 	protected Entity.MovementEmission getMovementEmission() {
 		return MovementEmission.EVENTS;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.SILVERFISH_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.SILVERFISH_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.SILVERFISH_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
 		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
 	}
@@ -105,6 +111,7 @@ public class Gleech extends Monster {
 		return isLarval();
 	}
 
+	@Override
 	public void tick() {
 		this.yBodyRot = this.getYRot();
 		super.tick();
@@ -146,6 +153,7 @@ public class Gleech extends Monster {
 		}
 	}
 
+	@Override
 	public void setYBodyRot(float f) {
 		float rotation = f;
 		if (getVehicle() instanceof LivingEntity livingEntity) {

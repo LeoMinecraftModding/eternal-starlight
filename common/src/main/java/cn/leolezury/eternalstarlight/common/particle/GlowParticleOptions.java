@@ -40,6 +40,7 @@ public record GlowParticleOptions(Vector3f fromColor, Vector3f toColor, float al
 		return new GlowParticleOptions(SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), lowTransparency ? 1 : 0.5f + (random.nextFloat() - 0.5f) * 0.2f, extendedLife ? 1.5f : 0.4f);
 	}
 
+	@Override
 	public ParticleType<GlowParticleOptions> getType() {
 		return ESParticles.GLOW.get();
 	}

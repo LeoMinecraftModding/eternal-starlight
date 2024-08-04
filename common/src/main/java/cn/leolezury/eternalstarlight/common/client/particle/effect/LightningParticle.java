@@ -46,6 +46,7 @@ public class LightningParticle extends Particle {
 		}
 	}
 
+	@Override
 	public void render(VertexConsumer consumer, Camera camera, float partialTick) {
 		Vec3 vec3 = camera.getPosition();
 		PoseStack stack = new PoseStack();
@@ -77,6 +78,7 @@ public class LightningParticle extends Particle {
 		public Provider(SpriteSet spriteSet) {
 		}
 
+		@Override
 		public Particle createParticle(LightningParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			return new LightningParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.getColor());
 		}

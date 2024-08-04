@@ -46,6 +46,7 @@ public class TwilightGaze extends WaterAnimal {
 		return super.finalizeSpawn(level, difficulty, spawnType, spawnData);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.2, true));
 		this.goalSelector.addGoal(1, new TwilightGazeRandomSwimmingGoal(1.0, 10));
@@ -74,18 +75,22 @@ public class TwilightGaze extends WaterAnimal {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 1.2).add(Attributes.ATTACK_DAMAGE, 3.0);
 	}
 
+	@Override
 	protected PathNavigation createNavigation(Level level) {
 		return new WaterBoundPathNavigation(this, level);
 	}
 
+	@Override
 	public int getMaxHeadXRot() {
 		return 1;
 	}
 
+	@Override
 	public int getMaxHeadYRot() {
 		return 1;
 	}
 
+	@Override
 	protected boolean canRide(Entity entity) {
 		return true;
 	}
@@ -108,6 +113,7 @@ public class TwilightGaze extends WaterAnimal {
 		}
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return ESSoundEvents.TWILIGHT_GAZE_HURT.get();
 	}
@@ -117,6 +123,7 @@ public class TwilightGaze extends WaterAnimal {
 		return ESSoundEvents.TWILIGHT_GAZE_DEATH.get();
 	}
 
+	@Override
 	public void travel(Vec3 vec3) {
 		if (this.isEffectiveAi() && this.isInWater()) {
 			this.moveRelative(this.getSpeed(), vec3);
@@ -130,7 +137,8 @@ public class TwilightGaze extends WaterAnimal {
 		}
 	}
 
-	public boolean canBeLeashed(Player pPlayer) {
+	@Override
+	public boolean canBeLeashed() {
 		return true;
 	}
 }

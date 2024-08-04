@@ -27,6 +27,7 @@ public class Ratlin extends Animal {
 
 	public AnimationState idleAnimationState = new AnimationState();
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -43,6 +44,7 @@ public class Ratlin extends Animal {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return FOOD_ITEMS.test(stack);
 	}

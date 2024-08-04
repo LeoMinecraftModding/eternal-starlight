@@ -2,8 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
@@ -28,15 +30,22 @@ public class FireflyParticle extends TextureSheetParticle {
 		this.lifetime = 50 + this.random.nextInt(21);
 		this.spriteSet = spriteSet;
 		this.setSpriteFromAge(spriteSet);
+		checkLight();
+	}
+
+	private boolean checkLight() {
+		if (this.level.getBrightness(LightLayer.SKY, BlockPos.containing(this.x, this.y, this.z)) < 1) {
+			this.remove();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public void tick() {
+		checkLight();
 		super.tick();
 		this.setSpriteFromAge(this.spriteSet);
-		if (this.level.getBrightness(LightLayer.SKY, BlockPos.containing(this.x, this.y, this.z)) < 1) {
-			this.remove();
-		}
 		ticksSinceMotionChange++;
 		if (ticksSinceMotionChange > 25) {
 			Vec3 movement = new Vec3((random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10)).normalize().scale(new Vec3(xd, yd, zd).length());
@@ -93,6 +102,13 @@ public class FireflyParticle extends TextureSheetParticle {
 	}
 
 	@Override
+	public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
+		if (checkLight() || age > 3) {
+			super.render(vertexConsumer, camera, f);
+		}
+	}
+
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
@@ -109,6 +125,7 @@ public class FireflyParticle extends TextureSheetParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double x, double y, double z, double xs, double ys, double zs) {
 			return new FireflyParticle(clientLevel, x, y, z, this.sprites);
 		}

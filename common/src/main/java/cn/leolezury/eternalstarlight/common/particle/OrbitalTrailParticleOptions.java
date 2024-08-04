@@ -32,6 +32,7 @@ public record OrbitalTrailParticleOptions(Vector3f fromColor, Vector3f toColor, 
 		return new OrbitalTrailParticleOptions(new Vector3f(182, 48, 112), new Vector3f(99, 224, 235), 0.8f + (random.nextFloat() - 0.5f) * 0.2f, (random.nextBoolean() ? -1 : 1) * (float) (15f + (random.nextFloat() - 0.5) * 7f), 0.9f + (random.nextFloat() - 0.5f) * 0.1f, (int) (75 + (random.nextFloat() - 0.5) * 10), player.getId());
 	}
 
+	@Override
 	public ParticleType<OrbitalTrailParticleOptions> getType() {
 		return ESParticles.ORBITAL_TRAIL.get();
 	}

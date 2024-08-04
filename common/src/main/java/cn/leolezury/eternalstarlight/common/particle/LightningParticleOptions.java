@@ -25,6 +25,7 @@ public class LightningParticleOptions implements ParticleOptions {
 		this.color = vector3f;
 	}
 
+	@Override
 	public ParticleType<LightningParticleOptions> getType() {
 		return ESParticles.LIGHTNING.get();
 	}

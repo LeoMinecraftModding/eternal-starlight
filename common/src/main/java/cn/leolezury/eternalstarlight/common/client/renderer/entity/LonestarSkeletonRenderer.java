@@ -21,6 +21,7 @@ public class LonestarSkeletonRenderer extends SkeletonRenderer {
 		super(context, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(AbstractSkeleton skeleton) {
 		return LONESTAR_SKELETON_LOCATION;
 	}

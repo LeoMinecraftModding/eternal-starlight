@@ -27,6 +27,7 @@ public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderL
 		this.model = new ShimmerLacewingModel<>(modelSet.bakeLayer(ShimmerLacewingModel.LAYER_LOCATION));
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!entity.isInvisible()) {
 			getParentModel().copyPropertiesTo(this.model);

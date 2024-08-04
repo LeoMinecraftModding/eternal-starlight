@@ -18,14 +18,17 @@ public class RandomFlyGoal extends Goal {
 		setFlags(EnumSet.of(Flag.MOVE));
 	}
 
+	@Override
 	public boolean canUse() {
 		return mob.getNavigation().isDone() && mob.getRandom().nextInt(5) == 0;
 	}
 
+	@Override
 	public boolean canContinueToUse() {
 		return mob.getNavigation().isInProgress() && mob.getRandom().nextInt(30) != 0;
 	}
 
+	@Override
 	public void start() {
 		Vec3 target = this.getRandomPos();
 		mob.getNavigation().moveTo(target.x, target.y, target.z, 1);

@@ -27,6 +27,7 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 		this.dispatcher = context.getBlockRenderDispatcher();
 	}
 
+	@Override
 	public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
 		BlockState blockstate = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {
@@ -44,6 +45,7 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 		}
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(AethersentMeteor meteor) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}

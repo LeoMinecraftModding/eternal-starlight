@@ -26,6 +26,7 @@ public class BoarwarfChatGoal extends Goal {
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
+	@Override
 	public boolean canUse() {
 		if (mob.chatTicks <= 0 || mob.chatTarget == null) {
 			return false;
@@ -51,6 +52,7 @@ public class BoarwarfChatGoal extends Goal {
 		}
 	}
 
+	@Override
 	public boolean canContinueToUse() {
 		if (mob.chatTicks <= 0 || mob.chatTarget == null) {
 			return false;
@@ -69,11 +71,13 @@ public class BoarwarfChatGoal extends Goal {
 		} else return this.mob.isWithinRestriction(livingentity.blockPosition());
 	}
 
+	@Override
 	public void start() {
 		this.mob.getNavigation().moveTo(this.path, this.speedModifier);
 		this.ticksUntilNextPathRecalculation = 0;
 	}
 
+	@Override
 	public void stop() {
 		LivingEntity livingentity = this.mob.chatTarget;
 		if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
@@ -82,10 +86,12 @@ public class BoarwarfChatGoal extends Goal {
 		this.mob.getNavigation().stop();
 	}
 
+	@Override
 	public boolean requiresUpdateEveryTick() {
 		return true;
 	}
 
+	@Override
 	public void tick() {
 		LivingEntity livingentity = this.mob.chatTarget;
 		if (livingentity != null) {

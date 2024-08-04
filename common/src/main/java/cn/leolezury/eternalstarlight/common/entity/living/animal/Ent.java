@@ -56,6 +56,7 @@ public class Ent extends Animal {
 		builder.define(HAS_LEAVES, true);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -106,6 +107,7 @@ public class Ent extends Animal {
 		return super.mobInteract(player, hand);
 	}
 
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return FOOD_ITEMS.test(stack);
 	}

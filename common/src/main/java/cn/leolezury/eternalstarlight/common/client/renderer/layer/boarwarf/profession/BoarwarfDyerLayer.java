@@ -27,6 +27,7 @@ public class BoarwarfDyerLayer<T extends Boarwarf> extends RenderLayer<T, Boarwa
 		this.professionModel = new BoarwarfDyerModel<>(modelSet.bakeLayer(BoarwarfDyerModel.LAYER_LOCATION));
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.DYER.get()) {
 			getParentModel().copyPropertiesTo(this.professionModel);

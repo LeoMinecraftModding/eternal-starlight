@@ -42,6 +42,7 @@ public class ScytheItem extends TieredItem {
 			.build();
 	}
 
+	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level level = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
@@ -75,6 +76,7 @@ public class ScytheItem extends TieredItem {
 		};
 	}
 
+	@Override
 	public void postHurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity2) {
 		itemStack.hurtAndBreak(1, livingEntity2, EquipmentSlot.MAINHAND);
 	}

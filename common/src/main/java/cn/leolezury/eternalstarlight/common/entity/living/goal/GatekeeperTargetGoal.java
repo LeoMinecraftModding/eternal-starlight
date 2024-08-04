@@ -16,6 +16,7 @@ public class GatekeeperTargetGoal extends TargetGoal {
 		this.setFlags(EnumSet.of(Flag.TARGET));
 	}
 
+	@Override
 	public boolean canUse() {
 		if (this.mob instanceof TheGatekeeper gatekeeper) {
 			if (gatekeeper.getFightTarget().isPresent()) {
@@ -26,6 +27,7 @@ public class GatekeeperTargetGoal extends TargetGoal {
 		return false;
 	}
 
+	@Override
 	public void start() {
 		if (this.mob instanceof TheGatekeeper gatekeeper && gatekeeper.getFightTarget().isPresent()) {
 			this.mob.setTarget(gatekeeper.getFightTarget().get());

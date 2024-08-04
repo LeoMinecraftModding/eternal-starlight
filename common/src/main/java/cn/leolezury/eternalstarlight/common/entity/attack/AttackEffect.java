@@ -73,6 +73,7 @@ public class AttackEffect extends Entity {
 		this.getEntityData().set(ATTACK_MODE, attackMode);
 	}
 
+	@Override
 	protected void readAdditionalSaveData(CompoundTag compoundTag) {
 		if (compoundTag.hasUUID(TAG_OWNER)) {
 			ownerId = compoundTag.getUUID(TAG_OWNER);
@@ -84,6 +85,7 @@ public class AttackEffect extends Entity {
 		setAttackMode(compoundTag.getInt(TAG_ATTACK_MODE));
 	}
 
+	@Override
 	protected void addAdditionalSaveData(CompoundTag compoundTag) {
 		if (owner != null) {
 			compoundTag.putUUID(TAG_OWNER, owner.getUUID());
@@ -95,6 +97,7 @@ public class AttackEffect extends Entity {
 		compoundTag.putInt(TAG_ATTACK_MODE, getAttackMode());
 	}
 
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		builder.define(SPAWNED_TICKS, 0)
 			.define(ATTACK_MODE, 0);

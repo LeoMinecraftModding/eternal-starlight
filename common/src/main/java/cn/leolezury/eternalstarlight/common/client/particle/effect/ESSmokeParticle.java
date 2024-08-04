@@ -59,6 +59,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(ESSmokeParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites, 0);
 		}

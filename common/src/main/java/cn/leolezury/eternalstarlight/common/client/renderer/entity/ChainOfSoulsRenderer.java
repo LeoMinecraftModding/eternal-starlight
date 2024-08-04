@@ -33,6 +33,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		super(context);
 	}
 
+	@Override
 	public void render(ChainOfSouls chain, float yaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light) {
 		Player player = chain.getPlayerOwner();
 		if (player != null) {
@@ -111,6 +112,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		}
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(ChainOfSouls chain) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}

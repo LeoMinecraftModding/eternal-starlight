@@ -45,6 +45,7 @@ public class SimpleSpellItem extends Item {
 		}
 	}
 
+	@Override
 	public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
 		return 72000;
 	}

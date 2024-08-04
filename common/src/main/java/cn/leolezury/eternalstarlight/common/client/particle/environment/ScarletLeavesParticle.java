@@ -23,10 +23,12 @@ public class ScarletLeavesParticle extends TextureSheetParticle {
 		this.friction = 1.0F;
 	}
 
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
+	@Override
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;
@@ -66,6 +68,7 @@ public class ScarletLeavesParticle extends TextureSheetParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double x, double y, double z, double xs, double ys, double zs) {
 			return new ScarletLeavesParticle(clientLevel, x, y, z, this.sprites);
 		}

@@ -31,6 +31,7 @@ public record ESSmokeParticleOptions(Vector3f fromColor, Vector3f toColor, float
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, ESSmokeParticleOptions> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
+	@Override
 	public ParticleType<ESSmokeParticleOptions> getType() {
 		return ESParticles.SMOKE.get();
 	}

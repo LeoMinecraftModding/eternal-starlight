@@ -109,6 +109,7 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
 			super(CrystallizedMoth.this);
 		}
 
+		@Override
 		public void tick() {
 			if (this.operation == MoveControl.Operation.MOVE_TO) {
 				Vec3 vec3 = new Vec3(this.wantedX - mob.getX(), this.wantedY - mob.getY(), this.wantedZ - mob.getZ());
@@ -132,10 +133,12 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
 			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
+		@Override
 		public boolean canUse() {
 			return CrystallizedMoth.this.getTarget() != null && CrystallizedMoth.this.getAttackTicks() == 0 && CrystallizedMoth.this.random.nextInt(100) == 0;
 		}
 
+		@Override
 		public boolean canContinueToUse() {
 			return CrystallizedMoth.this.getAttackTicks() < 100;
 		}

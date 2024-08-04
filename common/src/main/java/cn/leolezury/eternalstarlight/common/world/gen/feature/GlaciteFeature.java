@@ -19,6 +19,7 @@ public class GlaciteFeature extends ESFeature<NoneFeatureConfiguration> {
 		super(codec);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();

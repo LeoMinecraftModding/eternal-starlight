@@ -54,10 +54,12 @@ public class EnergySwordItem extends SwordItem {
 		}
 	}
 
+	@Override
 	public int getUseDuration(ItemStack itemStack, LivingEntity entity) {
 		return 72000;
 	}
 
+	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1) {

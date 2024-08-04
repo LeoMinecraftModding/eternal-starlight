@@ -23,6 +23,7 @@ public class BoarwarfBiomeLayer<T extends Boarwarf> extends RenderLayer<T, Boarw
 		this.model = new BoarwarfModel<>(modelSet.bakeLayer(BoarwarfModel.LAYER_LOCATION));
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		BoarwarfType type = entity.getBoarwarfType();
 		if (type == null) {

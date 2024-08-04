@@ -47,10 +47,12 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 		return false;
 	}
 
+	@Override
 	public boolean isOnFire() {
 		return false;
 	}
 
+	@Override
 	public boolean hurt(DamageSource damageSource, float amount) {
 		return false;
 	}

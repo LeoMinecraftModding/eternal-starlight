@@ -106,6 +106,7 @@ public class TangledSkull extends Monster {
 		return new TangledSkullRotationControl(this);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new TangledSkullChargeAttackGoal());
@@ -121,6 +122,7 @@ public class TangledSkull extends Monster {
 			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
+		@Override
 		public boolean canUse() {
 			LivingEntity livingEntity = TangledSkull.this.getTarget();
 			if (livingEntity != null && livingEntity.isAlive() && !TangledSkull.this.getMoveControl().hasWanted() && TangledSkull.this.random.nextInt(reducedTickDelay(7)) == 0) {
@@ -130,10 +132,12 @@ public class TangledSkull extends Monster {
 			}
 		}
 
+		@Override
 		public boolean canContinueToUse() {
 			return TangledSkull.this.getMoveControl().hasWanted() && TangledSkull.this.isCharging() && TangledSkull.this.getTarget() != null && TangledSkull.this.getTarget().isAlive();
 		}
 
+		@Override
 		public void start() {
 			LivingEntity livingEntity = TangledSkull.this.getTarget();
 			if (livingEntity != null) {
@@ -144,14 +148,17 @@ public class TangledSkull extends Monster {
 			TangledSkull.this.setCharging(true);
 		}
 
+		@Override
 		public void stop() {
 			TangledSkull.this.setCharging(false);
 		}
 
+		@Override
 		public boolean requiresUpdateEveryTick() {
 			return true;
 		}
 
+		@Override
 		public void tick() {
 			LivingEntity livingEntity = TangledSkull.this.getTarget();
 			if (livingEntity != null) {
@@ -175,14 +182,17 @@ public class TangledSkull extends Monster {
 			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
+		@Override
 		public boolean canUse() {
 			return !TangledSkull.this.getMoveControl().hasWanted() && TangledSkull.this.random.nextInt(reducedTickDelay(7)) == 0;
 		}
 
+		@Override
 		public boolean canContinueToUse() {
 			return false;
 		}
 
+		@Override
 		public void tick() {
 			BlockPos blockPos = TangledSkull.this.blockPosition();
 
@@ -216,6 +226,7 @@ public class TangledSkull extends Monster {
 			.define(SHOT_MOVEMENT, Vec3.ZERO.toVector3f());
 	}
 
+	@Override
 	public void tick() {
 		this.noPhysics = true;
 		super.tick();
@@ -337,6 +348,7 @@ public class TangledSkull extends Monster {
 			super(skull);
 		}
 
+		@Override
 		public void tick() {
 			if (this.operation == Operation.MOVE_TO) {
 				Vec3 vec3 = new Vec3(this.wantedX - TangledSkull.this.getX(), this.wantedY - TangledSkull.this.getY(), this.wantedZ - TangledSkull.this.getZ());

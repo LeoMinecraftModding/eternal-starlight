@@ -22,6 +22,7 @@ public class GolemForgeChimneyFeature extends ESFeature<NoneFeatureConfiguration
 		super(codec);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel worldGenLevel = context.level();
 		BlockPos origin = context.origin();

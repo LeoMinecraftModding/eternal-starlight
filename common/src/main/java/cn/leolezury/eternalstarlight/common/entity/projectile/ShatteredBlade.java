@@ -34,6 +34,7 @@ public class ShatteredBlade extends AbstractArrow {
 		super(ESEntities.SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
 	}
 
+	@Override
 	public void tick() {
 		if (this.inGroundTime > 4) {
 			this.dealtDamage = true;
@@ -87,6 +88,7 @@ public class ShatteredBlade extends AbstractArrow {
 		return this.dealtDamage ? null : super.findHitEntity(vec3, vec32);
 	}
 
+	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		Entity entity = entityHitResult.getEntity();
 		float f = 5.0F;
@@ -118,6 +120,7 @@ public class ShatteredBlade extends AbstractArrow {
 		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, g, 1.0F);
 	}
 
+	@Override
 	protected boolean tryPickup(Player player) {
 		return super.tryPickup(player) || this.isNoPhysics() && this.ownedBy(player) && player.getInventory().add(this.getPickupItem());
 	}
@@ -127,32 +130,38 @@ public class ShatteredBlade extends AbstractArrow {
 		return ESItems.SHATTERED_SWORD_BLADE.get().getDefaultInstance();
 	}
 
+	@Override
 	public void playerTouch(Player player) {
 		if (this.ownedBy(player) || this.getOwner() == null) {
 			super.playerTouch(player);
 		}
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.dealtDamage = compoundTag.getBoolean(TAG_DEALT_DAMAGE);
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_DEALT_DAMAGE, this.dealtDamage);
 	}
 
+	@Override
 	public void tickDespawn() {
 		if (this.pickup != Pickup.ALLOWED) {
 			super.tickDespawn();
 		}
 	}
 
+	@Override
 	protected float getWaterInertia() {
 		return 0.99F;
 	}
 
+	@Override
 	public boolean shouldRender(double d, double e, double f) {
 		return true;
 	}

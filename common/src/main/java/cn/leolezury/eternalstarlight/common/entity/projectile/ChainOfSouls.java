@@ -78,12 +78,14 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		this.firedFromWeapon = weapon;
 	}
 
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		builder.define(REACHED_TARGET, false)
 			.define(LENGTH, 0.0F)
 			.define(TARGET_ID, -1);
 	}
 
+	@Override
 	public boolean shouldRenderAtSqrDistance(double d) {
 		return true;
 	}
@@ -93,6 +95,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		return 0.05;
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		Player player = this.getPlayerOwner();
@@ -216,6 +219,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		return firedFromWeapon;
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.putBoolean(TAG_REACHED_TARGET, this.reachedTarget());
 		compoundTag.putFloat(TAG_LENGTH, this.length());
@@ -227,6 +231,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		}
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		this.setReachedTarget(compoundTag.getBoolean(TAG_REACHED_TARGET));
 		this.setLength(compoundTag.getFloat(TAG_LENGTH));
@@ -266,19 +271,23 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		return this.getEntityData().get(TARGET_ID);
 	}
 
+	@Override
 	protected Entity.MovementEmission getMovementEmission() {
 		return MovementEmission.NONE;
 	}
 
+	@Override
 	public void remove(Entity.RemovalReason removalReason) {
 		this.updateOwnerInfo(null);
 		super.remove(removalReason);
 	}
 
+	@Override
 	public void onClientRemoval() {
 		this.updateOwnerInfo(null);
 	}
 
+	@Override
 	public void setOwner(@Nullable Entity entity) {
 		super.setOwner(entity);
 		this.updateOwnerInfo(this);
@@ -302,6 +311,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		return false;
 	}
 
+	@Override
 	public void recreateFromPacket(ClientboundAddEntityPacket packet) {
 		super.recreateFromPacket(packet);
 		if (this.getPlayerOwner() == null) {

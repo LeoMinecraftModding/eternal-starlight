@@ -74,6 +74,7 @@ public class OrbitalTrailParticle extends Particle {
 		}
 	}
 
+	@Override
 	public void render(VertexConsumer consumer, Camera camera, float partialTicks) {
 		float progress = Math.min(age + partialTicks, lifetime) / lifetime;
 		Color color = Color.rgbi((int) Mth.lerp(progress, Color.rgb(fromColor).r(), Color.rgb(toColor).r()), (int) Mth.lerp(progress, Color.rgb(fromColor).g(), Color.rgb(toColor).g()), (int) Mth.lerp(progress, Color.rgb(fromColor).b(), Color.rgb(toColor).b()));
@@ -99,6 +100,7 @@ public class OrbitalTrailParticle extends Particle {
 		public Provider(SpriteSet spriteSet) {
 		}
 
+		@Override
 		public Particle createParticle(OrbitalTrailParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			return new OrbitalTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.radius(), options.rotSpeed(), options.alpha());
 		}

@@ -125,10 +125,12 @@ public class StellarRackBlockEntity extends RandomizableContainerBlockEntity {
 		return 5;
 	}
 
+	@Override
 	public ClientboundBlockEntityDataPacket getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 
+	@Override
 	public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
 		CompoundTag compoundTag = new CompoundTag();
 		ContainerHelper.saveAllItems(compoundTag, this.items, true, provider);

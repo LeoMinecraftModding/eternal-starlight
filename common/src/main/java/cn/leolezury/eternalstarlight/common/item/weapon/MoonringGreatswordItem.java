@@ -26,6 +26,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
 		return 72000;
 	}
 
+	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1) {

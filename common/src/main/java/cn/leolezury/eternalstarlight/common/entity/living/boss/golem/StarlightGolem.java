@@ -94,17 +94,20 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		bossEvent.setId(getUUID());
 	}
 
+	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
 		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("starlight_golem_seen"));
 	}
 
+	@Override
 	public void stopSeenByPlayer(ServerPlayer serverPlayer) {
 		super.stopSeenByPlayer(serverPlayer);
 		bossEvent.removePlayer(serverPlayer);
 	}
 
+	@Override
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(0, new FloatGoal(this));

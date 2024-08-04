@@ -22,6 +22,7 @@ public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
 		return stateProvider.getState(randomSource, pos);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();

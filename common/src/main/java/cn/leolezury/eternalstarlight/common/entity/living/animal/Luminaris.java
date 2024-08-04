@@ -102,6 +102,7 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
 			this.fish = abstractFish;
 		}
 
+		@Override
 		public boolean canUse() {
 			return this.fish.canRandomlySwim() && super.canUse();
 		}

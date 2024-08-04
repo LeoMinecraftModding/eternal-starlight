@@ -44,10 +44,12 @@ public class ManaCrystalRecipe extends CustomRecipe {
 		return manaCrystal.getDefaultInstance();
 	}
 
+	@Override
 	public boolean canCraftInDimensions(int i, int j) {
 		return i == 3 && j == 3;
 	}
 
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return ESRecipeSerializers.MANA_CRYSTAL.get();
 	}

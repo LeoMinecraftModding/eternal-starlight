@@ -90,17 +90,20 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		bossEvent.setId(getUUID());
 	}
 
+	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
 		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("lunar_monstrosity_seen"));
 	}
 
+	@Override
 	public void stopSeenByPlayer(ServerPlayer serverPlayer) {
 		super.stopSeenByPlayer(serverPlayer);
 		bossEvent.removePlayer(serverPlayer);
 	}
 
+	@Override
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(0, new FloatGoal(this));
@@ -271,6 +274,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
+	@Override
 	protected InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemStack = player.getItemInHand(hand);
 		if (itemStack.is(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS)) {

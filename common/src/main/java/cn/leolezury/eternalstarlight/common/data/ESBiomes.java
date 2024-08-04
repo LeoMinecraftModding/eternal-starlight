@@ -132,10 +132,16 @@ public class ESBiomes {
 	}
 
 	public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		return baseLandGenBuilder(featureGetter, carverGetter, true);
+	}
+
+	public static BiomeGenerationSettings.Builder baseLandGenBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter, boolean grass) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
-		BiomeDefaultFeatures.addSavannaGrass(builder);
-		BiomeDefaultFeatures.addSavannaExtraGrass(builder);
+		if (grass) {
+			BiomeDefaultFeatures.addSavannaGrass(builder);
+			BiomeDefaultFeatures.addSavannaExtraGrass(builder);
+		}
 		BiomeDefaultFeatures.addSurfaceFreezing(builder);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATERSIDE_VEGETATION);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
@@ -252,7 +258,7 @@ public class ESBiomes {
 	}
 
 	private static BiomeGenerationSettings.Builder desertSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter);
+		BiomeGenerationSettings.Builder builder = baseLandGenBuilder(featureGetter, carverGetter, false);
 
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.STARLIGHT_CRYSTAL);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STARLIGHT_CRYSTAL_SURFACE);

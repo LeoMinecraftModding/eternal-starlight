@@ -72,18 +72,22 @@ public class Yeti extends Animal {
 		builder.define(ROLL_STATE, 0);
 	}
 
+	@Override
 	protected Brain<?> makeBrain(Dynamic<?> dynamic) {
 		return YetiAi.makeBrain(this.brainProvider().makeBrain(dynamic));
 	}
 
+	@Override
 	public Brain<Yeti> getBrain() {
 		return (Brain<Yeti>) super.getBrain();
 	}
 
+	@Override
 	protected Brain.Provider<Yeti> brainProvider() {
 		return Brain.provider(YetiAi.MEMORY_TYPES, YetiAi.SENSOR_TYPES);
 	}
 
+	@Override
 	protected void customServerAiStep() {
 		this.level().getProfiler().push("YetiBrain");
 		this.getBrain().tick((ServerLevel) this.level(), this);

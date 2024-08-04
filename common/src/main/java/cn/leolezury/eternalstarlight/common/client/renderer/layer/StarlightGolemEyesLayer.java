@@ -19,6 +19,7 @@ public class StarlightGolemEyesLayer<T extends StarlightGolem, M extends Starlig
 		super(parent);
 	}
 
+	@Override
 	public RenderType renderType() {
 		return StarlightGolemRenderer.isHalloween() ? EYES_HALLOWEEN : EYES;
 	}

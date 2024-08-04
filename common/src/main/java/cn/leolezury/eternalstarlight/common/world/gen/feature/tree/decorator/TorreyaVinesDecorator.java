@@ -12,10 +12,12 @@ public class TorreyaVinesDecorator extends TreeDecorator {
 	public static final MapCodec<TorreyaVinesDecorator> CODEC = MapCodec.unit(() -> TorreyaVinesDecorator.INSTANCE);
 	public static final TorreyaVinesDecorator INSTANCE = new TorreyaVinesDecorator();
 
+	@Override
 	protected TreeDecoratorType<?> type() {
 		return ESTreeDecorators.TORRETA_VINES.get();
 	}
 
+	@Override
 	public void place(Context context) {
 		RandomSource random = context.random();
 		context.leaves().forEach((pos) -> {

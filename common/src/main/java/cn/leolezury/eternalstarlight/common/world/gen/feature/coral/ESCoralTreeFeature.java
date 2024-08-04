@@ -16,6 +16,7 @@ public class ESCoralTreeFeature extends ESCoralFeature {
 		super(codec);
 	}
 
+	@Override
 	protected boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 		int i = randomSource.nextInt(3) + 1;

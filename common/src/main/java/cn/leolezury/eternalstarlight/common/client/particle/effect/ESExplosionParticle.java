@@ -16,10 +16,12 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
 		this.setSpriteFromAge(spriteSet);
 	}
 
+	@Override
 	public int getLightColor(float f) {
 		return ClientHandlers.FULL_BRIGHT;
 	}
 
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_LIT;
 	}
@@ -31,6 +33,7 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(ESExplosionParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			return new ESExplosionParticle(level, x, y, z, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites, 0);
 		}

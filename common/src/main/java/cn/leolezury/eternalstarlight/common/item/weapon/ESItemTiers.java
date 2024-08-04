@@ -39,26 +39,32 @@ public enum ESItemTiers implements Tier {
 		this.repairIngredient = Suppliers.memoize(supplier::get);
 	}
 
+	@Override
 	public int getUses() {
 		return this.uses;
 	}
 
+	@Override
 	public float getSpeed() {
 		return this.speed;
 	}
 
+	@Override
 	public float getAttackDamageBonus() {
 		return this.damage;
 	}
 
+	@Override
 	public TagKey<Block> getIncorrectBlocksForDrops() {
 		return this.incorrectBlocksForDrops;
 	}
 
+	@Override
 	public int getEnchantmentValue() {
 		return this.enchantmentValue;
 	}
 
+	@Override
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
 	}

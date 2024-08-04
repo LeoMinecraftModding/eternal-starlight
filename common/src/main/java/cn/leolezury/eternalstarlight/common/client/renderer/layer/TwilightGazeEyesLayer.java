@@ -17,6 +17,7 @@ public class TwilightGazeEyesLayer<T extends TwilightGaze, M extends TwilightGaz
 		super(parent);
 	}
 
+	@Override
 	public RenderType renderType() {
 		return EYES;
 	}

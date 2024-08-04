@@ -13,6 +13,7 @@ public class BoarwarfDoSleepGoal extends Goal {
 		setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
+	@Override
 	public boolean canUse() {
 		return this.creature.isSleeping();
 	}

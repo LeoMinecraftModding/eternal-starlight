@@ -16,6 +16,7 @@ public class AmaramberArrowRenderer extends ArrowRenderer<AmaramberArrow> {
 		super(context);
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(AmaramberArrow arrow) {
 		return ARROW_LOCATION;
 	}

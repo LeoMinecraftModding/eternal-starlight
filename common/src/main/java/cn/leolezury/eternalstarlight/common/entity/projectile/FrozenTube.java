@@ -79,6 +79,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.dealtDamage = compoundTag.getBoolean(TAG_DEALT_DAMAGE);
@@ -89,15 +90,18 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 		return ESItems.FROZEN_TUBE.get().getDefaultInstance();
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_DEALT_DAMAGE, this.dealtDamage);
 	}
 
+	@Override
 	protected float getWaterInertia() {
 		return 0.99F;
 	}
 
+	@Override
 	public boolean shouldRender(double d, double e, double f) {
 		return true;
 	}

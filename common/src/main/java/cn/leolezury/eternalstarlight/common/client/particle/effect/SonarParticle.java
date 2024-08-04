@@ -31,6 +31,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
 		this.setSpriteFromAge(spriteSet);
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		if (this.onGround || this.xd == 0.0 || this.zd == 0.0) {
@@ -39,6 +40,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
 		alpha = 1f - (float) age / lifetime;
 	}
 
+	@Override
 	public float getQuadSize(float partialTicks) {
 		return this.quadSize * Mth.clamp(((float) this.age + partialTicks) * 1.5F / (float) this.lifetime, 0.0F, 1.0F) * 1.5F;
 	}
@@ -61,6 +63,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
 			return new SonarParticle(level, x, y, z, dx, dy, dz, this.sprites);
 		}

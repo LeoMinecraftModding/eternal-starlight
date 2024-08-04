@@ -94,6 +94,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 			.define(INTENTIONAL_ATTACK, false);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false) {

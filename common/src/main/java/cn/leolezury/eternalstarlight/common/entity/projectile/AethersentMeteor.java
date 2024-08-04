@@ -140,6 +140,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		builder.define(SIZE, 0);
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		setSize(compoundTag.getInt(TAG_SIZE));
 		if (compoundTag.hasUUID(TAG_TARGET)) {
@@ -154,6 +155,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		}
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.putInt(TAG_SIZE, getSize());
 		if (target != null) {
@@ -276,14 +278,17 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		return false;
 	}
 
+	@Override
 	public boolean isOnFire() {
 		return false;
 	}
 
+	@Override
 	public boolean hurt(DamageSource damageSource, float amount) {
 		return false;
 	}
 
+	@Override
 	protected boolean shouldBurn() {
 		return false;
 	}

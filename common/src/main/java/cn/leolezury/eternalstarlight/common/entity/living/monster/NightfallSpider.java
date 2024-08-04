@@ -21,6 +21,7 @@ public class NightfallSpider extends Spider {
 		return Spider.createAttributes().add(Attributes.MAX_HEALTH, 10.0D);
 	}
 
+	@Override
 	public boolean doHurtTarget(Entity entity) {
 		if (super.doHurtTarget(entity)) {
 			if (entity instanceof LivingEntity) {
@@ -40,6 +41,7 @@ public class NightfallSpider extends Spider {
 		}
 	}
 
+	@Override
 	public Vec3 getVehicleAttachmentPoint(Entity entity) {
 		return entity.getBbWidth() <= this.getBbWidth() ? new Vec3(0.0, 0.21875 * (double) this.getScale(), 0.0) : super.getVehicleAttachmentPoint(entity);
 	}

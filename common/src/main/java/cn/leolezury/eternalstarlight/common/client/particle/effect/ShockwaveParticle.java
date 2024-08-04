@@ -29,10 +29,12 @@ public class ShockwaveParticle extends SimpleAnimatedParticle {
 		this.setSpriteFromAge(spriteSet);
 	}
 
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		if (this.onGround || this.xd == 0.0 || this.zd == 0.0) {
@@ -58,6 +60,7 @@ public class ShockwaveParticle extends SimpleAnimatedParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
 			return new ShockwaveParticle(level, x, y, z, dx, dy, dz, this.sprites);
 		}

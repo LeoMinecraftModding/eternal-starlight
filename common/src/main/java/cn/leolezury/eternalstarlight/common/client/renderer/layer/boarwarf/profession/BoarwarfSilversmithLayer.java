@@ -27,6 +27,7 @@ public class BoarwarfSilversmithLayer<T extends Boarwarf> extends RenderLayer<T,
 		this.professionModel = new BoarwarfSilversmithModel<>(modelSet.bakeLayer(BoarwarfSilversmithModel.LAYER_LOCATION));
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.SILVERSMITH.get()) {
 			getParentModel().copyPropertiesTo(this.professionModel);

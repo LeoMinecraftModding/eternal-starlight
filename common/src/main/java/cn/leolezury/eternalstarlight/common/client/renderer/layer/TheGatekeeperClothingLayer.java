@@ -35,6 +35,7 @@ public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderL
 		this.slimModel = new TheGatekeeperModel<>(modelSet.bakeLayer(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION), true);
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		TheGatekeeperModel<T> model = normalModel;
 		ResourceLocation texture = OVERLAY_TEXTURE;

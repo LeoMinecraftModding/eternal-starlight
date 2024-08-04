@@ -37,6 +37,7 @@ public class LonestarSkeletonShootBladeGoal extends Goal {
 		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 	}
 
+	@Override
 	public boolean canUse() {
 		return this.mob.getTarget() != null && this.isHoldingRemoteAttackWeapon();
 	}
@@ -45,15 +46,18 @@ public class LonestarSkeletonShootBladeGoal extends Goal {
 		return this.mob.getMainHandItem().is(ESItems.SHATTERED_SWORD.get());
 	}
 
+	@Override
 	public boolean canContinueToUse() {
 		return (this.canUse() || !this.mob.getNavigation().isDone()) && this.isHoldingRemoteAttackWeapon();
 	}
 
+	@Override
 	public void start() {
 		super.start();
 		this.mob.setAggressive(true);
 	}
 
+	@Override
 	public void stop() {
 		super.stop();
 		this.mob.setAggressive(false);
@@ -63,10 +67,12 @@ public class LonestarSkeletonShootBladeGoal extends Goal {
 		this.usingSwordTicks = 0;
 	}
 
+	@Override
 	public boolean requiresUpdateEveryTick() {
 		return true;
 	}
 
+	@Override
 	public void tick() {
 		LivingEntity livingEntity = this.mob.getTarget();
 		if (livingEntity != null) {

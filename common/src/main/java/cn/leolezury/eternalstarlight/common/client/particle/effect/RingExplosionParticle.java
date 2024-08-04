@@ -31,10 +31,12 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 		this.setSpriteFromAge(spriteSet);
 	}
 
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.CUSTOM;
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		alpha = Easing.OUT_QUINT.interpolate((float) age / lifetime, 1, 0.1f);
@@ -51,6 +53,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 		this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
 	}
 
+	@Override
 	public float getQuadSize(float partialTicks) {
 		return this.quadSize * Easing.OUT_QUINT.interpolate((age + partialTicks) / lifetime, 1, scale);
 	}
@@ -62,6 +65,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 			this.sprites = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(RingExplosionParticleOptions options, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
 			return new RingExplosionParticle(level, x, y, z, dx, dy, dz, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.scale(), this.sprites);
 		}

@@ -46,10 +46,12 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 		this.branchNum = branchNum;
 	}
 
+	@Override
 	protected TrunkPlacerType<BranchingTrunkPlacer> type() {
 		return ESPlacers.TRUNK_BRANCHING.get();
 	}
 
+	@Override
 	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> placer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {
 		int numBranchesLayer = branchLayerNum.sample(random);
 		int numBranches = branchNum.sample(random);

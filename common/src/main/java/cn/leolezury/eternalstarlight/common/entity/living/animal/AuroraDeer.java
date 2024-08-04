@@ -76,6 +76,7 @@ public class AuroraDeer extends Animal implements Charger {
 		return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, false, 2f, 80, 80, 0.6f) {
@@ -142,6 +143,7 @@ public class AuroraDeer extends Animal implements Charger {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 3D);
 	}
 
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return FOOD_ITEMS.test(stack);
 	}

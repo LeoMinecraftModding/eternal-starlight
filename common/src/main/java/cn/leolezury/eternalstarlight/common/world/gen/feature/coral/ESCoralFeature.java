@@ -27,6 +27,7 @@ public abstract class ESCoralFeature extends Feature<NoneFeatureConfiguration> {
 		super(codec);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
 		RandomSource randomSource = featurePlaceContext.random();
 		WorldGenLevel worldGenLevel = featurePlaceContext.level();

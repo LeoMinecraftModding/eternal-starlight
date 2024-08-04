@@ -18,6 +18,7 @@ public class ESCoralClawFeature extends ESCoralFeature {
 		super(codec);
 	}
 
+	@Override
 	protected boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		if (!this.placeCoralBlock(levelAccessor, randomSource, blockPos, blockState)) {
 			return false;

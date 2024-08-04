@@ -13,10 +13,12 @@ public class TrunkBerriesDecorator extends TreeDecorator {
 	public static final MapCodec<TrunkBerriesDecorator> CODEC = MapCodec.unit(() -> TrunkBerriesDecorator.INSTANCE);
 	public static final TrunkBerriesDecorator INSTANCE = new TrunkBerriesDecorator();
 
+	@Override
 	protected TreeDecoratorType<?> type() {
 		return ESTreeDecorators.TRUNK_BERRIES.get();
 	}
 
+	@Override
 	public void place(Context context) {
 		RandomSource random = context.random();
 		context.logs().forEach((pos) -> {

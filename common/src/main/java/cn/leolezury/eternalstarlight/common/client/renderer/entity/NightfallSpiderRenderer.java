@@ -25,6 +25,7 @@ public class NightfallSpiderRenderer<T extends NightfallSpider> extends MobRende
 		this.addLayer(new NightfallSpiderEyesLayer<>(this));
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(T entity) {
 		return NIGHTFALL_SPIDER_LOCATION;
 	}

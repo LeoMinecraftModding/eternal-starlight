@@ -38,11 +38,13 @@ public class ESRandomSpreadStructurePlacement extends RandomSpreadStructurePlace
 		return this.minDistFromSpawn;
 	}
 
+	@Override
 	protected boolean isPlacementChunk(ChunkGeneratorStructureState structureState, int chunkX, int chunkZ) {
 		ChunkPos chunkPos = this.getPotentialStructureChunk(structureState.getLevelSeed(), chunkX, chunkZ);
 		return super.isPlacementChunk(structureState, chunkX, chunkZ) && Math.pow(chunkPos.x, 2) + Math.pow(chunkPos.z, 2) >= Math.pow(minDistFromSpawn, 2);
 	}
 
+	@Override
 	public StructurePlacementType<?> type() {
 		return ESStructurePlacementTypes.ES_RANDOM_SPREAD.get();
 	}

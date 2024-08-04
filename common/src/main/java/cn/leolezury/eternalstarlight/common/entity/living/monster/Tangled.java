@@ -74,6 +74,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			.define(BEHAVIOR_TICKS, 0);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false) {

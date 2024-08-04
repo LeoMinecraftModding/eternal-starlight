@@ -19,6 +19,7 @@ public class ESKelpFeature extends Feature<NoneFeatureConfiguration> {
 		super(codec);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
 		int i = 0;
 		WorldGenLevel worldGenLevel = featurePlaceContext.level();

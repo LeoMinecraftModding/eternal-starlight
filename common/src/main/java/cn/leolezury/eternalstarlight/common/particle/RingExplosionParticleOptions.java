@@ -24,6 +24,7 @@ public record RingExplosionParticleOptions(Vector3f fromColor, Vector3f toColor,
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, RingExplosionParticleOptions> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
+	@Override
 	public ParticleType<RingExplosionParticleOptions> getType() {
 		return ESParticles.RING_EXPLOSION.get();
 	}

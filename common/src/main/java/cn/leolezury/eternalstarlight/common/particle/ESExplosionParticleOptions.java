@@ -24,6 +24,7 @@ public record ESExplosionParticleOptions(Vector3f fromColor, Vector3f toColor) i
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, ESExplosionParticleOptions> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
+	@Override
 	public ParticleType<ESExplosionParticleOptions> getType() {
 		return ESParticles.EXPLOSION.get();
 	}

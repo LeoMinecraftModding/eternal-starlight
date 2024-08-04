@@ -38,6 +38,7 @@ public class SmokeTrailParticle extends NoRenderParticle {
 		public Provider(SpriteSet spriteSet) {
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
 			return new SmokeTrailParticle(clientLevel, d, e, f, g, h, i);
 		}

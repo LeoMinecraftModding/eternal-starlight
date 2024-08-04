@@ -25,6 +25,7 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 		this.dispatcher = context.getBlockRenderDispatcher();
 	}
 
+	@Override
 	public void render(ESFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
 		BlockState blockstate = block.getBlockState();
 		if (blockstate == null) return;
@@ -41,6 +42,7 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 		}
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(ESFallingBlock block) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}

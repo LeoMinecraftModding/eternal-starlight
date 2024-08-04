@@ -42,10 +42,12 @@ public class ESSinglePoolElement extends SinglePoolElement {
 		return (projection) -> new ESSinglePoolElement(Either.left(ResourceLocation.parse(string)), holder, projection, Optional.empty(), groundLevelDelta);
 	}
 
+	@Override
 	public StructurePoolElementType<?> getType() {
 		return ESStructurePoolElementTypes.SINGLE_POOL.get();
 	}
 
+	@Override
 	public String toString() {
 		return "ESSingle[" + this.template + "]";
 	}

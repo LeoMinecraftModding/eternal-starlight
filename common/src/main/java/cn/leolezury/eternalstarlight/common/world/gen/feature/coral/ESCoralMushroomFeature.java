@@ -13,6 +13,7 @@ public class ESCoralMushroomFeature extends ESCoralFeature {
 		super(codec);
 	}
 
+	@Override
 	protected boolean placeFeature(LevelAccessor levelAccessor, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 		int i = randomSource.nextInt(3) + 3;
 		int j = randomSource.nextInt(3) + 3;

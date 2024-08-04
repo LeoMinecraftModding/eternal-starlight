@@ -28,6 +28,7 @@ public class StarlightGolemGlowLayer<T extends StarlightGolem> extends RenderLay
 		this.model = new StarlightGolemModel<>(modelSet.bakeLayer(StarlightGolemModel.LAYER_LOCATION));
 	}
 
+	@Override
 	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!entity.isInvisible()) {
 			getParentModel().copyPropertiesTo(this.model);

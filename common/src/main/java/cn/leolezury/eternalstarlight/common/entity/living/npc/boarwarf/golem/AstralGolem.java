@@ -226,6 +226,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 		return (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE) * (getMaterial() == null ? 1 : getMaterial().attackDamageMultiplier());
 	}
 
+	@Override
 	public boolean doHurtTarget(Entity target) {
 		if (isGolemBlocking()) {
 			return false;
@@ -282,6 +283,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 		super.die(source);
 	}
 
+	@Override
 	public void handleEntityEvent(byte event) {
 		if (event == 4) {
 			this.attackAnimationTick = 10;
@@ -310,18 +312,22 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 		return ESSoundEvents.ASTRAL_GOLEM_DEATH.get();
 	}
 
+	@Override
 	public void startPersistentAngerTimer() {
 		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
 	}
 
+	@Override
 	public void setRemainingPersistentAngerTime(int time) {
 		this.remainingPersistentAngerTime = time;
 	}
 
+	@Override
 	public int getRemainingPersistentAngerTime() {
 		return this.remainingPersistentAngerTime;
 	}
 
+	@Override
 	public void setPersistentAngerTarget(@Nullable UUID target) {
 		this.persistentAngerTarget = target;
 	}

@@ -23,10 +23,12 @@ public class ESPageButton extends Button {
 		this.playTurnSound = turnSound;
 	}
 
+	@Override
 	public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
 		guiGraphics.blit(isForward ? book.rightButton() : book.leftButton(), this.getX(), this.getY(), 0, 0, book.buttonWidth(), book.buttonHeight(), book.buttonWidth(), book.buttonHeight());
 	}
 
+	@Override
 	public void playDownSound(SoundManager soundManager) {
 		if (this.playTurnSound) {
 			soundManager.play(SimpleSoundInstance.forUI(SoundEvents.BOOK_PAGE_TURN, 1.0F));

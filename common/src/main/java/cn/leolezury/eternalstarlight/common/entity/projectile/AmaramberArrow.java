@@ -23,6 +23,7 @@ public class AmaramberArrow extends AbstractArrow {
 		super(ESEntities.AMARAMBER_ARROW.get(), d, e, f, level, itemStack, itemStack2);
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		if (this.level().isClientSide && !this.inGround) {

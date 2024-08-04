@@ -17,6 +17,7 @@ public class ThirstWalkerEyesLayer<T extends ThirstWalker, M extends ThirstWalke
 		super(parent);
 	}
 
+	@Override
 	public RenderType renderType() {
 		return EYES;
 	}

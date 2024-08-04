@@ -107,11 +107,13 @@ public class Freeze extends Monster implements RangedAttackMob {
 			this.freeze = freeze;
 		}
 
+		@Override
 		public void start() {
 			super.start();
 			this.freeze.setAggressive(true);
 		}
 
+		@Override
 		public void stop() {
 			super.stop();
 			this.freeze.setAggressive(false);
