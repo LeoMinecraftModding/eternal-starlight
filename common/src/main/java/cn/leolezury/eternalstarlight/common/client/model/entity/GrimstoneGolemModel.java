@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntit
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.GrimstoneGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.ArmedModel;
@@ -70,8 +71,7 @@ public class GrimstoneGolemModel<T extends GrimstoneGolem> extends AnimatedEntit
 	public void translateToHand(HumanoidArm humanoidArm, PoseStack poseStack) {
 		this.root.translateAndRotate(poseStack);
 		this.body.translateAndRotate(poseStack);
-		poseStack.translate(0.0F, 0.0625F, 0.1875F);
-		poseStack.scale(0.7F, 0.7F, 0.7F);
-		poseStack.translate(0.0625F, 0.6F, -0.7F);
+		poseStack.mulPose(Axis.YP.rotationDegrees(90));
+		poseStack.translate(0.5, 0.35, 0.25);
 	}
 }

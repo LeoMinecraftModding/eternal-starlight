@@ -72,9 +72,9 @@
       },
       {
         "type": "eternal_starlight:grimstone_golem",
-        "maxCount": 2,
+        "maxCount": 1,
         "minCount": 1,
-        "weight": 2
+        "weight": 1
       },
       {
         "type": "eternal_starlight:shimmer_lacewing",

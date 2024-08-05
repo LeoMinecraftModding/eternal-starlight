@@ -7,9 +7,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -22,26 +22,32 @@ public class FallenLogFeature extends Feature<FallenLogFeature.Configuration> {
 
 	@Override
 	public boolean place(FeaturePlaceContext<FallenLogFeature.Configuration> context) {
+		Configuration config = context.config();
 		WorldGenLevel level = context.level();
 		RandomSource random = context.random();
-		BlockPos pos = context.origin();
-		BlockStateProvider provider = context.config().log();
-		Direction direction = random.nextBoolean() ? Direction.WEST : Direction.SOUTH;
-		int length = random.nextInt(5, 9);
+		BlockPos originPos = context.origin();
+		Direction direction = Direction.from2DDataValue(random.nextInt(4));
+		Direction.Axis axis = direction.getAxis();
+
+		int length = random.nextInt(6, 9);
+		boolean canPlace = true;
 		for (int i = 0; i < length; i++) {
-			BlockPos logPos = pos.relative(direction, i);
-			int height = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, logPos.getX(), logPos.getZ());
-			logPos = new BlockPos(logPos.getX(), height, logPos.getZ());
-			BlockState state = level.getBlockState(logPos);
-			BlockState placeState = provider.getState(random, logPos);
-			if (placeState.hasProperty(BlockStateProperties.AXIS)) {
-				placeState = placeState.setValue(BlockStateProperties.AXIS, direction.getAxis());
-			}
-			if (!state.is(BlockTags.LOGS)) {
-				setBlock(level, logPos, placeState);
-			}
+			BlockPos relativePos = originPos.relative(direction, i);
+			BlockState relativeState = level.getBlockState(relativePos);
+			boolean canBeReplaced = relativeState.canBeReplaced() && !(relativeState.getBlock() instanceof LiquidBlock) && level.getBlockState(relativePos.above()).isAir();
+			canPlace = canBeReplaced && level.getBlockState(relativePos.below()).is(BlockTags.DIRT);
 		}
-		return true;
+
+		if (canPlace) {
+			for (int i = 0; i < length; ++i) {
+				BlockPos relativePos = originPos.relative(direction, i);
+				BlockState logState = config.log().getState(random, relativePos).setValue(RotatedPillarBlock.AXIS, axis);
+				setBlock(level, relativePos, logState);
+			}
+			return true;
+		}
+
+		return false;
 	}
 
 	public record Configuration(BlockStateProvider log) implements FeatureConfiguration {

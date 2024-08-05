@@ -19,9 +19,9 @@
     },
     "particle": {
       "options": {
-        "type": "eternal_starlight:starlight"
+        "type": "eternal_starlight:firefly"
       },
-      "probability": 0.001
+      "probability": 5.0E-4
     },
     "sky_color": 5658761,
     "water_color": 6187416,
@@ -80,9 +80,9 @@
       },
       {
         "type": "eternal_starlight:grimstone_golem",
-        "maxCount": 2,
+        "maxCount": 1,
         "minCount": 1,
-        "weight": 2
+        "weight": 1
       }
     ],
     "axolotls": [],

@@ -91,16 +91,16 @@ public class ShatteredBlade extends AbstractArrow {
 	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		Entity entity = entityHitResult.getEntity();
-		float f = 5.0F;
-		Entity entity2 = this.getOwner();
-		DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, entity2 == null ? this : entity2);
+		Entity owner = this.getOwner();
+		float damage = owner instanceof Player ? 5f : 2.5f;
+		DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, owner == null ? this : owner);
 
 		if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
-			f = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, f);
+			damage = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, damage);
 		}
 
 		this.dealtDamage = true;
-		if (entity.hurt(damageSource, f)) {
+		if (entity.hurt(damageSource, damage)) {
 			if (entity.getType() == EntityType.ENDERMAN) {
 				return;
 			}
