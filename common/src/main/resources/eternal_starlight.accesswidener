@@ -56,8 +56,6 @@ accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/
 accessible method net/minecraft/client/renderer/RenderType create (Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;IZZLnet/minecraft/client/renderer/RenderType$CompositeState;)Lnet/minecraft/client/renderer/RenderType$CompositeRenderType;
 
 # client setup
-accessible field net/minecraft/client/particle/ParticleEngine RENDER_ORDER Ljava/util/List;
-mutable field net/minecraft/client/particle/ParticleEngine RENDER_ORDER Ljava/util/List;
 accessible field net/minecraft/client/renderer/blockentity/SkullBlockRenderer SKIN_BY_TYPE Ljava/util/Map;
 
 # world visual effects
@@ -98,8 +96,6 @@ accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSele
 # datagen
 accessible class net/minecraft/data/models/ItemModelGenerators$TrimModelData
 accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MODELS Ljava/util/List;
-accessible field net/minecraft/world/item/crafting/ShapedRecipePattern data Ljava/util/Optional;
-accessible field net/minecraft/world/item/crafting/ShapedRecipe pattern Lnet/minecraft/world/item/crafting/ShapedRecipePattern;
 
 # sprite source list mixin
 mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermutations textures Ljava/util/List;

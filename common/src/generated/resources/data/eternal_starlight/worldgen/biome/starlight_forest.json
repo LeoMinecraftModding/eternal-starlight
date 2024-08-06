@@ -19,9 +19,9 @@
     },
     "particle": {
       "options": {
-        "type": "eternal_starlight:firefly"
+        "type": "eternal_starlight:starlight"
       },
-      "probability": 5.0E-4
+      "probability": 0.001
     },
     "sky_color": 5658761,
     "water_color": 6187416,

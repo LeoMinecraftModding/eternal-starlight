@@ -5,37 +5,6 @@
       {
         "type": "minecraft:leave_vine",
         "probability": 0.125
-      },
-      {
-        "type": "minecraft:attached_to_leaves",
-        "block_provider": {
-          "type": "minecraft:randomized_int_state_provider",
-          "property": "age",
-          "source": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "minecraft:mangrove_propagule",
-              "Properties": {
-                "age": "0",
-                "hanging": "true",
-                "stage": "0",
-                "waterlogged": "false"
-              }
-            }
-          },
-          "values": {
-            "type": "minecraft:uniform",
-            "max_inclusive": 4,
-            "min_inclusive": 0
-          }
-        },
-        "directions": [
-          "down"
-        ],
-        "exclusion_radius_xz": 1,
-        "exclusion_radius_y": 0,
-        "probability": 0.14,
-        "required_empty_blocks": 2
       }
     ],
     "dirt_provider": {
