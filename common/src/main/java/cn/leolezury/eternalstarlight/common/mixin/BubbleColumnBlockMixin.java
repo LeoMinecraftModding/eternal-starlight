@@ -17,10 +17,10 @@ public abstract class BubbleColumnBlockMixin {
 	@Inject(method = "getColumnState", at = @At(value = "RETURN"), cancellable = true)
 	private static void getColumnState(BlockState state, CallbackInfoReturnable<BlockState> cir) {
 		if (state.is(ESBlocks.THERMAL_SPRINGSTONE.get())) {
-			cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(false)));
+			cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, false));
 		}
 		if (state.is(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()) || state.is(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()) || state.is(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get())) {
-			cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, Boolean.valueOf(true)));
+			cir.setReturnValue(Blocks.BUBBLE_COLUMN.defaultBlockState().setValue(BlockStateProperties.DRAG, true));
 		}
 	}
 

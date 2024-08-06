@@ -36,7 +36,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 
 	public static void clientTick(ClientLevel level, List<WorldVisualEffect> visualEffects) {
 		for (Entity entity : level.entitiesForRendering()) {
-			if (entity instanceof TrailOwner && visualEffects.stream().noneMatch(effect -> effect instanceof TrailVisualEffect<?> trail && trail.getEntity().getUUID().equals(entity.getUUID()))) {
+			if (entity instanceof TrailOwner && entity.tickCount > 2 && visualEffects.stream().noneMatch(effect -> effect instanceof TrailVisualEffect<?> trail && trail.getEntity().getId() == entity.getId())) {
 				visualEffects.add(new TrailVisualEffect<>(entity));
 			}
 		}

@@ -37,6 +37,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -45,6 +46,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -83,7 +85,7 @@ public class NeoForgePlatform implements ESPlatform {
 
 	@Override
 	public <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace) {
-		ForgeRegistrationProvider<T> provider = new ForgeRegistrationProvider<>(key, null, namespace);
+		NeoForgeRegistrationProvider<T> provider = new NeoForgeRegistrationProvider<>(key, null, namespace);
 		if (!REGISTERS.contains(provider.deferredRegister)) {
 			REGISTERS.add(provider.deferredRegister);
 		}
@@ -95,7 +97,7 @@ public class NeoForgePlatform implements ESPlatform {
 		RegistryBuilder<T> builder = new RegistryBuilder<>(key);
 		builder.sync(true);
 		Registry<T> registry = builder.create();
-		ForgeRegistrationProvider<T> provider = new ForgeRegistrationProvider<>(key, registry, namespace);
+		NeoForgeRegistrationProvider<T> provider = new NeoForgeRegistrationProvider<>(key, registry, namespace);
 		if (!REGISTERS.contains(provider.deferredRegister)) {
 			REGISTERS.add(provider.deferredRegister);
 		}
@@ -103,13 +105,13 @@ public class NeoForgePlatform implements ESPlatform {
 		return provider;
 	}
 
-	class ForgeRegistrationProvider<T> implements RegistrationProvider<T> {
+	class NeoForgeRegistrationProvider<T> implements RegistrationProvider<T> {
 		private final ResourceKey<? extends Registry<T>> key;
 		private final Registry<T> registry;
 		private final DeferredRegister<T> deferredRegister;
 		private final String namespace;
 
-		ForgeRegistrationProvider(ResourceKey<? extends Registry<T>> key, Registry<T> registry, String namespace) {
+		NeoForgeRegistrationProvider(ResourceKey<? extends Registry<T>> key, Registry<T> registry, String namespace) {
 			this.key = key;
 			this.registry = registry;
 			this.deferredRegister = DeferredRegister.create(key, namespace);
@@ -126,7 +128,7 @@ public class NeoForgePlatform implements ESPlatform {
 			ResourceLocation location = ResourceLocation.fromNamespaceAndPath(namespace, id);
 			ResourceKey<I> resourceKey = (ResourceKey<I>) ResourceKey.create(key, location);
 			DeferredHolder<T, I> holder = deferredRegister.register(id, supplier);
-			return new RegistryObject<T, I>() {
+			return new RegistryObject<>() {
 				@Override
 				public Holder<T> asHolder() {
 					return holder;
@@ -240,6 +242,11 @@ public class NeoForgePlatform implements ESPlatform {
 		BlockPos blockpos = context.getClickedPos();
 		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ItemAbilities.HOE_TILL, false);
 		return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
+	}
+
+	@Override
+	public boolean canBoatInFluid(Boat boat, FluidState state) {
+		return boat.canBoatInFluid(state);
 	}
 
 	@OnlyIn(Dist.CLIENT)

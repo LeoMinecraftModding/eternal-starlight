@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
@@ -69,8 +69,8 @@ public class MeteorRainWeather extends AbstractWeather {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
-		float rainLevel = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
+		float rainTicks = Math.min(ClientWeatherState.ticks + partialTick, ClientWeatherState.duration);
+		float rainLevel = (ClientWeatherState.duration / 2f - Math.abs(ClientWeatherState.duration / 2f - rainTicks)) / (ClientWeatherState.duration / 2f);
 		ESWeatherRenderer.renderWeather(ESShaders.getMeteorRain(), lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
 		return true;
 	}
@@ -79,8 +79,8 @@ public class MeteorRainWeather extends AbstractWeather {
 	@Override
 	public float modifyRainLevel(float original) {
 		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-		float rainTicks = Math.min(ClientWeatherInfo.TICKS + partialTick, ClientWeatherInfo.DURATION);
-		ClientWeatherInfo.LEVEL_TARGET = (ClientWeatherInfo.DURATION / 2f - Math.abs(ClientWeatherInfo.DURATION / 2f - rainTicks)) / (ClientWeatherInfo.DURATION / 2f);
-		return ClientWeatherInfo.getRainLevel(partialTick);
+		float rainTicks = Math.min(ClientWeatherState.ticks + partialTick, ClientWeatherState.duration);
+		ClientWeatherState.levelTarget = (ClientWeatherState.duration / 2f - Math.abs(ClientWeatherState.duration / 2f - rainTicks)) / (ClientWeatherState.duration / 2f);
+		return ClientWeatherState.getRainLevel(partialTick);
 	}
 }

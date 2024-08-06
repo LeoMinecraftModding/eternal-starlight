@@ -26,10 +26,14 @@ public class ESExtraCavesCarver extends WorldCarver<CarverConfiguration> {
 		super(codec);
 	}
 
-	private SimplexNoise noise;
+	private long lastSeed;
+	private SimplexNoise noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(lastSeed)));
 
 	public void setSeed(long seed) {
-		this.noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(seed)));
+		if (seed != lastSeed) {
+			this.noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(seed)));
+			lastSeed = seed;
+		}
 	}
 
 	@Override

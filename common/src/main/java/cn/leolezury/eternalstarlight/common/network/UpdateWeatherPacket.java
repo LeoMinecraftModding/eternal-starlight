@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import net.minecraft.network.FriendlyByteBuf;
@@ -29,9 +29,9 @@ public record UpdateWeatherPacket(AbstractWeather weather,
 	}
 
 	public static void handle(UpdateWeatherPacket packet, Player player) {
-		ClientWeatherInfo.WEATHER = packet.weather();
-		ClientWeatherInfo.DURATION = packet.duration();
-		ClientWeatherInfo.TICKS = packet.ticks();
+		ClientWeatherState.weather = packet.weather();
+		ClientWeatherState.duration = packet.duration();
+		ClientWeatherState.ticks = packet.ticks();
 	}
 
 	@Override

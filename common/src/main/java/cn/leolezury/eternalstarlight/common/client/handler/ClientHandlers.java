@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
@@ -77,14 +77,16 @@ public class ClientHandlers {
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
-	public static int RESET_CAMERA_IN;
-	public static float FOG_START_DECREMENT;
-	public static float FOG_END_DECREMENT;
-	public static MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
-	private static Matrix4f MODEL_VIEW_MATRIX = new Matrix4f();
+	public static int resetCameraIn;
+	public static float fogStartDecrement;
+	public static float fogEndDecrement;
+	public static float abyssalFogModifier = 1;
+	public static float oldAbyssalFogModifier = 1;
+	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
+	private static Matrix4f modelViewMatrix = new Matrix4f();
 
 	public static void onClientTick() {
-		ClientWeatherInfo.tickRainLevel();
+		ClientWeatherState.tickRainLevel();
 		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
 		List<ScreenShake> screenShakesToRemove = new ArrayList<>();
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
@@ -158,13 +160,13 @@ public class ClientHandlers {
 		}
 
 		if (Minecraft.getInstance().player != null) {
-			if (RESET_CAMERA_IN > 0) {
-				RESET_CAMERA_IN--;
+			if (resetCameraIn > 0) {
+				resetCameraIn--;
 				Minecraft.getInstance().options.hideGui = true;
-				if (RESET_CAMERA_IN <= 0) {
+				if (resetCameraIn <= 0) {
 					Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
 					Minecraft.getInstance().options.hideGui = false;
-					RESET_CAMERA_IN = 0;
+					resetCameraIn = 0;
 				}
 			} else if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
 				Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
@@ -175,16 +177,23 @@ public class ClientHandlers {
 		if (Minecraft.getInstance().player != null) {
 			LocalPlayer player = Minecraft.getInstance().player;
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-			FOG_START_DECREMENT -= 0.5f;
-			FOG_END_DECREMENT -= 0.5f;
+			fogStartDecrement -= 0.5f;
+			fogEndDecrement -= 0.5f;
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
 				if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
-					FOG_START_DECREMENT += (0.5f + 0.75f);
-					FOG_END_DECREMENT += (0.5f + 0.5f);
-					FOG_END_DECREMENT = Mth.clamp(FOG_END_DECREMENT, 0, 80);
+					fogStartDecrement += (0.5f + 0.75f);
+					fogEndDecrement += (0.5f + 0.5f);
+					fogEndDecrement = Mth.clamp(fogEndDecrement, 0, 80);
 				}
 			}
+			oldAbyssalFogModifier = abyssalFogModifier;
+			if (biomeHolder.is(ESBiomes.THE_ABYSS)) {
+				abyssalFogModifier -= 0.02f;
+			} else {
+				abyssalFogModifier += 0.02f;
+			}
+			abyssalFogModifier = Mth.clamp(abyssalFogModifier, 0, 1);
 		}
 
 		LocalPlayer player = Minecraft.getInstance().player;
@@ -240,7 +249,7 @@ public class ClientHandlers {
 	}
 
 	public static void onAfterRenderParticles() {
-		MODEL_VIEW_MATRIX = RenderSystem.getModelViewMatrix();
+		modelViewMatrix = RenderSystem.getModelViewMatrix();
 	}
 
 	public static void onAfterRenderWeather() {
@@ -249,7 +258,7 @@ public class ClientHandlers {
 		RenderSystem.enableDepthTest();
 		RenderSystem.depthMask(false);
 		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
-		RenderSystem.getModelViewMatrix().set(MODEL_VIEW_MATRIX);
+		RenderSystem.getModelViewMatrix().set(modelViewMatrix);
 		if (Minecraft.useShaderTransparency()) {
 			Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
 		}
@@ -288,10 +297,10 @@ public class ClientHandlers {
 		}
 
 		if (player.level().dimension() == ESDimensions.STARLIGHT_KEY && camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty() && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
-			FOG_START_DECREMENT = Mth.clamp(FOG_START_DECREMENT, 0, RenderSystem.getShaderFogStart() + 5);
-			FOG_END_DECREMENT = Mth.clamp(FOG_END_DECREMENT, 0, RenderSystem.getShaderFogEnd() - 50);
-			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - FOG_START_DECREMENT);
-			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - FOG_END_DECREMENT);
+			fogStartDecrement = Mth.clamp(fogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5);
+			fogEndDecrement = Mth.clamp(fogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50);
+			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - fogStartDecrement);
+			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - fogEndDecrement);
 
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
@@ -320,17 +329,12 @@ public class ClientHandlers {
 				return false;
 			}
 		}
-		//event.setIncrement(12 + 2 * Minecraft.getInstance().font.lineHeight);
 		drawBar(guiGraphics, x, y, bossEvent, barLocation);
 		Component component = bossEvent.getName();
 		int textWidth = Minecraft.getInstance().font.width(component);
 		int textX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - textWidth / 2;
 		int textY = y - 9;
 		guiGraphics.drawString(Minecraft.getInstance().font, component, textX, textY, 16777215);
-        /*int descWidth = Minecraft.getInstance().font.width(bossDesc);
-        int descX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - descWidth / 2;
-        int descY = event.getY() + 9;
-        event.getGuiGraphics().drawString(Minecraft.getInstance().font, bossDesc, descX, descY, 16777215);*/
 		return true;
 	}
 

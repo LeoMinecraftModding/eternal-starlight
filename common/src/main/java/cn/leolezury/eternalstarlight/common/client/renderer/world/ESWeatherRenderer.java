@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -45,7 +45,7 @@ public class ESWeatherRenderer {
 	}
 
 	public static boolean renderCustomWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		return ClientWeatherInfo.WEATHER != null && ClientWeatherInfo.WEATHER.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
+		return ClientWeatherState.weather != null && ClientWeatherState.weather.renderWeather(level, ticks, partialTick, lightTexture, camX, camY, camZ);
 	}
 
 	public static void renderWeather(@Nullable ShaderInstance shader, LightTexture lightTexture, @Nullable Biome.Precipitation weatherType, ResourceLocation rainLocation, ResourceLocation snowLocation, float rainLevel, int ticks, boolean fullBright, float partialTicks, double camX, double camY, double camZ) {

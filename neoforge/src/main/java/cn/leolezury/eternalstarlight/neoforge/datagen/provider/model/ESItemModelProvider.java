@@ -56,6 +56,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
 		block(ESItems.CRYSTALLUM_CORAL_BLOCK.get());
 
+		cubeAll(ESItems.VELVETUMOSS.get());
+		basicItem(ESItems.VELVETUMOSS_BALL.get());
+		flatBlockTexture(ESItems.VELVETUMOSS_VILLI.get());
+
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
 		block(ESItems.LUNAR_LEAVES.get());

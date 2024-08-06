@@ -91,6 +91,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
 		add(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get()));
 
+		add(ESBlocks.VELVETUMOSS.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.VELVETUMOSS_BALL.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 8.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		dropWhenSilkTouch(ESBlocks.VELVETUMOSS_VILLI.get());
+
 		add(ESBlocks.LUNAR_LEAVES.get(), (block) -> this.createLunarLeavesDrops(block, ESBlocks.LUNAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 		dropSelf(ESBlocks.LUNAR_LOG.get());
 		dropSelf(ESBlocks.LUNAR_WOOD.get());

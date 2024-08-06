@@ -54,7 +54,7 @@ public class ESBiomes {
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), etherRiverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040).backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(3409191).backgroundMusic(MUSIC_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLandSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
 	}
 
@@ -70,15 +70,22 @@ public class ESBiomes {
 	}
 
 	private static BiomeSpecialEffects.Builder baseEffectsBuilder() {
-		return new BiomeSpecialEffects.Builder()
+		return baseEffectsBuilder(true);
+	}
+
+	private static BiomeSpecialEffects.Builder baseEffectsBuilder(boolean ambientParticle) {
+		BiomeSpecialEffects.Builder builder = new BiomeSpecialEffects.Builder()
 			.fogColor(5195923)
 			.foliageColorOverride(5195923)
 			.grassColorOverride(5195923)
 			.waterColor(6187416)
 			.waterFogColor(6187416)
 			.skyColor(5658761)
-			.ambientParticle(new AmbientParticleSettings(ESParticles.STARLIGHT.get(), 0.001f))
 			.backgroundMusic(MUSIC_TRANQUILITY);
+		if (ambientParticle) {
+			builder.ambientParticle(new AmbientParticleSettings(ESParticles.STARLIGHT.get(), 0.001f));
+		}
+		return builder;
 	}
 
 	private static MobSpawnSettings.Builder baseLandSpawnBuilder() {
@@ -305,6 +312,7 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.CRYOBYSSLATE_PATCH);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ABYSSAL_KELP);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ORBFLORA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.VELVETUMOSS);
 
 		return builder;
 	}

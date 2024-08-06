@@ -20,8 +20,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock {
-	public static final MapCodec<CrystalClusterBlock> CODEC = simpleCodec(CrystalClusterBlock::new);
+public class DirectionalBudBlock extends Block implements SimpleWaterloggedBlock {
+	public static final MapCodec<DirectionalBudBlock> CODEC = simpleCodec(DirectionalBudBlock::new);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	protected final VoxelShape northAabb;
@@ -31,7 +31,7 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 	protected final VoxelShape upAabb;
 	protected final VoxelShape downAabb;
 
-	public CrystalClusterBlock(BlockBehaviour.Properties properties) {
+	public DirectionalBudBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
 		this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
@@ -43,28 +43,21 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	protected MapCodec<? extends CrystalClusterBlock> codec() {
+	protected MapCodec<? extends DirectionalBudBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
 		Direction direction = state.getValue(FACING);
-		switch (direction) {
-			case NORTH:
-				return this.northAabb;
-			case SOUTH:
-				return this.southAabb;
-			case EAST:
-				return this.eastAabb;
-			case WEST:
-				return this.westAabb;
-			case DOWN:
-				return this.downAabb;
-			case UP:
-			default:
-				return this.upAabb;
-		}
+		return switch (direction) {
+			case NORTH -> this.northAabb;
+			case SOUTH -> this.southAabb;
+			case EAST -> this.eastAabb;
+			case WEST -> this.westAabb;
+			case DOWN -> this.downAabb;
+			default -> this.upAabb;
+		};
 	}
 
 	@Override
@@ -87,7 +80,7 @@ public class CrystalClusterBlock extends Block implements SimpleWaterloggedBlock
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		LevelAccessor levelaccessor = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
-		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER)).setValue(FACING, context.getClickedFace());
+		return this.defaultBlockState().setValue(WATERLOGGED, levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER).setValue(FACING, context.getClickedFace());
 	}
 
 	@Override

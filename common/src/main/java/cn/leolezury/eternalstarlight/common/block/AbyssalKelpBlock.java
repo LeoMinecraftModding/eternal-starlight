@@ -86,7 +86,7 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 
 	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
-		serverLevel.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(true)), 2);
+		serverLevel.setBlock(pos, state.setValue(BERRIES, true), 2);
 	}
 
 	@Override

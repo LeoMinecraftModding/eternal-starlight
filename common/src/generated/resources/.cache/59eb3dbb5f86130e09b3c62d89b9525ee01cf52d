@@ -1,4 +1,4 @@
-// 1.21	2024-08-03T20:02:34.8695319	Loot Tables
+// 1.21	2024-08-06T17:00:17.0265267	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -443,6 +443,8 @@ bcb2153ed196703b0318e0047d0c88b058089a61 data/eternal_starlight/loot_table/block
 51e2d5a2c40654825c2a03cb50b640a05d5a449e data/eternal_starlight/loot_table/blocks/twilight_sandstone_stairs.json
 045fb4a4854109b8e791a25b0d0ebffc66039ac8 data/eternal_starlight/loot_table/blocks/twilight_sandstone_wall.json
 2873302368dc6d7fae6b5e1b341ccf8dff58d883 data/eternal_starlight/loot_table/blocks/twilvewyrm_herb.json
+18fb36fb35d0070b9ecf7b45bd6e2b534058ce9a data/eternal_starlight/loot_table/blocks/velvetumoss.json
+e22c0917c725f85ac35db6872ee4bc2a41d80338 data/eternal_starlight/loot_table/blocks/velvetumoss_villi.json
 a7c3f7dd2d911e04dadffdabee53308deb4dc179 data/eternal_starlight/loot_table/blocks/vividstalk.json
 25936d55364ae510f6dbae38961e625027378748 data/eternal_starlight/loot_table/blocks/voidstone.json
 cd0958c9d0b1a5c51f45a167f403f7a01a5bd7c3 data/eternal_starlight/loot_table/blocks/voidstone_bricks.json

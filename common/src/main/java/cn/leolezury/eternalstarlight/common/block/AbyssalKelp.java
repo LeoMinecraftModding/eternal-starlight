@@ -21,7 +21,7 @@ public interface AbyssalKelp {
 			Block.popResource(level, pos, new ItemStack(ESItems.ABYSSAL_FRUIT.get(), 1));
 			float f = Mth.randomBetween(level.random, 0.8F, 1.2F);
 			level.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
-			level.setBlock(pos, state.setValue(BERRIES, Boolean.valueOf(false)), 2);
+			level.setBlock(pos, state.setValue(BERRIES, false), 2);
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
 			return InteractionResult.PASS;

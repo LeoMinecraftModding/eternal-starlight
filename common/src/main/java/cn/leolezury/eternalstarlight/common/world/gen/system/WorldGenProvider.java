@@ -32,7 +32,7 @@ public class WorldGenProvider {
 
 	private long seed;
 	private int cacheSize = 32;
-	public PerlinSimplexNoise[] noises = new PerlinSimplexNoise[3];
+	public PerlinSimplexNoise[] noises = new PerlinSimplexNoise[]{new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed), List.of(0)), new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 2 + 5), List.of(0)), new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 3 + 10), List.of(0))};
 	public RegistryAccess registryAccess;
 	public Registry<BiomeData> biomeDataRegistry;
 	public Registry<DataTransformer> dataTransformerRegistry;
@@ -48,10 +48,12 @@ public class WorldGenProvider {
 	}
 
 	public void setSeed(long seed) {
-		this.seed = seed;
-		this.noises[0] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed), List.of(0));
-		this.noises[1] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 2 + 5), List.of(0));
-		this.noises[2] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 3 + 10), List.of(0));
+		if (this.seed != seed) {
+			this.seed = seed;
+			this.noises[0] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed), List.of(0));
+			this.noises[1] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 2 + 5), List.of(0));
+			this.noises[2] = new PerlinSimplexNoise(WorldgenRandom.Algorithm.LEGACY.newInstance(seed * 3 + 10), List.of(0));
+		}
 	}
 
 	public void setRegistryAccess(RegistryAccess access) {

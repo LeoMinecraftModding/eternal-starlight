@@ -29,7 +29,7 @@ public class BuddingSulfurQuartzBlock extends Block {
 				BlockPos growPos = blockPos.relative(direction);
 				boolean water = serverLevel.getBlockState(growPos).is(Blocks.WATER);
 				if (serverLevel.getBlockState(growPos).isAir() || water) {
-					serverLevel.setBlockAndUpdate(growPos, ESBlocks.THIOQUARTZ_CLUSTER.get().defaultBlockState().setValue(CrystalClusterBlock.WATERLOGGED, water).setValue(CrystalClusterBlock.FACING, direction));
+					serverLevel.setBlockAndUpdate(growPos, ESBlocks.THIOQUARTZ_CLUSTER.get().defaultBlockState().setValue(DirectionalBudBlock.WATERLOGGED, water).setValue(DirectionalBudBlock.FACING, direction));
 				}
 			}
 		}

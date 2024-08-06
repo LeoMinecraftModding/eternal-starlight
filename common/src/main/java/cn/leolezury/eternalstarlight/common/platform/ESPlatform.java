@@ -29,8 +29,10 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameRules;
@@ -39,6 +41,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
@@ -131,6 +134,11 @@ public interface ESPlatform {
 	boolean isShield(ItemStack stack);
 
 	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
+
+	// dispenser
+	default boolean canBoatInFluid(Boat boat, FluidState state) {
+		return state.is(FluidTags.WATER);
+	}
 
 	// client-side
 	@Environment(EnvType.CLIENT)

@@ -20,16 +20,25 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
 		super(codec);
 	}
 
+	private long lastSeed;
+	private PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(lastSeed), List.of(0));
+
+	public void setSeed(long seed) {
+		if (seed != lastSeed) {
+			this.noise = new PerlinSimplexNoise(RandomSource.create(seed), List.of(0));
+			lastSeed = seed;
+		}
+	}
+
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
-		PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(level.getSeed() / 5 + 3), List.of(0));
-		BlockPos chunkCoord = getChunkCoordinate(context.origin()).offset(1, 0, 1);
-
+		BlockPos chunkCoord = getChunkCoordinate(context.origin());
+		setSeed(level.getSeed());
 		for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {
 			for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
 				if (noise.getValue(x / 20d, z / 20d, false) > -0.1) {
-					int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1;
+					int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
 					BlockPos waterPos = new BlockPos(x, y, z);
 					if (level.getBlockState(waterPos.offset(0, 1, 0)).isAir()
 						&& isValid(level.getBlockState(waterPos.offset(0, -1, 0)))

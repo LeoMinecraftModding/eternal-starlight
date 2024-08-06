@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -93,11 +93,11 @@ public class ESSkyRenderer {
 			poseStack.pushPose();
 
 			float rainLevel = level.getRainLevel(partialTicks);
-			if (ClientWeatherInfo.WEATHER != null) {
-				rainLevel = ClientWeatherInfo.WEATHER.modifyRainLevel(rainLevel);
+			if (ClientWeatherState.weather != null) {
+				rainLevel = ClientWeatherState.weather.modifyRainLevel(rainLevel);
 			} else {
-				ClientWeatherInfo.LEVEL_TARGET = rainLevel;
-				rainLevel = ClientWeatherInfo.getRainLevel(partialTicks);
+				ClientWeatherState.levelTarget = rainLevel;
+				rainLevel = ClientWeatherState.getRainLevel(partialTicks);
 			}
 
 			j = 1.0F - rainLevel;

@@ -1,4 +1,4 @@
-// 1.21	2024-08-03T20:02:34.8818274	Item Models: eternal_starlight
+// 1.21	2024-08-06T17:00:17.0492932	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -598,6 +598,9 @@ fdb7af22bc42153ce2bfedfb530c0e10d0df5c0f assets/eternal_starlight/models/item/tw
 6b0bcb2bbe6bbff137bbc5c6bedce953c53c3df7 assets/eternal_starlight/models/item/twilight_sandstone_stairs.json
 f1f46c6a80778a599f6de33c0de5c41f5cdec46c assets/eternal_starlight/models/item/twilight_sandstone_wall.json
 a19f2923df1b177d725af3b13fbf0021aac3ce70 assets/eternal_starlight/models/item/twilvewyrm_herb.json
+29f6b927a7a5ab67d57d8f45b66374a3b01ee4dc assets/eternal_starlight/models/item/velvetumoss.json
+c123af7be86616c582db0fd6f8df6a322e1a6193 assets/eternal_starlight/models/item/velvetumoss_ball.json
+d4cad2bbe0f0979882a2c1bbcb3463f082382819 assets/eternal_starlight/models/item/velvetumoss_villi.json
 2e3ac62336004e80ae909794b815d37f0e7a362f assets/eternal_starlight/models/item/vividstalk.json
 84375efb6a09e569d10c94ae06e7000c3c504b77 assets/eternal_starlight/models/item/voidstone.json
 4814b9a46308ddd22ec756acab12a7cd875f849e assets/eternal_starlight/models/item/voidstone_bricks.json

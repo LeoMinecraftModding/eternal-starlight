@@ -71,6 +71,6 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 
 	@Override
 	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-		serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, Boolean.valueOf(true)), 2);
+		serverLevel.setBlock(blockPos, blockState.setValue(BERRIES, true), 2);
 	}
 }

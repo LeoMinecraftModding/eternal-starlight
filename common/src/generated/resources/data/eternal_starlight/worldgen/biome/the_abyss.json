@@ -17,12 +17,6 @@
       "replace_current_music": false,
       "sound": "eternal_starlight:music.biome.the_abyss"
     },
-    "particle": {
-      "options": {
-        "type": "eternal_starlight:starlight"
-      },
-      "probability": 0.001
-    },
     "sky_color": 5658761,
     "water_color": 6187416,
     "water_fog_color": 3409191
@@ -57,7 +51,8 @@
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:abyssal_kelp",
-      "eternal_starlight:orbflora"
+      "eternal_starlight:orbflora",
+      "eternal_starlight:velvetumoss"
     ],
     [
       "minecraft:freeze_top_layer",

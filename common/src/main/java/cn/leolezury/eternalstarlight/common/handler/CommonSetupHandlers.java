@@ -11,6 +11,9 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.Tangl
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
+import cn.leolezury.eternalstarlight.common.item.dispenser.BucketDispenseItemBehavior;
+import cn.leolezury.eternalstarlight.common.item.dispenser.ESBoatDispenseItemBehavior;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -22,17 +25,26 @@ import com.google.common.base.Suppliers;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,6 +75,55 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());
+		DispenserBlock.registerBehavior(ESItems.LUNAR_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR));
+		DispenserBlock.registerBehavior(ESItems.LUNAR_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR, true));
+		DispenserBlock.registerBehavior(ESItems.NORTHLAND_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.NORTHLAND));
+		DispenserBlock.registerBehavior(ESItems.NORTHLAND_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.NORTHLAND, true));
+		DispenserBlock.registerBehavior(ESItems.STARLIGHT_MANGROVE_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.STARLIGHT_MANGROVE));
+		DispenserBlock.registerBehavior(ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.STARLIGHT_MANGROVE, true));
+		DispenserBlock.registerBehavior(ESItems.SCARLET_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.SCARLET));
+		DispenserBlock.registerBehavior(ESItems.SCARLET_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.SCARLET, true));
+		DispenserBlock.registerBehavior(ESItems.TORREYA_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA));
+		DispenserBlock.registerBehavior(ESItems.TORREYA_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA, true));
+		DispenserBlock.registerBehavior(ESItems.ETHER_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.SALTPETER_MATCHBOX.get(), new OptionalDispenseItemBehavior() {
+			@Override
+			protected ItemStack execute(BlockSource blockSource, ItemStack item) {
+				ServerLevel serverLevel = blockSource.level();
+				this.setSuccess(true);
+				Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
+				BlockPos blockPos = blockSource.pos().relative(direction);
+				BlockState blockState = serverLevel.getBlockState(blockPos);
+				if (BaseFireBlock.canBePlacedAt(serverLevel, blockPos, direction)) {
+					serverLevel.setBlockAndUpdate(blockPos, BaseFireBlock.getState(serverLevel, blockPos));
+					serverLevel.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+				} else if (!CampfireBlock.canLight(blockState) && !CandleBlock.canLight(blockState) && !CandleCakeBlock.canLight(blockState)) {
+					if (blockState.getBlock() instanceof TntBlock) {
+						TntBlock.explode(serverLevel, blockPos);
+						serverLevel.removeBlock(blockPos, false);
+					} else {
+						this.setSuccess(false);
+					}
+				} else {
+					serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(BlockStateProperties.LIT, true));
+					serverLevel.gameEvent(null, GameEvent.BLOCK_CHANGE, blockPos);
+				}
+
+				if (this.isSuccess()) {
+					item.hurtAndBreak(1, serverLevel, null, (i) -> {
+					});
+				}
+
+				return item;
+			}
+		});
+		DispenserBlock.registerBehavior(ESItems.TANGLED_SKULL.get(), new OptionalDispenseItemBehavior() {
+			@Override
+			protected ItemStack execute(BlockSource blockSource, ItemStack item) {
+				this.setSuccess(ArmorItem.dispenseArmor(blockSource, item));
+				return item;
+			}
+		});
 	}
 
 	public interface NetworkRegisterStrategy {

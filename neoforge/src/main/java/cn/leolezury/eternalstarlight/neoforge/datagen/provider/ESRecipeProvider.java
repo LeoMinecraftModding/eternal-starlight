@@ -167,6 +167,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 
 		// misc
+		addShapeless(recipeOutput, ESItems.VELVETUMOSS_BALL.get(), Items.SLIME_BALL, 2, ESItems.VELVETUMOSS_BALL.get());
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
 		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
@@ -713,19 +714,32 @@ public class ESRecipeProvider extends RecipeProvider {
 		addLeggings(recipeOutput, ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		addBoots(recipeOutput, ESItems.SWAMP_SILVER_BOOTS.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.SHIELD)
-			.pattern("PIP")
+			.pattern("P#P")
 			.pattern("PPP")
 			.pattern(" P ")
 			.define('P', ItemTags.PLANKS)
-			.define('I', ESItems.SWAMP_SILVER_INGOT.get())
+			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
 			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
 			.save(recipeOutput, EternalStarlight.id("shield_from_swamp_silver_ingot"));
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.SHEARS)
-			.pattern("I ")
-			.pattern(" I")
-			.define('I', ESItems.SWAMP_SILVER_INGOT.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.SHEARS)
+			.pattern("# ")
+			.pattern(" #")
+			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
 			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
 			.save(recipeOutput, EternalStarlight.id("shears_from_swamp_silver_ingot"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.BUCKET)
+			.pattern("# #")
+			.pattern(" # ")
+			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.save(recipeOutput, EternalStarlight.id("bucket_from_swamp_silver_ingot"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, Blocks.CAULDRON)
+			.pattern("# #")
+			.pattern("# #")
+			.pattern("###")
+			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
+			.unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
+			.save(recipeOutput, EternalStarlight.id("cauldron_from_swamp_silver_ingot"));
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_NUGGET.get(), ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_BOOTS.get());
@@ -1092,7 +1106,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	// stone
+	// moss
 	protected final void addStoneCompress(RecipeOutput recipeOutput, Block output, Block input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
 			.pattern("##")

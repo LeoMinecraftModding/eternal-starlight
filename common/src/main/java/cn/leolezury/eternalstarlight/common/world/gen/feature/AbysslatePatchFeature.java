@@ -54,6 +54,6 @@ public class AbysslatePatchFeature extends Feature<AbysslatePatchFeature.Configu
 	}
 
 	public record Configuration(Block stone, BlockStateProvider magma, BlockStateProvider geyser) implements FeatureConfiguration {
-		public static final Codec<AbysslatePatchFeature.Configuration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BuiltInRegistries.BLOCK.byNameCodec().fieldOf("stone").forGetter(AbysslatePatchFeature.Configuration::stone), BlockStateProvider.CODEC.fieldOf("magma").forGetter(AbysslatePatchFeature.Configuration::magma), BlockStateProvider.CODEC.fieldOf("geyser").forGetter(AbysslatePatchFeature.Configuration::geyser)).apply(instance, AbysslatePatchFeature.Configuration::new));
+		public static final Codec<AbysslatePatchFeature.Configuration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BuiltInRegistries.BLOCK.byNameCodec().fieldOf("moss").forGetter(AbysslatePatchFeature.Configuration::stone), BlockStateProvider.CODEC.fieldOf("magma").forGetter(AbysslatePatchFeature.Configuration::magma), BlockStateProvider.CODEC.fieldOf("geyser").forGetter(AbysslatePatchFeature.Configuration::geyser)).apply(instance, AbysslatePatchFeature.Configuration::new));
 	}
 }

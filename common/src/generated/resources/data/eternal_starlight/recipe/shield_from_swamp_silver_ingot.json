@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
+    "#": {
       "item": "eternal_starlight:swamp_silver_ingot"
     },
     "P": {
@@ -10,7 +10,7 @@
     }
   },
   "pattern": [
-    "PIP",
+    "P#P",
     "PPP",
     " P "
   ],

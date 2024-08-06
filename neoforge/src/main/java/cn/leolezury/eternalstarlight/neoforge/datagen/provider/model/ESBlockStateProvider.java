@@ -40,8 +40,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		orbflora(ESBlocks.ORBFLORA.get());
 		cross(ESBlocks.ORBFLORA_PLANT.get());
 		simpleBlock(ESBlocks.ORBFLORA_LIGHT.get());
-		crystalCluster(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-		crystalCluster(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
 		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
 		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get()));
@@ -74,6 +74,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		coralWallFan(ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(), ESBlocks.CRYSTALLUM_CORAL_FAN.get());
 		simpleBlock(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
 		simpleBlock(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get());
+
+		mushroomLikeBlock(ESBlocks.VELVETUMOSS.get());
+		directionalCrossCropBud(ESBlocks.VELVETUMOSS_VILLI.get());
 
 		// woods
 		leaves(ESBlocks.LUNAR_LEAVES.get());
@@ -161,7 +164,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.THIOQUARTZ_BLOCK.get());
 		simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
-		crystalCluster(ESBlocks.THIOQUARTZ_CLUSTER.get());
+		directionalBud(ESBlocks.THIOQUARTZ_CLUSTER.get());
 		stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
 		polishedToxite(ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
 		slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
@@ -261,9 +264,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_VIVIDSTALK.get(), blockTexture(ESBlocks.VIVIDSTALK.get()));
 		doublePlant(ESBlocks.TALL_GLADESPIKE.get());
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
-		mushroomBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
+		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
-		mushroomBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
+		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 
 		cross(ESBlocks.SWAMP_ROSE.get());
 		pottedPlant(ESBlocks.POTTED_SWAMP_ROSE.get(), blockTexture(ESBlocks.SWAMP_ROSE.get()));
@@ -536,8 +539,18 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		horizontalBlock(wall, state -> state.getValue(BlockStateProperties.LIT) ? modelWall : modelWallOff, 90);
 	}
 
-	private void crystalCluster(Block block) {
+	private void directionalBud(Block block) {
 		ModelFile modelFile = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
+		getVariantBuilder(block).forAllStates((state) -> {
+			Direction direction = state.getValue(BlockStateProperties.FACING);
+			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
+			return ConfiguredModel.builder()
+				.modelFile(modelFile).rotationY(((int) direction.toYRot() + 180) % 360).rotationX(rotX).build();
+		});
+	}
+
+	private void directionalCrossCropBud(Block block) {
+		ModelFile modelFile = models().singleTexture(name(block), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/cross_crop"), "cross", blockTexture(block)).renderType(CUTOUT);
 		getVariantBuilder(block).forAllStates((state) -> {
 			Direction direction = state.getValue(BlockStateProperties.FACING);
 			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
@@ -653,11 +666,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.condition(BlockStateProperties.WEST, false).end();
 	}
 
-	private void mushroomBlock(Block block) {
-		mushroomBlock(block, blockTexture(block).withSuffix("_inside"));
+	private void mushroomLikeBlock(Block block) {
+		mushroomLikeBlock(block, blockTexture(block).withSuffix("_inside"));
 	}
 
-	private void mushroomBlock(Block block, ResourceLocation inner) {
+	private void mushroomLikeBlock(Block block, ResourceLocation inner) {
 		ModelFile modelOutside = models().singleTexture(name(block), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
 		ModelFile modelInside = models().singleTexture(name(block) + "_inside", ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), inner);
 		getMultipartBuilder(block)

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherInfo;
+import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.book.Book;
 import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.DisplayBookComponent;
@@ -42,7 +42,7 @@ public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleS2cNoParam(NoParametersPacket packet) {
 		switch (packet.id()) {
-			case "cancel_weather" -> ClientWeatherInfo.WEATHER = null;
+			case "cancel_weather" -> ClientWeatherState.weather = null;
 		}
 	}
 
@@ -70,12 +70,12 @@ public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleUpdateCamera(UpdateCameraPacket packet) {
 		if (packet.cameraId() == -1) {
-			ClientHandlers.RESET_CAMERA_IN = 0;
+			ClientHandlers.resetCameraIn = 0;
 		} else {
 			if (Minecraft.getInstance().level != null && !(Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator)) {
 				Entity camera = Minecraft.getInstance().level.getEntity(packet.cameraId());
 				if (camera != null) {
-					ClientHandlers.RESET_CAMERA_IN = 260;
+					ClientHandlers.resetCameraIn = 260;
 					Minecraft.getInstance().options.hideGui = true;
 					Minecraft.getInstance().setCameraEntity(camera);
 				}

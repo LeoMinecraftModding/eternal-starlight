@@ -124,6 +124,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
 			ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
 		);
+		tag(ESTags.Blocks.ABYSSLATES).add(
+			ESBlocks.ABYSSLATE.get(),
+			ESBlocks.THERMABYSSLATE.get(),
+			ESBlocks.CRYOBYSSLATE.get()
+		);
 		tag(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLE).addTags(
 			BlockTags.LEAVES,
 			BlockTags.LOGS,
@@ -473,7 +478,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TENTACLES_CORAL_BLOCK.get(),
 			ESBlocks.GOLDEN_CORAL_BLOCK.get(),
 			ESBlocks.CRYSTALLUM_CORAL_BLOCK.get(),
-			// all stone building blocks
+			// all moss building blocks
 			ESBlocks.GRIMSTONE.get(),
 			ESBlocks.COBBLED_GRIMSTONE.get(),
 			ESBlocks.COBBLED_GRIMSTONE_SLAB.get(),

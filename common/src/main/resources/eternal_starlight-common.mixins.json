@@ -27,6 +27,7 @@
   ],
   "client": [
     "client.EntityRenderDispatcherMixin",
+    "client.FogRendererMixin",
     "client.GameRendererMixin",
     "client.HumanoidArmorLayerMixin",
     "client.ItemInHandRendererMixin",

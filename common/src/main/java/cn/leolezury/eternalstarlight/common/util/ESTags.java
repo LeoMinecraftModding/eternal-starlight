@@ -70,6 +70,7 @@ public class ESTags {
 		public static final TagKey<Block> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Block> ABYSSAL_FIRE_SURVIVES_ON = create("abyssal_fire_survives_on");
+		public static final TagKey<Block> ABYSSLATES = create("abysslates");
 		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLE = create("aethersent_meteor_replaceable");
 
 		private static TagKey<Block> create(String string) {

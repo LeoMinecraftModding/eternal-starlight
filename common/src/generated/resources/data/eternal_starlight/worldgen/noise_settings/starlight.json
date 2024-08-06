@@ -77,7 +77,7 @@
             "false_at_and_above": {
               "absolute": 8
             },
-            "random_name": "minecraft:stone",
+            "random_name": "minecraft:moss",
             "true_at_and_below": {
               "absolute": 0
             }

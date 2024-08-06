@@ -98,6 +98,8 @@ accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSele
 # datagen
 accessible class net/minecraft/data/models/ItemModelGenerators$TrimModelData
 accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MODELS Ljava/util/List;
+accessible field net/minecraft/world/item/crafting/ShapedRecipePattern data Ljava/util/Optional;
+accessible field net/minecraft/world/item/crafting/ShapedRecipe pattern Lnet/minecraft/world/item/crafting/ShapedRecipePattern;
 
 # sprite source list mixin
 mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermutations textures Ljava/util/List;
