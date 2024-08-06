@@ -1106,7 +1106,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	// moss
+	// stone
 	protected final void addStoneCompress(RecipeOutput recipeOutput, Block output, Block input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
 			.pattern("##")
