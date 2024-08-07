@@ -378,6 +378,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			fightPlayerOnly = true;
 			setFightTargetName("");
 			setActivated(false);
+			if (level() instanceof ServerLevel serverLevel) {
+				dropCustomDeathLoot(serverLevel, source, true);
+			}
 		}
 	}
 
