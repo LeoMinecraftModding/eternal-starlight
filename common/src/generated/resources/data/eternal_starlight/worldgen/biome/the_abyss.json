@@ -52,7 +52,8 @@
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:abyssal_kelp",
       "eternal_starlight:orbflora",
-      "eternal_starlight:velvetumoss"
+      "eternal_starlight:velvetumoss",
+      "eternal_starlight:red_velvetumoss"
     ],
     [
       "minecraft:freeze_top_layer",
@@ -65,7 +66,7 @@
     "ambient": [
       {
         "type": "minecraft:bat",
-        "maxCount": 4,
+        "maxCount": 2,
         "minCount": 1,
         "weight": 1
       },

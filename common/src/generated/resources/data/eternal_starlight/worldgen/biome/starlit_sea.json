@@ -67,7 +67,7 @@
     "ambient": [
       {
         "type": "minecraft:bat",
-        "maxCount": 4,
+        "maxCount": 2,
         "minCount": 1,
         "weight": 1
       },

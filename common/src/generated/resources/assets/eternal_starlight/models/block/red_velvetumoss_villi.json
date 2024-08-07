@@ -1,0 +1,7 @@
+{
+  "parent": "eternal_starlight:block/cross_crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "eternal_starlight:block/red_velvetumoss_villi"
+  }
+}

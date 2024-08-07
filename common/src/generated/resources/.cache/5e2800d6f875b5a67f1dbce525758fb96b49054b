@@ -1,4 +1,4 @@
-// 1.21	2024-08-06T17:00:17.0735481	Tags for minecraft:item mod id eternal_starlight
+// 1.21	2024-08-07T13:43:24.1667475	Tags for minecraft:item mod id eternal_starlight
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 f211a2cd76e55fe185b298a1a6775abd132682fe data/eternal_starlight/tags/item/blaze_crystal_ingredients.json
@@ -64,7 +64,7 @@ b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/item/saplings.json
 229c9712e50dee38e54100458b0b186472e4baf5 data/minecraft/tags/item/shovels.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/item/signs.json
 cbf587999db8d024ba632ec4171ecc68ea152373 data/minecraft/tags/item/slabs.json
-e988995ef8ba6aff59db931393fa8252f8d8e8d9 data/minecraft/tags/item/small_flowers.json
+8870c4a6385d90a9300d6230dc7d54e7c6ea821c data/minecraft/tags/item/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/smelts_to_glass.json
 26f9692e9c0017213b3371c8b3c584140d33f925 data/minecraft/tags/item/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting_materials.json

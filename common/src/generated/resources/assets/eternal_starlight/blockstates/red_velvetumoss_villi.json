@@ -1,0 +1,1460 @@
+{
+  "variants": {
+    "age=0,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=0,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=0,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=0,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=0,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=0,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=0,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=0,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=0,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=0,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=0,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=0,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=1,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=1,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=1,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=1,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=1,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=1,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=1,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=1,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=1,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=1,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=1,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=1,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=10,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=10,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=10,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=10,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=10,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=10,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=10,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=10,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=10,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=10,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=10,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=10,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=11,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=11,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=11,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=11,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=11,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=11,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=11,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=11,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=11,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=11,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=11,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=11,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=12,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=12,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=12,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=12,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=12,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=12,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=12,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=12,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=12,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=12,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=12,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=12,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=13,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=13,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=13,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=13,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=13,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=13,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=13,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=13,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=13,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=13,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=13,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=13,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=14,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=14,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=14,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=14,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=14,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=14,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=14,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=14,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=14,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=14,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=14,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=14,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=15,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=15,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=15,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=15,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=15,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=15,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=15,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=15,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=15,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=15,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=15,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=15,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=16,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=16,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=16,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=16,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=16,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=16,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=16,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=16,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=16,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=16,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=16,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=16,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=17,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=17,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=17,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=17,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=17,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=17,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=17,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=17,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=17,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=17,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=17,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=17,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=18,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=18,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=18,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=18,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=18,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=18,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=18,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=18,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=18,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=18,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=18,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=18,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=19,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=19,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=19,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=19,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=19,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=19,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=19,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=19,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=19,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=19,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=19,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=19,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=2,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=2,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=2,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=2,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=2,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=2,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=2,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=2,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=2,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=2,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=2,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=2,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=20,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=20,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=20,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=20,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=20,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=20,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=20,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=20,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=20,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=20,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=20,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=20,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=21,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=21,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=21,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=21,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=21,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=21,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=21,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=21,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=21,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=21,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=21,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=21,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=22,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=22,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=22,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=22,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=22,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=22,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=22,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=22,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=22,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=22,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=22,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=22,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=23,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=23,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=23,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=23,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=23,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=23,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=23,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=23,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=23,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=23,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=23,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=23,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=24,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=24,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=24,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=24,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=24,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=24,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=24,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=24,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=24,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=24,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=24,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=24,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=25,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=25,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=25,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=25,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=25,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=25,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=25,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=25,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=25,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=25,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=25,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=25,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=3,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=3,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=3,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=3,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=3,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=3,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=3,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=3,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=3,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=3,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=3,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=3,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=4,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=4,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=4,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=4,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=4,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=4,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=4,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=4,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=4,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=4,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=4,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=4,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=5,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=5,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=5,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=5,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=5,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=5,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=5,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=5,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=5,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=5,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=5,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=5,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=6,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=6,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=6,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=6,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=6,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=6,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=6,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=6,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=6,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=6,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=6,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=6,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=7,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=7,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=7,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=7,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=7,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=7,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=7,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=7,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=7,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=7,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=7,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=7,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=8,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=8,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=8,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=8,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=8,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=8,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=8,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=8,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=8,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=8,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=8,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=8,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=9,facing=down,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=9,facing=down,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 180,
+      "y": 90
+    },
+    "age=9,facing=east,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=9,facing=east,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 90
+    },
+    "age=9,facing=north,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=9,facing=north,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90
+    },
+    "age=9,facing=south,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=9,facing=south,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 180
+    },
+    "age=9,facing=up,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=9,facing=up,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "y": 90
+    },
+    "age=9,facing=west,waterlogged=false": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    },
+    "age=9,facing=west,waterlogged=true": {
+      "model": "eternal_starlight:block/red_velvetumoss_villi",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -82,7 +82,7 @@ public class ClientHandlers {
 	public static float fogEndDecrement;
 	public static float abyssalFogModifier = 1;
 	public static float oldAbyssalFogModifier = 1;
-	public static MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
+	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f modelViewMatrix = new Matrix4f();
 
 	public static void onClientTick() {

@@ -1,4 +1,4 @@
-// 1.21	2024-08-06T17:00:17.0265267	Loot Tables
+// 1.21	2024-08-07T13:21:48.7581759	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -327,6 +327,9 @@ a5113ecb37d93d451ee9f3d3191d5156c6c3c9e3 data/eternal_starlight/loot_table/block
 b4a207f4a9705ae834f958bf062eb5952ee6b81d data/eternal_starlight/loot_table/blocks/red_scarlet_bud.json
 fc896f1725520233306a637a223b00d02ba97a34 data/eternal_starlight/loot_table/blocks/red_starlight_crystal_block.json
 6a2d39c8ec43c4fc5c746850b477da99556a4e5c data/eternal_starlight/loot_table/blocks/red_starlight_crystal_cluster.json
+eb0a7d0f83747d248162acce7dcefe45a46a1fdb data/eternal_starlight/loot_table/blocks/red_velvetumoss.json
+5e0fc25153013c62f071bed6227bba453667af9a data/eternal_starlight/loot_table/blocks/red_velvetumoss_flower.json
+ef6ca7beece08afed4cbf091c118e83fa28f7cde data/eternal_starlight/loot_table/blocks/red_velvetumoss_villi.json
 2deae18bad3a4ed6ae974f676488deb586992f0a data/eternal_starlight/loot_table/blocks/red_yeti_fur.json
 7b3979c205452ca8498f5cea55ed9769cb55e15b data/eternal_starlight/loot_table/blocks/red_yeti_fur_carpet.json
 e94e4b76890737d9e21f4b365f6a9d7e83d56482 data/eternal_starlight/loot_table/blocks/saltpeter_block.json

@@ -1,4 +1,4 @@
-// 1.21	2024-08-06T17:00:17.0492932	Item Models: eternal_starlight
+// 1.21	2024-08-07T13:21:48.7709453	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -424,6 +424,9 @@ c117a38394a4865e20d4caa62e5ef100f86a8767 assets/eternal_starlight/models/item/re
 346e34a8ffe8839da5ffce6686976c7ba17a6ccb assets/eternal_starlight/models/item/red_starlight_crystal_block.json
 7ea183200cb221b2a65413d912edfc78fa4afe2c assets/eternal_starlight/models/item/red_starlight_crystal_cluster.json
 2af664117fc20af536b0880c652bc63da9fcb6d0 assets/eternal_starlight/models/item/red_starlight_crystal_shard.json
+f8688f911dc9c3cf9ed94ff75a418b1779e41779 assets/eternal_starlight/models/item/red_velvetumoss.json
+c8936937ba737d99dc12d1193294bb867b1a4e49 assets/eternal_starlight/models/item/red_velvetumoss_flower.json
+f22f7d2bd6a1a4aa879492724d8f95ba16448f35 assets/eternal_starlight/models/item/red_velvetumoss_villi.json
 fc59e358d3237623d450ec537ca515ba980d47d6 assets/eternal_starlight/models/item/red_yeti_fur.json
 101a64c3decfe1e7bc006b5d4f5d5fc3a4e56848 assets/eternal_starlight/models/item/red_yeti_fur_carpet.json
 032a732237f5ff3d4989264bdd7102e905879af8 assets/eternal_starlight/models/item/rotten_ham.json

@@ -1,0 +1,8 @@
+{
+  "type": "eternal_starlight:velvetumoss",
+  "config": {
+    "flower": "eternal_starlight:red_velvetumoss_flower",
+    "moss": "eternal_starlight:red_velvetumoss",
+    "villi": "eternal_starlight:red_velvetumoss_villi"
+  }
+}

@@ -330,6 +330,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TORREYA_TRAPDOOR.get()
 		);
 		tag(BlockTags.SMALL_FLOWERS).add(
+			ESBlocks.RED_VELVETUMOSS_FLOWER.get(),
 			ESBlocks.STARLIGHT_FLOWER.get(),
 			ESBlocks.CONEBLOOM.get(),
 			ESBlocks.NIGHTFAN.get(),

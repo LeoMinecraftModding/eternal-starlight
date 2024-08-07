@@ -75,6 +75,9 @@ public class ESBlocks {
 	// abyssal plant
 	public static final RegistryObject<Block, VelvetumossBlock> VELVETUMOSS = BLOCKS.register("velvetumoss", () -> new VelvetumossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).randomTicks().sound(SoundType.SLIME_BLOCK)));
 	public static final RegistryObject<Block, VelvetumossVilliBlock> VELVETUMOSS_VILLI = BLOCKS.register("velvetumoss_villi", () -> new VelvetumossVilliBlock(VELVETUMOSS.asHolder(), BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).randomTicks()));
+	public static final RegistryObject<Block, RedVelvetumossBlock> RED_VELVETUMOSS = BLOCKS.register("red_velvetumoss", () -> new RedVelvetumossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).randomTicks().mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, VelvetumossVilliBlock> RED_VELVETUMOSS_VILLI = BLOCKS.register("red_velvetumoss_villi", () -> new VelvetumossVilliBlock(RED_VELVETUMOSS.asHolder(), BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).randomTicks().mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, AquaticFlowerBlock> RED_VELVETUMOSS_FLOWER = BLOCKS.register("red_velvetumoss_flower", () -> new AquaticFlowerBlock(MobEffects.WATER_BREATHING, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_RED)));
 
 	// lunar wood
 	public static final RegistryObject<Block, LeavesBlock> LUNAR_LEAVES = BLOCKS.register("lunar_leaves",
