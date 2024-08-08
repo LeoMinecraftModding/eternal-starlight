@@ -28,6 +28,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.get(), definition().with(sound(loc("music/biome/dark_swamp")).stream(), sound(loc("music/dimension/tranquility")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_SCARLET_FOREST.get(), definition().with(sound(loc("music/biome/scarlet_forest")).stream(), sound(loc("music/dimension/tranquility")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_TORREYA_FOREST.get(), definition().with(sound(loc("music/biome/torreya_forest")).stream(), sound(loc("music/dimension/tranquility")).stream()));
+		add(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.get(), definition().with(sound(loc("music/biome/crystallized_desert")).stream(), sound(loc("music/dimension/tranquility")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.get(), definition().with(sound(loc("music/biome/starlit_sea")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.get(), definition().with(sound(loc("music/biome/atlantis")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS.get(), definition().with(sound(loc("music/boss/common")).stream()));

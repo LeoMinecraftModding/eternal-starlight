@@ -14,6 +14,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST = register("music.biome.starlight_permafrost_forest");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_SCARLET_FOREST = register("music.biome.scarlet_forest");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_TORREYA_FOREST = register("music.biome.torreya_forest");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_CRYSTALLIZED_DESERT = register("music.biome.crystallized_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIT_SEA = register("music.biome.starlit_sea");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_THE_ABYSS = register("music.biome.the_abyss");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS = register("music.boss.common");

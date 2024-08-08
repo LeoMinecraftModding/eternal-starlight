@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
-    "bottom": "eternal_starlight:block/lunaris_cactus_fruit_top",
+    "bottom": "eternal_starlight:block/lunaris_cactus_fruit_bottom",
     "front": "eternal_starlight:block/carved_lunaris_cactus_fruit",
     "side": "eternal_starlight:block/lunaris_cactus_fruit",
-    "top": "eternal_starlight:block/lunaris_cactus_fruit_bottom"
+    "top": "eternal_starlight:block/lunaris_cactus_fruit_top"
   }
 }

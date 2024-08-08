@@ -38,6 +38,7 @@ public class ESBiomes {
 	public static final Music MUSIC_SWAMP = new Music(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_SCARLET_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_SCARLET_FOREST.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_TORREYA_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_TORREYA_FOREST.asHolder(), 1200, 12000, false);
+	public static final Music MUSIC_DESERT = new Music(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_STARLIT_SEA = new Music(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_ABYSS = new Music(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.asHolder(), 1200, 12000, false);
 
@@ -50,7 +51,7 @@ public class ESBiomes {
 		context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(1310740).foliageColorOverride(7890120).skyColor(1310740).grassColorOverride(4075082).waterColor(7428526).waterFogColor(7428526).backgroundMusic(MUSIC_SWAMP), swampSpawns(), swampSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_SCARLET_FOREST), baseLandSpawnBuilder(), scarletForestSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(TORREYA_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(7229604).foliageColorOverride(7229604).skyColor(7229604).grassColorOverride(7229604).backgroundMusic(MUSIC_TORREYA_FOREST), baseLandSpawnBuilder(), torreyaForestSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_TRANQUILITY), desertSpawns(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DESERT), desertSpawns(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), etherRiverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040).backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());

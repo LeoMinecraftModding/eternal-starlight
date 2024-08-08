@@ -10,7 +10,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
@@ -75,6 +79,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 					if (radius != 0 && (x == radius && (z == radius || z == -radius) || x == -radius && (z == radius || z == -radius))) {
 						continue;
 					}
+					safeSetDirt(level, placer, random, origin.offset(x, -1, z), config);
 					BlockPos pos = origin.offset(x, y, z);
 					if (shouldAddLayer && x == 0 & z == 0) {
 						BlockPos branchLayerPos;
@@ -110,5 +115,15 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 		}
 
 		return leafAttachments;
+	}
+
+	protected static void safeSetDirt(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> placer, RandomSource random, BlockPos pos, TreeConfiguration config) {
+		if ((level.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || level.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::canBeReplaced) || level.isStateAtPosition(pos, state -> state.getBlock() instanceof LiquidBlock)) && (config.forceDirt || !isDirt(level, pos))) {
+			placer.accept(pos, config.dirtProvider.getState(random, pos));
+		}
+	}
+
+	private static boolean isDirt(LevelSimulatedReader level, BlockPos blockPos) {
+		return level.isStateAtPosition(blockPos, (blockState) -> Feature.isDirt(blockState) && !blockState.is(Blocks.GRASS_BLOCK) && !blockState.is(Blocks.MYCELIUM));
 	}
 }

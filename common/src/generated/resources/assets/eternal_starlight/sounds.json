@@ -499,6 +499,18 @@
     ],
     "subtitle": "subtitles.item.eternal_starlight.crescent_spear.throw"
   },
+  "music.biome.crystallized_desert": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/crystallized_desert",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.dark_swamp": {
     "sounds": [
       {

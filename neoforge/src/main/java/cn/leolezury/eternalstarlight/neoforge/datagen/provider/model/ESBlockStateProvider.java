@@ -303,8 +303,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.AMETHYSIA_GRASS.get());
 		lunarisCactus(ESBlocks.LUNARIS_CACTUS.get());
 		translucentCubeAll(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
-		horizontalBlock(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), models().orientableWithBottom(name(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom")));
-		horizontalBlock(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), models().orientableWithBottom(name(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom")));
+		horizontalBlock(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), models().orientableWithBottom(name(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top")));
+		horizontalBlock(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), models().orientableWithBottom(name(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top")));
 
 		waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		waterlily(ESBlocks.STARLIT_LILY_PAD.get());
