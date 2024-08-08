@@ -68,7 +68,7 @@
         "type": "minecraft:bat",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 1
+        "weight": 2
       },
       {
         "type": "eternal_starlight:grimstone_golem",
@@ -85,13 +85,13 @@
         "type": "eternal_starlight:nightfall_spider",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       },
       {
         "type": "eternal_starlight:lonestar_skeleton",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       }
     ],
     "underground_water_creature": [],

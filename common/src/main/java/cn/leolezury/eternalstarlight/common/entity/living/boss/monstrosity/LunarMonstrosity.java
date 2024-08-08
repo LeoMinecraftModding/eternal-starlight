@@ -53,7 +53,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class LunarMonstrosity extends ESBoss implements RayAttackUser {
-	private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_LUNAR_MONSTROSITY.asHolder(), 0, 0, true);
+	public static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_LUNAR_MONSTROSITY.asHolder(), 0, 0, true);
 
 	public LunarMonstrosity(EntityType<? extends ESBoss> entityType, Level level) {
 		super(entityType, level);

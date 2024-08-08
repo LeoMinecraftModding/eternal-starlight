@@ -6,6 +6,10 @@ import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
@@ -34,6 +38,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.sounds.Music;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
@@ -59,6 +64,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class CommonHandlers {
+	public static final List<Music> POSSIBLE_BOSS_MUSICS = List.of(
+		ESBoss.BOSS_DEFAULT_MUSIC,
+		TheGatekeeper.BOSS_MUSIC,
+		StarlightGolem.BOSS_MUSIC,
+		LunarMonstrosity.BOSS_MUSIC
+	);
+
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";

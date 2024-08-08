@@ -33,6 +33,7 @@
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
     "client.MultiPlayerGameModeMixin",
+    "client.MusicManagerMixin",
     "client.PlayerModelMixin",
     "client.ScreenEffectRendererMixin",
     "client.SkullBlockRendererMixin",

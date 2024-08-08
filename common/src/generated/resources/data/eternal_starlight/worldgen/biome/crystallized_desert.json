@@ -77,7 +77,7 @@
         "type": "minecraft:bat",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 1
+        "weight": 2
       },
       {
         "type": "eternal_starlight:grimstone_golem",
@@ -87,9 +87,9 @@
       },
       {
         "type": "eternal_starlight:crystallized_moth",
-        "maxCount": 7,
-        "minCount": 4,
-        "weight": 20
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 30
       }
     ],
     "axolotls": [],
@@ -98,13 +98,13 @@
         "type": "eternal_starlight:ent",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 15
+        "weight": 30
       },
       {
         "type": "eternal_starlight:ratlin",
-        "maxCount": 4,
+        "maxCount": 3,
         "minCount": 1,
-        "weight": 15
+        "weight": 24
       }
     ],
     "misc": [],
@@ -113,25 +113,25 @@
         "type": "eternal_starlight:nightfall_spider",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       },
       {
         "type": "eternal_starlight:lonestar_skeleton",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       },
       {
         "type": "eternal_starlight:gleech",
         "maxCount": 3,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       },
       {
         "type": "eternal_starlight:thirst_walker",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 12
+        "weight": 24
       }
     ],
     "underground_water_creature": [],

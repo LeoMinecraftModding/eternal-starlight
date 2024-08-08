@@ -70,7 +70,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 
-	private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.asHolder(), 0, 0, true);
+	public static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.asHolder(), 0, 0, true);
 
 	public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
 		super(entityType, level);

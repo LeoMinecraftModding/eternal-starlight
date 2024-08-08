@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StarlightGolem extends ESBoss implements RayAttackUser {
-	private static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.asHolder(), 0, 0, true);
+	public static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.asHolder(), 0, 0, true);
 
 	public StarlightGolem(EntityType<? extends ESBoss> entityType, Level level) {
 		super(entityType, level);

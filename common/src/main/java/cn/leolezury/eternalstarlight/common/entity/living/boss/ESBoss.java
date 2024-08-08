@@ -43,7 +43,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_PHASE = "phase";
 	private static final String TAG_ACTIVATED = "activated";
 
-	private static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
+	public static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
 	private final List<ServerPlayer> fightParticipants = new ArrayList<>();
 
 	protected ESBoss(EntityType<? extends Monster> type, Level level) {
