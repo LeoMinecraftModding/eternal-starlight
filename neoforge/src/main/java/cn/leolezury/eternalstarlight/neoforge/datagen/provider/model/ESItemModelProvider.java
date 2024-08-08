@@ -430,6 +430,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.LUNARIS_CACTUS_GEL_BLOCK.get());
 		basicItem(ESItems.LUNARIS_CACTUS_FRUIT.get());
 		basicItem(ESItems.LUNARIS_CACTUS_GEL.get());
+		block(ESItems.CARVED_LUNARIS_CACTUS_FRUIT.get());
+		block(ESItems.LUNARIS_CACTUS_FRUIT_LANTERN.get());
 
 		flatBlockTexture(ESItems.MOONLIGHT_LILY_PAD.get());
 		flatBlockTexture(ESItems.STARLIT_LILY_PAD.get());

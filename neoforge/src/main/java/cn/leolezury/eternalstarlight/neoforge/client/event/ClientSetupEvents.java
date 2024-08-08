@@ -187,6 +187,7 @@ public class ClientSetupEvents {
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("current_crest"), (graphics, partialTicks) -> ClientHandlers.renderCurrentCrest(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("carved_lunaris_cactus_fruit_blur"), (graphics, partialTicks) -> ClientHandlers.renderCarvedLunarisCactusFruitBlur(graphics));
 	}
 
 	@SubscribeEvent

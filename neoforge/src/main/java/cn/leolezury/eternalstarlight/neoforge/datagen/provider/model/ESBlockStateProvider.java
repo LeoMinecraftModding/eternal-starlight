@@ -303,6 +303,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.AMETHYSIA_GRASS.get());
 		lunarisCactus(ESBlocks.LUNARIS_CACTUS.get());
 		translucentCubeAll(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
+		horizontalBlock(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), models().orientableWithBottom(name(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom")));
+		horizontalBlock(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), models().orientableWithBottom(name(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom")));
 
 		waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		waterlily(ESBlocks.STARLIT_LILY_PAD.get());
@@ -570,6 +572,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void geyser(Block stone, Block geyser) {
 		ModelFile modelFile = models().cubeBottomTop(name(geyser), blockTexture(stone), blockTexture(stone), blockTexture(geyser));
 		simpleBlock(geyser, modelFile);
+	}
+
+	private void cubeBottomTop(Block block, ResourceLocation side, ResourceLocation top, ResourceLocation bottom) {
+		ModelFile modelFile = models().cubeBottomTop(name(block), side, bottom, top);
+		simpleBlock(block, modelFile);
 	}
 
 	private void waterlily(Block lily) {

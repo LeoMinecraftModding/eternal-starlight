@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.CarvedLunarisCactusFruitBlock;
 import cn.leolezury.eternalstarlight.common.command.ESCommand;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
@@ -41,6 +42,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -121,6 +123,25 @@ public class CommonSetupHandlers {
 			@Override
 			protected ItemStack execute(BlockSource blockSource, ItemStack item) {
 				this.setSuccess(ArmorItem.dispenseArmor(blockSource, item));
+				return item;
+			}
+		});
+		DispenserBlock.registerBehavior(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), new OptionalDispenseItemBehavior() {
+			@Override
+			protected ItemStack execute(BlockSource blockSource, ItemStack item) {
+				Level level = blockSource.level();
+				BlockPos blockpos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
+				CarvedLunarisCactusFruitBlock fruitBlock = ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get();
+				if (level.isEmptyBlock(blockpos) && fruitBlock.canSpawnGolem(level, blockpos)) {
+					if (!level.isClientSide) {
+						level.setBlock(blockpos, fruitBlock.defaultBlockState(), 3);
+						level.gameEvent(null, GameEvent.BLOCK_PLACE, blockpos);
+					}
+					item.shrink(1);
+					this.setSuccess(true);
+				} else {
+					this.setSuccess(ArmorItem.dispenseArmor(blockSource, item));
+				}
 				return item;
 			}
 		});

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:carved_lunaris_cactus_fruit"
+    },
+    {
+      "item": "eternal_starlight:amaramber_candle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:lunaris_cactus_fruit_lantern"
+  }
+}

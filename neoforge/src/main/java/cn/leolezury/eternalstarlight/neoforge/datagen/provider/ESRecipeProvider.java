@@ -171,6 +171,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
 		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
+		addShapeless(recipeOutput, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), 1, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.AMARAMBER_CANDLE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get())
 			.pattern("FFF")
 			.pattern("FPF")

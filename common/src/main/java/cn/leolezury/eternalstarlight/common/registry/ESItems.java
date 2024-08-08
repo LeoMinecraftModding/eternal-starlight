@@ -468,6 +468,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_GEL_BLOCK = registerItem("lunaris_cactus_gel_block", () -> new BlockItem(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_FRUIT = registerItem("lunaris_cactus_fruit", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.8F).effect(new MobEffectInstance(MobEffects.POISON, 200, 0), 0.8F).build())));
 	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_GEL = registerItem("lunaris_cactus_gel", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.1f).build())));
+	public static final RegistryObject<Item, Item> CARVED_LUNARIS_CACTUS_FRUIT = registerItem("carved_lunaris_cactus_fruit", () -> new BlockItem(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_FRUIT_LANTERN = registerItem("lunaris_cactus_fruit_lantern", () -> new BlockItem(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), new Item.Properties()));
 
 	// water plant
 	public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));

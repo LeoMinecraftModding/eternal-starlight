@@ -574,6 +574,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, DesertBushBlock> AMETHYSIA_GRASS = BLOCKS.register("amethysia_grass", () -> new DesertBushBlock(10, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, LunarisCactusBlock> LUNARIS_CACTUS = BLOCKS.register("lunaris_cactus", () -> new LunarisCactusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CACTUS).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, LunarisCactusGelBlock> LUNARIS_CACTUS_GEL_BLOCK = BLOCKS.register("lunaris_cactus_gel_block", () -> new LunarisCactusGelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, EquipableCarvedLunarisCactusFruitBlock> CARVED_LUNARIS_CACTUS_FRUIT = BLOCKS.register("carved_lunaris_cactus_fruit", () -> new EquipableCarvedLunarisCactusFruitBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CARVED_PUMPKIN).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, CarvedLunarisCactusFruitBlock> LUNARIS_CACTUS_FRUIT_LANTERN = BLOCKS.register("lunaris_cactus_fruit_lantern", () -> new CarvedLunarisCactusFruitBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JACK_O_LANTERN).mapColor(MapColor.COLOR_PURPLE)));
 
 	// water plant
 	public static final RegistryObject<Block, BushBlock> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));

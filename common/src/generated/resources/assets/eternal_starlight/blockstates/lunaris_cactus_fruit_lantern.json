@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "eternal_starlight:block/lunaris_cactus_fruit_lantern",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "eternal_starlight:block/lunaris_cactus_fruit_lantern"
+    },
+    "facing=south": {
+      "model": "eternal_starlight:block/lunaris_cactus_fruit_lantern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eternal_starlight:block/lunaris_cactus_fruit_lantern",
+      "y": 270
+    }
+  }
+}

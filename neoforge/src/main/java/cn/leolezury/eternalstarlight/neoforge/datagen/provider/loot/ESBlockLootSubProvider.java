@@ -478,6 +478,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_SUNSET_THORNBLOOM.get());
 		add(ESBlocks.LUNARIS_CACTUS.get(), this::createLunarisCactusDrop);
 		dropSelf(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
+		dropSelf(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get());
+		dropSelf(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get());
 
 		dropSelf(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		dropSelf(ESBlocks.STARLIT_LILY_PAD.get());
