@@ -10,7 +10,7 @@
       "spawns": [
         {
           "type": "eternal_starlight:freeze",
-          "maxCount": 4,
+          "maxCount": 2,
           "minCount": 1,
           "weight": 10
         }

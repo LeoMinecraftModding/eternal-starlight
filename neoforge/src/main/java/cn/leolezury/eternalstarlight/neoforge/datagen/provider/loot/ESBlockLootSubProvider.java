@@ -7,8 +7,11 @@ import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.advancements.critereon.BlockPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +24,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -414,8 +419,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_PINK_ROSE.get());
 		dropSelf(ESBlocks.STARLIGHT_TORCHFLOWER.get());
 		dropPottedContents(ESBlocks.POTTED_STARLIGHT_TORCHFLOWER.get());
-		add(ESBlocks.NIGHTFAN_BUSH.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.PINK_ROSE_BUSH.get(), this::createDoublePlantShearsDrop);
+		add(ESBlocks.NIGHTFAN_BUSH.get(), this::createDoublePlantDrops);
+		add(ESBlocks.PINK_ROSE_BUSH.get(), this::createDoublePlantDrops);
 		plant(ESBlocks.NIGHT_SPROUTS.get());
 		plant(ESBlocks.SMALL_NIGHT_SPROUTS.get());
 		plant(ESBlocks.GLOWING_NIGHT_SPROUTS.get());
@@ -432,16 +437,16 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GLOWING_PARASOL_GRASS.get());
 		plant(ESBlocks.LUNAR_BUSH.get());
 		plant(ESBlocks.GLOWING_LUNAR_BUSH.get());
-		add(ESBlocks.TALL_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.LUNAR_REED.get(), this::createDoublePlantShearsDrop);
+		add(ESBlocks.TALL_CRESCENT_GRASS.get(), this::createDoublePlantDrops);
+		add(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get(), this::createDoublePlantDrops);
+		add(ESBlocks.LUNAR_REED.get(), this::createDoublePlantDrops);
 		dropSelf(ESBlocks.WHISPERBLOOM.get());
 		dropPottedContents(ESBlocks.POTTED_WHISPERBLOOM.get());
 		dropSelf(ESBlocks.GLADESPIKE.get());
 		dropPottedContents(ESBlocks.POTTED_GLADESPIKE.get());
 		plant(ESBlocks.VIVIDSTALK.get());
 		dropPottedContents(ESBlocks.POTTED_VIVIDSTALK.get());
-		add(ESBlocks.TALL_GLADESPIKE.get(), this::createDoublePlantShearsDrop);
+		add(ESBlocks.TALL_GLADESPIKE.get(), this::createDoublePlantDrops);
 		dropSelf(ESBlocks.GLOWING_MUSHROOM.get());
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
@@ -488,10 +493,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		plant(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
 		dropSelf(ESBlocks.RED_CRYSTAL_ROOTS.get());
 		dropSelf(ESBlocks.BLUE_CRYSTAL_ROOTS.get());
-		add(ESBlocks.TWILVEWRYM_HERB.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.STELLAFLY_BUSH.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantShearsDrop);
-		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantShearsDrop);
+		add(ESBlocks.TWILVEWRYM_HERB.get(), this::createDoublePlantDrops);
+		add(ESBlocks.STELLAFLY_BUSH.get(), this::createDoublePlantDrops);
+		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
+		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
 
 		add(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));
@@ -585,6 +590,17 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	public LootTable.Builder createPlantDrops(Block block, Item additional) {
 		HolderLookup.RegistryLookup<Enchantment> registryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 		return this.createShearsDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(additional).when(LootItemRandomChanceCondition.randomChance(0.125F)).apply(ApplyBonusCount.addUniformBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE), 2))));
+	}
+
+	protected LootTable.Builder createDoublePlantDrops(Block block) {
+		return LootTable.lootTable().withPool(LootPool.lootPool()
+			.add(LootItem.lootTableItem(block).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SCYTHES)))))
+			.when((LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))
+				.and(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))), new BlockPos(0, 1, 0))))
+				.or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))
+					.and(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))), new BlockPos(0, -1, 0))))
+			)
+		);
 	}
 
 	private LootTable.Builder createLunarisCactusDrop(Block block) {

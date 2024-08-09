@@ -22,7 +22,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.BossEvent;
@@ -48,8 +47,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StarlightGolem extends ESBoss implements RayAttackUser {
-	public static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.asHolder(), 0, 0, true);
-
 	public StarlightGolem(EntityType<? extends ESBoss> entityType, Level level) {
 		super(entityType, level);
 	}
@@ -355,8 +352,8 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
-	public Music getBossMusic() {
-		return BOSS_MUSIC;
+	public SoundEvent getBossMusic() {
+		return ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.get();
 	}
 
 	@Override

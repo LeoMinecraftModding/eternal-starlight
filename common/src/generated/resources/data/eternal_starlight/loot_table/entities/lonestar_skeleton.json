@@ -26,7 +26,7 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "minecraft:arrow"
+          "name": "minecraft:bone"
         }
       ],
       "rolls": 1.0
@@ -56,7 +56,7 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "minecraft:bone"
+          "name": "eternal_starlight:swamp_silver_nugget"
         }
       ],
       "rolls": 1.0

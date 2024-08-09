@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
@@ -11,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
@@ -78,6 +80,7 @@ public class ClientHandlers {
 	private static final ResourceLocation PUMPKIN_BLUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
+	public static BossMusicSoundInstance BOSS_MUSIC_INSTANCE = null;
 	public static int resetCameraIn;
 	public static float fogStartDecrement;
 	public static float fogEndDecrement;
@@ -115,6 +118,32 @@ public class ClientHandlers {
 
 			if (!Minecraft.getInstance().isPaused() && ClientWeatherState.weather != null) {
 				ClientWeatherState.weather.clientTick();
+			}
+
+			if (Minecraft.getInstance().player != null) {
+				if (Minecraft.getInstance().player.tickCount % 15 == 0) {
+					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, Minecraft.getInstance().player.getBoundingBox().inflate(50));
+					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(Minecraft.getInstance().player)));
+					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).toList();
+					if (!bosses.isEmpty()) {
+						ESBoss boss = bosses.getFirst();
+						if (BOSS_MUSIC_INSTANCE == null || !BOSS_MUSIC_INSTANCE.sameBoss(boss)) {
+							if (BOSS_MUSIC_INSTANCE != null) {
+								Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+							}
+							BOSS_MUSIC_INSTANCE = new BossMusicSoundInstance(boss.getBossMusic(), boss);
+						}
+					} else if (BOSS_MUSIC_INSTANCE != null) {
+						Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+						BOSS_MUSIC_INSTANCE = null;
+					}
+					if (BOSS_MUSIC_INSTANCE != null && !Minecraft.getInstance().getSoundManager().isActive(BOSS_MUSIC_INSTANCE)) {
+						Minecraft.getInstance().getSoundManager().play(BOSS_MUSIC_INSTANCE);
+					}
+				}
+			} else if (BOSS_MUSIC_INSTANCE != null) {
+				Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+				BOSS_MUSIC_INSTANCE = null;
 			}
 		}
 		if (Minecraft.getInstance().level != null) {

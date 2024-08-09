@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.Mob;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,11 +10,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ESServerBossEvent extends ServerBossEvent {
-	private final Mob boss;
+	private final ESBoss boss;
 	private final Set<ServerPlayer> unseenPlayers = new HashSet<>();
 	private UUID id;
 
-	public ESServerBossEvent(Mob boss, UUID id, BossEvent.BossBarColor color, boolean darkenScreen) {
+	public ESServerBossEvent(ESBoss boss, UUID id, BossEvent.BossBarColor color, boolean darkenScreen) {
 		super(boss.getDisplayName(), color, BossEvent.BossBarOverlay.PROGRESS);
 		setVisible(true);
 		setId(id);
@@ -27,6 +26,7 @@ public class ESServerBossEvent extends ServerBossEvent {
 		this.id = uuid;
 	}
 
+	@Override
 	public UUID getId() {
 		return this.id;
 	}
@@ -36,23 +36,30 @@ public class ESServerBossEvent extends ServerBossEvent {
 		Iterator<ServerPlayer> it = this.unseenPlayers.iterator();
 		while (it.hasNext()) {
 			ServerPlayer player = it.next();
-			if (this.boss.getSensing().hasLineOfSight(player)) {
+			if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated()) {
 				super.addPlayer(player);
 				it.remove();
 			}
 		}
 	}
 
+	@Override
 	public void addPlayer(ServerPlayer player) {
-		if (this.boss.getSensing().hasLineOfSight(player)) {
+		if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated()) {
 			super.addPlayer(player);
 		} else {
 			this.unseenPlayers.add(player);
 		}
 	}
 
+	@Override
 	public void removePlayer(ServerPlayer player) {
 		super.removePlayer(player);
 		this.unseenPlayers.remove(player);
+	}
+
+	public void allConvertToUnseen() {
+		this.unseenPlayers.addAll(getPlayers());
+		getPlayers().forEach(super::removePlayer);
 	}
 }

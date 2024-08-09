@@ -114,7 +114,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 		return Monster.createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, 40.0)
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
-			.add(Attributes.ATTACK_DAMAGE, 7.0)
+			.add(Attributes.ATTACK_DAMAGE, 4.5)
 			.add(Attributes.FOLLOW_RANGE, 64.0)
 			.add(Attributes.STEP_HEIGHT, 1.0);
 	}

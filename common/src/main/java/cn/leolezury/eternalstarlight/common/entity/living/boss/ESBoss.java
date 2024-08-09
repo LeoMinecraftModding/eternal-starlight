@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -43,8 +43,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_PHASE = "phase";
 	private static final String TAG_ACTIVATED = "activated";
 
-	public static final Music BOSS_DEFAULT_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS.asHolder(), 0, 0, true);
-	private final List<ServerPlayer> fightParticipants = new ArrayList<>();
+	protected final List<ServerPlayer> fightParticipants = new ArrayList<>();
 
 	protected ESBoss(EntityType<? extends Monster> type, Level level) {
 		super(type, level);
@@ -177,8 +176,8 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		return isAlive();
 	}
 
-	public Music getBossMusic() {
-		return BOSS_DEFAULT_MUSIC;
+	public SoundEvent getBossMusic() {
+		return ESSoundEvents.MUSIC_BOSS.get();
 	}
 
 	public ResourceKey<LootTable> getBossLootTable() {

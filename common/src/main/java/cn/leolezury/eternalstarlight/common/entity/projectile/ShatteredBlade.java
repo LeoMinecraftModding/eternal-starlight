@@ -39,14 +39,12 @@ public class ShatteredBlade extends AbstractArrow {
 		if (this.inGroundTime > 4) {
 			this.dealtDamage = true;
 		}
-
 		Entity entity = this.getOwner();
 		int loyaltyLevel = 3;
 		if ((this.dealtDamage || this.isNoPhysics()) && entity != null) {
-			if (!(entity instanceof Player)) {
+			if (!(entity instanceof Player) && !level().isClientSide) {
 				this.discard();
 			}
-
 			if (!this.isAcceptableReturnOwner()) {
 				if (!this.level().isClientSide && this.pickup == Pickup.ALLOWED) {
 					this.spawnAtLocation(this.getPickupItem(), 0.1F);
@@ -92,7 +90,7 @@ public class ShatteredBlade extends AbstractArrow {
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		Entity entity = entityHitResult.getEntity();
 		Entity owner = this.getOwner();
-		float damage = owner instanceof Player ? 5f : 2.5f;
+		float damage = owner instanceof Player ? 5f : 3.2f;
 		DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, owner == null ? this : owner);
 
 		if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
@@ -104,11 +102,9 @@ public class ShatteredBlade extends AbstractArrow {
 			if (entity.getType() == EntityType.ENDERMAN) {
 				return;
 			}
-
 			if (level() instanceof ServerLevel serverLevel) {
 				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
 			}
-
 			if (entity instanceof LivingEntity livingEntity) {
 				this.doKnockback(livingEntity, damageSource);
 				this.doPostHurtEffects(livingEntity);
@@ -116,8 +112,7 @@ public class ShatteredBlade extends AbstractArrow {
 		}
 
 		this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
-		float g = 1.0F;
-		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, g, 1.0F);
+		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, 1.0F, 1.0F);
 	}
 
 	@Override

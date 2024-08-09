@@ -9,7 +9,7 @@
           "type": "eternal_starlight:tangled",
           "maxCount": 2,
           "minCount": 1,
-          "weight": 20
+          "weight": 15
         }
       ]
     }

@@ -26,7 +26,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -69,8 +68,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_FIGHT_TARGET = "flight_target";
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
-
-	public static final Music BOSS_MUSIC = new Music(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.asHolder(), 0, 0, true);
 
 	public TheGatekeeper(EntityType<? extends ESBoss> entityType, Level level) {
 		super(entityType, level);
@@ -374,6 +371,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
 				}
 			});
+			for (ServerPlayer participant : fightParticipants) {
+				ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(participant);
+			}
 			setHealth(getMaxHealth());
 			fightPlayerOnly = true;
 			setFightTargetName("");
@@ -386,7 +386,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null || source.getEntity().getUUID() != getTarget().getUUID())) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null || (source.getEntity().getUUID() != getTarget().getUUID() && !(source.getEntity() instanceof Player)))) {
 			return false;
 		}
 		return super.hurt(source, amount);
@@ -396,6 +396,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public void aiStep() {
 		super.aiStep();
 		bossEvent.update();
+		if (tickCount % 10 == 0 && !isActivated()) {
+			bossEvent.allConvertToUnseen();
+		}
 		if (!level().isClientSide) {
 			if (restockCooldown > 0) {
 				restockCooldown--;
@@ -425,8 +428,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
-	public Music getBossMusic() {
-		return BOSS_MUSIC;
+	public SoundEvent getBossMusic() {
+		return ESSoundEvents.MUSIC_BOSS_GATEKEEPER.get();
 	}
 
 	@Override
