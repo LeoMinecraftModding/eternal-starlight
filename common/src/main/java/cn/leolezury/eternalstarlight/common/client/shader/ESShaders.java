@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.ShaderInstance;
 
 public class ESShaders {
 	private static ShaderInstance crestSelectionGui;
-	private static ShaderInstance meteorRain;
 	private static ShaderInstance renderTypeLaserBeam;
 	private static ShaderInstance renderTypeStarlightPortal;
 
@@ -14,14 +13,6 @@ public class ESShaders {
 
 	public static void setCrestSelectionGui(ShaderInstance crestSelectionGui) {
 		ESShaders.crestSelectionGui = crestSelectionGui;
-	}
-
-	public static ShaderInstance getMeteorRain() {
-		return meteorRain;
-	}
-
-	public static void setMeteorRain(ShaderInstance meteorRain) {
-		ESShaders.meteorRain = meteorRain;
 	}
 
 	public static ShaderInstance getRenderTypeLaserBeam() {

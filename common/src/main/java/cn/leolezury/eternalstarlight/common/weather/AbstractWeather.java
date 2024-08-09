@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -26,7 +24,7 @@ public abstract class AbstractWeather {
 
 	public abstract boolean canContinue(ServerLevel level, int ticks);
 
-	public abstract void serverWeatherTick(ServerLevel level, int ticks);
+	public abstract void serverTick(ServerLevel level, int ticks);
 
 	public abstract void tickBlock(ServerLevel level, int ticks, BlockPos pos);
 
@@ -35,7 +33,7 @@ public abstract class AbstractWeather {
 	public abstract void onStop(ServerLevel level, int ticks);
 
 	@Environment(EnvType.CLIENT)
-	public abstract boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ);
+	public abstract void clientTick();
 
 	@Environment(EnvType.CLIENT)
 	public abstract float modifyRainLevel(float original);

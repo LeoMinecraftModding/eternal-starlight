@@ -112,6 +112,10 @@ public class ClientHandlers {
 			for (ScreenShake effect : screenShakesToRemove) {
 				SCREEN_SHAKES.remove(effect);
 			}
+
+			if (!Minecraft.getInstance().isPaused() && ClientWeatherState.weather != null) {
+				ClientWeatherState.weather.clientTick();
+			}
 		}
 		if (Minecraft.getInstance().level != null) {
 			for (ClientSetupHandlers.WorldVisualEffectSpawnFunction function : ClientSetupHandlers.VISUAL_EFFECT_SPAWN_FUNCTIONS) {

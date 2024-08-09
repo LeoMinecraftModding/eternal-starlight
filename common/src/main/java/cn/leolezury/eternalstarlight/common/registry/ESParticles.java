@@ -75,6 +75,7 @@ public class ESParticles {
 			return OrbitalTrailParticleOptions.STREAM_CODEC;
 		}
 	});
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, ParticleType<GlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<GlowParticleOptions> codec() {

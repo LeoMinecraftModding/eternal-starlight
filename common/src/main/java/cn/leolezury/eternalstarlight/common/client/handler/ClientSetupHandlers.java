@@ -15,6 +15,7 @@ import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.LunarVineRenderer;
@@ -513,7 +514,6 @@ public class ClientSetupHandlers {
 
 	public static void registerShaders(ShaderRegisterStrategy strategy) {
 		strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
-		strategy.register(EternalStarlight.id("meteor_rain"), DefaultVertexFormat.PARTICLE, ESShaders::setMeteorRain);
 		strategy.register(EternalStarlight.id("rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
 		strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
 	}
@@ -552,6 +552,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
+		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
 		strategy.register(ESParticles.GLOW.get(), GlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);

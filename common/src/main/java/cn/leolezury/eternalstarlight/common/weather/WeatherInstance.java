@@ -67,7 +67,7 @@ public class WeatherInstance {
 			ticksSinceStarted++;
 			ticksUntilNext = 0;
 			if (ticksSinceStarted <= currentDuration && this.weather.canContinue(serverLevel, ticksSinceStarted)) {
-				this.weather.serverWeatherTick(serverLevel, ticksSinceStarted);
+				this.weather.serverTick(serverLevel, ticksSinceStarted);
 			} else {
 				stop();
 			}

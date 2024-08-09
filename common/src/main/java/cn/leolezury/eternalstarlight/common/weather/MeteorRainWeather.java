@@ -1,26 +1,21 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
-import cn.leolezury.eternalstarlight.common.client.renderer.world.ESWeatherRenderer;
-import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 
 public class MeteorRainWeather extends AbstractWeather {
-	private static final ResourceLocation RAIN_LOCATION = EternalStarlight.id("textures/environment/meteor_rain.png");
-
 	public MeteorRainWeather(Properties properties) {
 		super(properties);
 	}
@@ -36,7 +31,7 @@ public class MeteorRainWeather extends AbstractWeather {
 	}
 
 	@Override
-	public void serverWeatherTick(ServerLevel level, int ticks) {
+	public void serverTick(ServerLevel level, int ticks) {
 
 	}
 
@@ -68,11 +63,14 @@ public class MeteorRainWeather extends AbstractWeather {
 
 	@Environment(EnvType.CLIENT)
 	@Override
-	public boolean renderWeather(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float rainTicks = Math.min(ClientWeatherState.ticks + partialTick, ClientWeatherState.duration);
-		float rainLevel = (ClientWeatherState.duration / 2f - Math.abs(ClientWeatherState.duration / 2f - rainTicks)) / (ClientWeatherState.duration / 2f);
-		ESWeatherRenderer.renderWeather(ESShaders.getMeteorRain(), lightTexture, Biome.Precipitation.RAIN, RAIN_LOCATION, RAIN_LOCATION, rainLevel, ticks, true, partialTick, camX, camY, camZ);
-		return true;
+	public void clientTick() {
+		ClientLevel level = Minecraft.getInstance().level;
+		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+		if (level != null && level.getGameTime() % 20 == 0) {
+			Vec3 randomPos = camera.getPosition().offsetRandom(level.getRandom(), 75f);
+			int height = level.getHeight(Heightmap.Types.MOTION_BLOCKING, (int) randomPos.x, (int) randomPos.z);
+			level.addParticle(ESParticles.METEOR.get(), true, randomPos.x, Math.max(height + 75, camera.getPosition().y + 75), randomPos.z, 0, 0, 0);
+		}
 	}
 
 	@Environment(EnvType.CLIENT)
