@@ -371,8 +371,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
 				}
 			});
-			for (ServerPlayer participant : fightParticipants) {
-				ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(participant);
+			if (!level().isClientSide && level().getServer() != null) {
+				for (String participant : fightParticipants) {
+					for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
+						if (player.getName().getString().equals(participant)) {
+							ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(player);
+						}
+					}
+				}
 			}
 			setHealth(getMaxHealth());
 			fightPlayerOnly = true;

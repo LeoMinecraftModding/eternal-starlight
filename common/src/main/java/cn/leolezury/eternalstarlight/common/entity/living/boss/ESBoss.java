@@ -43,7 +43,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_PHASE = "phase";
 	private static final String TAG_ACTIVATED = "activated";
 
-	protected final List<ServerPlayer> fightParticipants = new ArrayList<>();
+	protected final List<String> fightParticipants = new ArrayList<>();
 
 	protected ESBoss(EntityType<? extends Monster> type, Level level) {
 		super(type, level);
@@ -136,16 +136,20 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 			return false;
 		}
 		if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player)) {
-			fightParticipants.add(player);
+			fightParticipants.add(player.getName().getString());
 		}
 		return super.hurt(source, Math.min(amount, 20));
 	}
 
 	@Override
 	public void die(DamageSource source) {
-		for (ServerPlayer player : fightParticipants) {
-			if (player.isAlive() && player.level().dimension() == level().dimension()) {
-				CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(player, this, source);
+		if (!level().isClientSide && level().getServer() != null) {
+			for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
+				for (String name : fightParticipants) {
+					if (player.getName().getString().equals(name) && player.isAlive() && player.level().dimension() == level().dimension()) {
+						CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(player, this, source);
+					}
+				}
 			}
 		}
 		super.die(source);
@@ -192,16 +196,20 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-		for (ServerPlayer player : fightParticipants) {
-			if (player.isAlive() && player.level().dimension() == level().dimension()) {
-				ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-				lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
-				ItemEntity item = player.spawnAtLocation(lootBag);
-				if (item != null) {
-					item.setGlowingTag(true);
-					item.setExtendedLifetime();
+		if (!level().isClientSide && level().getServer() != null) {
+			for (String name : fightParticipants) {
+				for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
+					if (player.getName().getString().equals(name) && player.isAlive() && player.level().dimension() == level().dimension()) {
+						ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+						lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+						ItemEntity item = player.spawnAtLocation(lootBag);
+						if (item != null) {
+							item.setGlowingTag(true);
+							item.setExtendedLifetime();
+						}
+						dropExtraLoot(player);
+					}
 				}
-				dropExtraLoot(player);
 			}
 		}
 	}
