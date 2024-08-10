@@ -22,10 +22,10 @@
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
-    "WallHangingSignBlockMixin",
-    "client.MinecraftMixin"
+    "WallHangingSignBlockMixin"
   ],
   "client": [
+    "client.MinecraftMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",

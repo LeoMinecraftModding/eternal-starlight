@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGo
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,6 +43,15 @@ public class GolemLaserBeam extends RayAttack {
 				}
 			}
 		}, this::discard);
+	}
+
+	@Override
+	public void onHit(ESEntityUtil.RaytraceResult result) {
+		for (Entity target : result.entities()) {
+			if (target instanceof LivingEntity living && (getCaster().isEmpty() || !living.getUUID().equals(getCaster().get().getUUID()))) {
+				doHurtTarget(living);
+			}
+		}
 	}
 
 	@Override

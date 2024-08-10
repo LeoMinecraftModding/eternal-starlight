@@ -710,6 +710,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addPickaxe(recipeOutput, ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
 		addHoe(recipeOutput, ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
 		addSword(recipeOutput, ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
+		addTripwireHook(recipeOutput, Items.TRIPWIRE_HOOK, ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK, ItemTags.PLANKS);
 		addHelmet(recipeOutput, ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		addChestplate(recipeOutput, ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_INGOT.get());
 		addLeggings(recipeOutput, ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_INGOT.get());
@@ -959,6 +960,18 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
+	protected final void addTripwireHook(RecipeOutput recipeOutput, ItemLike output, ItemLike top, ItemLike stick, TagKey<Item> plank) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output)
+			.pattern("#")
+			.pattern("S")
+			.pattern("P")
+			.define('#', top)
+			.define('S', stick)
+			.define('P', plank)
+			.unlockedBy("has_item", has(top))
+			.save(recipeOutput);
+	}
+
 	protected final void addAxe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("##")
@@ -1061,7 +1074,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	protected final void addStairs(RecipeOutput recipeOutput, Block output, Block input) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 2)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
 			.pattern("#  ")
 			.pattern("## ")
 			.pattern("###")

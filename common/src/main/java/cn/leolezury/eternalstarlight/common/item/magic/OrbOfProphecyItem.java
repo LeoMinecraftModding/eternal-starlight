@@ -154,6 +154,9 @@ public class OrbOfProphecyItem extends Item {
 						}
 						return InteractionResultHolder.consume(itemStack);
 					}
+				} else {
+					player.startUsingItem(interactionHand);
+					return InteractionResultHolder.consume(itemStack);
 				}
 			}
 		}
