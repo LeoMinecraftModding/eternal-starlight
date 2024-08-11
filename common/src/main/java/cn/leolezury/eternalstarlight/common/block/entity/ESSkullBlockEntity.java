@@ -12,6 +12,11 @@ public class ESSkullBlockEntity extends SkullBlockEntity {
 	}
 
 	@Override
+	public boolean isValidBlockState(BlockState blockState) {
+		return this.getType().isValid(blockState);
+	}
+
+	@Override
 	public BlockEntityType<?> getType() {
 		return ESBlockEntities.SKULL.get();
 	}

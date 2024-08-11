@@ -101,7 +101,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get());
 		pottedPlant(ESBlocks.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
 		mangroveRoots(ESBlocks.STARLIGHT_MANGROVE_ROOTS.get());
-		mangroveRoots(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+		muddyMangroveRoots(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
 		leaves(ESBlocks.SCARLET_LEAVES.get());
 		layered(ESBlocks.SCARLET_LEAVES_PILE.get(), blockTexture(ESBlocks.SCARLET_LEAVES.get()));
@@ -388,12 +388,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		portal(ESBlocks.STARLIGHT_PORTAL.get());
 	}
 
-	private void woodSet(RotatedPillarBlock log, Block wood, Block planks, RotatedPillarBlock strippedLog, Block strippedWood, DoorBlock door, boolean cutoutDoor, TrapDoorBlock trapdoor, boolean cutoutTrapdoor, PressurePlateBlock pressurePlate, ButtonBlock button, FenceBlock fence, FenceGateBlock fenceGate, SlabBlock slab, StairBlock stairs, Block sign, Block wallSign, Block hangingSign, Block wallHangingSign) {
+	private void woodSet(RotatedPillarBlock log, RotatedPillarBlock wood, Block planks, RotatedPillarBlock strippedLog, RotatedPillarBlock strippedWood, DoorBlock door, boolean cutoutDoor, TrapDoorBlock trapdoor, boolean cutoutTrapdoor, PressurePlateBlock pressurePlate, ButtonBlock button, FenceBlock fence, FenceGateBlock fenceGate, SlabBlock slab, StairBlock stairs, Block sign, Block wallSign, Block hangingSign, Block wallHangingSign) {
 		logBlock(log);
-		simpleBlock(wood, models().cubeAll(name(wood), blockTexture(log)));
+		axisBlock(wood, blockTexture(log), blockTexture(log));
 		simpleBlock(planks);
 		logBlock(strippedLog);
-		simpleBlock(strippedWood, models().cubeAll(name(strippedWood), blockTexture(strippedLog)));
+		axisBlock(strippedWood, blockTexture(strippedLog), blockTexture(strippedLog));
 		if (cutoutDoor) {
 			doorBlockWithRenderType(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"), CUTOUT);
 		} else {
@@ -517,6 +517,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	private void mangroveRoots(Block block) {
 		cubeColumn(block, blockTexture(block).withSuffix("_top"), blockTexture(block).withSuffix("_side"), CUTOUT_MIPPED);
+	}
+
+	private void muddyMangroveRoots(RotatedPillarBlock block) {
+		axisBlock(block, models().cubeColumn(name(block), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_top")).renderType(CUTOUT_MIPPED), models().cubeColumnHorizontal(name(block) + "_horizontal", blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_top")).renderType(CUTOUT_MIPPED));
 	}
 
 	private void doomedenKeyhole(Block block, Block redstone) {

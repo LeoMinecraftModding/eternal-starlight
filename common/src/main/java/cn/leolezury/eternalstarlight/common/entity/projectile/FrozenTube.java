@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -10,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -17,11 +19,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -72,6 +76,23 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 					}
 				}
 			}
+			for (int x = -4; x <= 4; x++) {
+				for (int y = -4; y <= 4; y++) {
+					for (int z = -4; z <= 4; z++) {
+						BlockPos pos = blockPosition().offset(x, y, z);
+						if (level().getBlockState(pos).is(Blocks.FIRE) && blockPosition().distSqr(pos) <= 4 * 4) {
+							level().setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+						}
+						if (level().getBlockState(pos).is(Blocks.WATER) && blockPosition().distSqr(pos) <= 4 * 4) {
+							level().setBlockAndUpdate(pos, Blocks.ICE.defaultBlockState());
+						}
+						if (level().getBlockState(pos).is(Blocks.LAVA) && blockPosition().distSqr(pos) <= 2 * 2) {
+							level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
+						}
+					}
+				}
+			}
+			level().getEntitiesOfClass(EnergizedFlame.class, getBoundingBox().inflate(5)).forEach(Entity::discard);
 			discard();
 		}
 	}

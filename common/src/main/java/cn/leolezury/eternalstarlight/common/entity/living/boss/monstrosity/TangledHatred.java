@@ -169,7 +169,7 @@ public class TangledHatred extends ESBoss {
 	public void aiStep() {
 		super.aiStep();
 		if (!level().isClientSide) {
-			if (!isNoAi()) {
+			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
 			LivingEntity target = getTarget();

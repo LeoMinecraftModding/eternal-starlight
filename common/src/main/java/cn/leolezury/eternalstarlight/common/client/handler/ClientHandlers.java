@@ -125,17 +125,19 @@ public class ClientHandlers {
 					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, Minecraft.getInstance().player.getBoundingBox().inflate(50));
 					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(Minecraft.getInstance().player)));
 					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).toList();
-					if (!bosses.isEmpty()) {
-						ESBoss boss = bosses.getFirst();
-						if (BOSS_MUSIC_INSTANCE == null || !BOSS_MUSIC_INSTANCE.sameBoss(boss)) {
-							if (BOSS_MUSIC_INSTANCE != null) {
-								Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+					if (!(BOSS_MUSIC_INSTANCE != null && bosses.stream().anyMatch(BOSS_MUSIC_INSTANCE::sameBoss))) {
+						if (!bosses.isEmpty()) {
+							ESBoss boss = bosses.getFirst();
+							if (BOSS_MUSIC_INSTANCE == null || !BOSS_MUSIC_INSTANCE.sameBoss(boss)) {
+								if (BOSS_MUSIC_INSTANCE != null) {
+									Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+								}
+								BOSS_MUSIC_INSTANCE = new BossMusicSoundInstance(boss.getBossMusic(), boss);
 							}
-							BOSS_MUSIC_INSTANCE = new BossMusicSoundInstance(boss.getBossMusic(), boss);
+						} else if (BOSS_MUSIC_INSTANCE != null) {
+							Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+							BOSS_MUSIC_INSTANCE = null;
 						}
-					} else if (BOSS_MUSIC_INSTANCE != null) {
-						Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
-						BOSS_MUSIC_INSTANCE = null;
 					}
 					if (BOSS_MUSIC_INSTANCE != null && !Minecraft.getInstance().getSoundManager().isActive(BOSS_MUSIC_INSTANCE)) {
 						Minecraft.getInstance().getSoundManager().play(BOSS_MUSIC_INSTANCE);

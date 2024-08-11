@@ -150,7 +150,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 		if (getTarget() != null && !getTarget().isAlive()) {
 			setTarget(null);
 		}
-		if (!isNoAi()) {
+		if (!isNoAi() && isAlive()) {
 			this.behaviorManager.tick();
 		}
 		if (fleeTicks > 0) {

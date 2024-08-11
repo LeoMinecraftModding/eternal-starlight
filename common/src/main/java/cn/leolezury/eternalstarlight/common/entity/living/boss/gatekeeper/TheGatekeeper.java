@@ -371,10 +371,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
 				}
 			});
-			if (!level().isClientSide && level().getServer() != null) {
-				for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
-					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive() && player.level().dimension() == level().dimension()) {
-						ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(player);
+			if (!level().isClientSide) {
+				for (Player player : level().players()) {
+					if (player instanceof ServerPlayer serverPlayer) {
+						if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
+							ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
+						}
 					}
 				}
 			}
@@ -423,7 +425,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			if (getTarget() != null && !getTarget().isAlive()) {
 				setTarget(null);
 			}
-			if (isActivated() && !isNoAi()) {
+			if (isActivated() && !isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
 		} else {

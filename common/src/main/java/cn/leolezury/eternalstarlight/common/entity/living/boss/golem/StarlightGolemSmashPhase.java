@@ -7,7 +7,6 @@ import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -59,12 +58,10 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 						if (entity.level().getBlockState(pos).getFluidState().is(Fluids.LAVA)) {
 							if (!lavaVisited.contains(pos)) {
 								lavaVisited.add(pos);
-								for (Direction direction : Direction.values()) {
-									if (entity.level().getBlockState(pos.relative(direction)).isAir() && entity.getRandom().nextInt(100) == 0) {
-										entity.level().setBlockAndUpdate(pos.relative(direction), Blocks.LAVA.defaultBlockState());
-										if (!entity.level().isClientSide) {
-											((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.LAVA, pos.relative(direction).getCenter().x, pos.relative(direction).getCenter().y, pos.relative(direction).getCenter().z, 1, 0, 0, 0, 0);
-										}
+								if (entity.getRandom().nextInt(25) == 0) {
+									entity.level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
+									if (!entity.level().isClientSide) {
+										((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.LAVA, pos.getCenter().x, pos.getCenter().y + 0.6, pos.getCenter().z, 1, 0, 0, 0, 0);
 									}
 								}
 							}

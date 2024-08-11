@@ -25,13 +25,13 @@
     "WallHangingSignBlockMixin"
   ],
   "client": [
-    "client.MinecraftMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
     "client.HumanoidArmorLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
+    "client.MinecraftMixin",
     "client.MultiPlayerGameModeMixin",
     "client.MusicManagerMixin",
     "client.PlayerModelMixin",

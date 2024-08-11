@@ -20,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -171,6 +172,9 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
 				lastHurtSound = tickCount;
 			}
+			if (damageSource.getEntity() instanceof Player player) {
+				player.displayClientMessage(Component.translatable(getType().getDescriptionId() + ".tip"), true);
+			}
 			return false;
 		}
 	}
@@ -307,7 +311,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			if (getTarget() != null && !getTarget().isAlive()) {
 				setTarget(null);
 			}
-			if (!isNoAi()) {
+			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
 		} else {

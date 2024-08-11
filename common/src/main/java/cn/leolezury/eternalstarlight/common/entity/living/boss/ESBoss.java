@@ -26,6 +26,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -114,7 +115,9 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		initialPos = new Vec3(compoundTag.getDouble(TAG_INITIAL_X), compoundTag.getDouble(TAG_INITIAL_Y), compoundTag.getDouble(TAG_INITIAL_Z));
 		spawned = compoundTag.getBoolean(TAG_SPAWNED);
 		setPhase(compoundTag.getInt(TAG_PHASE));
-		setActivated(compoundTag.getBoolean(TAG_ACTIVATED));
+		if (compoundTag.contains(TAG_ACTIVATED, CompoundTag.TAG_INT)) {
+			setActivated(compoundTag.getBoolean(TAG_ACTIVATED));
+		}
 	}
 
 	@Override
@@ -196,17 +199,19 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-		if (!level().isClientSide && level().getServer() != null) {
-			for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
-				if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive() && player.level().dimension() == level().dimension()) {
-					ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-					lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
-					ItemEntity item = player.spawnAtLocation(lootBag);
-					if (item != null) {
-						item.setGlowingTag(true);
-						item.setExtendedLifetime();
+		if (!level().isClientSide) {
+			for (Player player : level().players()) {
+				if (player instanceof ServerPlayer serverPlayer) {
+					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
+						ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+						lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+						ItemEntity item = player.spawnAtLocation(lootBag);
+						if (item != null) {
+							item.setGlowingTag(true);
+							item.setExtendedLifetime();
+						}
+						dropExtraLoot(serverPlayer);
 					}
-					dropExtraLoot(player);
 				}
 			}
 		}

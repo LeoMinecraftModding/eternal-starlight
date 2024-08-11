@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    neoForge "net.neoforged:neoforge:${rootProject.forge_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
     // Remove the next line if you don't want to depend on the API
     // modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 

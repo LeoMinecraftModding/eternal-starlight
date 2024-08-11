@@ -104,7 +104,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 		if (getTarget() != null && !getTarget().isAlive()) {
 			setTarget(null);
 		}
-		if (!isNoAi()) {
+		if (!isNoAi() && isAlive()) {
 			this.behaviorManager.tick();
 		}
 	}

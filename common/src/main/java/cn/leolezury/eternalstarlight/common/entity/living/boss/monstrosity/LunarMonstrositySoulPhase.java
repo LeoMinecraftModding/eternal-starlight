@@ -26,7 +26,7 @@ public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 	public void tick(LunarMonstrosity entity) {
 		if (entity.getBehaviorTicks() == 70) {
 			entity.playSound(ESSoundEvents.LUNAR_MONSTROSITY_ROAR.get(), 0.5f, 1);
-			entity.knockbackNearbyEntities(2.5f, false);
+			entity.knockbackNearbyEntities(5, 2.5f, false);
 			if (entity.level() instanceof ServerLevel serverLevel) {
 				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
 			}

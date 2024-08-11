@@ -18,6 +18,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -262,6 +263,9 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		if (isOnFire() || getBehaviorState() == LunarMonstrosityStunPhase.ID) {
 			return super.hurt(source, amount);
 		} else {
+			if (source.getEntity() instanceof Player player) {
+				player.displayClientMessage(Component.translatable(getType().getDescriptionId() + ".tip"), true);
+			}
 			return super.hurt(source, Math.min(1, amount));
 		}
 	}
@@ -329,8 +333,8 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		}
 	}
 
-	public void knockbackNearbyEntities(float strength, boolean damage) {
-		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(5, 0, 5))) {
+	public void knockbackNearbyEntities(float radius, float strength, boolean damage) {
+		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(radius, 0, radius))) {
 			if (!living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
 				Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
 				living.hurtMarked = true;
@@ -360,7 +364,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			if (getTarget() != null && !getTarget().isAlive()) {
 				setTarget(null);
 			}
-			if (!isNoAi()) {
+			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
 			if (getBehaviorState() != LunarMonstrositySneakPhase.ID) {

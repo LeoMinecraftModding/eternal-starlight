@@ -12,6 +12,11 @@ public class ESSignBlockEntity extends SignBlockEntity {
 	}
 
 	@Override
+	public boolean isValidBlockState(BlockState blockState) {
+		return this.getType().isValid(blockState);
+	}
+
+	@Override
 	public BlockEntityType<?> getType() {
 		return ESBlockEntities.SIGN.get();
 	}

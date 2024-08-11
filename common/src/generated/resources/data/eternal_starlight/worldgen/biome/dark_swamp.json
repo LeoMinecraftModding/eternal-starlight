@@ -8,7 +8,7 @@
   "creature_spawn_probability": 0.2,
   "downfall": 0.5,
   "effects": {
-    "fog_color": 1310740,
+    "fog_color": 5250640,
     "foliage_color": 7890120,
     "grass_color": 4075082,
     "music": {
@@ -23,7 +23,7 @@
       },
       "probability": 0.001
     },
-    "sky_color": 1310740,
+    "sky_color": 5250640,
     "water_color": 7428526,
     "water_fog_color": 7428526
   },
