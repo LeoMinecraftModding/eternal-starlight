@@ -17,6 +17,7 @@ import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
+import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESCampfireRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.LunarVineRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.StellarRackRenderer;
@@ -331,7 +332,7 @@ public class ClientSetupHandlers {
 
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), ESCampfireRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);

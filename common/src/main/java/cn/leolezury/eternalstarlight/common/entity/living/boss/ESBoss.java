@@ -197,18 +197,16 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
 		if (!level().isClientSide && level().getServer() != null) {
-			for (String name : fightParticipants) {
-				for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
-					if (player.getName().getString().equals(name) && player.isAlive() && player.level().dimension() == level().dimension()) {
-						ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-						lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
-						ItemEntity item = player.spawnAtLocation(lootBag);
-						if (item != null) {
-							item.setGlowingTag(true);
-							item.setExtendedLifetime();
-						}
-						dropExtraLoot(player);
+			for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
+				if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive() && player.level().dimension() == level().dimension()) {
+					ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+					lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+					ItemEntity item = player.spawnAtLocation(lootBag);
+					if (item != null) {
+						item.setGlowingTag(true);
+						item.setExtendedLifetime();
 					}
+					dropExtraLoot(player);
 				}
 			}
 		}

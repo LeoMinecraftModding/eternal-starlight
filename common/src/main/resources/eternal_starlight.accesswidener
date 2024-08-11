@@ -42,6 +42,11 @@ accessible class net/minecraft/client/renderer/RenderStateShard$ShaderStateShard
 
 # blocks
 accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
+accessible field net/minecraft/world/level/block/entity/CampfireBlockEntity cookingProgress [I
+accessible field net/minecraft/world/level/block/entity/CampfireBlockEntity cookingTime [I
+accessible field net/minecraft/world/level/block/CampfireBlock spawnParticles Z
+accessible field net/minecraft/world/level/block/CampfireBlock fireDamage I
+accessible field net/minecraft/world/level/block/entity/CampfireBlockEntity quickCheck Lnet/minecraft/world/item/crafting/RecipeManager$CachedCheck;
 
 # ESCaveCarver
 extendable method net/minecraft/world/level/levelgen/carver/WorldCarver getCarveState (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;)Lnet/minecraft/world/level/block/state/BlockState;
