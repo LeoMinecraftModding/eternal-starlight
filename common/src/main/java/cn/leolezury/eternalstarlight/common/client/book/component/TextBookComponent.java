@@ -14,20 +14,27 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class TextBookComponent extends BookComponent {
 	private final Component text;
+	private final boolean mustEndAtEvenPage;
 	private final List<FormattedCharSequence> cachedComponents = new ArrayList<>();
 
 	public TextBookComponent(Component text, int width, int height) {
+		this(text, true, width, height);
+	}
+
+	public TextBookComponent(Component text, boolean mustEndAtEvenPage, int width, int height) {
 		super(width, height);
 		this.text = text;
+		this.mustEndAtEvenPage = mustEndAtEvenPage;
 	}
 
 	@Override
-	public int getPageCount(Font font) {
+	public int getPageCount(int pagesBefore, Font font) {
 		if (cachedComponents.isEmpty()) {
 			cachedComponents.addAll(font.split(text, width));
 		}
 		int linesPerPage = height / font.lineHeight;
-		return cachedComponents.size() % linesPerPage == 0 ? cachedComponents.size() / linesPerPage : cachedComponents.size() / linesPerPage + 1;
+		int pageCount = cachedComponents.size() % linesPerPage == 0 ? cachedComponents.size() / linesPerPage : cachedComponents.size() / linesPerPage + 1;
+		return mustEndAtEvenPage ? (pageCount % 2 == 0 ? (pageCount + pagesBefore % 2) : (pageCount + (1 - pagesBefore % 2))) : pageCount;
 	}
 
 	@Override

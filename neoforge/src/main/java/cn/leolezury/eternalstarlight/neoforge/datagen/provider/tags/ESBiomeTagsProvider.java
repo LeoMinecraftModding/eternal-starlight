@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -44,6 +43,14 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 		tag(Tags.Biomes.IS_DRY).add(
 			ESBiomes.CRYSTALLIZED_DESERT
 		);
+		tag(Tags.Biomes.IS_FOREST).add(
+			ESBiomes.STARLIGHT_FOREST,
+			ESBiomes.STARLIGHT_DENSE_FOREST,
+			ESBiomes.STARLIGHT_PERMAFROST_FOREST,
+			ESBiomes.DARK_SWAMP,
+			ESBiomes.SCARLET_FOREST,
+			ESBiomes.TORREYA_FOREST
+		);
 		tag(Tags.Biomes.IS_CONIFEROUS_TREE).add(
 			ESBiomes.STARLIGHT_PERMAFROST_FOREST
 		);
@@ -55,9 +62,6 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 		);
 		tag(Tags.Biomes.IS_DESERT).add(
 			ESBiomes.CRYSTALLIZED_DESERT
-		);
-		tag(Tags.Biomes.IS_BEACH).add(
-			ESBiomes.WARM_SHORE
 		);
 		tag(Tags.Biomes.IS_BEACH).add(
 			ESBiomes.WARM_SHORE
@@ -101,17 +105,6 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 			ESBiomes.SHIMMER_RIVER,
 			ESBiomes.STARLIT_SEA,
 			ESBiomes.THE_ABYSS
-		);
-		tag(BiomeTags.IS_FOREST).add(
-			ESBiomes.STARLIGHT_FOREST,
-			ESBiomes.STARLIGHT_DENSE_FOREST,
-			ESBiomes.STARLIGHT_PERMAFROST_FOREST,
-			ESBiomes.DARK_SWAMP,
-			ESBiomes.SCARLET_FOREST,
-			ESBiomes.TORREYA_FOREST
-		);
-		tag(BiomeTags.IS_BEACH).add(
-			ESBiomes.WARM_SHORE
 		);
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COMMON).add(
 			Biomes.PLAINS,

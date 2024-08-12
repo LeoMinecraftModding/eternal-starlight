@@ -41,7 +41,7 @@ public class IndexBookComponent extends BookComponent {
 	}
 
 	@Override
-	public int getPageCount(Font font) {
+	public int getPageCount(int pagesBefore, Font font) {
 		if (cachedComponents.isEmpty()) {
 			cachedComponents.addAll(font.split(introText, width));
 			indexStartLine = cachedComponents.size();
@@ -133,7 +133,7 @@ public class IndexBookComponent extends BookComponent {
 				if (definition.id().equals(jumpTo)) {
 					int pages = 0;
 					for (int j = 0; j < i; j++) {
-						pages += access.getComponents().get(j).component().getPageCount(font);
+						pages += access.getComponents().get(j).component().getPageCount(pages, font);
 					}
 					access.setPage(pages);
 					break;

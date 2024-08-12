@@ -33,7 +33,7 @@ public class BookScreen extends Screen {
 		rightButton = addRenderableWidget(new ESPageButton(getBaseX() + book.width() - book.buttonWidth(), getBaseY() + book.height(), book, true, true, button -> flipRight()));
 		pageSize = 0;
 		for (BookComponentDefinition definition : getComponents()) {
-			pageSize += definition.component().getPageCount(font);
+			pageSize += definition.component().getPageCount(pageSize, font);
 		}
 		updateVisibility();
 	}
@@ -176,7 +176,7 @@ public class BookScreen extends Screen {
 		int pages = 0;
 		for (int i = 0; i < getComponents().size(); i++) {
 			BookComponentDefinition definition = getComponents().get(i);
-			pages += definition.component().getPageCount(font);
+			pages += definition.component().getPageCount(pages, font);
 			if (pages >= currentPage + (left ? 1 : 2)) {
 				return i;
 			}
@@ -191,9 +191,10 @@ public class BookScreen extends Screen {
 				int pages = 0;
 				for (int i = 0; i < getComponents().size(); i++) {
 					BookComponentDefinition definition = getComponents().get(i);
-					pages += definition.component().getPageCount(font);
+					int defCount = definition.component().getPageCount(pages, font);
+					pages += defCount;
 					if (pages >= currentPage + (left ? 1 : 2)) {
-						return currentPage + (left ? 0 : 1) - (pages - definition.component().getPageCount(font));
+						return currentPage + (left ? 0 : 1) - (pages - defCount);
 					}
 				}
 				return 0;

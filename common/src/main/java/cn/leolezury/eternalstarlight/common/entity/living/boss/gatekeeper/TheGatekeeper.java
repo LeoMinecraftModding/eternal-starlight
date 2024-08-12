@@ -226,7 +226,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			.add(Attributes.FOLLOW_RANGE, 200.0D)
 			.add(Attributes.MAX_HEALTH, 175.0D)
 			.add(Attributes.ATTACK_DAMAGE, 5.0D)
-			.add(Attributes.ARMOR, 30.0D)
+			.add(Attributes.ARMOR, 15.0D)
 			.add(Attributes.ARMOR_TOUGHNESS, 5.0D)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D);
 	}

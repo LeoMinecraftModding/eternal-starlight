@@ -114,7 +114,7 @@ public class ClientSideHelper implements ClientHelper {
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 92, 96, 11)
 			.textDisplay(Component.translatable(ESItems.BOOK.get().getDescriptionId()), 52, 115, 1.2f);
 
-		TextBookComponent preface = new TextBookComponent(translatedBookText("preface"), 105, 130);
+		TextBookComponent preface = new TextBookComponent(translatedBookText("preface"), false, 105, 130);
 
 		IndexBookComponent index = new IndexBookComponent(translatedBookText("index"), List.of(
 			new IndexBookComponent.IndexItem(Component.literal("•").append(translatedBookText("main_story_title")), EternalStarlight.id("main_story"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),

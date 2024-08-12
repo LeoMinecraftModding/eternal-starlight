@@ -42,7 +42,7 @@ public class DisplayBookComponent extends BookComponent {
 	}
 
 	@Override
-	public int getPageCount(Font font) {
+	public int getPageCount(int pagesBefore, Font font) {
 		return 1;
 	}
 

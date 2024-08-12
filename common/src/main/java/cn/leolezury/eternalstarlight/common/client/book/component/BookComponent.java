@@ -16,7 +16,7 @@ public abstract class BookComponent {
 		this.height = height;
 	}
 
-	public abstract int getPageCount(Font font);
+	public abstract int getPageCount(int pagesBefore, Font font);
 
 	public abstract void render(BookAccess access, GuiGraphics graphics, Font font, int x, int y, int mouseX, int mouseY);
 
