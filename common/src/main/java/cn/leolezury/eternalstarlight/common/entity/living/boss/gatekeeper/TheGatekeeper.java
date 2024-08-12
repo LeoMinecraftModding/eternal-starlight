@@ -56,9 +56,9 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
-import org.apache.commons.compress.utils.Sets;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -324,7 +324,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		}
-		return InteractionResult.PASS;
+		return InteractionResult.CONSUME;
 	}
 
 	public void handleDialogueClose(int operation) {
@@ -475,7 +475,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	protected void addTrades(MerchantOffers original, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {
-		Set<Integer> set = Sets.newHashSet();
+		Set<Integer> set = new HashSet<>();
 		if (newTrades.length > maxNumbers) {
 			while (set.size() < maxNumbers) {
 				set.add(this.random.nextInt(newTrades.length));

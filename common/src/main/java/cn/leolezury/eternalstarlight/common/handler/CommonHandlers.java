@@ -298,9 +298,9 @@ public class CommonHandlers {
 					living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 200, level));
 				}
 			}
-			if (ESEntityUtil.getPersistentData(projectile).contains(TAG_STARFALL_ARROW)) {
+			if (ESEntityUtil.getPersistentData(projectile).contains(TAG_STARFALL_ARROW) && projectile.getOwner() instanceof LivingEntity owner) {
 				Vec3 location = result.getLocation();
-				AethersentMeteor.createMeteorShower(serverLevel, projectile.getOwner() instanceof LivingEntity livingEntity ? livingEntity : null, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
+				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
 			}
 		}
 	}
