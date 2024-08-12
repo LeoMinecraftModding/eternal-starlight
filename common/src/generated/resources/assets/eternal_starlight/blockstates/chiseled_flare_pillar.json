@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "eternal_starlight:block/chiseled_flare_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "eternal_starlight:block/chiseled_flare_pillar"
+    },
+    "axis=z": {
+      "model": "eternal_starlight:block/chiseled_flare_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

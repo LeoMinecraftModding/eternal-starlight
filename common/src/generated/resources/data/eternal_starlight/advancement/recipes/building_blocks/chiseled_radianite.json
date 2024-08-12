@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_radianite_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:radianite_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:chiseled_radianite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_radianite_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:chiseled_radianite"
+    ]
+  }
+}

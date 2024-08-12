@@ -273,6 +273,22 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NEBULAITE_BRICK_WALL = registerItem("nebulaite_brick_wall", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_NEBULAITE_BRICKS = registerItem("chiseled_nebulaite_bricks", () -> new BlockItem(ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), new Item.Properties()));
 
+	//solar decoration
+	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE = registerItem("radianite", () -> new BlockItem(ESBlocks.RADIANITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_SLAB = registerItem("radianite_slab", () -> new BlockItem(ESBlocks.RADIANITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_STAIR = registerItem("radianite_stairs", () -> new BlockItem(ESBlocks.RADIANITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_WALL = registerItem("radianite_wall", () -> new BlockItem(ESBlocks.RADIANITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_RADIANITE = registerItem("polished_radianite", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_RADIANITE = registerItem("chiseled_radianite", () -> new BlockItem(ESBlocks.CHISELED_RADIANITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_PILLAR = registerItem("radianite_pillar", () -> new BlockItem(ESBlocks.RADIANITE_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICKS = registerItem("flare_bricks", () -> new BlockItem(ESBlocks.FLARE_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICK_SLABS = registerItem("flare_brick_slab", () -> new BlockItem(ESBlocks.FLARE_BRICK_SLABS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICK_STAIRS = registerItem("flare_brick_stairs", () -> new BlockItem(ESBlocks.FLARE_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICK_WALL = registerItem("flare_brick_wall", () -> new BlockItem(ESBlocks.FLARE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICK_TILES = registerItem("flare_brick_tiles", () -> new BlockItem(ESBlocks.FLARE_BRICK_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_FLARE_BRICK_PILLAR = registerItem("chiseled_flare_pillar", () -> new BlockItem(ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get(), new Item.Properties()));
+
 	// stellagmite
 	public static final RegistryObject<Item, Item> STELLAGMITE = registerItem("stellagmite", () -> new BlockItem(ESBlocks.STELLAGMITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STELLAGMITE_SLAB = registerItem("stellagmite_slab", () -> new BlockItem(ESBlocks.STELLAGMITE_SLAB.get(), new Item.Properties()));

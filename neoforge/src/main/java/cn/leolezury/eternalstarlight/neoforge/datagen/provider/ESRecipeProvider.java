@@ -477,6 +477,21 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICKS.get());
 
+		addStoneCompress(recipeOutput, ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.RADIANITE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
+		addStairs(recipeOutput, ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE.get());
+		addSlab(recipeOutput, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE.get());
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_RADIANITE.get(), ESBlocks.RADIANITE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.FLARE_BRICK_SLABS.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.FLARE_BRICK_SLABS.get(), ESBlocks.FLARE_BRICKS.get());
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get(), ESBlocks.FLARE_BRICK_SLABS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
+
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
 		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), ESBlocks.POLISHED_STELLAGMITE_WALL.get(), ESBlocks.STELLAGMITE.get());

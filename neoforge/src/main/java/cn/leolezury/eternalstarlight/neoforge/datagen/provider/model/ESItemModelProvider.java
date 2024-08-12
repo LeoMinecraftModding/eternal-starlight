@@ -247,6 +247,27 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.NEBULAITE_BRICK_WALL.get(), ESItems.NEBULAITE_BRICKS.get());
 		block(ESItems.CHISELED_NEBULAITE_BRICKS.get());
 
+		block(ESItems.DUSK_GLASS.get());
+		block(ESItems.RADIANITE.get());
+		block(ESItems.RADIANITE_SLAB.get());
+		block(ESItems.RADIANITE_STAIR.get());
+		wall(ESItems.RADIANITE_WALL.get(), ESItems.RADIANITE.get());
+		block(ESItems.CHISELED_RADIANITE.get());
+		block(ESItems.POLISHED_RADIANITE.get());
+		block(ESItems.RADIANITE_PILLAR.get());
+		block(ESItems.FLARE_BRICKS.get());
+		block(ESItems.FLARE_BRICK_SLABS.get());
+		block(ESItems.FLARE_BRICK_STAIRS.get());
+		block(ESItems.FLARE_BRICK_TILES.get());
+		wall(ESItems.FLARE_BRICK_WALL.get(), ESItems.FLARE_BRICKS.get());
+		block(ESItems.CHISELED_FLARE_BRICK_PILLAR.get());
+
+		block(ESItems.FLARE_BRICKS.get());
+		block(ESItems.FLARE_BRICK_SLABS.get());
+		block(ESItems.FLARE_BRICK_STAIRS.get());
+		wall(ESItems.FLARE_BRICK_WALL.get(), ESItems.FLARE_BRICKS.get());
+		block(ESItems.CHISELED_FLARE_BRICK_PILLAR.get());
+
 		block(ESItems.STELLAGMITE.get());
 		block(ESItems.STELLAGMITE_SLAB.get());
 		block(ESItems.STELLAGMITE_STAIRS.get());
