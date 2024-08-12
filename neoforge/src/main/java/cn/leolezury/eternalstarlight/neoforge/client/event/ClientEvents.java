@@ -8,10 +8,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
-import net.neoforged.neoforge.client.event.ViewportEvent;
+import net.neoforged.neoforge.client.event.*;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT)
@@ -26,6 +23,11 @@ public class ClientEvents {
 		Vec3 angle = ClientHandlers.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
 		event.setPitch((float) angle.x);
 		event.setYaw((float) angle.y);
+	}
+
+	@SubscribeEvent
+	private static void onComputeFovModifier(ComputeFovModifierEvent event) {
+		ClientHandlers.modifyFov(event.getFovModifier()).ifPresent(d -> event.setNewFovModifier((float) d));
 	}
 
 	@SubscribeEvent

@@ -313,6 +313,19 @@ public class ClientHandlers {
 		return angles.add(getScreenShakePitchOffset(), getScreenShakeYawOffset(), 0);
 	}
 
+	public static OptionalDouble modifyFov(float original) {
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null && player.isUsingItem()) {
+			ItemStack itemStack = player.getUseItem();
+			if (itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get())) {
+				float f = player.getTicksUsingItem() / 20.0F;
+				f = f > 1.0F ? 1.0F : f * f;
+				return OptionalDouble.of(Mth.lerp(Minecraft.getInstance().options.fovEffectScale().get(), 1.0F, (original * (1.0F - f * 0.15F))));
+			}
+		}
+		return OptionalDouble.empty();
+	}
+
 	// tail of setupFog
 	public static void onRenderFog(Camera camera, FogRenderer.FogMode fogMode) {
 		Minecraft minecraft = Minecraft.getInstance();

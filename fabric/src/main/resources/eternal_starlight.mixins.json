@@ -13,6 +13,7 @@
     "ProjectileMixin"
   ],
   "client": [
+    "client.AbstractClientPlayerMixin",
     "client.BossHealthOverlayMixin",
     "client.CameraMixin",
     "client.FogRendererMixin",
