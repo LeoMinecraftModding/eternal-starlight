@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_abysslate_brick_slab": {
+    "has_abysslate": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:polished_abysslate_brick_slab"
+            "items": "eternal_starlight:abysslate"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_polished_abysslate_brick_slab"
+      "has_abysslate"
     ]
   ],
   "rewards": {

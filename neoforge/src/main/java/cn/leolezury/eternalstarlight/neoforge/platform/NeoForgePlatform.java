@@ -37,6 +37,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -54,6 +56,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.EventHooks;
@@ -160,6 +163,11 @@ public class NeoForgePlatform implements ESPlatform {
 		} else {
 			bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec));
 		}
+	}
+
+	@Override
+	public SpawnEggItem createSpawnEgg(Supplier<EntityType<? extends Mob>> defaultType, int backgroundColor, int highlightColor, Item.Properties properties) {
+		return new DeferredSpawnEggItem(defaultType, backgroundColor, highlightColor, properties);
 	}
 
 	@Override

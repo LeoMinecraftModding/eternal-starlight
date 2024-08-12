@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grimstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:grimstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:grimstone_tiles_from_grimstone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grimstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:grimstone_tiles_from_grimstone_stonecutting"
+    ]
+  }
+}

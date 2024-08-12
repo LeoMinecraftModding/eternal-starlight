@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "eternal_starlight:block/springstone_bricks",
+    "side": "eternal_starlight:block/springstone_bricks",
+    "top": "eternal_starlight:block/springstone_bricks"
+  }
+}

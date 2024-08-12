@@ -319,8 +319,8 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("glacite_scythe");
 		registerSimpleSpecialModel("orb_of_prophecy");
 		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
-		registerSimpleSpecialModel("bonemore_broadsword");
-		registerSimpleSpecialModel("doomeden_sword");
+		registerSimpleSpecialModel("bonemore");
+		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("petal_scythe");
 		registerSimpleSpecialModel("crescent_spear");
@@ -532,8 +532,8 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("thermal_springstone_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("glacite_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("orb_of_prophecy_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_broadsword_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_sword_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));

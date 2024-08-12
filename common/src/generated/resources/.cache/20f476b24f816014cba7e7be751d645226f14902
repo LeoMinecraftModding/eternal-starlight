@@ -1,6 +1,26 @@
-// 1.21.1	2024-08-09T18:46:34.2480447	Tags for minecraft:worldgen/biome mod id eternal_starlight
+// 1.21.1	2024-08-12T10:36:00.5226753	Tags for minecraft:worldgen/biome mod id eternal_starlight
+2c4a89c23a3ccd558466fd2c39188fcd702e95b5 data/c/tags/worldgen/biome/is_aquatic.json
+aa74daa4e449808c979f81a1e775e91ab6e3104c data/c/tags/worldgen/biome/is_beach.json
+cb0a4dcf27d35fa925306d78df139fb8a8877f26 data/c/tags/worldgen/biome/is_cold.json
+d74ced9f625b299f41f4a043e144d0fbbcbe1cb7 data/c/tags/worldgen/biome/is_deep_ocean.json
+75c24a829f3fa146e1b8253ed583194a33b2ed44 data/c/tags/worldgen/biome/is_dense_vegetation.json
+ec47d24dfae4b4758afcd8eccca41ac8f0000902 data/c/tags/worldgen/biome/is_desert.json
+ec47d24dfae4b4758afcd8eccca41ac8f0000902 data/c/tags/worldgen/biome/is_dry.json
+ec47d24dfae4b4758afcd8eccca41ac8f0000902 data/c/tags/worldgen/biome/is_hot.json
+b7bf98372b3196705ef18b4e017dc50edb756cc8 data/c/tags/worldgen/biome/is_magical.json
+573d67b23b955ccd9bea296f2c2934dfc648e90e data/c/tags/worldgen/biome/is_ocean.json
+7304bf45df8a7348b0a59997ed8db2804589724e data/c/tags/worldgen/biome/is_river.json
+223aff3c6aef24c31b16ccd52b57ca53578d3451 data/c/tags/worldgen/biome/is_sandy.json
+ef8caff2dc4be8a9c3efa97891d805a39eb246c4 data/c/tags/worldgen/biome/is_shallow_ocean.json
+cb0a4dcf27d35fa925306d78df139fb8a8877f26 data/c/tags/worldgen/biome/is_snowy.json
+83fa957bccaacd71866525cb690c72ec5772b8b9 data/c/tags/worldgen/biome/is_swamp.json
+cb0a4dcf27d35fa925306d78df139fb8a8877f26 data/c/tags/worldgen/biome/is_tree/coniferous.json
+e8a16854be5289c98ee3029b8069cafc39b2dc77 data/c/tags/worldgen/biome/is_tree/deciduous.json
+a3caa6728273229bfa839109d7a5875d97494f2f data/c/tags/worldgen/biome/is_wet.json
 0ecf508b19f08d39012d33c99d6ad2ad8f508796 data/eternal_starlight/tags/worldgen/biome/has_cursed_garden.json
 eaa8cc6b0b29b68c095cdf51295b3a6ba2c4cc68 data/eternal_starlight/tags/worldgen/biome/has_golem_forge.json
 42863eb1e6a736e4fe01b4473479b9844500df78 data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_common.json
 42d7f45693b54847c20b5f5ab083d343e1c0c14d data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_desert.json
 777b34fb376dad6647f6fc402daf23be1809599a data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_forest.json
+c1bcc9fdc9298e7a98799c2d1ae240d765d7e36c data/minecraft/tags/worldgen/biome/is_beach.json
+75c24a829f3fa146e1b8253ed583194a33b2ed44 data/minecraft/tags/worldgen/biome/is_forest.json

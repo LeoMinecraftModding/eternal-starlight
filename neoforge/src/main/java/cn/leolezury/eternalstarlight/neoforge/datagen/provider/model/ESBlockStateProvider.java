@@ -361,8 +361,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
-		simpleBlock(ESBlocks.SPRINGSTONE.get());
-		simpleBlock(ESBlocks.THERMAL_SPRINGSTONE.get());
+		stoneSet(ESBlocks.SPRINGSTONE.get(), ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE_WALL.get());
+		stoneSet(ESBlocks.SPRINGSTONE_BRICKS.get(), ESBlocks.SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.SPRINGSTONE_BRICK_WALL.get());
+		stoneSet(ESBlocks.POLISHED_SPRINGSTONE.get(), ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(), ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(), ESBlocks.POLISHED_SPRINGSTONE_WALL.get());
+		simpleBlock(ESBlocks.CHISELED_SPRINGSTONE.get());
+		stoneSet(ESBlocks.THERMAL_SPRINGSTONE.get(), ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_WALL.get());
+		stoneSet(ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.GLACITE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
@@ -475,9 +479,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void polishedToxite(Block block, Block stone) {
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
-			? cubeAll(block) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
-			? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(block), blockTexture(stone)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(stone), blockTexture(block)))).build());
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.FULL ? models().cubeAll(name(block), blockTexture(block)) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
+			? models().cubeAll(name(block) + "_middle", blockTexture(stone)) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
+			? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(stone), blockTexture(block)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(block), blockTexture(stone))))).build());
 	}
 
 	private void orbflora(Block block) {

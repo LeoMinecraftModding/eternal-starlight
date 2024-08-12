@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.fabric.client.renderer.FabricItemStackRenderer;
+import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -37,6 +38,7 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientSetupHandlers.clientSetup();
+		FabricNetworkHandler.registerClientPacketReceivers();
 		ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
 		ClientSetupHandlers.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
 		ModelLoadingPlugin.register(new ESModelLoadingPlugin());

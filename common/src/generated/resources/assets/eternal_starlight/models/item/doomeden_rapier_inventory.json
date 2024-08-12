@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "eternal_starlight:item/doomeden_rapier_inventory"
+  }
+}

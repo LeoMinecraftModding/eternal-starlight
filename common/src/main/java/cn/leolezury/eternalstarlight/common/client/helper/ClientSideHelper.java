@@ -178,7 +178,7 @@ public class ClientSideHelper implements ClientHelper {
 			new BookComponentDefinition(title, EternalStarlight.id("title"), 11, 6, 5, 6),
 			new BookComponentDefinition(preface, EternalStarlight.id("preface"), 11, 6, 5, 6),
 			new BookComponentDefinition(index, EternalStarlight.id("index"), 11, 6, 5, 6),
-			new BookComponentDefinition(mainStory, EternalStarlight.id("main_story"), 11, 6, 5, 6),
+			new BookComponentDefinition(mainStory, EternalStarlight.id("main_story"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(golemDisplay, EternalStarlight.id("starlight_golem_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(golemLocator, EternalStarlight.id("starlight_golem_locator"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(golem, EternalStarlight.id("starlight_golem"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),

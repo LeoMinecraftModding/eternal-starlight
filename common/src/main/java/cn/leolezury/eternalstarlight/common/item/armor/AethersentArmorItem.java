@@ -18,6 +18,7 @@ public class AethersentArmorItem extends ArmorItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".full_set").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".aethersent_armor").withStyle(ChatFormatting.DARK_PURPLE));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}

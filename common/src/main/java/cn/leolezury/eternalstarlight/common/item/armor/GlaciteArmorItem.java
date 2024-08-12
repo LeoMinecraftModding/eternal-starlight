@@ -18,6 +18,7 @@ public class GlaciteArmorItem extends ArmorItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".glacite_armor").withStyle(ChatFormatting.AQUA));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}

@@ -1,6 +1,0 @@
-{
-  "parent": "eternal_starlight:item/large_handheld",
-  "textures": {
-    "layer0": "eternal_starlight:item/bonemore_broadsword"
-  }
-}

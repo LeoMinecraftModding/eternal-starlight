@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.fabric;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -34,10 +33,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 		// setup handlers
 		CommonSetupHandlers.commonSetup();
 		FabricNetworkHandler.registerPackets();
-		FabricNetworkHandler.registerPacketReceivers(false);
-		if (ESPlatform.INSTANCE.isPhysicalClient()) {
-			FabricNetworkHandler.registerPacketReceivers(true);
-		}
+		FabricNetworkHandler.registerPacketReceivers();
 		CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
 		CommonSetupHandlers.registerSpawnPlacements(SpawnPlacements::register);
 		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
@@ -54,7 +50,6 @@ public class ESFabricEntrypoint implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
 		CommonSetupHandlers.registerChunkGenerator();
 		CommonSetupHandlers.registerBiomeSource();
-
 
 		// common handlers
 		ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);

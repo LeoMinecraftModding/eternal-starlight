@@ -75,6 +75,7 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".full_set").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".swamp_silver_armor").withStyle(ChatFormatting.YELLOW));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}

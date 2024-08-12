@@ -17,6 +17,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
@@ -153,6 +154,7 @@ public class FabricPlatform implements ESPlatform {
 		return HoeItemAccessor.getTillingActions().get(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
 	}
 
+	@Environment(EnvType.CLIENT)
 	@Override
 	public BakedModel getGlowingBakedModel(BakedModel origin) {
 		return new FabricGlowingBakedModel(origin);

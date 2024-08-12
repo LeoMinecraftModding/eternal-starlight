@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eternal_ice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:eternal_ice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:eternal_ice_brick_stairs_from_eternal_ice_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_eternal_ice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:eternal_ice_brick_stairs_from_eternal_ice_stonecutting"
+    ]
+  }
+}

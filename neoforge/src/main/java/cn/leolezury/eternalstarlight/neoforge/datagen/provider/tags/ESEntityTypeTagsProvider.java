@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +21,17 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
+		// conventional tags
+		tag(Tags.EntityTypes.BOSSES).add(
+			ESEntities.THE_GATEKEEPER.get(),
+			ESEntities.STARLIGHT_GOLEM.get(),
+			ESEntities.TANGLED_HATRED.get(),
+			ESEntities.LUNAR_MONSTROSITY.get()
+		);
+		tag(Tags.EntityTypes.BOATS).add(
+			ESEntities.BOAT.get(),
+			ESEntities.CHEST_BOAT.get()
+		);
 		tag(ESTags.EntityTypes.ROBOTIC).add(
 			ESEntities.FREEZE.get(),
 			ESEntities.STARLIGHT_GOLEM.get()

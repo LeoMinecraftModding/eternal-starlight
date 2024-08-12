@@ -22,6 +22,27 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		spawnEgg(ESItems.BOARWARF_SPAWN_EGG.get());
+		spawnEgg(ESItems.ASTRAL_GOLEM_SPAWN_EGG.get());
+		spawnEgg(ESItems.GLEECH_SPAWN_EGG.get());
+		spawnEgg(ESItems.LONESTAR_SKELETON_SPAWN_EGG.get());
+		spawnEgg(ESItems.NIGHTFALL_SPIDER_SPAWN_EGG.get());
+		spawnEgg(ESItems.THIRST_WALKER_SPAWN_EGG.get());
+		spawnEgg(ESItems.ENT_SPAWN_EGG.get());
+		spawnEgg(ESItems.RATLIN_SPAWN_EGG.get());
+		spawnEgg(ESItems.YETI_SPAWN_EGG.get());
+		spawnEgg(ESItems.AURORA_DEER_SPAWN_EGG.get());
+		spawnEgg(ESItems.CRYSTALLIZED_MOTH_SPAWN_EGG.get());
+		spawnEgg(ESItems.SHIMMER_LACEWING_SPAWN_EGG.get());
+		spawnEgg(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
+		spawnEgg(ESItems.LUMINOFISH_SPAWN_EGG.get());
+		spawnEgg(ESItems.LUMINARIS_SPAWN_EGG.get());
+		spawnEgg(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
+		spawnEgg(ESItems.FREEZE_SPAWN_EGG.get());
+		spawnEgg(ESItems.TANGLED_SPAWN_EGG.get());
+		spawnEgg(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
+		spawnEgg(ESItems.TANGLED_HATRED_SPAWN_EGG.get());
+
 		block(ESItems.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		block(ESItems.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
 		flatBlockTexture(ESItems.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
@@ -345,8 +366,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.LUNAR_MAT.get());
 
 		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
-		largeHandheld(ESItems.BONEMORE_BROADSWORD.get());
-		inventoryHandheld(ESItems.BONEMORE_BROADSWORD.get());
+		largeHandheld(ESItems.BONEMORE.get());
+		inventoryHandheld(ESItems.BONEMORE.get());
 		bow(ESItems.BOW_OF_BLOOD.get());
 		handheld(ESItems.LIVING_ARM.get());
 		flatBlockTexture(ESItems.DOOMED_TORCH.get());
@@ -355,8 +376,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.ROTTEN_HAM.get());
 		basicItem(ESItems.EYE_OF_DOOM.get());
 		basicItem(ESItems.DOOMEDEN_RAG.get());
-		handheld(ESItems.DOOMEDEN_FLESH_GRINDER.get());
-		inventoryHandheld(ESItems.DOOMEDEN_SWORD.get());
+		handheld(ESItems.FLESH_GRINDER.get());
+		inventoryHandheld(ESItems.DOOMEDEN_RAPIER.get());
 		block(ESItems.DOOMEDEN_BRICKS.get());
 		block(ESItems.DOOMEDEN_BRICK_SLAB.get());
 		block(ESItems.DOOMEDEN_BRICK_STAIRS.get());
@@ -462,7 +483,26 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AETHERSENT_BOOTS.get());
 
 		block(ESItems.SPRINGSTONE.get());
+		block(ESItems.SPRINGSTONE_SLAB.get());
+		block(ESItems.SPRINGSTONE_STAIRS.get());
+		wall(ESItems.SPRINGSTONE_WALL.get(), ESItems.SPRINGSTONE.get());
+		block(ESItems.SPRINGSTONE_BRICKS.get());
+		block(ESItems.SPRINGSTONE_BRICK_SLAB.get());
+		block(ESItems.SPRINGSTONE_BRICK_STAIRS.get());
+		wall(ESItems.SPRINGSTONE_BRICK_WALL.get(), ESItems.SPRINGSTONE_BRICKS.get());
+		block(ESItems.POLISHED_SPRINGSTONE.get());
+		block(ESItems.POLISHED_SPRINGSTONE_SLAB.get());
+		block(ESItems.POLISHED_SPRINGSTONE_STAIRS.get());
+		wall(ESItems.POLISHED_SPRINGSTONE_WALL.get(), ESItems.POLISHED_SPRINGSTONE.get());
+		block(ESItems.CHISELED_SPRINGSTONE.get());
 		block(ESItems.THERMAL_SPRINGSTONE.get());
+		block(ESItems.THERMAL_SPRINGSTONE_SLAB.get());
+		block(ESItems.THERMAL_SPRINGSTONE_STAIRS.get());
+		wall(ESItems.THERMAL_SPRINGSTONE_WALL.get(), ESItems.THERMAL_SPRINGSTONE.get());
+		block(ESItems.THERMAL_SPRINGSTONE_BRICKS.get());
+		block(ESItems.THERMAL_SPRINGSTONE_BRICK_SLAB.get());
+		block(ESItems.THERMAL_SPRINGSTONE_BRICK_STAIRS.get());
+		wall(ESItems.THERMAL_SPRINGSTONE_BRICK_WALL.get(), ESItems.THERMAL_SPRINGSTONE_BRICKS.get());
 		basicItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get());
 		handheld(ESItems.THERMAL_SPRINGSTONE_SWORD.get());
 		handheld(ESItems.THERMAL_SPRINGSTONE_PICKAXE.get());
@@ -482,10 +522,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.GLACITE_AXE.get());
 		largeHandheld(ESItems.GLACITE_SCYTHE.get());
 		inventoryHandheld(ESItems.GLACITE_SCYTHE.get());
-		basicItem(ESItems.GLACITE_HELMET.get());
-		basicItem(ESItems.GLACITE_CHESTPLATE.get());
-		basicItem(ESItems.GLACITE_LEGGINGS.get());
-		basicItem(ESItems.GLACITE_BOOTS.get());
+		armorWithTrim((ArmorItem) ESItems.GLACITE_HELMET.get());
+		armorWithTrim((ArmorItem) ESItems.GLACITE_CHESTPLATE.get());
+		armorWithTrim((ArmorItem) ESItems.GLACITE_LEGGINGS.get());
+		armorWithTrim((ArmorItem) ESItems.GLACITE_BOOTS.get());
 
 		block(ESItems.SWAMP_SILVER_ORE.get());
 		block(ESItems.SWAMP_SILVER_BLOCK.get());
@@ -632,6 +672,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LOOT_BAG.get());
 		basicItem(ESItems.BOOK.get());
 		basicItem(ESItems.BLOSSOM_OF_STARS.get());
+	}
+
+	private void spawnEgg(Item item) {
+		getBuilder(item.toString())
+			.parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
 	}
 
 	private void armorWithTrim(ArmorItem armor) {

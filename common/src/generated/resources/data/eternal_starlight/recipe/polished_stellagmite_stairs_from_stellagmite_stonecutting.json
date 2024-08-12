@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:stellagmite"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:polished_stellagmite_stairs"
+  }
+}

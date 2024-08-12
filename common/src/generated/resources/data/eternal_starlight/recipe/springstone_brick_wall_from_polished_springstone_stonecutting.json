@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:polished_springstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:springstone_brick_wall"
+  }
+}

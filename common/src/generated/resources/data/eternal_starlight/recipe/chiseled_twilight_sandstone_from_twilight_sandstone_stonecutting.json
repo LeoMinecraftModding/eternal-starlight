@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:twilight_sandstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:chiseled_twilight_sandstone"
+  }
+}

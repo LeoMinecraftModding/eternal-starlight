@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:thermal_springstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:thermal_springstone_brick_stairs"
+  }
+}

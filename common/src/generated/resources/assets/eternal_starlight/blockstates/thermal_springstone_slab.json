@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/thermal_springstone_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/thermal_springstone"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/thermal_springstone_slab_top"
+    }
+  }
+}

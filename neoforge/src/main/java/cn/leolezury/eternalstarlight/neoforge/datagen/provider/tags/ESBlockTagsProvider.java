@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -20,6 +21,184 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
+		// conventional tags
+		tag(Tags.Blocks.BUDDING_BLOCKS).add(
+			ESBlocks.BUDDING_THIOQUARTZ.get()
+		);
+		tag(Tags.Blocks.BUDS).add(
+			ESBlocks.FANTABUD.get(),
+			ESBlocks.GREEN_FANTABUD.get(),
+			ESBlocks.ORANGE_SCARLET_BUD.get(),
+			ESBlocks.PURPLE_SCARLET_BUD.get(),
+			ESBlocks.RED_SCARLET_BUD.get()
+		);
+		tag(Tags.Blocks.CLUSTERS).add(
+			ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
+			ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+			ESBlocks.THIOQUARTZ_CLUSTER.get()
+		);
+		tag(Tags.Blocks.COBBLESTONES).add(
+			ESBlocks.COBBLED_GRIMSTONE.get(),
+			ESBlocks.COBBLED_VOIDSTONE.get()
+		);
+		tag(Tags.Blocks.DYED_BLACK).add(
+			ESBlocks.BLACK_YETI_FUR.get(),
+			ESBlocks.BLACK_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_BLUE).add(
+			ESBlocks.BLUE_YETI_FUR.get(),
+			ESBlocks.BLUE_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_BROWN).add(
+			ESBlocks.BROWN_YETI_FUR.get(),
+			ESBlocks.BROWN_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_CYAN).add(
+			ESBlocks.CYAN_YETI_FUR.get(),
+			ESBlocks.CYAN_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_GRAY).add(
+			ESBlocks.GRAY_YETI_FUR.get(),
+			ESBlocks.GRAY_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_GREEN).add(
+			ESBlocks.GREEN_YETI_FUR.get(),
+			ESBlocks.GREEN_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_LIGHT_BLUE).add(
+			ESBlocks.LIGHT_BLUE_YETI_FUR.get(),
+			ESBlocks.LIGHT_BLUE_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_LIGHT_GRAY).add(
+			ESBlocks.LIGHT_GRAY_YETI_FUR.get(),
+			ESBlocks.LIGHT_GRAY_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_LIME).add(
+			ESBlocks.LIME_YETI_FUR.get(),
+			ESBlocks.LIME_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_MAGENTA).add(
+			ESBlocks.MAGENTA_YETI_FUR.get(),
+			ESBlocks.MAGENTA_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_ORANGE).add(
+			ESBlocks.ORANGE_YETI_FUR.get(),
+			ESBlocks.ORANGE_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_PINK).add(
+			ESBlocks.PINK_YETI_FUR.get(),
+			ESBlocks.PINK_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_PURPLE).add(
+			ESBlocks.PURPLE_YETI_FUR.get(),
+			ESBlocks.PURPLE_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_RED).add(
+			ESBlocks.RED_YETI_FUR.get(),
+			ESBlocks.RED_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_WHITE).add(
+			ESBlocks.WHITE_YETI_FUR.get(),
+			ESBlocks.WHITE_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.DYED_YELLOW).add(
+			ESBlocks.YELLOW_YETI_FUR.get(),
+			ESBlocks.YELLOW_YETI_FUR_CARPET.get()
+		);
+		tag(Tags.Blocks.FENCE_GATES).add(
+			ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get()
+		);
+		tag(Tags.Blocks.FENCE_GATES_WOODEN).add(
+			ESBlocks.LUNAR_FENCE_GATE.get(),
+			ESBlocks.NORTHLAND_FENCE_GATE.get(),
+			ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(),
+			ESBlocks.SCARLET_FENCE_GATE.get(),
+			ESBlocks.TORREYA_FENCE_GATE.get()
+		);
+		tag(Tags.Blocks.FENCES).add(
+			ESBlocks.LUNAR_MOSAIC_FENCE.get()
+		);
+		tag(Tags.Blocks.FENCES_WOODEN).add(
+			ESBlocks.LUNAR_FENCE.get(),
+			ESBlocks.NORTHLAND_FENCE.get(),
+			ESBlocks.STARLIGHT_MANGROVE_FENCE.get(),
+			ESBlocks.SCARLET_FENCE.get(),
+			ESBlocks.TORREYA_FENCE.get()
+		);
+		tag(Tags.Blocks.GRAVELS).add(
+			ESBlocks.DUSTED_GRAVEL.get()
+		);
+		tag(Tags.Blocks.GRAVELS).add(
+			ESBlocks.DUSTED_GRAVEL.get()
+		);
+		tag(Tags.Blocks.ORE_RATES_DENSE).add(
+			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
+			ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
+			ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
+			ESBlocks.VOIDSTONE_SALTPETER_ORE.get(),
+			ESBlocks.SWAMP_SILVER_ORE.get()
+		);
+		tag(Tags.Blocks.ORE_RATES_SPARSE).add(
+			ESBlocks.THERMAL_SPRINGSTONE.get()
+		);
+		tag(Tags.Blocks.ORES).add(
+			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
+			ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
+			ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
+			ESBlocks.VOIDSTONE_SALTPETER_ORE.get(),
+			ESBlocks.SWAMP_SILVER_ORE.get(),
+			ESBlocks.THERMAL_SPRINGSTONE.get()
+		);
+		tag(Tags.Blocks.ORES_REDSTONE).add(
+			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
+			ESBlocks.VOIDSTONE_REDSTONE_ORE.get()
+		);
+		tag(Tags.Blocks.SANDS).add(
+			ESBlocks.TWILIGHT_SAND.get()
+		);
+		tag(Tags.Blocks.SANDS).add(
+			ESBlocks.TWILIGHT_SAND.get()
+		);
+		tag(Tags.Blocks.SANDSTONE_BLOCKS).add(
+			ESBlocks.TWILIGHT_SANDSTONE.get(),
+			ESBlocks.CUT_TWILIGHT_SANDSTONE.get(),
+			ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get()
+		);
+		tag(Tags.Blocks.SANDSTONE_SLABS).add(
+			ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(),
+			ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get()
+		);
+		tag(Tags.Blocks.SANDSTONE_STAIRS).add(
+			ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(),
+			ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get()
+		);
+		tag(Tags.Blocks.SKULLS).add(
+			ESBlocks.TANGLED_SKULL.get(),
+			ESBlocks.TANGLED_WALL_SKULL.get()
+		);
+		tag(Tags.Blocks.STONES).add(
+			ESBlocks.GRIMSTONE.get(),
+			ESBlocks.VOIDSTONE.get(),
+			ESBlocks.TWILIGHT_SANDSTONE.get(),
+			ESBlocks.TOXITE.get(),
+			ESBlocks.ABYSSLATE.get(),
+			ESBlocks.THERMABYSSLATE.get(),
+			ESBlocks.CRYOBYSSLATE.get(),
+			ESBlocks.STELLAGMITE.get(),
+			ESBlocks.NEBULAITE.get(),
+			ESBlocks.ETERNAL_ICE.get()
+		);
+		tag(Tags.Blocks.STORAGE_BLOCKS).add(
+			ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get(),
+			ESBlocks.THIOQUARTZ_BLOCK.get(),
+			ESBlocks.SWAMP_SILVER_BLOCK.get(),
+			ESBlocks.RAW_AETHERSENT_BLOCK.get(),
+			ESBlocks.AETHERSENT_BLOCK.get(),
+			ESBlocks.SALTPETER_BLOCK.get(),
+			ESBlocks.GOLEM_STEEL_BLOCK.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
+			ESBlocks.LUNAR_MOSAIC.get()
+		);
 		// mod tags
 		tag(ESTags.Blocks.LUNAR_LOGS).add(
 			ESBlocks.LUNAR_LOG.get(),
@@ -227,7 +406,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
 			ESBlocks.DOOMEDEN_BRICK_SLAB.get(),
 			ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(),
-			ESBlocks.DOOMEDEN_TILE_SLAB.get()
+			ESBlocks.DOOMEDEN_TILE_SLAB.get(),
+			ESBlocks.SPRINGSTONE_SLAB.get(),
+			ESBlocks.SPRINGSTONE_BRICK_SLAB.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get()
 		);
 		tag(BlockTags.WOODEN_STAIRS).add(
 			ESBlocks.LUNAR_STAIRS.get(),
@@ -269,7 +453,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
 			ESBlocks.DOOMEDEN_BRICK_STAIRS.get(),
 			ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(),
-			ESBlocks.DOOMEDEN_TILE_STAIRS.get()
+			ESBlocks.DOOMEDEN_TILE_STAIRS.get(),
+			ESBlocks.SPRINGSTONE_STAIRS.get(),
+			ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get()
 		);
 		tag(BlockTags.WALLS).add(
 			ESBlocks.COBBLED_GRIMSTONE_WALL.get(),
@@ -299,7 +488,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.DUSTED_BRICK_WALL.get(),
 			ESBlocks.DOOMEDEN_BRICK_WALL.get(),
 			ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(),
-			ESBlocks.DOOMEDEN_TILE_WALL.get()
+			ESBlocks.DOOMEDEN_TILE_WALL.get(),
+			ESBlocks.SPRINGSTONE_WALL.get(),
+			ESBlocks.SPRINGSTONE_BRICK_WALL.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_WALL.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_WALL.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get()
 		);
 		tag(BlockTags.WOODEN_BUTTONS).add(
 			ESBlocks.LUNAR_BUTTON.get(),
@@ -634,6 +828,25 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 			ESBlocks.DOOMEDEN_KEYHOLE.get(),
 			ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(),
+			ESBlocks.SPRINGSTONE_SLAB.get(),
+			ESBlocks.SPRINGSTONE_STAIRS.get(),
+			ESBlocks.SPRINGSTONE_WALL.get(),
+			ESBlocks.SPRINGSTONE_BRICKS.get(),
+			ESBlocks.SPRINGSTONE_BRICK_SLAB.get(),
+			ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(),
+			ESBlocks.SPRINGSTONE_BRICK_WALL.get(),
+			ESBlocks.POLISHED_SPRINGSTONE.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(),
+			ESBlocks.POLISHED_SPRINGSTONE_WALL.get(),
+			ESBlocks.CHISELED_SPRINGSTONE.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_WALL.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(),
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get(),
 			ESBlocks.STELLAR_RACK.get()
 		);
 		tag(BlockTags.MINEABLE_WITH_AXE).add(

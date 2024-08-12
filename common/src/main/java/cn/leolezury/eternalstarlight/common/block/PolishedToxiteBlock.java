@@ -17,7 +17,7 @@ public class PolishedToxiteBlock extends Block {
 
 	public PolishedToxiteBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(getStateDefinition().any().setValue(PART, Part.MIDDLE));
+		this.registerDefaultState(getStateDefinition().any().setValue(PART, Part.FULL));
 	}
 
 	@Override
@@ -29,7 +29,9 @@ public class PolishedToxiteBlock extends Block {
 	protected BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
 		boolean above = levelAccessor.getBlockState(blockPos.above()).is(this);
 		boolean below = levelAccessor.getBlockState(blockPos.below()).is(this);
-		if (above && below || (!above && !below)) {
+		if ((!above && !below)) {
+			return blockState.setValue(PART, Part.FULL);
+		} else if (above && below) {
 			return blockState.setValue(PART, Part.MIDDLE);
 		} else if (above) {
 			return blockState.setValue(PART, Part.LOWER);
@@ -44,6 +46,7 @@ public class PolishedToxiteBlock extends Block {
 	}
 
 	public enum Part implements StringRepresentable {
+		FULL("full"),
 		UPPER("upper"),
 		MIDDLE("middle"),
 		LOWER("lower");

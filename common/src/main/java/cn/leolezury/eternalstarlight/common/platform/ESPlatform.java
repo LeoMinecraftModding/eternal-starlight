@@ -32,6 +32,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -83,6 +85,10 @@ public interface ESPlatform {
 
 	// for initialization
 	// items
+	default SpawnEggItem createSpawnEgg(Supplier<EntityType<? extends Mob>> defaultType, int backgroundColor, int highlightColor, Item.Properties properties) {
+		return new SpawnEggItem(defaultType.get(), backgroundColor, highlightColor, properties);
+	}
+
 	default ScytheItem createScythe(Tier tier, Item.Properties properties) {
 		return new ScytheItem(tier, properties);
 	}

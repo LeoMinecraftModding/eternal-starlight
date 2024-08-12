@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,6 +22,105 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
+		// conventional tags
+		copy(Tags.Blocks.FENCE_GATES, Tags.Items.FENCE_GATES);
+		copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
+		copy(Tags.Blocks.FENCES, Tags.Items.FENCES);
+		copy(Tags.Blocks.FENCES_WOODEN, Tags.Items.FENCES_WOODEN);
+		copy(Tags.Blocks.GRAVELS, Tags.Items.GRAVELS);
+		copy(Tags.Blocks.ORE_RATES_DENSE, Tags.Items.ORE_RATES_DENSE);
+		copy(Tags.Blocks.ORE_RATES_SPARSE, Tags.Items.ORE_RATES_SPARSE);
+		copy(Tags.Blocks.ORES, Tags.Items.ORES);
+		copy(Tags.Blocks.SANDS, Tags.Items.SANDS);
+		copy(Tags.Blocks.SANDSTONE_BLOCKS, Tags.Items.SANDSTONE_BLOCKS);
+		copy(Tags.Blocks.SANDSTONE_SLABS, Tags.Items.SANDSTONE_SLABS);
+		copy(Tags.Blocks.SANDSTONE_STAIRS, Tags.Items.SANDSTONE_STAIRS);
+		copy(Tags.Blocks.STONES, Tags.Items.STONES);
+		copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+		tag(Tags.Items.FOODS).add(
+			ESItems.DOOMEDEN_CARRION.get(),
+			ESItems.ROTTEN_HAM.get()
+		);
+		tag(Tags.Items.FOODS_FRUIT).add(
+			ESItems.ABYSSAL_FRUIT.get(),
+			ESItems.VELVETUMOSS_BALL.get(),
+			ESItems.LUNARIS_CACTUS_FRUIT.get(),
+			ESItems.LUNARIS_CACTUS_GEL.get()
+		);
+		tag(Tags.Items.FOODS_BERRY).add(
+			ESItems.LUNAR_BERRIES.get(),
+			ESItems.ABYSSAL_FRUIT.get(),
+			ESItems.BLOSSOM_OF_STARS.get()
+		);
+		tag(Tags.Items.FOODS_BERRY).add(
+			ESItems.LUNAR_BERRIES.get(),
+			ESItems.ABYSSAL_FRUIT.get()
+		);
+		tag(Tags.Items.FOODS_RAW_MEAT).add(
+			ESItems.AURORA_DEER_STEAK.get(),
+			ESItems.RATLIN_MEAT.get()
+		);
+		tag(Tags.Items.FOODS_COOKED_MEAT).add(
+			ESItems.COOKED_AURORA_DEER_STEAK.get(),
+			ESItems.COOKED_RATLIN_MEAT.get()
+		);
+		tag(Tags.Items.FOODS_RAW_FISH).add(
+			ESItems.LUMINOFISH.get(),
+			ESItems.LUMINARIS.get()
+		);
+		tag(Tags.Items.FOODS_COOKED_FISH).add(
+			ESItems.COOKED_LUMINOFISH.get(),
+			ESItems.COOKED_LUMINARIS.get()
+		);
+		tag(Tags.Items.GEMS).add(
+			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
+			ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()
+		);
+		tag(Tags.Items.GEMS_QUARTZ).add(
+			ESItems.THIOQUARTZ_CLUSTER.get()
+		);
+		tag(Tags.Items.INGOTS).add(
+			ESItems.AMARAMBER_INGOT.get(),
+			ESItems.AETHERSENT_INGOT.get(),
+			ESItems.SWAMP_SILVER_INGOT.get(),
+			ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
+			ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(),
+			ESItems.GOLEM_STEEL_INGOT.get()
+		);
+		tag(Tags.Items.MUSHROOMS).add(
+			ESItems.GLOWING_MUSHROOM.get()
+		);
+		tag(Tags.Items.NUGGETS).add(
+			ESItems.AMARAMBER_NUGGET.get(),
+			ESItems.AETHERSENT_NUGGET.get(),
+			ESItems.SWAMP_SILVER_NUGGET.get()
+		);
+		tag(Tags.Items.NUGGETS).add(
+			ESItems.AMARAMBER_NUGGET.get(),
+			ESItems.AETHERSENT_NUGGET.get(),
+			ESItems.SWAMP_SILVER_NUGGET.get()
+		);
+		tag(Tags.Items.RAW_MATERIALS).add(
+			ESItems.RAW_AMARAMBER.get(),
+			ESItems.RAW_AETHERSENT.get()
+		);
+		tag(Tags.Items.TOOLS_SHIELD).add(
+			ESItems.GLACITE_SHIELD.get()
+		);
+		tag(Tags.Items.TOOLS_BOW).add(
+			ESItems.STARFALL_LONGBOW.get(),
+			ESItems.BOW_OF_BLOOD.get()
+		);
+		tag(Tags.Items.TOOLS_CROSSBOW).add(
+			ESItems.CRYSTAL_CROSSBOW.get(),
+			ESItems.MECHANICAL_CROSSBOW.get()
+		);
+		tag(Tags.Items.TOOLS_SPEAR).add(
+			ESItems.CRESCENT_SPEAR.get()
+		);
+		tag(Tags.Items.TOOLS_IGNITER).add(
+			ESItems.SALTPETER_MATCHBOX.get()
+		);
 		// mod tags
 		copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
 		copy(ESTags.Blocks.NORTHLAND_LOGS, ESTags.Items.NORTHLAND_LOGS);
@@ -37,7 +137,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AURORA_DEER_ANTLER.get()
 		);
 		tag(ESTags.Items.GREATSWORDS).add(
-			ESItems.BONEMORE_BROADSWORD.get(),
+			ESItems.BONEMORE.get(),
 			ESItems.MOONRING_GREATSWORD.get()
 		);
 		tag(ESTags.Items.AURORA_DEER_FOOD).add(
@@ -97,7 +197,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.DOOMEDEN_KEYS).add(
 			ESItems.EYE_OF_DOOM.get(),
 			ESItems.LIVING_ARM.get(),
-			ESItems.DOOMEDEN_SWORD.get()
+			ESItems.DOOMEDEN_RAPIER.get()
 		);
 		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE).add(
 			ESItems.CHAIN_OF_SOULS.get()
@@ -329,7 +429,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.RAGE_OF_STARS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 			ESItems.SWAMP_SILVER_SWORD.get(),
-			ESItems.DOOMEDEN_SWORD.get(),
+			ESItems.DOOMEDEN_RAPIER.get(),
 			ESItems.SHATTERED_SWORD.get(),
 			ESItems.ENERGY_SWORD.get(),
 			ESItems.DAGGER_OF_HUNGER.get()
