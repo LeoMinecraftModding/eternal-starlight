@@ -487,8 +487,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 
 		for (Integer integer : set) {
-			VillagerTrades.ItemListing villagertrades$itrade = newTrades[integer];
-			MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.random);
+			VillagerTrades.ItemListing trade = newTrades[integer];
+			MerchantOffer merchantoffer = trade.getOffer(this, this.random);
 			if (merchantoffer != null) {
 				original.add(merchantoffer);
 			}

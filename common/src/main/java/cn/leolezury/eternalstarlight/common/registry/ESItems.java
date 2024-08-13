@@ -284,6 +284,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> POLISHED_RADIANITE_SLAB = registerItem("polished_radianite_slab", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_RADIANITE_STAIRS = registerItem("polished_radianite_stairs", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_RADIANITE_WALL = registerItem("polished_radianite_wall", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_BRICKS = registerItem("radianite_bricks", () -> new BlockItem(ESBlocks.RADIANITE_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_BRICK_SLAB = registerItem("radianite_brick_slab", () -> new BlockItem(ESBlocks.RADIANITE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_BRICK_STAIRS = registerItem("radianite_brick_stairs", () -> new BlockItem(ESBlocks.RADIANITE_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RADIANITE_BRICK_WALL = registerItem("radianite_brick_wall", () -> new BlockItem(ESBlocks.RADIANITE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_RADIANITE = registerItem("chiseled_radianite", () -> new BlockItem(ESBlocks.CHISELED_RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK = registerItem("flare_brick", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICKS = registerItem("flare_bricks", () -> new BlockItem(ESBlocks.FLARE_BRICKS.get(), new Item.Properties()));
@@ -626,7 +630,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
 		() -> new AxeItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.SWAMP_SILVER, 6, -3.1F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_SICKLE = registerItem("swamp_silver_sickle",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -1F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.SWAMP_SILVER, 2, -1F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(30))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_CHESTPLATE = registerItem("swamp_silver_chestplate",
@@ -723,7 +727,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLACK_YETI_FUR_CARPET = registerItem("black_yeti_fur_carpet", () -> new BlockItem(ESBlocks.BLACK_YETI_FUR_CARPET.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> AURORA_DEER_ANTLER = registerItem("aurora_deer_antler",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AURORA_DEER_ANTLER, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.AURORA_DEER_ANTLER, 3, -1F, 0.5F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AURORA_DEER_ANTLER, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.AURORA_DEER_ANTLER, 2, -1F, 0.5F))));
 	public static final RegistryObject<Item, Item> AURORA_DEER_STEAK = registerItem("aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.BEEF)));
 	public static final RegistryObject<Item, Item> COOKED_AURORA_DEER_STEAK = registerItem("cooked_aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.COOKED_BEEF)));
 

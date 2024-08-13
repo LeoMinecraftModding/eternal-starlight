@@ -74,7 +74,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "#eternal_starlight:scythes"
+                    "items": "#eternal_starlight:sickles"
                   }
                 }
               ]

@@ -21,6 +21,7 @@ public class ESTags {
 		public static final TagKey<Item> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Item> SCYTHES = create("scythes");
+		public static final TagKey<Item> SICKLES = create("sickles");
 		public static final TagKey<Item> GREATSWORDS = create("greatswords");
 		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");

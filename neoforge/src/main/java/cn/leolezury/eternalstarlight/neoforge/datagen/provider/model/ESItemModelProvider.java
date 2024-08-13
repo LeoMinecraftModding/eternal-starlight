@@ -257,6 +257,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.POLISHED_RADIANITE_SLAB.get());
 		block(ESItems.POLISHED_RADIANITE_STAIRS.get());
 		wall(ESItems.POLISHED_RADIANITE_WALL.get(), ESItems.POLISHED_RADIANITE.get());
+		block(ESItems.RADIANITE_BRICKS.get());
+		block(ESItems.RADIANITE_BRICK_SLAB.get());
+		block(ESItems.RADIANITE_BRICK_STAIRS.get());
+		wall(ESItems.RADIANITE_BRICK_WALL.get(), ESItems.RADIANITE_BRICKS.get());
 		block(ESItems.CHISELED_RADIANITE.get());
 		basicItem(ESItems.FLARE_BRICK.get());
 		block(ESItems.FLARE_BRICKS.get());

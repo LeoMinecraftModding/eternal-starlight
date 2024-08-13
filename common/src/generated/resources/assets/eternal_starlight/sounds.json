@@ -508,6 +508,10 @@
       {
         "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
       }
     ]
   },
@@ -519,6 +523,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
       }
     ]
@@ -532,6 +540,10 @@
       {
         "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
       }
     ]
   },
@@ -544,6 +556,10 @@
       {
         "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
       }
     ]
   },
@@ -555,6 +571,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
       }
     ]
@@ -583,6 +603,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
       }
     ]
@@ -619,10 +643,14 @@
       }
     ]
   },
-  "music.dimension.tranquility": {
+  "music.dimension": {
     "sounds": [
       {
         "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
       }
     ]

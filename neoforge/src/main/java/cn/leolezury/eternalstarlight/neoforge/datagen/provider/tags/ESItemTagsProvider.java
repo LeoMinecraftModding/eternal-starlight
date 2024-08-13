@@ -132,8 +132,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.SCYTHES).add(
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.GLACITE_SCYTHE.get(),
+			ESItems.PETAL_SCYTHE.get()
+		);
+		tag(ESTags.Items.SICKLES).add(
 			ESItems.SWAMP_SILVER_SICKLE.get(),
-			ESItems.PETAL_SCYTHE.get(),
 			ESItems.AURORA_DEER_ANTLER.get()
 		);
 		tag(ESTags.Items.GREATSWORDS).add(
@@ -347,7 +349,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.WAND_OF_TELEPORTATION.get(),
 			ESItems.CHAIN_OF_SOULS.get(),
 			ESItems.CRESCENT_SPEAR.get()
-		).addTag(ESTags.Items.SCYTHES);
+		).addTags(
+			ESTags.Items.SCYTHES,
+			ESTags.Items.SICKLES
+		);
 		tag(ItemTags.BOW_ENCHANTABLE).add(
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.MOONRING_BOW.get()
@@ -446,7 +451,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ItemTags.HOES).add(
 			ESItems.AMARAMBER_HOE.get()
-		).addTag(ESTags.Items.SCYTHES);
+		).addTags(
+			ESTags.Items.SCYTHES,
+			ESTags.Items.SICKLES
+		);
 		tag(ItemTags.SHOVELS).add(
 			ESItems.AMARAMBER_SHOVEL.get()
 		);

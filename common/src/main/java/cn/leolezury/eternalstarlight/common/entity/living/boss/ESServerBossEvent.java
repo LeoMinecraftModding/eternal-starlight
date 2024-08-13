@@ -4,10 +4,7 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class ESServerBossEvent extends ServerBossEvent {
 	private final ESBoss boss;
@@ -60,6 +57,6 @@ public class ESServerBossEvent extends ServerBossEvent {
 
 	public void allConvertToUnseen() {
 		this.unseenPlayers.addAll(getPlayers());
-		getPlayers().forEach(super::removePlayer);
+		new ArrayList<>(getPlayers()).forEach(super::removePlayer);
 	}
 }

@@ -144,6 +144,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
 		stoneSet(ESBlocks.RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get());
 		axisBlock(ESBlocks.RADIANITE_PILLAR.get());
+		stoneSet(ESBlocks.RADIANITE_BRICKS.get(), ESBlocks.RADIANITE_BRICK_SLAB.get(), ESBlocks.RADIANITE_BRICK_STAIRS.get(), ESBlocks.RADIANITE_BRICK_WALL.get());
 		stoneSet(ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_RADIANITE.get());
 

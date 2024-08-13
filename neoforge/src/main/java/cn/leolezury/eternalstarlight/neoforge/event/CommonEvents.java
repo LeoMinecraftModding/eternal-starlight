@@ -109,7 +109,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	private static void onToolModify(BlockEvent.BlockToolModificationEvent event) {
+	private static void onBlockToolModification(BlockEvent.BlockToolModificationEvent event) {
 		if (event.getItemAbility() == ItemAbilities.AXE_STRIP) {
 			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {

@@ -281,6 +281,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.POLISHED_RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.POLISHED_RADIANITE_STAIRS.get());
 		dropSelf(ESBlocks.POLISHED_RADIANITE_WALL.get());
+		dropSelf(ESBlocks.RADIANITE_BRICKS.get());
+		add(ESBlocks.RADIANITE_BRICK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.RADIANITE_BRICK_STAIRS.get());
+		dropSelf(ESBlocks.RADIANITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.CHISELED_RADIANITE.get());
 		dropSelf(ESBlocks.FLARE_BRICKS.get());
 		add(ESBlocks.FLARE_BRICK_SLAB.get(), this::createSlabItemTable);
@@ -620,7 +624,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	}
 
 	private LootTable.Builder createSickleOrShearsOnlyDrop(ItemLike arg) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SCYTHES)))).add(LootItem.lootTableItem(arg)));
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SICKLES)))).add(LootItem.lootTableItem(arg)));
 	}
 
 	private void deadBush(Block block) {
@@ -634,7 +638,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 	protected LootTable.Builder createDoublePlantDrops(Block block) {
 		return LootTable.lootTable().withPool(LootPool.lootPool()
-			.add(LootItem.lootTableItem(block).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SCYTHES)))))
+			.add(LootItem.lootTableItem(block).when(HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SICKLES)))))
 			.when((LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))
 				.and(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))), new BlockPos(0, 1, 0))))
 				.or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))

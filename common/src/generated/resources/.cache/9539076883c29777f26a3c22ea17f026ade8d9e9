@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-13T12:30:31.8347249	Item Models: eternal_starlight
+// 1.21.1	2024-08-13T15:59:50.4349703	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -487,6 +487,10 @@ b04d149ec0dafb8a69f12136b71c76c6020c1211 assets/eternal_starlight/models/item/pu
 3a2a901bfffcf784ef6dfa7417749736e09da156 assets/eternal_starlight/models/item/purple_yeti_fur.json
 eb0cf80c2db587a578624a201ae9d16134dbee32 assets/eternal_starlight/models/item/purple_yeti_fur_carpet.json
 57d3814562a3e3a19f63e6a4c9e50fb824c7d1d2 assets/eternal_starlight/models/item/radianite.json
+769c5ca317d53753163f20400e85a25367357d25 assets/eternal_starlight/models/item/radianite_bricks.json
+8406dc67ded29af2d975a61cc0258758405053bd assets/eternal_starlight/models/item/radianite_brick_slab.json
+69b111d8091aa57a017ea9a27420409200985b26 assets/eternal_starlight/models/item/radianite_brick_stairs.json
+541c358f65967b03b7c5ef9843bce7c5255ed35e assets/eternal_starlight/models/item/radianite_brick_wall.json
 985152da7078610e737d79e7aca8c826d8c72d99 assets/eternal_starlight/models/item/radianite_pillar.json
 ba573e0ef7f4fb61466c495e89c6e48a4d9e7b76 assets/eternal_starlight/models/item/radianite_slab.json
 ef6819fd619cf25d02a7ff41cc8e7fe4372ad8a0 assets/eternal_starlight/models/item/radianite_stairs.json

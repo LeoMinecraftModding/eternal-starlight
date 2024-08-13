@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "eternal_starlight:block/radianite_bricks",
+    "side": "eternal_starlight:block/radianite_bricks",
+    "top": "eternal_starlight:block/radianite_bricks"
+  }
+}

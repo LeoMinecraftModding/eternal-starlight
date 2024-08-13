@@ -86,6 +86,8 @@ public abstract class PlayerModelMixin<T extends LivingEntity> implements Animat
 		PlayerModel<?> playerModel = (PlayerModel<?>) (Object) this;
 		playerModel.head.resetPose();
 		playerModel.body.resetPose();
+		playerModel.leftLeg.resetPose();
+		playerModel.rightLeg.resetPose();
 	}
 
 	@Unique

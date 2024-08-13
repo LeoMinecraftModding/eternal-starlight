@@ -32,7 +32,7 @@ public class ESBiomes {
 	public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
 	public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
 
-	public static final Music MUSIC_TRANQUILITY = new Music(ESSoundEvents.MUSIC_DIMENSION_TRANQUILITY.asHolder(), 1200, 12000, false);
+	public static final Music MUSIC_TRANQUILITY = new Music(ESSoundEvents.MUSIC_DIMENSION.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_FOREST.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_PERMAFROST_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_SWAMP = new Music(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.asHolder(), 1200, 12000, false);

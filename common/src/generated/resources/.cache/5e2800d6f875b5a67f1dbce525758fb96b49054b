@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-13T12:11:17.2044612	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-08-13T15:59:50.4827288	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -52,7 +52,8 @@ eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/item/mana_c
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northland_logs.json
 4c1d8bbce7c883f739a73eb0374620a15297b159 data/eternal_starlight/tags/item/ratlin_food.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json
-7c1ead8daea523df86177df695642c7786a7129b data/eternal_starlight/tags/item/scythes.json
+8b585eddd3fd280fb21e9853850a8b93de508c48 data/eternal_starlight/tags/item/scythes.json
+428c1a50e9f05d9bca76d6e96a6f195d66f41e64 data/eternal_starlight/tags/item/sickles.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/item/starlight_mangrove_logs.json
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/stellagmite_igniters.json
 c2bade993e49b99929e4d8fa628cf2f9cf91aebf data/eternal_starlight/tags/item/terra_crystals.json
@@ -76,14 +77,14 @@ ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/item/chest_boats.js
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 0a92ee5a6a09681bb4a7b408b82cc281b1818576 data/minecraft/tags/item/enchantable/bow.json
 73e0127140563bac2e802feeb28acbf24cd5520f data/minecraft/tags/item/enchantable/crossbow.json
-37bcdc686d0239e713b3b55e94ba6d9d067de81a data/minecraft/tags/item/enchantable/durability.json
+0c8f7299714d164386a347ab6cf12b00f3f624af data/minecraft/tags/item/enchantable/durability.json
 f22733ab9bde5ffd6057d724fd930c54161d3226 data/minecraft/tags/item/enchantable/sharp_weapon.json
 f22733ab9bde5ffd6057d724fd930c54161d3226 data/minecraft/tags/item/enchantable/sword.json
 9ad28389412071a4b6bec06996c0e61929052189 data/minecraft/tags/item/foot_armor.json
 739968c9ec0cbeb500fb47ccac16b4b8e69192a5 data/minecraft/tags/item/freeze_immune_wearables.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/item/hanging_signs.json
 ff9a6ab987ff15343766be75eef4e14dd094ac4e data/minecraft/tags/item/head_armor.json
-641d5491e43911f0e5fc63449d297e9aadfdcf9a data/minecraft/tags/item/hoes.json
+ffb409a02247ba2848ba667787de666c32571af0 data/minecraft/tags/item/hoes.json
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/item/leaves.json
 7cb9e8cb5cad44c6e6341805674113d51983f6c9 data/minecraft/tags/item/leg_armor.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/item/logs.json
@@ -95,17 +96,17 @@ ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/item/saplings.json
 229c9712e50dee38e54100458b0b186472e4baf5 data/minecraft/tags/item/shovels.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/item/signs.json
-9fcce114daa9ab29b46fdf09e8a99e1ad400b29e data/minecraft/tags/item/slabs.json
+bb6b8966367fc61aa0d8f979ce1e5ad37affe67a data/minecraft/tags/item/slabs.json
 8870c4a6385d90a9300d6230dc7d54e7c6ea821c data/minecraft/tags/item/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/smelts_to_glass.json
-029884b0c1d42bf040ff6dcd54bb3094c0bd5494 data/minecraft/tags/item/stairs.json
+78e86ddda713eba499818d5e203325c2f39c7c75 data/minecraft/tags/item/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting_materials.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_tool_materials.json
 20fc09af0cd20d4bfa862d69f5a9dc61b76dc19f data/minecraft/tags/item/swords.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/item/tall_flowers.json
 ae4d00b3791f88b0b362e8bc40f8732e02187ef3 data/minecraft/tags/item/trim_materials.json
 77c40771e01c263ced67e3ea5099a8d690efbc39 data/minecraft/tags/item/trim_templates.json
-5c9d70e8a64c5947e9ca95300de99ccc64a8f2c2 data/minecraft/tags/item/walls.json
+35c898daa021e84911ab4847e3657204a09ea8fc data/minecraft/tags/item/walls.json
 2ef261a2ee8458fa023fcd45efeac2dbf120b140 data/minecraft/tags/item/wooden_buttons.json
 408496cb9fee4fbbfc36c93af2d07fac9f7ff480 data/minecraft/tags/item/wooden_doors.json
 02d0c9ac8007b3e212bcd7e5deadcbc7a0ffaaa3 data/minecraft/tags/item/wooden_fences.json

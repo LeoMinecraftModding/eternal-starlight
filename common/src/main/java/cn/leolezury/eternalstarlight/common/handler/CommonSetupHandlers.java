@@ -28,8 +28,10 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
 import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -48,6 +50,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -57,10 +60,15 @@ import java.util.function.Supplier;
 public class CommonSetupHandlers {
 	public static final Supplier<Map<Block, Block>> STRIPPABLES = Suppliers.memoize(() -> Map.of(
 		ESBlocks.LUNAR_LOG.get(), ESBlocks.STRIPPED_LUNAR_LOG.get(),
+		ESBlocks.LUNAR_WOOD.get(), ESBlocks.STRIPPED_LUNAR_WOOD.get(),
 		ESBlocks.NORTHLAND_LOG.get(), ESBlocks.STRIPPED_NORTHLAND_LOG.get(),
+		ESBlocks.NORTHLAND_WOOD.get(), ESBlocks.STRIPPED_NORTHLAND_WOOD.get(),
 		ESBlocks.STARLIGHT_MANGROVE_LOG.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get(),
+		ESBlocks.STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(),
 		ESBlocks.SCARLET_LOG.get(), ESBlocks.STRIPPED_SCARLET_LOG.get(),
-		ESBlocks.TORREYA_LOG.get(), ESBlocks.STRIPPED_TORREYA_LOG.get()
+		ESBlocks.SCARLET_WOOD.get(), ESBlocks.STRIPPED_SCARLET_WOOD.get(),
+		ESBlocks.TORREYA_LOG.get(), ESBlocks.STRIPPED_TORREYA_LOG.get(),
+		ESBlocks.TORREYA_WOOD.get(), ESBlocks.STRIPPED_TORREYA_WOOD.get()
 	));
 
 	public static final Supplier<Map<Block, Block>> TILLABLES = Suppliers.memoize(() -> Map.of(
@@ -119,10 +127,21 @@ public class CommonSetupHandlers {
 				return item;
 			}
 		});
-		DispenserBlock.registerBehavior(ESItems.TANGLED_SKULL.get(), new OptionalDispenseItemBehavior() {
+		DispenserBlock.registerBehavior(ESItems.TANGLED_SKULL.get(), new DefaultDispenseItemBehavior() {
 			@Override
 			protected ItemStack execute(BlockSource blockSource, ItemStack item) {
-				this.setSuccess(ArmorItem.dispenseArmor(blockSource, item));
+				if (!ArmorItem.dispenseArmor(blockSource, item)) {
+					Level level = blockSource.level();
+					Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
+					Position position = DispenserBlock.getDispensePosition(blockSource, 0.7, new Vec3(0.0, 0.1, 0.0));
+					TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level);
+					skull.setPos(new Vec3(position.x(), position.y(), position.z()));
+					skull.setShot(true);
+					Vec3 movement = new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ());
+					skull.setShotMovement(movement.normalize());
+					level.addFreshEntity(skull);
+				}
+				item.shrink(1);
 				return item;
 			}
 		});
