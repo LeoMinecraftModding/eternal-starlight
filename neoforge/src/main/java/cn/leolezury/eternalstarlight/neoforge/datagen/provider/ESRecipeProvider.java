@@ -479,18 +479,50 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.RADIANITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.RADIANITE.get());
-		stonecuttingSet(recipeOutput, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
-		addStairs(recipeOutput, ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE.get());
-		addSlab(recipeOutput, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_RADIANITE.get(), ESBlocks.RADIANITE.get());
-		stonecuttingSet(recipeOutput, ESBlocks.FLARE_BRICK_SLABS.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_RADIANITE.get(), ESBlocks.POLISHED_RADIANITE.get());
+		addPillar(recipeOutput, ESBlocks.RADIANITE_PILLAR.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_PILLAR.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_PILLAR.get(), ESBlocks.POLISHED_RADIANITE.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_WALL.get(), ESBlocks.RADIANITE.get());
+		addStairs(recipeOutput, ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE.get());
+		addSlab(recipeOutput, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE_WALL.get(), ESBlocks.POLISHED_RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE_WALL.get(), ESBlocks.POLISHED_RADIANITE.get());
+		addStairs(recipeOutput, ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE.get());
+		addSlab(recipeOutput, ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE.get(), 2);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICKS.get())
+			.pattern("##")
+			.pattern("##")
+			.unlockedBy("has_item", has(ESItems.FLARE_BRICK.get()))
+			.define('#', ESItems.FLARE_BRICK.get())
+			.save(recipeOutput);
+		addStoneCompress(recipeOutput, ESBlocks.FLARE_TILES.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILES.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILE_WALL.get(), ESBlocks.FLARE_BRICKS.get());
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
 		addStairs(recipeOutput, ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICKS.get());
-		addSlab(recipeOutput, ESBlocks.FLARE_BRICK_SLABS.get(), ESBlocks.FLARE_BRICKS.get());
-		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get(), ESBlocks.FLARE_BRICK_SLABS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICKS.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_WALL.get(), ESBlocks.FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_WALL.get(), ESBlocks.FLARE_TILES.get());
+		addStairs(recipeOutput, ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILES.get());
+		addSlab(recipeOutput, ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILES.get(), 2);
+		addPillar(recipeOutput, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_TILES.get());
 
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
@@ -1181,6 +1213,15 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("#  ")
 			.pattern("## ")
 			.pattern("###")
+			.define('#', input)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
+
+	protected final void addPillar(RecipeOutput recipeOutput, Block output, Block input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 2)
+			.pattern("#")
+			.pattern("#")
 			.define('#', input)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);

@@ -279,6 +279,7 @@ public class ClientSetupHandlers {
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
+		ESBlocks.DUSK_GLASS,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
 		ESBlocks.STARLIGHT_PORTAL
 	);

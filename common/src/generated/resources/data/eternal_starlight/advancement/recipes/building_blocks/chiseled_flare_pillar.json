@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_flare_brick_slab": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:flare_brick_slab"
+            "items": "eternal_starlight:flare_bricks"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_flare_brick_slab"
+      "has_item"
     ]
   ],
   "rewards": {

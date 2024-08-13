@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_radianite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:radianite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:polished_radianite_wall_from_radianite_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_radianite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:polished_radianite_wall_from_radianite_stonecutting"
+    ]
+  }
+}

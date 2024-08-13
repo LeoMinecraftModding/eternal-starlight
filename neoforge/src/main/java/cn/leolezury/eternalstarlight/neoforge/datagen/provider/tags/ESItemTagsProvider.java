@@ -440,7 +440,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.SWAMP_SILVER_PICKAXE.get()
 		);
 		tag(ItemTags.AXES).add(
-			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
 			ESItems.SWAMP_SILVER_AXE.get(),
 			ESItems.AMARAMBER_AXE.get()
 		);

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/polished_radianite_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/polished_radianite"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/polished_radianite_slab_top"
+    }
+  }
+}

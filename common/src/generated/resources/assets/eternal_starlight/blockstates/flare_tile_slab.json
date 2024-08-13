@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/flare_tile_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/flare_tiles"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/flare_tile_slab_top"
+    }
+  }
+}

@@ -141,15 +141,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICK_SLAB.get(), ESBlocks.NEBULAITE_BRICK_STAIRS.get(), ESBlocks.NEBULAITE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
-		simpleBlock(ESBlocks.DUSK_GLASS.get());
+		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
 		stoneSet(ESBlocks.RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get());
-		simpleBlock(ESBlocks.CHISELED_RADIANITE.get());
-		simpleBlock(ESBlocks.POLISHED_RADIANITE.get());
 		axisBlock(ESBlocks.RADIANITE_PILLAR.get());
+		stoneSet(ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE_WALL.get());
+		simpleBlock(ESBlocks.CHISELED_RADIANITE.get());
 
-		stoneSet(ESBlocks.FLARE_BRICKS.get(), ESBlocks.FLARE_BRICK_SLABS.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get());
-		simpleBlock(ESBlocks.FLARE_BRICK_TILES.get());
-		axisBlock(ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get());
+		stoneSet(ESBlocks.FLARE_BRICKS.get(), ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get());
+		stoneSet(ESBlocks.FLARE_TILES.get(), ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILE_WALL.get());
+
+		axisBlock(ESBlocks.CHISELED_FLARE_PILLAR.get());
 
 		stoneSet(ESBlocks.STELLAGMITE.get(), ESBlocks.STELLAGMITE_SLAB.get(), ESBlocks.STELLAGMITE_STAIRS.get(), ESBlocks.STELLAGMITE_WALL.get());
 		stoneSet(ESBlocks.MOLTEN_STELLAGMITE.get(), ESBlocks.MOLTEN_STELLAGMITE_SLAB.get(), ESBlocks.MOLTEN_STELLAGMITE_STAIRS.get(), ESBlocks.MOLTEN_STELLAGMITE_WALL.get());

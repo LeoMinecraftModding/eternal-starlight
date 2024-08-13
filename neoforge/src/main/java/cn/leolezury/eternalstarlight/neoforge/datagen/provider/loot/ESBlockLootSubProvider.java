@@ -271,20 +271,26 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.NEBULAITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
-		add(ESBlocks.DUSK_GLASS.get(), noDrop());
+		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.RADIANITE_STAIRS.get());
 		dropSelf(ESBlocks.RADIANITE_WALL.get());
-		dropSelf(ESBlocks.POLISHED_RADIANITE.get());
-		dropSelf(ESBlocks.CHISELED_RADIANITE.get());
 		dropSelf(ESBlocks.RADIANITE_PILLAR.get());
+		dropSelf(ESBlocks.POLISHED_RADIANITE.get());
+		add(ESBlocks.POLISHED_RADIANITE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.POLISHED_RADIANITE_STAIRS.get());
+		dropSelf(ESBlocks.POLISHED_RADIANITE_WALL.get());
+		dropSelf(ESBlocks.CHISELED_RADIANITE.get());
 		dropSelf(ESBlocks.FLARE_BRICKS.get());
-		dropSelf(ESBlocks.FLARE_BRICK_TILES.get());
-		add(ESBlocks.FLARE_BRICK_SLABS.get(), this::createSlabItemTable);
+		add(ESBlocks.FLARE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.FLARE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.FLARE_BRICK_WALL.get());
-		dropSelf(ESBlocks.CHISELED_FLARE_BRICK_PILLAR.get());
+		dropSelf(ESBlocks.FLARE_TILES.get());
+		add(ESBlocks.FLARE_TILE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.FLARE_TILE_STAIRS.get());
+		dropSelf(ESBlocks.FLARE_TILE_WALL.get());
+		dropSelf(ESBlocks.CHISELED_FLARE_PILLAR.get());
 
 		dropSelf(ESBlocks.STELLAGMITE.get());
 		add(ESBlocks.STELLAGMITE_SLAB.get(), this::createSlabItemTable);

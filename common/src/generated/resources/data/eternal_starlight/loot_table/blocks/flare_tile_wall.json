@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:flare_brick_tiles"
+          "name": "eternal_starlight:flare_tile_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:blocks/flare_brick_tiles"
+  "random_sequence": "eternal_starlight:blocks/flare_tile_wall"
 }

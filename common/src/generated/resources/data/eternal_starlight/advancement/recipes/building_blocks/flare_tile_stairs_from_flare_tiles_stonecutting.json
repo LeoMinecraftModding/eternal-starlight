@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flare_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:flare_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:flare_tile_stairs_from_flare_tiles_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_flare_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:flare_tile_stairs_from_flare_tiles_stonecutting"
+    ]
+  }
+}

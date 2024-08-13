@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "eternal_starlight:flare_brick_slab"
+      "item": "eternal_starlight:flare_bricks"
     }
   },
   "pattern": [
@@ -11,7 +11,7 @@
     "#"
   ],
   "result": {
-    "count": 1,
+    "count": 2,
     "id": "eternal_starlight:chiseled_flare_pillar"
   }
 }

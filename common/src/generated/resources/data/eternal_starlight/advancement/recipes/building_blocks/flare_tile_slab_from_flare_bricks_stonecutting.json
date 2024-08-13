@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flare_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:flare_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:flare_tile_slab_from_flare_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_flare_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:flare_tile_slab_from_flare_bricks_stonecutting"
+    ]
+  }
+}

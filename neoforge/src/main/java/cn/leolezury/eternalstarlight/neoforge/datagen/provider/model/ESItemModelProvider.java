@@ -250,23 +250,30 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.DUSK_GLASS.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());
-		block(ESItems.RADIANITE_STAIR.get());
+		block(ESItems.RADIANITE_STAIRS.get());
 		wall(ESItems.RADIANITE_WALL.get(), ESItems.RADIANITE.get());
-		block(ESItems.CHISELED_RADIANITE.get());
-		block(ESItems.POLISHED_RADIANITE.get());
 		block(ESItems.RADIANITE_PILLAR.get());
+		block(ESItems.POLISHED_RADIANITE.get());
+		block(ESItems.POLISHED_RADIANITE_SLAB.get());
+		block(ESItems.POLISHED_RADIANITE_STAIRS.get());
+		wall(ESItems.POLISHED_RADIANITE_WALL.get(), ESItems.POLISHED_RADIANITE.get());
+		block(ESItems.CHISELED_RADIANITE.get());
+		basicItem(ESItems.FLARE_BRICK.get());
 		block(ESItems.FLARE_BRICKS.get());
 		block(ESItems.FLARE_BRICK_SLABS.get());
 		block(ESItems.FLARE_BRICK_STAIRS.get());
-		block(ESItems.FLARE_BRICK_TILES.get());
 		wall(ESItems.FLARE_BRICK_WALL.get(), ESItems.FLARE_BRICKS.get());
-		block(ESItems.CHISELED_FLARE_BRICK_PILLAR.get());
+		block(ESItems.FLARE_TILES.get());
+		block(ESItems.FLARE_TILE_SLABS.get());
+		block(ESItems.FLARE_TILE_STAIRS.get());
+		wall(ESItems.FLARE_TILE_WALL.get(), ESItems.FLARE_TILES.get());
+		block(ESItems.CHISELED_FLARE_PILLAR.get());
 
 		block(ESItems.FLARE_BRICKS.get());
 		block(ESItems.FLARE_BRICK_SLABS.get());
 		block(ESItems.FLARE_BRICK_STAIRS.get());
 		wall(ESItems.FLARE_BRICK_WALL.get(), ESItems.FLARE_BRICKS.get());
-		block(ESItems.CHISELED_FLARE_BRICK_PILLAR.get());
+		block(ESItems.CHISELED_FLARE_PILLAR.get());
 
 		block(ESItems.STELLAGMITE.get());
 		block(ESItems.STELLAGMITE_SLAB.get());
@@ -576,9 +583,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AMARAMBER_LANTERN.get());
 		basicItem(ESItems.AMARAMBER_CANDLE.get());
 		basicItem(ESItems.AMARAMBER_ARROW.get());
-		basicItem(ESItems.AMARAMBER_AXE.get());
-		basicItem(ESItems.AMARAMBER_HOE.get());
-		basicItem(ESItems.AMARAMBER_SHOVEL.get());
+		handheld(ESItems.AMARAMBER_AXE.get());
+		handheld(ESItems.AMARAMBER_HOE.get());
+		handheld(ESItems.AMARAMBER_SHOVEL.get());
 		armorWithTrim((ArmorItem) ESItems.AMARAMBER_HELMET.get());
 		armorWithTrim((ArmorItem) ESItems.AMARAMBER_CHESTPLATE.get());
 
