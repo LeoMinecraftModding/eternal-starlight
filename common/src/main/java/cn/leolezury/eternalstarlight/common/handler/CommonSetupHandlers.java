@@ -16,6 +16,7 @@ import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.dispenser.BucketDispenseItemBehavior;
 import cn.leolezury.eternalstarlight.common.item.dispenser.ESBoatDispenseItemBehavior;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -43,6 +44,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -164,6 +166,31 @@ public class CommonSetupHandlers {
 				return item;
 			}
 		});
+		if (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.FABRIC) {
+			DefaultDispenseItemBehavior eggBehavior = new DefaultDispenseItemBehavior() {
+				@Override
+				public ItemStack execute(BlockSource blockSource, ItemStack item) {
+					Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
+					EntityType<?> entityType = ((SpawnEggItem)item.getItem()).getType(item);
+
+					try {
+						entityType.spawn(blockSource.level(), item, null, blockSource.pos().relative(direction), MobSpawnType.DISPENSER, direction != Direction.UP, false);
+					} catch (Exception exception) {
+						LOGGER.error("Error while dispensing spawn egg from dispenser at {}", blockSource.pos(), exception);
+						return ItemStack.EMPTY;
+					}
+
+					item.shrink(1);
+					blockSource.level().gameEvent(null, GameEvent.ENTITY_PLACE, blockSource.pos());
+					return item;
+				}
+			};
+			for (Item item : BuiltInRegistries.ITEM.stream().toList()) {
+				if (item instanceof SpawnEggItem) {
+					DispenserBlock.registerBehavior(item, eggBehavior);
+				}
+			}
+		}
 	}
 
 	public interface NetworkRegisterStrategy {
