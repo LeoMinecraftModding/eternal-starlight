@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "A": {
-      "item": "eternal_starlight:amaramber_ingot"
+      "item": "eternal_starlight:amaramber_nugget"
     },
     "S": {
       "item": "minecraft:stick"
@@ -15,7 +15,7 @@
     "S"
   ],
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "eternal_starlight:amaramber_arrow"
   }
 }

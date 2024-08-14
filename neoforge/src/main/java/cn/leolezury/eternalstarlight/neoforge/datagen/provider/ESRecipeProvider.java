@@ -953,8 +953,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("S")
 			.pattern("A")
 			.define('S', Items.STRING)
-			.define('A', ESItems.AMARAMBER_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AMARAMBER_INGOT.get()))
+			.define('A', ESItems.RAW_AMARAMBER.get())
+			.unlockedBy("has_item", has(ESItems.RAW_AMARAMBER.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.AMARAMBER_LANTERN.get())
 			.pattern("NNN")
@@ -979,13 +979,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('N', ESItems.AMARAMBER_NUGGET.get())
 			.unlockedBy("has_item", has(ESItems.AMARAMBER_NUGGET.get()))
 			.save(recipeOutput, EternalStarlight.id("torch_from_amaramber_nugget"));
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get(), 4)
 			.pattern("A")
 			.pattern("S")
 			.pattern("S")
 			.define('S', Items.STICK)
-			.define('A', ESItems.AMARAMBER_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AMARAMBER_INGOT.get()))
+			.define('A', ESItems.AMARAMBER_NUGGET.get())
+			.unlockedBy("has_item", has(ESItems.AMARAMBER_NUGGET.get()))
 			.save(recipeOutput);
 		addAxe(recipeOutput, ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_INGOT.get(), Items.STICK);
 		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_INGOT.get(), Items.STICK);

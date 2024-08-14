@@ -9,7 +9,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	private boolean attacked = false;
 
 	public GatekeeperDashPhase() {
-		super(ID, 2, 20, 80);
+		super(ID, 2, 25, 80);
 	}
 
 	@Override
@@ -20,25 +20,24 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	@Override
 	public void onStart(TheGatekeeper entity) {
 		attacked = false;
-		LivingEntity target = entity.getTarget();
-		if (target != null) {
-			entity.hurtMarked = true;
-			entity.setDeltaMovement(entity.getDeltaMovement().add(target.position().subtract(entity.position()).normalize().scale(3)));
-			float yRot = ESMathUtil.positionToYaw(entity.position(), target.position()) - 90;
-			entity.setFixedYRot(yRot);
-			entity.getNavigation().stop();
-		}
 	}
 
 	@Override
 	public void tick(TheGatekeeper entity) {
-		if (!attacked && canReachTarget(entity, 2)) {
+		entity.getNavigation().stop();
+		LivingEntity target = entity.getTarget();
+		if (!attacked && entity.getBehaviorTicks() > 8 && canReachTarget(entity, 2)) {
 			performMeleeAttack(entity, 2);
 			attacked = true;
 		}
-		entity.getNavigation().stop();
-		LivingEntity target = entity.getTarget();
 		if (target != null) {
+			if (entity.getBehaviorTicks() == 8) {
+				entity.hurtMarked = true;
+				entity.setDeltaMovement(entity.getDeltaMovement().add(target.position().subtract(entity.position()).normalize().scale(3)));
+				float yRot = ESMathUtil.positionToYaw(entity.position(), target.position()) - 90;
+				entity.setFixedYRot(yRot);
+				entity.getNavigation().stop();
+			}
 			entity.getLookControl().setLookAt(target, 360f, 360f);
 		}
 	}

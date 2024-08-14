@@ -407,6 +407,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			bossEvent.allConvertToUnseen();
 		}
 		if (!level().isClientSide) {
+			if (tickCount % 20 == 0 && (getTarget() == null || !getTarget().isAlive())) {
+				setActivated(false);
+			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
 			} else {
