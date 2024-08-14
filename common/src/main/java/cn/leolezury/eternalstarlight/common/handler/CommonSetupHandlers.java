@@ -171,7 +171,7 @@ public class CommonSetupHandlers {
 				@Override
 				public ItemStack execute(BlockSource blockSource, ItemStack item) {
 					Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
-					EntityType<?> entityType = ((SpawnEggItem)item.getItem()).getType(item);
+					EntityType<?> entityType = ((SpawnEggItem) item.getItem()).getType(item);
 
 					try {
 						entityType.spawn(blockSource.level(), item, null, blockSource.pos().relative(direction), MobSpawnType.DISPENSER, direction != Direction.UP, false);

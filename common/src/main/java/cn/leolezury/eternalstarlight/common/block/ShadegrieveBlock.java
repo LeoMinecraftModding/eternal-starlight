@@ -1,8 +1,12 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -52,6 +56,13 @@ public class ShadegrieveBlock extends Block {
 			sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
 		}
 		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
+	}
+
+	@Override
+	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+		if (randomSource.nextInt(5) == 0) {
+			ParticleUtils.spawnParticlesOnBlockFaces(level, blockPos, ESParticles.SHADEGRIEVE_LEAVES.get(), ConstantInt.of(1));
+		}
 	}
 
 	@Override

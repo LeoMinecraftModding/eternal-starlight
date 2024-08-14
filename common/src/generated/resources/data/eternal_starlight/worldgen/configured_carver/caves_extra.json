@@ -29,7 +29,7 @@
       "above_bottom": 8
     },
     "probability": 1.0,
-    "replaceable": "#minecraft:overworld_carver_replaceables",
+    "replaceable": "#eternal_starlight:starlight_carver_replaceables",
     "y": {
       "type": "minecraft:uniform",
       "max_inclusive": {

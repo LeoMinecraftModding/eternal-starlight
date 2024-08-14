@@ -654,5 +654,29 @@
         "stream": true
       }
     ]
+  },
+  "music_disc.atlantis": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/atlantis",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.tranquility": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.whisper_of_the_stars": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      }
+    ]
   }
 }

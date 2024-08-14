@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-13T15:59:50.4827288	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-08-14T12:24:53.8640139	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -57,7 +57,7 @@ f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northl
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/item/starlight_mangrove_logs.json
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/stellagmite_igniters.json
 c2bade993e49b99929e4d8fa628cf2f9cf91aebf data/eternal_starlight/tags/item/terra_crystals.json
-3a403731d7b04f6bb48f1002118b08d69c1eba40 data/eternal_starlight/tags/item/terra_crystal_ingredients.json
+e6425f02a8ea9b7b85d84a06c45b390b8f45a2b7 data/eternal_starlight/tags/item/terra_crystal_ingredients.json
 aaf6b3c5a0f9bab148f9c675dab591974443a4ac data/eternal_starlight/tags/item/thermal_springstone_weapons.json
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/item/torreya_logs.json
 92e905bac6e1e926257eac1caa9fe545763eb7f3 data/eternal_starlight/tags/item/trimmable_armor.json

@@ -39,7 +39,7 @@
       "above_bottom": 8
     },
     "probability": 0.5,
-    "replaceable": "#minecraft:overworld_carver_replaceables",
+    "replaceable": "#eternal_starlight:starlight_carver_replaceables",
     "vertical_radius_multiplier": {
       "type": "minecraft:uniform",
       "max_exclusive": 1.3,

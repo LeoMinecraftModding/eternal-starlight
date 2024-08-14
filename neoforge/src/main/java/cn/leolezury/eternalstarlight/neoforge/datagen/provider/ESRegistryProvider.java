@@ -28,6 +28,7 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(Registries.DAMAGE_TYPE, ESDamageTypes::bootstrap)
 		.add(Registries.TRIM_MATERIAL, ESTrimMaterials::bootstrap)
 		.add(Registries.TRIM_PATTERN, ESTrimPatterns::bootstrap)
+		.add(Registries.JUKEBOX_SONG, ESJukeboxSongs::bootstrap)
 		// custom
 		.add(ESRegistries.BIOME_DATA, ESBiomeData::bootstrap)
 		.add(ESRegistries.DATA_TRANSFORMER, ESDataTransformers::bootstrap)

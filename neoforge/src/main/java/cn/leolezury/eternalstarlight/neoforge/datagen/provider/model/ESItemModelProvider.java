@@ -499,6 +499,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.NIGHTFALL_DIRT.get());
 		block(ESItems.NIGHTFALL_GRASS_BLOCK.get());
+		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_CARPET.get());
 
@@ -693,6 +694,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 		basicItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get());
+
+		basicItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get());
+		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
+		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 
 		basicItem(ESItems.ETHER_BUCKET.get());
 		block(ESItems.ENERGY_BLOCK.get());

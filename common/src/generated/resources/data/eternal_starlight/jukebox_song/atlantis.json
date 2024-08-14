@@ -1,0 +1,8 @@
+{
+  "comparator_output": 5,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.atlantis"
+  },
+  "length_in_seconds": 94.0,
+  "sound_event": "eternal_starlight:music_disc.atlantis"
+}

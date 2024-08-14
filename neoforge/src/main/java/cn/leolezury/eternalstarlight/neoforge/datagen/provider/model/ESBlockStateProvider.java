@@ -331,6 +331,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.NIGHTFALL_DIRT.get());
 		grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
+		simpleGrassBlock(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_MUD.get()));
 		carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));
 
@@ -540,13 +541,25 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void doomedenKeyhole(Block block, Block redstone) {
-		ModelFile modelOn = models().orientable(name(block) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_front"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
-		ModelFile modelOff = models().orientable(name(block), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_front"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
-		horizontalBlock(block, state -> state.getValue(BlockStateProperties.LIT) ? modelOn : modelOff);
-
-		ModelFile modelOnRedstone = models().orientable(name(redstone) + "_lit", blockTexture(block).withSuffix("_on_side"), blockTexture(redstone).withSuffix("_on"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
-		ModelFile modelOffRedstone = models().orientable(name(redstone), blockTexture(block).withSuffix("_off_side"), blockTexture(redstone).withSuffix("_off"), blockTexture(ESBlocks.DOOMEDEN_TILES.get()));
-		horizontalBlock(redstone, state -> state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone);
+		ResourceLocation tiles = blockTexture(ESBlocks.DOOMEDEN_TILES.get());
+		ModelFile modelOn = models().cube(name(block) + "_lit", tiles, tiles, blockTexture(block).withSuffix("_on_front"), blockTexture(block).withSuffix("_on_front"), blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_side")).texture("particle", tiles);
+		ModelFile modelOff = models().cube(name(block), tiles, tiles, blockTexture(block).withSuffix("_off_front"), blockTexture(block).withSuffix("_off_front"), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_side")).texture("particle", tiles);
+		getVariantBuilder(block).forAllStates((state) -> {
+			if (state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X) {
+				return ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelOn : modelOff).rotationY(90).build();
+			} else {
+				return ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelOn : modelOff).build();
+			}
+		});
+		ModelFile modelOnRedstone = models().cube(name(redstone) + "_lit", tiles, tiles, blockTexture(redstone).withSuffix("_on"), blockTexture(redstone).withSuffix("_on"), blockTexture(block).withSuffix("_on_side"), blockTexture(block).withSuffix("_on_side")).texture("particle", tiles);
+		ModelFile modelOffRedstone = models().cube(name(redstone), tiles, tiles, blockTexture(redstone).withSuffix("_off"), blockTexture(redstone).withSuffix("_off"), blockTexture(block).withSuffix("_off_side"), blockTexture(block).withSuffix("_off_side")).texture("particle", tiles);
+		getVariantBuilder(redstone).forAllStates((state) -> {
+			if (state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X) {
+				return ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone).rotationY(90).build();
+			} else {
+				return ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelOnRedstone : modelOffRedstone).build();
+			}
+		});
 	}
 
 	private void doomedenTorch(Block normal, Block wall) {

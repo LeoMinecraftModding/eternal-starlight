@@ -22,6 +22,10 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_STARLIGHT_GOLEM = register("music.boss.starlight_golem");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_LUNAR_MONSTROSITY = register("music.boss.lunar_monstrosity");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_WHISPER_OF_THE_STARS = register("music_disc.whisper_of_the_stars");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_TRANQUILITY = register("music_disc.tranquility");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ATLANTIS = register("music_disc.atlantis");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_ALCHEMIST = register("item.armor.equip_alchemist");
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AMARAMBER = register("item.armor.equip_amaramber");
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AETHERSENT = register("item.armor.equip_aethersent");

@@ -201,7 +201,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 						for (int y = -3; y <= 3; y++) {
 							for (int z = -3; z <= 3; z++) {
 								BlockPos pos = blockPosition().offset(x, y, z);
-								if (pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLE)) {
+								if (pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES)) {
 									level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
 								}
 							}

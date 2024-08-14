@@ -1,0 +1,8 @@
+{
+  "comparator_output": 12,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.tranquility"
+  },
+  "length_in_seconds": 129.0,
+  "sound_event": "eternal_starlight:music_disc.tranquility"
+}

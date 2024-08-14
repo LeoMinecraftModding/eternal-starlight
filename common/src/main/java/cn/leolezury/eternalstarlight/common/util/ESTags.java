@@ -64,6 +64,7 @@ public class ESTags {
 		public static final TagKey<Block> TORREYA_LOGS = create("torreya_logs");
 		public static final TagKey<Block> PORTAL_FRAME_BLOCKS = create("portal_frame_blocks");
 		public static final TagKey<Block> BASE_STONE_STARLIGHT = create("base_stone_starlight");
+		public static final TagKey<Block> STARLIGHT_CARVER_REPLACEABLES = create("starlight_carver_replaceables");
 		public static final TagKey<Block> CORAL_PLANTS = create("coral_plants");
 		public static final TagKey<Block> CORALS = create("corals");
 		public static final TagKey<Block> WALL_CORALS = create("wall_corals");
@@ -72,7 +73,8 @@ public class ESTags {
 		public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Block> ABYSSAL_FIRE_SURVIVES_ON = create("abyssal_fire_survives_on");
 		public static final TagKey<Block> ABYSSLATES = create("abysslates");
-		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLE = create("aethersent_meteor_replaceable");
+		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLES = create("aethersent_meteor_replaceables");
+		public static final TagKey<Block> DOOMEDEN_KEYHOLE_DESTROYABLES = create("doomeden_keyhole_destroyables");
 
 		private static TagKey<Block> create(String string) {
 			return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));

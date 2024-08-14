@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block"
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 90
+      }
+    ],
+    "snowy=true": [
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block"
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/tenacious_nightfall_grass_block",
+        "y": 90
+      }
+    ]
+  }
+}

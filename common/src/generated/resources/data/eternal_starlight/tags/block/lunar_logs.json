@@ -1,5 +1,9 @@
 {
   "values": [
+    "minecraft:snow",
+    "#eternal_starlight:base_stone_starlight",
+    "#minecraft:dirt",
+    "#minecraft:sand",
     "eternal_starlight:lunar_log",
     "eternal_starlight:lunar_wood",
     "eternal_starlight:stripped_lunar_log",

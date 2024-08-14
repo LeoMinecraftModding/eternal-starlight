@@ -17,6 +17,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.STARLIGHT.get(), loc("glitter"), 6, false);
 		spriteSet(ESParticles.FIREFLY.get(), loc("firefly"), 5, false);
 		spriteSet(ESParticles.SCARLET_LEAVES.get(), loc("scarlet_leaves"), 5, false);
+		spriteSet(ESParticles.SHADEGRIEVE_LEAVES.get(), loc("shadegrieve_leaves"), 4, false);
 		sprite(ESParticles.ENERGY.get(), loc("energy"));
 		spriteSet(ESParticles.BLADE_SHOCKWAVE.get(), mcLoc("sweep"), 8, false);
 		sprite(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), loc("crystallized_moth_sonar"));

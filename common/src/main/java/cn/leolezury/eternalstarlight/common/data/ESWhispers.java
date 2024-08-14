@@ -9,21 +9,13 @@ import net.minecraft.resources.ResourceKey;
 import java.util.Optional;
 
 public class ESWhispers {
-	public static final ResourceKey<Whisper> GATE_KEEPER = create("gate_keeper");
+	public static final ResourceKey<Whisper> GATEKEEPER = create("gatekeeper");
 
 	public static void bootstrap(BootstrapContext<Whisper> context) {
-		context.register(GATE_KEEPER, new Whisper(Component.translatable(from("gate_keeper")), Component.translatable(ctx("gate_keeper")), Optional.empty()));
+		context.register(GATEKEEPER, new Whisper(Component.translatable("whisper." + EternalStarlight.ID + ".gatekeeper"), Optional.empty()));
 	}
 
 	public static ResourceKey<Whisper> create(String name) {
 		return ResourceKey.create(ESRegistries.WHISPER, EternalStarlight.id(name));
-	}
-
-	private static String from(String name) {
-		return "whisper.eternal_starlight.from." + name;
-	}
-
-	private static String ctx(String name) {
-		return "whisper.eternal_starlight.ctx." + name;
 	}
 }

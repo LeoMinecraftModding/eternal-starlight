@@ -148,7 +148,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
 		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
 		PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
-		PlacementUtils.register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
+		PlacementUtils.register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2F, 2)));
 		PlacementUtils.register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
 		PlacementUtils.register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
 		PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));

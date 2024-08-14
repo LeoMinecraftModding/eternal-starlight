@@ -21,6 +21,6 @@ public class ESBookItem extends Item {
 		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
 			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(ESBookUtil.getUnlockedPartsFor(serverPlayer)));
 		}
-		return super.use(level, player, hand);
+		return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
 	}
 }

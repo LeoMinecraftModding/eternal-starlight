@@ -9,10 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.List;
 import java.util.Optional;
 
-public record Whisper(Component from, Component context, Optional<List<ResourceLocation>> require) {
+public record Whisper(Component content, Optional<List<ResourceLocation>> requirements) {
 	public static final Codec<Whisper> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-		ComponentSerialization.CODEC.fieldOf("from").forGetter(Whisper::from),
-		ComponentSerialization.CODEC.fieldOf("context").forGetter(Whisper::context),
-		ResourceLocation.CODEC.listOf().optionalFieldOf("require").forGetter(Whisper::require)
+		ComponentSerialization.CODEC.fieldOf("content").forGetter(Whisper::content),
+		ResourceLocation.CODEC.listOf().optionalFieldOf("requirements").forGetter(Whisper::requirements)
 	).apply(instance, Whisper::new));
 }

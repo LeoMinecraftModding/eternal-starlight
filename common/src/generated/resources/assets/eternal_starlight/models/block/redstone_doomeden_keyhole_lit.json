@@ -1,8 +1,12 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "front": "eternal_starlight:block/redstone_doomeden_keyhole_on",
-    "side": "eternal_starlight:block/doomeden_keyhole_on_side",
-    "top": "eternal_starlight:block/doomeden_tiles"
+    "down": "eternal_starlight:block/doomeden_tiles",
+    "east": "eternal_starlight:block/doomeden_keyhole_on_side",
+    "north": "eternal_starlight:block/redstone_doomeden_keyhole_on",
+    "particle": "eternal_starlight:block/doomeden_tiles",
+    "south": "eternal_starlight:block/redstone_doomeden_keyhole_on",
+    "up": "eternal_starlight:block/doomeden_tiles",
+    "west": "eternal_starlight:block/doomeden_keyhole_on_side"
   }
 }

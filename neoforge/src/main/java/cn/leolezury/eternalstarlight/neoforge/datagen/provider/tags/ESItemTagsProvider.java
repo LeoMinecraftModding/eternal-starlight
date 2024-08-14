@@ -237,6 +237,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.ROOTED_DIRT,
 			ESItems.NIGHTFALL_DIRT.get(),
 			ESItems.NIGHTFALL_GRASS_BLOCK.get(),
+			ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESItems.NIGHTFALL_MUD.get(),
 			ESItems.GLOWING_NIGHTFALL_MUD.get(),
 			ESItems.FANTASY_GRASS_BLOCK.get(),

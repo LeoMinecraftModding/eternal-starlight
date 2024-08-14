@@ -14,9 +14,9 @@ import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpear;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.FallingLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.environment.ScarletLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.LunarVineRenderer;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.StellarRackRenderer;
@@ -543,7 +543,8 @@ public class ClientSetupHandlers {
 	public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
 		strategy.register(ESParticles.STARLIGHT.get(), EndRodParticle.Provider::new);
 		strategy.register(ESParticles.FIREFLY.get(), FireflyParticle.Provider::new);
-		strategy.register(ESParticles.SCARLET_LEAVES.get(), ScarletLeavesParticle.Provider::new);
+		strategy.register(ESParticles.SCARLET_LEAVES.get(), FallingLeavesParticle.Provider::new);
+		strategy.register(ESParticles.SHADEGRIEVE_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.ENERGY.get(), FlameParticle.Provider::new);
 		strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
 		strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);

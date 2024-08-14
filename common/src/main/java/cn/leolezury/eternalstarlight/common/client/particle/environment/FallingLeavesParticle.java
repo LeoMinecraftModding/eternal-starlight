@@ -1,15 +1,18 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 
-public class ScarletLeavesParticle extends TextureSheetParticle {
+@Environment(EnvType.CLIENT)
+public class FallingLeavesParticle extends TextureSheetParticle {
 	private float rotSpeed;
 	private final float particleRandom;
 	private final float spinAcceleration;
 
-	public ScarletLeavesParticle(ClientLevel clientLevel, double x, double y, double z, SpriteSet spriteSet) {
+	public FallingLeavesParticle(ClientLevel clientLevel, double x, double y, double z, SpriteSet spriteSet) {
 		super(clientLevel, x, y, z);
 		this.setSprite(spriteSet.get(this.random.nextInt(12), 12));
 		this.rotSpeed = (float) Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
@@ -70,7 +73,7 @@ public class ScarletLeavesParticle extends TextureSheetParticle {
 
 		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel clientLevel, double x, double y, double z, double xs, double ys, double zs) {
-			return new ScarletLeavesParticle(clientLevel, x, y, z, this.sprites);
+			return new FallingLeavesParticle(clientLevel, x, y, z, this.sprites);
 		}
 	}
 }

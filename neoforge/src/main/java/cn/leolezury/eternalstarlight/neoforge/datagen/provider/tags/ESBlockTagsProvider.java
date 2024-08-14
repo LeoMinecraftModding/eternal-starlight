@@ -242,6 +242,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			Blocks.STONE,
 			Blocks.DEEPSLATE
 		);
+		tag(ESTags.Blocks.STARLIGHT_CARVER_REPLACEABLES).add(
+			Blocks.SNOW
+		).addTags(
+			ESTags.Blocks.BASE_STONE_STARLIGHT,
+			BlockTags.DIRT,
+			BlockTags.SAND
+		);
 		tag(ESTags.Blocks.CORAL_PLANTS).add(
 			ESBlocks.TENTACLES_CORAL.get(),
 			ESBlocks.GOLDEN_CORAL.get(),
@@ -308,13 +315,22 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.THERMABYSSLATE.get(),
 			ESBlocks.CRYOBYSSLATE.get()
 		);
-		tag(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLE).addTags(
+		tag(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES).addTags(
 			BlockTags.LEAVES,
 			BlockTags.LOGS,
 			BlockTags.DIRT
 		);
+		tag(ESTags.Blocks.DOOMEDEN_KEYHOLE_DESTROYABLES).add(
+			ESBlocks.DOOMEDEN_BRICKS.get(),
+			ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(),
+			ESBlocks.DOOMEDEN_TILES.get(),
+			ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
+			ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
+			ESBlocks.DOOMEDEN_LIGHT.get(),
+			ESBlocks.DOOMEDEN_KEYHOLE.get(),
+			ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
+		);
 		// mc tags
-		tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
 		tag(BlockTags.LOGS).addTags(
 			ESTags.Blocks.LUNAR_LOGS,
 			ESTags.Blocks.NORTHLAND_LOGS,
@@ -633,6 +649,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NIGHTFALL_MUD.get(),
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get()
 		);
 		tag(BlockTags.SAND).add(
@@ -643,6 +660,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.NIGHTFALL_DIRT.get()
 		);
 		tag(BlockTags.WITHER_IMMUNE).add(
@@ -888,6 +906,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STELLAR_RACK.get()
 		);
 		tag(BlockTags.MINEABLE_WITH_AXE).add(
+			ESBlocks.GLOWING_MUSHROOM_BLOCK.get(),
+			ESBlocks.GLOWING_MUSHROOM_STEM.get(),
 			ESBlocks.TORREYA_CAMPFIRE.get(),
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
 			ESBlocks.STARLIT_LILY_PAD.get(),
@@ -901,6 +921,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TWILIGHT_SAND.get(),
 			ESBlocks.DUSTED_GRAVEL.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_ORE.get()
 		);

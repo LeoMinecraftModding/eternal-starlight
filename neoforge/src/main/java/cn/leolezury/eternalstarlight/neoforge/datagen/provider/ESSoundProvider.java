@@ -36,6 +36,10 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.get(), definition().with(sound(loc("music/boss/starlight_golem")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_LUNAR_MONSTROSITY.get(), definition().with(sound(loc("music/boss/lunar_monstrosity")).stream()));
 
+		add(ESSoundEvents.MUSIC_DISC_WHISPER_OF_THE_STARS.get(), definition().with(sound(loc("music/dimension/whisper_of_the_stars")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_TRANQUILITY.get(), definition().with(sound(loc("music/dimension/tranquility")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_ATLANTIS.get(), definition().with(sound(loc("music/biome/atlantis")).stream()));
+
 		add(ESSoundEvents.ARMOR_EQUIP_ALCHEMIST.get(), definition().with(sound(mcLoc("item/armor/equip_leather1")), sound(mcLoc("item/armor/equip_leather2")), sound(mcLoc("item/armor/equip_leather3")), sound(mcLoc("item/armor/equip_leather4")), sound(mcLoc("item/armor/equip_leather5")), sound(mcLoc("item/armor/equip_leather6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_alchemist"));
 		add(ESSoundEvents.ARMOR_EQUIP_AMARAMBER.get(), definition().with(sound(mcLoc("item/armor/equip_leather1")), sound(mcLoc("item/armor/equip_leather2")), sound(mcLoc("item/armor/equip_leather3")), sound(mcLoc("item/armor/equip_leather4")), sound(mcLoc("item/armor/equip_leather5")), sound(mcLoc("item/armor/equip_leather6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_amaramber"));
 		add(ESSoundEvents.ARMOR_EQUIP_AETHERSENT.get(), definition().with(sound(mcLoc("item/armor/equip_leather1")), sound(mcLoc("item/armor/equip_leather2")), sound(mcLoc("item/armor/equip_leather3")), sound(mcLoc("item/armor/equip_leather4")), sound(mcLoc("item/armor/equip_leather5")), sound(mcLoc("item/armor/equip_leather6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_aethersent"));

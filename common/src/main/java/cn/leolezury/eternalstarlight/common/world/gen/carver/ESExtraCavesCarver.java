@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.world.gen.carver;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
@@ -51,7 +50,7 @@ public class ESExtraCavesCarver extends WorldCarver<CarverConfiguration> {
 						BlockPos pos = new BlockPos(worldX, y, worldZ);
 						if (noise.getValue(worldX / 50d, y / 30d, worldZ / 50d) < -0.3) {
 							BlockState state = chunkAccess.getBlockState(pos);
-							if (state.is(BlockTags.OVERWORLD_CARVER_REPLACEABLES) && state.getFluidState().isEmpty()) {
+							if (state.is(carverConfiguration.replaceable) && state.getFluidState().isEmpty()) {
 								chunkAccess.setBlockState(pos, y > carverConfiguration.lavaLevel.resolveY(carvingContext) ? AIR : LAVA.createLegacyBlock(), false);
 							}
 						}

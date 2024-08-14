@@ -519,7 +519,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS = BLOCKS.register("charged_chiseled_polished_doomeden_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).lightLevel(state -> 15).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, RedstoneLampBlock> DOOMEDEN_LIGHT = BLOCKS.register("doomeden_light", () -> new RedstoneLampBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, DoomedenKeyholeBlock> DOOMEDEN_KEYHOLE = BLOCKS.register("doomeden_keyhole", () -> new DoomedenKeyholeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_GREEN)));
-	public static final RegistryObject<Block, DoomedenKeyholeBlock> REDSTONE_DOOMEDEN_KEYHOLE = BLOCKS.register("redstone_doomeden_keyhole", () -> new DoomedenKeyholeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_GREEN)));
+	public static final RegistryObject<Block, RedstoneDoomedenKeyholeBlock> REDSTONE_DOOMEDEN_KEYHOLE = BLOCKS.register("redstone_doomeden_keyhole", () -> new RedstoneDoomedenKeyholeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_GREEN)));
 
 	// common plant
 	public static final RegistryObject<Block, FlowerBlock> STARLIGHT_FLOWER = BLOCKS.register("starlight_flower", () -> new FlowerBlock(MobEffects.DAMAGE_RESISTANCE, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_BLUE).lightLevel((state) -> 15)));
@@ -616,10 +616,12 @@ public class ESBlocks {
 	public static final RegistryObject<Block, DoublePlantOnStoneBlock> STELLAFLY_BUSH = BLOCKS.register("stellafly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.BLUE)));
 	public static final RegistryObject<Block, DoublePlantOnStoneBlock> GLIMMERFLY_BUSH = BLOCKS.register("glimmerfly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.RED).lightLevel(state -> 10)));
 
+	// dirt & grass blocks
 	public static final RegistryObject<Block, ESGrassBlock> FANTASY_GRASS_BLOCK = BLOCKS.register("fantasy_grass_block", () -> new ESGrassBlock(NIGHTFALL_MUD.get(), ESPlacedFeatures.SWAMP_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, CarpetBlock> FANTASY_GRASS_CARPET = BLOCKS.register("fantasy_grass_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
 	public static final RegistryObject<Block, Block> NIGHTFALL_DIRT = BLOCKS.register("nightfall_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
 	public static final RegistryObject<Block, ESGrassBlock> NIGHTFALL_GRASS_BLOCK = BLOCKS.register("nightfall_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, ESGrassBlock> TENACIOUS_NIGHTFALL_GRASS_BLOCK = BLOCKS.register("tenacious_nightfall_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
 	// yeti fur
 	public static final RegistryObject<Block, YetiFurBlock> WHITE_YETI_FUR = BLOCKS.register("white_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
