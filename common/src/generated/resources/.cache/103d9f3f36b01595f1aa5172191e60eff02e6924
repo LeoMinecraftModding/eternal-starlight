@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-13T16:17:38.7514978	Registries
+// 1.21.1	2024-08-14T15:28:36.8357044	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -37,6 +37,7 @@ cf85d3d6950b2c7eaff3dc17d0b1535a7aee969f data/eternal_starlight/eternal_starligh
 aa7e0a7545afdbda4753c2f914540a6d500eb582 data/eternal_starlight/eternal_starlight/crest/blazing_beam.json
 8f292368a3ff5dea1a7c14c72212e846c9a51522 data/eternal_starlight/eternal_starlight/crest/boulders_shield.json
 193d2e8bc5214c084c9bdb61d51939da575a6264 data/eternal_starlight/eternal_starlight/crest/guidance_of_stars.json
+0498ce58905852cde60727f60008966810805d87 data/eternal_starlight/eternal_starlight/whisper/gate_keeper.json
 8230b0d4e8a489ddbcba72bb0fdca5c11f3228a6 data/eternal_starlight/eternal_starlight/worldgen_data_transformer/add_beaches.json
 a58336def7f62cf293b5d622356b6bedc0afa51e data/eternal_starlight/eternal_starlight/worldgen_data_transformer/add_ocean.json
 2b8541939f71d4f977b3239596d86d53a1a2d5b8 data/eternal_starlight/eternal_starlight/worldgen_data_transformer/add_rivers_and_abyss.json

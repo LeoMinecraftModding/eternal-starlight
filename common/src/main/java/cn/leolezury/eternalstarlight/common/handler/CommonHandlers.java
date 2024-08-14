@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
@@ -25,17 +26,22 @@ import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNam
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
+import cn.leolezury.eternalstarlight.common.whisper.Whisper;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -302,6 +308,15 @@ public class CommonHandlers {
 				Vec3 location = result.getLocation();
 				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
 			}
+		}
+	}
+
+	public static void onStopSleep(LivingEntity entity, BlockPos pos) {
+		RegistryAccess access = entity.level().registryAccess();
+		if (entity instanceof LocalPlayer player) {
+			var whispers = access.registryOrThrow(ESRegistries.WHISPER).stream().toList();
+			Whisper whisper = whispers.get(RandomSource.create().nextInt(0, whispers.size()));
+			player.sendSystemMessage(Component.empty().append("<{}>" + whisper.from().getString()).append(whisper.context()));
 		}
 	}
 

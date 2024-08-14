@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -123,5 +124,10 @@ public class CommonEvents {
 				}
 			}
 		}
+	}
+
+	@SubscribeEvent
+	private static void onStopSleep(PlayerWakeUpEvent event) {
+		CommonHandlers.onStopSleep(event.getEntity(), event.getEntity().getOnPos());
 	}
 }
