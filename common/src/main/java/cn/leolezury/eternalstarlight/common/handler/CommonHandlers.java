@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
@@ -26,7 +25,6 @@ import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNam
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
-import cn.leolezury.eternalstarlight.common.whisper.Whisper;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
@@ -308,9 +306,10 @@ public class CommonHandlers {
 	}
 
 	public static void onPlayerNaturalWake(ServerPlayer serverPlayer, BlockPos pos) {
-		List<Whisper> whispers = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.WHISPER).stream().toList();
+		// todo: enabled this after finishing the whole system
+		/*List<Whisper> whispers = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.WHISPER).stream().toList();
 		Whisper whisper = whispers.get(serverPlayer.getRandom().nextInt(whispers.size()));
-		serverPlayer.displayClientMessage(whisper.content(), true);
+		serverPlayer.displayClientMessage(whisper.content(), true);*/
 	}
 
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {

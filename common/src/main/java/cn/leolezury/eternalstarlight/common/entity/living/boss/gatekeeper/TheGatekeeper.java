@@ -95,6 +95,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		new GatekeeperComboPhase()
 	));
 
+	public AnimationState idleAnimationState = new AnimationState();
 	public AnimationState meleeAnimationStateA = new AnimationState();
 	public AnimationState meleeAnimationStateB = new AnimationState();
 	public AnimationState meleeAnimationStateC = new AnimationState();
@@ -429,6 +430,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				behaviorManager.tick();
 			}
 		} else {
+			idleAnimationState.startIfStopped(tickCount);
 			level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
 		}
 	}

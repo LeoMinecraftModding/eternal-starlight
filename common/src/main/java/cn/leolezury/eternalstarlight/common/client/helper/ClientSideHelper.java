@@ -56,7 +56,13 @@ public class ClientSideHelper implements ClientHelper {
 
 	@Override
 	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
-		Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests().crests(), packet.ownedCrests().crests()));
+		if (packet.ownedCrests().crests().isEmpty()) {
+			if (Minecraft.getInstance().player != null) {
+				Minecraft.getInstance().player.displayClientMessage(Component.translatable("message." + EternalStarlight.ID + ".no_crest"), true);
+			}
+		} else {
+			Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests().crests(), packet.ownedCrests().crests()));
+		}
 	}
 
 	@Override

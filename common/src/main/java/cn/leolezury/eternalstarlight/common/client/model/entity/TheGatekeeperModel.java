@@ -141,8 +141,10 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 				}
 			}
 		}
+		animate(entity.idleAnimationState, TheGatekeeperAnimation.IDLE, ageInTicks, 0.05f, 1f);
 	}
 
+	@Override
 	public void translateToHand(HumanoidArm arm, PoseStack stack) {
 		root.translateAndRotate(stack);
 		body.translateAndRotate(stack);
