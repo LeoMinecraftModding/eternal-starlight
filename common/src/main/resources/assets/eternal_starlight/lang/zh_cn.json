@@ -901,6 +901,8 @@
   "commands.eternal_starlight.crest.give_fail": "无法给予纹章",
   "commands.eternal_starlight.crest.remove": "已移除纹章",
   "commands.eternal_starlight.crest.remove_fail": "无法移除纹章",
+  "message.eternal_starlight.enchanted_grimstone_1": "我响...梨开,,,你...能邦邦...我吗?",
+  "message.eternal_starlight.enchanted_grimstone_2": "蟹...谢你,请...收下我的礼物.",
   "message.eternal_starlight.gatekeeper_give_orb": "拿好了，你可以用这件物品来开启传送门。别整丢了。",
   "message.eternal_starlight.gatekeeper_hello": "你好，冒险者！请问有什么我可以做的吗？",
   "message.eternal_starlight.gatekeeper_killed_dragon_hello": "你好，勇者！请问有什么我可以做的吗？",

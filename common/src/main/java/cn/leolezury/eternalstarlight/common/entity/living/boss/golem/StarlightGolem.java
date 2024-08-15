@@ -172,9 +172,6 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
 				lastHurtSound = tickCount;
 			}
-			if (damageSource.getEntity() instanceof Player player) {
-				player.displayClientMessage(Component.translatable(getType().getDescriptionId() + ".tip"), true);
-			}
 			return false;
 		}
 	}

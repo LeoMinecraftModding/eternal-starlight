@@ -606,6 +606,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
+		strategy.register(ESEntities.CREST.get(), CrestEntityRenderer::new);
 	}
 
 	public static void registerSkullModels(SkullRendererRegisterStrategy strategy, EntityModelSet modelSet) {

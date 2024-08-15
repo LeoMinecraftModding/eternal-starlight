@@ -901,6 +901,8 @@
   "commands.eternal_starlight.crest.give_fail": "Failed to give crest",
   "commands.eternal_starlight.crest.remove": "Crest removed",
   "commands.eternal_starlight.crest.remove_fail": "Failed to remove crest",
+  "message.eternal_starlight.enchanted_grimstone_1": "I wAnt To LeAvE,,, CaN yOu hElp mE???",
+  "message.eternal_starlight.enchanted_grimstone_2": "ThAnk yOu, PleAse recEive my gift.",
   "message.eternal_starlight.gatekeeper_give_orb": "Take this. You can open the portal with it. Be careful not to loose it!",
   "message.eternal_starlight.gatekeeper_hello": "Hello, adventurer! What can I do for you?",
   "message.eternal_starlight.gatekeeper_killed_dragon_hello": "Hello, warrior! What can I do for you?",

@@ -15,10 +15,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.Tangl
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESChestBoat;
-import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
-import cn.leolezury.eternalstarlight.common.entity.misc.EyeOfSeeking;
+import cn.leolezury.eternalstarlight.common.entity.misc.*;
 import cn.leolezury.eternalstarlight.common.entity.projectile.*;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -50,6 +47,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<Luminaris>> LUMINARIS = ENTITIES.register("luminaris", () -> EntityType.Builder.of(Luminaris::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).clientTrackingRange(10).build(EternalStarlight.id("luminaris").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<TwilightGaze>> TWILIGHT_GAZE = ENTITIES.register("twilight_gaze", () -> EntityType.Builder.of(TwilightGaze::new, MobCategory.WATER_CREATURE).sized(0.9F, 0.6F).clientTrackingRange(10).build(EternalStarlight.id("twilight_gaze").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<EyeOfSeeking>> EYE_OF_SEEKING = ENTITIES.register("eye_of_seeking", () -> EntityType.Builder.<EyeOfSeeking>of(EyeOfSeeking::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(4).build(EternalStarlight.id("eye_of_seeking").toString()));
+	public static final RegistryObject<EntityType<?>, EntityType<CrestEntity>> CREST = ENTITIES.register("crest", () -> EntityType.Builder.<CrestEntity>of(CrestEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(4).build(EternalStarlight.id("crest").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<TheGatekeeper>> THE_GATEKEEPER = ENTITIES.register("the_gatekeeper", () -> EntityType.Builder.of(TheGatekeeper::new, MobCategory.MONSTER).sized(0.6f, 1.99f).fireImmune().build(EternalStarlight.id("the_gatekeeper").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<GatekeeperFireball>> GATEKEEPER_FIREBALL = ENTITIES.register("gatekeeper_fireball", () -> EntityType.Builder.<GatekeeperFireball>of(GatekeeperFireball::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(4).updateInterval(1).build(EternalStarlight.id("gatekeeper_fireball").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<StarlightGolem>> STARLIGHT_GOLEM = ENTITIES.register("starlight_golem", () -> EntityType.Builder.of(StarlightGolem::new, MobCategory.MONSTER).sized(2.5f, 2.5f).fireImmune().build(EternalStarlight.id("starlight_golem").toString()));

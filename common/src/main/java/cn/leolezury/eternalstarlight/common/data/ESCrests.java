@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ESCrests {
+	public static final ResourceKey<Crest> EMPTY = create("empty");
 	public static final ResourceKey<Crest> BOULDERS_SHIELD = create("boulders_shield");
 	public static final ResourceKey<Crest> GUIDANCE_OF_STARS = create("guidance_of_stars");
 	public static final ResourceKey<Crest> BLAZING_BEAM = create("blazing_beam");
