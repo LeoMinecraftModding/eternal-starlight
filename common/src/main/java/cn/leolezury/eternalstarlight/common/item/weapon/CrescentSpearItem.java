@@ -67,7 +67,7 @@ public class CrescentSpearItem extends Item {
 		if (livingEntity instanceof Player player) {
 			int useTime = this.getUseDuration(itemStack, livingEntity) - i;
 			BlockHitResult result = level.clip(new ClipContext(player.position(), player.position().add(0, -5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, player));
-			if (useTime >= 10 && result.getType() != HitResult.Type.MISS) {
+			if (useTime >= 10 && (result.getType() != HitResult.Type.MISS || player.isCreative())) {
 				float spinStrength = EnchantmentHelper.getTridentSpinAttackStrength(itemStack, player) + 1.75f;
 
 				if (!level.isClientSide) {
