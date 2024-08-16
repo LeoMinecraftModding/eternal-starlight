@@ -21,11 +21,6 @@ public class EmptyClientHelper implements ClientHelper {
 	}
 
 	@Override
-	public void handleGiveCrest(GiveCrestPacket packet) {
-
-	}
-
-	@Override
 	public void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet) {
 
 	}
