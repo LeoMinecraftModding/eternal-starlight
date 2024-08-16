@@ -35,6 +35,7 @@ public class CrestEntity extends Entity {
 
 	public CrestEntity(EntityType<?> entityType, Level level) {
 		super(entityType, level);
+		this.pickupDelay = 100;
 		this.moveTime = 80;
 		this.bobOffs = this.random.nextFloat() * 3.1415927F * 2.0F;
 		this.setYRot(this.random.nextFloat() * 360.0F);
@@ -52,7 +53,7 @@ public class CrestEntity extends Entity {
 			this.discard();
 		} else {
 			super.tick();
-			if (this.pickupDelay > 0 && this.pickupDelay != 32767) {
+			if (this.pickupDelay > 0) {
 				this.pickupDelay -= 1;
 			}
 			if (moveTime > 0) {
@@ -74,8 +75,10 @@ public class CrestEntity extends Entity {
 			}
 
 			if (!this.onGround() || this.getDeltaMovement().horizontalDistanceSqr() > 9.999999747378752E-6 || (this.tickCount + this.getId()) % 4 == 0) {
-				this.setDeltaMovement(RandomSource.create().nextDouble(), RandomSource.create().nextDouble(), RandomSource.create().nextDouble());
-				this.move(MoverType.SELF, this.getDeltaMovement());
+				if (moveTime > 0) {
+					this.setDeltaMovement(RandomSource.create().nextDouble(), RandomSource.create().nextDouble(), RandomSource.create().nextDouble());
+					this.move(MoverType.SELF, this.getDeltaMovement());
+				}
 				float f = 0.98F;
 				if (this.onGround()) {
 					f = this.level().getBlockState(this.getBlockPosBelowThatAffectsMyMovement()).getBlock().getFriction() * 0.98F;

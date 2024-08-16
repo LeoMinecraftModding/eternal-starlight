@@ -275,7 +275,8 @@ public class ClientSetupHandlers {
 		ESBlocks.TANGLED_HATRED_SPAWNER,
 		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
 		ESBlocks.TALL_GOLDEN_GRASS,
-		ESBlocks.GOLDEN_GRASS
+		ESBlocks.GOLDEN_GRASS,
+		ESBlocks.CREST_POT
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
@@ -339,7 +340,6 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HALO_BLOCK.get(), HaloBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), EmptyBlockEntityRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.CREST_POT.get(), EmptyBlockEntityRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 

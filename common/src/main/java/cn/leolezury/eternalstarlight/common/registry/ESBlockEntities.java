@@ -27,7 +27,6 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<HaloBlockEntity>> HALO_BLOCK = BLOCK_ENTITIES.register("halo_block", () -> BlockEntityType.Builder.of(HaloBlockEntity::new, ESBlocks.HALO_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<DuskLightBlockEntity>> DUSK_LIGHT = BLOCK_ENTITIES.register("dusk_light", () -> BlockEntityType.Builder.of(DuskLightBlockEntity::new, ESBlocks.DUSK_LIGHT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<CrestPotBlockEntity>> CREST_POT = BLOCK_ENTITIES.register("crest_pot", () -> BlockEntityType.Builder.of(CrestPotBlockEntity::new, ESBlocks.CREST_POT.get()).build(null));
 
 	public static void loadClass() {
 	}
