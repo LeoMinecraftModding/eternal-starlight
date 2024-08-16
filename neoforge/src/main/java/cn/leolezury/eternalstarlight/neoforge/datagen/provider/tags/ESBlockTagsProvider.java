@@ -650,7 +650,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
-			ESBlocks.FANTASY_GRASS_BLOCK.get()
+			ESBlocks.FANTASY_GRASS_BLOCK.get(),
+			ESBlocks.GOLDEN_GRASS_BLOCK.get()
 		);
 		tag(BlockTags.SAND).add(
 			ESBlocks.TWILIGHT_SAND.get()
@@ -923,7 +924,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get(),
-			ESBlocks.SWAMP_SILVER_ORE.get()
+			ESBlocks.SWAMP_SILVER_ORE.get(),
+			ESBlocks.GOLDEN_GRASS_BLOCK.get()
 		);
 		tag(BlockTags.SWORD_EFFICIENT).add(
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),

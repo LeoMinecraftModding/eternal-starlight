@@ -121,6 +121,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		this.fightPlayerOnly = fightPlayerOnly;
 	}
 
+	public boolean getFightPlayerOnly() {
+		return this.fightPlayerOnly;
+	}
+
 	public void setFightTargetName(String fightTarget) {
 		this.fightTarget = fightTarget;
 	}

@@ -17,8 +17,18 @@ import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
 public abstract class ESRenderType extends RenderType {
+
 	public static final RenderType PORTAL = create(EternalStarlight.ID + ":starlight_portal", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeStarlightPortal))
+		.setTextureState(NO_TEXTURE)
+		.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+		.setCullState(NO_CULL)
+		.setLightmapState(LIGHTMAP)
+		.setOverlayState(OVERLAY)
+		.createCompositeState(true));
+
+	public static final RenderType HALO = create(EternalStarlight.ID + ":halo", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeHalo))
 		.setTextureState(NO_TEXTURE)
 		.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
 		.setCullState(NO_CULL)

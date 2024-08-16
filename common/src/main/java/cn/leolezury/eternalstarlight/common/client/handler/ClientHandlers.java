@@ -371,7 +371,13 @@ public class ClientHandlers {
 			}
 		}
 		switch (boss) {
-			case TheGatekeeper theGatekeeper -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/the_gatekeeper.png");
+			case TheGatekeeper theGatekeeper -> {
+				if (theGatekeeper.getFightPlayerOnly()) {
+					barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/the_gatekeeper.png");
+				} else {
+					return false;
+				}
+			}
 			case StarlightGolem starlightGolem -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
 			case LunarMonstrosity lunarMonstrosity -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity" + (lunarMonstrosity.getPhase() > 0 ? "_soul.png" : ".png"));
 			case null, default -> {

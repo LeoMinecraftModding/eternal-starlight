@@ -247,6 +247,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.NEBULAITE_BRICK_WALL.get(), ESItems.NEBULAITE_BRICKS.get());
 		block(ESItems.CHISELED_NEBULAITE_BRICKS.get());
 
+		basicItem(ESItems.ATALPHAITE.get());
+		block(ESItems.ATALPHAITE_BLOCK.get());
+		block(ESItems.BLAZING_ATALPHAITE_BLOCK.get());
+		block(ESItems.ATALPHAITE_LIGHT.get());
+		block(ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
+		block(ESItems.GRIMSTONE_ATALPHAITE_ORE.get());
 		block(ESItems.DUSK_GLASS.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());
@@ -447,6 +453,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLOWING_PARASOL_GRASS.get());
 		flatBlockTexture(ESItems.LUNAR_BUSH.get());
 		flatBlockTexture(ESItems.GLOWING_LUNAR_BUSH.get());
+		flatBlockTexture(ESItems.GOLDEN_GRASS.get());
+		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
 		basicItem(ESItems.TALL_CRESCENT_GRASS.get(), blockTextureFromItem(ESItems.TALL_CRESCENT_GRASS.get()).withSuffix("_top"));
 		basicItem(ESItems.TALL_GLOWING_CRESCENT_GRASS.get(), blockTextureFromItem(ESItems.TALL_GLOWING_CRESCENT_GRASS.get()).withSuffix("_top"));
 		basicItem(ESItems.LUNAR_REED.get(), blockTextureFromItem(ESItems.LUNAR_REED.get()).withSuffix("_top"));
@@ -502,6 +510,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_CARPET.get());
+		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 
 		basicItem(ESItems.RAW_AETHERSENT.get());
 		block(ESItems.RAW_AETHERSENT_BLOCK.get());
@@ -682,6 +691,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());
+		block(ESItems.DUSK_LIGHT.get());
 		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
 		basicItem(ESItems.MANA_CRYSTAL.get());
 		basicItem(ESItems.TERRA_CRYSTAL.get());

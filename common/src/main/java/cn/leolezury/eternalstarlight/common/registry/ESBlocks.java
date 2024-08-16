@@ -351,8 +351,14 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WallBlock> NEBULAITE_BRICK_WALL = BLOCKS.register("nebulaite_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, Block> CHISELED_NEBULAITE_BRICKS = BLOCKS.register("chiseled_nebulaite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
 
-	// solar decoration
+	// solar
+	public static final RegistryObject<Block, Block> ATALPHAITE_BLOCK = BLOCKS.register("atalphaite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 5)));
+	public static final RegistryObject<Block, Block> BLAZING_ATALPHAITE = BLOCKS.register("blazing_atalphaite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGMA_BLOCK).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, Block> ATALPHAITE_LIGHT = BLOCKS.register("atalphaite_light", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OCHRE_FROGLIGHT).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, Block> VOIDSTONE_ATALPHAITE_ORE = BLOCKS.register("voidstone_atalphaite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 3)));
+	public static final RegistryObject<Block, Block> GRIMSTONEE_ATALPHAITE_ORE = BLOCKS.register("grimstone_atalphaite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 1)));
 	public static final RegistryObject<Block, TransparentBlock> DUSK_GLASS = BLOCKS.register("dusk_glass", () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, DuskLightBlock> DUSK_LIGHT = BLOCKS.register("dusk_light", () -> new DuskLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, Block> RADIANITE = BLOCKS.register("radianite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(DyeColor.WHITE)));
 	public static final RegistryObject<Block, SlabBlock> RADIANITE_SLAB = BLOCKS.register("radianite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(DyeColor.WHITE)));
 	public static final RegistryObject<Block, StairBlock> RADIANITE_STAIRS = BLOCKS.register("radianite_stairs", () -> new StairBlock(RADIANITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(DyeColor.WHITE)));
@@ -564,6 +570,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_GLOWING_MUSHROOM = BLOCKS.register("potted_glowing_mushroom", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, GLOWING_MUSHROOM, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> 15)));
 	public static final RegistryObject<Block, HugeMushroomBlock> GLOWING_MUSHROOM_BLOCK = BLOCKS.register("glowing_mushroom_block", () -> new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).lightLevel((state) -> 15)));
 	public static final RegistryObject<Block, HugeMushroomBlock> GLOWING_MUSHROOM_STEM = BLOCKS.register("glowing_mushroom_stem", () -> new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUSHROOM_STEM).mapColor(MapColor.COLOR_BLUE)));
+	public static final RegistryObject<Block, DoublePlantBlock> TALL_GOLDEN_GRASS = BLOCKS.register("tall_golden_grass", () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, ESShortBushBlock> GOLDEN_GRASS = BLOCKS.register("golden_grass", () -> new ESShortBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
 
 	// swamp plant
 	public static final RegistryObject<Block, FlowerBlock> SWAMP_ROSE = BLOCKS.register("swamp_rose", () -> new FlowerBlock(MobEffects.POISON, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_GREEN)));
@@ -622,6 +630,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> NIGHTFALL_DIRT = BLOCKS.register("nightfall_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
 	public static final RegistryObject<Block, ESGrassBlock> NIGHTFALL_GRASS_BLOCK = BLOCKS.register("nightfall_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, ESGrassBlock> TENACIOUS_NIGHTFALL_GRASS_BLOCK = BLOCKS.register("tenacious_nightfall_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, ESGrassBlock> GOLDEN_GRASS_BLOCK = BLOCKS.register("golden_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), ESPlacedFeatures.FOREST_VEGETATION, BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
 
 	// yeti fur
 	public static final RegistryObject<Block, YetiFurBlock> WHITE_YETI_FUR = BLOCKS.register("white_yeti_fur", () -> new YetiFurBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
@@ -709,6 +718,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, TangledHatredSpawnerBlock> TANGLED_HATRED_SPAWNER = BLOCKS.register("tangled_hatred_spawner", () -> new TangledHatredSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel((state) -> 10)));
+	public static final RegistryObject<Block, HaloBlock> HALO_BLOCK = BLOCKS.register("halo_block", () -> new HaloBlock(BlockBehaviour.Properties.of().strength(-1F).lightLevel((state) -> 15)));
+	public static final RegistryObject<Block, CrestPotBlock> CREST_POT = BLOCKS.register("crest_pot", () -> new CrestPotBlock(BlockBehaviour.Properties.of().strength(1.0F).lightLevel((state) -> 2)));
 
 	public static void loadClass() {
 	}

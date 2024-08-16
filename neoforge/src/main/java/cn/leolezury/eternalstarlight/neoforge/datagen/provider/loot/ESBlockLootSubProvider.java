@@ -271,6 +271,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.NEBULAITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
+		dropSelf(ESBlocks.ATALPHAITE_BLOCK.get());
+		dropSelf(ESBlocks.BLAZING_ATALPHAITE.get());
+		dropSelf(ESBlocks.ATALPHAITE_LIGHT.get());
+		dropWhenSilkTouch(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get());
+		dropWhenSilkTouch(ESBlocks.GRIMSTONEE_ATALPHAITE_ORE.get());
 		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
@@ -476,6 +481,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
+		plant(ESBlocks.TALL_GOLDEN_GRASS.get());
+		plant(ESBlocks.GOLDEN_GRASS.get());
 
 		dropSelf(ESBlocks.SWAMP_ROSE.get());
 		dropPottedContents(ESBlocks.POTTED_SWAMP_ROSE.get());
@@ -524,6 +531,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
 
 		add(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
+		add(ESBlocks.GOLDEN_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));
 		dropSelf(ESBlocks.FANTASY_GRASS_CARPET.get());
@@ -604,6 +612,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
+		dropSelf(ESBlocks.DUSK_LIGHT.get());
 
 		// nothing
 		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
@@ -613,6 +622,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.TANGLED_HATRED_SPAWNER.get(), noDrop());
 		add(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), noDrop());
 		add(ESBlocks.STARLIGHT_PORTAL.get(), noDrop());
+		add(ESBlocks.HALO_BLOCK.get(), noDrop());
+		add(ESBlocks.CREST_POT.get(), noDrop());
 	}
 
 	@Override

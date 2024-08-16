@@ -274,7 +274,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NEBULAITE_BRICK_WALL = registerItem("nebulaite_brick_wall", () -> new BlockItem(ESBlocks.NEBULAITE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_NEBULAITE_BRICKS = registerItem("chiseled_nebulaite_bricks", () -> new BlockItem(ESBlocks.CHISELED_NEBULAITE_BRICKS.get(), new Item.Properties()));
 
-	// solar decoration
+	// solar
+	public static final RegistryObject<Item, Item> ATALPHAITE = registerItem("atalphaite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> ATALPHAITE_BLOCK = registerItem("atalphaite_block", () -> new BlockItem(ESBlocks.ATALPHAITE_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLAZING_ATALPHAITE_BLOCK = registerItem("blazing_atalphaite_block", () -> new BlockItem(ESBlocks.BLAZING_ATALPHAITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ATALPHAITE_LIGHT = registerItem("atalphaite_light", () -> new BlockItem(ESBlocks.ATALPHAITE_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VOIDSTONE_ATALPHAITE_ORE = registerItem("voidstone_atalphaite_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GRIMSTONE_ATALPHAITE_ORE = registerItem("grimstone_atalphaite_ore", () -> new BlockItem(ESBlocks.GRIMSTONEE_ATALPHAITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE = registerItem("radianite", () -> new BlockItem(ESBlocks.RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_SLAB = registerItem("radianite_slab", () -> new BlockItem(ESBlocks.RADIANITE_SLAB.get(), new Item.Properties()));
@@ -488,6 +494,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TALL_GOLDEN_GRASS = registerItem("tall_golden_grass", () -> new BlockItem(ESBlocks.TALL_GOLDEN_GRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLDEN_GRASS = registerItem("golden_grass", () -> new BlockItem(ESBlocks.GOLDEN_GRASS.get(), new Item.Properties()));
 
 	// swamp plant
 	public static final RegistryObject<Item, Item> SWAMP_ROSE = registerItem("swamp_rose", () -> new BlockItem(ESBlocks.SWAMP_ROSE.get(), new Item.Properties()));
@@ -539,6 +547,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TENACIOUS_NIGHTFALL_GRASS_BLOCK = registerItem("tenacious_nightfall_grass_block", () -> new BlockItem(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_CARPET = registerItem("fantasy_grass_carpet", () -> new BlockItem(ESBlocks.FANTASY_GRASS_CARPET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLDEN_GRASS_BLOCK = registerItem("golden_grass_block", () -> new BlockItem(ESBlocks.GOLDEN_GRASS_BLOCK.get(), new Item.Properties()));
 
 	// aethersent
 	public static final RegistryObject<Item, Item> RAW_AETHERSENT = registerItem("raw_aethersent", () -> new Item(new Item.Properties()));
@@ -768,6 +777,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLAZE_CRYSTAL = registerItem("blaze_crystal", () -> new ManaCrystalItem(ManaType.BLAZE, new Item.Properties().durability(300).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = registerItem("light_crystal", () -> new ManaCrystalItem(ManaType.LIGHT, new Item.Properties().durability(300).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MANA_CRYSTAL_SHARD = registerItem("mana_crystal_shard", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
 
 	// trim
 	public static final RegistryObject<Item, Item> KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE = registerItem("keeper_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(EternalStarlight.id("keeper")));

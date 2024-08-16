@@ -263,9 +263,6 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		if (isOnFire() || getBehaviorState() == LunarMonstrosityStunPhase.ID) {
 			return super.hurt(source, amount);
 		} else {
-			if (source.getEntity() instanceof Player player) {
-				player.displayClientMessage(Component.translatable(getType().getDescriptionId() + ".tip"), true);
-			}
 			return super.hurt(source, Math.min(1, amount));
 		}
 	}

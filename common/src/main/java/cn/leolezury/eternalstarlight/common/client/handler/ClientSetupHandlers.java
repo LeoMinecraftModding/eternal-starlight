@@ -17,9 +17,7 @@ import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FallingLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
-import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.ESPortalRenderer;
-import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.LunarVineRenderer;
-import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.StellarRackRenderer;
+import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.*;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
@@ -275,7 +273,9 @@ public class ClientSetupHandlers {
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
 		ESBlocks.TANGLED_HATRED_SPAWNER,
-		ESBlocks.LUNAR_MONSTROSITY_SPAWNER
+		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
+		ESBlocks.TALL_GOLDEN_GRASS,
+		ESBlocks.GOLDEN_GRASS
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
@@ -337,6 +337,9 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.HALO_BLOCK.get(), HaloBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), EmptyBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.CREST_POT.get(), EmptyBlockEntityRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -517,6 +520,7 @@ public class ClientSetupHandlers {
 		strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
 		strategy.register(EternalStarlight.id("rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
 		strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
+		strategy.register(EternalStarlight.id("rendertype_halo"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeHalo);
 	}
 
 	public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {

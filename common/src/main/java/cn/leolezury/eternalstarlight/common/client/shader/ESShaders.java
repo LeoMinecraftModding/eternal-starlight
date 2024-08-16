@@ -6,6 +6,7 @@ public class ESShaders {
 	private static ShaderInstance crestSelectionGui;
 	private static ShaderInstance renderTypeLaserBeam;
 	private static ShaderInstance renderTypeStarlightPortal;
+	private static ShaderInstance renderTypeHalo;
 
 	public static ShaderInstance getCrestSelectionGui() {
 		return crestSelectionGui;
@@ -29,5 +30,13 @@ public class ESShaders {
 
 	public static void setRenderTypeStarlightPortal(ShaderInstance renderTypeStarlightPortal) {
 		ESShaders.renderTypeStarlightPortal = renderTypeStarlightPortal;
+	}
+
+	public static ShaderInstance getRenderTypeHalo() {
+		return renderTypeHalo;
+	}
+
+	public static void setRenderTypeHalo(ShaderInstance renderTypeHalo) {
+		ESShaders.renderTypeHalo = renderTypeHalo;
 	}
 }
