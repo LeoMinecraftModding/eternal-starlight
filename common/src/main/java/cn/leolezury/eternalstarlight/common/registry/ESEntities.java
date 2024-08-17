@@ -68,6 +68,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<SonarBomb>> SONAR_BOMB = ENTITIES.register("sonar_bomb", () -> EntityType.Builder.<SonarBomb>of(SonarBomb::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(10).updateInterval(1).build(EternalStarlight.id("sonar_bomb").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<SoulitSpectator>> SOULIT_SPECTATOR = ENTITIES.register("soulit_spectator", () -> EntityType.Builder.<SoulitSpectator>of(SoulitSpectator::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(10).updateInterval(1).build(EternalStarlight.id("soulit_spectator").toString()));
 	public static final RegistryObject<EntityType<?>, EntityType<ChainOfSouls>> CHAIN_OF_SOULS = ENTITIES.register("chain_of_souls", () -> EntityType.Builder.<ChainOfSouls>of(ChainOfSouls::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(10).updateInterval(1).build(EternalStarlight.id("chain_of_souls").toString()));
+	public static final RegistryObject<EntityType<?>, EntityType<BurstedSpark>> BURSTED_SPARK = ENTITIES.register("bursted_spark", () -> EntityType.Builder.<BurstedSpark>of(BurstedSpark::new, MobCategory.MISC).sized(0.3f, 0.3f).clientTrackingRange(10).updateInterval(1).build(EternalStarlight.id("bursted_spark").toString()));
 
 	public static void loadClass() {
 	}

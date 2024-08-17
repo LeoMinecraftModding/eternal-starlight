@@ -32,7 +32,7 @@ public class CrestPotBlock extends Block {
 	public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
 		List<ResourceKey<Crest>> crests = new ArrayList<>();
 		for (var crest : level.holderLookup(ESRegistries.CREST).listElementIds().toList()) {
-			if (crest != ESCrests.EMPTY) {
+			if (crest != ESCrests.EMPTY && level.registryAccess().registry(ESRegistries.CREST).isPresent() && level.registryAccess().registryOrThrow(ESRegistries.CREST).get(crest).inCrestPot()) {
 				crests.add(crest);
 			}
 		}

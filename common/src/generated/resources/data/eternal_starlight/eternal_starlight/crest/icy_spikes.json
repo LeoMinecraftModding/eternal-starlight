@@ -1,0 +1,7 @@
+{
+  "type": "blaze",
+  "in_crest_pot": true,
+  "max_level": 3,
+  "spell": "eternal_starlight:icy_spikes",
+  "texture": "eternal_starlight:textures/crest/icy_spikes.png"
+}

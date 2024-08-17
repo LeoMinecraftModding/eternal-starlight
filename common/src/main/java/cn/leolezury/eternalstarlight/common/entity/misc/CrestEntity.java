@@ -12,6 +12,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,18 +21,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Math;
 
 import java.util.UUID;
 
 public class CrestEntity extends Entity {
 	private static final EntityDataAccessor<ResourceKey<Crest>> CREST;
-	private static final float FLOAT_HEIGHT = 0.1F;
-	public static final float EYE_HEIGHT = 0.2125F;
 	private int pickupDelay;
 	public final float bobOffs;
 	private int moveTime;
-	@Nullable
-	private UUID target;
 
 	public CrestEntity(EntityType<?> entityType, Level level) {
 		super(entityType, level);
@@ -76,8 +74,7 @@ public class CrestEntity extends Entity {
 
 			if (!this.onGround() || this.getDeltaMovement().horizontalDistanceSqr() > 9.999999747378752E-6 || (this.tickCount + this.getId()) % 4 == 0) {
 				if (moveTime > 0) {
-					this.setDeltaMovement(RandomSource.create().nextDouble(), RandomSource.create().nextDouble(), RandomSource.create().nextDouble());
-					this.move(MoverType.SELF, this.getDeltaMovement());
+					move();
 				}
 				float f = 0.98F;
 				if (this.onGround()) {
@@ -101,6 +98,14 @@ public class CrestEntity extends Entity {
 				}
 			}
 		}
+	}
+
+	public void move() {
+		var random = RandomSource.create().nextDouble();
+		var deltaX = Mth.frac(this.getX()) + (Math.cos(this.moveTime * 200));
+		var deltaZ = Mth.frac(this.getZ()) + (Math.sin(this.moveTime * 200));
+		this.setDeltaMovement(Mth.smoothstep(deltaX / 5), Mth.smoothstep(random / 2.0) / 1.8, Mth.smoothstep(deltaZ / 5));
+		this.move(MoverType.SELF, this.getDeltaMovement());
 	}
 
 	@Override
@@ -151,7 +156,7 @@ public class CrestEntity extends Entity {
 	public void playerTouch(Player player) {
 		if (!this.level().isClientSide) {
 			ResourceKey<Crest> crest = getCrest();
-			if (this.pickupDelay == 0 && (this.target == null || this.target.equals(player.getUUID()))) {
+			if (this.pickupDelay == 0) {
 				this.discard();
 				var holder = this.registryAccess().registryOrThrow(ESRegistries.CREST).getHolder(crest);
                 holder.ifPresent(crestReference -> ESCrestUtil.giveCrest(player, new Crest.Instance(crestReference, 1)));
