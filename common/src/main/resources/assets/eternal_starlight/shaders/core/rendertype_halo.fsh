@@ -15,34 +15,32 @@ out vec4 fragColor;
 
 void main() {
     vec2 st = texCoord0;
-    float anim0 = sin(GameTime * 1000) + 1.;
-    float anim1 = sin(-GameTime * 1000 / 2.) + 2.;
-    float anim2 = sin(GameTime * 1000 + 2.);
-    float anim3 = sin(-GameTime * 1000 + 2.);
 
-    float shape = 0.;
-
-    vec2 pos = (vec2(0.5) - st) * 1.5;
-
-    float r = length(pos) * 3.;
+    vec2 pos = vec2(0.5) - st;
+     float r = length(pos) * 2.4;
     float a = atan(pos.y, pos.x);
 
-    float layer0 = cos(a * anim0 * 2.);
-    float layer1 = cos(a * anim1 * 3.);
-    float layer2 = smoothstep(-1.5, 1., cos(a * anim2 * 10.)) * 0.2 + 0.5;
-    float layer3 = smoothstep(-1.5, 1., cos(a * anim3 * 10.)) * 0.2 + 0.5;
+    vec3 color1 = vec3(0.1569, 1.0, 0.9569);
+    vec3 color2 = vec3(1.0, 0.6549, 0.102);
+    vec3 color3 = vec3(0.702, 0.5529, 1.0);
 
-    shape += 1. -smoothstep(layer0, layer0 + 0.5, r);
-    shape += 1. -smoothstep(layer1, layer1 + 0.5, r);
-    shape += 1. -smoothstep(layer2, layer2 + 0.5, r);
-    shape += 1. -smoothstep(layer3, layer3 + 0.5, r);
-    shape += smoothstep(0.65, 0., length(pos));
 
-    vec3 color = vec3(0.1, 0.1, 0.1);
-    vec3 curveColor = vec3(0.1, 0.1, 0.325);
+    float layer1 = abs(sin(a * 4.0 * cos(932.0)));
+    layer1 *= fract(layer1);
+    float layer2 = abs(cos(-a * 6.0 * sin(31.4)));
+    float layer3 = sin(a * 7.0 * 0.5 + (sin(GameTime * 628.0)));
 
-    color += curveColor * (smoothstep(1., 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
-    color += curveColor * (smoothstep(anim0, 0., length(pos)) - smoothstep(0.65, 0., length(pos)));
+    float shape = 0.24 + abs(0.64 + sin(GameTime * 1570.0)) - length(pos) * 1.2;
+    shape += smoothstep(layer1, layer1 + 0.5, length(pos) * 1.5);
+    shape *= 0.7 - length(pos) * 1.45;
 
-    fragColor = vec4(color, shape) * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd);
+    vec4 out_layer = vec4(layer1 * color1 * layer2  * color1 * layer3 * color3, shape);   
+    
+    vec4 color = vec4(color2, distance(st, vec2(0.5)));
+    color = vec4(out_layer + color * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd));
+    color *= smoothstep(color - vec4(0.003), color + vec4(0.003), vec4(dot(color, color)));
+
+    float centre = 1.0 - smoothstep(r - r * 0.005, r + r * 0.005, dot(pos, pos) * 18.9);
+
+    fragColor = vec4(color.rgb, shape * shape * (shape * 1.8 - centre) * 3.0);
 }
