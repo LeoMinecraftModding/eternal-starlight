@@ -393,6 +393,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DUSTED_BRICK_WALL.get());
 
 		dropSelf(ESBlocks.GOLEM_STEEL_BLOCK.get());
+		dropSelf(ESBlocks.GOLEM_STEEL_JETBLOCK.get());
+		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_JETBLOCK.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		add(ESBlocks.GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
 		add(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);

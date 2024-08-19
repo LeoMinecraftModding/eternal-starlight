@@ -421,6 +421,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = registerItem("oxidized_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_JETBLOCK = registerItem("golem_steel_jetblock", () -> new BlockItem(ESBlocks.GOLEM_STEEL_JETBLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_JETBLOCK = registerItem("oxidized_golem_steel_jetblock", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_JETBLOCK.get(), new Item.Properties()));
 
 	// tenacious petal
 	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));

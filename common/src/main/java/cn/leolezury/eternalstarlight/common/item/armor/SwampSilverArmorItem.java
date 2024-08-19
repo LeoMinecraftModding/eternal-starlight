@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.item.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.codecs.SwampSilverRemovableEffects;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
@@ -59,17 +61,13 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 			}
 		});
 		if (fullSet.get()) {
-			List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
-			for (MobEffectInstance effectInstance : livingEntity.getActiveEffects()) {
-				if (!effectInstance.getEffect().value().isBeneficial()) {
-					effectsToRemove.add(effectInstance.getEffect());
+			level.registryAccess().registryOrThrow(ESRegistries.REMOVABLE_EFFECTS).forEach(effects -> {
+				for (var effect : effects.effects()) {
+					if (livingEntity.hasEffect(effect)) {
+						livingEntity.removeEffect(effect);
+					}
 				}
-			}
-			for (Holder<MobEffect> effect : effectsToRemove) {
-				if (livingEntity.hasEffect(effect)) {
-					livingEntity.removeEffect(effect);
-				}
-			}
+			});
 		}
 	}
 

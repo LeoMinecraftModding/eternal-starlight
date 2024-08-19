@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.codecs.SwampSilverRemovableEffects;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.BoarwarfType;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
@@ -18,6 +19,7 @@ public class ESRegistries {
 	public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(EternalStarlight.id("astral_golem_material"));
 	public static final ResourceKey<Registry<Crest>> CREST = ResourceKey.createRegistryKey(EternalStarlight.id("crest"));
 	public static final ResourceKey<Registry<Whisper>> WHISPER = ResourceKey.createRegistryKey(EternalStarlight.id("whisper"));
+	public static final ResourceKey<Registry<SwampSilverRemovableEffects>> REMOVABLE_EFFECTS = ResourceKey.createRegistryKey(EternalStarlight.id("swamp_silver_removable_effects"));
 
 	static {
 		ESPlatform.INSTANCE.registerDatapackRegistry(BIOME_DATA, BiomeData.CODEC, BiomeData.CODEC);
@@ -26,6 +28,7 @@ public class ESRegistries {
 		ESPlatform.INSTANCE.registerDatapackRegistry(ASTRAL_GOLEM_MATERIAL, AstralGolemMaterial.CODEC, AstralGolemMaterial.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(CREST, Crest.CODEC, Crest.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(WHISPER, Whisper.CODEC, Whisper.CODEC);
+		ESPlatform.INSTANCE.registerDatapackRegistry(REMOVABLE_EFFECTS, SwampSilverRemovableEffects.CODEC, SwampSilverRemovableEffects.CODEC);
 	}
 
 	public static void loadClass() {

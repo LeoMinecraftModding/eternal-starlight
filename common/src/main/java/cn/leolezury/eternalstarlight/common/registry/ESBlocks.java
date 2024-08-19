@@ -492,6 +492,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WeatheringGolemSteelStairBlock> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = BLOCKS.register("oxidized_golem_steel_tile_stairs", () -> new WeatheringGolemSteelStairBlock(GOLEM_STEEL_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
 	public static final RegistryObject<Block, WeatheringGolemSteelFullBlock> CHISELED_GOLEM_STEEL_BLOCK = BLOCKS.register("chiseled_golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block, WeatheringGolemSteelFullBlock> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = BLOCKS.register("oxidized_chiseled_golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block, GolemSteelJetBlock> GOLEM_STEEL_JETBLOCK = BLOCKS.register("golem_steel_jetblock", () -> new GolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block, GolemSteelJetBlock> OXIDIZED_GOLEM_STEEL_JETBLOCK = BLOCKS.register("oxidized_golem_steel_jetblock", () -> new GolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 
 	// tenacious petal
 	public static final RegistryObject<Block, ShadegrieveBlock> SHADEGRIEVE = BLOCKS.register("shadegrieve", () -> new ShadegrieveBlock(BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE)));

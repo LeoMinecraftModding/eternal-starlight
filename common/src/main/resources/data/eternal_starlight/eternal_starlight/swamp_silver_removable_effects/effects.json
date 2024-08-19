@@ -1,0 +1,11 @@
+{
+    "effects": [
+        "minecraft:poison",
+        "minecraft:wither",
+        "minecraft:nausea",
+        "minecraft:hunger",
+        "minecraft:slowness",
+        "minecraft:infested",
+        "minecraft:blindness"
+    ]
+}

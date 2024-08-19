@@ -213,6 +213,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
 
 		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.GOLEM_STEEL_JETBLOCK.get());
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JETBLOCK.get());
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		slabBlock(ESBlocks.GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
 		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
