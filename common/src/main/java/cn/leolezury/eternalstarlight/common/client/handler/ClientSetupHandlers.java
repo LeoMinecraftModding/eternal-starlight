@@ -339,7 +339,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HALO_BLOCK.get(), HaloBlockEntityRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), EmptyBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightBlockEntityRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 

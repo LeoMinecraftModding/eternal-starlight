@@ -342,7 +342,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.NIGHTFALL_DIRT.get());
 		grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
-		grassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
+		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_MUD.get()));
 		carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));

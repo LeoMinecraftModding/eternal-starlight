@@ -352,7 +352,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> CHISELED_NEBULAITE_BRICKS = BLOCKS.register("chiseled_nebulaite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_DEEPSLATE).strength(4F, 7F).mapColor(MapColor.COLOR_BLACK)));
 
 	// solar
-	public static final RegistryObject<Block, Block> ATALPHAITE_BLOCK = BLOCKS.register("atalphaite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 5)));
+	public static final RegistryObject<Block, Block> ATALPHAITE_BLOCK = BLOCKS.register("atalphaite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 14)));
 	public static final RegistryObject<Block, Block> BLAZING_ATALPHAITE = BLOCKS.register("blazing_atalphaite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGMA_BLOCK).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, Block> ATALPHAITE_LIGHT = BLOCKS.register("atalphaite_light", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OCHRE_FROGLIGHT).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, Block> VOIDSTONE_ATALPHAITE_ORE = BLOCKS.register("voidstone_atalphaite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> 3)));

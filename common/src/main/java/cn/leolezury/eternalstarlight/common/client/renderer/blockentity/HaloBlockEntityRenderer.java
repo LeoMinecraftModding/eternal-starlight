@@ -20,19 +20,12 @@ public class HaloBlockEntityRenderer implements BlockEntityRenderer<HaloBlockEnt
 		var mainVertex = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.HALO);
 		var pose = poseStack.last();
 		poseStack.pushPose();
-		mainVertex.addVertex(pose, 16, 0.5f, 16).setColor(1, 1, 1, 1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		mainVertex.addVertex(pose, 16, 0.5f, -15).setColor(1, 1, 1, 1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		mainVertex.addVertex(pose, -15, 0.5f, -15).setColor(1, 1, 1, 1).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		mainVertex.addVertex(pose, -15, 0.5f, 16).setColor(1, 1, 1, 1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		mainVertex.addVertex(pose, 33, 0.5f, 33).setColor(1, 1, 1, 1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		mainVertex.addVertex(pose, 33, 0.5f, -32).setColor(1, 1, 1, 1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		mainVertex.addVertex(pose, -32, 0.5f, -32).setColor(1, 1, 1, 1).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		mainVertex.addVertex(pose, -32, 0.5f, 33).setColor(1, 1, 1, 1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 		poseStack.popPose();
 	}
-
-//	@Override
-//	public int getViewDistance() {
-//		return 256;
-//	}
-//
-
 
 	@Override
 	public boolean shouldRenderOffScreen(HaloBlockEntity blockEntity) {
@@ -41,7 +34,6 @@ public class HaloBlockEntityRenderer implements BlockEntityRenderer<HaloBlockEnt
 
 	@Override
 	public boolean shouldRender(HaloBlockEntity blockEntity, Vec3 vec3) {
-//		return BlockEntityRenderer.super.shouldRender(blockEntity, vec3);
 		return true;
 	}
 }

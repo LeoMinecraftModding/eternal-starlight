@@ -86,6 +86,16 @@ public abstract class ESRenderType extends RenderType {
 			.setWriteMaskState(COLOR_WRITE)
 			.createCompositeState(false)));
 
+	public static final Function<ResourceLocation, RenderType> DUSK_RAY = Util.memoize(location ->
+		create(EternalStarlight.ID + ":dusk_ray", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 1536, false, true, RenderType.CompositeState.builder()
+			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
+			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
+			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+			.setCullState(NO_CULL)
+			.setOverlayState(OVERLAY)
+			.setWriteMaskState(COLOR_WRITE)
+			.createCompositeState(false)));
+
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
 		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
 	}
@@ -100,5 +110,8 @@ public abstract class ESRenderType extends RenderType {
 
 	public static RenderType entityGlow(ResourceLocation location) {
 		return ENTITY_GLOW.apply(location);
+	}
+	public static RenderType duskRay(ResourceLocation location) {
+		return DUSK_RAY.apply(location);
 	}
 }

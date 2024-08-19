@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "eternal_starlight:block/nightfall_dirt",
-    "side": "eternal_starlight:block/golden_grass_block_snow",
-    "top": "eternal_starlight:block/golden_grass_block_top"
-  }
-}
