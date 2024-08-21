@@ -104,23 +104,19 @@ public class DuskLightBlockEntity extends BlockEntity {
 		}
 		if (level.getBlockState(pos.below()).is(ESBlocks.ATALPHAITE_LIGHT.get())) {
 			entity.lit = true;
-		}
-		var blocks = level.getBlockStates(new AABB(entity.getBlockPos().getCenter().add((double) rangeX / 18, (double) rangeY / 18, (double) rangeZ /18), entity.getBlockPos().getCenter().add(rangeX, rangeY, rangeZ))).toList();
-		for (int i = 0; i < 18; i++) {
-			if (level.getBlockEntity(entity.getBlockPos().offset((i + 1) * (rangeX / 18), (i + 1) * (rangeY / 18), (i + 1) * (rangeZ / 18))) instanceof DuskLightBlockEntity next) {
-				next.lit = true;
-				break;
-			}
-			if (rangeX < 0 || rangeY < 0 || rangeZ < 0) {
-				if (blocks.get(17 - i).is(ESBlocks.DUSK_GLASS.get())) {
+		} else {
+			var blocks = level.getBlockStates(new AABB(entity.getBlockPos().getCenter().add((double) rangeX / 18, (double) rangeY / 18, (double) rangeZ /18), entity.getBlockPos().getCenter().add(rangeX, rangeY, rangeZ))).toList();
+			for (int i = 0; i < 17; i++) {
+				if (((rangeX < 0 || rangeY < 0 || rangeZ < 0) && blocks.get(17 - i).is(ESBlocks.DUSK_GLASS.get())) || blocks.get(i).is(ESBlocks.DUSK_GLASS.get())) {
+					break;
+				} else if (level.getBlockEntity(entity.getBlockPos().offset((i + 1) * (rangeX / 18), (i + 1) * (rangeY / 18), (i + 1) * (rangeZ / 18))) instanceof DuskLightBlockEntity last) {
+					if (!level.getBlockState(last.getBlockPos().below()).is(ESBlocks.ATALPHAITE_LIGHT.get())) {
+						last.lit = last.getBlockPos().getCenter().distanceTo(entity.getBlockPos().getCenter()) - 1 == entity.distance;
+					}
 					break;
 				}
-			} else {
-				if (blocks.get(i).is(ESBlocks.DUSK_GLASS.get())) {
-					break;
-				}
+				entity.distance = i + 1;
 			}
-			entity.distance = i + 1;
 		}
 	}
 

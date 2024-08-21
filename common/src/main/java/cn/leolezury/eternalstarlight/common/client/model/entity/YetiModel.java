@@ -17,9 +17,13 @@ public class YetiModel<T extends Yeti> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("yeti"), "main");
 	private final ModelPart root;
 	private final ModelPart eye;
+	private final ModelPart fur;
+	private final ModelPart body;
 
 	public YetiModel(ModelPart root) {
 		this.root = root.getChild("root");
+		this.fur = root.getChild("root").getChild("head").getChild("fur");
+		this.body = root.getChild("root").getChild("head").getChild("body");
 		this.eye = root.getChild("root").getChild("head").getChild("eye");
 	}
 
@@ -33,19 +37,25 @@ public class YetiModel<T extends Yeti> extends AnimatedEntityModel<T> {
 
 		root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 28).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.5F, 2.0F, 1.0F));
 
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-5.5F, -13.0F, -4.0F, 11.0F, 13.0F, 9.0F, new CubeDeformation(0.0F))
-			.texOffs(8, 8).addBox(-5.5F, -13.0F, -5.0F, 11.0F, 5.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(0.5F, 5.0F, -2.0F));
 
-		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(31, 0).addBox(-1.5F, -1.0F, -2.0F, 3.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -5.0F, -4.0F));
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(31, 0).addBox(-1.5F, -1.0F, -2.0F, 3.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8F, -1F));
 
-		head.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -10.0F, -4.4F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		head.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -10.0F, -4.4F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0F, 3F));
 
+		head.addOrReplaceChild("body", CubeListBuilder.create().texOffs(2, 1).addBox(-5.0F, -16.0F, -1.0F, 9.0F, 13.0F, 8.0F, new CubeDeformation(0.0F))
+			.texOffs(9, 8).addBox(-5.0F, -16.0F, -2.0F, 9.0F, 5.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		head.addOrReplaceChild("fur", CubeListBuilder.create().texOffs(0, 34).addBox(-6.0F, -16.0F, -1.0F, 11.0F, 13.0F, 9.0F, new CubeDeformation(0.0F))
+			.texOffs(8, 42).addBox(-6.0F, -16.0F, -2.0F, 11.0F, 5.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		fur.visible = entity.getHasFur();
+		body.visible = !entity.getHasFur();
 		this.animate(entity.idleAnimationState, YetiAnimation.IDLE, ageInTicks);
 		if (entity.getRollState() != 2) {
 			this.animateWalk(YetiAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1f);
