@@ -211,30 +211,36 @@ public class CommonHandlers {
 			}
 			AttributeInstance damageAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
 			if (damageAttribute != null) {
-				damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
-				damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
 				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
 					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
 					if (state == 0) {
 						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_PENALTY);
-					}
-					if (state == 2) {
+					} else if (state == 2) {
 						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_BONUS);
+					} else {
+						damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
+						damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
 					}
+				} else {
+					damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
+					damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
 				}
 			}
 			AttributeInstance attackSpeedAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
 			if (attackSpeedAttribute != null) {
-				attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
-				attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
 				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
 					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
 					if (state == 0) {
 						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_PENALTY);
-					}
-					if (state == 2) {
+					} else if (state == 2) {
 						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_BONUS);
+					} else {
+						attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
+						attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
 					}
+				} else {
+					attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
+					attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
 				}
 			}
 			if (livingEntity.tickCount % 20 == 0) {

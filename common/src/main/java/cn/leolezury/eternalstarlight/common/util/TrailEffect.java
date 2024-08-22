@@ -136,10 +136,10 @@ public class TrailEffect {
 				TrailPoint from = points.get(i);
 				TrailPoint to = points.get(i + 1);
 				PoseStack.Pose pose = stack.last();
-				consumer.addVertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).setColor(r, g, b, a).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				consumer.addVertex(pose, (float) from.upper().x, (float) from.upper().y, (float) from.upper().z).setColor(r, g, b, i == 0 ? 0 : a).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) to.upper().x, (float) to.upper().y, (float) to.upper().z).setColor(r, g, b, a).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) to.lower().x, (float) to.lower().y, (float) to.lower().z).setColor(r, g, b, a).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
-				consumer.addVertex(pose, (float) from.lower().x, (float) from.lower().y, (float) from.lower().z).setColor(r, g, b, a).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				consumer.addVertex(pose, (float) from.lower().x, (float) from.lower().y, (float) from.lower().z).setColor(r, g, b, i == 0 ? 0 : a).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 			}
 		}
 	}

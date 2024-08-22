@@ -9,7 +9,6 @@
       "operation": "add_value"
     }
   ],
-  "in_crest_pot": false,
   "max_level": 2,
   "mob_effects": [
     {

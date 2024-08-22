@@ -54,8 +54,8 @@ public class YetiModel<T extends Yeti> extends AnimatedEntityModel<T> {
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		fur.visible = entity.getHasFur();
-		body.visible = !entity.getHasFur();
+		fur.visible = entity.hasFur();
+		body.visible = !entity.hasFur();
 		this.animate(entity.idleAnimationState, YetiAnimation.IDLE, ageInTicks);
 		if (entity.getRollState() != 2) {
 			this.animateWalk(YetiAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1f);

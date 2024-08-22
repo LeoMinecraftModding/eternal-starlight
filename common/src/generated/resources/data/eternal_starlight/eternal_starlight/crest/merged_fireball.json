@@ -1,6 +1,5 @@
 {
   "type": "blaze",
-  "in_crest_pot": true,
   "max_level": 3,
   "spell": "eternal_starlight:merged_fireball",
   "texture": "eternal_starlight:textures/crest/merged_fireball.png"

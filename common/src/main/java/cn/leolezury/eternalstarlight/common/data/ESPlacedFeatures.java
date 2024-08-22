@@ -39,6 +39,8 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> VOIDSTONE_REDSTONE_ORE = create("voidstone_redstone_ore");
 	public static final ResourceKey<PlacedFeature> GRIMSTONE_SALTPETER_ORE = create("grimstone_saltpeter_ore");
 	public static final ResourceKey<PlacedFeature> VOIDSTONE_SALTPETER_ORE = create("voidstone_saltpeter_ore");
+	public static final ResourceKey<PlacedFeature> GRIMSTONE_ATALPHAITE_ORE = create("grimstone_atalphaite_ore");
+	public static final ResourceKey<PlacedFeature> VOIDSTONE_ATALPHAITE_ORE = create("voidstone_atalphaite_ore");
 	public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
@@ -118,6 +120,8 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, VOIDSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, GRIMSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_SALTPETER_ORE), commonOrePlacement(18, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, VOIDSTONE_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_SALTPETER_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+		PlacementUtils.register(context, GRIMSTONE_ATALPHAITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_ATALPHAITE_ORE), commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, VOIDSTONE_ATALPHAITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_ATALPHAITE_ORE), commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

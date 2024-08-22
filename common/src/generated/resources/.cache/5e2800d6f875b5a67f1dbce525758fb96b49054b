@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-14T12:24:53.8640139	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-08-21T22:34:44.1674948	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -16,16 +16,16 @@ b1b5a7416a3fbdc302bd2496bd573b8f41f0e68d data/c/tags/item/gems/quartz.json
 e4fb9c7ac1163f95cd2dcf4a757b8a93f7cd7760 data/c/tags/item/ingots.json
 50a625e4f40a9b52620bd41d3c8c42c353666aad data/c/tags/item/mushrooms.json
 7d120d7b9572a62ffe8bc337d0f8c000cd5bdae6 data/c/tags/item/nuggets.json
-034b6c757dc753c0b46ff08e433812ac056d2d70 data/c/tags/item/ores.json
+a3ea5890c569fe12b1b41d000d078333aec261d8 data/c/tags/item/ores.json
 234b0283150e53943ec5710eaf278b10a4ca2810 data/c/tags/item/ore_rates/dense.json
-3d793a7c0f1b34d51181c8c15d22010ed3952962 data/c/tags/item/ore_rates/sparse.json
+665e7c01ec659bbad54f6626a4f0638d6bcc16d6 data/c/tags/item/ore_rates/sparse.json
 a108a858637ccff8277d9ef49ae130f227c599c8 data/c/tags/item/raw_materials.json
 4ee447c5b8c185a2d98b38ce0672139b63c8e9a3 data/c/tags/item/sands.json
 9ed1a8054322f0da7a2db0c72f73e1d03cfd2a3d data/c/tags/item/sandstone/blocks.json
 5b87b123e291847286b5f065a15e87cd2e8e4fef data/c/tags/item/sandstone/slabs.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/item/sandstone/stairs.json
 61979a279b4bb8bc6613c1a86aff3b56bb204214 data/c/tags/item/stones.json
-dffd1e7067add36a3cb472389e4e28d19cdfd662 data/c/tags/item/storage_blocks.json
+606e326420feb61ab12d7807dd4a4d173061097a data/c/tags/item/storage_blocks.json
 c3d226738f5244eb9b6c48888bf9f58d7c20b7e1 data/c/tags/item/tools/bow.json
 73e0127140563bac2e802feeb28acbf24cd5520f data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json

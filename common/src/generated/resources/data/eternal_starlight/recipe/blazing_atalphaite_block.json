@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "eternal_starlight:atalphaite"
+    },
+    "B": {
+      "item": "eternal_starlight:atalphaite_block"
+    },
+    "T": {
+      "item": "eternal_starlight:thermal_springstone_ingot"
+    }
+  },
+  "pattern": [
+    "TAT",
+    "ABA",
+    "TAT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:blazing_atalphaite_block"
+  }
+}

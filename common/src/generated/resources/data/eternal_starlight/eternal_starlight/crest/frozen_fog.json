@@ -1,6 +1,5 @@
 {
-  "type": "blaze",
-  "in_crest_pot": true,
+  "type": "water",
   "max_level": 3,
   "spell": "eternal_starlight:frozen_fog",
   "texture": "eternal_starlight:textures/crest/frozen_fog.png"

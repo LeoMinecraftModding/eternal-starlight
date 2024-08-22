@@ -216,7 +216,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_TORREYA_SAPLING.get());
 		dropSelf(ESBlocks.TORREYA_VINES.get());
 		dropOther(ESBlocks.TORREYA_VINES_PLANT.get(), ESBlocks.TORREYA_VINES.get());
-		add(ESBlocks.TORREYA_CAMPFIRE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.RAW_AMARAMBER.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+		add(ESBlocks.TORREYA_CAMPFIRE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.RAW_AMARAMBER.get()))));
 
 		add(ESBlocks.GRIMSTONE.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_GRIMSTONE.get()));
 		dropSelf(ESBlocks.COBBLED_GRIMSTONE.get());
@@ -272,11 +272,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
 		dropSelf(ESBlocks.ATALPHAITE_BLOCK.get());
-		dropSelf(ESBlocks.BLAZING_ATALPHAITE.get());
+		dropSelf(ESBlocks.BLAZING_ATALPHAITE_BLOCK.get());
 		dropSelf(ESBlocks.ATALPHAITE_LIGHT.get());
-		dropWhenSilkTouch(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get());
-		dropWhenSilkTouch(ESBlocks.GRIMSTONEE_ATALPHAITE_ORE.get());
+		add(ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
+		dropWhenSilkTouch(ESBlocks.DUSK_LIGHT.get());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.RADIANITE_STAIRS.get());
@@ -393,8 +394,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DUSTED_BRICK_WALL.get());
 
 		dropSelf(ESBlocks.GOLEM_STEEL_BLOCK.get());
-		dropSelf(ESBlocks.GOLEM_STEEL_JETBLOCK.get());
-		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_JETBLOCK.get());
+		dropSelf(ESBlocks.GOLEM_STEEL_JET.get());
+		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		add(ESBlocks.GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
 		add(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
@@ -483,8 +484,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
-		plant(ESBlocks.TALL_GOLDEN_GRASS.get());
-		plant(ESBlocks.GOLDEN_GRASS.get());
 
 		dropSelf(ESBlocks.SWAMP_ROSE.get());
 		dropPottedContents(ESBlocks.POTTED_SWAMP_ROSE.get());
@@ -530,11 +529,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.TWILVEWRYM_HERB.get(), this::createDoublePlantDrops);
 		add(ESBlocks.STELLAFLY_BUSH.get(), this::createDoublePlantDrops);
 		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
-		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
+
+		plant(ESBlocks.GOLDEN_GRASS.get());
+		add(ESBlocks.TALL_GOLDEN_GRASS.get(), this::createDoublePlantDrops);
 
 		add(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
-		add(ESBlocks.GOLDEN_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
+		add(ESBlocks.GOLDEN_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));
 		dropSelf(ESBlocks.FANTASY_GRASS_CARPET.get());
 		dropSelf(ESBlocks.NIGHTFALL_DIRT.get());
@@ -614,18 +615,17 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
-		dropSelf(ESBlocks.DUSK_LIGHT.get());
 
 		// nothing
+		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
+		add(ESBlocks.CREST_POT.get(), noDrop());
 		add(ESBlocks.ENERGY_BLOCK.get(), noDrop());
 		add(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), noDrop());
 		add(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), noDrop());
 		add(ESBlocks.TANGLED_HATRED_SPAWNER.get(), noDrop());
 		add(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), noDrop());
 		add(ESBlocks.STARLIGHT_PORTAL.get(), noDrop());
-		add(ESBlocks.HALO_BLOCK.get(), noDrop());
-		add(ESBlocks.CREST_POT.get(), noDrop());
 	}
 
 	@Override

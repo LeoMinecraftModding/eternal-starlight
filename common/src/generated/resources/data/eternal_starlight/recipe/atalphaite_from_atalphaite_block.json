@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "atalphaite",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:atalphaite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:atalphaite"
+  }
+}

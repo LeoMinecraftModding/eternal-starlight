@@ -1,16 +1,14 @@
 package cn.leolezury.eternalstarlight.common.item.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.codecs.SwampSilverRemovableEffects;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,7 +17,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
@@ -61,11 +58,9 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 			}
 		});
 		if (fullSet.get()) {
-			level.registryAccess().registryOrThrow(ESRegistries.REMOVABLE_EFFECTS).forEach(effects -> {
-				for (var effect : effects.effects()) {
-					if (livingEntity.hasEffect(effect)) {
-						livingEntity.removeEffect(effect);
-					}
+			level.registryAccess().registryOrThrow(Registries.MOB_EFFECT).getTagOrEmpty(ESTags.MobEffects.SWAMP_SILVER_ARMOR_CAN_REMOVE).forEach(effect -> {
+				if (livingEntity.hasEffect(effect)) {
+					livingEntity.removeEffect(effect);
 				}
 			});
 		}

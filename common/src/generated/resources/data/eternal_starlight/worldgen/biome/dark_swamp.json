@@ -49,6 +49,8 @@
       "eternal_starlight:voidstone_redstone_ore",
       "eternal_starlight:grimstone_saltpeter_ore",
       "eternal_starlight:voidstone_saltpeter_ore",
+      "eternal_starlight:grimstone_atalphaite_ore",
+      "eternal_starlight:voidstone_atalphaite_ore",
       "eternal_starlight:swamp_silver_ore",
       "eternal_starlight:glowing_nightfall_mud_ore"
     ],
@@ -83,9 +85,9 @@
       },
       {
         "type": "eternal_starlight:shimmer_lacewing",
-        "maxCount": 4,
+        "maxCount": 2,
         "minCount": 1,
-        "weight": 20
+        "weight": 10
       }
     ],
     "axolotls": [],

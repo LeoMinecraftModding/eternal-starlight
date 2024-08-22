@@ -39,6 +39,7 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ESItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter(), helper));
 		generator.addProvider(event.includeServer(), new ESEntityTypeTagsProvider(output, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new ESFluidTagsProvider(output, lookupProvider, helper));
+		generator.addProvider(event.includeServer(), new ESMobEffectTagsProvider(output, lookupProvider, helper));
 
 		DatapackBuiltinEntriesProvider registryProvider = new ESRegistryProvider(output, lookupProvider);
 		CompletableFuture<HolderLookup.Provider> lookup = registryProvider.getRegistryProvider();
@@ -47,6 +48,7 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ESBiomeTagsProvider(output, lookup, helper));
 		generator.addProvider(event.includeServer(), new ESStructureTagsProvider(output, lookup, helper));
 		generator.addProvider(event.includeServer(), new ESEnchantmentTagsProvider(output, lookup, helper));
+		generator.addProvider(event.includeServer(), new ESCrestTagsProvider(output, lookup, helper));
 
 		generator.addProvider(event.includeServer(), new ESLootProvider(output, lookup));
 		generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookup, helper));

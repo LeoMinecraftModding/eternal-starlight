@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESFluids;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,10 +32,10 @@ public abstract class LiquidBlockMixin {
 
 	@Inject(method = "shouldSpreadLiquid", at = @At(value = "HEAD"), cancellable = true)
 	public void shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
-		if (this.fluid == ESFluids.ETHER_FLOWING.get() || this.fluid == ESFluids.ETHER_STILL.get()) {
+		if (!this.fluid.is(ESTags.Fluids.ETHER)) {
 			for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
 				BlockPos relativePos = blockPos.relative(direction.getOpposite());
-				if (!level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get())) {
+				if (level.getFluidState(relativePos).is(ESTags.Fluids.ETHER)) {
 					level.setBlockAndUpdate(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
 					this.fizz(level, blockPos);
 					cir.setReturnValue(false);

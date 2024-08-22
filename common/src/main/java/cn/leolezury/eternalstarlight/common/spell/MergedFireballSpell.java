@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.spell;
 
 import net.minecraft.world.entity.LivingEntity;
 
-public class MergedFireballSpell extends AbstractSpell{
+public class MergedFireballSpell extends AbstractSpell {
 	public MergedFireballSpell(Properties properties) {
 		super(properties);
 	}

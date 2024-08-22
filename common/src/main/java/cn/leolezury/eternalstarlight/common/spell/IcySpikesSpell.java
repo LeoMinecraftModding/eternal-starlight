@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.spell;
 
 import net.minecraft.world.entity.LivingEntity;
 
-public class IcySpikesSpell extends AbstractSpell{
+public class IcySpikesSpell extends AbstractSpell {
 	public IcySpikesSpell(Properties properties) {
 		super(properties);
 	}

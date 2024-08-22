@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,8 +18,6 @@ public class ESFluidTagsProvider extends FluidTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		// conventional tags
-		tag(Tags.Fluids.POTION).addTag(ESTags.Fluids.ETHER);
 		tag(ESTags.Fluids.ETHER).add(
 			ESFluids.ETHER_STILL.get(),
 			ESFluids.ETHER_FLOWING.get()

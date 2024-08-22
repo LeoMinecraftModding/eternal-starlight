@@ -1,0 +1,6 @@
+{
+  "type": "blaze",
+  "max_level": 3,
+  "spell": "eternal_starlight:flame_aftershock",
+  "texture": "eternal_starlight:textures/crest/flame_aftershock.png"
+}

@@ -270,7 +270,6 @@ public class NeoForgePlatform implements ESPlatform {
 		var model = dispatcher.getBlockModel(state);
 		for (var renderType : model.getRenderTypes(state, RandomSource.create(seed), ModelData.EMPTY))
 			dispatcher.getModelRenderer().tesselateBlock(level, model, state, pos, stack, multiBufferSource.getBuffer(renderType), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
-
 	}
 
 	@Override

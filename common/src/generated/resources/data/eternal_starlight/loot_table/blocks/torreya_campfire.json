@@ -35,13 +35,6 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "functions": [
-                {
-                  "add": false,
-                  "count": 2.0,
-                  "function": "minecraft:set_count"
-                }
-              ],
               "name": "eternal_starlight:raw_amaramber"
             }
           ]

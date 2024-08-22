@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "eternal_starlight:atalphaite_block"
+    },
+    "G": {
+      "item": "eternal_starlight:dusk_glass"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GBG",
+    " G "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:atalphaite_light"
+  }
+}

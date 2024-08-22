@@ -30,12 +30,11 @@ public class DuskLightBlock extends BaseEntityBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
-		if (!player.isCrouching() && level.getBlockEntity(blockPos) instanceof DuskLightBlockEntity entity) {
+		if (level.getBlockEntity(blockPos) instanceof DuskLightBlockEntity entity && entity.isLit()) {
 			if (!level.isClientSide) {
 				entity.setFacing();
-				return InteractionResult.SUCCESS;
 			}
-			return InteractionResult.PASS;
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return InteractionResult.PASS;
 	}

@@ -268,15 +268,14 @@ public class ClientSetupHandlers {
 		ESBlocks.TWILVEWRYM_HERB,
 		ESBlocks.STELLAFLY_BUSH,
 		ESBlocks.GLIMMERFLY_BUSH,
+		ESBlocks.GOLDEN_GRASS,
+		ESBlocks.TALL_GOLDEN_GRASS,
 		ESBlocks.SWAMP_ROSE,
 		ESBlocks.AMARAMBER_LANTERN,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
 		ESBlocks.TANGLED_HATRED_SPAWNER,
-		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
-		ESBlocks.TALL_GOLDEN_GRASS,
-		ESBlocks.GOLDEN_GRASS,
-		ESBlocks.CREST_POT
+		ESBlocks.LUNAR_MONSTROSITY_SPAWNER
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
@@ -335,11 +334,11 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.HALO_BLOCK.get(), HaloBlockEntityRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightBlockEntityRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -520,7 +519,7 @@ public class ClientSetupHandlers {
 		strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
 		strategy.register(EternalStarlight.id("rendertype_laser_beam"), DefaultVertexFormat.NEW_ENTITY, ESShaders::setRenderTypeLaserBeam);
 		strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
-		strategy.register(EternalStarlight.id("rendertype_halo"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeHalo);
+		strategy.register(EternalStarlight.id("rendertype_eclipse"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeEclipse);
 	}
 
 	public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {
@@ -573,6 +572,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
 		strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
 		strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.CREST.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
 		strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
 		strategy.register(ESEntities.GLEECH.get(), GleechRenderer::new);
@@ -610,8 +610,6 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
-		strategy.register(ESEntities.CREST.get(), CrestEntityRenderer::new);
-		strategy.register(ESEntities.BURSTED_SPARK.get(), BurstedSparkRenderer::new);
 	}
 
 	public static void registerSkullModels(SkullRendererRegisterStrategy strategy, EntityModelSet modelSet) {

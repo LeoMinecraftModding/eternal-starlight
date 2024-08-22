@@ -24,10 +24,10 @@ public class TheGatekeeperAnimation {
 			new Keyframe(0.75F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -0.5F, -0.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.25F, KeyframeAnimations.degreeVec(-2.5F, 0.0F, -2.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.5F, KeyframeAnimations.degreeVec(2.5F, 0.0F, 2.5F), AnimationChannel.Interpolations.CATMULLROM),
-			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, -0.5F, -0.5F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("left_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 			new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -36,10 +36,10 @@ public class TheGatekeeperAnimation {
 			new Keyframe(0.75F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.5F, 0.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.25F, KeyframeAnimations.degreeVec(2.5F, 0.0F, 2.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.5F, KeyframeAnimations.degreeVec(-2.5F, 0.0F, -2.5F), AnimationChannel.Interpolations.CATMULLROM),
-			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.5F, 0.5F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.POSITION,
 			new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -48,16 +48,16 @@ public class TheGatekeeperAnimation {
 			new Keyframe(0.75F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -0.5F, -0.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.25F, KeyframeAnimations.degreeVec(-1.0F, 0.0F, -1.0F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.5F, KeyframeAnimations.degreeVec(1.0F, 0.0F, 1.0F), AnimationChannel.Interpolations.CATMULLROM),
-			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, -0.5F, -0.5F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.addAnimation("right_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.5F, 0.5F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.25F, KeyframeAnimations.degreeVec(1.0F, 0.0F, 1.0F), AnimationChannel.Interpolations.CATMULLROM),
 			new Keyframe(0.5F, KeyframeAnimations.degreeVec(-1.0F, 0.0F, -1.0F), AnimationChannel.Interpolations.CATMULLROM),
-			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.5F, 0.5F), AnimationChannel.Interpolations.CATMULLROM)
 		))
 		.build();
 

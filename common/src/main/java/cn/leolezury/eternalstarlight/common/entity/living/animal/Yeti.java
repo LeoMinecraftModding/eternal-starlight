@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.serialization.Dynamic;
@@ -22,8 +23,6 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -33,11 +32,12 @@ import org.jetbrains.annotations.Nullable;
 public class Yeti extends Animal {
 	protected static final EntityDataAccessor<Integer> ROLL_STATE = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.INT);
 	protected static final EntityDataAccessor<Boolean> HAS_FUR = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.BOOLEAN);
+
 	public int getRollState() {
 		return this.getEntityData().get(ROLL_STATE);
 	}
 
-	public boolean getHasFur() {
+	public boolean hasFur() {
 		return this.getEntityData().get(HAS_FUR);
 	}
 
@@ -83,8 +83,8 @@ public class Yeti extends Animal {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(ROLL_STATE, 0);
-		builder.define(HAS_FUR, true);
+		builder.define(ROLL_STATE, 0)
+			.define(HAS_FUR, true);
 	}
 
 	@Override
@@ -153,23 +153,27 @@ public class Yeti extends Animal {
 	}
 
 	@Override
-	public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
-		ItemStack itemStack = player.getItemInHand(interactionHand);
-		if (itemStack.is(Items.SHEARS) && this.getEntityData().get(HAS_FUR) && !this.level().isClientSide) {
-			this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
-			this.gameEvent(GameEvent.SHEAR, player);
-			itemStack.hurtAndBreak(1, player, getSlotForHand(interactionHand));
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemStack = player.getItemInHand(hand);
+		if (ESPlatform.INSTANCE.isShears(itemStack) && hasFur()) {
+			if (!level().isClientSide) {
+				this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
+				this.gameEvent(GameEvent.SHEAR, player);
+				itemStack.hurtAndBreak(1, player, getSlotForHand(hand));
 
-			int i = 1 + this.random.nextInt(3);
-			for(int j = 0; j < i; ++j) {
-				ItemEntity itemEntity = this.spawnAtLocation(ESItems.WHITE_YETI_FUR.get(), 1);
-				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+				int i = 1 + this.random.nextInt(3);
+				for (int j = 0; j < i; ++j) {
+					ItemEntity itemEntity = this.spawnAtLocation(ESItems.WHITE_YETI_FUR.get(), 1);
+					if (itemEntity != null) {
+						itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+					}
+				}
+
+				this.getEntityData().set(HAS_FUR, false);
 			}
-
-			this.getEntityData().set(HAS_FUR, false);
-			return InteractionResult.SUCCESS;
+			return InteractionResult.sidedSuccess(level().isClientSide);
 		}
-		return super.mobInteract(player, interactionHand);
+		return super.mobInteract(player, hand);
 	}
 
 	@Override

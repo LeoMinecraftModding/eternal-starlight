@@ -115,19 +115,19 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder swampSpawns() {
 		return baseLandSpawnBuilder()
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 20, 1, 4));
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2));
 	}
 
 	private static MobSpawnSettings.Builder desertSpawns() {
 		return baseLandSpawnBuilder()
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 30, 1, 4))
-			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 20, 1, 3))
-			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.THIRST_WALKER.get(), 15, 1, 2));
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 10, 1, 4))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 10, 1, 3))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.THIRST_WALKER.get(), 10, 1, 2));
 	}
 
 	private static MobSpawnSettings.Builder riverSpawns() {
 		return baseAquaticSpawnBuilder()
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 20, 1, 4));
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2));
 	}
 
 	private static MobSpawnSettings.Builder theAbyssSpawns() {
@@ -163,6 +163,8 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GRIMSTONE_SALTPETER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_SALTPETER_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GRIMSTONE_ATALPHAITE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_ATALPHAITE_ORE);
 		builder.addFeature(GenerationStep.Decoration.LAKES, ESPlacedFeatures.HOT_SPRING);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
@@ -189,6 +191,8 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GRIMSTONE_SALTPETER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_SALTPETER_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GRIMSTONE_ATALPHAITE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.VOIDSTONE_ATALPHAITE_ORE);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
 		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES);

@@ -40,6 +40,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSwampSilverRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
 		addGlaciteRecipes(recipeOutput);
+		addAtalphaiteRecipes(recipeOutput);
 		addSaltpeterRecipes(recipeOutput);
 		addAmaramberRecipes(recipeOutput);
 
@@ -928,6 +929,31 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addSmelt(recipeOutput, 200, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
 		addBlast(recipeOutput, 100, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
+	}
+
+	private void addAtalphaiteRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.ATALPHAITE.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.ATALPHAITE_BLOCK.get(), "atalphaite_from_atalphaite_block", "atalphaite");
+		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.GRIMSTONE_ATALPHAITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.GRIMSTONE_ATALPHAITE_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.BLAZING_ATALPHAITE_BLOCK.get())
+			.pattern("TAT")
+			.pattern("ABA")
+			.pattern("TAT")
+			.define('B', ESItems.ATALPHAITE_BLOCK.get())
+			.define('A', ESItems.ATALPHAITE.get())
+			.define('T', ESItems.THERMAL_SPRINGSTONE_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.ATALPHAITE_BLOCK.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.ATALPHAITE_LIGHT.get())
+			.pattern(" G ")
+			.pattern("GBG")
+			.pattern(" G ")
+			.define('B', ESItems.ATALPHAITE_BLOCK.get())
+			.define('G', ESItems.DUSK_GLASS.get())
+			.unlockedBy("has_item", has(ESItems.ATALPHAITE_BLOCK.get()))
+			.save(recipeOutput);
 	}
 
 	private void addSaltpeterRecipes(RecipeOutput recipeOutput) {

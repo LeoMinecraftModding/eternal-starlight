@@ -180,7 +180,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize()))) {
 			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
 				livingEntity.invulnerableTime = 0;
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.01f : 1f));
+				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
 			}
 		}
 		if (getTarget() != null && getY() < getTarget().getY()) {

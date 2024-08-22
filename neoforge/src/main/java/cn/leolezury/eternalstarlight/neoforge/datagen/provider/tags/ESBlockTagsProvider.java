@@ -139,11 +139,15 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.SWAMP_SILVER_ORE.get()
 		);
 		tag(Tags.Blocks.ORE_RATES_SPARSE).add(
-			ESBlocks.THERMAL_SPRINGSTONE.get()
+			ESBlocks.THERMAL_SPRINGSTONE.get(),
+			ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(),
+			ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get()
 		);
 		tag(Tags.Blocks.ORES).add(
+			ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(),
 			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
 			ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
+			ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(),
 			ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
 			ESBlocks.VOIDSTONE_SALTPETER_ORE.get(),
 			ESBlocks.SWAMP_SILVER_ORE.get(),
@@ -189,6 +193,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.ETERNAL_ICE.get()
 		);
 		tag(Tags.Blocks.STORAGE_BLOCKS).add(
+			ESBlocks.ATALPHAITE_BLOCK.get(),
 			ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get(),
 			ESBlocks.THIOQUARTZ_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_BLOCK.get(),
@@ -329,6 +334,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.DOOMEDEN_LIGHT.get(),
 			ESBlocks.DOOMEDEN_KEYHOLE.get(),
 			ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
+		);
+		tag(ESTags.Blocks.DUSK_LIGHT_ENERGY_SOURCES).add(
+			ESBlocks.ATALPHAITE_BLOCK.get(),
+			ESBlocks.BLAZING_ATALPHAITE_BLOCK.get(),
+			ESBlocks.ATALPHAITE_LIGHT.get()
 		);
 		// mc tags
 		tag(BlockTags.LOGS).addTags(
@@ -650,8 +660,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
-			ESBlocks.FANTASY_GRASS_BLOCK.get(),
-			ESBlocks.GOLDEN_GRASS_BLOCK.get()
+			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
+			ESBlocks.FANTASY_GRASS_BLOCK.get()
 		);
 		tag(BlockTags.SAND).add(
 			ESBlocks.TWILIGHT_SAND.get()
@@ -662,6 +672,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 			ESBlocks.NIGHTFALL_DIRT.get()
 		);
 		tag(BlockTags.WITHER_IMMUNE).add(
@@ -757,6 +768,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NEBULAITE_BRICK_STAIRS.get(),
 			ESBlocks.NEBULAITE_BRICK_WALL.get(),
 			ESBlocks.CHISELED_NEBULAITE_BRICKS.get(),
+			ESBlocks.ATALPHAITE_BLOCK.get(),
+			ESBlocks.BLAZING_ATALPHAITE_BLOCK.get(),
+			ESBlocks.ATALPHAITE_LIGHT.get(),
+			ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(),
+			ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(),
 			ESBlocks.RADIANITE.get(),
 			ESBlocks.RADIANITE_SLAB.get(),
 			ESBlocks.RADIANITE_STAIRS.get(),
@@ -869,6 +885,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
 			ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
+			ESBlocks.GOLEM_STEEL_JET.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(),
 			ESBlocks.DOOMEDEN_BRICKS.get(),
 			ESBlocks.DOOMEDEN_BRICK_SLAB.get(),
 			ESBlocks.DOOMEDEN_BRICK_STAIRS.get(),
@@ -904,7 +922,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(),
 			ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(),
 			ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get(),
-			ESBlocks.STELLAR_RACK.get()
+			ESBlocks.STELLAR_RACK.get(),
+			ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()
 		);
 		tag(BlockTags.MINEABLE_WITH_AXE).add(
 			ESBlocks.GLOWING_MUSHROOM_BLOCK.get(),
@@ -923,9 +942,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.DUSTED_GRAVEL.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get(),
-			ESBlocks.SWAMP_SILVER_ORE.get(),
-			ESBlocks.GOLDEN_GRASS_BLOCK.get()
+			ESBlocks.SWAMP_SILVER_ORE.get()
 		);
 		tag(BlockTags.SWORD_EFFICIENT).add(
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
@@ -940,6 +959,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
 			ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),
 			ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(),
+			ESBlocks.THIOQUARTZ_BLOCK.get(),
 			ESBlocks.THIOQUARTZ_CLUSTER.get(),
 			ESBlocks.GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),

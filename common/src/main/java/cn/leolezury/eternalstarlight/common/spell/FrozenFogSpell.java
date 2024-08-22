@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.spell;
 
 import net.minecraft.world.entity.LivingEntity;
 
-public class FrozenFogSpell extends AbstractSpell{
+public class FrozenFogSpell extends AbstractSpell {
 	public FrozenFogSpell(Properties properties) {
 		super(properties);
 	}

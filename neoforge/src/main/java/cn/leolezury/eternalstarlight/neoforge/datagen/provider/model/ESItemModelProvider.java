@@ -254,6 +254,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
 		block(ESItems.GRIMSTONE_ATALPHAITE_ORE.get());
 		block(ESItems.DUSK_GLASS.get());
+		block(ESItems.DUSK_LIGHT.get());
+		block(ESItems.ECLIPSE_CORE.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());
 		block(ESItems.RADIANITE_STAIRS.get());
@@ -392,8 +394,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
 		block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
-		block(ESItems.GOLEM_STEEL_JETBLOCK.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_JETBLOCK.get());
+		block(ESItems.GOLEM_STEEL_JET.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_JET.get());
 
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
@@ -455,8 +457,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLOWING_PARASOL_GRASS.get());
 		flatBlockTexture(ESItems.LUNAR_BUSH.get());
 		flatBlockTexture(ESItems.GLOWING_LUNAR_BUSH.get());
-		flatBlockTexture(ESItems.GOLDEN_GRASS.get());
-		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
 		basicItem(ESItems.TALL_CRESCENT_GRASS.get(), blockTextureFromItem(ESItems.TALL_CRESCENT_GRASS.get()).withSuffix("_top"));
 		basicItem(ESItems.TALL_GLOWING_CRESCENT_GRASS.get(), blockTextureFromItem(ESItems.TALL_GLOWING_CRESCENT_GRASS.get()).withSuffix("_top"));
 		basicItem(ESItems.LUNAR_REED.get(), blockTextureFromItem(ESItems.LUNAR_REED.get()).withSuffix("_top"));
@@ -507,12 +507,15 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STELLAFLY_BUSH.get(), blockTextureFromItem(ESItems.STELLAFLY_BUSH.get()).withSuffix("_top"));
 		basicItem(ESItems.GLIMMERFLY_BUSH.get(), blockTextureFromItem(ESItems.GLIMMERFLY_BUSH.get()).withSuffix("_top"));
 
+		flatBlockTexture(ESItems.GOLDEN_GRASS.get());
+		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
+
 		block(ESItems.NIGHTFALL_DIRT.get());
 		block(ESItems.NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
+		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_CARPET.get());
-		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 
 		basicItem(ESItems.RAW_AETHERSENT.get());
 		block(ESItems.RAW_AETHERSENT_BLOCK.get());
@@ -693,8 +696,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());
-		block(ESItems.DUSK_LIGHT.get());
 		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
+		block(ESItems.CREST_POT.get());
 		basicItem(ESItems.MANA_CRYSTAL.get());
 		basicItem(ESItems.TERRA_CRYSTAL.get());
 		basicItem(ESItems.WIND_CRYSTAL.get());

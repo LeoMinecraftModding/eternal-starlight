@@ -25,7 +25,7 @@ import java.util.Optional;
 public abstract class ServerLevelMixin {
 	@Shadow
 	@Final
-	private List<ServerPlayer> players;
+	List<ServerPlayer> players;
 
 	@Inject(method = "getChunkSource()Lnet/minecraft/server/level/ServerChunkCache;", at = @At("RETURN"))
 	private void getChunkSource(CallbackInfoReturnable<ServerChunkCache> cir) {

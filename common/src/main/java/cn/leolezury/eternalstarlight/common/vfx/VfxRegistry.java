@@ -11,6 +11,7 @@ public class VfxRegistry {
 	private static final Map<ResourceLocation, SyncedVfxType> EFFECTS = new HashMap<>();
 
 	public static final SyncedVfxType SCREEN_SHAKE = register("screen_shake", new ScreenShakeVfx());
+	public static final SyncedVfxType MANA_CRYSTAL_PARTICLE = register("mana_crystal_particle", new ManaCrystalParticleVfx());
 
 	private static SyncedVfxType register(String location, SyncedVfxType type) {
 		return register(EternalStarlight.id(location), type);

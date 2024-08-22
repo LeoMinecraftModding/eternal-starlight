@@ -76,6 +76,11 @@
     "eternal_starlight:nebulaite_brick_stairs",
     "eternal_starlight:nebulaite_brick_wall",
     "eternal_starlight:chiseled_nebulaite_bricks",
+    "eternal_starlight:atalphaite_block",
+    "eternal_starlight:blazing_atalphaite_block",
+    "eternal_starlight:atalphaite_light",
+    "eternal_starlight:grimstone_atalphaite_ore",
+    "eternal_starlight:voidstone_atalphaite_ore",
     "eternal_starlight:radianite",
     "eternal_starlight:radianite_slab",
     "eternal_starlight:radianite_stairs",
@@ -188,6 +193,8 @@
     "eternal_starlight:oxidized_golem_steel_tile_stairs",
     "eternal_starlight:chiseled_golem_steel_block",
     "eternal_starlight:oxidized_chiseled_golem_steel_block",
+    "eternal_starlight:golem_steel_jet",
+    "eternal_starlight:oxidized_golem_steel_jet",
     "eternal_starlight:doomeden_bricks",
     "eternal_starlight:doomeden_brick_slab",
     "eternal_starlight:doomeden_brick_stairs",
@@ -223,6 +230,7 @@
     "eternal_starlight:thermal_springstone_brick_slab",
     "eternal_starlight:thermal_springstone_brick_stairs",
     "eternal_starlight:thermal_springstone_brick_wall",
-    "eternal_starlight:stellar_rack"
+    "eternal_starlight:stellar_rack",
+    "eternal_starlight:enchanted_grimstone_bricks"
   ]
 }

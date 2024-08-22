@@ -20,9 +20,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.List;
 import java.util.Optional;
 
-public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers, boolean inCrestPot) {
-	public Crest(ManaType type, int maxLevel, ResourceLocation texture, AbstractSpell spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers, boolean inCrestPot) {
-		this(type, maxLevel, texture, Optional.ofNullable(spell), Optional.of(effects), Optional.of(attributeModifiers), inCrestPot);
+public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers) {
+	public Crest(ManaType type, int maxLevel, ResourceLocation texture, AbstractSpell spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers) {
+		this(type, maxLevel, texture, Optional.ofNullable(spell), Optional.of(effects), Optional.of(attributeModifiers));
 	}
 
 	public static final Codec<Crest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -31,8 +31,7 @@ public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optio
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(Crest::texture),
 		ESSpells.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
 		MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects),
-		LevelBasedAttributeModifier.CODEC.listOf().optionalFieldOf("attribute_modifiers").forGetter(Crest::attributeModifiers),
-		Codec.BOOL.fieldOf("in_crest_pot").forGetter(Crest::inCrestPot)
+		LevelBasedAttributeModifier.CODEC.listOf().optionalFieldOf("attribute_modifiers").forGetter(Crest::attributeModifiers)
 	).apply(instance, Crest::new));
 
 	public record MobEffectWithLevel(Holder<MobEffect> effect, int level, int levelAddition) {
