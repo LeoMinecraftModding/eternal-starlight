@@ -30,11 +30,12 @@ public class VelvetumossFeature extends Feature<VelvetumossFeature.Configuration
 		BlockPos pos = context.origin();
 		RandomSource random = context.random();
 		Configuration config = context.config();
+		BlockPos.MutableBlockPos stonePos = new BlockPos.MutableBlockPos();
 		for (int x = -3; x <= 3; x++) {
 			for (int y = -2; y <= 2; y++) {
 				for (int z = -3; z <= 3; z++) {
 					if (ESMathUtil.isPointInEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
-						BlockPos stonePos = pos.offset(x, y, z);
+						stonePos.setWithOffset(pos, x, y, z);
 						if (level.getBlockState(stonePos).is(ESTags.Blocks.ABYSSLATES)) {
 							if (stonePos.distToCenterSqr(stonePos.getCenter()) < 4 && Arrays.stream(Direction.values()).anyMatch(direction -> level.getBlockState(stonePos.relative(direction)).is(Blocks.WATER))) {
 								setBlock(level, stonePos, config.moss().defaultBlockState());

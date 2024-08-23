@@ -32,10 +32,11 @@ public class ESTeleporter {
 		int maxHeight = level.getMaxBuildHeight();
 		int minHeight = level.getMinBuildHeight();
 		WorldBorder border = level.getWorldBorder();
+		BlockPos.MutableBlockPos blockPos = new BlockPos.MutableBlockPos();
 		for (int x = pos.getX() - 16; x <= pos.getX() + 16; x++) {
 			for (int z = pos.getZ() - 16; z <= pos.getZ() + 16; z++) {
 				for (int y = minHeight; y <= maxHeight; y++) {
-					BlockPos blockPos = new BlockPos(x, y, z);
+					blockPos.set(x, y, z);
 					if (border.isWithinBounds(blockPos) && level.getBlockState(blockPos).is(ESBlocks.STARLIGHT_PORTAL.get())) {
 						return Optional.of(blockPos);
 					}

@@ -72,11 +72,6 @@ public class CommonHandlers {
 
 	private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
-	private static final AttributeModifier DAGGER_OF_HUNGER_BONUS = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.bonus"), 1, AttributeModifier.Operation.ADD_VALUE);
-	private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_BONUS = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.speed_bonus"), 0.5, AttributeModifier.Operation.ADD_VALUE);
-	private static final AttributeModifier DAGGER_OF_HUNGER_PENALTY = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.penalty"), -1, AttributeModifier.Operation.ADD_VALUE);
-	private static final AttributeModifier DAGGER_OF_HUNGER_SPEED_PENALTY = new AttributeModifier(EternalStarlight.id("weapon.dagger_of_hunger.speed_penalty"), -0.5, AttributeModifier.Operation.ADD_VALUE);
-
 	public static void onServerTick(MinecraftServer server) {
 		ticksSinceLastUpdate++;
 		if (ticksSinceLastUpdate >= 20) {
@@ -201,46 +196,13 @@ public class CommonHandlers {
 			}
 			AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 			if (armorAttribute != null) {
-				armorAttribute.removeModifier(AMARAMBER_BONUS.id());
 				if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
 					&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
 					&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
 					&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
 					armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
-				}
-			}
-			AttributeInstance damageAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
-			if (damageAttribute != null) {
-				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
-					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
-					if (state == 0) {
-						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_PENALTY);
-					} else if (state == 2) {
-						damageAttribute.addPermanentModifier(DAGGER_OF_HUNGER_BONUS);
-					} else {
-						damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
-						damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
-					}
 				} else {
-					damageAttribute.removeModifier(DAGGER_OF_HUNGER_BONUS.id());
-					damageAttribute.removeModifier(DAGGER_OF_HUNGER_PENALTY.id());
-				}
-			}
-			AttributeInstance attackSpeedAttribute = livingEntity.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
-			if (attackSpeedAttribute != null) {
-				if (livingEntity.getMainHandItem().is(ESItems.DAGGER_OF_HUNGER.get())) {
-					int state = Math.min(2, (int) ((livingEntity.getMainHandItem().getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f));
-					if (state == 0) {
-						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_PENALTY);
-					} else if (state == 2) {
-						attackSpeedAttribute.addPermanentModifier(DAGGER_OF_HUNGER_SPEED_BONUS);
-					} else {
-						attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
-						attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
-					}
-				} else {
-					attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_BONUS.id());
-					attackSpeedAttribute.removeModifier(DAGGER_OF_HUNGER_SPEED_PENALTY.id());
+					armorAttribute.removeModifier(AMARAMBER_BONUS.id());
 				}
 			}
 			if (livingEntity.tickCount % 20 == 0) {

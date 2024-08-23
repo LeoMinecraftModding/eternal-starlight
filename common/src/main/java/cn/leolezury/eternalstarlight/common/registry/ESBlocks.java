@@ -613,9 +613,9 @@ public class ESBlocks {
 	public static final RegistryObject<Block, CarvedLunarisCactusFruitBlock> LUNARIS_CACTUS_FRUIT_LANTERN = BLOCKS.register("lunaris_cactus_fruit_lantern", () -> new CarvedLunarisCactusFruitBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JACK_O_LANTERN).mapColor(MapColor.COLOR_PURPLE)));
 
 	// water plant
-	public static final RegistryObject<Block, BushBlock> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
-	public static final RegistryObject<Block, BushBlock> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel(state -> 5)));
-	public static final RegistryObject<Block, BushBlock> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+	public static final RegistryObject<Block, WaterlilyBlock> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+	public static final RegistryObject<Block, WaterlilyBlock> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel(state -> 5)));
+	public static final RegistryObject<Block, DuckweedBlock> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new DuckweedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
 
 	// crystal caves plant
 	public static final RegistryObject<Block, DesertBushBlock> CRYSTALLIZED_LUNAR_GRASS = BLOCKS.register("crystallized_lunar_grass", () -> new DesertBushBlock(8, BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).mapColor(DyeColor.RED)));

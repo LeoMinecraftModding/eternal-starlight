@@ -35,11 +35,12 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
 		WorldGenLevel level = context.level();
 		BlockPos chunkCoord = getChunkCoordinate(context.origin());
 		setSeed(level.getSeed());
+		BlockPos.MutableBlockPos waterPos = new BlockPos.MutableBlockPos();
 		for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {
 			for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
 				if (noise.getValue(x / 20d, z / 20d, false) > -0.1) {
 					int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
-					BlockPos waterPos = new BlockPos(x, y, z);
+					waterPos.set(x, y, z);
 					if (level.getBlockState(waterPos.offset(0, 1, 0)).isAir()
 						&& isValid(level.getBlockState(waterPos.offset(0, -1, 0)))
 						&& isValid(level.getBlockState(waterPos.offset(1, 0, 0)))

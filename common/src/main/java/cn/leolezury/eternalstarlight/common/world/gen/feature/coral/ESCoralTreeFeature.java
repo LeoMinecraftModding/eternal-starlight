@@ -8,7 +8,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class ESCoralTreeFeature extends ESCoralFeature {
@@ -33,10 +32,8 @@ public class ESCoralTreeFeature extends ESCoralFeature {
 		int k = randomSource.nextInt(3) + 2;
 		List<Direction> list = Direction.Plane.HORIZONTAL.shuffledCopy(randomSource);
 		List<Direction> list2 = list.subList(0, k);
-		Iterator var11 = list2.iterator();
 
-		while (var11.hasNext()) {
-			Direction direction = (Direction) var11.next();
+		for (Direction direction : list2) {
 			mutableBlockPos.set(blockPos2);
 			mutableBlockPos.move(direction);
 			int l = randomSource.nextInt(5) + 2;

@@ -9,7 +9,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,10 +26,8 @@ public class ESCoralClawFeature extends ESCoralFeature {
 			int i = randomSource.nextInt(2) + 2;
 			List<Direction> list = Util.toShuffledList(Stream.of(direction, direction.getClockWise(), direction.getCounterClockWise()), randomSource);
 			List<Direction> list2 = list.subList(0, i);
-			Iterator var9 = list2.iterator();
 
-			while (var9.hasNext()) {
-				Direction direction2 = (Direction) var9.next();
+			for (Direction direction2 : list2) {
 				BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 				int j = randomSource.nextInt(2) + 1;
 				mutableBlockPos.move(direction2);
@@ -42,7 +39,7 @@ public class ESCoralClawFeature extends ESCoralFeature {
 				} else {
 					mutableBlockPos.move(Direction.UP);
 					Direction[] directions = new Direction[]{direction2, Direction.UP};
-					direction3 = (Direction) Util.getRandom(directions, randomSource);
+					direction3 = Util.getRandom(directions, randomSource);
 					k = randomSource.nextInt(3) + 3;
 				}
 

@@ -38,11 +38,12 @@ public class LeavesPileFeature extends Feature<LeavesPileFeature.Configuration> 
 			return false;
 		}
 		// scan for available dirt blocks
+		BlockPos.MutableBlockPos placePos = new BlockPos.MutableBlockPos();
 		for (int x = -4; x <= 4; x++) {
 			for (int y = -2; y <= 2; y++) {
 				for (int z = -4; z <= 4; z++) {
 					if (x * x + z * z <= 4 * 4 && level.getBlockState(pos.offset(x, y, z)).is(BlockTags.DIRT) && level.getBlockState(pos.offset(x, y + 1, z)).isAir() && random.nextBoolean()) {
-						BlockPos placePos = pos.offset(x, y + 1, z);
+						placePos.setWithOffset(pos, x, y + 1, z);
 						BlockState pileState = context.config().pile().getState(random, placePos);
 						if (pileState.hasProperty(BlockStateProperties.LAYERS)) {
 							pileState = pileState.setValue(BlockStateProperties.LAYERS, random.nextInt(1, 5));

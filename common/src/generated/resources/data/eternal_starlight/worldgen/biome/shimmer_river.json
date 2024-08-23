@@ -76,7 +76,7 @@
         "type": "eternal_starlight:shimmer_lacewing",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 10
+        "weight": 20
       }
     ],
     "axolotls": [],

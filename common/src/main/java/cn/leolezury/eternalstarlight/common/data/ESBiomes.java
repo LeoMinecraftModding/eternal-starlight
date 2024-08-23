@@ -127,7 +127,7 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder riverSpawns() {
 		return baseAquaticSpawnBuilder()
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2));
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 20, 1, 2));
 	}
 
 	private static MobSpawnSettings.Builder theAbyssSpawns() {

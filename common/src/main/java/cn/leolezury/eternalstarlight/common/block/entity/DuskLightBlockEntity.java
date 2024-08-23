@@ -42,9 +42,7 @@ public class DuskLightBlockEntity extends BlockEntity {
 	private Direction facing = Direction.UP;
 	private float length = MAX_LENGTH;
 	private int ticksLeft = 0;
-	private int offTicks = 0;
 	private boolean lit = false;
-	private BlockPos poweringBlock;
 	private final Object2FloatMap<Direction> beamProgresses = new Object2FloatArrayMap<>();
 	private final Object2FloatMap<Direction> oldBeamProgresses = new Object2FloatArrayMap<>();
 
@@ -114,16 +112,14 @@ public class DuskLightBlockEntity extends BlockEntity {
 			BlockHitResult result = level.clip(new ClipContext(pos.getCenter().add(new Vec3(entity.facing.getStepX(), entity.facing.getStepY(), entity.facing.getStepZ()).scale(0.51)), pos.getCenter().add(new Vec3(entity.facing.getStepX(), entity.facing.getStepY(), entity.facing.getStepZ()).scale(MAX_LENGTH)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()));
 			if (result.getType() != HitResult.Type.MISS) {
 				entity.length = (float) result.getLocation().subtract(pos.getCenter()).length();
-				if (entity.lit && level.getBlockEntity(result.getBlockPos()) instanceof DuskLightBlockEntity light && (light.poweringBlock == null || !light.poweringBlock.equals(pos))) {
+				if (entity.lit && level.getBlockEntity(result.getBlockPos()) instanceof DuskLightBlockEntity light) {
 					light.ticksLeft = 5;
-					entity.poweringBlock = result.getBlockPos();
 				}
 				if (level.getBlockState(result.getBlockPos()).is(ESBlocks.ECLIPSE_CORE.get())) {
 					level.destroyBlock(result.getBlockPos(), false);
 				}
 			} else {
 				entity.length = MAX_LENGTH;
-				entity.poweringBlock = null;
 			}
 			if (level.getBlockState(pos.below()).is(ESTags.Blocks.DUSK_LIGHT_ENERGY_SOURCES)) {
 				entity.ticksLeft = 5;
@@ -134,15 +130,9 @@ public class DuskLightBlockEntity extends BlockEntity {
 			}
 			entity.lit = entity.ticksLeft > 0;
 			if (entity.lit) {
-				entity.offTicks = 0;
 				List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(pos.getCenter().subtract(0.5, 0.5, 0.5), pos.getCenter().relative(entity.facing, entity.length).add(0.5, 0.5, 0.5)));
 				for (Entity e : entities) {
 					e.setRemainingFireTicks(Math.max(e.getRemainingFireTicks(), 100));
-				}
-			} else {
-				entity.offTicks++;
-				if (entity.offTicks > 10) {
-					entity.poweringBlock = null;
 				}
 			}
 			if (Math.abs(entity.length - oldLength) < 0.01 || oldLit != entity.lit) {

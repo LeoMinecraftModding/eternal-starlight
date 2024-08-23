@@ -69,7 +69,7 @@ public class ESCrests {
 		context.register(FLAMING_AFTERSHOCK, new Crest(
 			ManaType.BLAZE,
 			3,
-			EternalStarlight.id("textures/crest/flame_aftershock.png"),
+			EternalStarlight.id("textures/crest/flaming_aftershock.png"),
 			Optional.ofNullable(ESSpells.FLAMING_AFTERSHOCK.get()),
 			Optional.empty(),
 			Optional.empty()
@@ -77,7 +77,7 @@ public class ESCrests {
 		context.register(FLAMING_ARC, new Crest(
 			ManaType.BLAZE,
 			3,
-			EternalStarlight.id("textures/crest/flame_arc.png"),
+			EternalStarlight.id("textures/crest/flaming_arc.png"),
 			Optional.ofNullable(ESSpells.FLAMING_ARC.get()),
 			Optional.empty(),
 			Optional.empty()
@@ -85,7 +85,7 @@ public class ESCrests {
 		context.register(FLAMING_RING, new Crest(
 			ManaType.BLAZE,
 			3,
-			EternalStarlight.id("textures/crest/flame_ring.png"),
+			EternalStarlight.id("textures/crest/flaming_ring.png"),
 			Optional.ofNullable(ESSpells.FLAMING_RING.get()),
 			Optional.empty(),
 			Optional.empty()
@@ -101,7 +101,7 @@ public class ESCrests {
 		context.register(SURROUNDING_FIREBALLS, new Crest(
 			ManaType.BLAZE,
 			3,
-			EternalStarlight.id("textures/crest/surrounded_fireballs.png"),
+			EternalStarlight.id("textures/crest/surrounding_fireballs.png"),
 			Optional.ofNullable(ESSpells.SURROUNDING_FIREBALLS.get()),
 			Optional.empty(),
 			Optional.empty()

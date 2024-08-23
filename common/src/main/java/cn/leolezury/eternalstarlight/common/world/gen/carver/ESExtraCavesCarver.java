@@ -37,17 +37,16 @@ public class ESExtraCavesCarver extends WorldCarver<CarverConfiguration> {
 
 	@Override
 	public boolean carve(CarvingContext carvingContext, CarverConfiguration carverConfiguration, ChunkAccess chunkAccess, Function<BlockPos, Holder<Biome>> function, RandomSource randomSource, Aquifer aquifer, ChunkPos chunkPos, CarvingMask carvingMask) {
-		if (this.noise == null) {
-			this.noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(4096)));
-		}
 		boolean success = chunkAccess.getPos().x == chunkPos.x && chunkAccess.getPos().z == chunkPos.z;
 		if (success) {
+			BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 			for (int x = 0; x < 16; x++) {
 				for (int z = 0; z < 16; z++) {
-					for (int y = Math.min(chunkAccess.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z) - 20, 80); y > -64; y--) {
+					int startHeight = Math.min(chunkAccess.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z) - 20, 80);
+					for (int y = startHeight; y > -64; y--) {
 						int worldX = chunkPos.x * 16 + x;
 						int worldZ = chunkPos.z * 16 + z;
-						BlockPos pos = new BlockPos(worldX, y, worldZ);
+						pos.set(worldX, y, worldZ);
 						if (noise.getValue(worldX / 50d, y / 30d, worldZ / 50d) < -0.3) {
 							BlockState state = chunkAccess.getBlockState(pos);
 							if (state.is(carverConfiguration.replaceable) && state.getFluidState().isEmpty()) {

@@ -985,8 +985,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(BlockTags.FROG_PREFER_JUMP_TO).add(
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
-			ESBlocks.STARLIT_LILY_PAD.get(),
-			ESBlocks.MOONLIGHT_DUCKWEED.get()
+			ESBlocks.STARLIT_LILY_PAD.get()
 		);
 		tag(BlockTags.CAMPFIRES).add(
 			ESBlocks.TORREYA_CAMPFIRE.get()

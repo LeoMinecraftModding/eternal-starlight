@@ -19,7 +19,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Iterator;
 import java.util.Optional;
 
 public abstract class ESCoralFeature extends Feature<NoneFeatureConfiguration> {
@@ -51,10 +50,7 @@ public abstract class ESCoralFeature extends Feature<NoneFeatureConfiguration> {
 				levelAccessor.setBlock(blockPos2, ESBlocks.JINGLING_PICKLE.get().defaultBlockState(), 2);
 			}
 
-			Iterator var7 = Plane.HORIZONTAL.iterator();
-
-			while (var7.hasNext()) {
-				Direction direction = (Direction) var7.next();
+			for (Direction direction : Plane.HORIZONTAL) {
 				if (randomSource.nextFloat() < 0.2F) {
 					BlockPos blockPos3 = blockPos.relative(direction);
 					if (levelAccessor.getBlockState(blockPos3).is(Blocks.WATER)) {

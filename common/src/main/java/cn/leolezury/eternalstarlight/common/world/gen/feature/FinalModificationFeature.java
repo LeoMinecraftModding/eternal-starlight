@@ -19,9 +19,10 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 		WorldGenLevel level = context.level();
 		BlockPos chunkCoord = getChunkCoordinate(context.origin());
 
+		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {
 			for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
-				BlockPos pos = new BlockPos(x, ESDimensions.SEA_LEVEL, z);
+				pos.set(x, ESDimensions.SEA_LEVEL, z);
 				if (level.getBlockState(pos).is(ESBlocks.ETHER.get())) {
 					for (Direction direction : Direction.values()) {
 						BlockPos relativePos = pos.relative(direction);

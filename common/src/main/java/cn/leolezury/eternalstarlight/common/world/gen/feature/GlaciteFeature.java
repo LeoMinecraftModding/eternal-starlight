@@ -34,11 +34,12 @@ public class GlaciteFeature extends ESFeature<NoneFeatureConfiguration> {
 		if (pos.distSqr(toPos) < 12 * 12) {
 			return false;
 		}
+		BlockPos.MutableBlockPos placePos = new BlockPos.MutableBlockPos();
 		for (int x = Math.min(pos.getX(), toPos.getX()); x <= Math.max(pos.getX(), toPos.getX()); x++) {
 			for (int y = Math.min(pos.getY(), toPos.getY()); y <= Math.max(pos.getY(), toPos.getY()); y++) {
 				for (int z = Math.min(pos.getZ(), toPos.getZ()); z <= Math.max(pos.getZ(), toPos.getZ()); z++) {
 					if (ESMathUtil.distSqrBetweenLineAndDot(pos.getX(), pos.getY(), pos.getZ(), toPos.getX(), toPos.getY(), toPos.getZ(), x, y, z) < 2) {
-						BlockPos placePos = new BlockPos(x, y, z);
+						placePos.set(x, y, z);
 						setBlockIfEmpty(level, placePos, ESBlocks.GLACITE.get().defaultBlockState());
 						for (Direction direction : Direction.values()) {
 							if (random.nextInt(5) == 0) {
