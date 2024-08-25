@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-21T22:34:44.1674948	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-08-26T00:14:48.1160005	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -45,7 +45,7 @@ e556e6b2620b503ab019a5885f8ec600d31ed458 data/eternal_starlight/tags/item/greats
 b2ef6dfcb7bc2862c3d6b9d168383c393f7f94bf data/eternal_starlight/tags/item/light_crystal_ingredients.json
 268ba819acde1285c21f1f46ecca7bfa826fd7e2 data/eternal_starlight/tags/item/lunar_crystals.json
 1d1fba4d81b6078e039199be82520d41a412c3ec data/eternal_starlight/tags/item/lunar_crystal_ingredients.json
-eb8e50109d7c402cc4ee0f41234e0c0edbc1fc39 data/eternal_starlight/tags/item/lunar_logs.json
+8803f19cd15c350ed6dd1fa0dc6dd70fb04aa42d data/eternal_starlight/tags/item/lunar_logs.json
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/lunar_monstrosity_igniters.json
 eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/item/mana_crystals.json
 9abefef68b045d834c5be44bac87859d26f50ca2 data/eternal_starlight/tags/item/mana_crystal_ingredients.json

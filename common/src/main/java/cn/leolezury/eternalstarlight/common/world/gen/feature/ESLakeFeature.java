@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -23,57 +24,61 @@ public class ESLakeFeature extends Feature<ESLakeFeature.Configuration> {
 	@Override
 	public boolean place(FeaturePlaceContext<ESLakeFeature.Configuration> context) {
 		// from vanilla's lake feature
-		BlockPos blockPos = context.origin();
-		WorldGenLevel worldGenLevel = context.level();
-		RandomSource randomSource = context.random();
-		ESLakeFeature.Configuration configuration = context.config();
-		if (blockPos.getY() <= worldGenLevel.getMinBuildHeight() + 4) {
+		BlockPos blockpos = context.origin();
+		WorldGenLevel level = context.level();
+		RandomSource randomsource = context.random();
+		Configuration config = context.config();
+		if (blockpos.getY() <= level.getMinBuildHeight() + 4) {
 			return false;
 		} else {
-			blockPos = blockPos.below(4);
-			boolean[] bls = new boolean[2048];
-			int i = randomSource.nextInt(4) + 4;
+			blockpos = blockpos.below(4);
+			boolean[] aboolean = new boolean[2048];
+			int i = randomsource.nextInt(4) + 4;
 
-			for (int j = 0; j < i; ++j) {
-				double d = randomSource.nextDouble() * 6.0 + 3.0;
-				double e = randomSource.nextDouble() * 4.0 + 2.0;
-				double f = randomSource.nextDouble() * 6.0 + 3.0;
-				double g = randomSource.nextDouble() * (16.0 - d - 2.0) + 1.0 + d / 2.0;
-				double h = randomSource.nextDouble() * (8.0 - e - 4.0) + 2.0 + e / 2.0;
-				double k = randomSource.nextDouble() * (16.0 - f - 2.0) + 1.0 + f / 2.0;
+			for (int j = 0; j < i; j++) {
+				double d0 = randomsource.nextDouble() * 6.0 + 3.0;
+				double d1 = randomsource.nextDouble() * 4.0 + 2.0;
+				double d2 = randomsource.nextDouble() * 6.0 + 3.0;
+				double d3 = randomsource.nextDouble() * (16.0 - d0 - 2.0) + 1.0 + d0 / 2.0;
+				double d4 = randomsource.nextDouble() * (8.0 - d1 - 4.0) + 2.0 + d1 / 2.0;
+				double d5 = randomsource.nextDouble() * (16.0 - d2 - 2.0) + 1.0 + d2 / 2.0;
 
-				for (int l = 1; l < 15; ++l) {
-					for (int m = 1; m < 15; ++m) {
-						for (int n = 1; n < 7; ++n) {
-							double o = ((double) l - g) / (d / 2.0);
-							double p = ((double) n - h) / (e / 2.0);
-							double q = ((double) m - k) / (f / 2.0);
-							double r = o * o + p * p + q * q;
-							if (r < 1.0) {
-								bls[(l * 16 + m) * 8 + n] = true;
+				for (int l = 1; l < 15; l++) {
+					for (int i1 = 1; i1 < 15; i1++) {
+						for (int j1 = 1; j1 < 7; j1++) {
+							double d6 = ((double) l - d3) / (d0 / 2.0);
+							double d7 = ((double) j1 - d4) / (d1 / 2.0);
+							double d8 = ((double) i1 - d5) / (d2 / 2.0);
+							double d9 = d6 * d6 + d7 * d7 + d8 * d8;
+							if (d9 < 1.0) {
+								aboolean[(l * 16 + i1) * 8 + j1] = true;
 							}
 						}
 					}
 				}
 			}
 
-			BlockState blockState = configuration.fluid().getState(randomSource, blockPos);
+			BlockState blockstate1 = config.fluid().getState(randomsource, blockpos);
 
-			int t;
-			boolean v;
-			int s;
-			int u;
-			for (s = 0; s < 16; ++s) {
-				for (t = 0; t < 16; ++t) {
-					for (u = 0; u < 8; ++u) {
-						v = !bls[(s * 16 + t) * 8 + u] && (s < 15 && bls[((s + 1) * 16 + t) * 8 + u] || s > 0 && bls[((s - 1) * 16 + t) * 8 + u] || t < 15 && bls[(s * 16 + t + 1) * 8 + u] || t > 0 && bls[(s * 16 + (t - 1)) * 8 + u] || u < 7 && bls[(s * 16 + t) * 8 + u + 1] || u > 0 && bls[(s * 16 + t) * 8 + (u - 1)]);
-						if (v) {
-							BlockState blockState2 = worldGenLevel.getBlockState(blockPos.offset(s, u, t));
-							if (u >= 4 && blockState2.liquid()) {
+			for (int k1 = 0; k1 < 16; k1++) {
+				for (int k = 0; k < 16; k++) {
+					for (int l2 = 0; l2 < 8; l2++) {
+						boolean flag = !aboolean[(k1 * 16 + k) * 8 + l2]
+							&& (
+							k1 < 15 && aboolean[((k1 + 1) * 16 + k) * 8 + l2]
+								|| k1 > 0 && aboolean[((k1 - 1) * 16 + k) * 8 + l2]
+								|| k < 15 && aboolean[(k1 * 16 + k + 1) * 8 + l2]
+								|| k > 0 && aboolean[(k1 * 16 + (k - 1)) * 8 + l2]
+								|| l2 < 7 && aboolean[(k1 * 16 + k) * 8 + l2 + 1]
+								|| l2 > 0 && aboolean[(k1 * 16 + k) * 8 + (l2 - 1)]
+						);
+						if (flag) {
+							BlockState blockstate3 = level.getBlockState(blockpos.offset(k1, l2, k));
+							if (l2 >= 4 && blockstate3.liquid()) {
 								return false;
 							}
 
-							if (u < 4 && !blockState2.isSolid() && worldGenLevel.getBlockState(blockPos.offset(s, u, t)) != blockState) {
+							if (l2 < 4 && !blockstate3.isSolid() && level.getBlockState(blockpos.offset(k1, l2, k)) != blockstate1) {
 								return false;
 							}
 						}
@@ -81,18 +86,17 @@ public class ESLakeFeature extends Feature<ESLakeFeature.Configuration> {
 				}
 			}
 
-			boolean bl2;
-			for (s = 0; s < 16; ++s) {
-				for (t = 0; t < 16; ++t) {
-					for (u = 0; u < 8; ++u) {
-						if (bls[(s * 16 + t) * 8 + u]) {
-							BlockPos blockPos2 = blockPos.offset(s, u, t);
-							if (this.canReplaceBlock(worldGenLevel.getBlockState(blockPos2))) {
-								bl2 = u >= 4;
-								worldGenLevel.setBlock(blockPos2, bl2 ? AIR : blockState, 2);
-								if (bl2) {
-									worldGenLevel.scheduleTick(blockPos2, AIR.getBlock(), 0);
-									this.markAboveForPostProcessing(worldGenLevel, blockPos2);
+			for (int l1 = 0; l1 < 16; l1++) {
+				for (int i2 = 0; i2 < 16; i2++) {
+					for (int i3 = 0; i3 < 8; i3++) {
+						if (aboolean[(l1 * 16 + i2) * 8 + i3]) {
+							BlockPos blockpos1 = blockpos.offset(l1, i3, i2);
+							if (this.canReplaceBlock(level.getBlockState(blockpos1))) {
+								boolean flag1 = i3 >= 4;
+								level.setBlock(blockpos1, flag1 ? AIR : blockstate1, 2);
+								if (flag1) {
+									level.scheduleTick(blockpos1, AIR.getBlock(), 0);
+									this.markAboveForPostProcessing(level, blockpos1);
 								}
 							}
 						}
@@ -100,20 +104,28 @@ public class ESLakeFeature extends Feature<ESLakeFeature.Configuration> {
 				}
 			}
 
-			BlockState blockState3 = configuration.barrier().getState(randomSource, blockPos);
-			if (!blockState3.isAir()) {
-				for (t = 0; t < 16; ++t) {
-					for (u = 0; u < 16; ++u) {
-						for (int r = 0; r < 8; ++r) {
-							bl2 = !bls[(t * 16 + u) * 8 + r] && (t < 15 && bls[((t + 1) * 16 + u) * 8 + r] || t > 0 && bls[((t - 1) * 16 + u) * 8 + r] || u < 15 && bls[(t * 16 + u + 1) * 8 + r] || u > 0 && bls[(t * 16 + (u - 1)) * 8 + r] || r < 7 && bls[(t * 16 + u) * 8 + r + 1] || r > 0 && bls[(t * 16 + u) * 8 + (r - 1)]);
-							if (bl2 && (r < 4 || randomSource.nextInt(2) != 0)) {
-								BlockState blockState4 = worldGenLevel.getBlockState(blockPos.offset(t, r, u));
-								if (blockState4.isSolid() && !blockState4.is(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE)) {
-									BlockPos blockPos3 = blockPos.offset(t, r, u);
-									// barrier should always be randomized
-									blockState3 = configuration.barrier().getState(randomSource, blockPos);
-									worldGenLevel.setBlock(blockPos3, blockState3, 2);
-									this.markAboveForPostProcessing(worldGenLevel, blockPos3);
+			BlockState blockstate2 = config.barrier().getState(randomsource, blockpos);
+			if (!blockstate2.isAir()) {
+				for (int j2 = 0; j2 < 16; j2++) {
+					for (int j3 = 0; j3 < 16; j3++) {
+						for (int l3 = 0; l3 < 8; l3++) {
+							boolean flag2 = !aboolean[(j2 * 16 + j3) * 8 + l3]
+								&& (
+								j2 < 15 && aboolean[((j2 + 1) * 16 + j3) * 8 + l3]
+									|| j2 > 0 && aboolean[((j2 - 1) * 16 + j3) * 8 + l3]
+									|| j3 < 15 && aboolean[(j2 * 16 + j3 + 1) * 8 + l3]
+									|| j3 > 0 && aboolean[(j2 * 16 + (j3 - 1)) * 8 + l3]
+									|| l3 < 7 && aboolean[(j2 * 16 + j3) * 8 + l3 + 1]
+									|| l3 > 0 && aboolean[(j2 * 16 + j3) * 8 + (l3 - 1)]
+							);
+							if (flag2 && (l3 < 4 || randomsource.nextInt(2) != 0)) {
+								BlockState blockstate = level.getBlockState(blockpos.offset(j2, l3, j3));
+								if (blockstate.isSolid() && !blockstate.is(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE)) {
+									BlockPos blockpos3 = blockpos.offset(j2, l3, j3);
+									// ES: Randomize it every time before placing
+									blockstate2 = config.barrier().getState(randomsource, blockpos);
+									level.setBlock(blockpos3, blockstate2, 2);
+									this.markAboveForPostProcessing(level, blockpos3);
 								}
 							}
 						}
@@ -121,17 +133,18 @@ public class ESLakeFeature extends Feature<ESLakeFeature.Configuration> {
 				}
 			}
 
-			// might cause server crash
-            /*if (blockState.getFluidState().is(FluidTags.WATER)) {
-                for(t = 0; t < 16; ++t) {
-                    for(u = 0; u < 16; ++u) {
-                        BlockPos blockPos4 = blockPos.offset(t, 4, u);
-                        if (worldGenLevel.getBiome(blockPos4).value().shouldFreeze(worldGenLevel, blockPos4, false) && this.canReplaceBlock(worldGenLevel.getBlockState(blockPos4))) {
-                            worldGenLevel.setBlock(blockPos4, Blocks.ICE.defaultBlockState(), 2);
-                        }
-                    }
-                }
-            }*/
+			if (blockstate1.getFluidState().is(FluidTags.WATER)) {
+				for (int k2 = 0; k2 < 16; k2++) {
+					for (int k3 = 0; k3 < 16; k3++) {
+						int i4 = 4;
+						BlockPos blockpos2 = blockpos.offset(k2, 4, k3);
+						if (level.getBiome(blockpos2).value().shouldFreeze(level, blockpos2, false)
+							&& this.canReplaceBlock(level.getBlockState(blockpos2))) {
+							level.setBlock(blockpos2, Blocks.ICE.defaultBlockState(), 2);
+						}
+					}
+				}
+			}
 
 			return true;
 		}

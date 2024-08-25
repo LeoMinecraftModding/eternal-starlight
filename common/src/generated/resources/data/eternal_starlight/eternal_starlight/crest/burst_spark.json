@@ -1,6 +1,6 @@
 {
   "type": "blaze",
   "max_level": 3,
-  "spell": "eternal_starlight:burst_spell",
+  "spell": "eternal_starlight:burst_spark",
   "texture": "eternal_starlight:textures/crest/burst_spark.png"
 }

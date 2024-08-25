@@ -1,6 +1,6 @@
 {
   "type": "blaze",
   "max_level": 3,
-  "spell": "eternal_starlight:flame_ring",
+  "spell": "eternal_starlight:flaming_ring",
   "texture": "eternal_starlight:textures/crest/flaming_ring.png"
 }

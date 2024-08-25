@@ -1,6 +1,6 @@
 {
   "type": "blaze",
   "max_level": 3,
-  "spell": "eternal_starlight:surrounded_fireballs",
+  "spell": "eternal_starlight:surrounding_fireballs",
   "texture": "eternal_starlight:textures/crest/surrounding_fireballs.png"
 }

@@ -209,6 +209,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.LUNAR_LOG.get(),
 			ESBlocks.LUNAR_WOOD.get(),
 			ESBlocks.STRIPPED_LUNAR_LOG.get(),
+			ESBlocks.STRIPPED_LUNAR_WOOD.get(),
 			ESBlocks.DEAD_LUNAR_LOG.get(),
 			ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get(),
 			ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get()
