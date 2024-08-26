@@ -52,6 +52,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.PaintingRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
@@ -568,6 +569,7 @@ public class ClientSetupHandlers {
 
 	public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
 		strategy.register(ESEntities.FALLING_BLOCK.get(), ESFallingBlockRenderer::new);
+		strategy.register(ESEntities.PAINTING.get(), PaintingRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_METEOR.get(), AethersentMeteorRenderer::new);
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
 		strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));

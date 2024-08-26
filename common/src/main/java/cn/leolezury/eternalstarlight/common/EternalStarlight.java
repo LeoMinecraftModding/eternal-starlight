@@ -23,11 +23,11 @@ public class EternalStarlight {
 		ESDataComponents.loadClass();
 		ESArmorMaterials.loadClass();
 		ESSpells.loadClass();
+		ESEntities.loadClass();
 		ESItems.loadClass();
 		ESCreativeModeTabs.loadClass();
 		ESCriteriaTriggers.loadClass();
 		ESAttributes.loadClass();
-		ESEntities.loadClass();
 		ESSensorTypes.loadClass();
 		ESMobEffects.loadClass();
 		ESBlockEntities.loadClass();

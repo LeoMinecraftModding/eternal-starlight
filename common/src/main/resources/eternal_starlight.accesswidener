@@ -87,10 +87,6 @@ accessible field net/minecraft/server/level/ChunkMap$TrackedEntity seenBy Ljava/
 # sweep attack for scythes and hammers
 accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F
 
-# painting
-accessible method net/minecraft/world/entity/decoration/Painting <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-accessible method net/minecraft/world/entity/decoration/HangingEntity setDirection (Lnet/minecraft/core/Direction;)V
-
 # custom arrow for mech crossbow
 accessible method net/minecraft/world/entity/projectile/AbstractArrow setPierceLevel (B)V
 
