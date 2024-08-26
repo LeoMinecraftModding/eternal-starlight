@@ -906,8 +906,10 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {
 		addAxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+		addHoe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+		addShovel(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
 		addPickaxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
+		addScythe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
 		addSword(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
 		addHammer(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
 		addHelmet(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HELMET.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
@@ -920,8 +922,10 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	private void addGlaciteRecipes(RecipeOutput recipeOutput) {
 		addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+		addHoe(recipeOutput, ESItems.GLACITE_HOE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+		addShovel(recipeOutput, ESItems.GLACITE_SHOVEL.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
 		addPickaxe(recipeOutput, ESItems.GLACITE_PICKAXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.GLACITE_SCYTHE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
+		addScythe(recipeOutput, ESItems.GLACITE_SCYTHE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
 		addSword(recipeOutput, ESItems.GLACITE_SWORD.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
 		addHelmet(recipeOutput, ESItems.GLACITE_HELMET.get(), ESItems.GLACITE_SHARD.get());
 		addChestplate(recipeOutput, ESItems.GLACITE_CHESTPLATE.get(), ESItems.GLACITE_SHARD.get());
@@ -1093,6 +1097,17 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', input)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
+
+	protected final void addScythe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+			.pattern("###")
+			.pattern("  H")
+			.pattern("  H")
+			.define('#', input)
+			.define('H', handle)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}

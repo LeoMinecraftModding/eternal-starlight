@@ -3,19 +3,19 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "eternal_starlight:glacite_shard"
+      "item": "eternal_starlight:thermal_springstone_ingot"
     },
     "H": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "###",
-    "  H",
-    "  H"
+    "##",
+    " H",
+    " H"
   ],
   "result": {
     "count": 1,
-    "id": "eternal_starlight:glacite_scythe"
+    "id": "eternal_starlight:thermal_springstone_hoe"
   }
 }

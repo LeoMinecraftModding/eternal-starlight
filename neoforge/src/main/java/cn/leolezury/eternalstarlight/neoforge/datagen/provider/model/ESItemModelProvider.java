@@ -554,6 +554,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.THERMAL_SPRINGSTONE_SWORD.get());
 		handheld(ESItems.THERMAL_SPRINGSTONE_PICKAXE.get());
 		handheld(ESItems.THERMAL_SPRINGSTONE_AXE.get());
+		handheld(ESItems.THERMAL_SPRINGSTONE_HOE.get());
+		handheld(ESItems.THERMAL_SPRINGSTONE_SHOVEL.get());
 		largeHandheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
 		inventoryHandheld(ESItems.THERMAL_SPRINGSTONE_SCYTHE.get());
 		inventoryHandheld(ESItems.THERMAL_SPRINGSTONE_HAMMER.get());
@@ -567,6 +569,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.GLACITE_SWORD.get());
 		handheld(ESItems.GLACITE_PICKAXE.get());
 		handheld(ESItems.GLACITE_AXE.get());
+		handheld(ESItems.GLACITE_HOE.get());
+		handheld(ESItems.GLACITE_SHOVEL.get());
 		largeHandheld(ESItems.GLACITE_SCYTHE.get());
 		inventoryHandheld(ESItems.GLACITE_SCYTHE.get());
 		armorWithTrim((ArmorItem) ESItems.GLACITE_HELMET.get());

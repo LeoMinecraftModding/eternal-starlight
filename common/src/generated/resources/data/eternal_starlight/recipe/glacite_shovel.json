@@ -10,12 +10,12 @@
     }
   },
   "pattern": [
-    "###",
-    "  H",
-    "  H"
+    "#",
+    "H",
+    "H"
   ],
   "result": {
     "count": 1,
-    "id": "eternal_starlight:glacite_scythe"
+    "id": "eternal_starlight:glacite_shovel"
   }
 }

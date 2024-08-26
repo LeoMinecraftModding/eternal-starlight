@@ -171,6 +171,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
+			ESItems.THERMAL_SPRINGSTONE_HOE.get(),
+			ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(),
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get()
 		);
@@ -178,6 +180,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.GLACITE_SWORD.get(),
 			ESItems.GLACITE_PICKAXE.get(),
 			ESItems.GLACITE_AXE.get(),
+			ESItems.GLACITE_HOE.get(),
+			ESItems.GLACITE_SHOVEL.get(),
 			ESItems.GLACITE_SCYTHE.get()
 		);
 		tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS).add(
@@ -434,6 +438,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.SWORDS).add(
 			ESItems.RAGE_OF_STARS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
+			ESItems.GLACITE_SWORD.get(),
 			ESItems.SWAMP_SILVER_SWORD.get(),
 			ESItems.DOOMEDEN_RAPIER.get(),
 			ESItems.SHATTERED_SWORD.get(),
@@ -442,21 +447,27 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		).addTag(ESTags.Items.GREATSWORDS);
 		tag(ItemTags.PICKAXES).add(
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+			ESItems.GLACITE_PICKAXE.get(),
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 			ESItems.SWAMP_SILVER_PICKAXE.get()
 		);
 		tag(ItemTags.AXES).add(
 			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
+			ESItems.GLACITE_AXE.get(),
 			ESItems.SWAMP_SILVER_AXE.get(),
 			ESItems.AMARAMBER_AXE.get()
 		);
 		tag(ItemTags.HOES).add(
+			ESItems.THERMAL_SPRINGSTONE_HOE.get(),
+			ESItems.GLACITE_HOE.get(),
 			ESItems.AMARAMBER_HOE.get()
 		).addTags(
 			ESTags.Items.SCYTHES,
 			ESTags.Items.SICKLES
 		);
 		tag(ItemTags.SHOVELS).add(
+			ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(),
+			ESItems.GLACITE_SHOVEL.get(),
 			ESItems.AMARAMBER_SHOVEL.get()
 		);
 		tag(ItemTags.ARROWS).add(

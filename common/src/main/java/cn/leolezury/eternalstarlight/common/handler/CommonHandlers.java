@@ -200,8 +200,10 @@ public class CommonHandlers {
 					&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
 					&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
 					&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-					armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
-				} else {
+					if (!armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
+						armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
+					}
+				} else if (armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
 					armorAttribute.removeModifier(AMARAMBER_BONUS.id());
 				}
 			}
