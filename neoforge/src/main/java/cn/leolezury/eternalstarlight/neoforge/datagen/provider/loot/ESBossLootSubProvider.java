@@ -1,15 +1,23 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot;
 
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
+import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -26,6 +34,8 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
+		HolderLookup.RegistryLookup<PaintingVariant> paintings = this.registries.lookupOrThrow(Registries.PAINTING_VARIANT);
+
 		consumer.accept(ESLootTables.BOSS_COMMON,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
@@ -67,7 +77,9 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(0, 1))
-					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get()))));
+					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get())))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", "minecraft:painting")))))));
 
 		consumer.accept(ESLootTables.BOSS_TANGLED_HATRED,
 			LootTable.lootTable()
@@ -100,6 +112,8 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(0, 1))
 					.when(LootItemRandomChanceCondition.randomChance(0.4f))
-					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get()))));
+					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get())))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", "minecraft:painting")))))));
 	}
 }

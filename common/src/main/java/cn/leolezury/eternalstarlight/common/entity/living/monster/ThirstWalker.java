@@ -180,7 +180,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 		super.tick();
 		if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
 			this.updatePersistentAnger(serverLevel, true);
-			if (hungerLevel < 0.3 && getTarget() == null) {
+			if (hungerLevel < 0.3 && getTarget() == null && (tickCount + getId() * 17) % 1200 == 0) {
 				List<Player> players = level().getNearbyEntities(Player.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(20));
 				if (!players.isEmpty()) {
 					Player target = players.get(getRandom().nextInt(players.size()));

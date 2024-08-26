@@ -714,6 +714,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 
+		basicItem(ESItems.STARLIT_PAINTING.get());
 		basicItem(ESItems.ETHER_BUCKET.get());
 		block(ESItems.ENERGY_BLOCK.get());
 		block(ESItems.THE_GATEKEEPER_SPAWNER.get());

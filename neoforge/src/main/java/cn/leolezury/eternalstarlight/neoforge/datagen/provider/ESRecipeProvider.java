@@ -248,6 +248,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get(), Items.STICK);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
+			.pattern("SSS")
+			.pattern("SFS")
+			.pattern("SSS")
+			.define('S', Items.STICK)
+			.define('F', ESTags.Items.YETI_FUR)
+			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
+			.save(recipeOutput);
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

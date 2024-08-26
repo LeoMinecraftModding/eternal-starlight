@@ -651,6 +651,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TORREYA_WALL_HANGING_SIGN.get()
 		);
 		tag(BlockTags.BEACON_BASE_BLOCKS).add(
+			ESBlocks.ATALPHAITE_BLOCK.get(),
 			ESBlocks.AETHERSENT_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_BLOCK.get()

@@ -9,7 +9,9 @@ import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.neoforge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.neoforge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeAlchemistArmorItem;
@@ -30,6 +32,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
@@ -239,6 +242,9 @@ public class NeoForgePlatform implements ESPlatform {
 				Item item = BuiltInRegistries.ITEM.get(entry);
 				if (item != null) {
 					output.accept(item);
+					if (item == ESItems.STARLIT_PAINTING.get()) {
+						displayParameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> ESCreativeModeTabs.generatePresetPaintings(output, displayParameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
+					}
 				}
 			}
 		}).build();

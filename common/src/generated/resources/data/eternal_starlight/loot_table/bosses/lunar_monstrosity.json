@@ -96,6 +96,33 @@
         "max": 1.0,
         "min": 0.0
       }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.2,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "functions": [
+            {
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:painting",
+                  "variant": "eternal_starlight:monstrous"
+                }
+              },
+              "function": "minecraft:set_components"
+            }
+          ],
+          "name": "eternal_starlight:starlit_painting"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "eternal_starlight:bosses/lunar_monstrosity"

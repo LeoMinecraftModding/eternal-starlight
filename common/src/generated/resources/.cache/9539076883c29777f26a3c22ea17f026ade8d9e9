@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-22T14:31:47.5599053	Item Models: eternal_starlight
+// 1.21.1	2024-08-26T10:48:33.5353016	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -598,6 +598,7 @@ abb42d2e2f91ac601ad73530375c1eb710f208f6 assets/eternal_starlight/models/item/st
 021352217d240e2dc0c6e63f63cbd5d21a0de1b3 assets/eternal_starlight/models/item/starlight_silver_coin.json
 7add5176bb88941fc9a44cb3c347ac681d40f3a5 assets/eternal_starlight/models/item/starlight_torchflower.json
 6d657d8629dcd18a3a3c3552e48f2ad2b6f5f2d8 assets/eternal_starlight/models/item/starlit_lily_pad.json
+cc3a8e9b948da7608b83fefc41ba5f05b70b97c9 assets/eternal_starlight/models/item/starlit_painting.json
 55283b708e349bc9de5471266a25bdc351ba47a7 assets/eternal_starlight/models/item/stellafly_bush.json
 92b5cd580c40a67a4c8ced9f8537174cb95b4639 assets/eternal_starlight/models/item/stellagmite.json
 dad0d0f4905c36ccd4351979f5a910362a27a793 assets/eternal_starlight/models/item/stellagmite_slab.json

@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
@@ -133,6 +134,14 @@ public class ESTags {
 
 		private static TagKey<Fluid> create(String string) {
 			return TagKey.create(Registries.FLUID, EternalStarlight.id(string));
+		}
+	}
+
+	public static class PaintingVariants {
+		public static final TagKey<PaintingVariant> PLACEABLE = create("placeable");
+
+		private static TagKey<PaintingVariant> create(String string) {
+			return TagKey.create(Registries.PAINTING_VARIANT, EternalStarlight.id(string));
 		}
 	}
 
