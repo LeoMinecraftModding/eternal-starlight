@@ -89,7 +89,7 @@ public class ESPainting extends Painting {
 
 	@Override
 	public ItemStack getPickResult() {
-		return item;
+		return item.copy();
 	}
 
 	@Override

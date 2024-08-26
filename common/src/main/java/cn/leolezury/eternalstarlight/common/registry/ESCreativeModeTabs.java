@@ -30,7 +30,7 @@ public class ESCreativeModeTabs {
 		RegistryOps<Tag> registryOps = provider.createSerializationContext(NbtOps.INSTANCE);
 		registryLookup.listElements().filter(predicate).sorted(PAINTING_COMPARATOR).forEach((reference) -> {
 			CustomData customData = CustomData.EMPTY.update(registryOps, Painting.VARIANT_MAP_CODEC, reference).getOrThrow().update((compoundTag) -> {
-				compoundTag.putString("id", "minecraft:painting");
+				compoundTag.putString("id", EternalStarlight.ID + ":painting");
 			});
 			ItemStack itemStack = new ItemStack(ESItems.STARLIT_PAINTING.get());
 			itemStack.set(DataComponents.ENTITY_DATA, customData);

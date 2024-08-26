@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -30,6 +31,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class Yeti extends Animal {
+	private static final String TAG_FUR = "fur";
+	private static final String TAG_FUR_GROWTH_TICKS = "fur_growth_ticks";
+
 	protected static final EntityDataAccessor<Integer> ROLL_STATE = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.INT);
 	protected static final EntityDataAccessor<Boolean> HAS_FUR = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.BOOLEAN);
 
@@ -37,12 +41,16 @@ public class Yeti extends Animal {
 		return this.getEntityData().get(ROLL_STATE);
 	}
 
+	public void setRollState(int rollState) {
+		this.getEntityData().set(ROLL_STATE, rollState);
+	}
+
 	public boolean hasFur() {
 		return this.getEntityData().get(HAS_FUR);
 	}
 
-	public void setRollState(int rollState) {
-		this.getEntityData().set(ROLL_STATE, rollState);
+	public void setHasFur(boolean hasFur) {
+		this.getEntityData().set(HAS_FUR, hasFur);
 	}
 
 	public AnimationState idleAnimationState = new AnimationState();
@@ -50,6 +58,7 @@ public class Yeti extends Animal {
 	public AnimationState rollAnimationState = new AnimationState();
 	public AnimationState rollEndAnimationState = new AnimationState();
 	private int rollTicks = 0;
+	private int furGrowthTicks = 0;
 
 	public void setRollTicks(int rollTicks) {
 		this.rollTicks = rollTicks;
@@ -121,7 +130,17 @@ public class Yeti extends Animal {
 		if (rollCooldown > 0) {
 			rollCooldown--;
 		}
-		if (level().isClientSide) {
+		if (!level().isClientSide) {
+			if (!hasFur()) {
+				if (furGrowthTicks < 3600) {
+					furGrowthTicks++;
+				}
+				if (furGrowthTicks >= 3600) {
+					setHasFur(true);
+					furGrowthTicks = 0;
+				}
+			}
+		} else {
 			idleAnimationState.startIfStopped(tickCount);
 			prevRollAngle = rollAngle;
 			rollAngle += (float) (position().subtract(new Vec3(xOld, yOld, zOld)).length() / (3f / 260f));
@@ -169,19 +188,12 @@ public class Yeti extends Animal {
 					}
 				}
 
-				this.getEntityData().set(HAS_FUR, false);
+				furGrowthTicks = getRandom().nextInt(1200);
+				setHasFur(false);
 			}
 			return InteractionResult.sidedSuccess(level().isClientSide);
 		}
 		return super.mobInteract(player, hand);
-	}
-
-	@Override
-	public void tick() {
-		super.tick();
-		if (!this.getEntityData().get(HAS_FUR) && RandomSource.create().nextInt(0, 12000) < 12 && !this.level().isClientSide) {
-			this.getEntityData().set(HAS_FUR, true);
-		}
 	}
 
 	@Override
@@ -193,6 +205,22 @@ public class Yeti extends Animal {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
 		return new Yeti(ESEntities.YETI.get(), serverLevel);
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putBoolean(TAG_FUR, hasFur());
+		compoundTag.putInt(TAG_FUR_GROWTH_TICKS, furGrowthTicks);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains(TAG_FUR, CompoundTag.TAG_BYTE)) {
+			setHasFur(compoundTag.getBoolean(TAG_FUR));
+		}
+		furGrowthTicks = compoundTag.getInt(TAG_FUR_GROWTH_TICKS);
 	}
 
 	public static boolean checkYetiSpawnRules(EntityType<? extends Yeti> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

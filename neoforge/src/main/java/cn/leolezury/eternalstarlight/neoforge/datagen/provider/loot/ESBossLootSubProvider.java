@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -79,7 +80,7 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(UniformGenerator.between(0, 1))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get())))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", "minecraft:painting")))))));
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 
 		consumer.accept(ESLootTables.BOSS_TANGLED_HATRED,
 			LootTable.lootTable()
@@ -114,6 +115,6 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.when(LootItemRandomChanceCondition.randomChance(0.4f))
 					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get())))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", "minecraft:painting")))))));
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 	}
 }

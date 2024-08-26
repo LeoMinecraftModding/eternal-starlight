@@ -64,7 +64,7 @@
             {
               "components": {
                 "minecraft:entity_data": {
-                  "id": "minecraft:painting",
+                  "id": "eternal_starlight:painting",
                   "variant": "eternal_starlight:energized"
                 }
               },
