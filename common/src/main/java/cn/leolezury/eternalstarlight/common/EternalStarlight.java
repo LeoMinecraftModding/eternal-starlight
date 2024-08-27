@@ -34,6 +34,7 @@ public class EternalStarlight {
 		ESMobEffects.loadClass();
 		ESBlockEntities.loadClass();
 		ESEnchantmentEntityEffects.loadClass();
+		ESMaterialConditions.loadClass();
 		ESWorldCarvers.loadClass();
 		ESFeatures.loadClass();
 		ESPlacers.loadClass();

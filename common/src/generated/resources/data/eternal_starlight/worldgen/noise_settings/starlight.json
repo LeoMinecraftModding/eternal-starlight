@@ -62,204 +62,6 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:not",
-          "invert": {
-            "type": "minecraft:biome",
-            "biome_is": [
-              "eternal_starlight:the_abyss"
-            ]
-          }
-        },
-        "then_run": {
-          "type": "minecraft:condition",
-          "if_true": {
-            "type": "minecraft:vertical_gradient",
-            "false_at_and_above": {
-              "absolute": 8
-            },
-            "random_name": "minecraft:stone",
-            "true_at_and_below": {
-              "absolute": 0
-            }
-          },
-          "then_run": {
-            "type": "minecraft:block",
-            "result_state": {
-              "Name": "eternal_starlight:voidstone"
-            }
-          }
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "eternal_starlight:shimmer_river",
-            "eternal_starlight:ether_river",
-            "eternal_starlight:warm_shore"
-          ]
-        },
-        "then_run": {
-          "type": "minecraft:condition",
-          "if_true": {
-            "type": "minecraft:stone_depth",
-            "add_surface_depth": true,
-            "offset": 0,
-            "secondary_depth_range": 0,
-            "surface_type": "floor"
-          },
-          "then_run": {
-            "type": "minecraft:block",
-            "result_state": {
-              "Name": "eternal_starlight:twilight_sand"
-            }
-          }
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "eternal_starlight:starlit_sea"
-          ]
-        },
-        "then_run": {
-          "type": "minecraft:condition",
-          "if_true": {
-            "type": "minecraft:stone_depth",
-            "add_surface_depth": true,
-            "offset": 0,
-            "secondary_depth_range": 0,
-            "surface_type": "floor"
-          },
-          "then_run": {
-            "type": "minecraft:block",
-            "result_state": {
-              "Name": "eternal_starlight:dusted_gravel"
-            }
-          }
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "eternal_starlight:dark_swamp"
-          ]
-        },
-        "then_run": {
-          "type": "minecraft:sequence",
-          "sequence": [
-            {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:stone_depth",
-                "add_surface_depth": false,
-                "offset": 0,
-                "secondary_depth_range": 0,
-                "surface_type": "floor"
-              },
-              "then_run": {
-                "type": "minecraft:sequence",
-                "sequence": [
-                  {
-                    "type": "minecraft:condition",
-                    "if_true": {
-                      "type": "minecraft:water",
-                      "add_stone_depth": false,
-                      "offset": 0,
-                      "surface_depth_multiplier": 0
-                    },
-                    "then_run": {
-                      "type": "minecraft:block",
-                      "result_state": {
-                        "Name": "eternal_starlight:fantasy_grass_block",
-                        "Properties": {
-                          "snowy": "false"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "type": "minecraft:block",
-                    "result_state": {
-                      "Name": "eternal_starlight:nightfall_mud"
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:stone_depth",
-                "add_surface_depth": true,
-                "offset": 0,
-                "secondary_depth_range": 0,
-                "surface_type": "floor"
-              },
-              "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "eternal_starlight:nightfall_mud"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "eternal_starlight:crystallized_desert"
-          ]
-        },
-        "then_run": {
-          "type": "minecraft:sequence",
-          "sequence": [
-            {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:stone_depth",
-                "add_surface_depth": true,
-                "offset": 0,
-                "secondary_depth_range": 0,
-                "surface_type": "floor"
-              },
-              "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "eternal_starlight:twilight_sand"
-                }
-              }
-            },
-            {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:stone_depth",
-                "add_surface_depth": true,
-                "offset": 0,
-                "secondary_depth_range": 6,
-                "surface_type": "floor"
-              },
-              "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "eternal_starlight:twilight_sandstone"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
             "eternal_starlight:the_abyss"
@@ -332,64 +134,275 @@
         }
       },
       {
-        "type": "minecraft:sequence",
-        "sequence": [
-          {
-            "type": "minecraft:condition",
-            "if_true": {
-              "type": "minecraft:stone_depth",
-              "add_surface_depth": false,
-              "offset": 0,
-              "secondary_depth_range": 0,
-              "surface_type": "floor"
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "eternal_starlight:on_surface"
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "add_surface_depth": false,
+                "offset": 0,
+                "secondary_depth_range": 0,
+                "surface_type": "floor"
+              },
+              "then_run": {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:water",
+                  "add_stone_depth": false,
+                  "offset": -1,
+                  "surface_depth_multiplier": 0
+                },
+                "then_run": {
+                  "type": "minecraft:sequence",
+                  "sequence": [
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:shimmer_river",
+                          "eternal_starlight:ether_river",
+                          "eternal_starlight:warm_shore"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "eternal_starlight:twilight_sand"
+                        }
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:starlit_sea"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "eternal_starlight:dusted_gravel"
+                        }
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:dark_swamp"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:sequence",
+                        "sequence": [
+                          {
+                            "type": "minecraft:condition",
+                            "if_true": {
+                              "type": "minecraft:water",
+                              "add_stone_depth": false,
+                              "offset": 0,
+                              "surface_depth_multiplier": 0
+                            },
+                            "then_run": {
+                              "type": "minecraft:block",
+                              "result_state": {
+                                "Name": "eternal_starlight:fantasy_grass_block",
+                                "Properties": {
+                                  "snowy": "false"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "eternal_starlight:nightfall_mud"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:crystallized_desert"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:sequence",
+                        "sequence": [
+                          {
+                            "type": "minecraft:condition",
+                            "if_true": {
+                              "type": "minecraft:water",
+                              "add_stone_depth": false,
+                              "offset": 0,
+                              "surface_depth_multiplier": 0
+                            },
+                            "then_run": {
+                              "type": "minecraft:block",
+                              "result_state": {
+                                "Name": "eternal_starlight:twilight_sand"
+                              }
+                            }
+                          },
+                          {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "eternal_starlight:twilight_sandstone"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "minecraft:sequence",
+                      "sequence": [
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "minecraft:water",
+                            "add_stone_depth": false,
+                            "offset": 0,
+                            "surface_depth_multiplier": 0
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "eternal_starlight:nightfall_grass_block",
+                              "Properties": {
+                                "snowy": "false"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "eternal_starlight:nightfall_dirt"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             },
-            "then_run": {
-              "type": "minecraft:sequence",
-              "sequence": [
-                {
-                  "type": "minecraft:condition",
-                  "if_true": {
-                    "type": "minecraft:water",
-                    "add_stone_depth": false,
-                    "offset": 0,
-                    "surface_depth_multiplier": 0
-                  },
-                  "then_run": {
-                    "type": "minecraft:block",
-                    "result_state": {
-                      "Name": "eternal_starlight:nightfall_grass_block",
-                      "Properties": {
-                        "snowy": "false"
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "add_surface_depth": true,
+                "offset": 0,
+                "secondary_depth_range": 0,
+                "surface_type": "floor"
+              },
+              "then_run": {
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:biome",
+                      "biome_is": [
+                        "eternal_starlight:shimmer_river",
+                        "eternal_starlight:ether_river",
+                        "eternal_starlight:warm_shore"
+                      ]
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "eternal_starlight:twilight_sand"
                       }
                     }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:biome",
+                      "biome_is": [
+                        "eternal_starlight:starlit_sea"
+                      ]
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "eternal_starlight:dusted_gravel"
+                      }
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:biome",
+                      "biome_is": [
+                        "eternal_starlight:dark_swamp"
+                      ]
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "eternal_starlight:nightfall_mud"
+                      }
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:biome",
+                      "biome_is": [
+                        "eternal_starlight:crystallized_desert"
+                      ]
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "eternal_starlight:twilight_sandstone"
+                      }
+                    }
+                  },
+                  {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "eternal_starlight:nightfall_dirt"
+                    }
                   }
-                },
-                {
-                  "type": "minecraft:block",
-                  "result_state": {
-                    "Name": "eternal_starlight:nightfall_dirt"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "minecraft:condition",
-            "if_true": {
-              "type": "minecraft:stone_depth",
-              "add_surface_depth": true,
-              "offset": 0,
-              "secondary_depth_range": 0,
-              "surface_type": "floor"
-            },
-            "then_run": {
-              "type": "minecraft:block",
-              "result_state": {
-                "Name": "eternal_starlight:nightfall_dirt"
+                ]
               }
             }
+          ]
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:vertical_gradient",
+          "false_at_and_above": {
+            "absolute": 8
+          },
+          "random_name": "minecraft:stone",
+          "true_at_and_below": {
+            "absolute": 0
           }
-        ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "eternal_starlight:voidstone"
+          }
+        }
       },
       {
         "type": "minecraft:condition",

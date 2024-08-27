@@ -169,7 +169,6 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
 		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES);
-		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES_EXTRA);
 
 		return builder;
 	}
@@ -196,7 +195,6 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
 		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES);
-		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES_EXTRA);
 
 		return builder;
 	}
@@ -227,6 +225,7 @@ public class ESBiomes {
 
 		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.GLACITE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.ASHEN_SNOW);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_VEGETATION);
 

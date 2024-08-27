@@ -64,7 +64,7 @@ public class WorldGenProvider {
 		}
 	}
 
-	// used to prevent id changing caused by datapack reloading
+	// used to prevent id change caused by datapack reloading
 	public int getBiomeDataId(BiomeData data) {
 		ResourceLocation location = biomeDataRegistry.getKey(data);
 		if (biomeDataIds.containsKey(location)) {
@@ -77,7 +77,7 @@ public class WorldGenProvider {
 		}
 	}
 
-	// used to prevent id changing caused by datapack reloading
+	// used to prevent id change caused by datapack reloading
 	public BiomeData getBiomeDataById(int id) {
 		return biomeDataRegistry.get(biomeDataLocations.get(id));
 	}

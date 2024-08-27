@@ -263,6 +263,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+		add(ESBlocks.ASHEN_SNOW.get(), noDrop());
 
 		dropSelf(ESBlocks.NEBULAITE.get());
 		dropSelf(ESBlocks.NEBULAITE_BRICKS.get());
@@ -278,6 +279,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
 		dropWhenSilkTouch(ESBlocks.DUSK_LIGHT.get());
+		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.RADIANITE_STAIRS.get());
@@ -616,8 +618,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
 
-		// nothing
-		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
 		add(ESBlocks.CREST_POT.get(), noDrop());
 		add(ESBlocks.ENERGY_BLOCK.get(), noDrop());

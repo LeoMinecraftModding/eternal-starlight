@@ -1,9 +1,6 @@
 {
   "carvers": {
-    "air": [
-      "eternal_starlight:caves",
-      "eternal_starlight:caves_extra"
-    ]
+    "air": "eternal_starlight:caves"
   },
   "creature_spawn_probability": 0.2,
   "downfall": 0.5,
@@ -53,7 +50,8 @@
     ],
     [
       "eternal_starlight:stellagmite",
-      "eternal_starlight:glacite"
+      "eternal_starlight:glacite",
+      "eternal_starlight:ashen_snow"
     ],
     [],
     [

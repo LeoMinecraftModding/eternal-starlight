@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
-import cn.leolezury.eternalstarlight.common.world.gen.carver.ESExtraCavesCarver;
 import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
@@ -10,38 +9,45 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.QuartPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.StructureManager;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.*;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
-import net.minecraft.world.level.levelgen.carver.CarvingContext;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
 
 public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 	private static final BlockState AIR = Blocks.AIR.defaultBlockState();
+	private static final BlockState LAVA = Blocks.LAVA.defaultBlockState();
 	private final BlockState defaultBlock;
 	private final int seaLevel;
 
 	public long seed = 0;
+
+	private SimplexNoise noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(seed)));
+
+	public void setSeed(long newSeed) {
+		if (seed != newSeed) {
+			this.noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(newSeed)));
+			seed = newSeed;
+		}
+	}
 
 	public static final MapCodec<ESChunkGenerator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 		BiomeSource.CODEC.fieldOf("biome_source").forGetter(o -> o.biomeSource),
@@ -61,7 +67,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 
 	@Override
 	public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderLookup, RandomState randomState, long seed) {
-		this.seed = seed;
+		setSeed(seed);
 		if (biomeSource instanceof ESBiomeSource source) {
 			source.setSeed(seed);
 		}
@@ -111,6 +117,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		Heightmap worldSurfaceMap = chunkAccess.getOrCreateHeightmapUnprimed(Heightmap.Types.WORLD_SURFACE_WG);
 		int minBlockX = chunkPos.getMinBlockX();
 		int minBlockZ = chunkPos.getMinBlockZ();
+		int minY = getMinY();
 		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 		int cellWidth = 16;
 		int cellHeight = 16;
@@ -130,11 +137,17 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 						int worldZ = minBlockZ + cellBlockZ;
 						int blockZInCell = worldZ & 15;
 
-						BlockState blockState = getStateAt(worldY, getSurfaceHeight(worldX, worldZ), getBiomeDataAt(worldX, worldZ));
+						int surfaceHeight = getSurfaceHeight(worldX, worldZ);
+						BlockState blockState = getStateAt(worldY, surfaceHeight, getBiomeDataAt(worldX, worldZ));
 
 						double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
 						if (beard > 0.1) {
 							blockState = defaultBlock;
+						}
+
+						double noiseVal = noise.getValue(worldX / 50d, worldY / 30d, worldZ / 50d);
+						if (worldY < surfaceHeight - 15 && worldY > minY + 2 && (worldY > minY + 4 || (int) (noiseVal * 200) % 5 == 0) && noiseVal < -0.3) {
+							blockState = worldY > minY + 8 ? AIR : LAVA;
 						}
 
 						if (blockState != AIR) {
@@ -163,6 +176,14 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 			chunkAccess.fillBiomesFromNoise(this.biomeSource, randomState.sampler());
 			return chunkAccess;
 		}), Util.backgroundExecutor());
+	}
+
+	@Override
+	public void buildSurface(WorldGenRegion worldGenRegion, StructureManager structureManager, RandomState randomState, ChunkAccess chunkAccess) {
+		if (randomState.surfaceSystem() instanceof StarlightSurfaceSystem system) {
+			system.setStarlightChunkGenerator(this);
+		}
+		super.buildSurface(worldGenRegion, structureManager, randomState, chunkAccess);
 	}
 
 	@Override
@@ -206,54 +227,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		return state;
 	}
 
-	private NoiseChunk createNoiseChunk(ChunkAccess chunkAccess, StructureManager structureManager, Blender blender, RandomState randomState) {
-		return NoiseChunk.forChunk(chunkAccess, randomState, Beardifier.forStructuresInChunk(structureManager, chunkAccess.getPos()), generatorSettings().value(), this.globalFluidPicker.get(), blender);
-	}
-
-	@Override
-	public void applyCarvers(WorldGenRegion worldGenRegion, long l, RandomState randomState, BiomeManager biomeManager, StructureManager structureManager, ChunkAccess chunkAccess, GenerationStep.Carving carving) {
-		BiomeManager biomeManager2 = biomeManager.withDifferentSource((ix, jx, kx) -> {
-			return this.biomeSource.getNoiseBiome(ix, jx, kx, randomState.sampler());
-		});
-		WorldgenRandom worldgenRandom = new WorldgenRandom(new LegacyRandomSource(RandomSupport.generateUniqueSeed()));
-
-		ChunkPos chunkPos = chunkAccess.getPos();
-		NoiseChunk noiseChunk = chunkAccess.getOrCreateNoiseChunk((chunkAccessx) -> {
-			return this.createNoiseChunk(chunkAccessx, structureManager, Blender.of(worldGenRegion), randomState);
-		});
-		Aquifer aquifer = noiseChunk.aquifer();
-		CarvingContext carvingContext = new CarvingContext(this, worldGenRegion.registryAccess(), chunkAccess.getHeightAccessorForGeneration(), noiseChunk, randomState, generatorSettings().value().surfaceRule());
-		CarvingMask carvingMask = ((ProtoChunk) chunkAccess).getOrCreateCarvingMask(carving);
-
-		for (int j = -8; j <= 8; ++j) {
-			for (int k = -8; k <= 8; ++k) {
-				ChunkPos chunkPos2 = new ChunkPos(chunkPos.x + j, chunkPos.z + k);
-				ChunkAccess chunkAccess2 = worldGenRegion.getChunk(chunkPos2.x, chunkPos2.z);
-				BiomeGenerationSettings biomeGenerationSettings = chunkAccess2.carverBiome(() -> {
-					return this.getBiomeGenerationSettings(this.biomeSource.getNoiseBiome(QuartPos.fromBlock(chunkPos2.getMinBlockX()), 0, QuartPos.fromBlock(chunkPos2.getMinBlockZ()), randomState.sampler()));
-				});
-				Iterable<Holder<ConfiguredWorldCarver<?>>> iterable = biomeGenerationSettings.getCarvers(carving);
-				int m = 0;
-
-				for (Iterator var24 = iterable.iterator(); var24.hasNext(); ++m) {
-					Holder<ConfiguredWorldCarver<?>> holder = (Holder) var24.next();
-					ConfiguredWorldCarver<?> configuredWorldCarver = holder.value();
-					worldgenRandom.setLargeFeatureSeed(l + (long) m, chunkPos2.x, chunkPos2.z);
-					if (configuredWorldCarver.isStartChunk(worldgenRandom)) {
-						Objects.requireNonNull(biomeManager2);
-						// ES: set carver seed
-						if (configuredWorldCarver.worldCarver() instanceof ESExtraCavesCarver extraCavesCarver) {
-							extraCavesCarver.setSeed(seed);
-						}
-						configuredWorldCarver.carve(carvingContext, chunkAccess, biomeManager2::getBiome, worldgenRandom, aquifer, chunkPos2, carvingMask);
-					}
-				}
-			}
-		}
-
-	}
-
-	private int getSurfaceHeight(int x, int z) {
+	public int getSurfaceHeight(int x, int z) {
 		if (biomeSource instanceof ESBiomeSource source) {
 			return source.getHeight(x, z);
 		}

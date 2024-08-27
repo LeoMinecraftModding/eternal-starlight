@@ -84,6 +84,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_SCARLET_LOG = create("fallen_scarlet_log");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCARLET_LEAVES_PILE = create("scarlet_leaves_pile");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ASHEN_SNOW = create("ashen_snow");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_CRYSTAL = create("starlight_crystal");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STELLAGMITE = create("stellagmite");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THIOQUARTZ_GEODE = create("thioquartz_geode");
@@ -160,6 +161,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, ESFeatures.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(ESBlocks.STARLIGHT_MANGROVE_LOG.get())));
 		FeatureUtils.register(context, FALLEN_SCARLET_LOG, ESFeatures.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(ESBlocks.SCARLET_LOG.get())));
 		FeatureUtils.register(context, SCARLET_LEAVES_PILE, ESFeatures.LEAVES_PILE.get(), new LeavesPileFeature.Configuration(BlockStateProvider.simple(ESBlocks.SCARLET_LEAVES_PILE.get())));
+		FeatureUtils.register(context, ASHEN_SNOW, ESFeatures.ASHEN_SNOW.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STARLIGHT_CRYSTAL, ESFeatures.STARLIGHT_CRYSTAL.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STELLAGMITE, ESFeatures.STELLAGMITE.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, THIOQUARTZ_GEODE, Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR), BlockStateProvider.simple(ESBlocks.THIOQUARTZ_BLOCK.get()), BlockStateProvider.simple(ESBlocks.BUDDING_THIOQUARTZ.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), List.of(ESBlocks.THIOQUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2), new GeodeCrackSettings(0.95, 2.0, 2), 0.35, 0.083, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05, 1));

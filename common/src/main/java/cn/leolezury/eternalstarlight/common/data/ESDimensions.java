@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
+import cn.leolezury.eternalstarlight.common.world.gen.surface.OnSurfaceCondition;
 import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.HolderGetter;
@@ -16,11 +17,9 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,26 +33,6 @@ public class ESDimensions {
 
 	public static final int SEA_LEVEL = 50;
 
-	private static SurfaceRules.RuleSource makeSurface(BlockState grassBlock, BlockState dirt) {
-		return SurfaceRules.sequence(
-			SurfaceRules.ifTrue(
-				SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
-				SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(grassBlock)), SurfaceRules.state(dirt))
-			),
-			SurfaceRules.ifTrue(
-				SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),
-				SurfaceRules.state(dirt)
-			)
-		);
-	}
-
-	private static SurfaceRules.RuleSource makeSimpleSurface(BlockState simple) {
-		return SurfaceRules.ifTrue(
-			SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),
-			SurfaceRules.state(simple)
-		);
-	}
-
 	private static SurfaceRules.RuleSource makeAbyss() {
 		return SurfaceRules.sequence(
 			SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(-25), 1)), SurfaceRules.state(ESBlocks.CRYOBYSSLATE.get().defaultBlockState())),
@@ -66,22 +45,38 @@ public class ESDimensions {
 		SurfaceRules.RuleSource bedrock = SurfaceRules.state(Blocks.BEDROCK.defaultBlockState());
 		SurfaceRules.RuleSource voidstone = SurfaceRules.state(ESBlocks.VOIDSTONE.get().defaultBlockState());
 		SurfaceRules.RuleSource ice = SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState());
-		SurfaceRules.RuleSource sand = SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState());
-		SurfaceRules.RuleSource sandstone = SurfaceRules.state(ESBlocks.TWILIGHT_SANDSTONE.get().defaultBlockState());
-		SurfaceRules.RuleSource desertRule = SurfaceRules.sequence(
-			SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), sand),
-			SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, 6, CaveSurface.FLOOR), sandstone)
+
+		SurfaceRules.RuleSource surface = SurfaceRules.sequence(
+			SurfaceRules.ifTrue(
+				SurfaceRules.ON_FLOOR,
+				SurfaceRules.ifTrue(
+					SurfaceRules.waterBlockCheck(-1, 0),
+					SurfaceRules.sequence(
+						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
+						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
+						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())), SurfaceRules.state(ESBlocks.TWILIGHT_SANDSTONE.get().defaultBlockState()))),
+						SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))
+					)
+				)
+			),
+			SurfaceRules.ifTrue(
+				SurfaceRules.UNDER_FLOOR,
+				SurfaceRules.sequence(
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), SurfaceRules.state(ESBlocks.TWILIGHT_SANDSTONE.get().defaultBlockState())),
+					SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState())
+				)
+			)
 		);
 
 		return SurfaceRules.sequence(
 			SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), bedrock),
-			SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ESBiomes.THE_ABYSS)), SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone)),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), makeSimpleSurface(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA), makeSimpleSurface(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), makeSurface(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT), desertRule),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
-			makeSurface(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState(), ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()),
+			SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface),
+			SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), voidstone),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST), ice)
 		);
 	}

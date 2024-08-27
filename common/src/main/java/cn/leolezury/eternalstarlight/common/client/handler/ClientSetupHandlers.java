@@ -14,6 +14,7 @@ import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpear;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
+import cn.leolezury.eternalstarlight.common.client.particle.environment.AshenSnowParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FallingLeavesParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
@@ -563,6 +564,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
+		strategy.register(ESParticles.ASHEN_SNOW.get(), AshenSnowParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}

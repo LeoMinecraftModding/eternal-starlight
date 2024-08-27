@@ -265,6 +265,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_SLAB = registerItem("eternal_ice_brick_slab", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_STAIRS = registerItem("eternal_ice_brick_stairs", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_WALL = registerItem("eternal_ice_brick_wall", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ASHEN_SNOW = registerItem("ashen_snow", () -> new BlockItem(ESBlocks.ASHEN_SNOW.get(), new Item.Properties()));
 
 	// nebulaite
 	public static final RegistryObject<Item, Item> NEBULAITE = registerItem("nebulaite", () -> new BlockItem(ESBlocks.NEBULAITE.get(), new Item.Properties()));

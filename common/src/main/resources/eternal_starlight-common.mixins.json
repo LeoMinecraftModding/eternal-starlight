@@ -23,6 +23,7 @@
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
+    "SurfaceSystemMixin",
     "WallHangingSignBlockMixin"
   ],
   "client": [

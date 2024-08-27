@@ -153,7 +153,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		flatBlockTexture(ESItems.SCARLET_SAPLING.get());
 		block(ESItems.SCARLET_LEAVES.get());
-		block(ESItems.SCARLET_LEAVES_PILE.get());
+		layeredBlock(ESItems.SCARLET_LEAVES_PILE.get());
 		block(ESItems.SCARLET_LOG.get());
 		block(ESItems.SCARLET_WOOD.get());
 		block(ESItems.SCARLET_PLANKS.get());
@@ -239,6 +239,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.ETERNAL_ICE_BRICK_SLAB.get());
 		block(ESItems.ETERNAL_ICE_BRICK_STAIRS.get());
 		wall(ESItems.ETERNAL_ICE_BRICK_WALL.get(), ESItems.ETERNAL_ICE_BRICKS.get());
+		layeredBlock(ESItems.ASHEN_SNOW.get());
 
 		block(ESItems.NEBULAITE.get());
 		block(ESItems.NEBULAITE_BRICKS.get());
@@ -853,6 +854,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 	private void block(Item item) {
 		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
+	}
+
+	private void layeredBlock(Item item) {
+		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item) + "_height2"));
 	}
 
 	private void flatBlockTexture(Item item) {

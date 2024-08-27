@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-26T19:59:55.788208	Item Models: eternal_starlight
+// 1.21.1	2024-08-27T17:54:29.1213518	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -53,6 +53,7 @@ bbdffecac4639ae1d4efe75f43df6c835a8eb8a0 assets/eternal_starlight/models/item/am
 349b25c1dce69cd42256bcc40fc7d04116366255 assets/eternal_starlight/models/item/amaramber_nugget.json
 03f59494e3535e10d73eb1e4dad017c697e7411d assets/eternal_starlight/models/item/amaramber_shovel.json
 17dd627ce131196d0c577e817e3d15e43198ce2f assets/eternal_starlight/models/item/amethysia_grass.json
+78e3f8252d9eed3ac865d44541c467be6152cf11 assets/eternal_starlight/models/item/ashen_snow.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/eternal_starlight/models/item/astral_golem_spawn_egg.json
 611fedea149ae4e9d2e32ca712269e772aefe3ac assets/eternal_starlight/models/item/atalphaite.json
 3c1e92df567726e6758e9331da1f47a36a1b1e6e assets/eternal_starlight/models/item/atalphaite_block.json
@@ -544,7 +545,7 @@ ff96551c91b834d93ea78ae542107ff564157b95 assets/eternal_starlight/models/item/sc
 001c01a72cd5da0ea348cfe271a7477ee20a2a3c assets/eternal_starlight/models/item/scarlet_grass.json
 85d0efd10512764e888fa6b1382dd3243d409c12 assets/eternal_starlight/models/item/scarlet_hanging_sign.json
 5f28d8e187396c42e6cac48bcd4c0e4fa55e17fa assets/eternal_starlight/models/item/scarlet_leaves.json
-b427680a628a18b868679be0cd1e119f547a2fdd assets/eternal_starlight/models/item/scarlet_leaves_pile.json
+62c08708b1431d894e569eda762253a1d9fb6693 assets/eternal_starlight/models/item/scarlet_leaves_pile.json
 38bea75dea5d1328217eea1f71c5520d9f476f02 assets/eternal_starlight/models/item/scarlet_log.json
 edc937b9c185be1c5e651aa9766570b3f01ec6ce assets/eternal_starlight/models/item/scarlet_planks.json
 e7eab93f28ce0b989f50c767fee54102de7715cb assets/eternal_starlight/models/item/scarlet_pressure_plate.json

@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -128,19 +127,6 @@ public class ESLakeFeature extends Feature<ESLakeFeature.Configuration> {
 									this.markAboveForPostProcessing(level, blockpos3);
 								}
 							}
-						}
-					}
-				}
-			}
-
-			if (blockstate1.getFluidState().is(FluidTags.WATER)) {
-				for (int k2 = 0; k2 < 16; k2++) {
-					for (int k3 = 0; k3 < 16; k3++) {
-						int i4 = 4;
-						BlockPos blockpos2 = blockpos.offset(k2, 4, k3);
-						if (level.getBiome(blockpos2).value().shouldFreeze(level, blockpos2, false)
-							&& this.canReplaceBlock(level.getBlockState(blockpos2))) {
-							level.setBlock(blockpos2, Blocks.ICE.defaultBlockState(), 2);
 						}
 					}
 				}
