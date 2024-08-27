@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.AstralGolemRandomStrollNearVillageGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
@@ -16,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
@@ -44,6 +46,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -131,10 +134,10 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-			.add(Attributes.MAX_HEALTH, 100.0D)
-			.add(Attributes.ARMOR, 10.0D)
-			.add(Attributes.FOLLOW_RANGE, 100.0D)
-			.add(Attributes.ATTACK_DAMAGE, 10.0D)
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.astralGolem.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.astralGolem.armor())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.astralGolem.followRange())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.astralGolem.attackDamage())
 			.add(Attributes.ATTACK_KNOCKBACK, 3.0D)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
 			.add(Attributes.FLYING_SPEED, 1.0D)
@@ -335,5 +338,9 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 	@Nullable
 	public UUID getPersistentAngerTarget() {
 		return this.persistentAngerTarget;
+	}
+
+	public static boolean checkAstralGolemSpawnRules(EntityType<? extends AstralGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return checkMobSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.astralGolem.canSpawn();
 	}
 }

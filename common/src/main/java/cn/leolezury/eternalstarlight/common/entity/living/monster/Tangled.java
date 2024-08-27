@@ -1,24 +1,24 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -29,6 +29,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -92,10 +93,11 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 20.0)
-			.add(Attributes.MOVEMENT_SPEED, 0.3)
-			.add(Attributes.ATTACK_DAMAGE, 5.0)
-			.add(Attributes.FOLLOW_RANGE, 64.0);
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.tangled.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangled.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangled.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangled.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0.3);
 	}
 
 	@Override
@@ -140,7 +142,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 
 	@Override
 	protected void tickDeath() {
-		if (!level().isClientSide && this.deathTime == 0 && getRandom().nextBoolean()) {
+		if (!level().isClientSide && this.deathTime == 0 && getRandom().nextBoolean() && ESConfig.INSTANCE.mobsConfig.tangledSkull.canSpawn()) {
 			TangledSkull skull = new TangledSkull(ESEntities.TANGLED_SKULL.get(), level());
 			skull.setPos(getX(), getY(0.75), getZ());
 			skull.setTarget(getTarget());
@@ -186,5 +188,9 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.SKELETON_DEATH;
+	}
+
+	public static boolean checkTangledSpawnRules(EntityType<? extends Tangled> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.tangled.canSpawn();
 	}
 }

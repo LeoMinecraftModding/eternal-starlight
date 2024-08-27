@@ -45,6 +45,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
+import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.function.Consumer;
@@ -75,6 +76,8 @@ public interface ESPlatform {
 	Loader getLoader();
 
 	boolean isPhysicalClient();
+
+	Path getConfigDir();
 
 	// registry utils
 	<T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> key, String namespace);

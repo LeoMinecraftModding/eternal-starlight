@@ -2,9 +2,11 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
@@ -69,7 +71,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
 				if (!level().isClientSide && (getOwner() == null || !getOwner().getUUID().equals(entity.getUUID()))) {
 					if (entity.canFreeze()) {
-						entity.hurt(getOwner() instanceof LivingEntity owner ? ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner) : level().damageSources().freeze(), 5);
+						entity.hurt(getOwner() instanceof LivingEntity owner ? ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner) : level().damageSources().freeze(), getOwner() instanceof Freeze ? (float) ESConfig.INSTANCE.mobsConfig.freeze.attackDamage() : 5);
 						entity.setTicksFrozen(entity.getTicksFrozen() + 100);
 					} else if (getOwner() instanceof LivingEntity owner) {
 						entity.hurt(damageSources().mobProjectile(this, owner), 2.5f);

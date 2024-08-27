@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -7,11 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -26,6 +25,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -121,7 +121,12 @@ public class Freeze extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 32).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.FLYING_SPEED, 0.6).add(Attributes.FOLLOW_RANGE, 80);
+		return Monster.createMonsterAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.freeze.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.freeze.armor())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.freeze.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0.3)
+			.add(Attributes.FLYING_SPEED, 0.6);
 	}
 
 	@Override
@@ -187,5 +192,9 @@ public class Freeze extends Monster implements RangedAttackMob {
 			}
 			idleAnimationState.startIfStopped(tickCount);
 		}
+	}
+
+	public static boolean checkFreezeSpawnRules(EntityType<? extends Freeze> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.freeze.canSpawn();
 	}
 }

@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,10 @@ public class GrimstoneGolem extends PathfinderMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
+		return Mob.createMobAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.grimstoneGolem.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.grimstoneGolem.armor())
+			.add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
 	@Override
@@ -124,6 +128,6 @@ public class GrimstoneGolem extends PathfinderMob {
 	}
 
 	public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ()) - 20 && level.getBlockState(pos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT);
+		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()) - 20 && level.getBlockState(pos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT) && ESConfig.INSTANCE.mobsConfig.grimstoneGolem.canSpawn();
 	}
 }

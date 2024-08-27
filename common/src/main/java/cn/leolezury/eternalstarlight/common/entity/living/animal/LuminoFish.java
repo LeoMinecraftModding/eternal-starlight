@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
@@ -14,8 +15,9 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
-import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -40,6 +42,14 @@ public class LuminoFish extends AbstractSchoolingFish {
 	public AnimationState swimAnimationState = new AnimationState();
 	public AnimationState swellAnimationState = new AnimationState();
 
+	public static AttributeSupplier.Builder createAttributes() {
+		return Mob.createMobAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.luminoFish.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.luminoFish.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.luminoFish.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.luminoFish.followRange());
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
@@ -56,7 +66,7 @@ public class LuminoFish extends AbstractSchoolingFish {
 				LivingEntity target = getTarget();
 				if (swellTicks == 10 && target != null) {
 					if (target.position().distanceTo(position()) < 3) {
-						target.hurt(level().damageSources().mobAttack(this), 3);
+						doHurtTarget(target);
 						target.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 					}
 				}
@@ -112,8 +122,8 @@ public class LuminoFish extends AbstractSchoolingFish {
 		return ESItems.LUMINOFISH_BUCKET.get().getDefaultInstance();
 	}
 
-	public static boolean checkAbyssalWaterAnimalSpawnRules(EntityType<? extends WaterAnimal> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
+	public static boolean checkLuminoFishSpawnRules(EntityType<? extends LuminoFish> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
 		int seaLevel = levelAccessor.getSeaLevel();
-		return blockPos.getY() <= seaLevel - 40 && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER);
+		return blockPos.getY() <= seaLevel - 40 && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER) && ESConfig.INSTANCE.mobsConfig.luminoFish.canSpawn();
 	}
 }

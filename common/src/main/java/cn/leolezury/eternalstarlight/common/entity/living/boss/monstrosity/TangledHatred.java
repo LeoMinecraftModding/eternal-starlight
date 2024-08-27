@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -72,10 +73,11 @@ public class TangledHatred extends ESBoss {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 60.0)
-			.add(Attributes.MOVEMENT_SPEED, 0)
-			.add(Attributes.ATTACK_DAMAGE, 5.0)
-			.add(Attributes.FOLLOW_RANGE, 100);
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.tangledHatred.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangledHatred.armor())
+			.add(Attributes.ATTACK_DAMAGE, 5 * ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangledHatred.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0);
 	}
 
 	private Chain createChain() {

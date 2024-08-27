@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
@@ -152,10 +153,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.starlightGolem.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.starlightGolem.armor())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.starlightGolem.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.35F)
-			.add(Attributes.FOLLOW_RANGE, 200.0D)
-			.add(Attributes.MAX_HEALTH, 220.0D)
-			.add(Attributes.ATTACK_DAMAGE, 5.0D)
+			.add(Attributes.ATTACK_DAMAGE, 0)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
 	}
 

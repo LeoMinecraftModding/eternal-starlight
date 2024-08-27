@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.ChargeAttackGoal;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -140,7 +141,12 @@ public class AuroraDeer extends Animal implements Charger {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 3D);
+		return Mob.createMobAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.auroraDeer.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.auroraDeer.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.auroraDeer.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.auroraDeer.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
 	@Override
@@ -196,7 +202,7 @@ public class AuroraDeer extends Animal implements Charger {
 	}
 
 	public static boolean checkAuroraDeerSpawnRules(EntityType<? extends AuroraDeer> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT);
+		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.auroraDeer.canSpawn();
 	}
 
 	@Nullable

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
@@ -171,11 +172,11 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return createMonsterAttributes()
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.armor())
+			.add(Attributes.ATTACK_DAMAGE, 5 * ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.35F)
-			.add(Attributes.FOLLOW_RANGE, 200.0D)
-			.add(Attributes.MAX_HEALTH, 200.0D)
-			.add(Attributes.ATTACK_DAMAGE, 5.0D)
-			.add(Attributes.ARMOR, 12.0D)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
 	}
 
@@ -324,7 +325,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
 			vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
 			if (vec3.dot(this.getViewVector(1.0F)) < 0.0D) {
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.BITE, this), damage);
+				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.BITE, this), damage * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale());
 			}
 		}
 	}
@@ -336,7 +337,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 				living.hurtMarked = true;
 				living.setDeltaMovement(living.getDeltaMovement().add(motion));
 				if (damage) {
-					living.hurt(damageSources().mobAttack(this), strength * 3);
+					living.hurt(damageSources().mobAttack(this), strength * 3 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale());
 				}
 			}
 		}

@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegist
 import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientSideHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
@@ -18,6 +19,7 @@ public class EternalStarlight {
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public static void init() {
+		ESConfig.load();
 		ESFluids.loadClass();
 		ESBlocks.loadClass();
 		ESDataComponents.loadClass();

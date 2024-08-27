@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
@@ -14,6 +15,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -33,6 +35,7 @@ import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.apache.commons.compress.utils.Sets;
 import org.jetbrains.annotations.Nullable;
@@ -168,8 +171,8 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-			.add(Attributes.MAX_HEALTH, 30.0D)
-			.add(Attributes.ARMOR, 10.0D)
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.boarwarf.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.boarwarf.armor())
 			.add(Attributes.MOVEMENT_SPEED, 0.5D);
 	}
 
@@ -465,5 +468,9 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public boolean isClientSide() {
 		return this.level().isClientSide;
+	}
+
+	public static boolean checkBoarwarfSpawnRules(EntityType<? extends Boarwarf> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return checkMobSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.boarwarf.canSpawn();
 	}
 }

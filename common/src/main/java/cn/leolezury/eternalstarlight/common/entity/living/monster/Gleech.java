@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.network.ClientDismountPacket;
 import cn.leolezury.eternalstarlight.common.network.ClientMountPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -76,9 +77,11 @@ public class Gleech extends Monster {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 8.0)
-			.add(Attributes.MOVEMENT_SPEED, 0.25)
-			.add(Attributes.ATTACK_DAMAGE, 1.0);
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.gleech.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.gleech.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.gleech.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.gleech.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0.25);
 	}
 
 	@Override
@@ -192,7 +195,7 @@ public class Gleech extends Monster {
 	}
 
 	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.SAND);
+		return level.getBlockState(pos.below()).is(BlockTags.SAND) && ESConfig.INSTANCE.mobsConfig.gleech.canSpawn();
 	}
 }
 

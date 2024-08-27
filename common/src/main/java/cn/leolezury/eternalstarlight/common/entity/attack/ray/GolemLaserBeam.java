@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
@@ -23,7 +24,7 @@ public class GolemLaserBeam extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getSpellData().strength() * 0.5f : 0);
+		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f * (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale() : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getSpellData().strength() * 0.5f : 0);
 	}
 
 	@Override

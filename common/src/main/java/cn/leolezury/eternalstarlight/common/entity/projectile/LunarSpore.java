@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
@@ -100,7 +101,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
 				if (getOwner() instanceof LivingEntity owner && !owner.getUUID().equals(entity.getUUID())) {
-					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, owner), 5);
+					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, owner), getOwner() instanceof LunarMonstrosity ? 5 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : (getOwner() instanceof TangledHatred ? 5 * (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale() : 5));
 				}
 			}
 			discard();

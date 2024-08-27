@@ -41,6 +41,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 
+import java.nio.file.Path;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -55,6 +56,11 @@ public class FabricPlatform implements ESPlatform {
 	@Override
 	public boolean isPhysicalClient() {
 		return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
+	}
+
+	@Override
+	public Path getConfigDir() {
+		return FabricLoader.getInstance().getConfigDir();
 	}
 
 	@Override

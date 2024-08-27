@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -44,7 +45,7 @@ public class TangledHatredSmokePhase extends BehaviorPhase<TangledHatred> {
 			}
 			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius))) {
 				if (!living.getUUID().equals(entity.getUUID()) && living.distanceTo(entity) - living.getBbWidth() / 2 < radius) {
-					living.hurt(ESDamageTypes.getEntityDamageSource(entity.level(), ESDamageTypes.POISON, entity), 5);
+					living.hurt(ESDamageTypes.getEntityDamageSource(entity.level(), ESDamageTypes.POISON, entity), 5 * (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale());
 					living.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 				}
 			}

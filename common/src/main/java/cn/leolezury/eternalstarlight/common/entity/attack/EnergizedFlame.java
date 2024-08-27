@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -38,7 +40,7 @@ public class EnergizedFlame extends AttackEffect {
 			if (getSpawnedTicks() > 20 && getOwner() != null) {
 				AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
-					livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 2);
+					livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), getOwner() instanceof StarlightGolem ? 2 * (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale() : 2);
 					livingEntity.setRemainingFireTicks(Math.max(livingEntity.getRemainingFireTicks(), 60));
 				}
 			}

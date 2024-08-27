@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LonestarSkeletonShootBladeGoal;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -41,8 +43,11 @@ public class LonestarSkeleton extends Skeleton {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MOVEMENT_SPEED, 0.25)
-			.add(Attributes.FOLLOW_RANGE, 80);
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.followRange())
+			.add(Attributes.MOVEMENT_SPEED, 0.25);
 	}
 
 	@Nullable
@@ -80,10 +85,15 @@ public class LonestarSkeleton extends Skeleton {
 		this.onSwitchWeapon();
 	}
 
+	@Override
 	public void setItemSlot(EquipmentSlot equipmentSlot, ItemStack itemStack) {
 		super.setItemSlot(equipmentSlot, itemStack);
 		if (!this.level().isClientSide) {
 			this.onSwitchWeapon();
 		}
+	}
+
+	public static boolean checkLonestarSkeletonSpawnRules(EntityType<? extends LonestarSkeleton> type, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return checkMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.canSpawn();
 	}
 }

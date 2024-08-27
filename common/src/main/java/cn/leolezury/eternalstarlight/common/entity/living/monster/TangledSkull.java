@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -212,9 +213,10 @@ public class TangledSkull extends Monster {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
-			.add(Attributes.MAX_HEALTH, 10.0)
-			.add(Attributes.ATTACK_DAMAGE, 3.0)
-			.add(Attributes.FOLLOW_RANGE, 64.0);
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.tangledSkull.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangledSkull.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangledSkull.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangledSkull.followRange());
 	}
 
 	@Override

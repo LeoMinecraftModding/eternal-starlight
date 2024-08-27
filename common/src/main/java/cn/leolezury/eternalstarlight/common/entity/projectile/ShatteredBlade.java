@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.nbt.CompoundTag;
@@ -91,6 +93,9 @@ public class ShatteredBlade extends AbstractArrow {
 		Entity entity = entityHitResult.getEntity();
 		Entity owner = this.getOwner();
 		float damage = owner instanceof Player ? 5f : 3.2f;
+		if (owner instanceof LonestarSkeleton) {
+			damage = (float) ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.attackDamage();
+		}
 		DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, owner == null ? this : owner);
 
 		if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {

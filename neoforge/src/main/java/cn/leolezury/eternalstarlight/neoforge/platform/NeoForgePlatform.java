@@ -57,6 +57,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -68,6 +69,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -87,6 +89,11 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public boolean isPhysicalClient() {
 		return FMLLoader.getDist() == Dist.CLIENT;
+	}
+
+	@Override
+	public Path getConfigDir() {
+		return FMLPaths.CONFIGDIR.get();
 	}
 
 	@Override
