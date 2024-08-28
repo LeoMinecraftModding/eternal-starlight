@@ -140,14 +140,14 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 						int surfaceHeight = getSurfaceHeight(worldX, worldZ);
 						BlockState blockState = getStateAt(worldY, surfaceHeight, getBiomeDataAt(worldX, worldZ));
 
-						double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
-						if (beard > 0.1) {
-							blockState = defaultBlock;
-						}
-
 						double noiseVal = noise.getValue(worldX / 50d, worldY / 30d, worldZ / 50d);
 						if (worldY < surfaceHeight - 15 && worldY > minY + 2 && (worldY > minY + 4 || (int) (noiseVal * 200) % 5 == 0) && noiseVal < -0.3) {
 							blockState = worldY > minY + 8 ? AIR : LAVA;
+						}
+
+						double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
+						if (beard > 0.1) {
+							blockState = defaultBlock;
 						}
 
 						if (blockState != AIR) {

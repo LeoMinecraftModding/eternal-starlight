@@ -21,5 +21,5 @@ void main() {
     float light = smoothstep(0.1, 0.0, abs(length(uv - vec2(0.5)) - 0.4));
     light *= smoothstep(0.5, 0.0, abs(length(uv + offset1 - vec2(0.5)) - 0.5));
     light *= smoothstep(0.5, 0.0, abs(length(uv + offset2 - vec2(0.5)) - 0.4));
-    fragColor = vec4((light + 0.5) * lightColor, light);
+    fragColor = vec4((light + 0.5) * lightColor, light) * ColorModulator * linear_fog_fade(vertexDistance, FogStart, FogEnd);
 }
