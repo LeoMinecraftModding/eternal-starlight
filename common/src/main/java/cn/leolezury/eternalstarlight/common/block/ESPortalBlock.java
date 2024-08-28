@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
@@ -71,7 +72,7 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 
 	@Override
 	public RenderShape getRenderShape(BlockState blockState) {
-		return RenderShape.ENTITYBLOCK_ANIMATED;
+		return ESConfig.INSTANCE.enablePortalShader ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
 	}
 
 	@Override

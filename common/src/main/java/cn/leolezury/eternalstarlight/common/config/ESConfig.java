@@ -18,6 +18,7 @@ public class ESConfig {
 
 	public String info = "This is the config file for Eternal Starlight";
 
+	public boolean enablePortalShader = true;
 	public MobsConfig mobsConfig = new MobsConfig();
 
 	public static class MobsConfig {
