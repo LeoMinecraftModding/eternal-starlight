@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
-import cn.leolezury.eternalstarlight.common.client.renderer.entity.StarlightGolemRenderer;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -34,7 +34,7 @@ public class StarlightGolemGlowLayer<T extends StarlightGolem> extends RenderLay
 			getParentModel().copyPropertiesTo(this.model);
 			this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
 			this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			VertexConsumer consumer = bufferSource.getBuffer(StarlightGolemRenderer.isHalloween() ? GLOW_HALLOWEEN : GLOW);
+			VertexConsumer consumer = bufferSource.getBuffer(ClientHandlers.isHalloween ? GLOW_HALLOWEEN : GLOW);
 			this.model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), FastColor.ARGB32.color((int) (Math.max(0.0F, Mth.cos(ageInTicks * 0.1f + 3.1415927F)) * 255), 255, 255, 255));
 		}
 	}

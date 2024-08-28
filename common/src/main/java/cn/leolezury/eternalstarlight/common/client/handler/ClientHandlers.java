@@ -80,7 +80,8 @@ public class ClientHandlers {
 	private static final ResourceLocation PUMPKIN_BLUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
-	public static BossMusicSoundInstance BOSS_MUSIC_INSTANCE = null;
+	public static int clientTickCount = 0;
+	public static BossMusicSoundInstance bossMusicInstance = null;
 	public static int resetCameraIn;
 	public static float fogStartDecrement;
 	public static float fogEndDecrement;
@@ -88,12 +89,21 @@ public class ClientHandlers {
 	public static float oldAbyssalFogModifier = 1;
 	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f modelViewMatrix = new Matrix4f();
+	public static boolean isHalloween;
 
 	public static void onClientTick() {
 		ClientWeatherState.tickRainLevel();
 		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
 		List<ScreenShake> screenShakesToRemove = new ArrayList<>();
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
+			if (!Minecraft.getInstance().isPaused()) {
+				clientTickCount++;
+				if (clientTickCount % 1000 == 5) {
+					Calendar calendar = Calendar.getInstance();
+					isHalloween = calendar.get(Calendar.MONTH) == Calendar.NOVEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 1;
+				}
+			}
+
 			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
 				if (effect.shouldRemove()) {
 					effectsToRemove.add(effect);
@@ -125,27 +135,27 @@ public class ClientHandlers {
 					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, Minecraft.getInstance().player.getBoundingBox().inflate(50));
 					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(Minecraft.getInstance().player)));
 					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).toList();
-					if (!(BOSS_MUSIC_INSTANCE != null && bosses.stream().anyMatch(BOSS_MUSIC_INSTANCE::sameBoss))) {
+					if (!(bossMusicInstance != null && bosses.stream().anyMatch(bossMusicInstance::sameBoss))) {
 						if (!bosses.isEmpty()) {
 							ESBoss boss = bosses.getFirst();
-							if (BOSS_MUSIC_INSTANCE == null || !BOSS_MUSIC_INSTANCE.sameBoss(boss)) {
-								if (BOSS_MUSIC_INSTANCE != null) {
-									Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
+							if (bossMusicInstance == null || !bossMusicInstance.sameBoss(boss)) {
+								if (bossMusicInstance != null) {
+									Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
 								}
-								BOSS_MUSIC_INSTANCE = new BossMusicSoundInstance(boss.getBossMusic(), boss);
+								bossMusicInstance = new BossMusicSoundInstance(boss.getBossMusic(), boss);
 							}
-						} else if (BOSS_MUSIC_INSTANCE != null) {
-							Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
-							BOSS_MUSIC_INSTANCE = null;
+						} else if (bossMusicInstance != null) {
+							Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
+							bossMusicInstance = null;
 						}
 					}
-					if (BOSS_MUSIC_INSTANCE != null && !Minecraft.getInstance().getSoundManager().isActive(BOSS_MUSIC_INSTANCE)) {
-						Minecraft.getInstance().getSoundManager().play(BOSS_MUSIC_INSTANCE);
+					if (bossMusicInstance != null && !Minecraft.getInstance().getSoundManager().isActive(bossMusicInstance)) {
+						Minecraft.getInstance().getSoundManager().play(bossMusicInstance);
 					}
 				}
-			} else if (BOSS_MUSIC_INSTANCE != null) {
-				Minecraft.getInstance().getSoundManager().stop(BOSS_MUSIC_INSTANCE);
-				BOSS_MUSIC_INSTANCE = null;
+			} else if (bossMusicInstance != null) {
+				Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
+				bossMusicInstance = null;
 			}
 		}
 		if (Minecraft.getInstance().level != null) {

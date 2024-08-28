@@ -33,13 +33,13 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 		if (!this.boss.isAlive()) {
 			this.stop();
 			if (canPlaySound()) {
-				ClientHandlers.BOSS_MUSIC_INSTANCE = null;
+				ClientHandlers.bossMusicInstance = null;
 			}
 		}
 	}
 
 	@Override
 	public boolean canPlaySound() {
-		return ClientHandlers.BOSS_MUSIC_INSTANCE == this;
+		return ClientHandlers.bossMusicInstance == this;
 	}
 }

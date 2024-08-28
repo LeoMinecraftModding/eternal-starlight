@@ -18,7 +18,7 @@ public abstract class MusicManagerMixin {
 
 	@Inject(method = "tick", at = @At(value = "TAIL"))
 	private void tick(CallbackInfo ci) {
-		if (ClientHandlers.BOSS_MUSIC_INSTANCE != null) {
+		if (ClientHandlers.bossMusicInstance != null) {
 			stopPlaying();
 		}
 	}
