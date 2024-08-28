@@ -440,6 +440,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
 		flatBlockTexture(ESItems.STARLIGHT_FLOWER.get());
+		flatBlockTexture(ESItems.AUREATE_FLOWER.get());
 		flatBlockTexture(ESItems.CONEBLOOM.get());
 		flatBlockTexture(ESItems.NIGHTFAN.get());
 		flatBlockTexture(ESItems.PINK_ROSE.get());

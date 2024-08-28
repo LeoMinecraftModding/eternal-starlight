@@ -471,6 +471,7 @@ public class ESItems {
 
 	// common plant
 	public static final RegistryObject<Item, Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(ESBlocks.STARLIGHT_FLOWER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AUREATE_FLOWER = registerItem("aureate_flower", () -> new BlockItem(ESBlocks.AUREATE_FLOWER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CONEBLOOM = registerItem("conebloom", () -> new BlockItem(ESBlocks.CONEBLOOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFAN = registerItem("nightfan", () -> new BlockItem(ESBlocks.NIGHTFAN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> PINK_ROSE = registerItem("pink_rose", () -> new BlockItem(ESBlocks.PINK_ROSE.get(), new Item.Properties()));

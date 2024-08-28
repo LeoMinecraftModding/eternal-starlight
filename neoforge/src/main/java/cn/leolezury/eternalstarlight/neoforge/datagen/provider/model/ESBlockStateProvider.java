@@ -253,6 +253,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		cross(ESBlocks.STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.STARLIGHT_FLOWER.get()));
+		cross(ESBlocks.AUREATE_FLOWER.get());
+		pottedPlant(ESBlocks.POTTED_AUREATE_FLOWER.get(), blockTexture(ESBlocks.AUREATE_FLOWER.get()));
 		cross(ESBlocks.CONEBLOOM.get());
 		pottedPlant(ESBlocks.POTTED_CONEBLOOM.get(), blockTexture(ESBlocks.CONEBLOOM.get()));
 		cross(ESBlocks.NIGHTFAN.get());

@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-26T19:59:55.8558163	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-08-28T13:56:10.715289	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -97,7 +97,7 @@ b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/item/saplings.json
 5259b94b22abc45cb3d045c31908727e4de1deff data/minecraft/tags/item/shovels.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/item/signs.json
 bb6b8966367fc61aa0d8f979ce1e5ad37affe67a data/minecraft/tags/item/slabs.json
-8870c4a6385d90a9300d6230dc7d54e7c6ea821c data/minecraft/tags/item/small_flowers.json
+0a6b4e91f9e391ceac7e20c3d9fdffe24f50cd98 data/minecraft/tags/item/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/smelts_to_glass.json
 78e86ddda713eba499818d5e203325c2f39c7c75 data/minecraft/tags/item/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting_materials.json

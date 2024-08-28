@@ -64,6 +64,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		// flower -> dye
 		addSingleConversion(recipeOutput, Items.BLUE_DYE, ESItems.STARLIGHT_FLOWER.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.AUREATE_FLOWER.get());
 		addSingleConversion(recipeOutput, Items.BROWN_DYE, ESItems.CONEBLOOM.get());
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.NIGHTFAN.get());
 		addSingleConversion(recipeOutput, Items.PINK_DYE, ESItems.PINK_ROSE.get());

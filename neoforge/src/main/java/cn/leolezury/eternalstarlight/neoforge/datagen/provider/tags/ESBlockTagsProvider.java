@@ -568,6 +568,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.SMALL_FLOWERS).add(
 			ESBlocks.RED_VELVETUMOSS_FLOWER.get(),
 			ESBlocks.STARLIGHT_FLOWER.get(),
+			ESBlocks.AUREATE_FLOWER.get(),
 			ESBlocks.CONEBLOOM.get(),
 			ESBlocks.NIGHTFAN.get(),
 			ESBlocks.PINK_ROSE.get(),

@@ -151,6 +151,12 @@
                   "Name": "eternal_starlight:starlight_flower"
                 },
                 "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:aureate_flower"
+                },
+                "weight": 1
               }
             ]
           }
