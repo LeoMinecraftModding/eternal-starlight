@@ -386,6 +386,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			fightPlayerOnly = true;
 			setFightTargetName("");
 			setActivated(false);
+			setPos(getInitialPos());
 			if (level() instanceof ServerLevel serverLevel) {
 				dropCustomDeathLoot(serverLevel, source, true);
 			}
@@ -409,7 +410,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 		if (!level().isClientSide) {
 			if (tickCount % 20 == 0 && (getTarget() == null || !getTarget().isAlive())) {
+				setHealth(getMaxHealth());
+				fightPlayerOnly = true;
+				setFightTargetName("");
 				setActivated(false);
+				setPos(getInitialPos());
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;

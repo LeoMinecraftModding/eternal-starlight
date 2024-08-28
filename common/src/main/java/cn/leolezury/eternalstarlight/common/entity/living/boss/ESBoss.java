@@ -91,6 +91,10 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 
 	public void setActivated(boolean activated) {
 		this.getEntityData().set(ACTIVATED, activated);
+		if (activated) {
+			setBehaviorState(0);
+			setBehaviorTicks(0);
+		}
 	}
 
 	private Vec3 initialPos = Vec3.ZERO;
