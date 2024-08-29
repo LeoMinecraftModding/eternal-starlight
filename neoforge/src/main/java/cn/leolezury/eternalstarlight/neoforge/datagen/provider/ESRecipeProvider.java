@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.neoforge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.recipe.ManaCrystalRecipe;
+import cn.leolezury.eternalstarlight.common.item.recipe.MatchboxTorchRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
@@ -983,13 +984,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('P', ESItems.SALTPETER_POWDER.get())
 			.unlockedBy("has_item", has(ESItems.SALTPETER_POWDER.get()))
 			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.TORCH, 4)
-			.pattern("P")
-			.pattern("S")
-			.define('S', Items.STICK)
-			.define('P', ESItems.SALTPETER_POWDER.get())
-			.unlockedBy("has_item", has(ESItems.SALTPETER_POWDER.get()))
-			.save(recipeOutput, EternalStarlight.id("torch_from_saltpeter_powder"));
+		SpecialRecipeBuilder.special(MatchboxTorchRecipe::new).save(recipeOutput, EternalStarlight.id("torch_from_saltpeter_matchbox"));
 	}
 
 	private void addAmaramberRecipes(RecipeOutput recipeOutput) {
