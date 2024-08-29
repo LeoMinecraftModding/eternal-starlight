@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.network.ClientDismountPacket;
 import cn.leolezury.eternalstarlight.common.network.ClientMountPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -34,6 +35,12 @@ import net.minecraft.world.level.block.state.BlockState;
 public class Gleech extends Monster {
 	private static final String TAG_LARVAL = "larval";
 	private static final String TAG_GROWTH_TICKS = "growth_ticks";
+
+	public static final CompoundTag NOT_LARVAL = Util.make(() -> {
+		CompoundTag tag = new CompoundTag();
+		tag.putBoolean(TAG_LARVAL, false);
+		return tag;
+	});
 
 	protected static final EntityDataAccessor<Boolean> LARVAL = SynchedEntityData.defineId(Gleech.class, EntityDataSerializers.BOOLEAN);
 

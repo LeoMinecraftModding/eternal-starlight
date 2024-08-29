@@ -983,6 +983,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('P', ESItems.SALTPETER_POWDER.get())
 			.unlockedBy("has_item", has(ESItems.SALTPETER_POWDER.get()))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.TORCH, 4)
+			.pattern("P")
+			.pattern("S")
+			.define('S', Items.STICK)
+			.define('P', ESItems.SALTPETER_POWDER.get())
+			.unlockedBy("has_item", has(ESItems.SALTPETER_POWDER.get()))
+			.save(recipeOutput, EternalStarlight.id("torch_from_saltpeter_powder"));
 	}
 
 	private void addAmaramberRecipes(RecipeOutput recipeOutput) {
