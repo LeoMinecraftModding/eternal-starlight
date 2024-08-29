@@ -51,7 +51,10 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 		SkinManager skinManager = Minecraft.getInstance().getSkinManager();
 		Optional<GameProfile> profile = getGameProfile(entity);
 		if (profile.isPresent()) {
-			texture = skinManager.getInsecureSkin(profile.get()).texture();
+			PlayerSkin playerSkin = skinManager.getOrLoad(profile.get()).getNow(null);
+			if (playerSkin != null && !playerSkin.texture().getPath().startsWith("textures/entity/player/")) {
+				texture = playerSkin.texture();
+			}
 		}
 		return texture;
 	}
