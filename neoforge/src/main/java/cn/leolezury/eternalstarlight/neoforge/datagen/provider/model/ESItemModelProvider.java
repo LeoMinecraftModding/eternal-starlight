@@ -239,6 +239,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.ETERNAL_ICE_BRICK_SLAB.get());
 		block(ESItems.ETERNAL_ICE_BRICK_STAIRS.get());
 		wall(ESItems.ETERNAL_ICE_BRICK_WALL.get(), ESItems.ETERNAL_ICE_BRICKS.get());
+		basicItem(ESItems.ICICLE.get(), blockTextureFromItem(ESItems.ICICLE.get()).withSuffix("_tip"));
 		layeredBlock(ESItems.ASHEN_SNOW.get());
 
 		block(ESItems.NEBULAITE.get());

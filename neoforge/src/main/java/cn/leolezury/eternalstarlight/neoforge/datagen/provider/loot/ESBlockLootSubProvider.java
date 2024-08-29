@@ -263,6 +263,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+		dropSelf(ESBlocks.ICICLE.get());
 		add(ESBlocks.ASHEN_SNOW.get(), noDrop());
 
 		dropSelf(ESBlocks.NEBULAITE.get());

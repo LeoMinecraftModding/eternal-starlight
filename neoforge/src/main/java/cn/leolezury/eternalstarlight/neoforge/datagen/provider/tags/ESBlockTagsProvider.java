@@ -765,6 +765,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
 			ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
 			ESBlocks.ETERNAL_ICE_BRICK_WALL.get(),
+			ESBlocks.ICICLE.get(),
 			ESBlocks.NEBULAITE.get(),
 			ESBlocks.NEBULAITE_BRICKS.get(),
 			ESBlocks.NEBULAITE_BRICK_SLAB.get(),

@@ -136,6 +136,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.ETERNAL_ICE.get());
 		stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+		icicle(ESBlocks.ICICLE.get());
 		layered(ESBlocks.ASHEN_SNOW.get(), blockTexture(ESBlocks.ASHEN_SNOW.get()));
 
 		simpleBlock(ESBlocks.NEBULAITE.get());
@@ -968,6 +969,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void leaves(Block leaves) {
 		ModelFile modelFile = models().singleTexture(name(leaves), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/leaves"), "all", blockTexture(leaves)).renderType(CUTOUT_MIPPED);
 		simpleBlock(leaves, modelFile);
+	}
+
+	private void icicle(Block block) {
+		getVariantBuilder(block).forAllStates((state -> {
+			IcicleBlock.IcicleThickness thickness = state.getValue(IcicleBlock.THICKNESS);
+			ModelFile modelFile = models().cross(name(block) + "_" + thickness.getSerializedName(), blockTexture(block).withSuffix("_" + thickness.getSerializedName())).renderType(CUTOUT);
+			return ConfiguredModel.builder().modelFile(modelFile).rotationX(state.getValue(IcicleBlock.TIP_DIRECTION) == Direction.UP ? 0 : 180).build();
+		}));
 	}
 
 	private void layered(Block layered, ResourceLocation texture) {

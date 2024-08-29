@@ -1,0 +1,60 @@
+{
+  "variants": {
+    "icicle_thickness=base,vertical_direction=down,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_base",
+      "x": 180
+    },
+    "icicle_thickness=base,vertical_direction=down,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_base",
+      "x": 180
+    },
+    "icicle_thickness=base,vertical_direction=up,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_base"
+    },
+    "icicle_thickness=base,vertical_direction=up,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_base"
+    },
+    "icicle_thickness=middle,vertical_direction=down,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_middle",
+      "x": 180
+    },
+    "icicle_thickness=middle,vertical_direction=down,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_middle",
+      "x": 180
+    },
+    "icicle_thickness=middle,vertical_direction=up,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_middle"
+    },
+    "icicle_thickness=middle,vertical_direction=up,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_middle"
+    },
+    "icicle_thickness=tip,vertical_direction=down,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_tip",
+      "x": 180
+    },
+    "icicle_thickness=tip,vertical_direction=down,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_tip",
+      "x": 180
+    },
+    "icicle_thickness=tip,vertical_direction=up,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_tip"
+    },
+    "icicle_thickness=tip,vertical_direction=up,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_tip"
+    },
+    "icicle_thickness=top,vertical_direction=down,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_top",
+      "x": 180
+    },
+    "icicle_thickness=top,vertical_direction=down,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_top",
+      "x": 180
+    },
+    "icicle_thickness=top,vertical_direction=up,waterlogged=false": {
+      "model": "eternal_starlight:block/icicle_top"
+    },
+    "icicle_thickness=top,vertical_direction=up,waterlogged=true": {
+      "model": "eternal_starlight:block/icicle_top"
+    }
+  }
+}

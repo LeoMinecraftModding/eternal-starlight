@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-28T13:56:10.5890354	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2024-08-30T00:22:17.7345139	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 e2863b8fcfae5ad14247c8fe70024ee79ce749f7 data/c/tags/block/clusters.json
@@ -72,7 +72,7 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_s
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs_that_burn.json
 b4e91056087d6ab4068d1f5cb1ef851a4fbeac96 data/minecraft/tags/block/mineable/axe.json
-b8d9a837e3d9353664b5cedf65744896399689c4 data/minecraft/tags/block/mineable/pickaxe.json
+9c3fe27738bd30963239d095c5808288315bc9e7 data/minecraft/tags/block/mineable/pickaxe.json
 5df1ded2b90e2ef00a1488302b16e8e14445b954 data/minecraft/tags/block/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/block/moss_replaceable.json
 469fc7847509fc4c8612012823c4af15177a60bc data/minecraft/tags/block/mushroom_grow_block.json

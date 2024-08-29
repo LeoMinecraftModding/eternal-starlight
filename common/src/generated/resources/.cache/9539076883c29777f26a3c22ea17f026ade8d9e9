@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-28T13:56:10.5953833	Item Models: eternal_starlight
+// 1.21.1	2024-08-29T22:35:22.5379653	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -310,6 +310,7 @@ a73962ccfeaca57fadc311cd4384ce8564bfe22f assets/eternal_starlight/models/item/gr
 0b4f12fcb0cafd76720bf8d0b9f04c9648d35455 assets/eternal_starlight/models/item/grimstone_tile_slab.json
 fa9edd4fae239533ab0cf14a77ffcf0ae3d5731c assets/eternal_starlight/models/item/grimstone_tile_stairs.json
 f289ca560531c1f11d2df95c86788a0c445944b4 assets/eternal_starlight/models/item/grimstone_tile_wall.json
+069dd9178323425ac05d01c9b1a87844cd42a06f assets/eternal_starlight/models/item/icicle.json
 9257ec5eb0330504076cc8d3849ebf3c8bcd9365 assets/eternal_starlight/models/item/jingling_pickle.json
 e6f5e6609fe11eb51e084ed419f05cf7ca01ae56 assets/eternal_starlight/models/item/keeper_armor_trim_smithing_template.json
 364b79f414cd4a38f8bac34142fa6d13e1a46850 assets/eternal_starlight/models/item/light_blue_yeti_fur.json
