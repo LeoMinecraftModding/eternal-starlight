@@ -402,6 +402,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
+	public boolean canBossMove() {
+		return getTarget() != null && getTarget().isAlive();
+	}
+
+	@Override
 	public void aiStep() {
 		super.aiStep();
 		bossEvent.update();
@@ -414,7 +419,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				fightPlayerOnly = true;
 				setFightTargetName("");
 				setActivated(false);
-				setPos(getInitialPos());
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
