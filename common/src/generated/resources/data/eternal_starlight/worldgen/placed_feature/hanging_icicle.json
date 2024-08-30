@@ -1,5 +1,5 @@
 {
-  "feature": "eternal_starlight:ashen_snow",
+  "feature": "eternal_starlight:icicle",
   "placement": [
     {
       "type": "minecraft:count",
@@ -13,7 +13,7 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 0
+          "absolute": 65
         },
         "min_inclusive": {
           "above_bottom": 0
@@ -26,17 +26,17 @@
         "type": "minecraft:matching_blocks",
         "blocks": "minecraft:air"
       },
-      "direction_of_search": "down",
-      "max_steps": 12,
+      "direction_of_search": "up",
+      "max_steps": 20,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
-        "direction": "up"
+        "direction": "down"
       }
     },
     {
       "type": "minecraft:random_offset",
       "xz_spread": 0,
-      "y_spread": 1
+      "y_spread": -1
     },
     {
       "type": "minecraft:biome"

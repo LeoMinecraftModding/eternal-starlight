@@ -21,6 +21,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<ESLakeFeature.Configuration>> LAKE = FEATURES.register("lake", () -> new ESLakeFeature(ESLakeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STONE_SPIKE = FEATURES.register("stone_spike", () -> new StoneSpikeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GLACITE = FEATURES.register("glacite", () -> new GlaciteFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ICICLE = FEATURES.register("icicle", () -> new IcicleFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_GLOWING_MUSHROOM = FEATURES.register("huge_glowing_mushroom", () -> new HugeGlowingMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STELLAGMITE = FEATURES.register("stellagmite", () -> new StellagmiteFeature(NoneFeatureConfiguration.CODEC));

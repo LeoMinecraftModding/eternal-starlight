@@ -65,6 +65,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FINAL_MODIFICATION = create("final_modification");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_SPIKE = create("stone_spike");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GLACITE = create("glacite");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ICICLE = create("icicle");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_ORE = create("stone_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_ORE = create("deepslate_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_GRIMSTONE_ORE = create("glowing_grimstone_ore");
@@ -142,6 +143,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, FINAL_MODIFICATION, ESFeatures.FINAL_MODIFICATION.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, GLACITE, ESFeatures.GLACITE.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, ICICLE, ESFeatures.ICICLE.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, STONE_ORE, Feature.ORE, new OreConfiguration(baseStone, Blocks.STONE.defaultBlockState(), 64));
 		FeatureUtils.register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(baseStone, Blocks.DEEPSLATE.defaultBlockState(), 64));
 		FeatureUtils.register(context, GLOWING_GRIMSTONE_ORE, Feature.ORE, new OreConfiguration(grimstone, ESBlocks.GLOWING_GRIMSTONE.get().defaultBlockState(), 20));

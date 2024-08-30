@@ -311,6 +311,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.seeking_eye.launch"
   },
+  "entity.sonar_bomb.explode": {
+    "sounds": [
+      "eternal_starlight:entity/sonar_bomb/explode"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.sonar_bomb.explode"
+  },
   "entity.starlight_golem.block": {
     "sounds": [
       "random/anvil_land"

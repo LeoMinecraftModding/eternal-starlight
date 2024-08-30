@@ -342,7 +342,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, SlabBlock> ETERNAL_ICE_BRICK_SLAB = BLOCKS.register("eternal_ice_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, StairBlock> ETERNAL_ICE_BRICK_STAIRS = BLOCKS.register("eternal_ice_brick_stairs", () -> new StairBlock(ETERNAL_ICE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, WallBlock> ETERNAL_ICE_BRICK_WALL = BLOCKS.register("eternal_ice_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
-	public static final RegistryObject<Block, IcicleBlock> ICICLE = BLOCKS.register("icicle", () -> new IcicleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.ICE)));
+	public static final RegistryObject<Block, IcicleBlock> ICICLE = BLOCKS.register("icicle", () -> new IcicleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, AshenSnowBlock> ASHEN_SNOW = BLOCKS.register("ashen_snow", () -> new AshenSnowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW).noCollission()));
 
 	// nebulaite

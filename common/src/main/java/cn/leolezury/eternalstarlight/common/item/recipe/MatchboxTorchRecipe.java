@@ -39,7 +39,7 @@ public class MatchboxTorchRecipe extends CustomRecipe {
 		if (recipeInput.items().stream().filter(stack -> stack.is(Items.STICK)).count() != 1) {
 			return ItemStack.EMPTY;
 		}
-		return Items.TORCH.getDefaultInstance();
+		return new ItemStack(Items.TORCH, 4);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -69,6 +71,16 @@ public class IcicleBlock extends Block implements SimpleWaterloggedBlock {
 	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (getSuitableState(state, level, pos, false).isAir()) {
 			spawnFallingStalactite(state, level, pos);
+		}
+	}
+
+	@Override
+	protected void onProjectileHit(Level level, BlockState state, BlockHitResult hitResult, Projectile projectile) {
+		if (!level.isClientSide) {
+			BlockPos pos = hitResult.getBlockPos();
+			if (projectile.mayInteract(level, pos) && projectile.mayBreak(level) && projectile.getDeltaMovement().length() > 0.6) {
+				level.destroyBlock(pos, true);
+			}
 		}
 	}
 

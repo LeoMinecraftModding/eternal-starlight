@@ -53,6 +53,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.LASER_BEAM_HUM.get(), definition().with(sound(loc("entity/laser_beam/hum"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".laser_beam.hum"));
 
+		add(ESSoundEvents.SONAR_BOMB_EXPLODE.get(), definition().with(sound(loc("entity/sonar_bomb/explode"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".sonar_bomb.explode"));
+
 		add(ESSoundEvents.SEEKING_EYE_LAUNCH.get(), definition().with(sound(mcLoc("entity/endereye/endereye_launch1")), sound(mcLoc("entity/endereye/endereye_launch2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.launch"));
 		add(ESSoundEvents.SEEKING_EYE_DEATH.get(), definition().with(sound(mcLoc("entity/endereye/dead1")).volume(1.3), sound(mcLoc("entity/endereye/dead2")).volume(1.3)).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeking_eye.death"));
 

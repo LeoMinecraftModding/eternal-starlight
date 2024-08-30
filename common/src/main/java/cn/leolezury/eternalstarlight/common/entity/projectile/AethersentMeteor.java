@@ -172,7 +172,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	private void handleHit() {
 		if (level() instanceof ServerLevel serverLevel) {
-			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
+			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 		}
 		if (natural) {
 			dropAndDiscard();
