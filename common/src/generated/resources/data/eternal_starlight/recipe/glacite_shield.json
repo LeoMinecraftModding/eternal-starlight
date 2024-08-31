@@ -6,7 +6,7 @@
       "tag": "minecraft:planks"
     },
     "S": {
-      "item": "eternal_starlight:glacite_shard"
+      "tag": "c:gems/glacite"
     }
   },
   "pattern": [

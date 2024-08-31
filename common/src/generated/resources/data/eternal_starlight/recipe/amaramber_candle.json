@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "eternal_starlight:raw_amaramber"
+      "tag": "c:raw_materials/amaramber"
     },
     "S": {
       "item": "minecraft:string"

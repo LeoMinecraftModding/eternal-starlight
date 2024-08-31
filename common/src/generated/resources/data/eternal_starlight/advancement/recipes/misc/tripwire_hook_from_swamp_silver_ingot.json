@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:swamp_silver_ingot"
+            "items": "#c:ingots/swamp_silver"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:tripwire_hook"
+        "recipe": "eternal_starlight:tripwire_hook_from_swamp_silver_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:tripwire_hook"
+      "eternal_starlight:tripwire_hook_from_swamp_silver_ingot"
     ]
   }
 }

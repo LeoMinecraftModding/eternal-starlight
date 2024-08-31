@@ -6,7 +6,7 @@
       "item": "eternal_starlight:shivering_gel"
     },
     "N": {
-      "item": "eternal_starlight:swamp_silver_nugget"
+      "tag": "c:nuggets/swamp_silver"
     }
   },
   "pattern": [

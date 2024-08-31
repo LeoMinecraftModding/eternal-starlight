@@ -3,10 +3,10 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "eternal_starlight:aethersent_ingot"
+      "tag": "c:ingots/aethersent"
     },
     "H": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

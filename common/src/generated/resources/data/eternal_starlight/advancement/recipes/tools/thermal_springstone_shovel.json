@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:thermal_springstone_ingot"
+            "items": "#c:ingots/thermal_springstone"
           }
         ]
       },

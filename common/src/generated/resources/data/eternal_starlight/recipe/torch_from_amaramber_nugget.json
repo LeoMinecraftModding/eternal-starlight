@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "N": {
-      "item": "eternal_starlight:amaramber_nugget"
+      "tag": "c:nuggets/amaramber"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

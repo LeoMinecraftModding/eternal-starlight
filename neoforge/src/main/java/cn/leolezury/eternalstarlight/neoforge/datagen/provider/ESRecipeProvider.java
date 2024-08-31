@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.item.recipe.MatchboxTorchRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,6 +23,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -46,8 +48,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addAmaramberRecipes(recipeOutput);
 
 		smithingTrims().forEach((template) -> trimSmithing(recipeOutput, template.template(), template.id()));
-		copySmithingTemplate(recipeOutput, ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.GRIMSTONE.get(), ESItems.SWAMP_SILVER_INGOT.get());
-		copySmithingTemplate(recipeOutput, ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.VOIDSTONE.get(), ESItems.GOLEM_STEEL_INGOT.get());
+		copySmithingTemplate(recipeOutput, ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.GRIMSTONE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		copySmithingTemplate(recipeOutput, ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.VOIDSTONE.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
 
 		// yeti fur
 		List<Item> dyeList = List.of(Items.BLACK_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.CYAN_DYE, Items.GRAY_DYE, Items.GREEN_DYE, Items.LIGHT_BLUE_DYE, Items.LIGHT_GRAY_DYE, Items.LIME_DYE, Items.MAGENTA_DYE, Items.ORANGE_DYE, Items.PINK_DYE, Items.PURPLE_DYE, Items.RED_DYE, Items.YELLOW_DYE, Items.WHITE_DYE);
@@ -189,27 +191,27 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern(" R ")
 			.define('S', Items.STRING)
 			.define('T', Items.TRIPWIRE_HOOK)
-			.define('G', ESItems.GOLEM_STEEL_INGOT.get())
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.define('B', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
 			.define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_INGOT.get()))
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MECHANICAL_CROSSBOW.get())
 			.pattern("#&#")
 			.pattern("~$~")
 			.pattern(" # ")
 			.define('~', Items.STRING)
-			.define('#', Items.STICK)
-			.define('&', ESItems.GOLEM_STEEL_INGOT.get())
+			.define('#', Tags.Items.RODS_WOODEN)
+			.define('&', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.define('$', Items.TRIPWIRE_HOOK)
-			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_INGOT.get()))
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MOONRING_GREATSWORD.get())
 			.pattern("TTT")
 			.pattern("TGT")
 			.pattern("SSS")
-			.define('S', Items.STICK)
-			.define('G', ESItems.GOLEM_STEEL_INGOT.get())
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.define('T', ESItems.TENACIOUS_PETAL.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
@@ -217,8 +219,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("GTT")
 			.pattern("GS ")
 			.pattern(" S ")
-			.define('S', Items.STICK)
-			.define('G', ESItems.GOLEM_STEEL_INGOT.get())
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.define('T', ESItems.TENACIOUS_PETAL.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
@@ -235,7 +237,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("S S")
 			.pattern("PSP")
 			.pattern(" V ")
-			.define('S', ESItems.SWAMP_SILVER_INGOT.get())
+			.define('S', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
 			.define('P', ESItems.TENACIOUS_PETAL.get())
 			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
@@ -244,17 +246,17 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern(" N ")
 			.pattern("NGN")
 			.pattern(" N ")
-			.define('N', ESItems.SWAMP_SILVER_NUGGET.get())
+			.define('N', ESConventionalTags.Items.NUGGETS_SWAMP_SILVER)
 			.define('G', ESItems.SHIVERING_GEL.get())
 			.unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
-		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get(), Items.STICK);
+		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
 			.pattern("SSS")
 			.pattern("SFS")
 			.pattern("SSS")
-			.define('S', Items.STICK)
+			.define('S', Tags.Items.RODS_WOODEN)
 			.define('F', ESTags.Items.YETI_FUR)
 			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
 			.save(recipeOutput);
@@ -348,9 +350,9 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("SAS")
 			.pattern("LLL")
 			.define('L', ESTags.Items.TORREYA_LOGS)
-			.define('S', Items.STICK)
-			.define('A', ESItems.RAW_AMARAMBER.get())
-			.unlockedBy("has_stick", has(Items.STICK)).unlockedBy("has_fuel", has(ESItems.RAW_AMARAMBER.get())).save(recipeOutput);
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('A', ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER)
+			.unlockedBy("has_stick", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_fuel", has(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER)).save(recipeOutput);
 	}
 
 	private void stonecuttingSet(RecipeOutput recipeOutput, ItemLike slab, ItemLike stairs, ItemLike wall, ItemLike source) {
@@ -824,82 +826,90 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("###")
 			.pattern("A A")
 			.define('#', Items.LEATHER)
-			.define('A', ESItems.AETHERSENT_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AETHERSENT_INGOT.get()))
+			.define('A', ESConventionalTags.Items.INGOTS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_CAPE.get())
 			.pattern("A A")
 			.pattern("#A#")
 			.pattern("###")
 			.define('#', Items.LEATHER)
-			.define('A', ESItems.AETHERSENT_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AETHERSENT_INGOT.get()))
+			.define('A', ESConventionalTags.Items.INGOTS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_BOTTOMS.get())
 			.pattern("###")
 			.pattern("A A")
 			.pattern("# #")
 			.define('#', Items.LEATHER)
-			.define('A', ESItems.AETHERSENT_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AETHERSENT_INGOT.get()))
+			.define('A', ESConventionalTags.Items.INGOTS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_BOOTS.get())
 			.pattern("A A")
 			.pattern("# #")
 			.define('#', Items.LEATHER)
-			.define('A', ESItems.AETHERSENT_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AETHERSENT_INGOT.get()))
+			.define('A', ESConventionalTags.Items.INGOTS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.STARFALL_LONGBOW.get())
 			.pattern(" AS")
 			.pattern("A S")
 			.pattern(" AS")
 			.define('S', Items.STRING)
-			.define('A', ESItems.AETHERSENT_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.AETHERSENT_INGOT.get()))
+			.define('A', ESConventionalTags.Items.INGOTS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
-		addSword(recipeOutput, ESItems.RAGE_OF_STARS.get(), ESItems.AETHERSENT_INGOT.get(), Items.STICK);
+		addSword(recipeOutput, ESItems.RAGE_OF_STARS.get(), ESConventionalTags.Items.INGOTS_AETHERSENT);
 	}
 
 	private void addSwampSilverRecipes(RecipeOutput recipeOutput) {
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.SWAMP_SILVER_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.SWAMP_SILVER_BLOCK.get(), "swamp_silver_ingot_from_swamp_silver_block", "swamp_silver_ingot");
 		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.SWAMP_SILVER_NUGGET.get(), RecipeCategory.MISC, ESItems.SWAMP_SILVER_INGOT.get(), "swamp_silver_ingot_from_nuggets", "swamp_silver_ingot");
-		addAxe(recipeOutput, ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
-		addPickaxe(recipeOutput, ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
-		addSword(recipeOutput, ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK);
-		addTripwireHook(recipeOutput, Items.TRIPWIRE_HOOK, ESItems.SWAMP_SILVER_INGOT.get(), Items.STICK, ItemTags.PLANKS);
-		addHelmet(recipeOutput, ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_INGOT.get());
-		addChestplate(recipeOutput, ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_INGOT.get());
-		addLeggings(recipeOutput, ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_INGOT.get());
-		addBoots(recipeOutput, ESItems.SWAMP_SILVER_BOOTS.get(), ESItems.SWAMP_SILVER_INGOT.get());
+		addAxe(recipeOutput, ESItems.SWAMP_SILVER_AXE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addPickaxe(recipeOutput, ESItems.SWAMP_SILVER_PICKAXE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addHoe(recipeOutput, ESItems.SWAMP_SILVER_SICKLE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addSword(recipeOutput, ESItems.SWAMP_SILVER_SWORD.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addHelmet(recipeOutput, ESItems.SWAMP_SILVER_HELMET.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addChestplate(recipeOutput, ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addLeggings(recipeOutput, ESItems.SWAMP_SILVER_LEGGINGS.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addBoots(recipeOutput, ESItems.SWAMP_SILVER_BOOTS.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.SHIELD)
 			.pattern("P#P")
 			.pattern("PPP")
 			.pattern(" P ")
 			.define('P', ItemTags.PLANKS)
-			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.define('#', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_SWAMP_SILVER))
 			.save(recipeOutput, EternalStarlight.id("shield_from_swamp_silver_ingot"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.SHEARS)
 			.pattern("# ")
 			.pattern(" #")
-			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.define('#', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_SWAMP_SILVER))
 			.save(recipeOutput, EternalStarlight.id("shears_from_swamp_silver_ingot"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.BUCKET)
 			.pattern("# #")
 			.pattern(" # ")
-			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
-			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.define('#', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_SWAMP_SILVER))
 			.save(recipeOutput, EternalStarlight.id("bucket_from_swamp_silver_ingot"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, Blocks.CAULDRON)
 			.pattern("# #")
 			.pattern("# #")
 			.pattern("###")
-			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
+			.define('#', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
 			.unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
 			.save(recipeOutput, EternalStarlight.id("cauldron_from_swamp_silver_ingot"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.TRIPWIRE_HOOK)
+			.pattern("#")
+			.pattern("S")
+			.pattern("P")
+			.define('#', ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('P', ItemTags.PLANKS)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_SWAMP_SILVER))
+			.save(recipeOutput, EternalStarlight.id("tripwire_hook_from_swamp_silver_ingot"));
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_NUGGET.get(), ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_BOOTS.get());
@@ -907,40 +917,42 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {
-		addAxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addShovel(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addPickaxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addScythe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addSword(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addHammer(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), Items.STICK);
-		addHelmet(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HELMET.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
-		addChestplate(recipeOutput, ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
-		addLeggings(recipeOutput, ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
-		addBoots(recipeOutput, ESItems.THERMAL_SPRINGSTONE_BOOTS.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get());
+		addAxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addHoe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addShovel(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addPickaxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addScythe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addSword(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addHammer(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addHelmet(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HELMET.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addChestplate(recipeOutput, ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addLeggings(recipeOutput, ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		addBoots(recipeOutput, ESItems.THERMAL_SPRINGSTONE_BOOTS.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+
 		addSmelt(recipeOutput, 200, ESItems.THERMAL_SPRINGSTONE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), ESItems.THERMAL_SPRINGSTONE.get());
 		addBlast(recipeOutput, 100, ESItems.THERMAL_SPRINGSTONE.get(), ESItems.THERMAL_SPRINGSTONE_INGOT.get(), ESItems.THERMAL_SPRINGSTONE.get());
 	}
 
 	private void addGlaciteRecipes(RecipeOutput recipeOutput) {
-		addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.GLACITE_HOE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addShovel(recipeOutput, ESItems.GLACITE_SHOVEL.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addPickaxe(recipeOutput, ESItems.GLACITE_PICKAXE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addScythe(recipeOutput, ESItems.GLACITE_SCYTHE.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addSword(recipeOutput, ESItems.GLACITE_SWORD.get(), ESItems.GLACITE_SHARD.get(), Items.STICK);
-		addHelmet(recipeOutput, ESItems.GLACITE_HELMET.get(), ESItems.GLACITE_SHARD.get());
-		addChestplate(recipeOutput, ESItems.GLACITE_CHESTPLATE.get(), ESItems.GLACITE_SHARD.get());
-		addLeggings(recipeOutput, ESItems.GLACITE_LEGGINGS.get(), ESItems.GLACITE_SHARD.get());
-		addBoots(recipeOutput, ESItems.GLACITE_BOOTS.get(), ESItems.GLACITE_SHARD.get());
+		addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addHoe(recipeOutput, ESItems.GLACITE_HOE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addShovel(recipeOutput, ESItems.GLACITE_SHOVEL.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addPickaxe(recipeOutput, ESItems.GLACITE_PICKAXE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addScythe(recipeOutput, ESItems.GLACITE_SCYTHE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addSword(recipeOutput, ESItems.GLACITE_SWORD.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addHelmet(recipeOutput, ESItems.GLACITE_HELMET.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addChestplate(recipeOutput, ESItems.GLACITE_CHESTPLATE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addLeggings(recipeOutput, ESItems.GLACITE_LEGGINGS.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		addBoots(recipeOutput, ESItems.GLACITE_BOOTS.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GLACITE_SHIELD.get())
 			.pattern("PSP")
 			.pattern("PPP")
 			.pattern(" P ")
-			.define('S', ESItems.GLACITE_SHARD.get())
+			.define('S', ESConventionalTags.Items.GEMS_GLACITE)
 			.define('P', Ingredient.of(ItemTags.PLANKS))
-			.unlockedBy("has_item", has(ESItems.GLACITE_SHARD.get()))
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_GLACITE))
 			.save(recipeOutput);
+
 		addSmelt(recipeOutput, 200, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
 		addBlast(recipeOutput, 100, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
 	}
@@ -957,7 +969,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("TAT")
 			.define('B', ESItems.ATALPHAITE_BLOCK.get())
 			.define('A', ESItems.ATALPHAITE.get())
-			.define('T', ESItems.THERMAL_SPRINGSTONE_INGOT.get())
+			.define('T', ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE)
 			.unlockedBy("has_item", has(ESItems.ATALPHAITE_BLOCK.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.ATALPHAITE_LIGHT.get())
@@ -989,13 +1001,13 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	private void addAmaramberRecipes(RecipeOutput recipeOutput) {
 		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.AMARAMBER_NUGGET.get(), RecipeCategory.MISC, ESItems.AMARAMBER_INGOT.get(), "amaramber_ingot_from_nuggets", "amaramber_ingot");
-		addShapeless(recipeOutput, ESItems.RAW_AMARAMBER.get(), ESItems.AMARAMBER_INGOT.get(), 2, ESItems.RAW_AMARAMBER.get(), Items.DEEPSLATE);
+		addShapeless(recipeOutput, RecipeCategory.MISC, ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER, ESItems.AMARAMBER_INGOT.get(), 2, List.of(Items.DEEPSLATE), List.of(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER));
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.AMARAMBER_CANDLE.get())
 			.pattern("S")
 			.pattern("A")
 			.define('S', Items.STRING)
-			.define('A', ESItems.RAW_AMARAMBER.get())
-			.unlockedBy("has_item", has(ESItems.RAW_AMARAMBER.get()))
+			.define('A', ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.AMARAMBER_LANTERN.get())
 			.pattern("NNN")
@@ -1009,30 +1021,31 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("NNN")
 			.pattern("NAN")
 			.pattern("NNN")
-			.define('N', ESItems.SWAMP_SILVER_NUGGET.get())
+			.define('N', ESConventionalTags.Items.NUGGETS_SWAMP_SILVER)
 			.define('A', ESItems.AMARAMBER_CANDLE.get())
 			.unlockedBy("has_item", has(ESItems.AMARAMBER_CANDLE.get()))
 			.save(recipeOutput, EternalStarlight.id("amaramber_lantern_from_swamp_silver_nuggets"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.TORCH, 6)
 			.pattern("N")
 			.pattern("S")
-			.define('S', Items.STICK)
-			.define('N', ESItems.AMARAMBER_NUGGET.get())
-			.unlockedBy("has_item", has(ESItems.AMARAMBER_NUGGET.get()))
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('N', ESConventionalTags.Items.NUGGETS_AMARAMBER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AMARAMBER))
 			.save(recipeOutput, EternalStarlight.id("torch_from_amaramber_nugget"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get(), 4)
 			.pattern("A")
 			.pattern("S")
 			.pattern("S")
-			.define('S', Items.STICK)
-			.define('A', ESItems.AMARAMBER_NUGGET.get())
-			.unlockedBy("has_item", has(ESItems.AMARAMBER_NUGGET.get()))
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('A', ESConventionalTags.Items.NUGGETS_AMARAMBER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AMARAMBER))
 			.save(recipeOutput);
-		addAxe(recipeOutput, ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_INGOT.get(), Items.STICK);
-		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_INGOT.get(), Items.STICK);
-		addShovel(recipeOutput, ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_INGOT.get(), Items.STICK);
-		addHelmet(recipeOutput, ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_INGOT.get());
-		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESItems.AMARAMBER_INGOT.get());
+		addAxe(recipeOutput, ESItems.AMARAMBER_AXE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addShovel(recipeOutput, ESItems.AMARAMBER_SHOVEL.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addHelmet(recipeOutput, ESItems.AMARAMBER_HELMET.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+
 		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
 		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
 	}
@@ -1065,8 +1078,19 @@ public class ESRecipeProvider extends RecipeProvider {
 		builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id("shapeless/" + name(output)));
 	}
 
+	protected final void addShapeless(RecipeOutput recipeOutput, RecipeCategory category, TagKey<Item> criteria, ItemLike output, int num, List<ItemLike> ingredients, List<TagKey<Item>> tags) {
+		ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(category, output, num);
+		for (ItemLike item : ingredients) {
+			builder.requires(item);
+		}
+		for (TagKey<Item> item : tags) {
+			builder.requires(item);
+		}
+		builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id("shapeless/" + name(output)));
+	}
+
 	// combat & tools
-	protected final void addHelmet(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+	protected final void addHelmet(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")
 			.pattern("# #")
@@ -1075,7 +1099,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	protected final void addChestplate(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+	protected final void addChestplate(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("# #")
 			.pattern("###")
@@ -1085,7 +1109,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	protected final void addLeggings(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+	protected final void addLeggings(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")
 			.pattern("# #")
@@ -1095,7 +1119,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	protected final void addBoots(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+	protected final void addBoots(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("# #")
 			.pattern("# #")
@@ -1104,91 +1128,90 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
-	protected final void addScythe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addScythe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("###")
 			.pattern("  H")
 			.pattern("  H")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addHoe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addHoe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("##")
 			.pattern(" H")
 			.pattern(" H")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addShovel(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addShovel(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("#")
 			.pattern("H")
 			.pattern("H")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addPickaxe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addPickaxe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("###")
 			.pattern(" H ")
 			.pattern(" H ")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addSword(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addSword(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("#")
 			.pattern("#")
 			.pattern("H")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addTripwireHook(RecipeOutput recipeOutput, ItemLike output, ItemLike top, ItemLike stick, TagKey<Item> plank) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output)
+	protected final void addSword(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("#")
-			.pattern("S")
-			.pattern("P")
-			.define('#', top)
-			.define('S', stick)
-			.define('P', plank)
-			.unlockedBy("has_item", has(top))
+			.pattern("#")
+			.pattern("H")
+			.define('#', input)
+			.define('H', Tags.Items.RODS_WOODEN)
+			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addAxe(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addAxe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("##")
 			.pattern("#H")
 			.pattern(" H")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
 
-	protected final void addHammer(RecipeOutput recipeOutput, ItemLike output, ItemLike input, ItemLike handle) {
+	protected final void addHammer(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")
 			.pattern("#H#")
 			.pattern(" H ")
 			.define('#', input)
-			.define('H', handle)
+			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
@@ -1241,7 +1264,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("#S#")
 			.pattern("#S#")
 			.define('#', input)
-			.define('S', Items.STICK)
+			.define('S', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
@@ -1251,7 +1274,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("S#S")
 			.pattern("S#S")
 			.define('#', input)
-			.define('S', Items.STICK)
+			.define('S', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
@@ -1306,7 +1329,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("###")
 			.pattern(" S ")
 			.define('#', input)
-			.define('S', Items.STICK)
+			.define('S', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
@@ -1397,7 +1420,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		builder.save(recipeOutput, EternalStarlight.id(itemName + "_from_" + fromName));
 	}
 
-	protected static void copySmithingTemplate(RecipeOutput recipeOutput, ItemLike template, ItemLike ingredient, ItemLike ingotIngredient) {
+	protected static void copySmithingTemplate(RecipeOutput recipeOutput, ItemLike template, ItemLike ingredient, TagKey<Item> ingotIngredient) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, template, 2).define('#', ingotIngredient).define('C', ingredient).define('S', template).pattern("#S#").pattern("#C#").pattern("###").unlockedBy(getHasName(template), has(template)).save(recipeOutput);
 	}
 

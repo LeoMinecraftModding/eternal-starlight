@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "eternal_starlight:raw_amaramber"
+      "item": "minecraft:deepslate"
     },
     {
-      "item": "minecraft:deepslate"
+      "tag": "c:raw_materials/amaramber"
     }
   ],
   "result": {

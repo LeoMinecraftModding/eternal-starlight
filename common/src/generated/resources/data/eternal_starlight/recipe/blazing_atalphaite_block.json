@@ -9,7 +9,7 @@
       "item": "eternal_starlight:atalphaite_block"
     },
     "T": {
-      "item": "eternal_starlight:thermal_springstone_ingot"
+      "tag": "c:ingots/thermal_springstone"
     }
   },
   "pattern": [

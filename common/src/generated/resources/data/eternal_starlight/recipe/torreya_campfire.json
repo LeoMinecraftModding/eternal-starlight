@@ -3,13 +3,13 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "eternal_starlight:raw_amaramber"
+      "tag": "c:raw_materials/amaramber"
     },
     "L": {
       "tag": "eternal_starlight:torreya_logs"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

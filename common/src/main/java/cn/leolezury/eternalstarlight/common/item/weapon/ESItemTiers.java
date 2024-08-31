@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import com.google.common.base.Suppliers;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -12,11 +13,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public enum ESItemTiers implements Tier {
-	AMARAMBER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESItems.AMARAMBER_INGOT.get())),
-	AETHERSENT(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESItems.AETHERSENT_INGOT.get())),
-	THERMAL_SPRINGSTONE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESItems.THERMAL_SPRINGSTONE_INGOT.get())),
-	GLACITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESItems.GLACITE_SHARD.get())),
-	SWAMP_SILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESItems.SWAMP_SILVER_INGOT.get())),
+	AMARAMBER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AMARAMBER)),
+	AETHERSENT(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AETHERSENT)),
+	THERMAL_SPRINGSTONE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE)),
+	GLACITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESConventionalTags.Items.GEMS_GLACITE)),
+	SWAMP_SILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER)),
 	DOOMEDEN(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ESItems.BROKEN_DOOMEDEN_BONE.get())),
 	PETAL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get())),
 	AURORA_DEER_ANTLER(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.EMPTY),

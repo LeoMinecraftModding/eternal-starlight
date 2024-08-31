@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.neoforge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -203,6 +204,45 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.LUNAR_MOSAIC.get()
+		);
+		// mod conventional tags
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL).add(
+			ESBlocks.GOLEM_STEEL_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL).add(
+			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT).add(
+			ESBlocks.RAW_AETHERSENT_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT).add(
+			ESBlocks.AETHERSENT_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.ORES_SWAMP_SILVER).add(
+			ESBlocks.SWAMP_SILVER_ORE.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_SWAMP_SILVER).add(
+			ESBlocks.SWAMP_SILVER_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.ORES_SALTPETER).add(
+			ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
+			ESBlocks.VOIDSTONE_SALTPETER_ORE.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER).add(
+			ESBlocks.SALTPETER_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE).add(
+			ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(),
+			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
+			ESBlocks.GRIMSTONE_SALTPETER_ORE.get()
+		);
+		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE).add(
+			ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(),
+			ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
+			ESBlocks.VOIDSTONE_SALTPETER_ORE.get()
+		);
+		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD).add(
+			ESBlocks.SWAMP_SILVER_ORE.get()
 		);
 		// mod tags
 		tag(ESTags.Blocks.LUNAR_LOGS).add(

@@ -3,13 +3,13 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "eternal_starlight:swamp_silver_ingot"
+      "tag": "c:ingots/swamp_silver"
     },
     "P": {
       "tag": "minecraft:planks"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

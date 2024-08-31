@@ -3,10 +3,10 @@
   "category": "equipment",
   "key": {
     "G": {
-      "item": "eternal_starlight:golem_steel_ingot"
+      "tag": "c:ingots/golem_steel"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     },
     "T": {
       "item": "eternal_starlight:tenacious_petal"

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:aethersent_ingot"
+            "items": "#c:ingots/aethersent"
           }
         ]
       },

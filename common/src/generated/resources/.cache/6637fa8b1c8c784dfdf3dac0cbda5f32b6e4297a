@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-30T00:22:17.7345139	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2024-08-31T13:41:08.7803833	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 e2863b8fcfae5ad14247c8fe70024ee79ce749f7 data/c/tags/block/clusters.json
@@ -26,6 +26,11 @@ c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/block/fence_gates.json
 13d00393f9e2ed04efe9f49aae1e08e25f7850df data/c/tags/block/gravels.json
 a3ea5890c569fe12b1b41d000d078333aec261d8 data/c/tags/block/ores.json
 185de381d00e68462e4a365163c588fc0671dde6 data/c/tags/block/ores/redstone.json
+d5df2ab223e32c4fda43c8070ef7c947761e974c data/c/tags/block/ores/saltpeter.json
+79594e3530f1e6eab2277904c04fdd886e5bfa08 data/c/tags/block/ores/swamp_silver.json
+45381b163559539ad21f7177191d46cc1a08a13a data/c/tags/block/ores_in_ground/grimstone.json
+79594e3530f1e6eab2277904c04fdd886e5bfa08 data/c/tags/block/ores_in_ground/nightfall_mud.json
+563721be5739d8a7ece10ec28cac72f462439fb5 data/c/tags/block/ores_in_ground/voidstone.json
 234b0283150e53943ec5710eaf278b10a4ca2810 data/c/tags/block/ore_rates/dense.json
 665e7c01ec659bbad54f6626a4f0638d6bcc16d6 data/c/tags/block/ore_rates/sparse.json
 4ee447c5b8c185a2d98b38ce0672139b63c8e9a3 data/c/tags/block/sands.json
@@ -35,6 +40,12 @@ a3ea5890c569fe12b1b41d000d078333aec261d8 data/c/tags/block/ores.json
 c8b398a826d48a0f9f9cdfcf25cdbf300dafdf52 data/c/tags/block/skulls.json
 61979a279b4bb8bc6613c1a86aff3b56bb204214 data/c/tags/block/stones.json
 606e326420feb61ab12d7807dd4a4d173061097a data/c/tags/block/storage_blocks.json
+c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aethersent.json
+252ddce914b462b117c335eb7bd1758725927f96 data/c/tags/block/storage_blocks/golem_steel.json
+1b85805879792f934ad432561017f2a458d3ffdc data/c/tags/block/storage_blocks/oxidized_golem_steel.json
+67c51ec7d04bb9ca0201cb358926b2c2176ed768 data/c/tags/block/storage_blocks/raw_aethersent.json
+7b815acd1fcf2ab1e4c3ad11996b68324cf148a7 data/c/tags/block/storage_blocks/saltpeter.json
+34af8ed5e0a9815acdaae73c00c8a7fa2034cc34 data/c/tags/block/storage_blocks/swamp_silver.json
 c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/block/abyssal_fire_survives_on.json
 63b66067a20010742e3d413440af896511013bcf data/eternal_starlight/tags/block/abysslates.json
 1eef840b8164c4fe4c7c91c1c2f8fadddbc920c0 data/eternal_starlight/tags/block/aethersent_meteor_replaceables.json

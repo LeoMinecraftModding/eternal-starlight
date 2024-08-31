@@ -6,7 +6,7 @@
       "item": "eternal_starlight:tooth_of_hunger"
     },
     "H": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

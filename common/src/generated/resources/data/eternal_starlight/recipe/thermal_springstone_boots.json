@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "eternal_starlight:thermal_springstone_ingot"
+      "tag": "c:ingots/thermal_springstone"
     }
   },
   "pattern": [

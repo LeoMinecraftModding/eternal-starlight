@@ -6,7 +6,7 @@
       "item": "minecraft:leather"
     },
     "A": {
-      "item": "eternal_starlight:aethersent_ingot"
+      "tag": "c:ingots/aethersent"
     }
   },
   "pattern": [

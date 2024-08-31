@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "A": {
-      "item": "eternal_starlight:aethersent_ingot"
+      "tag": "c:ingots/aethersent"
     },
     "S": {
       "item": "minecraft:string"

@@ -6,7 +6,7 @@
       "item": "eternal_starlight:starlight_mangrove_planks"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

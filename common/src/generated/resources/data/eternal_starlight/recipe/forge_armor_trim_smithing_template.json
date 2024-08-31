@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "eternal_starlight:golem_steel_ingot"
+      "tag": "c:ingots/golem_steel"
     },
     "C": {
       "item": "eternal_starlight:voidstone"

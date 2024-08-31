@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:swamp_silver_ingot"
+            "items": "#c:ingots/swamp_silver"
           }
         ]
       },

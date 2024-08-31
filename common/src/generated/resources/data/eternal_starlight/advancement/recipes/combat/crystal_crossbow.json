@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:golem_steel_ingot"
+            "items": "#c:ingots/golem_steel"
           }
         ]
       },

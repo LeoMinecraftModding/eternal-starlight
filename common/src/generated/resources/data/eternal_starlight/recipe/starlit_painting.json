@@ -6,7 +6,7 @@
       "tag": "eternal_starlight:yeti_fur"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [

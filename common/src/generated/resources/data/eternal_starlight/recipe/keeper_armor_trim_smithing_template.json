@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "eternal_starlight:swamp_silver_ingot"
+      "tag": "c:ingots/swamp_silver"
     },
     "C": {
       "item": "eternal_starlight:grimstone"

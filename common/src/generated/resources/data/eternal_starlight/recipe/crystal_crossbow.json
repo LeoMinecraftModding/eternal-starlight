@@ -6,7 +6,7 @@
       "item": "eternal_starlight:blue_starlight_crystal_shard"
     },
     "G": {
-      "item": "eternal_starlight:golem_steel_ingot"
+      "tag": "c:ingots/golem_steel"
     },
     "R": {
       "item": "eternal_starlight:red_starlight_crystal_shard"

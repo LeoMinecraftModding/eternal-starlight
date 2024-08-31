@@ -6,7 +6,7 @@
       "item": "eternal_starlight:tenacious_petal"
     },
     "S": {
-      "item": "eternal_starlight:swamp_silver_ingot"
+      "tag": "c:ingots/swamp_silver"
     },
     "V": {
       "item": "eternal_starlight:tenacious_vine"

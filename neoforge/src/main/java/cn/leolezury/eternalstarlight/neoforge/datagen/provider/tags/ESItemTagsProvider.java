@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.neoforge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -120,6 +121,85 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(Tags.Items.TOOLS_IGNITER).add(
 			ESItems.SALTPETER_MATCHBOX.get()
+		);
+		tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
+			ESItems.RAGE_OF_STARS.get(),
+			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
+			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
+			ESItems.GLACITE_SWORD.get(),
+			ESItems.GLACITE_AXE.get(),
+			ESItems.SWAMP_SILVER_SWORD.get(),
+			ESItems.SWAMP_SILVER_AXE.get(),
+			ESItems.DOOMEDEN_RAPIER.get(),
+			ESItems.AMARAMBER_AXE.get(),
+			ESItems.SHATTERED_SWORD.get(),
+			ESItems.ENERGY_SWORD.get(),
+			ESItems.DAGGER_OF_HUNGER.get()
+		);
+		tag(Tags.Items.RANGED_WEAPON_TOOLS).add(
+			ESItems.BOW_OF_BLOOD.get(),
+			ESItems.STARFALL_LONGBOW.get(),
+			ESItems.CRYSTAL_CROSSBOW.get(),
+			ESItems.MECHANICAL_CROSSBOW.get(),
+			ESItems.MOONRING_BOW.get(),
+			ESItems.CRESCENT_SPEAR.get()
+		);
+		tag(Tags.Items.MINING_TOOL_TOOLS).add(
+			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+			ESItems.GLACITE_PICKAXE.get(),
+			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
+			ESItems.SWAMP_SILVER_PICKAXE.get()
+		);
+		// mod conventional tags
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_GOLEM_STEEL);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AETHERSENT);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_AETHERSENT);
+		copy(ESConventionalTags.Blocks.ORES_SWAMP_SILVER, ESConventionalTags.Items.ORES_SWAMP_SILVER);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SWAMP_SILVER, ESConventionalTags.Items.STORAGE_BLOCKS_SWAMP_SILVER);
+		copy(ESConventionalTags.Blocks.ORES_SALTPETER, ESConventionalTags.Items.ORES_SALTPETER);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER, ESConventionalTags.Items.STORAGE_BLOCKS_SALTPETER);
+		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
+		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
+		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
+		tag(ESConventionalTags.Items.GEMS_THIOQUARTZ).add(
+			ESItems.THIOQUARTZ_SHARD.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_GOLEM_STEEL).add(
+			ESItems.GOLEM_STEEL_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL).add(
+			ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.RAW_MATERIALS_AETHERSENT).add(
+			ESItems.RAW_AETHERSENT.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_AETHERSENT).add(
+			ESItems.AETHERSENT_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.NUGGETS_AETHERSENT).add(
+			ESItems.AETHERSENT_NUGGET.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE).add(
+			ESItems.THERMAL_SPRINGSTONE_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.GEMS_GLACITE).add(
+			ESItems.GLACITE_SHARD.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_SWAMP_SILVER).add(
+			ESItems.SWAMP_SILVER_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.NUGGETS_SWAMP_SILVER).add(
+			ESItems.SWAMP_SILVER_NUGGET.get()
+		);
+		tag(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER).add(
+			ESItems.RAW_AMARAMBER.get()
+		);
+		tag(ESConventionalTags.Items.INGOTS_AMARAMBER).add(
+			ESItems.AMARAMBER_INGOT.get()
+		);
+		tag(ESConventionalTags.Items.NUGGETS_AMARAMBER).add(
+			ESItems.AMARAMBER_NUGGET.get()
 		);
 		// mod tags
 		copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
@@ -359,6 +439,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESTags.Items.SICKLES
 		);
 		tag(ItemTags.BOW_ENCHANTABLE).add(
+			ESItems.BOW_OF_BLOOD.get(),
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.MOONRING_BOW.get()
 		);

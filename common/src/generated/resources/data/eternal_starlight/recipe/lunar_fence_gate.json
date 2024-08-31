@@ -6,7 +6,7 @@
       "item": "eternal_starlight:lunar_planks"
     },
     "S": {
-      "item": "minecraft:stick"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [
