@@ -184,11 +184,11 @@ public class Yeti extends Animal {
 				this.gameEvent(GameEvent.SHEAR, player);
 				itemStack.hurtAndBreak(1, player, getSlotForHand(hand));
 
-				int i = 1 + this.random.nextInt(3);
+				int i = 1 + getRandom().nextInt(3);
 				for (int j = 0; j < i; ++j) {
 					ItemEntity itemEntity = this.spawnAtLocation(ESItems.WHITE_YETI_FUR.get(), 1);
 					if (itemEntity != null) {
-						itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+						itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F, getRandom().nextFloat() * 0.05F, (getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F));
 					}
 				}
 

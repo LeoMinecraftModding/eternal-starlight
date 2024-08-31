@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -26,6 +27,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -134,15 +136,24 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 	@Override
 	public boolean doHurtTarget(Entity entity) {
 		boolean flag = super.doHurtTarget(entity);
-		if (flag && this.getMainHandItem().isEmpty() && entity instanceof LivingEntity living) {
+		if (flag && entity instanceof LivingEntity living) {
 			float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
 			living.addEffect(new MobEffectInstance(MobEffects.HUNGER, 140 * (int) f), this);
 			hungerLevel = Math.min(hungerLevel + (isIntentionalAttack() ? 0.6f : 0.1f), 1);
-			if (isIntentionalAttack()) {
-				stopBeingAngry();
-				fleeFrom = entity;
-				fleeTicks = 100;
-				tryFlee();
+		}
+		if (isIntentionalAttack()) {
+			stopBeingAngry();
+			fleeFrom = entity;
+			fleeTicks = 100;
+			tryFlee();
+			if (entity instanceof LivingEntity living && living.isBlocking() && getRandom().nextInt(6) == 0) {
+				int i = getRandom().nextInt(3);
+				for (int j = 0; j < i; ++j) {
+					ItemEntity itemEntity = this.spawnAtLocation(ESItems.TOOTH_OF_HUNGER.get(), 1);
+					if (itemEntity != null) {
+						itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F, getRandom().nextFloat() * 0.05F, (getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F));
+					}
+				}
 			}
 		}
 		return flag;
@@ -266,7 +277,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 
 	@Override
 	public void startPersistentAngerTimer() {
-		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(getRandom()));
 	}
 
 	public static boolean checkThirstWalkerSpawnRules(EntityType<? extends ThirstWalker> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

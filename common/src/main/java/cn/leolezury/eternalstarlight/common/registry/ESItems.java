@@ -98,7 +98,7 @@ public class ESItems {
 
 	// abyssal plants
 	public static final RegistryObject<Item, Item> VELVETUMOSS = registerItem("velvetumoss", () -> new BlockItem(ESBlocks.VELVETUMOSS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> VELVETUMOSS_BALL = registerItem("velvetumoss_ball", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(1.5F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.2F).build())));
+	public static final RegistryObject<Item, Item> VELVETUMOSS_BALL = registerItem("velvetumoss_ball", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.2F).build())));
 	public static final RegistryObject<Item, Item> VELVETUMOSS_VILLI = registerItem("velvetumoss_villi", () -> new BlockItem(ESBlocks.VELVETUMOSS_VILLI.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_VELVETUMOSS = registerItem("red_velvetumoss", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_VELVETUMOSS_VILLI = registerItem("red_velvetumoss_villi", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS_VILLI.get(), new Item.Properties()));
