@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -28,5 +29,9 @@ public class WeatheringGolemSteelJetBlock extends WeatheringGolemSteelFullBlock 
 		}
 		entity.hurtMarked = true;
 		entity.addDeltaMovement(new Vec3(0, 1.2, 0));
+		if (entity instanceof Player player) {
+			player.currentImpulseImpactPos = pos.getCenter().add(0, 0.5, 0);
+			player.setIgnoreFallDamageFromCurrentImpulse(true);
+		}
 	}
 }

@@ -1,14 +1,17 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.LandmarkStructurePlacement;
 import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import com.google.common.collect.Sets;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
@@ -24,10 +27,15 @@ import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
@@ -239,5 +247,76 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 			return source.getBiomeData(x, z);
 		}
 		return null;
+	}
+
+	@Override
+	public @Nullable Pair<BlockPos, Holder<Structure>> findNearestMapStructure(ServerLevel level, HolderSet<Structure> structure, BlockPos pos, int searchRadius, boolean skipKnownStructures) {
+		Pair<BlockPos, Holder<Structure>> mapStructure = super.findNearestMapStructure(level, structure, pos, searchRadius, skipKnownStructures);
+		if (mapStructure != null) {
+			return mapStructure;
+		}
+
+		ChunkGeneratorStructureState structureState = level.getChunkSource().getGeneratorState();
+		Map<StructurePlacement, Set<Holder<Structure>>> placements = new Object2ObjectArrayMap<>();
+
+		for (Holder<Structure> structureHolder : structure) {
+			for (StructurePlacement structurePlacement : structureState.getPlacementsForStructure(structureHolder)) {
+				placements.computeIfAbsent(structurePlacement, (placement) -> new ObjectArraySet<>()).add(structureHolder);
+			}
+		}
+
+		if (placements.isEmpty()) {
+			return null;
+		} else {
+			Pair<BlockPos, Holder<Structure>> result = null;
+			double currentDist = Double.MAX_VALUE;
+			StructureManager structureManager = level.structureManager();
+			List<Map.Entry<StructurePlacement, Set<Holder<Structure>>>> list = new ArrayList<>(placements.size());
+
+			for (Map.Entry<StructurePlacement, Set<Holder<Structure>>> entry : placements.entrySet()) {
+				if (entry.getKey() instanceof LandmarkStructurePlacement) {
+					list.add(entry);
+				}
+			}
+
+			if (!list.isEmpty()) {
+				int chunkX = SectionPos.blockToSectionCoord(pos.getX());
+				int chunkZ = SectionPos.blockToSectionCoord(pos.getZ());
+
+				for (int currentRadius = 0; currentRadius <= searchRadius; currentRadius++) {
+					boolean found = false;
+
+					for (Map.Entry<StructurePlacement, Set<Holder<Structure>>> entry : list) {
+						Pair<BlockPos, Holder<Structure>> currentStructure = null;
+						for (int x = -currentRadius; x <= currentRadius; ++x) {
+							boolean xSide = x == -currentRadius || x == currentRadius;
+							for (int z = -currentRadius; z <= currentRadius; ++z) {
+								boolean zSide = z == -currentRadius || z == currentRadius;
+								if (xSide || zSide) {
+									ChunkPos landmarkPos = LandmarkStructurePlacement.getRegionLandmarkPos(structureState, x + chunkX, z + chunkZ);
+									if (landmarkPos.x == x + chunkX && landmarkPos.z == z + chunkZ) {
+										currentStructure = getStructureGeneratingAt(entry.getValue(), level, structureManager, skipKnownStructures, entry.getKey(), landmarkPos);
+									}
+								}
+							}
+						}
+						if (currentStructure != null) {
+							found = true;
+							double dist = pos.distSqr(currentStructure.getFirst());
+							if (dist < currentDist) {
+								currentDist = dist;
+								result = currentStructure;
+							}
+						}
+					}
+
+					if (found) {
+						return result;
+					}
+				}
+			}
+
+			return result;
+		}
 	}
 }

@@ -33,7 +33,7 @@ public class ESServerBossEvent extends ServerBossEvent {
 		Iterator<ServerPlayer> it = this.unseenPlayers.iterator();
 		while (it.hasNext()) {
 			ServerPlayer player = it.next();
-			if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated()) {
+			if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated() && this.boss.tickCount > 20) {
 				super.addPlayer(player);
 				it.remove();
 			}
@@ -42,7 +42,7 @@ public class ESServerBossEvent extends ServerBossEvent {
 
 	@Override
 	public void addPlayer(ServerPlayer player) {
-		if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated()) {
+		if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated() && this.boss.tickCount > 20) {
 			super.addPlayer(player);
 		} else {
 			this.unseenPlayers.add(player);

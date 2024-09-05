@@ -134,7 +134,7 @@ public class ClientHandlers {
 				if (Minecraft.getInstance().player.tickCount % 15 == 0) {
 					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, Minecraft.getInstance().player.getBoundingBox().inflate(50));
 					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(Minecraft.getInstance().player)));
-					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).toList();
+					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).filter(b -> b.tickCount > 20).toList();
 					if (!(bossMusicInstance != null && bosses.stream().anyMatch(bossMusicInstance::sameBoss))) {
 						if (!bosses.isEmpty()) {
 							ESBoss boss = bosses.getFirst();
