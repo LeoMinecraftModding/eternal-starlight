@@ -19,6 +19,8 @@ import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -56,13 +58,17 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
@@ -401,9 +407,45 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		return super.hurt(source, amount);
 	}
 
-	@Override
-	public boolean canBossMove() {
-		return getTarget() != null && getTarget().isAlive();
+	private void tryTeleportBack() {
+		Vec3 initialPos = getInitialPos();
+		BlockPos blockPos = BlockPos.containing(initialPos);
+		if (initialPos.distanceTo(position()) > 20) {
+			Stream<VoxelShape> shapes = StreamSupport.stream(level().getBlockCollisions(this, getBoundingBox().move(initialPos.subtract(position()))).spliterator(), false);
+			if (shapes.allMatch(VoxelShape::isEmpty) && level().getBlockState(blockPos.below()).isFaceSturdy(level(), blockPos.below(), Direction.UP)) {
+				setPos(initialPos);
+			} else {
+				for (int i = 0; i < 16; i++) {
+					if (teleportTowards(initialPos) && initialPos.distanceTo(position()) <= 20) {
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	private boolean teleportTowards(Vec3 target) {
+		Vec3 vec3 = new Vec3(this.getX() - target.x(), this.getY(0.5) - target.y(), this.getZ() - target.z()).normalize();
+		double x = this.getX() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.x * 16.0;
+		double y = this.getY() + (double) (this.random.nextInt(16) - 8) - vec3.y * 16.0;
+		double z = this.getZ() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.z * 16.0;
+		return this.teleport(x, y, z);
+	}
+
+	private boolean teleport(double x, double y, double z) {
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos(x, y, z);
+
+		while (mutableBlockPos.getY() > this.level().getMinBuildHeight() && !this.level().getBlockState(mutableBlockPos).blocksMotion()) {
+			mutableBlockPos.move(Direction.DOWN);
+		}
+
+		BlockState blockState = this.level().getBlockState(mutableBlockPos);
+		boolean blocksMotion = blockState.blocksMotion();
+		if (blocksMotion) {
+			return this.randomTeleport(x, y, z, false);
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -419,6 +461,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				fightPlayerOnly = true;
 				setFightTargetName("");
 				setActivated(false);
+				tryTeleportBack();
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
