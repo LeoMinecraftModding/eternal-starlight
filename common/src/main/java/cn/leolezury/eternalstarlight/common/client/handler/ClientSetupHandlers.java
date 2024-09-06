@@ -359,7 +359,7 @@ public class ClientSetupHandlers {
 					bl2 = false;
 				}
 
-				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getGrappling() != null ? 1.0F : 0.0F;
+				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getESGrappling() != null ? 1.0F : 0.0F;
 			}
 		});
 

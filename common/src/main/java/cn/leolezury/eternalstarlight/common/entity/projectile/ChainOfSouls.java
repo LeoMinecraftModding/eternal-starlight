@@ -296,7 +296,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private void updateOwnerInfo(@Nullable ChainOfSouls chain) {
 		Player player = this.getPlayerOwner();
 		if (player instanceof GrapplingOwner owner) {
-			owner.setGrappling(chain);
+			owner.setESGrappling(chain);
 		}
 	}
 

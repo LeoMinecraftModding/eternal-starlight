@@ -29,7 +29,7 @@ public class SimpleSpellItem extends Item {
 
 	@Override
 	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack itemStack, int i) {
-		if (livingEntity instanceof SpellCaster caster && (caster.getSpellData().spell() != spell.value() || !caster.getSpellData().hasSpell())) {
+		if (livingEntity instanceof SpellCaster caster && (caster.getESSpellData().spell() != spell.value() || !caster.getESSpellData().hasSpell())) {
 			livingEntity.stopUsingItem();
 			if (livingEntity instanceof Player player) {
 				player.getCooldowns().addCooldown(this, spell.value().spellProperties().cooldownTicks());
@@ -58,7 +58,7 @@ public class SimpleSpellItem extends Item {
 			itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 			spell.value().start(player, false);
 			if (player instanceof SpellCaster caster) {
-				caster.setSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+				caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
 			}
 			return InteractionResultHolder.consume(itemStack);
 		}

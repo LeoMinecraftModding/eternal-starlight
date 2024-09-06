@@ -317,7 +317,7 @@ public class ClientHandlers {
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
 		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-		if (camera.isDetached() && Minecraft.getInstance().player instanceof SpellCaster caster && caster.getSpellData().hasSpell()) {
+		if (camera.isDetached() && Minecraft.getInstance().player instanceof SpellCaster caster && caster.getESSpellData().hasSpell()) {
 			camera.move(-camera.getMaxZoom(2 * Minecraft.getInstance().player.getScale()), 1, 0);
 		}
 		return angles.add(getScreenShakePitchOffset(), getScreenShakeYawOffset(), 0);
@@ -432,8 +432,8 @@ public class ClientHandlers {
 		Options options = Minecraft.getInstance().options;
 		if (options.getCameraType().isFirstPerson()) {
 			LocalPlayer player = Minecraft.getInstance().player;
-			if (player instanceof SpellCaster caster && caster.getSpellData().hasSpell()) {
-				SpellCastData data = caster.getSpellData();
+			if (player instanceof SpellCaster caster && caster.getESSpellData().hasSpell()) {
+				SpellCastData data = caster.getESSpellData();
 				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
 					float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());

@@ -24,7 +24,7 @@ public class GolemLaserBeam extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f * (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale() : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getSpellData().strength() * 0.5f : 0);
+		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f * (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale() : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.5f : 0);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class GolemLaserBeam extends RayAttack {
 					discard();
 				}
 			} else {
-				if (caster instanceof SpellCaster spellCaster && (!spellCaster.getSpellData().hasSpell() || spellCaster.getSpellData().spell() != ESSpells.LASER_BEAM.get())) {
+				if (caster instanceof SpellCaster spellCaster && (!spellCaster.getESSpellData().hasSpell() || spellCaster.getESSpellData().spell() != ESSpells.LASER_BEAM.get())) {
 					discard();
 				}
 			}

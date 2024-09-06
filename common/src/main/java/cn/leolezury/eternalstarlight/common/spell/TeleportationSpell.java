@@ -64,7 +64,7 @@ public class TeleportationSpell extends AbstractSpell {
 		for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(entity.getBbWidth() * 3.5f))) {
 			if (livingEntity.distanceTo(entity) <= 4 * entity.getBbWidth()) {
 				if ((!(entity instanceof Enemy) && livingEntity instanceof Enemy) || (entity instanceof Enemy && !(livingEntity instanceof Enemy))) {
-					livingEntity.hurt(entity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(entity), 4 + (entity instanceof SpellCaster caster ? caster.getSpellData().strength() * 0.8f : 0));
+					livingEntity.hurt(entity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(entity), 4 + (entity instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.8f : 0));
 				}
 			}
 		}
@@ -74,7 +74,7 @@ public class TeleportationSpell extends AbstractSpell {
 		Vec3 startPos = entity.getEyePosition();
 		float lookYaw = entity.getYHeadRot() + 90.0f;
 		float lookPitch = -entity.getXRot();
-		Vec3 endPos = ESMathUtil.rotationToPosition(startPos, 30 + (entity instanceof SpellCaster caster ? caster.getSpellData().strength() : 0), lookPitch, lookYaw);
+		Vec3 endPos = ESMathUtil.rotationToPosition(startPos, 30 + (entity instanceof SpellCaster caster ? caster.getESSpellData().strength() : 0), lookPitch, lookYaw);
 		ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(entity.level(), CollisionContext.of(entity), startPos, endPos);
 		if (!result.entities().isEmpty()) {
 			for (int i = 0; i < result.entities().size(); i++) {

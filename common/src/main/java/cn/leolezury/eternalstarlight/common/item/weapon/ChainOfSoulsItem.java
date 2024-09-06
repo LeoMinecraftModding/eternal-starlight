@@ -23,7 +23,7 @@ public class ChainOfSoulsItem extends Item {
 	@NotNull
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
-		ChainOfSouls hook = player instanceof GrapplingOwner owner ? (owner.getGrappling() instanceof ChainOfSouls chain ? chain : null) : null;
+		ChainOfSouls hook = player instanceof GrapplingOwner owner ? (owner.getESGrappling() instanceof ChainOfSouls chain ? chain : null) : null;
 		if (hook != null) {
 			retrieve(level, player, hook);
 		} else {
@@ -50,7 +50,7 @@ public class ChainOfSoulsItem extends Item {
 		if (!level.isClientSide()) {
 			hook.discard();
 			if (player instanceof GrapplingOwner owner) {
-				owner.setGrappling(null);
+				owner.setESGrappling(null);
 			}
 		}
 

@@ -50,7 +50,7 @@ public abstract class AbstractSpell {
 		}
 		onStart(entity);
 		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setSpellData(new SpellCastData(true, this, strength, 0));
+			caster.setESSpellData(new SpellCastData(true, this, strength, 0));
 		}
 	}
 
@@ -80,7 +80,7 @@ public abstract class AbstractSpell {
 		onStop(entity, ticks);
 		ESSpellUtil.setCooldownFor(entity, this, properties.cooldownTicks());
 		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setSpellData(SpellCastData.getDefault());
+			caster.setESSpellData(SpellCastData.getDefault());
 		}
 	}
 

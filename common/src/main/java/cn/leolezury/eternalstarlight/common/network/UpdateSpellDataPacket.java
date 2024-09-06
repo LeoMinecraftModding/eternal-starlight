@@ -25,7 +25,7 @@ public record UpdateSpellDataPacket(int casterId, SpellCastData data) implements
 
 	public static void handle(UpdateSpellDataPacket packet, Player player) {
 		if (player != null && player.level().getEntity(packet.casterId()) instanceof SpellCaster caster) {
-			caster.setSpellData(packet.data());
+			caster.setESSpellData(packet.data());
 		}
 	}
 

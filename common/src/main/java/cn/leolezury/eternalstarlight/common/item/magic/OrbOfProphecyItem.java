@@ -85,7 +85,7 @@ public class OrbOfProphecyItem extends Item {
 					Crest crest = component.crest().value();
 					if (crest.spell().isPresent()) {
 						success = true;
-						if (livingEntity instanceof SpellCaster caster && (caster.getSpellData().spell() != crest.spell().get() || !caster.getSpellData().hasSpell())) {
+						if (livingEntity instanceof SpellCaster caster && (caster.getESSpellData().spell() != crest.spell().get() || !caster.getESSpellData().hasSpell())) {
 							livingEntity.stopUsingItem();
 							if (livingEntity instanceof Player player) {
 								player.getCooldowns().addCooldown(this, crest.spell().get().spellProperties().cooldownTicks());
@@ -150,7 +150,7 @@ public class OrbOfProphecyItem extends Item {
 						crest.spell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						player.startUsingItem(interactionHand);
 						if (player instanceof SpellCaster caster) {
-							caster.setSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+							caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
 						}
 						return InteractionResultHolder.consume(itemStack);
 					}

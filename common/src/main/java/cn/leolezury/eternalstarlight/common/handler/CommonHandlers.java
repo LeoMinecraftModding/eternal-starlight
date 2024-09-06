@@ -87,10 +87,10 @@ public class CommonHandlers {
 				if (tracked.entity instanceof SpellCaster caster) {
 					tracked.seenBy.forEach(connection -> {
 						ServerPlayer player = connection.getPlayer();
-						ESPlatform.INSTANCE.sendToClient(player, new UpdateSpellDataPacket(tracked.entity.getId(), caster.getSpellData()));
+						ESPlatform.INSTANCE.sendToClient(player, new UpdateSpellDataPacket(tracked.entity.getId(), caster.getESSpellData()));
 					});
 					if (tracked.entity instanceof ServerPlayer player) {
-						ESPlatform.INSTANCE.sendToClient(player, new UpdateSpellDataPacket(tracked.entity.getId(), caster.getSpellData()));
+						ESPlatform.INSTANCE.sendToClient(player, new UpdateSpellDataPacket(tracked.entity.getId(), caster.getESSpellData()));
 					}
 				}
 			});

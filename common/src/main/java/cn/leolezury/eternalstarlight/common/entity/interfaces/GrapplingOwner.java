@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.interfaces;
 import net.minecraft.world.entity.Entity;
 
 public interface GrapplingOwner {
-	Entity getGrappling();
+	Entity getESGrappling();
 
-	void setGrappling(Entity grappling);
+	void setESGrappling(Entity grappling);
 }
