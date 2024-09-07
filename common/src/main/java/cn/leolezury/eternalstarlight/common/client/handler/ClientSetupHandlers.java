@@ -126,7 +126,9 @@ public class ClientSetupHandlers {
 		ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS,
 		ESBlocks.SCARLET_LEAVES,
 		ESBlocks.SCARLET_LEAVES_PILE,
-		ESBlocks.TORREYA_LEAVES
+		ESBlocks.TORREYA_LEAVES,
+		ESBlocks.GOLEM_STEEL_BARS,
+		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
@@ -186,6 +188,8 @@ public class ClientSetupHandlers {
 		ESBlocks.TORREYA_CAMPFIRE,
 		ESBlocks.ICICLE,
 		ESBlocks.ABYSSAL_FIRE,
+		ESBlocks.GOLEM_STEEL_GRATE,
+		ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE,
 		ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
 		ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
 		ESBlocks.THIOQUARTZ_CLUSTER,

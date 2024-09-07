@@ -243,6 +243,11 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
+	public boolean canScrape(ItemStack stack) {
+		return stack.canPerformAction(ItemAbilities.AXE_SCRAPE);
+	}
+
+	@Override
 	public CreativeModeTab getESTab() {
 		return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("name.eternal_starlight")).displayItems((displayParameters, output) -> {
 			for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {

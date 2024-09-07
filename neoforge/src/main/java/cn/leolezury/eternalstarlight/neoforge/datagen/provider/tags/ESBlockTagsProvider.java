@@ -927,6 +927,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
 			ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+			ESBlocks.GOLEM_STEEL_GRATE.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(),
+			ESBlocks.GOLEM_STEEL_PILLAR.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(),
+			ESBlocks.GOLEM_STEEL_BARS.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(),
 			ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_JET.get(),
@@ -1016,8 +1022,16 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
 			ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
+			ESBlocks.GOLEM_STEEL_GRATE.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(),
+			ESBlocks.GOLEM_STEEL_PILLAR.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(),
+			ESBlocks.GOLEM_STEEL_BARS.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(),
 			ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
-			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get()
+			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
+			ESBlocks.GOLEM_STEEL_JET.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get()
 		);
 		tag(BlockTags.IMPERMEABLE).add(
 			ESBlocks.DUSK_GLASS.get()

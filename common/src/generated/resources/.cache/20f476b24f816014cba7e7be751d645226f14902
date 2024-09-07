@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-12T23:21:21.6377871	Tags for minecraft:worldgen/biome mod id eternal_starlight
+// 1.21.1	2024-09-07T18:31:28.9759395	Tags for minecraft:worldgen/biome mod id eternal_starlight
 2c4a89c23a3ccd558466fd2c39188fcd702e95b5 data/c/tags/worldgen/biome/is_aquatic.json
 c1bcc9fdc9298e7a98799c2d1ae240d765d7e36c data/c/tags/worldgen/biome/is_beach.json
 cb0a4dcf27d35fa925306d78df139fb8a8877f26 data/c/tags/worldgen/biome/is_cold.json
@@ -20,6 +20,8 @@ e8a16854be5289c98ee3029b8069cafc39b2dc77 data/c/tags/worldgen/biome/is_tree/deci
 a3caa6728273229bfa839109d7a5875d97494f2f data/c/tags/worldgen/biome/is_wet.json
 0ecf508b19f08d39012d33c99d6ad2ad8f508796 data/eternal_starlight/tags/worldgen/biome/has_cursed_garden.json
 eaa8cc6b0b29b68c095cdf51295b3a6ba2c4cc68 data/eternal_starlight/tags/worldgen/biome/has_golem_forge.json
-42863eb1e6a736e4fe01b4473479b9844500df78 data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_common.json
+f982ccc2054f9895675c9d2d5a263bea9506417e data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_cold.json
+4193d74391b3253b34cd555ef95d70d824d3f120 data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_common.json
 42d7f45693b54847c20b5f5ab083d343e1c0c14d data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_desert.json
 777b34fb376dad6647f6fc402daf23be1809599a data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_forest.json
+7a6207cbf7b61e7823ff557ca7e8e46deca64eab data/eternal_starlight/tags/worldgen/biome/has_portal_ruins_jungle.json

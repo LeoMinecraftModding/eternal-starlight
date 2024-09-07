@@ -168,6 +168,11 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	@Override
+	public boolean canChangeDimensions(Level level, Level level1) {
+		return false;
+	}
+
+	@Override
 	public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
 		if (!effectInstance.getEffect().value().isBeneficial()) {
 			return false;

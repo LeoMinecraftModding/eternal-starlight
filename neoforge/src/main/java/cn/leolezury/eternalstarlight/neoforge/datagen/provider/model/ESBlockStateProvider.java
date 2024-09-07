@@ -18,7 +18,7 @@ import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ESBlockStateProvider extends BlockStateProvider {
-	// Render Types
+	// render types
 	private static final ResourceLocation SOLID = ResourceLocation.withDefaultNamespace("solid");
 	private static final ResourceLocation CUTOUT = ResourceLocation.withDefaultNamespace("cutout");
 	private static final ResourceLocation CUTOUT_MIPPED = ResourceLocation.withDefaultNamespace("cutout_mipped");
@@ -215,8 +215,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
 
 		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
-		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		slabBlock(ESBlocks.GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
 		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
@@ -228,8 +226,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
 		stairsBlock(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
 		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
+		simpleBlock(ESBlocks.GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
+		axisBlock(ESBlocks.GOLEM_STEEL_PILLAR.get());
+		axisBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get());
 		simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
 		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());
 		shadegrieve(ESBlocks.BLOOMING_SHADEGRIEVE.get());

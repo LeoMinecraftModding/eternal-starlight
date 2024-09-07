@@ -102,6 +102,7 @@ public class ESTags {
 		public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
 		public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
 		public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
+		public static final TagKey<Structure> PORTAL_RUINS = create("portal_ruins");
 
 		private static TagKey<Structure> create(String string) {
 			return TagKey.create(Registries.STRUCTURE, EternalStarlight.id(string));
@@ -112,6 +113,8 @@ public class ESTags {
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_COMMON = create("has_portal_ruins_common");
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_DESERT = create("has_portal_ruins_desert");
+		public static final TagKey<Biome> HAS_PORTAL_RUINS_JUNGLE = create("has_portal_ruins_jungle");
+		public static final TagKey<Biome> HAS_PORTAL_RUINS_COLD = create("has_portal_ruins_cold");
 		public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
 		public static final TagKey<Biome> HAS_CURSED_GARDEN = create("has_cursed_garden");
 

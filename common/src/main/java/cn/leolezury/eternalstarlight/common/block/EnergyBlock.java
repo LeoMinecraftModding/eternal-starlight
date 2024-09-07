@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class EnergyBlock extends Block {
 	public static final MapCodec<EnergyBlock> CODEC = simpleCodec(EnergyBlock::new);
@@ -30,6 +32,13 @@ public class EnergyBlock extends Block {
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(LIT);
 		super.createBlockStateDefinition(builder);
+	}
+
+	@Override
+	protected void onProjectileHit(Level level, BlockState blockState, BlockHitResult blockHitResult, Projectile projectile) {
+		if (blockState.getValue(LIT) && blockHitResult.getType() != HitResult.Type.MISS) {
+			level.setBlockAndUpdate(blockHitResult.getBlockPos(), blockState.setValue(LIT, false));
+		}
 	}
 
 	@Override

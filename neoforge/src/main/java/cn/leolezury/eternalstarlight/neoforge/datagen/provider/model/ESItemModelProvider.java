@@ -394,6 +394,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get());
 		block(ESItems.GOLEM_STEEL_TILE_STAIRS.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
+		block(ESItems.GOLEM_STEEL_GRATE.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_GRATE.get());
+		block(ESItems.GOLEM_STEEL_PILLAR.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_PILLAR.get());
+		flatBlockTexture(ESItems.GOLEM_STEEL_BARS.get());
+		flatBlockTexture(ESItems.OXIDIZED_GOLEM_STEEL_BARS.get());
 		block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.GOLEM_STEEL_JET.get());

@@ -5,8 +5,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class WeatheringGolemSteelStairBlock extends StairBlock implements WeatheringGolemSteel {
 	public static final MapCodec<WeatheringGolemSteelStairBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
@@ -22,6 +28,11 @@ public class WeatheringGolemSteelStairBlock extends StairBlock implements Weathe
 	@Override
 	public MapCodec<? extends StairBlock> codec() {
 		return CODEC;
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return use(stack, state, level, pos, player);
 	}
 
 	@Override

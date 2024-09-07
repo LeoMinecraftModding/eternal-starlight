@@ -39,6 +39,13 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		);
 		tag(DamageTypeTags.NO_IMPACT).add(
 			ESDamageTypes.SOUL_ABSORB,
+			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.POISON,
+			ESDamageTypes.ENERGIZED_FLAME
+		);
+		tag(DamageTypeTags.NO_KNOCKBACK).add(
+			ESDamageTypes.SOUL_ABSORB,
+			ESDamageTypes.CRYSTALLINE_INFECTION,
 			ESDamageTypes.POISON,
 			ESDamageTypes.ENERGIZED_FLAME
 		);

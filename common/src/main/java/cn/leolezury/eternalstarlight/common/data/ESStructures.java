@@ -39,6 +39,10 @@ public class ESStructures {
 	public static final ResourceKey<StructureSet> PORTAL_RUINS_FOREST_SET = createSet("portal_ruins_forest");
 	public static final ResourceKey<Structure> PORTAL_RUINS_DESERT = create("portal_ruins_desert");
 	public static final ResourceKey<StructureSet> PORTAL_RUINS_DESERT_SET = createSet("portal_ruins_desert");
+	public static final ResourceKey<Structure> PORTAL_RUINS_JUNGLE = create("portal_ruins_jungle");
+	public static final ResourceKey<StructureSet> PORTAL_RUINS_JUNGLE_SET = createSet("portal_ruins_jungle");
+	public static final ResourceKey<Structure> PORTAL_RUINS_COLD = create("portal_ruins_cold");
+	public static final ResourceKey<StructureSet> PORTAL_RUINS_COLD_SET = createSet("portal_ruins_cold");
 	public static final ResourceKey<Structure> GOLEM_FORGE = create("golem_forge");
 	public static final ResourceKey<StructureSet> GOLEM_FORGE_SET = createSet("golem_forge");
 	public static final ResourceKey<Structure> CURSED_GARDEN = create("cursed_garden");
@@ -72,6 +76,22 @@ public class ESStructures {
 				TerrainAdjustment.BEARD_THIN),
 			poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_DESERT), Optional.empty(), 1,
 			ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
+		context.register(PORTAL_RUINS_JUNGLE, new JigsawStructure(
+			new Structure.StructureSettings(
+				biomeGetter.getOrThrow(ESTags.Biomes.HAS_PORTAL_RUINS_JUNGLE),
+				Map.of(),
+				GenerationStep.Decoration.SURFACE_STRUCTURES,
+				TerrainAdjustment.BEARD_THIN),
+			poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_JUNGLE), Optional.empty(), 1,
+			ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
+		context.register(PORTAL_RUINS_COLD, new JigsawStructure(
+			new Structure.StructureSettings(
+				biomeGetter.getOrThrow(ESTags.Biomes.HAS_PORTAL_RUINS_COLD),
+				Map.of(),
+				GenerationStep.Decoration.SURFACE_STRUCTURES,
+				TerrainAdjustment.BEARD_THIN),
+			poolGetter.getOrThrow(ESTemplatePools.PORTAL_RUINS_COLD), Optional.empty(), 1,
+			ConstantHeight.of(VerticalAnchor.absolute(0)), false, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 50, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
 		context.register(GOLEM_FORGE, new JigsawStructure(
 			new Structure.StructureSettings(
 				biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
@@ -91,9 +111,11 @@ public class ESStructures {
 
 	public static void bootstrapSets(BootstrapContext<StructureSet> context) {
 		HolderGetter<Structure> structureGetter = context.lookup(Registries.STRUCTURE);
-		context.register(PORTAL_RUINS_COMMON_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_COMMON), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 659853901)));
-		context.register(PORTAL_RUINS_FOREST_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_FOREST), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 559826911)));
-		context.register(PORTAL_RUINS_DESERT_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_DESERT), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 855823921)));
+		context.register(PORTAL_RUINS_COMMON_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_COMMON), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 958853901)));
+		context.register(PORTAL_RUINS_FOREST_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_FOREST), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 789224182)));
+		context.register(PORTAL_RUINS_DESERT_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_DESERT), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 525823926)));
+		context.register(PORTAL_RUINS_JUNGLE_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_JUNGLE), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 391037419)));
+		context.register(PORTAL_RUINS_COLD_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_COLD), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 107391749)));
 		context.register(GOLEM_FORGE_SET, new StructureSet(structureGetter.getOrThrow(GOLEM_FORGE), new LandmarkStructurePlacement(GOLEM_FORGE)));
 		context.register(CURSED_GARDEN_SET, new StructureSet(structureGetter.getOrThrow(CURSED_GARDEN), new LandmarkStructurePlacement(CURSED_GARDEN)));
 	}

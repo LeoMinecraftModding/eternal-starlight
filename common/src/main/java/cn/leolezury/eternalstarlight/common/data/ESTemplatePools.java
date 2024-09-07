@@ -23,6 +23,8 @@ public class ESTemplatePools {
 	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_COMMON = create("portal_ruins_common");
 	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_FOREST = create("portal_ruins_forest");
 	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_DESERT = create("portal_ruins_desert");
+	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_JUNGLE = create("portal_ruins_jungle");
+	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_COLD = create("portal_ruins_cold");
 	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_BOSS = create("golem_forge/boss");
 	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROAD = create("golem_forge/road");
 	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROAD_OR_ROOM = create("golem_forge/road_or_room");
@@ -45,6 +47,12 @@ public class ESTemplatePools {
 		), StructureTemplatePool.Projection.RIGID));
 		context.register(PORTAL_RUINS_DESERT, new StructureTemplatePool(emptyPool, ImmutableList.of(
 			Pair.of(ESSinglePoolElement.make(EternalStarlight.id("portal_ruins/desert").toString(), processors.getOrThrow(PORTAL_RUINS_VINES), 0), 1)
+		), StructureTemplatePool.Projection.RIGID));
+		context.register(PORTAL_RUINS_JUNGLE, new StructureTemplatePool(emptyPool, ImmutableList.of(
+			Pair.of(ESSinglePoolElement.make(EternalStarlight.id("portal_ruins/jungle").toString(), Holder.direct(new StructureProcessorList(List.of())), 0), 1)
+		), StructureTemplatePool.Projection.RIGID));
+		context.register(PORTAL_RUINS_COLD, new StructureTemplatePool(emptyPool, ImmutableList.of(
+			Pair.of(ESSinglePoolElement.make(EternalStarlight.id("portal_ruins/cold").toString(), Holder.direct(new StructureProcessorList(List.of())), 0), 1)
 		), StructureTemplatePool.Projection.RIGID));
 		context.register(GOLEM_FORGE_BOSS, new StructureTemplatePool(emptyPool, ImmutableList.of(
 			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/boss").toString(), processors.getOrThrow(GOLEM_FORGE_OXIDIZATION)), 1)

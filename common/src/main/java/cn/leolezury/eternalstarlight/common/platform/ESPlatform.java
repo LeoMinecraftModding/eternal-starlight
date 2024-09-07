@@ -30,6 +30,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -141,6 +142,10 @@ public interface ESPlatform {
 	boolean isShears(ItemStack stack);
 
 	boolean isShield(ItemStack stack);
+
+	default boolean canScrape(ItemStack stack) {
+		return stack.is(ItemTags.AXES);
+	}
 
 	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 

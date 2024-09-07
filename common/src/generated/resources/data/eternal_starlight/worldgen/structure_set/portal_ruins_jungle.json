@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 391037419,
+    "separation": 30,
+    "spacing": 36
+  },
+  "structures": [
+    {
+      "structure": "eternal_starlight:portal_ruins_jungle",
+      "weight": 1
+    }
+  ]
+}

@@ -1,28 +1,49 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 public interface WeatheringGolemSteel {
-	Supplier<ImmutableMap<Block, Block>> TO_OXIDIZED = Suppliers.memoize(() -> ImmutableMap.of(
-		ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
-		ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(),
-		ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
-		ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(),
-		ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
-		ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(),
-		ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
-		ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get()
-	));
+	Supplier<ImmutableMap<Block, Block>> TO_OXIDIZED = Suppliers.memoize(() -> ImmutableMap.<Block, Block>builder()
+		.put(ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get())
+		.put(ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get())
+		.put(ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get())
+		.put(ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get())
+		.put(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get())
+		.put(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get())
+		.put(ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get())
+		.put(ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get())
+		.put(ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get())
+		.put(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get())
+		.put(ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get())
+		.build());
+
+	default ItemInteractionResult use(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player) {
+		Optional<Block> scraped = TO_OXIDIZED.get().entrySet().stream().filter(e -> e.getValue() == state.getBlock()).findFirst().map(Map.Entry::getKey);
+		if (ESPlatform.INSTANCE.canScrape(stack) && scraped.isPresent()) {
+			level.setBlockAndUpdate(pos, scraped.get().withPropertiesOf(state));
+			player.playSound(SoundEvents.AXE_SCRAPE);
+			stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
+		}
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+	}
 
 	default boolean isOxidized() {
 		if (this instanceof Block block) {

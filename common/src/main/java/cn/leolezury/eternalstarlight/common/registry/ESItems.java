@@ -423,6 +423,12 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_SLAB = registerItem("oxidized_golem_steel_tile_slab", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_STAIRS = registerItem("golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = registerItem("oxidized_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_GRATE = registerItem("golem_steel_grate", () -> new BlockItem(ESBlocks.GOLEM_STEEL_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_GRATE = registerItem("oxidized_golem_steel_grate", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_PILLAR = registerItem("golem_steel_pillar", () -> new BlockItem(ESBlocks.GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_PILLAR = registerItem("oxidized_golem_steel_pillar", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_BARS = registerItem("golem_steel_bars", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BARS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BARS = registerItem("oxidized_golem_steel_bars", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_JET = registerItem("golem_steel_jet", () -> new BlockItem(ESBlocks.GOLEM_STEEL_JET.get(), new Item.Properties()));

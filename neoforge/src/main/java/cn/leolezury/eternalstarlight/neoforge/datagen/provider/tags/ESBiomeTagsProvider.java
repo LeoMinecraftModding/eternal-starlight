@@ -108,7 +108,6 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 		);
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COMMON).add(
 			Biomes.PLAINS,
-			Biomes.SNOWY_PLAINS,
 			Biomes.SUNFLOWER_PLAINS,
 			Biomes.SAVANNA_PLATEAU
 		);
@@ -125,6 +124,17 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 			Biomes.BADLANDS,
 			Biomes.ERODED_BADLANDS,
 			Biomes.WOODED_BADLANDS
+		);
+		tag(ESTags.Biomes.HAS_PORTAL_RUINS_JUNGLE).add(
+			Biomes.JUNGLE,
+			Biomes.SPARSE_JUNGLE,
+			Biomes.BAMBOO_JUNGLE
+		);
+		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COLD).add(
+			Biomes.SNOWY_PLAINS,
+			Biomes.SNOWY_SLOPES,
+			Biomes.SNOWY_TAIGA,
+			Biomes.FROZEN_PEAKS
 		);
 		tag(ESTags.Biomes.HAS_GOLEM_FORGE).add(
 			ESBiomes.STARLIGHT_FOREST,

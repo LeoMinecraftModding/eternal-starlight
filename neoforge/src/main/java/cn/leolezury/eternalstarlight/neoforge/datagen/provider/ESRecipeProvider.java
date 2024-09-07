@@ -789,6 +789,26 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		addSlab(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(), 2);
+		grate(recipeOutput, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get(), 4);
+		grate(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(), 4);
+		addPillar(recipeOutput, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+		addPillar(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.GOLEM_STEEL_BARS.get(), 16)
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESItems.GOLEM_STEEL_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_INGOT.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(), 16)
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()))
+			.save(recipeOutput);
 
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.TENACIOUS_PETAL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNAR_MOSAIC.get(), "tenacious_petal_from_lunar_mosaic", "tenacious_petal");
 		addStairs(recipeOutput, ESBlocks.LUNAR_MOSAIC_STAIRS.get(), ESBlocks.LUNAR_MOSAIC.get());

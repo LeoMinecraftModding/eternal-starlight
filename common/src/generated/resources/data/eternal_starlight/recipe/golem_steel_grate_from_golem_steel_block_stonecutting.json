@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:golem_steel_block"
+  },
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:golem_steel_grate"
+  }
+}
