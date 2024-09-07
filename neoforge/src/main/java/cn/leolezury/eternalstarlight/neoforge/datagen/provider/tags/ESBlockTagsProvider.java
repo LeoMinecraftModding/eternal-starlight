@@ -728,9 +728,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GRIMSTONE.get(),
 			ESBlocks.VOIDSTONE.get()
 		);
-		tag(BlockTags.CANDLES).add(
-			ESBlocks.AMARAMBER_CANDLE.get()
-		);
 
 		// mc tools stuff
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(

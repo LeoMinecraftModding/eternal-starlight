@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-31T13:41:08.8116297	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-09-07T19:40:04.0205423	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -98,7 +98,6 @@ e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_f
 e46f6653e970a8854dead0dc4f155ef7dc0539f1 data/minecraft/tags/item/arrows.json
 bc0d5c95eccf852ebcba9f8a0edaa63a94fc5e59 data/minecraft/tags/item/axes.json
 aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/item/boats.json
-4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/item/candles.json
 988fd23dcd8a56fe93458cf9d9428039c892d620 data/minecraft/tags/item/chest_armor.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/item/chest_boats.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json

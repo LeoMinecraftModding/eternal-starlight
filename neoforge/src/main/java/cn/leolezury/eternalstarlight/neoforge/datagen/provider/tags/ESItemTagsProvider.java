@@ -422,7 +422,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(BlockTags.SMELTS_TO_GLASS, ItemTags.SMELTS_TO_GLASS);
 		copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
 		copy(BlockTags.TALL_FLOWERS, ItemTags.TALL_FLOWERS);
-		copy(BlockTags.CANDLES, ItemTags.CANDLES);
 		// enchantables
 		tag(ItemTags.DURABILITY_ENCHANTABLE).add(
 			ESItems.STARFALL_LONGBOW.get(),
