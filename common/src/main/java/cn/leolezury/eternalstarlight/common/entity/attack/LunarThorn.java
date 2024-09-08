@@ -47,7 +47,7 @@ public class LunarThorn extends AttackEffect {
 				if (getAttackMode() == 1) {
 					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
 						if (!livingEntity.getUUID().equals(getOwner().getUUID())) {
-							livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 4));
+							livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10));
 							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), getOwner() instanceof LunarMonstrosity ? 3 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : 3);
 						}
 					}

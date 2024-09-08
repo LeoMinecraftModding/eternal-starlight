@@ -22,20 +22,17 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		tag(DamageTypeTags.BYPASSES_ARMOR).add(
 			ESDamageTypes.ETHER,
 			ESDamageTypes.CRYSTALLINE_INFECTION,
-			ESDamageTypes.SOUL_ABSORB,
-			ESDamageTypes.POISON
+			ESDamageTypes.SOUL_ABSORB
 		);
 		tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(
 			ESDamageTypes.ETHER,
 			ESDamageTypes.CRYSTALLINE_INFECTION,
-			ESDamageTypes.SOUL_ABSORB,
-			ESDamageTypes.POISON
+			ESDamageTypes.SOUL_ABSORB
 		);
 		tag(DamageTypeTags.BYPASSES_SHIELD).add(
 			ESDamageTypes.ETHER,
 			ESDamageTypes.CRYSTALLINE_INFECTION,
-			ESDamageTypes.SOUL_ABSORB,
-			ESDamageTypes.POISON
+			ESDamageTypes.SOUL_ABSORB
 		);
 		tag(DamageTypeTags.NO_IMPACT).add(
 			ESDamageTypes.SOUL_ABSORB,

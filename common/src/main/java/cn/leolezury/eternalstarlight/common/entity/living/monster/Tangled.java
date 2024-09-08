@@ -97,7 +97,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangled.armor())
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangled.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangled.followRange())
-			.add(Attributes.MOVEMENT_SPEED, 0.3);
+			.add(Attributes.MOVEMENT_SPEED, 0.2);
 	}
 
 	@Override
@@ -114,8 +114,8 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 	@Override
 	public boolean doHurtTarget(Entity entity) {
 		boolean flag = super.doHurtTarget(entity);
-		if (flag && entity instanceof LivingEntity living) {
-			living.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
+		if (flag && entity instanceof LivingEntity living && getRandom().nextInt(5) == 0) {
+			living.addEffect(new MobEffectInstance(MobEffects.POISON, 40));
 		}
 		return flag;
 	}

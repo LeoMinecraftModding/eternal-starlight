@@ -233,6 +233,8 @@ public class ClientHandlers {
 					fogEndDecrement = Mth.clamp(fogEndDecrement, 0, 80);
 				}
 			}
+			fogStartDecrement = Mth.clamp(fogStartDecrement, 0, 100);
+			fogEndDecrement = Mth.clamp(fogEndDecrement, 0, 100);
 			oldAbyssalFogModifier = abyssalFogModifier;
 			if (biomeHolder.is(ESBiomes.THE_ABYSS)) {
 				abyssalFogModifier -= 0.02f;
@@ -356,10 +358,8 @@ public class ClientHandlers {
 		}
 
 		if (player.level().dimension() == ESDimensions.STARLIGHT_KEY && camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty() && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
-			fogStartDecrement = Mth.clamp(fogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5);
-			fogEndDecrement = Mth.clamp(fogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50);
-			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - fogStartDecrement);
-			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - fogEndDecrement);
+			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - Mth.clamp(fogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5));
+			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - Mth.clamp(fogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50));
 
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
