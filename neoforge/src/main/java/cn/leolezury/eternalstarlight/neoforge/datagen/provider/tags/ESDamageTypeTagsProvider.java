@@ -35,14 +35,18 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 			ESDamageTypes.SOUL_ABSORB
 		);
 		tag(DamageTypeTags.NO_IMPACT).add(
-			ESDamageTypes.SOUL_ABSORB,
+			ESDamageTypes.ETHER,
 			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.DAGGER_OF_HUNGER,
+			ESDamageTypes.SOUL_ABSORB,
 			ESDamageTypes.POISON,
 			ESDamageTypes.ENERGIZED_FLAME
 		);
 		tag(DamageTypeTags.NO_KNOCKBACK).add(
-			ESDamageTypes.SOUL_ABSORB,
+			ESDamageTypes.ETHER,
 			ESDamageTypes.CRYSTALLINE_INFECTION,
+			ESDamageTypes.DAGGER_OF_HUNGER,
+			ESDamageTypes.SOUL_ABSORB,
 			ESDamageTypes.POISON,
 			ESDamageTypes.ENERGIZED_FLAME
 		);

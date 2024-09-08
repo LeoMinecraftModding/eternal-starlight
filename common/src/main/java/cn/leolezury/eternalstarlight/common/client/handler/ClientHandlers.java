@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
@@ -17,6 +16,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -455,7 +455,7 @@ public class ClientHandlers {
 	}
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
-		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS);
+		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt(CommonHandlers.TAG_CLIENT_IN_ETHER_TICKS);
 		float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
 		float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
 		if (clientEtherTicksRaw > 0) {

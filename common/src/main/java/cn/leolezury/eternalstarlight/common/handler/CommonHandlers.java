@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.EtherLiquidBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
@@ -17,10 +17,7 @@ import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
@@ -50,6 +47,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -59,6 +57,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class CommonHandlers {
+	private static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
+	public static final String TAG_CLIENT_IN_ETHER_TICKS = "client_in_ether_ticks";
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";
@@ -178,6 +178,7 @@ public class CommonHandlers {
 	}
 
 	public static void onEntityTick(Entity entity) {
+		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
 			if (item.level().isClientSide && (item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
 				EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
@@ -213,13 +214,30 @@ public class CommonHandlers {
 					ESEntityUtil.getPersistentData(livingEntity).putInt(AethersentMeteor.TAG_METEOR_COOLDOWN, cooldown - 1);
 				}
 			}
-			int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS);
+			int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(TAG_IN_ETHER_TICKS);
+			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 			boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
 			if (!livingEntity.level().isClientSide) {
-				if (!inEther && inEtherTicks > 0) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_IN_ETHER_TICKS, inEtherTicks - 1);
+				if (inEther) {
+					float factor = 0;
+					AttributeInstance resistance = livingEntity.getAttribute(ESAttributes.ETHER_RESISTANCE.asHolder());
+					if (resistance != null) {
+						factor = 1 - (float) resistance.getValue();
+					}
+					if (armorInstance != null && armorInstance.getValue() <= 0) {
+						if (entity.hurt(ESDamageTypes.getDamageSource(level, ESDamageTypes.ETHER), 0.3f + 0.6f * factor) && level instanceof ServerLevel serverLevel) {
+							for (int i = 0; i < 5; i++) {
+								serverLevel.sendParticles(ESParticles.STARLIGHT.get(), entity.getX() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), entity.getY() + entity.getBbHeight() / 2d + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbHeight(), entity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5) * entity.getBbWidth(), 20, 0.1, 0.1, 0.1, 0);
+							}
+						}
+					}
+					if ((armorInstance == null || armorInstance.getValue() > 0) && livingEntity.getRandom().nextFloat() <= factor) {
+						ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_IN_ETHER_TICKS, inEtherTicks + 1);
+					}
 				}
-				AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+				if (!inEther && inEtherTicks > 0) {
+					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_IN_ETHER_TICKS, inEtherTicks - 1);
+				}
 				if (inEtherTicks <= 0 && armorInstance != null) {
 					armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
 				}
@@ -228,9 +246,12 @@ public class CommonHandlers {
 					armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
 				}
 			} else {
-				int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS);
+				int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(TAG_CLIENT_IN_ETHER_TICKS);
+				if (inEther && clientEtherTicks < 140) {
+					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks + 1);
+				}
 				if (!inEther && clientEtherTicks > 0) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(EtherLiquidBlock.TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
+					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
 				}
 			}
 		}

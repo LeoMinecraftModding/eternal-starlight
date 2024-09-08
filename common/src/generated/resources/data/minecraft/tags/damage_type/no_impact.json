@@ -1,7 +1,9 @@
 {
   "values": [
-    "eternal_starlight:soul_absorb",
+    "eternal_starlight:ether",
     "eternal_starlight:crystalline_infection",
+    "eternal_starlight:dagger_of_hunger",
+    "eternal_starlight:soul_absorb",
     "eternal_starlight:poison",
     "eternal_starlight:energized_flame"
   ]
