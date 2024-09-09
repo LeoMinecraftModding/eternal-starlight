@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.structure;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Tangled;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -42,20 +43,21 @@ public class CursedGardenStructure extends Structure {
 	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox boundingBox, ChunkPos chunkPos, PiecesContainer piecesContainer) {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		BoundingBox piecesBox = piecesContainer.calculateBoundingBox();
-
-		for (int x = boundingBox.minX(); x <= boundingBox.maxX(); x++) {
-			for (int z = boundingBox.minZ(); z <= boundingBox.maxZ(); z++) {
-				for (int y = piecesBox.minY(); y <= piecesBox.maxY(); y++) {
-					pos.set(x, y, z);
-					if (piecesBox.isInside(pos) && piecesContainer.isInsidePiece(pos)) {
-						if ((level.isEmptyBlock(pos) || level.getBlockState(pos).is(Blocks.VINE)) && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(Blocks.VINE)) && level.getBlockState(pos.below()).is(ESBlocks.SHADEGRIEVE.get())) {
-							if (random.nextInt(250) == 0) {
-								Tangled tangled = new Tangled(ESEntities.TANGLED.get(), level.getLevel());
-								tangled.setPos(pos.getBottomCenter());
-								tangled.setPersistenceRequired();
-								level.addFreshEntity(tangled);
+		if (ESConfig.INSTANCE.mobsConfig.tangled.canSpawn()) {
+			for (int x = boundingBox.minX(); x <= boundingBox.maxX(); x++) {
+				for (int z = boundingBox.minZ(); z <= boundingBox.maxZ(); z++) {
+					for (int y = piecesBox.minY(); y <= piecesBox.maxY(); y++) {
+						pos.set(x, y, z);
+						if (piecesBox.isInside(pos) && piecesContainer.isInsidePiece(pos)) {
+							if ((level.isEmptyBlock(pos) || level.getBlockState(pos).is(Blocks.VINE)) && (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(Blocks.VINE)) && level.getBlockState(pos.below()).is(ESBlocks.SHADEGRIEVE.get())) {
+								if (random.nextInt(250) == 0) {
+									Tangled tangled = new Tangled(ESEntities.TANGLED.get(), level.getLevel());
+									tangled.setPos(pos.getBottomCenter());
+									tangled.setPersistenceRequired();
+									level.addFreshEntity(tangled);
+								}
+								break;
 							}
-							break;
 						}
 					}
 				}
