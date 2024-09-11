@@ -735,7 +735,7 @@
   "tooltip.eternal_starlight.aethersent_armor": "Summons meteors over enemy's head when hurt",
   "tooltip.eternal_starlight.thermal_springstone_armor": "Ignites enemies that damage you, reduces the amount of fire damage you take",
   "tooltip.eternal_starlight.glacite_armor": "Freezes enemies that damage you, make you immune to freeze damage",
-  "tooltip.eternal_starlight.swamp_silver_armor": "Immune to any negative effects",
+  "tooltip.eternal_starlight.swamp_silver_armor": "Immune to certain negative effects",
   "tooltip.eternal_starlight.dagger_of_hunger.hunger_value": "Hunger Value: ",
   "tooltip.eternal_starlight.dagger_of_hunger.when_attack": "When attacking: Restores hunger value",
   "tooltip.eternal_starlight.dagger_of_hunger.attack_bonus": "When full: Attack damage and speed bonus",

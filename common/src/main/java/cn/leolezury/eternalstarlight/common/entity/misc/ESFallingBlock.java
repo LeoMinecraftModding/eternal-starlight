@@ -51,6 +51,21 @@ public class ESFallingBlock extends Entity {
 		this.damage = damage;
 	}
 
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(DATA_START_POS, BlockPos.ZERO)
+			.define(BLOCK_STATE, Optional.of(Blocks.DIRT.defaultBlockState()));
+	}
+
+	public BlockState getBlock() {
+		Optional<BlockState> state = getEntityData().get(BLOCK_STATE);
+		return state.orElse(null);
+	}
+
+	public void setBlock(BlockState block) {
+		getEntityData().set(BLOCK_STATE, Optional.of(block));
+	}
+
 	public void setStartPos(BlockPos pos) {
 		this.getEntityData().set(DATA_START_POS, pos);
 	}
@@ -59,20 +74,7 @@ public class ESFallingBlock extends Entity {
 		return this.getEntityData().get(DATA_START_POS);
 	}
 
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		builder.define(DATA_START_POS, BlockPos.ZERO)
-			.define(BLOCK_STATE, Optional.of(Blocks.DIRT.defaultBlockState()));
-	}
-
-	public BlockState getBlock() {
-		Optional<BlockState> bsOp = getEntityData().get(BLOCK_STATE);
-		return bsOp.orElse(null);
-	}
-
-	public void setBlock(BlockState block) {
-		getEntityData().set(BLOCK_STATE, Optional.of(block));
-	}
-
+	@Override
 	public void tick() {
 		if (!isNoGravity())
 			setDeltaMovement(getDeltaMovement().add(0.0D, -0.04D, 0.0D));
@@ -89,6 +91,7 @@ public class ESFallingBlock extends Entity {
 			discard();
 	}
 
+	@Override
 	protected void addAdditionalSaveData(CompoundTag tag) {
 		BlockState blockState = getBlock();
 		if (blockState != null)
@@ -97,6 +100,7 @@ public class ESFallingBlock extends Entity {
 		tag.putBoolean(TAG_DAMAGE, this.damage);
 	}
 
+	@Override
 	protected void readAdditionalSaveData(CompoundTag tag) {
 		Tag blockStateCompound = tag.get(TAG_BLOCK_STATE);
 		if (blockStateCompound != null) {
@@ -107,6 +111,7 @@ public class ESFallingBlock extends Entity {
 		this.damage = tag.getBoolean(TAG_DAMAGE);
 	}
 
+	@Override
 	public boolean displayFireAnimation() {
 		return false;
 	}

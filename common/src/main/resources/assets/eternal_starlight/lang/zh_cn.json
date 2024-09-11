@@ -735,7 +735,7 @@
   "tooltip.eternal_starlight.aethersent_armor": "受伤时在敌人头顶召唤流星",
   "tooltip.eternal_starlight.thermal_springstone_armor": "灼烧伤害你的敌人，减少你受到的火焰伤害",
   "tooltip.eternal_starlight.glacite_armor": "冻伤伤害你的敌人，使你免疫冻伤",
-  "tooltip.eternal_starlight.swamp_silver_armor": "治愈负面效果",
+  "tooltip.eternal_starlight.swamp_silver_armor": "治愈特定负面效果",
   "tooltip.eternal_starlight.dagger_of_hunger.hunger_value": "饥饿值：",
   "tooltip.eternal_starlight.dagger_of_hunger.when_attack": "攻击敌人时：恢复饥饿值",
   "tooltip.eternal_starlight.dagger_of_hunger.attack_bonus": "饥饿值高时：攻击伤害与速度加成",

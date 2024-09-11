@@ -392,7 +392,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			fightPlayerOnly = true;
 			setFightTargetName("");
 			setActivated(false);
-			setPos(getInitialPos());
+			tryTeleportBack();
 			if (level() instanceof ServerLevel serverLevel) {
 				dropCustomDeathLoot(serverLevel, source, true);
 			}
@@ -410,15 +410,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private void tryTeleportBack() {
 		Vec3 initialPos = getInitialPos();
 		BlockPos blockPos = BlockPos.containing(initialPos);
-		if (initialPos.distanceTo(position()) > 20) {
+		if (initialPos.distanceTo(position()) > 15) {
 			Stream<VoxelShape> shapes = StreamSupport.stream(level().getBlockCollisions(this, getBoundingBox().move(initialPos.subtract(position()))).spliterator(), false);
 			if (shapes.allMatch(VoxelShape::isEmpty) && level().getBlockState(blockPos.below()).isFaceSturdy(level(), blockPos.below(), Direction.UP)) {
 				setPos(initialPos);
-			} else {
-				for (int i = 0; i < 16; i++) {
-					if (teleportTowards(initialPos) && initialPos.distanceTo(position()) <= 20) {
-						break;
-					}
+				return;
+			}
+			for (int i = 0; i < 16; i++) {
+				if (teleportTowards(initialPos) && initialPos.distanceTo(position()) <= 15) {
+					break;
 				}
 			}
 		}
