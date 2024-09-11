@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.BoarwarfType;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.whisper.Whisper;
 import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
 import net.minecraft.core.Registry;
@@ -17,7 +16,6 @@ public class ESRegistries {
 	public static final ResourceKey<Registry<BoarwarfType>> BOARWARF_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("boarwarf_type"));
 	public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(EternalStarlight.id("astral_golem_material"));
 	public static final ResourceKey<Registry<Crest>> CREST = ResourceKey.createRegistryKey(EternalStarlight.id("crest"));
-	public static final ResourceKey<Registry<Whisper>> WHISPER = ResourceKey.createRegistryKey(EternalStarlight.id("whisper"));
 
 	static {
 		ESPlatform.INSTANCE.registerDatapackRegistry(BIOME_DATA, BiomeData.CODEC, BiomeData.CODEC);
@@ -25,7 +23,6 @@ public class ESRegistries {
 		ESPlatform.INSTANCE.registerDatapackRegistry(BOARWARF_TYPE, BoarwarfType.CODEC, BoarwarfType.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(ASTRAL_GOLEM_MATERIAL, AstralGolemMaterial.CODEC, AstralGolemMaterial.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(CREST, Crest.CODEC, Crest.CODEC);
-		ESPlatform.INSTANCE.registerDatapackRegistry(WHISPER, Whisper.CODEC, Whisper.CODEC);
 	}
 
 	public static void loadClass() {

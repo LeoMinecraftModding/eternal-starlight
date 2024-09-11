@@ -297,10 +297,7 @@ public class CommonHandlers {
 	}
 
 	public static void onPlayerNaturalWake(ServerPlayer serverPlayer, BlockPos pos) {
-		// todo: enabled this after finishing the whole system
-		/*List<Whisper> whispers = serverPlayer.level().registryAccess().registryOrThrow(ESRegistries.WHISPER).stream().toList();
-		Whisper whisper = whispers.get(serverPlayer.getRandom().nextInt(whispers.size()));
-		serverPlayer.displayClientMessage(whisper.content(), true);*/
+		// todo: add some particles as the hint of the portal ruins structure location?
 	}
 
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
