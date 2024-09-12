@@ -27,6 +27,7 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -62,6 +63,7 @@ public class CommonHandlers {
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";
+	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
 	private static TheGatekeeperNameManager GATEKEEPER_NAMES;
 
 	public static String getGatekeeperName() {
@@ -184,6 +186,9 @@ public class CommonHandlers {
 				EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
 			}
 		}
+		CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);
+		int inAbyssalFireTicks = persistentData.getInt(TAG_IN_ABYSSAL_FIRE_TICKS);
+		persistentData.putInt(TAG_IN_ABYSSAL_FIRE_TICKS, Math.max(inAbyssalFireTicks - 1, 0));
 		if (entity instanceof LivingEntity livingEntity) {
 			ESSpellUtil.tickSpells(livingEntity);
 			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
@@ -209,12 +214,12 @@ public class CommonHandlers {
 				}
 			}
 			if (livingEntity.tickCount % 20 == 0) {
-				int cooldown = ESEntityUtil.getPersistentData(livingEntity).getInt(AethersentMeteor.TAG_METEOR_COOLDOWN);
+				int cooldown = persistentData.getInt(AethersentMeteor.TAG_METEOR_COOLDOWN);
 				if (cooldown > 0) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(AethersentMeteor.TAG_METEOR_COOLDOWN, cooldown - 1);
+					persistentData.putInt(AethersentMeteor.TAG_METEOR_COOLDOWN, cooldown - 1);
 				}
 			}
-			int inEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(TAG_IN_ETHER_TICKS);
+			int inEtherTicks = persistentData.getInt(TAG_IN_ETHER_TICKS);
 			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 			boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
 			if (!livingEntity.level().isClientSide) {
@@ -232,11 +237,11 @@ public class CommonHandlers {
 						}
 					}
 					if ((armorInstance == null || armorInstance.getValue() > 0) && livingEntity.getRandom().nextFloat() <= factor) {
-						ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_IN_ETHER_TICKS, inEtherTicks + 1);
+						persistentData.putInt(TAG_IN_ETHER_TICKS, inEtherTicks + 1);
 					}
 				}
 				if (!inEther && inEtherTicks > 0) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_IN_ETHER_TICKS, inEtherTicks - 1);
+					persistentData.putInt(TAG_IN_ETHER_TICKS, inEtherTicks - 1);
 				}
 				if (inEtherTicks <= 0 && armorInstance != null) {
 					armorInstance.removeModifier(EtherFluid.ARMOR_MODIFIER_ID);
@@ -246,12 +251,12 @@ public class CommonHandlers {
 					armorInstance.addPermanentModifier(EtherFluid.armorModifier((float) -inEtherTicks / 100));
 				}
 			} else {
-				int clientEtherTicks = ESEntityUtil.getPersistentData(livingEntity).getInt(TAG_CLIENT_IN_ETHER_TICKS);
+				int clientEtherTicks = persistentData.getInt(TAG_CLIENT_IN_ETHER_TICKS);
 				if (inEther && clientEtherTicks < 140) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks + 1);
+					persistentData.putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks + 1);
 				}
 				if (!inEther && clientEtherTicks > 0) {
-					ESEntityUtil.getPersistentData(livingEntity).putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
+					persistentData.putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
 				}
 			}
 		}

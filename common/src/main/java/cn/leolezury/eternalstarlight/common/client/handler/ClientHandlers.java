@@ -165,21 +165,16 @@ public class ClientHandlers {
 		}
 
 		if (Minecraft.getInstance().player != null) {
-			Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
 			List<ResourceKey<Crest>> toRemove = new ArrayList<>();
 			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
-				if (registry.get(key) == null) {
+				GuiCrest crest = GUI_CRESTS.get(key);
+				if (Math.abs(crest.angle + 135) < 0.1 && !crest.shouldShow) {
 					toRemove.add(key);
 				}
 			}
 			for (ResourceKey<Crest> key : toRemove) {
 				GUI_CRESTS.remove(key);
 			}
-			registry.forEach(crest -> {
-				if (registry.getResourceKey(crest).isPresent() && !GUI_CRESTS.containsKey(registry.getResourceKey(crest).get())) {
-					GUI_CRESTS.put(registry.getResourceKey(crest).get(), new GuiCrest());
-				}
-			});
 			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
 				entry.getValue().tick();
 			}
@@ -195,8 +190,12 @@ public class ClientHandlers {
 				entry.getValue().shouldShow = false;
 			}
 			if (component != null && component.crest().isBound()) {
+				Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
 				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.crest().value());
-				if (key.isPresent() && GUI_CRESTS.containsKey(key.get())) {
+				if (key.isPresent()) {
+					if (!GUI_CRESTS.containsKey(key.get())) {
+						GUI_CRESTS.put(key.get(), new GuiCrest());
+					}
 					GUI_CRESTS.get(key.get()).shouldShow = true;
 				}
 			}
@@ -540,7 +539,8 @@ public class ClientHandlers {
 
 	private static class GuiCrest {
 		private boolean shouldShow = false;
-		private float prevAngle, angle;
+		private float prevAngle = -135;
+		private float angle = -135;
 
 		public void tick() {
 			prevAngle = angle;

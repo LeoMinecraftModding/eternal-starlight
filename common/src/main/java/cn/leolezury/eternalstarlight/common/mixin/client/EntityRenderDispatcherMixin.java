@@ -2,9 +2,10 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -18,6 +19,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -100,50 +102,51 @@ public abstract class EntityRenderDispatcherMixin {
 		}
 	}
 
-	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;displayFireAnimation()Z", shift = At.Shift.BEFORE))
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;displayFireAnimation()Z", shift = At.Shift.AFTER))
 	private <E extends Entity> void renderFlame(E entity, double d, double e, double f, float g, float h, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
-		if (ESBlockUtil.isEntityInBlock(entity, ESBlocks.ABYSSAL_FIRE.get())) {
+		CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);
+		int inAbyssalFireTicks = persistentData.getInt(CommonHandlers.TAG_IN_ABYSSAL_FIRE_TICKS);
+		if (inAbyssalFireTicks > 0) {
 			renderAbyssalFlame(poseStack, multiBufferSource, entity, Mth.rotationAroundAxis(Mth.Y_AXIS, cameraOrientation, new Quaternionf()));
 		}
 	}
 
 	@Unique
-	private void renderAbyssalFlame(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, Quaternionf quaternionf) {
-		TextureAtlasSprite textureAtlasSprite = ABYSSAL_FIRE_0.sprite();
-		TextureAtlasSprite textureAtlasSprite2 = ABYSSAL_FIRE_1.sprite();
+	private void renderAbyssalFlame(PoseStack poseStack, MultiBufferSource buffer, Entity entity, Quaternionf quaternion) {
+		TextureAtlasSprite textureatlassprite = ABYSSAL_FIRE_0.sprite();
+		TextureAtlasSprite textureatlassprite1 = ABYSSAL_FIRE_1.sprite();
 		poseStack.pushPose();
 		float f = entity.getBbWidth() * 1.4F;
 		poseStack.scale(f, f, f);
-		float g = 0.5F;
-		float h = 0.0F;
-		float i = entity.getBbHeight() / f;
-		float j = 0.0F;
-		poseStack.mulPose(quaternionf);
-		poseStack.translate(0.0F, 0.0F, -0.3F + (float) ((int) i) * 0.02F);
-		float k = 0.0F;
-		int l = 0;
-		VertexConsumer vertexConsumer = multiBufferSource.getBuffer(Sheets.cutoutBlockSheet());
+		float f1 = 0.5F;
+		float f3 = entity.getBbHeight() / f;
+		float f4 = 0.0F;
+		poseStack.mulPose(quaternion);
+		poseStack.translate(0.0F, 0.0F, 0.3F - (float) ((int) f3) * 0.02F);
+		float f5 = 0.0F;
+		int i = 0;
+		VertexConsumer vertexconsumer = buffer.getBuffer(Sheets.cutoutBlockSheet());
 
-		for (PoseStack.Pose pose = poseStack.last(); i > 0.0F; ++l) {
-			TextureAtlasSprite textureAtlasSprite3 = l % 2 == 0 ? textureAtlasSprite : textureAtlasSprite2;
-			float m = textureAtlasSprite3.getU0();
-			float n = textureAtlasSprite3.getV0();
-			float o = textureAtlasSprite3.getU1();
-			float p = textureAtlasSprite3.getV1();
-			if (l / 2 % 2 == 0) {
-				float q = o;
-				o = m;
-				m = q;
+		for (PoseStack.Pose posestack$pose = poseStack.last(); f3 > 0.0F; ++i) {
+			TextureAtlasSprite textureatlassprite2 = i % 2 == 0 ? textureatlassprite : textureatlassprite1;
+			float f6 = textureatlassprite2.getU0();
+			float f7 = textureatlassprite2.getV0();
+			float f8 = textureatlassprite2.getU1();
+			float f9 = textureatlassprite2.getV1();
+			if (i / 2 % 2 == 0) {
+				float f10 = f8;
+				f8 = f6;
+				f6 = f10;
 			}
 
-			fireVertex(pose, vertexConsumer, g - 0.0F, 0.0F - j, k, o, p);
-			fireVertex(pose, vertexConsumer, -g - 0.0F, 0.0F - j, k, m, p);
-			fireVertex(pose, vertexConsumer, -g - 0.0F, 1.4F - j, k, m, n);
-			fireVertex(pose, vertexConsumer, g - 0.0F, 1.4F - j, k, o, n);
-			i -= 0.45F;
-			j -= 0.45F;
-			g *= 0.9F;
-			k += 0.03F;
+			fireVertex(posestack$pose, vertexconsumer, -f1 - 0.0F, 0.0F - f4, f5, f8, f9);
+			fireVertex(posestack$pose, vertexconsumer, f1 - 0.0F, 0.0F - f4, f5, f6, f9);
+			fireVertex(posestack$pose, vertexconsumer, f1 - 0.0F, 1.4F - f4, f5, f6, f7);
+			fireVertex(posestack$pose, vertexconsumer, -f1 - 0.0F, 1.4F - f4, f5, f8, f7);
+			f3 -= 0.45F;
+			f4 -= 0.45F;
+			f1 *= 0.9F;
+			f5 -= 0.03F;
 		}
 
 		poseStack.popPose();

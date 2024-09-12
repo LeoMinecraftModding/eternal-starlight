@@ -1,21 +1,23 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 public class NightfallSpider extends Spider {
 	public NightfallSpider(EntityType<? extends NightfallSpider> type, Level level) {
@@ -28,6 +30,23 @@ public class NightfallSpider extends Spider {
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.nightfallSpider.armor())
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.nightfallSpider.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.nightfallSpider.followRange());
+	}
+
+	@Override
+	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+		SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+		getPassengers().forEach(entity -> {
+			if (entity instanceof Skeleton s) {
+				s.discard();
+				LonestarSkeleton skeleton = ESEntities.LONESTAR_SKELETON.get().create(this.level());
+				if (skeleton != null) {
+					skeleton.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
+					skeleton.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, (SpawnGroupData) null);
+					skeleton.startRiding(this);
+				}
+			}
+		});
+		return data;
 	}
 
 	@Override

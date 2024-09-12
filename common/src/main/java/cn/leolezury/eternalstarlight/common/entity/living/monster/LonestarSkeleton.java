@@ -4,38 +4,28 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LonestarSkeletonShootBladeGoal;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 
-public class LonestarSkeleton extends Skeleton {
-	private final LonestarSkeletonShootBladeGoal bladeGoal = new LonestarSkeletonShootBladeGoal(this, 1.0, 20, 15.0F);
-	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
-		public void stop() {
-			super.stop();
-			LonestarSkeleton.this.setAggressive(false);
-		}
-
-		public void start() {
-			super.start();
-			LonestarSkeleton.this.setAggressive(true);
-		}
-	};
+// todo: fix this mess wtf is this
+public class LonestarSkeleton extends AbstractSkeleton {
+	private final LonestarSkeletonShootBladeGoal shootBladeGoal = new LonestarSkeletonShootBladeGoal(this, 1.0, 20, 15.0F);
 
 	public LonestarSkeleton(EntityType<? extends LonestarSkeleton> type, Level level) {
 		super(type, level);
@@ -66,31 +56,36 @@ public class LonestarSkeleton extends Skeleton {
 
 	@Override
 	public void reassessWeaponGoal() {
-
-	}
-
-	public void onSwitchWeapon() {
-		this.goalSelector.removeGoal(this.bladeGoal);
-		this.goalSelector.removeGoal(this.meleeGoal);
-		if (getMainHandItem().is(ESItems.SHATTERED_SWORD.get())) {
-			this.goalSelector.addGoal(4, this.bladeGoal);
+		if (!this.level().isClientSide()) {
+			this.goalSelector.removeGoal(this.shootBladeGoal);
+			if (getMainHandItem().is(ESItems.SHATTERED_SWORD.get())) {
+				this.goalSelector.addGoal(4, this.shootBladeGoal);
+			} else {
+				super.reassessWeaponGoal();
+			}
 		} else {
-			this.goalSelector.addGoal(4, this.meleeGoal);
+			super.reassessWeaponGoal();
 		}
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		super.readAdditionalSaveData(compoundTag);
-		this.onSwitchWeapon();
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.SKELETON_AMBIENT;
 	}
 
 	@Override
-	public void setItemSlot(EquipmentSlot equipmentSlot, ItemStack itemStack) {
-		super.setItemSlot(equipmentSlot, itemStack);
-		if (!this.level().isClientSide) {
-			this.onSwitchWeapon();
-		}
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return SoundEvents.SKELETON_HURT;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.SKELETON_DEATH;
+	}
+
+	@Override
+	public SoundEvent getStepSound() {
+		return SoundEvents.SKELETON_STEP;
 	}
 
 	public static boolean checkLonestarSkeletonSpawnRules(EntityType<? extends LonestarSkeleton> type, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
