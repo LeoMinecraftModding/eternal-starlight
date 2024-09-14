@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import cn.leolezury.eternalstarlight.common.util.ESWeatherUtil;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.commands.CommandBuildContext;
@@ -18,7 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.valueproviders.IntProvider;
 
 public class ESWeatherCommand {
-	public static ArgumentBuilder<CommandSourceStack, ?> register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandBuildContext) {
+	public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext commandBuildContext) {
 		return Commands.literal("weather").requires((commandSourceStack) -> {
 			return commandSourceStack.hasPermission(2);
 		}).then(Commands.argument("weather", ResourceArgument.resource(commandBuildContext, ESWeathers.REGISTRY_KEY)).executes((commandContext) -> {

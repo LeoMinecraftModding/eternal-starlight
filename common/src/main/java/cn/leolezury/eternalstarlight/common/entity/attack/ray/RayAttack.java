@@ -8,7 +8,6 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -18,7 +17,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.HitResult;
@@ -156,7 +154,7 @@ public class RayAttack extends Entity {
 				doHurtTarget(living);
 			}
 		}
-		BlockPos origin = BlockPos.containing(ESMathUtil.rotationToPosition(position(), getLength(), getPitch(), getYaw()));
+		/*BlockPos origin = BlockPos.containing(ESMathUtil.rotationToPosition(position(), getLength(), getPitch(), getYaw()));
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
 				for (int z = -1; z <= 1; z++) {
@@ -166,7 +164,7 @@ public class RayAttack extends Entity {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 	public void doHurtTarget(LivingEntity target) {

@@ -13,6 +13,7 @@ import net.minecraft.world.phys.Vec3;
 public record PushTowardsEntity(LevelBasedValue minSpeed, LevelBasedValue maxSpeed) implements EnchantmentEntityEffect {
 	public static final MapCodec<PushTowardsEntity> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(LevelBasedValue.CODEC.fieldOf("min_speed").forGetter(PushTowardsEntity::minSpeed), LevelBasedValue.CODEC.fieldOf("max_speed").forGetter(PushTowardsEntity::maxSpeed)).apply(instance, PushTowardsEntity::new));
 
+	@Override
 	public void apply(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse, Entity entity, Vec3 vec3) {
 		if (enchantedItemInUse.owner() != null) {
 			float speed = Math.max(0, Mth.randomBetween(entity.getRandom(), this.minSpeed.calculate(i), this.maxSpeed.calculate(i)));
@@ -22,6 +23,7 @@ public record PushTowardsEntity(LevelBasedValue minSpeed, LevelBasedValue maxSpe
 		}
 	}
 
+	@Override
 	public MapCodec<PushTowardsEntity> codec() {
 		return CODEC;
 	}

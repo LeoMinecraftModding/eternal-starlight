@@ -48,41 +48,41 @@ public class GatekeeperDialogueScreen extends Screen {
 				}));
 			} else {
 				addChoices(
-					new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_nothing"), button -> {
+					new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_backoff"), button -> {
 						currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_bye");
 						addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button1 -> onClose()));
 					}),
-					new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ask_portal"), button -> {
-						currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_portal_intro");
-						addChoices(
-							new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_prove_myself"), button1 -> {
-								if (killedDragon) {
-									currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_praise");
-									addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button2 -> {
-										ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 2));
-										packetSent = true;
-										Minecraft.getInstance().setScreen(null);
-									}));
-								} else {
-									currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_fight_intro");
+					new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_look_at_portal"), button -> {
+						if (killedDragon) {
+							currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_praise");
+							addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button2 -> {
+								ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 2));
+								packetSent = true;
+								Minecraft.getInstance().setScreen(null);
+							}));
+						} else {
+							currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_portal_response");
+							addChoices(
+								new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_step_forward"), button1 -> {
+									currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_block_way");
 									addChoices(
 										new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_accept_fight"), button2 -> {
 											ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 1));
 											packetSent = true;
 											Minecraft.getInstance().setScreen(null);
 										}),
-										new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_deny_fight"), button2 -> {
-											currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_wise_choice");
+										new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_backoff"), button2 -> {
+											currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_bye");
 											addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button3 -> onClose()));
 										})
 									);
-								}
-							}),
-							new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_fun_to_know"), button1 -> {
-								currentText = Component.translatable("message." + EternalStarlight.ID + (killedDragon ? ".gatekeeper_pity" : ".gatekeeper_wise_choice"));
-								addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button2 -> onClose()));
-							})
-						);
+								}),
+								new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_backoff"), button1 -> {
+									currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_bye");
+									addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button2 -> onClose()));
+								})
+							);
+						}
 					})
 				);
 			}
