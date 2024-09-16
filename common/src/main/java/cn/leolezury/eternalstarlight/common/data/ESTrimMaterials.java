@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 
+import java.util.List;
 import java.util.Map;
 
 public class ESTrimMaterials {
@@ -25,6 +26,19 @@ public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> GOLEM_STEEL = create("golem_steel");
 	public static final ResourceKey<TrimMaterial> MOONRING = create("moonring");
 	public static final ResourceKey<TrimMaterial> DOOMEDEN_BONE = create("doomeden_bone");
+
+	public static final List<ResourceKey<TrimMaterial>> TRIM_MATERIALS = List.of(
+		RED_STARLIGHT_CRYSTAL,
+		BLUE_STARLIGHT_CRYSTAL,
+		AETHERSENT,
+		THERMAL_SPRINGSTONE,
+		GLACITE,
+		SWAMP_SILVER,
+		AMARAMBER,
+		GOLEM_STEEL,
+		MOONRING,
+		DOOMEDEN_BONE
+	);
 
 	public static void bootstrap(BootstrapContext<TrimMaterial> context) {
 		register(context, RED_STARLIGHT_CRYSTAL, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0xb63070, 1.0f);

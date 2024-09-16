@@ -11,9 +11,16 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimPattern;
 
+import java.util.List;
+
 public class ESTrimPatterns {
 	public static final ResourceKey<TrimPattern> KEEPER = create("keeper");
 	public static final ResourceKey<TrimPattern> FORGE = create("forge");
+
+	public static final List<ResourceKey<TrimPattern>> TRIM_PATTERNS = List.of(
+		KEEPER,
+		FORGE
+	);
 
 	public static void bootstrap(BootstrapContext<TrimPattern> context) {
 		register(context, ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), KEEPER);

@@ -109,6 +109,7 @@ accessible field net/minecraft/data/models/ItemModelGenerators GENERATED_TRIM_MO
 
 # sprite source list mixin
 mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermutations textures Ljava/util/List;
+mutable field net/minecraft/client/renderer/texture/atlas/sources/PalettedPermutations permutations Ljava/util/Map;
 
 # sky rendering
 accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
