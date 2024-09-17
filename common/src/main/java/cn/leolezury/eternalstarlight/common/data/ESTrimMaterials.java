@@ -18,6 +18,7 @@ import java.util.Map;
 public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> RED_STARLIGHT_CRYSTAL = create("red_starlight_crystal");
 	public static final ResourceKey<TrimMaterial> BLUE_STARLIGHT_CRYSTAL = create("blue_starlight_crystal");
+	public static final ResourceKey<TrimMaterial> THIOQUARTZ = create("thioquartz");
 	public static final ResourceKey<TrimMaterial> AETHERSENT = create("aethersent");
 	public static final ResourceKey<TrimMaterial> THERMAL_SPRINGSTONE = create("thermal_springstone");
 	public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
@@ -30,6 +31,7 @@ public class ESTrimMaterials {
 	public static final List<ResourceKey<TrimMaterial>> TRIM_MATERIALS = List.of(
 		RED_STARLIGHT_CRYSTAL,
 		BLUE_STARLIGHT_CRYSTAL,
+		THIOQUARTZ,
 		AETHERSENT,
 		THERMAL_SPRINGSTONE,
 		GLACITE,
@@ -43,6 +45,7 @@ public class ESTrimMaterials {
 	public static void bootstrap(BootstrapContext<TrimMaterial> context) {
 		register(context, RED_STARLIGHT_CRYSTAL, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0xb63070, 1.0f);
 		register(context, BLUE_STARLIGHT_CRYSTAL, ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0x308fb6, 0.8f);
+		register(context, THIOQUARTZ, ESItems.THIOQUARTZ_SHARD.asHolder(), 0xd7e3a8, 0.7f);
 		register(context, AETHERSENT, ESItems.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
 		register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
 		register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);

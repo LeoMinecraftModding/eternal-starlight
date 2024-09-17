@@ -7,8 +7,6 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 import org.joml.Vector4f;
@@ -31,13 +29,6 @@ public class ModelUtils {
 		Vector4f vec = new Vector4f(0, 0, 0, 1).mul(stack.last().pose());
 		Vec3 pos = new Vec3(vec.x(), vec.y(), vec.z());
 		Vec3 subtract = pos.subtract(entity.position());
-		double scale = 1;
-		if (entity instanceof LivingEntity living && living.getAttributes().hasAttribute(Attributes.SCALE)) {
-			AttributeInstance instance = living.getAttribute(Attributes.SCALE);
-			if (instance != null) {
-				scale = instance.getValue();
-			}
-		}
-		return entity.position().add(subtract.scale(scale));
+		return entity.position().add(subtract.scale(entity instanceof LivingEntity living ? living.getScale() : 1));
 	}
 }

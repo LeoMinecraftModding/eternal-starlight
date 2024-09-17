@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-11T23:52:42.3743745	Registries
+// 1.21.1	2024-09-17T22:28:23.3208228	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -76,6 +76,7 @@ f1bbd6c30b43169f0b9316e4374175c396b1aff1 data/eternal_starlight/trim_material/bl
 2d10ea2722a078d21a2cd189f09b2df19efba325 data/eternal_starlight/trim_material/red_starlight_crystal.json
 e28f8ec9fe6e36b71f38dba2b36e8f0273c44a6e data/eternal_starlight/trim_material/swamp_silver.json
 966d35ffa9233e3efa40e7c03ce8c2ff60d77c92 data/eternal_starlight/trim_material/thermal_springstone.json
+81f925e00a49be4e24f3de767ca6dfa9292bbdf8 data/eternal_starlight/trim_material/thioquartz.json
 1d371cf686657e21d39443e45305ffdc5b284331 data/eternal_starlight/trim_pattern/forge.json
 0748e5e6fc26503c044ff622af49d067d689492d data/eternal_starlight/trim_pattern/keeper.json
 530fd6224fec581108b0b7d771097393fb0d2a86 data/eternal_starlight/worldgen/biome/crystallized_desert.json

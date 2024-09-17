@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-07T19:40:04.0205423	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-09-17T23:12:29.3468507	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -87,7 +87,7 @@ c2bade993e49b99929e4d8fa628cf2f9cf91aebf data/eternal_starlight/tags/item/terra_
 e6425f02a8ea9b7b85d84a06c45b390b8f45a2b7 data/eternal_starlight/tags/item/terra_crystal_ingredients.json
 7f06e8adb356f98dd7f56905f2d941bfc06f219a data/eternal_starlight/tags/item/thermal_springstone_weapons.json
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/item/torreya_logs.json
-92e905bac6e1e926257eac1caa9fe545763eb7f3 data/eternal_starlight/tags/item/trimmable_armor.json
+c35aa77d4318037ae7da596c0c2d2ed08db0be75 data/eternal_starlight/tags/item/untrimmable_armor.json
 ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/item/water_crystals.json
 b0b45a39000b20419457df95dd5c87dcb35b0d6e data/eternal_starlight/tags/item/water_crystal_ingredients.json
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/item/wind_crystals.json
@@ -130,7 +130,7 @@ a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_tool_materials.json
 4f535b15d0506f24317fae886f85d643dac080eb data/minecraft/tags/item/swords.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/item/tall_flowers.json
-ae4d00b3791f88b0b362e8bc40f8732e02187ef3 data/minecraft/tags/item/trim_materials.json
+1e02fd92bb14061d1222a906665499db2ba9203b data/minecraft/tags/item/trim_materials.json
 77c40771e01c263ced67e3ea5099a8d690efbc39 data/minecraft/tags/item/trim_templates.json
 35c898daa021e84911ab4847e3657204a09ea8fc data/minecraft/tags/item/walls.json
 2ef261a2ee8458fa023fcd45efeac2dbf120b140 data/minecraft/tags/item/wooden_buttons.json

@@ -1,0 +1,9 @@
+{
+  "asset_name": "thioquartz",
+  "description": {
+    "color": "#D7E3A8",
+    "translate": "trim_material.eternal_starlight.thioquartz"
+  },
+  "ingredient": "eternal_starlight:thioquartz_shard",
+  "item_model_index": 0.7
+}

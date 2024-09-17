@@ -238,14 +238,20 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.CAVE_MOSS.get()
 		);
-		tag(ESTags.Items.TRIMMABLE_ARMOR).add(
-			ESItems.AETHERSENT_HOOD.get(),
-			ESItems.SWAMP_SILVER_HELMET.get(),
-			ESItems.SWAMP_SILVER_CHESTPLATE.get(),
-			ESItems.GLACITE_HELMET.get(),
-			ESItems.GLACITE_CHESTPLATE.get(),
-			ESItems.GLACITE_LEGGINGS.get(),
-			ESItems.GLACITE_BOOTS.get()
+		tag(ESTags.Items.UNTRIMMABLE_ARMOR).add(
+			ESItems.ALCHEMIST_MASK.get(),
+			ESItems.ALCHEMIST_ROBE.get(),
+			ESItems.AETHERSENT_CAPE.get(),
+			ESItems.AETHERSENT_BOTTOMS.get(),
+			ESItems.AETHERSENT_BOOTS.get(),
+			ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
+			ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
+			ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
+			ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
+			ESItems.SWAMP_SILVER_LEGGINGS.get(),
+			ESItems.SWAMP_SILVER_BOOTS.get(),
+			ESItems.AMARAMBER_HELMET.get(),
+			ESItems.AMARAMBER_CHESTPLATE.get()
 		);
 		tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS).add(
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
@@ -556,6 +562,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.TRIM_MATERIALS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
 			ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(),
+			ESItems.THIOQUARTZ_SHARD.get(),
 			ESItems.AETHERSENT_INGOT.get(),
 			ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 			ESItems.GLACITE_SHARD.get(),

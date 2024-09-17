@@ -24,6 +24,7 @@
     "ServerPlayerMixin",
     "SignBlockMixin",
     "SurfaceSystemMixin",
+    "TagLoaderMixin",
     "WallHangingSignBlockMixin"
   ],
   "client": [

@@ -293,11 +293,6 @@ public class ClientSetupHandlers {
 		ESBlocks.STARLIGHT_PORTAL
 	);
 
-	public static final List<ResourceLocation> TRIMS = List.of(
-		EternalStarlight.id("trims/models/armor/keeper"),
-		EternalStarlight.id("trims/models/armor/forge")
-	);
-
 	public static final List<WorldVisualEffectSpawnFunction> VISUAL_EFFECT_SPAWN_FUNCTIONS = List.of(
 		TrailVisualEffect::clientTick
 	);

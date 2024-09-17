@@ -3,11 +3,9 @@ package cn.leolezury.eternalstarlight.common.entity.living;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -17,6 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
+
+import java.util.Arrays;
 
 public class GrimstoneGolem extends PathfinderMob {
 	public final AnimationState raiseArmsAnimationState = new AnimationState();
@@ -91,6 +91,7 @@ public class GrimstoneGolem extends PathfinderMob {
 	protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
 		if (getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.getItemInHand(interactionHand).isEmpty()) {
 			setItemInHand(InteractionHand.MAIN_HAND, player.getItemInHand(interactionHand).copy());
+			Arrays.fill(handDropChances, 1);
 			player.setItemInHand(interactionHand, ItemStack.EMPTY);
 			if (!player.level().isClientSide) {
 				player.level().broadcastEntityEvent(this, (byte) 100);
@@ -119,12 +120,6 @@ public class GrimstoneGolem extends PathfinderMob {
 				displayAnimationState.startIfStopped(tickCount);
 			}
 		}
-	}
-
-	@Override
-	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
-		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-		spawnAtLocation(getMainHandItem());
 	}
 
 	public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

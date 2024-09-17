@@ -31,7 +31,7 @@ public class ESTags {
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");
 		public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
 		public static final TagKey<Item> YETI_FOOD = create("yeti_food");
-		public static final TagKey<Item> TRIMMABLE_ARMOR = create("trimmable_armor");
+		public static final TagKey<Item> UNTRIMMABLE_ARMOR = create("untrimmable_armor");
 		public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
 		public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");

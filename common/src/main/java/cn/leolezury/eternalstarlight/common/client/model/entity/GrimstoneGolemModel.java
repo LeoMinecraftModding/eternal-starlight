@@ -4,26 +4,20 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.GrimstoneGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.HumanoidArm;
 
 @Environment(EnvType.CLIENT)
-public class GrimstoneGolemModel<T extends GrimstoneGolem> extends AnimatedEntityModel<T> implements ArmedModel {
+public class GrimstoneGolemModel<T extends GrimstoneGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("grimstone_golem"), "main");
 	private final ModelPart root;
-	private final ModelPart body;
 
 	public GrimstoneGolemModel(ModelPart root) {
 		this.root = root;
-		this.body = root.getChild("root").getChild("body");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -65,13 +59,5 @@ public class GrimstoneGolemModel<T extends GrimstoneGolem> extends AnimatedEntit
 	@Override
 	public ModelPart root() {
 		return root;
-	}
-
-	@Override
-	public void translateToHand(HumanoidArm humanoidArm, PoseStack poseStack) {
-		this.root.translateAndRotate(poseStack);
-		this.body.translateAndRotate(poseStack);
-		poseStack.mulPose(Axis.YP.rotationDegrees(90));
-		poseStack.translate(0.5, 0.35, 0.25);
 	}
 }
