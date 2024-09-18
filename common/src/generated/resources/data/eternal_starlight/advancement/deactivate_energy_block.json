@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:obtain_seeking_eye",
+  "criteria": {
+    "deactivate": {
+      "trigger": "eternal_starlight:deactivate_energy_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.deactivate_energy_block.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:energy_block"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.deactivate_energy_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "deactivate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

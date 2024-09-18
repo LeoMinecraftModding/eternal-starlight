@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:enter_starlight",
+  "parent": "eternal_starlight:obtain_thioquartz_shard",
   "criteria": {
     "has_item": {
       "conditions": {

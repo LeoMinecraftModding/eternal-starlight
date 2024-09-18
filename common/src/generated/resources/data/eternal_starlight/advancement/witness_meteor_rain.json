@@ -1,0 +1,29 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "witnessed": {
+      "conditions": {
+        "weather": "eternal_starlight:meteor_rain"
+      },
+      "trigger": "eternal_starlight:witness_weather"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.witness_meteor_rain.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:raw_aethersent"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.witness_meteor_rain.title"
+    }
+  },
+  "requirements": [
+    [
+      "witnessed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

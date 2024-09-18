@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_starlight_flower",
+  "parent": "eternal_starlight:enter_starlight",
   "criteria": {
     "has_item": {
       "conditions": {

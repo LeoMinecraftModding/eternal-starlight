@@ -1,0 +1,40 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "in_biome": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:crystallized_desert"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.enter_crystallized_desert.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:blue_starlight_crystal_shard"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.enter_crystallized_desert.title"
+    }
+  },
+  "requirements": [
+    [
+      "in_biome"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

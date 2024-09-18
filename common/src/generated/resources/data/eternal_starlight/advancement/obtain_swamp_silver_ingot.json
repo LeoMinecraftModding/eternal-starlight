@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:starlight_flower"
+            "items": "eternal_starlight:swamp_silver_ingot"
           }
         ]
       },
@@ -14,15 +14,15 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.eternal_starlight.obtain_starlight_flower.description"
+      "translate": "advancements.eternal_starlight.obtain_swamp_silver_ingot.description"
     },
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "eternal_starlight:starlight_flower"
+      "id": "eternal_starlight:swamp_silver_ingot"
     },
     "title": {
-      "translate": "advancements.eternal_starlight.obtain_starlight_flower.title"
+      "translate": "advancements.eternal_starlight.obtain_swamp_silver_ingot.title"
     }
   },
   "requirements": [

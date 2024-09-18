@@ -1,12 +1,10 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.advancement;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.critereon.WitnessWeatherTrigger;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -15,12 +13,14 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -31,6 +31,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 	@Override
 	public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer, ExistingFileHelper helper) {
 		HolderLookup.RegistryLookup<Biome> biomes = registries.lookupOrThrow(Registries.BIOME);
+		HolderLookup.RegistryLookup<Fluid> fluids = registries.lookupOrThrow(Registries.FLUID);
 
 		AdvancementHolder root = Advancement.Builder.advancement().display(
 				ESBlocks.LUNAR_LOG.get(),
@@ -71,13 +72,13 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 					LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
 			.save(consumer, EternalStarlight.ID + ":enter_starlight");
 
+		AdvancementHolder seekingEye = addItemObtain(consumer, enterDim, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
+
 		AdvancementHolder enterAbyss = addEnterBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
 
-		AdvancementHolder starlightFlower = addItemObtain(consumer, enterDim, "obtain_starlight_flower", ESItems.STARLIGHT_FLOWER.get());
+		AdvancementHolder enterCrystallizedDesert = addEnterBiome(consumer, enterDim, "enter_crystallized_desert", ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(), biomes.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT));
 
-		AdvancementHolder seekingEye = addItemObtain(consumer, starlightFlower, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
-
-		AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterDim).display(
+		AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterCrystallizedDesert).display(
 				ESItems.GLEECH_EGG.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".throw_gleech_egg.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".throw_gleech_egg.description"),
@@ -88,23 +89,49 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("thrown", ESCriteriaTriggers.THROW_GLEECH_EGG.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":throw_gleech_egg");
 
-		AdvancementHolder swampSilver = addItemObtain(consumer, enterDim, "obtain_swamp_silver", ESItems.SWAMP_SILVER_INGOT.get());
+		AdvancementHolder inEtherFluid = addInFluid(consumer, enterDim, "in_ether_fluid", ESItems.ETHER_BUCKET.get(), fluids.getOrThrow(ESTags.Fluids.ETHER));
+
+		AdvancementHolder thioquartzShard = addItemObtain(consumer, inEtherFluid, "obtain_thioquartz_shard", ESItems.THIOQUARTZ_SHARD.get());
+
+		AdvancementHolder alchemistMask = addItemObtain(consumer, thioquartzShard, "obtain_alchemist_mask", ESItems.ALCHEMIST_MASK.get());
+
+		AdvancementHolder witnessMeteorRain = Advancement.Builder.advancement().parent(enterDim).display(
+				ESItems.RAW_AETHERSENT.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".witness_meteor_rain.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".witness_meteor_rain.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.requirements(AdvancementRequirements.Strategy.OR)
+			.addCriterion("witnessed", ESCriteriaTriggers.WITNESS_WEATHER.get().createCriterion(new WitnessWeatherTrigger.TriggerInstance(Optional.empty(), ESWeathers.METEOR_RAIN.asHolder())))
+			.save(consumer, EternalStarlight.ID + ":witness_meteor_rain");
+
+		AdvancementHolder aethersentIngot = addItemObtain(consumer, witnessMeteorRain, "obtain_aethersent_ingot", ESItems.AETHERSENT_INGOT.get());
+
+		AdvancementHolder swampSilverIngot = addItemObtain(consumer, enterDim, "obtain_swamp_silver_ingot", ESItems.SWAMP_SILVER_INGOT.get());
+
+		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
 		AdvancementHolder glacite = addItemObtain(consumer, enterDim, "obtain_glacite", ESItems.GLACITE_SHARD.get());
 
-		AdvancementHolder alchemistMask = addItemObtain(consumer, enterDim, "obtain_alchemist_mask", ESItems.ALCHEMIST_MASK.get());
-
-		AdvancementHolder aethersentIngot = addItemObtain(consumer, enterDim, "obtain_aethersent_ingot", ESItems.AETHERSENT_INGOT.get());
-
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());
 
-		AdvancementHolder killGolem = addEntityKill(consumer, seekingEye, "kill_golem", ESEntities.STARLIGHT_GOLEM.get(), ESItems.ENERGY_BLOCK.get());
+		AdvancementHolder deactivateEnergyBlock = Advancement.Builder.advancement().parent(seekingEye).display(
+				ESItems.ENERGY_BLOCK.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".deactivate_energy_block.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".deactivate_energy_block.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.requirements(AdvancementRequirements.Strategy.OR)
+			.addCriterion("deactivate", ESCriteriaTriggers.DEACTIVATE_ENERGY_BLOCK.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":deactivate_energy_block");
+
+		AdvancementHolder killGolem = addEntityKill(consumer, deactivateEnergyBlock, "kill_golem", ESEntities.STARLIGHT_GOLEM.get(), ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
 
 		AdvancementHolder golemSteelIngot = addItemObtain(consumer, killGolem, "obtain_golem_steel_ingot", ESItems.GOLEM_STEEL_INGOT.get());
 
-		AdvancementHolder thermalSpringstone = addItemObtain(consumer, killGolem, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
-
-		AdvancementHolder igniteLunarMonstrosity = Advancement.Builder.advancement().parent(thermalSpringstone).display(
+		AdvancementHolder igniteLunarMonstrosity = Advancement.Builder.advancement().parent(killGolem).display(
 				ESItems.SALTPETER_MATCHBOX.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".ignite_lunar_monstrosity.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".ignite_lunar_monstrosity.description"),
@@ -172,6 +199,16 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
 				null, AdvancementType.GOAL, true, true, false)
 			.addCriterion("in_biome", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biome)))
+			.save(consumer, EternalStarlight.ID + ":" + id);
+	}
+
+	private static AdvancementHolder addInFluid(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item display, HolderSet<Fluid> fluids) {
+		return Advancement.Builder.advancement().parent(parent).display(
+				display,
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
+				null, AdvancementType.GOAL, true, true, false)
+			.addCriterion("in_fluid", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setFluid(FluidPredicate.Builder.fluid().of(fluids))))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
 }

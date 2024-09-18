@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_thermal_springstone",
+  "parent": "eternal_starlight:kill_golem",
   "criteria": {
     "ignite": {
       "conditions": {

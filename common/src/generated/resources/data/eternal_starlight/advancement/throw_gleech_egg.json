@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:enter_starlight",
+  "parent": "eternal_starlight:enter_crystallized_desert",
   "criteria": {
     "thrown": {
       "trigger": "eternal_starlight:throw_gleech_egg"

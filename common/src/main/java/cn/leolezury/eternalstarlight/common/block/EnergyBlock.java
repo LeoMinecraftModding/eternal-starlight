@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -39,12 +41,18 @@ public class EnergyBlock extends Block {
 		if (blockState.getValue(LIT) && blockHitResult.getType() != HitResult.Type.MISS) {
 			level.setBlockAndUpdate(blockHitResult.getBlockPos(), blockState.setValue(LIT, false));
 		}
+		if (projectile.getOwner() instanceof ServerPlayer serverPlayer) {
+			ESCriteriaTriggers.DEACTIVATE_ENERGY_BLOCK.get().trigger(serverPlayer);
+		}
 	}
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
 		if (blockState.getValue(LIT)) {
 			level.setBlockAndUpdate(blockPos, blockState.setValue(LIT, false));
+			if (player instanceof ServerPlayer serverPlayer) {
+				ESCriteriaTriggers.DEACTIVATE_ENERGY_BLOCK.get().trigger(serverPlayer);
+			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return InteractionResult.PASS;

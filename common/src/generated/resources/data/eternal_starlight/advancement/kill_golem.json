@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_seeking_eye",
+  "parent": "eternal_starlight:deactivate_energy_block",
   "criteria": {
     "kill": {
       "conditions": {
@@ -23,7 +23,7 @@
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "eternal_starlight:energy_block"
+      "id": "eternal_starlight:chiseled_golem_steel_block"
     },
     "title": {
       "translate": "advancements.eternal_starlight.kill_golem.title"

@@ -1,11 +1,11 @@
 {
-  "parent": "eternal_starlight:enter_starlight",
+  "parent": "eternal_starlight:in_ether_fluid",
   "criteria": {
     "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:swamp_silver_ingot"
+            "items": "eternal_starlight:thioquartz_shard"
           }
         ]
       },
@@ -14,15 +14,15 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.eternal_starlight.obtain_swamp_silver.description"
+      "translate": "advancements.eternal_starlight.obtain_thioquartz_shard.description"
     },
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "eternal_starlight:swamp_silver_ingot"
+      "id": "eternal_starlight:thioquartz_shard"
     },
     "title": {
-      "translate": "advancements.eternal_starlight.obtain_swamp_silver.title"
+      "translate": "advancements.eternal_starlight.obtain_thioquartz_shard.title"
     }
   },
   "requirements": [

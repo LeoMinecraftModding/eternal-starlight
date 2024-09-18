@@ -21,6 +21,7 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
+import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.advancements.AdvancementHolder;
@@ -56,6 +57,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class CommonHandlers {
 	private static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
@@ -64,10 +66,18 @@ public class CommonHandlers {
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
-	private static TheGatekeeperNameManager GATEKEEPER_NAMES;
+	private static TheGatekeeperNameManager gatekeeperNames;
+	private static Weathers starlightWeathers;
 
 	public static String getGatekeeperName() {
-		return GATEKEEPER_NAMES.getTheGatekeeperName();
+		return gatekeeperNames.getTheGatekeeperName();
+	}
+
+	public static Optional<WeatherInstance> getActiveWeather() {
+		if (starlightWeathers == null) {
+			return Optional.empty();
+		}
+		return starlightWeathers.getActiveWeather();
 	}
 
 	private static int ticksSinceLastUpdate = 0;
@@ -101,16 +111,20 @@ public class CommonHandlers {
 
 	public static void onLevelLoad(ServerLevel serverLevel) {
 		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
-			ESWeatherUtil.getOrCreateWeathers(serverLevel);
+			starlightWeathers = ESWeatherUtil.getOrCreateWeathers(serverLevel);
 		}
 	}
 
 	public static void onLevelTick(ServerLevel serverLevel) {
-		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
-			Weathers weathers = ESWeatherUtil.getOrCreateWeathers(serverLevel);
-			weathers.tick();
-			weathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
+		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY && starlightWeathers != null) {
+			starlightWeathers.tick();
+			starlightWeathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
 				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
+				if (serverLevel.getGameTime() % 100 == 0) {
+					for (ServerPlayer player : serverLevel.players()) {
+						ESCriteriaTriggers.WITNESS_WEATHER.get().trigger(player);
+					}
+				}
 			}), () -> {
 				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
 			});
@@ -370,7 +384,7 @@ public class CommonHandlers {
 	}
 
 	public static void addReloadListeners(AddReloadListenerStrategy strategy) {
-		GATEKEEPER_NAMES = ESPlatform.INSTANCE.createGatekeeperNameManager();
-		strategy.add(GATEKEEPER_NAMES);
+		gatekeeperNames = ESPlatform.INSTANCE.createGatekeeperNameManager();
+		strategy.add(gatekeeperNames);
 	}
 }

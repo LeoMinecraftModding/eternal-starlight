@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:kill_golem",
+  "parent": "eternal_starlight:enter_starlight",
   "criteria": {
     "has_item": {
       "conditions": {

@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:enter_starlight",
+  "parent": "eternal_starlight:witness_meteor_rain",
   "criteria": {
     "has_item": {
       "conditions": {
