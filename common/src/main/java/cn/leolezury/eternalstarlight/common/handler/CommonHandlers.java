@@ -120,7 +120,7 @@ public class CommonHandlers {
 			starlightWeathers.tick();
 			starlightWeathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
 				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
-				if (serverLevel.getGameTime() % 100 == 0) {
+				if (serverLevel.getGameTime() % 60 == 0) {
 					for (ServerPlayer player : serverLevel.players()) {
 						ESCriteriaTriggers.WITNESS_WEATHER.get().trigger(player);
 					}

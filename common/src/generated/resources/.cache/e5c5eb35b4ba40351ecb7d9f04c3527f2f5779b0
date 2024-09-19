@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-19T00:01:20.0939677	Advancements
+// 1.21.1	2024-09-19T22:32:43.9363937	Advancements
 84c5f6b87b5f12924f133c3e6a220b9ebe035142 data/eternal_starlight/advancement/chain_tangled_skull_explosion.json
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancement/challenge_gatekeeper.json
 4613e2425c0850aeba098df84a349456b38154b4 data/eternal_starlight/advancement/deactivate_energy_block.json
@@ -20,6 +20,7 @@ d142ae14bea3231a392fabd5635d15d3ba4a7ca9 data/eternal_starlight/advancement/obta
 baeaa7213676335e8f2eec43e344979ba0d13028 data/eternal_starlight/advancement/obtain_thermal_springstone.json
 4241ca3c40a32ef5200ab22a404d11ed27e5f3aa data/eternal_starlight/advancement/obtain_thioquartz_shard.json
 a0dc8d246f5d8e11fca25090bc5d41b3d933c502 data/eternal_starlight/advancement/root.json
+830b33b8df19564e2bb7d298cbc778a18b918703 data/eternal_starlight/advancement/summon_grimstone_golem.json
 370c4174af4a372ecac94bdd34f6ee9dfb392021 data/eternal_starlight/advancement/throw_gleech_egg.json
 9f5627a4869baf980b086e2e39a6ff91dc6dfeb1 data/eternal_starlight/advancement/use_blossom_of_stars.json
 897243e48e1db4ece494f5da95743f5df47a3fa9 data/eternal_starlight/advancement/witness_meteor_rain.json

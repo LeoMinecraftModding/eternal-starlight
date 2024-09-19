@@ -92,7 +92,9 @@ public class GrimstoneGolem extends PathfinderMob {
 		if (getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.getItemInHand(interactionHand).isEmpty()) {
 			setItemInHand(InteractionHand.MAIN_HAND, player.getItemInHand(interactionHand).copy());
 			Arrays.fill(handDropChances, 1);
-			player.setItemInHand(interactionHand, ItemStack.EMPTY);
+			if (!player.hasInfiniteMaterials()) {
+				player.setItemInHand(interactionHand, ItemStack.EMPTY);
+			}
 			if (!player.level().isClientSide) {
 				player.level().broadcastEntityEvent(this, (byte) 100);
 			}

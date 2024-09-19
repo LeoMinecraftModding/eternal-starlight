@@ -1,0 +1,38 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "summon": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:grimstone_golem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.summon_grimstone_golem.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:grimstone_bricks"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.summon_grimstone_golem.title"
+    }
+  },
+  "requirements": [
+    [
+      "summon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

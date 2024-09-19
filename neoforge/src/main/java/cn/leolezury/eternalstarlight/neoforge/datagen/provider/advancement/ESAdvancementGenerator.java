@@ -74,9 +74,9 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder seekingEye = addItemObtain(consumer, enterDim, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
 
-		AdvancementHolder enterAbyss = addEnterBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
+		AdvancementHolder enterAbyss = addInBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
 
-		AdvancementHolder enterCrystallizedDesert = addEnterBiome(consumer, enterDim, "enter_crystallized_desert", ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(), biomes.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT));
+		AdvancementHolder enterCrystallizedDesert = addInBiome(consumer, enterDim, "enter_crystallized_desert", ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(), biomes.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT));
 
 		AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterCrystallizedDesert).display(
 				ESItems.GLEECH_EGG.get(),
@@ -115,6 +115,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		AdvancementHolder glacite = addItemObtain(consumer, enterDim, "obtain_glacite", ESItems.GLACITE_SHARD.get());
 
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());
+
+		AdvancementHolder summonGrimstoneGolem = addEntitySummon(consumer, enterDim, "summon_grimstone_golem", ESEntities.GRIMSTONE_GOLEM.get(), ESItems.GRIMSTONE_BRICKS.get());
 
 		AdvancementHolder deactivateEnergyBlock = Advancement.Builder.advancement().parent(seekingEye).display(
 				ESItems.ENERGY_BLOCK.get(),
@@ -192,7 +194,21 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
 
-	private static AdvancementHolder addEnterBiome(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item display, Holder<Biome> biome) {
+	private static AdvancementHolder addEntitySummon(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, EntityType<?> entity, Item item) {
+		return addEntitySummon(consumer, parent, id, EntityPredicate.Builder.entity().of(entity), item);
+	}
+
+	private static AdvancementHolder addEntitySummon(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, EntityPredicate.Builder predicate, Item item) {
+		return Advancement.Builder.advancement().parent(parent).display(
+				item,
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
+				null, AdvancementType.GOAL, true, true, false)
+			.addCriterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(predicate))
+			.save(consumer, EternalStarlight.ID + ":" + id);
+	}
+
+	private static AdvancementHolder addInBiome(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item display, Holder<Biome> biome) {
 		return Advancement.Builder.advancement().parent(parent).display(
 				display,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
