@@ -920,6 +920,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GOLEM_STEEL_STAIRS.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(),
 			ESBlocks.GOLEM_STEEL_TILES.get(),
+			ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(),
 			ESBlocks.GOLEM_STEEL_TILE_SLAB.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(),
 			ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(),

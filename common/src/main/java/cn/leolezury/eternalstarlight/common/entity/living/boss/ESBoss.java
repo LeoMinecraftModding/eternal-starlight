@@ -180,6 +180,11 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		return super.addEffect(effectInstance, entity);
 	}
 
+	@Override
+	public boolean startRiding(Entity entity, boolean bl) {
+		return false;
+	}
+
 	public boolean canBossMove() {
 		return true;
 	}
