@@ -198,6 +198,7 @@
     "description": {
       "translate": "advancements.eternal_starlight.all_starlight_biomes.description"
     },
+    "frame": "challenge",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:nightfall_grass_block"
@@ -211,28 +212,10 @@
       "in_starlight_permafrost_forest"
     ],
     [
-      "in_crystallized_desert"
-    ],
-    [
-      "in_scarlet_forest"
-    ],
-    [
-      "in_shimmer_river"
-    ],
-    [
-      "in_torreya_forest"
-    ],
-    [
-      "in_ether_river"
-    ],
-    [
-      "in_dark_swamp"
-    ],
-    [
       "in_starlight_forest"
     ],
     [
-      "in_starlit_sea"
+      "in_dark_swamp"
     ],
     [
       "in_warm_shore"
@@ -241,8 +224,29 @@
       "in_starlight_dense_forest"
     ],
     [
+      "in_scarlet_forest"
+    ],
+    [
+      "in_starlit_sea"
+    ],
+    [
       "in_the_abyss"
+    ],
+    [
+      "in_torreya_forest"
+    ],
+    [
+      "in_shimmer_river"
+    ],
+    [
+      "in_crystallized_desert"
+    ],
+    [
+      "in_ether_river"
     ]
   ],
+  "rewards": {
+    "experience": 500
+  },
   "sends_telemetry_event": true
 }

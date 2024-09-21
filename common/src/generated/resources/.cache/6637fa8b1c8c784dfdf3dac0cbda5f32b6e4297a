@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-21T13:59:49.4931966	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2024-09-21T20:03:52.3393864	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 e2863b8fcfae5ad14247c8fe70024ee79ce749f7 data/c/tags/block/clusters.json
@@ -67,6 +67,8 @@ a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/block/porta
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/block/yeti_fur_carpets.json
 051c0d0309af355a1b58cf3a97de89bd93d3aed2 data/minecraft/tags/block/beacon_base_blocks.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/minecraft/tags/block/campfires.json
+4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/block/candles.json
+3276fe5fe9f5770459f5545469eef8fa3872e76d data/minecraft/tags/block/candle_cakes.json
 ac4e8c55744bcf26fd130e0b73b09c91e88491c1 data/minecraft/tags/block/ceiling_hanging_signs.json
 dd45129bf1592e5525f0d5ef452f39494f73d89e data/minecraft/tags/block/climbable.json
 a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_step_sound_blocks.json

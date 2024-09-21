@@ -6,10 +6,7 @@ import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementHolder;
-import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -143,9 +140,10 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.description"),
 				null,
-				AdvancementType.TASK,
+				AdvancementType.CHALLENGE,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.AND);
+			.requirements(AdvancementRequirements.Strategy.AND)
+			.rewards(AdvancementRewards.Builder.experience(500));
 		List<ResourceKey<Biome>> biomeIds = biomes.listElementIds().toList();
 		for (ResourceKey<Biome> key : biomeIds) {
 			if (key.location().getNamespace().equals(EternalStarlight.ID)) {
@@ -190,6 +188,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				AdvancementType.CHALLENGE,
 				true, true, false)
 			.requirements(AdvancementRequirements.Strategy.OR)
+			.rewards(AdvancementRewards.Builder.experience(60))
 			.addCriterion("explode", ESCriteriaTriggers.CHAIN_TANGLED_SKULL_EXPLOSION.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":chain_tangled_skull_explosion");
 

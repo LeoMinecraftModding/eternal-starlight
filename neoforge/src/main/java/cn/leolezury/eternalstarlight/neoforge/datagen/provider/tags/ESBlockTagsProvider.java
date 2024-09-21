@@ -1032,6 +1032,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GOLEM_STEEL_JET.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get()
 		);
+		tag(BlockTags.CANDLES).add(
+			ESBlocks.AMARAMBER_CANDLE.get()
+		);
+		tag(BlockTags.CANDLE_CAKES).add(
+			ESBlocks.AMARAMBER_CANDLE_CAKE.get()
+		);
 		tag(BlockTags.IMPERMEABLE).add(
 			ESBlocks.DUSK_GLASS.get()
 		);

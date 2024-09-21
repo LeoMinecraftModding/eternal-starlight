@@ -414,6 +414,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
+		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
 
 		stellarRack(ESBlocks.STELLAR_RACK.get());
 		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
@@ -919,6 +920,26 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.modelForState().modelFile(four).addModel()
 			.partialState().with(BlockStateProperties.CANDLES, 4).with(BlockStateProperties.LIT, true)
 			.modelForState().modelFile(fourLit).addModel();
+	}
+
+	private void candleCake(Block candleCake, Block cake, Block candle) {
+		ModelFile normal = models().withExistingParent(name(candleCake), "template_cake_with_candle")
+			.texture("bottom", blockTexture(cake).withSuffix("_bottom"))
+			.texture("side", blockTexture(cake).withSuffix("_side"))
+			.texture("top", blockTexture(cake).withSuffix("_top"))
+			.texture("candle", blockTexture(candle))
+			.texture("particle", blockTexture(cake).withSuffix("_side"));
+		ModelFile lit = models().withExistingParent(name(candleCake) + "_lit", "template_cake_with_candle")
+			.texture("bottom", blockTexture(cake).withSuffix("_bottom"))
+			.texture("side", blockTexture(cake).withSuffix("_side"))
+			.texture("top", blockTexture(cake).withSuffix("_top"))
+			.texture("candle", blockTexture(candle).withSuffix("_lit"))
+			.texture("particle", blockTexture(cake).withSuffix("_side"));
+		getVariantBuilder(candleCake)
+			.partialState().with(BlockStateProperties.LIT, false)
+			.modelForState().modelFile(normal).addModel()
+			.partialState().with(BlockStateProperties.LIT, true)
+			.modelForState().modelFile(lit).addModel();
 	}
 
 	private void sandstoneAndCut(Block sandstone, Block cut) {

@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-21T13:59:49.4695633	Loot Tables
+// 1.21.1	2024-09-21T20:03:52.3243718	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -7,6 +7,7 @@
 4c74799da1ab5e97e6982e706ae340640a400ed3 data/eternal_starlight/loot_table/blocks/abysslate.json
 0d7d8c3f6b3f49ca6b75e3961a37f41a5bc7472d data/eternal_starlight/loot_table/blocks/aethersent_block.json
 607bb438bf6effedf1c2bae53ce005ab28ed50f6 data/eternal_starlight/loot_table/blocks/amaramber_candle.json
+4dedd6dd26432845595b2dd3d48cba6c488a3f1c data/eternal_starlight/loot_table/blocks/amaramber_candle_cake.json
 d68da68824dc4c04b6fef4204c03c2d70a2d6045 data/eternal_starlight/loot_table/blocks/amaramber_lantern.json
 0e55f727886c307b0ea3fa8e7ebe3a3e81bc31f1 data/eternal_starlight/loot_table/blocks/amethysia_grass.json
 91f67b44a63f943aeea4c6117db07bed3d4b6aeb data/eternal_starlight/loot_table/blocks/ashen_snow.json

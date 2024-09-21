@@ -721,6 +721,7 @@ public class ESBlocks {
 
 	public static final RegistryObject<Block, LanternBlock> AMARAMBER_LANTERN = BLOCKS.register("amaramber_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
 	public static final RegistryObject<Block, AmaramberCandleBlock> AMARAMBER_CANDLE = BLOCKS.register("amaramber_candle", () -> new AmaramberCandleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CANDLE)));
+	public static final RegistryObject<Block, AmaramberCandleCakeBlock> AMARAMBER_CANDLE_CAKE = BLOCKS.register("amaramber_candle_cake", () -> new AmaramberCandleCakeBlock(AMARAMBER_CANDLE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE)));
 
 	// magic
 	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));

@@ -69,8 +69,6 @@ import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
-import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
@@ -427,8 +425,8 @@ public class ClientSetupHandlers {
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
-		BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor();
-		BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : GrassColor.getDefaultColor();
+		BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : 5195923;
+		BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : 5195923;
 		BlockColor dyeColor = (state, getter, pos, i) -> state.getBlock().defaultMapColor().col;
 		strategy.register(grassColor, ESBlocks.NIGHTFALL_GRASS_BLOCK.get());
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS.get());
