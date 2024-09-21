@@ -3,9 +3,11 @@ package cn.leolezury.eternalstarlight.neoforge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
@@ -99,6 +102,21 @@ public class CommonEvents {
 				if (event.getItemStack().is(itemTag)) {
 					event.setBurnTime(time);
 				}
+			}
+		});
+	}
+
+	@SubscribeEvent
+	private static void onRegisterBrewingRecipes(RegisterBrewingRecipesEvent event) {
+		CommonSetupHandlers.registerPotions(new CommonSetupHandlers.BrewingRegisterStrategy() {
+			@Override
+			public void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
+				event.getBuilder().addMix(input, ingredient, output);
+			}
+
+			@Override
+			public void registerStart(Item ingredient, Holder<Potion> potion) {
+				event.getBuilder().addStartMix(ingredient, potion);
 			}
 		});
 	}

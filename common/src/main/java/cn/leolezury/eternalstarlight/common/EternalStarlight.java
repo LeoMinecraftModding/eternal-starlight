@@ -26,6 +26,7 @@ public class EternalStarlight {
 		ESArmorMaterials.loadClass();
 		ESSpells.loadClass();
 		ESEntities.loadClass();
+		ESPotions.loadClass();
 		ESItems.loadClass();
 		ESCreativeModeTabs.loadClass();
 		ESCriteriaTriggers.loadClass();
@@ -37,7 +38,7 @@ public class EternalStarlight {
 		ESMaterialConditions.loadClass();
 		ESWorldCarvers.loadClass();
 		ESFeatures.loadClass();
-		ESPlacers.loadClass();
+		ESTreePlacers.loadClass();
 		ESTreeDecorators.loadClass();
 		ESStructureTypes.loadClass();
 		ESStructurePieceTypes.loadClass();

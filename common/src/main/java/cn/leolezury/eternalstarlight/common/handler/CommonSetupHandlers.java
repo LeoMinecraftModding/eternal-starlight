@@ -20,6 +20,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESPotions;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
@@ -27,10 +28,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Position;
-import net.minecraft.core.Registry;
+import net.minecraft.core.*;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -40,10 +38,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -286,6 +282,18 @@ public class CommonSetupHandlers {
 		strategy.register(ESItems.SALTPETER_POWDER.get(), 1600);
 		strategy.register(ESItems.RAW_AMARAMBER.get(), 2400);
 		strategy.register(ESItems.AMARAMBER_NUGGET.get(), 240);
+	}
+
+	public interface BrewingRegisterStrategy {
+		void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output);
+
+		void registerStart(Item ingredient, Holder<Potion> potion);
+	}
+
+	public static void registerPotions(BrewingRegisterStrategy strategy) {
+		strategy.registerStart(ESItems.TOOTH_OF_HUNGER.get(), ESPotions.HUNGER.asHolder());
+		strategy.registerConversion(ESPotions.HUNGER.asHolder(), Items.REDSTONE, ESPotions.LONG_HUNGER.asHolder());
+		strategy.registerConversion(ESPotions.HUNGER.asHolder(), Items.GLOWSTONE_DUST, ESPotions.STRONG_HUNGER.asHolder());
 	}
 
 	public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
-import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
+import cn.leolezury.eternalstarlight.common.registry.ESTreePlacers;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -28,7 +28,7 @@ public class ScarletFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected FoliagePlacerType<?> type() {
-		return ESPlacers.FOLIAGE_SCARLET.get();
+		return ESTreePlacers.FOLIAGE_SCARLET.get();
 	}
 
 	public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {

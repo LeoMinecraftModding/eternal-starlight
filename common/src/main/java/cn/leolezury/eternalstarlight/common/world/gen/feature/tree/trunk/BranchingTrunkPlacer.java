@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk;
 
-import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
+import cn.leolezury.eternalstarlight.common.registry.ESTreePlacers;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
@@ -52,7 +52,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 
 	@Override
 	protected TrunkPlacerType<BranchingTrunkPlacer> type() {
-		return ESPlacers.TRUNK_BRANCHING.get();
+		return ESTreePlacers.TRUNK_BRANCHING.get();
 	}
 
 	@Override

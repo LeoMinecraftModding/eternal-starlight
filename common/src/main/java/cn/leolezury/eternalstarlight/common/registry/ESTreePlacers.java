@@ -11,7 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
-public class ESPlacers {
+public class ESTreePlacers {
 	public static final RegistrationProvider<TrunkPlacerType<?>> TRUNK_PLACERS = RegistrationProvider.get(Registries.TRUNK_PLACER_TYPE, EternalStarlight.ID);
 	public static final RegistrationProvider<FoliagePlacerType<?>> FOLIAGE_PLACERS = RegistrationProvider.get(Registries.FOLIAGE_PLACER_TYPE, EternalStarlight.ID);
 	public static final RegistryObject<TrunkPlacerType<?>, TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching", () -> new TrunkPlacerType<>(BranchingTrunkPlacer.CODEC));

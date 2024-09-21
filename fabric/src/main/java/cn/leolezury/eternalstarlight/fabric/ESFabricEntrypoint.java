@@ -10,17 +10,17 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
+import net.fabricmc.fabric.api.registry.*;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.minecraft.core.Holder;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
@@ -48,6 +48,17 @@ public class ESFabricEntrypoint implements ModInitializer {
 				FuelRegistry.INSTANCE.add(itemTag, time);
 			}
 		});
+		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> CommonSetupHandlers.registerPotions(new CommonSetupHandlers.BrewingRegisterStrategy() {
+			@Override
+			public void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
+				builder.registerPotionRecipe(input, Ingredient.of(ingredient), output);
+			}
+
+			@Override
+			public void registerStart(Item ingredient, Holder<Potion> potion) {
+				builder.registerRecipes(Ingredient.of(ingredient), potion);
+			}
+		}));
 		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
 		CommonSetupHandlers.registerChunkGenerator();
 		CommonSetupHandlers.registerBiomeSource();

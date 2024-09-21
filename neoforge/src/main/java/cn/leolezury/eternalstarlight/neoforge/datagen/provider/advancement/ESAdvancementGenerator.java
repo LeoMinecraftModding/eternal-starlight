@@ -144,7 +144,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				true, true, false)
 			.requirements(AdvancementRequirements.Strategy.AND)
 			.rewards(AdvancementRewards.Builder.experience(500));
-		List<ResourceKey<Biome>> biomeIds = biomes.listElementIds().toList();
+		List<ResourceKey<Biome>> biomeIds = biomes.listElementIds().sorted(ResourceKey::compareTo).toList();
 		for (ResourceKey<Biome> key : biomeIds) {
 			if (key.location().getNamespace().equals(EternalStarlight.ID)) {
 				allStarlightBiomesBuilder.addCriterion("in_" + key.location().getPath(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(key))));

@@ -209,22 +209,28 @@
   },
   "requirements": [
     [
-      "in_starlight_permafrost_forest"
-    ],
-    [
-      "in_starlight_forest"
+      "in_crystallized_desert"
     ],
     [
       "in_dark_swamp"
     ],
     [
-      "in_warm_shore"
+      "in_ether_river"
+    ],
+    [
+      "in_scarlet_forest"
+    ],
+    [
+      "in_shimmer_river"
     ],
     [
       "in_starlight_dense_forest"
     ],
     [
-      "in_scarlet_forest"
+      "in_starlight_forest"
+    ],
+    [
+      "in_starlight_permafrost_forest"
     ],
     [
       "in_starlit_sea"
@@ -236,13 +242,7 @@
       "in_torreya_forest"
     ],
     [
-      "in_shimmer_river"
-    ],
-    [
-      "in_crystallized_desert"
-    ],
-    [
-      "in_ether_river"
+      "in_warm_shore"
     ]
   ],
   "rewards": {

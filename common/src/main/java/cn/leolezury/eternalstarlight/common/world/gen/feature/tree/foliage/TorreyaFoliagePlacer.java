@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.foliage;
 
-import cn.leolezury.eternalstarlight.common.registry.ESPlacers;
+import cn.leolezury.eternalstarlight.common.registry.ESTreePlacers;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -28,7 +28,7 @@ public class TorreyaFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected FoliagePlacerType<TorreyaFoliagePlacer> type() {
-		return ESPlacers.FOLIAGE_TORREYA.get();
+		return ESTreePlacers.FOLIAGE_TORREYA.get();
 	}
 
 	public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {
