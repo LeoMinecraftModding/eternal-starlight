@@ -123,8 +123,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> DEAD_LUNAR_LOG = registerItem("dead_lunar_log", () -> new BlockItem(ESBlocks.DEAD_LUNAR_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_CRYSTALLIZED_LUNAR_LOG = registerItem("red_crystallized_lunar_log", () -> new BlockItem(ESBlocks.RED_CRYSTALLIZED_LUNAR_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLUE_CRYSTALLIZED_LUNAR_LOG = registerItem("blue_crystallized_lunar_log", () -> new BlockItem(ESBlocks.BLUE_CRYSTALLIZED_LUNAR_LOG.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_SIGN = registerItem("lunar_sign", () -> new SignItem(new Item.Properties().stacksTo(32), ESBlocks.LUNAR_SIGN.get(), ESBlocks.LUNAR_WALL_SIGN.get()));
-	public static final RegistryObject<Item, Item> LUNAR_HANGING_SIGN = registerItem("lunar_hanging_sign", () -> new HangingSignItem(ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.LUNAR_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+	public static final RegistryObject<Item, Item> LUNAR_SIGN = registerItem("lunar_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.LUNAR_SIGN.get(), ESBlocks.LUNAR_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> LUNAR_HANGING_SIGN = registerItem("lunar_hanging_sign", () -> new HangingSignItem(ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.LUNAR_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> LUNAR_BOAT = registerItem("lunar_boat", () -> new ESBoatItem(false, ESBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> LUNAR_CHEST_BOAT = registerItem("lunar_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.LUNAR, new Item.Properties().stacksTo(1)));
 
@@ -144,8 +144,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NORTHLAND_FENCE_GATE = registerItem("northland_fence_gate", () -> new BlockItem(ESBlocks.NORTHLAND_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NORTHLAND_SLAB = registerItem("northland_slab", () -> new BlockItem(ESBlocks.NORTHLAND_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NORTHLAND_STAIRS = registerItem("northland_stairs", () -> new BlockItem(ESBlocks.NORTHLAND_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> NORTHLAND_SIGN = registerItem("northland_sign", () -> new SignItem(new Item.Properties().stacksTo(32), ESBlocks.NORTHLAND_SIGN.get(), ESBlocks.NORTHLAND_WALL_SIGN.get()));
-	public static final RegistryObject<Item, Item> NORTHLAND_HANGING_SIGN = registerItem("northland_hanging_sign", () -> new HangingSignItem(ESBlocks.NORTHLAND_HANGING_SIGN.get(), ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+	public static final RegistryObject<Item, Item> NORTHLAND_SIGN = registerItem("northland_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.NORTHLAND_SIGN.get(), ESBlocks.NORTHLAND_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> NORTHLAND_HANGING_SIGN = registerItem("northland_hanging_sign", () -> new HangingSignItem(ESBlocks.NORTHLAND_HANGING_SIGN.get(), ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> NORTHLAND_BOAT = registerItem("northland_boat", () -> new ESBoatItem(false, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> NORTHLAND_CHEST_BOAT = registerItem("northland_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.NORTHLAND, new Item.Properties().stacksTo(1)));
 
@@ -167,8 +167,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_STAIRS = registerItem("starlight_mangrove_stairs", () -> new BlockItem(ESBlocks.STARLIGHT_MANGROVE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_ROOTS = registerItem("starlight_mangrove_roots", () -> new BlockItem(ESBlocks.STARLIGHT_MANGROVE_ROOTS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MUDDY_STARLIGHT_MANGROVE_ROOTS = registerItem("muddy_starlight_mangrove_roots", () -> new BlockItem(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_SIGN = registerItem("starlight_mangrove_sign", () -> new SignItem(new Item.Properties().stacksTo(32), ESBlocks.STARLIGHT_MANGROVE_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get()));
-	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_HANGING_SIGN = registerItem("starlight_mangrove_hanging_sign", () -> new HangingSignItem(ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_SIGN = registerItem("starlight_mangrove_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.STARLIGHT_MANGROVE_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_HANGING_SIGN = registerItem("starlight_mangrove_hanging_sign", () -> new HangingSignItem(ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_BOAT = registerItem("starlight_mangrove_boat", () -> new ESBoatItem(false, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_CHEST_BOAT = registerItem("starlight_mangrove_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.STARLIGHT_MANGROVE, new Item.Properties().stacksTo(1)));
 
@@ -189,8 +189,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SCARLET_FENCE_GATE = registerItem("scarlet_fence_gate", () -> new BlockItem(ESBlocks.SCARLET_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SCARLET_SLAB = registerItem("scarlet_slab", () -> new BlockItem(ESBlocks.SCARLET_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SCARLET_STAIRS = registerItem("scarlet_stairs", () -> new BlockItem(ESBlocks.SCARLET_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> SCARLET_SIGN = registerItem("scarlet_sign", () -> new SignItem(new Item.Properties().stacksTo(32), ESBlocks.SCARLET_SIGN.get(), ESBlocks.SCARLET_WALL_SIGN.get()));
-	public static final RegistryObject<Item, Item> SCARLET_HANGING_SIGN = registerItem("scarlet_hanging_sign", () -> new HangingSignItem(ESBlocks.SCARLET_HANGING_SIGN.get(), ESBlocks.SCARLET_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+	public static final RegistryObject<Item, Item> SCARLET_SIGN = registerItem("scarlet_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.SCARLET_SIGN.get(), ESBlocks.SCARLET_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> SCARLET_HANGING_SIGN = registerItem("scarlet_hanging_sign", () -> new HangingSignItem(ESBlocks.SCARLET_HANGING_SIGN.get(), ESBlocks.SCARLET_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> SCARLET_BOAT = registerItem("scarlet_boat", () -> new ESBoatItem(false, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> SCARLET_CHEST_BOAT = registerItem("scarlet_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.SCARLET, new Item.Properties().stacksTo(1)));
 
@@ -210,8 +210,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TORREYA_FENCE_GATE = registerItem("torreya_fence_gate", () -> new BlockItem(ESBlocks.TORREYA_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TORREYA_SLAB = registerItem("torreya_slab", () -> new BlockItem(ESBlocks.TORREYA_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TORREYA_STAIRS = registerItem("torreya_stairs", () -> new BlockItem(ESBlocks.TORREYA_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TORREYA_SIGN = registerItem("torreya_sign", () -> new SignItem(new Item.Properties().stacksTo(32), ESBlocks.TORREYA_SIGN.get(), ESBlocks.TORREYA_WALL_SIGN.get()));
-	public static final RegistryObject<Item, Item> TORREYA_HANGING_SIGN = registerItem("torreya_hanging_sign", () -> new HangingSignItem(ESBlocks.TORREYA_HANGING_SIGN.get(), ESBlocks.TORREYA_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(32)));
+	public static final RegistryObject<Item, Item> TORREYA_SIGN = registerItem("torreya_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.TORREYA_SIGN.get(), ESBlocks.TORREYA_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> TORREYA_HANGING_SIGN = registerItem("torreya_hanging_sign", () -> new HangingSignItem(ESBlocks.TORREYA_HANGING_SIGN.get(), ESBlocks.TORREYA_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> TORREYA_BOAT = registerItem("torreya_boat", () -> new ESBoatItem(false, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> TORREYA_CHEST_BOAT = registerItem("torreya_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.TORREYA, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> TORREYA_VINES = registerItem("torreya_vines", () -> new BlockItem(ESBlocks.TORREYA_VINES.get(), new Item.Properties()));

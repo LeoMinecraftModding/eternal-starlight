@@ -16,6 +16,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -76,7 +78,29 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder enterAbyss = addInBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
 
+		AdvancementHolder underPermafrostForest = Advancement.Builder.advancement().parent(enterDim).display(
+				ESBlocks.ICICLE.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".under_permafrost_forest.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".under_permafrost_forest.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.requirements(AdvancementRequirements.Strategy.OR)
+			.addCriterion("in_biome",
+				PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder
+					.inBiome(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST))
+					.setY(MinMaxBounds.Doubles.atMost(-5))))
+			.save(consumer, EternalStarlight.ID + ":under_permafrost_forest");
+
+		AdvancementHolder glaciteShard = addItemObtain(consumer, underPermafrostForest, "obtain_glacite_shard", ESItems.GLACITE_SHARD.get());
+
 		AdvancementHolder enterCrystallizedDesert = addInBiome(consumer, enterDim, "enter_crystallized_desert", ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(), biomes.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT));
+
+		AdvancementHolder toothOfHunger = addItemObtain(consumer, enterCrystallizedDesert, "obtain_tooth_of_hunger", ESItems.TOOTH_OF_HUNGER.get());
+
+		AdvancementHolder daggerOfHunger = addItemObtain(consumer, toothOfHunger, "obtain_dagger_of_hunger", ESItems.DAGGER_OF_HUNGER.get());
+
+		AdvancementHolder summonGrimstoneGolem = addEntitySummon(consumer, enterCrystallizedDesert, "summon_grimstone_golem", ESEntities.GRIMSTONE_GOLEM.get(), ESItems.GRIMSTONE_BRICKS.get());
 
 		AdvancementHolder throwGleechEgg = Advancement.Builder.advancement().parent(enterCrystallizedDesert).display(
 				ESItems.GLEECH_EGG.get(),
@@ -112,11 +136,23 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
-		AdvancementHolder glacite = addItemObtain(consumer, enterDim, "obtain_glacite", ESItems.GLACITE_SHARD.get());
-
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());
 
-		AdvancementHolder summonGrimstoneGolem = addEntitySummon(consumer, enterDim, "summon_grimstone_golem", ESEntities.GRIMSTONE_GOLEM.get(), ESItems.GRIMSTONE_BRICKS.get());
+		Advancement.Builder allStarlightBiomesBuilder = Advancement.Builder.advancement().parent(enterDim).display(
+				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.requirements(AdvancementRequirements.Strategy.AND);
+		List<ResourceKey<Biome>> biomeIds = biomes.listElementIds().toList();
+		for (ResourceKey<Biome> key : biomeIds) {
+			if (key.location().getNamespace().equals(EternalStarlight.ID)) {
+				allStarlightBiomesBuilder.addCriterion("in_" + key.location().getPath(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(key))));
+			}
+		}
+		AdvancementHolder allStarlightBiomes = allStarlightBiomesBuilder.save(consumer, EternalStarlight.ID + ":all_starlight_biomes");
 
 		AdvancementHolder deactivateEnergyBlock = Advancement.Builder.advancement().parent(seekingEye).display(
 				ESItems.ENERGY_BLOCK.get(),

@@ -1,11 +1,11 @@
 {
-  "parent": "eternal_starlight:enter_starlight",
+  "parent": "eternal_starlight:enter_crystallized_desert",
   "criteria": {
     "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:glacite_shard"
+            "items": "eternal_starlight:tooth_of_hunger"
           }
         ]
       },
@@ -14,15 +14,15 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.eternal_starlight.obtain_glacite.description"
+      "translate": "advancements.eternal_starlight.obtain_tooth_of_hunger.description"
     },
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "eternal_starlight:glacite_shard"
+      "id": "eternal_starlight:tooth_of_hunger"
     },
     "title": {
-      "translate": "advancements.eternal_starlight.obtain_glacite.title"
+      "translate": "advancements.eternal_starlight.obtain_tooth_of_hunger.title"
     }
   },
   "requirements": [

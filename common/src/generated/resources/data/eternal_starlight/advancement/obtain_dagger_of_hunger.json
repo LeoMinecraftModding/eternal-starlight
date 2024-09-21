@@ -1,0 +1,34 @@
+{
+  "parent": "eternal_starlight:obtain_tooth_of_hunger",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:dagger_of_hunger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_dagger_of_hunger.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:dagger_of_hunger"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_dagger_of_hunger.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

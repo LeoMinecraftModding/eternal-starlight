@@ -141,7 +141,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
 		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
 		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
+			effect.setLength(Math.max(effect.getLength() - 0.9f, 0));
 		}
 	}
 
