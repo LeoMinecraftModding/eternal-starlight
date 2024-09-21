@@ -12,6 +12,7 @@
     "CeilingHangingSignBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
+    "DirtPathBlockMixin",
     "EntityMixin",
     "FarmBlockMixin",
     "FireBlockMixin",

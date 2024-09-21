@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-07T16:51:22.5973151	Loot Tables
+// 1.21.1	2024-09-21T13:59:49.4695633	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -230,6 +230,7 @@ b1634550f342799f3dc7eaa2ebf2dafc04a22395 data/eternal_starlight/loot_table/block
 1df240cdf11e15de6a903683672d61deb1e648c6 data/eternal_starlight/loot_table/blocks/nebulaite_brick_stairs.json
 8837bc36670b22f2f05a794f45f980bfebe2038b data/eternal_starlight/loot_table/blocks/nebulaite_brick_wall.json
 9de058be62676563e4a401be8a115b3f18d940ba data/eternal_starlight/loot_table/blocks/nightfall_dirt.json
+cf43fce4f0db18feeeace508c91eeb583052ef26 data/eternal_starlight/loot_table/blocks/nightfall_dirt_path.json
 38c11f3892af4dc43aa037900c86bfab002a16df data/eternal_starlight/loot_table/blocks/nightfall_farmland.json
 eb88023967afc4dae7956ac8f791bd58bec6c5aa data/eternal_starlight/loot_table/blocks/nightfall_grass_block.json
 02e1def27e73f0a4ca839254054ffffa65ad7250 data/eternal_starlight/loot_table/blocks/nightfall_mud.json

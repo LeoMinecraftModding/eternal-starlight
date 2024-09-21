@@ -550,6 +550,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));
 		dropSelf(ESBlocks.FANTASY_GRASS_CARPET.get());
 		dropSelf(ESBlocks.NIGHTFALL_DIRT.get());
+		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
+		dropOther(ESBlocks.NIGHTFALL_DIRT_PATH.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
 		dropSelf(ESBlocks.WHITE_YETI_FUR.get());
 		dropSelf(ESBlocks.ORANGE_YETI_FUR.get());
@@ -622,8 +624,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
-
-		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
 

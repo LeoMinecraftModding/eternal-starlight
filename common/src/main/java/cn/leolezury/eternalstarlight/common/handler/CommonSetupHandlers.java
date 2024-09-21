@@ -77,6 +77,11 @@ public class CommonSetupHandlers {
 		ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), ESBlocks.NIGHTFALL_FARMLAND.get()
 	));
 
+	public static final Supplier<Map<Block, Block>> FLATTENABLES = Suppliers.memoize(() -> Map.of(
+		ESBlocks.NIGHTFALL_DIRT.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get(),
+		ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get()
+	));
+
 	public static final List<Supplier<Item>> SHIELDS = List.of(
 		ESItems.GLACITE_SHIELD
 	);

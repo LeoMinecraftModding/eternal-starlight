@@ -350,6 +350,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		doublePlant(ESBlocks.TALL_GOLDEN_GRASS.get());
 
 		simpleBlock(ESBlocks.NIGHTFALL_DIRT.get());
+		farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
+		dirtPath(ESBlocks.NIGHTFALL_DIRT_PATH.get(), ESBlocks.NIGHTFALL_DIRT.get());
 		grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
@@ -412,8 +414,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
-
-		farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 
 		stellarRack(ESBlocks.STELLAR_RACK.get());
 		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
@@ -841,6 +841,30 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.texture("dirt", blockTexture(dirt))
 			.texture("top", blockTexture(farmland).withSuffix("_moist"));
 		getVariantBuilder(farmland).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.MOISTURE) < 7 ? normal : moist).build());
+	}
+
+	private void dirtPath(Block dirtPath, Block dirt) {
+		getVariantBuilder(dirtPath).forAllStates((state -> {
+			ModelFile modelFile = models().withExistingParent(name(dirtPath), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/block"))
+				.texture("top", blockTexture(dirtPath).withSuffix("_top"))
+				.texture("side", blockTexture(dirtPath).withSuffix("_side"))
+				.texture("bottom", blockTexture(dirt))
+				.texture("particle", blockTexture(dirt))
+				.element()
+				.from(0, 0, 0)
+				.to(16, 15, 16)
+				.face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#bottom").cullface(Direction.DOWN).end()
+				.face(Direction.UP).uvs(0, 0, 16, 16).texture("#top").end()
+				.face(Direction.NORTH).uvs(0, 1, 16, 16).texture("#side").cullface(Direction.NORTH).end()
+				.face(Direction.SOUTH).uvs(0, 1, 16, 16).texture("#side").cullface(Direction.SOUTH).end()
+				.face(Direction.WEST).uvs(0, 1, 16, 16).texture("#side").cullface(Direction.WEST).end()
+				.face(Direction.EAST).uvs(0, 1, 16, 16).texture("#side").cullface(Direction.EAST).end()
+				.end();
+			return ConfiguredModel.builder().modelFile(modelFile).nextModel()
+				.rotationY(270).modelFile(modelFile).nextModel()
+				.rotationY(180).modelFile(modelFile).nextModel()
+				.rotationY(90).modelFile(modelFile).build();
+		}));
 	}
 
 	private void lantern(Block lantern) {

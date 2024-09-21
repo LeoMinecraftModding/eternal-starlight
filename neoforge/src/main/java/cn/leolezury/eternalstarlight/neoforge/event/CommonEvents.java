@@ -122,6 +122,12 @@ public class CommonEvents {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}
 			}
+		} else if (event.getItemAbility() == ItemAbilities.SHOVEL_FLATTEN) {
+			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.FLATTENABLES.get().entrySet()) {
+				if (event.getState().is(entry.getKey())) {
+					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
+				}
+			}
 		}
 	}
 }

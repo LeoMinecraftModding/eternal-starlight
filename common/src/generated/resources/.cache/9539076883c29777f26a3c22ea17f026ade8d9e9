@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-07T16:51:22.6080869	Item Models: eternal_starlight
+// 1.21.1	2024-09-21T13:59:49.4931966	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -400,6 +400,7 @@ f0867ba05c542234dd538a84118590b04125f5b7 assets/eternal_starlight/models/item/mu
 742ced2033343375e484a3843169c8e152b0f6d7 assets/eternal_starlight/models/item/nebulaite_brick_stairs.json
 07fe336231470c0ca80fbd75b2782953e9bfd8e8 assets/eternal_starlight/models/item/nebulaite_brick_wall.json
 726e9455fbfa6514c3a206bf49e6276d2ae66db6 assets/eternal_starlight/models/item/nightfall_dirt.json
+eb98cbeff5338af093327facee852f24d1362b24 assets/eternal_starlight/models/item/nightfall_dirt_path.json
 5087240f81f81dae1c75ea7821774d72d1b6204e assets/eternal_starlight/models/item/nightfall_farmland.json
 db5fcb6054b439771f0cc8fd22354332bf3044b0 assets/eternal_starlight/models/item/nightfall_grass_block.json
 6982a61f6e5190e1bcd9b878ed515ee7606eb7c3 assets/eternal_starlight/models/item/nightfall_mud.json

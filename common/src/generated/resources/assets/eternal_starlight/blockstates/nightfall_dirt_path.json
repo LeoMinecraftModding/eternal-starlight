@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eternal_starlight:block/nightfall_dirt_path"
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_dirt_path",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_dirt_path",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_dirt_path",
+        "y": 90
+      }
+    ]
+  }
+}

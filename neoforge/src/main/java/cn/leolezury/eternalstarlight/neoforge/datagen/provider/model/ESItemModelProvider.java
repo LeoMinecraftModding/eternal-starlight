@@ -520,6 +520,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
 
 		block(ESItems.NIGHTFALL_DIRT.get());
+		block(ESItems.NIGHTFALL_FARMLAND.get());
+		block(ESItems.NIGHTFALL_DIRT_PATH.get());
 		block(ESItems.NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.GOLDEN_GRASS_BLOCK.get());
@@ -704,8 +706,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.TOOTH_OF_HUNGER.get());
 		daggerOfHunger(ESItems.DAGGER_OF_HUNGER.get());
-
-		block(ESItems.NIGHTFALL_FARMLAND.get());
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());

@@ -984,6 +984,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
 			ESBlocks.NIGHTFALL_DIRT.get(),
 			ESBlocks.NIGHTFALL_FARMLAND.get(),
+			ESBlocks.NIGHTFALL_DIRT_PATH.get(),
 			ESBlocks.NIGHTFALL_MUD.get(),
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.TWILIGHT_SAND.get(),
