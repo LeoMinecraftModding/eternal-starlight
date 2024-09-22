@@ -252,6 +252,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
+			.pattern("T")
+			.pattern("S")
+			.pattern("S")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('T', ESItems.TOOTH_OF_HUNGER.get())
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
 			.pattern("SSS")
 			.pattern("SFS")

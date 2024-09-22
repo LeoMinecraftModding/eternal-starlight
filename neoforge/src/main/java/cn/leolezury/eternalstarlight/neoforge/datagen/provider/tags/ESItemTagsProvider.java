@@ -558,7 +558,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AMARAMBER_SHOVEL.get()
 		);
 		tag(ItemTags.ARROWS).add(
-			ESItems.AMARAMBER_ARROW.get()
+			ESItems.AMARAMBER_ARROW.get(),
+			ESItems.VORACIOUS_ARROW.get()
 		);
 		tag(ItemTags.TRIM_MATERIALS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),

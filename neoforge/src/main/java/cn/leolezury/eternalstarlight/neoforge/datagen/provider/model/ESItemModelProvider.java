@@ -706,6 +706,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.TOOTH_OF_HUNGER.get());
 		daggerOfHunger(ESItems.DAGGER_OF_HUNGER.get());
+		basicItem(ESItems.VORACIOUS_ARROW.get());
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());

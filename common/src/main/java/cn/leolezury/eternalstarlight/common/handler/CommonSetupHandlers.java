@@ -84,6 +84,7 @@ public class CommonSetupHandlers {
 
 	public static void commonSetup() {
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());

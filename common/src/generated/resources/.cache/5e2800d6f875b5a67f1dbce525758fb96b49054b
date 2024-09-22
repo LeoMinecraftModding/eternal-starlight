@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-21T20:03:52.3550222	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-09-22T12:17:42.4327949	Tags for minecraft:item mod id eternal_starlight
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
@@ -95,7 +95,7 @@ b0b45a39000b20419457df95dd5c87dcb35b0d6e data/eternal_starlight/tags/item/water_
 e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_food.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json
-e46f6653e970a8854dead0dc4f155ef7dc0539f1 data/minecraft/tags/item/arrows.json
+71a6499c4764a81cc18b7b21fea1d988e578a0b6 data/minecraft/tags/item/arrows.json
 bc0d5c95eccf852ebcba9f8a0edaa63a94fc5e59 data/minecraft/tags/item/axes.json
 aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/item/boats.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/item/candles.json

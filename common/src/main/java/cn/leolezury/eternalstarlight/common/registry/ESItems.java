@@ -786,6 +786,7 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER = registerItem("tooth_of_hunger", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> DAGGER_OF_HUNGER = registerItem("dagger_of_hunger", () -> new DaggerOfHungerItem(ESItemTiers.TOOTH_OF_HUNGER, new Item.Properties().rarity(Rarity.RARE).attributes(DaggerOfHungerItem.DEFAULT_ATTRIBUTE)));
+	public static final RegistryObject<Item, Item> VORACIOUS_ARROW = registerItem("voracious_arrow", () -> new VoraciousArrowItem(new Item.Properties()));
 
 	// magic
 	public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));

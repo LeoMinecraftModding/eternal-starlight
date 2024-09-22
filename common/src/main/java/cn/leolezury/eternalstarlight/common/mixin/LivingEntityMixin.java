@@ -13,6 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
@@ -103,8 +104,8 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "eat*", at = @At("HEAD"))
-	private void eat(Level level, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
+	@Inject(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"))
+	private void eat(Level level, ItemStack itemStack, FoodProperties foodProperties, CallbackInfoReturnable<ItemStack> cir) {
 		if (itemStack.is(ESItems.LUNARIS_CACTUS_GEL.get())) {
 			List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
 			for (MobEffectInstance effectInstance : getActiveEffects()) {
