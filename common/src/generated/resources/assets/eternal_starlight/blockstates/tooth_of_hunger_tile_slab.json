@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/tooth_of_hunger_tile_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/tooth_of_hunger_tiles"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/tooth_of_hunger_tile_slab_top"
+    }
+  }
+}

@@ -573,6 +573,21 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get(), 2);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILES.get())
+			.pattern("##")
+			.pattern("##")
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.define('#', ESItems.TOOTH_OF_HUNGER.get())
+			.save(recipeOutput);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		addStairs(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		addSlab(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get(), 2);
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());

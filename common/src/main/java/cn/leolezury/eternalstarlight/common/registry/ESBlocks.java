@@ -400,6 +400,13 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StairBlock> POLISHED_STELLAGMITE_STAIRS = BLOCKS.register("polished_stellagmite_stairs", () -> new StairBlock(POLISHED_STELLAGMITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
 	public static final RegistryObject<Block, WallBlock> POLISHED_STELLAGMITE_WALL = BLOCKS.register("polished_stellagmite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
 
+	// tooth of hunger
+	public static final RegistryObject<Block, Block> TOOTH_OF_HUNGER_TILES = BLOCKS.register("tooth_of_hunger_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, SlabBlock> TOOTH_OF_HUNGER_TILE_SLAB = BLOCKS.register("tooth_of_hunger_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, StairBlock> TOOTH_OF_HUNGER_TILE_STAIRS = BLOCKS.register("tooth_of_hunger_tile_stairs", () -> new StairBlock(TOOTH_OF_HUNGER_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, WallBlock> TOOTH_OF_HUNGER_TILE_WALL = BLOCKS.register("tooth_of_hunger_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, Block> CHISELED_TOOTH_OF_HUNGER_TILES = BLOCKS.register("chiseled_tooth_of_hunger_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+
 	// the abyss
 	public static final RegistryObject<Block, AbyssalFireBlock> ABYSSAL_FIRE = BLOCKS.register("abyssal_fire", () -> new AbyssalFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE)));
 	public static final RegistryObject<Block, Block> ABYSSLATE = BLOCKS.register("abysslate", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)));
@@ -504,7 +511,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> GOLEM_STEEL_JET = BLOCKS.register("golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_BLUE)));
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> OXIDIZED_GOLEM_STEEL_JET = BLOCKS.register("oxidized_golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY)));
 
-	// tenacious petal
+	// lunar monstrosity
 	public static final RegistryObject<Block, ShadegrieveBlock> SHADEGRIEVE = BLOCKS.register("shadegrieve", () -> new ShadegrieveBlock(BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, ShadegrieveBlock> BLOOMING_SHADEGRIEVE = BLOCKS.register("blooming_shadegrieve", () -> new ShadegrieveBlock(BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, LunarVineBlock> LUNAR_VINE = BLOCKS.register("lunar_vine", () -> new LunarVineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));

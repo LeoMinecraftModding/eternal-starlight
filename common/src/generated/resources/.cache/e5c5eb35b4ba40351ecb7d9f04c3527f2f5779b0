@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-21T23:54:09.6911237	Advancements
+// 1.21.1	2024-09-22T17:03:54.165466	Advancements
 8cca1295f5a39355927b7602661abada47f401ea data/eternal_starlight/advancement/all_starlight_biomes.json
 f669cf32323b8189231a1ea04f94718c156a21b5 data/eternal_starlight/advancement/chain_tangled_skull_explosion.json
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancement/challenge_gatekeeper.json
@@ -22,6 +22,7 @@ d142ae14bea3231a392fabd5635d15d3ba4a7ca9 data/eternal_starlight/advancement/obta
 baeaa7213676335e8f2eec43e344979ba0d13028 data/eternal_starlight/advancement/obtain_thermal_springstone.json
 4241ca3c40a32ef5200ab22a404d11ed27e5f3aa data/eternal_starlight/advancement/obtain_thioquartz_shard.json
 bb583e69d1b577da415507c04e1f08c8c720ae40 data/eternal_starlight/advancement/obtain_tooth_of_hunger.json
+063ef26833b525ecca299f6e4aa5645dba1838ad data/eternal_starlight/advancement/obtain_tooth_of_hunger_blocks.json
 a0dc8d246f5d8e11fca25090bc5d41b3d933c502 data/eternal_starlight/advancement/root.json
 125686f37e03a6b30c8cc90a0fa024118a531e9d data/eternal_starlight/advancement/summon_grimstone_golem.json
 370c4174af4a372ecac94bdd34f6ee9dfb392021 data/eternal_starlight/advancement/throw_gleech_egg.json

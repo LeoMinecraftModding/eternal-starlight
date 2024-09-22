@@ -356,6 +356,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
 			ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
 		);
+		tag(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS).add(
+			ESBlocks.TOOTH_OF_HUNGER_TILES.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(),
+			ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get()
+		);
 		tag(ESTags.Blocks.ABYSSLATES).add(
 			ESBlocks.ABYSSLATE.get(),
 			ESBlocks.THERMABYSSLATE.get(),
@@ -460,6 +467,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STELLAGMITE_SLAB.get(),
 			ESBlocks.MOLTEN_STELLAGMITE_SLAB.get(),
 			ESBlocks.POLISHED_STELLAGMITE_SLAB.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(),
 			ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
 			ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(),
 			ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(),
@@ -512,6 +520,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STELLAGMITE_STAIRS.get(),
 			ESBlocks.MOLTEN_STELLAGMITE_STAIRS.get(),
 			ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(),
 			ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(),
 			ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(),
 			ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(),
@@ -556,6 +565,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STELLAGMITE_WALL.get(),
 			ESBlocks.MOLTEN_STELLAGMITE_WALL.get(),
 			ESBlocks.POLISHED_STELLAGMITE_WALL.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(),
 			ESBlocks.POLISHED_ABYSSLATE_WALL.get(),
 			ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get(),
 			ESBlocks.POLISHED_THERMABYSSLATE_WALL.get(),
@@ -849,6 +859,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.POLISHED_STELLAGMITE_SLAB.get(),
 			ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(),
 			ESBlocks.POLISHED_STELLAGMITE_WALL.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILES.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(),
+			ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(),
+			ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(),
 			ESBlocks.ABYSSLATE.get(),
 			ESBlocks.POLISHED_ABYSSLATE.get(),
 			ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),

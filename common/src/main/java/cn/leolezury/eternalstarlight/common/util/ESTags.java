@@ -24,6 +24,7 @@ public class ESTags {
 		public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
 		public static final TagKey<Item> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
+		public static final TagKey<Item> TOOTH_OF_HUNGER_BLOCKS = create("tooth_of_hunger_blocks");
 		public static final TagKey<Item> SCYTHES = create("scythes");
 		public static final TagKey<Item> SICKLES = create("sickles");
 		public static final TagKey<Item> GREATSWORDS = create("greatswords");
@@ -76,6 +77,7 @@ public class ESTags {
 		public static final TagKey<Block> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Block> ABYSSAL_FIRE_SURVIVES_ON = create("abyssal_fire_survives_on");
+		public static final TagKey<Block> TOOTH_OF_HUNGER_BLOCKS = create("tooth_of_hunger_blocks");
 		public static final TagKey<Block> ABYSSLATES = create("abysslates");
 		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLES = create("aethersent_meteor_replaceables");
 		public static final TagKey<Block> DOOMEDEN_KEYHOLE_DESTROYABLES = create("doomeden_keyhole_destroyables");

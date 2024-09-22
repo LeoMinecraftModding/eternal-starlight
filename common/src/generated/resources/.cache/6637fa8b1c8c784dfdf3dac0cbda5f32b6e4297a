@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-21T20:03:52.3393864	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2024-09-22T17:03:54.1543608	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 e2863b8fcfae5ad14247c8fe70024ee79ce749f7 data/c/tags/block/clusters.json
@@ -61,6 +61,7 @@ a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/block/porta
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/block/scarlet_logs.json
 1e2c4666789dccc33609a2676d1d6cd65e2007cf data/eternal_starlight/tags/block/starlight_carver_replaceables.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/block/starlight_mangrove_logs.json
+bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/block/tooth_of_hunger_blocks.json
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/block/torreya_logs.json
 9f8a39c6be0d825a8a6ab30cc3fe57964ac5d0a4 data/eternal_starlight/tags/block/wall_corals.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/block/yeti_fur.json
@@ -84,7 +85,7 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_s
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs.json
 053052772d4c48c6dd56fcf3498bb4aa9943ce6e data/minecraft/tags/block/logs_that_burn.json
 b4e91056087d6ab4068d1f5cb1ef851a4fbeac96 data/minecraft/tags/block/mineable/axe.json
-10093edcfa6b0194a760e8f215d74263b8ddf4e0 data/minecraft/tags/block/mineable/pickaxe.json
+bad7c0d53537e1f106130582b6226c402b2264f1 data/minecraft/tags/block/mineable/pickaxe.json
 92b1f2954aa858f8db4a10eb8bc611253e49b4c5 data/minecraft/tags/block/mineable/shovel.json
 04be4ebce9f93c7dcdb4960c9c23c11e48caadce data/minecraft/tags/block/moss_replaceable.json
 469fc7847509fc4c8612012823c4af15177a60bc data/minecraft/tags/block/mushroom_grow_block.json
@@ -94,14 +95,14 @@ a034799a9a254fe3ae790f0047b291599e115314 data/minecraft/tags/block/planks.json
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/block/portals.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/block/sand.json
 b8bde5808a3177f5ccfa9d129c1563f5aea4f7d6 data/minecraft/tags/block/saplings.json
-bb6b8966367fc61aa0d8f979ce1e5ad37affe67a data/minecraft/tags/block/slabs.json
+6c33c868fac717b9fdb7743c50ca5002d85bc9a3 data/minecraft/tags/block/slabs.json
 0a6b4e91f9e391ceac7e20c3d9fdffe24f50cd98 data/minecraft/tags/block/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/block/smelts_to_glass.json
-78e86ddda713eba499818d5e203325c2f39c7c75 data/minecraft/tags/block/stairs.json
+4ce8d4eebc5d2d47a289b79755454cbe80851df4 data/minecraft/tags/block/stairs.json
 5e6814148d162c46ef2df4ddedad602827b7665a data/minecraft/tags/block/standing_signs.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/sword_efficient.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/block/tall_flowers.json
-35c898daa021e84911ab4847e3657204a09ea8fc data/minecraft/tags/block/walls.json
+11930eb0f637f60a6b176cbf149309392cfef565 data/minecraft/tags/block/walls.json
 723d3fb822597ea1fbdb6c36a4e61be3072277df data/minecraft/tags/block/wall_hanging_signs.json
 c9087c360474701878473b4ad44880ac103e0b28 data/minecraft/tags/block/wall_signs.json
 4fad66675787b4f308e4629dd82bbf1aae4a1570 data/minecraft/tags/block/wither_immune.json

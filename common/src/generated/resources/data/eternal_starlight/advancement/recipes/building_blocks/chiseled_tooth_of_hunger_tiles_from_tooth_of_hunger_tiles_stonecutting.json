@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:chiseled_tooth_of_hunger_tiles_from_tooth_of_hunger_tiles_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tooth_of_hunger_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:tooth_of_hunger_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tooth_of_hunger_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:chiseled_tooth_of_hunger_tiles_from_tooth_of_hunger_tiles_stonecutting"
+    ]
+  }
+}

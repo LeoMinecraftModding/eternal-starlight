@@ -14,6 +14,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -96,6 +97,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		AdvancementHolder toothOfHunger = addItemObtain(consumer, enterCrystallizedDesert, "obtain_tooth_of_hunger", ESItems.TOOTH_OF_HUNGER.get());
 
 		AdvancementHolder daggerOfHunger = addItemObtain(consumer, toothOfHunger, "obtain_dagger_of_hunger", ESItems.DAGGER_OF_HUNGER.get());
+
+		AdvancementHolder toothOfHungerBlocks = addItemObtain(consumer, toothOfHunger, "obtain_tooth_of_hunger_blocks", ESTags.Items.TOOTH_OF_HUNGER_BLOCKS, ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
 
 		AdvancementHolder summonGrimstoneGolem = addEntitySummon(consumer, enterCrystallizedDesert, "summon_grimstone_golem", ESEntities.GRIMSTONE_GOLEM.get(), ESItems.GRIMSTONE_BRICKS.get());
 
@@ -212,6 +215,16 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
 				null, AdvancementType.GOAL, true, true, false)
 			.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(item))
+			.save(consumer, EternalStarlight.ID + ":" + id);
+	}
+
+	private static AdvancementHolder addItemObtain(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, TagKey<Item> tag, Item item) {
+		return Advancement.Builder.advancement().parent(parent).display(
+				item,
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
+				null, AdvancementType.GOAL, true, true, false)
+			.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag)))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
 

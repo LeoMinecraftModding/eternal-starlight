@@ -325,6 +325,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_STAIRS = registerItem("polished_stellagmite_stairs", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_WALL = registerItem("polished_stellagmite_wall", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_WALL.get(), new Item.Properties()));
 
+	// tooth of hunger
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILES = registerItem("tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_SLAB = registerItem("tooth_of_hunger_tile_slab", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_STAIRS = registerItem("tooth_of_hunger_tile_stairs", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_WALL = registerItem("tooth_of_hunger_tile_wall", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_TOOTH_OF_HUNGER_TILES = registerItem("chiseled_tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
+
 	// the abyss
 	public static final RegistryObject<Item, Item> ABYSSLATE = registerItem("abysslate", () -> new BlockItem(ESBlocks.ABYSSLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE = registerItem("polished_abysslate", () -> new BlockItem(ESBlocks.POLISHED_ABYSSLATE.get(), new Item.Properties()));

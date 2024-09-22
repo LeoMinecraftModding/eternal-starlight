@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "eternal_starlight:block/tooth_of_hunger_tiles",
+    "side": "eternal_starlight:block/tooth_of_hunger_tiles",
+    "top": "eternal_starlight:block/tooth_of_hunger_tiles"
+  }
+}

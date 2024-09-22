@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:tooth_of_hunger_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:tooth_of_hunger_tile_wall"
+  }
+}

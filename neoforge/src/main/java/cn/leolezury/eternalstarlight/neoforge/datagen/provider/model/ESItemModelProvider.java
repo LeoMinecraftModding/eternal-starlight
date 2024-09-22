@@ -302,6 +302,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.POLISHED_STELLAGMITE_STAIRS.get());
 		wall(ESItems.POLISHED_STELLAGMITE_WALL.get(), ESItems.POLISHED_STELLAGMITE.get());
 
+		block(ESItems.TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.TOOTH_OF_HUNGER_TILE_SLAB.get());
+		block(ESItems.TOOTH_OF_HUNGER_TILE_STAIRS.get());
+		wall(ESItems.TOOTH_OF_HUNGER_TILE_WALL.get(), ESItems.TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+
 		block(ESItems.NIGHTFALL_MUD.get());
 		block(ESItems.GLOWING_NIGHTFALL_MUD.get());
 		block(ESItems.PACKED_NIGHTFALL_MUD.get());

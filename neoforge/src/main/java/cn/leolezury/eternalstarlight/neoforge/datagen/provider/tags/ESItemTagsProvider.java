@@ -209,6 +209,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
 		copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
 		copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
+		copy(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS, ESTags.Items.TOOTH_OF_HUNGER_BLOCKS);
 		tag(ESTags.Items.SCYTHES).add(
 			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.GLACITE_SCYTHE.get(),
