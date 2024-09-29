@@ -26,9 +26,10 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 	@Unique
 	private ItemStack armorStack;
 
-	@Inject(method = "renderArmorPiece", at = @At("HEAD"))
-	private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
-		armorStack = livingEntity.getItemBySlot(equipmentSlot);
+	// no remap for forge method
+	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V", at = @At("HEAD"), remap = false)
+	private void renderArmorPiece(PoseStack stack, MultiBufferSource buffer, LivingEntity living, EquipmentSlot slot, int i, HumanoidModel arg5, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+		armorStack = living.getItemBySlot(slot);
 	}
 
 	// no remap for forge method

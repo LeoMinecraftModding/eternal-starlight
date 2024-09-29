@@ -32,6 +32,7 @@ public class ESConventionalTags {
 
 		public static final TagKey<Item> ORES_SALTPETER = ore("saltpeter");
 		public static final TagKey<Item> STORAGE_BLOCKS_SALTPETER = storageBlock("saltpeter");
+		public static final TagKey<Item> DUSTS_SALTPETER = dust("saltpeter");
 
 		public static final TagKey<Item> RAW_MATERIALS_AMARAMBER = rawMaterial("amaramber");
 		public static final TagKey<Item> INGOTS_AMARAMBER = ingot("amaramber");
@@ -55,6 +56,10 @@ public class ESConventionalTags {
 
 		private static TagKey<Item> rawMaterial(String string) {
 			return create("raw_materials/" + string);
+		}
+
+		private static TagKey<Item> dust(String string) {
+			return create("dusts/" + string);
 		}
 
 		private static TagKey<Item> ore(String string) {

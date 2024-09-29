@@ -1036,8 +1036,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("PPP")
 			.pattern("SSS")
 			.define('S', Items.STRING)
-			.define('P', ESItems.SALTPETER_POWDER.get())
-			.unlockedBy("has_item", has(ESItems.SALTPETER_POWDER.get()))
+			.define('P', ESConventionalTags.Items.DUSTS_SALTPETER)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.DUSTS_SALTPETER))
 			.save(recipeOutput);
 		SpecialRecipeBuilder.special(MatchboxTorchRecipe::new).save(recipeOutput, EternalStarlight.id("torch_from_saltpeter_matchbox"));
 	}

@@ -192,6 +192,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.NUGGETS_SWAMP_SILVER).add(
 			ESItems.SWAMP_SILVER_NUGGET.get()
 		);
+		tag(ESConventionalTags.Items.DUSTS_SALTPETER).add(
+			ESItems.SALTPETER_POWDER.get()
+		);
 		tag(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER).add(
 			ESItems.RAW_AMARAMBER.get()
 		);

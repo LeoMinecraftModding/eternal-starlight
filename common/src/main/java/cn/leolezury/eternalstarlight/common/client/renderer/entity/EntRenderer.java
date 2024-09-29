@@ -15,7 +15,7 @@ public class EntRenderer<T extends Ent> extends MobRenderer<T, EntModel<T>> {
 	private static final ResourceLocation LUSH_ENTITY_TEXTURE = EternalStarlight.id("textures/entity/ent/lush_ent.png");
 
 	public EntRenderer(EntityRendererProvider.Context context) {
-		super(context, new EntModel<>(context.bakeLayer(EntModel.LAYER_LOCATION)), 0.5f);
+		super(context, new EntModel<>(context.bakeLayer(EntModel.LAYER_LOCATION)), 0.15f);
 	}
 
 	@Override

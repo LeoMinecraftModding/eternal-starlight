@@ -72,7 +72,9 @@ public class Ent extends Animal {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		setHasLeaves(compoundTag.getBoolean(TAG_HAS_LEAVES));
+		if (compoundTag.contains(TAG_HAS_LEAVES, CompoundTag.TAG_BYTE)) {
+			setHasLeaves(compoundTag.getBoolean(TAG_HAS_LEAVES));
+		}
 	}
 
 	@Override

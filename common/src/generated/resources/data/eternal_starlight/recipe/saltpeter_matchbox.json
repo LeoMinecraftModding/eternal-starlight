@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "P": {
-      "item": "eternal_starlight:saltpeter_powder"
+      "tag": "c:dusts/saltpeter"
     },
     "S": {
       "item": "minecraft:string"
