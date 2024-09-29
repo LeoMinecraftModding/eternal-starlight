@@ -6,7 +6,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -41,17 +40,6 @@ public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends Humano
 
 	@Override
 	public void renderToBuffer(PoseStack stack, VertexConsumer builder, int packedLight, int packedOverlay, int color) {
-		super.renderToBuffer(stack, builder, packedLight, packedOverlay, color);
-
-		if (Minecraft.getInstance().level != null) {
-			float light;
-			long ticks = Minecraft.getInstance().level.getGameTime() % 40;
-			if (ticks < 20) {
-				light = ticks / 20f;
-			} else {
-				light = (39 - ticks) / 20f;
-			}
-			super.renderToBuffer(stack, builder, (int) (ClientHandlers.FULL_BRIGHT / 2f + ClientHandlers.FULL_BRIGHT * light / 2f), packedOverlay, color);
-		}
+		super.renderToBuffer(stack, builder, ClientHandlers.FULL_BRIGHT, packedOverlay, color);
 	}
 }
