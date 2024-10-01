@@ -429,10 +429,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		double x = this.getX() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.x * 16.0;
 		double y = this.getY() + (double) (this.random.nextInt(16) - 8) - vec3.y * 16.0;
 		double z = this.getZ() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.z * 16.0;
-		return this.teleport(x, y, z);
+		return this.teleport(target, x, y, z);
 	}
 
-	private boolean teleport(double x, double y, double z) {
+	private boolean teleport(Vec3 target, double x, double y, double z) {
 		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos(x, y, z);
 
 		while (mutableBlockPos.getY() > this.level().getMinBuildHeight() && !this.level().getBlockState(mutableBlockPos).blocksMotion()) {
@@ -440,12 +440,44 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 
 		BlockState blockState = this.level().getBlockState(mutableBlockPos);
-		boolean blocksMotion = blockState.blocksMotion();
-		if (blocksMotion) {
-			return this.randomTeleport(x, y, z, false);
-		} else {
-			return false;
+		if (blockState.blocksMotion()) {
+			return randomTeleportGatekeeper(target, x, y, z);
 		}
+		return false;
+	}
+
+	private boolean randomTeleportGatekeeper(Vec3 target, double x, double y, double z) {
+		double oldX = this.getX();
+		double oldY = this.getY();
+		double oldZ = this.getZ();
+		double currentY = y;
+		boolean success = false;
+		BlockPos blockPos = BlockPos.containing(x, currentY, z);
+		Level level = this.level();
+
+		if (level.hasChunkAt(blockPos)) {
+			boolean blocksMotion = false;
+			while (!blocksMotion && blockPos.getY() > level.getMinBuildHeight()) {
+				BlockPos blockPos2 = blockPos.below();
+				BlockState blockState = level.getBlockState(blockPos2);
+				if (blockState.blocksMotion()) {
+					blocksMotion = true;
+				} else {
+					--currentY;
+					blockPos = blockPos2;
+				}
+			}
+			if (blocksMotion && new Vec3(x, currentY, z).distanceTo(target) <= 15) {
+				this.teleportTo(x, currentY, z);
+				success = level.noCollision(this) && !level.containsAnyLiquid(this.getBoundingBox());
+			}
+		}
+
+		if (!success) {
+			this.teleportTo(oldX, oldY, oldZ);
+		}
+
+		return success;
 	}
 
 	@Override

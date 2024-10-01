@@ -21,6 +21,7 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
+import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
@@ -68,6 +69,7 @@ public class CommonHandlers {
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
 	private static TheGatekeeperNameManager gatekeeperNames;
 	private static Weathers starlightWeathers;
+	private static AbstractWeather lastWeather;
 
 	public static String getGatekeeperName() {
 		return gatekeeperNames.getTheGatekeeperName();
@@ -119,7 +121,10 @@ public class CommonHandlers {
 		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY && starlightWeathers != null) {
 			starlightWeathers.tick();
 			starlightWeathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather(), weatherInstance.currentDuration, weatherInstance.ticksSinceStarted));
+				if (weatherInstance.getWeather() != lastWeather) {
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather()));
+					lastWeather = weatherInstance.getWeather();
+				}
 				if (serverLevel.getGameTime() % 80 == 0) {
 					for (ServerPlayer player : serverLevel.players()) {
 						if (serverLevel.canSeeSky(BlockPos.containing(player.getEyePosition()))) {
@@ -128,7 +133,10 @@ public class CommonHandlers {
 					}
 				}
 			}), () -> {
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
+				if (lastWeather != null) {
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
+					lastWeather = null;
+				}
 			});
 		}
 	}

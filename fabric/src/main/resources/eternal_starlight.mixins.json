@@ -18,6 +18,7 @@
     "client.CameraMixin",
     "client.FogRendererMixin",
     "client.GuiMixin",
+    "client.HumanoidArmorLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.LevelRendererMixin",
     "client.ModelBakeryMixin",

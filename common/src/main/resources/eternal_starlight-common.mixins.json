@@ -32,7 +32,6 @@
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
-    "client.HumanoidArmorLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
     "client.MinecraftMixin",

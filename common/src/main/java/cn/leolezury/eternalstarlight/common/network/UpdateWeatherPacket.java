@@ -10,28 +10,21 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
-public record UpdateWeatherPacket(AbstractWeather weather,
-								  int duration, int ticks) implements CustomPacketPayload {
+public record UpdateWeatherPacket(AbstractWeather weather) implements CustomPacketPayload {
 	public static final CustomPacketPayload.Type<UpdateWeatherPacket> TYPE = new CustomPacketPayload.Type<>(EternalStarlight.id("update_weather"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, UpdateWeatherPacket> STREAM_CODEC = StreamCodec.ofMember(UpdateWeatherPacket::write, UpdateWeatherPacket::read);
 
 	public static UpdateWeatherPacket read(FriendlyByteBuf buf) {
 		AbstractWeather abstractWeather = ESWeathers.WEATHERS.registry().byId(buf.readInt());
-		int d = buf.readInt();
-		int t = buf.readInt();
-		return new UpdateWeatherPacket(abstractWeather, d, t);
+		return new UpdateWeatherPacket(abstractWeather);
 	}
 
 	public static void write(UpdateWeatherPacket packet, FriendlyByteBuf buf) {
 		buf.writeInt(ESWeathers.WEATHERS.registry().getId(packet.weather()));
-		buf.writeInt(packet.duration);
-		buf.writeInt(packet.ticks);
 	}
 
 	public static void handle(UpdateWeatherPacket packet, Player player) {
 		ClientWeatherState.weather = packet.weather();
-		ClientWeatherState.duration = packet.duration();
-		ClientWeatherState.ticks = packet.ticks();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.mixin.client;
+package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.vertex.PoseStack;
