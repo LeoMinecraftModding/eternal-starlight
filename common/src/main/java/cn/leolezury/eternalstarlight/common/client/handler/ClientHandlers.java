@@ -317,10 +317,6 @@ public class ClientHandlers {
 	}
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
-		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-		if (camera.isDetached() && Minecraft.getInstance().player instanceof SpellCaster caster && caster.getESSpellData().hasSpell()) {
-			camera.move(-camera.getMaxZoom(2 * Minecraft.getInstance().player.getScale()), 1, 0);
-		}
 		return angles.add(getScreenShakePitchOffset(), getScreenShakeYawOffset(), 0);
 	}
 

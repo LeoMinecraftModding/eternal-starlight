@@ -29,6 +29,7 @@
     "WallHangingSignBlockMixin"
   ],
   "client": [
+    "client.CameraMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
