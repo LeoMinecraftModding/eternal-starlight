@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.particle.GlowParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -62,7 +63,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
 	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
-		if (isUsingItem() && getUseItem().is(ESItems.MOONRING_GREATSWORD.get())) {
+		if (isUsingItem() && getUseItem().is(ESTags.Items.GREATSWORDS)) {
 			cir.setReturnValue(true);
 		}
 	}

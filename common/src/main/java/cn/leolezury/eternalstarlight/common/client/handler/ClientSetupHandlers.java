@@ -323,13 +323,14 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("orb_of_prophecy");
 		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
 		registerSimpleSpecialModel("bonemore");
+		registerSimpleSpecialModel("bonemore_blocking");
 		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("moonring_greatsword");
+		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
 		registerSimpleSpecialModel("crescent_spear");
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
-		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.MOONRING_GREATSWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.MOONRING_GREATSWORD_BLOCK, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
@@ -344,9 +345,9 @@ public class ClientSetupHandlers {
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
-		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), ResourceLocation.withDefaultNamespace("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
+		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
-		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), ResourceLocation.withDefaultNamespace("extended"), (stack, level, entity, i) -> {
+		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
 			if (entity == null) {
 				return 0.0F;
 			} else {
@@ -417,11 +418,14 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
-		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), ResourceLocation.withDefaultNamespace("crests_mode"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
+		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), EternalStarlight.id("orb_type"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
 
-		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), ResourceLocation.withDefaultNamespace("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
+		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
 		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.BONEMORE.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.MOONRING_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {

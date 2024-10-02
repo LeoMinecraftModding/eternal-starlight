@@ -35,6 +35,7 @@ import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -80,6 +81,11 @@ public class CommonSetupHandlers {
 
 	public static final List<Supplier<Item>> SHIELDS = List.of(
 		ESItems.GLACITE_SHIELD
+	);
+
+	public static final Map<TagKey<Item>, List<TagKey<Item>>> ITEM_TAG_EXCLUSIONS = Map.of(
+		ItemTags.TRIMMABLE_ARMOR, List.of(ESTags.Items.UNTRIMMABLE_ARMOR),
+		ItemTags.FIRE_ASPECT_ENCHANTABLE, List.of(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS, ESTags.Items.GLACITE_WEAPONS)
 	);
 
 	public static void commonSetup() {

@@ -422,8 +422,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.LUNAR_MAT.get());
 
 		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
-		largeHandheld(ESItems.BONEMORE.get());
-		inventoryHandheld(ESItems.BONEMORE.get());
+		greatsword(ESItems.BONEMORE.get());
+		greatswordInventory(ESItems.BONEMORE.get());
 		bow(ESItems.BOW_OF_BLOOD.get());
 		handheld(ESItems.LIVING_ARM.get());
 		flatBlockTexture(ESItems.DOOMED_TORCH.get());
@@ -639,8 +639,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
 		bow(ESItems.MOONRING_BOW.get());
-		largeHandheld(ESItems.MOONRING_GREATSWORD.get());
-		inventoryHandheld(ESItems.MOONRING_GREATSWORD.get());
+		greatsword(ESItems.MOONRING_GREATSWORD.get());
+		greatswordInventory(ESItems.MOONRING_GREATSWORD.get());
 		largeHandheld(ESItems.PETAL_SCYTHE.get());
 		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
@@ -762,12 +762,27 @@ public class ESItemModelProvider extends ItemModelProvider {
 		}
 	}
 
+	private void greatsword(Item item) {
+		ModelFile blocking = withExistingParent(name(item) + "_blocking", EternalStarlight.id("item/large_handheld_blocking"))
+			.texture("layer0", itemTexture(item));
+		withExistingParent(name(item), EternalStarlight.id("item/large_handheld"))
+			.texture("layer0", itemTexture(item))
+			.override().predicate(ResourceLocation.withDefaultNamespace("blocking"), 1).model(blocking).end();
+	}
+
+	private void greatswordInventory(Item item) {
+		withExistingParent(name(item) + "_blocking_inventory", ResourceLocation.withDefaultNamespace("item/handheld"))
+			.texture("layer0", itemTexture(item).withSuffix("_inventory"));
+		withExistingParent(name(item) + "_inventory", ResourceLocation.withDefaultNamespace("item/handheld"))
+			.texture("layer0", itemTexture(item).withSuffix("_inventory"));
+	}
+
 	private void chainOfSouls(Item item) {
 		ModelFile extendedModel = withExistingParent(name(item) + "_extended", "item/handheld")
 			.texture("layer0", itemTexture(item).withSuffix("_extended"));
 		withExistingParent(name(item), "item/handheld")
 			.texture("layer0", itemTexture(item))
-			.override().predicate(ResourceLocation.withDefaultNamespace("extended"), 1).model(extendedModel).end();
+			.override().predicate(EternalStarlight.id("extended"), 1).model(extendedModel).end();
 	}
 
 	private void shatteredSword(Item item) {
@@ -775,7 +790,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", itemTexture(item).withSuffix("_no_blade"));
 		withExistingParent(name(item), "item/handheld")
 			.texture("layer0", itemTexture(item))
-			.override().predicate(ResourceLocation.withDefaultNamespace("no_blade"), 1).model(noBladeModel).end();
+			.override().predicate(EternalStarlight.id("no_blade"), 1).model(noBladeModel).end();
 	}
 
 	private void daggerOfHunger(Item item) {
@@ -785,8 +800,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", itemTexture(item).withSuffix("_saturated"));
 		withExistingParent(name(item), "item/handheld")
 			.texture("layer0", itemTexture(item).withSuffix("_hungry"))
-			.override().predicate(ResourceLocation.withDefaultNamespace("hunger_state"), 0.5f).model(normal).end()
-			.override().predicate(ResourceLocation.withDefaultNamespace("hunger_state"), 1.0f).model(saturated).end();
+			.override().predicate(EternalStarlight.id("hunger_state"), 0.5f).model(normal).end()
+			.override().predicate(EternalStarlight.id("hunger_state"), 1.0f).model(saturated).end();
 	}
 
 	private void crossbow(Item item) {
@@ -830,8 +845,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", itemTexture(item).withSuffix("_temporary_inventory"));
 		withExistingParent(name(item) + "_inventory", "item/generated")
 			.texture("layer0", itemTexture(item).withSuffix("_inventory"))
-			.override().predicate(ResourceLocation.withDefaultNamespace("crests_mode"), 0.5f).model(temporaryModel).end()
-			.override().predicate(ResourceLocation.withDefaultNamespace("crests_mode"), 1).model(withCrestModel).end();
+			.override().predicate(EternalStarlight.id("orb_type"), 0.5f).model(temporaryModel).end()
+			.override().predicate(EternalStarlight.id("orb_type"), 1).model(withCrestModel).end();
 	}
 
 	private void trapdoor(Item item) {

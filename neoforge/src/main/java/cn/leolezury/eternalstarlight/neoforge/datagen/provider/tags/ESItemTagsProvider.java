@@ -226,6 +226,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.BONEMORE.get(),
 			ESItems.MOONRING_GREATSWORD.get()
 		);
+		tag(ESTags.Items.HAMMERS).add(
+			ESItems.THERMAL_SPRINGSTONE_HAMMER.get()
+		);
 		tag(ESTags.Items.AURORA_DEER_FOOD).add(
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get()
@@ -295,6 +298,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.LIVING_ARM.get(),
 			ESItems.DOOMEDEN_RAPIER.get()
 		);
+		tag(ESTags.Items.SCYTHE_ENCHANTABLE).addTag(ESTags.Items.SCYTHES);
+		tag(ESTags.Items.GREATSWORD_ENCHANTABLE).addTag(ESTags.Items.GREATSWORDS);
+		tag(ESTags.Items.HAMMER_ENCHANTABLE).addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE).add(
 			ESItems.CHAIN_OF_SOULS.get()
 		);
@@ -459,10 +465,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ItemTags.SWORD_ENCHANTABLE).add(
 			ESItems.CRESCENT_SPEAR.get()
-		).addTag(ESTags.Items.SCYTHES);
+		);
 		tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
 			ESItems.CRESCENT_SPEAR.get()
-		).addTag(ESTags.Items.SCYTHES);
+		).addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
+		tag(ItemTags.WEAPON_ENCHANTABLE).addTag(ESTags.Items.HAMMER_ENCHANTABLE);
+		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE).addTags(
+			ESTags.Items.HAMMER_ENCHANTABLE,
+			ESTags.Items.SCYTHE_ENCHANTABLE
+		);
 		tag(ItemTags.BOATS).add(
 			ESItems.LUNAR_BOAT.get(),
 			ESItems.NORTHLAND_BOAT.get(),

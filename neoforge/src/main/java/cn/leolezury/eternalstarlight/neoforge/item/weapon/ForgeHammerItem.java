@@ -13,6 +13,6 @@ public class ForgeHammerItem extends HammerItem {
 
 	@Override
 	public boolean canPerformAction(ItemStack stack, ItemAbility ability) {
-		return super.canPerformAction(stack, ability) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability) || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(ability);
+		return super.canPerformAction(stack, ability) || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(ability);
 	}
 }

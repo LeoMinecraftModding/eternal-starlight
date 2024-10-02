@@ -28,6 +28,7 @@ public class ESTags {
 		public static final TagKey<Item> SCYTHES = create("scythes");
 		public static final TagKey<Item> SICKLES = create("sickles");
 		public static final TagKey<Item> GREATSWORDS = create("greatswords");
+		public static final TagKey<Item> HAMMERS = create("hammers");
 		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");
 		public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
@@ -38,6 +39,9 @@ public class ESTags {
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
+		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
+		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
+		public static final TagKey<Item> HAMMER_ENCHANTABLE = create("enchantable/hammer");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");

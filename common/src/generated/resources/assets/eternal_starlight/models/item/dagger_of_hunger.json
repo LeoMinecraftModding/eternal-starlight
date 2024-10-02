@@ -4,13 +4,13 @@
     {
       "model": "eternal_starlight:item/dagger_of_hunger_normal",
       "predicate": {
-        "minecraft:hunger_state": 0.5
+        "eternal_starlight:hunger_state": 0.5
       }
     },
     {
       "model": "eternal_starlight:item/dagger_of_hunger_saturated",
       "predicate": {
-        "minecraft:hunger_state": 1.0
+        "eternal_starlight:hunger_state": 1.0
       }
     }
   ],

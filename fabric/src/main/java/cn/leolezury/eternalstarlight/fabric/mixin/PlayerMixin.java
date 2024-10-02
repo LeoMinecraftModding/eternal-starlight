@@ -3,8 +3,7 @@ package cn.leolezury.eternalstarlight.fabric.mixin;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
-import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
-import cn.leolezury.eternalstarlight.common.item.weapon.ScytheItem;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.world.InteractionHand;
@@ -57,7 +56,7 @@ public abstract class PlayerMixin {
 
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getItemInHand(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
 	private void attack(Entity entity, CallbackInfo ci, @Local(ordinal = 3) LocalBooleanRef localRef) {
-		if (getWeaponItem().getItem() instanceof ScytheItem || getWeaponItem().getItem() instanceof HammerItem || getWeaponItem().getItem() instanceof CrescentSpearItem) {
+		if (getWeaponItem().is(ESTags.Items.SCYTHES) || getWeaponItem().getItem() instanceof CrescentSpearItem) {
 			localRef.set(true);
 		}
 	}

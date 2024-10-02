@@ -7,13 +7,13 @@
     {
       "model": "eternal_starlight:item/orb_of_prophecy_temporary",
       "predicate": {
-        "minecraft:crests_mode": 0.5
+        "eternal_starlight:orb_type": 0.5
       }
     },
     {
       "model": "eternal_starlight:item/orb_of_prophecy_with_crests",
       "predicate": {
-        "minecraft:crests_mode": 1.0
+        "eternal_starlight:orb_type": 1.0
       }
     }
   ],

@@ -4,7 +4,7 @@
     {
       "model": "eternal_starlight:item/shattered_sword_no_blade",
       "predicate": {
-        "minecraft:no_blade": 1.0
+        "eternal_starlight:no_blade": 1.0
       }
     }
   ],

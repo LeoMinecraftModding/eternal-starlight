@@ -33,13 +33,16 @@ public class ScytheItem extends TieredItem {
 		super(tier, properties.component(DataComponents.TOOL, tier.createToolProperties(BlockTags.MINEABLE_WITH_HOE)));
 	}
 
-	public static ItemAttributeModifiers createAttributes(Tier tier, int damage, float speed, float reach) {
-		return ItemAttributeModifiers.builder()
+	public static ItemAttributeModifiers createAttributes(Tier tier, int damage, float speed, float reach, float sweep) {
+		ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder()
 			.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (float) damage + tier.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 			.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 			.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(EternalStarlight.id("weapon.entity_reach"), reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-			.add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(EternalStarlight.id("weapon.block_reach"), reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-			.build();
+			.add(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(EternalStarlight.id("weapon.block_reach"), reach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+		if (sweep > 0) {
+			builder.add(Attributes.SWEEPING_DAMAGE_RATIO, new AttributeModifier(EternalStarlight.id("weapon.sweeping_damage_ratio"), sweep, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+		}
+		return builder.build();
 	}
 
 	@Override

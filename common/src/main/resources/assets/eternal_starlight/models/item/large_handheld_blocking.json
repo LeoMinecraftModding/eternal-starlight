@@ -1,0 +1,73 @@
+{
+  "parent": "item/generated",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        55
+      ],
+      "translation": [
+        0,
+        10,
+        0.5
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        1
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -55
+      ],
+      "translation": [
+        0,
+        10,
+        0.5
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        1
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -15,
+        0,
+        100
+      ],
+      "translation": [
+        -0.12,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        1.25,
+        1.25,
+        1
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -15,
+        180,
+        -100
+      ],
+      "translation": [
+        -0.12,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        1.25,
+        1.25,
+        1
+      ]
+    }
+  }
+}

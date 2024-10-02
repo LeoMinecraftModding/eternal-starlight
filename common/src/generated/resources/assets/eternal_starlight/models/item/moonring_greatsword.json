@@ -1,5 +1,13 @@
 {
   "parent": "eternal_starlight:item/large_handheld",
+  "overrides": [
+    {
+      "model": "eternal_starlight:item/moonring_greatsword_blocking",
+      "predicate": {
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
   "textures": {
     "layer0": "eternal_starlight:item/moonring_greatsword"
   }

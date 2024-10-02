@@ -624,9 +624,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_SHOVEL = registerItem("thermal_springstone_shovel",
 		() -> new ShovelItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_SCYTHE = registerItem("thermal_springstone_scythe",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 4, -2.7F, 0.5F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 4, -2.7F, 0.5F, 0.25F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_HAMMER = registerItem("thermal_springstone_hammer",
-		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 8, -3.5F))));
+		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 7, -3.4F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_HELMET = registerItem("thermal_springstone_helmet",
 		() -> ESPlatform.INSTANCE.createThermalSpringStoneArmor(ESArmorMaterials.THERMAL_SPRINGSTONE.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_CHESTPLATE = registerItem("thermal_springstone_chestplate",
@@ -650,7 +650,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLACITE_SHOVEL = registerItem("glacite_shovel",
 		() -> new ShovelItem(ESItemTiers.GLACITE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.GLACITE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> GLACITE_SCYTHE = registerItem("glacite_scythe",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.GLACITE, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.GLACITE, 4, -2.7F, 0.5F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.GLACITE, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.GLACITE, 4, -2.7F, 0.5F, 0.3F))));
 	public static final RegistryObject<Item, Item> GLACITE_HELMET = registerItem("glacite_helmet",
 		() -> new GlaciteArmorItem(ESArmorMaterials.GLACITE.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> GLACITE_CHESTPLATE = registerItem("glacite_chestplate",
@@ -721,8 +721,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new MoonringGreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
-	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 4, -2.7F, 0.5F))));
+	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
+	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 4, -2.7F, 0.5F, 0.45F))));
 	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(ESSpells.TELEPORTATION.asHolder(), new Item.Properties().durability(800).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(400).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
@@ -771,7 +771,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLACK_YETI_FUR_CARPET = registerItem("black_yeti_fur_carpet", () -> new BlockItem(ESBlocks.BLACK_YETI_FUR_CARPET.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> AURORA_DEER_ANTLER = registerItem("aurora_deer_antler",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AURORA_DEER_ANTLER, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.AURORA_DEER_ANTLER, 2, -1F, 0.5F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AURORA_DEER_ANTLER, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.AURORA_DEER_ANTLER, 2, -1F, 0.5F, 0))));
 	public static final RegistryObject<Item, Item> AURORA_DEER_STEAK = registerItem("aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.BEEF)));
 	public static final RegistryObject<Item, Item> COOKED_AURORA_DEER_STEAK = registerItem("cooked_aurora_deer_steak", () -> new Item(new Item.Properties().food(Foods.COOKED_BEEF)));
 
