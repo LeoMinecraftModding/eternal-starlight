@@ -55,7 +55,7 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 
 	@Override
 	protected BlockState getGrowIntoState(BlockState state, RandomSource randomSource) {
-		return super.getGrowIntoState(state, randomSource).setValue(BERRIES, Boolean.valueOf(randomSource.nextFloat() < 0.11F));
+		return super.getGrowIntoState(state, randomSource).setValue(BERRIES, randomSource.nextFloat() < 0.11F);
 	}
 
 	@Override

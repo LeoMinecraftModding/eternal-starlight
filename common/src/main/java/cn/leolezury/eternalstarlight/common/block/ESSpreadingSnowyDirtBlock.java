@@ -51,7 +51,7 @@ public abstract class ESSpreadingSnowyDirtBlock extends SnowyDirtBlock {
 				for (int i = 0; i < 4; ++i) {
 					BlockPos blockpos = pos.offset(randomSource.nextInt(3) - 1, randomSource.nextInt(5) - 3, randomSource.nextInt(3) - 1);
 					if (serverLevel.getBlockState(blockpos).is(spreadsOn) && canPropagate(blockstate, serverLevel, blockpos)) {
-						serverLevel.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, Boolean.valueOf(serverLevel.getBlockState(blockpos.above()).is(Blocks.SNOW))));
+						serverLevel.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, serverLevel.getBlockState(blockpos.above()).is(Blocks.SNOW)));
 					}
 				}
 			}

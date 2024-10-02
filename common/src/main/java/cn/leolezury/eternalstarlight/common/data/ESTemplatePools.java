@@ -102,8 +102,6 @@ public class ESTemplatePools {
 		)));
 	}
 
-	;
-
 	public static ResourceKey<StructureTemplatePool> create(String name) {
 		return ResourceKey.create(Registries.TEMPLATE_POOL, EternalStarlight.id(name));
 	}
