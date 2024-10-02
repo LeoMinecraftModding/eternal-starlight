@@ -406,11 +406,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.TORCH,
 			Items.SOUL_TORCH,
 			Items.TORCHFLOWER,
-			ESItems.STARLIGHT_FLOWER.get(),
 			ESItems.STARLIGHT_TORCHFLOWER.get(),
-			ESItems.ORBFLORA_LIGHT.get(),
-			ESItems.THERMAL_SPRINGSTONE.get(),
-			ESItems.THERMAL_SPRINGSTONE_INGOT.get()
+			ESItems.ORBFLORA_LIGHT.get()
 		);
 		tag(ESTags.Items.LIGHT_CRYSTALS).add(
 			ESItems.LIGHT_CRYSTAL.get(),
