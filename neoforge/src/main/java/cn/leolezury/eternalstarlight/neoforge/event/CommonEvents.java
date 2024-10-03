@@ -51,8 +51,13 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	private static void onLivingHurt(LivingDamageEvent.Pre event) {
-		event.setNewDamage(CommonHandlers.onLivingHurt(event.getEntity(), event.getContainer().getSource(), event.getContainer().getNewDamage()));
+	private static void onPreLivingHurt(LivingDamageEvent.Pre event) {
+		event.setNewDamage(CommonHandlers.onModifyLivingHurtDamage(event.getEntity(), event.getContainer().getSource(), event.getContainer().getNewDamage()));
+	}
+
+	@SubscribeEvent
+	private static void onPostLivingHurt(LivingDamageEvent.Post event) {
+		CommonHandlers.onPostLivingHurt(event.getEntity(), event.getSource(), event.getNewDamage());
 	}
 
 	@SubscribeEvent

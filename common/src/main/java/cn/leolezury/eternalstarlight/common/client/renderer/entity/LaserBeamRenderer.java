@@ -38,6 +38,8 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 
 	@Override
 	public void render(T laserBeam, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+		if (laserBeam.tickCount < 5) return;
+
 		double entityX = Mth.lerp(partialTicks, laserBeam.xo, laserBeam.getX());
 		double entityY = Mth.lerp(partialTicks, laserBeam.yo, laserBeam.getY());
 		double entityZ = Mth.lerp(partialTicks, laserBeam.zo, laserBeam.getZ());

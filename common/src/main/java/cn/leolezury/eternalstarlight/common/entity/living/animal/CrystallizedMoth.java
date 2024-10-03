@@ -158,7 +158,7 @@ public class CrystallizedMoth extends Animal implements FlyingAnimal {
 				Vec3 pos = target.position().add(0, target.getBbHeight() / 2f, 0);
 				Vec3 subtract = pos.subtract(selfPos);
 				CrystallizedMoth.this.setYRot(-((float) Mth.atan2(subtract.x, subtract.z)) * Mth.RAD_TO_DEG);
-				if (CrystallizedMoth.this.hasLineOfSight(target) && CrystallizedMoth.this.distanceTo(target) < 30) {
+				if (CrystallizedMoth.this.getAttackTicks() > 25 && CrystallizedMoth.this.hasLineOfSight(target) && CrystallizedMoth.this.distanceTo(target) < 30) {
 					CrystallizedMoth.this.doHurtTarget(target);
 				}
 				if (CrystallizedMoth.this.level() instanceof ServerLevel serverLevel && CrystallizedMoth.this.getAttackTicks() % 5 == 0) {

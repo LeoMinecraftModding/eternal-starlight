@@ -31,7 +31,9 @@ public abstract class PlayerMixin {
 	// copied from LivingEntityMixin
 	@ModifyVariable(method = "actuallyHurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
 	private float actuallyHurt(float amount, DamageSource damageSource) {
-		return CommonHandlers.onLivingHurt((LivingEntity) (Object) this, damageSource, amount);
+		float modified = CommonHandlers.onModifyLivingHurtDamage((LivingEntity) (Object) this, damageSource, amount);
+		CommonHandlers.onPostLivingHurt((LivingEntity) (Object) this, damageSource, modified);
+		return modified;
 	}
 
 	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))

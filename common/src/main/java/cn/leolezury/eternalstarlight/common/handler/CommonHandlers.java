@@ -141,66 +141,76 @@ public class CommonHandlers {
 		}
 	}
 
-	public static float onLivingHurt(LivingEntity entity, DamageSource source, float amount) {
+	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
 		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
 			|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
 			|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
 			|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
 		) {
-			if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-				livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 200);
-			}
 			if (source.is(DamageTypeTags.IS_FIRE)) {
 				return amount / 2f;
 			}
 		}
+		return amount;
+	}
 
-		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
-			entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
-		}
-
-		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GlaciteArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GlaciteArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
-		) {
-			if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-				livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 80);
+	public static void onPostLivingHurt(LivingEntity entity, DamageSource source, float amount) {
+		if (amount > 0) {
+			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
+			) {
+				if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
+					livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 200);
+				}
 			}
-		}
 
-		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
-			entity.setTicksFrozen(entity.getTicksFrozen() + 80);
-		}
-
-		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
-			&& entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
-			&& entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem
-			&& entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof AethersentArmorItem
-		) {
-			if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
-				Vec3 location = livingEntity.position();
-				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
+				entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
 			}
-		}
 
-		if (source.getDirectEntity() instanceof Player player) {
-			if (player.getRandom().nextInt(15) == 0) {
-				Inventory inventory = player.getInventory();
-				boolean hasCrystals = false;
-				for (int i = 0; i < inventory.getContainerSize(); i++) {
-					if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
-						hasCrystals = true;
+			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GlaciteArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GlaciteArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
+			) {
+				if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
+					livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 80);
+				}
+			}
+
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
+				entity.setTicksFrozen(entity.getTicksFrozen() + 80);
+			}
+
+			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
+				&& entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
+				&& entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem
+				&& entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof AethersentArmorItem
+			) {
+				if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
+					Vec3 location = livingEntity.position();
+					AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
+				}
+			}
+
+			if (source.getDirectEntity() instanceof Player player) {
+				if (player.getRandom().nextInt(15) == 0) {
+					Inventory inventory = player.getInventory();
+					boolean hasCrystals = false;
+					for (int i = 0; i < inventory.getContainerSize(); i++) {
+						if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
+							hasCrystals = true;
+						}
+					}
+					if (hasCrystals) {
+						ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
+						player.level().addFreshEntity(itemEntity);
 					}
 				}
-				if (hasCrystals) {
-					ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
-					player.level().addFreshEntity(itemEntity);
-				}
 			}
 		}
-
-		return amount;
 	}
 
 	public static void onEntityTick(Entity entity) {
