@@ -229,7 +229,7 @@ public class TangledHatred extends ESBoss {
 			int numSegments = this.chain.segments().size();
 			List<TangledHatredPart> partsToRemove = new ArrayList<>();
 			for (TangledHatredPart part : parts) {
-				if (part.isRemoved() || part.isDeadOrDying() || part.getParent() == null || !part.getParent().getUUID().equals(getUUID())) {
+				if (part.isRemoved() || part.getParent() == null || !part.getParent().getUUID().equals(getUUID())) {
 					partsToRemove.add(part);
 				}
 			}

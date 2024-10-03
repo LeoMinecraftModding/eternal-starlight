@@ -43,6 +43,12 @@ public class TangledHatredRenderer extends EntityRenderer<TangledHatred> {
 		poseStack.pushPose();
 		poseStack.translate(-x, -y, -z);
 		int numSegments = Math.min(entity.chain.segments().size(), entity.oldChain.segments().size());
+		if (numSegments > 0) {
+			Chain.Segment last = entity.chain.segments().getLast();
+			Chain.Segment oldLast = entity.oldChain.segments().getLast();
+			Vec3 pos = ESMathUtil.lerpVec(partialTicks, oldLast.getLowerPosition(), last.getLowerPosition());
+			poseStack.translate(x - pos.x, y - pos.y, z - pos.z);
+		}
 		for (int i = 0; i < numSegments; i++) {
 			poseStack.pushPose();
 			Chain.Segment segment = entity.chain.segments().get(i);

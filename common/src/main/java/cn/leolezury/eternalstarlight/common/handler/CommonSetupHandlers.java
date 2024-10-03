@@ -248,7 +248,6 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.TANGLED.get(), Tangled.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkull.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatred.createAttributes().build());
-		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), TangledHatred.createAttributes().build());
 	}
 
 	public interface SpawnPlacementRegisterStrategy {
