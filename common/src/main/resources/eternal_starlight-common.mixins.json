@@ -33,6 +33,7 @@
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
+    "client.GuiGraphicsMixin",
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
     "client.MinecraftMixin",

@@ -78,6 +78,7 @@ public class ClientHandlers {
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
 	private static final ResourceLocation PUMPKIN_BLUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
+	public static final ResourceLocation WIP = EternalStarlight.id("textures/gui/wip.png");
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 	public static int clientTickCount = 0;

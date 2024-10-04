@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-02T19:06:08.098678	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-10-04T17:07:38.7630995	Tags for minecraft:item mod id eternal_starlight
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
@@ -98,6 +98,7 @@ ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/item/water_
 b0b45a39000b20419457df95dd5c87dcb35b0d6e data/eternal_starlight/tags/item/water_crystal_ingredients.json
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/item/wind_crystals.json
 483102921c1f1e66011ddbe6dcb8af5f60766d18 data/eternal_starlight/tags/item/wind_crystal_ingredients.json
+3be939cae35d2529a05be0e6107c1570b5ce4023 data/eternal_starlight/tags/item/wip.json
 e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_food.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json

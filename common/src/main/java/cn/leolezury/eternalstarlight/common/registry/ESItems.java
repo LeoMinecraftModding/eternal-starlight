@@ -302,11 +302,11 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CHISELED_RADIANITE = registerItem("chiseled_radianite", () -> new BlockItem(ESBlocks.CHISELED_RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK = registerItem("flare_brick", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICKS = registerItem("flare_bricks", () -> new BlockItem(ESBlocks.FLARE_BRICKS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> FLARE_BRICK_SLABS = registerItem("flare_brick_slab", () -> new BlockItem(ESBlocks.FLARE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_BRICK_SLAB = registerItem("flare_brick_slab", () -> new BlockItem(ESBlocks.FLARE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK_STAIRS = registerItem("flare_brick_stairs", () -> new BlockItem(ESBlocks.FLARE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK_WALL = registerItem("flare_brick_wall", () -> new BlockItem(ESBlocks.FLARE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILES = registerItem("flare_tiles", () -> new BlockItem(ESBlocks.FLARE_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> FLARE_TILE_SLABS = registerItem("flare_tile_slab", () -> new BlockItem(ESBlocks.FLARE_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_TILE_SLAB = registerItem("flare_tile_slab", () -> new BlockItem(ESBlocks.FLARE_TILE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILE_STAIRS = registerItem("flare_tile_stairs", () -> new BlockItem(ESBlocks.FLARE_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILE_WALL = registerItem("flare_tile_wall", () -> new BlockItem(ESBlocks.FLARE_TILE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_FLARE_PILLAR = registerItem("chiseled_flare_pillar", () -> new BlockItem(ESBlocks.CHISELED_FLARE_PILLAR.get(), new Item.Properties()));
