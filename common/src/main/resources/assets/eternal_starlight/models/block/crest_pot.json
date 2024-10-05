@@ -1,9 +1,5 @@
 {
   "parent": "block/block",
-  "texture_size": [
-    64,
-    64
-  ],
   "textures": {
     "pot": "eternal_starlight:block/crest_pot",
     "particle": "eternal_starlight:block/grimstone"

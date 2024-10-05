@@ -18,6 +18,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
+// TODO: This should not be a recipe!
+// TODO: Fix later
 public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<RecipeInput> {
 	@Override
 	public boolean matches(RecipeInput container, Level level) {

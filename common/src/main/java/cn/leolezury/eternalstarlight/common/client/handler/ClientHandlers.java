@@ -318,7 +318,7 @@ public class ClientHandlers {
 	}
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
-		return angles.add(getScreenShakePitchOffset(), getScreenShakeYawOffset(), 0);
+		return angles.add(Mth.clamp(getScreenShakePitchOffset(), -0.5, 0.5), Mth.clamp(getScreenShakeYawOffset(), -0.5, 0.5), 0);
 	}
 
 	public static OptionalDouble modifyFov(float original) {

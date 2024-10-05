@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-01T14:04:43.94399	Registries
+// 1.21.1	2024-10-05T23:51:15.9655679	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -9,6 +9,7 @@ af027df926bdfe93086193e8e0b2f60ea47d72ed data/eternal_starlight/damage_type/lase
 3e1bcb4dc51ef7cccc14651c06e0fb636719bbe5 data/eternal_starlight/damage_type/meteor.json
 c9fe1d7617f62f165b0f23d77f83b908fc282569 data/eternal_starlight/damage_type/poison.json
 946d23be6e8f30d7e96bb08c68bf031cc7566792 data/eternal_starlight/damage_type/shattered_blade.json
+2038ca1f04fcef1e544ae42c82d8881eb0cff38d data/eternal_starlight/damage_type/sonar.json
 64036c89113dcd4eee30c5feccbc9f54202da1b8 data/eternal_starlight/damage_type/soul_absorb.json
 6f137e726a5ba61d9428f81ac73d9aeefac39679 data/eternal_starlight/dimension/starlight.json
 c616b5b419be855340e096247b775c0bfd00e623 data/eternal_starlight/dimension_type/starlight.json

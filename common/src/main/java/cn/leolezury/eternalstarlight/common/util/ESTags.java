@@ -30,6 +30,7 @@ public class ESTags {
 		public static final TagKey<Item> GREATSWORDS = create("greatswords");
 		public static final TagKey<Item> HAMMERS = create("hammers");
 		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
+		public static final TagKey<Item> CRYSTALLIZED_MOTH_FOOD = create("crystallized_moth_food");
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");
 		public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
 		public static final TagKey<Item> YETI_FOOD = create("yeti_food");

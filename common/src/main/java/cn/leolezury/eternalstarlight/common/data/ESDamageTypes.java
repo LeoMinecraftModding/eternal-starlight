@@ -18,6 +18,7 @@ public class ESDamageTypes {
 	public static final ResourceKey<DamageType> CRYSTALLINE_INFECTION = create("crystalline_infection");
 	public static final ResourceKey<DamageType> GROUND_SMASH = create("ground_smash");
 	public static final ResourceKey<DamageType> SHATTERED_BLADE = create("shattered_blade");
+	public static final ResourceKey<DamageType> SONAR = create("sonar");
 	public static final ResourceKey<DamageType> DAGGER_OF_HUNGER = create("dagger_of_hunger");
 	public static final ResourceKey<DamageType> SOUL_ABSORB = create("soul_absorb");
 
@@ -52,6 +53,7 @@ public class ESDamageTypes {
 		context.register(CRYSTALLINE_INFECTION, new DamageType(name("crystalline_infection"), 0.1F));
 		context.register(GROUND_SMASH, new DamageType(name("ground_smash"), 0.1F));
 		context.register(SHATTERED_BLADE, new DamageType(name("shattered_blade"), 0.1F));
+		context.register(SONAR, new DamageType(name("sonar"), 0.1F));
 		context.register(DAGGER_OF_HUNGER, new DamageType(name("dagger_of_hunger"), 0.1F));
 		context.register(SOUL_ABSORB, new DamageType(name("soul_absorb"), 0.1F));
 		context.register(LASER, new DamageType(name("laser"), 0.1F, DamageEffects.BURNING));

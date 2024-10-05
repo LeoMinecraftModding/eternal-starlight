@@ -16,46 +16,48 @@ import net.minecraft.util.Mth;
 public class CrystallizedMothModel<T extends CrystallizedMoth> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("crystallized_moth"), "main");
 	private final ModelPart root;
-	private final ModelPart body;
 
 	public CrystallizedMothModel(ModelPart root) {
-		this.root = root;
-		this.body = root.getChild("body");
+		this.root = root.getChild("root");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(34, 26).addBox(-4.5F, -4.5F, -6.25F, 9.0F, 9.0F, 5.0F, new CubeDeformation(0.0F))
-			.texOffs(0, 26).addBox(-3.5F, -3.5F, -1.25F, 7.0F, 7.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 18.5F, 2.25F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 21.0F, 0.0F));
 
-		body.addOrReplaceChild("left_legs", CubeListBuilder.create().texOffs(36, 1).mirror().addBox(0.0F, 0.0F, -4.5F, 7.0F, 0.0F, 9.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(3.5F, 3.5F, 2.25F, 0.0F, 0.0F, 1.1781F));
+		root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 38).addBox(-4.0F, -6.0F, -3.0F, 8.0F, 7.0F, 6.0F, new CubeDeformation(0.0F))
+			.texOffs(0, 12).addBox(-3.0F, -5.0F, -6.0F, 6.0F, 5.0F, 13.0F, new CubeDeformation(0.0F))
+			.texOffs(38, 24).addBox(2.0F, 0.0F, -4.0F, 0.0F, 2.0F, 10.0F, new CubeDeformation(0.0F))
+			.texOffs(38, 24).addBox(-2.0F, 0.0F, -4.0F, 0.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		body.addOrReplaceChild("right_legs", CubeListBuilder.create().texOffs(36, 1).addBox(-7.0F, 0.0F, -4.5F, 7.0F, 0.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-3.5F, 3.5F, 2.25F, 0.0F, 0.0F, -1.1781F));
+		root.addOrReplaceChild("left_wing", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, 0.0F, 0.0F, 18.0F, 0.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.5F, -3.0F, 0.0F, 0.3491F, 0.0F));
 
-		body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 43).addBox(-3.5F, -4.5F, -5.0F, 7.0F, 7.0F, 5.0F, new CubeDeformation(0.0F))
-			.texOffs(0, 0).addBox(1.5F, -2.5F, -6.0F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F))
-			.texOffs(0, 0).addBox(-4.5F, -2.5F, -6.0F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F))
-			.texOffs(19, 46).addBox(-3.5F, 2.5F, -5.0F, 7.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -6.25F));
+		root.addOrReplaceChild("right_wing", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-18.0F, 0.0F, 0.0F, 18.0F, 0.0F, 12.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -2.5F, -3.0F, 0.0F, -0.3491F, 0.0F));
 
-		body.addOrReplaceChild("left_upper_wing", CubeListBuilder.create().texOffs(0, 1).addBox(0.0F, 0.0F, -3.5F, 16.0F, 0.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0F, -3.5F, -2.75F, 0.0F, 0.0F, -0.48F));
+		root.addOrReplaceChild("left_wing_small", CubeListBuilder.create().texOffs(0, 30).addBox(0.0F, -5.0F, 3.0F, 12.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 3.0F, 0.0F, -0.0436F, -0.2618F, -0.0436F));
 
-		body.addOrReplaceChild("left_lower_wing", CubeListBuilder.create().texOffs(27, 40).addBox(-1.0F, 0.0F, -0.5F, 9.0F, 0.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0F, -3.5F, -5.75F, 0.0F, 0.0F, 0.4363F));
+		root.addOrReplaceChild("right_wing_small", CubeListBuilder.create().texOffs(0, 30).mirror().addBox(-12.0F, -5.0F, 3.0F, 12.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 3.0F, 0.0F, -0.0436F, 0.2618F, 0.0436F));
 
-		body.addOrReplaceChild("right_upper_wing", CubeListBuilder.create().texOffs(0, 1).mirror().addBox(-16.0F, 0.0F, -3.5F, 16.0F, 0.0F, 13.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.0F, -3.5F, -2.75F, 0.0F, 0.0F, 0.48F));
+		root.addOrReplaceChild("left_tentacle", CubeListBuilder.create().texOffs(38, 12).addBox(-1.0F, 0.0F, -6.0F, 4.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -1.5F, -6.0F, -0.829F, -0.3927F, 0.0F));
 
-		body.addOrReplaceChild("right_lower_wing", CubeListBuilder.create().texOffs(27, 40).mirror().addBox(-8.0F, 0.0F, -0.5F, 9.0F, 0.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.0F, -3.5F, -5.75F, 0.0F, 0.0F, -0.4363F));
+		root.addOrReplaceChild("right_tentacle", CubeListBuilder.create().texOffs(38, 12).mirror().addBox(-3.0F, 0.0F, -6.0F, 4.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, -1.5F, -6.0F, -0.829F, 0.3927F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 128, 128);
+		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		body.xRot += headPitch * Mth.DEG_TO_RAD;
-		body.yRot += netHeadYaw * Mth.DEG_TO_RAD;
-		animate(entity.idleAnimationState, CrystallizedMothAnimation.IDLE, ageInTicks, 1, entity.getAttackTicks() > 0 ? 1.2f : 1f);
+		root.xRot += headPitch * Mth.DEG_TO_RAD;
+		root.yRot += netHeadYaw * Mth.DEG_TO_RAD;
+		if (young) {
+			root.xScale = 0.6f;
+			root.yScale = 0.6f;
+			root.zScale = 0.6f;
+		}
+		animate(entity.idleAnimationState, CrystallizedMothAnimation.IDLE, ageInTicks);
 	}
 
 	@Override

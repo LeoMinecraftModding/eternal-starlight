@@ -233,6 +233,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get()
 		);
+		tag(ESTags.Items.CRYSTALLIZED_MOTH_FOOD).addTag(ItemTags.MEAT);
 		tag(ESTags.Items.ENT_FOOD).add(
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get()

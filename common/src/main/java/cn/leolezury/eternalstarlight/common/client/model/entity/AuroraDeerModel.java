@@ -73,12 +73,12 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		if (young) {
-			root.xScale = 0.8f;
-			root.yScale = 0.8f;
-			root.zScale = 0.8f;
-			head.xScale = 1.25f;
-			head.yScale = 1.25f;
-			head.zScale = 1.25f;
+			root.xScale = 0.6f;
+			root.yScale = 0.6f;
+			root.zScale = 0.6f;
+			head.xScale = 1.67f;
+			head.yScale = 1.67f;
+			head.zScale = 1.67f;
 		}
 		leftHorn.visible = entity.hasLeftHorn();
 		rightHorn.visible = entity.hasRightHorn();

@@ -56,12 +56,12 @@ public class RatlinModel<T extends Ratlin> extends AnimatedEntityModel<T> {
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		if (young) {
-			root.xScale = 0.8f;
-			root.yScale = 0.8f;
-			root.zScale = 0.8f;
-			head.xScale = 1.25f;
-			head.yScale = 1.25f;
-			head.zScale = 1.25f;
+			root.xScale = 0.6f;
+			root.yScale = 0.6f;
+			root.zScale = 0.6f;
+			head.xScale = 1.67f;
+			head.yScale = 1.67f;
+			head.zScale = 1.67f;
 		}
 		this.animate(entity.idleAnimationState, RatlinAnimation.IDLE, ageInTicks);
 		this.animateWalk(RatlinAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1f);
