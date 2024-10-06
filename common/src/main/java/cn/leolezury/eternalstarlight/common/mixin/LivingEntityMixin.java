@@ -8,8 +8,10 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -17,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -54,6 +57,10 @@ public abstract class LivingEntityMixin {
 	@Nullable
 	protected ItemStack autoSpinAttackItemStack;
 
+	@Shadow
+	@NotNull
+	public abstract ItemStack getWeaponItem();
+
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
 	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
 		if (this.getItemInHand(interactionHand).getItem() instanceof Swingable swingable) {
@@ -65,6 +72,13 @@ public abstract class LivingEntityMixin {
 	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && getUseItem().is(ESTags.Items.GREATSWORDS)) {
 			cir.setReturnValue(true);
+		}
+	}
+
+	@Inject(method = "getKnockback", at = @At("RETURN"), cancellable = true)
+	private void getKnockback(Entity target, DamageSource damageSource, CallbackInfoReturnable<Float> cir) {
+		if (getWeaponItem().is(ESTags.Items.HAMMERS)) {
+			cir.setReturnValue(cir.getReturnValue() + 1);
 		}
 	}
 

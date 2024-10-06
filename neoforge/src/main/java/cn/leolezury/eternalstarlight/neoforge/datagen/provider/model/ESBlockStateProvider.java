@@ -356,6 +356,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());
 		dirtPath(ESBlocks.NIGHTFALL_DIRT_PATH.get(), ESBlocks.NIGHTFALL_DIRT.get());
 		grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
+		snowyDirtBlock(ESBlocks.NIGHTFALL_PODZOL.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()), blockTexture(ESBlocks.NIGHTFALL_GRASS_BLOCK.get()).withSuffix("_snow"));
 		simpleGrassBlock(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_MUD.get()));
@@ -775,6 +776,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.rotationY(270).modelFile(modelFile).nextModel()
 			.rotationY(180).modelFile(modelFile).nextModel()
 			.rotationY(90).modelFile(modelFile).build());
+	}
+
+	private void snowyDirtBlock(Block block, ResourceLocation dirt, ResourceLocation snowy) {
+		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block).withSuffix("_side"), dirt, blockTexture(block).withSuffix("_top"));
+		ModelFile snowyModel = models().getExistingFile(snowy);
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+			.modelFile(state.getValue(BlockStateProperties.SNOWY) ? snowyModel : modelFile).nextModel()
+			.rotationY(270).modelFile(state.getValue(BlockStateProperties.SNOWY) ? snowyModel : modelFile).nextModel()
+			.rotationY(180).modelFile(state.getValue(BlockStateProperties.SNOWY) ? snowyModel : modelFile).nextModel()
+			.rotationY(90).modelFile(state.getValue(BlockStateProperties.SNOWY) ? snowyModel : modelFile).build());
 	}
 
 	private void grassBlock(Block grassBlock, ResourceLocation dirt) {

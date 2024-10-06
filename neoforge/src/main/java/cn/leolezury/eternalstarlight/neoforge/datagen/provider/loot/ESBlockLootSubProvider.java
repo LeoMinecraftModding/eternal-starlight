@@ -551,6 +551,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.TALL_GOLDEN_GRASS.get(), this::createDoublePlantDrops);
 
 		add(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
+		add(ESBlocks.NIGHTFALL_PODZOL.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.GOLDEN_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));

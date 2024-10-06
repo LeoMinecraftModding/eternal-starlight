@@ -712,6 +712,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NIGHTFALL_MUD.get(),
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.NIGHTFALL_PODZOL.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get()
@@ -724,8 +725,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
-			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
-			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 			ESBlocks.NIGHTFALL_DIRT.get()
 		);
 		tag(BlockTags.WITHER_IMMUNE).add(
@@ -1005,6 +1004,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TWILIGHT_SAND.get(),
 			ESBlocks.DUSTED_GRAVEL.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+			ESBlocks.NIGHTFALL_PODZOL.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 			ESBlocks.FANTASY_GRASS_BLOCK.get(),

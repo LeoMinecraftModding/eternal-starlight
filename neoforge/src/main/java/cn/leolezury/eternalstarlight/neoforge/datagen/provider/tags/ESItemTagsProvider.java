@@ -229,6 +229,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.HAMMERS).add(
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get()
 		);
+		tag(ESTags.Items.SMALL_SHIELDS).add(
+			ESItems.GLACITE_SHIELD.get()
+		);
 		tag(ESTags.Items.AURORA_DEER_FOOD).add(
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get()
@@ -338,6 +341,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.ROOTED_DIRT,
 			ESItems.NIGHTFALL_DIRT.get(),
 			ESItems.NIGHTFALL_GRASS_BLOCK.get(),
+			ESItems.NIGHTFALL_PODZOL.get(),
 			ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESItems.NIGHTFALL_MUD.get(),
 			ESItems.GLOWING_NIGHTFALL_MUD.get(),

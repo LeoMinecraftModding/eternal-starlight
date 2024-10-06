@@ -529,6 +529,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.NIGHTFALL_FARMLAND.get());
 		block(ESItems.NIGHTFALL_DIRT_PATH.get());
 		block(ESItems.NIGHTFALL_GRASS_BLOCK.get());
+		block(ESItems.NIGHTFALL_PODZOL.get());
 		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_BLOCK.get());

@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-05T22:19:20.5826741	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-10-06T15:46:56.2383195	Tags for minecraft:item mod id eternal_starlight
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
@@ -87,10 +87,11 @@ f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northl
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/eternal_starlight/tags/item/scythes.json
 428c1a50e9f05d9bca76d6e96a6f195d66f41e64 data/eternal_starlight/tags/item/sickles.json
+7de9617000473e9e307ca001cd1ecff23381eb6a data/eternal_starlight/tags/item/small_shields.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/item/starlight_mangrove_logs.json
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/stellagmite_igniters.json
 c2bade993e49b99929e4d8fa628cf2f9cf91aebf data/eternal_starlight/tags/item/terra_crystals.json
-e6425f02a8ea9b7b85d84a06c45b390b8f45a2b7 data/eternal_starlight/tags/item/terra_crystal_ingredients.json
+ffcf8aaeab65e80b4a2dd78b83b288bab3112098 data/eternal_starlight/tags/item/terra_crystal_ingredients.json
 7f06e8adb356f98dd7f56905f2d941bfc06f219a data/eternal_starlight/tags/item/thermal_springstone_weapons.json
 bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/item/tooth_of_hunger_blocks.json
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/item/torreya_logs.json

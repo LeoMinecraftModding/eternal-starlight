@@ -6,12 +6,19 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESTreeDecorators;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 public class TrunkBerriesDecorator extends TreeDecorator {
-	public static final MapCodec<TrunkBerriesDecorator> CODEC = MapCodec.unit(() -> TrunkBerriesDecorator.INSTANCE);
-	public static final TrunkBerriesDecorator INSTANCE = new TrunkBerriesDecorator();
+	private final IntProvider length;
+
+	public static final MapCodec<TrunkBerriesDecorator> CODEC = IntProvider.codec(1, 16).fieldOf("length").xmap(TrunkBerriesDecorator::new, (decorator) -> decorator.length);
+	;
+
+	public TrunkBerriesDecorator(IntProvider length) {
+		this.length = length;
+	}
 
 	@Override
 	protected TreeDecoratorType<?> type() {
@@ -22,7 +29,7 @@ public class TrunkBerriesDecorator extends TreeDecorator {
 	public void place(Context context) {
 		RandomSource random = context.random();
 		context.logs().forEach((pos) -> {
-			int l = random.nextInt(6) + 5;
+			int l = length.sample(random);
 			for (int i = 1; i <= l; i++) {
 				if (context.isAir(pos.below(i))) {
 					context.setBlock(pos.below(i), ESBlocks.BERRIES_VINES_PLANT.get().defaultBlockState().setValue(BerriesVinesPlantBlock.BERRIES, random.nextInt(4) == 0));

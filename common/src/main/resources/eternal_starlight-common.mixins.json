@@ -36,6 +36,7 @@
     "client.GuiGraphicsMixin",
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
+    "client.LocalPlayerMixin",
     "client.MinecraftMixin",
     "client.MultiPlayerGameModeMixin",
     "client.MusicManagerMixin",

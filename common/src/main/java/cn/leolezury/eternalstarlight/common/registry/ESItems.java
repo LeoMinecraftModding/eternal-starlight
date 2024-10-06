@@ -568,6 +568,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NIGHTFALL_FARMLAND = registerItem("nightfall_farmland", () -> new BlockItem(ESBlocks.NIGHTFALL_FARMLAND.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_DIRT_PATH = registerItem("nightfall_dirt_path", () -> new BlockItem(ESBlocks.NIGHTFALL_DIRT_PATH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_GRASS_BLOCK = registerItem("nightfall_grass_block", () -> new BlockItem(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> NIGHTFALL_PODZOL = registerItem("nightfall_podzol", () -> new BlockItem(ESBlocks.NIGHTFALL_PODZOL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TENACIOUS_NIGHTFALL_GRASS_BLOCK = registerItem("tenacious_nightfall_grass_block", () -> new BlockItem(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLDEN_GRASS_BLOCK = registerItem("golden_grass_block", () -> new BlockItem(ESBlocks.GOLDEN_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));

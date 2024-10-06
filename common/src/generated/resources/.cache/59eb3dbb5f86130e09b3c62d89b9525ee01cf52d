@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-01T14:35:29.4038964	Loot Tables
+// 1.21.1	2024-10-06T15:46:56.2008615	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -240,6 +240,7 @@ eb88023967afc4dae7956ac8f791bd58bec6c5aa data/eternal_starlight/loot_table/block
 ab398a618618a3364c4b05ba9ca10b29700aae18 data/eternal_starlight/loot_table/blocks/nightfall_mud_brick_slab.json
 b6374076537b7a44b621c9343242c3916d309709 data/eternal_starlight/loot_table/blocks/nightfall_mud_brick_stairs.json
 418f69e34bc903b60628171c813b2994fabf4031 data/eternal_starlight/loot_table/blocks/nightfall_mud_brick_wall.json
+5f31a68890028e5d1680785241e0ad551a2596c2 data/eternal_starlight/loot_table/blocks/nightfall_podzol.json
 76f9c1d5fe4e92f852f5a08bb3a3e12e5f49c2d3 data/eternal_starlight/loot_table/blocks/nightfan.json
 6397e07c15ba9aa7ea9967284f6761001dbd9174 data/eternal_starlight/loot_table/blocks/nightfan_bush.json
 6ddfd71cfd7461939a8ffeb121c592d71bba0359 data/eternal_starlight/loot_table/blocks/night_sprouts.json

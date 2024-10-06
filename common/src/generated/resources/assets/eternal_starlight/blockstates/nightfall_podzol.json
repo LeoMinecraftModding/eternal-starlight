@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "eternal_starlight:block/nightfall_podzol"
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_podzol",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_podzol",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_podzol",
+        "y": 90
+      }
+    ],
+    "snowy=true": [
+      {
+        "model": "eternal_starlight:block/nightfall_grass_block_snow"
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_grass_block_snow",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_grass_block_snow",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/nightfall_grass_block_snow",
+        "y": 90
+      }
+    ]
+  }
+}

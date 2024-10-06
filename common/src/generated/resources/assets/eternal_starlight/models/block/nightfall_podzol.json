@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/nightfall_dirt",
+    "side": "eternal_starlight:block/nightfall_podzol_side",
+    "top": "eternal_starlight:block/nightfall_podzol_top"
+  }
+}
