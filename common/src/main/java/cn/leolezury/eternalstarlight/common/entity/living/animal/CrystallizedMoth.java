@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -33,6 +34,7 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
@@ -262,6 +264,18 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 				float f = foodProperties != null ? (float) foodProperties.nutrition() : 1.0F;
 				this.heal(2.0F * f);
 				return InteractionResult.sidedSuccess(this.level().isClientSide());
+			}
+			if (itemStack.getItem() == ESItems.LUNARIS_CACTUS_GEL.get()) {
+				itemStack.consume(1, player);
+				if (this.random.nextInt(5) == 0) {
+					ItemEntity itemEntity = this.spawnAtLocation(ESItems.SHIVERING_GEL.get(), 1);
+					if (itemEntity != null) {
+						itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F, getRandom().nextFloat() * 0.05F, (getRandom().nextFloat() - getRandom().nextFloat()) * 0.1F));
+					}
+				} else {
+					this.level().broadcastEntityEvent(this, (byte) 6);
+				}
+				return InteractionResult.SUCCESS;
 			}
 		} else if (this.isFood(itemStack) && !this.isAngry()) {
 			itemStack.consume(1, player);

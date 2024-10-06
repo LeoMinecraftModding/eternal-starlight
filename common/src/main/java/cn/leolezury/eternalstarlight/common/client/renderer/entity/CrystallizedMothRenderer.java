@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.CrystallizedMothModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.CrystallizedMothGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.CrystallizedMoth;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,6 +16,7 @@ public class CrystallizedMothRenderer<T extends CrystallizedMoth> extends MobRen
 
 	public CrystallizedMothRenderer(EntityRendererProvider.Context context) {
 		super(context, new CrystallizedMothModel<>(context.bakeLayer(CrystallizedMothModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new CrystallizedMothGlowLayer<>(this, context.getModelSet()));
 	}
 
 	@Override
