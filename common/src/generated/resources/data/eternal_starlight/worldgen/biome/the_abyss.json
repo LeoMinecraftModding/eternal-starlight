@@ -12,7 +12,7 @@
       "max_delay": 12000,
       "min_delay": 1200,
       "replace_current_music": false,
-      "sound": "eternal_starlight:music.biome.the_abyss"
+      "sound": "eternal_starlight:music.biome.starlit_sea"
     },
     "sky_color": 5658761,
     "water_color": 6187416,

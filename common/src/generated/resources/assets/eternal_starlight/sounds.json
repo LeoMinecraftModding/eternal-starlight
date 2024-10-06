@@ -518,6 +518,10 @@
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
       }
     ]
   },
@@ -533,6 +537,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
         "stream": true
       }
     ]
@@ -550,6 +558,10 @@
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
       }
     ]
   },
@@ -565,6 +577,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
         "stream": true
       }
     ]
@@ -582,6 +598,10 @@
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
       }
     ]
   },
@@ -590,13 +610,13 @@
       {
         "name": "eternal_starlight:music/biome/starlit_sea",
         "stream": true
-      }
-    ]
-  },
-  "music.biome.the_abyss": {
-    "sounds": [
+      },
       {
-        "name": "eternal_starlight:music/biome/atlantis",
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
         "stream": true
       }
     ]
@@ -613,6 +633,10 @@
       },
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
         "stream": true
       }
     ]
@@ -658,13 +682,25 @@
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
       }
     ]
   },
   "music_disc.atlantis": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/atlantis",
+        "name": "eternal_starlight:music/disc/atlantis",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.dusk_o_ereyesterday": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
         "stream": true
       }
     ]

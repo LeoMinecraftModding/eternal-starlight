@@ -732,6 +732,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 
 		basicItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get());
+		basicItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get());
 		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 

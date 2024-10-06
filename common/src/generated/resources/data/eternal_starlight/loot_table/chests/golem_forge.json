@@ -445,17 +445,22 @@
         {
           "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_whisper_of_the_stars",
-          "weight": 3
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_dusk_o_ereyesterday",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_tranquility",
-          "weight": 3
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_atlantis",
-          "weight": 3
+          "weight": 2
         },
         {
           "type": "minecraft:item",

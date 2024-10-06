@@ -71,9 +71,10 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(10))
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(15))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()).setWeight(3))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()).setWeight(3))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()).setWeight(3))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()).setWeight(2))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()).setWeight(2))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()).setWeight(2))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()).setWeight(2))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))));
 
 		consumer.accept(ESLootTables.CURSED_GARDEN_CHEST,
@@ -109,6 +110,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()).setWeight(2))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()).setWeight(2))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()).setWeight(2))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()).setWeight(2))
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(30))
