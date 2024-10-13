@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.item.magic;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
@@ -12,7 +11,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentPatch;
@@ -168,15 +166,11 @@ public class OrbOfProphecyItem extends Item {
 		Level level = useOnContext.getLevel();
 		Player player = useOnContext.getPlayer();
 		BlockPos pos = useOnContext.getClickedPos();
-		if (player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null) {
-			AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
-			boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
-			if ((challenged || serverPlayer.hasInfiniteMaterials()) && level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
-				if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
-					if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
-						level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-						return InteractionResult.SUCCESS;
-					}
+		if (level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
+			if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
+				if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
+					level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+					return InteractionResult.sidedSuccess(level.isClientSide);
 				}
 			}
 		}

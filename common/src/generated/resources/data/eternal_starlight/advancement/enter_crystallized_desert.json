@@ -22,7 +22,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.enter_crystallized_desert.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:blue_starlight_crystal_shard"

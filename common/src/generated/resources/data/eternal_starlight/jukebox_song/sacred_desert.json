@@ -1,0 +1,8 @@
+{
+  "comparator_output": 6,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.sacred_desert"
+  },
+  "length_in_seconds": 105.0,
+  "sound_event": "eternal_starlight:music_disc.sacred_desert"
+}

@@ -22,7 +22,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.enter_abyss.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:abysslate"

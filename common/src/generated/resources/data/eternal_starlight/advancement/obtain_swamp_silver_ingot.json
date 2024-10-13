@@ -16,7 +16,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.obtain_swamp_silver_ingot.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:swamp_silver_ingot"

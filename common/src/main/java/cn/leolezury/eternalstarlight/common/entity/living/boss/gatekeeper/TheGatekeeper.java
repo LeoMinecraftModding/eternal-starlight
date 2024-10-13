@@ -259,6 +259,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		meleeAnimationStateC.stop();
 		dodgeAnimationState.stop();
 		dashAnimationState.stop();
+		castFireballAnimationState.stop();
+		danceFightAnimationState.stop();
+		swingSwordAnimationState.stop();
+		comboAnimationState.stop();
 	}
 
 	@Override
@@ -335,26 +339,28 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		return InteractionResult.CONSUME;
 	}
 
-	public void handleDialogueClose(int operation) {
-		if (operation == 1 && conversationTarget != null) {
-			fightPlayerOnly = true;
-			setFightTargetName(conversationTarget.getName().getString());
-			setActivated(true);
-			setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
-		}
-		if (operation == 2 && conversationTarget != null) {
-			fightPlayerOnly = true;
-			setFightTargetName("");
-			setActivated(false);
-			ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
-			ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(conversationTarget);
-			ESCrestUtil.upgradeCrest(conversationTarget, ESCrests.GUIDANCE_OF_STARS);
-			if (!conversationTarget.getInventory().add(stack)) {
-				ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), stack);
-				level().addFreshEntity(entity);
+	public synchronized void handleDialogueClose(int operation) {
+		if (conversationTarget != null) {
+			if (operation == 1) {
+				fightPlayerOnly = true;
+				setFightTargetName(conversationTarget.getName().getString());
+				setActivated(true);
+				setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
 			}
+			if (operation == 2) {
+				fightPlayerOnly = true;
+				setFightTargetName("");
+				setActivated(false);
+				ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
+				ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(conversationTarget);
+				ESCrestUtil.upgradeCrest(conversationTarget, ESCrests.GUIDANCE_OF_STARS);
+				if (!conversationTarget.getInventory().add(stack)) {
+					ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), stack);
+					level().addFreshEntity(entity);
+				}
+			}
+			conversationTarget = null;
 		}
-		conversationTarget = null;
 	}
 
 	public void spawnMeleeAttackParticles() {

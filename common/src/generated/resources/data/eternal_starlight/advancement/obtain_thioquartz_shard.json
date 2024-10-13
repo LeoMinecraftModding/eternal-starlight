@@ -16,7 +16,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.obtain_thioquartz_shard.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:thioquartz_shard"

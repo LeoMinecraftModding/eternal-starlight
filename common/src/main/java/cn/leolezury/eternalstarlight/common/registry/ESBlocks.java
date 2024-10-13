@@ -734,7 +734,7 @@ public class ESBlocks {
 	// magic
 	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));
 	public static final RegistryObject<Block, EnchantedGrimstoneBricksBlock> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
-	public static final RegistryObject<Block, LiquidBlock> ETHER = BLOCKS.register("ether", () -> new LiquidBlock(ESFluids.ETHER_STILL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA)));
+	public static final RegistryObject<Block, LiquidBlock> ETHER = BLOCKS.register("ether", () -> new LiquidBlock(ESFluids.ETHER_STILL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).mapColor(MapColor.COLOR_LIGHT_GREEN)));
 	public static final RegistryObject<Block, CrestPotBlock> CREST_POT = BLOCKS.register("crest_pot", () -> new CrestPotBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).lightLevel(state -> 2)));
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 	public static final RegistryObject<Block, TheGatekeeperSpawnerBlock> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));

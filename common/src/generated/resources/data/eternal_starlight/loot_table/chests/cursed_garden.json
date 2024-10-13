@@ -337,26 +337,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_whisper_of_the_stars",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_dusk_o_ereyesterday",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_tranquility",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_atlantis",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
           "functions": [
             {
               "add": false,
@@ -418,6 +398,11 @@
           ],
           "name": "eternal_starlight:thermal_springstone_ingot",
           "weight": 25
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "eternal_starlight:chests/music_discs",
+          "weight": 8
         }
       ],
       "rolls": 2.0

@@ -24,7 +24,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.in_ether_fluid.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:ether_bucket"

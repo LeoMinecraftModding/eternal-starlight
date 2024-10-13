@@ -42,8 +42,7 @@ public class GatekeeperDialogueScreen extends Screen {
 		if (this.choiceButtons.isEmpty()) {
 			if (challenged) {
 				addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button -> {
-					ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 2));
-					packetSent = true;
+					sendClosePacket(2);
 					Minecraft.getInstance().setScreen(null);
 				}));
 			} else {
@@ -56,8 +55,7 @@ public class GatekeeperDialogueScreen extends Screen {
 						if (killedDragon) {
 							currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_praise");
 							addChoices(new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_ok"), button2 -> {
-								ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 2));
-								packetSent = true;
+								sendClosePacket(2);
 								Minecraft.getInstance().setScreen(null);
 							}));
 						} else {
@@ -67,8 +65,7 @@ public class GatekeeperDialogueScreen extends Screen {
 									currentText = Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_block_way");
 									addChoices(
 										new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_accept_fight"), button2 -> {
-											ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 1));
-											packetSent = true;
+											sendClosePacket(1);
 											Minecraft.getInstance().setScreen(null);
 										}),
 										new NpcDialogueChoiceButton(Component.translatable("message." + EternalStarlight.ID + ".gatekeeper_backoff"), button2 -> {
@@ -136,16 +133,20 @@ public class GatekeeperDialogueScreen extends Screen {
 		return false;
 	}
 
+	private void sendClosePacket(int id) {
+		if (!packetSent) ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), id));
+		packetSent = true;
+	}
+
 	@Override
 	public void removed() {
-		if (!packetSent) ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 0));
-		packetSent = true;
+		super.removed();
+		sendClosePacket(0);
 	}
 
 	@Override
 	public void onClose() {
 		super.onClose();
-		if (!packetSent) ESPlatform.INSTANCE.sendToServer(new CloseGatekeeperGuiPacket(gatekeeper.getId(), 0));
-		packetSent = true;
+		sendClosePacket(0);
 	}
 }

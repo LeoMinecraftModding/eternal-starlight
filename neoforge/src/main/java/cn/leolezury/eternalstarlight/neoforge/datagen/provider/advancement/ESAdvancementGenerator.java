@@ -40,7 +40,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				EternalStarlight.id("textures/block/lunar_log.png"),
 				AdvancementType.TASK,
 				false, false, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("in_dim",
 				PlayerTrigger.TriggerInstance.located(
 					LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
@@ -53,7 +52,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("challenged", ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":challenge_gatekeeper");
 
@@ -66,7 +64,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("in_dim",
 				PlayerTrigger.TriggerInstance.located(
 					LocationPredicate.Builder.inDimension(ESDimensions.STARLIGHT_KEY)))
@@ -83,7 +80,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("in_biome",
 				PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder
 					.inBiome(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST))
@@ -109,7 +105,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("thrown", ESCriteriaTriggers.THROW_GLEECH_EGG.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":throw_gleech_egg");
 
@@ -126,7 +121,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("witnessed", ESCriteriaTriggers.WITNESS_WEATHER.get().createCriterion(new WitnessWeatherTrigger.TriggerInstance(Optional.empty(), ESWeathers.METEOR_RAIN.asHolder())))
 			.save(consumer, EternalStarlight.ID + ":witness_meteor_rain");
 
@@ -162,7 +156,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("deactivate", ESCriteriaTriggers.DEACTIVATE_ENERGY_BLOCK.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":deactivate_energy_block");
 
@@ -177,7 +170,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.TASK,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("ignite", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(ItemPredicate.Builder.item().of(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS), Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(ESEntities.LUNAR_MONSTROSITY.get()).build()))))
 			.save(consumer, EternalStarlight.ID + ":ignite_lunar_monstrosity");
 
@@ -190,7 +182,6 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				null,
 				AdvancementType.CHALLENGE,
 				true, true, false)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.rewards(AdvancementRewards.Builder.experience(60))
 			.addCriterion("explode", ESCriteriaTriggers.CHAIN_TANGLED_SKULL_EXPLOSION.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":chain_tangled_skull_explosion");
@@ -200,9 +191,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.description"),
 				null,
-				AdvancementType.TASK,
+				AdvancementType.CHALLENGE,
 				true, true, true)
-			.requirements(AdvancementRequirements.Strategy.OR)
 			.addCriterion("use_item",
 				ConsumeItemTrigger.TriggerInstance.usedItem(ESItems.BLOSSOM_OF_STARS.get()))
 			.save(consumer, EternalStarlight.ID + ":use_blossom_of_stars");
@@ -213,7 +203,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				item,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(item))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
@@ -223,7 +213,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				item,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag)))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
@@ -237,7 +227,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				item,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("kill", KilledTrigger.TriggerInstance.playerKilledEntity(Optional.ofNullable(predicate)))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
@@ -251,7 +241,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				item,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("summon", SummonedEntityTrigger.TriggerInstance.summonedEntity(predicate))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
@@ -261,7 +251,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				display,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("in_biome", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biome)))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
@@ -271,7 +261,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				display,
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
-				null, AdvancementType.GOAL, true, true, false)
+				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("in_fluid", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setFluid(FluidPredicate.Builder.fluid().of(fluids))))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}

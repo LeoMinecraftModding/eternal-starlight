@@ -12,8 +12,9 @@ public class ESLootTables {
 	public static final ResourceKey<LootTable> BOSS_TANGLED_HATRED = create("bosses/tangled_hatred");
 	public static final ResourceKey<LootTable> BOSS_LUNAR_MONSTROSITY = create("bosses/lunar_monstrosity");
 
-	public static final ResourceKey<LootTable> GOLEM_FORGE_CHEST = create("chests/golem_forge");
-	public static final ResourceKey<LootTable> CURSED_GARDEN_CHEST = create("chests/cursed_garden");
+	public static final ResourceKey<LootTable> CHEST_MUSIC_DISCS = create("chests/music_discs");
+	public static final ResourceKey<LootTable> CHEST_GOLEM_FORGE = create("chests/golem_forge");
+	public static final ResourceKey<LootTable> CHEST_CURSED_GARDEN = create("chests/cursed_garden");
 
 	public static ResourceKey<LootTable> create(String name) {
 		return ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id(name));

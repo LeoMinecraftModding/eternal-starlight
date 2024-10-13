@@ -120,12 +120,13 @@ public class CommonHandlers {
 	public static void onLevelTick(ServerLevel serverLevel) {
 		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY && starlightWeathers != null) {
 			starlightWeathers.tick();
+			long gameTime = serverLevel.getGameTime();
 			starlightWeathers.getActiveWeather().ifPresentOrElse((weatherInstance -> {
-				if (weatherInstance.getWeather() != lastWeather) {
+				if (weatherInstance.getWeather() != lastWeather || gameTime % 200 == 0) {
 					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateWeatherPacket(weatherInstance.getWeather()));
 					lastWeather = weatherInstance.getWeather();
 				}
-				if (serverLevel.getGameTime() % 80 == 0) {
+				if (gameTime % 80 == 0) {
 					for (ServerPlayer player : serverLevel.players()) {
 						if (serverLevel.canSeeSky(BlockPos.containing(player.getEyePosition()))) {
 							ESCriteriaTriggers.WITNESS_WEATHER.get().trigger(player);
@@ -133,7 +134,7 @@ public class CommonHandlers {
 					}
 				}
 			}), () -> {
-				if (lastWeather != null) {
+				if (lastWeather != null || gameTime % 200 == 0) {
 					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
 					lastWeather = null;
 				}

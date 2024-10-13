@@ -16,7 +16,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.obtain_raw_amaramber.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:raw_amaramber"

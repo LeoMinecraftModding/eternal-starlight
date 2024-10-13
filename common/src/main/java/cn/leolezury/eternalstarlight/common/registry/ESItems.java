@@ -815,10 +815,12 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> FORGE_ARMOR_TRIM_SMITHING_TEMPLATE = registerItem("forge_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(EternalStarlight.id("forge")));
 
 	// music discs
-	public static final RegistryObject<Item, Item> MUSIC_DISC_WHISPER_OF_THE_STARS = registerItem("music_disc_whisper_of_the_stars", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ESJukeboxSongs.WHISPER_OF_THE_STARS)));
-	public static final RegistryObject<Item, Item> MUSIC_DISC_DUSK_O_EREYESTERDAY = registerItem("music_disc_dusk_o_ereyesterday", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ESJukeboxSongs.DUSK_O_EREYESTERDAY)));
-	public static final RegistryObject<Item, Item> MUSIC_DISC_TRANQUILITY = registerItem("music_disc_tranquility", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ESJukeboxSongs.TRANQUILITY)));
-	public static final RegistryObject<Item, Item> MUSIC_DISC_ATLANTIS = registerItem("music_disc_atlantis", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ESJukeboxSongs.ATLANTIS)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_WHISPER_OF_THE_STARS = registerItem("music_disc_whisper_of_the_stars", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.WHISPER_OF_THE_STARS)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_DUSK_O_EREYESTERDAY = registerItem("music_disc_dusk_o_ereyesterday", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.DUSK_O_EREYESTERDAY)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_TRANQUILITY = registerItem("music_disc_tranquility", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.TRANQUILITY)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_POSTERITY = registerItem("music_disc_posterity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.POSTERITY)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_ATLANTIS = registerItem("music_disc_atlantis", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.ATLANTIS)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_SACRED_DESERT = registerItem("music_disc_sacred_desert", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SACRED_DESERT)));
 
 	// misc
 	public static final RegistryObject<Item, Item> STARLIT_PAINTING = registerItem("starlit_painting", () -> new ESPaintingItem(new Item.Properties()));

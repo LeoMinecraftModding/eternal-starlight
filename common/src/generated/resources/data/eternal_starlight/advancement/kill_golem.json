@@ -20,7 +20,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.kill_golem.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:chiseled_golem_steel_block"

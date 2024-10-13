@@ -114,7 +114,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 							}
 							if (!bossRoom && random.nextInt(45) == 0 && chestPositions.stream().noneMatch(pos -> new BlockPos(vineX, 1, vineZ).distSqr(pos) <= 10 * 10)) {
 								chestPositions.add(new BlockPos(vineX, 1, vineZ));
-								createChest(level, box, random, vineX, 1, vineZ, ESLootTables.CURSED_GARDEN_CHEST);
+								createChest(level, box, random, vineX, 1, vineZ, ESLootTables.CHEST_CURSED_GARDEN);
 							}
 						}
 					}

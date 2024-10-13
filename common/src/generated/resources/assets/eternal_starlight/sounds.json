@@ -508,7 +508,7 @@
   "music.biome.crystallized_desert": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/crystallized_desert",
+        "name": "eternal_starlight:music/biome/posterity",
         "stream": true
       },
       {
@@ -701,6 +701,22 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.posterity": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/posterity",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.sacred_desert": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/disc/sacred_desert",
         "stream": true
       }
     ]

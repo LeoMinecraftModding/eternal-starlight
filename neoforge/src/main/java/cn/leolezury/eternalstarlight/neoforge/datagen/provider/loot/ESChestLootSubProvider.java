@@ -13,6 +13,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetPotionFunction;
@@ -32,7 +33,16 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
 		HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
-		consumer.accept(ESLootTables.GOLEM_FORGE_CHEST,
+		consumer.accept(ESLootTables.CHEST_MUSIC_DISCS,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_POSTERITY.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()))));
+
+		consumer.accept(ESLootTables.CHEST_GOLEM_FORGE,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(4))
@@ -71,13 +81,10 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(10))
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(15))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))));
+					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
 
-		consumer.accept(ESLootTables.CURSED_GARDEN_CHEST,
+		consumer.accept(ESLootTables.CHEST_CURSED_GARDEN,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(4))
@@ -109,13 +116,10 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(15))
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(25))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()).setWeight(2))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()).setWeight(2))
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.AETHERSENT_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
-					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))));
+					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
 	}
 }

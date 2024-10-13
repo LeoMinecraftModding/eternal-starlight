@@ -16,7 +16,6 @@
     "description": {
       "translate": "advancements.eternal_starlight.obtain_tooth_of_hunger.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "eternal_starlight:tooth_of_hunger"

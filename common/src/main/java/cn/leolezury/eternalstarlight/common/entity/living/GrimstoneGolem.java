@@ -3,9 +3,11 @@ package cn.leolezury.eternalstarlight.common.entity.living;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -91,7 +93,7 @@ public class GrimstoneGolem extends PathfinderMob {
 	protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
 		if (getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.getItemInHand(interactionHand).isEmpty()) {
 			setItemInHand(InteractionHand.MAIN_HAND, player.getItemInHand(interactionHand).copy());
-			Arrays.fill(handDropChances, 1);
+			Arrays.fill(handDropChances, 0);
 			if (!player.hasInfiniteMaterials()) {
 				player.setItemInHand(interactionHand, ItemStack.EMPTY);
 			}
@@ -108,6 +110,14 @@ public class GrimstoneGolem extends PathfinderMob {
 			return InteractionResult.sidedSuccess(player.level().isClientSide);
 		}
 		return super.mobInteract(player, interactionHand);
+	}
+
+	@Override
+	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
+		if (!getMainHandItem().isEmpty() && handDropChances[0] == 0 && handDropChances[1] == 0) {
+			spawnAtLocation(getMainHandItem().copy());
+		}
 	}
 
 	@Override

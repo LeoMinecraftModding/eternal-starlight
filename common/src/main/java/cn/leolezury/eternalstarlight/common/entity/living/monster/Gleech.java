@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.CrystallizedMoth;
 import cn.leolezury.eternalstarlight.common.network.ClientDismountPacket;
 import cn.leolezury.eternalstarlight.common.network.ClientMountPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -185,6 +187,14 @@ public class Gleech extends Monster {
 	@Override
 	public boolean doHurtTarget(Entity entity) {
 		return super.doHurtTarget(entity);
+	}
+
+	@Override
+	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
+		if (damageSource.getEntity() instanceof CrystallizedMoth && getRandom().nextInt(15) == 0) {
+			spawnAtLocation(ESItems.MUSIC_DISC_SACRED_DESERT.get());
+		}
 	}
 
 	@Override
