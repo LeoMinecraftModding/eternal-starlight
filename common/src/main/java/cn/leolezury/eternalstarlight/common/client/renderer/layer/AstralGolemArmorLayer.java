@@ -13,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemArmorLayer<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends HumanoidArmorLayer<T, M, A> {
-	public AstralGolemArmorLayer(RenderLayerParent parent, A inner, A outer, ModelManager mgr) {
+	public AstralGolemArmorLayer(RenderLayerParent<T, M> parent, A inner, A outer, ModelManager mgr) {
 		super(parent, inner, outer, mgr);
 	}
 

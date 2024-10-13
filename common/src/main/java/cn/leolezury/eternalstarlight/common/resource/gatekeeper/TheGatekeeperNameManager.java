@@ -32,7 +32,7 @@ public class TheGatekeeperNameManager extends SimpleJsonResourceReloadListener {
 	protected void apply(Map<ResourceLocation, JsonElement> resourceList, ResourceManager resourceManagerIn, ProfilerFiller profilerIn) {
 		for (Resource iresource : resourceManagerIn.getResourceStack(NAMES_LOCATION)) {
 			try (InputStream inputstream = iresource.open();
-				 Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+				 Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8))
 			) {
 				JsonObject jsonobject = GsonHelper.fromJson(GSON_INSTANCE, reader, JsonObject.class);
 				boolean replace = jsonobject.get("replace").getAsBoolean();

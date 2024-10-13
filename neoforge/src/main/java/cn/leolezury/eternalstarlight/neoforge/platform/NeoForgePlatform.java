@@ -55,6 +55,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
@@ -72,6 +73,7 @@ import net.neoforged.neoforge.registries.RegistryBuilder;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -118,7 +120,7 @@ public class NeoForgePlatform implements ESPlatform {
 		return provider;
 	}
 
-	class NeoForgeRegistrationProvider<T> implements RegistrationProvider<T> {
+	static class NeoForgeRegistrationProvider<T> implements RegistrationProvider<T> {
 		private final ResourceKey<? extends Registry<T>> key;
 		private final Registry<T> registry;
 		private final DeferredRegister<T> deferredRegister;
@@ -167,11 +169,16 @@ public class NeoForgePlatform implements ESPlatform {
 
 	@Override
 	public <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> codec, Codec<T> networkCodec) {
-		IEventBus bus = ModList.get().getModContainerById(key.location().getNamespace()).get().getEventBus();
-		if (networkCodec != null) {
-			bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec, networkCodec));
-		} else {
-			bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec));
+		Optional<? extends ModContainer> optional = ModList.get().getModContainerById(key.location().getNamespace());
+		if (optional.isPresent()) {
+			IEventBus bus = optional.get().getEventBus();
+			if (bus != null) {
+				if (networkCodec != null) {
+					bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec, networkCodec));
+				} else {
+					bus.addListener(DataPackRegistryEvent.NewRegistry.class, (event) -> event.dataPackRegistry(key, codec));
+				}
+			}
 		}
 	}
 

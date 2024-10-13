@@ -62,7 +62,7 @@ public abstract class GeyserSmokingProvider implements DataProvider {
 				jsonObject.addProperty("output", BuiltInRegistries.ITEM.getKey(recipe.get(1)).toString());
 
 				Path path = this.output.getOutputFolder().resolve("data/" + modId + "/recipes/geyser_smoking/" + name + ".json");
-				;
+
 				completableFutureBuilder.add(DataProvider.saveStable(cachedOutput, jsonObject, path));
 			}
 		}

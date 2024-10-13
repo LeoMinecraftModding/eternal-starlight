@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -142,7 +143,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		} else if (source.equals(level().damageSources().fall())) {
 			return false;
 		}
-		if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player)) {
+		if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getName().getString())) {
 			fightParticipants.add(player.getName().getString());
 		}
 		return super.hurt(source, Math.min(amount, 20));
@@ -150,8 +151,8 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 
 	@Override
 	public void die(DamageSource source) {
-		if (!level().isClientSide && level().getServer() != null) {
-			for (ServerPlayer player : level().getServer().getPlayerList().getPlayers()) {
+		if (!level().isClientSide && level().getServer() instanceof MinecraftServer server) {
+			for (ServerPlayer player : server.getPlayerList().getPlayers()) {
 				for (String name : fightParticipants) {
 					if (player.getName().getString().equals(name) && player.isAlive() && player.level().dimension() == level().dimension()) {
 						CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(player, this, source);
