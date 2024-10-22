@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,6 +24,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
@@ -53,43 +55,46 @@ public abstract class EntityRenderDispatcherMixin {
 
 	@Inject(method = "render", at = @At("RETURN"))
 	private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
-		if (entity instanceof LivingEntity living && !living.isDeadOrDying() && living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
-			EntityRenderer<? super E> entityRenderer = getRenderer(living);
+		if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
+			AttributeInstance instance = living.getAttribute(Attributes.ARMOR);
+			if (instance != null && instance.hasModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_ID)) {
+				EntityRenderer<? super E> entityRenderer = getRenderer(living);
 
-			Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);
-			double x = xOffset + renderOffset.x();
-			double y = yOffset + renderOffset.y();
-			double z = zOffset + renderOffset.z();
-			poseStack.pushPose();
-			poseStack.translate(x, y, z);
-
-			long seed = (long) (Math.pow(living.getId(), 3) * 54321L);
-			RandomSource random = RandomSource.create();
-			random.setSeed(seed);
-			int crystalCount = (int) (living.getBbHeight() / 0.4F) + 2;
-
-			for (int i = 0; i < crystalCount; i++) {
+				Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);
+				double x = xOffset + renderOffset.x();
+				double y = yOffset + renderOffset.y();
+				double z = zOffset + renderOffset.z();
 				poseStack.pushPose();
-				float blockX = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
-				float blockY = random.nextFloat() * living.getBbHeight();
-				float blockZ = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
-				Vec3 center = new Vec3(0, living.getBbHeight() / 2, 0);
-				Vec3 block = ESMathUtil.lerpVec(0.2f, new Vec3(blockX, blockY, blockZ), center);
-				blockX = (float) block.x;
-				blockY = (float) block.y;
-				blockZ = (float) block.z;
-				poseStack.translate(blockX, blockY, blockZ);
-				float pitch = ESMathUtil.positionToPitch(center, block);
-				float yaw = ESMathUtil.positionToYaw(center, block);
-				poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
-				poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
-				poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
-				poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
-				poseStack.translate(-0.5F, -0.5F, -0.5F);
-				ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
+				poseStack.translate(x, y, z);
+
+				long seed = (long) (Math.pow(living.getId(), 3) * 54321L);
+				RandomSource random = RandomSource.create();
+				random.setSeed(seed);
+				int crystalCount = (int) (living.getBbHeight() / 0.4F) + 2;
+
+				for (int i = 0; i < crystalCount; i++) {
+					poseStack.pushPose();
+					float blockX = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
+					float blockY = random.nextFloat() * living.getBbHeight();
+					float blockZ = random.nextFloat() * living.getBbWidth() - living.getBbWidth() / 2f;
+					Vec3 center = new Vec3(0, living.getBbHeight() / 2, 0);
+					Vec3 block = ESMathUtil.lerpVec(0.2f, new Vec3(blockX, blockY, blockZ), center);
+					blockX = (float) block.x;
+					blockY = (float) block.y;
+					blockZ = (float) block.z;
+					poseStack.translate(blockX, blockY, blockZ);
+					float pitch = ESMathUtil.positionToPitch(center, block);
+					float yaw = ESMathUtil.positionToYaw(center, block);
+					poseStack.mulPose(new Quaternionf().rotationX(90.0F * Mth.DEG_TO_RAD));
+					poseStack.mulPose(new Quaternionf().rotationZ((yaw - 90.0F) * Mth.DEG_TO_RAD));
+					poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
+					poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
+					poseStack.translate(-0.5F, -0.5F, -0.5F);
+					ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
+					poseStack.popPose();
+				}
 				poseStack.popPose();
 			}
-			poseStack.popPose();
 		}
 	}
 

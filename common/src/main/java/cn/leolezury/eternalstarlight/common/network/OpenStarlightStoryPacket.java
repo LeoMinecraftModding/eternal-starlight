@@ -9,16 +9,16 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public record OpenStarlightStoryPacket(List<ResourceLocation> unlocked) implements CustomPacketPayload {
+public record OpenStarlightStoryPacket(Set<ResourceLocation> unlocked) implements CustomPacketPayload {
 	public static final Type<OpenStarlightStoryPacket> TYPE = new Type<>(EternalStarlight.id("open_starlight_story"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, OpenStarlightStoryPacket> STREAM_CODEC = StreamCodec.ofMember(OpenStarlightStoryPacket::write, OpenStarlightStoryPacket::read);
 
 	public static OpenStarlightStoryPacket read(FriendlyByteBuf buf) {
 		int size = buf.readInt();
-		List<ResourceLocation> unlocked = new ArrayList<>();
+		Set<ResourceLocation> unlocked = new HashSet<>();
 		for (int i = 0; i < size; i++) {
 			unlocked.add(ResourceLocation.parse(buf.readUtf()));
 		}

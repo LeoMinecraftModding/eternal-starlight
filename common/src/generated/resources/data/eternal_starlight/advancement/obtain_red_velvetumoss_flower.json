@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_abyss",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:red_velvetumoss_flower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_red_velvetumoss_flower.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:red_velvetumoss_flower"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_red_velvetumoss_flower.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -21,8 +21,8 @@ import org.jetbrains.annotations.Nullable;
 public class CommonSetupEvents {
 	@SubscribeEvent
 	private static void onSetup(FMLCommonSetupEvent event) {
-		FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState()));
-		CommonSetupHandlers.commonSetup();
+		event.enqueueWork(() -> FluidInteractionRegistry.addInteraction(ESFluidTypes.ETHER.get(), new FluidInteractionRegistry.InteractionInformation((level, blockPos, relativePos, fluidState) -> !level.getFluidState(relativePos).isEmpty() && !level.getBlockState(relativePos).is(ESBlocks.ETHER.get()), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState())));
+		event.enqueueWork(CommonSetupHandlers::commonSetup);
 	}
 
 	@SubscribeEvent

@@ -38,6 +38,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(Tags.Blocks.SANDSTONE_STAIRS, Tags.Items.SANDSTONE_STAIRS);
 		copy(Tags.Blocks.STONES, Tags.Items.STONES);
 		copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+		copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
+		copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
 		tag(Tags.Items.FOODS).add(
 			ESItems.DOOMEDEN_CARRION.get(),
 			ESItems.ROTTEN_HAM.get()

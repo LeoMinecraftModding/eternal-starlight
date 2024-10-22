@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-06T15:46:56.2383195	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-10-21T23:45:09.8288371	Tags for minecraft:item mod id eternal_starlight
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
@@ -51,6 +51,8 @@ c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethers
 67c51ec7d04bb9ca0201cb358926b2c2176ed768 data/c/tags/item/storage_blocks/raw_aethersent.json
 7b815acd1fcf2ab1e4c3ad11996b68324cf148a7 data/c/tags/item/storage_blocks/saltpeter.json
 34af8ed5e0a9815acdaae73c00c8a7fa2034cc34 data/c/tags/item/storage_blocks/swamp_silver.json
+011f65485287b28ec07eb944a78ae892551fd096 data/c/tags/item/stripped_logs.json
+6446fd1e678a8450873ee2018cdcefcf877768a8 data/c/tags/item/stripped_woods.json
 c3d226738f5244eb9b6c48888bf9f58d7c20b7e1 data/c/tags/item/tools/bow.json
 73e0127140563bac2e802feeb28acbf24cd5520f data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json

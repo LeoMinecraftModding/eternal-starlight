@@ -205,6 +205,20 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.LUNAR_MOSAIC.get()
 		);
+		tag(Tags.Blocks.STRIPPED_LOGS).add(
+			ESBlocks.STRIPPED_LUNAR_LOG.get(),
+			ESBlocks.STRIPPED_NORTHLAND_LOG.get(),
+			ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get(),
+			ESBlocks.STRIPPED_SCARLET_LOG.get(),
+			ESBlocks.STRIPPED_TORREYA_LOG.get()
+		);
+		tag(Tags.Blocks.STRIPPED_WOODS).add(
+			ESBlocks.STRIPPED_LUNAR_WOOD.get(),
+			ESBlocks.STRIPPED_NORTHLAND_WOOD.get(),
+			ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(),
+			ESBlocks.STRIPPED_SCARLET_WOOD.get(),
+			ESBlocks.STRIPPED_TORREYA_WOOD.get()
+		);
 		// mod conventional tags
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL).add(
 			ESBlocks.GOLEM_STEEL_BLOCK.get()

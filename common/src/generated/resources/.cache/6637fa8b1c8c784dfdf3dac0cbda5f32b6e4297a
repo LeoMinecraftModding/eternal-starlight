@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-06T15:46:56.2046433	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2024-10-21T23:45:09.8211173	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 e2863b8fcfae5ad14247c8fe70024ee79ce749f7 data/c/tags/block/clusters.json
@@ -46,6 +46,8 @@ c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aether
 67c51ec7d04bb9ca0201cb358926b2c2176ed768 data/c/tags/block/storage_blocks/raw_aethersent.json
 7b815acd1fcf2ab1e4c3ad11996b68324cf148a7 data/c/tags/block/storage_blocks/saltpeter.json
 34af8ed5e0a9815acdaae73c00c8a7fa2034cc34 data/c/tags/block/storage_blocks/swamp_silver.json
+011f65485287b28ec07eb944a78ae892551fd096 data/c/tags/block/stripped_logs.json
+6446fd1e678a8450873ee2018cdcefcf877768a8 data/c/tags/block/stripped_woods.json
 c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/block/abyssal_fire_survives_on.json
 63b66067a20010742e3d413440af896511013bcf data/eternal_starlight/tags/block/abysslates.json
 1eef840b8164c4fe4c7c91c1c2f8fadddbc920c0 data/eternal_starlight/tags/block/aethersent_meteor_replaceables.json

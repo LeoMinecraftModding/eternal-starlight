@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:dusted_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_dusted_shard.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:dusted_shard"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_dusted_shard.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

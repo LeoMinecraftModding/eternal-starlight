@@ -55,12 +55,21 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, itemBox)) {
 						ItemStack item = itemEntity.getItem();
 						for (RecipeHolder<GeyserSmokingRecipe> recipeHolder : list) {
-							if (item.is(recipeHolder.value().input())) {
-								int count = item.getCount();
+							GeyserSmokingRecipe recipe = recipeHolder.value();
+							if (item.is(recipeHolder.value().input()) && item.getCount() >= recipe.inputCount()) {
+								int count = item.getCount() - recipe.inputCount();
+								Vec3 itemPos = itemEntity.position();
+								if (count > 0) {
+									itemEntity.setItem(item.copyWithCount(count));
+								} else {
+									itemEntity.discard();
+								}
 								DataComponentMap components = item.getComponents();
-								ItemStack stack = new ItemStack(recipeHolder.value().output(), count);
+								ItemStack stack = recipe.output().copy();
 								stack.applyComponents(components);
-								itemEntity.setItem(stack);
+								ItemEntity outputEntity = new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, stack);
+								outputEntity.setDefaultPickUpDelay();
+								level.addFreshEntity(outputEntity);
 							}
 						}
 					}

@@ -73,6 +73,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder enterAbyss = addInBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
 
+		AdvancementHolder redVelvetumossFlower = addItemObtain(consumer, enterAbyss, "obtain_red_velvetumoss_flower", ESItems.RED_VELVETUMOSS_FLOWER.get());
+
 		AdvancementHolder underPermafrostForest = Advancement.Builder.advancement().parent(enterDim).display(
 				ESBlocks.ICICLE.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".under_permafrost_forest.title"),
@@ -131,6 +133,10 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());
+
+		AdvancementHolder stellagmite = addItemObtain(consumer, enterDim, "obtain_stellagmite", ESItems.STELLAGMITE.get());
+
+		AdvancementHolder dustedShard = addItemObtain(consumer, enterDim, "obtain_dusted_shard", ESItems.DUSTED_SHARD.get());
 
 		Advancement.Builder allStarlightBiomesBuilder = Advancement.Builder.advancement().parent(enterDim).display(
 				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),

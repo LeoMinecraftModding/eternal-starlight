@@ -1,0 +1,9 @@
+{
+  "type": "eternal_starlight:geyser_smoking",
+  "input": "eternal_starlight:grimstone",
+  "input_count": 3,
+  "output": {
+    "count": 2,
+    "id": "eternal_starlight:voidstone"
+  }
+}

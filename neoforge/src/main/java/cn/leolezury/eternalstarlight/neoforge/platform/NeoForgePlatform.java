@@ -188,8 +188,8 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public ScytheItem createScythe(Tier tier, Item.Properties properties) {
-		return new ForgeScytheItem(tier, properties);
+	public ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
+		return new ForgeScytheItem(tier, canTill, properties);
 	}
 
 	@Override

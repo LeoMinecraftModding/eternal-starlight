@@ -3,19 +3,19 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
+import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.advancements.AdvancementHolder;
@@ -59,6 +59,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -321,8 +322,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (!level().isClientSide && fightPlayerOnly && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && conversationTarget == null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
 			AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
 			boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
-			AdvancementHolder challenge = serverPlayer.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
-			boolean challenged = challenge != null && serverPlayer.getAdvancements().getOrStartProgress(challenge).isDone();
+			boolean challenged = isPlayerPermitted(serverPlayer);
 			boolean hasOrb = false;
 			for (int i = 0; i < serverPlayer.getInventory().getContainerSize(); i++) {
 				if (serverPlayer.getInventory().getItem(i).is(ESItems.ORB_OF_PROPHECY.get())) hasOrb = true;
@@ -352,15 +352,50 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				setFightTargetName("");
 				setActivated(false);
 				ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
-				ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(conversationTarget);
+				permitPlayer(conversationTarget);
 				ESCrestUtil.upgradeCrest(conversationTarget, ESCrests.GUIDANCE_OF_STARS);
 				if (!conversationTarget.getInventory().add(stack)) {
 					ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), stack);
 					level().addFreshEntity(entity);
 				}
+				boolean hasBook = false;
+				for (int i = 0; i < conversationTarget.getInventory().getContainerSize(); i++) {
+					ItemStack inventoryItem = conversationTarget.getInventory().getItem(i);
+					if (inventoryItem.is(ESItems.BOOK.get())) hasBook = true;
+					if (inventoryItem.is(ESItems.LOOT_BAG.get())) {
+						ResourceKeyComponent<LootTable> component = inventoryItem.get(ESDataComponents.LOOT_TABLE.get());
+						if (component != null && component.resourceKey().location().equals(ESLootTables.BOSS_THE_GATEKEEPER.location())) {
+							hasBook = true;
+						}
+					}
+					;
+				}
+				if (!hasBook) {
+					ItemStack book = ESItems.BOOK.get().getDefaultInstance();
+					if (!conversationTarget.getInventory().add(book)) {
+						ItemEntity entity = new ItemEntity(level(), conversationTarget.getX(), conversationTarget.getY(), conversationTarget.getZ(), book);
+						level().addFreshEntity(entity);
+					}
+				}
 			}
 			conversationTarget = null;
 		}
+	}
+
+	private void permitPlayer(ServerPlayer player) {
+		ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(player);
+		ESBookUtil.unlockFor(player, EternalStarlight.id("permitted_by_gatekeeper"));
+	}
+
+	private boolean isPlayerPermitted(ServerPlayer player) {
+		if (player.getServer() != null) {
+			AdvancementHolder challenge = player.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
+			boolean challenged = challenge != null && player.getAdvancements().getOrStartProgress(challenge).isDone();
+			if (challenged) {
+				return true;
+			}
+		}
+		return ESBookUtil.getUnlockedPartsFor(player).contains(EternalStarlight.id("permitted_by_gatekeeper"));
 	}
 
 	public void spawnMeleeAttackParticles() {
@@ -382,14 +417,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		} else {
 			getFightTarget().ifPresent(p -> {
 				if (p instanceof ServerPlayer serverPlayer) {
-					ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
+					permitPlayer(serverPlayer);
 				}
 			});
 			if (!level().isClientSide) {
 				for (Player player : level().players()) {
 					if (player instanceof ServerPlayer serverPlayer) {
 						if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
-							ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(serverPlayer);
+							permitPlayer(serverPlayer);
 						}
 					}
 				}

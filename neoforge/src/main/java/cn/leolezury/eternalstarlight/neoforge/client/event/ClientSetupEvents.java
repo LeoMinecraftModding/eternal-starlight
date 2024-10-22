@@ -45,7 +45,7 @@ import java.util.Map;
 public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void clientSetup(FMLClientSetupEvent event) {
-		ClientSetupHandlers.clientSetup();
+		event.enqueueWork(ClientSetupHandlers::clientSetup);
 	}
 
 	@SubscribeEvent

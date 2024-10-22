@@ -1,0 +1,9 @@
+{
+  "type": "eternal_starlight:geyser_smoking",
+  "input": "minecraft:white_dye",
+  "input_count": 1,
+  "output": {
+    "count": 1,
+    "id": "minecraft:black_dye"
+  }
+}

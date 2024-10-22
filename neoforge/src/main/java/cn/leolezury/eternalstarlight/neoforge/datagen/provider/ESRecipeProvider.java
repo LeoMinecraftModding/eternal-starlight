@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
 import cn.leolezury.eternalstarlight.common.item.recipe.ManaCrystalRecipe;
 import cn.leolezury.eternalstarlight.common.item.recipe.MatchboxTorchRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
@@ -268,6 +269,11 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('F', ESTags.Items.YETI_FUR)
 			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
 			.save(recipeOutput);
+
+		// geyser smoking
+		SpecialRecipeBuilder.special(category -> new GeyserSmokingRecipe(Items.SKELETON_SKULL, 1, Items.WITHER_SKELETON_SKULL.getDefaultInstance())).save(recipeOutput, EternalStarlight.id("geyser_smoking/wither_skeleton_skull_from_skeleton_skull"));
+		SpecialRecipeBuilder.special(category -> new GeyserSmokingRecipe(Items.WHITE_DYE, 1, Items.BLACK_DYE.getDefaultInstance())).save(recipeOutput, EternalStarlight.id("geyser_smoking/back_dye_from_white_dye"));
+		SpecialRecipeBuilder.special(category -> new GeyserSmokingRecipe(ESItems.GRIMSTONE.get(), 3, new ItemStack(ESItems.VOIDSTONE.get(), 2))).save(recipeOutput, EternalStarlight.id("geyser_smoking/voidstone_from_grimstone"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

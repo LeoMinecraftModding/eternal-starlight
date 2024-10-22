@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.recipe;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -18,9 +19,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-// TODO: This should not be a recipe!
-// TODO: Fix later
-public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<RecipeInput> {
+public record GeyserSmokingRecipe(Item input, int inputCount, ItemStack output) implements Recipe<RecipeInput> {
 	@Override
 	public boolean matches(RecipeInput container, Level level) {
 		return true;
@@ -63,7 +62,8 @@ public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<Rec
 	public static class Serializer implements RecipeSerializer<GeyserSmokingRecipe> {
 		private static final MapCodec<GeyserSmokingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			BuiltInRegistries.ITEM.byNameCodec().fieldOf("input").forGetter(GeyserSmokingRecipe::input),
-			BuiltInRegistries.ITEM.byNameCodec().fieldOf("output").forGetter(GeyserSmokingRecipe::output)
+			Codec.INT.fieldOf("input_count").forGetter(GeyserSmokingRecipe::inputCount),
+			ItemStack.OPTIONAL_CODEC.fieldOf("output").forGetter(GeyserSmokingRecipe::output)
 		).apply(instance, GeyserSmokingRecipe::new));
 
 		@Override
@@ -77,14 +77,16 @@ public record GeyserSmokingRecipe(Item input, Item output) implements Recipe<Rec
 				@Override
 				public GeyserSmokingRecipe decode(RegistryFriendlyByteBuf friendlyByteBuf) {
 					Item input = friendlyByteBuf.readById(BuiltInRegistries.ITEM::byId);
-					Item output = friendlyByteBuf.readById(BuiltInRegistries.ITEM::byId);
-					return new GeyserSmokingRecipe(input, output);
+					int inputCount = friendlyByteBuf.readInt();
+					ItemStack output = ItemStack.STREAM_CODEC.decode(friendlyByteBuf);
+					return new GeyserSmokingRecipe(input, inputCount, output);
 				}
 
 				@Override
 				public void encode(RegistryFriendlyByteBuf friendlyByteBuf, GeyserSmokingRecipe recipe) {
 					friendlyByteBuf.writeById(BuiltInRegistries.ITEM::getId, recipe.input());
-					friendlyByteBuf.writeById(BuiltInRegistries.ITEM::getId, recipe.output());
+					friendlyByteBuf.writeInt(recipe.inputCount());
+					ItemStack.STREAM_CODEC.encode(friendlyByteBuf, recipe.output());
 				}
 			};
 		}

@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:stellagmite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_stellagmite.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:stellagmite"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_stellagmite.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

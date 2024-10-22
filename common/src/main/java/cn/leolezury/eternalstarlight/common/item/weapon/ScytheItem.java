@@ -29,8 +29,11 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class ScytheItem extends TieredItem {
-	public ScytheItem(Tier tier, Properties properties) {
+	protected final boolean canTill;
+
+	public ScytheItem(Tier tier, boolean canTill, Properties properties) {
 		super(tier, properties.component(DataComponents.TOOL, tier.createToolProperties(BlockTags.MINEABLE_WITH_HOE)));
+		this.canTill = canTill;
 	}
 
 	public static ItemAttributeModifiers createAttributes(Tier tier, int damage, float speed, float reach, float sweep) {
@@ -47,6 +50,9 @@ public class ScytheItem extends TieredItem {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
+		if (!canTill) {
+			return InteractionResult.PASS;
+		}
 		Level level = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
 		Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = ESPlatform.INSTANCE.getToolTillAction(context);

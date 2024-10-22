@@ -15,9 +15,9 @@ public class BookProgressions extends SavedData {
 	private static final String TAG_UNLOCKED_COUNT = "unlocked_count";
 	private static final String TAG_UNLOCKED = "unlocked";
 
-	private final Map<UUID, List<ResourceLocation>> progressions = new HashMap<>();
+	private final Map<UUID, Set<ResourceLocation>> progressions = new HashMap<>();
 
-	public Map<UUID, List<ResourceLocation>> getProgressions() {
+	public Map<UUID, Set<ResourceLocation>> getProgressions() {
 		return progressions;
 	}
 
@@ -33,7 +33,7 @@ public class BookProgressions extends SavedData {
 				if (compoundTag.contains(TAG_PROGRESSION + i, CompoundTag.TAG_COMPOUND)) {
 					CompoundTag progressionTag = compoundTag.getCompound(TAG_PROGRESSION + i);
 					UUID id = progressionTag.getUUID(TAG_ID);
-					List<ResourceLocation> allUnlocked = new ArrayList<>();
+					Set<ResourceLocation> allUnlocked = new HashSet<>();
 					int unlockedCount = progressionTag.getInt(TAG_UNLOCKED_COUNT);
 					if (unlockedCount > 0) {
 						for (int j = 0; j < unlockedCount; j++) {
@@ -52,12 +52,13 @@ public class BookProgressions extends SavedData {
 	public CompoundTag save(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		compoundTag.putInt(TAG_PROGRESSION_COUNT, progressions.size());
 		int i = 0;
-		for (Map.Entry<UUID, List<ResourceLocation>> entry : progressions.entrySet()) {
+		for (Map.Entry<UUID, Set<ResourceLocation>> entry : progressions.entrySet()) {
 			CompoundTag progressionTag = new CompoundTag();
 			progressionTag.putUUID(TAG_ID, entry.getKey());
 			progressionTag.putInt(TAG_UNLOCKED_COUNT, entry.getValue().size());
-			for (int j = 0; j < entry.getValue().size(); j++) {
-				progressionTag.putString(TAG_UNLOCKED + j, entry.getValue().get(j).toString());
+			List<ResourceLocation> list = entry.getValue().stream().sorted().toList();
+			for (int j = 0; j < list.size(); j++) {
+				progressionTag.putString(TAG_UNLOCKED + j, list.get(j).toString());
 			}
 			compoundTag.put(TAG_PROGRESSION + i, progressionTag);
 			i++;

@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.neoforge.datagen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.*;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.advancement.ESAdvancementProvider;
-import cn.leolezury.eternalstarlight.neoforge.datagen.provider.custom.ESGeyserSmokingProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot.ESLootProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.model.ESBlockStateProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.model.ESItemModelProvider;
@@ -54,8 +53,5 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ESLootProvider(output, lookup));
 		generator.addProvider(event.includeServer(), new ESAdvancementProvider(output, lookup, helper));
 		generator.addProvider(event.includeServer(), new ESRecipeProvider(output, lookupProvider));
-
-		// custom
-		generator.addProvider(event.includeServer(), new ESGeyserSmokingProvider(output));
 	}
 }

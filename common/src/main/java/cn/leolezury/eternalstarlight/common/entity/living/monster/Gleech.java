@@ -33,6 +33,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class Gleech extends Monster {
 	private static final String TAG_LARVAL = "larval";
@@ -150,7 +151,11 @@ public class Gleech extends Monster {
 
 	@Override
 	public void rideTick() {
-		super.rideTick();
+		this.setDeltaMovement(Vec3.ZERO);
+		this.tick();
+		this.oRun = this.run;
+		this.run = 0.0F;
+		this.resetFallDistance();
 		if (!level().isClientSide) {
 			attachTicks++;
 			if (attachTicks > 80) {
