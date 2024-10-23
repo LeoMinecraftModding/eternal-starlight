@@ -61,6 +61,7 @@ public class ESTags {
 		public static final TagKey<Item> BLAZE_CRYSTALS = create("blaze_crystals");
 		public static final TagKey<Item> LIGHT_CRYSTAL_INGREDIENTS = create("light_crystal_ingredients");
 		public static final TagKey<Item> LIGHT_CRYSTALS = create("light_crystals");
+		public static final TagKey<Item> MUSIC_DISCS = create("music_discs");
 		public static final TagKey<Item> WIP = create("wip");
 
 		private static TagKey<Item> create(String string) {

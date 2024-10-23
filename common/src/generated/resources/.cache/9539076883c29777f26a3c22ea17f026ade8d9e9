@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-13T13:15:33.7820807	Item Models: eternal_starlight
+// 1.21.1	2024-10-23T22:26:05.7937141	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -400,6 +400,8 @@ f0867ba05c542234dd538a84118590b04125f5b7 assets/eternal_starlight/models/item/mu
 3b1ae61e5d5c1fa919756f6cfb87807ce09f550a assets/eternal_starlight/models/item/music_disc_dusk_o_ereyesterday.json
 adace4b98bdeed8141994777cd2e1caa4578fa6c assets/eternal_starlight/models/item/music_disc_posterity.json
 295eefcb250b02592a1139645531e11ee94f9192 assets/eternal_starlight/models/item/music_disc_sacred_desert.json
+40767e8ce8820dcc461709f8de7773f0ca5dcc98 assets/eternal_starlight/models/item/music_disc_spirit.json
+e15c661e3ac24b629172cfdc00bb8422e34dc080 assets/eternal_starlight/models/item/music_disc_the_thorny_reign.json
 2f78d18358f583460b780313bfeb26011d65d733 assets/eternal_starlight/models/item/music_disc_tranquility.json
 0a643b4b595cccef8b22cabe04205076f45c08f5 assets/eternal_starlight/models/item/music_disc_whisper_of_the_stars.json
 8b2fbd217c3cf82b650643d8df5cdd814ee61bcc assets/eternal_starlight/models/item/nebulaite.json

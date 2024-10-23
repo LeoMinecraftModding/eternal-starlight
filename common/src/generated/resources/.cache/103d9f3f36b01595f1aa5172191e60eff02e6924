@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-13T13:25:24.9979734	Registries
+// 1.21.1	2024-10-23T22:26:05.8093463	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -64,6 +64,8 @@ e15f0bd0e7e3b51382f047e8bcfdf903b1138c02 data/eternal_starlight/jukebox_song/atl
 51cdfdfca5ecfb42a003ad991a99973bf868e144 data/eternal_starlight/jukebox_song/dusk_o_ereyesterday.json
 a9d18cf0029d79f7d57614499e5cda8fd3304f6f data/eternal_starlight/jukebox_song/posterity.json
 ee805fe9f5c2908e7ee0fa58e82b18361653fe49 data/eternal_starlight/jukebox_song/sacred_desert.json
+398390680b913d38a4b432fec94ca1ebdcdbc20c data/eternal_starlight/jukebox_song/spirit.json
+41c953343195e691bdef96743b0150ed6fc814c3 data/eternal_starlight/jukebox_song/the_thorny_reign.json
 7d4c49147fcd9464219af55eb10d392e0dc2d5f9 data/eternal_starlight/jukebox_song/tranquility.json
 316091ecd6ce3bf68f04c6d290183460c9814a6d data/eternal_starlight/jukebox_song/whisper_of_the_stars.json
 bfcfb72a59dc0c63084d17048ca2e3f1ecb27612 data/eternal_starlight/painting_variant/crystalborn.json

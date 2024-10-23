@@ -735,8 +735,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get());
 		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
 		basicItem(ESItems.MUSIC_DISC_POSTERITY.get());
+		basicItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
+		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());
 
 		basicItem(ESItems.STARLIT_PAINTING.get());
 		basicItem(ESItems.ETHER_BUCKET.get());

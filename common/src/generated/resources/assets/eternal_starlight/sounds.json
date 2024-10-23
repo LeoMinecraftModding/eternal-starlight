@@ -568,10 +568,6 @@
   "music.biome.starlight_forest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/starlight_forest",
-        "stream": true
-      },
-      {
         "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
       },
@@ -624,7 +620,7 @@
   "music.biome.torreya_forest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/torreya_forest",
+        "name": "eternal_starlight:music/biome/the_thorny_reign",
         "stream": true
       },
       {
@@ -717,6 +713,22 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/disc/sacred_desert",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.spirit": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/disc/spirit",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.the_thorny_reign": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/the_thorny_reign",
         "stream": true
       }
     ]

@@ -217,8 +217,15 @@ public class CommonHandlers {
 	public static void onEntityTick(Entity entity) {
 		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
-			if (item.level().isClientSide && (item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
-				EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
+			if (!item.level().isClientSide) {
+				if (item.tickCount % 100 == 0 && item.getItem().is(ESTags.Items.MUSIC_DISCS) && !item.getItem().is(ESItems.MUSIC_DISC_SPIRIT.get()) && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
+					item.setItem(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance());
+					item.addDeltaMovement(new Vec3(0, 0.25, 0));
+				}
+			} else {
+				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
+					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
+				}
 			}
 		}
 		CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);

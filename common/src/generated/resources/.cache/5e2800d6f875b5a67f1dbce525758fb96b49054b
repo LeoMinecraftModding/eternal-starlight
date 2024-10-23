@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-21T23:45:09.8288371	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2024-10-23T22:26:05.8093463	Tags for minecraft:item mod id eternal_starlight
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
 bcbb383a374ac16304cbea6d3945e47228828d5d data/c/tags/item/fences.json
 723ad4b69b24c2d95fa6d8445d5ee328298fffc7 data/c/tags/item/fences/wooden.json
@@ -84,6 +84,7 @@ e556e6b2620b503ab019a5885f8ec600d31ed458 data/eternal_starlight/tags/item/greats
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/lunar_monstrosity_igniters.json
 eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/item/mana_crystals.json
 9abefef68b045d834c5be44bac87859d26f50ca2 data/eternal_starlight/tags/item/mana_crystal_ingredients.json
+2c4441742c07a1e9ba709e52a7a8300604788b1e data/eternal_starlight/tags/item/music_discs.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northland_logs.json
 4c1d8bbce7c883f739a73eb0374620a15297b159 data/eternal_starlight/tags/item/ratlin_food.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json

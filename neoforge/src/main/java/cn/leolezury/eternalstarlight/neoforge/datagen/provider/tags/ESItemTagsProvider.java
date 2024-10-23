@@ -420,6 +420,16 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.LIGHT_CRYSTAL.get(),
 			ESItems.MANA_CRYSTAL.get()
 		);
+		tag(ESTags.Items.MUSIC_DISCS).add(
+			ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get(),
+			ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get(),
+			ESItems.MUSIC_DISC_TRANQUILITY.get(),
+			ESItems.MUSIC_DISC_POSTERITY.get(),
+			ESItems.MUSIC_DISC_THE_THORNY_REIGN.get(),
+			ESItems.MUSIC_DISC_ATLANTIS.get(),
+			ESItems.MUSIC_DISC_SACRED_DESERT.get(),
+			ESItems.MUSIC_DISC_SPIRIT.get()
+		);
 		tag(ESTags.Items.WIP).add(
 			ESItems.BROKEN_DOOMEDEN_BONE.get(),
 			ESItems.BONEMORE.get(),
