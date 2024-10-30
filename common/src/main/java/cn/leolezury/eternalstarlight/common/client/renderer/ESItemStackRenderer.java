@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpear;
+import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 @Environment(EnvType.CLIENT)
 public class ESItemStackRenderer {
 	private static GlaciteShieldModel GLACITE_SHIELD_MODEL;
-	private static CrescentSpear CRESCENT_SPEAR_MODEL;
+	private static CrescentSpearModel CRESCENT_SPEAR_MODEL;
 
 	public static void render(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
 		if (stack.is(ESItems.GLACITE_SHIELD.get())) {
@@ -35,11 +35,11 @@ public class ESItemStackRenderer {
 		}
 		if (stack.is(ESItems.CRESCENT_SPEAR.get())) {
 			if (CRESCENT_SPEAR_MODEL == null) {
-				CRESCENT_SPEAR_MODEL = new CrescentSpear(Minecraft.getInstance().getEntityModels().bakeLayer(CrescentSpear.LAYER_LOCATION));
+				CRESCENT_SPEAR_MODEL = new CrescentSpearModel(Minecraft.getInstance().getEntityModels().bakeLayer(CrescentSpearModel.LAYER_LOCATION));
 			}
 			poseStack.pushPose();
 			poseStack.scale(1.0F, -1.0F, -1.0F);
-			VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, CRESCENT_SPEAR_MODEL.renderType(CrescentSpear.TEXTURE), false, stack.hasFoil());
+			VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, CRESCENT_SPEAR_MODEL.renderType(CrescentSpearModel.TEXTURE), false, stack.hasFoil());
 			CRESCENT_SPEAR_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
 			poseStack.popPose();
 		}

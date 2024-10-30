@@ -14,12 +14,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class CrescentSpear extends Model {
+public class CrescentSpearModel extends Model {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("crescent_spear"), "main");
 	public static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/crescent_spear.png");
 	private final ModelPart root;
 
-	public CrescentSpear(ModelPart root) {
+	public CrescentSpearModel(ModelPart root) {
 		super(RenderType::entityCutoutNoCull);
 		this.root = root.getChild("root");
 	}

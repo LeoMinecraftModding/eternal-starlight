@@ -10,7 +10,7 @@ import cn.leolezury.eternalstarlight.common.client.model.block.TangledHeadModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
-import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpear;
+import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
@@ -697,7 +697,7 @@ public class ClientSetupHandlers {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
-		strategy.register(CrescentSpear.LAYER_LOCATION, CrescentSpear::createBodyLayer);
+		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities
 		strategy.register(LunarVineRenderer.VineModel.LAYER_LOCATION, LunarVineRenderer.VineModel::createLayer);

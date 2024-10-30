@@ -43,6 +43,6 @@ public class AstralGolemRenderer extends HumanoidMobRenderer<AstralGolem, Astral
 	@Override
 	public ResourceLocation getTextureLocation(AstralGolemRenderState state) {
 		AstralGolemMaterial material = state.material;
-		return material == null ? ENTITY_TEXTURE : material.texture();
+		return material == null ? ENTITY_TEXTURE : material.texture().withSuffix(".png");
 	}
 }
