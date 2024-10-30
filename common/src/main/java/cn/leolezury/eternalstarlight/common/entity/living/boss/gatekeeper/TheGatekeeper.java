@@ -442,7 +442,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null || (source.getEntity().getUUID() != getTarget().getUUID() && !(source.getEntity() instanceof Player)))) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null)) {
 			return false;
 		}
 		return super.hurt(source, amount);
