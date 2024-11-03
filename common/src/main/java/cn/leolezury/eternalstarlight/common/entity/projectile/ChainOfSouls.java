@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -40,7 +41,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_WEAPON = "weapon";
 
-	private static final float MAX_RANGE = 100.0F;
+	private static final float MAX_RANGE = 64.0F;
 	private static final double SPEED = 5.0;
 
 	public static final EntityDataAccessor<Boolean> REACHED_TARGET = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.BOOLEAN);
@@ -117,7 +118,9 @@ public class ChainOfSouls extends Projectile implements Grappling {
 					target = null;
 					targetId = null;
 				} else {
-					this.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
+					Vec3 targetPos = target.position().add(0, target.getBbHeight() / 2, 0);
+
+					this.setPos(targetPos);
 
 					if (target instanceof LivingEntity && !(target instanceof ArmorStand) && level() instanceof ServerLevel serverLevel) {
 						Player playerOwner = getPlayerOwner();
@@ -137,6 +140,16 @@ public class ChainOfSouls extends Projectile implements Grappling {
 									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
 								}
 							}
+
+							Vec3 ownerPos = playerOwner.position().add(0, playerOwner.getBbHeight() / 2, 0);
+
+							Vec3 posDiff = ownerPos.subtract(targetPos);
+							if (posDiff.length() > length() * 1.2f) {
+								double scale = 1.0 - Math.sqrt(Math.min(posDiff.lengthSqr(), 64 * 64)) / 64.0;
+								target.addDeltaMovement(posDiff.normalize().scale(scale * scale));
+								target.hurtMarked = true;
+							}
+
 							absorbSoulTicks++;
 							if (absorbSoulTicks > 50) {
 								discard();
@@ -260,6 +273,11 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	public boolean reachedTarget() {
 		return this.getEntityData().get(REACHED_TARGET);
+	}
+
+	@Override
+	public boolean shouldPull() {
+		return getTarget() == null;
 	}
 
 	@Override

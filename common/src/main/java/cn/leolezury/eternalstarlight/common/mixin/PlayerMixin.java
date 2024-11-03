@@ -93,16 +93,15 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 	@Inject(method = "aiStep", at = @At(value = "TAIL"))
 	private void aiStep(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
-		if (this.grappling != null && (this.grappling instanceof Grappling grappling1 && grappling1.reachedTarget())) {
+		if (this.grappling != null && (this.grappling instanceof Grappling grappling1 && grappling1.reachedTarget() && grappling1.shouldPull())) {
 			player.resetFallDistance();
-			if (player.isControlledByLocalInstance()) {
+			if (!player.level().isClientSide) {
 				float length = grappling1.length();
 				double d = this.grappling.position().subtract(player.getEyePosition()).length();
 				if (d > (double) length) {
 					double e = d / (double) length * 0.1;
 					boolean crouch = player.isCrouching();
-					boolean shouldJump = this.grappling.getY() + 0.01 >= player.getY() && !crouch && player.onGround() && player.tickCount % 20 == 0;
-					player.addDeltaMovement(this.grappling.position().subtract(player.getEyePosition()).scale(1.0 / d).multiply(e, e * 1.1, e).scale(crouch ? 0.6 : (player.onGround() ? 1.8 : 1)).add(0, shouldJump ? 1.1 : 0, 0));
+					player.addDeltaMovement(this.grappling.position().subtract(player.getEyePosition()).scale(1.0 / d).multiply(e, e * 1.1, e).scale(crouch ? 0.6 : (player.onGround() ? 1.8 : 1)));
 					player.hurtMarked = true;
 				}
 			}
