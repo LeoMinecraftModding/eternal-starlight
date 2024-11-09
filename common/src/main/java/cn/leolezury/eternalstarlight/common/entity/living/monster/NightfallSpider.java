@@ -33,15 +33,15 @@ public class NightfallSpider extends Spider {
 	}
 
 	@Override
-	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
-		SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, EntitySpawnReason spawnReason, @Nullable SpawnGroupData spawnGroupData) {
+		SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, spawnReason, spawnGroupData);
 		getPassengers().forEach(entity -> {
 			if (entity instanceof Skeleton s) {
 				s.discard();
-				LonestarSkeleton skeleton = ESEntities.LONESTAR_SKELETON.get().create(this.level());
+				LonestarSkeleton skeleton = ESEntities.LONESTAR_SKELETON.get().create(this.level(), EntitySpawnReason.JOCKEY);
 				if (skeleton != null) {
 					skeleton.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
-					skeleton.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, null);
+					skeleton.finalizeSpawn(serverLevelAccessor, difficultyInstance, spawnReason, null);
 					skeleton.startRiding(this);
 				}
 			}
@@ -74,7 +74,7 @@ public class NightfallSpider extends Spider {
 		return entity.getBbWidth() <= this.getBbWidth() ? new Vec3(0.0, 0.21875 * (double) this.getScale(), 0.0) : super.getVehicleAttachmentPoint(entity);
 	}
 
-	public static boolean checkNightfallSpiderSpawnRules(EntityType<? extends NightfallSpider> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.nightfallSpider.canSpawn();
+	public static boolean checkNightfallSpiderSpawnRules(EntityType<? extends NightfallSpider> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.nightfallSpider.canSpawn();
 	}
 }

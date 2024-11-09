@@ -216,7 +216,7 @@ public class Gleech extends Monster {
 		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 	}
 
-	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return level.getBlockState(pos.below()).is(BlockTags.SAND) && ESConfig.INSTANCE.mobsConfig.gleech.canSpawn();
 	}
 }

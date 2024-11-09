@@ -173,15 +173,15 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	private void handleHit() {
 		if (level() instanceof ServerLevel serverLevel) {
 			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
+			for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
+				if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
+					livingEntity.invulnerableTime = 0;
+					livingEntity.hurtServer(serverLevel, ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
+				}
+			}
 		}
 		if (natural) {
 			dropAndDiscard();
-		}
-		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
-			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
-				livingEntity.invulnerableTime = 0;
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
-			}
 		}
 		if (getTarget() != null && getY() < getTarget().getY()) {
 			dropAndDiscard();
@@ -190,13 +190,14 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		}
 	}
 
+	// TODO: Use Loot Table
 	private void dropAndDiscard() {
 		if (!isRemoved()) {
 			playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
-			if (!level().isClientSide) {
-				((ServerLevel) level()).sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+			if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+				serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
 				if (natural && getSize() >= 10) {
-					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
+					ItemEntity entity = spawnAtLocation(serverLevel, new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
 					for (int x = -3; x <= 3; x++) {
 						for (int y = -3; y <= 3; y++) {
 							for (int z = -3; z <= 3; z++) {
@@ -280,11 +281,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	@Override
 	public boolean isOnFire() {
-		return false;
-	}
-
-	@Override
-	public boolean hurt(DamageSource damageSource, float amount) {
 		return false;
 	}
 

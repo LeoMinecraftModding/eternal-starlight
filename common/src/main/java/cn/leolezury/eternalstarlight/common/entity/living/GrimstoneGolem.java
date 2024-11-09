@@ -134,7 +134,7 @@ public class GrimstoneGolem extends PathfinderMob {
 		}
 	}
 
-	public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()) - 20 && level.getBlockState(pos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT) && ESConfig.INSTANCE.mobsConfig.grimstoneGolem.canSpawn();
 	}
 }

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.prof
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.BoarwarfDyerModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.entity.state.BoarwarfRenderState;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -18,24 +19,22 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class BoarwarfDyerLayer<T extends Boarwarf> extends RenderLayer<T, BoarwarfModel<T>> {
+public class BoarwarfDyerLayer extends RenderLayer<BoarwarfRenderState, BoarwarfModel> {
 	private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/dyer.png");
-	private final BoarwarfDyerModel<T> professionModel;
+	private final BoarwarfDyerModel professionModel;
 
-	public BoarwarfDyerLayer(RenderLayerParent<T, BoarwarfModel<T>> parent, EntityModelSet modelSet) {
+	public BoarwarfDyerLayer(RenderLayerParent<BoarwarfRenderState, BoarwarfModel> parent, EntityModelSet modelSet) {
 		super(parent);
-		this.professionModel = new BoarwarfDyerModel<>(modelSet.bakeLayer(BoarwarfDyerModel.LAYER_LOCATION));
+		this.professionModel = new BoarwarfDyerModel(modelSet.bakeLayer(BoarwarfDyerModel.LAYER_LOCATION));
 	}
 
 	@Override
-	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		if (!entity.isInvisible() && entity.getProfession() == ESBoarwarfProfessions.DYER.get()) {
-			getParentModel().copyPropertiesTo(this.professionModel);
-			this.professionModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-			this.professionModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, BoarwarfRenderState state, float netHeadYaw, float headPitch) {
+		if (!state.isInvisible && state.profession == ESBoarwarfProfessions.DYER.get()) {
+			this.professionModel.setupAnim(state);
 			this.professionModel.copyPropertiesFrom(getParentModel());
 			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutout(TEXTURE));
-			this.professionModel.renderToBuffer(poseStack, vertexConsumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
+			this.professionModel.renderToBuffer(poseStack, vertexConsumer, packedLight, LivingEntityRenderer.getOverlayCoords(state, 0.0F));
 		}
 	}
 }

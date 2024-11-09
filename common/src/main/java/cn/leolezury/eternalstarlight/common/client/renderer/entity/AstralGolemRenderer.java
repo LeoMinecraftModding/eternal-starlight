@@ -11,7 +11,10 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class AstralGolemRenderer extends HumanoidMobRenderer<AstralGolem, AstralGolemRenderState, AstralGolemModel> {
@@ -28,11 +31,14 @@ public class AstralGolemRenderer extends HumanoidMobRenderer<AstralGolem, Astral
 	}
 
 	@Override
-	public void extractRenderState(AstralGolem mob, AstralGolemRenderState state, float partialTicks) {
-		super.extractRenderState(mob, state, partialTicks);
-		state.material = mob.getMaterial();
-		state.attackAnimationTick = mob.getAttackAnimationTick(partialTicks);
-		state.blocking = mob.isGolemBlocking();
+	public void extractRenderState(AstralGolem entity, AstralGolemRenderState state, float partialTicks) {
+		super.extractRenderState(entity, state, partialTicks);
+		Optional<Holder.Reference<AstralGolemMaterial>> ref = entity.getMaterial();
+		if (ref.isPresent() && ref.get().isBound()) {
+			state.material = ref.get().value();
+		}
+		state.attackAnimationTick = entity.getAttackAnimationTick(partialTicks);
+		state.isBlocking = entity.isGolemBlocking();
 	}
 
 	@Override

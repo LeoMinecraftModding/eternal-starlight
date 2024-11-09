@@ -280,7 +280,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(getRandom()));
 	}
 
-	public static boolean checkThirstWalkerSpawnRules(EntityType<? extends ThirstWalker> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.thirstWalker.canSpawn();
+	public static boolean checkThirstWalkerSpawnRules(EntityType<? extends ThirstWalker> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.thirstWalker.canSpawn();
 	}
 }

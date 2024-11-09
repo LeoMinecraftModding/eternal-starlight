@@ -67,7 +67,7 @@ public class AstralGolemModel extends HumanoidModel<AstralGolemRenderState> {
 
 	@Override
 	protected ArmPose getArmPose(AstralGolemRenderState state, HumanoidArm arm) {
-		if (arm == HumanoidArm.LEFT && state.blocking) {
+		if (arm == HumanoidArm.LEFT && state.isBlocking) {
 			return ArmPose.BLOCK;
 		}
 		return ArmPose.EMPTY;

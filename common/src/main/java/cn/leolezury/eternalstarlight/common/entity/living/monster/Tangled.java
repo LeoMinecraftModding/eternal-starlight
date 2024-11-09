@@ -190,7 +190,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 		return SoundEvents.SKELETON_DEATH;
 	}
 
-	public static boolean checkTangledSpawnRules(EntityType<? extends Tangled> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.tangled.canSpawn();
+	public static boolean checkTangledSpawnRules(EntityType<? extends Tangled> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.tangled.canSpawn();
 	}
 }

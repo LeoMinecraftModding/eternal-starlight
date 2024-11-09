@@ -343,7 +343,7 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 		return !this.onGround();
 	}
 
-	public static boolean checkMothSpawnRules(EntityType<? extends CrystallizedMoth> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkMothSpawnRules(EntityType<? extends CrystallizedMoth> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()) - 20 && ESConfig.INSTANCE.mobsConfig.crystallizedMoth.canSpawn();
 	}
 }

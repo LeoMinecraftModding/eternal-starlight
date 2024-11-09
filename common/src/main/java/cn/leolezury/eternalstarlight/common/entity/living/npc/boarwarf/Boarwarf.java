@@ -8,11 +8,13 @@ import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -41,6 +43,7 @@ import org.apache.commons.compress.utils.Sets;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class Boarwarf extends PathfinderMob implements Npc, Merchant {
@@ -79,7 +82,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		return ResourceLocation.parse(this.getEntityData().get(TYPE));
 	}
 
-	public BoarwarfType getBoarwarfType() {
+	public Optional<Holder.Reference<BoarwarfType>> getBoarwarfType() {
 		return level().registryAccess().lookupOrThrow(ESRegistries.BOARWARF_TYPE).get(getTypeId());
 	}
 
@@ -100,7 +103,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		return ResourceLocation.parse(this.getEntityData().get(PROFESSION));
 	}
 
-	public AbstractBoarwarfProfession getProfession() {
+	public Optional<Holder.Reference<AbstractBoarwarfProfession>> getProfession() {
 		return ESBoarwarfProfessions.PROFESSIONS.registry().get(getProfessionId());
 	}
 
@@ -178,7 +181,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, EntitySpawnReason spawnReason, @Nullable SpawnGroupData data) {
 		homePos = blockPosition();
 
 		level().registryAccess().lookupOrThrow(ESRegistries.BOARWARF_TYPE).forEach((type) -> {
@@ -187,7 +190,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 			}
 		});
 
-		return super.finalizeSpawn(level, instance, spawnType, data);
+		return super.finalizeSpawn(level, instance, spawnReason, data);
 	}
 
 	@Override
@@ -227,7 +230,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 				this.setTradingPlayer(player);
 				this.openTradingScreen(player, this.getDisplayName(), 1);
 			}
-			return InteractionResult.sidedSuccess(this.level().isClientSide);
+			return InteractionResult.SUCCESS;
 		} else {
 			return super.mobInteract(player, playerHand);
 		}
@@ -281,7 +284,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	@Override
-	public boolean hurt(DamageSource source, float amount) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource source, float amount) {
 		if (chatCooldown < 12000) {
 			chatCooldown += 12000;
 		}
@@ -299,7 +302,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 				}
 			}
 		}
-		return super.hurt(source, amount);
+		return super.hurtServer(serverLevel, source, amount);
 	}
 
 	@Override
@@ -341,10 +344,10 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 				chatCooldown = 10000;
 				chatTicks = 4000;
 			}
-			if (chatTicks > 0) {
+			if (chatTicks > 0 && level() instanceof ServerLevel serverLevel) {
 				chatTicks--;
 				if (chatTarget == null) {
-					List<Boarwarf> availableChatTargets = level().getNearbyEntities(Boarwarf.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(15));
+					List<Boarwarf> availableChatTargets = serverLevel.getNearbyEntities(Boarwarf.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(15));
 					for (Boarwarf boarwarf : availableChatTargets) {
 						if (boarwarf.chatTarget == null) {
 							boarwarf.chatTarget = this;
@@ -386,9 +389,10 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	protected void addTrades() {
-		if (getProfession() != null) {
+		Optional<Holder.Reference<AbstractBoarwarfProfession>> profession = getProfession();
+		if (profession.isPresent() && profession.get().isBound()) {
 			MerchantOffers merchantoffers = this.getOffers();
-			this.addTrades(merchantoffers, getProfession().getTrades(this), 5);
+			this.addTrades(merchantoffers, profession.get().value().getTrades(this), 5);
 		}
 	}
 
@@ -470,7 +474,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		return this.level().isClientSide;
 	}
 
-	public static boolean checkBoarwarfSpawnRules(EntityType<? extends Boarwarf> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkMobSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.boarwarf.canSpawn();
+	public static boolean checkBoarwarfSpawnRules(EntityType<? extends Boarwarf> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkMobSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.boarwarf.canSpawn();
 	}
 }

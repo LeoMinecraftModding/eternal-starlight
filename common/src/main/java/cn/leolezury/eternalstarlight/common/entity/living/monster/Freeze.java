@@ -194,7 +194,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 		}
 	}
 
-	public static boolean checkFreezeSpawnRules(EntityType<? extends Freeze> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.freeze.canSpawn();
+	public static boolean checkFreezeSpawnRules(EntityType<? extends Freeze> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkAnyLightMonsterSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.freeze.canSpawn();
 	}
 }

@@ -26,7 +26,7 @@ public class AmaramberArrow extends AbstractArrow {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.level().isClientSide && !this.inGround) {
+		if (this.level().isClientSide && !this.isInGround()) {
 			this.level().addParticle(ParticleTypes.CRIMSON_SPORE, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
 		}
 	}

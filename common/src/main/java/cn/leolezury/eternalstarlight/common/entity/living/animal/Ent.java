@@ -130,7 +130,7 @@ public class Ent extends Animal {
 		return ESSoundEvents.ENT_HURT.get();
 	}
 
-	public static boolean checkEntSpawnRules(EntityType<? extends Ent> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkEntSpawnRules(EntityType<? extends Ent> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.ent.canSpawn();
 	}
 }

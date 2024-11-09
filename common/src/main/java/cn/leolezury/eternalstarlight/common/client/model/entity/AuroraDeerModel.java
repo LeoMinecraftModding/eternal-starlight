@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.AuroraDeerAnimation;
-import cn.leolezury.eternalstarlight.common.entity.living.animal.AuroraDeer;
+import cn.leolezury.eternalstarlight.common.client.renderer.entity.state.AuroraDeerRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,7 +13,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T> {
+public class AuroraDeerModel extends EntityModel<AuroraDeerRenderState> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("aurora_deer"), "main");
 	private final ModelPart root;
 	private final ModelPart head;
@@ -21,6 +21,7 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
 	private final ModelPart rightHorn;
 
 	public AuroraDeerModel(ModelPart root) {
+		super(root);
 		this.root = root.getChild("root");
 		this.head = root.getChild("root").getChild("body").getChild("neck").getChild("head");
 		this.leftHorn = head.getChild("left_horn");
@@ -68,11 +69,11 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-		head.xRot = headPitch * Mth.DEG_TO_RAD;
-		if (young) {
+	public void setupAnim(AuroraDeerRenderState state) {
+		super.setupAnim(state);
+		head.yRot = state.yRot * Mth.DEG_TO_RAD;
+		head.xRot = state.xRot * Mth.DEG_TO_RAD;
+		if (state.isBaby) {
 			root.xScale = 0.6f;
 			root.yScale = 0.6f;
 			root.zScale = 0.6f;
@@ -80,14 +81,9 @@ public class AuroraDeerModel<T extends AuroraDeer> extends AnimatedEntityModel<T
 			head.yScale = 1.67f;
 			head.zScale = 1.67f;
 		}
-		leftHorn.visible = entity.hasLeftHorn();
-		rightHorn.visible = entity.hasRightHorn();
-		this.animate(entity.idleAnimationState, AuroraDeerAnimation.IDLE, ageInTicks);
-		this.animateWalk(AuroraDeerAnimation.WALK, limbSwing, limbSwingAmount, young ? 3.0f : 5.0f, 1.0f);
-	}
-
-	@Override
-	public ModelPart root() {
-		return root;
+		leftHorn.visible = state.hasLeftHorn;
+		rightHorn.visible = state.hasRightHorn;
+		this.animate(state.idleAnimationState, AuroraDeerAnimation.IDLE, state.ageInTicks);
+		this.animateWalk(AuroraDeerAnimation.WALK, state.walkAnimationPos, state.walkAnimationSpeed, state.isBaby ? 3.0f : 5.0f, 1.0f);
 	}
 }

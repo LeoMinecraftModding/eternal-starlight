@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.block.entity.spawner;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -44,7 +45,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 		T mob = makeMob();
 
 		mob.moveTo(getBlockPos(), accessor.getLevel().getRandom().nextFloat() * 360.0F, 0.0F);
-		mob.finalizeSpawn(accessor, accessor.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null);
+		mob.finalizeSpawn(accessor, accessor.getCurrentDifficultyAt(getBlockPos()), EntitySpawnReason.SPAWNER, null);
 
 		initializeCreature(mob);
 

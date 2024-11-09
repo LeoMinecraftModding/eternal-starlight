@@ -141,11 +141,11 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, EntitySpawnReason spawnReason, @Nullable SpawnGroupData spawnGroupData) {
 		if (serverLevelAccessor.getBiome(blockPosition()).is(ESBiomes.DARK_SWAMP)) {
 			setVariant(VARIANT_SWAMP);
 		}
-		return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+		return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, spawnReason, spawnGroupData);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 		return !this.onGround();
 	}
 
-	public static boolean checkLacewingSpawnRules(EntityType<? extends ShimmerLacewing> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkLacewingSpawnRules(EntityType<? extends ShimmerLacewing> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return (level.getBiome(pos).is(ESBiomes.DARK_SWAMP) ? level.getBlockState(pos.below()).is(BlockTags.DIRT) : level.getBlockState(pos.below()).is(BlockTags.SAND)) && ESConfig.INSTANCE.mobsConfig.shimmerLacewing.canSpawn();
 	}
 }

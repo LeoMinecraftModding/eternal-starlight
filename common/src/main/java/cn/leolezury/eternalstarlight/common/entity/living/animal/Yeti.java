@@ -227,7 +227,7 @@ public class Yeti extends Animal {
 		furGrowthTicks = compoundTag.getInt(TAG_FUR_GROWTH_TICKS);
 	}
 
-	public static boolean checkYetiSpawnRules(EntityType<? extends Yeti> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+	public static boolean checkYetiSpawnRules(EntityType<? extends Yeti> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
 		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.yeti.canSpawn();
 	}
 }

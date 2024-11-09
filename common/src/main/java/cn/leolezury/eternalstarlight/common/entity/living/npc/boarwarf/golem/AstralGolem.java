@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -51,6 +52,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class AstralGolem extends AbstractGolem implements NeutralMob {
@@ -129,7 +131,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 		targetSelector.addGoal(0, (new HurtByTargetGoal(this)).setAlertOthers());
 		targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (entity) -> entity instanceof Enemy && !(entity instanceof Creeper)));
+		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (entity, serverLevel) -> entity instanceof Enemy && !(entity instanceof Creeper)));
 		targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, false));
 	}
 
@@ -147,12 +149,12 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData data) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, EntitySpawnReason spawnReason, @Nullable SpawnGroupData data) {
 		homePos = blockPosition();
-		return super.finalizeSpawn(level, instance, spawnType, data);
+		return super.finalizeSpawn(level, instance, spawnReason, data);
 	}
 
-	public AstralGolemMaterial getMaterial() {
+	public Optional<Holder.Reference<AstralGolemMaterial>> getMaterial() {
 		return level().registryAccess().lookupOrThrow(ESRegistries.ASTRAL_GOLEM_MATERIAL).get(getMaterialId());
 	}
 
@@ -165,7 +167,8 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 	private boolean isValidRepairMaterial(ItemStack stack) {
 		Item material = Items.IRON_INGOT;
-		if (getMaterial() != null) material = getMaterial().material();
+		Optional<Holder.Reference<AstralGolemMaterial>> ref = getMaterial();
+		if (ref.isPresent() && ref.get().isBound()) material = ref.get().value().material();
 		return stack.is(material);
 	}
 
@@ -186,7 +189,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 					itemstack.shrink(1);
 					Boarwarf.setBoarwarfCredit(player, Boarwarf.getBoarwarfCredit(player) + 10);
 				}
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.SUCCESS;
 			}
 		}
 	}
@@ -228,54 +231,42 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	private float getAttackDamage() {
-		return (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE) * (getMaterial() == null ? 1 : getMaterial().attackDamageMultiplier());
+		Optional<Holder.Reference<AstralGolemMaterial>> ref = getMaterial();
+		return (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE) * (ref.isPresent() && ref.get().isBound() ? ref.get().value().attackDamageMultiplier() : 1);
 	}
 
 	@Override
-	public boolean doHurtTarget(Entity target) {
+	public boolean doHurtTarget(ServerLevel serverLevel, Entity target) {
 		if (isGolemBlocking()) {
 			return false;
 		}
 		this.attackAnimationTick = 10;
-		this.level().broadcastEntityEvent(this, (byte) 4);
-		float f = getAttackDamage();
+		serverLevel.broadcastEntityEvent(this, (byte)4);
+		float f = this.getAttackDamage();
+		float g = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
 		DamageSource damageSource = this.damageSources().mobAttack(this);
-		Level var5 = this.level();
-		if (var5 instanceof ServerLevel serverLevel) {
-			f = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), target, damageSource, f);
-		}
-
-		boolean bl = target.hurt(damageSource, f);
+		boolean bl = target.hurtServer(serverLevel, damageSource, g);
 		if (bl) {
-			float g = this.getKnockback(target, damageSource);
-			if (g > 0.0F && target instanceof LivingEntity) {
-				LivingEntity livingEntity = (LivingEntity) target;
-				livingEntity.knockback(g * 0.5F, Mth.sin(this.getYRot() * 0.017453292F), -Mth.cos(this.getYRot() * 0.017453292F));
-				this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
-			}
-
-			Level var7 = this.level();
-			if (var7 instanceof ServerLevel) {
-				ServerLevel serverLevel2 = (ServerLevel) var7;
-				EnchantmentHelper.doPostAttackEffects(serverLevel2, target, damageSource);
-			}
-
-			this.setLastHurtMob(target);
-			this.playAttackSound();
+			double d = target instanceof LivingEntity livingEntity ? livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) : 0.0;
+			double e = Math.max(0.0, 1.0 - d);
+			target.setDeltaMovement(target.getDeltaMovement().add(0.0, 0.4F * e, 0.0));
+			EnchantmentHelper.doPostAttackEffects(serverLevel, target, damageSource);
 		}
 
+		this.playSound(ESSoundEvents.ASTRAL_GOLEM_ATTACK.get(), 1.0F, 1.0F);
 		return bl;
 	}
 
 	@Override
-	public boolean hurt(DamageSource source, float amount) {
-		float f = getMaterial() == null ? 1 : getMaterial().defenseMultiplier();
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource source, float amount) {
+		Optional<Holder.Reference<AstralGolemMaterial>> ref = getMaterial();
+		float f = ref.isPresent() && ref.get().isBound() ? ref.get().value().defenseMultiplier() : 1;
 		if (source.getEntity() instanceof Player player && !player.hasInfiniteMaterials()) {
 			if (Boarwarf.getBoarwarfCredit(player) > -10000) {
 				Boarwarf.setBoarwarfCredit(player, (int) (Boarwarf.getBoarwarfCredit(player) - amount));
 			}
 		}
-		return super.hurt(source, amount / f);
+		return super.hurtServer(serverLevel, source, amount / f);
 	}
 
 	@Override
@@ -342,7 +333,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 		return this.persistentAngerTarget;
 	}
 
-	public static boolean checkAstralGolemSpawnRules(EntityType<? extends AstralGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return checkMobSpawnRules(type, level, spawnType, pos, random) && ESConfig.INSTANCE.mobsConfig.astralGolem.canSpawn();
+	public static boolean checkAstralGolemSpawnRules(EntityType<? extends AstralGolem> type, LevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+		return checkMobSpawnRules(type, level, spawnReason, pos, random) && ESConfig.INSTANCE.mobsConfig.astralGolem.canSpawn();
 	}
 }

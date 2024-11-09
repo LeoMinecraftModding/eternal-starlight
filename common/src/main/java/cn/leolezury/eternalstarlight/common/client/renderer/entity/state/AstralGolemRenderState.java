@@ -6,5 +6,5 @@ import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 public class AstralGolemRenderState extends HumanoidRenderState {
 	public AstralGolemMaterial material;
 	public float attackAnimationTick;
-	public boolean blocking;
+	public boolean isBlocking;
 }

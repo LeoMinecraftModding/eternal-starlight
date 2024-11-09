@@ -1,11 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.BoarwarfAnimation;
-import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
+import cn.leolezury.eternalstarlight.common.client.renderer.entity.state.BoarwarfRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,9 +13,8 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
+public class BoarwarfModel extends EntityModel<BoarwarfRenderState> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("boarwarf"), "main");
-	private final ModelPart root;
 	public final ModelPart body;
 	public final ModelPart head;
 	public final ModelPart leftArm;
@@ -25,7 +24,7 @@ public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
 	public final ModelPart leftEar;
 
 	public BoarwarfModel(ModelPart root) {
-		this.root = root;
+		super(root);
 		this.body = root.getChild("body");
 		this.head = body.getChild("head");
 		this.leftArm = body.getChild("left_arm");
@@ -63,16 +62,11 @@ public class BoarwarfModel<T extends Boarwarf> extends AnimatedEntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-		head.xRot = headPitch * Mth.DEG_TO_RAD;
-		this.animateWalk(BoarwarfAnimation.WALK, limbSwing, limbSwingAmount, 5.0f, 3.0f);
-		this.animate(entity.idleAnimationState, BoarwarfAnimation.IDLE, ageInTicks);
-	}
-
-	@Override
-	public ModelPart root() {
-		return root;
+	public void setupAnim(BoarwarfRenderState state) {
+		super.setupAnim(state);
+		head.yRot = state.yRot * Mth.DEG_TO_RAD;
+		head.xRot = state.xRot * Mth.DEG_TO_RAD;
+		this.animateWalk(BoarwarfAnimation.WALK, state.walkAnimationPos, state.walkAnimationSpeed, 5.0f, 3.0f);
+		this.animate(state.idleAnimationState, BoarwarfAnimation.IDLE, state.ageInTicks);
 	}
 }
