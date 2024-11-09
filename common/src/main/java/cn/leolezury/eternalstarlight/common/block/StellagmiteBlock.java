@@ -26,7 +26,7 @@ public class StellagmiteBlock extends Block implements Stellagmite {
 	}
 
 	@Override
-	protected MapCodec<? extends Block> codec() {
+	protected MapCodec<StellagmiteBlock> codec() {
 		return CODEC;
 	}
 

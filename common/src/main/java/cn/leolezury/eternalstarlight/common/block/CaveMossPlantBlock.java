@@ -19,7 +19,7 @@ public class CaveMossPlantBlock extends GrowingPlantBodyBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected MapCodec<CaveMossPlantBlock> codec() {
 		return CODEC;
 	}
 

@@ -26,6 +26,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_profundity"
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_atlantis"
         }
       ],

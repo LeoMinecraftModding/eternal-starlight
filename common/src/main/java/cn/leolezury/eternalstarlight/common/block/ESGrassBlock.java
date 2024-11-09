@@ -15,7 +15,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -35,7 +34,7 @@ public class ESGrassBlock extends ESSpreadingSnowyDirtBlock implements Bonemeala
 	}
 
 	@Override
-	protected MapCodec<? extends SnowyDirtBlock> codec() {
+	protected MapCodec<ESGrassBlock> codec() {
 		return CODEC;
 	}
 

@@ -12,7 +12,7 @@
       "max_delay": 12000,
       "min_delay": 1200,
       "replace_current_music": false,
-      "sound": "eternal_starlight:music.biome.starlit_sea"
+      "sound": "eternal_starlight:music.biome.the_abyss"
     },
     "sky_color": 5658761,
     "water_color": 6187416,
@@ -49,6 +49,7 @@
       "eternal_starlight:cave_vine",
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
+      "eternal_starlight:bouldershroom",
       "eternal_starlight:abyssal_kelp",
       "eternal_starlight:orbflora",
       "eternal_starlight:velvetumoss",

@@ -26,7 +26,7 @@ public class EnergyBlock extends Block {
 	}
 
 	@Override
-	protected MapCodec<? extends Block> codec() {
+	protected MapCodec<EnergyBlock> codec() {
 		return CODEC;
 	}
 

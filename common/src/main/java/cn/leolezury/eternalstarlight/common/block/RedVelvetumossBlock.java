@@ -22,14 +22,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 
 public class RedVelvetumossBlock extends Block implements BonemealableBlock {
-	public static final MapCodec<VelvetumossBlock> CODEC = simpleCodec(VelvetumossBlock::new);
+	public static final MapCodec<RedVelvetumossBlock> CODEC = simpleCodec(RedVelvetumossBlock::new);
 
 	public RedVelvetumossBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public MapCodec<VelvetumossBlock> codec() {
+	public MapCodec<RedVelvetumossBlock> codec() {
 		return CODEC;
 	}
 

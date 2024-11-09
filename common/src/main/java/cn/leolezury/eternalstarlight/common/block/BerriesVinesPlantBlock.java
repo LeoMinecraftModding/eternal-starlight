@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -21,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock, BerriesVines {
+public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements BerriesVines {
 	public static final MapCodec<BerriesVinesPlantBlock> CODEC = simpleCodec(BerriesVinesPlantBlock::new);
 
 	public BerriesVinesPlantBlock(BlockBehaviour.Properties properties) {
@@ -30,7 +29,7 @@ public class BerriesVinesPlantBlock extends GrowingPlantBodyBlock implements Bon
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected MapCodec<BerriesVinesPlantBlock> codec() {
 		return null;
 	}
 

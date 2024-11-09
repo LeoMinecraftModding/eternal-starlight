@@ -20,8 +20,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import java.util.List;
 import java.util.Optional;
 
-public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optional<AbstractSpell> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers) {
-	public Crest(ManaType type, int maxLevel, ResourceLocation texture, AbstractSpell spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers) {
+public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optional<Holder<AbstractSpell>> spell, Optional<List<MobEffectWithLevel>> effects, Optional<List<LevelBasedAttributeModifier>> attributeModifiers) {
+	public Crest(ManaType type, int maxLevel, ResourceLocation texture, Holder<AbstractSpell> spell, List<MobEffectWithLevel> effects, List<LevelBasedAttributeModifier> attributeModifiers) {
 		this(type, maxLevel, texture, Optional.ofNullable(spell), Optional.of(effects), Optional.of(attributeModifiers));
 	}
 
@@ -29,10 +29,14 @@ public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optio
 		ManaType.CODEC.fieldOf("type").forGetter(Crest::type),
 		Codec.INT.fieldOf("max_level").forGetter(Crest::maxLevel),
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(Crest::texture),
-		ESSpells.CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
+		ESSpells.HOLDER_CODEC.optionalFieldOf("spell").forGetter(Crest::spell),
 		MobEffectWithLevel.CODEC.listOf().optionalFieldOf("mob_effects").forGetter(Crest::effects),
 		LevelBasedAttributeModifier.CODEC.listOf().optionalFieldOf("attribute_modifiers").forGetter(Crest::attributeModifiers)
 	).apply(instance, Crest::new));
+
+	public Optional<AbstractSpell> getSpell() {
+		return spell().map(Holder::value);
+	}
 
 	public record MobEffectWithLevel(Holder<MobEffect> effect, int level, int levelAddition) {
 		public static final Codec<MobEffectWithLevel> CODEC = RecordCodecBuilder.create(instance -> instance.group(

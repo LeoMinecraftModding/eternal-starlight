@@ -29,7 +29,7 @@ public class LunarVineBlock extends HorizontalDirectionalBlock implements Entity
 	}
 
 	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+	protected MapCodec<LunarVineBlock> codec() {
 		return CODEC;
 	}
 

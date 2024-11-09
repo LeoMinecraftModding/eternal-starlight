@@ -31,7 +31,7 @@ public class DoomedenRedstoneWallTorchBlock extends DoomedenRedstoneTorchBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends BaseTorchBlock> codec() {
+	protected MapCodec<DoomedenRedstoneWallTorchBlock> codec() {
 		return CODEC;
 	}
 

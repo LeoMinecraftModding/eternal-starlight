@@ -617,6 +617,22 @@
       }
     ]
   },
+  "music.biome.the_abyss": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/profundity",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.torreya_forest": {
     "sounds": [
       {
@@ -705,6 +721,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/biome/posterity",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.profundity": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/profundity",
         "stream": true
       }
     ]

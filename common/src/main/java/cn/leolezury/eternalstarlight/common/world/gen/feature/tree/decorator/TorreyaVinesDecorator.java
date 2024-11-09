@@ -25,10 +25,7 @@ public class TorreyaVinesDecorator extends TreeDecorator {
 				int l = random.nextInt(6) + 5;
 				for (int i = 1; i <= l; i++) {
 					if (context.isAir(pos.below(i))) {
-						if (i == 1) {
-							context.setBlock(pos.below(i), ESBlocks.TORREYA_VINES_PLANT.get().defaultBlockState().setValue(TorreyaVinesPlantBlock.TOP, true));
-						}
-						context.setBlock(pos.below(i), ESBlocks.TORREYA_VINES_PLANT.get().defaultBlockState());
+						context.setBlock(pos.below(i), i == 1 ? ESBlocks.TORREYA_VINES_PLANT.get().defaultBlockState().setValue(TorreyaVinesPlantBlock.TOP, true) : ESBlocks.TORREYA_VINES_PLANT.get().defaultBlockState());
 						if (i == l) {
 							context.setBlock(pos.below(i), ESBlocks.TORREYA_VINES.get().defaultBlockState());
 						}

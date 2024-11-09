@@ -36,7 +36,7 @@ public class DoomedenKeyholeBlock extends HorizontalAxisBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends HorizontalAxisBlock> codec() {
+	protected MapCodec<DoomedenKeyholeBlock> codec() {
 		return CODEC;
 	}
 

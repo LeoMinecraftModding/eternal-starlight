@@ -46,7 +46,7 @@ public class ESCrests {
 			ManaType.LUNAR,
 			1,
 			EternalStarlight.id("textures/crest/guidance_of_stars.png"),
-			Optional.ofNullable(ESSpells.GUIDANCE_OF_STARS.get()),
+			Optional.of(ESSpells.GUIDANCE_OF_STARS.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -54,7 +54,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/blazing_beam.png"),
-			Optional.ofNullable(ESSpells.LASER_BEAM.get()),
+			Optional.of(ESSpells.LASER_BEAM.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -62,7 +62,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/burst_spark.png"),
-			Optional.ofNullable(ESSpells.BURST_SPARK.get()),
+			Optional.of(ESSpells.BURST_SPARK.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -70,7 +70,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/flaming_aftershock.png"),
-			Optional.ofNullable(ESSpells.FLAMING_AFTERSHOCK.get()),
+			Optional.of(ESSpells.FLAMING_AFTERSHOCK.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -78,7 +78,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/flaming_arc.png"),
-			Optional.ofNullable(ESSpells.FLAMING_ARC.get()),
+			Optional.of(ESSpells.FLAMING_ARC.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -86,7 +86,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/flaming_ring.png"),
-			Optional.ofNullable(ESSpells.FLAMING_RING.get()),
+			Optional.of(ESSpells.FLAMING_RING.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -94,7 +94,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/merged_fireball.png"),
-			Optional.ofNullable(ESSpells.MERGED_FIREBALL.get()),
+			Optional.of(ESSpells.MERGED_FIREBALL.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -102,7 +102,7 @@ public class ESCrests {
 			ManaType.BLAZE,
 			3,
 			EternalStarlight.id("textures/crest/surrounding_fireballs.png"),
-			Optional.ofNullable(ESSpells.SURROUNDING_FIREBALLS.get()),
+			Optional.of(ESSpells.SURROUNDING_FIREBALLS.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -110,7 +110,7 @@ public class ESCrests {
 			ManaType.WATER,
 			3,
 			EternalStarlight.id("textures/crest/frozen_fog.png"),
-			Optional.ofNullable(ESSpells.FROZEN_FOG.get()),
+			Optional.of(ESSpells.FROZEN_FOG.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));
@@ -118,7 +118,7 @@ public class ESCrests {
 			ManaType.WATER,
 			3,
 			EternalStarlight.id("textures/crest/icy_spikes.png"),
-			Optional.ofNullable(ESSpells.ICY_SPIKES.get()),
+			Optional.of(ESSpells.ICY_SPIKES.asHolder()),
 			Optional.empty(),
 			Optional.empty()
 		));

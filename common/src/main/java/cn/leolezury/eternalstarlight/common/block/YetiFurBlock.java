@@ -14,13 +14,13 @@ import net.minecraft.world.phys.Vec3;
 public class YetiFurBlock extends HalfTransparentBlock {
 	public static final MapCodec<YetiFurBlock> CODEC = simpleCodec(YetiFurBlock::new);
 
+	public YetiFurBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+	}
+
 	@Override
 	public MapCodec<YetiFurBlock> codec() {
 		return CODEC;
-	}
-
-	public YetiFurBlock(BlockBehaviour.Properties properties) {
-		super(properties);
 	}
 
 	@Override

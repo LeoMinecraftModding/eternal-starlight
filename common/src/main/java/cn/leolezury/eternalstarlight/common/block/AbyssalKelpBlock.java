@@ -39,7 +39,7 @@ public class AbyssalKelpBlock extends GrowingPlantHeadBlock implements LiquidBlo
 	}
 
 	@Override
-	public MapCodec<? extends GrowingPlantHeadBlock> codec() {
+	public MapCodec<AbyssalKelpBlock> codec() {
 		return CODEC;
 	}
 

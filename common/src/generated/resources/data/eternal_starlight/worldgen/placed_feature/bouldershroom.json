@@ -1,0 +1,31 @@
+{
+  "feature": "eternal_starlight:bouldershroom",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 10,
+        "min_inclusive": 5
+      }
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "above_bottom": 85
+        },
+        "min_inclusive": {
+          "above_bottom": 10
+        }
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

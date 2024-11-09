@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralClawF
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralMushroomFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.GolemForgeChimneyFeature;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.BouldershroomFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.DeadLunarTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.HugeGlowingMushroomFeature;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +24,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GLACITE = FEATURES.register("glacite", () -> new GlaciteFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ICICLE = FEATURES.register("icicle", () -> new IcicleFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_GLOWING_MUSHROOM = FEATURES.register("huge_glowing_mushroom", () -> new HugeGlowingMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDERSHROOM = FEATURES.register("bouldershroom", () -> new BouldershroomFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STELLAGMITE = FEATURES.register("stellagmite", () -> new StellagmiteFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));

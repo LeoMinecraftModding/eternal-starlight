@@ -515,6 +515,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BOULDERSHROOM = registerItem("bouldershroom", () -> new BlockItem(ESBlocks.BOULDERSHROOM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BOULDERSHROOM_BLOCK = registerItem("bouldershroom_block", () -> new BlockItem(ESBlocks.BOULDERSHROOM_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BOULDERSHROOM_STEM = registerItem("bouldershroom_stem", () -> new BlockItem(ESBlocks.BOULDERSHROOM_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BOULDERSHROOM_ROOTS = registerItem("bouldershroom_roots", () -> new BlockItem(ESBlocks.BOULDERSHROOM_ROOTS.get(), new Item.Properties()));
 
 	// swamp plant
 	public static final RegistryObject<Item, Item> SWAMP_ROSE = registerItem("swamp_rose", () -> new BlockItem(ESBlocks.SWAMP_ROSE.get(), new Item.Properties()));
@@ -524,6 +528,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GREEN_FANTAFERN = registerItem("green_fantafern", () -> new BlockItem(ESBlocks.GREEN_FANTAFERN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTAGRASS = registerItem("fantagrass", () -> new BlockItem(ESBlocks.FANTAGRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GREEN_FANTAGRASS = registerItem("green_fantagrass", () -> new BlockItem(ESBlocks.GREEN_FANTAGRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> HANGING_FANTAGRASS = registerItem("hanging_fantagrass", () -> new BlockItem(ESBlocks.HANGING_FANTAGRASS.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> ORANGE_SCARLET_BUD = registerItem("orange_scarlet_bud", () -> new BlockItem(ESBlocks.ORANGE_SCARLET_BUD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> PURPLE_SCARLET_BUD = registerItem("purple_scarlet_bud", () -> new BlockItem(ESBlocks.PURPLE_SCARLET_BUD.get(), new Item.Properties()));
@@ -821,6 +826,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_TRANQUILITY = registerItem("music_disc_tranquility", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.TRANQUILITY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_POSTERITY = registerItem("music_disc_posterity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.POSTERITY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_THE_THORNY_REIGN = registerItem("music_disc_the_thorny_reign", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.THE_THORNY_REIGN)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_PROFUNDITY = registerItem("music_disc_profundity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.PROFUNDITY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_ATLANTIS = registerItem("music_disc_atlantis", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.ATLANTIS)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SACRED_DESERT = registerItem("music_disc_sacred_desert", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SACRED_DESERT)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SPIRIT = registerItem("music_disc_spirit", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SPIRIT)));

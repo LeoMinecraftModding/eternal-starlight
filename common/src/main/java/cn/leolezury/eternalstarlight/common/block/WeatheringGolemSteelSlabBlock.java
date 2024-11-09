@@ -21,7 +21,7 @@ public class WeatheringGolemSteelSlabBlock extends SlabBlock implements Weatheri
 	}
 
 	@Override
-	public MapCodec<? extends SlabBlock> codec() {
+	public MapCodec<WeatheringGolemSteelSlabBlock> codec() {
 		return CODEC;
 	}
 

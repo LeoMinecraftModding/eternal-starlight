@@ -8,6 +8,8 @@ import net.minecraft.world.level.block.Block;
 
 public class ESConventionalTags {
 	public static class Items {
+		public static final TagKey<Item> CAMPFIRES = create("campfires");
+
 		public static final TagKey<Item> GEMS_THIOQUARTZ = gem("thioquartz");
 
 		public static final TagKey<Item> STORAGE_BLOCKS_GOLEM_STEEL = storageBlock("golem_steel");

@@ -52,7 +52,7 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 	}
 
 	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
+	protected MapCodec<ESPortalBlock> codec() {
 		return CODEC;
 	}
 

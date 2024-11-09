@@ -32,7 +32,7 @@ public class VelvetumossVilliBlock extends DirectionalBudBlock implements Boneme
 	}
 
 	@Override
-	protected MapCodec<? extends DirectionalBudBlock> codec() {
+	protected MapCodec<VelvetumossVilliBlock> codec() {
 		return CODEC;
 	}
 

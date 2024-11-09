@@ -36,17 +36,26 @@ public class DirectionalBudBlock extends Block implements SimpleWaterloggedBlock
 	public DirectionalBudBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
-		this.upAabb = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
-		this.downAabb = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
-		this.northAabb = Block.box(3, 3, (16 - 5), (16 - 3), (16 - 3), 16.0D);
-		this.southAabb = Block.box(3, 3, 0.0D, (16 - 3), (16 - 3), 5);
-		this.eastAabb = Block.box(0.0D, 3, 3, 5, (16 - 3), (16 - 3));
-		this.westAabb = Block.box((16 - 5), 3, 3, 16.0D, (16 - 3), (16 - 3));
+		double border = (16.0 - getShapeWidth()) / 2.0;
+		this.upAabb = Block.box(border, 0.0D, border, (16 - border), getShapeHeight(), (16 - border));
+		this.downAabb = Block.box(border, (16 - getShapeHeight()), border, (16 - border), 16.0D, (16 - border));
+		this.northAabb = Block.box(border, border, (16 - getShapeHeight()), (16 - border), (16 - border), 16.0D);
+		this.southAabb = Block.box(border, border, 0.0D, (16 - border), (16 - border), getShapeHeight());
+		this.eastAabb = Block.box(0.0D, border, border, getShapeHeight(), (16 - border), (16 - border));
+		this.westAabb = Block.box((16 - getShapeHeight()), border, border, 16.0D, (16 - border), (16 - border));
 	}
 
 	@Override
 	protected MapCodec<? extends DirectionalBudBlock> codec() {
 		return CODEC;
+	}
+
+	protected double getShapeWidth() {
+		return 10;
+	}
+
+	protected double getShapeHeight() {
+		return 5;
 	}
 
 	@Override
@@ -63,10 +72,11 @@ public class DirectionalBudBlock extends Block implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		Direction direction = state.getValue(FACING);
-		BlockPos blockpos = pos.relative(direction.getOpposite());
-		return levelReader.getBlockState(blockpos).isFaceSturdy(levelReader, blockpos, direction);
+		BlockPos attachPos = pos.relative(direction.getOpposite());
+		BlockState attachState = level.getBlockState(attachPos);
+		return attachState.isFaceSturdy(level, attachPos, direction);
 	}
 
 	@Override

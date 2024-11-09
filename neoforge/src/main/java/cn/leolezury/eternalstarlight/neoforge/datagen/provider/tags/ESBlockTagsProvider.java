@@ -666,6 +666,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.POTTED_GLADESPIKE.get(),
 			ESBlocks.POTTED_VIVIDSTALK.get(),
 			ESBlocks.POTTED_GLOWING_MUSHROOM.get(),
+			ESBlocks.POTTED_BOULDERSHROOM.get(),
 			ESBlocks.POTTED_SWAMP_ROSE.get(),
 			ESBlocks.POTTED_FANTAFERN.get(),
 			ESBlocks.POTTED_GREEN_FANTAFERN.get(),
@@ -685,7 +686,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.CAVE_MOSS_PLANT.get(),
 			ESBlocks.CAVE_MOSS_VEIN.get(),
 			ESBlocks.TORREYA_VINES.get(),
-			ESBlocks.TORREYA_VINES_PLANT.get()
+			ESBlocks.TORREYA_VINES_PLANT.get(),
+			ESBlocks.HANGING_FANTAGRASS.get(),
+			ESBlocks.HANGING_FANTAGRASS_PLANT.get()
 		);
 		tag(BlockTags.STANDING_SIGNS).add(
 			ESBlocks.LUNAR_SIGN.get(),
@@ -1004,6 +1007,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.MINEABLE_WITH_AXE).add(
 			ESBlocks.GLOWING_MUSHROOM_BLOCK.get(),
 			ESBlocks.GLOWING_MUSHROOM_STEM.get(),
+			ESBlocks.BOULDERSHROOM_BLOCK.get(),
+			ESBlocks.BOULDERSHROOM_STEM.get(),
 			ESBlocks.TORREYA_CAMPFIRE.get(),
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
 			ESBlocks.STARLIT_LILY_PAD.get(),
@@ -1081,6 +1086,24 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(BlockTags.CAMPFIRES).add(
 			ESBlocks.TORREYA_CAMPFIRE.get()
+		);
+		tag(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH).add(
+			ESBlocks.NIGHTFALL_MUD.get(),
+			ESBlocks.FANTASY_GRASS_CARPET.get(),
+			ESBlocks.STARLIGHT_MANGROVE_ROOTS.get(),
+			ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(),
+			ESBlocks.STARLIGHT_MANGROVE_LEAVES.get(),
+			ESBlocks.STARLIGHT_MANGROVE_LOG.get(),
+			ESBlocks.HANGING_FANTAGRASS.get(),
+			ESBlocks.HANGING_FANTAGRASS_PLANT.get()
+		);
+		tag(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH).add(
+			ESBlocks.NIGHTFALL_MUD.get(),
+			ESBlocks.FANTASY_GRASS_CARPET.get(),
+			ESBlocks.STARLIGHT_MANGROVE_ROOTS.get(),
+			ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(),
+			ESBlocks.HANGING_FANTAGRASS.get(),
+			ESBlocks.HANGING_FANTAGRASS_PLANT.get()
 		);
 		tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).addTag(ESTags.Blocks.YETI_FUR_CARPETS);
 		tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS).addTag(ESTags.Blocks.YETI_FUR);

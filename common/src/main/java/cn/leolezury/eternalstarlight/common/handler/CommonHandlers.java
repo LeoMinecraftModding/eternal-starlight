@@ -383,7 +383,7 @@ public class CommonHandlers {
 					for (int i = 0; i < crests.size(); i++) {
 						if (crests.get(i).crest().is(component.crest()) && i < crests.size() - 1) {
 							for (int j = i + 1; j < crests.size(); j++) {
-								if (crests.get(j).crest().value().spell().isPresent()) {
+								if (crests.get(j).crest().value().getSpell().isPresent()) {
 									nextCrest = crests.get(j).crest();
 									break find;
 								}
@@ -392,7 +392,7 @@ public class CommonHandlers {
 					}
 				} else {
 					for (Crest.Instance instance : crests) {
-						if (instance.crest().value().spell().isPresent()) {
+						if (instance.crest().value().getSpell().isPresent()) {
 							nextCrest = instance.crest();
 							break;
 						}

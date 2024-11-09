@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvid
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.spell.*;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ESSpells {
 	public static final RegistrationProvider<AbstractSpell> SPELLS = RegistrationProvider.newRegistry(ResourceKey.createRegistryKey(EternalStarlight.id("spell")), EternalStarlight.ID);
 	public static final Codec<AbstractSpell> CODEC = SPELLS.registry().byNameCodec();
+	public static final Codec<Holder<AbstractSpell>> HOLDER_CODEC = SPELLS.registry().holderByNameCodec();
 
 	public static final RegistryObject<AbstractSpell, TeleportationSpell> TELEPORTATION = SPELLS.register("teleportation", () -> new TeleportationSpell(new AbstractSpell.Properties(List.of(ManaType.WIND, ManaType.LUNAR), 40, 20, 300)));
 	public static final RegistryObject<AbstractSpell, GuidanceOfStarsSpell> GUIDANCE_OF_STARS = SPELLS.register("guidance_of_stars", () -> new GuidanceOfStarsSpell(new AbstractSpell.Properties(List.of(ManaType.TERRA, ManaType.WIND, ManaType.LUNAR), 30, 30, 200)));

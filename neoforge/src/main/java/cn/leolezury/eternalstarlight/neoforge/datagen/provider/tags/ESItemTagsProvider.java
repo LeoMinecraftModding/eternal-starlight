@@ -91,7 +91,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.GOLEM_STEEL_INGOT.get()
 		);
 		tag(Tags.Items.MUSHROOMS).add(
-			ESItems.GLOWING_MUSHROOM.get()
+			ESItems.GLOWING_MUSHROOM.get(),
+			ESItems.BOULDERSHROOM.get()
 		);
 		tag(Tags.Items.NUGGETS).add(
 			ESItems.AMARAMBER_NUGGET.get(),
@@ -164,6 +165,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
+		tag(ESConventionalTags.Items.CAMPFIRES).add(
+			ESItems.TORREYA_CAMPFIRE.get()
+		);
 		tag(ESConventionalTags.Items.GEMS_THIOQUARTZ).add(
 			ESItems.THIOQUARTZ_SHARD.get()
 		);
@@ -432,6 +436,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MUSIC_DISC_TRANQUILITY.get(),
 			ESItems.MUSIC_DISC_POSTERITY.get(),
 			ESItems.MUSIC_DISC_THE_THORNY_REIGN.get(),
+			ESItems.MUSIC_DISC_PROFUNDITY.get(),
 			ESItems.MUSIC_DISC_ATLANTIS.get(),
 			ESItems.MUSIC_DISC_SACRED_DESERT.get(),
 			ESItems.MUSIC_DISC_SPIRIT.get()

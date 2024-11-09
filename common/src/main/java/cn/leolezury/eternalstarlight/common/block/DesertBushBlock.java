@@ -30,7 +30,7 @@ public class DesertBushBlock extends BushBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends BushBlock> codec() {
+	protected MapCodec<DesertBushBlock> codec() {
 		return CODEC;
 	}
 

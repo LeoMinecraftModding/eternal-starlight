@@ -32,7 +32,7 @@ public class StellarRackBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
+	protected MapCodec<StellarRackBlock> codec() {
 		return CODEC;
 	}
 

@@ -8,12 +8,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CaveMossBlock extends GrowingPlantHeadBlock implements BonemealableBlock {
+public class CaveMossBlock extends GrowingPlantHeadBlock {
 	public static final MapCodec<CaveMossBlock> CODEC = simpleCodec(CaveMossBlock::new);
 	public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
@@ -22,7 +21,7 @@ public class CaveMossBlock extends GrowingPlantHeadBlock implements Bonemealable
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+	protected MapCodec<CaveMossBlock> codec() {
 		return CODEC;
 	}
 

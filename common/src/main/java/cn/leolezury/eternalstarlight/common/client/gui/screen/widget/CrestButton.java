@@ -72,8 +72,8 @@ public class CrestButton extends Button {
 				MutableComponent nameComponent = Component.translatable(Util.makeDescriptionId("crest", registry.getKey(crest.crest().value())));
 				MutableComponent levelComponent = Component.translatable("enchantment.level." + crest.level());
 				MutableComponent typeComponent = Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(crest.crest().value().type().getSerializedName()))).withColor(crest.crest().value().type().getColor());
-				if (crest.crest().value().spell().isPresent()) {
-					AbstractSpell spell = crest.crest().value().spell().get();
+				if (crest.crest().value().getSpell().isPresent()) {
+					AbstractSpell spell = crest.crest().value().getSpell().get();
 					MutableComponent spellTypeComponent = Component.translatable("tooltip." + EternalStarlight.ID + ".crest_spell_elements").withStyle(ChatFormatting.AQUA);
 					for (ManaType type : spell.spellProperties().types()) {
 						spellTypeComponent.append(" ").append(Component.translatable(Util.makeDescriptionId("mana_type", EternalStarlight.id(type.getSerializedName()))).withColor(type.getColor()));

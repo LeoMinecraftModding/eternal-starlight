@@ -27,7 +27,7 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected MapCodec<TorreyaVinesPlantBlock> codec() {
 		return CODEC;
 	}
 
@@ -37,13 +37,13 @@ public class TorreyaVinesPlantBlock extends GrowingPlantBodyBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-		BlockPos blockPos2 = blockPos.relative(this.growthDirection.getOpposite());
-		BlockState blockState2 = levelReader.getBlockState(blockPos2);
-		if (!this.canAttachTo(blockState2)) {
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockPos attachPos = pos.relative(this.growthDirection.getOpposite());
+		BlockState attachState = level.getBlockState(attachPos);
+		if (!this.canAttachTo(attachState)) {
 			return false;
 		} else {
-			return blockState2.is(this.getHeadBlock()) || blockState2.is(this.getBodyBlock()) || blockState2.is(BlockTags.LEAVES) || blockState2.isFaceSturdy(levelReader, blockPos2, this.growthDirection);
+			return attachState.is(this.getHeadBlock()) || attachState.is(this.getBodyBlock()) || attachState.is(BlockTags.LEAVES) || attachState.isFaceSturdy(level, attachPos, this.growthDirection);
 		}
 	}
 

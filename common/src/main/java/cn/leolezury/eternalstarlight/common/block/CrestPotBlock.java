@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.misc.CrestEntity;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -20,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.Optional;
 
 public class CrestPotBlock extends Block {
-	public static final MapCodec<? extends CrestPotBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(propertiesCodec()).apply(instance, CrestPotBlock::new));
+	public static final MapCodec<CrestPotBlock> CODEC = simpleCodec(CrestPotBlock::new);
 	private static final VoxelShape BOUNDING_BOX = Block.box(2.0, 0.0, 2.0, 14.0, 10.0, 14.0);
 
 	public CrestPotBlock(Properties properties) {
@@ -28,7 +27,7 @@ public class CrestPotBlock extends Block {
 	}
 
 	@Override
-	protected MapCodec<? extends CrestPotBlock> codec() {
+	protected MapCodec<CrestPotBlock> codec() {
 		return CODEC;
 	}
 

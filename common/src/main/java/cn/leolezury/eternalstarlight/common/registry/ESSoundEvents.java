@@ -16,6 +16,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_TORREYA_FOREST = register("music.biome.torreya_forest");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_CRYSTALLIZED_DESERT = register("music.biome.crystallized_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIT_SEA = register("music.biome.starlit_sea");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_THE_ABYSS = register("music.biome.the_abyss");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS = register("music.boss.common");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_GATEKEEPER = register("music.boss.gatekeeper");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_STARLIGHT_GOLEM = register("music.boss.starlight_golem");
@@ -26,6 +27,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_TRANQUILITY = register("music_disc.tranquility");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_POSTERITY = register("music_disc.posterity");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_THE_THORNY_REIGN = register("music_disc.the_thorny_reign");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_PROFUNDITY = register("music_disc.profundity");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ATLANTIS = register("music_disc.atlantis");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SACRED_DESERT = register("music_disc.sacred_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SPIRIT = register("music_disc.spirit");

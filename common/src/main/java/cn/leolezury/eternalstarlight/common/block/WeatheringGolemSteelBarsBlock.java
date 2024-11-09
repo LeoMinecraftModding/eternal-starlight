@@ -21,8 +21,8 @@ public class WeatheringGolemSteelBarsBlock extends IronBarsBlock implements Weat
 	}
 
 	@Override
-	public MapCodec<? extends IronBarsBlock> codec() {
-		return super.codec();
+	public MapCodec<WeatheringGolemSteelBarsBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

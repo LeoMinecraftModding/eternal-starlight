@@ -303,6 +303,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
+		directionalBud(ESBlocks.BOULDERSHROOM.get());
+		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
+		pottedPlant(ESBlocks.POTTED_BOULDERSHROOM.get(), blockTexture(ESBlocks.BOULDERSHROOM.get()));
+		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_STEM.get(), blockTexture(ESBlocks.BOULDERSHROOM_BLOCK.get()).withSuffix("_inside"));
+		cross(ESBlocks.BOULDERSHROOM_ROOTS.get());
+		cross(ESBlocks.BOULDERSHROOM_ROOTS_PLANT.get());
 
 		cross(ESBlocks.SWAMP_ROSE.get());
 		pottedPlant(ESBlocks.POTTED_SWAMP_ROSE.get(), blockTexture(ESBlocks.SWAMP_ROSE.get()));
@@ -314,6 +320,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_GREEN_FANTAFERN.get(), blockTexture(ESBlocks.GREEN_FANTAFERN.get()));
 		cross(ESBlocks.FANTAGRASS.get());
 		cross(ESBlocks.GREEN_FANTAGRASS.get());
+		cross(ESBlocks.HANGING_FANTAGRASS.get());
+		cross(ESBlocks.HANGING_FANTAGRASS_PLANT.get());
 
 		cross(ESBlocks.ORANGE_SCARLET_BUD.get());
 		cross(ESBlocks.PURPLE_SCARLET_BUD.get());
@@ -410,8 +418,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.GLACITE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
-		simpleBlock(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
-		simpleBlock(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
+		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
+		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
 		simpleBlock(ESBlocks.GRIMSTONE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.SALTPETER_BLOCK.get());
@@ -992,6 +1000,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void onOffBlock(Block block) {
 		ModelFile on = models().cubeAll(name(block) + "_lit", blockTexture(block).withSuffix("_lit"));
 		ModelFile off = models().cubeAll(name(block), blockTexture(block));
+		onOffBlock(block, BlockStateProperties.LIT, on, off);
+	}
+
+	private void redstoneOre(Block block) {
+		ModelFile on = models().cubeAll(name(block), blockTexture(block));
+		ModelFile off = models().cubeAll(name(block) + "_off", blockTexture(block).withSuffix("_off"));
 		onOffBlock(block, BlockStateProperties.LIT, on, off);
 	}
 

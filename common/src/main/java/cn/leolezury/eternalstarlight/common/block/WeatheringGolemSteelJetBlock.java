@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -13,8 +14,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class WeatheringGolemSteelJetBlock extends WeatheringGolemSteelFullBlock {
+	public static final MapCodec<WeatheringGolemSteelJetBlock> CODEC = simpleCodec(WeatheringGolemSteelJetBlock::new);
+
 	public WeatheringGolemSteelJetBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	protected MapCodec<WeatheringGolemSteelJetBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

@@ -482,6 +482,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLOWING_MUSHROOM.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_BLOCK.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
+		flatBlockTexture(ESItems.BOULDERSHROOM.get());
+		cubeAll(ESItems.BOULDERSHROOM_BLOCK.get());
+		cubeAll(ESItems.BOULDERSHROOM_STEM.get());
+		flatBlockTexture(ESItems.BOULDERSHROOM_ROOTS.get());
 
 		flatBlockTexture(ESItems.SWAMP_ROSE.get());
 		flatBlockTexture(ESItems.FANTABUD.get());
@@ -490,6 +494,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GREEN_FANTAFERN.get());
 		flatBlockTexture(ESItems.FANTAGRASS.get());
 		flatBlockTexture(ESItems.GREEN_FANTAGRASS.get());
+		flatBlockTexture(ESItems.HANGING_FANTAGRASS.get());
 
 		flatBlockTexture(ESItems.ORANGE_SCARLET_BUD.get());
 		flatBlockTexture(ESItems.PURPLE_SCARLET_BUD.get());
@@ -736,6 +741,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
 		basicItem(ESItems.MUSIC_DISC_POSTERITY.get());
 		basicItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get());
+		basicItem(ESItems.MUSIC_DISC_PROFUNDITY.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
 		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());

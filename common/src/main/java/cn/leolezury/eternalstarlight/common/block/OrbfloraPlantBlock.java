@@ -29,7 +29,7 @@ public class OrbfloraPlantBlock extends GrowingPlantBodyBlock implements LiquidB
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected MapCodec<OrbfloraPlantBlock> codec() {
 		return CODEC;
 	}
 

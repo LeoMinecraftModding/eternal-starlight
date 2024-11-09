@@ -21,8 +21,8 @@ public class WeatheringGolemSteelGrateBlock extends WaterloggedTransparentBlock 
 	}
 
 	@Override
-	protected MapCodec<? extends WaterloggedTransparentBlock> codec() {
-		return super.codec();
+	protected MapCodec<WeatheringGolemSteelGrateBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

@@ -3,8 +3,16 @@
   "config": {
     "decorators": [
       {
-        "type": "minecraft:leave_vine",
-        "probability": 0.125
+        "type": "eternal_starlight:hanging_plant",
+        "chance": 0.3,
+        "leaves": true,
+        "length": {
+          "type": "minecraft:uniform",
+          "max_inclusive": 6,
+          "min_inclusive": 3
+        },
+        "plant_body": "eternal_starlight:hanging_fantagrass_plant",
+        "plant_head": "eternal_starlight:hanging_fantagrass"
       }
     ],
     "dirt_provider": {

@@ -36,7 +36,7 @@ public class AbyssalKelpPlantBlock extends GrowingPlantBodyBlock implements Liqu
 	}
 
 	@Override
-	protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected MapCodec<AbyssalKelpPlantBlock> codec() {
 		return CODEC;
 	}
 

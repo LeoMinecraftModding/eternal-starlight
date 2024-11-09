@@ -32,7 +32,7 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 	}
 
 	@Override
-	protected MapCodec<? extends BaseFireBlock> codec() {
+	protected MapCodec<AbyssalFireBlock> codec() {
 		return CODEC;
 	}
 

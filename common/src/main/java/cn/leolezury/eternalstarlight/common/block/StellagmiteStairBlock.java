@@ -31,7 +31,7 @@ public class StellagmiteStairBlock extends StairBlock implements Stellagmite {
 	}
 
 	@Override
-	public MapCodec<? extends StairBlock> codec() {
+	public MapCodec<StellagmiteStairBlock> codec() {
 		return CODEC;
 	}
 

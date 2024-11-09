@@ -21,8 +21,8 @@ public class WeatheringGolemSteelFullBlock extends Block implements WeatheringGo
 	}
 
 	@Override
-	protected MapCodec<? extends Block> codec() {
-		return super.codec();
+	protected MapCodec<? extends WeatheringGolemSteelFullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

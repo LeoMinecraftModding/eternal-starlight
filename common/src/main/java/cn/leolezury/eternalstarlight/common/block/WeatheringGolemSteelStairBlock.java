@@ -26,7 +26,7 @@ public class WeatheringGolemSteelStairBlock extends StairBlock implements Weathe
 	}
 
 	@Override
-	public MapCodec<? extends StairBlock> codec() {
+	public MapCodec<WeatheringGolemSteelStairBlock> codec() {
 		return CODEC;
 	}
 

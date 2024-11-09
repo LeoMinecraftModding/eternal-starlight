@@ -21,7 +21,7 @@ public class ThermalSpringstoneBlock extends Block {
 	}
 
 	@Override
-	protected MapCodec<? extends Block> codec() {
+	protected MapCodec<ThermalSpringstoneBlock> codec() {
 		return CODEC;
 	}
 

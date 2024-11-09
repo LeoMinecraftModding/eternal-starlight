@@ -17,7 +17,7 @@ public class EclipseCoreBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
+	protected MapCodec<EclipseCoreBlock> codec() {
 		return CODEC;
 	}
 

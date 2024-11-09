@@ -501,6 +501,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
+		dropSelf(ESBlocks.BOULDERSHROOM.get());
+		dropPottedContents(ESBlocks.POTTED_BOULDERSHROOM.get());
+		add(ESBlocks.BOULDERSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.BOULDERSHROOM.get())));
+		dropWhenSilkTouch(ESBlocks.BOULDERSHROOM_STEM.get());
+		add(ESBlocks.BOULDERSHROOM_ROOTS.get(), noDrop());
+		add(ESBlocks.BOULDERSHROOM_ROOTS_PLANT.get(), noDrop());
 
 		dropSelf(ESBlocks.SWAMP_ROSE.get());
 		dropPottedContents(ESBlocks.POTTED_SWAMP_ROSE.get());
@@ -512,6 +518,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GREEN_FANTAFERN.get());
 		plant(ESBlocks.FANTAGRASS.get());
 		plant(ESBlocks.GREEN_FANTAGRASS.get());
+		add(ESBlocks.HANGING_FANTAGRASS.get(), noDrop());
+		add(ESBlocks.HANGING_FANTAGRASS_PLANT.get(), noDrop());
 
 		plant(ESBlocks.ORANGE_SCARLET_BUD.get());
 		plant(ESBlocks.PURPLE_SCARLET_BUD.get());

@@ -23,7 +23,7 @@ public class CaveMossVeinBlock extends MultifaceBlock implements BonemealableBlo
 	private final MultifaceSpreader spreader = new MultifaceSpreader(this);
 
 	@Override
-	protected MapCodec<? extends MultifaceBlock> codec() {
+	protected MapCodec<CaveMossVeinBlock> codec() {
 		return CODEC;
 	}
 

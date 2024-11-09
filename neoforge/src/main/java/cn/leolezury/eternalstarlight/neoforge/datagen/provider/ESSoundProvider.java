@@ -30,6 +30,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_BIOME_TORREYA_FOREST.get(), definition().with(sound(loc("music/biome/the_thorny_reign")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.get(), definition().with(sound(loc("music/biome/posterity")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.get(), definition().with(sound(loc("music/biome/starlit_sea")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
+		add(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.get(), definition().with(sound(loc("music/biome/profundity")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS.get(), definition().with(sound(loc("music/boss/common")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.get(), definition().with(sound(loc("music/boss/gatekeeper")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.get(), definition().with(sound(loc("music/boss/starlight_golem")).stream()));
@@ -40,6 +41,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DISC_TRANQUILITY.get(), definition().with(sound(loc("music/dimension/tranquility")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_POSTERITY.get(), definition().with(sound(loc("music/biome/posterity")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_THE_THORNY_REIGN.get(), definition().with(sound(loc("music/biome/the_thorny_reign")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_PROFUNDITY.get(), definition().with(sound(loc("music/biome/profundity")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_ATLANTIS.get(), definition().with(sound(loc("music/disc/atlantis")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SACRED_DESERT.get(), definition().with(sound(loc("music/disc/sacred_desert")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SPIRIT.get(), definition().with(sound(loc("music/disc/spirit")).stream()));

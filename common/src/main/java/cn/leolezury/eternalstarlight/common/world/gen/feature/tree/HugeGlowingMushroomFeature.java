@@ -8,6 +8,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.HugeMushroomBlock;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -73,23 +74,10 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 		}
 		for (BlockPos blockPos : mushroomBlocks) {
 			BlockState state = config.capProvider.getState(random, blockPos);
-			if (mushroomBlocks.contains(blockPos.relative(Direction.UP))) {
-				state = state.setValue(HugeMushroomBlock.UP, false);
-			}
-			if (mushroomBlocks.contains(blockPos.relative(Direction.DOWN))) {
-				state = state.setValue(HugeMushroomBlock.DOWN, false);
-			}
-			if (mushroomBlocks.contains(blockPos.relative(Direction.NORTH))) {
-				state = state.setValue(HugeMushroomBlock.NORTH, false);
-			}
-			if (mushroomBlocks.contains(blockPos.relative(Direction.SOUTH))) {
-				state = state.setValue(HugeMushroomBlock.SOUTH, false);
-			}
-			if (mushroomBlocks.contains(blockPos.relative(Direction.WEST))) {
-				state = state.setValue(HugeMushroomBlock.WEST, false);
-			}
-			if (mushroomBlocks.contains(blockPos.relative(Direction.EAST))) {
-				state = state.setValue(HugeMushroomBlock.EAST, false);
+			for (Direction direction : Direction.values()) {
+				if (mushroomBlocks.contains(blockPos.relative(direction))) {
+					state = state.setValue(PipeBlock.PROPERTY_BY_DIRECTION.get(direction), false);
+				}
 			}
 			if (blockPos.getY() <= pos.getY() - foliageHeight) {
 				state = state.setValue(HugeMushroomBlock.DOWN, false);

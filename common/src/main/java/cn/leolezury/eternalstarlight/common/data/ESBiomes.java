@@ -40,6 +40,7 @@ public class ESBiomes {
 	public static final Music MUSIC_TORREYA_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_TORREYA_FOREST.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_DESERT = new Music(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_STARLIT_SEA = new Music(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.asHolder(), 1200, 12000, false);
+	public static final Music MUSIC_THE_ABYSS = new Music(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.asHolder(), 1200, 12000, false);
 
 	public static void bootstrap(BootstrapContext<Biome> context) {
 		HolderGetter<PlacedFeature> featureHolderGetter = context.lookup(Registries.PLACED_FEATURE);
@@ -54,7 +55,7 @@ public class ESBiomes {
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), etherRiverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040).backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_STARLIT_SEA), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_THE_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLandSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
 	}
 
@@ -152,6 +153,7 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BOULDERSHROOM);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.STELLAGMITE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
@@ -179,6 +181,7 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BOULDERSHROOM);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.NIGHTFALL_DIRT_ORE);

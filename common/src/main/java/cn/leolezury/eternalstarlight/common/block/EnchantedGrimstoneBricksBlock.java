@@ -24,7 +24,7 @@ public class EnchantedGrimstoneBricksBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+	protected MapCodec<EnchantedGrimstoneBricksBlock> codec() {
 		return CODEC;
 	}
 

@@ -21,8 +21,8 @@ public class WeatheringGolemSteelPillarBlock extends RotatedPillarBlock implemen
 	}
 
 	@Override
-	public MapCodec<? extends RotatedPillarBlock> codec() {
-		return super.codec();
+	public MapCodec<WeatheringGolemSteelPillarBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

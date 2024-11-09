@@ -21,7 +21,7 @@ public class AbyssalGeyserBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
+	protected MapCodec<AbyssalGeyserBlock> codec() {
 		return CODEC;
 	}
 

@@ -81,12 +81,12 @@ public class OrbOfProphecyItem extends Item {
 				CurrentCrestComponent component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
 				if (component != null && component.crest().isBound()) {
 					Crest crest = component.crest().value();
-					if (crest.spell().isPresent()) {
+					if (crest.getSpell().isPresent()) {
 						success = true;
-						if (livingEntity instanceof SpellCaster caster && (caster.getESSpellData().spell() != crest.spell().get() || !caster.getESSpellData().hasSpell())) {
+						if (livingEntity instanceof SpellCaster caster && (caster.getESSpellData().spell() != crest.getSpell().get() || !caster.getESSpellData().hasSpell())) {
 							livingEntity.stopUsingItem();
 							if (livingEntity instanceof Player player) {
-								player.getCooldowns().addCooldown(this, crest.spell().get().spellProperties().cooldownTicks());
+								player.getCooldowns().addCooldown(this, crest.getSpell().get().spellProperties().cooldownTicks());
 							}
 						}
 					}
@@ -107,10 +107,10 @@ public class OrbOfProphecyItem extends Item {
 			CurrentCrestComponent component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
 			if (component != null && component.crest().isBound()) {
 				Crest crest = component.crest().value();
-				if (crest.spell().isPresent()) {
-					crest.spell().get().stop(livingEntity, getUseDuration(itemStack, livingEntity) - i - crest.spell().get().spellProperties().preparationTicks());
+				if (crest.getSpell().isPresent()) {
+					crest.getSpell().get().stop(livingEntity, getUseDuration(itemStack, livingEntity) - i - crest.getSpell().get().spellProperties().preparationTicks());
 					if (livingEntity instanceof Player player) {
-						player.getCooldowns().addCooldown(this, crest.spell().get().spellProperties().cooldownTicks());
+						player.getCooldowns().addCooldown(this, crest.getSpell().get().spellProperties().cooldownTicks());
 					}
 				}
 			}
@@ -144,8 +144,8 @@ public class OrbOfProphecyItem extends Item {
 				CurrentCrestComponent component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
 				if (component != null && component.crest().isBound()) {
 					Crest crest = component.crest().value();
-					if (crest.spell().isPresent() && crest.spell().get().canCast(player, true)) {
-						crest.spell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
+					if (crest.getSpell().isPresent() && crest.getSpell().get().canCast(player, true)) {
+						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						player.startUsingItem(interactionHand);
 						if (player instanceof SpellCaster caster) {
 							caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
