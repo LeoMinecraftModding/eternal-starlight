@@ -119,7 +119,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
 		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
-			boolean bl = ESPlatform.INSTANCE.postMobGriefingEvent(level(), this);
+			boolean bl = ESPlatform.INSTANCE.postMobGriefingEvent(level(), getOwner());
 			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
 			this.discard();
 		}
