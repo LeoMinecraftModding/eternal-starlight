@@ -14,7 +14,7 @@ public class TrunkBerriesDecorator extends TreeDecorator {
 	private final IntProvider length;
 
 	public static final MapCodec<TrunkBerriesDecorator> CODEC = IntProvider.codec(1, 16).fieldOf("length").xmap(TrunkBerriesDecorator::new, (decorator) -> decorator.length);
-	;
+
 	public TrunkBerriesDecorator(IntProvider length) {
 		this.length = length;
 	}

@@ -531,7 +531,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (!level().isClientSide) {
 			if (tickCount % 20 == 0 && (getTarget() == null || !getTarget().isAlive())) {
 				setHealth(getMaxHealth());
-				fightPlayerOnly = true;
 				setFightTargetName("");
 				setActivated(false);
 				tryTeleportBack();

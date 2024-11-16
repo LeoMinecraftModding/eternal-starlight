@@ -514,8 +514,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> OXIDIZED_GOLEM_STEEL_JET = register("oxidized_golem_steel_jet", WeatheringGolemSteelJetBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY));
 
 	// lunar monstrosity
-	public static final RegistryObject<Block, ShadegrieveBlock> SHADEGRIEVE = register("shadegrieve", ShadegrieveBlock::new, BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE));
-	public static final RegistryObject<Block, ShadegrieveBlock> BLOOMING_SHADEGRIEVE = register("blooming_shadegrieve", ShadegrieveBlock::new, BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE));
+	public static final RegistryObject<Block, ShadegrieveBlock> SHADEGRIEVE = register("shadegrieve", properties -> new ShadegrieveBlock(false, properties), BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE));
+	public static final RegistryObject<Block, ShadegrieveBlock> BLOOMING_SHADEGRIEVE = register("blooming_shadegrieve", properties -> new ShadegrieveBlock(true, properties), BlockBehaviour.Properties.of().strength(25F).sound(SoundType.AZALEA_LEAVES).mapColor(MapColor.COLOR_PURPLE));
 	public static final RegistryObject<Block, LunarVineBlock> LUNAR_VINE = register("lunar_vine", LunarVineBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.VINE));
 	public static final RegistryObject<Block, Block> LUNAR_MOSAIC = register("lunar_mosaic", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BLUE));
 	public static final RegistryObject<Block, SlabBlock> LUNAR_MOSAIC_SLAB = register("lunar_mosaic_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BLUE));

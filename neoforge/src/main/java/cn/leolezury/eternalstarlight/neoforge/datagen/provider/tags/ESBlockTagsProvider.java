@@ -742,7 +742,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
-			ESBlocks.NIGHTFALL_DIRT.get()
+			ESBlocks.NIGHTFALL_DIRT.get(),
+			ESBlocks.NIGHTFALL_PODZOL.get()
 		);
 		tag(BlockTags.WITHER_IMMUNE).add(
 			ESBlocks.ENERGY_BLOCK.get()

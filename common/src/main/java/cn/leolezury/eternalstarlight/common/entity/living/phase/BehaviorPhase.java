@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.phase;
 
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -73,6 +75,23 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 		}
 	}
 
+	public boolean isFacingTarget(T entity, float maxDiff) {
+		return isFacingTarget(entity, maxDiff, entity.getYRot() + 90);
+	}
+
+	public boolean isFacingTarget(T entity, float maxDiff, float yAngle) {
+		if (entity instanceof Targeting targeting) {
+			LivingEntity target = targeting.getTarget();
+			if (target == null) {
+				return false;
+			}
+			float angle = ESMathUtil.positionToYaw(entity.position(), target.position());
+			return Mth.degreesDifferenceAbs(angle, yAngle) <= maxDiff;
+		} else {
+			return false;
+		}
+	}
+
 	public boolean performMeleeAttack(T entity, double range) {
 		if (entity instanceof Targeting targeting) {
 			LivingEntity target = targeting.getTarget();
@@ -84,9 +103,7 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 					return entity.doHurtTarget(livingEntity);
 				}
 			}
-			return false;
-		} else {
-			return false;
 		}
+		return false;
 	}
 }

@@ -12,7 +12,7 @@ public class GatekeeperTargetGoal extends TargetGoal {
 	private static final TargetingConditions GATEKEEPER_TARGETING = TargetingConditions.forCombat().ignoreLineOfSight().ignoreInvisibilityTesting();
 
 	public GatekeeperTargetGoal(PathfinderMob pathfinderMob) {
-		super(pathfinderMob, true);
+		super(pathfinderMob, false);
 		this.setFlags(EnumSet.of(Flag.TARGET));
 	}
 

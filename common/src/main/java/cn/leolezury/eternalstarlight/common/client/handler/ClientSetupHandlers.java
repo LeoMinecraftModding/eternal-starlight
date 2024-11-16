@@ -315,8 +315,10 @@ public class ClientSetupHandlers {
 
 	public static final Map<ModelResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
 
+	public static final String KEY_CATEGORY_ETERNAL_STARLIGHT = "key.categories.eternal_starlight";
+
 	public static final Map<ResourceLocation, KeyMapping> KEY_MAPPINGS = Map.of(
-		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KeyMapping.CATEGORY_GAMEPLAY)
+		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KEY_CATEGORY_ETERNAL_STARLIGHT)
 	);
 
 	public static void clientSetup() {

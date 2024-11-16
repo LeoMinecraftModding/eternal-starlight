@@ -61,7 +61,16 @@
     ]
   ],
   "has_precipitation": true,
-  "spawn_costs": {},
+  "spawn_costs": {
+    "eternal_starlight:lonestar_skeleton": {
+      "charge": 1.0,
+      "energy_budget": 0.15
+    },
+    "eternal_starlight:nightfall_spider": {
+      "charge": 1.0,
+      "energy_budget": 0.15
+    }
+  },
   "spawners": {
     "ambient": [
       {

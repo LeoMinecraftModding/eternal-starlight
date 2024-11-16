@@ -35,7 +35,7 @@ public class CursedGardenStructure extends Structure {
 			int x = chunkPos.getMiddleBlockX();
 			int z = chunkPos.getMiddleBlockZ();
 			int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
-			builder.addPiece(new CursedGardenMazePiece(x, y, z));
+			builder.addPiece(new CursedGardenMazePiece(context.structureTemplateManager(), x, y, z));
 		});
 	}
 

@@ -63,9 +63,6 @@ public class ShatteredBlade extends AbstractArrow {
 
 				double d = 0.05 * (double) loyaltyLevel;
 				this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d)));
-				if (this.clientSideReturnTickCount == 0) {
-					this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-				}
 
 				++this.clientSideReturnTickCount;
 			}

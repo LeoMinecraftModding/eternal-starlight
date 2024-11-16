@@ -26,7 +26,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public void tick(TheGatekeeper entity) {
 		entity.getNavigation().stop();
 		LivingEntity target = entity.getTarget();
-		if (!attacked && entity.getBehaviorTicks() > 8 && canReachTarget(entity, 2)) {
+		if (!attacked && entity.getBehaviorTicks() > 8 && canReachTarget(entity, 2) && isFacingTarget(entity, 40, entity.getFixedYRot() + 90)) {
 			performMeleeAttack(entity, 2);
 			attacked = true;
 		}

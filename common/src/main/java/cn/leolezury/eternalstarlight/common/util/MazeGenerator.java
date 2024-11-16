@@ -1,11 +1,10 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import net.minecraft.Util;
 import net.minecraft.util.RandomSource;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class MazeGenerator {
 	private final int size;
@@ -41,12 +40,7 @@ public class MazeGenerator {
 
 		// pick random directions
 		List<Integer> directions = Arrays.asList(0, 1, 2, 3);
-		Collections.shuffle(directions, new Random() {
-			@Override
-			public int nextInt(int i) {
-				return MazeGenerator.this.random.nextInt(i);
-			}
-		});
+		Util.shuffle(directions, random);
 
 		for (int direction : directions) {
 			int dx = x + 2 * getDX(direction); // next target x
