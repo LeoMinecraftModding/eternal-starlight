@@ -32,6 +32,21 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.astral_golem.repair"
   },
+  "entity.aurora_deer.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/aurora_deer/idle1",
+      "eternal_starlight:mob/aurora_deer/idle2",
+      "eternal_starlight:mob/aurora_deer/idle3"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aurora_deer.ambient"
+  },
+  "entity.aurora_deer.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/aurora_deer/hurt1",
+      "eternal_starlight:mob/aurora_deer/hurt2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aurora_deer.hurt"
+  },
   "entity.boarwarf.ambient": {
     "sounds": [
       {

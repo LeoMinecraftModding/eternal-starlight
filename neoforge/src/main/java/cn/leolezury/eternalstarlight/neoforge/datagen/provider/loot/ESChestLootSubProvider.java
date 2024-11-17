@@ -73,8 +73,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(50))
 					.add(LootItem.lootTableItem(ESItems.FROZEN_TUBE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 10))).setWeight(30))
-					.add(LootItem.lootTableItem(ESItems.AETHERSENT_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))).setWeight(15))
-					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(45))
+					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.GLACITE_SHARD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(20)))
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(2))
@@ -119,8 +118,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(30))
-					.add(LootItem.lootTableItem(ESItems.AETHERSENT_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))).setWeight(25))
-					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
+					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
 	}

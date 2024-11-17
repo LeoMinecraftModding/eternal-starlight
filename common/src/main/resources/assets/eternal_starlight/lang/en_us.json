@@ -863,6 +863,8 @@
   "subtitles.item.eternal_starlight.chain_of_souls.absorb": "Chain of Souls absorbs",
   "subtitles.item.eternal_starlight.crescent_spear.throw": "Crescent Spear thrown",
   "subtitles.entity.eternal_starlight.ent.hurt": "Ent hurts",
+  "subtitles.entity.eternal_starlight.aurora_deer.ambient": "Aurora Deer moos",
+  "subtitles.entity.eternal_starlight.aurora_deer.hurt": "Aurora Deer hurts",
   "subtitles.entity.eternal_starlight.thirst_walker.ambient": "Thirst Walker moans",
   "subtitles.entity.eternal_starlight.thirst_walker.hurt": "Thirst Walker hurts",
   "subtitles.entity.eternal_starlight.thirst_walker.death": "Thirst Walker dies",

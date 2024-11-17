@@ -78,6 +78,9 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.ENT_HURT.get(), definition().with(sound(loc("mob/ent/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".ent.hurt"));
 
+		add(ESSoundEvents.AURORA_DEER_AMBIENT.get(), definition().with(sound(loc("mob/aurora_deer/idle1")), sound(loc("mob/aurora_deer/idle2")), sound(loc("mob/aurora_deer/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.ambient"));
+		add(ESSoundEvents.AURORA_DEER_HURT.get(), definition().with(sound(loc("mob/aurora_deer/hurt1")), sound(loc("mob/aurora_deer/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.hurt"));
+
 		add(ESSoundEvents.THIRST_WALKER_AMBIENT.get(), definition().with(sound(loc("mob/thirst_walker/idle1")), sound(loc("mob/thirst_walker/idle2")), sound(loc("mob/thirst_walker/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.ambient"));
 		add(ESSoundEvents.THIRST_WALKER_HURT.get(), definition().with(sound(loc("mob/thirst_walker/hurt1")), sound(loc("mob/thirst_walker/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.hurt"));
 		add(ESSoundEvents.THIRST_WALKER_DEATH.get(), definition().with(sound(loc("mob/thirst_walker/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.death"));

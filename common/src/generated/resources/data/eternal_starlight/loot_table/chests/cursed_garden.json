@@ -358,29 +358,13 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 4.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "eternal_starlight:aethersent_ingot",
-          "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
                 "max": 9.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:swamp_silver_ingot",
+          "name": "eternal_starlight:swamp_silver_nugget",
           "weight": 45
         },
         {
