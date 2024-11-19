@@ -967,6 +967,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_JET.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(),
+			ESBlocks.LUNAR_MOSAIC.get(),
+			ESBlocks.LUNAR_MOSAIC_SLAB.get(),
+			ESBlocks.LUNAR_MOSAIC_STAIRS.get(),
+			ESBlocks.LUNAR_MOSAIC_FENCE.get(),
+			ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(),
+			ESBlocks.LUNAR_MAT.get(),
 			ESBlocks.DOOMEDEN_BRICKS.get(),
 			ESBlocks.DOOMEDEN_BRICK_SLAB.get(),
 			ESBlocks.DOOMEDEN_BRICK_STAIRS.get(),
@@ -1065,7 +1071,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_JET.get(),
-			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get()
+			ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(),
+			ESBlocks.LUNAR_MOSAIC.get(),
+			ESBlocks.LUNAR_MOSAIC_SLAB.get(),
+			ESBlocks.LUNAR_MOSAIC_STAIRS.get(),
+			ESBlocks.LUNAR_MOSAIC_FENCE.get(),
+			ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(),
+			ESBlocks.LUNAR_MAT.get()
 		);
 		tag(BlockTags.CANDLES).add(
 			ESBlocks.AMARAMBER_CANDLE.get()

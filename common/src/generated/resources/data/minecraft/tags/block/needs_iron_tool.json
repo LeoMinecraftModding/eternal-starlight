@@ -29,6 +29,12 @@
     "eternal_starlight:chiseled_golem_steel_block",
     "eternal_starlight:oxidized_chiseled_golem_steel_block",
     "eternal_starlight:golem_steel_jet",
-    "eternal_starlight:oxidized_golem_steel_jet"
+    "eternal_starlight:oxidized_golem_steel_jet",
+    "eternal_starlight:lunar_mosaic",
+    "eternal_starlight:lunar_mosaic_slab",
+    "eternal_starlight:lunar_mosaic_stairs",
+    "eternal_starlight:lunar_mosaic_fence",
+    "eternal_starlight:lunar_mosaic_fence_gate",
+    "eternal_starlight:lunar_mat"
   ]
 }
