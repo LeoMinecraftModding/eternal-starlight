@@ -381,6 +381,14 @@ public class ESEntities {
 			.updateInterval(20)
 			.build(EternalStarlight.id("voracious_arrow").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<AirSacArrow>> AIR_SAC_ARROW = ENTITIES.register(
+		"air_sac_arrow",
+		() -> EntityType.Builder.<AirSacArrow>of(AirSacArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("air_sac_arrow").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<SonarBomb>> SONAR_BOMB = ENTITIES.register(
 		"sonar_bomb",
 		() -> EntityType.Builder.<SonarBomb>of(SonarBomb::new, MobCategory.MISC)

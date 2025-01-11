@@ -254,6 +254,21 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.COOKED_TOWER_SQUID.get(), ESItems.TOWER_SQUID_SKEWER.get(), 3, ESItems.COOKED_TOWER_SQUID.get(), Items.STICK, Items.STICK, Items.STICK);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_ARROW.get(), 4)
+			.pattern("D")
+			.pattern("S")
+			.pattern("T")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('D', ESItems.DUSTED_SHARD.get())
+			.define('T', ESItems.TOWER_SQUID_AIR_SAC.get())
+			.unlockedBy("has_item", has(ESItems.TOWER_SQUID_AIR_SAC.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_BOOTS.get())
+			.pattern("# #")
+			.pattern("# #")
+			.define('#', ESItems.TOWER_SQUID_AIR_SAC.get())
+			.unlockedBy("has_item", has(ESItems.TOWER_SQUID_AIR_SAC.get()))
+			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())

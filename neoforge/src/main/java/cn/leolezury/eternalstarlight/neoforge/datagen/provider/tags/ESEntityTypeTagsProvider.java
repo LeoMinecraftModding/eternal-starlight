@@ -65,7 +65,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		);
 		tag(EntityTypeTags.ARROWS).add(
 			ESEntities.AMARAMBER_ARROW.get(),
-			ESEntities.VORACIOUS_ARROW.get()
+			ESEntities.VORACIOUS_ARROW.get(),
+			ESEntities.AIR_SAC_ARROW.get()
 		);
 		tag(EntityTypeTags.UNDEAD).add(
 			ESEntities.TANGLED_SKULL.get()

@@ -95,6 +95,7 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSTRIKE_ROCKET.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());
@@ -109,6 +110,9 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerBehavior(ESItems.TORREYA_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA));
 		DispenserBlock.registerBehavior(ESItems.TORREYA_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA, true));
 		DispenserBlock.registerBehavior(ESItems.ETHER_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.TOWER_SQUID_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.LUMINOFISH_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.LUMINARIS_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.SALTPETER_MATCHBOX.get(), new OptionalDispenseItemBehavior() {
 			@Override
 			protected ItemStack execute(BlockSource blockSource, ItemStack item) {

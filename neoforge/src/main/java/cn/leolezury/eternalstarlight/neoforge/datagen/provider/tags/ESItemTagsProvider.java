@@ -658,7 +658,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AETHERSENT_BOOTS.get(),
 			ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
 			ESItems.GLACITE_BOOTS.get(),
-			ESItems.SWAMP_SILVER_BOOTS.get()
+			ESItems.SWAMP_SILVER_BOOTS.get(),
+			ESItems.AIR_SAC_BOOTS.get()
 		);
 		tag(ItemTags.SWORDS).add(
 			ESItems.RAGE_OF_STARS.get(),
@@ -697,7 +698,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ItemTags.ARROWS).add(
 			ESItems.AMARAMBER_ARROW.get(),
-			ESItems.VORACIOUS_ARROW.get()
+			ESItems.VORACIOUS_ARROW.get(),
+			ESItems.AIR_SAC_ARROW.get()
 		);
 		tag(ItemTags.TRIM_MATERIALS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),

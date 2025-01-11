@@ -685,6 +685,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.TOWER_SQUID.get());
 		basicItem(ESItems.COOKED_TOWER_SQUID.get());
 		handheld(ESItems.TOWER_SQUID_SKEWER.get());
+		basicItem(ESItems.TOWER_SQUID_AIR_SAC.get());
+		basicItem(ESItems.AIR_SAC_ARROW.get());
+		armorWithTrim((ArmorItem) ESItems.AIR_SAC_BOOTS.get());
 
 		basicItem(ESItems.LUMINOFISH_BUCKET.get());
 		basicItem(ESItems.LUMINOFISH.get());

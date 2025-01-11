@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -51,6 +52,12 @@ public class ESArmorMaterials {
 		map.put(ArmorItem.Type.CHESTPLATE, 6);
 		map.put(ArmorItem.Type.HELMET, 2);
 	}), 25, ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("swamp_silver"))), 0.5F, 0.2F));
+	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AIR_SAC = ARMOR_MATERIALS.register("air_sac", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+		map.put(ArmorItem.Type.BOOTS, 1);
+		map.put(ArmorItem.Type.LEGGINGS, 4);
+		map.put(ArmorItem.Type.CHESTPLATE, 4);
+		map.put(ArmorItem.Type.HELMET, 1);
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ESItems.TOWER_SQUID_AIR_SAC.get()), List.of(new ArmorMaterial.Layer(EternalStarlight.id("air_sac"))), 0F, 0F));
 
 	public static void loadClass() {
 	}

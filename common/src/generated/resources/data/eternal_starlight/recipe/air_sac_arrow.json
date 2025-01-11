@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "eternal_starlight:dusted_shard"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    },
+    "T": {
+      "item": "eternal_starlight:tower_squid_air_sac"
+    }
+  },
+  "pattern": [
+    "D",
+    "S",
+    "T"
+  ],
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:air_sac_arrow"
+  }
+}

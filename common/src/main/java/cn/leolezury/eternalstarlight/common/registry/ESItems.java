@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESJukeboxSongs;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
+import cn.leolezury.eternalstarlight.common.item.armor.AirSacArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
@@ -766,6 +767,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TOWER_SQUID = registerItem("tower_squid", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.1F).build())));
 	public static final RegistryObject<Item, Item> COOKED_TOWER_SQUID = registerItem("cooked_tower_squid", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(7).saturationModifier(0.3F).build())));
 	public static final RegistryObject<Item, Item> TOWER_SQUID_SKEWER = registerItem("tower_squid_skewer", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).usingConvertsTo(Items.STICK).build())));
+	public static final RegistryObject<Item, Item> TOWER_SQUID_AIR_SAC = registerItem("tower_squid_air_sac", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> AIR_SAC_ARROW = registerItem("air_sac_arrow", () -> new AirSacArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> AIR_SAC_BOOTS = registerItem("air_sac_boots",
+		() -> new AirSacArmorItem(ESArmorMaterials.AIR_SAC.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
 
 	public static final RegistryObject<Item, Item> LUMINOFISH_BUCKET = registerItem("luminofish_bucket", () -> new MobBucketItem(ESEntities.LUMINOFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> LUMINOFISH = registerItem("luminofish", () -> new Item(new Item.Properties().food(Foods.SALMON)));

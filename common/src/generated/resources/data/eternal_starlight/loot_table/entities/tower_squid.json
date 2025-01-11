@@ -74,7 +74,7 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "minecraft:ink_sac"
+          "name": "eternal_starlight:tower_squid_air_sac"
         }
       ],
       "rolls": 1.0

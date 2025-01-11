@@ -125,7 +125,7 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(ESItems.TOWER_SQUID.get()).apply(SmeltItemFunction.smelted().when(this.shouldSmeltLoot()))))
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-				.add(LootItem.lootTableItem(Items.INK_SAC).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F))))));
+				.add(LootItem.lootTableItem(ESItems.TOWER_SQUID_AIR_SAC.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F))))));
 
 		add(ESEntities.LUMINOFISH.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

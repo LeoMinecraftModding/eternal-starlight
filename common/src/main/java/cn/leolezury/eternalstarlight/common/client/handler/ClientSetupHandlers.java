@@ -665,6 +665,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
 		strategy.register(ESEntities.VORACIOUS_ARROW.get(), VoraciousArrowRenderer::new);
+		strategy.register(ESEntities.AIR_SAC_ARROW.get(), AirSacArrowRenderer::new);
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.ASHEN_SNOWBALL.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.FROZEN_BOMB.get(), ThrownItemRenderer::new);
