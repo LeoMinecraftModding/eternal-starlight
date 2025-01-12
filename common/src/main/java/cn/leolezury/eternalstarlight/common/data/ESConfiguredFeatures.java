@@ -102,7 +102,10 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BOULDERSHROOM = create("bouldershroom");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSAL_KELP = create("abyssal_kelp");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORBFLORA = create("orbflora");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPIRAL_KELP = create("spiral_kelp");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SEA_ROSA = create("sea_rosa");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OCEAN_VEGETATION = create("ocean_vegetation");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPIRAL_KELP_FOREST_VEGETATION = create("spiral_kelp_forest_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSLATE_PATCH = create("abysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
@@ -193,7 +196,10 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, BOULDERSHROOM, ESFeatures.BOULDERSHROOM.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, ABYSSAL_KELP, ESFeatures.KELP.get(), new NoneFeatureConfiguration());
 		FeatureUtils.register(context, ORBFLORA, ESFeatures.ORBFLORA.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, SPIRAL_KELP, ESFeatures.SPIRAL_KELP.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, SEA_ROSA, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(ESBlocks.SEA_ROSA.get(), 32, true, true, true, 0.9F, HolderSet.direct(ESBlocks.DUSTED_GRAVEL.asHolder(), ESBlocks.TWILIGHT_SAND.asHolder())));
 		FeatureUtils.register(context, OCEAN_VEGETATION, Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(PlacementUtils.inlinePlaced(ESFeatures.CORAL_TREE.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(ESFeatures.CORAL_CLAW.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(ESFeatures.CORAL_MUSHROOM.get(), FeatureConfiguration.NONE))));
+		FeatureUtils.register(context, SPIRAL_KELP_FOREST_VEGETATION, ESFeatures.UNDERWATER_SIMPLE_BLOCK.get(), new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.WICK_GRASS.get().defaultBlockState(), 9).add(ESBlocks.JINGLING_PICKLE.get().defaultBlockState(), 2))));
 		FeatureUtils.register(context, ABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.ABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.ABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, THERMABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.THERMABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, CRYOBYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.CRYOBYSSLATE.get(), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_GEYSER.get())));

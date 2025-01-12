@@ -8,7 +8,8 @@
     "eternal_starlight:crystallized_desert"
   ],
   "ocean_biomes": [
-    "eternal_starlight:starlit_sea"
+    "eternal_starlight:starlit_sea",
+    "eternal_starlight:spiral_kelp_forest"
   ],
   "transformer_type": "eternal_starlight:add_biomes",
   "xz_scale": 0.06

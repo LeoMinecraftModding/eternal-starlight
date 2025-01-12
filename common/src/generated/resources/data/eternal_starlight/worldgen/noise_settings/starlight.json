@@ -184,7 +184,8 @@
                       "if_true": {
                         "type": "minecraft:biome",
                         "biome_is": [
-                          "eternal_starlight:starlit_sea"
+                          "eternal_starlight:starlit_sea",
+                          "eternal_starlight:spiral_kelp_forest"
                         ]
                       },
                       "then_run": {
@@ -300,7 +301,8 @@
                     "if_true": {
                       "type": "minecraft:biome",
                       "biome_is": [
-                        "eternal_starlight:starlit_sea"
+                        "eternal_starlight:starlit_sea",
+                        "eternal_starlight:spiral_kelp_forest"
                       ]
                     },
                     "then_run": {

@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-11T19:40:35.5470342	Item Models: eternal_starlight
+// 1.21.1	2025-01-12T17:10:32.695093	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -622,6 +622,7 @@ e7eab93f28ce0b989f50c767fee54102de7715cb assets/eternal_starlight/models/item/sc
 8a4ada22f5da9c700bb9bf2e26acac52589d6cf1 assets/eternal_starlight/models/item/scarlet_stairs.json
 d045885cc57a252d634f14f20d15d935ddd0cc8e assets/eternal_starlight/models/item/scarlet_trapdoor.json
 21cfe2dbea7be94c4263692bcc2ad811dc428666 assets/eternal_starlight/models/item/scarlet_wood.json
+6e998c57ac55278c92537b9c38a6a820a0c28ef0 assets/eternal_starlight/models/item/sea_rosa.json
 735cf47f9de5e863c10a248bcc300157e877b400 assets/eternal_starlight/models/item/seeking_eye.json
 f663d155a5d5da9ee8816abe82a2608761b38950 assets/eternal_starlight/models/item/shadegrieve.json
 73d74ac4cd42b3538e4ad65abf589869acf26fdf assets/eternal_starlight/models/item/shadow_snail_meat.json
@@ -637,6 +638,7 @@ febd000c0fd0dde866191295087aefda71567ea7 assets/eternal_starlight/models/item/sh
 74925a0b3dc0cca5e9615db4199926f9b64f0a2d assets/eternal_starlight/models/item/small_night_sprouts.json
 3eb8de761a7fec0608d955e8b229fc078271c52c assets/eternal_starlight/models/item/sonar_bomb.json
 412c2a56108c618337bdceaf98c229558cfd818d assets/eternal_starlight/models/item/soulit_spectator.json
+8fb01ea1f3b8bf01f9146922476d5e5590684729 assets/eternal_starlight/models/item/spiral_kelp.json
 9ccb4b7789a2e5fcfb1bb09bcf12d8f8570d9fb4 assets/eternal_starlight/models/item/springstone.json
 831733ad85ed936ceaed272d6cc7bed49cc19568 assets/eternal_starlight/models/item/springstone_bricks.json
 a46653e8bcc522c9f816b3fc3b8fc569d75f782a assets/eternal_starlight/models/item/springstone_brick_slab.json
@@ -833,6 +835,7 @@ ddd3d94feb218419c6033553ca8dec1d38aa2676 assets/eternal_starlight/models/item/vo
 86d435b0dd3d6ebd019d4ea0d3532104db15c25b assets/eternal_starlight/models/item/whisperbloom.json
 286abbc5fff033749189a0513c90b70cdf4dc9d0 assets/eternal_starlight/models/item/white_yeti_fur.json
 808bec8fd8a36895952da37d07d4d86344b8587d assets/eternal_starlight/models/item/white_yeti_fur_carpet.json
+ed0315103d0e5ba708da93b8f177de2d75dac43d assets/eternal_starlight/models/item/wick_grass.json
 98760e36b9809d3db38f8f61f063fa4de36dab6a assets/eternal_starlight/models/item/wind_crystal.json
 d0a441abe739bfcd1e8bb21efa6d89e7630363bf assets/eternal_starlight/models/item/withered_desert_amethysia.json
 f99791169149e4e0f2cee85fba35187d89082e7a assets/eternal_starlight/models/item/withered_starlight_flower.json

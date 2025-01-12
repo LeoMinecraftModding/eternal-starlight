@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class OrbfloraBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
 	public static final MapCodec<OrbfloraBlock> CODEC = simpleCodec(OrbfloraBlock::new);
-	public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+	public static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 7.0D, 13.0D);
 	public static final IntegerProperty ORBFLORA_AGE = IntegerProperty.create("orbflora_age", 0, 2);
 
 	public OrbfloraBlock(Properties properties) {

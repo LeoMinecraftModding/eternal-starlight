@@ -86,6 +86,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ABYSSAL_FRUIT = registerItem("abyssal_fruit", () -> new ItemNameBlockItem(ESBlocks.ABYSSAL_KELP.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.3F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.15F).alwaysEdible().build())));
 	public static final RegistryObject<Item, Item> ORBFLORA = registerItem("orbflora", () -> new BlockItem(ESBlocks.ORBFLORA.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ORBFLORA_LIGHT = registerItem("orbflora_light", () -> new BlockItem(ESBlocks.ORBFLORA_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SPIRAL_KELP = registerItem("spiral_kelp", () -> new BlockItem(ESBlocks.SPIRAL_KELP.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SEA_ROSA = registerItem("sea_rosa", () -> new BlockItem(ESBlocks.SEA_ROSA.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WICK_GRASS = registerItem("wick_grass", () -> new BlockItem(ESBlocks.WICK_GRASS.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> JINGLING_PICKLE = registerItem("jingling_pickle", () -> new BlockItem(ESBlocks.JINGLING_PICKLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL = registerItem("dead_tentacles_coral", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL.get(), new Item.Properties()));

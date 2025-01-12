@@ -15,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
 public class ESFeatures {
 	public static final RegistrationProvider<Feature<?>> FEATURES = RegistrationProvider.get(Registries.FEATURE, EternalStarlight.ID);
@@ -33,6 +34,8 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> SWAMP_WATER = FEATURES.register("swamp_water", () -> new SwampWaterFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> KELP = FEATURES.register("kelp", () -> new ESKelpFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ORBFLORA = FEATURES.register("orbflora", () -> new OrbfloraFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> SPIRAL_KELP = FEATURES.register("spiral_kelp", () -> new SpiralKelpFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<SimpleBlockConfiguration>> UNDERWATER_SIMPLE_BLOCK = FEATURES.register("underwater_simple_block", () -> new UnderwaterSimpleBlockFeature(SimpleBlockConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_CLAW = FEATURES.register("coral_claw", () -> new ESCoralClawFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_MUSHROOM = FEATURES.register("coral_mushroom", () -> new ESCoralMushroomFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_TREE = FEATURES.register("coral_tree", () -> new ESCoralTreeFeature(NoneFeatureConfiguration.CODEC));

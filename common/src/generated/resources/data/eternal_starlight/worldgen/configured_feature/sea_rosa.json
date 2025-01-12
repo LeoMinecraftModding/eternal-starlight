@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:multiface_growth",
+  "config": {
+    "block": "eternal_starlight:sea_rosa",
+    "can_be_placed_on": [
+      "eternal_starlight:dusted_gravel",
+      "eternal_starlight:twilight_sand"
+    ],
+    "can_place_on_ceiling": true,
+    "can_place_on_floor": true,
+    "can_place_on_wall": true,
+    "chance_of_spreading": 0.9,
+    "search_range": 32
+  }
+}

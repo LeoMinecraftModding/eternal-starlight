@@ -12,6 +12,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.LiquidBlockContainer;
@@ -19,13 +20,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class OrbfloraPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer {
 	public static final MapCodec<OrbfloraPlantBlock> CODEC = simpleCodec(OrbfloraPlantBlock::new);
+	public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 
 	public OrbfloraPlantBlock(Properties properties) {
-		super(properties, Direction.UP, OrbfloraBlock.SHAPE, false);
+		super(properties, Direction.UP, SHAPE, false);
 	}
 
 	@Override

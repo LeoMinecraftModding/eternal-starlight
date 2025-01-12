@@ -29,6 +29,7 @@ public class ESBiomes {
 	public static final ResourceKey<Biome> SHIMMER_RIVER = create("shimmer_river");
 	public static final ResourceKey<Biome> ETHER_RIVER = create("ether_river");
 	public static final ResourceKey<Biome> STARLIT_SEA = create("starlit_sea");
+	public static final ResourceKey<Biome> SPIRAL_KELP_FOREST = create("spiral_kelp_forest");
 	public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
 	public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
 
@@ -54,7 +55,8 @@ public class ESBiomes {
 		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DESERT), desertSpawns(), desertSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseAquaticSpawnBuilder(), etherRiverSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().waterFogColor(4605040).backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(SPIRAL_KELP_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterFogColor(1576722), baseAquaticSpawnBuilder(), spiralKelpForestSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_THE_ABYSS), theAbyssSpawns(), theAbyssSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLandSpawnBuilder(), baseLandGenBuilder(featureHolderGetter, carverHolderGetter)).build());
 	}
@@ -80,7 +82,7 @@ public class ESBiomes {
 			.foliageColorOverride(5195923)
 			.grassColorOverride(5195923)
 			.waterColor(6187416)
-			.waterFogColor(6187416)
+			.waterFogColor(1184291)
 			.skyColor(5658761)
 			.backgroundMusic(MUSIC_TRANQUILITY);
 		if (ambientParticle) {
@@ -316,6 +318,16 @@ public class ESBiomes {
 
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ORBFLORA);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.OCEAN_VEGETATION);
+
+		return builder;
+	}
+
+	private static BiomeGenerationSettings.Builder spiralKelpForestSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseAquaticGenBuilder(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SPIRAL_KELP);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SEA_ROSA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SPIRAL_KELP_FOREST_VEGETATION);
 
 		return builder;
 	}

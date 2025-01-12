@@ -66,6 +66,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.ABYSSAL_FRUIT.get());
 		block(ESItems.ORBFLORA.get());
 		block(ESItems.ORBFLORA_LIGHT.get());
+		block(ESItems.SPIRAL_KELP.get());
+		flatBlockTexture(ESItems.SEA_ROSA.get());
+		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
 
 		flatBlockTexture(ESItems.JINGLING_PICKLE.get());
 		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());

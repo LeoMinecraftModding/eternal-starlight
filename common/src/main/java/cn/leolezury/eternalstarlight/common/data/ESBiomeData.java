@@ -21,6 +21,7 @@ public class ESBiomeData {
 	public static final ResourceKey<BiomeData> ETHER_RIVER = create("ether_river");
 	public static final ResourceKey<BiomeData> SHIMMER_RIVER_TRANSITION = create("shimmer_river_transition");
 	public static final ResourceKey<BiomeData> STARLIT_SEA = create("starlit_sea");
+	public static final ResourceKey<BiomeData> SPIRAL_KELP_FOREST = create("spiral_kelp_forest");
 	public static final ResourceKey<BiomeData> THE_ABYSS = create("the_abyss");
 	public static final ResourceKey<BiomeData> THE_ABYSS_TRANSITION = create("the_abyss_transition");
 	public static final ResourceKey<BiomeData> WARM_SHORE = create("warm_shore");
@@ -38,6 +39,7 @@ public class ESBiomeData {
 		context.register(SHIMMER_RIVER_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SHIMMER_RIVER), 45, 3).build());
 		context.register(ETHER_RIVER, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.ETHER_RIVER), 45, 3).withFluid(ESBlocks.ETHER.asHolder()).build());
 		context.register(STARLIT_SEA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIT_SEA), 30, 5).fullRangeTemperatures().isOcean(true).build());
+		context.register(SPIRAL_KELP_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SPIRAL_KELP_FOREST), 15, 10).withTemperatures(BiomeData.Temperature.COLD, BiomeData.Temperature.COLD_EXTREME).isOcean(true).build());
 		context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -55, 5).isOcean(true).build());
 		context.register(THE_ABYSS_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -40, 3).isOcean(true).build());
 		context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.WARM_SHORE), 55, 4).build());

@@ -40,6 +40,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		orbflora(ESBlocks.ORBFLORA.get());
 		cross(ESBlocks.ORBFLORA_PLANT.get());
 		simpleBlock(ESBlocks.ORBFLORA_LIGHT.get());
+		simpleExisting(ESBlocks.SPIRAL_KELP.get());
+		simpleExisting(ESBlocks.SPIRAL_KELP_PLANT.get());
+		multifaceBlock(ESBlocks.SEA_ROSA.get());
+		doublePlant(ESBlocks.WICK_GRASS.get());
 		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
 		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
 		directionalBud(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());

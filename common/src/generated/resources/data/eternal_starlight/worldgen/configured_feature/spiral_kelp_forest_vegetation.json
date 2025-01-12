@@ -1,0 +1,28 @@
+{
+  "type": "eternal_starlight:underwater_simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:wick_grass",
+            "Properties": {
+              "half": "lower"
+            }
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:jingling_pickle",
+            "Properties": {
+              "waterlogged": "true"
+            }
+          },
+          "weight": 2
+        }
+      ]
+    }
+  }
+}
