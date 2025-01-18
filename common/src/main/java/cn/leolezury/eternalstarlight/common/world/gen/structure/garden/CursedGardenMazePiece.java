@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.world.gen.structure;
+package cn.leolezury.eternalstarlight.common.world.gen.structure.garden;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.LunarVineBlock;
@@ -9,7 +9,10 @@ import cn.leolezury.eternalstarlight.common.registry.ESStructurePieceTypes;
 import cn.leolezury.eternalstarlight.common.util.MazeGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -47,7 +50,9 @@ public class CursedGardenMazePiece extends StructurePiece {
 	private final StructureTemplate tripleConnection;
 	private final StructureTemplate allConnection;
 
-	public CursedGardenMazePiece(StructureTemplateManager templateManager, int x, int y, int z) {
+	private boolean[][] maze = new boolean[MAZE_SIZE][MAZE_SIZE];
+
+	public CursedGardenMazePiece(StructureTemplateManager templateManager, long seed, int x, int y, int z) {
 		super(ESStructurePieceTypes.CURSED_GARDEN_MAZE.get(), 0, new BoundingBox(
 			x - STRUCTURE_SIZE / 2,
 			y - 1,
@@ -63,6 +68,23 @@ public class CursedGardenMazePiece extends StructurePiece {
 		this.doubleConnectionCorner = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_corner"));
 		this.tripleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_triple_connection"));
 		this.allConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_all_connection"));
+		MazeGenerator mazeGenerator = new MazeGenerator(MAZE_SIZE, RandomSource.create(seed + new BlockPos(x, y, z).asLong()));
+		maze = mazeGenerator.generateMaze(1, 1);
+		maze[0][(MAZE_SIZE - 1) / 2] = false;
+		maze[1][(MAZE_SIZE - 1) / 2] = false;
+		maze[(MAZE_SIZE - 1) / 2][0] = false;
+		maze[(MAZE_SIZE - 1) / 2][1] = false;
+		maze[MAZE_SIZE - 1][(MAZE_SIZE - 1) / 2] = false;
+		maze[MAZE_SIZE - 2][(MAZE_SIZE - 1) / 2] = false;
+		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 1] = false;
+		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 2] = false;
+		for (int i = 0; i < MAZE_SIZE; i++) {
+			for (int j = 0; j < MAZE_SIZE; j++) {
+				if (Math.pow(i * 3 + 1 - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(j * 3 + 1 - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE) {
+					maze[i][j] = false;
+				}
+			}
+		}
 	}
 
 	public CursedGardenMazePiece(StructurePieceSerializationContext context, CompoundTag tag) {
@@ -75,32 +97,38 @@ public class CursedGardenMazePiece extends StructurePiece {
 		this.doubleConnectionCorner = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_corner"));
 		this.tripleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_triple_connection"));
 		this.allConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_all_connection"));
+		ListTag xTag = tag.getList("maze", CompoundTag.TAG_LIST);
+		for (int x = 0; x < MAZE_SIZE; x++) {
+			if (x < xTag.size()) {
+				Tag yTag = xTag.get(x);
+				if (yTag instanceof ListTag yList) {
+					for (int y = 0; y < MAZE_SIZE; y++) {
+						if (y < yList.size()) {
+							if (yList.get(y) instanceof ByteTag byteTag) {
+								maze[x][y] = byteTag.getAsByte() != 0;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
-
+		ListTag xTag = new ListTag();
+		for (int x = 0; x < MAZE_SIZE; x++) {
+			ListTag yTag = new ListTag();
+			for (int y = 0; y < MAZE_SIZE; y++) {
+				yTag.add(ByteTag.valueOf(maze[x][y]));
+			}
+			xTag.add(yTag);
+		}
+		tag.put("maze", xTag);
 	}
 
 	@Override
 	public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos blockPos) {
-		MazeGenerator mazeGenerator = new MazeGenerator(MAZE_SIZE, RandomSource.create(level.getSeed() + blockPos.asLong()));
-		boolean[][] maze = mazeGenerator.generateMaze(1, 1);
-		maze[0][(MAZE_SIZE - 1) / 2] = false;
-		maze[1][(MAZE_SIZE - 1) / 2] = false;
-		maze[(MAZE_SIZE - 1) / 2][0] = false;
-		maze[(MAZE_SIZE - 1) / 2][1] = false;
-		maze[MAZE_SIZE - 1][(MAZE_SIZE - 1) / 2] = false;
-		maze[MAZE_SIZE - 2][(MAZE_SIZE - 1) / 2] = false;
-		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 1] = false;
-		maze[(MAZE_SIZE - 1) / 2][MAZE_SIZE - 2] = false;
-		for (int x = 0; x < MAZE_SIZE; x++) {
-			for (int z = 0; z < MAZE_SIZE; z++) {
-				if (Math.pow(x * 3 + 1 - (double) STRUCTURE_SIZE / 2, 2) + Math.pow(z * 3 + 1 - (double) STRUCTURE_SIZE / 2, 2) < CENTER_SIZE * CENTER_SIZE) {
-					maze[x][z] = false;
-				}
-			}
-		}
 		for (int x = 0; x < MAZE_SIZE; x++) {
 			for (int z = 0; z < MAZE_SIZE; z++) {
 				if (maze[x][z]) {
@@ -114,8 +142,8 @@ public class CursedGardenMazePiece extends StructurePiece {
 						}
 					}
 					switch (connectedDirs.size()) {
-						case 0 -> noConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings(), random, Block.UPDATE_CLIENTS);
-						case 1 -> connectedDirs.stream().findFirst().ifPresent(direction -> singleConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.EAST.toYRot()))) {
+						case 0 -> noConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box), random, Block.UPDATE_CLIENTS);
+						case 1 -> connectedDirs.stream().findFirst().ifPresent(direction -> singleConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box).setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.EAST.toYRot()))) {
 							case 90 -> Rotation.CLOCKWISE_90;
 							case -180 -> Rotation.CLOCKWISE_180;
 							case -90 -> Rotation.COUNTERCLOCKWISE_90;
@@ -123,14 +151,14 @@ public class CursedGardenMazePiece extends StructurePiece {
 						}).setRotationPivot(new BlockPos(1, 0, 1)), random, Block.UPDATE_CLIENTS));
 						case 2 -> connectedDirs.stream().findFirst().ifPresent(direction -> {
 							if (connectedDirs.contains(direction.getOpposite())) {
-								doubleConnectionStraight.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.EAST.toYRot()))) {
+								doubleConnectionStraight.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box).setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.EAST.toYRot()))) {
 									case 90 -> Rotation.CLOCKWISE_90;
 									case -180 -> Rotation.CLOCKWISE_180;
 									case -90 -> Rotation.COUNTERCLOCKWISE_90;
 									default -> Rotation.NONE;
 								}).setRotationPivot(new BlockPos(1, 0, 1)), random, Block.UPDATE_CLIENTS);
 							} else {
-								connectedDirs.stream().max((o1, o2) -> (int) Math.signum(Mth.degreesDifference(o1.toYRot(), o2.toYRot()))).ifPresent(dir -> doubleConnectionCorner.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setRotation(switch (Mth.wrapDegrees((int) (dir.toYRot() - Direction.EAST.toYRot()))) {
+								connectedDirs.stream().max((o1, o2) -> (int) Math.signum(Mth.degreesDifference(o1.toYRot(), o2.toYRot()))).ifPresent(dir -> doubleConnectionCorner.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box).setRotation(switch (Mth.wrapDegrees((int) (dir.toYRot() - Direction.EAST.toYRot()))) {
 									case 90 -> Rotation.CLOCKWISE_90;
 									case -180 -> Rotation.CLOCKWISE_180;
 									case -90 -> Rotation.COUNTERCLOCKWISE_90;
@@ -138,13 +166,13 @@ public class CursedGardenMazePiece extends StructurePiece {
 								}).setRotationPivot(new BlockPos(1, 0, 1)), random, Block.UPDATE_CLIENTS));
 							}
 						});
-						case 3 -> new HashSet<>(HORIZONTAL_DIRECTIONS).stream().filter(d -> !connectedDirs.contains(d)).findFirst().ifPresent(direction -> tripleConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.NORTH.toYRot()))) {
+						case 3 -> new HashSet<>(HORIZONTAL_DIRECTIONS).stream().filter(d -> !connectedDirs.contains(d)).findFirst().ifPresent(direction -> tripleConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box).setRotation(switch (Mth.wrapDegrees((int) (direction.toYRot() - Direction.NORTH.toYRot()))) {
 							case 90 -> Rotation.CLOCKWISE_90;
 							case -180 -> Rotation.CLOCKWISE_180;
 							case -90 -> Rotation.COUNTERCLOCKWISE_90;
 							default -> Rotation.NONE;
 						}).setRotationPivot(new BlockPos(1, 0, 1)), random, Block.UPDATE_CLIENTS));
-						case 4 -> allConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings(), random, Block.UPDATE_CLIENTS);
+						case 4 -> allConnection.placeInWorld(level, pillarPos, pillarPos, new StructurePlaceSettings().setBoundingBox(box), random, Block.UPDATE_CLIENTS);
 					}
 				}
 				for (int blockX = x * 3; blockX < x * 3 + 3; blockX++) {

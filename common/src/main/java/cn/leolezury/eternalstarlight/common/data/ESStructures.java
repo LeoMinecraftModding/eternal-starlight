@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.data;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.common.world.gen.structure.CursedGardenStructure;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.garden.CursedGardenStructure;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.LandmarkStructurePlacement;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;

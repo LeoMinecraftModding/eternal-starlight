@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.registry;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
-import cn.leolezury.eternalstarlight.common.world.gen.structure.CursedGardenMazePiece;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.garden.CursedGardenMazePiece;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 

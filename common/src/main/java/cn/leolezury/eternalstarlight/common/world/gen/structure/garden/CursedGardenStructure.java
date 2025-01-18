@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.world.gen.structure;
+package cn.leolezury.eternalstarlight.common.world.gen.structure.garden;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Tangled;
@@ -35,7 +35,7 @@ public class CursedGardenStructure extends Structure {
 			int x = chunkPos.getMiddleBlockX();
 			int z = chunkPos.getMiddleBlockZ();
 			int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) + 1;
-			builder.addPiece(new CursedGardenMazePiece(context.structureTemplateManager(), x, y, z));
+			builder.addPiece(new CursedGardenMazePiece(context.structureTemplateManager(), context.seed(), x, y, z));
 		});
 	}
 
