@@ -67,6 +67,11 @@ public class LonestarSkeleton extends Skeleton {
 	}
 
 	@Override
+	public boolean isLeftHanded() {
+		return true;
+	}
+
+	@Override
 	public void reassessWeaponGoal() {
 
 	}

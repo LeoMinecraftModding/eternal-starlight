@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TangledModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.TangledGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Tangled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,6 +16,7 @@ public class TangledRenderer<T extends Tangled> extends MobRenderer<T, TangledMo
 
 	public TangledRenderer(EntityRendererProvider.Context context) {
 		super(context, new TangledModel<>(context.bakeLayer(TangledModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new TangledGlowLayer<>(this, context.getModelSet()));
 	}
 
 	@Override

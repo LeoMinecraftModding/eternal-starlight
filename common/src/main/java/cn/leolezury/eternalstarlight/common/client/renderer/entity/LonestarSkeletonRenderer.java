@@ -1,16 +1,18 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.entity.LonestarSkeletonModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.SkeletonRenderer;
+import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
-public class LonestarSkeletonRenderer extends SkeletonRenderer<LonestarSkeleton> {
+public class LonestarSkeletonRenderer<T extends LonestarSkeleton> extends HumanoidMobRenderer<T, LonestarSkeletonModel<T>> {
 	private static final ResourceLocation LONESTAR_SKELETON_LOCATION = EternalStarlight.id("textures/entity/lonestar_skeleton.png");
 
 	public static final ModelLayerLocation LONESTAR = new ModelLayerLocation(EternalStarlight.id("lonestar_skeleton"), "main");
@@ -18,11 +20,25 @@ public class LonestarSkeletonRenderer extends SkeletonRenderer<LonestarSkeleton>
 	public static final ModelLayerLocation LONESTAR_OUTER_ARMOR = new ModelLayerLocation(EternalStarlight.id("lonestar_skeleton"), "outer_armor");
 
 	public LonestarSkeletonRenderer(EntityRendererProvider.Context context) {
-		super(context, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);
+		this(context, LONESTAR, LONESTAR_INNER_ARMOR, LONESTAR_OUTER_ARMOR);
+	}
+
+	public LonestarSkeletonRenderer(EntityRendererProvider.Context context, ModelLayerLocation layer, ModelLayerLocation innerLayer, ModelLayerLocation outerLayer) {
+		this(context, innerLayer, outerLayer, new LonestarSkeletonModel<>(context.bakeLayer(layer)));
+	}
+
+	public LonestarSkeletonRenderer(EntityRendererProvider.Context context, ModelLayerLocation innerLayer, ModelLayerLocation outerLayer, LonestarSkeletonModel<T> skeletonModel) {
+		super(context, skeletonModel, 0.5F);
+		this.addLayer(new HumanoidArmorLayer<>(this, new LonestarSkeletonModel<>(context.bakeLayer(innerLayer)), new LonestarSkeletonModel<>(context.bakeLayer(outerLayer)), context.getModelManager()));
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(LonestarSkeleton skeleton) {
+	public ResourceLocation getTextureLocation(T entity) {
 		return LONESTAR_SKELETON_LOCATION;
+	}
+
+	@Override
+	protected boolean isShaking(T entity) {
+		return entity.isShaking();
 	}
 }

@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.FogRenderer;
@@ -10,6 +12,7 @@ import net.minecraft.util.Mth;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Environment(EnvType.CLIENT)
 @Mixin(FogRenderer.class)
 public abstract class FogRendererMixin {
 	@WrapOperation(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getWaterVision()F"))

@@ -97,7 +97,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangled.armor())
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangled.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangled.followRange())
-			.add(Attributes.MOVEMENT_SPEED, 0.2);
+			.add(Attributes.MOVEMENT_SPEED, 0.35);
 	}
 
 	@Override

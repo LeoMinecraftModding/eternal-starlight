@@ -29,19 +29,18 @@ public class TangledModel<T extends Tangled> extends AnimatedEntityModel<T> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, -12.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 12.0F, 0.0F));
+		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 17).addBox(-4.0F, -10.0F, -2.0F, 8.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 12.0F, 0.0F));
 
-		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, 0.0F));
+		body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -7.0F, -4.0F, 8.0F, 9.0F, 8.0F, new CubeDeformation(0.0F))
+			.texOffs(20, 34).addBox(-4.0F, -6.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(-0.1F)), PartPose.offset(0.0F, -12.0F, 0.0F));
 
-		head.addOrReplaceChild("outer_head", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.3F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(24, 17).addBox(-1.0F, -2.0F, -1.5F, 3.0F, 14.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(5.0F, -10.0F, 0.0F));
 
-		body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(56, 16).mirror().addBox(-1.0F, -2.0F, -1.0F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, -10.0F, 0.0F));
+		body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(12, 31).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, -8.0F, 0.0F));
 
-		body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, -10.0F, 0.0F));
+		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(32, 0).addBox(-1.0F, 0.0F, -1.1F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 12.0F, 0.1F));
 
-		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-1.0F, 0.0F, -1.1F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, 12.0F, 0.1F));
-
-		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, 0.0F, -1.1F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 12.0F, 0.1F));
+		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 31).addBox(-1.0F, 0.0F, -1.6F, 3.0F, 12.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 12.0F, 0.1F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -53,7 +52,7 @@ public class TangledModel<T extends Tangled> extends AnimatedEntityModel<T> {
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		animate(entity.idleAnimationState, TangledAnimation.IDLE, ageInTicks);
-		animateWalk(TangledAnimation.WALK, limbSwing, limbSwingAmount, 2.7f, 1.2f);
+		animateWalk(TangledAnimation.WALK, limbSwing, limbSwingAmount, 3f, 1.2f);
 		animate(entity.meleeAnimationState, TangledAnimation.ATTACK, ageInTicks);
 	}
 

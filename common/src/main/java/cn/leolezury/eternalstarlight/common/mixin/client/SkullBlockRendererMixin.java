@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {
 	@Shadow
