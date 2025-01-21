@@ -61,10 +61,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.ABYSSAL_KELP.get(), this::createAbyssalKelpDrop);
 		add(ESBlocks.ABYSSAL_KELP_PLANT.get(), this::createAbyssalKelpDrop);
 		dropSelf(ESBlocks.ORBFLORA.get());
-		add(ESBlocks.ORBFLORA_PLANT.get(), noDrop());
+		dropOther(ESBlocks.ORBFLORA_PLANT.get(), ESBlocks.ORBFLORA.get());
 		dropSelf(ESBlocks.ORBFLORA_LIGHT.get());
 		dropSelf(ESBlocks.SPIRAL_KELP.get());
-		add(ESBlocks.SPIRAL_KELP_PLANT.get(), noDrop());
+		dropOther(ESBlocks.SPIRAL_KELP_PLANT.get(), ESBlocks.SPIRAL_KELP.get());
 		add(ESBlocks.SEA_ROSA.get(), block -> createMultifaceBlockDrops(block, HAS_SHEARS_OR_SICKLE));
 		plant(ESBlocks.WICK_GRASS.get());
 

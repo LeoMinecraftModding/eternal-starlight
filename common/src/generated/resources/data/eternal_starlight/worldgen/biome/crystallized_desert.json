@@ -95,26 +95,7 @@
       }
     ],
     "axolotls": [],
-    "creature": [
-      {
-        "type": "eternal_starlight:ent",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 30
-      },
-      {
-        "type": "eternal_starlight:ratlin",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 24
-      },
-      {
-        "type": "eternal_starlight:shadow_snail",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 18
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [
       {

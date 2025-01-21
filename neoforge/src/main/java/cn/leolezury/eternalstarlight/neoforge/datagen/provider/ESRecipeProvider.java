@@ -750,6 +750,12 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), 1, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
 
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
+		addStairs(recipeOutput, ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE.get());
+		addSlab(recipeOutput, ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE.get(), 2);
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_SPRINGSTONE.get(), ESBlocks.SPRINGSTONE.get());
 		addStoneCompress(recipeOutput, ESBlocks.SPRINGSTONE_BRICKS.get(), ESBlocks.POLISHED_SPRINGSTONE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_SPRINGSTONE.get(), ESBlocks.SPRINGSTONE_BRICK_SLAB.get());

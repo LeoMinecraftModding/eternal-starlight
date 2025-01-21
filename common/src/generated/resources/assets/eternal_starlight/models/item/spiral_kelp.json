@@ -1,3 +1,6 @@
 {
-  "parent": "eternal_starlight:block/spiral_kelp"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eternal_starlight:item/spiral_kelp"
+  }
 }

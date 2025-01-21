@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-12T17:10:32.695093	Item Models: eternal_starlight
+// 1.21.1	2025-01-21T22:40:03.9827879	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -638,7 +638,7 @@ febd000c0fd0dde866191295087aefda71567ea7 assets/eternal_starlight/models/item/sh
 74925a0b3dc0cca5e9615db4199926f9b64f0a2d assets/eternal_starlight/models/item/small_night_sprouts.json
 3eb8de761a7fec0608d955e8b229fc078271c52c assets/eternal_starlight/models/item/sonar_bomb.json
 412c2a56108c618337bdceaf98c229558cfd818d assets/eternal_starlight/models/item/soulit_spectator.json
-8fb01ea1f3b8bf01f9146922476d5e5590684729 assets/eternal_starlight/models/item/spiral_kelp.json
+606d991e109acb7e7ac9cca5cdb7ddc5186fdd92 assets/eternal_starlight/models/item/spiral_kelp.json
 9ccb4b7789a2e5fcfb1bb09bcf12d8f8570d9fb4 assets/eternal_starlight/models/item/springstone.json
 831733ad85ed936ceaed272d6cc7bed49cc19568 assets/eternal_starlight/models/item/springstone_bricks.json
 a46653e8bcc522c9f816b3fc3b8fc569d75f782a assets/eternal_starlight/models/item/springstone_brick_slab.json
