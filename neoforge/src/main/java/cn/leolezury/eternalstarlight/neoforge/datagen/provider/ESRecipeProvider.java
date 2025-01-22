@@ -217,6 +217,16 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('$', Items.TRIPWIRE_HOOK)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.WILTED_CROSSBOW.get())
+			.pattern("#&#")
+			.pattern("~$~")
+			.pattern(" # ")
+			.define('~', ESItems.TENACIOUS_VINE.get())
+			.define('#', Tags.Items.RODS_WOODEN)
+			.define('&', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.define('$', ESItems.RED_VELVETUMOSS_FLOWER.get())
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MOONRING_GREATSWORD.get())
 			.pattern("TTT")
 			.pattern("TGT")

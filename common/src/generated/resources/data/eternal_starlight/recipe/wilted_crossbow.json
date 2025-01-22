@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:rods/wooden"
+    },
+    "$": {
+      "item": "eternal_starlight:red_velvetumoss_flower"
+    },
+    "&": {
+      "tag": "c:ingots/golem_steel"
+    },
+    "~": {
+      "item": "eternal_starlight:tenacious_vine"
+    }
+  },
+  "pattern": [
+    "#&#",
+    "~$~",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:wilted_crossbow"
+  }
+}

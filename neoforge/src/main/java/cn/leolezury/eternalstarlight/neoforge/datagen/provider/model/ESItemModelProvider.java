@@ -674,6 +674,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.TENACIOUS_VINE.get());
 		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
+		crossbow(ESItems.WILTED_CROSSBOW.get());
 		bow(ESItems.MOONRING_BOW.get());
 		greatsword(ESItems.MOONRING_GREATSWORD.get());
 		greatswordInventory(ESItems.MOONRING_GREATSWORD.get());

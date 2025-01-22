@@ -413,6 +413,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("frozen_bomb").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<WiltedPetal>> WILTED_PETAL = ENTITIES.register(
+		"wilted_petal",
+		() -> EntityType.Builder.<WiltedPetal>of(WiltedPetal::new, MobCategory.MISC)
+			.sized(0.2f, 0.2f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("wilted_petal").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<SoulitSpectator>> SOULIT_SPECTATOR = ENTITIES.register(
 		"soulit_spectator",
 		() -> EntityType.Builder.<SoulitSpectator>of(SoulitSpectator::new, MobCategory.MISC)

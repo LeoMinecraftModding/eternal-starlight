@@ -31,12 +31,23 @@ public abstract class CrossbowItemMixin {
 			}
 			cir.setReturnValue(projectile);
 		}
+		if (itemStack.is(ESItems.WILTED_CROSSBOW.get())) {
+			Projectile projectile = cir.getReturnValue();
+			ESEntityUtil.getPersistentData(projectile).putBoolean(CommonHandlers.TAG_WILTED_ARROW, true);
+			if (projectile instanceof AbstractArrow arrow) {
+				arrow.setBaseDamage(arrow.getBaseDamage() + 8);
+			}
+			cir.setReturnValue(projectile);
+		}
 	}
 
 	@Inject(method = "shootProjectile", at = @At("RETURN"))
 	private void shootProjectile(LivingEntity livingEntity, Projectile projectile, int i, float f, float g, float h, LivingEntity livingEntity2, CallbackInfo ci) {
 		if ((Object) this == ESItems.MECHANICAL_CROSSBOW.get()) {
-			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.5));
+			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.75));
+		}
+		if ((Object) this == ESItems.CRYSTAL_CROSSBOW.get() || (Object) this == ESItems.WILTED_CROSSBOW.get()) {
+			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.35));
 		}
 	}
 }

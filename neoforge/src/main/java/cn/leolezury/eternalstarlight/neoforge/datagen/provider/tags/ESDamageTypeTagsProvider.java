@@ -63,6 +63,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		);
 		tag(DamageTypeTags.PANIC_CAUSES).add(
 			ESDamageTypes.METEOR,
+			ESDamageTypes.WILT,
 			ESDamageTypes.GROUND_SMASH,
 			ESDamageTypes.SHATTERED_BLADE,
 			ESDamageTypes.SONAR,

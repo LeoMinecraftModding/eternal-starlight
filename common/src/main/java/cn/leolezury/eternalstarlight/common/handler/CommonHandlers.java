@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
@@ -27,6 +28,8 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -34,9 +37,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -46,6 +51,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -64,6 +70,7 @@ public class CommonHandlers {
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";
+	public static final String TAG_WILTED_ARROW = EternalStarlight.ID + ":wilted";
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
 	private static TheGatekeeperNameManager gatekeeperNames;
 	private static Weathers starlightWeathers;
@@ -216,6 +223,30 @@ public class CommonHandlers {
 		CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);
 		int inAbyssalFireTicks = persistentData.getInt(TAG_IN_ABYSSAL_FIRE_TICKS);
 		persistentData.putInt(TAG_IN_ABYSSAL_FIRE_TICKS, Math.max(inAbyssalFireTicks - 1, 0));
+		if (!level.isClientSide && entity instanceof AbstractArrow arrow && persistentData.getBoolean(TAG_WILTED_ARROW) && !arrow.inGround) {
+			List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
+			affected.removeIf(e -> arrow.getOwner() != null && e.getUUID().equals(arrow.getOwner().getUUID()));
+			for (LivingEntity living : affected) {
+				living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
+				living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
+			}
+			if (arrow.tickCount % 4 == 0) {
+				for (int i = 0; i < 3; i++) {
+					WiltedPetal petal = arrow.getOwner() instanceof LivingEntity living ? new WiltedPetal(level, living) : new WiltedPetal(ESEntities.WILTED_PETAL.get(), level);
+					petal.setPos(entity.position());
+					Vec3 movement = new Vec3(entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5);
+					if (affected.size() > i) {
+						LivingEntity target = affected.get(i);
+						movement = target.position().add(0, target.getBbHeight() / 2, 0).subtract(entity.position());
+					}
+					petal.shoot(movement.x, movement.y, movement.z, 0.8f, 0.2f);
+					level.addFreshEntity(petal);
+				}
+			}
+			if (level instanceof ServerLevel serverLevel) {
+				serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(96, 0x90003b)), entity.getX(), entity.getY(), entity.getZ(), 6, 2, 2, 2, 0.2);
+			}
+		}
 		if (entity instanceof LivingEntity livingEntity) {
 			ESSpellUtil.tickSpells(livingEntity);
 			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {

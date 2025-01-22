@@ -102,6 +102,9 @@ accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (L
 # custom arrow for mech crossbow
 accessible method net/minecraft/world/entity/projectile/AbstractArrow setPierceLevel (B)V
 
+# custom arrow for wilted crossbow
+accessible field net/minecraft/world/entity/projectile/AbstractArrow inGround Z
+
 # fabirc mixin
 accessible class net/minecraft/client/resources/model/ModelManager$ReloadState
 accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection

@@ -16,6 +16,7 @@ public class ESDamageTypes {
 	public static final ResourceKey<DamageType> ETHER = create("ether");
 	public static final ResourceKey<DamageType> METEOR = create("meteor");
 	public static final ResourceKey<DamageType> CRYSTALLINE_INFECTION = create("crystalline_infection");
+	public static final ResourceKey<DamageType> WILT = create("wilt");
 	public static final ResourceKey<DamageType> GROUND_SMASH = create("ground_smash");
 	public static final ResourceKey<DamageType> SHATTERED_BLADE = create("shattered_blade");
 	public static final ResourceKey<DamageType> SONAR = create("sonar");
@@ -51,6 +52,7 @@ public class ESDamageTypes {
 		context.register(ETHER, new DamageType(name("ether"), 0.1F));
 		context.register(METEOR, new DamageType(name("meteor"), 0.1F));
 		context.register(CRYSTALLINE_INFECTION, new DamageType(name("crystalline_infection"), 0.1F));
+		context.register(WILT, new DamageType(name("wilt"), 0.1F));
 		context.register(GROUND_SMASH, new DamageType(name("ground_smash"), 0.1F));
 		context.register(SHATTERED_BLADE, new DamageType(name("shattered_blade"), 0.1F));
 		context.register(SONAR, new DamageType(name("sonar"), 0.1F));

@@ -155,7 +155,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(Tags.Items.TOOLS_CROSSBOW).add(
 			ESItems.CRYSTAL_CROSSBOW.get(),
-			ESItems.MECHANICAL_CROSSBOW.get()
+			ESItems.MECHANICAL_CROSSBOW.get(),
+			ESItems.WILTED_CROSSBOW.get()
 		);
 		tag(Tags.Items.TOOLS_SPEAR).add(
 			ESItems.CRESCENT_SPEAR.get()
@@ -182,6 +183,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
+			ESItems.WILTED_CROSSBOW.get(),
 			ESItems.MOONRING_BOW.get(),
 			ESItems.CRESCENT_SPEAR.get()
 		);
@@ -568,6 +570,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.SALTPETER_MATCHBOX.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
+			ESItems.WILTED_CROSSBOW.get(),
 			ESItems.MOONRING_BOW.get(),
 			ESItems.WAND_OF_TELEPORTATION.get(),
 			ESItems.CHAIN_OF_SOULS.get(),
@@ -583,7 +586,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ItemTags.CROSSBOW_ENCHANTABLE).add(
 			ESItems.CRYSTAL_CROSSBOW.get(),
-			ESItems.MECHANICAL_CROSSBOW.get()
+			ESItems.MECHANICAL_CROSSBOW.get(),
+			ESItems.WILTED_CROSSBOW.get()
 		);
 		tag(ItemTags.SWORD_ENCHANTABLE).add(
 			ESItems.CRESCENT_SPEAR.get()

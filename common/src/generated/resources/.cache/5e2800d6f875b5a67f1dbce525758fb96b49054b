@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-12T17:10:32.7452301	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-01-22T20:20:56.4327555	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -80,11 +80,11 @@ c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethers
 011f65485287b28ec07eb944a78ae892551fd096 data/c/tags/item/stripped_logs.json
 6446fd1e678a8450873ee2018cdcefcf877768a8 data/c/tags/item/stripped_woods.json
 c3d226738f5244eb9b6c48888bf9f58d7c20b7e1 data/c/tags/item/tools/bow.json
-73e0127140563bac2e802feeb28acbf24cd5520f data/c/tags/item/tools/crossbow.json
+a5985824349ab96508bc6c94bdd5f96abebb3e32 data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json
 d1cf9ee9e7ce47ad383a084bbdddc5d954448401 data/c/tags/item/tools/melee_weapon.json
 fdb0f1d47ea27eed563afaded8be69c89fc5c9f0 data/c/tags/item/tools/mining_tool.json
-701db7be0d8e1a5f4ba8e661e1849307da1c7f53 data/c/tags/item/tools/ranged_weapon.json
+111f981978db99512a4158fdfff4bfcd84fc1176 data/c/tags/item/tools/ranged_weapon.json
 7de9617000473e9e307ca001cd1ecff23381eb6a data/c/tags/item/tools/shield.json
 9a37bfbf4d800fa6a3324e50af7de1e5abbad1c9 data/c/tags/item/tools/spear.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
@@ -141,8 +141,8 @@ aba78eb11c95af4451d6320be05990a305070575 data/minecraft/tags/item/boats.json
 ee5e5f2dd7485a1da730d6f240bad3002e850178 data/minecraft/tags/item/chest_boats.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 93df719972975c8da4fce2a4b265aa8fde65b202 data/minecraft/tags/item/enchantable/bow.json
-73e0127140563bac2e802feeb28acbf24cd5520f data/minecraft/tags/item/enchantable/crossbow.json
-0c8f7299714d164386a347ab6cf12b00f3f624af data/minecraft/tags/item/enchantable/durability.json
+a5985824349ab96508bc6c94bdd5f96abebb3e32 data/minecraft/tags/item/enchantable/crossbow.json
+ec8c44d83e7a301bc19bbc9ce83adde9b33a0888 data/minecraft/tags/item/enchantable/durability.json
 80eaa797ae58fcdb34c449d664e93d7f5ebfbbbe data/minecraft/tags/item/enchantable/fire_aspect.json
 b3cddbfdf578fe8cacdc142e853b2c4445171ec3 data/minecraft/tags/item/enchantable/sharp_weapon.json
 9a37bfbf4d800fa6a3324e50af7de1e5abbad1c9 data/minecraft/tags/item/enchantable/sword.json

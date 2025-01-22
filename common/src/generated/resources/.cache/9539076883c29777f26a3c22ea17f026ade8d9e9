@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-21T22:40:03.9827879	Item Models: eternal_starlight
+// 1.21.1	2025-01-22T20:20:56.3850621	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -836,6 +836,12 @@ ddd3d94feb218419c6033553ca8dec1d38aa2676 assets/eternal_starlight/models/item/vo
 286abbc5fff033749189a0513c90b70cdf4dc9d0 assets/eternal_starlight/models/item/white_yeti_fur.json
 808bec8fd8a36895952da37d07d4d86344b8587d assets/eternal_starlight/models/item/white_yeti_fur_carpet.json
 ed0315103d0e5ba708da93b8f177de2d75dac43d assets/eternal_starlight/models/item/wick_grass.json
+b2dd415e45c4bb4882d2969746e09daaf6bfb848 assets/eternal_starlight/models/item/wilted_crossbow.json
+3cc1721eb04b9a171dac1a2bf8b204f115491ee1 assets/eternal_starlight/models/item/wilted_crossbow_arrow.json
+90be4582e3eeeb9d8bf7f52ca194bbd7eb4034bb assets/eternal_starlight/models/item/wilted_crossbow_firework.json
+2fecab16b40891638a4b5a5001e6da9990f75508 assets/eternal_starlight/models/item/wilted_crossbow_pulling_0.json
+b87711727dc820fe86433660d7d1c71c7b0c6bd7 assets/eternal_starlight/models/item/wilted_crossbow_pulling_1.json
+95ff38dbbe1b4944b670d5038c3f4ead8ecb97cf assets/eternal_starlight/models/item/wilted_crossbow_pulling_2.json
 98760e36b9809d3db38f8f61f063fa4de36dab6a assets/eternal_starlight/models/item/wind_crystal.json
 d0a441abe739bfcd1e8bb21efa6d89e7630363bf assets/eternal_starlight/models/item/withered_desert_amethysia.json
 f99791169149e4e0f2cee85fba35187d89082e7a assets/eternal_starlight/models/item/withered_starlight_flower.json
