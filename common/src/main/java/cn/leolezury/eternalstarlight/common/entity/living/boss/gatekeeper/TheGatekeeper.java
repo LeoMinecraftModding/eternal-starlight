@@ -311,7 +311,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
-		if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && getTradingPlayer() == null && getTarget() == null && getFightTarget().isEmpty()) {
+		if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && getTradingPlayer() == null && !isActivated() && getTarget() == null && getFightTarget().isEmpty()) {
 			AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
 			boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
 			boolean challenged = isPlayerPermitted(serverPlayer);
@@ -329,7 +329,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 						hasBook = true;
 					}
 				}
-				;
 			}
 			if (!challenged) {
 				if (killed) {
@@ -356,7 +355,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				this.openTradingScreen(serverPlayer, this.getDisplayName(), 1);
 			}
 		}
-		return InteractionResult.sidedSuccess(level().isClientSide);
+		return isActivated() ? InteractionResult.PASS : InteractionResult.sidedSuccess(level().isClientSide);
 	}
 
 	private void permitPlayer(ServerPlayer player) {
@@ -503,6 +502,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (tickCount % 5 == 0 && !isActivated()) {
 			bossEvent.allConvertToUnseen();
 		}
+		refreshDimensions();
 		if (!level().isClientSide) {
 			if (isAlive() && tickCount % 5 == 0 && (getTarget() == null || !getTarget().isAlive())) {
 				setHealth(getMaxHealth());
@@ -521,6 +521,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				setTradingPlayer(null);
 			}
 			setCustomName(Component.literal(gatekeeperName));
+			setCustomNameVisible(true);
 			if (isLeftHanded()) {
 				setLeftHanded(false);
 			}
@@ -534,6 +535,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			idleAnimationState.startIfStopped(tickCount);
 			level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
 		}
+	}
+
+	@Override
+	protected EntityDimensions getDefaultDimensions(Pose pose) {
+		EntityDimensions dimensions = super.getDefaultDimensions(pose);
+		return isActivated() ? dimensions : dimensions.scale(1, 0.7f);
 	}
 
 	@Override
