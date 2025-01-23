@@ -35,7 +35,7 @@ public abstract class CrossbowItemMixin {
 			Projectile projectile = cir.getReturnValue();
 			ESEntityUtil.getPersistentData(projectile).putBoolean(CommonHandlers.TAG_WILTED_ARROW, true);
 			if (projectile instanceof AbstractArrow arrow) {
-				arrow.setBaseDamage(arrow.getBaseDamage() + 8);
+				arrow.setBaseDamage(arrow.getBaseDamage() + 1);
 			}
 			cir.setReturnValue(projectile);
 		}

@@ -56,8 +56,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		multifaceBlock(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get());
 		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
-		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get()));
-		carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get()));
+		randomlyFlippedBlock(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
+		randomlyFlippedBlock(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
+		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get()));
+		carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()));
 
 		cross(ESBlocks.JINGLING_PICKLE.get());
 		cross(ESBlocks.DEAD_TENTACLES_CORAL.get());
@@ -131,7 +133,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		campfire(ESBlocks.TORREYA_CAMPFIRE.get());
 
 		// stones
-		stone(ESBlocks.GRIMSTONE.get());
+		randomlyFlippedBlock(ESBlocks.GRIMSTONE.get());
 		simpleBlock(ESBlocks.CHISELED_GRIMSTONE.get());
 		stoneSet(ESBlocks.COBBLED_GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), ESBlocks.COBBLED_GRIMSTONE_STAIRS.get(), ESBlocks.COBBLED_GRIMSTONE_WALL.get());
 		stoneSet(ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICK_SLAB.get(), ESBlocks.GRIMSTONE_BRICK_STAIRS.get(), ESBlocks.GRIMSTONE_BRICK_WALL.get());
@@ -139,7 +141,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILE_WALL.get());
 		simpleBlock(ESBlocks.GLOWING_GRIMSTONE.get());
 
-		stone(ESBlocks.VOIDSTONE.get());
+		randomlyFlippedBlock(ESBlocks.VOIDSTONE.get());
 		simpleBlock(ESBlocks.CHISELED_VOIDSTONE.get());
 		stoneSet(ESBlocks.COBBLED_VOIDSTONE.get(), ESBlocks.COBBLED_VOIDSTONE_SLAB.get(), ESBlocks.COBBLED_VOIDSTONE_STAIRS.get(), ESBlocks.COBBLED_VOIDSTONE_WALL.get());
 		stoneSet(ESBlocks.VOIDSTONE_BRICKS.get(), ESBlocks.VOIDSTONE_BRICK_SLAB.get(), ESBlocks.VOIDSTONE_BRICK_STAIRS.get(), ESBlocks.VOIDSTONE_BRICK_WALL.get());
@@ -887,7 +889,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.rotationY(90).modelFile(modelFile).build());
 	}
 
-	private void stone(Block stone) {
+	private void randomlyFlippedBlock(Block stone) {
 		ModelFile normal = models().cubeAll(name(stone), blockTexture(stone));
 		ModelFile mirrored = models().singleTexture(name(stone) + "_mirrored", ResourceLocation.withDefaultNamespace("block/cube_mirrored_all"), "all", blockTexture(stone));
 		getVariantBuilder(stone).forAllStates(state -> ConfiguredModel.builder()

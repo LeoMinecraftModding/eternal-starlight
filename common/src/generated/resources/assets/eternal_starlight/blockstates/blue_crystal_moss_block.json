@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eternal_starlight:block/blue_crystal_moss_block"
+      },
+      {
+        "model": "eternal_starlight:block/blue_crystal_moss_block_mirrored"
+      },
+      {
+        "model": "eternal_starlight:block/blue_crystal_moss_block",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/blue_crystal_moss_block_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

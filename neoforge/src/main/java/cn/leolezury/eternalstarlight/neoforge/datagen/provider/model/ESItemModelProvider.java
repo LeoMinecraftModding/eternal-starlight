@@ -57,6 +57,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR.get());
 		flatBlockTexture(ESItems.RED_CRYSTALFLEUR_VINE.get());
 		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR_VINE.get());
+		block(ESItems.RED_CRYSTAL_MOSS_BLOCK.get());
+		block(ESItems.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		block(ESItems.RED_CRYSTAL_MOSS_CARPET.get());
 		block(ESItems.BLUE_CRYSTAL_MOSS_CARPET.get());
 		basicItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get());

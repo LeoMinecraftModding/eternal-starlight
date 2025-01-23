@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-22T20:20:56.4327555	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-01-23T16:54:09.5547658	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -91,7 +91,7 @@ fdb0f1d47ea27eed563afaded8be69c89fc5c9f0 data/c/tags/item/tools/mining_tool.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 f211a2cd76e55fe185b298a1a6775abd132682fe data/eternal_starlight/tags/item/blaze_crystal_ingredients.json
 82edd6d1ec8e7fe75b955b3a41a45d38cc77c262 data/eternal_starlight/tags/item/crystallized_moth_food.json
-81070641997d61840abb58667edf77b30a861975 data/eternal_starlight/tags/item/cursed_garden_locators.json
+9e30ab5baa5ff87ae69c54fd4f93fb59db05a5da data/eternal_starlight/tags/item/cursed_garden_locators.json
 906f30c32225bfcbe3919fd593cfe0fc0cc21230 data/eternal_starlight/tags/item/doomeden_keys.json
 c7ae886b0814b7a913208d29c0a878557a41e93c data/eternal_starlight/tags/item/enchantable/chain_of_souls.json
 c2cb73b073f520ea3dac111e2f5d496f013fcc15 data/eternal_starlight/tags/item/enchantable/greatsword.json

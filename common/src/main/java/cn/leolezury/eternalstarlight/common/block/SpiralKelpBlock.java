@@ -1,14 +1,17 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -68,5 +71,17 @@ public class SpiralKelpBlock extends GrowingPlantHeadBlock implements LiquidBloc
 	@Override
 	public FluidState getFluidState(BlockState blockState) {
 		return Fluids.WATER.getSource(false);
+	}
+
+	@Override
+	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+		super.animateTick(blockState, level, blockPos, randomSource);
+		if (randomSource.nextInt(10) == 0) {
+			BlockPos blockPos2 = blockPos.below();
+			BlockState blockState2 = level.getBlockState(blockPos2);
+			if (!isFaceFull(blockState2.getCollisionShape(level, blockPos2), Direction.UP)) {
+				ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, ESParticles.SPIRAL_KELP_LEAVES.get());
+			}
+		}
 	}
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:blue_crystal_roots"
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:blue_crystal_moss_carpet"
+          },
+          "weight": 25
+        }
+      ]
+    }
+  }
+}

@@ -77,6 +77,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR = registerItem("blue_crystalfleur", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_CRYSTALFLEUR_VINE = registerItem("red_crystalfleur_vine", () -> new BlockItem(ESBlocks.RED_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR_VINE = registerItem("blue_crystalfleur_vine", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_BLOCK = registerItem("red_crystal_moss_block", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_BLOCK = registerItem("blue_crystal_moss_block", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_CARPET = registerItem("red_crystal_moss_carpet", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_CARPET = registerItem("blue_crystal_moss_carpet", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_SHARD = registerItem("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));

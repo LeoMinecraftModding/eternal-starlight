@@ -372,6 +372,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.VINE,
 			ESItems.CAVE_MOSS.get(),
 			ESItems.LUNAR_BERRIES.get(),
+			ESItems.RED_CRYSTAL_MOSS_BLOCK.get(),
+			ESItems.BLUE_CRYSTAL_MOSS_BLOCK.get(),
 			ESItems.RED_CRYSTAL_MOSS_CARPET.get(),
 			ESItems.BLUE_CRYSTAL_MOSS_CARPET.get(),
 			ESItems.RED_CRYSTAL_ROOTS.get(),

@@ -82,6 +82,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		dropSelf(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
 
+		dropSelf(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
+		dropSelf(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		dropSelf(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get());
 		dropSelf(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get());
 

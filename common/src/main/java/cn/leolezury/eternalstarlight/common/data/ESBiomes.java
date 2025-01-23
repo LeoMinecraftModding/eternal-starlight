@@ -291,6 +291,8 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DEAD_LUNAR_TREE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.LUNARIS_CACTUS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CRYSTAL_CAVES_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.RED_CRYSTAL_MOSS_PATCH);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BLUE_CRYSTAL_MOSS_PATCH);
 
 		return builder;
 	}

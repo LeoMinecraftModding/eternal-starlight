@@ -61,7 +61,9 @@
       "eternal_starlight:desert_vegetation",
       "eternal_starlight:dead_lunar_tree",
       "eternal_starlight:lunaris_cactus",
-      "eternal_starlight:crystal_caves_vegetation"
+      "eternal_starlight:crystal_caves_vegetation",
+      "eternal_starlight:red_crystal_moss_patch",
+      "eternal_starlight:blue_crystal_moss_patch"
     ],
     [
       "minecraft:freeze_top_layer",

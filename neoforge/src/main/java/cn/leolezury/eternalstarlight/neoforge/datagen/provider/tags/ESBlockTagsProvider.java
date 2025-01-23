@@ -777,7 +777,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NIGHTFALL_PODZOL.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.GOLDEN_GRASS_BLOCK.get(),
-			ESBlocks.FANTASY_GRASS_BLOCK.get()
+			ESBlocks.FANTASY_GRASS_BLOCK.get(),
+			ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(),
+			ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()
 		);
 		tag(BlockTags.SAND).add(
 			ESBlocks.TWILIGHT_SAND.get()
@@ -796,11 +798,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.DRAGON_IMMUNE).add(
 			ESBlocks.ENERGY_BLOCK.get()
 		);
-		tag(BlockTags.MOSS_REPLACEABLE).add(
-			ESBlocks.GRIMSTONE.get(),
-			ESBlocks.VOIDSTONE.get()
-		);
-
+		tag(BlockTags.MOSS_REPLACEABLE).addTag(ESTags.Blocks.BASE_STONE_STARLIGHT);
 		// mc tools stuff
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
 			ESBlocks.RAW_AETHERSENT_BLOCK.get(),
@@ -1095,6 +1093,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.FANTASY_GRASS_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_ORE.get(),
 			ESBlocks.ASHEN_SNOW.get()
+		);
+		tag(BlockTags.MINEABLE_WITH_HOE).add(
+			ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(),
+			ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()
 		);
 		tag(BlockTags.SWORD_EFFICIENT).add(
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
