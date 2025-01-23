@@ -182,6 +182,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 
 		// misc
+		customCarpet(recipeOutput, ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
+		customCarpet(recipeOutput, ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		addShapeless(recipeOutput, ESItems.VELVETUMOSS_BALL.get(), Items.SLIME_BALL, 2, ESItems.VELVETUMOSS_BALL.get());
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
 		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
