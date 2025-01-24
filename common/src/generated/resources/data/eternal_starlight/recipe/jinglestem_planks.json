@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "eternal_starlight:jinglestem_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:jinglestem_planks"
+  }
+}

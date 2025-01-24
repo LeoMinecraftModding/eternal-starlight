@@ -9,18 +9,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-
-import java.util.function.BiFunction;
 
 public class SpheroidFoliagePlacer extends FoliagePlacer {
 	public static final MapCodec<SpheroidFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> foliagePlacerParts(instance).apply(instance, SpheroidFoliagePlacer::new));
-
-	public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 
 	public SpheroidFoliagePlacer(IntProvider horizontalRadius, IntProvider yOffset) {
 		super(horizontalRadius, yOffset);
@@ -31,32 +25,29 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
 		return ESTreePlacers.FOLIAGE_SPHEROID.get();
 	}
 
-	public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {
-		if (predicate.apply(level, pos)) {
-			setter.set(pos, config.getState(random, pos));
-		}
-		for (Direction direction : Direction.values()) {
-			if (random.nextInt(5) == 0) {
-				if (predicate.apply(level, pos.relative(direction))) {
-					setter.set(pos.relative(direction), config.getState(random, pos.relative(direction)));
+	protected static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, RandomSource random, TreeConfiguration configuration, BlockPos pos) {
+		if (tryPlaceLeaf(level, setter, random, configuration, pos)) {
+			for (Direction direction : Direction.values()) {
+				if (random.nextInt(5) == 0) {
+					tryPlaceLeaf(level, setter, random, configuration, pos.relative(direction));
 				}
 			}
 		}
 	}
 
-	public static void placeSpheroidFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, RandomSource random, BlockPos centerPos, float xzRadius, float yRadius, BlockStateProvider provider) {
+	public static void placeSpheroidFoliage(LevelSimulatedReader level, FoliageSetter setter, TreeConfiguration configuration, RandomSource random, BlockPos centerPos, float xzRadius, float yRadius) {
 		for (int x = 0; x <= xzRadius; x++) {
 			for (int z = 0; z <= xzRadius; z++) {
 				for (int y = 0; y <= yRadius; y++) {
 					if (ESMathUtil.isPointInEllipsoid(x, y, z, xzRadius, yRadius, xzRadius)) {
-						placeFoliage(level, setter, predicate, centerPos.offset(x, y, z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(x, -y, z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(-x, y, z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(-x, -y, z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(x, y, -z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(x, -y, -z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(-x, y, -z), provider, random);
-						placeFoliage(level, setter, predicate, centerPos.offset(-x, -y, -z), provider, random);
+						placeFoliage(level, setter, random, configuration, centerPos.offset(x, y, z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(x, -y, z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(-x, y, z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(-x, -y, z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(x, y, -z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(x, -y, -z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(-x, y, -z));
+						placeFoliage(level, setter, random, configuration, centerPos.offset(-x, -y, -z));
 					}
 				}
 			}
@@ -64,9 +55,9 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration baseTreeFeatureConfig, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
+	protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration configuration, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
 		BlockPos center = foliage.pos().above(offset);
-		placeSpheroidFoliage(levelReader, setter, VALID_TREE_POS, random, center, foliage.radiusOffset() + this.radius.sample(random), foliage.radiusOffset() + 1.5F + random.nextInt(2), baseTreeFeatureConfig.foliageProvider);
+		placeSpheroidFoliage(levelReader, setter, configuration, random, center, foliage.radiusOffset() + this.radius.sample(random), foliage.radiusOffset() + 1.5F + random.nextInt(2));
 	}
 
 	@Override

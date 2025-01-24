@@ -421,6 +421,21 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('S', Tags.Items.RODS_WOODEN)
 			.define('A', ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER)
 			.unlockedBy("has_stick", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_fuel", has(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER)).save(recipeOutput);
+
+		addButton(recipeOutput, ESBlocks.JINGLESTEM_BUTTON.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addDoor(recipeOutput, ESBlocks.JINGLESTEM_DOOR.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addFence(recipeOutput, ESBlocks.JINGLESTEM_FENCE.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addFenceGate(recipeOutput, ESBlocks.JINGLESTEM_FENCE_GATE.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addPlanks(recipeOutput, ESBlocks.JINGLESTEM_PLANKS.get(), ESTags.Items.JINGLESTEM_LOGS);
+		addWood(recipeOutput, ESBlocks.JINGLESTEM_WOOD.get(), ESBlocks.JINGLESTEM_LOG.get());
+		addStrippedWood(recipeOutput, ESBlocks.STRIPPED_JINGLESTEM_WOOD.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get());
+		addPressurePlate(recipeOutput, ESBlocks.JINGLESTEM_PRESSURE_PLATE.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addSlab(recipeOutput, ESBlocks.JINGLESTEM_SLAB.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addStairs(recipeOutput, ESBlocks.JINGLESTEM_STAIRS.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addTrapdoor(recipeOutput, ESBlocks.JINGLESTEM_TRAPDOOR.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addSign(recipeOutput, ESItems.JINGLESTEM_SIGN.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		hangingSign(recipeOutput, ESItems.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get());
+		addBoat(recipeOutput, ESItems.JINGLESTEM_RAFT.get(), ESItems.JINGLESTEM_CHEST_RAFT.get(), ESBlocks.JINGLESTEM_PLANKS.get());
 	}
 
 	private void stonecuttingSet(RecipeOutput recipeOutput, ItemLike slab, ItemLike stairs, ItemLike wall, ItemLike source) {

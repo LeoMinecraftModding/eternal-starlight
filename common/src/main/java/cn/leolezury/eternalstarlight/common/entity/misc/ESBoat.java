@@ -7,11 +7,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
 
 public class ESBoat extends Boat {
 	private static final String TAG_TYPE = "type";
@@ -43,7 +46,17 @@ public class ESBoat extends Boat {
 			case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_BOAT.get();
 			case SCARLET -> ESItems.SCARLET_BOAT.get();
 			case TORREYA -> ESItems.TORREYA_BOAT.get();
+			case JINGLESTEM -> ESItems.JINGLESTEM_RAFT.get();
 		};
+	}
+
+	@Override
+	protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions entityDimensions, float f) {
+		Vec3 point = super.getPassengerAttachmentPoint(entity, entityDimensions, f);
+		if (getESBoatType() == Type.JINGLESTEM) {
+			return new Vec3(point.x, point.y / 3.0 * 8.0, point.z);
+		}
+		return point;
 	}
 
 	public void setStarlightBoatType(ESBoat.Type boatType) {
@@ -73,7 +86,8 @@ public class ESBoat extends Boat {
 		NORTHLAND(ESBlocks.NORTHLAND_PLANKS.get(), "northland"),
 		STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
 		SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
-		TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya");
+		TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya"),
+		JINGLESTEM(ESBlocks.JINGLESTEM_PLANKS.get(), "jinglestem");
 
 		private final String name;
 		private final Block block;

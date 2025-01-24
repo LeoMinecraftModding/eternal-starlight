@@ -45,10 +45,7 @@ import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.HumanoidArmorModel;
-import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -140,6 +137,8 @@ public class ClientSetupHandlers {
 		ESBlocks.SCARLET_LEAVES,
 		ESBlocks.SCARLET_LEAVES_PILE,
 		ESBlocks.TORREYA_LEAVES,
+		ESBlocks.JINGLESTEM_LEAVES,
+		ESBlocks.JINGLESTEM_LEAVES_PLANT,
 		ESBlocks.GOLEM_STEEL_BARS,
 		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS
 	);
@@ -204,6 +203,10 @@ public class ClientSetupHandlers {
 		ESBlocks.TORREYA_VINES,
 		ESBlocks.TORREYA_VINES_PLANT,
 		ESBlocks.TORREYA_CAMPFIRE,
+		ESBlocks.JINGLESTEM_SAPLING,
+		ESBlocks.POTTED_JINGLESTEM_SAPLING,
+		ESBlocks.JINGLESTEM_TRAPDOOR,
+		ESBlocks.JINGLESTEM_DOOR,
 		ESBlocks.ICICLE,
 		ESBlocks.ABYSSAL_FIRE,
 		ESBlocks.AMARAMBER_FIRE,
@@ -723,6 +726,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.TORREYA), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.TORREYA), ChestBoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.JINGLESTEM), RaftModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.JINGLESTEM), ChestRaftModel::createBodyModel);
 		strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
 		strategy.register(BoarwarfBlacksmithModel.LAYER_LOCATION, BoarwarfBlacksmithModel::createBodyLayer);
 		strategy.register(BoarwarfChefModel.LAYER_LOCATION, BoarwarfChefModel::createBodyLayer);

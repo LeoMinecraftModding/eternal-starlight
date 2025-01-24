@@ -132,6 +132,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		torreyaVines(ESBlocks.TORREYA_VINES_PLANT.get());
 		campfire(ESBlocks.TORREYA_CAMPFIRE.get());
 
+		cross(ESBlocks.JINGLESTEM_LEAVES.get());
+		cross(ESBlocks.JINGLESTEM_LEAVES_PLANT.get(), blockTexture(ESBlocks.JINGLESTEM_LEAVES.get()), CUTOUT);
+		woodSet(ESBlocks.JINGLESTEM_LOG.get(), ESBlocks.JINGLESTEM_WOOD.get(), ESBlocks.JINGLESTEM_PLANKS.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get(), ESBlocks.STRIPPED_JINGLESTEM_WOOD.get(), ESBlocks.JINGLESTEM_DOOR.get(), true, ESBlocks.JINGLESTEM_TRAPDOOR.get(), true, ESBlocks.JINGLESTEM_PRESSURE_PLATE.get(), ESBlocks.JINGLESTEM_BUTTON.get(), ESBlocks.JINGLESTEM_FENCE.get(), ESBlocks.JINGLESTEM_FENCE_GATE.get(), ESBlocks.JINGLESTEM_SLAB.get(), ESBlocks.JINGLESTEM_STAIRS.get(), ESBlocks.JINGLESTEM_SIGN.get(), ESBlocks.JINGLESTEM_WALL_SIGN.get(), ESBlocks.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get());
+		cross(ESBlocks.JINGLESTEM_SAPLING.get());
+		pottedPlant(ESBlocks.POTTED_JINGLESTEM_SAPLING.get(), blockTexture(ESBlocks.JINGLESTEM_SAPLING.get()));
+
 		// stones
 		randomlyFlippedBlock(ESBlocks.GRIMSTONE.get());
 		simpleBlock(ESBlocks.CHISELED_GRIMSTONE.get());

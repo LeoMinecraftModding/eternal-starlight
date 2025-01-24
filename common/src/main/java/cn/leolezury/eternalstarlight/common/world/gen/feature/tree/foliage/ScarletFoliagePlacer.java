@@ -9,18 +9,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-
-import java.util.function.BiFunction;
 
 public class ScarletFoliagePlacer extends FoliagePlacer {
 	public static final MapCodec<ScarletFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> foliagePlacerParts(instance).apply(instance, ScarletFoliagePlacer::new));
-
-	public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 
 	public ScarletFoliagePlacer(IntProvider horizontalRadius, IntProvider yOffset) {
 		super(horizontalRadius, yOffset);
@@ -31,13 +25,7 @@ public class ScarletFoliagePlacer extends FoliagePlacer {
 		return ESTreePlacers.FOLIAGE_SCARLET.get();
 	}
 
-	public static void placeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, RandomSource random) {
-		if (predicate.apply(level, pos)) {
-			setter.set(pos, config.getState(random, pos));
-		}
-	}
-
-	public static void placeSpikeFoliage(LevelSimulatedReader level, FoliageSetter setter, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, RandomSource random, BlockPos centerPos, int xzRadius, int height, BlockStateProvider provider) {
+	public static void placeSpikeFoliage(LevelSimulatedReader level, FoliageSetter setter, TreeConfiguration configuration, RandomSource random, BlockPos centerPos, int xzRadius, int height) {
 		for (int y = 0; y >= -height; y--) {
 			int radius = Mth.lerpInt((float) y / height, xzRadius, 0);
 			int radiusNext = Mth.lerpInt((float) (y - 1) / height, xzRadius, 0);
@@ -47,10 +35,10 @@ public class ScarletFoliagePlacer extends FoliagePlacer {
 			for (int x = -radius; x <= radius; x++) {
 				for (int z = -radius; z <= radius; z++) {
 					if (x * x + z * z <= radius * radius) {
-						placeFoliage(level, setter, VALID_TREE_POS, centerPos.offset(x, y, z), provider, random);
+						tryPlaceLeaf(level, setter, random, configuration, centerPos.offset(x, y, z));
 						for (Direction direction : Direction.values()) {
 							if (random.nextInt(5) == 0) {
-								placeFoliage(level, setter, VALID_TREE_POS, centerPos.offset(x, y, z).relative(direction), provider, random);
+								tryPlaceLeaf(level, setter, random, configuration, centerPos.offset(x, y, z).relative(direction));
 							}
 						}
 					}
@@ -60,11 +48,11 @@ public class ScarletFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration baseTreeFeatureConfig, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
+	protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration configuration, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
 		BlockPos center = foliage.pos().above(offset);
 		int xzRadius = foliage.radiusOffset() + this.radius.sample(random);
 		int height = (int) (xzRadius * 2.4);
-		placeSpikeFoliage(levelReader, setter, VALID_TREE_POS, random, center, xzRadius, height, baseTreeFeatureConfig.foliageProvider);
+		placeSpikeFoliage(levelReader, setter, configuration, random, center, xzRadius, height);
 	}
 
 	@Override

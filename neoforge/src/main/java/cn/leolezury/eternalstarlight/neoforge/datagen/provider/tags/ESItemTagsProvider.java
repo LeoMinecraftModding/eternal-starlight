@@ -261,6 +261,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESTags.Blocks.STARLIGHT_MANGROVE_LOGS, ESTags.Items.STARLIGHT_MANGROVE_LOGS);
 		copy(ESTags.Blocks.SCARLET_LOGS, ESTags.Items.SCARLET_LOGS);
 		copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
+		copy(ESTags.Blocks.JINGLESTEM_LOGS, ESTags.Items.JINGLESTEM_LOGS);
 		copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
 		copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
 		copy(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS, ESTags.Items.TOOTH_OF_HUNGER_BLOCKS);
@@ -607,14 +608,16 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.NORTHLAND_BOAT.get(),
 			ESItems.STARLIGHT_MANGROVE_BOAT.get(),
 			ESItems.SCARLET_BOAT.get(),
-			ESItems.TORREYA_BOAT.get()
+			ESItems.TORREYA_BOAT.get(),
+			ESItems.JINGLESTEM_RAFT.get()
 		);
 		tag(ItemTags.CHEST_BOATS).add(
 			ESItems.LUNAR_CHEST_BOAT.get(),
 			ESItems.NORTHLAND_CHEST_BOAT.get(),
 			ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(),
 			ESItems.SCARLET_CHEST_BOAT.get(),
-			ESItems.TORREYA_CHEST_BOAT.get()
+			ESItems.TORREYA_CHEST_BOAT.get(),
+			ESItems.JINGLESTEM_CHEST_RAFT.get()
 		);
 		tag(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
 			ESItems.THERMAL_SPRINGSTONE_HELMET.get(),

@@ -233,6 +233,27 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TORREYA_VINES = registerItem("torreya_vines", () -> new BlockItem(ESBlocks.TORREYA_VINES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TORREYA_CAMPFIRE = registerItem("torreya_campfire", () -> new BlockItem(ESBlocks.TORREYA_CAMPFIRE.get(), new Item.Properties().stacksTo(1)));
 
+	// jinglestem wood
+	public static final RegistryObject<Item, Item> JINGLESTEM_SAPLING = registerItem("jinglestem_sapling", () -> new BlockItem(ESBlocks.JINGLESTEM_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_LEAVES = registerItem("jinglestem_leaves", () -> new BlockItem(ESBlocks.JINGLESTEM_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_LOG = registerItem("jinglestem_log", () -> new BlockItem(ESBlocks.JINGLESTEM_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_WOOD = registerItem("jinglestem_wood", () -> new BlockItem(ESBlocks.JINGLESTEM_WOOD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_PLANKS = registerItem("jinglestem_planks", () -> new BlockItem(ESBlocks.JINGLESTEM_PLANKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STRIPPED_JINGLESTEM_LOG = registerItem("stripped_jinglestem_log", () -> new BlockItem(ESBlocks.STRIPPED_JINGLESTEM_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STRIPPED_JINGLESTEM_WOOD = registerItem("stripped_jinglestem_wood", () -> new BlockItem(ESBlocks.STRIPPED_JINGLESTEM_WOOD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_DOOR = registerItem("jinglestem_door", () -> new BlockItem(ESBlocks.JINGLESTEM_DOOR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_TRAPDOOR = registerItem("jinglestem_trapdoor", () -> new BlockItem(ESBlocks.JINGLESTEM_TRAPDOOR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_PRESSURE_PLATE = registerItem("jinglestem_pressure_plate", () -> new BlockItem(ESBlocks.JINGLESTEM_PRESSURE_PLATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_BUTTON = registerItem("jinglestem_button", () -> new BlockItem(ESBlocks.JINGLESTEM_BUTTON.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_FENCE = registerItem("jinglestem_fence", () -> new BlockItem(ESBlocks.JINGLESTEM_FENCE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_FENCE_GATE = registerItem("jinglestem_fence_gate", () -> new BlockItem(ESBlocks.JINGLESTEM_FENCE_GATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_SLAB = registerItem("jinglestem_slab", () -> new BlockItem(ESBlocks.JINGLESTEM_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_STAIRS = registerItem("jinglestem_stairs", () -> new BlockItem(ESBlocks.JINGLESTEM_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_SIGN = registerItem("jinglestem_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.JINGLESTEM_SIGN.get(), ESBlocks.JINGLESTEM_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_HANGING_SIGN = registerItem("jinglestem_hanging_sign", () -> new HangingSignItem(ESBlocks.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item, Item> JINGLESTEM_RAFT = registerItem("jinglestem_raft", () -> new ESBoatItem(false, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> JINGLESTEM_CHEST_RAFT = registerItem("jinglestem_chest_raft", () -> new ESBoatItem(true, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
+
 	// grimstone
 	public static final RegistryObject<Item, Item> GRIMSTONE = registerItem("grimstone", () -> new BlockItem(ESBlocks.GRIMSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> COBBLED_GRIMSTONE = registerItem("cobbled_grimstone", () -> new BlockItem(ESBlocks.COBBLED_GRIMSTONE.get(), new Item.Properties()));

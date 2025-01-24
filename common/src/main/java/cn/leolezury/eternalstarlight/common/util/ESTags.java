@@ -22,6 +22,7 @@ public class ESTags {
 		public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
 		public static final TagKey<Item> SCARLET_LOGS = create("scarlet_logs");
 		public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
+		public static final TagKey<Item> JINGLESTEM_LOGS = create("jinglestem_logs");
 		public static final TagKey<Item> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Item> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Item> TOOTH_OF_HUNGER_BLOCKS = create("tooth_of_hunger_blocks");
@@ -75,6 +76,7 @@ public class ESTags {
 		public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
 		public static final TagKey<Block> SCARLET_LOGS = create("scarlet_logs");
 		public static final TagKey<Block> TORREYA_LOGS = create("torreya_logs");
+		public static final TagKey<Block> JINGLESTEM_LOGS = create("jinglestem_logs");
 		public static final TagKey<Block> PORTAL_FRAME_BLOCKS = create("portal_frame_blocks");
 		public static final TagKey<Block> BASE_STONE_STARLIGHT = create("base_stone_starlight");
 		public static final TagKey<Block> STARLIGHT_CARVER_REPLACEABLES = create("starlight_carver_replaceables");

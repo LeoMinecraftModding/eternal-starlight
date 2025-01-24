@@ -209,6 +209,26 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.TORREYA_VINES.get());
 		basicItem(ESItems.TORREYA_CAMPFIRE.get());
 
+		flatBlockTexture(ESItems.JINGLESTEM_SAPLING.get());
+		flatBlockTexture(ESItems.JINGLESTEM_LEAVES.get());
+		block(ESItems.JINGLESTEM_LOG.get());
+		block(ESItems.JINGLESTEM_WOOD.get());
+		block(ESItems.JINGLESTEM_PLANKS.get());
+		block(ESItems.STRIPPED_JINGLESTEM_LOG.get());
+		block(ESItems.STRIPPED_JINGLESTEM_WOOD.get());
+		basicItem(ESItems.JINGLESTEM_DOOR.get());
+		trapdoor(ESItems.JINGLESTEM_TRAPDOOR.get());
+		block(ESItems.JINGLESTEM_PRESSURE_PLATE.get());
+		button(ESItems.JINGLESTEM_BUTTON.get(), ESItems.JINGLESTEM_PLANKS.get());
+		fence(ESItems.JINGLESTEM_FENCE.get(), ESItems.JINGLESTEM_PLANKS.get());
+		block(ESItems.JINGLESTEM_FENCE_GATE.get());
+		block(ESItems.JINGLESTEM_SLAB.get());
+		block(ESItems.JINGLESTEM_STAIRS.get());
+		basicItem(ESItems.JINGLESTEM_SIGN.get());
+		basicItem(ESItems.JINGLESTEM_HANGING_SIGN.get());
+		basicItem(ESItems.JINGLESTEM_RAFT.get());
+		basicItem(ESItems.JINGLESTEM_CHEST_RAFT.get());
+
 		block(ESItems.GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE_SLAB.get());

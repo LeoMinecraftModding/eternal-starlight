@@ -1,0 +1,86 @@
+package cn.leolezury.eternalstarlight.common.block;
+
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+
+public class JinglestemLeavesBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
+	public static final MapCodec<JinglestemLeavesBlock> CODEC = simpleCodec(JinglestemLeavesBlock::new);
+	public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+
+	public JinglestemLeavesBlock(Properties properties) {
+		super(properties, Direction.DOWN, SHAPE, false, 0.02);
+	}
+
+	@Override
+	protected MapCodec<JinglestemLeavesBlock> codec() {
+		return CODEC;
+	}
+
+	@Override
+	protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
+		return 1;
+	}
+
+	@Override
+	protected boolean canGrowInto(BlockState state) {
+		return state.isAir();
+	}
+
+	@Override
+	protected Block getBodyBlock() {
+		return ESBlocks.JINGLESTEM_LEAVES_PLANT.get();
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	@Override
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
+		BlockPos growthDest = pos.relative(this.growthDirection);
+		if (this.canGrowInto(serverLevel.getBlockState(growthDest))) {
+			serverLevel.setBlockAndUpdate(growthDest, this.getGrowIntoState(state, serverLevel.random));
+		}
+	}
+
+	@Override
+	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+		return false;
+	}
+
+	@Nullable
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+		return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(blockPlaceContext) : null;
+	}
+
+	@Override
+	public FluidState getFluidState(BlockState blockState) {
+		return Fluids.WATER.getSource(false);
+	}
+}

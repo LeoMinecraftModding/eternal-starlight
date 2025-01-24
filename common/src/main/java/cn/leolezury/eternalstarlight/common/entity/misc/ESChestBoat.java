@@ -105,6 +105,7 @@ public class ESChestBoat extends ESBoat implements HasCustomInventoryScreen, Con
 			case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get();
 			case SCARLET -> ESItems.SCARLET_CHEST_BOAT.get();
 			case TORREYA -> ESItems.TORREYA_CHEST_BOAT.get();
+			case JINGLESTEM -> ESItems.JINGLESTEM_CHEST_RAFT.get();
 		};
 	}
 

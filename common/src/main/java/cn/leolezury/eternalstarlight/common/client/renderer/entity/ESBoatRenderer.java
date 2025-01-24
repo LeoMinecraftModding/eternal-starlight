@@ -9,8 +9,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -19,6 +18,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.vehicle.Boat;
 import org.joml.Quaternionf;
 
 import java.util.Map;
@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class ESBoatRenderer extends EntityRenderer<ESBoat> {
-	private final Map<ESBoat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
+	private final Map<ESBoat.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 
 	public ESBoatRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context);
@@ -46,8 +46,11 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
 		return createLocation("chest_boat/" + type.getName(), "main");
 	}
 
-	private BoatModel createBoatModel(EntityRendererProvider.Context context, ESBoat.Type type, boolean chest) {
+	private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, ESBoat.Type type, boolean chest) {
 		ModelLayerLocation modellayerlocation = chest ? createChestBoatModelName(type) : createBoatModelName(type);
+		if (type == ESBoat.Type.JINGLESTEM) {
+			return chest ? new ChestRaftModel(context.bakeLayer(modellayerlocation)) : new RaftModel(context.bakeLayer(modellayerlocation));
+		}
 		return chest ? new ChestBoatModel(context.bakeLayer(modellayerlocation)) : new BoatModel(context.bakeLayer(modellayerlocation));
 	}
 
@@ -75,17 +78,17 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
 			stack.mulPose((new Quaternionf()).setAngleAxis(boat.getBubbleAngle(partialTicks) * ((float) Math.PI / 180F), 1.0F, 0.0F, 1.0F));
 		}
 
-		Pair<ResourceLocation, BoatModel> pair = this.getModelWithLocation(boat);
+		Pair<ResourceLocation, ListModel<Boat>> pair = this.getModelWithLocation(boat);
 		ResourceLocation resourcelocation = pair.getFirst();
-		BoatModel model = pair.getSecond();
+		ListModel<Boat> model = pair.getSecond();
 		stack.scale(-1.0F, -1.0F, 1.0F);
 		stack.mulPose(Axis.YP.rotationDegrees(90.0F));
 		model.setupAnim(boat, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = buffer.getBuffer(model.renderType(resourcelocation));
 		model.renderToBuffer(stack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
-		if (!boat.isUnderWater()) {
+		if (model instanceof BoatModel boatModel && !boat.isUnderWater()) {
 			VertexConsumer vertexconsumer1 = buffer.getBuffer(RenderType.waterMask());
-			model.waterPatch().render(stack, vertexconsumer1, light, OverlayTexture.NO_OVERLAY);
+			boatModel.waterPatch().render(stack, vertexconsumer1, light, OverlayTexture.NO_OVERLAY);
 		}
 
 		stack.popPose();
@@ -97,7 +100,7 @@ public class ESBoatRenderer extends EntityRenderer<ESBoat> {
 		return this.boatResources.get(entity.getESBoatType()).getFirst();
 	}
 
-	public Pair<ResourceLocation, BoatModel> getModelWithLocation(ESBoat boat) {
+	public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(ESBoat boat) {
 		return this.boatResources.get(boat.getESBoatType());
 	}
 }

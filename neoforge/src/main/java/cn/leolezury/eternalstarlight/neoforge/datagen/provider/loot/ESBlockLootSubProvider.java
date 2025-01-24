@@ -239,6 +239,28 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropOther(ESBlocks.TORREYA_VINES_PLANT.get(), ESBlocks.TORREYA_VINES.get());
 		add(ESBlocks.TORREYA_CAMPFIRE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.RAW_AMARAMBER.get()))));
 
+		add(ESBlocks.JINGLESTEM_LEAVES.get(), block -> this.createLeavesDrops(block, ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.JINGLESTEM_LEAVES_PLANT.get(), block -> this.createLeavesDrops(ESBlocks.JINGLESTEM_LEAVES.get(), ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		dropSelf(ESBlocks.JINGLESTEM_LOG.get());
+		dropSelf(ESBlocks.JINGLESTEM_WOOD.get());
+		dropSelf(ESBlocks.JINGLESTEM_PLANKS.get());
+		dropSelf(ESBlocks.STRIPPED_JINGLESTEM_LOG.get());
+		dropSelf(ESBlocks.STRIPPED_JINGLESTEM_WOOD.get());
+		add(ESBlocks.JINGLESTEM_DOOR.get(), this::createDoorTable);
+		dropSelf(ESBlocks.JINGLESTEM_TRAPDOOR.get());
+		dropSelf(ESBlocks.JINGLESTEM_PRESSURE_PLATE.get());
+		dropSelf(ESBlocks.JINGLESTEM_BUTTON.get());
+		dropSelf(ESBlocks.JINGLESTEM_FENCE.get());
+		dropSelf(ESBlocks.JINGLESTEM_FENCE_GATE.get());
+		add(ESBlocks.JINGLESTEM_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.JINGLESTEM_STAIRS.get());
+		dropSelf(ESBlocks.JINGLESTEM_SIGN.get());
+		dropSelf(ESBlocks.JINGLESTEM_WALL_SIGN.get());
+		dropSelf(ESBlocks.JINGLESTEM_HANGING_SIGN.get());
+		dropSelf(ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get());
+		dropSelf(ESBlocks.JINGLESTEM_SAPLING.get());
+		dropPottedContents(ESBlocks.POTTED_JINGLESTEM_SAPLING.get());
+
 		add(ESBlocks.GRIMSTONE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_GRIMSTONE.get()));
 		dropSelf(ESBlocks.COBBLED_GRIMSTONE.get());
 		add(ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);

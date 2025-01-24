@@ -116,7 +116,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NORTHLAND_FENCE_GATE.get(),
 			ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(),
 			ESBlocks.SCARLET_FENCE_GATE.get(),
-			ESBlocks.TORREYA_FENCE_GATE.get()
+			ESBlocks.TORREYA_FENCE_GATE.get(),
+			ESBlocks.JINGLESTEM_FENCE_GATE.get()
 		);
 		tag(Tags.Blocks.FENCES).add(
 			ESBlocks.LUNAR_MOSAIC_FENCE.get()
@@ -126,7 +127,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NORTHLAND_FENCE.get(),
 			ESBlocks.STARLIGHT_MANGROVE_FENCE.get(),
 			ESBlocks.SCARLET_FENCE.get(),
-			ESBlocks.TORREYA_FENCE.get()
+			ESBlocks.TORREYA_FENCE.get(),
+			ESBlocks.JINGLESTEM_FENCE.get()
 		);
 		tag(Tags.Blocks.GRAVELS).add(
 			ESBlocks.DUSTED_GRAVEL.get()
@@ -228,14 +230,16 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STRIPPED_NORTHLAND_LOG.get(),
 			ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get(),
 			ESBlocks.STRIPPED_SCARLET_LOG.get(),
-			ESBlocks.STRIPPED_TORREYA_LOG.get()
+			ESBlocks.STRIPPED_TORREYA_LOG.get(),
+			ESBlocks.STRIPPED_JINGLESTEM_LOG.get()
 		);
 		tag(Tags.Blocks.STRIPPED_WOODS).add(
 			ESBlocks.STRIPPED_LUNAR_WOOD.get(),
 			ESBlocks.STRIPPED_NORTHLAND_WOOD.get(),
 			ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(),
 			ESBlocks.STRIPPED_SCARLET_WOOD.get(),
-			ESBlocks.STRIPPED_TORREYA_WOOD.get()
+			ESBlocks.STRIPPED_TORREYA_WOOD.get(),
+			ESBlocks.STRIPPED_JINGLESTEM_WOOD.get()
 		);
 		// mod conventional tags
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL).add(
@@ -333,6 +337,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TORREYA_WOOD.get(),
 			ESBlocks.STRIPPED_TORREYA_LOG.get(),
 			ESBlocks.STRIPPED_TORREYA_WOOD.get()
+		);
+		tag(ESTags.Blocks.JINGLESTEM_LOGS).add(
+			ESBlocks.JINGLESTEM_LOG.get(),
+			ESBlocks.JINGLESTEM_WOOD.get(),
+			ESBlocks.STRIPPED_JINGLESTEM_LOG.get(),
+			ESBlocks.STRIPPED_JINGLESTEM_WOOD.get()
 		);
 		tag(ESTags.Blocks.PORTAL_FRAME_BLOCKS).add(
 			ESBlocks.CHISELED_VOIDSTONE.get()
@@ -456,35 +466,40 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESTags.Blocks.NORTHLAND_LOGS,
 			ESTags.Blocks.STARLIGHT_MANGROVE_LOGS,
 			ESTags.Blocks.SCARLET_LOGS,
-			ESTags.Blocks.TORREYA_LOGS
+			ESTags.Blocks.TORREYA_LOGS,
+			ESTags.Blocks.JINGLESTEM_LOGS
 		);
 		tag(BlockTags.LOGS_THAT_BURN).addTags(
 			ESTags.Blocks.LUNAR_LOGS,
 			ESTags.Blocks.NORTHLAND_LOGS,
 			ESTags.Blocks.STARLIGHT_MANGROVE_LOGS,
 			ESTags.Blocks.SCARLET_LOGS,
-			ESTags.Blocks.TORREYA_LOGS
+			ESTags.Blocks.TORREYA_LOGS,
+			ESTags.Blocks.JINGLESTEM_LOGS
 		);
 		tag(BlockTags.SAPLINGS).add(
 			ESBlocks.LUNAR_SAPLING.get(),
 			ESBlocks.NORTHLAND_SAPLING.get(),
 			ESBlocks.STARLIGHT_MANGROVE_SAPLING.get(),
 			ESBlocks.SCARLET_SAPLING.get(),
-			ESBlocks.TORREYA_SAPLING.get()
+			ESBlocks.TORREYA_SAPLING.get(),
+			ESBlocks.JINGLESTEM_SAPLING.get()
 		);
 		tag(BlockTags.LEAVES).add(
 			ESBlocks.LUNAR_LEAVES.get(),
 			ESBlocks.NORTHLAND_LEAVES.get(),
 			ESBlocks.STARLIGHT_MANGROVE_LEAVES.get(),
 			ESBlocks.SCARLET_LEAVES.get(),
-			ESBlocks.TORREYA_LEAVES.get()
+			ESBlocks.TORREYA_LEAVES.get(),
+			ESBlocks.JINGLESTEM_LEAVES.get()
 		);
 		tag(BlockTags.PLANKS).add(
 			ESBlocks.LUNAR_PLANKS.get(),
 			ESBlocks.NORTHLAND_PLANKS.get(),
 			ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(),
 			ESBlocks.SCARLET_PLANKS.get(),
-			ESBlocks.TORREYA_PLANKS.get()
+			ESBlocks.TORREYA_PLANKS.get(),
+			ESBlocks.JINGLESTEM_PLANKS.get()
 		);
 		tag(BlockTags.WOODEN_FENCES).add(
 			ESBlocks.LUNAR_FENCE.get(),
@@ -492,6 +507,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STARLIGHT_MANGROVE_FENCE.get(),
 			ESBlocks.SCARLET_FENCE.get(),
 			ESBlocks.TORREYA_FENCE.get(),
+			ESBlocks.JINGLESTEM_FENCE.get(),
 			ESBlocks.LUNAR_MOSAIC_FENCE.get()
 		);
 		tag(BlockTags.FENCE_GATES).add(
@@ -500,6 +516,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(),
 			ESBlocks.SCARLET_FENCE_GATE.get(),
 			ESBlocks.TORREYA_FENCE_GATE.get(),
+			ESBlocks.JINGLESTEM_FENCE_GATE.get(),
 			ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get()
 		);
 		tag(BlockTags.WOODEN_SLABS).add(
@@ -508,6 +525,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STARLIGHT_MANGROVE_SLAB.get(),
 			ESBlocks.SCARLET_SLAB.get(),
 			ESBlocks.TORREYA_SLAB.get(),
+			ESBlocks.JINGLESTEM_SLAB.get(),
 			ESBlocks.LUNAR_MOSAIC_SLAB.get()
 		);
 		tag(BlockTags.SLABS).add(
@@ -564,6 +582,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.STARLIGHT_MANGROVE_STAIRS.get(),
 			ESBlocks.SCARLET_STAIRS.get(),
 			ESBlocks.TORREYA_STAIRS.get(),
+			ESBlocks.JINGLESTEM_STAIRS.get(),
 			ESBlocks.LUNAR_MOSAIC_STAIRS.get()
 		);
 		tag(BlockTags.STAIRS).add(
@@ -663,28 +682,32 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NORTHLAND_BUTTON.get(),
 			ESBlocks.STARLIGHT_MANGROVE_BUTTON.get(),
 			ESBlocks.SCARLET_BUTTON.get(),
-			ESBlocks.TORREYA_BUTTON.get()
+			ESBlocks.TORREYA_BUTTON.get(),
+			ESBlocks.JINGLESTEM_BUTTON.get()
 		);
 		tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
 			ESBlocks.LUNAR_PRESSURE_PLATE.get(),
 			ESBlocks.NORTHLAND_PRESSURE_PLATE.get(),
 			ESBlocks.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(),
 			ESBlocks.SCARLET_PRESSURE_PLATE.get(),
-			ESBlocks.TORREYA_PRESSURE_PLATE.get()
+			ESBlocks.TORREYA_PRESSURE_PLATE.get(),
+			ESBlocks.JINGLESTEM_PRESSURE_PLATE.get()
 		);
 		tag(BlockTags.WOODEN_DOORS).add(
 			ESBlocks.LUNAR_DOOR.get(),
 			ESBlocks.NORTHLAND_DOOR.get(),
 			ESBlocks.STARLIGHT_MANGROVE_DOOR.get(),
 			ESBlocks.SCARLET_DOOR.get(),
-			ESBlocks.TORREYA_DOOR.get()
+			ESBlocks.TORREYA_DOOR.get(),
+			ESBlocks.JINGLESTEM_DOOR.get()
 		);
 		tag(BlockTags.WOODEN_TRAPDOORS).add(
 			ESBlocks.LUNAR_TRAPDOOR.get(),
 			ESBlocks.NORTHLAND_TRAPDOOR.get(),
 			ESBlocks.STARLIGHT_MANGROVE_TRAPDOOR.get(),
 			ESBlocks.SCARLET_TRAPDOOR.get(),
-			ESBlocks.TORREYA_TRAPDOOR.get()
+			ESBlocks.TORREYA_TRAPDOOR.get(),
+			ESBlocks.JINGLESTEM_TRAPDOOR.get()
 		);
 		tag(BlockTags.SMALL_FLOWERS).add(
 			ESBlocks.RED_CRYSTALFLEUR.get(),
@@ -713,6 +736,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.POTTED_STARLIGHT_MANGROVE_SAPLING.get(),
 			ESBlocks.POTTED_SCARLET_SAPLING.get(),
 			ESBlocks.POTTED_TORREYA_SAPLING.get(),
+			ESBlocks.POTTED_JINGLESTEM_SAPLING.get(),
 			ESBlocks.POTTED_STARLIGHT_FLOWER.get(),
 			ESBlocks.POTTED_CONEBLOOM.get(),
 			ESBlocks.POTTED_NIGHTFAN.get(),
@@ -755,28 +779,32 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NORTHLAND_SIGN.get(),
 			ESBlocks.STARLIGHT_MANGROVE_SIGN.get(),
 			ESBlocks.SCARLET_SIGN.get(),
-			ESBlocks.TORREYA_SIGN.get()
+			ESBlocks.TORREYA_SIGN.get(),
+			ESBlocks.JINGLESTEM_SIGN.get()
 		);
 		tag(BlockTags.WALL_SIGNS).add(
 			ESBlocks.LUNAR_WALL_SIGN.get(),
 			ESBlocks.NORTHLAND_WALL_SIGN.get(),
 			ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get(),
 			ESBlocks.SCARLET_WALL_SIGN.get(),
-			ESBlocks.TORREYA_WALL_SIGN.get()
+			ESBlocks.TORREYA_WALL_SIGN.get(),
+			ESBlocks.JINGLESTEM_WALL_SIGN.get()
 		);
 		tag(BlockTags.CEILING_HANGING_SIGNS).add(
 			ESBlocks.LUNAR_HANGING_SIGN.get(),
 			ESBlocks.NORTHLAND_HANGING_SIGN.get(),
 			ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(),
 			ESBlocks.SCARLET_HANGING_SIGN.get(),
-			ESBlocks.TORREYA_HANGING_SIGN.get()
+			ESBlocks.TORREYA_HANGING_SIGN.get(),
+			ESBlocks.JINGLESTEM_HANGING_SIGN.get()
 		);
 		tag(BlockTags.WALL_HANGING_SIGNS).add(
 			ESBlocks.LUNAR_WALL_HANGING_SIGN.get(),
 			ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(),
 			ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(),
 			ESBlocks.SCARLET_WALL_HANGING_SIGN.get(),
-			ESBlocks.TORREYA_WALL_HANGING_SIGN.get()
+			ESBlocks.TORREYA_WALL_HANGING_SIGN.get(),
+			ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get()
 		);
 		tag(BlockTags.BEACON_BASE_BLOCKS).add(
 			ESBlocks.ATALPHAITE_BLOCK.get(),
