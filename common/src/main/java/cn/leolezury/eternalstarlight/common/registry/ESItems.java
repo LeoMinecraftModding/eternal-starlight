@@ -564,6 +564,8 @@ public class ESItems {
 
 	// torreya forest plant
 	public static final RegistryObject<Item, Item> WITHERED_STARLIGHT_FLOWER = registerItem("withered_starlight_flower", () -> new BlockItem(ESBlocks.WITHERED_STARLIGHT_FLOWER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_GRASS = registerItem("amaramber_grass", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_GRASS_BUSH = registerItem("amaramber_grass_bush", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS_BUSH.get(), new Item.Properties()));
 
 	// desert plant
 	public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(ESBlocks.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
@@ -737,6 +739,15 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AMARAMBER_NUGGET = registerItem("amaramber_nugget", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_LANTERN = registerItem("amaramber_lantern", () -> new BlockItem(ESBlocks.AMARAMBER_LANTERN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_CANDLE = registerItem("amaramber_candle", () -> new BlockItem(ESBlocks.AMARAMBER_CANDLE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RAW_AMARAMBER_BLOCK = registerItem("raw_amaramber_block", () -> new BlockItem(ESBlocks.RAW_AMARAMBER_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_BRICKS = registerItem("amaramber_bricks", () -> new BlockItem(ESBlocks.AMARAMBER_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_BRICK_SLAB = registerItem("amaramber_brick_slab", () -> new BlockItem(ESBlocks.AMARAMBER_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_BRICK_STAIRS = registerItem("amaramber_brick_stairs", () -> new BlockItem(ESBlocks.AMARAMBER_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_BRICK_WALL = registerItem("amaramber_brick_wall", () -> new BlockItem(ESBlocks.AMARAMBER_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TORREYA_TILES = registerItem("torreya_tiles", () -> new BlockItem(ESBlocks.TORREYA_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TORREYA_TILE_SLAB = registerItem("torreya_tile_slab", () -> new BlockItem(ESBlocks.TORREYA_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TORREYA_TILE_STAIRS = registerItem("torreya_tile_stairs", () -> new BlockItem(ESBlocks.TORREYA_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TORREYA_TILE_WALL = registerItem("torreya_tile_wall", () -> new BlockItem(ESBlocks.TORREYA_TILE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_ARROW = registerItem("amaramber_arrow", () -> new AmaramberArrowItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_AXE = registerItem("amaramber_axe",
 		() -> new AxeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.AMARAMBER, 6, -3.2F))));

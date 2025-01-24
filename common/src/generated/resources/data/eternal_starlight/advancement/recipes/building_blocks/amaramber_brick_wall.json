@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_amaramber_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:amaramber_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:amaramber_brick_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_amaramber_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:amaramber_brick_wall"
+    ]
+  }
+}

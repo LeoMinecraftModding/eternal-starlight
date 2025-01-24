@@ -18,6 +18,18 @@
                 "data": {
                   "Name": "eternal_starlight:mauve_fern"
                 },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:amaramber_grass"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:amaramber_grass_bush"
+                },
                 "weight": 1
               }
             ]

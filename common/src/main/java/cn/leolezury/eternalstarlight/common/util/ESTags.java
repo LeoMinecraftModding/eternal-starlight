@@ -85,6 +85,7 @@ public class ESTags {
 		public static final TagKey<Block> YETI_FUR = create("yeti_fur");
 		public static final TagKey<Block> YETI_FUR_CARPETS = create("yeti_fur_carpets");
 		public static final TagKey<Block> ABYSSAL_FIRE_SURVIVES_ON = create("abyssal_fire_survives_on");
+		public static final TagKey<Block> AMARAMBER_FIRE_SURVIVES_ON = create("amaramber_fire_survives_on");
 		public static final TagKey<Block> TOOTH_OF_HUNGER_BLOCKS = create("tooth_of_hunger_blocks");
 		public static final TagKey<Block> ABYSSLATES = create("abysslates");
 		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLES = create("aethersent_meteor_replaceables");

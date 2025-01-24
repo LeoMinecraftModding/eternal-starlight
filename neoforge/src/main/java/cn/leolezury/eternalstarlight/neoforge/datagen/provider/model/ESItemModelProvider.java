@@ -529,6 +529,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.MAUVE_FERN.get());
 
 		flatBlockTexture(ESItems.WITHERED_STARLIGHT_FLOWER.get());
+		flatBlockTexture(ESItems.AMARAMBER_GRASS.get());
+		flatBlockTexture(ESItems.AMARAMBER_GRASS_BUSH.get());
 
 		flatBlockTexture(ESItems.DEAD_LUNAR_BUSH.get());
 		flatBlockTexture(ESItems.DESERT_AMETHYSIA.get());
@@ -660,6 +662,15 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AMARAMBER_NUGGET.get());
 		basicItem(ESItems.AMARAMBER_LANTERN.get());
 		basicItem(ESItems.AMARAMBER_CANDLE.get());
+		block(ESItems.RAW_AMARAMBER_BLOCK.get());
+		block(ESItems.AMARAMBER_BRICKS.get());
+		block(ESItems.AMARAMBER_BRICK_SLAB.get());
+		block(ESItems.AMARAMBER_BRICK_STAIRS.get());
+		wall(ESItems.AMARAMBER_BRICK_WALL.get(), ESItems.AMARAMBER_BRICKS.get());
+		block(ESItems.TORREYA_TILES.get());
+		block(ESItems.TORREYA_TILE_SLAB.get());
+		block(ESItems.TORREYA_TILE_STAIRS.get());
+		wall(ESItems.TORREYA_TILE_WALL.get(), ESItems.TORREYA_TILES.get());
 		basicItem(ESItems.AMARAMBER_ARROW.get());
 		handheld(ESItems.AMARAMBER_AXE.get());
 		handheld(ESItems.AMARAMBER_HOE.get());

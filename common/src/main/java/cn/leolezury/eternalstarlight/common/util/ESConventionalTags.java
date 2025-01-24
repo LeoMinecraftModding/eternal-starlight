@@ -98,6 +98,8 @@ public class ESConventionalTags {
 		public static final TagKey<Block> ORES_SALTPETER = ore("saltpeter");
 		public static final TagKey<Block> STORAGE_BLOCKS_SALTPETER = storageBlock("saltpeter");
 
+		public static final TagKey<Block> STORAGE_BLOCKS_RAW_AMARAMBER = storageBlock("raw_amaramber");
+
 		public static final TagKey<Block> ORES_ATALPHAITE = ore("atalphaite");
 		public static final TagKey<Block> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
 

@@ -82,6 +82,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.MAUVE_FERN.get());
 		addSingleConversion(recipeOutput, Items.PINK_DYE, ESItems.WHISPERBLOOM.get());
 		addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.WITHERED_STARLIGHT_FLOWER.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.AMARAMBER_GRASS.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.AMARAMBER_GRASS_BUSH.get());
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.DESERT_AMETHYSIA.get());
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.WITHERED_DESERT_AMETHYSIA.get());
 		addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.SUNSET_THORNBLOOM.get());
@@ -808,6 +810,30 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), 2);
+
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.RAW_AMARAMBER.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_AMARAMBER_BLOCK.get(), "raw_amaramber_from_raw_amaramber_block", "raw_amaramber");
+		addStoneCompress(recipeOutput, ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		stonecuttingSet(recipeOutput, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_WALL.get(), ESBlocks.AMARAMBER_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_WALL.get(), ESBlocks.AMARAMBER_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICKS.get(), 2);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.TORREYA_TILES.get())
+			.pattern("IL")
+			.pattern("LI")
+			.define('I', ESConventionalTags.Items.INGOTS_AMARAMBER)
+			.define('L', ESTags.Items.TORREYA_LOGS)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AMARAMBER))
+			.save(recipeOutput);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TORREYA_TILE_WALL.get(), ESBlocks.TORREYA_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TORREYA_TILE_WALL.get(), ESBlocks.TORREYA_TILES.get());
+		addStairs(recipeOutput, ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILES.get());
+		addSlab(recipeOutput, ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILES.get(), 2);
 
 		fourBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());

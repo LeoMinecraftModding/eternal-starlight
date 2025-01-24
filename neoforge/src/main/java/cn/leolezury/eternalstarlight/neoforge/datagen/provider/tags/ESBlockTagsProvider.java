@@ -218,6 +218,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.RAW_AETHERSENT_BLOCK.get(),
 			ESBlocks.AETHERSENT_BLOCK.get(),
 			ESBlocks.SALTPETER_BLOCK.get(),
+			ESBlocks.RAW_AMARAMBER_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(),
 			ESBlocks.LUNAR_MOSAIC.get()
@@ -263,6 +264,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER).add(
 			ESBlocks.SALTPETER_BLOCK.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AMARAMBER).add(
+			ESBlocks.RAW_AMARAMBER_BLOCK.get()
 		);
 		tag(ESConventionalTags.Blocks.ORES_ATALPHAITE).add(
 			ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(),
@@ -409,6 +413,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
 			ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()
 		);
+		tag(ESTags.Blocks.AMARAMBER_FIRE_SURVIVES_ON).add(
+			ESBlocks.RAW_AMARAMBER_BLOCK.get(),
+			ESBlocks.AMARAMBER_BRICKS.get(),
+			ESBlocks.TORREYA_TILES.get()
+		);
 		tag(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS).add(
 			ESBlocks.TOOTH_OF_HUNGER_TILES.get(),
 			ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(),
@@ -545,7 +554,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.SPRINGSTONE_BRICK_SLAB.get(),
 			ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(),
 			ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(),
-			ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get()
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(),
+			ESBlocks.AMARAMBER_BRICK_SLAB.get(),
+			ESBlocks.TORREYA_TILE_SLAB.get()
 		);
 		tag(BlockTags.WOODEN_STAIRS).add(
 			ESBlocks.LUNAR_STAIRS.get(),
@@ -599,7 +610,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(),
 			ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(),
 			ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(),
-			ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get()
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(),
+			ESBlocks.AMARAMBER_BRICK_STAIRS.get(),
+			ESBlocks.TORREYA_TILE_STAIRS.get()
 		);
 		tag(BlockTags.WALLS).add(
 			ESBlocks.COBBLED_GRIMSTONE_WALL.get(),
@@ -641,7 +654,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.SPRINGSTONE_BRICK_WALL.get(),
 			ESBlocks.POLISHED_SPRINGSTONE_WALL.get(),
 			ESBlocks.THERMAL_SPRINGSTONE_WALL.get(),
-			ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get()
+			ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get(),
+			ESBlocks.AMARAMBER_BRICK_WALL.get(),
+			ESBlocks.TORREYA_TILE_WALL.get()
 		);
 		tag(BlockTags.WOODEN_BUTTONS).add(
 			ESBlocks.LUNAR_BUTTON.get(),
@@ -816,6 +831,15 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get(),
 			ESBlocks.HAZE_ICE_SALTPETER_ORE.get(),
 			ESBlocks.SALTPETER_BLOCK.get(),
+			ESBlocks.RAW_AMARAMBER_BLOCK.get(),
+			ESBlocks.AMARAMBER_BRICKS.get(),
+			ESBlocks.AMARAMBER_BRICK_SLAB.get(),
+			ESBlocks.AMARAMBER_BRICK_STAIRS.get(),
+			ESBlocks.AMARAMBER_BRICK_WALL.get(),
+			ESBlocks.TORREYA_TILES.get(),
+			ESBlocks.TORREYA_TILE_SLAB.get(),
+			ESBlocks.TORREYA_TILE_STAIRS.get(),
+			ESBlocks.TORREYA_TILE_WALL.get(),
 			ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(),
 			ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(),
 			ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(),

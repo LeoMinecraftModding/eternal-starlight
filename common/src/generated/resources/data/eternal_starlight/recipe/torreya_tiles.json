@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "I": {
+      "tag": "c:ingots/amaramber"
+    },
+    "L": {
+      "tag": "eternal_starlight:torreya_logs"
+    }
+  },
+  "pattern": [
+    "IL",
+    "LI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:torreya_tiles"
+  }
+}

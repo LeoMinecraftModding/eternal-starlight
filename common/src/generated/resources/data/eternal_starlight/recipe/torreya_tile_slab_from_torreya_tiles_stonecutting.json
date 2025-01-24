@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "eternal_starlight:torreya_tiles"
+  },
+  "result": {
+    "count": 2,
+    "id": "eternal_starlight:torreya_tile_slab"
+  }
+}

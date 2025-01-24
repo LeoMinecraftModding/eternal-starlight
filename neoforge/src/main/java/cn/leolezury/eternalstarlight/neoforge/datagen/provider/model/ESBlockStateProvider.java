@@ -351,6 +351,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		cross(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.WITHERED_STARLIGHT_FLOWER.get()));
+		cross(ESBlocks.AMARAMBER_GRASS.get());
+		pottedPlant(ESBlocks.POTTED_AMARAMBER_GRASS.get(), blockTexture(ESBlocks.AMARAMBER_GRASS.get()));
+		cross(ESBlocks.AMARAMBER_GRASS_BUSH.get());
 
 		cross(ESBlocks.DEAD_LUNAR_BUSH.get());
 		pottedPlant(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(), blockTexture(ESBlocks.DEAD_LUNAR_BUSH.get()));
@@ -451,6 +454,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
 		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
+		rawAmaramberBlock(ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		stoneSet(ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get());
+		stoneSet(ESBlocks.TORREYA_TILES.get(), ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILE_WALL.get());
 
 		stellarRack(ESBlocks.STELLAR_RACK.get());
 		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
@@ -553,6 +559,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.end()
 			.end();
 		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+	}
+
+	private void rawAmaramberBlock(Block block) {
+		ModelFile modelTop = models().cubeBottomTop(name(block) + "top", blockTexture(block).withSuffix("_side"), blockTexture(block), blockTexture(block).withSuffix("_top"));
+		ModelFile modelNormal = models().cubeAll(name(block), blockTexture(block));
+		getVariantBuilder(block)
+			.partialState().with(RawAmaramberBlock.TOP, true)
+			.modelForState().modelFile(modelTop).addModel()
+			.partialState().with(RawAmaramberBlock.TOP, false)
+			.modelForState().modelFile(modelNormal).addModel();
 	}
 
 	private void polishedToxite(Block block, Block stone) {

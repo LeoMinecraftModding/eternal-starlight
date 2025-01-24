@@ -27,6 +27,7 @@
     "SignBlockMixin",
     "SurfaceSystemMixin",
     "TagLoaderMixin",
+    "ThrowableProjectileMixin",
     "WallHangingSignBlockMixin"
   ],
   "client": [

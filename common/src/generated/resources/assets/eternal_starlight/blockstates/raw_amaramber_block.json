@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "top=false": {
+      "model": "eternal_starlight:block/raw_amaramber_block"
+    },
+    "top=true": {
+      "model": "eternal_starlight:block/raw_amaramber_blocktop"
+    }
+  }
+}

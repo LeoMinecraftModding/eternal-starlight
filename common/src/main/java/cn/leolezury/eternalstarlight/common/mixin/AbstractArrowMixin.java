@@ -22,4 +22,11 @@ public abstract class AbstractArrowMixin {
 			cir.setReturnValue(true);
 		}
 	}
+
+	@Inject(method = "getWaterInertia", at = @At(value = "RETURN"), cancellable = true)
+	public void getWaterInertia(CallbackInfoReturnable<Float> cir) {
+		if (this.firedFromWeapon != null && this.firedFromWeapon.is(ESItems.WILTED_CROSSBOW.get())) {
+			cir.setReturnValue(0.99f);
+		}
+	}
 }

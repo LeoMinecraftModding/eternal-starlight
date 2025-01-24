@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.block.AbyssalFireBlock;
+import cn.leolezury.eternalstarlight.common.block.AmaramberFireBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -20,6 +21,9 @@ public abstract class BaseFireBlockMixin {
 	private static void getState(BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<BlockState> cir) {
 		if (AbyssalFireBlock.canSurviveOnBlock(blockGetter.getBlockState(blockPos.below()))) {
 			cir.setReturnValue(ESBlocks.ABYSSAL_FIRE.get().defaultBlockState());
+		}
+		if (AmaramberFireBlock.canSurviveOnBlock(blockGetter.getBlockState(blockPos.below()))) {
+			cir.setReturnValue(ESBlocks.AMARAMBER_FIRE.get().defaultBlockState());
 		}
 	}
 

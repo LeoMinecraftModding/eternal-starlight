@@ -643,6 +643,9 @@ public class ESBlocks {
 	// torreya forest plant
 	public static final RegistryObject<Block, FlowerBlock> WITHERED_STARLIGHT_FLOWER = BLOCKS.register("withered_starlight_flower", () -> new FlowerBlock(MobEffects.WITHER, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_ORANGE)));
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_WITHERED_STARLIGHT_FLOWER = BLOCKS.register("potted_withered_starlight_flower", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, WITHERED_STARLIGHT_FLOWER, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_ORANGE)));
+	public static final RegistryObject<Block, AlwaysSurvivingBushBlock> AMARAMBER_GRASS = BLOCKS.register("amaramber_grass", () -> new AlwaysSurvivingBushBlock(12, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, FlowerPotBlock> POTTED_AMARAMBER_GRASS = BLOCKS.register("potted_amaramber_grass", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, AMARAMBER_GRASS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, AlwaysSurvivingBushBlock> AMARAMBER_GRASS_BUSH = BLOCKS.register("amaramber_grass_bush", () -> new AlwaysSurvivingBushBlock(12, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15)));
 
 	// desert plant
 	public static final RegistryObject<Block, DeadBushBlock> DEAD_LUNAR_BUSH = BLOCKS.register("dead_lunar_bush", () -> new DeadBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH)));
@@ -764,6 +767,16 @@ public class ESBlocks {
 	public static final RegistryObject<Block, LanternBlock> AMARAMBER_LANTERN = BLOCKS.register("amaramber_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
 	public static final RegistryObject<Block, AmaramberCandleBlock> AMARAMBER_CANDLE = BLOCKS.register("amaramber_candle", () -> new AmaramberCandleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_CANDLE)));
 	public static final RegistryObject<Block, AmaramberCandleCakeBlock> AMARAMBER_CANDLE_CAKE = BLOCKS.register("amaramber_candle_cake", () -> new AmaramberCandleCakeBlock(AMARAMBER_CANDLE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block, AmaramberFireBlock> AMARAMBER_FIRE = BLOCKS.register("amaramber_fire", () -> new AmaramberFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FIRE)));
+	public static final RegistryObject<Block, RawAmaramberBlock> RAW_AMARAMBER_BLOCK = BLOCKS.register("raw_amaramber_block", () -> new RawAmaramberBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK).mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, Block> AMARAMBER_BRICKS = BLOCKS.register("amaramber_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, SlabBlock> AMARAMBER_BRICK_SLAB = BLOCKS.register("amaramber_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, StairBlock> AMARAMBER_BRICK_STAIRS = BLOCKS.register("amaramber_brick_stairs", () -> new StairBlock(AMARAMBER_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, WallBlock> AMARAMBER_BRICK_WALL = BLOCKS.register("amaramber_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, Block> TORREYA_TILES = BLOCKS.register("torreya_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, SlabBlock> TORREYA_TILE_SLAB = BLOCKS.register("torreya_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, StairBlock> TORREYA_TILE_STAIRS = BLOCKS.register("torreya_tile_stairs", () -> new StairBlock(TORREYA_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, WallBlock> TORREYA_TILE_WALL = BLOCKS.register("torreya_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BLACK)));
 
 	// magic
 	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));

@@ -576,6 +576,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.WITHERED_STARLIGHT_FLOWER.get());
 		dropPottedContents(ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get());
+		dropSelf(ESBlocks.AMARAMBER_GRASS.get());
+		dropPottedContents(ESBlocks.POTTED_AMARAMBER_GRASS.get());
+		dropSelf(ESBlocks.AMARAMBER_GRASS_BUSH.get());
 
 		deadBush(ESBlocks.DEAD_LUNAR_BUSH.get());
 		dropPottedContents(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get());
@@ -691,6 +694,16 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
 		add(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), createCandleCakeDrops(ESBlocks.AMARAMBER_CANDLE.get()));
+		add(ESBlocks.AMARAMBER_FIRE.get(), noDrop());
+		dropSelf(ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		dropSelf(ESBlocks.AMARAMBER_BRICKS.get());
+		add(ESBlocks.AMARAMBER_BRICK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.AMARAMBER_BRICK_STAIRS.get());
+		dropSelf(ESBlocks.AMARAMBER_BRICK_WALL.get());
+		dropSelf(ESBlocks.TORREYA_TILES.get());
+		add(ESBlocks.TORREYA_TILE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.TORREYA_TILE_STAIRS.get());
+		dropSelf(ESBlocks.TORREYA_TILE_WALL.get());
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
 
