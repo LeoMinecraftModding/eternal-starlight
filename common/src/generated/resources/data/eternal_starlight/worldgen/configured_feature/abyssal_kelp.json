@@ -1,4 +1,53 @@
 {
-  "type": "eternal_starlight:kelp",
-  "config": {}
+  "type": "eternal_starlight:water_plant",
+  "config": {
+    "plant_body": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:abyssal_kelp_plant",
+            "Properties": {
+              "berries": "true"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:abyssal_kelp_plant",
+            "Properties": {
+              "berries": "false"
+            }
+          },
+          "weight": 4
+        }
+      ]
+    },
+    "plant_head": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:abyssal_kelp",
+            "Properties": {
+              "age": "0",
+              "berries": "true"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:abyssal_kelp",
+            "Properties": {
+              "age": "0",
+              "berries": "false"
+            }
+          },
+          "weight": 4
+        }
+      ]
+    }
+  }
 }

@@ -131,10 +131,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.JINGLESTEM_FENCE.get()
 		);
 		tag(Tags.Blocks.GRAVELS).add(
-			ESBlocks.DUSTED_GRAVEL.get()
-		);
-		tag(Tags.Blocks.GRAVELS).add(
-			ESBlocks.DUSTED_GRAVEL.get()
+			ESBlocks.DUSTED_GRAVEL.get(),
+			ESBlocks.MOSSY_DUSTED_GRAVEL.get(),
+			ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()
 		);
 		tag(Tags.Blocks.ORE_RATES_DENSE).add(
 			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
@@ -1138,6 +1137,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.TWILIGHT_SAND.get(),
 			ESBlocks.DUSTED_GRAVEL.get(),
+			ESBlocks.MOSSY_DUSTED_GRAVEL.get(),
+			ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(),
 			ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 			ESBlocks.NIGHTFALL_PODZOL.get(),
 			ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),

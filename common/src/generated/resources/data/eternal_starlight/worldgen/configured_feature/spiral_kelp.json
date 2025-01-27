@@ -1,4 +1,20 @@
 {
-  "type": "eternal_starlight:spiral_kelp",
-  "config": {}
+  "type": "eternal_starlight:water_plant",
+  "config": {
+    "plant_body": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:spiral_kelp_plant"
+      }
+    },
+    "plant_head": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:spiral_kelp",
+        "Properties": {
+          "age": "0"
+        }
+      }
+    }
+  }
 }

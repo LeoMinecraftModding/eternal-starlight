@@ -67,6 +67,15 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropOther(ESBlocks.SPIRAL_KELP_PLANT.get(), ESBlocks.SPIRAL_KELP.get());
 		add(ESBlocks.SEA_ROSA.get(), block -> createMultifaceBlockDrops(block, HAS_SHEARS_OR_SICKLE));
 		plant(ESBlocks.WICK_GRASS.get());
+		dropSelf(ESBlocks.LUMENSTEM.get());
+		dropOther(ESBlocks.LUMENSTEM_PLANT.get(), ESBlocks.LUMENSTEM.get());
+		plant(ESBlocks.CIRCULUSH.get());
+		plant(ESBlocks.MARIMOLD.get());
+		plant(ESBlocks.STONETT.get());
+		plant(ESBlocks.LUMINIS.get());
+		plant(ESBlocks.GLOWLIS.get());
+		plant(ESBlocks.GLOREED.get());
+		plant(ESBlocks.STARLIGHT_SEAGRASS.get());
 
 		add(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), block -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
 		add(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), block -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
@@ -469,6 +478,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.DUSTED_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.DUSTED_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.DUSTED_BRICK_WALL.get());
+		add(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(ESBlocks.DUSTED_GRAVEL.get())))));
+		add(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(ESBlocks.DUSTED_GRAVEL.get())))));
 
 		dropSelf(ESBlocks.GOLEM_STEEL_BLOCK.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());

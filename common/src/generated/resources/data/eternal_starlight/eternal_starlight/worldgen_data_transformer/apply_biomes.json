@@ -9,7 +9,8 @@
   ],
   "ocean_biomes": [
     "eternal_starlight:starlit_sea",
-    "eternal_starlight:spiral_kelp_forest"
+    "eternal_starlight:spiral_kelp_forest",
+    "eternal_starlight:lush_shallow_sea"
   ],
   "transformer_type": "eternal_starlight:add_biomes",
   "xz_scale": 0.06

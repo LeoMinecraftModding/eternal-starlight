@@ -46,7 +46,8 @@ public class ESDataTransformers {
 			data.getOrThrow(ESBiomeData.CRYSTALLIZED_DESERT)
 		), List.of(
 			data.getOrThrow(ESBiomeData.STARLIT_SEA),
-			data.getOrThrow(ESBiomeData.SPIRAL_KELP_FOREST)
+			data.getOrThrow(ESBiomeData.SPIRAL_KELP_FOREST),
+			data.getOrThrow(ESBiomeData.LUSH_SHALLOW_SEA)
 		)));
 		context.register(ADD_OCEAN, new AddOceanTransformer(data.getOrThrow(ESBiomeData.STARLIT_SEA)));
 		context.register(ADD_BEACHES, new AddBeachesTransformer(data.getOrThrow(ESBiomeData.WARM_SHORE)));

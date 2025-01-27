@@ -44,6 +44,15 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleExisting(ESBlocks.SPIRAL_KELP_PLANT.get());
 		multifaceBlock(ESBlocks.SEA_ROSA.get());
 		doublePlant(ESBlocks.WICK_GRASS.get());
+		cross(ESBlocks.LUMENSTEM.get());
+		cross(ESBlocks.LUMENSTEM_PLANT.get());
+		cross(ESBlocks.CIRCULUSH.get());
+		cross(ESBlocks.MARIMOLD.get());
+		cross(ESBlocks.STONETT.get());
+		cross(ESBlocks.LUMINIS.get());
+		cross(ESBlocks.GLOWLIS.get());
+		cross(ESBlocks.GLOREED.get());
+		cross(ESBlocks.STARLIGHT_SEAGRASS.get());
 		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
 		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
 		directionalBud(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());
@@ -241,6 +250,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		sand(ESBlocks.DUSTED_GRAVEL.get());
 		stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
+		simpleGrassBlock(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
+		simpleGrassBlock(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.MOSSY_DUSTED_GRAVEL.get()).withSuffix("_side"), blockTexture(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()).withSuffix("_top"), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 
 		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
@@ -824,7 +835,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void simpleGrassBlock(Block grassBlock, ResourceLocation dirt) {
-		ModelFile modelFile = models().cubeBottomTop(name(grassBlock), blockTexture(grassBlock).withSuffix("_side"), dirt, blockTexture(grassBlock).withSuffix("_top"));
+		simpleGrassBlock(grassBlock, blockTexture(grassBlock).withSuffix("_side"), blockTexture(grassBlock).withSuffix("_top"), dirt);
+	}
+
+	private void simpleGrassBlock(Block grassBlock, ResourceLocation side, ResourceLocation top, ResourceLocation dirt) {
+		ModelFile modelFile = models().cubeBottomTop(name(grassBlock), side, dirt, top);
 		getVariantBuilder(grassBlock).forAllStates(state -> ConfiguredModel.builder()
 			.modelFile(modelFile).nextModel()
 			.rotationY(270).modelFile(modelFile).nextModel()

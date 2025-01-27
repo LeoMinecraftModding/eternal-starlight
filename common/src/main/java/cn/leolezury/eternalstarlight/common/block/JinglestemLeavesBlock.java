@@ -4,15 +4,14 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,25 +41,12 @@ public class JinglestemLeavesBlock extends GrowingPlantHeadBlock implements Liqu
 
 	@Override
 	protected boolean canGrowInto(BlockState state) {
-		return state.isAir();
+		return state.is(Blocks.WATER);
 	}
 
 	@Override
 	protected Block getBodyBlock() {
 		return ESBlocks.JINGLESTEM_LEAVES_PLANT.get();
-	}
-
-	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-		return true;
-	}
-
-	@Override
-	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
-		BlockPos growthDest = pos.relative(this.growthDirection);
-		if (this.canGrowInto(serverLevel.getBlockState(growthDest))) {
-			serverLevel.setBlockAndUpdate(growthDest, this.getGrowIntoState(state, serverLevel.random));
-		}
 	}
 
 	@Override

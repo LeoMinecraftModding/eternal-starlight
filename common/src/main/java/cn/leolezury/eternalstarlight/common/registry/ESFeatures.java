@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.GolemFor
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.BouldershroomFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.DeadLunarTreeFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.HugeGlowingMushroomFeature;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.JinglestemFeature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
@@ -32,14 +33,14 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<LeavesPileFeature.Configuration>> LEAVES_PILE = FEATURES.register("leaves_pile", () -> new LeavesPileFeature(LeavesPileFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ASHEN_SNOW = FEATURES.register("ashen_snow", () -> new AshenSnowFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> SWAMP_WATER = FEATURES.register("swamp_water", () -> new SwampWaterFeature(NoneFeatureConfiguration.CODEC));
-	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> KELP = FEATURES.register("kelp", () -> new ESKelpFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<WaterPlantFeature.Configuration>> WATER_PLANT = FEATURES.register("water_plant", () -> new WaterPlantFeature(WaterPlantFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ORBFLORA = FEATURES.register("orbflora", () -> new OrbfloraFeature(NoneFeatureConfiguration.CODEC));
-	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> SPIRAL_KELP = FEATURES.register("spiral_kelp", () -> new SpiralKelpFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<SimpleBlockConfiguration>> UNDERWATER_SIMPLE_BLOCK = FEATURES.register("underwater_simple_block", () -> new UnderwaterSimpleBlockFeature(SimpleBlockConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_CLAW = FEATURES.register("coral_claw", () -> new ESCoralClawFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_MUSHROOM = FEATURES.register("coral_mushroom", () -> new ESCoralMushroomFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_TREE = FEATURES.register("coral_tree", () -> new ESCoralTreeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> DEAD_LUNAR_TREE = FEATURES.register("dead_lunar_tree", () -> new DeadLunarTreeFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> JINGLESTEM = FEATURES.register("jinglestem", () -> new JinglestemFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));

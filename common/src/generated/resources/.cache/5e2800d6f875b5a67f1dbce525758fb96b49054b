@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-24T16:44:19.8899041	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-01-28T00:13:23.0696907	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -37,7 +37,7 @@ f1a281472a393646e9431d2f44844770ef27bd98 data/c/tags/item/gems/atalphaite.json
 66ff992b2f3b1a07bf922f1caeb8fce665e1c4d2 data/c/tags/item/gems/glacite.json
 b1b5a7416a3fbdc302bd2496bd573b8f41f0e68d data/c/tags/item/gems/quartz.json
 3b8dc1994e75677513f1a4ec3b602402e8f12875 data/c/tags/item/gems/thioquartz.json
-13d00393f9e2ed04efe9f49aae1e08e25f7850df data/c/tags/item/gravels.json
+6c0492001f8571f4726f00e1fa68a49f2b755ea3 data/c/tags/item/gravels.json
 e4fb9c7ac1163f95cd2dcf4a757b8a93f7cd7760 data/c/tags/item/ingots.json
 976162e4f70ef42eee285a88212d543d23cd7af8 data/c/tags/item/ingots/aethersent.json
 926a397f810adb98a6239f68820fb9a0ff0093e4 data/c/tags/item/ingots/amaramber.json
@@ -127,7 +127,7 @@ bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/item/tooth_
 6676d4a171b66a0d5e9c177f33e2d6510603b08a data/eternal_starlight/tags/item/torreya_logs.json
 c35aa77d4318037ae7da596c0c2d2ed08db0be75 data/eternal_starlight/tags/item/untrimmable_armor.json
 ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/item/water_crystals.json
-7a264bbbac2b680e4f73798bf6f7f073c0f9d975 data/eternal_starlight/tags/item/water_crystal_ingredients.json
+a817a74907f3821adcfe7d00c24e392f4e73298e data/eternal_starlight/tags/item/water_crystal_ingredients.json
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/item/wind_crystals.json
 483102921c1f1e66011ddbe6dcb8af5f60766d18 data/eternal_starlight/tags/item/wind_crystal_ingredients.json
 333bed5b1e9050bcdbbdd7a28fcd739681f5df98 data/eternal_starlight/tags/item/wip.json

@@ -41,6 +41,15 @@ public class ESBlocks {
 	public static final RegistryObject<Block, SpiralKelpPlantBlock> SPIRAL_KELP_PLANT = BLOCKS.register("spiral_kelp_plant", () -> new SpiralKelpPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)));
 	public static final RegistryObject<Block, SimpleMultifaceBlock> SEA_ROSA = BLOCKS.register("sea_rosa", () -> new SimpleMultifaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).mapColor(MapColor.PLANT)));
 	public static final RegistryObject<Block, WickGrassBlock> WICK_GRASS = BLOCKS.register("wick_grass", () -> new WickGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, LumenstemBlock> LUMENSTEM = BLOCKS.register("lumenstem", () -> new LumenstemBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 8)));
+	public static final RegistryObject<Block, LumenstemPlantBlock> LUMENSTEM_PLANT = BLOCKS.register("lumenstem_plant", () -> new LumenstemPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 8)));
+	public static final RegistryObject<Block, SeaBushBlock> CIRCULUSH = BLOCKS.register("circulush", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 8)));
+	public static final RegistryObject<Block, SeaBushBlock> MARIMOLD = BLOCKS.register("marimold", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, SeaBushBlock> STONETT = BLOCKS.register("stonett", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 8)));
+	public static final RegistryObject<Block, SeaBushBlock> LUMINIS = BLOCKS.register("luminis", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, SeaBushBlock> GLOWLIS = BLOCKS.register("glowlis", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, SeaBushBlock> GLOREED = BLOCKS.register("gloreed", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 12)));
+	public static final RegistryObject<Block, SeaBushBlock> STARLIGHT_SEAGRASS = BLOCKS.register("starlight_seagrass", () -> new SeaBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SEAGRASS)));
 	public static final RegistryObject<Block, DirectionalBudBlock> RED_STARLIGHT_CRYSTAL_CLUSTER = BLOCKS.register("red_starlight_crystal_cluster", () -> new DirectionalBudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 10).sound(SoundType.AMETHYST)));
 	public static final RegistryObject<Block, DirectionalBudBlock> BLUE_STARLIGHT_CRYSTAL_CLUSTER = BLOCKS.register("blue_starlight_crystal_cluster", () -> new DirectionalBudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 10).sound(SoundType.AMETHYST)));
 	public static final RegistryObject<Block, DirectionalBudBlock> BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER = BLOCKS.register("blooming_red_starlight_crystal_cluster", () -> new DirectionalBudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 10).sound(SoundType.AMETHYST)));
@@ -310,9 +319,9 @@ public class ESBlocks {
 
 	// jinglestem wood
 	public static final RegistryObject<Block, JinglestemLeavesBlock> JINGLESTEM_LEAVES = BLOCKS.register("jinglestem_leaves",
-		() -> new JinglestemLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_YELLOW)));
+		() -> new JinglestemLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, JinglestemLeavesPlantBlock> JINGLESTEM_LEAVES_PLANT = BLOCKS.register("jinglestem_leaves_plant",
-		() -> new JinglestemLeavesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_YELLOW)));
+		() -> new JinglestemLeavesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, RotatedPillarBlock> JINGLESTEM_LOG = BLOCKS.register("jinglestem_log",
 		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, RotatedPillarBlock> JINGLESTEM_WOOD = BLOCKS.register("jinglestem_wood",
@@ -347,7 +356,7 @@ public class ESBlocks {
 		() -> new CeilingHangingSignBlock(ESWoodTypes.JINGLESTEM, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, WallHangingSignBlock> JINGLESTEM_WALL_HANGING_SIGN = BLOCKS.register("jinglestem_wall_hanging_sign",
 		() -> new WallHangingSignBlock(ESWoodTypes.JINGLESTEM, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_GREEN)));
-	public static final RegistryObject<Block, WaterloggedSaplingBlock> JINGLESTEM_SAPLING = BLOCKS.register("jinglestem_sapling", () -> new WaterloggedSaplingBlock(new TreeGrower("jinglestem", Optional.empty(), Optional.of(ESConfiguredFeatures.SCARLET), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
+	public static final RegistryObject<Block, JinglestemSaplingBlock> JINGLESTEM_SAPLING = BLOCKS.register("jinglestem_sapling", () -> new JinglestemSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_JINGLESTEM_SAPLING = BLOCKS.register("potted_jinglestem_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, JINGLESTEM_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
 
 	// grimstone
@@ -549,6 +558,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, SlabBlock> DUSTED_BRICK_SLAB = BLOCKS.register("dusted_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_SLAB).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, StairBlock> DUSTED_BRICK_STAIRS = BLOCKS.register("dusted_brick_stairs", () -> new StairBlock(DUSTED_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_STAIRS).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, WallBlock> DUSTED_BRICK_WALL = BLOCKS.register("dusted_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, Block> MOSSY_DUSTED_GRAVEL = BLOCKS.register("mossy_dusted_gravel", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.GRASS)));
+	public static final RegistryObject<Block, Block> GLOWING_MOSSY_DUSTED_GRAVEL = BLOCKS.register("glowing_mossy_dusted_gravel", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.GRASS).lightLevel(state -> 15)));
 
 	// golem steel
 	public static final RegistryObject<Block, WeatheringGolemSteelFullBlock> GOLEM_STEEL_BLOCK = BLOCKS.register("golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_BLUE)));

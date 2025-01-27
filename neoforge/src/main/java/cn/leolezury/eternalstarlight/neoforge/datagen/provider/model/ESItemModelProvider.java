@@ -71,6 +71,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SPIRAL_KELP.get());
 		flatBlockTexture(ESItems.SEA_ROSA.get());
 		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
+		flatBlockTexture(ESItems.LUMENSTEM.get());
+		flatBlockTexture(ESItems.CIRCULUSH.get());
+		flatBlockTexture(ESItems.MARIMOLD.get());
+		flatBlockTexture(ESItems.STONETT.get());
+		flatBlockTexture(ESItems.LUMINIS.get());
+		flatBlockTexture(ESItems.GLOWLIS.get());
+		flatBlockTexture(ESItems.GLOREED.get());
+		basicItem(ESItems.STARLIGHT_SEAGRASS.get());
 
 		flatBlockTexture(ESItems.JINGLING_PICKLE.get());
 		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());
@@ -431,6 +439,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.DUSTED_BRICK_SLAB.get());
 		block(ESItems.DUSTED_BRICK_STAIRS.get());
 		wall(ESItems.DUSTED_BRICK_WALL.get(), ESItems.DUSTED_BRICKS.get());
+		block(ESItems.MOSSY_DUSTED_GRAVEL.get());
+		block(ESItems.GLOWING_MOSSY_DUSTED_GRAVEL.get());
 
 		block(ESItems.GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());

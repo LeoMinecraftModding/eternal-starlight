@@ -67,8 +67,10 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ORBFLORA = create("orbflora");
 	public static final ResourceKey<PlacedFeature> SPIRAL_KELP = create("spiral_kelp");
 	public static final ResourceKey<PlacedFeature> SEA_ROSA = create("sea_rosa");
+	public static final ResourceKey<PlacedFeature> LUMENSTEM = create("lumenstem");
 	public static final ResourceKey<PlacedFeature> OCEAN_VEGETATION = create("ocean_vegetation");
 	public static final ResourceKey<PlacedFeature> SPIRAL_KELP_FOREST_VEGETATION = create("spiral_kelp_forest_vegetation");
+	public static final ResourceKey<PlacedFeature> LUSH_SHALLOW_SEA_VEGETATION = create("lush_shallow_sea_vegetation");
 	public static final ResourceKey<PlacedFeature> ABYSSLATE_PATCH = create("abysslate_patch");
 	public static final ResourceKey<PlacedFeature> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
 	public static final ResourceKey<PlacedFeature> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
@@ -80,6 +82,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = create("starlight_mangrove_tree_checked");
 	public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_TREE_CHECKED = create("torreya_tree_checked");
+	public static final ResourceKey<PlacedFeature> JINGLESTEM_CHECKED = create("jinglestem_checked");
 	public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = create("huge_glowing_mushroom_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = create("northland_on_snow");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_FOREST = create("starlight_forest");
@@ -88,6 +91,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST = create("permafrost_forest");
 	public static final ResourceKey<PlacedFeature> SCARLET_FOREST = create("scarlet_forest");
 	public static final ResourceKey<PlacedFeature> TORREYA_FOREST = create("torreya_forest");
+	public static final ResourceKey<PlacedFeature> JINGLESTEM_FOREST = create("jinglestem_forest");
 	public static final ResourceKey<PlacedFeature> DEAD_LUNAR_TREE = create("dead_lunar_tree");
 	public static final ResourceKey<PlacedFeature> LUNARIS_CACTUS = create("lunaris_cactus");
 	public static final ResourceKey<PlacedFeature> FOREST_VEGETATION = create("forest_vegetation");
@@ -163,8 +167,10 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, ORBFLORA, configuredFeatures.getOrThrow(ESConfiguredFeatures.ORBFLORA), NoiseBasedCountPlacement.of(15, 90.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, SPIRAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.SPIRAL_KELP), NoiseBasedCountPlacement.of(35, 120.0, 0.5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, SEA_ROSA, configuredFeatures.getOrThrow(ESConfiguredFeatures.SEA_ROSA), NoiseBasedCountPlacement.of(40, 80.0, 0.75), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+		PlacementUtils.register(context, LUMENSTEM, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUMENSTEM), NoiseBasedCountPlacement.of(15, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, OCEAN_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.OCEAN_VEGETATION), NoiseBasedCountPlacement.of(15, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, SPIRAL_KELP_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SPIRAL_KELP_FOREST_VEGETATION), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), ESBlocks.DUSTED_GRAVEL.get(), ESBlocks.TWILIGHT_SAND.get()), BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.WATER), BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.WATER))), BiomeFilter.biome());
+		PlacementUtils.register(context, LUSH_SHALLOW_SEA_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUSH_SHALLOW_SEA_VEGETATION), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), ESBlocks.MOSSY_DUSTED_GRAVEL.get(), ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), ESBlocks.DUSTED_GRAVEL.get(), ESBlocks.TWILIGHT_SAND.get()), BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.WATER), BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.WATER))), BiomeFilter.biome());
 		PlacementUtils.register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, CRYOBYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYOBYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
@@ -176,6 +182,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
 		PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
+		PlacementUtils.register(context, JINGLESTEM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM), PlacementUtils.filteredByBlockSurvival(ESBlocks.JINGLESTEM_SAPLING.get()));
 		PlacementUtils.register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));
 		PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
 		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
@@ -184,6 +191,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
 		PlacementUtils.register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
 		PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
+		PlacementUtils.register(context, JINGLESTEM_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM_FOREST), PlacementUtils.countExtra(5, 0.2F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome());
 		PlacementUtils.register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNARIS_CACTUS, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNARIS_CACTUS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 		PlacementUtils.register(context, FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

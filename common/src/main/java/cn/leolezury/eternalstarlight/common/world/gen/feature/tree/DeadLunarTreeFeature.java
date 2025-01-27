@@ -30,7 +30,7 @@ public class DeadLunarTreeFeature extends Feature<NoneFeatureConfiguration> {
 		return stateProvider.getState(randomSource, pos);
 	}
 
-	private void placeBlockLine(BlockPos from, BlockPos to, RandomSource random, Consumer<BlockPos> placer) {
+	private void placeBlockLine(BlockPos from, BlockPos to, Consumer<BlockPos> placer) {
 		List<int[]> points = ESMathUtil.getBresenham3DPoints(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ());
 		for (int[] point : points) {
 			BlockPos trunkPos = new BlockPos(point[0], point[1], point[2]);
@@ -44,7 +44,7 @@ public class DeadLunarTreeFeature extends Feature<NoneFeatureConfiguration> {
 		for (int i = 0; i < num; i++) {
 			Vec3 endVec = ESMathUtil.rotationToPosition(pos.getCenter(), len, 40, (360f / (float) num) * i);
 			BlockPos endPos = new BlockPos((int) endVec.x, (int) endVec.y, (int) endVec.z);
-			placeBlockLine(pos, endPos, random, placer);
+			placeBlockLine(pos, endPos, placer);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class DeadLunarTreeFeature extends Feature<NoneFeatureConfiguration> {
 		List<BlockPos> blocksToPlace = new ArrayList<>();
 		// make a trunk
 		BlockPos topPos = pos.offset(random.nextInt(5) - 2, random.nextInt(10, 15), random.nextInt(5) - 2);
-		placeBlockLine(pos, topPos, random, blocksToPlace::add);
+		placeBlockLine(pos, topPos, blocksToPlace::add);
 		// make branches
 		placeBranches(topPos, random, blocksToPlace::add);
 		placeBranches(new BlockPos(Mth.lerpInt(0.75f, pos.getX(), topPos.getX()), Mth.lerpInt(0.75f, pos.getY(), topPos.getY()), Mth.lerpInt(0.75f, pos.getZ(), topPos.getZ())), random, blocksToPlace::add);

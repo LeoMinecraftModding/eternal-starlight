@@ -91,6 +91,14 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SPIRAL_KELP = registerItem("spiral_kelp", () -> new BlockItem(ESBlocks.SPIRAL_KELP.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SEA_ROSA = registerItem("sea_rosa", () -> new BlockItem(ESBlocks.SEA_ROSA.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WICK_GRASS = registerItem("wick_grass", () -> new BlockItem(ESBlocks.WICK_GRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUMENSTEM = registerItem("lumenstem", () -> new BlockItem(ESBlocks.LUMENSTEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CIRCULUSH = registerItem("circulush", () -> new BlockItem(ESBlocks.CIRCULUSH.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD = registerItem("marimold", () -> new BlockItem(ESBlocks.MARIMOLD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STONETT = registerItem("stonett", () -> new BlockItem(ESBlocks.STONETT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUMINIS = registerItem("luminis", () -> new BlockItem(ESBlocks.LUMINIS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOWLIS = registerItem("glowlis", () -> new BlockItem(ESBlocks.GLOWLIS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOREED = registerItem("gloreed", () -> new BlockItem(ESBlocks.GLOREED.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARLIGHT_SEAGRASS = registerItem("starlight_seagrass", () -> new BlockItem(ESBlocks.STARLIGHT_SEAGRASS.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> JINGLING_PICKLE = registerItem("jingling_pickle", () -> new BlockItem(ESBlocks.JINGLING_PICKLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL = registerItem("dead_tentacles_coral", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL.get(), new Item.Properties()));
@@ -462,6 +470,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> DUSTED_BRICK_SLAB = registerItem("dusted_brick_slab", () -> new BlockItem(ESBlocks.DUSTED_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSTED_BRICK_STAIRS = registerItem("dusted_brick_stairs", () -> new BlockItem(ESBlocks.DUSTED_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSTED_BRICK_WALL = registerItem("dusted_brick_wall", () -> new BlockItem(ESBlocks.DUSTED_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MOSSY_DUSTED_GRAVEL = registerItem("mossy_dusted_gravel", () -> new BlockItem(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOWING_MOSSY_DUSTED_GRAVEL = registerItem("glowing_mossy_dusted_gravel", () -> new BlockItem(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
 
 	// golem steel
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));

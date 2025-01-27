@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eternal_starlight:block/mossy_dusted_gravel"
+      },
+      {
+        "model": "eternal_starlight:block/mossy_dusted_gravel",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/mossy_dusted_gravel",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/mossy_dusted_gravel",
+        "y": 90
+      }
+    ]
+  }
+}

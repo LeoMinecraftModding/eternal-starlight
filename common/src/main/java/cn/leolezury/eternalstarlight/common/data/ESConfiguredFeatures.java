@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
 import cn.leolezury.eternalstarlight.common.block.CaveMossBlock;
 import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
@@ -105,8 +106,10 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORBFLORA = create("orbflora");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SPIRAL_KELP = create("spiral_kelp");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SEA_ROSA = create("sea_rosa");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LUMENSTEM = create("lumenstem");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OCEAN_VEGETATION = create("ocean_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SPIRAL_KELP_FOREST_VEGETATION = create("spiral_kelp_forest_vegetation");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LUSH_SHALLOW_SEA_VEGETATION = create("lush_shallow_sea_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSLATE_PATCH = create("abysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
@@ -118,6 +121,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_MANGROVE = create("starlight_mangrove");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCARLET = create("scarlet");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TORREYA = create("torreya");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> JINGLESTEM = create("jinglestem");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWING_MUSHROOM = create("huge_glowing_mushroom");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_FOREST = create("starlight_forest");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DENSE_FOREST = create("dense_forest");
@@ -125,6 +129,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PERMAFROST_FOREST = create("permafrost_forest");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCARLET_FOREST = create("scarlet_forest");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TORREYA_FOREST = create("torreya_forest");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> JINGLESTEM_FOREST = create("jinglestem_forest");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_LUNAR_TREE = create("dead_lunar_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LUNARIS_CACTUS = create("lunaris_cactus");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_VEGETATION = create("forest_vegetation");
@@ -161,10 +166,10 @@ public class ESConfiguredFeatures {
 		RuleTest nightfallMud = new BlockMatchTest(ESBlocks.NIGHTFALL_MUD.get());
 		RuleTest dustedGravel = new BlockMatchTest(ESBlocks.DUSTED_GRAVEL.get());
 
-		FeatureUtils.register(context, FINAL_MODIFICATION, ESFeatures.FINAL_MODIFICATION.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, GLACITE, ESFeatures.GLACITE.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, ICICLE, ESFeatures.ICICLE.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, FINAL_MODIFICATION, ESFeatures.FINAL_MODIFICATION.get());
+		FeatureUtils.register(context, STONE_SPIKE, ESFeatures.STONE_SPIKE.get());
+		FeatureUtils.register(context, GLACITE, ESFeatures.GLACITE.get());
+		FeatureUtils.register(context, ICICLE, ESFeatures.ICICLE.get());
 		FeatureUtils.register(context, STONE_ORE, Feature.ORE, new OreConfiguration(baseStone, Blocks.STONE.defaultBlockState(), 64));
 		FeatureUtils.register(context, DEEPSLATE_ORE, Feature.ORE, new OreConfiguration(baseStone, Blocks.DEEPSLATE.defaultBlockState(), 64));
 		FeatureUtils.register(context, GLOWING_GRIMSTONE_ORE, Feature.ORE, new OreConfiguration(grimstone, ESBlocks.GLOWING_GRIMSTONE.get().defaultBlockState(), 20));
@@ -190,9 +195,9 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, ESFeatures.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(ESBlocks.STARLIGHT_MANGROVE_LOG.get())));
 		FeatureUtils.register(context, FALLEN_SCARLET_LOG, ESFeatures.FALLEN_LOG.get(), new FallenLogFeature.Configuration(BlockStateProvider.simple(ESBlocks.SCARLET_LOG.get())));
 		FeatureUtils.register(context, SCARLET_LEAVES_PILE, ESFeatures.LEAVES_PILE.get(), new LeavesPileFeature.Configuration(BlockStateProvider.simple(ESBlocks.SCARLET_LEAVES_PILE.get())));
-		FeatureUtils.register(context, ASHEN_SNOW, ESFeatures.ASHEN_SNOW.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, STARLIGHT_CRYSTAL, ESFeatures.STARLIGHT_CRYSTAL.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, STELLAGMITE, ESFeatures.STELLAGMITE.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, ASHEN_SNOW, ESFeatures.ASHEN_SNOW.get());
+		FeatureUtils.register(context, STARLIGHT_CRYSTAL, ESFeatures.STARLIGHT_CRYSTAL.get());
+		FeatureUtils.register(context, STELLAGMITE, ESFeatures.STELLAGMITE.get());
 		FeatureUtils.register(context, THIOQUARTZ_GEODE, Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR), BlockStateProvider.simple(ESBlocks.THIOQUARTZ_BLOCK.get()), BlockStateProvider.simple(ESBlocks.BUDDING_THIOQUARTZ.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), List.of(ESBlocks.THIOQUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2), new GeodeCrackSettings(0.95, 2.0, 2), 0.35, 0.083, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05, 1));
 		FeatureUtils.register(context, CAVE_VINE, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()),
 			new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.BERRIES_VINES_PLANT.get().defaultBlockState(), 4).add(ESBlocks.BERRIES_VINES_PLANT.get().defaultBlockState().setValue(CaveVines.BERRIES, true), 1))), BlockColumnConfiguration.layer(ConstantInt.of(1),
@@ -201,13 +206,15 @@ public class ESConfiguredFeatures {
 			BlockStateProvider.simple(ESBlocks.CAVE_MOSS_PLANT.get())), BlockColumnConfiguration.layer(ConstantInt.of(1),
 			new RandomizedIntStateProvider(BlockStateProvider.simple(ESBlocks.CAVE_MOSS.get()), CaveMossBlock.AGE, UniformInt.of(23, 25)))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
 		FeatureUtils.register(context, CAVE_MOSS_VEIN, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(ESBlocks.CAVE_MOSS_VEIN.get(), 20, false, true, true, 0.5F, HolderSet.direct(ESBlocks.GRIMSTONE.asHolder(), ESBlocks.VOIDSTONE.asHolder())));
-		FeatureUtils.register(context, BOULDERSHROOM, ESFeatures.BOULDERSHROOM.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, ABYSSAL_KELP, ESFeatures.KELP.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, ORBFLORA, ESFeatures.ORBFLORA.get(), new NoneFeatureConfiguration());
-		FeatureUtils.register(context, SPIRAL_KELP, ESFeatures.SPIRAL_KELP.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, BOULDERSHROOM, ESFeatures.BOULDERSHROOM.get());
+		FeatureUtils.register(context, ABYSSAL_KELP, ESFeatures.WATER_PLANT.get(), new WaterPlantFeature.Configuration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.ABYSSAL_KELP_PLANT.get().defaultBlockState().setValue(AbyssalKelp.BERRIES, true), 1).add(ESBlocks.ABYSSAL_KELP_PLANT.get().defaultBlockState(), 4).build()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.ABYSSAL_KELP.get().defaultBlockState().setValue(AbyssalKelp.BERRIES, true), 1).add(ESBlocks.ABYSSAL_KELP.get().defaultBlockState(), 4).build())));
+		FeatureUtils.register(context, ORBFLORA, ESFeatures.ORBFLORA.get());
+		FeatureUtils.register(context, SPIRAL_KELP, ESFeatures.WATER_PLANT.get(), new WaterPlantFeature.Configuration(BlockStateProvider.simple(ESBlocks.SPIRAL_KELP_PLANT.get()), BlockStateProvider.simple(ESBlocks.SPIRAL_KELP.get())));
 		FeatureUtils.register(context, SEA_ROSA, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(ESBlocks.SEA_ROSA.get(), 32, true, true, true, 0.9F, HolderSet.direct(ESBlocks.DUSTED_GRAVEL.asHolder(), ESBlocks.TWILIGHT_SAND.asHolder())));
+		FeatureUtils.register(context, LUMENSTEM, ESFeatures.WATER_PLANT.get(), new WaterPlantFeature.Configuration(BlockStateProvider.simple(ESBlocks.LUMENSTEM_PLANT.get()), BlockStateProvider.simple(ESBlocks.LUMENSTEM.get())));
 		FeatureUtils.register(context, OCEAN_VEGETATION, Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(PlacementUtils.inlinePlaced(ESFeatures.CORAL_TREE.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(ESFeatures.CORAL_CLAW.get(), FeatureConfiguration.NONE), PlacementUtils.inlinePlaced(ESFeatures.CORAL_MUSHROOM.get(), FeatureConfiguration.NONE))));
 		FeatureUtils.register(context, SPIRAL_KELP_FOREST_VEGETATION, ESFeatures.UNDERWATER_SIMPLE_BLOCK.get(), new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.WICK_GRASS.get().defaultBlockState(), 9).add(ESBlocks.JINGLING_PICKLE.get().defaultBlockState(), 2))));
+		FeatureUtils.register(context, LUSH_SHALLOW_SEA_VEGETATION, ESFeatures.UNDERWATER_SIMPLE_BLOCK.get(), new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.CIRCULUSH.get().defaultBlockState(), 2).add(ESBlocks.MARIMOLD.get().defaultBlockState(), 1).add(ESBlocks.STONETT.get().defaultBlockState(), 2).add(ESBlocks.LUMINIS.get().defaultBlockState(), 2).add(ESBlocks.GLOWLIS.get().defaultBlockState(), 2).add(ESBlocks.GLOREED.get().defaultBlockState(), 3).add(ESBlocks.STARLIGHT_SEAGRASS.get().defaultBlockState(), 5))));
 		FeatureUtils.register(context, ABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.ABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.ABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, THERMABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.THERMABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, CRYOBYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.CRYOBYSSLATE.get(), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_GEYSER.get())));
@@ -219,6 +226,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, STARLIGHT_MANGROVE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.STARLIGHT_MANGROVE_LOG.get()), new UpwardsBranchingTrunkPlacer(4, 1, 9, UniformInt.of(1, 6), 0.5F, UniformInt.of(0, 1), blocks.getOrThrow(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)), BlockStateProvider.simple(ESBlocks.STARLIGHT_MANGROVE_LEAVES.get()), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70), Optional.of(new MangroveRootPlacer(UniformInt.of(3, 7), BlockStateProvider.simple(ESBlocks.STARLIGHT_MANGROVE_ROOTS.get()), Optional.of(new AboveRootPlacement(BlockStateProvider.simple(ESBlocks.FANTASY_GRASS_CARPET.get()), 0.5F)), new MangroveRootPlacement(blocks.getOrThrow(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, ESBlocks.NIGHTFALL_MUD.get(), ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), BlockStateProvider.simple(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get()), 8, 15, 0.2F))), new TwoLayersFeatureSize(3, 0, 2)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new HangingPlantDecorator(ESBlocks.HANGING_FANTAGRASS.asHolder(), ESBlocks.HANGING_FANTAGRASS_PLANT.asHolder(), true, 0.3f, UniformInt.of(3, 6)))).ignoreVines().build());
 		FeatureUtils.register(context, SCARLET, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.SCARLET_LOG.get()), new StraightTrunkPlacer(10, 2, 10), BlockStateProvider.simple(ESBlocks.SCARLET_LEAVES.get()), new ScarletFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new TrunkCobwebDecorator())).build());
 		FeatureUtils.register(context, TORREYA, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.TORREYA_LOG.get()), new BranchingTrunkPlacer(32, 2, 10, UniformInt.of(3, 4), UniformInt.of(2, 4)), BlockStateProvider.simple(ESBlocks.TORREYA_LEAVES.get().defaultBlockState().setValue(LeavesBlock.PERSISTENT, true)), new TorreyaFoliagePlacer(ConstantInt.of(5), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new TorreyaVinesDecorator())).build());
+		FeatureUtils.register(context, JINGLESTEM, ESFeatures.JINGLESTEM.get());
 		FeatureUtils.register(context, HUGE_GLOWING_MUSHROOM, ESFeatures.HUGE_GLOWING_MUSHROOM.get(), new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_BLOCK.get().defaultBlockState()), BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_STEM.get().defaultBlockState().setValue(HugeMushroomBlock.UP, false).setValue(HugeMushroomBlock.DOWN, false)), 3));
 		FeatureUtils.register(context, STARLIGHT_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.HUGE_GLOWING_MUSHROOM_CHECKED), 0.015F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED), 0.05F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_HUGE_TREE_CHECKED), 0.8F)), placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED)));
 		FeatureUtils.register(context, DENSE_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED), 0.9F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.HUGE_GLOWING_MUSHROOM_CHECKED), 0.1F)), placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED)));
@@ -226,7 +234,8 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, PERMAFROST_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.NORTHLAND_TREE_CHECKED), 0.25F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.NORTHLAND_ON_SNOW), 0.25F)), placedFeatures.getOrThrow(ESPlacedFeatures.NORTHLAND_TREE_CHECKED)));
 		FeatureUtils.register(context, SCARLET_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.SCARLET_TREE_CHECKED), 0.75F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.HUGE_GLOWING_MUSHROOM_CHECKED), 0.1F)), placedFeatures.getOrThrow(ESPlacedFeatures.SCARLET_TREE_CHECKED)));
 		FeatureUtils.register(context, TORREYA_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.TORREYA_TREE_CHECKED), 0.25F)), placedFeatures.getOrThrow(ESPlacedFeatures.TORREYA_TREE_CHECKED)));
-		FeatureUtils.register(context, DEAD_LUNAR_TREE, ESFeatures.DEAD_LUNAR_TREE.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, JINGLESTEM_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.JINGLESTEM_CHECKED), 0.25F)), placedFeatures.getOrThrow(ESPlacedFeatures.JINGLESTEM_CHECKED)));
+		FeatureUtils.register(context, DEAD_LUNAR_TREE, ESFeatures.DEAD_LUNAR_TREE.get());
 		FeatureUtils.register(context, LUNARIS_CACTUS, Feature.RANDOM_PATCH, FeatureUtils.simpleRandomPatchConfiguration(10, PlacementUtils.inlinePlaced(Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(UniformInt.of(1, 3), BlockStateProvider.simple(ESBlocks.LUNARIS_CACTUS.get())), BlockColumnConfiguration.layer(UniformInt.of(0, 1), BlockStateProvider.simple(ESBlocks.LUNARIS_CACTUS.get().defaultBlockState().setValue(LunarisCactusBlock.FRUIT, true)))), Direction.UP, BlockPredicate.ONLY_IN_AIR_PREDICATE, false), BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.wouldSurvive(ESBlocks.LUNARIS_CACTUS.get().defaultBlockState(), BlockPos.ZERO))))));
 		FeatureUtils.register(context, FOREST_VEGETATION, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.NIGHT_SPROUTS.get().defaultBlockState(), 2).add(ESBlocks.SMALL_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(ESBlocks.GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(ESBlocks.SMALL_GLOWING_NIGHT_SPROUTS.get().defaultBlockState(), 2).add(ESBlocks.LUNAR_GRASS.get().defaultBlockState(), 2).add(ESBlocks.GLOWING_LUNAR_GRASS.get().defaultBlockState(), 2).add(ESBlocks.CRESCENT_GRASS.get().defaultBlockState(), 2).add(ESBlocks.GLOWING_CRESCENT_GRASS.get().defaultBlockState(), 2).add(ESBlocks.PARASOL_GRASS.get().defaultBlockState(), 2).add(ESBlocks.GLOWING_PARASOL_GRASS.get().defaultBlockState(), 2).add(ESBlocks.LUNAR_BUSH.get().defaultBlockState(), 2).add(ESBlocks.GLOWING_LUNAR_BUSH.get().defaultBlockState(), 2).add(ESBlocks.TALL_CRESCENT_GRASS.get().defaultBlockState(), 1).add(ESBlocks.TALL_GLOWING_CRESCENT_GRASS.get().defaultBlockState(), 1).add(ESBlocks.GLADESPIKE.get().defaultBlockState(), 2).add(ESBlocks.TALL_GLADESPIKE.get().defaultBlockState(), 1).add(ESBlocks.VIVIDSTALK.get().defaultBlockState(), 1).add(ESBlocks.PINK_ROSE.get().defaultBlockState(), 2).add(ESBlocks.PINK_ROSE_BUSH.get().defaultBlockState(), 1).add(ESBlocks.STARLIGHT_TORCHFLOWER.get().defaultBlockState(), 2).add(ESBlocks.WHISPERBLOOM.get().defaultBlockState(), 2).add(ESBlocks.STARLIGHT_FLOWER.get().defaultBlockState(), 2).add(ESBlocks.AUREATE_FLOWER.get().defaultBlockState(), 1)), 48));
 		FeatureUtils.register(context, SWAMP_VEGETATION, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.FANTABUD.get().defaultBlockState(), 1).add(ESBlocks.GREEN_FANTABUD.get().defaultBlockState(), 1).add(ESBlocks.FANTAFERN.get().defaultBlockState(), 1).add(ESBlocks.GREEN_FANTAFERN.get().defaultBlockState(), 1).add(ESBlocks.FANTAGRASS.get().defaultBlockState(), 1).add(ESBlocks.GREEN_FANTAGRASS.get().defaultBlockState(), 1).add(ESBlocks.VIVIDSTALK.get().defaultBlockState(), 1).add(ESBlocks.SWAMP_ROSE.get().defaultBlockState(), 1).add(ESBlocks.NIGHTFAN.get().defaultBlockState(), 1).add(ESBlocks.WHISPERBLOOM.get().defaultBlockState(), 1).add(ESBlocks.STARLIGHT_FLOWER.get().defaultBlockState(), 1)), 48));
@@ -243,11 +252,11 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH, ESFeatures.BLOCK_PATCH.get(), new BlockPatchFeature.Configuration(BlockStateProvider.simple(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()), BlockTags.MOSS_REPLACEABLE, UniformInt.of(4, 7)));
 		FeatureUtils.register(context, RED_CRYSTAL_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH, new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.simple(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(RED_CRYSTAL_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F));
 		FeatureUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH, new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.simple(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(BLUE_CRYSTAL_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F));
-		FeatureUtils.register(context, SWAMP_WATER, ESFeatures.SWAMP_WATER.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, SWAMP_WATER, ESFeatures.SWAMP_WATER.get());
 		FeatureUtils.register(context, HOT_SPRING, ESFeatures.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.SPRINGSTONE.get().defaultBlockState(), 10).add(ESBlocks.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build())));
 
 		// structure features
-		FeatureUtils.register(context, GOLEM_FORGE_CHIMNEY, ESFeatures.GOLEM_FORGE_CHIMNEY.get(), new NoneFeatureConfiguration());
+		FeatureUtils.register(context, GOLEM_FORGE_CHIMNEY, ESFeatures.GOLEM_FORGE_CHIMNEY.get());
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {

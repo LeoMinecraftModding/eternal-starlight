@@ -49,6 +49,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "in_lush_shallow_sea": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:lush_shallow_sea"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "in_scarlet_forest": {
       "conditions": {
         "player": [
@@ -232,6 +248,9 @@
     ],
     [
       "in_ether_river"
+    ],
+    [
+      "in_lush_shallow_sea"
     ],
     [
       "in_scarlet_forest"

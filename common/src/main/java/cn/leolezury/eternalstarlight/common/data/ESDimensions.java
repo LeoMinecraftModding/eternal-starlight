@@ -45,21 +45,24 @@ public class ESDimensions {
 		SurfaceRules.RuleSource surface = SurfaceRules.sequence(
 			SurfaceRules.ifTrue(
 				SurfaceRules.ON_FLOOR,
-				SurfaceRules.ifTrue(
-					SurfaceRules.waterBlockCheck(-1, 0),
-					SurfaceRules.sequence(
-						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT, ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
-						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
-						SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
-						SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))
-					)
+				SurfaceRules.sequence(
+					SurfaceRules.ifTrue(
+						SurfaceRules.waterBlockCheck(-1, 0),
+						SurfaceRules.sequence(
+							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT, ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
+							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
+							SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))
+						)
+					),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, -0.0625, 0.025), SurfaceRules.state(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.MOSSY_DUSTED_GRAVEL.get().defaultBlockState())))
 				)
 			),
 			SurfaceRules.ifTrue(
 				SurfaceRules.UNDER_FLOOR,
 				SurfaceRules.sequence(
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT, ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
-					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST, ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
 					SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState())
 				)
@@ -160,6 +163,7 @@ public class ESDimensions {
 			biomeHolderGetter.getOrThrow(ESBiomes.ETHER_RIVER),
 			biomeHolderGetter.getOrThrow(ESBiomes.STARLIT_SEA),
 			biomeHolderGetter.getOrThrow(ESBiomes.SPIRAL_KELP_FOREST),
+			biomeHolderGetter.getOrThrow(ESBiomes.LUSH_SHALLOW_SEA),
 			biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS),
 			biomeHolderGetter.getOrThrow(ESBiomes.WARM_SHORE)
 		)), noiseSettingsHolderGetter.getOrThrow(STARLIGHT_NOISE_SETTINGS)));

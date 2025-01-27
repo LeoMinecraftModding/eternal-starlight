@@ -2,11 +2,8 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,18 +35,5 @@ public class CaveMossBlock extends GrowingPlantHeadBlock {
 	@Override
 	protected Block getBodyBlock() {
 		return ESBlocks.CAVE_MOSS_PLANT.get();
-	}
-
-	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
-		return true;
-	}
-
-	@Override
-	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos pos, BlockState state) {
-		BlockPos growthDest = pos.relative(this.growthDirection);
-		if (this.canGrowInto(serverLevel.getBlockState(growthDest))) {
-			serverLevel.setBlockAndUpdate(growthDest, this.getGrowIntoState(state, serverLevel.random));
-		}
 	}
 }

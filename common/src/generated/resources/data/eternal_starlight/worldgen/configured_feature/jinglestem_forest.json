@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "eternal_starlight:jinglestem_checked",
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": "eternal_starlight:jinglestem_checked"
+      }
+    ]
+  }
+}

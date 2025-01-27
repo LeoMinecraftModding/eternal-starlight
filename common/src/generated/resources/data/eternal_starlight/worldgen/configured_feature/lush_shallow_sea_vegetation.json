@@ -1,0 +1,52 @@
+{
+  "type": "eternal_starlight:underwater_simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:circulush"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:marimold"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:stonett"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:luminis"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:glowlis"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:gloreed"
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:starlight_seagrass"
+          },
+          "weight": 5
+        }
+      ]
+    }
+  }
+}
