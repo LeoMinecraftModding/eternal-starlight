@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.util.ESWeatherUtil;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +17,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +27,12 @@ public abstract class ServerLevelMixin {
 	@Final
 	List<ServerPlayer> players;
 
-	@Inject(method = "getChunkSource()Lnet/minecraft/server/level/ServerChunkCache;", at = @At("RETURN"))
-	private void getChunkSource(CallbackInfoReturnable<ServerChunkCache> cir) {
-		if (cir.getReturnValue() != null && cir.getReturnValue().getGenerator() instanceof ESChunkGenerator generator && generator.getBiomeSource() instanceof ESBiomeSource source) {
+	@ModifyReturnValue(method = "getChunkSource()Lnet/minecraft/server/level/ServerChunkCache;", at = @At("RETURN"))
+	private ServerChunkCache getChunkSource(ServerChunkCache cache) {
+		if (cache != null && cache.getGenerator() instanceof ESChunkGenerator generator && generator.getBiomeSource() instanceof ESBiomeSource source) {
 			source.setRegistryAccess(((ServerLevel) (Object) this).registryAccess());
 		}
+		return cache;
 	}
 
 	@Inject(method = "tickPrecipitation", at = @At("RETURN"))
