@@ -16,41 +16,54 @@ import net.minecraft.util.Mth;
 @Environment(EnvType.CLIENT)
 public class EntModel<T extends Ent> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("ent"), "main");
-	private final ModelPart head;
+	private final ModelPart body;
+	private final ModelPart leaves;
+	private final ModelPart rightArm;
+	private final ModelPart leftArm;
 	private final ModelPart rightLeg;
 	private final ModelPart leftLeg;
 
 	public EntModel(ModelPart root) {
-		this.head = root.getChild("head");
-		this.rightLeg = root.getChild("right_leg");
+		this.body = root.getChild("body");
+		this.leaves = this.body.getChild("leaves");
+		this.leftArm = this.body.getChild("left_arm");
+		this.rightArm = this.body.getChild("right_arm");
 		this.leftLeg = root.getChild("left_leg");
+		this.rightLeg = root.getChild("right_leg");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -1.25F, -3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-			.texOffs(0, 12).addBox(-4.0F, -4.25F, -4.0F, 8.0F, 5.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 17.25F, 0.0F));
+		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 17).addBox(-3.0F, -11.0F, -2.0F, 6.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 12).addBox(-0.5F, 1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.5F, 21.0F, 0.0F));
+		body.addOrReplaceChild("leaves", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -14.0F, -3.0F, 8.0F, 9.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 1.0F, -1.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.5F, 21.0F, 0.0F));
+		body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(24, 30).addBox(0.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, -4.0F, 1.0F));
 
-		return LayerDefinition.create(meshdefinition, 32, 32);
+		body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(24, 25).addBox(-1.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, -4.0F, 1.0F));
+
+		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(24, 17).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 22.0F, 0.0F));
+
+		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(24, 21).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 22.0F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		head.xRot = headPitch * ((float) Math.PI / 180F);
-		rightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+		body.yRot = netHeadYaw * Mth.DEG_TO_RAD;
+		leaves.visible = entity.hasLeaves();
+		leftArm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+		rightArm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 		leftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		rightLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 	}
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 		rightLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 		leftLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}

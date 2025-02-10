@@ -164,7 +164,7 @@ public class AstralGolem extends AbstractGolem implements NeutralMob {
 
 	private boolean isValidRepairMaterial(ItemStack stack) {
 		Item material = Items.IRON_INGOT;
-		if (getMaterial() != null) material = getMaterial().material();
+		if (getMaterial() != null && getMaterial().material().isBound()) material = getMaterial().material().value();
 		return stack.is(material);
 	}
 

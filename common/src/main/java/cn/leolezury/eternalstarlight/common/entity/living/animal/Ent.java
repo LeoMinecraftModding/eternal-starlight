@@ -1,28 +1,31 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.data.ESEntVariants;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -33,10 +36,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-public class Ent extends Animal {
+import java.util.Optional;
+
+public class Ent extends Animal implements VariantHolder<Holder<EntVariant>> {
 	private static final String TAG_HAS_LEAVES = "has_leaves";
+	private static final String TAG_VARIANT = "variant";
 
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(ESTags.Items.ENT_FOOD);
 
@@ -54,10 +61,39 @@ public class Ent extends Animal {
 		this.getEntityData().set(HAS_LEAVES, hasLeaves);
 	}
 
+	protected static final EntityDataAccessor<String> VARIANT = SynchedEntityData.defineId(Ent.class, EntityDataSerializers.STRING);
+
+	public ResourceLocation getVariantId() {
+		return ResourceLocation.parse(this.getEntityData().get(VARIANT));
+	}
+
+	public void setVariantId(ResourceLocation variant) {
+		this.getEntityData().set(VARIANT, variant.toString());
+	}
+
+	@Override
+	public void setVariant(Holder<EntVariant> variant) {
+		if (variant.isBound()) {
+			ResourceLocation key = level().registryAccess().registryOrThrow(ESRegistries.ENT_VARIANT).getKey(variant.value());
+			if (key != null) {
+				setVariantId(key);
+			}
+		}
+	}
+
+	@Override
+	public Holder<EntVariant> getVariant() {
+		ResourceLocation key = getVariantId();
+		Registry<EntVariant> variants = level().registryAccess().registryOrThrow(ESRegistries.ENT_VARIANT);
+		Optional<Holder.Reference<EntVariant>> optional = variants.getHolder(key);
+		return optional.orElse(variants.getHolder(ESEntVariants.LUNAR).orElseThrow());
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(HAS_LEAVES, true);
+		builder.define(HAS_LEAVES, true)
+			.define(VARIANT, ESEntVariants.LUNAR.location().toString());
 	}
 
 	@Override
@@ -78,12 +114,14 @@ public class Ent extends Animal {
 		if (compoundTag.contains(TAG_HAS_LEAVES, CompoundTag.TAG_BYTE)) {
 			setHasLeaves(compoundTag.getBoolean(TAG_HAS_LEAVES));
 		}
+		setVariantId(ResourceLocation.read(compoundTag.getString(TAG_VARIANT)).getOrThrow());
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_HAS_LEAVES, hasLeaves());
+		compoundTag.putString(TAG_VARIANT, getVariantId().toString());
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -91,6 +129,12 @@ public class Ent extends Animal {
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.ent.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.ent.armor())
 			.add(Attributes.MOVEMENT_SPEED, 0.25D);
+	}
+
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
+		setVariant(EntVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition())));
+		return super.finalizeSpawn(level, instance, spawnType, data);
 	}
 
 	@Override
@@ -124,7 +168,15 @@ public class Ent extends Animal {
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-		return ESEntities.ENT.get().create(level);
+		Ent ent = ESEntities.ENT.get().create(level);
+		if (ent != null && mob instanceof Ent partner) {
+			if (this.random.nextBoolean()) {
+				ent.setVariant(this.getVariant());
+			} else {
+				ent.setVariant(partner.getVariant());
+			}
+		}
+		return ent;
 	}
 
 	@Nullable

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.EntVariant;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.BoarwarfType;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -15,6 +16,7 @@ public class ESRegistries {
 	public static final ResourceKey<Registry<DataTransformer>> DATA_TRANSFORMER = ResourceKey.createRegistryKey(EternalStarlight.id("worldgen_data_transformer"));
 	public static final ResourceKey<Registry<BoarwarfType>> BOARWARF_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("boarwarf_type"));
 	public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(EternalStarlight.id("astral_golem_material"));
+	public static final ResourceKey<Registry<EntVariant>> ENT_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("ent_variant"));
 	public static final ResourceKey<Registry<Crest>> CREST = ResourceKey.createRegistryKey(EternalStarlight.id("crest"));
 
 	static {
@@ -22,6 +24,7 @@ public class ESRegistries {
 		ESPlatform.INSTANCE.registerDatapackRegistry(DATA_TRANSFORMER, DataTransformer.CODEC, null);
 		ESPlatform.INSTANCE.registerDatapackRegistry(BOARWARF_TYPE, BoarwarfType.CODEC, BoarwarfType.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(ASTRAL_GOLEM_MATERIAL, AstralGolemMaterial.CODEC, AstralGolemMaterial.CODEC);
+		ESPlatform.INSTANCE.registerDatapackRegistry(ENT_VARIANT, EntVariant.CODEC, EntVariant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(CREST, Crest.CODEC, Crest.CODEC);
 	}
 
