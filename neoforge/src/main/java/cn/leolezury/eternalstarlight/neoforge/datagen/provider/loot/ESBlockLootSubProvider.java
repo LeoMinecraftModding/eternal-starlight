@@ -577,6 +577,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		plant(ESBlocks.VIVIDSTALK.get());
 		dropPottedContents(ESBlocks.POTTED_VIVIDSTALK.get());
 		add(ESBlocks.TALL_GLADESPIKE.get(), this::createDoublePlantDrops);
+		plant(ESBlocks.MOONLIGHT_BUSH.get());
 		dropSelf(ESBlocks.GLOWING_MUSHROOM.get());
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
@@ -712,6 +713,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
 		add(ESBlocks.GLACITE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.GLACITE_SHARD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		dropSelf(ESBlocks.GLACITE_BLOCK.get());
 		add(ESBlocks.SWAMP_SILVER_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropSelf(ESBlocks.SWAMP_SILVER_BLOCK.get());
 		add(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));

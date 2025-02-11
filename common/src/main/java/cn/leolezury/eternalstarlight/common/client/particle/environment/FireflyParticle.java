@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,6 +7,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
@@ -17,11 +17,11 @@ public class FireflyParticle extends TextureSheetParticle {
 
 	protected FireflyParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet) {
 		super(level, x, y, z, 0, 0, 0);
-		this.quadSize = 0.2f + (this.random.nextFloat() * 0.1f);
+		this.quadSize = 0.1f + (this.random.nextFloat() * 0.1f);
 		this.lifetime = 50 + this.random.nextInt(21);
 		this.spriteSet = spriteSet;
 		this.setSpriteFromAge(spriteSet);
-		this.setAlpha();
+		setSpeed();
 	}
 
 	@Override
@@ -30,17 +30,16 @@ public class FireflyParticle extends TextureSheetParticle {
 		this.setSpriteFromAge(this.spriteSet);
 		ticksSinceMotionChange++;
 		if (ticksSinceMotionChange > 40) {
-			Vec3 movement = new Vec3((random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10)).normalize().scale(new Vec3(xd, yd, zd).length());
-			this.xd = movement.x;
-			this.yd = movement.y;
-			this.zd = movement.z;
+			setSpeed();
 			ticksSinceMotionChange = 0;
 		}
-		setAlpha();
 	}
 
-	private void setAlpha() {
-		this.alpha = (float) (0.85f * (1 - Math.abs(age - lifetime / 2) / ((float) lifetime / 2)) + 0.15f * ((Math.sin((double) age / 2) + 1) / 2f));
+	private void setSpeed() {
+		Vec3 movement = new Vec3((random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10), (random.nextBoolean() ? 1 : -1) * random.nextInt(1, 10)).normalize().scale(0.03);
+		this.xd = movement.x;
+		this.yd = movement.y;
+		this.zd = movement.z;
 	}
 
 	@Override
@@ -56,12 +55,21 @@ public class FireflyParticle extends TextureSheetParticle {
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	@Override
 	public int getLightColor(float partialTicks) {
-		return ClientHandlers.FULL_BRIGHT;
+		float g = (this.age + partialTicks) / this.lifetime;
+		g = Mth.clamp(g, 0.0F, 1.0F);
+		int i = super.getLightColor(partialTicks);
+		int j = i & 255;
+		int k = i >> 16 & 255;
+		j += (int) (g * 15.0F * 16.0F);
+		if (j > 240) {
+			j = 240;
+		}
+		return j | k << 16;
 	}
 
 	public static class Provider implements ParticleProvider<SimpleParticleType> {

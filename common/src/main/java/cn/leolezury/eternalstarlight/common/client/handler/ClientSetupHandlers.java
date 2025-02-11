@@ -278,6 +278,7 @@ public class ClientSetupHandlers {
 		ESBlocks.VIVIDSTALK,
 		ESBlocks.POTTED_VIVIDSTALK,
 		ESBlocks.TALL_GLADESPIKE,
+		ESBlocks.MOONLIGHT_BUSH,
 		ESBlocks.GLOWING_MUSHROOM,
 		ESBlocks.POTTED_GLOWING_MUSHROOM,
 		ESBlocks.BOULDERSHROOM,
@@ -624,6 +625,7 @@ public class ClientSetupHandlers {
 
 	public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {
 		strategy.register(ESParticles.STARLIGHT.get(), EndRodParticle.Provider::new);
+		strategy.register(ESParticles.STARDUST.get(), EndRodParticle.Provider::new);
 		strategy.register(ESParticles.FIREFLY.get(), FireflyParticle.Provider::new);
 		strategy.register(ESParticles.SCARLET_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.SHADEGRIEVE_LEAVES.get(), FallingLeavesParticle.Provider::new);

@@ -215,6 +215,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.ATALPHAITE_BLOCK.get(),
 			ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get(),
 			ESBlocks.THIOQUARTZ_BLOCK.get(),
+			ESBlocks.GLACITE_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_BLOCK.get(),
 			ESBlocks.RAW_AETHERSENT_BLOCK.get(),
 			ESBlocks.AETHERSENT_BLOCK.get(),
@@ -255,6 +256,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		);
 		tag(ESConventionalTags.Blocks.ORES_SWAMP_SILVER).add(
 			ESBlocks.SWAMP_SILVER_ORE.get()
+		);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_GLACITE).add(
+			ESBlocks.GLACITE_BLOCK.get()
 		);
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_SWAMP_SILVER).add(
 			ESBlocks.SWAMP_SILVER_BLOCK.get()
@@ -808,6 +812,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.BEACON_BASE_BLOCKS).add(
 			ESBlocks.ATALPHAITE_BLOCK.get(),
 			ESBlocks.AETHERSENT_BLOCK.get(),
+			ESBlocks.GLACITE_BLOCK.get(),
 			ESBlocks.SWAMP_SILVER_BLOCK.get(),
 			ESBlocks.GOLEM_STEEL_BLOCK.get()
 		);
@@ -849,6 +854,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.SPRINGSTONE.get(),
 			ESBlocks.THERMAL_SPRINGSTONE.get(),
 			ESBlocks.GLACITE.get(),
+			ESBlocks.GLACITE_BLOCK.get(),
 			ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
 			ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
 			ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get(),

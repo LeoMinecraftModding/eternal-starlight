@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-28T00:13:23.0359654	Item Models: eternal_starlight
+// 1.21.1	2025-02-11T12:24:12.7612278	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -254,6 +254,7 @@ efe72ebd49862c8774dc1056df41b3cc29ac585d assets/eternal_starlight/models/item/fl
 64c9d329eda50a9028dea3426fb9c473589f79f9 assets/eternal_starlight/models/item/frozen_tube.json
 a6d922f589397263de5cdbe957a7256285610101 assets/eternal_starlight/models/item/glacite.json
 99e054290a2fe3c8cd7652c1c69bc7c46301b232 assets/eternal_starlight/models/item/glacite_axe.json
+1d6dc57eccdb3a7398d43a48fdc0c2d5491be5ed assets/eternal_starlight/models/item/glacite_block.json
 abce2123258a54271f28078de4ce9118e8c9c166 assets/eternal_starlight/models/item/glacite_boots.json
 ce4ca259160a4036b589247b1a73244ef3926bdb assets/eternal_starlight/models/item/glacite_boots_amethyst_trim.json
 7c091264352de9939e896309f71af20188fe5e82 assets/eternal_starlight/models/item/glacite_boots_copper_trim.json
@@ -458,6 +459,7 @@ b9f5348c90983b6e5595a42f9272f96b22dc11fd assets/eternal_starlight/models/item/mo
 599e88e1908cf01072d4b47906a07c292dadde1e assets/eternal_starlight/models/item/molten_stellagmite_slab.json
 0c1b3703c7bed8a911af29368e93ac4f5ec04d8e assets/eternal_starlight/models/item/molten_stellagmite_stairs.json
 e9a071feacbedf483be302a7f0627a6e2b3910dd assets/eternal_starlight/models/item/molten_stellagmite_wall.json
+21126184b0c6775d5ead5344e4fa7c60c8d42086 assets/eternal_starlight/models/item/moonlight_bush.json
 0a84a05e0f3848b62233fff339f0639218c7aaf4 assets/eternal_starlight/models/item/moonlight_duckweed.json
 34327f21c991a0e573d52b8eb75fd187f816a198 assets/eternal_starlight/models/item/moonlight_lily_pad.json
 1bf3633f406eaa72edf0289fc0a5c07a2a177dc9 assets/eternal_starlight/models/item/moonring_bow.json

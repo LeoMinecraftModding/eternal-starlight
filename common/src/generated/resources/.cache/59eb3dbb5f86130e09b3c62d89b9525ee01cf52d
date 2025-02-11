@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-28T00:13:23.0233225	Loot Tables
+// 1.21.1	2025-02-11T12:24:12.7349676	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -150,6 +150,7 @@ e5cf8168a6601221e047fb1a76db11d12ec46e4f data/eternal_starlight/loot_table/block
 cd2d7bf66307d42b3e23768cebdfb63833bf3c92 data/eternal_starlight/loot_table/blocks/flare_tile_stairs.json
 474df6e6002a58fafde5555ed58b1a78122b5555 data/eternal_starlight/loot_table/blocks/flare_tile_wall.json
 943d426a9ab38a5035d7cd4f0e5bbd06670f4a96 data/eternal_starlight/loot_table/blocks/glacite.json
+7ec175b281de39d8397aff9324827611918c6725 data/eternal_starlight/loot_table/blocks/glacite_block.json
 42fd54b81f10536662513da0447a04d23f1a36aa data/eternal_starlight/loot_table/blocks/gladespike.json
 f41df2d413b009ec5dd6453f9e42f3e6319b9e76 data/eternal_starlight/loot_table/blocks/glimmerfly_bush.json
 29116e30027cd0532583edfd66ec3666230b2e26 data/eternal_starlight/loot_table/blocks/gloreed.json
@@ -280,6 +281,7 @@ ae25b88123a0ed928821ccb9401206b0252ca6e7 data/eternal_starlight/loot_table/block
 29e325efa2544897e6399968d07d6bdfb9b463a3 data/eternal_starlight/loot_table/blocks/molten_stellagmite_slab.json
 7980ecabb3a43f95ccca6552b8377c39554b5a31 data/eternal_starlight/loot_table/blocks/molten_stellagmite_stairs.json
 515c99db80e64b9256b0253a79762c444e9caad4 data/eternal_starlight/loot_table/blocks/molten_stellagmite_wall.json
+3d9a08d86ecc8c283d839a2215a3ba29315a0031 data/eternal_starlight/loot_table/blocks/moonlight_bush.json
 a450558095a42d6e290dc8ce1e1ef898bcdd73cc data/eternal_starlight/loot_table/blocks/moonlight_duckweed.json
 5841e604d313dd427812c07d37713c504b5ea7d8 data/eternal_starlight/loot_table/blocks/moonlight_lily_pad.json
 50a8f7aef5affa66ac39d1cc1fe730766cdf4e4d data/eternal_starlight/loot_table/blocks/mossy_dusted_gravel.json

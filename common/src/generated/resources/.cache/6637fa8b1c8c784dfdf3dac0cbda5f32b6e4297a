@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-26T23:30:11.7207292	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-02-11T12:04:16.0675779	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -42,9 +42,10 @@ edf66ee65420e307e4fc4220483ec2c8c5902786 data/c/tags/block/ore_rates/dense.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/block/sandstone/stairs.json
 c8b398a826d48a0f9f9cdfcf25cdbf300dafdf52 data/c/tags/block/skulls.json
 194b1a9ebb9e1ba6ff7617944f7fa71a3f738c57 data/c/tags/block/stones.json
-7d796d5e70cdf87abf029b83698f1c90bf99cf55 data/c/tags/block/storage_blocks.json
+33e25b887dd5aa28982725a4c0a83b40fe3ac2d9 data/c/tags/block/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aethersent.json
 0a8d9fbaaa644fa07b8e48aa2bccaaba14cedf6e data/c/tags/block/storage_blocks/atalphaite.json
+6d545d7a7e464407ffabe77f1493e4dfb4d96a28 data/c/tags/block/storage_blocks/glacite.json
 252ddce914b462b117c335eb7bd1758725927f96 data/c/tags/block/storage_blocks/golem_steel.json
 1b85805879792f934ad432561017f2a458d3ffdc data/c/tags/block/storage_blocks/oxidized_golem_steel.json
 67c51ec7d04bb9ca0201cb358926b2c2176ed768 data/c/tags/block/storage_blocks/raw_aethersent.json
@@ -75,7 +76,7 @@ bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/block/tooth
 9f8a39c6be0d825a8a6ab30cc3fe57964ac5d0a4 data/eternal_starlight/tags/block/wall_corals.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/block/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/block/yeti_fur_carpets.json
-051c0d0309af355a1b58cf3a97de89bd93d3aed2 data/minecraft/tags/block/beacon_base_blocks.json
+877f67b70d581c68d96dbc83439a1c498ed2556f data/minecraft/tags/block/beacon_base_blocks.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/minecraft/tags/block/campfires.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/block/candles.json
 3276fe5fe9f5770459f5545469eef8fa3872e76d data/minecraft/tags/block/candle_cakes.json
@@ -99,7 +100,7 @@ f41caa3e1ab3b3a135f2349cceee6a573ec63e5f data/minecraft/tags/block/leaves.json
 ce8f35dc022f1a32927aaa3095c6e03a2c4f43a8 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 78350735086753b066029b0dcb46c59a435ac6f1 data/minecraft/tags/block/mineable/axe.json
 5923e52ca68e3ee2d65495b8e5301cccac388f05 data/minecraft/tags/block/mineable/hoe.json
-ad50ca87256f1da4c316c5ac91f1c226d9ba9389 data/minecraft/tags/block/mineable/pickaxe.json
+71d9a0ef2b39db9063d88114249f951b5c76681a data/minecraft/tags/block/mineable/pickaxe.json
 4821adbbbb41cdfe669b150d57a35947d25da007 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 7bc1bb9e83c030a31a9e759a54bf77355e2f36ad data/minecraft/tags/block/mushroom_grow_block.json

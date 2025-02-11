@@ -1109,6 +1109,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private void addGlaciteRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.GLACITE_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.GLACITE_BLOCK.get(), "glacite_shard_from_glacite_block", "glacite_shard");
 		addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		addHoe(recipeOutput, ESItems.GLACITE_HOE.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		addShovel(recipeOutput, ESItems.GLACITE_SHOVEL.get(), ESConventionalTags.Items.GEMS_GLACITE);

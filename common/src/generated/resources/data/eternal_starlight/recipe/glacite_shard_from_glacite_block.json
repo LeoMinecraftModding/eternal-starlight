@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "glacite_shard",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:glacite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:glacite_shard"
+  }
+}

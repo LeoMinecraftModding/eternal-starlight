@@ -534,6 +534,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLADESPIKE.get());
 		flatBlockTexture(ESItems.VIVIDSTALK.get());
 		basicItem(ESItems.TALL_GLADESPIKE.get(), blockTextureFromItem(ESItems.TALL_GLADESPIKE.get()).withSuffix("_top"));
+		flatBlockTexture(ESItems.MOONLIGHT_BUSH.get());
 		flatBlockTexture(ESItems.GLOWING_MUSHROOM.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_BLOCK.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
@@ -648,6 +649,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
 
 		block(ESItems.GLACITE.get());
+		block(ESItems.GLACITE_BLOCK.get());
 		basicItem(ESItems.GLACITE_SHARD.get());
 		handheld(ESItems.GLACITE_SWORD.get());
 		handheld(ESItems.GLACITE_PICKAXE.get());

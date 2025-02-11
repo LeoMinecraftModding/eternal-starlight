@@ -32,7 +32,7 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 			return false;
 		}
 		int xzRadius = config.foliageRadius;
-		int foliageHeight = 4;
+		int foliageHeight = 5;
 		int trunkHeight = 10;
 		List<BlockPos> mushroomBlocks = new ArrayList<>();
 		List<BlockPos> stemBlocks = new ArrayList<>();
@@ -48,8 +48,8 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 			return false;
 		}
 		for (int y = 0; y >= -foliageHeight; y--) {
-			int radius = Mth.lerpInt((float) y / foliageHeight, xzRadius, 0);
-			int radiusNext = Mth.lerpInt((float) (y - 1) / foliageHeight, xzRadius, 0);
+			int radius = Mth.lerpInt((float) -y / foliageHeight, 0, xzRadius);
+			int radiusNext = Mth.lerpInt((float) (1 - y) / foliageHeight, 0, xzRadius);
 			if (radius < radiusNext) {
 				radius = random.nextInt(radius, radiusNext);
 			}

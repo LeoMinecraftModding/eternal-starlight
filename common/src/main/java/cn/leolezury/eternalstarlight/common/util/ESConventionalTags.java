@@ -92,6 +92,8 @@ public class ESConventionalTags {
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_AETHERSENT = storageBlock("raw_aethersent");
 		public static final TagKey<Block> STORAGE_BLOCKS_AETHERSENT = storageBlock("aethersent");
 
+		public static final TagKey<Block> STORAGE_BLOCKS_GLACITE = storageBlock("glacite");
+
 		public static final TagKey<Block> ORES_SWAMP_SILVER = ore("swamp_silver");
 		public static final TagKey<Block> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
 

@@ -336,6 +336,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.VIVIDSTALK.get());
 		pottedPlant(ESBlocks.POTTED_VIVIDSTALK.get(), blockTexture(ESBlocks.VIVIDSTALK.get()));
 		doublePlant(ESBlocks.TALL_GLADESPIKE.get());
+		cross(ESBlocks.MOONLIGHT_BUSH.get());
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
@@ -456,6 +457,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.THERMAL_SPRINGSTONE.get(), ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_WALL.get());
 		stoneSet(ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.GLACITE.get());
+		simpleBlock(ESBlocks.GLACITE_BLOCK.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
 		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
