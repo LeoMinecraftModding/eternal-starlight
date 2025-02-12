@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-11T13:01:03.3349164	Recipes
+// 1.21.1	2025-02-12T17:52:32.3634927	Recipes
 ad29647c03c8631e74ab853101908eda2a14194c data/eternal_starlight/advancement/recipes/brewing/cauldron_from_swamp_silver_ingot.json
 eadb12aecf81885f07435504edfeb0e4ef368170 data/eternal_starlight/advancement/recipes/building_blocks/aethersent_block.json
 0acdc9c3d5e4671d5f9bccefff75638a2fc1fc8b data/eternal_starlight/advancement/recipes/building_blocks/amaramber_bricks.json
@@ -629,6 +629,7 @@ c57ae54d002845be3e3665d642980a016ba41084 data/eternal_starlight/advancement/reci
 4a51daca54b82f6d32faa972fe4d7d768947f7bb data/eternal_starlight/advancement/recipes/combat/aethersent_hood.json
 bea764b05b11a56594e77e9f08232888ed87cf1f data/eternal_starlight/advancement/recipes/combat/air_sac_arrow.json
 e3b4e73b52beeccc042998c8fef840e179a228d2 data/eternal_starlight/advancement/recipes/combat/air_sac_boots.json
+a2b17544fac9eedff893e72020c6c77930002614 data/eternal_starlight/advancement/recipes/combat/air_sac_mask.json
 38eb893bff091d24eda61e8e2bbc45f617105ab8 data/eternal_starlight/advancement/recipes/combat/alchemist_mask.json
 eefedbbab6f20d92c22667e9b29ec25a523883b1 data/eternal_starlight/advancement/recipes/combat/alchemist_robe.json
 9c3778bddfd433c71887a6d5d5eef0231da0ca4e data/eternal_starlight/advancement/recipes/combat/amaramber_arrow.json
@@ -924,6 +925,7 @@ effde9ff5215473c783d14b34db342dd0140e561 data/eternal_starlight/recipe/aethersen
 864ffadd357f3b19979f209e0ccd18d5f51534f9 data/eternal_starlight/recipe/aethersent_nugget.json
 77b38c7b36163ac2a19599f7b7065c9900816341 data/eternal_starlight/recipe/air_sac_arrow.json
 0eefbd93f96517fa22ac6e4486238e1a3963bf60 data/eternal_starlight/recipe/air_sac_boots.json
+0f07bebf5a894462d0512e82a072d5474b273440 data/eternal_starlight/recipe/air_sac_mask.json
 0cdeca8176bf35ec8896140bad4eb63436cbe3b0 data/eternal_starlight/recipe/alchemist_mask.json
 914341efadbf4e991faf20f976786872b42c0c0e data/eternal_starlight/recipe/alchemist_robe.json
 ed1f4628550d113bcc96e4e7f03638860a0c6005 data/eternal_starlight/recipe/amaramber_arrow.json

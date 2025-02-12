@@ -819,6 +819,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TOWER_SQUID_SKEWER = registerItem("tower_squid_skewer", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).usingConvertsTo(Items.STICK).build())));
 	public static final RegistryObject<Item, Item> TOWER_SQUID_AIR_SAC = registerItem("tower_squid_air_sac", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> AIR_SAC_ARROW = registerItem("air_sac_arrow", () -> new AirSacArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> AIR_SAC_MASK = registerItem("air_sac_mask",
+		() -> new ArmorItem(ESArmorMaterials.AIR_SAC.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> AIR_SAC_BOOTS = registerItem("air_sac_boots",
 		() -> new AirSacArmorItem(ESArmorMaterials.AIR_SAC.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
 

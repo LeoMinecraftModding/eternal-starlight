@@ -318,7 +318,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.SWAMP_SILVER_LEGGINGS.get(),
 			ESItems.SWAMP_SILVER_BOOTS.get(),
 			ESItems.AMARAMBER_HELMET.get(),
-			ESItems.AMARAMBER_CHESTPLATE.get()
+			ESItems.AMARAMBER_CHESTPLATE.get(),
+			ESItems.AIR_SAC_MASK.get()
 		);
 		tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS).add(
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
@@ -658,7 +659,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
 			ESItems.GLACITE_HELMET.get(),
 			ESItems.SWAMP_SILVER_HELMET.get(),
-			ESItems.AMARAMBER_HELMET.get()
+			ESItems.AMARAMBER_HELMET.get(),
+			ESItems.AIR_SAC_MASK.get()
 		);
 		tag(ItemTags.CHEST_ARMOR).add(
 			ESItems.ALCHEMIST_ROBE.get(),

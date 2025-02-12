@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "eternal_starlight:velvetumoss_ball"
+    },
+    "H": {
+      "item": "eternal_starlight:amaramber_helmet"
+    },
+    "L": {
+      "item": "eternal_starlight:jinglestem_log"
+    },
+    "S": {
+      "item": "eternal_starlight:tower_squid_air_sac"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LHL",
+    "SBS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:air_sac_mask"
+  }
+}

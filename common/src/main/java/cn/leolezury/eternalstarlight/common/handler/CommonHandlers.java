@@ -135,16 +135,23 @@ public class CommonHandlers {
 	}
 
 	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
-		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
-			|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
-		) {
-			if (source.is(DamageTypeTags.IS_FIRE)) {
-				return amount / 2f;
+		float modified = amount;
+		if (source.is(DamageTypeTags.IS_FIRE)) {
+			if (entity.hasEffect(ESMobEffects.FLAMMABLE.asHolder())) {
+				MobEffectInstance instance = entity.getEffect(ESMobEffects.FLAMMABLE.asHolder());
+				if (instance != null) {
+					modified *= instance.getAmplifier() + 2;
+				}
+			}
+			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
+				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
+			) {
+				modified /= 2;
 			}
 		}
-		return amount;
+		return modified;
 	}
 
 	public static void onPostLivingHurt(LivingEntity entity, DamageSource source, float amount) {

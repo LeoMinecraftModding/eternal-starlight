@@ -18,6 +18,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -73,6 +74,9 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	private Optional<BlockPos> lastClimbablePos;
 
+	@Shadow
+	public abstract ItemStack getItemBySlot(EquipmentSlot equipmentSlot);
+
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
 	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
 		if (this.getItemInHand(interactionHand).getItem() instanceof Swingable swingable) {
@@ -91,6 +95,18 @@ public abstract class LivingEntityMixin {
 	private void getKnockback(Entity target, DamageSource damageSource, CallbackInfoReturnable<Float> cir) {
 		if (getWeaponItem().is(ESTags.Items.HAMMERS)) {
 			cir.setReturnValue(cir.getReturnValue() + 1);
+		}
+	}
+
+	@Inject(method = "decreaseAirSupply", at = @At("RETURN"), cancellable = true)
+	private void decreaseAirSupply(int i, CallbackInfoReturnable<Integer> cir) {
+		if (getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AIR_SAC_MASK.asHolder())) {
+			LivingEntity entity = (LivingEntity) (Object) this;
+			if (entity.getDeltaMovement().length() < 0.001) {
+				cir.setReturnValue(Math.min(i + 1, entity.getMaxAirSupply()));
+			} else if (entity.isSwimming()) {
+				cir.setReturnValue(Math.max(cir.getReturnValue() - (entity.getRandom().nextBoolean() ? 1 : 0), 0));
+			}
 		}
 	}
 

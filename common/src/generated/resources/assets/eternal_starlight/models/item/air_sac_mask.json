@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:item/amaramber_chestplate"
+    "layer0": "eternal_starlight:item/air_sac_mask"
   }
 }

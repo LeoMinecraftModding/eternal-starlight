@@ -277,6 +277,16 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('T', ESItems.TOWER_SQUID_AIR_SAC.get())
 			.unlockedBy("has_item", has(ESItems.TOWER_SQUID_AIR_SAC.get()))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_MASK.get())
+			.pattern("LLL")
+			.pattern("LHL")
+			.pattern("SBS")
+			.define('L', ESItems.JINGLESTEM_LOG.get())
+			.define('S', ESItems.TOWER_SQUID_AIR_SAC.get())
+			.define('H', ESItems.AMARAMBER_HELMET.get())
+			.define('B', ESItems.VELVETUMOSS_BALL.get())
+			.unlockedBy("has_item", has(ESItems.TOWER_SQUID_AIR_SAC.get()))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_BOOTS.get())
 			.pattern("# #")
 			.pattern("# #")

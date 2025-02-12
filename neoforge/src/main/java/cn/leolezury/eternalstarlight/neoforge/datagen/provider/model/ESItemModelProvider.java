@@ -707,8 +707,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.AMARAMBER_AXE.get());
 		handheld(ESItems.AMARAMBER_HOE.get());
 		handheld(ESItems.AMARAMBER_SHOVEL.get());
-		armorWithTrim((ArmorItem) ESItems.AMARAMBER_HELMET.get());
-		armorWithTrim((ArmorItem) ESItems.AMARAMBER_CHESTPLATE.get());
+		basicItem(ESItems.AMARAMBER_HELMET.get());
+		basicItem(ESItems.AMARAMBER_CHESTPLATE.get());
 
 		shatteredSword(ESItems.SHATTERED_SWORD.get());
 		basicItem(ESItems.SHATTERED_SWORD_BLADE.get());
@@ -736,6 +736,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.TOWER_SQUID_SKEWER.get());
 		basicItem(ESItems.TOWER_SQUID_AIR_SAC.get());
 		basicItem(ESItems.AIR_SAC_ARROW.get());
+		basicItem(ESItems.AIR_SAC_MASK.get());
 		armorWithTrim((ArmorItem) ESItems.AIR_SAC_BOOTS.get());
 
 		basicItem(ESItems.LUMINOFISH_BUCKET.get());
