@@ -354,6 +354,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			Items.BLAZE_ROD,
 			Items.BLAZE_POWDER
 		);
+		tag(ESTags.Items.ENT_FERTILIZERS).add(
+			ESItems.SHADOW_SNAIL_SHELL_POWDER.get(),
+			Items.BONE_MEAL
+		);
 		tag(ESTags.Items.DOOMEDEN_KEYS).add(
 			ESItems.EYE_OF_DOOM.get(),
 			ESItems.LIVING_ARM.get(),

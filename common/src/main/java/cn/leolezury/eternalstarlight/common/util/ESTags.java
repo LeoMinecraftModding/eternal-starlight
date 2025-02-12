@@ -42,6 +42,7 @@ public class ESTags {
 		public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
+		public static final TagKey<Item> ENT_FERTILIZERS = create("ent_fertilizers");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
 		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");

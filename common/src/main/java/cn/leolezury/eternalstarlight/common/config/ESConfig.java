@@ -44,7 +44,7 @@ public class ESConfig {
 		public final AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
 		public final AttackingMobConfig theGatekeeper = new AttackingMobConfig(175, 15, 5, 200, true);
 		public final BossConfig starlightGolem = new BossConfig(220, 0, 1, 200, true);
-		public final AttackingMobConfig freeze = new AttackingMobConfig(32, 0, 5, 32, true);
+		public final AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 5, 32, true);
 		public final BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
 		public final AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
 		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(10, 0, 3, 64, true);

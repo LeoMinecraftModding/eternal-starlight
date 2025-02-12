@@ -1,4 +1,5 @@
 {
   "biomes": "eternal_starlight:starlight_permafrost_forest",
+  "leaves": "eternal_starlight:northland_leaves",
   "texture": "eternal_starlight:textures/entity/ent/northland"
 }

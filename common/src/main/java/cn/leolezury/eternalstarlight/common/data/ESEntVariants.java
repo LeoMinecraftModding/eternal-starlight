@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.EntVariant;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -17,10 +18,10 @@ public class ESEntVariants {
 
 	public static void bootstrap(BootstrapContext<EntVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
-		context.register(LUNAR, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST)), EternalStarlight.id("textures/entity/ent/lunar")));
-		context.register(NORTHLAND, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST)), EternalStarlight.id("textures/entity/ent/northland")));
-		context.register(SCARLET, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST)), EternalStarlight.id("textures/entity/ent/scarlet")));
-		context.register(STARLIGHT_MANGROVE, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP)), EternalStarlight.id("textures/entity/ent/starlight_mangrove")));
+		context.register(LUNAR, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST)), ESItems.LUNAR_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/lunar")));
+		context.register(NORTHLAND, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST)), ESItems.NORTHLAND_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/northland")));
+		context.register(SCARLET, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST)), ESItems.SCARLET_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/scarlet")));
+		context.register(STARLIGHT_MANGROVE, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP)), ESItems.STARLIGHT_MANGROVE_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/starlight_mangrove")));
 	}
 
 	public static ResourceKey<EntVariant> create(String name) {

@@ -1,4 +1,5 @@
 {
   "biomes": "eternal_starlight:dark_swamp",
+  "leaves": "eternal_starlight:starlight_mangrove_leaves",
   "texture": "eternal_starlight:textures/entity/ent/starlight_mangrove"
 }

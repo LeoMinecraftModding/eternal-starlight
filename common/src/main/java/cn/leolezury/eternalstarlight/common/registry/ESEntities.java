@@ -146,7 +146,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<Ent>> ENT = ENTITIES.register(
 		"ent",
 		() -> EntityType.Builder.of(Ent::new, MobCategory.CREATURE)
-			.sized(0.7F, 0.3F)
+			.sized(0.5F, 0.6875F)
 			.passengerAttachments(0.35F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("ent").toString())

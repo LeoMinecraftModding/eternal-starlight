@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-12T17:52:32.3938806	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-02-12T19:52:14.5528294	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -97,6 +97,7 @@ c7ae886b0814b7a913208d29c0a878557a41e93c data/eternal_starlight/tags/item/enchan
 c2cb73b073f520ea3dac111e2f5d496f013fcc15 data/eternal_starlight/tags/item/enchantable/greatsword.json
 e18f783b117a7e13e931b76dc1175b8cbca5eddb data/eternal_starlight/tags/item/enchantable/hammer.json
 dc35b185b0c91cd582e7a1a4ae72a06081e6c425 data/eternal_starlight/tags/item/enchantable/scythe.json
+86321d7bce27caf8985082d8ce70d2d564517df5 data/eternal_starlight/tags/item/ent_fertilizers.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/ent_food.json
 739ccc89f0e417ff163e88c7200bba629efcb874 data/eternal_starlight/tags/item/glacite_weapons.json
 e0cd0402fcd0d7ce13ed1beae0d116cf592790d6 data/eternal_starlight/tags/item/golem_forge_locators.json

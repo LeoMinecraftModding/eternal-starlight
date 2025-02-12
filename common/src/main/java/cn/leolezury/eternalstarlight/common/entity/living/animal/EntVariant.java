@@ -5,16 +5,19 @@ import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public record EntVariant(HolderSet<Biome> biomes, ResourceLocation texture) {
+public record EntVariant(HolderSet<Biome> biomes, Holder<Item> leaves, ResourceLocation texture) {
 	public static final Codec<EntVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(EntVariant::biomes),
+		BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("leaves").forGetter(EntVariant::leaves),
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(EntVariant::texture)
 	).apply(instance, EntVariant::new));
 

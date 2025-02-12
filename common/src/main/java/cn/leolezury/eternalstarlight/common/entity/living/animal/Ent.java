@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.data.ESEntVariants;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -32,7 +31,6 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -144,12 +142,12 @@ public class Ent extends Animal implements VariantHolder<Holder<EntVariant>> {
 		if (!flag) {
 			if (ESPlatform.INSTANCE.isShears(stack) && hasLeaves()) {
 				setHasLeaves(false);
-				spawnAtLocation(ESItems.LUNAR_LEAVES.get());
+				spawnAtLocation(getVariant().value().leaves().value());
 				stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
 				playSound(SoundEvents.SHEEP_SHEAR);
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			}
-			if (stack.is(Items.BONE_MEAL) && !hasLeaves()) {
+			if (stack.is(ESTags.Items.ENT_FERTILIZERS) && !hasLeaves()) {
 				setHasLeaves(true);
 				usePlayerItem(player, hand, stack);
 				playSound(SoundEvents.BONE_MEAL_USE);
