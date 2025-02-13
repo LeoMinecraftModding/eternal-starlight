@@ -1,0 +1,37 @@
+{
+  "parent": "eternal_starlight:obtain_aethersent_ingot",
+  "criteria": {
+    "summon": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:aethersent_golem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.summon_aethersent_golem.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:starfall_longbow"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.summon_aethersent_golem.title"
+    }
+  },
+  "requirements": [
+    [
+      "summon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

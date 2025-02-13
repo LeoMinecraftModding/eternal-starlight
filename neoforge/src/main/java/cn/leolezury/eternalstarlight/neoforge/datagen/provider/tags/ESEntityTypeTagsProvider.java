@@ -101,7 +101,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			ESEntities.TINY_CRETEOR.get(),
 			ESEntities.CRYSTALLIZED_MOTH.get(),
 			ESEntities.SHIMMER_LACEWING.get(),
-			ESEntities.GRIMSTONE_GOLEM.get()
+			ESEntities.GRIMSTONE_GOLEM.get(),
+			ESEntities.AETHERSENT_GOLEM.get()
 		);
 	}
 }

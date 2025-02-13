@@ -3,12 +3,6 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "chance": 0.6,
-          "condition": "minecraft:random_chance"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -17,8 +11,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 4.0,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             },
@@ -32,19 +26,13 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "eternal_starlight:tooth_of_hunger"
+          "name": "eternal_starlight:aethersent_ingot"
         }
       ],
       "rolls": 1.0
     },
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "chance": 0.2,
-          "condition": "minecraft:random_chance"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -53,8 +41,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 2.0,
-                "min": 1.0
+                "max": 4.0,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             },
@@ -68,11 +56,11 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "eternal_starlight:seeking_eye"
+          "name": "eternal_starlight:raw_aethersent"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:entities/thirst_walker"
+  "random_sequence": "eternal_starlight:entities/aethersent_golem"
 }

@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -44,6 +45,10 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 	private BlockPattern grimstoneGolemBase;
 	@Nullable
 	private BlockPattern grimstoneGolemFull;
+	@Nullable
+	private BlockPattern aethersentGolemBase;
+	@Nullable
+	private BlockPattern aethersentGolemFull;
 	private static final Predicate<BlockState> LUNARIS_CACTUS_FRUIT_PREDICATE = (state) -> state != null && (state.is(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()) || state.is(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()));
 
 	public CarvedLunarisCactusFruitBlock(Properties properties) {
@@ -65,13 +70,14 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 	}
 
 	public boolean canSpawnGolem(LevelReader levelReader, BlockPos blockPos) {
-		return this.getOrCreateSnowGolemBase().find(levelReader, blockPos) != null || this.getOrCreateIronGolemBase().find(levelReader, blockPos) != null || this.getOrCreateGrimstoneGolemBase().find(levelReader, blockPos) != null;
+		return this.getOrCreateSnowGolemBase().find(levelReader, blockPos) != null || this.getOrCreateIronGolemBase().find(levelReader, blockPos) != null || this.getOrCreateGrimstoneGolemBase().find(levelReader, blockPos) != null || this.getOrCreateAethersentGolemBase().find(levelReader, blockPos) != null;
 	}
 
 	private void trySpawnGolem(Level level, BlockPos blockPos) {
 		BlockPattern.BlockPatternMatch snowGolemMatch = this.getOrCreateSnowGolemFull().find(level, blockPos);
 		BlockPattern.BlockPatternMatch ironGolemMatch = this.getOrCreateIronGolemFull().find(level, blockPos);
 		BlockPattern.BlockPatternMatch grimstoneGolemMatch = this.getOrCreateGrimstoneGolemFull().find(level, blockPos);
+		BlockPattern.BlockPatternMatch aethersentGolemMatch = this.getOrCreateAethersentGolemFull().find(level, blockPos);
 		if (snowGolemMatch != null) {
 			SnowGolem snowGolem = EntityType.SNOW_GOLEM.create(level);
 			if (snowGolem != null) {
@@ -87,6 +93,11 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 			GrimstoneGolem grimstoneGolem = ESEntities.GRIMSTONE_GOLEM.get().create(level);
 			if (grimstoneGolem != null) {
 				spawnGolemInWorld(level, grimstoneGolemMatch, grimstoneGolem, grimstoneGolemMatch.getBlock(0, 1, 0).getPos());
+			}
+		} else if (aethersentGolemMatch != null) {
+			AethersentGolem aethersentGolem = ESEntities.AETHERSENT_GOLEM.get().create(level);
+			if (aethersentGolem != null) {
+				spawnGolemInWorld(level, aethersentGolemMatch, aethersentGolem, aethersentGolemMatch.getBlock(0, 1, 0).getPos());
 			}
 		}
 	}
@@ -168,7 +179,7 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 
 	private BlockPattern getOrCreateGrimstoneGolemBase() {
 		if (this.grimstoneGolemBase == null) {
-			this.grimstoneGolemBase = BlockPatternBuilder.start().aisle(" ", "#").where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ESBlocks.GRIMSTONE_BRICKS.get()))).where('~', (blockInWorld) -> blockInWorld.getState().isAir()).build();
+			this.grimstoneGolemBase = BlockPatternBuilder.start().aisle(" ", "#").where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ESBlocks.GRIMSTONE_BRICKS.get()))).build();
 		}
 
 		return this.grimstoneGolemBase;
@@ -180,5 +191,21 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 		}
 
 		return this.grimstoneGolemFull;
+	}
+
+	private BlockPattern getOrCreateAethersentGolemBase() {
+		if (this.aethersentGolemBase == null) {
+			this.aethersentGolemBase = BlockPatternBuilder.start().aisle(" ", "#").where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ESBlocks.AETHERSENT_BLOCK.get()))).build();
+		}
+
+		return this.aethersentGolemBase;
+	}
+
+	private BlockPattern getOrCreateAethersentGolemFull() {
+		if (this.aethersentGolemFull == null) {
+			this.aethersentGolemFull = BlockPatternBuilder.start().aisle("^", "#").where('^', BlockInWorld.hasState(LUNARIS_CACTUS_FRUIT_PREDICATE)).where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ESBlocks.AETHERSENT_BLOCK.get()))).build();
+		}
+
+		return this.aethersentGolemFull;
 	}
 }

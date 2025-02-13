@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-11T12:24:12.7349676	Loot Tables
+// 1.21.1	2025-02-13T21:32:58.9330421	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -636,6 +636,7 @@ e7a4432f13c78aadaee5cb60b6c6ec9a2131bbf5 data/eternal_starlight/loot_table/bosse
 817f9a82cca0cb3344de3bb32e8bde62c3aae487 data/eternal_starlight/loot_table/chests/cursed_garden.json
 a17c39e100a98bcc3ecff5dd8c27bed6ec49668c data/eternal_starlight/loot_table/chests/golem_forge.json
 505d9a4868fc7eb145a066fcc20989938728b822 data/eternal_starlight/loot_table/chests/music_discs.json
+6b6f0e7d5564829e079406c182b5c4b1c98e8743 data/eternal_starlight/loot_table/entities/aethersent_golem.json
 a461217c956af4bd0fb8803afa168aeb4b966da2 data/eternal_starlight/loot_table/entities/astral_golem.json
 7f94abc7aae330ee290d6e0d4ee4b67e4bab1f18 data/eternal_starlight/loot_table/entities/aurora_deer.json
 fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_table/entities/boarwarf.json
@@ -658,7 +659,7 @@ d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_table/entit
 cdfda6f90f96ac9dd5c8997e86411f844ff69411 data/eternal_starlight/loot_table/entities/tangled_hatred.json
 babe6abda538bda4948feaa3bb8d8965deff0d8b data/eternal_starlight/loot_table/entities/tangled_skull.json
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_table/entities/the_gatekeeper.json
-5d9a6a5389e54faca2c0597fa733a5a68ac14490 data/eternal_starlight/loot_table/entities/thirst_walker.json
+394cea953eb6f0917e73c3821ea2b7e33c36cd79 data/eternal_starlight/loot_table/entities/thirst_walker.json
 ed91cb96fb35e52e950d7a03bb62f4f8db3070f1 data/eternal_starlight/loot_table/entities/tiny_creteor.json
 ea366c80eba1228ca61060c8975d24a771d86c82 data/eternal_starlight/loot_table/entities/tower_squid.json
 9742c2717dc30701fa79d4ab3d735a2201afc8b9 data/eternal_starlight/loot_table/entities/twilight_gaze.json

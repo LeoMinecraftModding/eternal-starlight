@@ -38,6 +38,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		spawnEgg(ESItems.CRYSTALLIZED_MOTH_SPAWN_EGG.get());
 		spawnEgg(ESItems.SHIMMER_LACEWING_SPAWN_EGG.get());
 		spawnEgg(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
+		spawnEgg(ESItems.AETHERSENT_GOLEM_SPAWN_EGG.get());
 		spawnEgg(ESItems.TOWER_SQUID_SPAWN_EGG.get());
 		spawnEgg(ESItems.LUMINOFISH_SPAWN_EGG.get());
 		spawnEgg(ESItems.LUMINARIS_SPAWN_EGG.get());

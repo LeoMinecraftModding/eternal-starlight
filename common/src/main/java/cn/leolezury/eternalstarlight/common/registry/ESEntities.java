@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.LunarMonstrosityBreath;
+import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
@@ -203,6 +204,13 @@ public class ESEntities {
 			.sized(0.5F, 1F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("grimstone_golem").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<AethersentGolem>> AETHERSENT_GOLEM = ENTITIES.register(
+		"aethersent_golem",
+		() -> EntityType.Builder.of(AethersentGolem::new, MobCategory.CREATURE)
+			.sized(0.5F, 1.25F)
+			.clientTrackingRange(8)
+			.build(EternalStarlight.id("aethersent_golem").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<TowerSquid>> TOWER_SQUID = ENTITIES.register(
 		"tower_squid",

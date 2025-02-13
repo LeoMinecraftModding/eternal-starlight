@@ -152,6 +152,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder aethersentIngot = addItemObtain(consumer, witnessMeteorShower, "obtain_aethersent_ingot", ESItems.AETHERSENT_INGOT.get());
 
+		AdvancementHolder summonAethersentGolem = addEntitySummon(consumer, aethersentIngot, "summon_aethersent_golem", ESEntities.AETHERSENT_GOLEM.get(), ESItems.STARFALL_LONGBOW.get());
+
 		AdvancementHolder killCreteor = addEntityKill(consumer, witnessMeteorShower, "kill_creteor", ESEntities.CRETEOR.get(), ESItems.CRETEOR_HIDE.get());
 
 		AdvancementHolder aetherstrikeRocket = addItemObtain(consumer, killCreteor, "obtain_aetherstrike_rocket", ESItems.AETHERSTRIKE_ROCKET.get());

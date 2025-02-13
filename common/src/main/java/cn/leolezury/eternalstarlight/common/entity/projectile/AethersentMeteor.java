@@ -6,6 +6,9 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -97,6 +100,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	private boolean natural = true;
 
+	public boolean isNatural() {
+		return natural;
+	}
+
 	public AethersentMeteor(EntityType<? extends AethersentMeteor> type, Level level) {
 		super(type, level);
 	}
@@ -171,33 +178,40 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		compoundTag.putBoolean(TAG_NATURAL, natural);
 	}
 
-	private void dropAndDiscard() {
+	public void dropAndDiscard(boolean clean) {
 		if (!isRemoved()) {
 			if (!level().isClientSide) {
 				if (natural && getSize() >= 10) {
 					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
-					for (int x = -3; x <= 3; x++) {
-						for (int y = -3; y <= 3; y++) {
-							for (int z = -3; z <= 3; z++) {
-								BlockPos pos = blockPosition().offset(x, y, z);
-								if (pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES)) {
-									level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
-								}
-							}
-						}
-					}
 					if (entity != null) {
 						entity.setGlowingTag(true);
 					}
-					if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < 0.7 && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
-						Creteor creteor = new Creteor(ESEntities.CRETEOR.get(), level());
-						creteor.setPos(position());
-						creteor.setPersistenceRequired();
-						level().addFreshEntity(creteor);
-					}
-					for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
-						ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
-						((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
+					if (!clean) {
+						for (int x = -3; x <= 3; x++) {
+							for (int y = -3; y <= 3; y++) {
+								for (int z = -3; z <= 3; z++) {
+									BlockPos pos = blockPosition().offset(x, y, z);
+									if (pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES)) {
+										level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
+									}
+								}
+							}
+						}
+						if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < 0.7 && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
+							Creteor creteor = new Creteor(ESEntities.CRETEOR.get(), level());
+							creteor.setPos(position());
+							creteor.setPersistenceRequired();
+							level().addFreshEntity(creteor);
+						}
+						for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
+							ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
+							((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
+						}
+					} else if (level() instanceof ServerLevel serverLevel) {
+						for (int i = 0; i < 25; i++) {
+							Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();
+							ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.AETHERSENT, position().x + speed.x * 1.2, position().y + speed.y * 1.2, position().z + speed.z * 1.2, speed.x, speed.y, speed.z));
+						}
 					}
 				}
 				discard();
@@ -225,7 +239,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			discard();
 		}
 		if (natural) {
-			dropAndDiscard();
+			dropAndDiscard(false);
 		}
 	}
 

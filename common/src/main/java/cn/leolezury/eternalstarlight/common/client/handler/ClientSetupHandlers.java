@@ -685,6 +685,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), CrystallizedMothRenderer::new);
 		strategy.register(ESEntities.SHIMMER_LACEWING.get(), ShimmerLacewingRenderer::new);
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolemRenderer::new);
+		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolemRenderer::new);
 		strategy.register(ESEntities.TOWER_SQUID.get(), TowerSquidRenderer::new);
 		strategy.register(ESEntities.LUMINOFISH.get(), LuminoFishRenderer::new);
 		strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
@@ -766,6 +767,7 @@ public class ClientSetupHandlers {
 		strategy.register(CrystallizedMothModel.LAYER_LOCATION, CrystallizedMothModel::createBodyLayer);
 		strategy.register(ShimmerLacewingModel.LAYER_LOCATION, ShimmerLacewingModel::createBodyLayer);
 		strategy.register(GrimstoneGolemModel.LAYER_LOCATION, GrimstoneGolemModel::createBodyLayer);
+		strategy.register(AethersentGolemModel.LAYER_LOCATION, AethersentGolemModel::createBodyLayer);
 		strategy.register(TowerSquidModel.LAYER_LOCATION, TowerSquidModel::createBodyLayer);
 		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);

@@ -25,8 +25,8 @@ public class GrimstoneGolem extends PathfinderMob {
 	public final AnimationState displayAnimationState = new AnimationState();
 	public final AnimationState lowerArmsAnimationState = new AnimationState();
 
-	public GrimstoneGolem(EntityType<? extends GrimstoneGolem> entityType, Level level) {
-		super(entityType, level);
+	public GrimstoneGolem(EntityType<? extends GrimstoneGolem> type, Level level) {
+		super(type, level);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -132,9 +132,5 @@ public class GrimstoneGolem extends PathfinderMob {
 				displayAnimationState.startIfStopped(tickCount);
 			}
 		}
-	}
-
-	public static boolean checkGolemSpawnRules(EntityType<? extends GrimstoneGolem> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()) - 20 && level.getBlockState(pos.below()).is(ESTags.Blocks.BASE_STONE_STARLIGHT) && ESConfig.INSTANCE.mobsConfig.grimstoneGolem.canSpawn();
 	}
 }
