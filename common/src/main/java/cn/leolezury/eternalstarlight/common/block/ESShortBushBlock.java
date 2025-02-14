@@ -28,7 +28,7 @@ public class ESShortBushBlock extends BushBlock {
 	}
 
 	@Override
-	protected MapCodec<ESShortBushBlock> codec() {
+	protected MapCodec<? extends ESShortBushBlock> codec() {
 		return CODEC;
 	}
 

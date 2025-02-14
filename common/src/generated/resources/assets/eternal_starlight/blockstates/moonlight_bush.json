@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "berries=false": {
       "model": "eternal_starlight:block/moonlight_bush"
+    },
+    "berries=true": {
+      "model": "eternal_starlight:block/moonlight_bush_berries"
     }
   }
 }

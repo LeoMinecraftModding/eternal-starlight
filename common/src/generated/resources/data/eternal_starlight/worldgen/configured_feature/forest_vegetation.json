@@ -154,7 +154,19 @@
               },
               {
                 "data": {
-                  "Name": "eternal_starlight:moonlight_bush"
+                  "Name": "eternal_starlight:moonlight_bush",
+                  "Properties": {
+                    "berries": "false"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:moonlight_bush",
+                  "Properties": {
+                    "berries": "true"
+                  }
                 },
                 "weight": 1
               },
