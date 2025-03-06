@@ -17,6 +17,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -75,7 +76,7 @@ public class MeteorParticle extends Particle {
 		}).toList();
 		this.effect.getVerticalRenderPoints().clear();
 		this.effect.getVerticalRenderPoints().addAll(adjustedVertical);
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, 144 / 255f, 94 / 255f, 168 / 255f, 1f, ClientHandlers.FULL_BRIGHT);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, 144 / 255f, 94 / 255f, 168 / 255f, 1f, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

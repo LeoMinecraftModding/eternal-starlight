@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.entity.LunarThornModel;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -9,6 +8,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -44,7 +44,7 @@ public class LunarThornRenderer extends EntityRenderer<LunarThorn> {
 		this.model.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 		RenderType glowRenderType = RenderType.entityTranslucentEmissive(GLOW_TEXTURE);
 		VertexConsumer glowVertexConsumer = bufferSource.getBuffer(glowRenderType);
-		this.model.renderToBuffer(poseStack, glowVertexConsumer, ClientHandlers.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+		this.model.renderToBuffer(poseStack, glowVertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 
 		poseStack.popPose();
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, packedLight);

@@ -8,6 +8,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
@@ -35,7 +36,7 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 
 	@Override
 	protected int getLightColor(float f) {
-		return ClientHandlers.FULL_BRIGHT;
+		return LightTexture.FULL_BRIGHT;
 	}
 
 	@Override

@@ -19,52 +19,57 @@ import net.minecraft.world.phys.Vec3;
 public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("aethersent_golem"), "main");
 	private final ModelPart root;
+	public final ModelPart upper;
+	public final ModelPart body;
+	public final ModelPart leftArm;
+	public final ModelPart leftMuzzle;
+	public final ModelPart rightArm;
+	public final ModelPart rightMuzzle;
+	private final ModelPart head;
 	private final ModelPart eye;
+	private final ModelPart lower;
 
 	public AethersentGolemModel(ModelPart root) {
 		this.root = root;
-		this.eye = root.getChild("head").getChild("eye");
+		this.upper = root.getChild("upper");
+		this.body = this.upper.getChild("body");
+		this.leftArm = this.body.getChild("left_arm");
+		this.leftMuzzle = this.leftArm.getChild("left_muzzle");
+		this.rightArm = this.body.getChild("right_arm");
+		this.rightMuzzle = this.rightArm.getChild("right_muzzle");
+		this.head = this.upper.getChild("head");
+		this.eye = this.head.getChild("eye");
+		this.lower = root.getChild("lower");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -8.0F, -1.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 12.0F, -3.0F));
+		PartDefinition upper = partdefinition.addOrReplaceChild("upper", CubeListBuilder.create(), PartPose.offset(0.0F, 21.0F, 0.0F));
 
-		head.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -1.0F, 0.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, -3.25F, -1.05F));
+		PartDefinition body = upper.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 16).addBox(-3.0F, -10.0F, -3.0F, 6.0F, 10.0F, 6.0F, new CubeDeformation(0.0F))
+			.texOffs(24, 22).addBox(-5.0F, -8.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+			.texOffs(24, 22).mirror().addBox(3.0F, -8.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -8.0F, 0.0F));
 
-		PartDefinition leftAntenna = head.addOrReplaceChild("left_antenna", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(0.0F, -1.5F, -1.5F, 2.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, -3.5F, 2.5F));
+		PartDefinition leftArm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 16).mirror().addBox(0.0F, -4.0F, -3.0F, 6.0F, 12.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(5.0F, -7.0F, 0.0F, -1.5708F, 0.0F, 0.0F));
 
-		leftAntenna.addOrReplaceChild("left_antenna_upper", CubeListBuilder.create().texOffs(0, 22).mirror().addBox(-0.5F, -4.0F, -1.0F, 1.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.5F, -1.5F, -0.5F));
+		leftArm.addOrReplaceChild("left_muzzle", CubeListBuilder.create(), PartPose.offset(3.0F, 8.0F, 0.0F));
 
-		PartDefinition rightAntenna = head.addOrReplaceChild("right_antenna", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, -1.5F, -1.5F, 2.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(-7.0F, -3.5F, 2.5F));
+		PartDefinition rightArm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(32, 16).addBox(-6.0F, -4.0F, -3.0F, 6.0F, 12.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -7.0F, 0.0F, -1.5708F, 0.0F, 0.0F));
 
-		rightAntenna.addOrReplaceChild("right_antenna_upper", CubeListBuilder.create().texOffs(0, 22).addBox(-0.5F, -4.0F, -1.0F, 1.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.5F, -1.5F, -0.5F));
+		rightArm.addOrReplaceChild("right_muzzle", CubeListBuilder.create(), PartPose.offset(-3.0F, 8.0F, 0.0F));
 
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(10, 16).addBox(-5.0F, -12.0F, -1.0F, 6.0F, 12.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 24.0F, -2.0F));
+		PartDefinition head = upper.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -18.0F, 0.0F));
 
-		PartDefinition arms = partdefinition.addOrReplaceChild("arms", CubeListBuilder.create(), PartPose.offset(0.0F, 14.0F, 0.0F));
+		head.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -1.0F, 0.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.25F, -4.05F));
 
-		arms.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(34, 18).mirror().addBox(0.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, 0.0F, 0.0F));
+		PartDefinition antenna = head.addOrReplaceChild("antenna", CubeListBuilder.create().texOffs(32, 4).addBox(-2.0F, -2.5F, -1.5F, 2.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -3.5F, -0.5F));
 
-		PartDefinition rightArm = arms.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(34, 18).addBox(-4.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 0.0F, 0.0F));
+		antenna.addOrReplaceChild("upper_antenna", CubeListBuilder.create().texOffs(44, 7).addBox(-0.5F, -4.0F, -0.5F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.5F, -2.5F, 0.5F));
 
-		PartDefinition bow = rightArm.addOrReplaceChild("bow", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, 12.0F, 0.0F, 0.0F, 1.5708F, 0.0F));
-
-		PartDefinition lowerBow = bow.addOrReplaceChild("lower_bow", CubeListBuilder.create().texOffs(24, 34).addBox(-1.5F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.5F, -2.5F, -0.5F, 0.0F, 0.0F, 0.2138F));
-
-		lowerBow.addOrReplaceChild("lower_bow_body", CubeListBuilder.create().texOffs(8, 36).addBox(-6.0F, -2.0F, -1.0F, 6.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
-			.texOffs(0, 34).addBox(-8.0F, -4.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.5F, 1.0F, 0.0F, 0.0F, 0.0F, 0.2138F));
-
-		lowerBow.addOrReplaceChild("lower_bow_tip", CubeListBuilder.create().texOffs(36, 36).addBox(0.0F, 0.0F, -0.5F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 1.5F, 0.0F, 0.0F, 0.0F, -0.2138F));
-
-		PartDefinition upperBow = bow.addOrReplaceChild("upper_bow", CubeListBuilder.create().texOffs(24, 34).mirror().addBox(-1.5F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.5F, -2.5F, -0.5F, 0.0F, 0.0F, -0.2138F));
-
-		upperBow.addOrReplaceChild("upper_bow_body", CubeListBuilder.create().texOffs(8, 36).mirror().addBox(0.0F, -2.0F, -1.0F, 6.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
-			.texOffs(0, 34).mirror().addBox(6.0F, -4.0F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.5F, 1.0F, 0.0F, 0.0F, 0.0F, -0.2138F));
-
-		upperBow.addOrReplaceChild("upper_bow_tip", CubeListBuilder.create().texOffs(36, 36).mirror().addBox(-2.0F, 0.0F, -0.5F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.0F, 1.5F, 0.0F, 0.0F, 0.0F, 0.2138F));
+		partdefinition.addOrReplaceChild("lower", CubeListBuilder.create().texOffs(0, 44).addBox(-7.0F, -3.0F, -7.0F, 14.0F, 3.0F, 14.0F, new CubeDeformation(0.0F))
+			.texOffs(0, 32).addBox(-2.0F, -11.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -72,23 +77,34 @@ public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEnt
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		head.xRot = headPitch * Mth.DEG_TO_RAD;
+		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		animate(entity.shootAnimationState, AethersentGolemAnimation.SHOOT, ageInTicks);
+		animate(entity.shootAnimationState, AethersentGolemAnimation.ANTENNA_DETECTED, ageInTicks);
 		animate(entity.shootEndAnimationState, AethersentGolemAnimation.SHOOT_END, ageInTicks);
+		leftArm.xRot += headPitch * Mth.DEG_TO_RAD;
+		rightArm.xRot += headPitch * Mth.DEG_TO_RAD;
+		if (entity.useLeftHand) {
+			rightArm.resetPose();
+		} else {
+			leftArm.resetPose();
+		}
+		this.lower.yRot = -Mth.rotLerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot) * Mth.DEG_TO_RAD;
 		// from GuardianModel
 		if (!entity.shootAnimationState.isStarted()) {
 			Entity camera = Minecraft.getInstance().getCameraEntity();
 			if (camera != null) {
 				Vec3 targetEyePos = camera.getEyePosition(0.0F);
-				Vec3 yetiEyePos = entity.getEyePosition(0.0F);
-				if (targetEyePos.y > yetiEyePos.y) {
-					this.eye.y += -1.0F;
+				Vec3 golemEyePos = entity.getEyePosition(0.0F);
+				if (targetEyePos.y > golemEyePos.y) {
+					this.eye.y += -0.6F;
 				} else {
 					this.eye.y += 0.0F;
 				}
 
 				Vec3 vec33 = entity.getViewVector(0.0F);
 				vec33 = new Vec3(vec33.x, 0.0, vec33.z);
-				Vec3 vec34 = (new Vec3(yetiEyePos.x - targetEyePos.x, 0.0, yetiEyePos.z - targetEyePos.z)).normalize().yRot(1.5707964F);
+				Vec3 vec34 = (new Vec3(golemEyePos.x - targetEyePos.x, 0.0, golemEyePos.z - targetEyePos.z)).normalize().yRot(1.5707964F);
 				double e = vec33.dot(vec34);
 				this.eye.x += Mth.sqrt((float) Math.abs(e)) * 2.0F * (float) Math.signum(e);
 			}

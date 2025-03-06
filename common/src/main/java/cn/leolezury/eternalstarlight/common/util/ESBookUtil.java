@@ -15,7 +15,7 @@ public class ESBookUtil {
 		return serverLevel.getDataStorage().computeIfAbsent(BookProgressions.factory(serverLevel), "book_progressions");
 	}
 
-	public static Set<ResourceLocation> getUnlockedPartsFor(ServerPlayer player) {
+	public static Set<ResourceLocation> getUnlockedParts(ServerPlayer player) {
 		MinecraftServer server = player.getServer();
 		if (server != null) {
 			ServerLevel level = player.getServer().getLevel(Level.OVERWORLD);
@@ -27,13 +27,13 @@ public class ESBookUtil {
 		return new HashSet<>();
 	}
 
-	public static void unlockFor(ServerPlayer player, ResourceLocation... locations) {
+	public static void unlock(ServerPlayer player, ResourceLocation... locations) {
 		MinecraftServer server = player.getServer();
 		if (server != null) {
 			ServerLevel level = player.getServer().getLevel(Level.OVERWORLD);
 			if (level != null) {
 				BookProgressions progressions = getOrCreateBookProgressions(level);
-				Set<ResourceLocation> unlocked = getUnlockedPartsFor(player);
+				Set<ResourceLocation> unlocked = getUnlockedParts(player);
 				unlocked.addAll(Set.of(locations));
 				progressions.getProgressions().put(player.getUUID(), unlocked);
 				progressions.setDirty();

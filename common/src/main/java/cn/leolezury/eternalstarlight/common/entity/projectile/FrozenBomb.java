@@ -43,7 +43,7 @@ public class FrozenBomb extends ThrowableItemProjectile {
 			serverLevel.sendParticles(ESParticles.ASHEN_SNOW.get(), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
 			for (int i = 0; i <= 10; i++) {
 				serverLevel.sendParticles(ESParticles.ORBITAL_ASHEN_SNOW.get(), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + (random.nextFloat() - 0.5f) * getBbHeight() * 8, this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 1.5, 0.2, 0.0);
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.FROZEN, getX() + (random.nextFloat() - 0.5f) * getBbHeight() * 5, getY(), getZ() + (random.nextFloat() - 0.5f) * getBbHeight() * 5, 0, 1, 0));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.FROZEN, getX() + (random.nextFloat() - 0.5f) * getBbWidth() * 5, getY(), getZ() + (random.nextFloat() - 0.5f) * getBbWidth() * 5, 0, 1, 0));
 			}
 			serverLevel.sendParticles(ESExplosionParticleOptions.FROZEN, this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 10, 1.5, 1.5, 1.5, 0);
 			level().explode(this, null, null, this.getX(), this.getY(), this.getZ(), 3, false, Level.ExplosionInteraction.TNT, ESExplosionParticleOptions.FROZEN, ESExplosionParticleOptions.FROZEN, SoundEvents.GENERIC_EXPLODE);

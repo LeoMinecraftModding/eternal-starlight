@@ -23,6 +23,7 @@ public class ESJukeboxSongs {
 	public static final ResourceKey<JukeboxSong> SACRED_DESERT = create("sacred_desert");
 	public static final ResourceKey<JukeboxSong> SPIRIT = create("spirit");
 	public static final ResourceKey<JukeboxSong> BRISK = create("brisk");
+	public static final ResourceKey<JukeboxSong> MOONLIGHT = create("moonlight");
 
 	public static void bootstrap(BootstrapContext<JukeboxSong> context) {
 		register(context, WHISPER_OF_THE_STARS, ESSoundEvents.MUSIC_DISC_WHISPER_OF_THE_STARS.asHolder(), 163, 14);
@@ -36,6 +37,7 @@ public class ESJukeboxSongs {
 		register(context, SACRED_DESERT, ESSoundEvents.MUSIC_DISC_SACRED_DESERT.asHolder(), 105, 6);
 		register(context, SPIRIT, ESSoundEvents.MUSIC_DISC_SPIRIT.asHolder(), 98, 9);
 		register(context, BRISK, ESSoundEvents.MUSIC_DISC_BRISK.asHolder(), 67, 10);
+		register(context, MOONLIGHT, ESSoundEvents.MUSIC_DISC_MOONLIGHT.asHolder(), 134, 11);
 	}
 
 	private static void register(BootstrapContext<JukeboxSong> context, ResourceKey<JukeboxSong> key, Holder<SoundEvent> sound, int lengthInSeconds, int comparatorOutput) {

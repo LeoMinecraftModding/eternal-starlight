@@ -17,6 +17,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -86,7 +87,7 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(this.x, this.y, this.z).subtract(new Vec3(this.xo, this.yo, this.zo)), partialTicks);
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, ClientHandlers.FULL_BRIGHT);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

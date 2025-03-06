@@ -1,0 +1,8 @@
+{
+  "comparator_output": 11,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.moonlight"
+  },
+  "length_in_seconds": 134.0,
+  "sound_event": "eternal_starlight:music_disc.moonlight"
+}

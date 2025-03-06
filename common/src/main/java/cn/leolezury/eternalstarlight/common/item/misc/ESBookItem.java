@@ -19,7 +19,7 @@ public class ESBookItem extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
-			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(ESBookUtil.getUnlockedPartsFor(serverPlayer)));
+			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(ESBookUtil.getUnlockedParts(serverPlayer)));
 		}
 		return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
 	}

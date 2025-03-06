@@ -33,6 +33,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SACRED_DESERT = register("music_disc.sacred_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SPIRIT = register("music_disc.spirit");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_BRISK = register("music_disc.brisk");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_MOONLIGHT = register("music_disc.moonlight");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_ALCHEMIST = register("item.armor.equip_alchemist");
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AMARAMBER = register("item.armor.equip_amaramber");
@@ -68,6 +69,8 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_AMBIENT = register("entity.aurora_deer.ambient");
 	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_HURT = register("entity.aurora_deer.hurt");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_SHOOT = register("entity.aethersent_golem.shoot");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_AMBIENT = register("entity.thirst_walker.ambient");
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_HURT = register("entity.thirst_walker.hurt");

@@ -47,6 +47,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DISC_SACRED_DESERT.get(), definition().with(sound(loc("music/disc/sacred_desert")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SPIRIT.get(), definition().with(sound(loc("music/disc/spirit")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_BRISK.get(), definition().with(sound(loc("music/disc/brisk")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_MOONLIGHT.get(), definition().with(sound(loc("music/disc/moonlight")).stream()));
 
 		add(ESSoundEvents.ARMOR_EQUIP_ALCHEMIST.get(), definition().with(sound(mcLoc("item/armor/equip_leather1")), sound(mcLoc("item/armor/equip_leather2")), sound(mcLoc("item/armor/equip_leather3")), sound(mcLoc("item/armor/equip_leather4")), sound(mcLoc("item/armor/equip_leather5")), sound(mcLoc("item/armor/equip_leather6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_alchemist"));
 		add(ESSoundEvents.ARMOR_EQUIP_AMARAMBER.get(), definition().with(sound(mcLoc("item/armor/equip_leather1")), sound(mcLoc("item/armor/equip_leather2")), sound(mcLoc("item/armor/equip_leather3")), sound(mcLoc("item/armor/equip_leather4")), sound(mcLoc("item/armor/equip_leather5")), sound(mcLoc("item/armor/equip_leather6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_amaramber"));
@@ -82,6 +83,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.AURORA_DEER_AMBIENT.get(), definition().with(sound(loc("mob/aurora_deer/idle1")), sound(loc("mob/aurora_deer/idle2")), sound(loc("mob/aurora_deer/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.ambient"));
 		add(ESSoundEvents.AURORA_DEER_HURT.get(), definition().with(sound(loc("mob/aurora_deer/hurt1")), sound(loc("mob/aurora_deer/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.hurt"));
+
+		add(ESSoundEvents.AETHERSENT_GOLEM_SHOOT.get(), definition().with(sound(loc("mob/aethersent_golem/shoot"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aethersent_golem.shoot"));
 
 		add(ESSoundEvents.THIRST_WALKER_AMBIENT.get(), definition().with(sound(loc("mob/thirst_walker/idle1")), sound(loc("mob/thirst_walker/idle2")), sound(loc("mob/thirst_walker/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.ambient"));
 		add(ESSoundEvents.THIRST_WALKER_HURT.get(), definition().with(sound(loc("mob/thirst_walker/hurt1")), sound(loc("mob/thirst_walker/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.hurt"));

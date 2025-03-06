@@ -92,7 +92,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
-		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("lunar_monstrosity_seen"));
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("lunar_monstrosity_seen"));
 	}
 
 	@Override

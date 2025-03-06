@@ -372,7 +372,7 @@ public class CommonHandlers {
 
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
 		if (player instanceof ServerPlayer serverPlayer && advancement.id().equals(EternalStarlight.id("enter_starlight"))) {
-			ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("enter_starlight"));
+			ESBookUtil.unlock(serverPlayer, EternalStarlight.id("enter_starlight"));
 		}
 	}
 

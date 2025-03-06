@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -10,6 +9,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -59,15 +59,15 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 			VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(ENTITY_TEXTURE));
 			Matrix4f pose = stack.last().pose();
 
-			vertexConsumer.addVertex(pose, -0.2f, 0, 0).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0.2f, 0, 0).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0.2f, length, 0).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, -0.2f, length, 0).setColor(-1).setUv(0, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, -0.2f, 0, 0).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0.2f, 0, 0).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0.2f, length, 0).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, -0.2f, length, 0).setColor(-1).setUv(0, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
 
-			vertexConsumer.addVertex(pose, 0, 0, -0.2f).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, 0, 0.2f).setColor(-1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, length, 0.2f).setColor(-1).setUv(1, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, length, -0.2f).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, 0, -0.2f).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, 0, 0.2f).setColor(-1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, length, 0.2f).setColor(-1).setUv(1, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, length, -0.2f).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
 
 			stack.popPose();
 		}

@@ -25,6 +25,7 @@
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
+    "SpawnEggItemMixin",
     "SurfaceSystemMixin",
     "TagLoaderMixin",
     "ThrowableProjectileMixin",

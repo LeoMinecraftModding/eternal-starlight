@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-14T15:42:00.532154	Registries
+// 1.21.1	2025-03-02T22:04:54.1915107	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -70,6 +70,7 @@ e47aa646caa6399d90ddcf6b03ba9e608fc6e015 data/eternal_starlight/eternal_starligh
 e15f0bd0e7e3b51382f047e8bcfdf903b1138c02 data/eternal_starlight/jukebox_song/atlantis.json
 ee7143229a7661232af18768b138bf9090847044 data/eternal_starlight/jukebox_song/brisk.json
 51cdfdfca5ecfb42a003ad991a99973bf868e144 data/eternal_starlight/jukebox_song/dusk_o_ereyesterday.json
+ad4031f39c0a90404ad04ca24afe64bd57642cd2 data/eternal_starlight/jukebox_song/moonlight.json
 151d6fb0e674416e0710a87a893485afd9e36f3f data/eternal_starlight/jukebox_song/nest.json
 a9d18cf0029d79f7d57614499e5cda8fd3304f6f data/eternal_starlight/jukebox_song/posterity.json
 7fcf720c8ff4debc47a02370097ec987b2f58584 data/eternal_starlight/jukebox_song/profundity.json
@@ -98,7 +99,7 @@ e28f8ec9fe6e36b71f38dba2b36e8f0273c44a6e data/eternal_starlight/trim_material/sw
 1d371cf686657e21d39443e45305ffdc5b284331 data/eternal_starlight/trim_pattern/forge.json
 0748e5e6fc26503c044ff622af49d067d689492d data/eternal_starlight/trim_pattern/keeper.json
 76f96fadf2fa95ea1604edb5e2f5fb1550c16edd data/eternal_starlight/trim_pattern/twining.json
-467a9d99f5c998de149baab7037faa3a2b69e884 data/eternal_starlight/worldgen/biome/crystallized_desert.json
+bdfb5b9642225b8958355ebf94df494d35b5b493 data/eternal_starlight/worldgen/biome/crystallized_desert.json
 b9d42ba25920c12f344c6b5556059e4118fd3b2d data/eternal_starlight/worldgen/biome/dark_swamp.json
 caef124bc20e1bdb711af72384513b80d9db15d2 data/eternal_starlight/worldgen/biome/ether_river.json
 49728b74d661deffccb62bdd9d7a34a37f8d150d data/eternal_starlight/worldgen/biome/lush_shallow_sea.json

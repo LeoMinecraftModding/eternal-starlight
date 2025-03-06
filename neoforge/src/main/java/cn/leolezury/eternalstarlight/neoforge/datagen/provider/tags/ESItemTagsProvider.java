@@ -130,7 +130,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MUSIC_DISC_ATLANTIS.get(),
 			ESItems.MUSIC_DISC_SACRED_DESERT.get(),
 			ESItems.MUSIC_DISC_SPIRIT.get(),
-			ESItems.MUSIC_DISC_BRISK.get()
+			ESItems.MUSIC_DISC_BRISK.get(),
+			ESItems.MUSIC_DISC_MOONLIGHT.get()
 		);
 		tag(Tags.Items.NUGGETS).add(
 			ESItems.AMARAMBER_NUGGET.get(),
@@ -493,6 +494,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MANA_CRYSTAL.get()
 		);
 		tag(ESTags.Items.WIP).add(
+			ESItems.BOARWARF_SPAWN_EGG.get(),
+			ESItems.ASTRAL_GOLEM_SPAWN_EGG.get(),
 			ESItems.BROKEN_DOOMEDEN_BONE.get(),
 			ESItems.BONEMORE.get(),
 			ESItems.BOW_OF_BLOOD.get(),

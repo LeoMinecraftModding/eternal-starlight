@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-12T19:52:14.5528294	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-03-02T22:04:54.1961424	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -46,7 +46,7 @@ e4fb9c7ac1163f95cd2dcf4a757b8a93f7cd7760 data/c/tags/item/ingots.json
 ecba489c96163f74cd8b26f6814bd5eeedf5e00f data/c/tags/item/ingots/swamp_silver.json
 f385c8660651bf8d8c80e7697a58141b6eeaebed data/c/tags/item/ingots/thermal_springstone.json
 9f42dd2bc61760cd83c6d3a98f816a5bf7ad7686 data/c/tags/item/mushrooms.json
-8a392722535527291c5b63b71009cc792497dd9d data/c/tags/item/music_discs.json
+977e710b2dcfc2f136ffed2e78371232c9a509c8 data/c/tags/item/music_discs.json
 7d120d7b9572a62ffe8bc337d0f8c000cd5bdae6 data/c/tags/item/nuggets.json
 e590937ef043d5bf6e6876f27d2dc83089b3c8ee data/c/tags/item/nuggets/aethersent.json
 f4dc3980b35bfbf6e5c114f953c888f305966075 data/c/tags/item/nuggets/amaramber.json
@@ -131,7 +131,7 @@ ca9afdde06bbbfea61255672594e7456bd5f3173 data/eternal_starlight/tags/item/water_
 a817a74907f3821adcfe7d00c24e392f4e73298e data/eternal_starlight/tags/item/water_crystal_ingredients.json
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/item/wind_crystals.json
 483102921c1f1e66011ddbe6dcb8af5f60766d18 data/eternal_starlight/tags/item/wind_crystal_ingredients.json
-333bed5b1e9050bcdbbdd7a28fcd739681f5df98 data/eternal_starlight/tags/item/wip.json
+9ff57e5ae3b1f9fb3512da91e0f76a997456247d data/eternal_starlight/tags/item/wip.json
 e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_food.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json

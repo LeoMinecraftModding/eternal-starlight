@@ -121,6 +121,9 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.TWINING_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MOONLIGHT.get())))
+				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 	}
 }

@@ -39,7 +39,7 @@ public class ESConfig {
 		public final AttackingMobConfig crystallizedMoth = new AttackingMobConfig(20, 0, 1.5, 64, true);
 		public final MobConfig shimmerLacewing = new MobConfig(20, 0, true);
 		public final MobConfig grimstoneGolem = new MobConfig(20, 0, true);
-		public final MobConfig aethersentGolem = new MobConfig(50, 10, true);
+		public final MobConfig aethersentGolem = new MobConfig(40, 10, true);
 		public final AttackingMobConfig luminoFish = new AttackingMobConfig(3, 0, 3, 16, true);
 		public final AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
 		public final AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);

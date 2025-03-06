@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -39,20 +40,20 @@ public class StellarRackRenderer<T extends StellarRackBlockEntity> implements Bl
 		stack.mulPose(new Quaternionf(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation()).rotateZ(rack.getStarRotation(f)));
 		PoseStack.Pose pose = stack.last();
 		float size = (float) (1.2 + Math.sin((rack.getTickCount() + f) * 0.1 * Math.PI) * 0.4);
-		vertexConsumer.addVertex(pose, -size, -size, 0).setColor(rack.getColor(f)).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, -size, size, 0).setColor(rack.getColor(f)).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, size, size, 0).setColor(rack.getColor(f)).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, size, -size, 0).setColor(rack.getColor(f)).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, -size, -size, 0).setColor(rack.getColor(f)).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, -size, size, 0).setColor(rack.getColor(f)).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, size, size, 0).setColor(rack.getColor(f)).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, size, -size, 0).setColor(rack.getColor(f)).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 		stack.popPose();
 		stack.translate(0.01F, 0.01F, 0.01F); // fix z-fighting
 		stack.pushPose();
 		stack.mulPose(new Quaternionf(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation()).rotateZ(-rack.getStarRotation(f) / 2f));
 		pose = stack.last();
 		size = (float) (0.9 + Math.sin((rack.getTickCount() + f) * 1.2 * Math.PI) * 0.2);
-		vertexConsumer.addVertex(pose, -size, -size, 0).setColor(rack.getColor(100 + f)).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, -size, size, 0).setColor(rack.getColor(100 + f)).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, size, size, 0).setColor(rack.getColor(100 + f)).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, size, -size, 0).setColor(rack.getColor(100 + f)).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ClientHandlers.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, -size, -size, 0).setColor(rack.getColor(100 + f)).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, -size, size, 0).setColor(rack.getColor(100 + f)).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, size, size, 0).setColor(rack.getColor(100 + f)).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		vertexConsumer.addVertex(pose, size, -size, 0).setColor(rack.getColor(100 + f)).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 		stack.popPose();
 		ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 		float angle = 360f / rack.getItems().stream().filter(i -> !i.isEmpty()).count();
@@ -64,7 +65,7 @@ public class StellarRackRenderer<T extends StellarRackBlockEntity> implements Bl
 				Vec3 pos = ESMathUtil.rotationToPosition(0.9f, 0, accumulatedAngle);
 				stack.translate(pos.x, 0, pos.z);
 				stack.mulPose(new Quaternionf().rotateY(rack.getStarRotation(f) * 0.6f));
-				renderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, bufferSource, ClientHandlers.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, renderer.getModel(itemStack, rack.getLevel(), null, 0));
+				renderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, bufferSource, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, renderer.getModel(itemStack, rack.getLevel(), null, 0));
 				stack.popPose();
 			}
 		}

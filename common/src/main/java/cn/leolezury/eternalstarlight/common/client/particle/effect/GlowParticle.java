@@ -10,6 +10,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
@@ -62,7 +63,7 @@ public class GlowParticle extends TextureSheetParticle {
 
 	@Override
 	public int getLightColor(float f) {
-		return ClientHandlers.FULL_BRIGHT;
+		return LightTexture.FULL_BRIGHT;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,6 +9,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
@@ -55,10 +55,10 @@ public class ExplosionShockParticle extends TextureSheetParticle {
 		float u1 = Easing.IN_OUT_QUAD.interpolate(Mth.abs(Math.min(age + partialTick, lifetime) / lifetime - 0.5f) * 2, this.getU1(), this.getU0());
 		float v0 = this.getV0();
 		float v1 = this.getV1();
-		consumer.addVertex(pose, start.add(sideOffset).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u0, v0).setLight(ClientHandlers.FULL_BRIGHT);
-		consumer.addVertex(pose, start.add(sideOffset.scale(-1)).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u0, v1).setLight(ClientHandlers.FULL_BRIGHT);
-		consumer.addVertex(pose, end.add(sideOffset.scale(-1)).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u1, v1).setLight(ClientHandlers.FULL_BRIGHT);
-		consumer.addVertex(pose, end.add(sideOffset).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u1, v0).setLight(ClientHandlers.FULL_BRIGHT);
+		consumer.addVertex(pose, start.add(sideOffset).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u0, v0).setLight(LightTexture.FULL_BRIGHT);
+		consumer.addVertex(pose, start.add(sideOffset.scale(-1)).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u0, v1).setLight(LightTexture.FULL_BRIGHT);
+		consumer.addVertex(pose, end.add(sideOffset.scale(-1)).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u1, v1).setLight(LightTexture.FULL_BRIGHT);
+		consumer.addVertex(pose, end.add(sideOffset).toVector3f()).setColor(Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.x(), toColor.x()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.y(), toColor.y()) / 255, Easing.IN_OUT_QUAD.interpolate(Math.min(age + partialTick, lifetime) / lifetime, fromColor.z(), toColor.z()) / 255, 1).setUv(u1, v0).setLight(LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

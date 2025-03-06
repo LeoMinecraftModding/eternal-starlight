@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
@@ -7,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.Chain;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
@@ -126,6 +128,12 @@ public class TangledHatred extends ESBoss {
 	@Override
 	public void setDeltaMovement(Vec3 vec3) {
 		super.setDeltaMovement(new Vec3(0, vec3.y < 0 ? vec3.y : 0, 0));
+	}
+
+	@Override
+	public void startSeenByPlayer(ServerPlayer serverPlayer) {
+		super.startSeenByPlayer(serverPlayer);
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("tangled_hatred"));
 	}
 
 	@Override

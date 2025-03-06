@@ -108,7 +108,7 @@ public class TwilightGaze extends WaterAnimal {
 	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
-		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("twilight_gaze"));
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("twilight_gaze"));
 	}
 
 	@Override

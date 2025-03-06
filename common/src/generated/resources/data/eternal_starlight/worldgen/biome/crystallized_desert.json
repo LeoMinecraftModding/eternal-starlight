@@ -72,11 +72,19 @@
   ],
   "has_precipitation": false,
   "spawn_costs": {
+    "eternal_starlight:gleech": {
+      "charge": 1.0,
+      "energy_budget": 0.15
+    },
     "eternal_starlight:lonestar_skeleton": {
       "charge": 1.0,
       "energy_budget": 0.15
     },
     "eternal_starlight:nightfall_spider": {
+      "charge": 1.0,
+      "energy_budget": 0.15
+    },
+    "eternal_starlight:thirst_walker": {
       "charge": 1.0,
       "energy_budget": 0.15
     }

@@ -124,7 +124,7 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
-		ESBookUtil.unlockFor(serverPlayer, EternalStarlight.id("shimmer_lacewing"));
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("shimmer_lacewing"));
 	}
 
 	@Override

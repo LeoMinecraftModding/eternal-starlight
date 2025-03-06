@@ -52,7 +52,7 @@ public class TangledModel<T extends Tangled> extends AnimatedEntityModel<T> {
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		animate(entity.idleAnimationState, TangledAnimation.IDLE, ageInTicks);
-		animateWalk(TangledAnimation.WALK, limbSwing, limbSwingAmount, 3f, 1.5f);
+		animateWalk(TangledAnimation.WALK, limbSwing, limbSwingAmount, 3f, 1.75f);
 		animate(entity.meleeAnimationState, TangledAnimation.ATTACK, ageInTicks);
 	}
 

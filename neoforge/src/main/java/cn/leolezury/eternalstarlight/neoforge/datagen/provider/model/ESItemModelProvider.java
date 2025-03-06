@@ -22,31 +22,31 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		spawnEgg(ESItems.BOARWARF_SPAWN_EGG.get());
-		spawnEgg(ESItems.ASTRAL_GOLEM_SPAWN_EGG.get());
-		spawnEgg(ESItems.GLEECH_SPAWN_EGG.get());
-		spawnEgg(ESItems.LONESTAR_SKELETON_SPAWN_EGG.get());
-		spawnEgg(ESItems.NIGHTFALL_SPIDER_SPAWN_EGG.get());
-		spawnEgg(ESItems.THIRST_WALKER_SPAWN_EGG.get());
-		spawnEgg(ESItems.CRETEOR_SPAWN_EGG.get());
-		spawnEgg(ESItems.TINY_CRETEOR_SPAWN_EGG.get());
-		spawnEgg(ESItems.ENT_SPAWN_EGG.get());
-		spawnEgg(ESItems.RATLIN_SPAWN_EGG.get());
-		spawnEgg(ESItems.SHADOW_SNAIL_SPAWN_EGG.get());
-		spawnEgg(ESItems.YETI_SPAWN_EGG.get());
-		spawnEgg(ESItems.AURORA_DEER_SPAWN_EGG.get());
-		spawnEgg(ESItems.CRYSTALLIZED_MOTH_SPAWN_EGG.get());
-		spawnEgg(ESItems.SHIMMER_LACEWING_SPAWN_EGG.get());
-		spawnEgg(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
-		spawnEgg(ESItems.AETHERSENT_GOLEM_SPAWN_EGG.get());
-		spawnEgg(ESItems.TOWER_SQUID_SPAWN_EGG.get());
-		spawnEgg(ESItems.LUMINOFISH_SPAWN_EGG.get());
-		spawnEgg(ESItems.LUMINARIS_SPAWN_EGG.get());
-		spawnEgg(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
-		spawnEgg(ESItems.FREEZE_SPAWN_EGG.get());
-		spawnEgg(ESItems.TANGLED_SPAWN_EGG.get());
-		spawnEgg(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
-		spawnEgg(ESItems.TANGLED_HATRED_SPAWN_EGG.get());
+		basicItem(ESItems.BOARWARF_SPAWN_EGG.get());
+		basicItem(ESItems.ASTRAL_GOLEM_SPAWN_EGG.get());
+		basicItem(ESItems.GLEECH_SPAWN_EGG.get());
+		basicItem(ESItems.LONESTAR_SKELETON_SPAWN_EGG.get());
+		basicItem(ESItems.NIGHTFALL_SPIDER_SPAWN_EGG.get());
+		basicItem(ESItems.THIRST_WALKER_SPAWN_EGG.get());
+		basicItem(ESItems.CRETEOR_SPAWN_EGG.get());
+		basicItem(ESItems.TINY_CRETEOR_SPAWN_EGG.get());
+		basicItem(ESItems.ENT_SPAWN_EGG.get());
+		basicItem(ESItems.RATLIN_SPAWN_EGG.get());
+		basicItem(ESItems.SHADOW_SNAIL_SPAWN_EGG.get());
+		basicItem(ESItems.YETI_SPAWN_EGG.get());
+		basicItem(ESItems.AURORA_DEER_SPAWN_EGG.get());
+		basicItem(ESItems.CRYSTALLIZED_MOTH_SPAWN_EGG.get());
+		basicItem(ESItems.SHIMMER_LACEWING_SPAWN_EGG.get());
+		basicItem(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
+		basicItem(ESItems.AETHERSENT_GOLEM_SPAWN_EGG.get());
+		basicItem(ESItems.TOWER_SQUID_SPAWN_EGG.get());
+		basicItem(ESItems.LUMINOFISH_SPAWN_EGG.get());
+		basicItem(ESItems.LUMINARIS_SPAWN_EGG.get());
+		basicItem(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
+		basicItem(ESItems.FREEZE_SPAWN_EGG.get());
+		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
+		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
+		basicItem(ESItems.TANGLED_HATRED_SPAWN_EGG.get());
 
 		block(ESItems.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		block(ESItems.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -840,6 +840,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
 		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());
 		basicItem(ESItems.MUSIC_DISC_BRISK.get());
+		basicItem(ESItems.MUSIC_DISC_MOONLIGHT.get());
 
 		basicItem(ESItems.STARLIT_PAINTING.get());
 		basicItem(ESItems.ETHER_BUCKET.get());
@@ -854,10 +855,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.BLOSSOM_OF_STARS.get());
 	}
 
-	private void spawnEgg(Item item) {
+	/*private void spawnEgg(Item item) {
 		getBuilder(item.toString())
 			.parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
-	}
+	}*/
 
 	private void armorWithTrim(ArmorItem armor) {
 		ItemModelBuilder armorBuilder = basicItem(armor);

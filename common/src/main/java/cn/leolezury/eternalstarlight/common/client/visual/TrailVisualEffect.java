@@ -8,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -79,9 +80,9 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 		this.effect.getHorizontalRenderPoints().clear();
 		this.effect.getHorizontalRenderPoints().addAll(adjustedHorizontal);
 
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, true, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, true, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 		if (entity.shouldRenderHorizontal()) {
-			this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, false, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? ClientHandlers.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+			this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, false, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 		}
 	}
 

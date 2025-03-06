@@ -1,17 +1,20 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -98,6 +101,12 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangled.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangled.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.2);
+	}
+
+	@Override
+	public void startSeenByPlayer(ServerPlayer serverPlayer) {
+		super.startSeenByPlayer(serverPlayer);
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("tangled"));
 	}
 
 	@Override

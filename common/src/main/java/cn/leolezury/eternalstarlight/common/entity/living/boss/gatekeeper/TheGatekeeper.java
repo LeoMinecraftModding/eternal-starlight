@@ -360,7 +360,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	private void permitPlayer(ServerPlayer player) {
 		ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(player);
-		ESBookUtil.unlockFor(player, EternalStarlight.id("permitted_by_gatekeeper"));
+		ESBookUtil.unlock(player, EternalStarlight.id("permitted_by_gatekeeper"));
 	}
 
 	private boolean isPlayerPermitted(ServerPlayer player) {
@@ -371,7 +371,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				return true;
 			}
 		}
-		return ESBookUtil.getUnlockedPartsFor(player).contains(EternalStarlight.id("permitted_by_gatekeeper"));
+		return ESBookUtil.getUnlockedParts(player).contains(EternalStarlight.id("permitted_by_gatekeeper"));
 	}
 
 	public void spawnMeleeAttackParticles() {

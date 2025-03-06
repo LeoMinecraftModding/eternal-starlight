@@ -5,6 +5,12 @@
     ],
     "subtitle": "subtitles.block.eternal_starlight.stellar_rack.ambient"
   },
+  "entity.aethersent_golem.shoot": {
+    "sounds": [
+      "eternal_starlight:mob/aethersent_golem/shoot"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aethersent_golem.shoot"
+  },
   "entity.astral_golem.attack": {
     "sounds": [
       "mob/irongolem/throw"
@@ -773,6 +779,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.moonlight": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/disc/moonlight",
         "stream": true
       }
     ]
