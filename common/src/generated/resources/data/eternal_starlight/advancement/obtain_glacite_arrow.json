@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:obtain_glacite_shard",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:glacite_arrow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_glacite_arrow.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:glacite_arrow"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_glacite_arrow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

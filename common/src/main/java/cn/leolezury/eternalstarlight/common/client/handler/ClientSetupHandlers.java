@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrateScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalystScreen;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
@@ -706,6 +707,10 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
 		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
+		strategy.register(ESEntities.THIOQUARTZ_ARROW.get(), ThioquartzArrowRenderer::new);
+		strategy.register(ESEntities.THIOQUARTZ_SHARD.get(), ThioquartzShardRenderer::new);
+		strategy.register(ESEntities.AETHERSENT_ARROW.get(), AethersentArrowRenderer::new);
+		strategy.register(ESEntities.GLACITE_ARROW.get(), GlaciteArrowRenderer::new);
 		strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
 		strategy.register(ESEntities.VORACIOUS_ARROW.get(), VoraciousArrowRenderer::new);
 		strategy.register(ESEntities.AIR_SAC_ARROW.get(), AirSacArrowRenderer::new);
@@ -796,5 +801,6 @@ public class ClientSetupHandlers {
 
 	public static void registerMenuScreens(MenuScreenRegisterStrategy strategy) {
 		strategy.register(ESMenuTypes.CRATE.get(), CrateScreen::new);
+		strategy.register(ESMenuTypes.CRYSTALBORN_CATALYST.get(), CrystalbornCatalystScreen::new);
 	}
 }

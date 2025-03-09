@@ -39,7 +39,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	protected void buildRecipes(RecipeOutput recipeOutput) {
 		addWoodRecipes(recipeOutput);
 		addStoneRecipes(recipeOutput);
-		addAlchemistArmorRecipes(recipeOutput);
+		addThioquartzRecipes(recipeOutput);
 		addAethersentRecipes(recipeOutput);
 		addSwampSilverRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
@@ -331,6 +331,132 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('F', ESTags.Items.YETI_FUR)
 			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
 			.save(recipeOutput);
+
+		// overworld stuff replacements
+		// cinder brick
+		// x4
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.DISPENSER, 4)
+			.define('R', Items.REDSTONE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.define('X', Items.BOW)
+			.pattern("###")
+			.pattern("#X#")
+			.pattern("#R#")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("dispenser_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.DROPPER, 4)
+			.define('R', Items.REDSTONE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.pattern("###")
+			.pattern("# #")
+			.pattern("#R#")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("dropper_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.LEVER, 4)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.define('X', Items.STICK)
+			.pattern("X")
+			.pattern("#")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("lever_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.OBSERVER, 4)
+			.define('Q', Items.QUARTZ)
+			.define('R', Items.REDSTONE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.pattern("###")
+			.pattern("RRQ")
+			.pattern("###")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("observer_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.PISTON, 4)
+			.define('R', Items.REDSTONE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.define('T', ItemTags.PLANKS)
+			.define('X', Items.IRON_INGOT)
+			.pattern("TTT")
+			.pattern("#X#")
+			.pattern("#R#")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("piston_from_cinder_brick"));
+
+		// x3
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.COMPARATOR, 3)
+			.define('#', Blocks.REDSTONE_TORCH)
+			.define('X', Items.QUARTZ)
+			.define('I', ESItems.CINDER_BRICK.get())
+			.pattern(" # ")
+			.pattern("#X#")
+			.pattern("III")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("comparator_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.REPEATER, 3)
+			.define('#', Blocks.REDSTONE_TORCH)
+			.define('X', Items.REDSTONE)
+			.define('I', ESItems.CINDER_BRICK.get())
+			.pattern("#X#")
+			.pattern("III")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("repeater_from_cinder_brick"));
+
+		// x1
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.BLAST_FURNACE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.define('X', Blocks.FURNACE)
+			.define('I', Items.IRON_INGOT)
+			.pattern("III")
+			.pattern("IXI")
+			.pattern("###")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.save(recipeOutput, EternalStarlight.id("blast_furnace_from_cinder_brick"));
+
+		// nightfall spider eye
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.DAYLIGHT_DETECTOR)
+			.define('Q', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.define('G', Blocks.GLASS)
+			.define('W', Ingredient.of(ItemTags.WOODEN_SLABS))
+			.pattern("GGG")
+			.pattern("QQQ")
+			.pattern("WWW")
+			.unlockedBy(getHasName(ESItems.NIGHTFALL_SPIDER_EYE.get()), has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("daylight_detector_from_nightfall_spider_eye"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.OBSERVER)
+			.define('Q', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.define('R', Items.REDSTONE)
+			.define('#', Blocks.COBBLESTONE)
+			.pattern("###")
+			.pattern("RRQ")
+			.pattern("###")
+			.unlockedBy(getHasName(ESItems.NIGHTFALL_SPIDER_EYE.get()), has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("observer_from_nightfall_spider_eye"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.OBSERVER, 4)
+			.define('Q', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.define('R', Items.REDSTONE)
+			.define('#', ESItems.CINDER_BRICK.get())
+			.pattern("###")
+			.pattern("RRQ")
+			.pattern("###")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.unlockedBy(getHasName(ESItems.NIGHTFALL_SPIDER_EYE.get()), has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("observer_from_cinder_brick_and_nightfall_spider_eye"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.COMPARATOR)
+			.define('#', Blocks.REDSTONE_TORCH)
+			.define('X', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.define('I', Blocks.STONE)
+			.pattern(" # ")
+			.pattern("#X#")
+			.pattern("III")
+			.unlockedBy(getHasName(ESItems.NIGHTFALL_SPIDER_EYE.get()), has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("comparator_from_nightfall_spider_eye"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.COMPARATOR, 3)
+			.define('#', Blocks.REDSTONE_TORCH)
+			.define('X', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.define('I', ESItems.CINDER_BRICK.get())
+			.pattern(" # ")
+			.pattern("#X#")
+			.pattern("III")
+			.unlockedBy(getHasName(ESItems.CINDER_BRICK.get()), has(ESItems.CINDER_BRICK.get()))
+			.unlockedBy(getHasName(ESItems.NIGHTFALL_SPIDER_EYE.get()), has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("comparator_from_cinder_brick_and_nightfall_spider_eye"));
 
 		// geyser smoking
 		SpecialRecipeBuilder.special(category -> new GeyserSmokingRecipe(Items.SKELETON_SKULL, 1, Items.WITHER_SKELETON_SKULL.getDefaultInstance())).save(recipeOutput, EternalStarlight.id("geyser_smoking/wither_skeleton_skull_from_skeleton_skull"));
@@ -682,6 +808,15 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get(), 2);
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.CRYSTALBORN_CATALYST.get())
+			.pattern("BTB")
+			.pattern("TRT")
+			.pattern("BTB")
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.define('T', ESItems.TOOTH_OF_HUNGER.get())
+			.define('B', ESItems.CINDER_BRICK.get())
+			.define('R', Items.REDSTONE)
+			.save(recipeOutput);
 
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE.get());
@@ -860,7 +995,6 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILES.get(), 2);
 
-		fourBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
 		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE_STAIRS.get(), ESBlocks.POLISHED_TOXITE_WALL.get(), ESBlocks.TOXITE.get());
@@ -983,7 +1117,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		customCarpet(recipeOutput, ESBlocks.LUNAR_MAT.get(), ESBlocks.LUNAR_MOSAIC.get());
 	}
 
-	private void addAlchemistArmorRecipes(RecipeOutput recipeOutput) {
+	private void addThioquartzRecipes(RecipeOutput recipeOutput) {
+		fourBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.THIOQUARTZ_ARROW.get(), 4)
+			.pattern("T")
+			.pattern("S")
+			.pattern("S")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('T', ESConventionalTags.Items.GEMS_THIOQUARTZ)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_THIOQUARTZ))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ALCHEMIST_MASK.get())
 			.pattern("###")
 			.pattern("S S")
@@ -1005,6 +1148,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.RAW_AETHERSENT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_AETHERSENT_BLOCK.get(), "raw_aethersent_from_raw_aethersent_block", "raw_aethersent");
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.AETHERSENT_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.AETHERSENT_BLOCK.get(), "aethersent_ingot_from_aethersent_block", "aethersent_ingot");
 		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.AETHERSENT_NUGGET.get(), RecipeCategory.MISC, ESItems.AETHERSENT_INGOT.get(), "aethersent_ingot_from_nuggets", "aethersent_ingot");
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_ARROW.get(), 4)
+			.pattern("A")
+			.pattern("S")
+			.pattern("S")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('A', ESConventionalTags.Items.NUGGETS_AETHERSENT)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AETHERSENT))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_HOOD.get())
 			.pattern("HAH")
 			.pattern("A A")
@@ -1120,6 +1271,14 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	private void addGlaciteRecipes(RecipeOutput recipeOutput) {
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.GLACITE_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.GLACITE_BLOCK.get(), "glacite_shard_from_glacite_block", "glacite_shard");
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GLACITE_ARROW.get(), 4)
+			.pattern("G")
+			.pattern("S")
+			.pattern("S")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_GLACITE))
+			.save(recipeOutput);
 		addAxe(recipeOutput, ESItems.GLACITE_AXE.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		addHoe(recipeOutput, ESItems.GLACITE_HOE.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		addShovel(recipeOutput, ESItems.GLACITE_SHOVEL.get(), ESConventionalTags.Items.GEMS_GLACITE);
@@ -1153,6 +1312,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 150, ESItems.ETERNAL_ICE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.ETERNAL_ICE_ATALPHAITE_ORE.get());
 		addSmelt(recipeOutput, 300, ESItems.HAZE_ICE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.HAZE_ICE_ATALPHAITE_ORE.get());
 		addBlast(recipeOutput, 150, ESItems.HAZE_ICE_ATALPHAITE_ORE.get(), ESItems.ATALPHAITE.get(), ESItems.HAZE_ICE_ATALPHAITE_ORE.get());
+		addShapeless(recipeOutput, RecipeCategory.MISC, ESConventionalTags.Items.GEMS_ATALPHAITE, ESItems.CINDER_BRICK.get(), 8, List.of(), List.of(Tags.Items.BUCKETS_LAVA, ESConventionalTags.Items.GEMS_ATALPHAITE, ESConventionalTags.Items.GEMS_ATALPHAITE, Tags.Items.GRAVELS, Tags.Items.GRAVELS, Tags.Items.GRAVELS, Tags.Items.GRAVELS));
 	}
 
 	private void addSaltpeterRecipes(RecipeOutput recipeOutput) {

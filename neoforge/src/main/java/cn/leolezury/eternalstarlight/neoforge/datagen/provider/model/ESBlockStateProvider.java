@@ -202,6 +202,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		stoneSet(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+		directionalBlock(ESBlocks.CRYSTALBORN_CATALYST.get(), models().cubeBottomTop(name(ESBlocks.CRYSTALBORN_CATALYST.get()), EternalStarlight.id("block/machine_side"), EternalStarlight.id("block/machine_side"), blockTexture(ESBlocks.CRYSTALBORN_CATALYST.get())));
+		simpleBlock(ESBlocks.CRYSTALLIZED_SAND.get());
 
 		simpleBlock(ESBlocks.ABYSSLATE.get());
 		simpleBlock(ESBlocks.CHISELED_POLISHED_ABYSSLATE.get());

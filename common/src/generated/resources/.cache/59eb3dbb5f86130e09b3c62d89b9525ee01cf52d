@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-02T22:07:16.6434056	Loot Tables
+// 1.21.1	2025-03-08T21:21:33.9976098	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -80,7 +80,9 @@ a877a86c477bb9b1fd4b17f8a99620ad367fd6d1 data/eternal_starlight/loot_table/block
 9d9a1ced45e17ac7730a58e40b5511b4059403e2 data/eternal_starlight/loot_table/blocks/cryobyssal_geyser.json
 a5d13e5c7735503a5aa73ee1b8204b2d1d1b52e5 data/eternal_starlight/loot_table/blocks/cryobyssal_magma_block.json
 c3348ec7a71158a2ea7029b9f17464ecce2ac71e data/eternal_starlight/loot_table/blocks/cryobysslate.json
+b76c0e1e4bc81c99233cc214226a9d1a020af5bf data/eternal_starlight/loot_table/blocks/crystalborn_catalyst.json
 59a47987e7aba89297282c1f07d30d7d092165a8 data/eternal_starlight/loot_table/blocks/crystallized_lunar_grass.json
+444d3d65787598c8e25e1e7d7ce34df22f1d045b data/eternal_starlight/loot_table/blocks/crystallized_sand.json
 0f3e5af060e897167f743c8a1488a2e9f9b7e9b7 data/eternal_starlight/loot_table/blocks/crystallum_coral.json
 7f6c2247eb9bfa9ef738763ae2907514e8d32c08 data/eternal_starlight/loot_table/blocks/crystallum_coral_block.json
 2ce36d20bad40dee45e0fc8b55524f94e9bb8f5f data/eternal_starlight/loot_table/blocks/crystallum_coral_fan.json

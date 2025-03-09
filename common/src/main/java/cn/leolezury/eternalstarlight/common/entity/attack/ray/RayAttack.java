@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -133,7 +134,7 @@ public class RayAttack extends Entity {
 				BlockPos hitPos = result.blockHitResult().getBlockPos();
 				destroyProgresses.put(hitPos, destroyProgresses.containsKey(hitPos) ? destroyProgresses.getInt(hitPos) + 1 : 1);
 				if (destroyProgresses.getInt(hitPos) > 60) {
-					boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster);
+					boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster) && ESConfig.INSTANCE.laserBeamBreakBlocks;
 					if (canDestroy) {
 						BlockState blockState = level().getBlockState(hitPos);
 						if (blockState.getDestroySpeed(level(), hitPos) >= 0) {

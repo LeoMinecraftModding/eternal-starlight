@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "eternal_starlight:cinder_brick"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "eternal_starlight:tooth_of_hunger"
+    }
+  },
+  "pattern": [
+    "BTB",
+    "TRT",
+    "BTB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:crystalborn_catalyst"
+  }
+}

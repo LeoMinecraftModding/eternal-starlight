@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 180
+    },
+    "facing=down,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 180
+    },
+    "facing=east,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90
+    },
+    "facing=north,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90
+    },
+    "facing=south,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst"
+    },
+    "facing=up,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst"
+    },
+    "facing=west,lit=false": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,lit=true": {
+      "model": "eternal_starlight:block/crystalborn_catalyst",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

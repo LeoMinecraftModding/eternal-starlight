@@ -308,6 +308,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
 		block(ESItems.ETERNAL_ICE_ATALPHAITE_ORE.get());
 		block(ESItems.HAZE_ICE_ATALPHAITE_ORE.get());
+		basicItem(ESItems.CINDER_BRICK.get());
 		block(ESItems.DUSK_GLASS.get());
 		block(ESItems.DUSK_LIGHT.get());
 		block(ESItems.ECLIPSE_CORE.get());
@@ -360,6 +361,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TOOTH_OF_HUNGER_TILE_STAIRS.get());
 		wall(ESItems.TOOTH_OF_HUNGER_TILE_WALL.get(), ESItems.TOOTH_OF_HUNGER_TILES.get());
 		block(ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.CRYSTALBORN_CATALYST.get());
+		block(ESItems.CRYSTALLIZED_SAND.get());
 
 		block(ESItems.NIGHTFALL_MUD.get());
 		block(ESItems.GLOWING_NIGHTFALL_MUD.get());
@@ -412,6 +415,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.BUDDING_THIOQUARTZ.get());
 		flatBlockTexture(ESItems.THIOQUARTZ_CLUSTER.get());
 		basicItem(ESItems.THIOQUARTZ_SHARD.get());
+		basicItem(ESItems.THIOQUARTZ_ARROW.get());
 		block(ESItems.TOXITE.get());
 		block(ESItems.TOXITE_SLAB.get());
 		block(ESItems.TOXITE_STAIRS.get());
@@ -606,6 +610,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.AETHERSENT_BLOCK.get());
 		basicItem(ESItems.AETHERSENT_INGOT.get());
 		basicItem(ESItems.AETHERSENT_NUGGET.get());
+		basicItem(ESItems.AETHERSENT_ARROW.get());
 		handheld(ESItems.RAGE_OF_STARS.get());
 		bow(ESItems.STARFALL_LONGBOW.get());
 		armorWithTrim((ArmorItem) ESItems.AETHERSENT_HOOD.get());
@@ -652,6 +657,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GLACITE.get());
 		block(ESItems.GLACITE_BLOCK.get());
 		basicItem(ESItems.GLACITE_SHARD.get());
+		basicItem(ESItems.GLACITE_ARROW.get());
 		handheld(ESItems.GLACITE_SWORD.get());
 		handheld(ESItems.GLACITE_PICKAXE.get());
 		handheld(ESItems.GLACITE_AXE.get());
@@ -980,9 +986,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 	}
 
 	private void cubeAll(Item cube) {
+		cubeAll(cube, blockTextureFromItem(cube));
+	}
+
+	private void cubeAll(Item cube, ResourceLocation texture) {
 		getBuilder(name(cube))
 			.parent(getExistingFile(mcLoc("block/cube_all")))
-			.texture("all", blockTextureFromItem(cube));
+			.texture("all", texture);
 	}
 
 	private void templateSkull(Item skull) {

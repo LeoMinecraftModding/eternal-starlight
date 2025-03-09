@@ -478,6 +478,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StairBlock> TOOTH_OF_HUNGER_TILE_STAIRS = BLOCKS.register("tooth_of_hunger_tile_stairs", () -> new StairBlock(TOOTH_OF_HUNGER_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, WallBlock> TOOTH_OF_HUNGER_TILE_WALL = BLOCKS.register("tooth_of_hunger_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, Block> CHISELED_TOOTH_OF_HUNGER_TILES = BLOCKS.register("chiseled_tooth_of_hunger_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, CrystalbornCatalystBlock> CRYSTALBORN_CATALYST = BLOCKS.register("crystalborn_catalyst", () -> new CrystalbornCatalystBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, Block> CRYSTALLIZED_SAND = BLOCKS.register("crystallized_sand", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.COLOR_PURPLE)));
 
 	// the abyss
 	public static final RegistryObject<Block, AbyssalFireBlock> ABYSSAL_FIRE = BLOCKS.register("abyssal_fire", () -> new AbyssalFireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_FIRE).mapColor(MapColor.COLOR_PURPLE).lightLevel(state -> 10)));

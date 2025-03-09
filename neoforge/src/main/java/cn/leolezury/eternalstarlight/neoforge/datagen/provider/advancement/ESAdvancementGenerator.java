@@ -90,6 +90,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder glaciteShard = addItemObtain(consumer, underPermafrostForest, "obtain_glacite_shard", ESItems.GLACITE_SHARD.get());
 
+		AdvancementHolder glaciteArrow = addItemObtain(consumer, glaciteShard, "obtain_glacite_arrow", ESItems.GLACITE_ARROW.get());
+
 		AdvancementHolder frozenBomb = addItemObtain(consumer, underPermafrostForest, "obtain_frozen_bomb", ESItems.FROZEN_BOMB.get());
 
 		AdvancementHolder auroraDeerAntler = addItemObtain(consumer, underPermafrostForest, "obtain_aurora_deer_antler", ESItems.AURORA_DEER_ANTLER.get());
@@ -111,6 +113,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.save(consumer, EternalStarlight.ID + ":saturate_dagger_of_hunger");
 
 		AdvancementHolder toothOfHungerBlocks = addItemObtain(consumer, toothOfHunger, "obtain_tooth_of_hunger_blocks", ESTags.Items.TOOTH_OF_HUNGER_BLOCKS, ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+
+		AdvancementHolder crystalbornCatalyst = addItemObtain(consumer, toothOfHunger, "obtain_crystalborn_catalyst", ESItems.CRYSTALBORN_CATALYST.get());
 
 		AdvancementHolder summonGrimstoneGolem = addEntitySummon(consumer, enterCrystallizedDesert, "summon_grimstone_golem", ESEntities.GRIMSTONE_GOLEM.get(), ESItems.GRIMSTONE_BRICKS.get());
 

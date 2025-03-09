@@ -94,6 +94,7 @@ public class ESTags {
 		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLES = create("aethersent_meteor_replaceables");
 		public static final TagKey<Block> DOOMEDEN_KEYHOLE_DESTROYABLES = create("doomeden_keyhole_destroyables");
 		public static final TagKey<Block> DUSK_LIGHT_ENERGY_SOURCES = create("dusk_light_energy_sources");
+		public static final TagKey<Block> CRYSTALBORN_CATALYST_REPLACEABLES = create("crystalborn_catalyst_replaceables");
 
 		private static TagKey<Block> create(String string) {
 			return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));

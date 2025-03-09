@@ -400,6 +400,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get());
 		dropSelf(ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get());
 		dropSelf(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+		dropSelf(ESBlocks.CRYSTALBORN_CATALYST.get());
+		dropSelf(ESBlocks.CRYSTALLIZED_SAND.get());
 
 		add(ESBlocks.ABYSSAL_FIRE.get(), noDrop());
 

@@ -121,7 +121,7 @@ public class CrateBlockEntity extends RandomizableContainerBlockEntity {
 	}
 
 	void updateBlockState(BlockState state, boolean open) {
-		this.level.setBlock(this.getBlockPos(), state.setValue(CrateBlock.OPEN, Boolean.valueOf(open)), 3);
+		this.level.setBlock(this.getBlockPos(), state.setValue(CrateBlock.OPEN, open), 3);
 	}
 
 	void playSound(BlockState state, SoundEvent sound) {

@@ -65,7 +65,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public class CommonHandlers {
-	private static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
+	public static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
 	public static final String TAG_CLIENT_IN_ETHER_TICKS = "client_in_ether_ticks";
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
 	public static final String TAG_CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";

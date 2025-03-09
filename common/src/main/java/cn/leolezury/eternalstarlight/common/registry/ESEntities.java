@@ -373,6 +373,38 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("shattered_blade").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThioquartzArrow>> THIOQUARTZ_ARROW = ENTITIES.register(
+		"thioquartz_arrow",
+		() -> EntityType.Builder.<ThioquartzArrow>of(ThioquartzArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("thioquartz_arrow").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThioquartzShard>> THIOQUARTZ_SHARD = ENTITIES.register(
+		"thioquartz_shard",
+		() -> EntityType.Builder.<ThioquartzShard>of(ThioquartzShard::new, MobCategory.MISC)
+			.sized(0.2f, 0.2f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("thioquartz_shard").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<AethersentArrow>> AETHERSENT_ARROW = ENTITIES.register(
+		"aethersent_arrow",
+		() -> EntityType.Builder.<AethersentArrow>of(AethersentArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("aethersent_arrow").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<GlaciteArrow>> GLACITE_ARROW = ENTITIES.register(
+		"glacite_arrow",
+		() -> EntityType.Builder.<GlaciteArrow>of(GlaciteArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("glacite_arrow").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<AmaramberArrow>> AMARAMBER_ARROW = ENTITIES.register(
 		"amaramber_arrow",
 		() -> EntityType.Builder.<AmaramberArrow>of(AmaramberArrow::new, MobCategory.MISC)

@@ -463,6 +463,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.BLAZING_ATALPHAITE_BLOCK.get(),
 			ESBlocks.ATALPHAITE_LIGHT.get()
 		);
+		tag(ESTags.Blocks.CRYSTALBORN_CATALYST_REPLACEABLES).addTags(
+			Tags.Blocks.ORES,
+			BlockTags.SCULK_REPLACEABLE,
+			BlockTags.SAND,
+			ESTags.Blocks.BASE_STONE_STARLIGHT
+		);
 		// mc tags
 		tag(BlockTags.LOGS).addTags(
 			ESTags.Blocks.LUNAR_LOGS,
@@ -994,6 +1000,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(),
 			ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(),
 			ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(),
+			ESBlocks.CRYSTALBORN_CATALYST.get(),
 			ESBlocks.ABYSSLATE.get(),
 			ESBlocks.POLISHED_ABYSSLATE.get(),
 			ESBlocks.POLISHED_ABYSSLATE_SLAB.get(),
@@ -1142,6 +1149,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.NIGHTFALL_MUD.get(),
 			ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
 			ESBlocks.TWILIGHT_SAND.get(),
+			ESBlocks.CRYSTALLIZED_SAND.get(),
 			ESBlocks.DUSTED_GRAVEL.get(),
 			ESBlocks.MOSSY_DUSTED_GRAVEL.get(),
 			ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(),

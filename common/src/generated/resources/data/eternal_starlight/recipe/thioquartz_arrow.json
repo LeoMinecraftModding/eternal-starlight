@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": {
+      "tag": "c:rods/wooden"
+    },
+    "T": {
+      "tag": "c:gems/thioquartz"
+    }
+  },
+  "pattern": [
+    "T",
+    "S",
+    "S"
+  ],
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:thioquartz_arrow"
+  }
+}

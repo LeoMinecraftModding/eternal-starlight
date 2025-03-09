@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "eternal_starlight:block/machine_side",
+    "side": "eternal_starlight:block/machine_side",
+    "top": "eternal_starlight:block/crystalborn_catalyst"
+  }
+}

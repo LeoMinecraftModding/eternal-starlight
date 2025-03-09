@@ -95,7 +95,10 @@ public class CommonSetupHandlers {
 	public static void commonSetup() {
 		DispenserBlock.registerProjectileBehavior(ESItems.ASHEN_SNOWBALL.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_BOMB.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.THIOQUARTZ_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSENT_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSTRIKE_ROCKET.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.GLACITE_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());
@@ -229,6 +232,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.CLIENT_DISMOUNT);
 		strategy.register(ESPackets.OPEN_STARLIGHT_STORY);
 		strategy.register(ESPackets.UPDATE_SPELL_DATA);
+		strategy.register(ESPackets.SET_CLIENT_ETHER_TICKS);
 	}
 
 	public interface EntityAttributeRegisterStrategy {

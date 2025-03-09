@@ -726,6 +726,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AMARAMBER_SHOVEL.get()
 		);
 		tag(ItemTags.ARROWS).add(
+			ESItems.THIOQUARTZ_ARROW.get(),
+			ESItems.AETHERSENT_ARROW.get(),
+			ESItems.GLACITE_ARROW.get(),
 			ESItems.AMARAMBER_ARROW.get(),
 			ESItems.VORACIOUS_ARROW.get(),
 			ESItems.AIR_SAC_ARROW.get()
