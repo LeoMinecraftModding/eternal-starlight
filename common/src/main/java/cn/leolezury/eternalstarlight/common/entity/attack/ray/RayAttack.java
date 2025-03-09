@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -135,6 +136,9 @@ public class RayAttack extends Entity {
 				destroyProgresses.put(hitPos, destroyProgresses.containsKey(hitPos) ? destroyProgresses.getInt(hitPos) + 1 : 1);
 				if (destroyProgresses.getInt(hitPos) > 60) {
 					boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster) && ESConfig.INSTANCE.laserBeamBreakBlocks;
+					if (caster instanceof ServerPlayer player && (!level().mayInteract(player, hitPos) || player.blockActionRestricted(level(), hitPos, player.gameMode.getGameModeForPlayer()))) {
+						canDestroy = false;
+					}
 					if (canDestroy) {
 						BlockState blockState = level().getBlockState(hitPos);
 						if (blockState.getDestroySpeed(level(), hitPos) >= 0) {
