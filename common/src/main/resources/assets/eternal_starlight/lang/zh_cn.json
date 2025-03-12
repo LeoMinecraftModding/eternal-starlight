@@ -1198,6 +1198,7 @@
   "message.eternal_starlight.dream_catcher_6": "修好你的盔甲！",
   "key.eternal_starlight.switch_crest": "切换纹章",
   "key.categories.eternal_starlight": "永恒星光",
+  "book.eternal_starlight.unlock": "章节已解锁",
   "book.eternal_starlight.preface": "“快看那片花丛！多么美丽的风景... 景... 景...”\n“这种花朵叫回音花，千百年来他们未曾凋谢，重复着，记录着，理解着他们所听到的一切... 切... 切...”\n",
   "book.eternal_starlight.index": "目录：",
   "book.eternal_starlight.main_story_title": "传言",
@@ -1213,6 +1214,9 @@
   "book.eternal_starlight.tangled_hatred": "罪犯怨气的灵魂在月藤类植物上的具象化，极强的怨气导致藤蔓变得无比坚韧，它将与这片花园的其他造物一同将怨气强烈地反馈给来访者。\n这根藤蔓似乎尤其惧怕火焰。",
   "book.eternal_starlight.tangled": "它们是被囚禁于花园的罪犯的遗骸，它们的生命力并没有完全被巨物所吞噬，而是在躯体被破坏后向外溢出形成了植物躯壳，这一过程大大痛苦于灵魂被吞噬的过程，古老的居民们很满意这一份意外之喜，理所当然的，这些囚犯的遗骸也就被遗弃在了迷宫。\n在它们的躯体被击破的时候，内部因苦痛而过载的灵魂也会被释放。",
   "book.eternal_starlight.meteor_shower": "这里有时会发生流星雨。流星雨期间，无数流星划过夜空，造就了美丽的景观。但美丽之中也暗藏危险，当心不要被大型陨石砸中。顺利躲避后，你可以在落点找到一些矿石，苦彗怕也有可能在大型陨石落地后生成，你可以杀死它们以获得它们的皮。你也可以建造一个天赐傀儡来抵御陨石袭击，或使用星引火箭来人为造成流星雨。",
+  "book.eternal_starlight.thirst_walker": "被荧蛭袭击过的远古文明的末裔，身体被吸干后又被星辉水晶寄生，现在的它们就如同荧蛭一样在这片荒漠中饥渴地寻找着养分。\n它们牙齿的独特结构似乎使其可以储存养分以提高其锋利程度，这点在牙齿离开了饥渴行者的身体后依然成立。",
+  "book.eternal_starlight.dagger_of_hunger": "使用饥渴行者的牙齿所制作的武器，制作它的材料使其可以吸收养分以提高锋利度。\n它似乎保留着活性与对食物的原始需求，以至于它在极端饥饿的情况下可能会做出背叛主人的行为。",
+  "book.eternal_starlight.crystalborn_catalyst": "以饥渴行者的牙齿为核心材料的机器，继承了饥渴行者的贪婪。\n接收到红石信号后，它可以使用其中的水晶侵染附近的环境，并收集其中蕴藏的资源。",
   "book.eternal_starlight.twilight_gaze": "暮眼鱼因为其紫色发光的眼睛而闻名——在它们的产地深渊，这双眼睛可以帮助他们在一片漆黑的环境下看清周围的环境。它们喜爱深渊的环境，如果离深渊太远，它们会试图回到深渊里。这种鱼不会主动攻击人类，但是如果你伤害它们，暮眼鱼会毫不犹豫的反击。",
   "book.eternal_starlight.shimmer_lacewing": "在微光溪流和黑暗沼泽附近飞舞的昆虫，拥有四对蓝色或紫色的发光翅膀。它们的存在对其他生物毫无威胁也毫无用处。星光文明尚且存在之时，此为孩子们所热爱的小生物。"
 }

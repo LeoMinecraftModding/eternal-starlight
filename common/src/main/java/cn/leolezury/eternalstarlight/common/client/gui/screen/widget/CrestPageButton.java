@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -10,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+@Environment(EnvType.CLIENT)
 public class CrestPageButton extends Button {
 	private static final ResourceLocation NEXT_PAGE_ENABLED = EternalStarlight.id("textures/gui/screen/crest_selection/next_page_enabled.png");
 	private static final ResourceLocation PREVIOUS_PAGE_ENABLED = EternalStarlight.id("textures/gui/screen/crest_selection/previous_page_enabled.png");

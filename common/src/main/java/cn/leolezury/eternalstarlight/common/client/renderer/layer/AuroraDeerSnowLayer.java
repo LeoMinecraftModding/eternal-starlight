@@ -4,12 +4,15 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.AuroraDeerModel;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.AuroraDeer;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 
+@Environment(EnvType.CLIENT)
 public class AuroraDeerSnowLayer<T extends AuroraDeer> extends RenderLayer<T, AuroraDeerModel<T>> {
 	private static final RenderType SNOW = RenderType.entityCutout(EternalStarlight.id("textures/entity/aurora_deer_snow.png"));
 

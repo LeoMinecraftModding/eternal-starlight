@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import cn.leolezury.eternalstarlight.common.network.UpdateStarlightStoryPacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.world.saved.BookProgressions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -34,9 +36,11 @@ public class ESBookUtil {
 			if (level != null) {
 				BookProgressions progressions = getOrCreateBookProgressions(level);
 				Set<ResourceLocation> unlocked = getUnlockedParts(player);
+				Set<ResourceLocation> oldUnlocked = new HashSet<>(unlocked);
 				unlocked.addAll(Set.of(locations));
 				progressions.getProgressions().put(player.getUUID(), unlocked);
 				progressions.setDirty();
+				ESPlatform.INSTANCE.sendToClient(player, new UpdateStarlightStoryPacket(oldUnlocked, unlocked));
 			}
 		}
 	}

@@ -1,8 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client;
 
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.util.Mth;
 
+@Environment(EnvType.CLIENT)
 public class ClientWeatherState {
 	public static AbstractWeather weather;
 	public static float oldLevel;

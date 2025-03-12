@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookCompo
 import cn.leolezury.eternalstarlight.common.client.book.component.TextBookComponent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.toast.BookUnlockToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
@@ -29,12 +30,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
@@ -101,8 +105,39 @@ public class ClientSideHelper implements ClientHelper {
 		}
 	}
 
+	@Override
+	public void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet) {
+		IndexBookComponent oldIndex = buildIndex(packet.oldUnlocked());
+		IndexBookComponent index = buildIndex(packet.unlocked());
+		List<Component> oldTexts = oldIndex.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList();
+		List<Component> newTexts = new ArrayList<>(index.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList());
+		newTexts.removeAll(oldTexts);
+		for (Component component : newTexts) {
+			Minecraft.getInstance().getToasts().addToast(new BookUnlockToast(component));
+		}
+	}
+
 	private Component translatedBookText(String id) {
 		return Component.translatable("book." + EternalStarlight.ID + "." + id);
+	}
+
+	private IndexBookComponent buildIndex(Set<ResourceLocation> unlocked) {
+		return new IndexBookComponent(translatedBookText("index"), List.of(
+			new IndexBookComponent.IndexItem(translatedBookText("main_story_title"), EternalStarlight.id("main_story"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.SEEKING_EYE.get().getDescriptionId()), EternalStarlight.id("seeking_eye_display"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.ORB_OF_PROPHECY.get().getDescriptionId()), EternalStarlight.id("orb_of_prophecy_display"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.FREEZE.get().getDescriptionId()), EternalStarlight.id("freeze_display"), unlocked.contains(EternalStarlight.id("freeze"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), EternalStarlight.id("lunar_monstrosity_display"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.TANGLED_HATRED.get().getDescriptionId()), EternalStarlight.id("tangled_hatred_display"), unlocked.contains(EternalStarlight.id("tangled_hatred"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.TANGLED.get().getDescriptionId()), EternalStarlight.id("tangled_display"), unlocked.contains(EternalStarlight.id("tangled"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESWeathers.METEOR_SHOWER.get().getDescriptionId()), EternalStarlight.id("meteor_shower_display"), unlocked.contains(EternalStarlight.id("enter_starlight"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.THIRST_WALKER.get().getDescriptionId()), EternalStarlight.id("thirst_walker_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.DAGGER_OF_HUNGER.get().getDescriptionId()), EternalStarlight.id("dagger_of_hunger_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.CRYSTALBORN_CATALYST.get().getDescriptionId()), EternalStarlight.id("crystalborn_catalyst_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.TWILIGHT_GAZE.get().getDescriptionId()), EternalStarlight.id("twilight_gaze_display"), unlocked.contains(EternalStarlight.id("twilight_gaze"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.SHIMMER_LACEWING.get().getDescriptionId()), EternalStarlight.id("shimmer_lacewing_display"), unlocked.contains(EternalStarlight.id("shimmer_lacewing")))
+		), 105, 125);
 	}
 
 	@Override
@@ -113,19 +148,7 @@ public class ClientSideHelper implements ClientHelper {
 
 		TextBookComponent preface = new TextBookComponent(translatedBookText("preface"), false, 105, 125);
 
-		IndexBookComponent index = new IndexBookComponent(translatedBookText("index"), List.of(
-			new IndexBookComponent.IndexItem(Component.literal("•").append(translatedBookText("main_story_title")), EternalStarlight.id("main_story"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESItems.SEEKING_EYE.get().getDescriptionId())), EternalStarlight.id("seeking_eye_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESItems.ORB_OF_PROPHECY.get().getDescriptionId())), EternalStarlight.id("orb_of_prophecy_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId())), EternalStarlight.id("starlight_golem_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.FREEZE.get().getDescriptionId())), EternalStarlight.id("freeze_display"), packet.unlocked().contains(EternalStarlight.id("freeze"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId())), EternalStarlight.id("lunar_monstrosity_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.TANGLED_HATRED.get().getDescriptionId())), EternalStarlight.id("tangled_hatred_display"), packet.unlocked().contains(EternalStarlight.id("tangled_hatred"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.TANGLED.get().getDescriptionId())), EternalStarlight.id("tangled_display"), packet.unlocked().contains(EternalStarlight.id("tangled"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESWeathers.METEOR_SHOWER.get().getDescriptionId())), EternalStarlight.id("meteor_shower_display"), packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.TWILIGHT_GAZE.get().getDescriptionId())), EternalStarlight.id("twilight_gaze_display"), packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
-			new IndexBookComponent.IndexItem(Component.literal("•").append(Component.translatable(ESEntities.SHIMMER_LACEWING.get().getDescriptionId())), EternalStarlight.id("shimmer_lacewing_display"), packet.unlocked().contains(EternalStarlight.id("shimmer_lacewing")))
-		), 105, 125);
+		IndexBookComponent index = buildIndex(packet.unlocked());
 
 		TextBookComponent mainStory = new TextBookComponent(translatedBookText("main_story"), 105, 125);
 
@@ -209,6 +232,30 @@ public class ClientSideHelper implements ClientHelper {
 
 		TextBookComponent meteorShower = new TextBookComponent(translatedBookText("meteor_shower"), 105, 125);
 
+		DisplayBookComponent thirstWalkerDisplay = new DisplayBookComponent(105, 130)
+			.entityDisplay(ESEntities.THIRST_WALKER.get(), 52, 80, 0, 210, 25, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame.png"), 18, 20, 68, 68)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 92, 96, 11)
+			.textDisplay(Component.translatable(ESEntities.THIRST_WALKER.get().getDescriptionId()), 52, 115, 1.2f);
+
+		TextBookComponent thirstWalker = new TextBookComponent(translatedBookText("thirst_walker"), 105, 125);
+
+		DisplayBookComponent daggerOfHungerDisplay = new DisplayBookComponent(105, 130)
+			.textDisplay(Component.translatable(ESItems.DAGGER_OF_HUNGER.get().getDescriptionId()), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemDisplay(ESItems.DAGGER_OF_HUNGER.get().getDefaultInstance(), 44, 82);
+
+		TextBookComponent daggerOfHunger = new TextBookComponent(translatedBookText("dagger_of_hunger"), 105, 125);
+
+		DisplayBookComponent crystalbornCatalystDisplay = new DisplayBookComponent(105, 130)
+			.textDisplay(Component.translatable(ESItems.CRYSTALBORN_CATALYST.get().getDescriptionId()), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemDisplay(ESItems.CRYSTALBORN_CATALYST.get().getDefaultInstance(), 44, 82);
+
+		TextBookComponent crystalbornCatalyst = new TextBookComponent(translatedBookText("crystalborn_catalyst"), 105, 125);
+
 		DisplayBookComponent twilightGazeDisplay = new DisplayBookComponent(105, 130)
 			.entityDisplay(ESEntities.TWILIGHT_GAZE.get(), 52, 60, 0, 210, 25, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame.png"), 18, 20, 68, 68)
@@ -250,6 +297,12 @@ public class ClientSideHelper implements ClientHelper {
 			new BookComponentDefinition(tangled, EternalStarlight.id("tangled"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("enter_starlight")) && packet.unlocked().contains(EternalStarlight.id("tangled"))),
 			new BookComponentDefinition(meteorShowerDisplay, EternalStarlight.id("meteor_shower_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
 			new BookComponentDefinition(meteorShower, EternalStarlight.id("meteor_shower"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("enter_starlight"))),
+			new BookComponentDefinition(thirstWalkerDisplay, EternalStarlight.id("thirst_walker_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
+			new BookComponentDefinition(thirstWalker, EternalStarlight.id("thirst_walker"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
+			new BookComponentDefinition(daggerOfHungerDisplay, EternalStarlight.id("dagger_of_hunger_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
+			new BookComponentDefinition(daggerOfHunger, EternalStarlight.id("dagger_of_hunger"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
+			new BookComponentDefinition(crystalbornCatalystDisplay, EternalStarlight.id("crystalborn_catalyst_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
+			new BookComponentDefinition(crystalbornCatalyst, EternalStarlight.id("crystalborn_catalyst"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
 			new BookComponentDefinition(twilightGazeDisplay, EternalStarlight.id("twilight_gaze_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
 			new BookComponentDefinition(twilightGaze, EternalStarlight.id("twilight_gaze"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
 			new BookComponentDefinition(shimmerLacewingDisplay, EternalStarlight.id("shimmer_lacewing_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("shimmer_lacewing"))),

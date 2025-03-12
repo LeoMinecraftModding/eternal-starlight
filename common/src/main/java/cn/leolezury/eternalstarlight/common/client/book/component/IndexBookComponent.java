@@ -142,9 +142,13 @@ public class IndexBookComponent extends BookComponent {
 		}
 	}
 
-	public record IndexItem(Component text, ResourceLocation jumpTo, boolean enabled) {
-		public IndexItem(Component text, ResourceLocation jumpTo) {
-			this(text, jumpTo, true);
+	public List<IndexItem> getIndexItems() {
+		return indexItems;
+	}
+
+	public record IndexItem(Component text, Component originalText, ResourceLocation jumpTo, boolean enabled) {
+		public IndexItem(Component text, ResourceLocation jumpTo, boolean enabled) {
+			this(Component.literal("•").append(text), text, jumpTo, enabled);
 		}
 	}
 }

@@ -17,6 +17,8 @@ public interface ClientHelper {
 
 	void handleClientDismount(ClientDismountPacket packet);
 
+	void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet);
+
 	void handleOpenStarlightStory(OpenStarlightStoryPacket packet);
 
 	void spawnStellarRackParticles(Vec3 center);

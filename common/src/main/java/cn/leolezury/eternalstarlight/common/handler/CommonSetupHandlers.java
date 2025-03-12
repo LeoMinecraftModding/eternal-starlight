@@ -230,6 +230,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.UPDATE_CAMERA);
 		strategy.register(ESPackets.CLIENT_MOUNT);
 		strategy.register(ESPackets.CLIENT_DISMOUNT);
+		strategy.register(ESPackets.UPDATE_STARLIGHT_STORY);
 		strategy.register(ESPackets.OPEN_STARLIGHT_STORY);
 		strategy.register(ESPackets.UPDATE_SPELL_DATA);
 		strategy.register(ESPackets.SET_CLIENT_ETHER_TICKS);
