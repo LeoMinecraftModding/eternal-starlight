@@ -135,6 +135,13 @@ public interface ESPlatform {
 		return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
 	}
 
+	default boolean postEntityDestroyBlockEvent(Level level, BlockPos pos, Entity entity) {
+		if (entity instanceof ServerPlayer player && (!level.mayInteract(player, pos) || player.blockActionRestricted(level, pos, player.gameMode.getGameModeForPlayer()))) {
+			return false;
+		}
+		return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+	}
+
 	default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
 		return true;
 	}

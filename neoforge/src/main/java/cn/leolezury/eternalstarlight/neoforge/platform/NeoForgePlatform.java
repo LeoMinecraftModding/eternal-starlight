@@ -41,6 +41,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
@@ -232,6 +233,11 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public boolean postMobGriefingEvent(Level level, Entity entity) {
 		return EventHooks.canEntityGrief(level, entity);
+	}
+
+	@Override
+	public boolean postEntityDestroyBlockEvent(Level level, BlockPos pos, Entity entity) {
+		return entity instanceof LivingEntity living ? CommonHooks.canEntityDestroy(level, pos, living) : postMobGriefingEvent(level, entity);
 	}
 
 	@Override

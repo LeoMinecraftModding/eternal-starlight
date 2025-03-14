@@ -65,6 +65,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public class CommonHandlers {
+	public static final String TAG_IN_ETHER = "in_ether";
 	public static final String TAG_IN_ETHER_TICKS = "in_ether_ticks";
 	public static final String TAG_CLIENT_IN_ETHER_TICKS = "client_in_ether_ticks";
 	private static final String TAG_OBTAINED_BLOSSOM_OF_STARS = "obtained_blossom_of_stars";
@@ -89,7 +90,7 @@ public class CommonHandlers {
 
 	private static int ticksSinceLastUpdate = 0;
 
-	private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
+	public static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
 	public static void onServerTick(MinecraftServer server) {
 		ticksSinceLastUpdate++;
@@ -265,19 +266,6 @@ public class CommonHandlers {
 					tickableArmor.tick(livingEntity.level(), livingEntity, armor);
 				}
 			}
-			AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-			if (armorAttribute != null) {
-				if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
-					&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
-					&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
-					&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-					if (!armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
-						armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
-					}
-				} else if (armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
-					armorAttribute.removeModifier(AMARAMBER_BONUS.id());
-				}
-			}
 			if (livingEntity.tickCount % 20 == 0) {
 				int cooldown = persistentData.getInt(AethersentMeteor.TAG_METEOR_COOLDOWN);
 				if (cooldown > 0) {
@@ -286,7 +274,7 @@ public class CommonHandlers {
 			}
 			int inEtherTicks = persistentData.getInt(TAG_IN_ETHER_TICKS);
 			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-			boolean inEther = ESBlockUtil.isEntityInBlock(livingEntity, ESBlocks.ETHER.get());
+			boolean inEther = persistentData.getBoolean(TAG_IN_ETHER);
 			if (!livingEntity.level().isClientSide) {
 				if (inEther) {
 					float factor = 0;
@@ -324,6 +312,7 @@ public class CommonHandlers {
 					persistentData.putInt(TAG_CLIENT_IN_ETHER_TICKS, clientEtherTicks - 1);
 				}
 			}
+			persistentData.putBoolean(TAG_IN_ETHER, false);
 		}
 	}
 

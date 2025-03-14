@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -20,7 +21,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -76,6 +80,9 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract ItemStack getItemBySlot(EquipmentSlot equipmentSlot);
+
+	@Shadow
+	public abstract AttributeMap getAttributes();
 
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
 	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
@@ -192,6 +199,35 @@ public abstract class LivingEntityMixin {
 			if (climbable) {
 				this.lastClimbablePos = Optional.of(livingEntity.blockPosition());
 				cir.setReturnValue(true);
+			}
+		}
+	}
+
+	@Inject(method = "onEquipItem", at = @At(value = "RETURN"))
+	private void onEquipItem(EquipmentSlot slot, ItemStack oldItem, ItemStack newItem, CallbackInfo ci) {
+		if (slot.isArmor() && (!oldItem.isEmpty() || !newItem.isEmpty())) {
+			AttributeInstance armorAttribute = getAttributes().getInstance(Attributes.ARMOR);
+			if (armorAttribute != null) {
+				ItemStack headItem = getItemBySlot(EquipmentSlot.HEAD);
+				ItemStack chestItem = getItemBySlot(EquipmentSlot.CHEST);
+				ItemStack legsItem = getItemBySlot(EquipmentSlot.LEGS);
+				ItemStack feetItem = getItemBySlot(EquipmentSlot.FEET);
+				switch (slot) {
+					case HEAD -> headItem = newItem;
+					case CHEST -> chestItem = newItem;
+					case LEGS -> legsItem = newItem;
+					case FEET -> feetItem = newItem;
+				}
+				if (headItem.is(ESItems.AMARAMBER_HELMET.get())
+					&& chestItem.is(ESItems.AMARAMBER_CHESTPLATE.get())
+					&& legsItem.isEmpty()
+					&& feetItem.isEmpty()) {
+					if (!armorAttribute.hasModifier(CommonHandlers.AMARAMBER_BONUS.id())) {
+						armorAttribute.addPermanentModifier(CommonHandlers.AMARAMBER_BONUS);
+					}
+				} else if (armorAttribute.hasModifier(CommonHandlers.AMARAMBER_BONUS.id())) {
+					armorAttribute.removeModifier(CommonHandlers.AMARAMBER_BONUS.id());
+				}
 			}
 		}
 	}

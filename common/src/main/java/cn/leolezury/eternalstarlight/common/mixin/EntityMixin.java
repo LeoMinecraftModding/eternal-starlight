@@ -1,9 +1,12 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
@@ -85,6 +88,13 @@ public abstract class EntityMixin implements PersistentDataHolder {
 		Entity entity = (Entity) (Object) this;
 		if (entity instanceof LivingEntity living && feetInWater && living.getItemBySlot(EquipmentSlot.FEET).is(ESItems.AIR_SAC_BOOTS.get())) {
 			cir.setReturnValue(0.0);
+		}
+	}
+
+	@Inject(method = "checkInsideBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;entityInside(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)V"))
+	private void checkInsideBlocks(CallbackInfo ci, @Local(ordinal = 0) BlockState state) {
+		if (state.getFluidState().is(ESTags.Fluids.ETHER)) {
+			esPersistentData.putBoolean(CommonHandlers.TAG_IN_ETHER, true);
 		}
 	}
 }
