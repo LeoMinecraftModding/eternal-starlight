@@ -548,8 +548,12 @@ public class ClientSetupHandlers {
 
 	public static void registerItemColors(ItemColorRegisterStrategy strategy) {
 		ItemColor toBlock = (stack, packedLight) -> {
-			BlockState blockstate = ((BlockItem) stack.getItem()).getBlock().defaultBlockState();
-			return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
+			if (stack.getItem() instanceof BlockItem blockItem) {
+				BlockState blockstate = blockItem.getBlock().defaultBlockState();
+				return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, null, packedLight);
+			} else {
+				return -1;
+			}
 		};
 		strategy.register(toBlock, ESBlocks.NIGHTFALL_GRASS_BLOCK.get());
 		strategy.register(toBlock, ESBlocks.CAVE_MOSS.get());
