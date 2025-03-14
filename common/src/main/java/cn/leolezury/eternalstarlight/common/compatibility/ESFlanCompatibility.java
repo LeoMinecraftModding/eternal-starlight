@@ -51,7 +51,7 @@ public interface ESFlanCompatibility extends ESModCompatibility {
 		}
 	}
 
-	public static boolean restrictBlockPlace(ServerLevel level, BlockPos pos, Entity entity) {
+	public static boolean restrictBlockPlace(Level level, BlockPos pos, Entity entity) {
 		if(ESConfig.INSTANCE.checkFlanClaims && level instanceof ServerLevel serverLevel) {
 			return ESFlanCompatibility.INSTANCE.isModLoaded() && ESFlanCompatibility.INSTANCE.claimRestrictsBlockPlace(serverLevel, pos, entity);
 		} else {
