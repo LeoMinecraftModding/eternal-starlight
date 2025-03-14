@@ -1,8 +1,10 @@
 package cn.leolezury.eternalstarlight.common.platform;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
+import cn.leolezury.eternalstarlight.common.compatibility.ESFlanCompatibility;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
@@ -35,11 +37,14 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -53,6 +58,8 @@ import java.util.ServiceLoader;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
 
 public interface ESPlatform {
 	ESPlatform INSTANCE = Util.make(() -> {
@@ -124,6 +131,18 @@ public interface ESPlatform {
 	default EtherFluid.Flowing createFlowingEtherFluid() {
 		return new EtherFluid.Flowing();
 	}
+	
+	// player info
+	@Nullable
+	default GameType getGameType(Player player) {
+		if(player instanceof ServerPlayer serverPlayer) {
+			return serverPlayer.gameMode.getGameModeForPlayer();
+		} else if(this.isPhysicalClient()) {
+			return EternalStarlight.getClientHelper().getLocalGameMode(player);
+		} else {
+			return null;
+		}
+	}
 
 	// reload listeners
 	default TheGatekeeperNameManager createGatekeeperNameManager() {
@@ -136,6 +155,31 @@ public interface ESPlatform {
 	}
 
 	default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
+		return true;
+	}
+	
+	default boolean postEntityDestroyBlockEvent(Level level, Entity entity, BlockPos pos) {
+		// Flan compatibility
+		if(ESFlanCompatibility.restrictBlockBreak(level, pos, entity)) {
+			return false;
+		}
+		
+		// Players typically should not be subjected to mobGriefing
+		if(!(entity instanceof Player player)) {
+			return this.postMobGriefingEvent(level, entity);
+		}
+		
+		// Worldborder & Spawn Protection mainly
+		if(!level.mayInteract(player, pos)) {
+			return false;
+		}
+		
+		// Game type support for the client as well
+		GameType gameType = this.getGameType(player);
+		if(gameType != null && player.blockActionRestricted(level, pos, gameType)) {
+			return false;
+		}
+		
 		return true;
 	}
 

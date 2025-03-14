@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
+import java.util.Optional;
+
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
@@ -13,7 +15,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,8 +25,6 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-
-import java.util.Optional;
 
 public class RayAttack extends Entity {
 	protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.INT);
@@ -128,17 +127,14 @@ public class RayAttack extends Entity {
 	public int getRadius() {
 		return 20;
 	}
-
+	
 	public void onFirstHit(ESEntityUtil.RaytraceResult result) {
 		getCaster().ifPresent(caster -> {
 			if (result.blockHitResult() != null) {
 				BlockPos hitPos = result.blockHitResult().getBlockPos();
 				destroyProgresses.put(hitPos, destroyProgresses.containsKey(hitPos) ? destroyProgresses.getInt(hitPos) + 1 : 1);
 				if (destroyProgresses.getInt(hitPos) > 60) {
-					boolean canDestroy = ESPlatform.INSTANCE.postMobGriefingEvent(this.level(), caster) && ESConfig.INSTANCE.laserBeamBreakBlocks;
-					if (caster instanceof ServerPlayer player && (!level().mayInteract(player, hitPos) || player.blockActionRestricted(level(), hitPos, player.gameMode.getGameModeForPlayer()))) {
-						canDestroy = false;
-					}
+					boolean canDestroy = ESConfig.INSTANCE.laserBeamBreakBlocks && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), caster, hitPos);
 					if (canDestroy) {
 						BlockState blockState = level().getBlockState(hitPos);
 						if (blockState.getDestroySpeed(level(), hitPos) >= 0) {

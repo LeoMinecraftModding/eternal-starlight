@@ -30,12 +30,14 @@ configurations {
 
 repositories {
     maven { url "https://maven.neoforged.net/releases/" }
+    maven { url = "https://gitlab.com/api/v4/projects/21830712/packages/maven" } // Flan
 }
 
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
     // Remove the next line if you don't want to depend on the API
     // modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+	compileOnly("io.github.flemmli97:flan:${rootProject.minecraft_version}-${rootProject.flan_version}-neoforge:api")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }

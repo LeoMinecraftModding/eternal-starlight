@@ -22,6 +22,7 @@ public class ESConfig {
 	public boolean enableScreenShake = true;
 	public int crystalbornCatalystEnergyPerShard = 50;
 	public boolean laserBeamBreakBlocks = true;
+	public boolean checkFlanClaims = true;
 	public MobsConfig mobsConfig = new MobsConfig();
 
 	public static class MobsConfig {

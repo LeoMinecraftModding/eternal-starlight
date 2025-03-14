@@ -28,17 +28,22 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
@@ -406,6 +411,16 @@ public class ClientSideHelper implements ClientHelper {
 					SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
 				.defaultOperators()
 				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) pos.x, (float) pos.y, (float) pos.z);
+		}
+	}
+
+	@Override
+	@Nullable
+	public GameType getLocalGameMode(Player maybeLocalPlayer) {
+		if(maybeLocalPlayer instanceof LocalPlayer || maybeLocalPlayer == Minecraft.getInstance().player) {
+			return Minecraft.getInstance().gameMode.getPlayerMode();
+		} else {
+			return null;
 		}
 	}
 }

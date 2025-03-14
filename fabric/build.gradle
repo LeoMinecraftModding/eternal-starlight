@@ -21,11 +21,14 @@ configurations {
 
 repositories {
     maven { url = "https://jitpack.io" } // Fabric ASM
+    maven { url = "https://gitlab.com/api/v4/projects/21830712/packages/maven" } // Flan
 }
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+
+	modCompileOnly("io.github.flemmli97:flan:${rootProject.minecraft_version}-${rootProject.flan_version}-fabric:api") { transitive false }
 
     // modImplementation "com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"
     // include "com.github.Chocohead:Fabric-ASM:${rootProject.fabric_asm_version}"

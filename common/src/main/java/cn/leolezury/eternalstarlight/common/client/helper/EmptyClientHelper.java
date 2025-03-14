@@ -1,7 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
+import javax.annotation.Nullable;
+
 import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.phys.Vec3;
 
 public class EmptyClientHelper implements ClientHelper {
@@ -58,5 +62,11 @@ public class EmptyClientHelper implements ClientHelper {
 	@Override
 	public void spawnManaCrystalItemParticles(ManaType type, Vec3 center) {
 
+	}
+	
+	@Override
+	@Nullable
+	public GameType getLocalGameMode(Player maybeLocalPlayer) {
+		return null;
 	}
 }

@@ -41,7 +41,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -237,6 +239,15 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
 		return CommonHooks.onTravelToDimension(entity, dimension);
+	}
+	
+	@Override
+	public boolean postEntityDestroyBlockEvent(Level level, Entity entity, BlockPos pos) {
+		// Check forge hooks as well
+		if(entity instanceof LivingEntity livingEntity && !(entity instanceof Player) && !CommonHooks.canEntityDestroy(level, pos, livingEntity)) {
+			return false;
+		}
+		return ESPlatform.super.postEntityDestroyBlockEvent(level, entity, pos);
 	}
 
 	@Override
