@@ -42,7 +42,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
 
 	@Override
 	public float getQuadSize(float partialTicks) {
-		return this.quadSize * Mth.clamp(((float) this.age + partialTicks) * 1.5F / (float) this.lifetime, 0.0F, 1.0F) * 1.5F;
+		return this.quadSize * Mth.clamp(((float) this.age + partialTicks) * 1.5F / (float) this.lifetime, 0.0F, 1.0F) * 0.75f;
 	}
 
 	@Override

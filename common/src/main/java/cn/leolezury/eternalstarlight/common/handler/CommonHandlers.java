@@ -90,7 +90,7 @@ public class CommonHandlers {
 
 	private static int ticksSinceLastUpdate = 0;
 
-	public static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
+	private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
 	public static void onServerTick(MinecraftServer server) {
 		ticksSinceLastUpdate++;
@@ -264,6 +264,28 @@ public class CommonHandlers {
 			for (ItemStack armor : armors) {
 				if (armor.getItem() instanceof TickableArmor tickableArmor) {
 					tickableArmor.tick(livingEntity.level(), livingEntity, armor);
+				}
+			}
+			boolean armorChanged = false;
+			for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
+				if (livingEntity.equipmentHasChanged(livingEntity.getLastArmorItem(slot), livingEntity.getItemBySlot(slot))) {
+					armorChanged = true;
+					break;
+				}
+			}
+			if (armorChanged) {
+				AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+				if (armorAttribute != null) {
+					if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
+						&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
+						&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
+						&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+						if (!armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
+							armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
+						}
+					} else if (armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
+						armorAttribute.removeModifier(AMARAMBER_BONUS.id());
+					}
 				}
 			}
 			if (livingEntity.tickCount % 20 == 0) {
