@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.fabricmc.api.EnvType;
@@ -37,7 +38,7 @@ public class MeteorShowerWeather extends AbstractWeather {
 
 	@Override
 	public void tickBlock(ServerLevel level, int ticks, BlockPos pos) {
-		if (level.getRandom().nextInt(3000) == 0) {
+		if (level.getRandom().nextFloat() < ESConfig.INSTANCE.meteorDropRate) {
 			int targetX = pos.getX();
 			int targetY = pos.getY();
 			int targetZ = pos.getZ();

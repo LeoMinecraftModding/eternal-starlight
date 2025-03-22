@@ -448,26 +448,37 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GLOWING_MOSSY_DUSTED_GRAVEL.get());
 
 		block(ESItems.GOLEM_STEEL_BLOCK.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.GOLEM_STEEL_SLAB.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_SLAB.get(), ESItems.GOLEM_STEEL_SLAB.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_SLAB.get());
 		block(ESItems.GOLEM_STEEL_STAIRS.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_STAIRS.get(), ESItems.GOLEM_STEEL_STAIRS.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_STAIRS.get());
 		block(ESItems.GOLEM_STEEL_TILES.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILES.get(), ESItems.GOLEM_STEEL_TILES.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILES.get());
 		block(ESItems.GOLEM_STEEL_TILE_SLAB.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_SLAB.get(), ESItems.GOLEM_STEEL_TILE_SLAB.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get());
 		block(ESItems.GOLEM_STEEL_TILE_STAIRS.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), ESItems.GOLEM_STEEL_TILE_STAIRS.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
 		block(ESItems.GOLEM_STEEL_GRATE.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_GRATE.get(), ESItems.GOLEM_STEEL_GRATE.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_GRATE.get());
 		block(ESItems.GOLEM_STEEL_PILLAR.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_PILLAR.get(), ESItems.GOLEM_STEEL_PILLAR.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_PILLAR.get());
 		flatBlockTexture(ESItems.GOLEM_STEEL_BARS.get());
+		basicItem(ESItems.WAXED_GOLEM_STEEL_BARS.get(), blockTextureFromItem(ESItems.GOLEM_STEEL_BARS.get()));
 		flatBlockTexture(ESItems.OXIDIZED_GOLEM_STEEL_BARS.get());
 		block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
+		otherBlock(ESItems.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		block(ESItems.GOLEM_STEEL_JET.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_JET.get(), ESItems.GOLEM_STEEL_JET.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_JET.get());
 		block(ESItems.GOLEM_STEEL_CRATE.get());
 
@@ -1002,6 +1013,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 	private void block(Item item) {
 		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
+	}
+
+	private void otherBlock(Item item, Item other) {
+		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(other)));
 	}
 
 	private void layeredBlock(Item item) {

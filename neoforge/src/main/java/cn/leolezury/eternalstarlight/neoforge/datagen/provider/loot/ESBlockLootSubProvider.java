@@ -484,26 +484,37 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(ESBlocks.DUSTED_GRAVEL.get())))));
 
 		dropSelf(ESBlocks.GOLEM_STEEL_BLOCK.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		add(ESBlocks.GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
+		add(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
 		add(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.GOLEM_STEEL_STAIRS.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get());
 		dropSelf(ESBlocks.GOLEM_STEEL_TILES.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_TILES.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		add(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), this::createSlabItemTable);
+		add(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), this::createSlabItemTable);
 		add(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
 		dropSelf(ESBlocks.GOLEM_STEEL_GRATE.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get());
 		dropSelf(ESBlocks.GOLEM_STEEL_PILLAR.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get());
 		dropSelf(ESBlocks.GOLEM_STEEL_BARS.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_BARS.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get());
 		dropSelf(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
+		dropSelf(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		dropSelf(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		dropSelf(ESBlocks.GOLEM_STEEL_JET.get());
+		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_JET.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		add(ESBlocks.GOLEM_STEEL_CRATE.get(), this::createShulkerBoxDrop);
 

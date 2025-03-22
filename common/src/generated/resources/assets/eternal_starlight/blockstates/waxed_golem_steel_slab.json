@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternal_starlight:block/golem_steel_slab"
+    },
+    "type=double": {
+      "model": "eternal_starlight:block/golem_steel_block"
+    },
+    "type=top": {
+      "model": "eternal_starlight:block/golem_steel_slab_top"
+    }
+  }
+}

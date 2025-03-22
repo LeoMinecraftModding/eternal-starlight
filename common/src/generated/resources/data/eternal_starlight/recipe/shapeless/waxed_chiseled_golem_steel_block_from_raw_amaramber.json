@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:chiseled_golem_steel_block"
+    },
+    {
+      "item": "eternal_starlight:raw_amaramber"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:waxed_chiseled_golem_steel_block"
+  }
+}

@@ -37,6 +37,6 @@ public class WeatheringGolemSteelPillarBlock extends RotatedPillarBlock implemen
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

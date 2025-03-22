@@ -256,24 +256,34 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleGrassBlock(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.MOSSY_DUSTED_GRAVEL.get()).withSuffix("_side"), blockTexture(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()).withSuffix("_top"), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 
 		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		slabBlock(ESBlocks.GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
+		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
 		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
 		stairsBlock(ESBlocks.GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
+		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_outer")));
 		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
 		simpleBlock(ESBlocks.GOLEM_STEEL_TILES.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		slabBlock(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
+		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
 		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
 		stairsBlock(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
+		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_outer")));
 		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
 		simpleBlock(ESBlocks.GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())));
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
 		axisBlock(ESBlocks.GOLEM_STEEL_PILLAR.get());
+		axisBlock(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get()).withSuffix("_horizontal")));
 		axisBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get());
 		simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get())));
 		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
 		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(modLoc("golem_steel_crate_open")), models().getExistingFile(modLoc("golem_steel_crate")));
 

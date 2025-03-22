@@ -1066,6 +1066,11 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.GOLEM_STEEL_TILES.get());
 		addSlab(recipeOutput, ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.GOLEM_STEEL_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.GOLEM_STEEL_TILES.get(), 2);
+		grate(recipeOutput, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get(), 4);
+		addPillar(recipeOutput, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
+
 		addStoneCompress(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
@@ -1077,14 +1082,51 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		addSlab(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(), 2);
-		grate(recipeOutput, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.GOLEM_STEEL_BLOCK.get(), 4);
 		grate(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(), 4);
-		addPillar(recipeOutput, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
 		addPillar(recipeOutput, ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+
+		addStoneCompress(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		addStairs(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		addSlab(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), 2);
+		addStairs(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get());
+		addSlab(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), 2);
+		grate(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), 4);
+		addPillar(recipeOutput, ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get());
+
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.GOLEM_STEEL_BLOCK.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), 1, ESBlocks.GOLEM_STEEL_SLAB.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), 1, ESBlocks.GOLEM_STEEL_STAIRS.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), 1, ESBlocks.GOLEM_STEEL_TILES.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), 1, ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), 1, ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), 1, ESBlocks.GOLEM_STEEL_GRATE.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), 1, ESBlocks.GOLEM_STEEL_PILLAR.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), 1, ESBlocks.GOLEM_STEEL_BARS.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get(), 1, ESBlocks.GOLEM_STEEL_JET.get(), Items.HONEYCOMB);
+
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.GOLEM_STEEL_BLOCK.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), 1, ESBlocks.GOLEM_STEEL_SLAB.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), 1, ESBlocks.GOLEM_STEEL_STAIRS.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), 1, ESBlocks.GOLEM_STEEL_TILES.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), 1, ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), 1, ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), 1, ESBlocks.GOLEM_STEEL_GRATE.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), 1, ESBlocks.GOLEM_STEEL_PILLAR.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), 1, ESBlocks.GOLEM_STEEL_BARS.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get(), 1, ESBlocks.GOLEM_STEEL_JET.get(), ESItems.RAW_AMARAMBER.get());
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.GOLEM_STEEL_BARS.get(), 16)
 			.pattern("###")
 			.pattern("###")
@@ -1408,11 +1450,15 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	protected final void addShapeless(RecipeOutput recipeOutput, RecipeCategory category, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
+		addShapeless(recipeOutput, category, "", criteria, output, num, ingredients);
+	}
+
+	protected final void addShapeless(RecipeOutput recipeOutput, RecipeCategory category, String nameSuffix, ItemLike criteria, ItemLike output, int num, ItemLike... ingredients) {
 		ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(category, output, num);
 		for (ItemLike item : ingredients) {
 			builder.requires(item);
 		}
-		builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id("shapeless/" + name(output)));
+		builder.unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id("shapeless/" + name(output) + nameSuffix));
 	}
 
 	protected final void addShapeless(RecipeOutput recipeOutput, RecipeCategory category, TagKey<Item> criteria, ItemLike output, int num, List<ItemLike> ingredients, List<TagKey<Item>> tags) {

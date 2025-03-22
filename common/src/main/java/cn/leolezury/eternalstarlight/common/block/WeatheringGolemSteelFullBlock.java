@@ -37,6 +37,6 @@ public class WeatheringGolemSteelFullBlock extends Block implements WeatheringGo
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-09T21:52:01.9205728	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-03-22T13:36:20.8937238	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -101,20 +101,20 @@ f41caa3e1ab3b3a135f2349cceee6a573ec63e5f data/minecraft/tags/block/leaves.json
 ce8f35dc022f1a32927aaa3095c6e03a2c4f43a8 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 78350735086753b066029b0dcb46c59a435ac6f1 data/minecraft/tags/block/mineable/axe.json
 5923e52ca68e3ee2d65495b8e5301cccac388f05 data/minecraft/tags/block/mineable/hoe.json
-e12650043889144d254264aaed6b3c0a42b394a2 data/minecraft/tags/block/mineable/pickaxe.json
+e3920d9532e3931568dafbb28bad564419507181 data/minecraft/tags/block/mineable/pickaxe.json
 5fa95f78eedaf512144083f3f6bda7e6e277f7d8 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 7bc1bb9e83c030a31a9e759a54bf77355e2f36ad data/minecraft/tags/block/mushroom_grow_block.json
-10062effa05b8b5156ec7b3fc59ad6507e42c7e0 data/minecraft/tags/block/needs_iron_tool.json
+97d605a687ee9afdabc9d899642f8708af103f17 data/minecraft/tags/block/needs_iron_tool.json
 90de9afe0872027063bcb6f66d1fe2a0ff06b5e0 data/minecraft/tags/block/occludes_vibration_signals.json
 cdf7fde1bf5a6c43253d43ee947ce9959714bfac data/minecraft/tags/block/planks.json
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/block/portals.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/block/sand.json
 99b32e282522da341fb90a660433f78887f6d23c data/minecraft/tags/block/saplings.json
-4ef1be4b22e47f4bc8822a8fe7c82b947502eec0 data/minecraft/tags/block/slabs.json
+725cec407c1cad81ea555cb00993a88512ab0d6a data/minecraft/tags/block/slabs.json
 05f66411ff1d85a93c74d3aac078fcd8c24abe92 data/minecraft/tags/block/small_flowers.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/block/smelts_to_glass.json
-056d10cc03c7f573d01b9e980c3559fb59dfbef0 data/minecraft/tags/block/stairs.json
+c1821e81edb2ebae1e70f9bd97e98f71afdea7ce data/minecraft/tags/block/stairs.json
 6058a6efd6dde7cfa5a1abdba37ac5ee662d4db8 data/minecraft/tags/block/standing_signs.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/sword_efficient.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/block/tall_flowers.json

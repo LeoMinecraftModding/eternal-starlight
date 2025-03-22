@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,12 +36,44 @@ public interface WeatheringGolemSteel {
 		.put(ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get())
 		.build());
 
+	Supplier<ImmutableMap<Block, Block>> TO_WAXED = Suppliers.memoize(() -> ImmutableMap.<Block, Block>builder()
+		.put(ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get())
+		.put(ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_SLAB.get())
+		.put(ESBlocks.GOLEM_STEEL_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get())
+		.put(ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.WAXED_GOLEM_STEEL_TILES.get())
+		.put(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get())
+		.put(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get())
+		.put(ESBlocks.GOLEM_STEEL_GRATE.get(), ESBlocks.WAXED_GOLEM_STEEL_GRATE.get())
+		.put(ESBlocks.GOLEM_STEEL_PILLAR.get(), ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get())
+		.put(ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get())
+		.put(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get())
+		.put(ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get())
+		.build());
+
 	default ItemInteractionResult use(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player) {
 		Optional<Block> scraped = TO_OXIDIZED.get().entrySet().stream().filter(e -> e.getValue() == state.getBlock()).findFirst().map(Map.Entry::getKey);
-		if (ESPlatform.INSTANCE.canScrape(stack) && scraped.isPresent()) {
-			level.setBlockAndUpdate(pos, scraped.get().withPropertiesOf(state));
-			player.playSound(SoundEvents.AXE_SCRAPE);
-			stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
+		Optional<Block> unwaxed = TO_WAXED.get().entrySet().stream().filter(e -> e.getValue() == state.getBlock()).findFirst().map(Map.Entry::getKey);
+		if (ESPlatform.INSTANCE.canScrape(stack)) {
+			Block result = null;
+			boolean waxSound = false;
+			if (scraped.isPresent()) {
+				result = scraped.get();
+			} else if (unwaxed.isPresent()) {
+				result = unwaxed.get();
+				waxSound = true;
+			}
+			if (result != null) {
+				level.setBlockAndUpdate(pos, result.withPropertiesOf(state));
+				player.playSound(waxSound ? SoundEvents.AXE_WAX_OFF : SoundEvents.AXE_SCRAPE);
+				stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
+				return ItemInteractionResult.sidedSuccess(level.isClientSide);
+			}
+		}
+		Optional<BlockState> waxed = getWaxedState(state);
+		if ((stack.is(Items.HONEYCOMB) || stack.is(ESItems.RAW_AMARAMBER.get())) && waxed.isPresent()) {
+			level.setBlockAndUpdate(pos, waxed.get());
+			level.levelEvent(player, 3003, pos, 0);
+			stack.consume(1, player);
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -53,9 +87,24 @@ public interface WeatheringGolemSteel {
 		}
 	}
 
+	default boolean isWaxed() {
+		if (this instanceof Block block) {
+			return TO_WAXED.get().containsValue(block);
+		} else {
+			return false;
+		}
+	}
+
 	default Optional<BlockState> getOxidizedState(BlockState blockState) {
 		if (TO_OXIDIZED.get().containsKey(blockState.getBlock())) {
 			return Optional.ofNullable(TO_OXIDIZED.get().get(blockState.getBlock())).map((block) -> block.withPropertiesOf(blockState));
+		}
+		return Optional.empty();
+	}
+
+	default Optional<BlockState> getWaxedState(BlockState blockState) {
+		if (TO_WAXED.get().containsKey(blockState.getBlock())) {
+			return Optional.ofNullable(TO_WAXED.get().get(blockState.getBlock())).map((block) -> block.withPropertiesOf(blockState));
 		}
 		return Optional.empty();
 	}

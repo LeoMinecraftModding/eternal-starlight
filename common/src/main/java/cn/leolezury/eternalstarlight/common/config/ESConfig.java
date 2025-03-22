@@ -20,6 +20,7 @@ public class ESConfig {
 
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
+	public float meteorDropRate = 0.0005f;
 	public int crystalbornCatalystEnergyPerShard = 50;
 	public boolean laserBeamBreakBlocks = true;
 	public MobsConfig mobsConfig = new MobsConfig();

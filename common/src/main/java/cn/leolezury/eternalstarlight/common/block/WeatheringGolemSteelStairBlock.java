@@ -42,6 +42,6 @@ public class WeatheringGolemSteelStairBlock extends StairBlock implements Weathe
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

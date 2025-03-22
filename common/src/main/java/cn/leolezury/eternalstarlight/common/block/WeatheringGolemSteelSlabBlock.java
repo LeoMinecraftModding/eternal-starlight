@@ -37,6 +37,6 @@ public class WeatheringGolemSteelSlabBlock extends SlabBlock implements Weatheri
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

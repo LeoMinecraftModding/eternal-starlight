@@ -37,6 +37,6 @@ public class WeatheringGolemSteelBarsBlock extends IronBarsBlock implements Weat
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

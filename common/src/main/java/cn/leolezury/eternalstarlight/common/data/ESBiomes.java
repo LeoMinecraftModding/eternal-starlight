@@ -58,7 +58,7 @@ public class ESBiomes {
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseSpawnBuilder(), etherRiverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(SPIRAL_KELP_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterColor(7883610).waterFogColor(1576722), baseAquaticSpawnBuilder(), spiralKelpForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(LUSH_SHALLOW_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterColor(6124624).waterFogColor(3754288), baseAquaticSpawnBuilder(), lushShallowSeaGenSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(LUSH_SHALLOW_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterColor(6124624).waterFogColor(4737072), baseAquaticSpawnBuilder(), lushShallowSeaGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_THE_ABYSS), theAbyssSpawns(), theAbyssGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLushSpawnBuilder(), baseLandGenSettings(featureHolderGetter, carverHolderGetter)).build());
 	}

@@ -37,6 +37,6 @@ public class WeatheringGolemSteelGrateBlock extends WaterloggedTransparentBlock 
 
 	@Override
 	public boolean isRandomlyTicking(BlockState blockState) {
-		return !isOxidized();
+		return !isOxidized() && !isWaxed();
 	}
 }

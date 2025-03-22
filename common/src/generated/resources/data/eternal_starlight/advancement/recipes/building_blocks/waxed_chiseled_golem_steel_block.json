@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:waxed_chiseled_golem_steel_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_waxed_golem_steel_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:waxed_golem_steel_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_waxed_golem_steel_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:waxed_chiseled_golem_steel_block"
+    ]
+  }
+}
