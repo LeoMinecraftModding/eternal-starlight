@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.particle.GlowParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.ESGlowParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -14,14 +14,14 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class GlowParticle extends TextureSheetParticle {
+public class ESGlowParticle extends TextureSheetParticle {
 	protected SpriteSet sprites;
 	private final float rotSpeed;
 	private float fadeR;
 	private float fadeG;
 	private float fadeB;
 
-	protected GlowParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, int fromColor, int toColor, float alpha, SpriteSet spriteSet) {
+	protected ESGlowParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, int fromColor, int toColor, float alpha, SpriteSet spriteSet) {
 		super(level, x, y, z, dx, dy, dz);
 		this.xd = dx;
 		this.yd = dy;
@@ -80,7 +80,7 @@ public class GlowParticle extends TextureSheetParticle {
 		return ParticleRenderType.CUSTOM;
 	}
 
-	public static class Provider implements ParticleProvider<GlowParticleOptions> {
+	public static class Provider implements ParticleProvider<ESGlowParticleOptions> {
 		private final SpriteSet sprites;
 
 		public Provider(SpriteSet spriteSet) {
@@ -88,8 +88,8 @@ public class GlowParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(GlowParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new GlowParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites);
+		public Particle createParticle(ESGlowParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+			return new ESGlowParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites);
 		}
 	}
 }

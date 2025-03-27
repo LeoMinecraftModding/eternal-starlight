@@ -534,8 +534,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WallBlock> POLISHED_TOXITE_WALL = BLOCKS.register("polished_toxite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_LIGHT_GREEN)));
 
 	// mud
-	public static final RegistryObject<Block, MudBlock> NIGHTFALL_MUD = BLOCKS.register("nightfall_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
-	public static final RegistryObject<Block, MudBlock> GLOWING_NIGHTFALL_MUD = BLOCKS.register("glowing_nightfall_mud", () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, NightfallMudBlock> NIGHTFALL_MUD = BLOCKS.register("nightfall_mud", () -> new NightfallMudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+	public static final RegistryObject<Block, NightfallMudBlock> GLOWING_NIGHTFALL_MUD = BLOCKS.register("glowing_nightfall_mud", () -> new NightfallMudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, Block> PACKED_NIGHTFALL_MUD = BLOCKS.register("packed_nightfall_mud", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_MUD)));
 	public static final RegistryObject<Block, Block> NIGHTFALL_MUD_BRICKS = BLOCKS.register("nightfall_mud_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS)));
 	public static final RegistryObject<Block, SlabBlock> NIGHTFALL_MUD_BRICK_SLAB = BLOCKS.register("nightfall_mud_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICK_SLAB)));
@@ -822,6 +822,9 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> GLACITE_BLOCK = BLOCKS.register("glacite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.SNOW)));
 	public static final RegistryObject<Block, DropExperienceBlock> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
 	public static final RegistryObject<Block, Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(5.0F, 3.5F)));
+	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_MALARITE_ORE = BLOCKS.register("grimstone_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
+	public static final RegistryObject<Block, DropExperienceBlock> VOIDSTONE_MALARITE_ORE = BLOCKS.register("voidstone_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
+	public static final RegistryObject<Block, Block> MALARITE_BLOCK = BLOCKS.register("malarite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(2.0F, 3.5F)));
 	public static final RegistryObject<Block, RedStoneOreBlock> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
 	public static final RegistryObject<Block, RedStoneOreBlock> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));
 	public static final RegistryObject<Block, Block> ETERNAL_ICE_REDSTONE_ORE = BLOCKS.register("eternal_ice_redstone_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS)));

@@ -103,6 +103,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.GEMS).add(
 			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
 			ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()
+		).addTags(
+			ESConventionalTags.Items.GEMS_THIOQUARTZ,
+			ESConventionalTags.Items.GEMS_GLACITE,
+			ESConventionalTags.Items.GEMS_MALARITE,
+			ESConventionalTags.Items.GEMS_ATALPHAITE
 		);
 		tag(Tags.Items.GEMS_QUARTZ).add(
 			ESItems.THIOQUARTZ_CLUSTER.get()
@@ -160,28 +165,38 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.WILTED_CROSSBOW.get()
 		);
 		tag(Tags.Items.TOOLS_SPEAR).add(
+			ESItems.MALARITE_SPEAR.get(),
 			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(Tags.Items.TOOLS_IGNITER).add(
 			ESItems.SALTPETER_MATCHBOX.get()
 		);
 		tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
+			ESItems.BONEMORE.get(),
+			ESItems.DOOMEDEN_RAPIER.get(),
 			ESItems.RAGE_OF_STARS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
+			ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 			ESItems.GLACITE_SWORD.get(),
 			ESItems.GLACITE_AXE.get(),
+			ESItems.GLACITE_SCYTHE.get(),
 			ESItems.SWAMP_SILVER_SWORD.get(),
 			ESItems.SWAMP_SILVER_AXE.get(),
-			ESItems.DOOMEDEN_RAPIER.get(),
+			ESItems.MALARITE_SWORD.get(),
+			ESItems.MALARITE_AXE.get(),
+			ESItems.AMARAMBER_SWORD.get(),
 			ESItems.AMARAMBER_AXE.get(),
 			ESItems.SHATTERED_SWORD.get(),
 			ESItems.ENERGY_SWORD.get(),
+			ESItems.MOONRING_GREATSWORD.get(),
+			ESItems.PETAL_SCYTHE.get(),
 			ESItems.DAGGER_OF_HUNGER.get()
 		);
 		tag(Tags.Items.RANGED_WEAPON_TOOLS).add(
 			ESItems.BOW_OF_BLOOD.get(),
 			ESItems.STARFALL_LONGBOW.get(),
+			ESItems.MALARITE_SPEAR.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
 			ESItems.WILTED_CROSSBOW.get(),
@@ -192,17 +207,23 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 			ESItems.GLACITE_PICKAXE.get(),
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
-			ESItems.SWAMP_SILVER_PICKAXE.get()
+			ESItems.SWAMP_SILVER_PICKAXE.get(),
+			ESItems.MALARITE_PICKAXE.get(),
+			ESItems.AMARAMBER_PICKAXE.get()
 		);
 		// mod conventional tags
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_GOLEM_STEEL);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AETHERSENT);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_AETHERSENT);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GLACITE, ESConventionalTags.Items.STORAGE_BLOCKS_GLACITE);
 		copy(ESConventionalTags.Blocks.ORES_SWAMP_SILVER, ESConventionalTags.Items.ORES_SWAMP_SILVER);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SWAMP_SILVER, ESConventionalTags.Items.STORAGE_BLOCKS_SWAMP_SILVER);
+		copy(ESConventionalTags.Blocks.ORES_MALARITE, ESConventionalTags.Items.ORES_MALARITE);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_MALARITE, ESConventionalTags.Items.STORAGE_BLOCKS_MALARITE);
 		copy(ESConventionalTags.Blocks.ORES_SALTPETER, ESConventionalTags.Items.ORES_SALTPETER);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER, ESConventionalTags.Items.STORAGE_BLOCKS_SALTPETER);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AMARAMBER, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AMARAMBER);
 		copy(ESConventionalTags.Blocks.ORES_ATALPHAITE, ESConventionalTags.Items.ORES_ATALPHAITE);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_ATALPHAITE, ESConventionalTags.Items.STORAGE_BLOCKS_ATALPHAITE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
@@ -241,6 +262,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.NUGGETS_SWAMP_SILVER).add(
 			ESItems.SWAMP_SILVER_NUGGET.get()
 		);
+		tag(ESConventionalTags.Items.GEMS_MALARITE).add(
+			ESItems.MALARITE.get()
+		);
 		tag(ESConventionalTags.Items.DUSTS_SALTPETER).add(
 			ESItems.SALTPETER_POWDER.get()
 		);
@@ -273,6 +297,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ESTags.Items.SICKLES).add(
 			ESItems.SWAMP_SILVER_SICKLE.get(),
+			ESItems.MALARITE_SICKLE.get(),
+			ESItems.AMARAMBER_SICKLE.get(),
 			ESItems.AURORA_DEER_ANTLER.get()
 		);
 		tag(ESTags.Items.GREATSWORDS).add(
@@ -338,6 +364,25 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.GLACITE_HOE.get(),
 			ESItems.GLACITE_SHOVEL.get(),
 			ESItems.GLACITE_SCYTHE.get()
+		);
+		tag(ESTags.Items.MALARITE_WEAPONS).add(
+			ESItems.MALARITE_SWORD.get(),
+			ESItems.MALARITE_PICKAXE.get(),
+			ESItems.MALARITE_AXE.get(),
+			ESItems.MALARITE_HOE.get(),
+			ESItems.MALARITE_SHOVEL.get(),
+			ESItems.MALARITE_SICKLE.get(),
+			ESItems.MALARITE_SPEAR.get()
+		);
+		tag(ESTags.Items.MENDS_NATURALLY).add(
+			ESItems.AMARAMBER_SWORD.get(),
+			ESItems.AMARAMBER_PICKAXE.get(),
+			ESItems.AMARAMBER_AXE.get(),
+			ESItems.AMARAMBER_HOE.get(),
+			ESItems.AMARAMBER_SHOVEL.get(),
+			ESItems.AMARAMBER_SICKLE.get(),
+			ESItems.AMARAMBER_HELMET.get(),
+			ESItems.AMARAMBER_CHESTPLATE.get()
 		);
 		tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS).add(
 			ESItems.SALTPETER_MATCHBOX.get(),
@@ -586,6 +631,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.DURABILITY_ENCHANTABLE).add(
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.GLACITE_SHIELD.get(),
+			ESItems.MALARITE_SPEAR.get(),
 			ESItems.SALTPETER_MATCHBOX.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
@@ -612,6 +658,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
+			ESItems.MALARITE_SPEAR.get(),
 			ESItems.CRESCENT_SPEAR.get()
 		).addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
 		tag(ItemTags.WEAPON_ENCHANTABLE).addTag(ESTags.Items.HAMMER_ENCHANTABLE);
@@ -691,11 +738,13 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.AIR_SAC_BOOTS.get()
 		);
 		tag(ItemTags.SWORDS).add(
+			ESItems.DOOMEDEN_RAPIER.get(),
 			ESItems.RAGE_OF_STARS.get(),
 			ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 			ESItems.GLACITE_SWORD.get(),
 			ESItems.SWAMP_SILVER_SWORD.get(),
-			ESItems.DOOMEDEN_RAPIER.get(),
+			ESItems.MALARITE_SWORD.get(),
+			ESItems.AMARAMBER_SWORD.get(),
 			ESItems.SHATTERED_SWORD.get(),
 			ESItems.ENERGY_SWORD.get(),
 			ESItems.DAGGER_OF_HUNGER.get()
@@ -704,17 +753,21 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 			ESItems.GLACITE_PICKAXE.get(),
 			ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
-			ESItems.SWAMP_SILVER_PICKAXE.get()
+			ESItems.SWAMP_SILVER_PICKAXE.get(),
+			ESItems.MALARITE_PICKAXE.get(),
+			ESItems.AMARAMBER_PICKAXE.get()
 		);
 		tag(ItemTags.AXES).add(
 			ESItems.THERMAL_SPRINGSTONE_AXE.get(),
 			ESItems.GLACITE_AXE.get(),
 			ESItems.SWAMP_SILVER_AXE.get(),
+			ESItems.MALARITE_AXE.get(),
 			ESItems.AMARAMBER_AXE.get()
 		);
 		tag(ItemTags.HOES).add(
 			ESItems.THERMAL_SPRINGSTONE_HOE.get(),
 			ESItems.GLACITE_HOE.get(),
+			ESItems.MALARITE_HOE.get(),
 			ESItems.AMARAMBER_HOE.get()
 		).addTags(
 			ESTags.Items.SCYTHES,
@@ -723,12 +776,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.SHOVELS).add(
 			ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(),
 			ESItems.GLACITE_SHOVEL.get(),
+			ESItems.MALARITE_SHOVEL.get(),
 			ESItems.AMARAMBER_SHOVEL.get()
 		);
 		tag(ItemTags.ARROWS).add(
 			ESItems.THIOQUARTZ_ARROW.get(),
 			ESItems.AETHERSENT_ARROW.get(),
 			ESItems.GLACITE_ARROW.get(),
+			ESItems.MALARITE_ARROW.get(),
 			ESItems.AMARAMBER_ARROW.get(),
 			ESItems.VORACIOUS_ARROW.get(),
 			ESItems.AIR_SAC_ARROW.get()
@@ -742,6 +797,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 			ESItems.GLACITE_SHARD.get(),
 			ESItems.SWAMP_SILVER_INGOT.get(),
+			ESItems.MALARITE.get(),
 			ESItems.AMARAMBER_INGOT.get(),
 			ESItems.GOLEM_STEEL_INGOT.get(),
 			ESItems.TENACIOUS_PETAL.get(),

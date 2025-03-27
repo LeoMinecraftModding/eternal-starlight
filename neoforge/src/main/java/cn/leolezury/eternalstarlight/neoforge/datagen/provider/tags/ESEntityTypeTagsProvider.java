@@ -67,6 +67,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			ESEntities.THIOQUARTZ_ARROW.get(),
 			ESEntities.AETHERSENT_ARROW.get(),
 			ESEntities.GLACITE_ARROW.get(),
+			ESEntities.MALARITE_ARROW.get(),
 			ESEntities.AMARAMBER_ARROW.get(),
 			ESEntities.VORACIOUS_ARROW.get(),
 			ESEntities.AIR_SAC_ARROW.get()

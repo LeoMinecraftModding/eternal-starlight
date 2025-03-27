@@ -1,6 +1,10 @@
 {
   "values": [
     "eternal_starlight:red_starlight_crystal_shard",
-    "eternal_starlight:blue_starlight_crystal_shard"
+    "eternal_starlight:blue_starlight_crystal_shard",
+    "#c:gems/thioquartz",
+    "#c:gems/glacite",
+    "#c:gems/malarite",
+    "#c:gems/atalphaite"
   ]
 }

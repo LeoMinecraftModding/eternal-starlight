@@ -35,6 +35,10 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.ORBITAL_ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
 		sprite(ESParticles.EXPLOSION_SHOCK.get(), loc("explosion_shock"));
 		spriteSet(ESParticles.TOWER_SQUID_INK.get(), mcLoc("generic"), 8, true);
+		sprite(ESParticles.AMARAMBER_WAX_ON.get(), loc("amaramber_wax_on"));
+		sprite(ESParticles.DRIPPING_MUD.get(), mcLoc("drip_hang"));
+		sprite(ESParticles.FALLING_MUD.get(), mcLoc("drip_fall"));
+		sprite(ESParticles.LANDING_MUD.get(), mcLoc("drip_land"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));
 	}

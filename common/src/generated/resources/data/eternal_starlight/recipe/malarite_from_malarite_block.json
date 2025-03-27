@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "malarite",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:malarite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:malarite"
+  }
+}

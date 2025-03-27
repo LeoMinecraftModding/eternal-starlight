@@ -38,7 +38,6 @@ import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.FastColor;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -167,7 +166,7 @@ public class CommonHandlers {
 				}
 			}
 
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
 				entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
 			}
 
@@ -181,8 +180,12 @@ public class CommonHandlers {
 				}
 			}
 
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getItemInHand(InteractionHand.MAIN_HAND).is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
 				entity.setTicksFrozen(entity.getTicksFrozen() + 80);
+			}
+
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.MALARITE_WEAPONS)) {
+				entity.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 			}
 
 			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem

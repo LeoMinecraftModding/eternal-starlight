@@ -1,16 +1,15 @@
 {
   "values": [
-    "eternal_starlight:atalphaite_block",
-    "eternal_starlight:lunaris_cactus_gel_block",
-    "eternal_starlight:thioquartz_block",
-    "eternal_starlight:glacite_block",
-    "eternal_starlight:swamp_silver_block",
-    "eternal_starlight:raw_aethersent_block",
-    "eternal_starlight:aethersent_block",
-    "eternal_starlight:saltpeter_block",
-    "eternal_starlight:raw_amaramber_block",
-    "eternal_starlight:golem_steel_block",
-    "eternal_starlight:oxidized_golem_steel_block",
-    "eternal_starlight:lunar_mosaic"
+    "eternal_starlight:lunar_mosaic",
+    "#c:storage_blocks/golem_steel",
+    "#c:storage_blocks/oxidized_golem_steel",
+    "#c:storage_blocks/raw_aethersent",
+    "#c:storage_blocks/aethersent",
+    "#c:storage_blocks/glacite",
+    "#c:storage_blocks/swamp_silver",
+    "#c:storage_blocks/malarite",
+    "#c:storage_blocks/saltpeter",
+    "#c:storage_blocks/raw_amaramber",
+    "#c:storage_blocks/atalphaite"
   ]
 }

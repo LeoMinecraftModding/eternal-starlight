@@ -24,6 +24,7 @@ public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> THERMAL_SPRINGSTONE = create("thermal_springstone");
 	public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
 	public static final ResourceKey<TrimMaterial> SWAMP_SILVER = create("swamp_silver");
+	public static final ResourceKey<TrimMaterial> MALARITE = create("malarite");
 	public static final ResourceKey<TrimMaterial> AMARAMBER = create("amaramber");
 	public static final ResourceKey<TrimMaterial> GOLEM_STEEL = create("golem_steel");
 	public static final ResourceKey<TrimMaterial> MOONRING = create("moonring");
@@ -38,6 +39,7 @@ public class ESTrimMaterials {
 		THERMAL_SPRINGSTONE,
 		GLACITE,
 		SWAMP_SILVER,
+		MALARITE,
 		AMARAMBER,
 		GOLEM_STEEL,
 		MOONRING,
@@ -53,6 +55,7 @@ public class ESTrimMaterials {
 		register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
 		register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
 		register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
+		register(context, MALARITE, ESItems.MALARITE.asHolder(), 0x7a518a, 1.0f);
 		register(context, AMARAMBER, ESItems.AMARAMBER_INGOT.asHolder(), 0xc3647e, 1.0f);
 		register(context, GOLEM_STEEL, ESItems.GOLEM_STEEL_INGOT.asHolder(), 0x397aaa, 0.2f);
 		register(context, MOONRING, ESItems.TENACIOUS_PETAL.asHolder(), 0xa36d9e, 0.8f);

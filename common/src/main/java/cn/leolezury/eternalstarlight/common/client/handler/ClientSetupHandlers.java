@@ -14,8 +14,8 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.Boarwar
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.MalariteSpearModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
-import cn.leolezury.eternalstarlight.common.client.particle.effect.GlowParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.AshenSnowParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.FallingLeavesParticle;
@@ -81,6 +81,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
@@ -383,6 +384,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("bonemore");
 		registerSimpleSpecialModel("bonemore_blocking");
 		registerSimpleSpecialModel("doomeden_rapier");
+		registerSimpleSpecialModel("malarite_spear");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -495,6 +497,8 @@ public class ClientSetupHandlers {
 		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), EternalStarlight.id("orb_type"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
 
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
+
+		ItemProperties.register(ESItems.MALARITE_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
@@ -625,6 +629,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("orb_of_prophecy_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("malarite_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
@@ -649,7 +654,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
 		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
-		strategy.register(ESParticles.GLOW.get(), GlowParticle.Provider::new);
+		strategy.register(ESParticles.GLOW.get(), ESGlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
@@ -661,6 +666,30 @@ public class ClientSetupHandlers {
 			public @NotNull Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
 				return new SquidInkParticle(level, x, y, z, dx, dy, dz, FastColor.ARGB32.color(255, 255 - 51, 255 - 61, 255 - 58), spriteSet);
 			}
+		});
+		strategy.register(ESParticles.AMARAMBER_WAX_ON.get(), spriteSet -> (type, level, x, y, z, dx, dy, dz) -> {
+			GlowParticle particle = new GlowParticle(level, x, y, z, 0.0F, 0.0F, 0.0F, spriteSet);
+			particle.setParticleSpeed(dx * 0.01 / (double) 2.0F, dy * 0.01, dz * 0.01 / (double) 2.0F);
+			particle.setLifetime(level.random.nextInt(30) + 10);
+			return particle;
+		});
+		strategy.register(ESParticles.DRIPPING_MUD.get(), spriteSet -> (type, level, x, y, z, dx, dy, dz) -> {
+			DripParticle particle = new DripParticle.DripHangParticle(level, x, y, z, Fluids.EMPTY, ESParticles.FALLING_MUD.get());
+			particle.setColor(50 / 255f, 28 / 255f, 22 / 255f);
+			particle.pickSprite(spriteSet);
+			return particle;
+		});
+		strategy.register(ESParticles.FALLING_MUD.get(), spriteSet -> (type, level, x, y, z, dx, dy, dz) -> {
+			DripParticle particle = new DripParticle.FallAndLandParticle(level, x, y, z, Fluids.EMPTY, ESParticles.LANDING_MUD.get());
+			particle.setColor(68 / 255f, 45 / 255f, 27 / 255f);
+			particle.pickSprite(spriteSet);
+			return particle;
+		});
+		strategy.register(ESParticles.LANDING_MUD.get(), spriteSet -> (type, level, x, y, z, dx, dy, dz) -> {
+			DripParticle particle = new DripParticle.DripLandParticle(level, x, y, z, Fluids.EMPTY);
+			particle.setColor(68 / 255f, 45 / 255f, 27 / 255f);
+			particle.pickSprite(spriteSet);
+			return particle;
 		});
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
@@ -713,10 +742,12 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
 		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
+		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
 		strategy.register(ESEntities.THIOQUARTZ_ARROW.get(), ThioquartzArrowRenderer::new);
 		strategy.register(ESEntities.THIOQUARTZ_SHARD.get(), ThioquartzShardRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_ARROW.get(), AethersentArrowRenderer::new);
 		strategy.register(ESEntities.GLACITE_ARROW.get(), GlaciteArrowRenderer::new);
+		strategy.register(ESEntities.MALARITE_ARROW.get(), MalariteArrowRenderer::new);
 		strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
 		strategy.register(ESEntities.VORACIOUS_ARROW.get(), VoraciousArrowRenderer::new);
 		strategy.register(ESEntities.AIR_SAC_ARROW.get(), AirSacArrowRenderer::new);
@@ -798,6 +829,7 @@ public class ClientSetupHandlers {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
+		strategy.register(MalariteSpearModel.LAYER_LOCATION, MalariteSpearModel::createBodyLayer);
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities

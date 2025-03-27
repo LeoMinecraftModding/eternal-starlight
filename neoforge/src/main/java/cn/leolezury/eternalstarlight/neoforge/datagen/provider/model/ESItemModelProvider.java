@@ -694,6 +694,19 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SWAMP_SILVER_LEGGINGS.get());
 		basicItem(ESItems.SWAMP_SILVER_BOOTS.get());
 
+		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
+		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
+		block(ESItems.MALARITE_BLOCK.get());
+		basicItem(ESItems.MALARITE.get());
+		basicItem(ESItems.MALARITE_ARROW.get());
+		handheld(ESItems.MALARITE_SWORD.get());
+		handheld(ESItems.MALARITE_PICKAXE.get());
+		handheld(ESItems.MALARITE_AXE.get());
+		handheld(ESItems.MALARITE_HOE.get());
+		handheld(ESItems.MALARITE_SHOVEL.get());
+		handheld(ESItems.MALARITE_SICKLE.get());
+		inventoryHandheld(ESItems.MALARITE_SPEAR.get());
+
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
 		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());
@@ -722,9 +735,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TORREYA_TILE_STAIRS.get());
 		wall(ESItems.TORREYA_TILE_WALL.get(), ESItems.TORREYA_TILES.get());
 		basicItem(ESItems.AMARAMBER_ARROW.get());
+		handheld(ESItems.AMARAMBER_SWORD.get());
+		handheld(ESItems.AMARAMBER_PICKAXE.get());
 		handheld(ESItems.AMARAMBER_AXE.get());
 		handheld(ESItems.AMARAMBER_HOE.get());
 		handheld(ESItems.AMARAMBER_SHOVEL.get());
+		handheld(ESItems.AMARAMBER_SICKLE.get());
 		basicItem(ESItems.AMARAMBER_HELMET.get());
 		basicItem(ESItems.AMARAMBER_CHESTPLATE.get());
 

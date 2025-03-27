@@ -81,15 +81,15 @@ public class ESParticles {
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
-	public static final RegistryObject<ParticleType<?>, ParticleType<GlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
+	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
 		@Override
-		public MapCodec<GlowParticleOptions> codec() {
-			return GlowParticleOptions.CODEC;
+		public MapCodec<ESGlowParticleOptions> codec() {
+			return ESGlowParticleOptions.CODEC;
 		}
 
 		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, GlowParticleOptions> streamCodec() {
-			return GlowParticleOptions.STREAM_CODEC;
+		public StreamCodec<? super RegistryFriendlyByteBuf, ESGlowParticleOptions> streamCodec() {
+			return ESGlowParticleOptions.STREAM_CODEC;
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_SMOKE = PARTICLE_TYPES.register("aethersent_smoke", () -> new SimpleParticleType(false));
@@ -109,6 +109,10 @@ public class ESParticles {
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> TOWER_SQUID_INK = PARTICLE_TYPES.register("tower_squid_ink", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AMARAMBER_WAX_ON = PARTICLE_TYPES.register("amaramber_wax_on", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> DRIPPING_MUD = PARTICLE_TYPES.register("dripping_mud", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_MUD = PARTICLE_TYPES.register("falling_mud", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> LANDING_MUD = PARTICLE_TYPES.register("landing_mud", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ADVANCED_GLOW = PARTICLE_TYPES.register("advanced_glow", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SHINE = PARTICLE_TYPES.register("shine", () -> new SimpleParticleType(false));
 

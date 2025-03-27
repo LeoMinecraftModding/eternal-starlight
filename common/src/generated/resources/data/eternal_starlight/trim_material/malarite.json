@@ -1,0 +1,9 @@
+{
+  "asset_name": "malarite",
+  "description": {
+    "color": "#7A518A",
+    "translate": "trim_material.eternal_starlight.malarite"
+  },
+  "ingredient": "eternal_starlight:malarite",
+  "item_model_index": 1.0
+}

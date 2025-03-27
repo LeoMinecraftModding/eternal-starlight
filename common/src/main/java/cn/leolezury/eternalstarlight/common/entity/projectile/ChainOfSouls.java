@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
@@ -40,7 +41,6 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_WEAPON = "weapon";
 
-	private static final float MAX_RANGE = 64.0F;
 	private static final double SPEED = 5.0;
 
 	public static final EntityDataAccessor<Boolean> REACHED_TARGET = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.BOOLEAN);
@@ -113,7 +113,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 			if (target != null) {
 				setTargetId(target.getId());
 				setDeltaMovement(Vec3.ZERO);
-				if (!target.isAlive() || target.isRemoved() || target.distanceToSqr(this) > MAX_RANGE * MAX_RANGE) {
+				if (!target.isAlive() || target.isRemoved() || target.distanceToSqr(this) > getMaxRange() * getMaxRange()) {
 					target = null;
 					targetId = null;
 				} else {
@@ -124,13 +124,13 @@ public class ChainOfSouls extends Projectile implements Grappling {
 					if (target instanceof LivingEntity && !(target instanceof ArmorStand) && level() instanceof ServerLevel serverLevel) {
 						Player playerOwner = getPlayerOwner();
 						if (playerOwner != null) {
-							float damage = 3;
+							float damage = (float) ESConfig.INSTANCE.itemsConfig.chainOfSouls.soulAbsorbDamage();
 							DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SOUL_ABSORB, this, playerOwner);
 							if (getWeaponItem() != null) {
 								damage = EnchantmentHelper.modifyDamage(serverLevel, getWeaponItem(), target, damageSource, damage);
 							}
 							if (target.hurt(damageSource, damage)) {
-								playerOwner.heal(damage / 2);
+								playerOwner.heal((float) (damage * ESConfig.INSTANCE.itemsConfig.chainOfSouls.healPercentage()));
 								playSound(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get());
 								for (int i = 0; i < 7; i++) {
 									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
@@ -184,12 +184,16 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	private boolean shouldRetract(Player player) {
-		if (!player.isRemoved() && player.isAlive() && (player.getMainHandItem() == firedFromWeapon || player.getOffhandItem() == firedFromWeapon) && !(this.distanceToSqr(player) > MAX_RANGE * MAX_RANGE)) {
+		if (!player.isRemoved() && player.isAlive() && (player.getMainHandItem() == firedFromWeapon || player.getOffhandItem() == firedFromWeapon) && !(this.distanceToSqr(player) > getMaxRange() * getMaxRange())) {
 			return false;
 		} else {
 			this.discard();
 			return true;
 		}
+	}
+
+	private double getMaxRange() {
+		return ESConfig.INSTANCE.itemsConfig.chainOfSouls.maxRange();
 	}
 
 	@Override

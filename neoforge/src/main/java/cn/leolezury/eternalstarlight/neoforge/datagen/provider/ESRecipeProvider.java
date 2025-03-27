@@ -42,6 +42,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addThioquartzRecipes(recipeOutput);
 		addAethersentRecipes(recipeOutput);
 		addSwampSilverRecipes(recipeOutput);
+		addMalariteRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
 		addGlaciteRecipes(recipeOutput);
 		addAtalphaiteRecipes(recipeOutput);
@@ -1246,7 +1247,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.SWAMP_SILVER_NUGGET.get(), RecipeCategory.MISC, ESItems.SWAMP_SILVER_INGOT.get(), "swamp_silver_ingot_from_nuggets", "swamp_silver_ingot");
 		addAxe(recipeOutput, ESItems.SWAMP_SILVER_AXE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
 		addPickaxe(recipeOutput, ESItems.SWAMP_SILVER_PICKAXE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
-		addHoe(recipeOutput, ESItems.SWAMP_SILVER_SICKLE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
+		addSickle(recipeOutput, ESItems.SWAMP_SILVER_SICKLE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
 		addSword(recipeOutput, ESItems.SWAMP_SILVER_SWORD.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
 		addHelmet(recipeOutput, ESItems.SWAMP_SILVER_HELMET.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
 		addChestplate(recipeOutput, ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
@@ -1292,6 +1293,29 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 100, ESItems.SWAMP_SILVER_ORE.get(), ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_NUGGET.get(), ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_BOOTS.get());
 		addBlast(recipeOutput, 100, ESItems.SWAMP_SILVER_INGOT.get(), ESItems.SWAMP_SILVER_NUGGET.get(), ESItems.SWAMP_SILVER_PICKAXE.get(), ESItems.SWAMP_SILVER_AXE.get(), ESItems.SWAMP_SILVER_SICKLE.get(), ESItems.SWAMP_SILVER_SWORD.get(), ESItems.SWAMP_SILVER_HELMET.get(), ESItems.SWAMP_SILVER_CHESTPLATE.get(), ESItems.SWAMP_SILVER_LEGGINGS.get(), ESItems.SWAMP_SILVER_BOOTS.get());
+	}
+
+	private void addMalariteRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.MALARITE.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.MALARITE_BLOCK.get(), "malarite_from_malarite_block", "malarite");
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MALARITE_ARROW.get(), 4)
+			.pattern("A")
+			.pattern("S")
+			.pattern("S")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('A', ESConventionalTags.Items.GEMS_MALARITE)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_MALARITE))
+			.save(recipeOutput);
+		addAxe(recipeOutput, ESItems.MALARITE_AXE.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addHoe(recipeOutput, ESItems.MALARITE_HOE.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addShovel(recipeOutput, ESItems.MALARITE_SHOVEL.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addPickaxe(recipeOutput, ESItems.MALARITE_PICKAXE.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addSickle(recipeOutput, ESItems.MALARITE_SICKLE.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addSword(recipeOutput, ESItems.MALARITE_SWORD.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addSpear(recipeOutput, ESItems.MALARITE_SPEAR.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());
 	}
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {
@@ -1419,14 +1443,17 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('A', ESConventionalTags.Items.NUGGETS_AMARAMBER)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AMARAMBER))
 			.save(recipeOutput);
+		addSword(recipeOutput, ESItems.AMARAMBER_SWORD.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addPickaxe(recipeOutput, ESItems.AMARAMBER_PICKAXE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addAxe(recipeOutput, ESItems.AMARAMBER_AXE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addShovel(recipeOutput, ESItems.AMARAMBER_SHOVEL.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addSickle(recipeOutput, ESItems.AMARAMBER_SICKLE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addHelmet(recipeOutput, ESItems.AMARAMBER_HELMET.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 
-		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
-		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
 	}
 
 	// misc
@@ -1522,6 +1549,17 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
+	protected final void addSickle(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+			.pattern(" ##")
+			.pattern("# H")
+			.pattern("  H")
+			.define('#', input)
+			.define('H', Tags.Items.RODS_WOODEN)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
+
 	protected final void addHoe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
 			.pattern("##")
@@ -1593,6 +1631,17 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("###")
 			.pattern("#H#")
 			.pattern(" H ")
+			.define('#', input)
+			.define('H', Tags.Items.RODS_WOODEN)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
+
+	protected final void addSpear(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+			.pattern("  #")
+			.pattern(" H ")
+			.pattern("H  ")
 			.define('#', input)
 			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))

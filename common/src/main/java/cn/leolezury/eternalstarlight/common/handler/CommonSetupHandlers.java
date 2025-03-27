@@ -99,6 +99,7 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSENT_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSTRIKE_ROCKET.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLACITE_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.MALARITE_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());

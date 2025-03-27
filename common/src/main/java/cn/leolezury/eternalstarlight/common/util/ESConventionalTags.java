@@ -25,12 +25,17 @@ public class ESConventionalTags {
 
 		public static final TagKey<Item> INGOTS_THERMAL_SPRINGSTONE = ingot("thermal_springstone");
 
+		public static final TagKey<Item> STORAGE_BLOCKS_GLACITE = storageBlock("glacite");
 		public static final TagKey<Item> GEMS_GLACITE = gem("glacite");
 
 		public static final TagKey<Item> ORES_SWAMP_SILVER = ore("swamp_silver");
 		public static final TagKey<Item> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
 		public static final TagKey<Item> INGOTS_SWAMP_SILVER = ingot("swamp_silver");
 		public static final TagKey<Item> NUGGETS_SWAMP_SILVER = nugget("swamp_silver");
+
+		public static final TagKey<Item> ORES_MALARITE = ore("malarite");
+		public static final TagKey<Item> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");
+		public static final TagKey<Item> GEMS_MALARITE = gem("malarite");
 
 		public static final TagKey<Item> ORES_SALTPETER = ore("saltpeter");
 		public static final TagKey<Item> STORAGE_BLOCKS_SALTPETER = storageBlock("saltpeter");
@@ -41,6 +46,7 @@ public class ESConventionalTags {
 		public static final TagKey<Item> GEMS_ATALPHAITE = gem("atalphaite");
 
 		public static final TagKey<Item> RAW_MATERIALS_AMARAMBER = rawMaterial("amaramber");
+		public static final TagKey<Item> STORAGE_BLOCKS_RAW_AMARAMBER = storageBlock("raw_amaramber");
 		public static final TagKey<Item> INGOTS_AMARAMBER = ingot("amaramber");
 		public static final TagKey<Item> NUGGETS_AMARAMBER = nugget("amaramber");
 
@@ -96,6 +102,9 @@ public class ESConventionalTags {
 
 		public static final TagKey<Block> ORES_SWAMP_SILVER = ore("swamp_silver");
 		public static final TagKey<Block> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
+
+		public static final TagKey<Block> ORES_MALARITE = ore("malarite");
+		public static final TagKey<Block> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");
 
 		public static final TagKey<Block> ORES_SALTPETER = ore("saltpeter");
 		public static final TagKey<Block> STORAGE_BLOCKS_SALTPETER = storageBlock("saltpeter");

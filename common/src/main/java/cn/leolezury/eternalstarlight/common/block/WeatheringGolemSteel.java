@@ -3,12 +3,16 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -64,6 +68,7 @@ public interface WeatheringGolemSteel {
 			}
 			if (result != null) {
 				level.setBlockAndUpdate(pos, result.withPropertiesOf(state));
+				ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.WAX_OFF, UniformInt.of(3, 5));
 				player.playSound(waxSound ? SoundEvents.AXE_WAX_OFF : SoundEvents.AXE_SCRAPE);
 				stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
 				return ItemInteractionResult.sidedSuccess(level.isClientSide);
@@ -72,7 +77,8 @@ public interface WeatheringGolemSteel {
 		Optional<BlockState> waxed = getWaxedState(state);
 		if ((stack.is(Items.HONEYCOMB) || stack.is(ESItems.RAW_AMARAMBER.get())) && waxed.isPresent()) {
 			level.setBlockAndUpdate(pos, waxed.get());
-			level.levelEvent(player, 3003, pos, 0);
+			ParticleUtils.spawnParticlesOnBlockFaces(level, pos, stack.is(Items.HONEYCOMB) ? ParticleTypes.WAX_ON : ESParticles.AMARAMBER_WAX_ON.get(), UniformInt.of(3, 5));
+			player.playSound(SoundEvents.HONEYCOMB_WAX_ON);
 			stack.consume(1, player);
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}

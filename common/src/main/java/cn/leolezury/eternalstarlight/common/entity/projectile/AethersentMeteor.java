@@ -197,7 +197,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 								}
 							}
 						}
-						if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < 0.7 && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
+						if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < ESConfig.INSTANCE.mobsConfig.creteor.spawnChance() && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
 							Creteor creteor = new Creteor(ESEntities.CRETEOR.get(), level());
 							creteor.setPos(position());
 							creteor.setPersistenceRequired();

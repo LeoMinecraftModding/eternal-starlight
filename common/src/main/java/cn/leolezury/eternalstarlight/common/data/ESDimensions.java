@@ -78,6 +78,7 @@ public class ESDimensions {
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
 			SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), SurfaceRules.state(ESBlocks.HAZE_ICE.get().defaultBlockState())), SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState()))),
+			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(22), VerticalAnchor.absolute(30))), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
 			SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), SurfaceRules.state(ESBlocks.VOIDSTONE.get().defaultBlockState()))
 		);
 	}

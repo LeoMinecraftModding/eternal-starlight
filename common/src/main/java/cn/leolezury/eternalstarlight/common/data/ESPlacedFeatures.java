@@ -37,6 +37,8 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> NIGHTFALL_DIRT_ORE = create("nightfall_dirt_ore");
 	public static final ResourceKey<PlacedFeature> SAND_ORE = create("sand_ore");
 	public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
+	public static final ResourceKey<PlacedFeature> GRIMSTONE_MALARITE_ORE = create("grimstone_malarite_ore");
+	public static final ResourceKey<PlacedFeature> VOIDSTONE_MALARITE_ORE = create("voidstone_malarite_ore");
 	public static final ResourceKey<PlacedFeature> GRIMSTONE_REDSTONE_ORE = create("grimstone_redstone_ore");
 	public static final ResourceKey<PlacedFeature> VOIDSTONE_REDSTONE_ORE = create("voidstone_redstone_ore");
 	public static final ResourceKey<PlacedFeature> ETERNAL_ICE_REDSTONE_ORE = create("eternal_ice_redstone_ore");
@@ -63,6 +65,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> CAVE_MOSS = create("cave_moss");
 	public static final ResourceKey<PlacedFeature> CAVE_MOSS_VEIN = create("cave_moss_vein");
 	public static final ResourceKey<PlacedFeature> BOULDERSHROOM = create("bouldershroom");
+	public static final ResourceKey<PlacedFeature> HANGING_FANTAGRASS = create("hanging_fantagrass");
 	public static final ResourceKey<PlacedFeature> ABYSSAL_KELP = create("abyssal_kelp");
 	public static final ResourceKey<PlacedFeature> ORBFLORA = create("orbflora");
 	public static final ResourceKey<PlacedFeature> SPIRAL_KELP = create("spiral_kelp");
@@ -96,6 +99,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LUNARIS_CACTUS = create("lunaris_cactus");
 	public static final ResourceKey<PlacedFeature> FOREST_VEGETATION = create("forest_vegetation");
 	public static final ResourceKey<PlacedFeature> SWAMP_VEGETATION = create("swamp_vegetation");
+	public static final ResourceKey<PlacedFeature> UNDERGROUND_SWAMP_VEGETATION = create("underground_swamp_vegetation");
 	public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST_VEGETATION = create("permafrost_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> SCARLET_FOREST_VEGETATION = create("scarlet_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> TORREYA_FOREST_VEGETATION = create("torreya_forest_vegetation");
@@ -137,6 +141,8 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, NIGHTFALL_DIRT_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.NIGHTFALL_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, SAND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SAND_ORE), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, SWAMP_SILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_SILVER_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, GRIMSTONE_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_MALARITE_ORE), commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, VOIDSTONE_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_MALARITE_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, GRIMSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GRIMSTONE_REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, VOIDSTONE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.VOIDSTONE_REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, ETERNAL_ICE_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ETERNAL_ICE_REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
@@ -163,6 +169,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, CAVE_MOSS_VEIN, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_VEIN), CountPlacement.of(UniformInt.of(15, 20)), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Integer.MIN_VALUE, -13), BiomeFilter.biome());
 		PlacementUtils.register(context, BOULDERSHROOM, configuredFeatures.getOrThrow(ESConfiguredFeatures.BOULDERSHROOM), CountPlacement.of(UniformInt.of(5, 10)), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(10), VerticalAnchor.aboveBottom(85)), InSquarePlacement.spread(), BiomeFilter.biome());
+		PlacementUtils.register(context, HANGING_FANTAGRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.HANGING_FANTAGRASS), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, ABYSSAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSAL_KELP), NoiseBasedCountPlacement.of(20, 80.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, ORBFLORA, configuredFeatures.getOrThrow(ESConfiguredFeatures.ORBFLORA), NoiseBasedCountPlacement.of(15, 90.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, SPIRAL_KELP, configuredFeatures.getOrThrow(ESConfiguredFeatures.SPIRAL_KELP), NoiseBasedCountPlacement.of(35, 120.0, 0.5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
@@ -196,6 +203,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LUNARIS_CACTUS, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNARIS_CACTUS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 		PlacementUtils.register(context, FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, SWAMP_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, UNDERGROUND_SWAMP_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.UNDERGROUND_SWAMP_VEGETATION), CountPlacement.of(15), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(22), VerticalAnchor.absolute(50)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), BiomeFilter.biome());
 		PlacementUtils.register(context, PERMAFROST_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, SCARLET_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, TORREYA_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

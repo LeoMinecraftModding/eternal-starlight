@@ -24,6 +24,7 @@ public class ESConfig {
 	public int crystalbornCatalystEnergyPerShard = 50;
 	public boolean laserBeamBreakBlocks = true;
 	public MobsConfig mobsConfig = new MobsConfig();
+	public ItemsConfig itemsConfig = new ItemsConfig();
 
 	public static class MobsConfig {
 		public final MobConfig boarwarf = new MobConfig(30, 10, true);
@@ -32,7 +33,7 @@ public class ESConfig {
 		public final AttackingMobConfig lonestarSkeleton = new AttackingMobConfig(20, 0, 3.2, 16, true);
 		public final AttackingMobConfig nightfallSpider = new AttackingMobConfig(10, 0, 2, 16, true);
 		public final AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
-		public final AttackingMobConfig creteor = new AttackingMobConfig(15, 0, 5, 48, true);
+		public final CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
 		public final AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);
 		public final MobConfig ent = new MobConfig(10, 0, true);
 		public final MobConfig ratlin = new MobConfig(15, 0, true);
@@ -53,15 +54,25 @@ public class ESConfig {
 		public final AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
 		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(10, 0, 3, 64, true);
 		public final BossConfig tangledHatred = new BossConfig(60, 5, 1, 100, true);
+
+		public record CreteorConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, double spawnChance) {
+		}
+
+		public record BossConfig(double maxHealth, double armor, double attackDamageScale, double followRange, boolean canSpawn) {
+		}
+
+		public record AttackingMobConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn) {
+		}
+
+		public record MobConfig(double maxHealth, double armor, boolean canSpawn) {
+		}
 	}
 
-	public record BossConfig(double maxHealth, double armor, double attackDamageScale, double followRange, boolean canSpawn) {
-	}
+	public static class ItemsConfig {
+		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
 
-	public record AttackingMobConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn) {
-	}
-
-	public record MobConfig(double maxHealth, double armor, boolean canSpawn) {
+		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
+		}
 	}
 
 	public static void load() {

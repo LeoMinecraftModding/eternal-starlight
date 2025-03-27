@@ -5,6 +5,12 @@
   "experience": 1.0,
   "ingredient": [
     {
+      "item": "eternal_starlight:amaramber_sword"
+    },
+    {
+      "item": "eternal_starlight:amaramber_pickaxe"
+    },
+    {
       "item": "eternal_starlight:amaramber_axe"
     },
     {
@@ -12,6 +18,9 @@
     },
     {
       "item": "eternal_starlight:amaramber_shovel"
+    },
+    {
+      "item": "eternal_starlight:amaramber_sickle"
     },
     {
       "item": "eternal_starlight:amaramber_helmet"

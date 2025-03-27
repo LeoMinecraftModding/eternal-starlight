@@ -49,6 +49,8 @@
       "eternal_starlight:grimstone_atalphaite_ore",
       "eternal_starlight:voidstone_atalphaite_ore",
       "eternal_starlight:swamp_silver_ore",
+      "eternal_starlight:grimstone_malarite_ore",
+      "eternal_starlight:voidstone_malarite_ore",
       "eternal_starlight:glowing_nightfall_mud_ore"
     ],
     [
@@ -63,7 +65,9 @@
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:bouldershroom",
       "eternal_starlight:swamp_forest",
-      "eternal_starlight:swamp_vegetation"
+      "eternal_starlight:swamp_vegetation",
+      "eternal_starlight:underground_swamp_vegetation",
+      "eternal_starlight:hanging_fantagrass"
     ],
     [
       "minecraft:freeze_top_layer",

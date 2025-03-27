@@ -373,6 +373,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("shattered_blade").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThrownMalariteSpear>> MALARITE_SPEAR = ENTITIES.register(
+		"malarite_spear",
+		() -> EntityType.Builder.<ThrownMalariteSpear>of(ThrownMalariteSpear::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(6)
+			.updateInterval(1)
+			.build(EternalStarlight.id("malarite_spear").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<ThioquartzArrow>> THIOQUARTZ_ARROW = ENTITIES.register(
 		"thioquartz_arrow",
 		() -> EntityType.Builder.<ThioquartzArrow>of(ThioquartzArrow::new, MobCategory.MISC)
@@ -404,6 +412,14 @@ public class ESEntities {
 			.clientTrackingRange(4)
 			.updateInterval(20)
 			.build(EternalStarlight.id("glacite_arrow").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<MalariteArrow>> MALARITE_ARROW = ENTITIES.register(
+		"malarite_arrow",
+		() -> EntityType.Builder.<MalariteArrow>of(MalariteArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("malarite_arrow").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<AmaramberArrow>> AMARAMBER_ARROW = ENTITIES.register(
 		"amaramber_arrow",

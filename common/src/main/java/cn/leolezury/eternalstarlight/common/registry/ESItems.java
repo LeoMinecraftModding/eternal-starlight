@@ -772,6 +772,26 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_BOOTS = registerItem("swamp_silver_boots",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(30))));
 
+	public static final RegistryObject<Item, Item> GRIMSTONE_MALARITE_ORE = registerItem("grimstone_malarite_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VOIDSTONE_MALARITE_ORE = registerItem("voidstone_malarite_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_MALARITE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MALARITE_BLOCK = registerItem("malarite_block", () -> new BlockItem(ESBlocks.MALARITE_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MALARITE = registerItem("malarite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> MALARITE_ARROW = registerItem("malarite_arrow", () -> new MalariteArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> MALARITE_SWORD = registerItem("malarite_sword",
+		() -> new SwordItem(ESItemTiers.MALARITE, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.MALARITE, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> MALARITE_PICKAXE = registerItem("malarite_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.MALARITE, 1, -2.8F))));
+	public static final RegistryObject<Item, Item> MALARITE_AXE = registerItem("malarite_axe",
+		() -> new AxeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.MALARITE, 6, -3.2F))));
+	public static final RegistryObject<Item, Item> MALARITE_HOE = registerItem("malarite_hoe",
+		() -> new HoeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.MALARITE, 0, -3.0F))));
+	public static final RegistryObject<Item, Item> MALARITE_SHOVEL = registerItem("malarite_shovel",
+		() -> new ShovelItem(ESItemTiers.MALARITE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.MALARITE, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> MALARITE_SICKLE = registerItem("malarite_sickle",
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.MALARITE, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.MALARITE, 2, -1F))));
+	public static final RegistryObject<Item, Item> MALARITE_SPEAR = registerItem("malarite_spear",
+		() -> new MalariteSpearItem(new Item.Properties().attributes(MalariteSpearItem.createAttributes())));
+
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_REDSTONE_ORE = registerItem("eternal_ice_redstone_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get(), new Item.Properties()));
@@ -800,12 +820,18 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TORREYA_TILE_STAIRS = registerItem("torreya_tile_stairs", () -> new BlockItem(ESBlocks.TORREYA_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TORREYA_TILE_WALL = registerItem("torreya_tile_wall", () -> new BlockItem(ESBlocks.TORREYA_TILE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_ARROW = registerItem("amaramber_arrow", () -> new AmaramberArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> AMARAMBER_SWORD = registerItem("amaramber_sword",
+		() -> new SwordItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.AMARAMBER, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> AMARAMBER_PICKAXE = registerItem("amaramber_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AMARAMBER, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_AXE = registerItem("amaramber_axe",
 		() -> new AxeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.AMARAMBER, 6, -3.2F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_HOE = registerItem("amaramber_hoe",
 		() -> new HoeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.AMARAMBER, 0, -3.0F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SHOVEL = registerItem("amaramber_shovel",
 		() -> new ShovelItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> AMARAMBER_SICKLE = registerItem("amaramber_sickle",
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AMARAMBER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.AMARAMBER, 2, -1F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_HELMET = registerItem("amaramber_helmet",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",

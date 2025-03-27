@@ -17,6 +17,7 @@
     "FarmBlockMixin",
     "FireBlockMixin",
     "ItemEntityMixin",
+    "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerMixin",
     "ProjectileMixin",
