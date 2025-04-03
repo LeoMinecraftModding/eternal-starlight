@@ -23,6 +23,7 @@ import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -152,6 +153,11 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 	@Override
 	public void startPersistentAngerTimer() {
 		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(getRandom()));
+	}
+
+	@Override
+	public boolean hurt(DamageSource source, float amount) {
+		return !source.is(ESDamageTypes.SONAR) && super.hurt(source, amount);
 	}
 
 	private class MothMoveControl extends MoveControl {

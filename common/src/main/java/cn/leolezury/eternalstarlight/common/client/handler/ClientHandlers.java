@@ -89,11 +89,14 @@ public class ClientHandlers {
 	public static float fogEndDecrement;
 	public static float abyssalFogModifier = 1;
 	public static float oldAbyssalFogModifier = 1;
+	public static boolean oldTearyEffect;
+	public static boolean tearyEffect;
 	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f modelViewMatrix = new Matrix4f();
 	public static boolean isHalloween;
 
 	public static void onClientTick() {
+		LocalPlayer player = Minecraft.getInstance().player;
 		ClientWeatherState.tickRainLevel();
 		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
 		List<ScreenShake> screenShakesToRemove = new ArrayList<>();
@@ -132,10 +135,10 @@ public class ClientHandlers {
 				ClientWeatherState.weather.clientTick();
 			}
 
-			if (Minecraft.getInstance().player != null) {
-				if (Minecraft.getInstance().player.tickCount % 15 == 0) {
-					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, Minecraft.getInstance().player.getBoundingBox().inflate(50));
-					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(Minecraft.getInstance().player)));
+			if (player != null) {
+				if (player.tickCount % 15 == 0) {
+					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
+					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
 					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).filter(b -> b.tickCount > 20).toList();
 					if (!(bossMusicInstance != null && bosses.stream().anyMatch(bossMusicInstance::sameBoss))) {
 						if (!bosses.isEmpty()) {
@@ -166,22 +169,22 @@ public class ClientHandlers {
 			}
 		}
 
-		if (Minecraft.getInstance().player != null) {
-			List<ResourceKey<Crest>> toRemove = new ArrayList<>();
+		if (player != null) {
+			List<ResourceKey<Crest>> crestsToRemove = new ArrayList<>();
 			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
 				GuiCrest crest = GUI_CRESTS.get(key);
 				if (Math.abs(crest.angle + 135) < 0.1 && !crest.shouldShow) {
-					toRemove.add(key);
+					crestsToRemove.add(key);
 				}
 			}
-			for (ResourceKey<Crest> key : toRemove) {
+			for (ResourceKey<Crest> key : crestsToRemove) {
 				GUI_CRESTS.remove(key);
 			}
 			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
 				entry.getValue().tick();
 			}
-			ItemStack mainHand = Minecraft.getInstance().player.getMainHandItem();
-			ItemStack offHand = Minecraft.getInstance().player.getOffhandItem();
+			ItemStack mainHand = player.getMainHandItem();
+			ItemStack offHand = player.getOffhandItem();
 			CurrentCrestComponent component = null;
 			if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
 				component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
@@ -192,7 +195,7 @@ public class ClientHandlers {
 				entry.getValue().shouldShow = false;
 			}
 			if (component != null && component.crest().isBound()) {
-				Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
+				Registry<Crest> registry = player.registryAccess().registryOrThrow(ESRegistries.CREST);
 				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.crest().value());
 				if (key.isPresent()) {
 					if (!GUI_CRESTS.containsKey(key.get())) {
@@ -204,25 +207,20 @@ public class ClientHandlers {
 			if (ClientSetupHandlers.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
 				ESPlatform.INSTANCE.sendToServer(new NoParametersPacket("switch_crest"));
 			}
-		}
 
-		if (Minecraft.getInstance().player != null) {
 			if (resetCameraIn > 0) {
 				resetCameraIn--;
 				Minecraft.getInstance().options.hideGui = true;
 				if (resetCameraIn <= 0) {
-					Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
+					Minecraft.getInstance().setCameraEntity(player);
 					Minecraft.getInstance().options.hideGui = false;
 					resetCameraIn = 0;
 				}
 			} else if (Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator) {
-				Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
+				Minecraft.getInstance().setCameraEntity(player);
 				Minecraft.getInstance().options.hideGui = false;
 			}
-		}
 
-		if (Minecraft.getInstance().player != null) {
-			LocalPlayer player = Minecraft.getInstance().player;
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 			fogStartDecrement -= 0.5f;
 			fogEndDecrement -= 0.5f;
@@ -243,28 +241,40 @@ public class ClientHandlers {
 				abyssalFogModifier += 0.02f;
 			}
 			abyssalFogModifier = Mth.clamp(abyssalFogModifier, 0, 1);
-		}
 
-		LocalPlayer player = Minecraft.getInstance().player;
-		if (player != null && player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
-			List<DreamCatcherText> toRemove = new ArrayList<>();
-			for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
-				text.updatePosition();
-				int width = Minecraft.getInstance().font.width(text.getText());
-				int height = Minecraft.getInstance().font.lineHeight;
-				if (text.getX() - width / 2 > Minecraft.getInstance().getWindow().getGuiScaledWidth() || text.getY() - height / 2 > Minecraft.getInstance().getWindow().getGuiScaledHeight()) {
-					toRemove.add(text);
+			oldTearyEffect = tearyEffect;
+			if (player.hasEffect(ESMobEffects.TEARY.asHolder())) {
+				tearyEffect = true;
+			} else {
+				tearyEffect = false;
+			}
+
+			if (player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
+				List<DreamCatcherText> textsToRemove = new ArrayList<>();
+				for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
+					text.updatePosition();
+					int width = Minecraft.getInstance().font.width(text.getText());
+					int height = Minecraft.getInstance().font.lineHeight;
+					if (text.getX() - width / 2 > Minecraft.getInstance().getWindow().getGuiScaledWidth() || text.getY() - height / 2 > Minecraft.getInstance().getWindow().getGuiScaledHeight()) {
+						textsToRemove.add(text);
+					}
 				}
-			}
-			for (DreamCatcherText text : toRemove) {
-				DREAM_CATCHER_TEXTS.remove(text);
-			}
-			if (player.getRandom().nextInt(40) == 0 && DREAM_CATCHER_TEXTS.size() < 20) {
-				Component component = Component.translatable("message." + EternalStarlight.ID + ".dream_catcher_" + player.getRandom().nextInt(7));
-				DREAM_CATCHER_TEXTS.add(new DreamCatcherText(component, (int) (player.getRandom().nextFloat() * 5 + 1), -Minecraft.getInstance().font.width(component) / 2, player.getRandom().nextInt(Minecraft.getInstance().getWindow().getGuiScaledHeight())));
+				for (DreamCatcherText text : textsToRemove) {
+					DREAM_CATCHER_TEXTS.remove(text);
+				}
+				if (player.getRandom().nextInt(40) == 0 && DREAM_CATCHER_TEXTS.size() < 20) {
+					Component dreamCatcherText = Component.translatable("message." + EternalStarlight.ID + ".dream_catcher_" + player.getRandom().nextInt(7));
+					DREAM_CATCHER_TEXTS.add(new DreamCatcherText(dreamCatcherText, (int) (player.getRandom().nextFloat() * 5 + 1), -Minecraft.getInstance().font.width(dreamCatcherText) / 2, player.getRandom().nextInt(Minecraft.getInstance().getWindow().getGuiScaledHeight())));
+				}
+			} else {
+				DREAM_CATCHER_TEXTS.clear();
 			}
 		} else {
 			DREAM_CATCHER_TEXTS.clear();
+			tearyEffect = false;
+		}
+		if (oldTearyEffect != tearyEffect) {
+			Minecraft.getInstance().gameRenderer.checkEntityPostEffect(Minecraft.getInstance().cameraEntity);
 		}
 	}
 

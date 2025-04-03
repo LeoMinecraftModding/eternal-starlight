@@ -1,0 +1,48 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.eternal_starlight.tearing"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 0.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 2.5,
+            "per_level_above_first": 0.5
+          },
+          "min_amplifier": 0.0,
+          "min_duration": 2.5,
+          "to_apply": "eternal_starlight:teary"
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "eternal_starlight:pungency_fruit_spear"
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 75,
+    "per_level_above_first": 25
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 25
+  },
+  "primary_items": "#eternal_starlight:enchantable/pungency_fruit_spear",
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/pungency_fruit_spear",
+  "weight": 10
+}

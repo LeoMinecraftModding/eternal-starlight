@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "F": {
+      "item": "eternal_starlight:pungency_fruit"
+    },
+    "M": {
+      "tag": "c:gems/malarite"
+    },
+    "S": {
+      "tag": "c:sands"
+    }
+  },
+  "pattern": [
+    "FSF",
+    "SMS",
+    "FSF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:tear_bomb"
+  }
+}

@@ -164,6 +164,26 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder swampSilverIngot = addItemObtain(consumer, enterDim, "obtain_swamp_silver_ingot", ESItems.SWAMP_SILVER_INGOT.get());
 
+		AdvancementHolder numbnessEffect = Advancement.Builder.advancement().parent(swampSilverIngot).display(
+				ESItems.SILVER_PUNGENCY_FRUIT.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".obtain_numbness_effect.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".obtain_numbness_effect.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("obtain", EffectsChangedTrigger.TriggerInstance.hasEffects(MobEffectsPredicate.Builder.effects().and(ESMobEffects.NUMBNESS.asHolder())))
+			.save(consumer, EternalStarlight.ID + ":obtain_numbness_effect");
+
+		AdvancementHolder igniteTearBomb = Advancement.Builder.advancement().parent(enterDim).display(
+				ESItems.TEAR_BOMB.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".ignite_tear_bomb.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".ignite_tear_bomb.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("ignite", ESCriteriaTriggers.IGNITE_TEAR_BOMB.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":ignite_tear_bomb");
+
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());

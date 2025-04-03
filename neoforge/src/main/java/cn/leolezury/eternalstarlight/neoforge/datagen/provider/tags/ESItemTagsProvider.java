@@ -21,6 +21,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		super(output, future, provider, EternalStarlight.ID, helper);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
 		// conventional tags
@@ -69,16 +70,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.ABYSSAL_FRUIT.get(),
 			ESItems.VELVETUMOSS_BALL.get(),
 			ESItems.LUNARIS_CACTUS_FRUIT.get(),
-			ESItems.LUNARIS_CACTUS_GEL.get()
+			ESItems.LUNARIS_CACTUS_GEL.get(),
+			ESItems.PUNGENCY_FRUIT.get(),
+			ESItems.SILVER_PUNGENCY_FRUIT.get()
 		);
 		tag(Tags.Items.FOODS_BERRY).add(
 			ESItems.LUNAR_BERRIES.get(),
 			ESItems.ABYSSAL_FRUIT.get(),
 			ESItems.BLOSSOM_OF_STARS.get()
-		);
-		tag(Tags.Items.FOODS_BERRY).add(
-			ESItems.LUNAR_BERRIES.get(),
-			ESItems.ABYSSAL_FRUIT.get()
 		);
 		tag(Tags.Items.FOODS_RAW_MEAT).add(
 			ESItems.TOWER_SQUID.get(),
@@ -100,25 +99,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.COOKED_LUMINOFISH.get(),
 			ESItems.COOKED_LUMINARIS.get()
 		);
-		tag(Tags.Items.GEMS).add(
-			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
-			ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()
-		).addTags(
-			ESConventionalTags.Items.GEMS_THIOQUARTZ,
-			ESConventionalTags.Items.GEMS_GLACITE,
-			ESConventionalTags.Items.GEMS_MALARITE,
-			ESConventionalTags.Items.GEMS_ATALPHAITE
+		tag(Tags.Items.FOODS_SOUP).add(
+			ESItems.PUNGENCY_STEW.get()
 		);
-		tag(Tags.Items.GEMS_QUARTZ).add(
-			ESItems.THIOQUARTZ_CLUSTER.get()
+		tag(Tags.Items.SEEDS).addTags(
+			ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT
 		);
-		tag(Tags.Items.INGOTS).add(
-			ESItems.AMARAMBER_INGOT.get(),
-			ESItems.AETHERSENT_INGOT.get(),
-			ESItems.SWAMP_SILVER_INGOT.get(),
-			ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
-			ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(),
-			ESItems.GOLEM_STEEL_INGOT.get()
+		tag(Tags.Items.CROPS).addTags(
+			ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT
 		);
 		tag(Tags.Items.MUSHROOMS).add(
 			ESItems.GLOWING_MUSHROOM.get(),
@@ -138,19 +126,37 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MUSIC_DISC_BRISK.get(),
 			ESItems.MUSIC_DISC_MOONLIGHT.get()
 		);
-		tag(Tags.Items.NUGGETS).add(
-			ESItems.AMARAMBER_NUGGET.get(),
-			ESItems.AETHERSENT_NUGGET.get(),
-			ESItems.SWAMP_SILVER_NUGGET.get()
+		tag(Tags.Items.GEMS).add(
+			ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
+			ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()
+		).addTags(
+			ESConventionalTags.Items.GEMS_THIOQUARTZ,
+			ESConventionalTags.Items.GEMS_GLACITE,
+			ESConventionalTags.Items.GEMS_MALARITE,
+			ESConventionalTags.Items.GEMS_ATALPHAITE
 		);
-		tag(Tags.Items.NUGGETS).add(
-			ESItems.AMARAMBER_NUGGET.get(),
-			ESItems.AETHERSENT_NUGGET.get(),
-			ESItems.SWAMP_SILVER_NUGGET.get()
+		tag(Tags.Items.GEMS_QUARTZ).add(
+			ESItems.THIOQUARTZ_CLUSTER.get()
 		);
-		tag(Tags.Items.RAW_MATERIALS).add(
-			ESItems.RAW_AMARAMBER.get(),
-			ESItems.RAW_AETHERSENT.get()
+		tag(Tags.Items.INGOTS).addTags(
+			ESConventionalTags.Items.INGOTS_AMARAMBER,
+			ESConventionalTags.Items.INGOTS_AETHERSENT,
+			ESConventionalTags.Items.INGOTS_SWAMP_SILVER,
+			ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE,
+			ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL,
+			ESConventionalTags.Items.INGOTS_GOLEM_STEEL
+		);
+		tag(Tags.Items.NUGGETS).addTags(
+			ESConventionalTags.Items.NUGGETS_AMARAMBER,
+			ESConventionalTags.Items.NUGGETS_AETHERSENT,
+			ESConventionalTags.Items.NUGGETS_SWAMP_SILVER
+		);
+		tag(Tags.Items.RAW_MATERIALS).addTags(
+			ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER,
+			ESConventionalTags.Items.RAW_MATERIALS_AETHERSENT
+		);
+		tag(Tags.Items.DUSTS).addTags(
+			ESConventionalTags.Items.DUSTS_SALTPETER
 		);
 		tag(Tags.Items.TOOLS_SHIELD).add(
 			ESItems.GLACITE_SHIELD.get()
@@ -166,6 +172,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(Tags.Items.TOOLS_SPEAR).add(
 			ESItems.MALARITE_SPEAR.get(),
+			ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 			ESItems.CRESCENT_SPEAR.get()
 		);
 		tag(Tags.Items.TOOLS_IGNITER).add(
@@ -185,6 +192,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.SWAMP_SILVER_AXE.get(),
 			ESItems.MALARITE_SWORD.get(),
 			ESItems.MALARITE_AXE.get(),
+			ESItems.PUNGENCY_FRUIT_AXE.get(),
 			ESItems.AMARAMBER_SWORD.get(),
 			ESItems.AMARAMBER_AXE.get(),
 			ESItems.SHATTERED_SWORD.get(),
@@ -197,6 +205,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.BOW_OF_BLOOD.get(),
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.MALARITE_SPEAR.get(),
+			ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
 			ESItems.WILTED_CROSSBOW.get(),
@@ -229,6 +238,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
+		tag(ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT).add(
+			ESItems.PUNGENCY_FRUIT_SEEDS.get()
+		);
+		tag(ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT).add(
+			ESItems.PUNGENCY_FRUIT.get()
+		);
 		tag(ESConventionalTags.Items.CAMPFIRES).add(
 			ESItems.TORREYA_CAMPFIRE.get()
 		);
@@ -374,6 +389,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.MALARITE_SICKLE.get(),
 			ESItems.MALARITE_SPEAR.get()
 		);
+		tag(ESTags.Items.PUNGENCY_FRUIT_WEAPONS).add(
+			ESItems.PUNGENCY_FRUIT_AXE.get(),
+			ESItems.PUNGENCY_FRUIT_SPEAR.get()
+		);
 		tag(ESTags.Items.MENDS_NATURALLY).add(
 			ESItems.AMARAMBER_SWORD.get(),
 			ESItems.AMARAMBER_PICKAXE.get(),
@@ -414,6 +433,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.HAMMER_ENCHANTABLE).addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE).add(
 			ESItems.CHAIN_OF_SOULS.get()
+		);
+		tag(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE).add(
+			ESItems.PUNGENCY_FRUIT_SPEAR.get()
 		);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS).add(
 			Items.REDSTONE,
@@ -632,6 +654,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.STARFALL_LONGBOW.get(),
 			ESItems.GLACITE_SHIELD.get(),
 			ESItems.MALARITE_SPEAR.get(),
+			ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 			ESItems.SALTPETER_MATCHBOX.get(),
 			ESItems.CRYSTAL_CROSSBOW.get(),
 			ESItems.MECHANICAL_CROSSBOW.get(),
@@ -656,11 +679,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		);
 		tag(ItemTags.SWORD_ENCHANTABLE).add(
 			ESItems.CRESCENT_SPEAR.get()
-		);
+		).addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
 		tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(
 			ESItems.MALARITE_SPEAR.get(),
+			ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 			ESItems.CRESCENT_SPEAR.get()
-		).addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
+		);
 		tag(ItemTags.WEAPON_ENCHANTABLE).addTag(ESTags.Items.HAMMER_ENCHANTABLE);
 		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE).addTags(
 			ESTags.Items.HAMMER_ENCHANTABLE,
@@ -762,6 +786,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			ESItems.GLACITE_AXE.get(),
 			ESItems.SWAMP_SILVER_AXE.get(),
 			ESItems.MALARITE_AXE.get(),
+			ESItems.PUNGENCY_FRUIT_AXE.get(),
 			ESItems.AMARAMBER_AXE.get()
 		);
 		tag(ItemTags.HOES).add(

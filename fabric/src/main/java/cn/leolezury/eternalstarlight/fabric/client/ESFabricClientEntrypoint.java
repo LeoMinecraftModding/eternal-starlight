@@ -83,6 +83,7 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.MALARITE_SPEAR.get(), new FabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), new FabricItemStackRenderer());
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.CRESCENT_SPEAR.get(), new FabricItemStackRenderer());
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> ClientHandlers.onClientTick());

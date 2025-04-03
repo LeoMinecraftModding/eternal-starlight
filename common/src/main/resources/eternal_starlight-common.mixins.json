@@ -30,6 +30,7 @@
     "SurfaceSystemMixin",
     "TagLoaderMixin",
     "ThrowableProjectileMixin",
+    "TntBlockMixin",
     "WallHangingSignBlockMixin"
   ],
   "client": [

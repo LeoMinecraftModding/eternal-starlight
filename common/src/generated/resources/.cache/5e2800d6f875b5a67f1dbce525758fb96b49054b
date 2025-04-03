@@ -1,9 +1,12 @@
-// 1.21.1	2025-03-27T23:29:02.8973996	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-04-03T23:55:30.8478574	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/item/clusters.json
 b04d2105752e0c9bccb4d3b08795218723b26263 data/c/tags/item/cobblestones.json
+93c4d59a06cda2031ba0851509f1336cc8aacfde data/c/tags/item/crops.json
+73c48edccb581f837f308a352ba806f2b3012b85 data/c/tags/item/crops/pungency_fruit.json
+9ddd6226db1c2e600bce774563aa46f497dc37d7 data/c/tags/item/dusts.json
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
 c69cf7ffb78252c012b944043f747aff73bc83e3 data/c/tags/item/dyed/black.json
 9da628311a492043aecc2736510319658e2dad06 data/c/tags/item/dyed/blue.json
@@ -26,12 +29,13 @@ e33ed5b14bf9e1e172fd0671d91a80fdf2fed2f7 data/c/tags/item/fences/wooden.json
 c462e321b14ff979ddd095a4c5db297e753978d7 data/c/tags/item/fence_gates.json
 b20072c8f4ae2f448ba500befd2df878fa1df7f5 data/c/tags/item/fence_gates/wooden.json
 9925ad8b2e2a120964ba09037b254f9ee222cd59 data/c/tags/item/foods.json
-3882da4518e1948fefadf9df045f74d7cc48a977 data/c/tags/item/foods/berry.json
+f68b1445e8e902a4ca456603a16efc4c38729102 data/c/tags/item/foods/berry.json
 116ffed57cee4ddc2c46b14178918e2809039cbe data/c/tags/item/foods/cooked_fish.json
 1eeae099301cf18b75a1396abedb230399116cad data/c/tags/item/foods/cooked_meat.json
-31f478f66273e06d01d92fd6d38dc69281692846 data/c/tags/item/foods/fruit.json
+c749f7403cc0370886f6a440a1195991a4ac9f8a data/c/tags/item/foods/fruit.json
 1b358a5ddc4e169992763bf5c406a16124be40eb data/c/tags/item/foods/raw_fish.json
 78a6f421eb2649063f86f2d0b90d743793c273fd data/c/tags/item/foods/raw_meat.json
+04dc7f1ac0101b907916cc09c21e779c92166ab3 data/c/tags/item/foods/soup.json
 9d80d54420e7a444e085fc53b594a88c6eea25c2 data/c/tags/item/gems.json
 f1a281472a393646e9431d2f44844770ef27bd98 data/c/tags/item/gems/atalphaite.json
 66ff992b2f3b1a07bf922f1caeb8fce665e1c4d2 data/c/tags/item/gems/glacite.json
@@ -39,7 +43,7 @@ f1a281472a393646e9431d2f44844770ef27bd98 data/c/tags/item/gems/atalphaite.json
 b1b5a7416a3fbdc302bd2496bd573b8f41f0e68d data/c/tags/item/gems/quartz.json
 3b8dc1994e75677513f1a4ec3b602402e8f12875 data/c/tags/item/gems/thioquartz.json
 6c0492001f8571f4726f00e1fa68a49f2b755ea3 data/c/tags/item/gravels.json
-e4fb9c7ac1163f95cd2dcf4a757b8a93f7cd7760 data/c/tags/item/ingots.json
+65565a2151913a2424dc3960384574ff31b23750 data/c/tags/item/ingots.json
 976162e4f70ef42eee285a88212d543d23cd7af8 data/c/tags/item/ingots/aethersent.json
 926a397f810adb98a6239f68820fb9a0ff0093e4 data/c/tags/item/ingots/amaramber.json
 76ece28263eaa4488732b3199473b37674939ce3 data/c/tags/item/ingots/golem_steel.json
@@ -48,7 +52,7 @@ ecba489c96163f74cd8b26f6814bd5eeedf5e00f data/c/tags/item/ingots/swamp_silver.js
 f385c8660651bf8d8c80e7697a58141b6eeaebed data/c/tags/item/ingots/thermal_springstone.json
 9f42dd2bc61760cd83c6d3a98f816a5bf7ad7686 data/c/tags/item/mushrooms.json
 977e710b2dcfc2f136ffed2e78371232c9a509c8 data/c/tags/item/music_discs.json
-7d120d7b9572a62ffe8bc337d0f8c000cd5bdae6 data/c/tags/item/nuggets.json
+e279f12cb82435c0c15025351a559164ef30bfa5 data/c/tags/item/nuggets.json
 e590937ef043d5bf6e6876f27d2dc83089b3c8ee data/c/tags/item/nuggets/aethersent.json
 f4dc3980b35bfbf6e5c114f953c888f305966075 data/c/tags/item/nuggets/amaramber.json
 d29136487306048710dc2bfbe22595e36710d81f data/c/tags/item/nuggets/swamp_silver.json
@@ -63,15 +67,17 @@ d29136487306048710dc2bfbe22595e36710d81f data/c/tags/item/nuggets/swamp_silver.j
 fe99801d10bc9eb84ff4951cebcefd56ba8e449e data/c/tags/item/ores_in_ground/voidstone.json
 edf66ee65420e307e4fc4220483ec2c8c5902786 data/c/tags/item/ore_rates/dense.json
 ba12e73bb4f5d84c74f3209ed39d23cdf93fbba5 data/c/tags/item/ore_rates/sparse.json
-a108a858637ccff8277d9ef49ae130f227c599c8 data/c/tags/item/raw_materials.json
+b16c5f14274065d7a7e8b8b4e5e3ad0508d6442f data/c/tags/item/raw_materials.json
 652f6b9b076931b4a7fb90ff2bc2c81b704204dc data/c/tags/item/raw_materials/aethersent.json
 74a68b74f5863830cf3b4ba95a1ed6ea1cd84d81 data/c/tags/item/raw_materials/amaramber.json
 4ee447c5b8c185a2d98b38ce0672139b63c8e9a3 data/c/tags/item/sands.json
 9ed1a8054322f0da7a2db0c72f73e1d03cfd2a3d data/c/tags/item/sandstone/blocks.json
 5b87b123e291847286b5f065a15e87cd2e8e4fef data/c/tags/item/sandstone/slabs.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/item/sandstone/stairs.json
+458502af207d38d0b994c233b146eabc4a5c7fbf data/c/tags/item/seeds.json
+0711db198d9ca45a09ad131c41591e20b184ce47 data/c/tags/item/seeds/pungency_fruit.json
 194b1a9ebb9e1ba6ff7617944f7fa71a3f738c57 data/c/tags/item/stones.json
-fbb9a942e0b2b7c03e18605df5f1aab7fdb5bb66 data/c/tags/item/storage_blocks.json
+6d4cff740055174d692549a063e02875ddeeb1ea data/c/tags/item/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethersent.json
 0a8d9fbaaa644fa07b8e48aa2bccaaba14cedf6e data/c/tags/item/storage_blocks/atalphaite.json
 6d545d7a7e464407ffabe77f1493e4dfb4d96a28 data/c/tags/item/storage_blocks/glacite.json
@@ -87,11 +93,11 @@ c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethers
 c3d226738f5244eb9b6c48888bf9f58d7c20b7e1 data/c/tags/item/tools/bow.json
 a5985824349ab96508bc6c94bdd5f96abebb3e32 data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json
-73a58111115d614e560f6b6f499fc9badcca9575 data/c/tags/item/tools/melee_weapon.json
+7d99d8ca422849ff7a8d1a436ee847021a2c5f2b data/c/tags/item/tools/melee_weapon.json
 bc2f30d87c27c7fe365a75edc8e9bb74771fe93c data/c/tags/item/tools/mining_tool.json
-7ae47b6b6615d7626a3c4bb36fd163dd3879e7d7 data/c/tags/item/tools/ranged_weapon.json
+5053a202c8860c74f9a6c12d65c0e59a75865cc0 data/c/tags/item/tools/ranged_weapon.json
 7de9617000473e9e307ca001cd1ecff23381eb6a data/c/tags/item/tools/shield.json
-b6460d0df69219cf273faac66236dcafd43318a0 data/c/tags/item/tools/spear.json
+6fc589ecbbadd01ed89304c9205bc63375beff48 data/c/tags/item/tools/spear.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 f211a2cd76e55fe185b298a1a6775abd132682fe data/eternal_starlight/tags/item/blaze_crystal_ingredients.json
@@ -101,6 +107,7 @@ f211a2cd76e55fe185b298a1a6775abd132682fe data/eternal_starlight/tags/item/blaze_
 c7ae886b0814b7a913208d29c0a878557a41e93c data/eternal_starlight/tags/item/enchantable/chain_of_souls.json
 c2cb73b073f520ea3dac111e2f5d496f013fcc15 data/eternal_starlight/tags/item/enchantable/greatsword.json
 e18f783b117a7e13e931b76dc1175b8cbca5eddb data/eternal_starlight/tags/item/enchantable/hammer.json
+e4231a1e23e8b0c951f30b2544bdefb8d7a583a1 data/eternal_starlight/tags/item/enchantable/pungency_fruit_spear.json
 dc35b185b0c91cd582e7a1a4ae72a06081e6c425 data/eternal_starlight/tags/item/enchantable/scythe.json
 86321d7bce27caf8985082d8ce70d2d564517df5 data/eternal_starlight/tags/item/ent_fertilizers.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/ent_food.json
@@ -120,6 +127,7 @@ eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/item/mana_c
 9abefef68b045d834c5be44bac87859d26f50ca2 data/eternal_starlight/tags/item/mana_crystal_ingredients.json
 00fc0c810e2ee9e2d93f4aadbbeb5a926a2d30a0 data/eternal_starlight/tags/item/mends_naturally.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northland_logs.json
+25966296f2ec08b0f37ad3f062c6708db05a7e84 data/eternal_starlight/tags/item/pungency_fruit_weapons.json
 4c1d8bbce7c883f739a73eb0374620a15297b159 data/eternal_starlight/tags/item/ratlin_food.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json
 8b585eddd3fd280fb21e9853850a8b93de508c48 data/eternal_starlight/tags/item/scythes.json
@@ -143,7 +151,7 @@ e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_f
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json
 11016ced45a95a03300bc8b929a01e1993652736 data/minecraft/tags/item/arrows.json
-2359d3ad53cb992c3937198d36c121f40a498385 data/minecraft/tags/item/axes.json
+f885bde5c813e792501ff785d7f314a64761c063 data/minecraft/tags/item/axes.json
 0396cf2f69513b39f8a18af811269153dfc05433 data/minecraft/tags/item/boats.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/item/candles.json
 988fd23dcd8a56fe93458cf9d9428039c892d620 data/minecraft/tags/item/chest_armor.json
@@ -151,10 +159,10 @@ e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_f
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 93df719972975c8da4fce2a4b265aa8fde65b202 data/minecraft/tags/item/enchantable/bow.json
 a5985824349ab96508bc6c94bdd5f96abebb3e32 data/minecraft/tags/item/enchantable/crossbow.json
-105b36b87d543f12e04e0d2fd86236e88f4f8f3b data/minecraft/tags/item/enchantable/durability.json
+b70721b87944e19560e017ce72ac1ad286d32b4d data/minecraft/tags/item/enchantable/durability.json
 80eaa797ae58fcdb34c449d664e93d7f5ebfbbbe data/minecraft/tags/item/enchantable/fire_aspect.json
-4aa7164efd9f2a6a87371739b30a28d933d9f68f data/minecraft/tags/item/enchantable/sharp_weapon.json
-9a37bfbf4d800fa6a3324e50af7de1e5abbad1c9 data/minecraft/tags/item/enchantable/sword.json
+6fc589ecbbadd01ed89304c9205bc63375beff48 data/minecraft/tags/item/enchantable/sharp_weapon.json
+b3cddbfdf578fe8cacdc142e853b2c4445171ec3 data/minecraft/tags/item/enchantable/sword.json
 c4af49192d3e22a1e2c69082face26ed089227d6 data/minecraft/tags/item/enchantable/weapon.json
 ddb27a491473de1b331a406047c0eb39d3794a0c data/minecraft/tags/item/foot_armor.json
 739968c9ec0cbeb500fb47ccac16b4b8e69192a5 data/minecraft/tags/item/freeze_immune_wearables.json

@@ -80,7 +80,8 @@ public class CommonSetupHandlers {
 
 	public static final Supplier<Map<Block, Block>> FLATTENABLES = Suppliers.memoize(() -> Map.of(
 		ESBlocks.NIGHTFALL_DIRT.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get(),
-		ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get()
+		ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get(),
+		ESBlocks.NIGHTFALL_PODZOL.get(), ESBlocks.NIGHTFALL_DIRT_PATH.get()
 	));
 
 	public static final List<Supplier<Item>> SHIELDS = List.of(
@@ -100,6 +101,8 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSTRIKE_ROCKET.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLACITE_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.MALARITE_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.MALARITE_SPEAR.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.PUNGENCY_FRUIT_SPEAR.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());

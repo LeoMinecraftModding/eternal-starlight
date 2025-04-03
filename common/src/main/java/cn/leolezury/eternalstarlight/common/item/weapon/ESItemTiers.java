@@ -19,6 +19,7 @@ public enum ESItemTiers implements Tier {
 	GLACITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESConventionalTags.Items.GEMS_GLACITE)),
 	SWAMP_SILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER)),
 	MALARITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.GEMS_MALARITE)),
+	PUNGENCY_FRUIT(BlockTags.INCORRECT_FOR_IRON_TOOL, 600, 6.0F, 2.5F, 12, () -> Ingredient.of(ESItems.PUNGENCY_FRUIT.get())),
 	DOOMEDEN(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2000, 7.5F, 2.5F, 10, () -> Ingredient.of(ESItems.BROKEN_DOOMEDEN_BONE.get())),
 	PETAL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get())),
 	AURORA_DEER_ANTLER(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.EMPTY),

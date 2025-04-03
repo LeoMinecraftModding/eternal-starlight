@@ -205,9 +205,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.ETERNAL_ICE.get(),
 			ESBlocks.HAZE_ICE.get()
 		);
-		tag(Tags.Blocks.STORAGE_BLOCKS).add(
-			ESBlocks.LUNAR_MOSAIC.get()
-		).addTags(
+		tag(Tags.Blocks.STORAGE_BLOCKS).addTags(
 			ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL,
 			ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL,
 			ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT,
@@ -1162,7 +1160,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.TORREYA_CAMPFIRE.get(),
 			ESBlocks.MOONLIGHT_LILY_PAD.get(),
 			ESBlocks.STARLIT_LILY_PAD.get(),
-			ESBlocks.MOONLIGHT_DUCKWEED.get()
+			ESBlocks.MOONLIGHT_DUCKWEED.get(),
+			ESBlocks.PUNGENCY_FRUIT_VINES.get()
 		);
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
 			ESBlocks.NIGHTFALL_DIRT.get(),
@@ -1254,6 +1253,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(),
 			ESBlocks.GOLEM_STEEL_CRATE.get(),
 			ESBlocks.ENERGY_BLOCK.get()
+		);
+		tag(BlockTags.CROPS).add(
+			ESBlocks.PUNGENCY_FRUIT_VINES.get()
+		);
+		tag(BlockTags.MAINTAINS_FARMLAND).add(
+			ESBlocks.PUNGENCY_FRUIT_VINES.get()
 		);
 		tag(BlockTags.CANDLES).add(
 			ESBlocks.AMARAMBER_CANDLE.get()

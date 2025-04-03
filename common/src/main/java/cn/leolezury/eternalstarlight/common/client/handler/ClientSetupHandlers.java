@@ -15,6 +15,7 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profess
 import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.MalariteSpearModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.PungencyFruitSpearModel;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.AshenSnowParticle;
@@ -333,6 +334,7 @@ public class ClientSetupHandlers {
 		ESBlocks.GOLDEN_GRASS,
 		ESBlocks.TALL_GOLDEN_GRASS,
 		ESBlocks.SWAMP_ROSE,
+		ESBlocks.PUNGENCY_FRUIT_VINES,
 		ESBlocks.AMARAMBER_LANTERN,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
@@ -385,6 +387,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("bonemore_blocking");
 		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("malarite_spear");
+		registerSimpleSpecialModel("pungency_fruit_spear");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -499,6 +502,8 @@ public class ClientSetupHandlers {
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
 		ItemProperties.register(ESItems.MALARITE_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
@@ -630,6 +635,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("malarite_spear_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("pungency_fruit_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
@@ -743,6 +749,9 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
+		strategy.register(ESEntities.PUNGENCY_FRUIT_SPEAR.get(), ThrownPungencyFruitSpearRenderer::new);
+		strategy.register(ESEntities.TEAR_BOMB.get(), TearBombRenderer::new);
+		strategy.register(ESEntities.TEAR_BOMB_MINECART.get(), TearBombMinecartRenderer::new);
 		strategy.register(ESEntities.THIOQUARTZ_ARROW.get(), ThioquartzArrowRenderer::new);
 		strategy.register(ESEntities.THIOQUARTZ_SHARD.get(), ThioquartzShardRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_ARROW.get(), AethersentArrowRenderer::new);
@@ -828,8 +837,12 @@ public class ClientSetupHandlers {
 		strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
+		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
+
+		// items
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
 		strategy.register(MalariteSpearModel.LAYER_LOCATION, MalariteSpearModel::createBodyLayer);
+		strategy.register(PungencyFruitSpearModel.LAYER_LOCATION, PungencyFruitSpearModel::createBodyLayer);
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities

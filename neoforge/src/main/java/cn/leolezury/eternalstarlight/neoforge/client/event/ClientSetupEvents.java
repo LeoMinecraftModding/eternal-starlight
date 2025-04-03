@@ -105,6 +105,7 @@ public class ClientSetupEvents {
 		event.registerItem(thermalSpringstoneArmor, ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get());
 		event.registerItem(thermalSpringstoneArmor, ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
+		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {

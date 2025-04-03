@@ -1,0 +1,31 @@
+{
+  "parent": "eternal_starlight:obtain_swamp_silver_ingot",
+  "criteria": {
+    "obtain": {
+      "conditions": {
+        "effects": {
+          "eternal_starlight:numbness": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_numbness_effect.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:silver_pungency_fruit"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_numbness_effect.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

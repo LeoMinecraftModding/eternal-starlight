@@ -48,7 +48,6 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			ESEntities.TWILIGHT_GAZE.get()
 		);
 		tag(ESTags.EntityTypes.VULNERABLE_TO_SONAR_BOMB).add(
-			ESEntities.CRYSTALLIZED_MOTH.get(),
 			EntityType.BAT,
 			EntityType.WARDEN
 		);

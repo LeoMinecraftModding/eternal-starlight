@@ -8,6 +8,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ESConventionalTags {
 	public static class Items {
+		public static final TagKey<Item> SEEDS_PUNGENCY_FRUIT = seed("pungency_fruit");
+		public static final TagKey<Item> CROPS_PUNGENCY_FRUIT = crop("pungency_fruit");
+
 		public static final TagKey<Item> CAMPFIRES = create("campfires");
 
 		public static final TagKey<Item> GEMS_THIOQUARTZ = gem("thioquartz");
@@ -53,6 +56,14 @@ public class ESConventionalTags {
 		public static final TagKey<Item> ORES_IN_GROUND_GRIMSTONE = oresInGround("grimstone");
 		public static final TagKey<Item> ORES_IN_GROUND_VOIDSTONE = oresInGround("voidstone");
 		public static final TagKey<Item> ORES_IN_GROUND_NIGHTFALL_MUD = oresInGround("nightfall_mud");
+
+		private static TagKey<Item> seed(String string) {
+			return create("seeds/" + string);
+		}
+
+		private static TagKey<Item> crop(String string) {
+			return create("crops/" + string);
+		}
 
 		private static TagKey<Item> gem(String string) {
 			return create("gems/" + string);

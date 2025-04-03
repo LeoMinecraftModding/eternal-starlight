@@ -462,28 +462,38 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
+
 		stoneSet(ESBlocks.SPRINGSTONE.get(), ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE_WALL.get());
 		stoneSet(ESBlocks.SPRINGSTONE_BRICKS.get(), ESBlocks.SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.SPRINGSTONE_BRICK_WALL.get());
 		stoneSet(ESBlocks.POLISHED_SPRINGSTONE.get(), ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(), ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(), ESBlocks.POLISHED_SPRINGSTONE_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_SPRINGSTONE.get());
+
 		stoneSet(ESBlocks.THERMAL_SPRINGSTONE.get(), ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_WALL.get());
 		stoneSet(ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
+
 		simpleBlock(ESBlocks.GLACITE.get());
 		simpleBlock(ESBlocks.GLACITE_BLOCK.get());
+
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
+
 		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.MALARITE_BLOCK.get());
+
 		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
 		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
 		simpleBlock(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get());
 		simpleBlock(ESBlocks.HAZE_ICE_REDSTONE_ORE.get());
+
 		simpleBlock(ESBlocks.GRIMSTONE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.HAZE_ICE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.SALTPETER_BLOCK.get());
+
+		pungencyFruit(ESBlocks.PUNGENCY_FRUIT_VINES.get());
+		cubeBottomTop(ESBlocks.TEAR_BOMB.get());
 
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
@@ -593,6 +603,30 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.end()
 			.end();
 		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+	}
+
+	private void pungencyFruit(Block block) {
+		ModelFile stage0 = models().cross(name(block) + "_stage0", blockTexture(block).withSuffix("_stage0")).renderType(CUTOUT);
+		ModelFile stage1 = models().cross(name(block) + "_stage1", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
+		ModelFile stage2 = models().cross(name(block) + "_stage2", blockTexture(block).withSuffix("_stage2")).renderType(CUTOUT);
+		ModelFile stage3 = models().cross(name(block) + "_stage3", blockTexture(block).withSuffix("_stage3")).renderType(CUTOUT);
+		getVariantBuilder(block)
+			.partialState().with(BlockStateProperties.AGE_7, 0)
+			.modelForState().modelFile(stage0).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 1)
+			.modelForState().modelFile(stage0).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 2)
+			.modelForState().modelFile(stage1).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 3)
+			.modelForState().modelFile(stage1).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 4)
+			.modelForState().modelFile(stage2).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 5)
+			.modelForState().modelFile(stage2).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 6)
+			.modelForState().modelFile(stage2).addModel()
+			.partialState().with(BlockStateProperties.AGE_7, 7)
+			.modelForState().modelFile(stage3).addModel();
 	}
 
 	private void rawAmaramberBlock(Block block) {
@@ -719,6 +753,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void geyser(Block stone, Block geyser) {
 		ModelFile modelFile = models().cubeBottomTop(name(geyser), blockTexture(stone), blockTexture(stone), blockTexture(geyser));
 		simpleBlock(geyser, modelFile);
+	}
+
+	private void cubeBottomTop(Block block) {
+		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_bottom"), blockTexture(block).withSuffix("_top"));
+		simpleBlock(block, modelFile);
 	}
 
 	private void waterlily(Block lily) {

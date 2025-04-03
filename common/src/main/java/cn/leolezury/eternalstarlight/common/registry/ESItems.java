@@ -16,10 +16,14 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -791,6 +795,26 @@ public class ESItems {
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.MALARITE, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.MALARITE, 2, -1F))));
 	public static final RegistryObject<Item, Item> MALARITE_SPEAR = registerItem("malarite_spear",
 		() -> new MalariteSpearItem(new Item.Properties().attributes(MalariteSpearItem.createAttributes())));
+
+	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SEEDS = registerItem("pungency_fruit_seeds", () -> new PungencyFruitSeedsItem(ESBlocks.PUNGENCY_FRUIT_VINES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT = registerItem("pungency_fruit", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).build())));
+	public static final RegistryObject<Item, Item> PUNGENCY_STEW = registerItem("pungency_stew", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).usingConvertsTo(Items.BOWL).build())));
+	public static final RegistryObject<Item, Item> SILVER_PUNGENCY_FRUIT = registerItem("silver_pungency_fruit", () -> new Item(new Item.Properties().rarity(Rarity.RARE).food(new FoodProperties.Builder().nutrition(7).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).effect(new MobEffectInstance(ESMobEffects.NUMBNESS.asHolder(), 1200, 0), 1F).alwaysEdible().build())));
+	public static final RegistryObject<Item, Item> TEAR_BOMB = registerItem("tear_bomb", () -> new BlockItem(ESBlocks.TEAR_BOMB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TEAR_BOMB_MINECART = registerItem("tear_bomb_minecart", () -> new TearBombMinecartItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE = registerItem("pungency_fruit_upgrade_smithing_template", () -> new SmithingTemplateItem(
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.pungency_fruit_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.pungency_fruit_upgrade.ingredients"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("upgrade", EternalStarlight.id("pungency_fruit_upgrade"))).withStyle(ChatFormatting.GRAY),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.pungency_fruit_upgrade.base_slot_description"))),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.pungency_fruit_upgrade.additions_slot_description"))),
+		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_axe")),
+		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_diamond"))
+	));
+	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_AXE = registerItem("pungency_fruit_axe",
+		() -> new AxeItem(ESItemTiers.PUNGENCY_FRUIT, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.PUNGENCY_FRUIT, 6, -3.2F))));
+	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SPEAR = registerItem("pungency_fruit_spear",
+		() -> new PungencyFruitSpearItem(new Item.Properties().attributes(PungencyFruitSpearItem.createAttributes())));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

@@ -41,6 +41,7 @@ public class ESTags {
 		public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
 		public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
 		public static final TagKey<Item> MALARITE_WEAPONS = create("malarite_weapons");
+		public static final TagKey<Item> PUNGENCY_FRUIT_WEAPONS = create("pungency_fruit_weapons");
 		public static final TagKey<Item> MENDS_NATURALLY = create("mends_naturally");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
@@ -50,6 +51,7 @@ public class ESTags {
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
 		public static final TagKey<Item> HAMMER_ENCHANTABLE = create("enchantable/hammer");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
+		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> MANA_CRYSTAL_INGREDIENTS = create("mana_crystal_ingredients");

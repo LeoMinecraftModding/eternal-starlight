@@ -43,6 +43,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addAethersentRecipes(recipeOutput);
 		addSwampSilverRecipes(recipeOutput);
 		addMalariteRecipes(recipeOutput);
+		addPungencyFruitRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
 		addGlaciteRecipes(recipeOutput);
 		addAtalphaiteRecipes(recipeOutput);
@@ -706,7 +707,13 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICKS.get(), 2);
 
-		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_AETHERSENT.get(), ESBlocks.NEBULAITE.get(), 1, ESBlocks.VOIDSTONE.get(), ESBlocks.VOIDSTONE.get(), ESItems.RAW_AETHERSENT.get(), ESItems.RAW_AETHERSENT.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.NEBULAITE.get(), 4)
+			.pattern("$#")
+			.pattern("#$")
+			.define('#', ESItems.RAW_AETHERSENT.get())
+			.define('$', Blocks.DEEPSLATE)
+			.unlockedBy("has_item", has(ESItems.RAW_AETHERSENT.get()))
+			.save(recipeOutput);
 		addStoneCompress(recipeOutput, ESBlocks.NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE.get());
 		stonecuttingSet(recipeOutput, ESBlocks.NEBULAITE_BRICK_SLAB.get(), ESBlocks.NEBULAITE_BRICK_STAIRS.get(), ESBlocks.NEBULAITE_BRICK_WALL.get(), ESBlocks.NEBULAITE.get());
@@ -972,8 +979,12 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), 2);
 
-		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.RAW_AMARAMBER.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_AMARAMBER_BLOCK.get(), "raw_amaramber_from_raw_amaramber_block", "raw_amaramber");
-		addStoneCompress(recipeOutput, ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICKS.get(), 4)
+			.pattern("##")
+			.pattern("##")
+			.define('#', ESItems.AMARAMBER_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.AMARAMBER_INGOT.get()))
+			.save(recipeOutput);
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		stonecuttingSet(recipeOutput, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get(), ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_WALL.get(), ESBlocks.AMARAMBER_BRICKS.get());
@@ -1150,7 +1161,12 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()))
 			.save(recipeOutput);
 
-		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.TENACIOUS_PETAL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNAR_MOSAIC.get(), "tenacious_petal_from_lunar_mosaic", "tenacious_petal");
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.LUNAR_MOSAIC.get(), 12)
+			.pattern("##")
+			.pattern("##")
+			.define('#', ESItems.TENACIOUS_PETAL.get())
+			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
+			.save(recipeOutput);
 		addStairs(recipeOutput, ESBlocks.LUNAR_MOSAIC_STAIRS.get(), ESBlocks.LUNAR_MOSAIC.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.LUNAR_MOSAIC_STAIRS.get(), ESBlocks.LUNAR_MOSAIC.get());
 		addSlab(recipeOutput, ESBlocks.LUNAR_MOSAIC_SLAB.get(), ESBlocks.LUNAR_MOSAIC.get());
@@ -1161,7 +1177,12 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private void addThioquartzRecipes(RecipeOutput recipeOutput) {
-		fourBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.THIOQUARTZ_SHARD.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.THIOQUARTZ_BLOCK.get(), "thioquartz_block_from_thioquartz_shard", "athioquartz_shard");
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.THIOQUARTZ_BLOCK.get(), 4)
+			.pattern("##")
+			.pattern("##")
+			.define('#', ESItems.THIOQUARTZ_SHARD.get())
+			.unlockedBy("has_item", has(ESItems.THIOQUARTZ_SHARD.get()))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.THIOQUARTZ_ARROW.get(), 4)
 			.pattern("T")
 			.pattern("S")
@@ -1318,6 +1339,35 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());
 	}
 
+	private void addPungencyFruitRecipes(RecipeOutput recipeOutput) {
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.PUNGENCY_FRUIT.get(), ESItems.PUNGENCY_STEW.get(), 1, ESItems.PUNGENCY_FRUIT.get(), Items.ROTTEN_FLESH, Items.BOWL);
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ESItems.SILVER_PUNGENCY_FRUIT.get())
+			.pattern("SSS")
+			.pattern("SFS")
+			.pattern("SSS")
+			.define('F', ESItems.PUNGENCY_FRUIT.get())
+			.define('S', ESItems.SWAMP_SILVER_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.PUNGENCY_FRUIT.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESItems.TEAR_BOMB.get())
+			.pattern("FSF")
+			.pattern("SMS")
+			.pattern("FSF")
+			.define('S', Tags.Items.SANDS)
+			.define('F', ESItems.PUNGENCY_FRUIT.get())
+			.define('M', ESConventionalTags.Items.GEMS_MALARITE)
+			.unlockedBy("has_item", has(ESItems.PUNGENCY_FRUIT.get()))
+			.save(recipeOutput);
+		addShapeless(recipeOutput, RecipeCategory.TRANSPORTATION, ESItems.TEAR_BOMB.get(), ESItems.TEAR_BOMB_MINECART.get(), 1, ESItems.TEAR_BOMB.get(), Items.MINECART);
+		copySmithingTemplate(recipeOutput, ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.NIGHTFALL_MUD_BRICKS.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		pungencyFruitSmithing(recipeOutput, ESItems.MALARITE_AXE.get(), RecipeCategory.TOOLS, ESItems.PUNGENCY_FRUIT_AXE.get());
+		pungencyFruitSmithing(recipeOutput, ESItems.MALARITE_SPEAR.get(), RecipeCategory.COMBAT, ESItems.PUNGENCY_FRUIT_SPEAR.get());
+	}
+
+	protected static void pungencyFruitSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(ingredientItem), Ingredient.of(ESItems.PUNGENCY_FRUIT.get()), category, resultItem).unlocks("has_pungency_fruit", has(ESItems.PUNGENCY_FRUIT.get())).save(recipeOutput, EternalStarlight.id(getItemName(resultItem) + "_smithing"));
+	}
+
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {
 		addAxe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
 		addHoe(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
@@ -1403,6 +1453,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private void addAmaramberRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.RAW_AMARAMBER.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_AMARAMBER_BLOCK.get(), "raw_amaramber_from_raw_amaramber_block", "raw_amaramber");
 		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.AMARAMBER_NUGGET.get(), RecipeCategory.MISC, ESItems.AMARAMBER_INGOT.get(), "amaramber_ingot_from_nuggets", "amaramber_ingot");
 		addShapeless(recipeOutput, RecipeCategory.MISC, ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER, ESItems.AMARAMBER_INGOT.get(), 2, List.of(Items.DEEPSLATE), List.of(ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER));
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.AMARAMBER_CANDLE.get())
@@ -1815,19 +1866,6 @@ public class ESRecipeProvider extends RecipeProvider {
 	protected void nineBlockStorage(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String packName, String packGroup, String unpackName, String unpackGroup) {
 		ShapelessRecipeBuilder.shapeless(unpackCategory, unpacked, 9).requires(packed).group(unpackGroup).unlockedBy(getHasName(packed), has(packed)).save(recipeOutput, EternalStarlight.id(unpackName));
 		ShapedRecipeBuilder.shaped(packCategory, packed).define('#', unpacked).pattern("###").pattern("###").pattern("###").group(packGroup).unlockedBy(getHasName(unpacked), has(unpacked)).save(recipeOutput, EternalStarlight.id(packName));
-	}
-
-	protected void fourBlockStorageCustomPacking(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String packName, String packGroup) {
-		fourBlockStorage(recipeOutput, unpackCategory, unpacked, packCategory, packed, packName, packGroup, getSimpleRecipeName(unpacked), null);
-	}
-
-	protected void fourBlockStorageCustomUnpacking(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String unpackName, String unpackGroup) {
-		fourBlockStorage(recipeOutput, unpackCategory, unpacked, packCategory, packed, getSimpleRecipeName(packed), null, unpackName, unpackGroup);
-	}
-
-	protected void fourBlockStorage(RecipeOutput recipeOutput, RecipeCategory unpackCategory, ItemLike unpacked, RecipeCategory packCategory, ItemLike packed, String packName, String packGroup, String unpackName, String unpackGroup) {
-		ShapelessRecipeBuilder.shapeless(unpackCategory, unpacked, 4).requires(packed).group(unpackGroup).unlockedBy(getHasName(packed), has(packed)).save(recipeOutput, EternalStarlight.id(unpackName));
-		ShapedRecipeBuilder.shaped(packCategory, packed).define('#', unpacked).pattern("##").pattern("##").group(packGroup).unlockedBy(getHasName(unpacked), has(unpacked)).save(recipeOutput, EternalStarlight.id(packName));
 	}
 
 	protected void colorWithDye(RecipeOutput recipeOutput, List<Item> dyes, List<Item> toDye, String name) {

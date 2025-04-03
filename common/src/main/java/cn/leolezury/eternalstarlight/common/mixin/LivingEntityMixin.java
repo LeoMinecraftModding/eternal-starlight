@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESGlowParticleOptions;
@@ -8,15 +10,18 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -80,6 +85,9 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract AttributeMap getAttributes();
+
+	@Shadow
+	public abstract boolean hurt(DamageSource damageSource, float f);
 
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
 	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
@@ -171,6 +179,8 @@ public abstract class LivingEntityMixin {
 					removeEffect(effect);
 				}
 			}
+		} else if (itemStack.is(ESItems.PUNGENCY_STEW.get())) {
+			removeEffect(MobEffects.HUNGER);
 		}
 	}
 
@@ -196,6 +206,19 @@ public abstract class LivingEntityMixin {
 			if (climbable) {
 				this.lastClimbablePos = Optional.of(livingEntity.blockPosition());
 				cir.setReturnValue(true);
+			}
+		}
+	}
+
+	@Inject(method = "tickEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;updateGlowingStatus()V", shift = At.Shift.AFTER))
+	private void tickEffects(CallbackInfo ci) {
+		LivingEntity livingEntity = ((LivingEntity) (Object) this);
+		if (!hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
+			CompoundTag tag = ESEntityUtil.getPersistentData(livingEntity);
+			float damage = tag.getFloat(CommonHandlers.TAG_NUMBNESS_DAMAGE);
+			if (damage != 0) {
+				hurt(ESDamageTypes.getDamageSource(livingEntity.level(), ESDamageTypes.NUMBNESS), damage);
+				tag.putFloat(CommonHandlers.TAG_NUMBNESS_DAMAGE, 0);
 			}
 		}
 	}

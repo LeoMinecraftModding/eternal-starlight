@@ -381,6 +381,32 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("malarite_spear").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<TearBomb>> TEAR_BOMB = ENTITIES.register(
+		"tear_bomb",
+		() -> EntityType.Builder.<TearBomb>of(TearBomb::new, MobCategory.MISC)
+			.fireImmune()
+			.sized(0.98F, 0.98F)
+			.eyeHeight(0.15F)
+			.clientTrackingRange(10)
+			.updateInterval(10)
+			.build(EternalStarlight.id("tear_bomb").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<TearBombMinecart>> TEAR_BOMB_MINECART = ENTITIES.register(
+		"tear_bomb_minecart",
+		() -> EntityType.Builder.<TearBombMinecart>of(TearBombMinecart::new, MobCategory.MISC)
+			.sized(0.98F, 0.7F)
+			.passengerAttachments(0.1875F)
+			.clientTrackingRange(8)
+			.build(EternalStarlight.id("tear_bomb_minecart").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThrownPungencyFruitSpear>> PUNGENCY_FRUIT_SPEAR = ENTITIES.register(
+		"pungency_fruit_spear",
+		() -> EntityType.Builder.<ThrownPungencyFruitSpear>of(ThrownPungencyFruitSpear::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(6)
+			.updateInterval(1)
+			.build(EternalStarlight.id("pungency_fruit_spear").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<ThioquartzArrow>> THIOQUARTZ_ARROW = ENTITIES.register(
 		"thioquartz_arrow",
 		() -> EntityType.Builder.<ThioquartzArrow>of(ThioquartzArrow::new, MobCategory.MISC)

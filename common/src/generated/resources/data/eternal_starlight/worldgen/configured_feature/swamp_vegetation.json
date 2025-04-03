@@ -12,65 +12,83 @@
                 "data": {
                   "Name": "eternal_starlight:fantabud"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:green_fantabud"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:fantafern"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:green_fantafern"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:fantagrass"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:green_fantagrass"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:vividstalk"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "eternal_starlight:swamp_rose"
                 },
-                "weight": 1
+                "weight": 2
               },
               {
                 "data": {
                   "Name": "eternal_starlight:nightfan"
                 },
-                "weight": 1
+                "weight": 2
               },
               {
                 "data": {
                   "Name": "eternal_starlight:whisperbloom"
                 },
-                "weight": 1
+                "weight": 2
               },
               {
                 "data": {
                   "Name": "eternal_starlight:starlight_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:pungency_fruit_vines",
+                  "Properties": {
+                    "age": "0"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:pungency_fruit_vines",
+                  "Properties": {
+                    "age": "2"
+                  }
                 },
                 "weight": 1
               }

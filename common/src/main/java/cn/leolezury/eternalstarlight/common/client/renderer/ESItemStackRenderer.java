@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
 import cn.leolezury.eternalstarlight.common.client.model.item.MalariteSpearModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.PungencyFruitSpearModel;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 public class ESItemStackRenderer {
 	private static GlaciteShieldModel GLACITE_SHIELD_MODEL;
 	private static MalariteSpearModel MALARITE_SPEAR_MODEL;
+	private static PungencyFruitSpearModel PUNGENCY_FRUIT_SPEAR_MODEL;
 	private static CrescentSpearModel CRESCENT_SPEAR_MODEL;
 
 	public static void render(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
@@ -43,6 +45,16 @@ public class ESItemStackRenderer {
 			poseStack.scale(1.0F, -1.0F, -1.0F);
 			VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, MALARITE_SPEAR_MODEL.renderType(MalariteSpearModel.TEXTURE), false, stack.hasFoil());
 			MALARITE_SPEAR_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+			poseStack.popPose();
+		}
+		if (stack.is(ESItems.PUNGENCY_FRUIT_SPEAR.get())) {
+			if (PUNGENCY_FRUIT_SPEAR_MODEL == null) {
+				PUNGENCY_FRUIT_SPEAR_MODEL = new PungencyFruitSpearModel(Minecraft.getInstance().getEntityModels().bakeLayer(PungencyFruitSpearModel.LAYER_LOCATION));
+			}
+			poseStack.pushPose();
+			poseStack.scale(1.0F, -1.0F, -1.0F);
+			VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, PUNGENCY_FRUIT_SPEAR_MODEL.renderType(PungencyFruitSpearModel.TEXTURE), false, stack.hasFoil());
+			PUNGENCY_FRUIT_SPEAR_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
 			poseStack.popPose();
 		}
 		if (stack.is(ESItems.CRESCENT_SPEAR.get())) {

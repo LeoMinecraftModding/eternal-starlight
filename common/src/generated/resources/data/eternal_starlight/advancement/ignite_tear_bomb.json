@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "ignite": {
+      "trigger": "eternal_starlight:ignite_tear_bomb"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.ignite_tear_bomb.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:tear_bomb"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.ignite_tear_bomb.title"
+    }
+  },
+  "requirements": [
+    [
+      "ignite"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

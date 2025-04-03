@@ -70,6 +70,12 @@ accessible method net/minecraft/world/level/chunk/ChunkGenerator getStructureGen
 # entity ai
 accessible method net/minecraft/world/entity/ai/sensing/SensorType <init> (Ljava/util/function/Supplier;)V
 
+# custom tnt
+accessible field net/minecraft/world/entity/item/PrimedTnt owner Lnet/minecraft/world/entity/LivingEntity;
+accessible field net/minecraft/world/entity/item/PrimedTnt usedPortal Z
+accessible field net/minecraft/world/entity/item/PrimedTnt USED_PORTAL_DAMAGE_CALCULATOR Lnet/minecraft/world/level/ExplosionDamageCalculator;
+extendable method net/minecraft/world/entity/item/PrimedTnt explode ()V
+
 # equipment changes check
 accessible method net/minecraft/world/entity/LivingEntity getLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
 

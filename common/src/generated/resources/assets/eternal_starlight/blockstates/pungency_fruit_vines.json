@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage0"
+    },
+    "age=1": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage0"
+    },
+    "age=2": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage1"
+    },
+    "age=3": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage1"
+    },
+    "age=4": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage2"
+    },
+    "age=5": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage2"
+    },
+    "age=6": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage2"
+    },
+    "age=7": {
+      "model": "eternal_starlight:block/pungency_fruit_vines_stage3"
+    }
+  }
+}

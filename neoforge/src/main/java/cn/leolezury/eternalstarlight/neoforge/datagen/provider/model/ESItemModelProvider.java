@@ -707,6 +707,16 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.MALARITE_SICKLE.get());
 		inventoryHandheld(ESItems.MALARITE_SPEAR.get());
 
+		basicItem(ESItems.PUNGENCY_FRUIT_SEEDS.get());
+		basicItem(ESItems.PUNGENCY_FRUIT.get());
+		basicItem(ESItems.PUNGENCY_STEW.get());
+		basicItem(ESItems.SILVER_PUNGENCY_FRUIT.get());
+		block(ESItems.TEAR_BOMB.get());
+		basicItem(ESItems.TEAR_BOMB_MINECART.get());
+		basicItem(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get());
+		handheld(ESItems.PUNGENCY_FRUIT_AXE.get());
+		inventoryHandheld(ESItems.PUNGENCY_FRUIT_SPEAR.get());
+
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
 		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());

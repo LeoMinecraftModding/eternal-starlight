@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "eternal_starlight:pungency_fruit"
+    },
+    "S": {
+      "item": "eternal_starlight:swamp_silver_ingot"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SFS",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:silver_pungency_fruit"
+  }
+}

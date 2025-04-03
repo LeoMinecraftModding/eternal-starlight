@@ -72,6 +72,7 @@ public class CommonHandlers {
 	public static final String TAG_STARFALL_ARROW = EternalStarlight.ID + ":starfall";
 	public static final String TAG_WILTED_ARROW = EternalStarlight.ID + ":wilted";
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
+	public static final String TAG_NUMBNESS_DAMAGE = "numbness_damage";
 	private static TheGatekeeperNameManager gatekeeperNames;
 	private static Weathers starlightWeathers;
 	private static AbstractWeather lastWeather;
@@ -151,6 +152,11 @@ public class CommonHandlers {
 				modified /= 2;
 			}
 		}
+		if (entity.hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
+			CompoundTag tag = ESEntityUtil.getPersistentData(entity);
+			tag.putFloat(TAG_NUMBNESS_DAMAGE, tag.getFloat(TAG_NUMBNESS_DAMAGE) + modified * 0.75f);
+			modified *= 0.25f;
+		}
 		return modified;
 	}
 
@@ -186,6 +192,11 @@ public class CommonHandlers {
 
 			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.MALARITE_WEAPONS)) {
 				entity.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
+			}
+
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.PUNGENCY_FRUIT_WEAPONS)) {
+				entity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
+				entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 120));
 			}
 
 			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
