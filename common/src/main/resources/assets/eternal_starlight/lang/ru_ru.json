@@ -1256,6 +1256,7 @@
   "key.eternal_starlight.switch_crest": "Переключить гребень",
   "key.categories.eternal_starlight": "Вечное Звездосветье",
   "book.eternal_starlight.unlock": "Глава открыта",
+  "book.eternal_starlight.unlock.multiple": "Multiple Chapters",
   "book.eternal_starlight.preface": "\"Посмотрите на эти цветы! Какой завораживающий вид! вид... вид...\"\n\"Это цветы-эхо, они живут тысячи лет, повторяя, записывая и понимая все, что слышали. слышали... слышали...\"\n",
   "book.eternal_starlight.index": "Индекс:",
   "book.eternal_starlight.main_story_title": "Миф",
@@ -1274,6 +1275,8 @@
   "book.eternal_starlight.thirst_walker": "Они последние потомки древних цивилизаций, на которых напали гиявки. Их тела были истощены, а затем заражены звездосветными кристаллами. Теперь они, как и гиявки жаждут пропитания в этой пустыне.\nУникальная структура их зубов, по-видимому, позволяет им накапливать питательные вещества для повышения их остроты, и это сохраняется даже после того, как зубы покидают тело жаждущего странника",
   "book.eternal_starlight.dagger_of_hunger": "Оружие, изготавливаемое из зубов жаждущих странников, что позволяют ему впитывать питательные вещества, повышающие его остроту.\nПо-видимому, он сохраняет активность и первобытную потребность в пище настолько, что может выйти из себя и предать своего хозяина в случае сильного голода.",
   "book.eternal_starlight.crystalborn_catalyst": "Машина, которая использует зубы жаждущих странников в качестве основного материала, унаследовав их собственнуюжадность.\nПолучив сигнал редстоуна, он может использовать содержащиеся в нём кристаллы для заражения близлежащих территорий и сбора содержащихся в них ресурсов.",
+  "book.eternal_starlight.pungency_fruit": "A fruit found everywhere in the Dark Swamp that tastes somewhat like garlic, it gives off an odor that makes people weep, which allows it to be made into a weapon as well.\nA stew made of it and rotten flesh can rid you of hunger effect, but such food doesn't seem to be very tasty.",
+  "book.eternal_starlight.silver_pungency_fruit": "A precious food made from Pungency Fruit and Swamp Silver Ingots that still retains the flavor of Pungency Fruits. It paralyzes your nerves, causing your body to temporarily ignore most damage, but all damage is still returned after a period of time.",
   "book.eternal_starlight.twilight_gaze": "Сумеречноглазые известны своими светящимися фиолетовыми глазами — в бездне, откуда они родом, эти глаза помогают им видеть окружающее в полной темноте. Им нравится окружение бездны, и они попытаются вернуться в неё, если уйдут слишком далеко. Эта рыба не будет активно нападать на людей, но если вы навредите им, сумеречноглазые, не колеблясь, дадут отпор.",
   "book.eternal_starlight.shimmer_lacewing": "Насекомое, которое порхает вокруг мерцающей реки и тёмного болота с четырьмя парами светящихся синих или фиолетовых крыльев. Их присутствие не представляет угрозы или пользы для других существ. Когда цивилизация Звездосвета ещё существовала, это было маленькое существо, которого любили дети."
 }

@@ -1256,6 +1256,7 @@
   "key.eternal_starlight.switch_crest": "紋章の切り替え",
   "key.categories.eternal_starlight": "Eternal Starlight",
   "book.eternal_starlight.unlock": "チャプター解放！",
+  "book.eternal_starlight.unlock.multiple": "Multiple Chapters",
   "book.eternal_starlight.preface": "「この花畑を見て！なんて綺麗な眺めなんでしょう… でしょう…」\n「これはエコーフラワーだね。何千年も咲き続け、聞いたすべてを繰り返し、記録し、理解しているんだ… いるんだ…」\n",
   "book.eternal_starlight.index": "目次：",
   "book.eternal_starlight.main_story_title": "神話",
@@ -1274,6 +1275,8 @@
   "book.eternal_starlight.thirst_walker": "かつてグリーチによる襲撃を受けた古代文明の最後の末裔。肉体は吸い尽くされ、星明りのクリスタルに侵食された。そして今ではグリーチと同じように、砂漠で生きるための糧を求めて彷徨っている。\n彼らの牙の独特な構造は、栄養を蓄えることで鋭さを増すようで、それはサーストウォーカーの体から離れた後も変わらない。",
   "book.eternal_starlight.dagger_of_hunger": "サーストウォーカーの牙を用いて作られた武器。その素材の特性により、栄養を吸収することで鋭さを増す。\nしかし、この武器は活動性と食物への原始的な欲求を保持しており、極度の飢餓状態に陥ると、持ち主を裏切り暴走することさえあるという。",
   "book.eternal_starlight.crystalborn_catalyst": "サーストウォーカーの牙を核として作られた機械。その貪欲さまでもを受け継いでいる。\nレッドストーン信号を受けると、内部のクリスタルを使って周囲の環境を侵食し、そこに含まれる資源を回収することができる。",
+  "book.eternal_starlight.pungency_fruit": "A fruit found everywhere in the Dark Swamp that tastes somewhat like garlic, it gives off an odor that makes people weep, which allows it to be made into a weapon as well.\nA stew made of it and rotten flesh can rid you of hunger effect, but such food doesn't seem to be very tasty.",
+  "book.eternal_starlight.silver_pungency_fruit": "A precious food made from Pungency Fruit and Swamp Silver Ingots that still retains the flavor of Pungency Fruits. It paralyzes your nerves, causing your body to temporarily ignore most damage, but all damage is still returned after a period of time.",
   "book.eternal_starlight.twilight_gaze": "トワイライトゲイズは、輝く紫色の瞳を持つことで知られている。この神秘的な魚は、生息地である深淵の暗闇の中でもその瞳で周囲を見渡すことができる。\nトワイライトゲイズは深淵の環境を好み、その領域を超えて彷徨いすぎると、深淵へと戻る道を探し求めるという性質を持つ。人間に対して攻撃的な性質は持たないが、その身に危害を加えられると、迷わず反撃を試みる。",
   "book.eternal_starlight.shimmer_lacewing": "薄明りの川や闇の沼地を飛び回る昆虫で、青色や紫色に輝く四対の翅を持っている。彼らの存在は他の生物にとって脅威でも有用なものでもなかったが、星明りの文明が存在していた時代、この小さな生物は子供たちに愛されていた。"
 }

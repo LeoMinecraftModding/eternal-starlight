@@ -27,6 +27,45 @@
             "type": "eternal_starlight:pungency_fruit_spear"
           }
         }
+      },
+      {
+        "affected": "damaging_entity",
+        "effect": {
+          "type": "minecraft:spawn_particles",
+          "horizontal_position": {
+            "type": "in_bounding_box"
+          },
+          "horizontal_velocity": {},
+          "particle": {
+            "type": "eternal_starlight:smoke",
+            "alpha": 1.0,
+            "from_color": [
+              87.0,
+              58.0,
+              69.0
+            ],
+            "life_scale": 1.0,
+            "motion_scale": 1.0,
+            "rise": true,
+            "to_color": [
+              179.0,
+              116.0,
+              116.0
+            ]
+          },
+          "vertical_position": {
+            "type": "in_bounding_box"
+          },
+          "vertical_velocity": {}
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "eternal_starlight:pungency_fruit_spear"
+          }
+        }
       }
     ]
   },

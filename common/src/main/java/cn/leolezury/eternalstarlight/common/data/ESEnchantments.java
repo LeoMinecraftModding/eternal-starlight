@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.enchantment.effects.PushTowardsEntity;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -12,6 +13,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
@@ -21,6 +23,7 @@ import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
+import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
@@ -44,6 +47,7 @@ public class ESEnchantments {
 			.build(SOUL_SNATCHER.location()));
 		context.register(TEARING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE), items.getOrThrow(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE), 10, 1, Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25), 1, EquipmentSlotGroup.HAND))
 			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new ApplyMobEffect(HolderSet.direct(ESMobEffects.TEARY.asHolder()), LevelBasedValue.constant(2.5F), LevelBasedValue.perLevel(2.5F, 0.5F), LevelBasedValue.constant(0F), LevelBasedValue.constant(0F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.PUNGENCY_FRUIT_SPEAR.get())))
+			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.DAMAGING_ENTITY, new SpawnParticlesEffect(ESSmokeParticleOptions.PUNGENCY_FRUIT, SpawnParticlesEffect.inBoundingBox(), SpawnParticlesEffect.inBoundingBox(), SpawnParticlesEffect.fixedVelocity(ConstantFloat.of(0)), SpawnParticlesEffect.fixedVelocity(ConstantFloat.of(0)), ConstantFloat.of(0)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.PUNGENCY_FRUIT_SPEAR.get())))
 			.build(TEARING.location()));
 	}
 

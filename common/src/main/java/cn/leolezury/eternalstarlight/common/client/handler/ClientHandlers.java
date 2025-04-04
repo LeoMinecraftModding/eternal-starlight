@@ -136,20 +136,17 @@ public class ClientHandlers {
 			}
 
 			if (player != null) {
-				if (player.tickCount % 15 == 0) {
-					List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
-					bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
-					bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).filter(b -> b.tickCount > 20).toList();
-					if (!(bossMusicInstance != null && bosses.stream().anyMatch(bossMusicInstance::sameBoss))) {
+				if (player.tickCount % 20 == 0) {
+					if (bossMusicInstance == null) {
+						List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
+						bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
+						bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).filter(b -> b.tickCount > 20 && player.hasLineOfSight(b)).toList();
 						if (!bosses.isEmpty()) {
 							ESBoss boss = bosses.getFirst();
-							if (bossMusicInstance == null || !bossMusicInstance.sameBoss(boss)) {
-								if (bossMusicInstance != null) {
-									Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
-								}
-								bossMusicInstance = new BossMusicSoundInstance(boss.getBossMusic(), boss);
-							}
-						} else if (bossMusicInstance != null) {
+							bossMusicInstance = new BossMusicSoundInstance(boss.getBossMusic(), boss);
+						}
+					} else {
+						if (bossMusicInstance.getBoss().distanceTo(player) > 160 || !bossMusicInstance.getBoss().shouldPlayBossMusic()) {
 							Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
 							bossMusicInstance = null;
 						}

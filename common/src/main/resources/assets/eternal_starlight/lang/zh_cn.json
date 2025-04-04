@@ -1256,6 +1256,7 @@
   "key.eternal_starlight.switch_crest": "切换纹章",
   "key.categories.eternal_starlight": "永恒星光",
   "book.eternal_starlight.unlock": "章节已解锁",
+  "book.eternal_starlight.unlock.multiple": "多个章节",
   "book.eternal_starlight.preface": "“快看那片花丛！多么美丽的风景... 景... 景...”\n“这种花朵叫回音花，千百年来他们未曾凋谢，重复着，记录着，理解着他们所听到的一切... 切... 切...”\n",
   "book.eternal_starlight.index": "目录：",
   "book.eternal_starlight.main_story_title": "传言",
@@ -1274,6 +1275,8 @@
   "book.eternal_starlight.thirst_walker": "被荧蛭袭击过的远古文明的末裔，身体被吸干后又被星辉水晶寄生，现在的它们就如同荧蛭一样在这片荒漠中饥渴地寻找着养分。\n它们牙齿的独特结构似乎使其可以储存养分以提高其锋利程度，这点在牙齿离开了饥渴行者的身体后依然成立。",
   "book.eternal_starlight.dagger_of_hunger": "使用饥渴行者的牙齿所制作的武器，制作它的材料使其可以吸收养分以提高锋利度。\n它似乎保留着活性与对食物的原始需求，以至于它在极端饥饿的情况下可能会做出背叛主人的行为。",
   "book.eternal_starlight.crystalborn_catalyst": "以饥渴行者的牙齿为核心材料的机器，继承了饥渴行者的贪婪。\n接收到红石信号后，它可以使用其中的水晶侵染附近的环境，并收集其中蕴藏的资源。",
+  "book.eternal_starlight.pungency_fruit": "在沼泽随处可见的果实，尝起来有些像大蒜，它散发的气味使人流泪，这使它也可以被制成武器。\n它和腐肉制成的炖肉可以使你摆脱饥饿效果，但这样的食物似乎并不是很好吃。",
+  "book.eternal_starlight.silver_pungency_fruit": "由辛果和沼泽银锭制成的珍贵食物，仍然保留了辛果的味道。它可以麻痹你的神经，使你的身体暂时忽略大部分伤害，但一段时间后所有伤害仍然会被返还。",
   "book.eternal_starlight.twilight_gaze": "暮眼鱼因为其紫色发光的眼睛而闻名——在它们的产地深渊，这双眼睛可以帮助他们在一片漆黑的环境下看清周围的环境。它们喜爱深渊的环境，如果离深渊太远，它们会试图回到深渊里。这种鱼不会主动攻击人类，但是如果你伤害它们，暮眼鱼会毫不犹豫的反击。",
   "book.eternal_starlight.shimmer_lacewing": "在微光溪流和黑暗沼泽附近飞舞的昆虫，拥有四对蓝色或紫色的发光翅膀。它们的存在对其他生物毫无威胁也毫无用处。星光文明尚且存在之时，此为孩子们所热爱的小生物。"
 }

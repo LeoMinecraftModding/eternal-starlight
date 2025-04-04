@@ -1256,6 +1256,7 @@
   "key.eternal_starlight.switch_crest": "Switch Crest",
   "key.categories.eternal_starlight": "Eternal Starlight",
   "book.eternal_starlight.unlock": "Chapter Unlocked",
+  "book.eternal_starlight.unlock.multiple": "Multiple Chapters",
   "book.eternal_starlight.preface": "\"Look at these flowers! What a fascinating view! view... view...\"\n\"They're echo flowers, they live for thousands of years, repeating, recording and understanding everything they've heard. heard.. heard...\"\n",
   "book.eternal_starlight.index": "Index:",
   "book.eternal_starlight.main_story_title": "The Myth",
@@ -1274,6 +1275,8 @@
   "book.eternal_starlight.thirst_walker": "They are the last descendants of ancient civilizations that were attacked by Gleeches. Their bodies were drained and then infected by starlight crystals. They are now as hungry as Gleeches for sustenance in this desert.\nThe unique structure of their teeth seems to allow them to store nutrients to increase their sharpness, and this holds true even after the teeth have left the Thirst Walker's body.",
   "book.eternal_starlight.dagger_of_hunger": "A weapon crafted using the teeth of Thirst Walkers, the materials used to make it allow it to absorb nutrients to increase its sharpness.\nIt seems to retain activity and a primal need for food, so much so that he may act out and betray its master in cases of extreme hunger.",
   "book.eternal_starlight.crystalborn_catalyst": "A machine that uses the teeth of Thirst Walkers as its core material, inheriting the Thirst Walker's greed.\nUpon receiving a redstone signal, it can use the crystals in it to infest nearby environments and collect the resources contained therein.",
+  "book.eternal_starlight.pungency_fruit": "A fruit found everywhere in the Dark Swamp that tastes somewhat like garlic, it gives off an odor that makes people weep, which allows it to be made into a weapon as well.\nA stew made of it and rotten flesh can rid you of hunger effect, but such food doesn't seem to be very tasty.",
+  "book.eternal_starlight.silver_pungency_fruit": "A precious food made from Pungency Fruit and Swamp Silver Ingots that still retains the flavor of Pungency Fruits. It paralyzes your nerves, causing your body to temporarily ignore most damage, but all damage is still returned after a period of time.",
   "book.eternal_starlight.twilight_gaze": "Twilight Gaze are known for their glowing purple eyes - in the Abyss, where they originate from, these eyes help them see their surroundings in total darkness. They love the environment of the Abyss, and will attempt to return to it if they stray too far from it. This fish will not actively attack humans, but if you harm them, the Twilight Gaze will not hesitate to fight back.",
   "book.eternal_starlight.shimmer_lacewing": "An insect that flits around shimmer river and dark swamp with four pairs of glowing blue or purple wings. Their presence is neither threatening nor useful to other creatures. When the Starlight civilization still existed, this was a small creature loved by children."
 }

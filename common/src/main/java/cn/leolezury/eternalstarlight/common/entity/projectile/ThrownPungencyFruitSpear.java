@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +18,11 @@ public class ThrownPungencyFruitSpear extends ThrownSpear {
 
 	public ThrownPungencyFruitSpear(Level level, @Nullable LivingEntity owner, double x, double y, double z, ItemStack pickupItemStack) {
 		super(ESEntities.PUNGENCY_FRUIT_SPEAR.get(), level, owner, x, y, z, pickupItemStack);
+	}
+
+	@Override
+	protected float getDamage(Entity target) {
+		return 9.0F;
 	}
 
 	@Override

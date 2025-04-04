@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
@@ -16,20 +18,23 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 	public BossMusicSoundInstance(SoundEvent soundEvent, ESBoss boss) {
 		super(soundEvent, SoundSource.MUSIC, SoundInstance.createUnseededRandom());
 		this.boss = boss;
-		this.x = (float) this.boss.getX();
-		this.y = (float) this.boss.getY();
-		this.z = (float) this.boss.getZ();
 		this.looping = true;
 		this.delay = 0;
 		this.volume = 1f;
 	}
 
-	public boolean sameBoss(ESBoss boss1) {
-		return boss1.getId() == boss.getId();
+	public ESBoss getBoss() {
+		return boss;
 	}
 
 	@Override
 	public void tick() {
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null) {
+			this.x = player.getX();
+			this.y = player.getY();
+			this.z = player.getZ();
+		}
 		if (!this.boss.isAlive()) {
 			this.stop();
 			if (canPlaySound()) {

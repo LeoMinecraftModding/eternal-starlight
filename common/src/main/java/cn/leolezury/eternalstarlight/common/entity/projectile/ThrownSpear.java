@@ -63,7 +63,7 @@ public abstract class ThrownSpear extends AbstractArrow {
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		Entity target = result.getEntity();
-		float damage = 8.0F;
+		float damage = getDamage(target);
 		Entity owner = this.getOwner();
 		DamageSource damagesource = this.damageSources().thrown(this, owner == null ? this : owner);
 		if (this.level() instanceof ServerLevel serverlevel) {
@@ -88,6 +88,10 @@ public abstract class ThrownSpear extends AbstractArrow {
 
 		this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
 		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, 1.0F, 1.0F);
+	}
+
+	protected float getDamage(Entity target) {
+		return 8.0F;
 	}
 
 	@Override
