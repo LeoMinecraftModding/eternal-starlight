@@ -36,7 +36,7 @@ public class TangledHatredPart extends Entity {
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		if (parent != null) {
-			if (source.getDirectEntity() != null && (source.getEntity() == null || !source.getEntity().getUUID().equals(parent.getUUID()))) {
+			if (source.getDirectEntity() != null && source.getEntity() != parent) {
 				return parent.hurt(source, amount);
 			}
 		}
@@ -67,8 +67,9 @@ public class TangledHatredPart extends Entity {
 			} else {
 				boolean hasPart = false;
 				for (TangledHatredPart part : parent.parts) {
-					if (part.getUUID().equals(getUUID())) {
+					if (part == this) {
 						hasPart = true;
+						break;
 					}
 				}
 				if (!hasPart) {

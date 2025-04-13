@@ -43,7 +43,7 @@ public class ThioquartzArrow extends AbstractArrow {
 			ESPlatform.INSTANCE.sendToClient(serverPlayer, new SetClientEtherTicksPacket(serverPlayer.getId(), Math.min(inEtherTicks + 100, 140)));
 		}
 		List<LivingEntity> affected = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(8));
-		affected.removeIf(e -> getOwner() != null && e.getUUID().equals(getOwner().getUUID()));
+		affected.removeIf(e -> getOwner() == e);
 		for (int i = 0; i < 5; i++) {
 			ThioquartzShard shard = getOwner() instanceof LivingEntity living ? new ThioquartzShard(level(), living) : new ThioquartzShard(ESEntities.THIOQUARTZ_SHARD.get(), level());
 			shard.setPos(position());

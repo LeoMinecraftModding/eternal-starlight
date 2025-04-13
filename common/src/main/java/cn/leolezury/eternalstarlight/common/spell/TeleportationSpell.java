@@ -78,7 +78,7 @@ public class TeleportationSpell extends AbstractSpell {
 		ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(entity.level(), CollisionContext.of(entity), startPos, endPos);
 		if (!result.entities().isEmpty()) {
 			for (int i = 0; i < result.entities().size(); i++) {
-				if (!result.entities().get(i).getUUID().equals(entity.getUUID())) {
+				if (result.entities().get(i) != entity) {
 					Vec3 target = result.entities().get(i).position();
 					entity.teleportTo(target.x, target.y, target.z);
 					return;

@@ -43,6 +43,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -83,6 +84,8 @@ public class ClientHandlers {
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 	public static int clientTickCount = 0;
+	private static float oldPortalTicks;
+	private static float portalTicks;
 	public static BossMusicSoundInstance bossMusicInstance = null;
 	public static int resetCameraIn;
 	public static float fogStartDecrement;
@@ -160,6 +163,7 @@ public class ClientHandlers {
 				bossMusicInstance = null;
 			}
 		}
+
 		if (Minecraft.getInstance().level != null) {
 			for (ClientSetupHandlers.WorldVisualEffectSpawnFunction function : ClientSetupHandlers.VISUAL_EFFECT_SPAWN_FUNCTIONS) {
 				function.clientTick(Minecraft.getInstance().level, VISUAL_EFFECTS);
@@ -167,6 +171,14 @@ public class ClientHandlers {
 		}
 
 		if (player != null) {
+			oldPortalTicks = portalTicks;
+			if (player.portalProcess != null && player.portalProcess.isSamePortal(ESBlocks.STARLIGHT_PORTAL.get()) && player.portalProcess.isInsidePortalThisTick()) {
+				portalTicks++;
+				player.portalProcess.setAsInsidePortalThisTick(false);
+			} else {
+				portalTicks -= 2;
+			}
+			portalTicks = Mth.clamp(portalTicks, 0, 80);
 			List<ResourceKey<Crest>> crestsToRemove = new ArrayList<>();
 			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
 				GuiCrest crest = GUI_CRESTS.get(key);
@@ -240,11 +252,7 @@ public class ClientHandlers {
 			abyssalFogModifier = Mth.clamp(abyssalFogModifier, 0, 1);
 
 			oldTearyEffect = tearyEffect;
-			if (player.hasEffect(ESMobEffects.TEARY.asHolder())) {
-				tearyEffect = true;
-			} else {
-				tearyEffect = false;
-			}
+			tearyEffect = player.hasEffect(ESMobEffects.TEARY.asHolder());
 
 			if (player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
 				List<DreamCatcherText> textsToRemove = new ArrayList<>();
@@ -336,16 +344,21 @@ public class ClientHandlers {
 	}
 
 	public static OptionalDouble modifyFov(float original) {
+		float modified = original;
 		LocalPlayer player = Minecraft.getInstance().player;
 		if (player != null && player.isUsingItem()) {
 			ItemStack itemStack = player.getUseItem();
 			if (itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get())) {
 				float f = player.getTicksUsingItem() / 20.0F;
 				f = f > 1.0F ? 1.0F : f * f;
-				return OptionalDouble.of(Mth.lerp(Minecraft.getInstance().options.fovEffectScale().get(), 1.0F, (original * (1.0F - f * 0.15F))));
+				modified = (float) Mth.lerp(Minecraft.getInstance().options.fovEffectScale().get(), 1.0F, (modified * (1.0F - f * 0.15F)));
 			}
 		}
-		return OptionalDouble.empty();
+		float portal = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), oldPortalTicks, portalTicks) / 80f;
+		if (portal > 0) {
+			modified = (float) Mth.lerp(Minecraft.getInstance().options.fovEffectScale().get(), 1.0F, (modified * (1.0F - portal)));
+		}
+		return modified == original ? OptionalDouble.empty() : OptionalDouble.of(modified);
 	}
 
 	// tail of setupFog
@@ -432,6 +445,35 @@ public class ClientHandlers {
 		RenderSystem.enableBlend();
 		guiGraphics.setColor(1.0F, 1.0F, 1.0F, f);
 		guiGraphics.blit(resourceLocation, 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
+		RenderSystem.disableBlend();
+		RenderSystem.depthMask(true);
+		RenderSystem.enableDepthTest();
+		guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+	}
+
+	// copied from Gui#renderPortalOverlay
+	public static void renderPortalOverlay(GuiGraphics guiGraphics) {
+		float alpha = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), oldPortalTicks, portalTicks) / 120f;
+
+		if (alpha <= 0) {
+			return;
+		}
+
+		if (alpha < 1.0F) {
+			alpha *= alpha;
+			alpha *= alpha;
+			alpha = alpha * 0.8F + 0.2F;
+		}
+
+		RenderSystem.disableDepthTest();
+		RenderSystem.depthMask(false);
+		RenderSystem.enableBlend();
+		guiGraphics.setColor(1.0F, 1.0F, 1.0F, alpha);
+		TextureAtlasSprite textureatlassprite = Minecraft.getInstance()
+			.getBlockRenderer()
+			.getBlockModelShaper()
+			.getParticleIcon(ESBlocks.STARLIGHT_PORTAL.get().defaultBlockState());
+		guiGraphics.blit(0, 0, -90, guiGraphics.guiWidth(), guiGraphics.guiHeight(), textureatlassprite);
 		RenderSystem.disableBlend();
 		RenderSystem.depthMask(true);
 		RenderSystem.enableDepthTest();

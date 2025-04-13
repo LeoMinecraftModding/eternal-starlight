@@ -131,7 +131,7 @@ public interface ESPlatform {
 	}
 
 	// event-related
-	default boolean postMobGriefingEvent(Level level, Entity entity) {
+	default boolean canEntityGrief(Level level, Entity entity) {
 		return level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
 	}
 

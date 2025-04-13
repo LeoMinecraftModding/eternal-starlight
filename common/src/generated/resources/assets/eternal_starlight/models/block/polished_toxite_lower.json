@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "eternal_starlight:block/polished_toxite",
     "side": "eternal_starlight:block/polished_toxite_lower",
-    "top": "eternal_starlight:block/toxite"
+    "top": "eternal_starlight:block/polished_toxite_middle"
   }
 }

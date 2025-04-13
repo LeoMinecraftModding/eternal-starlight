@@ -44,7 +44,7 @@ public class TangledHatredSmokePhase extends BehaviorPhase<TangledHatred> {
 				}
 			}
 			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius))) {
-				if (!living.getUUID().equals(entity.getUUID()) && living.distanceTo(entity) - living.getBbWidth() / 2 < radius) {
+				if (living != entity && living.distanceTo(entity) - living.getBbWidth() / 2 < radius) {
 					living.hurt(ESDamageTypes.getEntityDamageSource(entity.level(), ESDamageTypes.POISON, entity), 5 * (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale());
 					living.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 				}

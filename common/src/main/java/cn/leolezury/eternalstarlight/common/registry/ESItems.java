@@ -54,6 +54,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> THIRST_WALKER_SPAWN_EGG = registerItem("thirst_walker_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.THIRST_WALKER::get, 0x352b2f, 0xa4e0f2, new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRETEOR_SPAWN_EGG = registerItem("creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TINY_CRETEOR_SPAWN_EGG = registerItem("tiny_creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TINY_CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
+	public static final RegistryObject<Item, Item> STRANGHOUL_SPAWN_EGG = registerItem("stranghoul_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.STRANGHOUL::get, 0x31383a, 0x849496, new Item.Properties()));
 	public static final RegistryObject<Item, Item> ENT_SPAWN_EGG = registerItem("ent_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ENT::get, 0x633737, 0x86b8a9, new Item.Properties()));
 	public static final RegistryObject<Item, Item> RATLIN_SPAWN_EGG = registerItem("ratlin_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.RATLIN::get, 0x544e4e, 0xd7959a, new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHADOW_SNAIL_SPAWN_EGG = registerItem("shadow_snail_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.SHADOW_SNAIL::get, 0x5263a6, 0x2f2644, new Item.Properties()));
@@ -766,7 +767,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
 		() -> new AxeItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.SWAMP_SILVER, 6, -3.2F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_SICKLE = registerItem("swamp_silver_sickle",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.SWAMP_SILVER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.SWAMP_SILVER, 2, -1F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.SWAMP_SILVER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.SWAMP_SILVER, 1, -1.5F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(30))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_CHESTPLATE = registerItem("swamp_silver_chestplate",
@@ -792,13 +793,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MALARITE_SHOVEL = registerItem("malarite_shovel",
 		() -> new ShovelItem(ESItemTiers.MALARITE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.MALARITE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> MALARITE_SICKLE = registerItem("malarite_sickle",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.MALARITE, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.MALARITE, 2, -1F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.MALARITE, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.MALARITE, 1, -1.5F))));
 	public static final RegistryObject<Item, Item> MALARITE_SPEAR = registerItem("malarite_spear",
 		() -> new MalariteSpearItem(new Item.Properties().attributes(MalariteSpearItem.createAttributes())));
 
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SEEDS = registerItem("pungency_fruit_seeds", () -> new PungencyFruitSeedsItem(ESBlocks.PUNGENCY_FRUIT_VINES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT = registerItem("pungency_fruit", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).build())));
-	public static final RegistryObject<Item, Item> PUNGENCY_STEW = registerItem("pungency_stew", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).usingConvertsTo(Items.BOWL).build())));
+	public static final RegistryObject<Item, Item> PUNGENCY_STEW = registerItem("pungency_stew", () -> new Item(new Item.Properties().stacksTo(1).food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).usingConvertsTo(Items.BOWL).build())));
 	public static final RegistryObject<Item, Item> SILVER_PUNGENCY_FRUIT = registerItem("silver_pungency_fruit", () -> new Item(new Item.Properties().rarity(Rarity.RARE).food(new FoodProperties.Builder().nutrition(7).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).effect(new MobEffectInstance(ESMobEffects.NUMBNESS.asHolder(), 1200, 0), 1F).alwaysEdible().build())));
 	public static final RegistryObject<Item, Item> TEAR_BOMB = registerItem("tear_bomb", () -> new BlockItem(ESBlocks.TEAR_BOMB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TEAR_BOMB_MINECART = registerItem("tear_bomb_minecart", () -> new TearBombMinecartItem(new Item.Properties().stacksTo(1)));
@@ -855,7 +856,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AMARAMBER_SHOVEL = registerItem("amaramber_shovel",
 		() -> new ShovelItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SICKLE = registerItem("amaramber_sickle",
-		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AMARAMBER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.AMARAMBER, 2, -1F))));
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AMARAMBER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.AMARAMBER, 1, -1.5F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_HELMET = registerItem("amaramber_helmet",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",

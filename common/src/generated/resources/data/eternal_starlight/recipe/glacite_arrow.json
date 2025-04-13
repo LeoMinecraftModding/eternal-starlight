@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "F": {
+      "tag": "eternal_starlight:arrow_feathers"
+    },
     "G": {
       "tag": "c:gems/glacite"
     },
@@ -12,7 +15,7 @@
   "pattern": [
     "G",
     "S",
-    "S"
+    "F"
   ],
   "result": {
     "count": 4,

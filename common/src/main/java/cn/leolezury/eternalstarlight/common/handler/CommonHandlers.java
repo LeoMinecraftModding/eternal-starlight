@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
@@ -44,9 +45,11 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -73,6 +76,7 @@ public class CommonHandlers {
 	public static final String TAG_WILTED_ARROW = EternalStarlight.ID + ":wilted";
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
 	public static final String TAG_NUMBNESS_DAMAGE = "numbness_damage";
+	private static final String TAG_TEARY_TICKS = "teary_ticks";
 	private static TheGatekeeperNameManager gatekeeperNames;
 	private static Weathers starlightWeathers;
 	private static AbstractWeather lastWeather;
@@ -228,6 +232,17 @@ public class CommonHandlers {
 		}
 	}
 
+	public static LivingEntity onLivingChangeTarget(LivingEntity entity, LivingEntity newTarget) {
+		if (newTarget != null && entity.hasEffect(ESMobEffects.TEARY.asHolder())) {
+			CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);
+			int tearyTicks = persistentData.getInt(TAG_TEARY_TICKS);
+			if (tearyTicks <= ESConfig.INSTANCE.mobMaxTearyTicks) {
+				return null;
+			}
+		}
+		return newTarget;
+	}
+
 	public static void onEntityTick(Entity entity) {
 		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
@@ -247,7 +262,7 @@ public class CommonHandlers {
 		persistentData.putInt(TAG_IN_ABYSSAL_FIRE_TICKS, Math.max(inAbyssalFireTicks - 1, 0));
 		if (!level.isClientSide && entity instanceof AbstractArrow arrow && persistentData.getBoolean(TAG_WILTED_ARROW) && !arrow.inGround) {
 			List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
-			affected.removeIf(e -> arrow.getOwner() != null && e.getUUID().equals(arrow.getOwner().getUUID()));
+			affected.removeIf(e -> arrow.getOwner() == e);
 			for (LivingEntity living : affected) {
 				living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
 				living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
@@ -312,6 +327,21 @@ public class CommonHandlers {
 			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 			boolean inEther = persistentData.getBoolean(TAG_IN_ETHER);
 			if (!livingEntity.level().isClientSide) {
+				if (livingEntity.hasEffect(ESMobEffects.TEARY.asHolder()) && level instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ParticleTypes.FALLING_WATER, livingEntity.getX() + livingEntity.getBbWidth() * (livingEntity.getRandom().nextFloat() - 0.5), livingEntity.getEyeY(), livingEntity.getZ() + livingEntity.getBbWidth() * (livingEntity.getRandom().nextFloat() - 0.5), 3, 0, 0, 0, 0);
+				}
+				if (!livingEntity.getType().is(ESTags.EntityTypes.TEARY_IMMUNE) && livingEntity.hasEffect(ESMobEffects.TEARY.asHolder())) {
+					int tearyTicks = persistentData.getInt(TAG_TEARY_TICKS);
+					if (tearyTicks <= ESConfig.INSTANCE.mobMaxTearyTicks) {
+						if (livingEntity instanceof Mob mob && mob.getTarget() != null) {
+							mob.setTarget(null);
+							mob.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
+							mob.getNavigation().stop();
+							mob.setLastHurtByMob(null);
+						}
+						persistentData.putInt(TAG_TEARY_TICKS, tearyTicks + 1);
+					}
+				}
 				if (inEther) {
 					float factor = 0;
 					AttributeInstance resistance = livingEntity.getAttribute(ESAttributes.ETHER_RESISTANCE.asHolder());

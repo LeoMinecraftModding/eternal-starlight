@@ -230,7 +230,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
 		directionalBud(ESBlocks.THIOQUARTZ_CLUSTER.get());
 		stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
-		polishedToxite(ESBlocks.POLISHED_TOXITE.get(), ESBlocks.TOXITE.get());
+		polishedToxite(ESBlocks.POLISHED_TOXITE.get());
 		slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
@@ -240,7 +240,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.PACKED_NIGHTFALL_MUD.get());
 		stoneSet(ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get());
 
-		simpleBlock(ESBlocks.TWILIGHT_SAND.get());
+		sand(ESBlocks.TWILIGHT_SAND.get());
 		sandstoneAndCut(ESBlocks.TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
 		slabBlock(ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
 		stairsBlock(ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_bottom"), blockTexture(ESBlocks.TWILIGHT_SANDSTONE.get()).withSuffix("_top"));
@@ -639,10 +639,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.modelForState().modelFile(modelNormal).addModel();
 	}
 
-	private void polishedToxite(Block block, Block stone) {
+	private void polishedToxite(Block block) {
 		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.FULL ? models().cubeAll(name(block), blockTexture(block)) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
-			? models().cubeAll(name(block) + "_middle", blockTexture(stone)) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
-			? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(stone), blockTexture(block)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(block), blockTexture(stone))))).build());
+			? models().cubeAll(name(block) + "_middle", blockTexture(block).withSuffix("_middle")) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
+			? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(block).withSuffix("_middle"), blockTexture(block)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(block), blockTexture(block).withSuffix("_middle"))))).build());
 	}
 
 	private void orbflora(Block block) {

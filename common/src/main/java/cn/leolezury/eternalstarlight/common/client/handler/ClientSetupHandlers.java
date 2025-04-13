@@ -697,6 +697,7 @@ public class ClientSetupHandlers {
 			particle.pickSprite(spriteSet);
 			return particle;
 		});
+		strategy.register(ESParticles.ALLIED.get(), SuspendedTownParticle.HappyVillagerProvider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
@@ -719,6 +720,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalkerRenderer::new);
 		strategy.register(ESEntities.CRETEOR.get(), CreteorRenderer::new);
 		strategy.register(ESEntities.TINY_CRETEOR.get(), TinyCreteorRenderer::new);
+		strategy.register(ESEntities.STRANGHOUL.get(), StranghoulRenderer::new);
 		strategy.register(ESEntities.ENT.get(), EntRenderer::new);
 		strategy.register(ESEntities.RATLIN.get(), RatlinRenderer::new);
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), ShadowSnailRenderer::new);
@@ -772,8 +774,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESSkullType.TANGLED, new TangledHeadModel(modelSet.bakeLayer(TangledHeadModel.LAYER_LOCATION)));
 	}
 
-	private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
 	private static final CubeDeformation INNER_ARMOR_DEFORMATION = new CubeDeformation(0.5f);
+	private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
 
 	public static void registerLayers(RendererLayerRegisterStrategy strategy) {
 		strategy.register(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
@@ -799,17 +801,20 @@ public class ClientSetupHandlers {
 		strategy.register(BoarwarfSilversmithModel.LAYER_LOCATION, BoarwarfSilversmithModel::createBodyLayer);
 		strategy.register(AstralGolemModel.LAYER_LOCATION, AstralGolemModel::createBodyLayer);
 		strategy.register(AstralGolemModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-		strategy.register(AstralGolemModel.OUTER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+		strategy.register(AstralGolemModel.OUTER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
 		strategy.register(GleechModel.LAYER_LOCATION, GleechModel::createBodyLayer);
 		strategy.register(LonestarSkeletonRenderer.LONESTAR, LonestarSkeletonModel::createBodyLayer);
 		strategy.register(LonestarSkeletonRenderer.LONESTAR_INNER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-		strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+		strategy.register(LonestarSkeletonRenderer.LONESTAR_OUTER_ARMOR, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
 		strategy.register(NightfallSpiderModel.LAYER_LOCATION, NightfallSpiderModel::createBodyLayer);
 		strategy.register(ThirstWalkerModel.LAYER_LOCATION, ThirstWalkerModel::createBodyLayer);
 		strategy.register(CreteorModel.LAYER_LOCATION, () -> CreteorModel.createBodyLayer(CubeDeformation.NONE));
 		strategy.register(CreteorModel.ARMOR_LOCATION, () -> CreteorModel.createBodyLayer(new CubeDeformation(2.0f)));
 		strategy.register(TinyCreteorModel.LAYER_LOCATION, () -> TinyCreteorModel.createBodyLayer(CubeDeformation.NONE));
 		strategy.register(TinyCreteorModel.ARMOR_LOCATION, () -> TinyCreteorModel.createBodyLayer(new CubeDeformation(2.0f)));
+		strategy.register(StranghoulModel.LAYER_LOCATION, StranghoulModel::createBodyLayer);
+		strategy.register(StranghoulModel.INNER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+		strategy.register(StranghoulModel.OUTER_ARMOR_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
 		strategy.register(EntModel.LAYER_LOCATION, EntModel::createBodyLayer);
 		strategy.register(RatlinModel.LAYER_LOCATION, RatlinModel::createBodyLayer);
 		strategy.register(ShadowSnailModel.LAYER_LOCATION, ShadowSnailModel::createBodyLayer);

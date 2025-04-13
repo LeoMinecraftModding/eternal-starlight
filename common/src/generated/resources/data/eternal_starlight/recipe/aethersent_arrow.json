@@ -5,6 +5,9 @@
     "A": {
       "tag": "c:nuggets/aethersent"
     },
+    "F": {
+      "tag": "eternal_starlight:arrow_feathers"
+    },
     "S": {
       "tag": "c:rods/wooden"
     }
@@ -12,7 +15,7 @@
   "pattern": [
     "A",
     "S",
-    "S"
+    "F"
   ],
   "result": {
     "count": 4,

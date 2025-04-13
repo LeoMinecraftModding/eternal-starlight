@@ -34,7 +34,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 	@Override
 	public void doHurtTarget(LivingEntity target) {
 		getCaster().ifPresent(caster -> {
-			if (!caster.getUUID().equals(target.getUUID())) {
+			if (caster != target) {
 				if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, caster), getAttackDamage())) {
 					target.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 				}

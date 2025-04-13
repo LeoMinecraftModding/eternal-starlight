@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-03T23:31:00.9776956	Item Models: eternal_starlight
+// 1.21.1	2025-04-11T21:48:22.0592596	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -728,6 +728,7 @@ d2fac662c7fb3df322bcc647c09cc4090a98403b assets/eternal_starlight/models/item/st
 f4f608a2e7f0facbc0075529c03593faf829772c assets/eternal_starlight/models/item/stellagmite_wall.json
 b9a03ea739539ea8392eaabeaa94495bcec695b4 assets/eternal_starlight/models/item/stellar_rack.json
 c79ffa8f709743f5ca188c0f61dd19b83e72aa1d assets/eternal_starlight/models/item/stonett.json
+6607c3d03a28b89a44617e335cc2a78736941b00 assets/eternal_starlight/models/item/stranghoul_spawn_egg.json
 7e401fa1f4b4e0e4e9b55e7069adec072d2cee78 assets/eternal_starlight/models/item/stripped_jinglestem_log.json
 bd7ab71592f5a6bcb20fe4fa2753f5cb5cbc4974 assets/eternal_starlight/models/item/stripped_jinglestem_wood.json
 bdee91246292f2fe4c0818c3652d0384a1e22d13 assets/eternal_starlight/models/item/stripped_lunar_log.json

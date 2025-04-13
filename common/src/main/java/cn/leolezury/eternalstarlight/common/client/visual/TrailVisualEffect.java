@@ -51,8 +51,9 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 		}
 		boolean shouldRender = false;
 		for (Entity toRender : Minecraft.getInstance().level.entitiesForRendering()) {
-			if (toRender.getUUID().equals(entity.getUUID())) {
+			if (toRender == entity) {
 				shouldRender = true;
+				break;
 			}
 		}
 		if (!shouldRender && !entity.isRemoved()) {

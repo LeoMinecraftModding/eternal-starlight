@@ -39,6 +39,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.DRIPPING_MUD.get(), mcLoc("drip_hang"));
 		sprite(ESParticles.FALLING_MUD.get(), mcLoc("drip_fall"));
 		sprite(ESParticles.LANDING_MUD.get(), mcLoc("drip_land"));
+		sprite(ESParticles.ALLIED.get(), loc("allied"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));
 	}

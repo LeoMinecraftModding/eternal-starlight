@@ -1,0 +1,18 @@
+{
+  "values": [
+    "minecraft:wooden_sword",
+    "minecraft:wooden_pickaxe",
+    "minecraft:wooden_axe",
+    "minecraft:wooden_hoe",
+    "minecraft:stone_sword",
+    "minecraft:stone_pickaxe",
+    "minecraft:stone_axe",
+    "minecraft:stone_hoe",
+    "eternal_starlight:malarite_sword",
+    "eternal_starlight:malarite_pickaxe",
+    "eternal_starlight:malarite_axe",
+    "eternal_starlight:malarite_hoe",
+    "eternal_starlight:malarite_sickle",
+    "eternal_starlight:pungency_fruit_axe"
+  ]
+}

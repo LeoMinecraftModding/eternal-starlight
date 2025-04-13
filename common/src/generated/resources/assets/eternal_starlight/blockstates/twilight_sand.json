@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "eternal_starlight:block/twilight_sand"
-    }
+    "": [
+      {
+        "model": "eternal_starlight:block/twilight_sand"
+      },
+      {
+        "model": "eternal_starlight:block/twilight_sand",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/twilight_sand",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/twilight_sand",
+        "y": 90
+      }
+    ]
   }
 }

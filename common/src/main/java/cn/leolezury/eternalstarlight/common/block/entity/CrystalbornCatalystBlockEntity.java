@@ -105,7 +105,7 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 				entity.charge = Math.clamp(entity.charge, 0, 30);
 				if (entity.charge == 30) {
 					entity.items.getFirst().shrink(1);
-					entity.energyLeft += ESConfig.INSTANCE.crystalbornCatalystEnergyPerShard;
+					entity.energyLeft += ESConfig.INSTANCE.itemsConfig.crystalbornCatalystEnergyPerShard;
 					for (int i = 0; i <= 10; i++) {
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.CRYSTAL, pos.getCenter().x + (entity.random.nextFloat() - 0.5f) * 4, pos.getY(), pos.getCenter().z + (entity.random.nextFloat() - 0.5f) * 4, 0, 1, 0));
 					}

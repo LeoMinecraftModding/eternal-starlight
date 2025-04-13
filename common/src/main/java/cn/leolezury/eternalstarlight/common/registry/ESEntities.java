@@ -144,6 +144,15 @@ public class ESEntities {
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("tiny_creteor").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Stranghoul>> STRANGHOUL = ENTITIES.register(
+		"stranghoul",
+		() -> EntityType.Builder.of(Stranghoul::new, MobCategory.MONSTER)
+			.sized(0.6F, 1.99F)
+			.eyeHeight(1.74F)
+			.ridingOffset(-0.7F)
+			.clientTrackingRange(8)
+			.build(EternalStarlight.id("stranghoul").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<Ent>> ENT = ENTITIES.register(
 		"ent",
 		() -> EntityType.Builder.of(Ent::new, MobCategory.CREATURE)

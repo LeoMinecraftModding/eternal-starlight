@@ -69,7 +69,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 				serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-				if (!level().isClientSide && (getOwner() == null || !getOwner().getUUID().equals(entity.getUUID()))) {
+				if (!level().isClientSide && getOwner() != entity) {
 					if (entity.canFreeze()) {
 						entity.hurt(getOwner() instanceof LivingEntity owner ? ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner) : level().damageSources().freeze(), getOwner() instanceof Freeze ? (float) ESConfig.INSTANCE.mobsConfig.freeze.attackDamage() : 5);
 						entity.setTicksFrozen(entity.getTicksFrozen() + 100);

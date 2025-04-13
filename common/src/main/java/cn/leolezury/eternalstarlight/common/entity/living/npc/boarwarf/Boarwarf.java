@@ -254,7 +254,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		float currentDist = maxDist;
 		List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(maxDist));
 		for (LivingEntity entity : entities) {
-			if (entity instanceof Targeting targeting && targeting.getTarget() != null && targeting.getTarget().getUUID().equals(getUUID())) {
+			if (entity instanceof Targeting targeting && targeting.getTarget() != null && targeting.getTarget() == this) {
 				angerNearbyAstralGolems(entity, false);
 				if (currentDist > distanceTo(entity)) {
 					toAvoid = entity;
@@ -351,7 +351,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 							chatTarget = boarwarf;
 						}
 					}
-				} else if (chatTarget.chatTicks <= 0 || (chatTarget.chatTarget == null || !chatTarget.chatTarget.getUUID().equals(getUUID()))) {
+				} else if (chatTarget.chatTicks <= 0 || chatTarget.chatTarget != this) {
 					chatTarget = null;
 				}
 			}

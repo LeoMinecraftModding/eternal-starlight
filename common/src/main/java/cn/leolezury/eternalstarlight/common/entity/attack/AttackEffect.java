@@ -126,9 +126,9 @@ public class AttackEffect extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (!level().isClientSide) {
+		if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
 			if (owner == null && ownerId != null) {
-				if (((ServerLevel) this.level()).getEntity(ownerId) instanceof LivingEntity livingEntity) {
+				if (serverLevel.getEntity(ownerId) instanceof LivingEntity livingEntity) {
 					owner = livingEntity;
 				}
 				if (owner == null) {
@@ -136,7 +136,7 @@ public class AttackEffect extends Entity {
 				}
 			}
 			if (target == null && targetId != null) {
-				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+				if (serverLevel.getEntity(targetId) instanceof LivingEntity livingEntity) {
 					target = livingEntity;
 				}
 				if (target == null) {

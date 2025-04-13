@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-30T20:43:15.2522688	Loot Tables
+// 1.21.1	2025-04-12T19:32:25.1233194	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -660,7 +660,7 @@ a461217c956af4bd0fb8803afa168aeb4b966da2 data/eternal_starlight/loot_table/entit
 fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_table/entities/boarwarf.json
 5e7bd53c9990a196ee9b6441d4e86b4894be9ec0 data/eternal_starlight/loot_table/entities/creteor.json
 691a8bff1f5eeba0b472628916c6f0f9338c0260 data/eternal_starlight/loot_table/entities/crystallized_moth.json
-033f6a38e81118db10ee4cfd3e493dab70af077e data/eternal_starlight/loot_table/entities/ent.json
+52bfbe930d0f8091d2fc183b8a20bd034df9bcfb data/eternal_starlight/loot_table/entities/ent.json
 82c62a4f1841005f4c3c51c8078024d142da2c06 data/eternal_starlight/loot_table/entities/freeze.json
 afedf57d5ede9b716d3bd2339f5c07c1a5ca576e data/eternal_starlight/loot_table/entities/gleech.json
 d371994b8d38349297c43d4bcff124ef761e5e31 data/eternal_starlight/loot_table/entities/grimstone_golem.json
@@ -673,6 +673,7 @@ e84177efa08c636a037bd1a440289d31e3c42fc0 data/eternal_starlight/loot_table/entit
 e250ca10b16bd4a2c083a9fd16ff9aa5006a543f data/eternal_starlight/loot_table/entities/shadow_snail.json
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_table/entities/shimmer_lacewing.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_table/entities/starlight_golem.json
+e7a01464e0a4476f3ddb16e3dc6d5d007197079e data/eternal_starlight/loot_table/entities/stranghoul.json
 1805ae6df3c00f65f8820d5326763dcb235137f5 data/eternal_starlight/loot_table/entities/tangled.json
 cdfda6f90f96ac9dd5c8997e86411f844ff69411 data/eternal_starlight/loot_table/entities/tangled_hatred.json
 babe6abda538bda4948feaa3bb8d8965deff0d8b data/eternal_starlight/loot_table/entities/tangled_skull.json
@@ -682,3 +683,4 @@ ed91cb96fb35e52e950d7a03bb62f4f8db3070f1 data/eternal_starlight/loot_table/entit
 ea366c80eba1228ca61060c8975d24a771d86c82 data/eternal_starlight/loot_table/entities/tower_squid.json
 9742c2717dc30701fa79d4ab3d735a2201afc8b9 data/eternal_starlight/loot_table/entities/twilight_gaze.json
 2e639dab65828cba17fb69870b07c99a66201724 data/eternal_starlight/loot_table/entities/yeti.json
+c439db369d6691696de44df71712ba37929a64de data/eternal_starlight/loot_table/gameplay/stranghoul_bartering.json

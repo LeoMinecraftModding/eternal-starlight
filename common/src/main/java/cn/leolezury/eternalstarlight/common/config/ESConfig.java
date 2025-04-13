@@ -16,13 +16,11 @@ public class ESConfig {
 	public static final Path CONFIG_PATH = ESPlatform.INSTANCE.getConfigDir().resolve(EternalStarlight.ID + ".json");
 	public static ESConfig INSTANCE = new ESConfig();
 
-	public String info = "This is the config file for Eternal Starlight";
-
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
-	public float meteorDropRate = 0.0005f;
-	public int crystalbornCatalystEnergyPerShard = 50;
+	public float aethersentMeteorDropRate = 0.0005f;
 	public boolean laserBeamBreakBlocks = true;
+	public int mobMaxTearyTicks = 200;
 	public MobsConfig mobsConfig = new MobsConfig();
 	public ItemsConfig itemsConfig = new ItemsConfig();
 
@@ -35,6 +33,7 @@ public class ESConfig {
 		public final AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
 		public final CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
 		public final AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);
+		public final AttackingMobConfig stranghoul = new AttackingMobConfig(40, 2, 2, 32, true);
 		public final MobConfig ent = new MobConfig(10, 0, true);
 		public final MobConfig ratlin = new MobConfig(15, 0, true);
 		public final MobConfig shadowSnail = new MobConfig(8, 6, true);
@@ -70,6 +69,7 @@ public class ESConfig {
 
 	public static class ItemsConfig {
 		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
+		public int crystalbornCatalystEnergyPerShard = 50;
 
 		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
 		}

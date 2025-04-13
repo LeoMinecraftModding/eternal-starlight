@@ -38,7 +38,7 @@ public class MeteorShowerWeather extends AbstractWeather {
 
 	@Override
 	public void tickBlock(ServerLevel level, int ticks, BlockPos pos) {
-		if (level.getRandom().nextFloat() < ESConfig.INSTANCE.meteorDropRate) {
+		if (level.getRandom().nextFloat() < ESConfig.INSTANCE.aethersentMeteorDropRate) {
 			int targetX = pos.getX();
 			int targetY = pos.getY();
 			int targetZ = pos.getZ();

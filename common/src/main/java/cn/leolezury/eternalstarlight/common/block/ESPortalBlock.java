@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -105,7 +106,7 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		if (entity.canUsePortal(true) && !level.isClientSide) {
+		if (entity.canUsePortal(false)) {
 			entity.setAsInsidePortal(this, pos);
 		}
 	}
@@ -210,6 +211,11 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int getPortalTransitionTime(ServerLevel level, Entity entity) {
+		return entity instanceof Player player ? player.getAbilities().invulnerable ? 1 : 80 : 0;
 	}
 
 	public static class Validator {

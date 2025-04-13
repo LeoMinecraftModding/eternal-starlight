@@ -109,7 +109,6 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		goalSelector.addGoal(2, new MonstrosityLookAtTargetGoal());
 		goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
 		goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-
 		targetSelector.addGoal(0, new HurtByTargetGoal(this, LunarMonstrosity.class).setAlertOthers());
 		targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -225,7 +224,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	protected void blockedByShield(LivingEntity blocker) {
-		if (getBehaviorState() == LunarMonstrosityBitePhase.ID && getTarget() != null && blocker.getUUID().equals(getTarget().getUUID())) {
+		if (getBehaviorState() == LunarMonstrosityBitePhase.ID && blocker == getTarget()) {
 			setBehaviorState(LunarMonstrosityStunPhase.ID);
 		}
 		super.blockedByShield(blocker);
@@ -255,7 +254,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			return super.hurt(source, amount / 2f);
 		}
 		if (source.getEntity() != null && getTarget() != null) {
-			if (getBehaviorState() == LunarMonstrosityBitePhase.ID && source.getEntity().getUUID().equals(getTarget().getUUID()) && amount >= 6) {
+			if (getBehaviorState() == LunarMonstrosityBitePhase.ID && source.getEntity() == getTarget() && amount >= 6) {
 				setBehaviorState(LunarMonstrosityStunPhase.ID);
 				setBehaviorTicks(0);
 			}
@@ -313,7 +312,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		for (LivingEntity livingEntity : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(3))) {
 			Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
 			vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
-			if (vec3.dot(this.getViewVector(1.0F)) < 0.0D && target.getUUID().equals(livingEntity.getUUID())) {
+			if (vec3.dot(this.getViewVector(1.0F)) < 0.0D && target == livingEntity) {
 				return true;
 			}
 		}

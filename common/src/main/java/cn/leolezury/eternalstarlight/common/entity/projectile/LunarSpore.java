@@ -75,8 +75,9 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 		if (getOwner() instanceof TangledHatred hatred && hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof TangledHatredPart part) {
 			boolean hasPart = false;
 			for (TangledHatredPart hatredPart : hatred.parts) {
-				if (hatredPart.getUUID().equals(part.getUUID())) {
+				if (hatredPart == part) {
 					hasPart = true;
+					break;
 				}
 			}
 			if (hasPart) {
@@ -100,8 +101,8 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
-				if (getOwner() instanceof LivingEntity owner && !owner.getUUID().equals(entity.getUUID())) {
-					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, owner), getOwner() instanceof LunarMonstrosity ? 5 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : (getOwner() instanceof TangledHatred ? 5 * (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale() : 5));
+				if (getOwner() != entity) {
+					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), getOwner() instanceof LunarMonstrosity ? 5 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : (getOwner() instanceof TangledHatred ? 5 * (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale() : 5));
 				}
 			}
 			discard();

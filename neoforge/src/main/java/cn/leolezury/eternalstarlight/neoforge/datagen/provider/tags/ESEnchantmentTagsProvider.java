@@ -19,30 +19,36 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
-		tag(ESTags.Enchantments.GOLEM_FORGE_LOOT).add(
-			ESEnchantments.FEARLESS
-		);
-		tag(ESTags.Enchantments.CURSED_GARDEN_LOOT).add(
-			ESEnchantments.FEARLESS,
-			ESEnchantments.POISONING,
-			ESEnchantments.SOUL_SNATCHER
-		);
-		tag(EnchantmentTags.TOOLTIP_ORDER).add(
-			ESEnchantments.FEARLESS,
-			ESEnchantments.POISONING,
-			ESEnchantments.SOUL_SNATCHER,
-			ESEnchantments.TEARING
-		);
-		tag(EnchantmentTags.IN_ENCHANTING_TABLE).add(
-			ESEnchantments.TEARING
-		);
-		tag(EnchantmentTags.ARMOR_EXCLUSIVE).add(
-			ESEnchantments.POISONING
-		);
-		tag(EnchantmentTags.TREASURE).add(
-			ESEnchantments.POISONING,
-			ESEnchantments.FEARLESS,
-			ESEnchantments.SOUL_SNATCHER
-		);
+		tag(ESTags.Enchantments.GOLEM_FORGE_LOOT)
+			.add(
+				ESEnchantments.FEARLESS
+			);
+		tag(ESTags.Enchantments.CURSED_GARDEN_LOOT)
+			.add(
+				ESEnchantments.FEARLESS,
+				ESEnchantments.POISONING,
+				ESEnchantments.SOUL_SNATCHER
+			);
+		tag(EnchantmentTags.TOOLTIP_ORDER)
+			.add(
+				ESEnchantments.FEARLESS,
+				ESEnchantments.POISONING,
+				ESEnchantments.SOUL_SNATCHER,
+				ESEnchantments.TEARING
+			);
+		tag(EnchantmentTags.IN_ENCHANTING_TABLE)
+			.add(
+				ESEnchantments.TEARING
+			);
+		tag(EnchantmentTags.ARMOR_EXCLUSIVE)
+			.add(
+				ESEnchantments.POISONING
+			);
+		tag(EnchantmentTags.TREASURE)
+			.add(
+				ESEnchantments.POISONING,
+				ESEnchantments.FEARLESS,
+				ESEnchantments.SOUL_SNATCHER
+			);
 	}
 }

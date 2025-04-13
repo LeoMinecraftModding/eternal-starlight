@@ -159,6 +159,12 @@ public class Ent extends Animal implements VariantHolder<Holder<EntVariant>> {
 	}
 
 	@Override
+	protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean recentlyHit) {
+		super.dropCustomDeathLoot(level, source, recentlyHit);
+		spawnAtLocation(getVariant().value().leaves().value());
+	}
+
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return FOOD_ITEMS.test(stack);
 	}

@@ -17,15 +17,16 @@ public class ESCrestTagsProvider extends CrestTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ESTags.Crests.IS_IN_CREST_POT).add(
-			ESCrests.BURST_SPARK,
-			ESCrests.FLAMING_AFTERSHOCK,
-			ESCrests.FLAMING_ARC,
-			ESCrests.FLAMING_RING,
-			ESCrests.MERGED_FIREBALL,
-			ESCrests.SURROUNDING_FIREBALLS,
-			ESCrests.FROZEN_FOG,
-			ESCrests.ICY_SPIKES
-		);
+		tag(ESTags.Crests.IS_IN_CREST_POT)
+			.add(
+				ESCrests.BURST_SPARK,
+				ESCrests.FLAMING_AFTERSHOCK,
+				ESCrests.FLAMING_ARC,
+				ESCrests.FLAMING_RING,
+				ESCrests.MERGED_FIREBALL,
+				ESCrests.SURROUNDING_FIREBALLS,
+				ESCrests.FROZEN_FOG,
+				ESCrests.ICY_SPIKES
+			);
 	}
 }

@@ -30,6 +30,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.THIRST_WALKER_SPAWN_EGG.get());
 		basicItem(ESItems.CRETEOR_SPAWN_EGG.get());
 		basicItem(ESItems.TINY_CRETEOR_SPAWN_EGG.get());
+		basicItem(ESItems.STRANGHOUL_SPAWN_EGG.get());
 		basicItem(ESItems.ENT_SPAWN_EGG.get());
 		basicItem(ESItems.RATLIN_SPAWN_EGG.get());
 		basicItem(ESItems.SHADOW_SNAIL_SPAWN_EGG.get());

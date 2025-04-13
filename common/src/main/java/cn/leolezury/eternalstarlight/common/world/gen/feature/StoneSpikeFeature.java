@@ -1,24 +1,25 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 
 public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
+	private static final WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.GRIMSTONE.get().defaultBlockState(), 8).add(ESBlocks.GLOWING_GRIMSTONE.get().defaultBlockState(), 1).build());
+
 	public StoneSpikeFeature(Codec<NoneFeatureConfiguration> codec) {
 		super(codec);
 	}
 
 	private BlockState getBlockToPlace(RandomSource randomSource, BlockPos pos) {
-		WeightedStateProvider stateProvider = new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.COBBLESTONE.defaultBlockState(), 500).add(Blocks.STONE.defaultBlockState(), 500).add(Blocks.MOSSY_COBBLESTONE.defaultBlockState(), 200).add(Blocks.IRON_ORE.defaultBlockState(), 2).add(Blocks.DIAMOND_ORE.defaultBlockState(), 1).build());
 		return stateProvider.getState(randomSource, pos);
 	}
 

@@ -90,7 +90,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 		goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 		goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.3));
 
-		targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers(Freeze.class));
+		targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
 		targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
 		targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));

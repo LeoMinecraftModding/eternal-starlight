@@ -18,9 +18,10 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ESTags.PaintingVariants.PLACEABLE).add(
-			ESPaintingVariants.THE_CATALYST,
-			ESPaintingVariants.CRYSTALBORN
-		);
+		tag(ESTags.PaintingVariants.PLACEABLE)
+			.add(
+				ESPaintingVariants.THE_CATALYST,
+				ESPaintingVariants.CRYSTALBORN
+			);
 	}
 }

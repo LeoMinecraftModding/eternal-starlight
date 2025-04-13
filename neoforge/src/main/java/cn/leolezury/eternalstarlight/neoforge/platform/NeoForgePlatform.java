@@ -231,13 +231,13 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public boolean postMobGriefingEvent(Level level, Entity entity) {
+	public boolean canEntityGrief(Level level, Entity entity) {
 		return EventHooks.canEntityGrief(level, entity);
 	}
 
 	@Override
 	public boolean postEntityDestroyBlockEvent(Level level, BlockPos pos, Entity entity) {
-		return entity instanceof LivingEntity living ? CommonHooks.canEntityDestroy(level, pos, living) : postMobGriefingEvent(level, entity);
+		return entity instanceof LivingEntity living ? CommonHooks.canEntityDestroy(level, pos, living) : canEntityGrief(level, entity);
 	}
 
 	@Override

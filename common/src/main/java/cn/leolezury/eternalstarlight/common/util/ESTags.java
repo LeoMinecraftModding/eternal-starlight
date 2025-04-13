@@ -46,6 +46,11 @@ public class ESTags {
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
 		public static final TagKey<Item> ENT_FERTILIZERS = create("ent_fertilizers");
+		public static final TagKey<Item> STRANGHOUL_CAN_USE = create("stranghoul_can_use");
+		public static final TagKey<Item> STRANGHOUL_FOOD = create("stranghoul_food");
+		public static final TagKey<Item> STRANGHOUL_HIRING_FOOD = create("stranghoul_hiring_food");
+		public static final TagKey<Item> STRANGHOUL_CURRENCIES = create("stranghoul_currencies");
+		public static final TagKey<Item> STRANGHOUL_VULNERABLE_TO = create("stranghoul_vulnerable_to");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
 		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
@@ -54,6 +59,7 @@ public class ESTags {
 		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
+		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");
 		public static final TagKey<Item> MANA_CRYSTAL_INGREDIENTS = create("mana_crystal_ingredients");
 		public static final TagKey<Item> MANA_CRYSTALS = create("mana_crystals");
 		public static final TagKey<Item> TERRA_CRYSTAL_INGREDIENTS = create("terra_crystal_ingredients");
@@ -111,6 +117,10 @@ public class ESTags {
 		public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
 		public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
 		public static final TagKey<EntityType<?>> GLEECH_IMMUNE = create("gleech_immune");
+		public static final TagKey<EntityType<?>> CHAIN_OF_SOULS_CANNOT_PULL = create("chan_of_souls_cannot_pull");
+		public static final TagKey<EntityType<?>> TEARY_IMMUNE = create("teary_immune");
+		public static final TagKey<EntityType<?>> STRANGHOUL_PREYS = create("stranghoul_preys");
+		public static final TagKey<EntityType<?>> STRANGHOUL_CANNOT_HUNT = create("stranghoul_cannot_hunt");
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));

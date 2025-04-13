@@ -99,7 +99,7 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 				return false;
 			}
 			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(range))) {
-				if (livingEntity.getUUID().equals(target.getUUID()) && canReachTarget(entity, range)) {
+				if (livingEntity == target && canReachTarget(entity, range)) {
 					return entity.doHurtTarget(livingEntity);
 				}
 			}

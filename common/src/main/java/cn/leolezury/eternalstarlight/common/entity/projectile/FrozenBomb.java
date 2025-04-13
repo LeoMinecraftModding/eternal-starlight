@@ -48,7 +48,7 @@ public class FrozenBomb extends ThrowableItemProjectile {
 			serverLevel.sendParticles(ESExplosionParticleOptions.FROZEN, this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 10, 1.5, 1.5, 1.5, 0);
 			level().explode(this, null, null, this.getX(), this.getY(), this.getZ(), 3, false, Level.ExplosionInteraction.TNT, ESExplosionParticleOptions.FROZEN, ESExplosionParticleOptions.FROZEN, SoundEvents.GENERIC_EXPLODE);
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-				if (getOwner() == null || !getOwner().getUUID().equals(entity.getUUID())) {
+				if (getOwner() != entity) {
 					if (entity.canFreeze()) {
 						entity.setTicksFrozen(entity.getTicksFrozen() + 100);
 					}

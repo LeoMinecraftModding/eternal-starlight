@@ -46,6 +46,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.aurora_deer.ambient"
   },
+  "entity.aurora_deer.death": {
+    "sounds": [
+      "eternal_starlight:mob/aurora_deer/hurt1"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aurora_deer.death"
+  },
   "entity.aurora_deer.hurt": {
     "sounds": [
       "eternal_starlight:mob/aurora_deer/hurt1",

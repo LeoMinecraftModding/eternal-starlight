@@ -108,7 +108,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 			return false;
 		}
 		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(range))) {
-			if (livingEntity.getUUID().equals(target.getUUID())) {
+			if (livingEntity == target) {
 				return true;
 			}
 		}
@@ -119,7 +119,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
 		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
-			boolean bl = ESPlatform.INSTANCE.postMobGriefingEvent(level(), getOwner());
+			boolean bl = ESPlatform.INSTANCE.canEntityGrief(level(), getOwner());
 			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
 			this.discard();
 		}
@@ -141,8 +141,8 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide) {
-			if (target == null && targetId != null) {
-				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
+				if (serverLevel.getEntity(targetId) instanceof LivingEntity livingEntity) {
 					target = livingEntity;
 				}
 				if (target == null) {

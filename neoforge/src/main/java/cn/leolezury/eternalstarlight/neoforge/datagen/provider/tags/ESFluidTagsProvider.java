@@ -18,9 +18,10 @@ public class ESFluidTagsProvider extends FluidTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ESTags.Fluids.ETHER).add(
-			ESFluids.ETHER_STILL.get(),
-			ESFluids.ETHER_FLOWING.get()
-		);
+		tag(ESTags.Fluids.ETHER)
+			.add(
+				ESFluids.ETHER_STILL.get(),
+				ESFluids.ETHER_FLOWING.get()
+			);
 	}
 }

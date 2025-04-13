@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "F": {
+      "tag": "eternal_starlight:arrow_feathers"
+    },
     "S": {
       "tag": "c:rods/wooden"
     },
@@ -12,7 +15,7 @@
   "pattern": [
     "T",
     "S",
-    "S"
+    "F"
   ],
   "result": {
     "count": 4,

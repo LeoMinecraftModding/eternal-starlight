@@ -22,6 +22,7 @@ public abstract class GuiMixin {
 		ClientHandlers.renderDreamCatcher(guiGraphics);
 		ClientHandlers.renderCurrentCrest(guiGraphics);
 		ClientHandlers.renderCarvedLunarisCactusFruitBlur(guiGraphics);
+		ClientHandlers.renderPortalOverlay(guiGraphics);
 	}
 
 	@Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;getProfiler()Lnet/minecraft/util/profiling/ProfilerFiller;", ordinal = 1, shift = At.Shift.BEFORE))

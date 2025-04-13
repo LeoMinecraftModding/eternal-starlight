@@ -320,8 +320,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
 			.pattern("T")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('T', ESItems.TOOTH_OF_HUNGER.get())
 			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
 			.save(recipeOutput);
@@ -1186,8 +1187,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.THIOQUARTZ_ARROW.get(), 4)
 			.pattern("T")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('T', ESConventionalTags.Items.GEMS_THIOQUARTZ)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_THIOQUARTZ))
 			.save(recipeOutput);
@@ -1215,8 +1217,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AETHERSENT_ARROW.get(), 4)
 			.pattern("A")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('A', ESConventionalTags.Items.NUGGETS_AETHERSENT)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AETHERSENT))
 			.save(recipeOutput);
@@ -1321,8 +1324,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MALARITE_ARROW.get(), 4)
 			.pattern("A")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('A', ESConventionalTags.Items.GEMS_MALARITE)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_MALARITE))
 			.save(recipeOutput);
@@ -1390,8 +1394,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GLACITE_ARROW.get(), 4)
 			.pattern("G")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_GLACITE))
 			.save(recipeOutput);
@@ -1489,8 +1494,9 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AMARAMBER_ARROW.get(), 4)
 			.pattern("A")
 			.pattern("S")
-			.pattern("S")
+			.pattern("F")
 			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
 			.define('A', ESConventionalTags.Items.NUGGETS_AMARAMBER)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.NUGGETS_AMARAMBER))
 			.save(recipeOutput);
@@ -1602,9 +1608,9 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	protected final void addSickle(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
-			.pattern(" ##")
-			.pattern("# H")
-			.pattern("  H")
+			.pattern("##")
+			.pattern(" #")
+			.pattern(" H")
 			.define('#', input)
 			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))

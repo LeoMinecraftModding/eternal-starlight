@@ -18,22 +18,26 @@ public class ESStructureTagsProvider extends StructureTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider arg) {
-		tag(ESTags.Structures.BOSS_STRUCTURES).add(
-			ESStructures.GOLEM_FORGE,
-			ESStructures.CURSED_GARDEN
-		);
-		tag(ESTags.Structures.GOLEM_FORGE).add(
-			ESStructures.GOLEM_FORGE
-		);
-		tag(ESTags.Structures.CURSED_GARDEN).add(
-			ESStructures.CURSED_GARDEN
-		);
-		tag(ESTags.Structures.PORTAL_RUINS).add(
-			ESStructures.PORTAL_RUINS_COMMON,
-			ESStructures.PORTAL_RUINS_FOREST,
-			ESStructures.PORTAL_RUINS_DESERT,
-			ESStructures.PORTAL_RUINS_JUNGLE,
-			ESStructures.PORTAL_RUINS_COLD
-		);
+		tag(ESTags.Structures.BOSS_STRUCTURES)
+			.add(
+				ESStructures.GOLEM_FORGE,
+				ESStructures.CURSED_GARDEN
+			);
+		tag(ESTags.Structures.GOLEM_FORGE)
+			.add(
+				ESStructures.GOLEM_FORGE
+			);
+		tag(ESTags.Structures.CURSED_GARDEN)
+			.add(
+				ESStructures.CURSED_GARDEN
+			);
+		tag(ESTags.Structures.PORTAL_RUINS)
+			.add(
+				ESStructures.PORTAL_RUINS_COMMON,
+				ESStructures.PORTAL_RUINS_FOREST,
+				ESStructures.PORTAL_RUINS_DESERT,
+				ESStructures.PORTAL_RUINS_JUNGLE,
+				ESStructures.PORTAL_RUINS_COLD
+			);
 	}
 }

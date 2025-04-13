@@ -226,7 +226,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 		}
 		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
-			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && (getOwner() == null || !getOwner().getUUID().equals(livingEntity.getUUID()))) {
+			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && getOwner() != livingEntity) {
 				livingEntity.invulnerableTime = 0;
 				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
 			}
@@ -251,8 +251,8 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			refreshDimensions();
 		}
 		if (!level().isClientSide) {
-			if (target == null && targetId != null) {
-				if (((ServerLevel) this.level()).getEntity(targetId) instanceof LivingEntity livingEntity) {
+			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
+				if (serverLevel.getEntity(targetId) instanceof LivingEntity livingEntity) {
 					target = livingEntity;
 				}
 				if (target == null) {

@@ -16,6 +16,8 @@ public class ESLootTables {
 	public static final ResourceKey<LootTable> CHEST_GOLEM_FORGE = create("chests/golem_forge");
 	public static final ResourceKey<LootTable> CHEST_CURSED_GARDEN = create("chests/cursed_garden");
 
+	public static final ResourceKey<LootTable> GAMEPLAY_STRANGHOUL_BARTERING = create("gameplay/stranghoul_bartering");
+
 	public static ResourceKey<LootTable> create(String name) {
 		return ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id(name));
 	}

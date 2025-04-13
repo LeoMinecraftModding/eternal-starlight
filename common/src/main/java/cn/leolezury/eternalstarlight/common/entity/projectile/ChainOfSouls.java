@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -100,8 +101,8 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		super.tick();
 		Player player = this.getPlayerOwner();
 		if (!level().isClientSide) {
-			if (target == null && targetId != null) {
-				Entity entity = ((ServerLevel) this.level()).getEntity(targetId);
+			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
+				Entity entity = serverLevel.getEntity(targetId);
 				if (entity != null) {
 					target = entity;
 				}
@@ -140,13 +141,14 @@ public class ChainOfSouls extends Projectile implements Grappling {
 								}
 							}
 
-							Vec3 ownerPos = playerOwner.position().add(0, playerOwner.getBbHeight() / 2, 0);
-
-							Vec3 posDiff = ownerPos.subtract(targetPos);
-							if (posDiff.length() > length() * 1.2f) {
-								double scale = 1.0 - Math.sqrt(Math.min(posDiff.lengthSqr(), 64 * 64)) / 64.0;
-								target.addDeltaMovement(posDiff.normalize().scale(scale * scale));
-								target.hurtMarked = true;
+							if (!target.getType().is(ESTags.EntityTypes.CHAIN_OF_SOULS_CANNOT_PULL)) {
+								Vec3 ownerPos = playerOwner.position().add(0, playerOwner.getBbHeight() / 2, 0);
+								Vec3 posDiff = ownerPos.subtract(targetPos);
+								if (posDiff.length() > length() * 1.2f) {
+									double scale = 1.0 - Math.sqrt(Math.min(posDiff.lengthSqr(), 64 * 64)) / 64.0;
+									target.addDeltaMovement(posDiff.normalize().scale(scale * scale));
+									target.hurtMarked = true;
+								}
 							}
 
 							absorbSoulTicks++;

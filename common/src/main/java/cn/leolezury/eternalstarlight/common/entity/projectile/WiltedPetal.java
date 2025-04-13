@@ -54,7 +54,7 @@ public class WiltedPetal extends ThrowableProjectile {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if (getOwner() == null || !hitResult.getEntity().getUUID().equals(getOwner().getUUID())) {
+		if (hitResult.getEntity() != getOwner()) {
 			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.WILT, this, getOwner()), 8);
 		}
 		discard();

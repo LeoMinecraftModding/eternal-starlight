@@ -61,7 +61,7 @@ public class ThioquartzShard extends ThrowableProjectile {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if (getOwner() == null || !hitResult.getEntity().getUUID().equals(getOwner().getUUID())) {
+		if (hitResult.getEntity() != getOwner()) {
 			if (hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ETHER, this, getOwner()), 4) && hitResult.getEntity() instanceof LivingEntity livingEntity) {
 				playSound(SoundEvents.GLASS_BREAK);
 				CompoundTag persistentData = ESEntityUtil.getPersistentData(livingEntity);

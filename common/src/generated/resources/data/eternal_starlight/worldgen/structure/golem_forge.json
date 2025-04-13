@@ -12,7 +12,7 @@
           "type": "eternal_starlight:freeze",
           "maxCount": 2,
           "minCount": 1,
-          "weight": 10
+          "weight": 3
         }
       ]
     }

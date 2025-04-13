@@ -345,7 +345,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 							orb.setGlowingTag(true);
 						}
 					}
-				} else {
+				} else if (super.canAttack(serverPlayer)) {
 					setFightTargetName(serverPlayer.getName().getString());
 					setActivated(true);
 					setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));

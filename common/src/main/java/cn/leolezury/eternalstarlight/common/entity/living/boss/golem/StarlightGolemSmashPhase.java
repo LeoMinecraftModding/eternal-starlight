@@ -83,7 +83,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 										fallingBlock.push(0, (above ? 1 : -1) * entity.getRandom().nextDouble() / 6 + 0.25, 0);
 										entity.level().addFreshEntity(fallingBlock);
 										for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1))) {
-											if (!living.getUUID().equals(entity.getUUID())) {
+											if (living != entity) {
 												living.hurt(ESDamageTypes.getDamageSource(entity.level(), ESDamageTypes.GROUND_SMASH), 4 * (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale());
 											}
 										}

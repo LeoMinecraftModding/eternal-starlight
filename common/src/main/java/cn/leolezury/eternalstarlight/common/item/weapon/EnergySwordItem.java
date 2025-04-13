@@ -33,12 +33,12 @@ public class EnergySwordItem extends SwordItem {
 			livingEntity.setDeltaMovement(initialEndPos.subtract(initialStartPos).scale(5));
 			livingEntity.invulnerableTime += 20;
 			for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, livingEntity.getBoundingBox().inflate(livingEntity.getBbWidth() * 4f))) {
-				if (!entity.getUUID().equals(livingEntity.getUUID())) {
+				if (entity != livingEntity) {
 					entity.hurt(livingEntity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(livingEntity), 4);
 				}
 			}
 			for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, livingEntity.getBoundingBox().inflate(livingEntity.getBbWidth() * 4f).move(initialEndPos.subtract(initialStartPos).scale(5)))) {
-				if (!entity.getUUID().equals(livingEntity.getUUID())) {
+				if (entity != livingEntity) {
 					entity.hurt(livingEntity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(livingEntity), 4);
 				}
 			}

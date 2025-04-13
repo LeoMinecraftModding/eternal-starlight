@@ -151,7 +151,7 @@ public class RayAttack extends Entity {
 
 	public void onHit(ESEntityUtil.RaytraceResult result) {
 		for (Entity target : result.entities()) {
-			if (target instanceof LivingEntity living && (getCaster().isEmpty() || !living.getUUID().equals(getCaster().get().getUUID()))) {
+			if (target instanceof LivingEntity living && (getCaster().isEmpty() || living != getCaster().get())) {
 				doHurtTarget(living);
 			}
 		}

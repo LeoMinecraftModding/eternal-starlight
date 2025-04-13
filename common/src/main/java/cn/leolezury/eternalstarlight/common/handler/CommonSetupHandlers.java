@@ -253,6 +253,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalker.createAttributes().build());
 		strategy.register(ESEntities.CRETEOR.get(), Creteor.createAttributes().build());
 		strategy.register(ESEntities.TINY_CRETEOR.get(), TinyCreteor.createAttributes().build());
+		strategy.register(ESEntities.STRANGHOUL.get(), Stranghoul.createAttributes().build());
 		strategy.register(ESEntities.ENT.get(), Ent.createAttributes().build());
 		strategy.register(ESEntities.RATLIN.get(), Ratlin.createAttributes().build());
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), ShadowSnail.createAttributes().build());
@@ -287,6 +288,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NightfallSpider::checkNightfallSpiderSpawnRules);
 		strategy.register(ESEntities.THIRST_WALKER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ThirstWalker::checkThirstWalkerSpawnRules);
 		strategy.register(ESEntities.CRETEOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Creteor::checkCreteorSpawnRules);
+		strategy.register(ESEntities.STRANGHOUL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Stranghoul::checkStranghoulSpawnRules);
 		strategy.register(ESEntities.ENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
 		strategy.register(ESEntities.RATLIN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShadowSnail::checkShadowSnailSpawnRules);

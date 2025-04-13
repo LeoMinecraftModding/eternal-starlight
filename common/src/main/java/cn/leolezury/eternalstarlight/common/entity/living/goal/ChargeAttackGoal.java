@@ -90,7 +90,7 @@ public class ChargeAttackGoal extends Goal {
 		}
 
 		for (LivingEntity living : charger.level().getEntitiesOfClass(LivingEntity.class, charger.getBoundingBox().inflate(attackRange))) {
-			if (!ended && target != null && living.getUUID().equals(target.getUUID())) {
+			if (!ended && living == target) {
 				charger.doHurtTarget(target);
 				this.ended = true;
 			}

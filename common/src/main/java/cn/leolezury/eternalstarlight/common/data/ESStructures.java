@@ -95,7 +95,7 @@ public class ESStructures {
 		context.register(GOLEM_FORGE, new JigsawStructure(
 			new Structure.StructureSettings(
 				biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
-				Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.FREEZE.get(), 10, 1, 2)))),
+				Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.FREEZE.get(), 3, 1, 2)))),
 				GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
 				TerrainAdjustment.BEARD_THIN),
 			poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,

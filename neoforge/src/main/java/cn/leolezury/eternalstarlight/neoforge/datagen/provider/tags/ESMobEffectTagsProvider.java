@@ -17,14 +17,15 @@ public class ESMobEffectTagsProvider extends MobEffectTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ESTags.MobEffects.SWAMP_SILVER_ARMOR_CAN_REMOVE).add(
-			MobEffects.POISON.value(),
-			MobEffects.WITHER.value(),
-			MobEffects.CONFUSION.value(),
-			MobEffects.HUNGER.value(),
-			MobEffects.MOVEMENT_SLOWDOWN.value(),
-			MobEffects.INFESTED.value(),
-			MobEffects.BLINDNESS.value()
-		);
+		tag(ESTags.MobEffects.SWAMP_SILVER_ARMOR_CAN_REMOVE)
+			.add(
+				MobEffects.POISON.value(),
+				MobEffects.WITHER.value(),
+				MobEffects.CONFUSION.value(),
+				MobEffects.HUNGER.value(),
+				MobEffects.MOVEMENT_SLOWDOWN.value(),
+				MobEffects.INFESTED.value(),
+				MobEffects.BLINDNESS.value()
+			);
 	}
 }
