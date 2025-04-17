@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:witness_stranghoul_hunt",
+  "criteria": {
+    "hire": {
+      "trigger": "eternal_starlight:hire_stranghoul"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.hire_stranghoul.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:pungency_stew"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.hire_stranghoul.title"
+    }
+  },
+  "requirements": [
+    [
+      "hire"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

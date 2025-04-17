@@ -184,6 +184,26 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("ignite", ESCriteriaTriggers.IGNITE_TEAR_BOMB.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":ignite_tear_bomb");
 
+		AdvancementHolder witnessStranghoulHunt = Advancement.Builder.advancement().parent(enterDim).display(
+				ESItems.MALARITE_SWORD.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".witness_stranghoul_hunt.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".witness_stranghoul_hunt.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("witness", ESCriteriaTriggers.WITNESS_STRANGHOUL_HUNT.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":witness_stranghoul_hunt");
+
+		AdvancementHolder hireStranghoul = Advancement.Builder.advancement().parent(witnessStranghoulHunt).display(
+				ESItems.PUNGENCY_STEW.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".hire_stranghoul.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".hire_stranghoul.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("hire", ESCriteriaTriggers.HIRE_STRANGHOUL.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":hire_stranghoul");
+
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());

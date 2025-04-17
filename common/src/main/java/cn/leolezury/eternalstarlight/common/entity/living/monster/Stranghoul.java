@@ -5,10 +5,7 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -21,6 +18,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.RandomSource;
@@ -171,12 +169,6 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 				if (baby) {
 					instance.addTransientModifier(SPEED_MODIFIER_BABY);
 				}
-			}
-			if (!baby && level() instanceof ServerLevel serverLevel) {
-				DifficultyInstance difficulty = level().getCurrentDifficultyAt(blockPosition());
-				populateDefaultEquipmentSlots(getRandom(), difficulty);
-				populateDefaultEquipmentEnchantments(serverLevel, getRandom(), difficulty);
-				addHappyParticles();
 			}
 		}
 	}
@@ -721,6 +713,12 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 				if (growthTicks > 24000) {
 					growthTicks = 0;
 					setBaby(false);
+					if (level() instanceof ServerLevel serverLevel) {
+						DifficultyInstance difficulty = level().getCurrentDifficultyAt(blockPosition());
+						populateDefaultEquipmentSlots(getRandom(), difficulty);
+						populateDefaultEquipmentEnchantments(serverLevel, getRandom(), difficulty);
+						addHappyParticles();
+					}
 				}
 			} else {
 				breedCooldown--;
@@ -786,6 +784,9 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 			setItemSlot(EquipmentSlot.OFFHAND, stack.copyWithCount(1));
 			setPersistenceRequired();
 			stack.consume(1, player);
+			if (player instanceof ServerPlayer serverPlayer) {
+				ESCriteriaTriggers.HIRE_STRANGHOUL.get().trigger(serverPlayer);
+			}
 			return InteractionResult.sidedSuccess(level().isClientSide);
 		}
 		if (isHired() && player == getHirer()) {

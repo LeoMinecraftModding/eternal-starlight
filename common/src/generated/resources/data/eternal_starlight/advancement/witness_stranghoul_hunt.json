@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "witness": {
+      "trigger": "eternal_starlight:witness_stranghoul_hunt"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.witness_stranghoul_hunt.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:malarite_sword"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.witness_stranghoul_hunt.title"
+    }
+  },
+  "requirements": [
+    [
+      "witness"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
