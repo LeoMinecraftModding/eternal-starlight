@@ -22,7 +22,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 	}
 
 	public boolean anyPlayerInRange() {
-		return getLevel().hasNearbyAlivePlayer(getBlockPos().getX() + 0.5D, getBlockPos().getY() + 0.5D, getBlockPos().getZ() + 0.5D, getRange());
+		return getLevel() != null && getLevel().hasNearbyAlivePlayer(getBlockPos().getX() + 0.5D, getBlockPos().getY() + 0.5D, getBlockPos().getZ() + 0.5D, getRange());
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BossSpawnerBlockEntity<?> entity) {
