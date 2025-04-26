@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.platform;
 
+import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
@@ -12,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.neoforge.block.ForgeTearBombBlock;
 import cn.leolezury.eternalstarlight.neoforge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.neoforge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeAlchemistArmorItem;
@@ -228,6 +230,11 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public EtherFluid.Flowing createFlowingEtherFluid() {
 		return new ForgeEtherFluid.Flowing();
+	}
+
+	@Override
+	public TearBombBlock createTearBombBlock(BlockBehaviour.Properties properties) {
+		return new ForgeTearBombBlock(properties);
 	}
 
 	@Override

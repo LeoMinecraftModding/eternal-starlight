@@ -832,7 +832,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> MALARITE_BLOCK = BLOCKS.register("malarite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(2.0F, 3.5F)));
 
 	public static final RegistryObject<Block, PungencyFruitVinesBlock> PUNGENCY_FRUIT_VINES = BLOCKS.register("pungency_fruit_vines", () -> new PungencyFruitVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS).mapColor(MapColor.COLOR_PURPLE)));
-	public static final RegistryObject<Block, TearBombBlock> TEAR_BOMB = BLOCKS.register("tear_bomb", () -> new TearBombBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TNT).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, TearBombBlock> TEAR_BOMB = BLOCKS.register("tear_bomb", () -> ESPlatform.INSTANCE.createTearBombBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TNT).mapColor(MapColor.COLOR_PURPLE)));
 
 	public static final RegistryObject<Block, RedStoneOreBlock> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
 	public static final RegistryObject<Block, RedStoneOreBlock> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));

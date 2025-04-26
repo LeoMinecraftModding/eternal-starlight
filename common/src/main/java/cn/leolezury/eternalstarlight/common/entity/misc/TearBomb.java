@@ -21,7 +21,7 @@ public class TearBomb extends PrimedTnt {
 	public TearBomb(Level level, double x, double y, double z, @Nullable LivingEntity igniter) {
 		this(ESEntities.TEAR_BOMB.get(), level);
 		this.setPos(x, y, z);
-		double d0 = igniter.getRandom().nextDouble() * (Math.PI * 2F);
+		double d0 = level.getRandom().nextDouble() * (Math.PI * 2F);
 		this.setDeltaMovement(-Math.sin(d0) * 0.02D, 0.2F, -Math.cos(d0) * 0.02D);
 		// faster
 		this.setFuse(60);

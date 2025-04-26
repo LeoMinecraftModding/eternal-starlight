@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.platform;
 
+import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
@@ -123,6 +124,10 @@ public interface ESPlatform {
 
 	default EtherFluid.Flowing createFlowingEtherFluid() {
 		return new EtherFluid.Flowing();
+	}
+
+	default TearBombBlock createTearBombBlock(BlockBehaviour.Properties properties) {
+		return new TearBombBlock(properties);
 	}
 
 	// reload listeners
