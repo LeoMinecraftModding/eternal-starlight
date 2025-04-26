@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-12T19:32:25.1233194	Loot Tables
+// 1.21.1	2025-04-26T21:58:06.8692524	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -120,6 +120,7 @@ b0b1eb04376c9f5417cab0290766ed2600938f5b data/eternal_starlight/loot_table/block
 59461a2a70c76d990737d11ecb7f2ab6d875f88f data/eternal_starlight/loot_table/blocks/doomeden_tile_wall.json
 c694f74fb93033ec3ebefc0eb59a25a050ec7e1d data/eternal_starlight/loot_table/blocks/doomed_redstone_torch.json
 4d9245850117ef35f9962b38f8179e13b0e78b0e data/eternal_starlight/loot_table/blocks/doomed_torch.json
+d130ec3ee2f0c37cbcb2a87ca5b3a55e44a13931 data/eternal_starlight/loot_table/blocks/drying_rack.json
 18b76831da722342e5bdf6103f20ddd645d7a6b8 data/eternal_starlight/loot_table/blocks/dusk_glass.json
 322c2ff54975442a600906682530307c1a970b89 data/eternal_starlight/loot_table/blocks/dusk_light.json
 c9927f28f70a8bd1eb88ff57cdd90333ba90ce7a data/eternal_starlight/loot_table/blocks/dusted_bricks.json

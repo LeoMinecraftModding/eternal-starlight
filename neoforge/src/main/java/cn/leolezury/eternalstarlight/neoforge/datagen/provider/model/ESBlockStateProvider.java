@@ -495,6 +495,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pungencyFruit(ESBlocks.PUNGENCY_FRUIT_VINES.get());
 		cubeBottomTop(ESBlocks.TEAR_BOMB.get());
 
+		dryingRack(ESBlocks.DRYING_RACK.get());
+
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
 		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
@@ -602,7 +604,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.texture("#portal")
 			.end()
 			.end();
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build());
+		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build(), ESPortalBlock.CENTER);
 	}
 
 	private void pungencyFruit(Block block) {
@@ -627,6 +629,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.modelForState().modelFile(stage2).addModel()
 			.partialState().with(BlockStateProperties.AGE_7, 7)
 			.modelForState().modelFile(stage3).addModel();
+	}
+
+	private void dryingRack(Block block) {
+		ModelFile modelFile = models().getExistingFile(EternalStarlight.id("drying_rack"));
+		ModelFile modelCampfire = models().getExistingFile(EternalStarlight.id("drying_rack_campfire"));
+		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(DryingRackBlock.CAMPFIRE) ? modelCampfire : modelFile).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build(), BlockStateProperties.LIT);
 	}
 
 	private void rawAmaramberBlock(Block block) {

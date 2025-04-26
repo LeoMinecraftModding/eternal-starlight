@@ -84,6 +84,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.FOODS_RAW_MEAT)
 			.add(
+				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.TOWER_SQUID.get(),
 				ESItems.AURORA_DEER_STEAK.get(),
 				ESItems.RATLIN_MEAT.get(),
@@ -109,6 +110,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.FOODS_SOUP)
 			.add(
 				ESItems.PUNGENCY_STEW.get()
+			);
+		tag(Tags.Items.ANIMAL_FOODS)
+			.addTags(
+				ESTags.Items.AURORA_DEER_FOOD,
+				ESTags.Items.CRYSTALLIZED_MOTH_FOOD,
+				ESTags.Items.ENT_FOOD,
+				ESTags.Items.RATLIN_FOOD,
+				ESTags.Items.SHADOW_SNAIL_FOOD,
+				ESTags.Items.YETI_FOOD
 			);
 		tag(Tags.Items.SEEDS)
 			.addTags(

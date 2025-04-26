@@ -753,6 +753,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.PUNGENCY_FRUIT_VINES.get(), this.createCropDrops(ESBlocks.PUNGENCY_FRUIT_VINES.get(), ESItems.PUNGENCY_FRUIT.get(), ESItems.PUNGENCY_FRUIT_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.PUNGENCY_FRUIT_VINES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PungencyFruitVinesBlock.AGE, 7))));
 		dropSelf(ESBlocks.TEAR_BOMB.get());
 
+		dropSelf(ESBlocks.DRYING_RACK.get());
+
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
 		add(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), createCandleCakeDrops(ESBlocks.AMARAMBER_CANDLE.get()));

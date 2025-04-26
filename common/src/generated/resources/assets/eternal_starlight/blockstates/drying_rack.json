@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "campfire=false,facing=east": {
+      "model": "eternal_starlight:block/drying_rack",
+      "y": 270
+    },
+    "campfire=false,facing=north": {
+      "model": "eternal_starlight:block/drying_rack",
+      "y": 180
+    },
+    "campfire=false,facing=south": {
+      "model": "eternal_starlight:block/drying_rack"
+    },
+    "campfire=false,facing=west": {
+      "model": "eternal_starlight:block/drying_rack",
+      "y": 90
+    },
+    "campfire=true,facing=east": {
+      "model": "eternal_starlight:block/drying_rack_campfire",
+      "y": 270
+    },
+    "campfire=true,facing=north": {
+      "model": "eternal_starlight:block/drying_rack_campfire",
+      "y": 180
+    },
+    "campfire=true,facing=south": {
+      "model": "eternal_starlight:block/drying_rack_campfire"
+    },
+    "campfire=true,facing=west": {
+      "model": "eternal_starlight:block/drying_rack_campfire",
+      "y": 90
+    }
+  }
+}

@@ -28,6 +28,7 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StellarRackBlockEntity>> STELLAR_RACK = BLOCK_ENTITIES.register("stellar_rack", () -> BlockEntityType.Builder.of(StellarRackBlockEntity::new, ESBlocks.STELLAR_RACK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITIES.register("crate", () -> BlockEntityType.Builder.of(CrateBlockEntity::new, ESBlocks.GOLEM_STEEL_CRATE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<CrystalbornCatalystBlockEntity>> CRYSTALBORN_CATALYST = BLOCK_ENTITIES.register("crystalborn_catalyst", () -> BlockEntityType.Builder.of(CrystalbornCatalystBlockEntity::new, ESBlocks.CRYSTALBORN_CATALYST.get()).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<DryingRackBlockEntity>> DRYING_RACK = BLOCK_ENTITIES.register("drying_rack", () -> BlockEntityType.Builder.of(DryingRackBlockEntity::new, ESBlocks.DRYING_RACK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 
 	public static void loadClass() {
