@@ -424,6 +424,33 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.prepare_charge"
   },
+  "entity.stranghoul.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/stranghoul/idle1",
+      "eternal_starlight:mob/stranghoul/idle2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.stranghoul.ambient"
+  },
+  "entity.stranghoul.death": {
+    "sounds": [
+      "eternal_starlight:mob/stranghoul/death1",
+      "eternal_starlight:mob/stranghoul/death2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.stranghoul.death"
+  },
+  "entity.stranghoul.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/stranghoul/hurt1",
+      "eternal_starlight:mob/stranghoul/hurt2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.stranghoul.hurt"
+  },
+  "entity.stranghoul.shoot": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.stranghoul.shoot"
+  },
   "entity.tangled_hatred.ambient": {
     "sounds": [
       "eternal_starlight:mob/tangled_hatred/idle"

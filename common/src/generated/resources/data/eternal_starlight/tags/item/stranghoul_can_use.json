@@ -1,5 +1,6 @@
 {
   "values": [
+    "minecraft:bow",
     "minecraft:wooden_sword",
     "minecraft:wooden_pickaxe",
     "minecraft:wooden_axe",
@@ -13,6 +14,8 @@
     "eternal_starlight:malarite_axe",
     "eternal_starlight:malarite_hoe",
     "eternal_starlight:malarite_sickle",
-    "eternal_starlight:pungency_fruit_axe"
+    "eternal_starlight:malarite_spear",
+    "eternal_starlight:pungency_fruit_axe",
+    "eternal_starlight:pungency_fruit_spear"
   ]
 }

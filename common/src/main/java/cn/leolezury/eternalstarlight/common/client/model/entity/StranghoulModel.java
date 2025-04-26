@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
+import cn.leolezury.eternalstarlight.common.item.weapon.SpearItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.AnimationUtils;
@@ -11,7 +12,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 @Environment(EnvType.CLIENT)
 public class StranghoulModel<T extends Stranghoul> extends HumanoidModel<T> {
@@ -43,6 +47,30 @@ public class StranghoulModel<T extends Stranghoul> extends HumanoidModel<T> {
 		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 20).addBox(-1.7F, 0.0F, -1.5F, 3.0F, 12.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(2.6F, 12.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
+	}
+
+	// from DrownedModel & SkeletonModel
+	@Override
+	public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick) {
+		this.rightArmPose = HumanoidModel.ArmPose.EMPTY;
+		this.leftArmPose = HumanoidModel.ArmPose.EMPTY;
+		ItemStack stack = entity.getItemInHand(InteractionHand.MAIN_HAND);
+		if (stack.getItem() instanceof SpearItem && entity.isAggressive()) {
+			if (entity.getMainArm() == HumanoidArm.RIGHT) {
+				this.rightArmPose = HumanoidModel.ArmPose.THROW_SPEAR;
+			} else {
+				this.leftArmPose = HumanoidModel.ArmPose.THROW_SPEAR;
+			}
+		}
+		if (stack.is(Items.BOW) && entity.isAggressive()) {
+			if (entity.getMainArm() == HumanoidArm.RIGHT) {
+				this.rightArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
+			} else {
+				this.leftArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
+			}
+		}
+
+		super.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
 	}
 
 	@Override

@@ -83,6 +83,11 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> CRETEOR_CHARGE = register("entity.creteor.charge");
 	public static final RegistryObject<SoundEvent, SoundEvent> CRETEOR_EXPLODE = register("entity.creteor.explode");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_AMBIENT = register("entity.stranghoul.ambient");
+	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_HURT = register("entity.stranghoul.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_DEATH = register("entity.stranghoul.death");
+	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_SHOOT = register("entity.stranghoul.shoot");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_HURT = register("entity.luminofish.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_DEATH = register("entity.luminofish.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_FLOP = register("entity.luminofish.flop");

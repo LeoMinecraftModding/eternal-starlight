@@ -97,6 +97,11 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.CRETEOR_CHARGE.get(), definition().with(sound(loc("mob/creteor/charge"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".creteor.charge"));
 		add(ESSoundEvents.CRETEOR_EXPLODE.get(), definition().with(sound(loc("mob/creteor/explode"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".creteor.explode"));
 
+		add(ESSoundEvents.STRANGHOUL_AMBIENT.get(), definition().with(sound(loc("mob/stranghoul/idle1")), sound(loc("mob/stranghoul/idle2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".stranghoul.ambient"));
+		add(ESSoundEvents.STRANGHOUL_HURT.get(), definition().with(sound(loc("mob/stranghoul/hurt1")), sound(loc("mob/stranghoul/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".stranghoul.hurt"));
+		add(ESSoundEvents.STRANGHOUL_DEATH.get(), definition().with(sound(loc("mob/stranghoul/death1")), sound(loc("mob/stranghoul/death2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".stranghoul.death"));
+		add(ESSoundEvents.STRANGHOUL_SHOOT.get(), definition().with(sound(mcLoc("random/bow"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".stranghoul.shoot"));
+
 		add(ESSoundEvents.LUMINOFISH_HURT.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminofish.hurt"));
 		add(ESSoundEvents.LUMINOFISH_DEATH.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminofish.death"));
 		add(ESSoundEvents.LUMINOFISH_FLOP.get(), definition().with(sound(mcLoc("entity/fish/flop1")).volume(0.3), sound(mcLoc("entity/fish/flop2")).volume(0.3), sound(mcLoc("entity/fish/flop3")).volume(0.3), sound(mcLoc("entity/fish/flop4")).volume(0.3)).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminofish.flop"));

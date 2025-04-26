@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.block.PungencyFruitVinesBlock;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownSpear;
+import cn.leolezury.eternalstarlight.common.item.weapon.SpearItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -19,6 +21,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.RandomSource;
@@ -46,7 +49,10 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -73,7 +79,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
-public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
+public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, RangedAttackMob {
 	private static final String TAG_BABY = "baby";
 	private static final String TAG_GROWTH_TICKS = "growth_ticks";
 	private static final String TAG_BREED_COOLDOWN = "breed_cooldown";
@@ -190,26 +196,80 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new EatGoal());
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
-		this.goalSelector.addGoal(3, new FollowHirerGoal());
-		this.goalSelector.addGoal(4, new BreedGoal());
-		this.goalSelector.addGoal(5, new GoToWantedItemGoal());
-		this.goalSelector.addGoal(6, new PlantCropGoal());
-		this.goalSelector.addGoal(7, new CropGoal());
-		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
+		this.goalSelector.addGoal(2, new SpearAttackGoal());
+		this.goalSelector.addGoal(3, new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F));
+		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0, false));
+		this.goalSelector.addGoal(5, new FollowHirerGoal());
+		this.goalSelector.addGoal(6, new BreedGoal());
+		this.goalSelector.addGoal(7, new GoToWantedItemGoal());
+		this.goalSelector.addGoal(8, new PlantCropGoal());
+		this.goalSelector.addGoal(9, new CropGoal());
+		this.goalSelector.addGoal(10, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
 			@Override
 			public boolean canUse() {
 				return super.canUse() && !Stranghoul.this.isBartering();
 			}
 		});
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(12, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new HirerHurtByTargetGoal());
 		this.targetSelector.addGoal(1, new HirerHurtTargetGoal());
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true, living -> living.getType().is(ESTags.EntityTypes.STRANGHOUL_PREYS) && !living.getType().is(ESTags.EntityTypes.STRANGHOUL_CANNOT_HUNT)));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true, living -> !Stranghoul.this.isHired() && living.getHealth() / living.getMaxHealth() < 0.15));
 		this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
+	}
+
+	@Override
+	public void performRangedAttack(LivingEntity target, float distanceFactor) {
+		if (getMainHandItem().getItem() instanceof SpearItem spearItem) {
+			ThrownSpear spear = spearItem.createSpear(level(), this, getX(), getEyeY() - 0.1, getZ(), getMainHandItem());
+			double x = target.getX() - this.getX();
+			double y = target.getY(0.3333333333333333) - spear.getY();
+			double z = target.getZ() - this.getZ();
+			double dist = Math.sqrt(x * x + z * z);
+			spear.shoot(x, y + dist * 0.2F, z, 1.6F, (14 - this.level().getDifficulty().getId() * 4));
+			this.level().addFreshEntity(spear);
+		} else {
+			ItemStack bow = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, Items.BOW));
+			ItemStack projectile = this.getProjectile(bow);
+			if (projectile.is(Items.ARROW)) {
+				projectile = ESItems.MALARITE_ARROW.get().getDefaultInstance();
+			}
+			AbstractArrow arrow = ProjectileUtil.getMobArrow(this, projectile, distanceFactor, bow);
+			double x = target.getX() - this.getX();
+			double y = target.getY(0.3333333333333333) - arrow.getY();
+			double z = target.getZ() - this.getZ();
+			double dist = Math.sqrt(x * x + z * z);
+			arrow.shoot(x, y + dist * 0.2F, z, 1.6F, (14 - this.level().getDifficulty().getId() * 4));
+			this.playSound(ESSoundEvents.STRANGHOUL_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+			this.level().addFreshEntity(arrow);
+		}
+	}
+
+	class SpearAttackGoal extends RangedAttackGoal {
+		public SpearAttackGoal() {
+			super(Stranghoul.this, 1.0, 40, 10.0F);
+		}
+
+		@Override
+		public boolean canUse() {
+			return super.canUse() && Stranghoul.this.getMainHandItem().getItem() instanceof SpearItem;
+		}
+
+		@Override
+		public void start() {
+			super.start();
+			Stranghoul.this.setAggressive(true);
+			Stranghoul.this.startUsingItem(InteractionHand.MAIN_HAND);
+		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			Stranghoul.this.stopUsingItem();
+			Stranghoul.this.setAggressive(false);
+		}
 	}
 
 	private class EatGoal extends Goal {
@@ -689,6 +749,9 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 	public void aiStep() {
 		super.aiStep();
 		if (!this.level().isClientSide) {
+			if (getTarget() != null && !getTarget().isAlive()) {
+				setTarget(null);
+			}
 			if (hirer == null && hirerId != null && level() instanceof ServerLevel serverLevel) {
 				if (serverLevel.getEntity(hirerId) instanceof LivingEntity livingEntity) {
 					hirer = livingEntity;
@@ -765,7 +828,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 	@Override
 	public boolean isAlliedTo(Entity entity) {
 		LivingEntity hirer = getHirer();
-		return super.isAlliedTo(entity) || (hirer != null
+		return super.isAlliedTo(entity) || entity instanceof Stranghoul || (hirer != null
 			&& (hirer.isAlliedTo(entity)
 			|| hirer == entity
 			|| (entity instanceof OwnableEntity ownable
@@ -969,6 +1032,21 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity {
 			hirerId = compoundTag.getUUID(TAG_HIRER);
 		}
 		hiredTicksLeft = compoundTag.getInt(TAG_HIRED_TICKS_LEFT);
+	}
+
+	@Override
+	protected @Nullable SoundEvent getAmbientSound() {
+		return ESSoundEvents.STRANGHOUL_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return ESSoundEvents.STRANGHOUL_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.STRANGHOUL_DEATH.get();
 	}
 
 	@Override

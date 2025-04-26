@@ -493,6 +493,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.STRANGHOUL_CAN_USE)
 			.add(
+				Items.BOW,
 				Items.WOODEN_SWORD,
 				Items.WOODEN_PICKAXE,
 				Items.WOODEN_AXE,
@@ -506,7 +507,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_AXE.get(),
 				ESItems.MALARITE_HOE.get(),
 				ESItems.MALARITE_SICKLE.get(),
-				ESItems.PUNGENCY_FRUIT_AXE.get()
+				ESItems.MALARITE_SPEAR.get(),
+				ESItems.PUNGENCY_FRUIT_AXE.get(),
+				ESItems.PUNGENCY_FRUIT_SPEAR.get()
 			);
 		tag(ESTags.Items.STRANGHOUL_FOOD)
 			.add(

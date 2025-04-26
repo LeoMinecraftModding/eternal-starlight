@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-13T19:57:47.7743027	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-04-26T13:38:20.5142647	Tags for minecraft:item mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
@@ -137,7 +137,7 @@ f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northl
 7de9617000473e9e307ca001cd1ecff23381eb6a data/eternal_starlight/tags/item/small_shields.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/item/starlight_mangrove_logs.json
 81ed6ad2793cb1d8917128fe90e42e05734c823e data/eternal_starlight/tags/item/stellagmite_igniters.json
-ab34b6e1214cae51728c559162c7a7af2d0a206e data/eternal_starlight/tags/item/stranghoul_can_use.json
+4d452a41d133eef675418d780ba22bdf95def89c data/eternal_starlight/tags/item/stranghoul_can_use.json
 820388b7cf47038f17d9e1803fa7373a50fa2fb3 data/eternal_starlight/tags/item/stranghoul_currencies.json
 4170e5f789e7aae741064732a30ebf0e752615f9 data/eternal_starlight/tags/item/stranghoul_food.json
 04dc7f1ac0101b907916cc09c21e779c92166ab3 data/eternal_starlight/tags/item/stranghoul_hiring_food.json
