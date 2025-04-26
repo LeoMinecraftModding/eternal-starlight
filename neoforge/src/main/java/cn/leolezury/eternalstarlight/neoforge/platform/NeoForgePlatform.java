@@ -55,6 +55,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -63,11 +64,9 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import net.neoforged.neoforge.common.CommonHooks;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -250,6 +249,13 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
 		return CommonHooks.onTravelToDimension(entity, dimension);
+	}
+
+	@Override
+	public boolean postTeleportEvent(Entity entity, Vec3 destPos) {
+		EntityTeleportEvent event = new EntityTeleportEvent(entity, destPos.x, destPos.y, destPos.z);
+		NeoForge.EVENT_BUS.post(event);
+		return !event.isCanceled();
 	}
 
 	@Override

@@ -483,13 +483,17 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				}
 			}
 			if (blocksMotion && new Vec3(x, currentY, z).distanceTo(target) <= 15) {
-				this.teleportTo(x, currentY, z);
+				if (ESPlatform.INSTANCE.postTeleportEvent(this, new Vec3(x, currentY, z))) {
+					this.teleportTo(x, currentY, z);
+				}
 				success = level.noCollision(this) && !level.containsAnyLiquid(this.getBoundingBox());
 			}
 		}
 
 		if (!success) {
-			this.teleportTo(oldX, oldY, oldZ);
+			if (ESPlatform.INSTANCE.postTeleportEvent(this, new Vec3(oldX, oldY, oldZ))) {
+				this.teleportTo(oldX, oldY, oldZ);
+			}
 		}
 
 		return success;

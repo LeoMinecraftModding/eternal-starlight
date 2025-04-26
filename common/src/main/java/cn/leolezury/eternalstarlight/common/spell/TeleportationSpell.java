@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -80,14 +81,18 @@ public class TeleportationSpell extends AbstractSpell {
 			for (int i = 0; i < result.entities().size(); i++) {
 				if (result.entities().get(i) != entity) {
 					Vec3 target = result.entities().get(i).position();
-					entity.teleportTo(target.x, target.y, target.z);
-					return;
+					if (ESPlatform.INSTANCE.postTeleportEvent(entity, target)) {
+						entity.teleportTo(target.x, target.y, target.z);
+						return;
+					}
 				}
 			}
 		}
 		if (result.blockHitResult() != null) {
 			Vec3 target = result.blockHitResult().getLocation();
-			entity.teleportTo(target.x, target.y, target.z);
+			if (ESPlatform.INSTANCE.postTeleportEvent(entity, target)) {
+				entity.teleportTo(target.x, target.y, target.z);
+			}
 		}
 	}
 }
