@@ -1,7 +1,6 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AshenSnowball;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;
@@ -16,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 
-public class FrozenTubeItem extends Item implements ProjectileItem {
-	public FrozenTubeItem(Properties properties) {
+public class AshenSnowballItem extends Item implements ProjectileItem {
+	public AshenSnowballItem(Properties properties) {
 		super(properties);
 	}
 
@@ -26,24 +25,24 @@ public class FrozenTubeItem extends Item implements ProjectileItem {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!level.isClientSide) {
-			FrozenTube tube = new FrozenTube(level, player, null);
-			tube.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-			tube.setPos(tube.position().offsetRandom(player.getRandom(), 0.2f)); // so we can see the trail
-			level.addFreshEntity(tube);
+			AshenSnowball snowball = new AshenSnowball(level, player);
+			snowball.setItem(itemStack);
+			snowball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+			level.addFreshEntity(snowball);
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));
-		itemStack.consume(1, player);
-
-		player.getCooldowns().addCooldown(this, 60);
+		if (!player.hasInfiniteMaterials()) {
+			itemStack.shrink(1);
+		}
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
 	}
 
 	@Override
 	public Projectile asProjectile(Level level, Position position, ItemStack itemStack, Direction direction) {
-		FrozenTube tube = new FrozenTube(ESEntities.FROZEN_TUBE.get(), level);
-		tube.setPos(position.x(), position.y(), position.z());
-		return tube;
+		AshenSnowball snowball = new AshenSnowball(level, position.x(), position.y(), position.z());
+		snowball.setItem(itemStack);
+		return snowball;
 	}
 }

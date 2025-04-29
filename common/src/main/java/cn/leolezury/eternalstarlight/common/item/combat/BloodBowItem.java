@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BowItem;

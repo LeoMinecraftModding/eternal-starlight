@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.fabric.mixin;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
-import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
+import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;

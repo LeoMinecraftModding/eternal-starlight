@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.item.weapon.HammerItem;
+import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.neoforged.neoforge.common.ItemAbilities;

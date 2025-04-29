@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.goal;
 
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ShatteredBlade;
-import cn.leolezury.eternalstarlight.common.item.weapon.ShatteredSwordItem;
+import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

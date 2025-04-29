@@ -1,5 +1,6 @@
 {
   "type": "eternal_starlight:drying",
+  "duration_ticks": 2400,
   "fire_below": false,
   "input": {
     "item": "minecraft:rotten_flesh"

@@ -11,18 +11,21 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public record DryingRecipe(Ingredient input, ItemStack output, boolean fireBelow) implements Recipe<RecipeInput> {
+public record DryingRecipe(Ingredient input, ItemStack output, int durationTicks, boolean fireBelow) implements Recipe<DryingRecipeInput> {
 	@Override
-	public boolean matches(RecipeInput container, Level level) {
-		return true;
+	public boolean matches(DryingRecipeInput container, Level level) {
+		return input().test(container.input()) && fireBelow() == container.fireBelow();
 	}
 
 	@Override
-	public ItemStack assemble(RecipeInput container, HolderLookup.Provider provider) {
-		return ItemStack.EMPTY;
+	public ItemStack assemble(DryingRecipeInput container, HolderLookup.Provider provider) {
+		return output().copy();
 	}
 
 	@Override
@@ -32,7 +35,7 @@ public record DryingRecipe(Ingredient input, ItemStack output, boolean fireBelow
 
 	@Override
 	public ItemStack getResultItem(HolderLookup.Provider provider) {
-		return ItemStack.EMPTY;
+		return output();
 	}
 
 	@Override
@@ -58,6 +61,7 @@ public record DryingRecipe(Ingredient input, ItemStack output, boolean fireBelow
 		private static final MapCodec<DryingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			Ingredient.CODEC.fieldOf("input").forGetter(DryingRecipe::input),
 			ItemStack.OPTIONAL_CODEC.fieldOf("output").forGetter(DryingRecipe::output),
+			Codec.INT.fieldOf("duration_ticks").forGetter(DryingRecipe::durationTicks),
 			Codec.BOOL.fieldOf("fire_below").forGetter(DryingRecipe::fireBelow)
 		).apply(instance, DryingRecipe::new));
 
@@ -73,14 +77,16 @@ public record DryingRecipe(Ingredient input, ItemStack output, boolean fireBelow
 				public DryingRecipe decode(RegistryFriendlyByteBuf friendlyByteBuf) {
 					Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(friendlyByteBuf);
 					ItemStack output = ItemStack.STREAM_CODEC.decode(friendlyByteBuf);
+					int durationTicks = friendlyByteBuf.readInt();
 					boolean fireBelow = friendlyByteBuf.readBoolean();
-					return new DryingRecipe(input, output, fireBelow);
+					return new DryingRecipe(input, output, durationTicks, fireBelow);
 				}
 
 				@Override
 				public void encode(RegistryFriendlyByteBuf friendlyByteBuf, DryingRecipe recipe) {
 					Ingredient.CONTENTS_STREAM_CODEC.encode(friendlyByteBuf, recipe.input());
 					ItemStack.STREAM_CODEC.encode(friendlyByteBuf, recipe.output());
+					friendlyByteBuf.writeInt(recipe.durationTicks());
 					friendlyByteBuf.writeBoolean(recipe.fireBelow());
 				}
 			};

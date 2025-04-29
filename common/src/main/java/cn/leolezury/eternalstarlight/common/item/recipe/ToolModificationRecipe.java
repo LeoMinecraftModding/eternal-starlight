@@ -37,15 +37,6 @@ public class ToolModificationRecipe extends CustomRecipe {
 
 	@Override
 	public ItemStack assemble(CraftingInput recipeInput, HolderLookup.Provider provider) {
-		if (recipeInput.items().stream().anyMatch(stack -> !stack.isEmpty() && !stack.is(tool) && !stack.is(input))) {
-			return ItemStack.EMPTY;
-		}
-		if (recipeInput.items().stream().filter(stack -> stack.is(tool)).count() != 1) {
-			return ItemStack.EMPTY;
-		}
-		if (recipeInput.items().stream().filter(stack -> stack.is(input)).count() != 1) {
-			return ItemStack.EMPTY;
-		}
 		return output.copy();
 	}
 

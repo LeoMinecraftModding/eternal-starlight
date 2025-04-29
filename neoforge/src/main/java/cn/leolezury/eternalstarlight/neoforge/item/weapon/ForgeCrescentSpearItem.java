@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.item.weapon;
 
-import cn.leolezury.eternalstarlight.common.item.weapon.CrescentSpearItem;
+import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;

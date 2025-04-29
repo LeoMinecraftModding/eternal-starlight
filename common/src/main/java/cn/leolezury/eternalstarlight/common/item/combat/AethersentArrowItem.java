@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentArrow;
 import net.minecraft.core.Direction;

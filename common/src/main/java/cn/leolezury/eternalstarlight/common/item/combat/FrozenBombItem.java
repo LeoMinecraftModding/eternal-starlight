@@ -1,6 +1,6 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.GleechEgg;
+import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenBomb;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;
@@ -15,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 
-public class GleechEggItem extends Item implements ProjectileItem {
-	public GleechEggItem(Properties properties) {
+public class FrozenBombItem extends Item implements ProjectileItem {
+	public FrozenBombItem(Properties properties) {
 		super(properties);
 	}
 
@@ -25,22 +25,26 @@ public class GleechEggItem extends Item implements ProjectileItem {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!level.isClientSide) {
-			GleechEgg egg = new GleechEgg(level, player);
-			egg.setItem(itemStack);
-			egg.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-			level.addFreshEntity(egg);
+			FrozenBomb bomb = new FrozenBomb(level, player);
+			bomb.setItem(itemStack);
+			bomb.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+			level.addFreshEntity(bomb);
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));
-		itemStack.consume(1, player);
+		if (!player.hasInfiniteMaterials()) {
+			itemStack.shrink(1);
+		}
+
+		player.getCooldowns().addCooldown(this, 60);
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
 	}
 
 	@Override
 	public Projectile asProjectile(Level level, Position position, ItemStack itemStack, Direction direction) {
-		GleechEgg egg = new GleechEgg(level, position.x(), position.y(), position.z());
-		egg.setItem(itemStack);
-		return egg;
+		FrozenBomb bomb = new FrozenBomb(level, position.x(), position.y(), position.z());
+		bomb.setItem(itemStack);
+		return bomb;
 	}
 }

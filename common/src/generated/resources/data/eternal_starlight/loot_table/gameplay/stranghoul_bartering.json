@@ -92,6 +92,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:drying_rack",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,
@@ -162,6 +167,22 @@
             }
           ],
           "name": "eternal_starlight:malarite_arrow",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "eternal_starlight:rotten_flesh_jerky",
           "weight": 30
         },
         {

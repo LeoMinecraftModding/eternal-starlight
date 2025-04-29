@@ -43,12 +43,14 @@ public class ESBarteringLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.ROTTEN_FLESH).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
 					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
+					.add(LootItem.lootTableItem(ESItems.DRYING_RACK.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(10.0F, 36.0F))))
 					.add(LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 12.0F))))
 					.add(LootItem.lootTableItem(ESItems.SALTPETER_POWDER.get()).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 12.0F))))
 					.add(LootItem.lootTableItem(ESItems.GRIMSTONE.get()).setWeight(20))
 					.add(LootItem.lootTableItem(ESItems.VOIDSTONE.get()).setWeight(20))
 					.add(LootItem.lootTableItem(ESItems.MALARITE_ARROW.get()).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 9.0F))))
+					.add(LootItem.lootTableItem(ESItems.ROTTEN_FLESH_JERKY.get()).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT.get()).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_SEEDS.get()).setWeight(32).apply(SetItemCountFunction.setCount(UniformGenerator.between(6.0F, 12.0F))))));
 	}

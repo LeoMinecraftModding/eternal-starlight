@@ -1,6 +1,7 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenBomb;
+import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;
@@ -15,8 +16,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 
-public class FrozenBombItem extends Item implements ProjectileItem {
-	public FrozenBombItem(Properties properties) {
+public class FrozenTubeItem extends Item implements ProjectileItem {
+	public FrozenTubeItem(Properties properties) {
 		super(properties);
 	}
 
@@ -25,16 +26,14 @@ public class FrozenBombItem extends Item implements ProjectileItem {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!level.isClientSide) {
-			FrozenBomb bomb = new FrozenBomb(level, player);
-			bomb.setItem(itemStack);
-			bomb.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-			level.addFreshEntity(bomb);
+			FrozenTube tube = new FrozenTube(level, player, null);
+			tube.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+			tube.setPos(tube.position().offsetRandom(player.getRandom(), 0.2f)); // so we can see the trail
+			level.addFreshEntity(tube);
 		}
 
 		player.awardStat(Stats.ITEM_USED.get(this));
-		if (!player.hasInfiniteMaterials()) {
-			itemStack.shrink(1);
-		}
+		itemStack.consume(1, player);
 
 		player.getCooldowns().addCooldown(this, 60);
 
@@ -43,8 +42,8 @@ public class FrozenBombItem extends Item implements ProjectileItem {
 
 	@Override
 	public Projectile asProjectile(Level level, Position position, ItemStack itemStack, Direction direction) {
-		FrozenBomb bomb = new FrozenBomb(level, position.x(), position.y(), position.z());
-		bomb.setItem(itemStack);
-		return bomb;
+		FrozenTube tube = new FrozenTube(ESEntities.FROZEN_TUBE.get(), level);
+		tube.setPos(position.x(), position.y(), position.z());
+		return tube;
 	}
 }

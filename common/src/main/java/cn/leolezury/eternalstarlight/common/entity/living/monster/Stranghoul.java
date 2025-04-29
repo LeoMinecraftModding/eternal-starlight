@@ -1,10 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.block.PungencyFruitVinesBlock;
+import cn.leolezury.eternalstarlight.common.block.entity.DryingRackBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownSpear;
-import cn.leolezury.eternalstarlight.common.item.weapon.SpearItem;
+import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -80,6 +81,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, RangedAttackMob {
+	private static final String TAG_HOME_X = "home_x";
+	private static final String TAG_HOME_Y = "home_y";
+	private static final String TAG_HOME_Z = "home_z";
 	private static final String TAG_BABY = "baby";
 	private static final String TAG_GROWTH_TICKS = "growth_ticks";
 	private static final String TAG_BREED_COOLDOWN = "breed_cooldown";
@@ -92,6 +96,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	private int remainingPersistentAngerTime;
 	@Nullable
 	private UUID persistentAngerTarget;
+	public BlockPos homePos = BlockPos.ZERO;
 	private int growthTicks;
 	private int breedCooldown = 24000;
 	private int admirationTicks;
@@ -202,16 +207,18 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		this.goalSelector.addGoal(5, new FollowHirerGoal());
 		this.goalSelector.addGoal(6, new BreedGoal());
 		this.goalSelector.addGoal(7, new GoToWantedItemGoal());
-		this.goalSelector.addGoal(8, new PlantCropGoal());
-		this.goalSelector.addGoal(9, new CropGoal());
-		this.goalSelector.addGoal(10, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
+		this.goalSelector.addGoal(8, new GoHomeGoal());
+		this.goalSelector.addGoal(9, new PlantCropGoal());
+		this.goalSelector.addGoal(10, new CropGoal());
+		this.goalSelector.addGoal(11, new DryRottenFleshGoal());
+		this.goalSelector.addGoal(12, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
 			@Override
 			public boolean canUse() {
 				return super.canUse() && !Stranghoul.this.isBartering();
 			}
 		});
-		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(12, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(13, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new HirerHurtByTargetGoal());
 		this.targetSelector.addGoal(1, new HirerHurtTargetGoal());
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
@@ -546,6 +553,40 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
+	private class GoHomeGoal extends Goal {
+		private int tryTicks = 0;
+
+		public GoHomeGoal() {
+			this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+		}
+
+		@Override
+		public boolean canUse() {
+			return Stranghoul.this.getRandom().nextInt(reducedTickDelay(120)) == 0 && !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos, 20);
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos, 10) && tryTicks < 600;
+		}
+
+		@Override
+		public void stop() {
+			tryTicks = 0;
+		}
+
+		@Override
+		public void tick() {
+			tryTicks++;
+			Stranghoul.this.getNavigation().moveTo(Stranghoul.this.homePos.getX() + 0.5, Stranghoul.this.homePos.getY() + 0.5, Stranghoul.this.homePos.getZ() + 0.5, 1);
+		}
+
+		@Override
+		public boolean requiresUpdateEveryTick() {
+			return true;
+		}
+	}
+
 	private class PlantCropGoal extends MoveToBlockGoal {
 		public PlantCropGoal() {
 			super(Stranghoul.this, 1.0, 20, 15);
@@ -623,6 +664,51 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
 			BlockState state = level.getBlockState(pos);
 			return state.is(ESBlocks.PUNGENCY_FRUIT_VINES.get()) && state.getValue(PungencyFruitVinesBlock.AGE) == PungencyFruitVinesBlock.MAX_AGE;
+		}
+	}
+
+	private class DryRottenFleshGoal extends MoveToBlockGoal {
+		public DryRottenFleshGoal() {
+			super(Stranghoul.this, 1.0, 20, 15);
+		}
+
+		@Override
+		public boolean canUse() {
+			if (Stranghoul.this.isHired() || !ESPlatform.INSTANCE.canEntityGrief(Stranghoul.this.level(), Stranghoul.this)) {
+				return false;
+			}
+			return Stranghoul.this.getOffhandItem().is(Items.ROTTEN_FLESH) && !Stranghoul.this.isBartering() && super.canUse();
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return Stranghoul.this.getOffhandItem().is(Items.ROTTEN_FLESH) && super.canContinueToUse();
+		}
+
+		@Override
+		public void tick() {
+			super.tick();
+			if (this.isReachedTarget()) {
+				Level level = Stranghoul.this.level();
+				if (isValidTarget(level, blockPos)) {
+					if (level.getBlockEntity(blockPos) instanceof DryingRackBlockEntity entity) {
+						entity.setItem(Stranghoul.this.getOffhandItem().copyWithCount(1));
+						Stranghoul.this.getOffhandItem().consume(1, Stranghoul.this);
+					}
+					Stranghoul.this.swing(InteractionHand.OFF_HAND);
+					Stranghoul.this.addHappyParticles();
+				}
+			}
+		}
+
+		@Override
+		public double acceptedDistance() {
+			return 2.5;
+		}
+
+		@Override
+		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
+			return level.getBlockState(pos).is(ESBlocks.DRYING_RACK.get()) && level.getBlockEntity(pos) instanceof DryingRackBlockEntity entity && (entity.getItem().isEmpty() || entity.getItem().is(ESItems.ROTTEN_FLESH_JERKY.get()) || entity.getItem().is(Items.LEATHER));
 		}
 	}
 
@@ -734,6 +820,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+		homePos = blockPosition();
 		if (random.nextFloat() < 0.1F) {
 			this.setBaby(true);
 		}
@@ -850,6 +937,11 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			if (player instanceof ServerPlayer serverPlayer) {
 				ESCriteriaTriggers.HIRE_STRANGHOUL.get().trigger(serverPlayer);
 			}
+			return InteractionResult.sidedSuccess(level().isClientSide);
+		}
+		if (stack.is(ESTags.Items.STRANGHOUL_CURRENCIES) && !isBaby() && getOffhandItem().isEmpty() && getTarget() == null) {
+			setItemSlot(EquipmentSlot.OFFHAND, stack.copyWithCount(1));
+			stack.consume(1, player);
 			return InteractionResult.sidedSuccess(level().isClientSide);
 		}
 		if (isHired() && player == getHirer()) {
@@ -1008,6 +1100,9 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		this.addPersistentAngerSaveData(compoundTag);
+		compoundTag.putInt(TAG_HOME_X, homePos.getX());
+		compoundTag.putInt(TAG_HOME_Y, homePos.getY());
+		compoundTag.putInt(TAG_HOME_Z, homePos.getZ());
 		compoundTag.putBoolean(TAG_BABY, isBaby());
 		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 		compoundTag.putInt(TAG_BREED_COOLDOWN, breedCooldown);
@@ -1022,6 +1117,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
+		homePos = new BlockPos(compoundTag.getInt(TAG_HOME_X), compoundTag.getInt(TAG_HOME_Y), compoundTag.getInt(TAG_HOME_Z));
 		if (compoundTag.contains(TAG_BABY, CompoundTag.TAG_BYTE)) {
 			setBaby(compoundTag.getBoolean(TAG_BABY));
 		}

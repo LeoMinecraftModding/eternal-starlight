@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.item.weapon;
+package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;

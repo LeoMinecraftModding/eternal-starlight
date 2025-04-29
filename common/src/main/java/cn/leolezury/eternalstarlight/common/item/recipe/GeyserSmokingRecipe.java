@@ -14,20 +14,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
-public record GeyserSmokingRecipe(Item input, int inputCount, ItemStack output) implements Recipe<RecipeInput> {
+public record GeyserSmokingRecipe(Item input, int inputCount, ItemStack output) implements Recipe<SingleRecipeInput> {
 	@Override
-	public boolean matches(RecipeInput container, Level level) {
-		return true;
+	public boolean matches(SingleRecipeInput container, Level level) {
+		return container.getItem(0).is(input()) && container.getItem(0).getCount() >= inputCount();
 	}
 
 	@Override
-	public ItemStack assemble(RecipeInput container, HolderLookup.Provider provider) {
-		return ItemStack.EMPTY;
+	public ItemStack assemble(SingleRecipeInput container, HolderLookup.Provider provider) {
+		return output().copy();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public record GeyserSmokingRecipe(Item input, int inputCount, ItemStack output) 
 
 	@Override
 	public ItemStack getResultItem(HolderLookup.Provider provider) {
-		return ItemStack.EMPTY;
+		return output().copy();
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 {
   "type": "eternal_starlight:drying",
-  "duration_ticks": 600,
+  "duration_ticks": 100,
   "fire_below": true,
   "input": {
-    "item": "minecraft:rotten_flesh"
+    "item": "minecraft:wet_sponge"
   },
   "output": {
     "count": 1,
-    "id": "eternal_starlight:rotten_flesh_jerky"
+    "id": "minecraft:sponge"
   }
 }

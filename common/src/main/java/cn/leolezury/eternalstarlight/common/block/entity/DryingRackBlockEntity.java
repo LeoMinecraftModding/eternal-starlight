@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.block.DryingRackBlock;
 import cn.leolezury.eternalstarlight.common.item.recipe.DryingRecipe;
+import cn.leolezury.eternalstarlight.common.item.recipe.DryingRecipeInput;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
@@ -12,6 +13,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DryingRackBlockEntity extends BlockEntity {
 	private static final String TAG_DRYING_TICKS = "drying_ticks";
@@ -32,6 +35,8 @@ public class DryingRackBlockEntity extends BlockEntity {
 		this(ESBlockEntities.DRYING_RACK.get(), blockPos, blockState);
 	}
 
+	private final RecipeManager.CachedCheck<DryingRecipeInput, DryingRecipe> quickCheck = RecipeManager.createCheck(ESRecipes.DRYING.get());
+	private boolean lastLit;
 	private int dryingTicks = 0;
 	private ItemStack item = ItemStack.EMPTY;
 
@@ -61,18 +66,21 @@ public class DryingRackBlockEntity extends BlockEntity {
 
 	public static void tick(Level level, BlockPos pos, BlockState state, DryingRackBlockEntity entity) {
 		if (!entity.item.isEmpty()) {
-			entity.dryingTicks++;
-			if (entity.dryingTicks > 12000) {
+			boolean lit = state.getValue(DryingRackBlock.LIT);
+			if (entity.lastLit != lit) {
 				entity.dryingTicks = 0;
-				boolean lit = state.getValue(DryingRackBlock.LIT);
-				List<RecipeHolder<DryingRecipe>> list = level.getRecipeManager().getAllRecipesFor(ESRecipes.DRYING.get());
-				for (RecipeHolder<DryingRecipe> holder : list) {
-					DryingRecipe recipe = holder.value();
-					if (lit == recipe.fireBelow() && recipe.input().test(entity.item)) {
-						entity.setItem(recipe.output().copy());
-						break;
-					}
+				entity.lastLit = lit;
+			}
+			Optional<RecipeHolder<DryingRecipe>> optionalRecipe = entity.quickCheck.getRecipeFor(new DryingRecipeInput(entity.item, lit), level);
+			if (optionalRecipe.isPresent()) {
+				DryingRecipe recipe = optionalRecipe.get().value();
+				entity.dryingTicks++;
+				if (entity.dryingTicks > recipe.durationTicks()) {
+					entity.dryingTicks = 0;
+					entity.setItem(recipe.output().copy());
 				}
+			} else {
+				entity.dryingTicks = 0;
 			}
 		} else {
 			entity.dryingTicks = 0;
@@ -101,7 +109,7 @@ public class DryingRackBlockEntity extends BlockEntity {
 	public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.loadAdditional(compoundTag, provider);
 		this.dryingTicks = compoundTag.getInt(TAG_DRYING_TICKS);
-		this.item = ItemStack.parseOptional(provider, compoundTag.getCompound(TAG_ITEM));
+		setItem(ItemStack.parseOptional(provider, compoundTag.getCompound(TAG_ITEM)));
 	}
 
 	@Override

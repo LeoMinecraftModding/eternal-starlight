@@ -104,7 +104,7 @@ public class DryingRackBlock extends BaseEntityBlock {
 
 	@Override
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-		if (level.getBlockEntity(pos) instanceof DryingRackBlockEntity entity) {
+		if (!state.is(newState.getBlock()) && level.getBlockEntity(pos) instanceof DryingRackBlockEntity entity) {
 			Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), entity.getItem());
 		}
 		super.onRemove(state, level, pos, newState, movedByPiston);
