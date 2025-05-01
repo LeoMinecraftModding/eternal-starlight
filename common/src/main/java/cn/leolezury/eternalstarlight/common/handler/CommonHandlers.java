@@ -186,12 +186,12 @@ public class CommonHandlers {
 				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
 			) {
 				if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-					livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 80);
+					livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 80, 300));
 				}
 			}
 
 			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
-				entity.setTicksFrozen(entity.getTicksFrozen() + 80);
+				entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 80, 300));
 			}
 
 			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.MALARITE_WEAPONS)) {
@@ -396,7 +396,7 @@ public class CommonHandlers {
 
 	public static void onShieldBlock(LivingEntity blocker, DamageSource source) {
 		if (blocker.getUseItem().is(ESItems.GLACITE_SHIELD.get()) && source.getDirectEntity() instanceof LivingEntity entity && entity.canFreeze()) {
-			entity.setTicksFrozen(entity.getTicksFrozen() + 100);
+			entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
 		}
 	}
 

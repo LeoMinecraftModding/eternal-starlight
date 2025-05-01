@@ -63,12 +63,15 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 			);
 		tag(DamageTypeTags.IS_PROJECTILE)
 			.add(
-				ESDamageTypes.SHATTERED_BLADE
+				ESDamageTypes.WILT,
+				ESDamageTypes.SHATTERED_BLADE,
+				ESDamageTypes.SEEDS
 			);
 		tag(DamageTypeTags.ALWAYS_KILLS_ARMOR_STANDS)
 			.add(
 				ESDamageTypes.METEOR,
 				ESDamageTypes.SHATTERED_BLADE,
+				ESDamageTypes.SEEDS,
 				ESDamageTypes.LASER
 			);
 		tag(DamageTypeTags.PANIC_CAUSES)
@@ -79,6 +82,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.SHATTERED_BLADE,
 				ESDamageTypes.SONAR,
 				ESDamageTypes.SOUL_ABSORB,
+				ESDamageTypes.SEEDS,
 				ESDamageTypes.LASER,
 				ESDamageTypes.BITE
 			);

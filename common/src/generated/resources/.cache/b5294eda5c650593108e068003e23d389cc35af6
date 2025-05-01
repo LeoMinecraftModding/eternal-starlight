@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-13T22:18:32.7137498	Particle Descriptions
+// 1.21.1	2025-05-01T12:08:13.5988502	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -18,6 +18,7 @@ df3620b4fc75de9ed119c43b5b58474f5bc41607 assets/eternal_starlight/particles/blad
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/glow.json
 0b48b37ee3470d6b496033de5cd8c29afe6ad5bf assets/eternal_starlight/particles/landing_mud.json
 b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/orbital_ashen_snow.json
+21cdc0ed30720178ebd7bd11d6d92e9063330b1c assets/eternal_starlight/particles/pungency_fruit_smoke.json
 58aff6c09e81b4e3406646bfc889267a76b2d6a6 assets/eternal_starlight/particles/ring_explosion.json
 097e78fde1d3f388ddd0f01d6cc81c38190996f7 assets/eternal_starlight/particles/scarlet_leaves.json
 0456ad6dda90688e1841fb24c550892a69023ddb assets/eternal_starlight/particles/shadegrieve_leaves.json

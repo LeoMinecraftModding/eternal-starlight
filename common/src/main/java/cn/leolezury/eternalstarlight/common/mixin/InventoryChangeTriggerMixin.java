@@ -20,6 +20,8 @@ public abstract class InventoryChangeTriggerMixin {
 			ItemStack inventoryItem = inventory.getItem(i);
 			if (inventoryItem.is(ESItems.PUNGENCY_FRUIT.get())) {
 				ESBookUtil.unlock(player, EternalStarlight.id("pungency_fruit"));
+			} else if (inventoryItem.is(ESItems.DRYING_RACK.get())) {
+				ESBookUtil.unlock(player, EternalStarlight.id("drying_rack"));
 			}
 		}
 	}

@@ -51,12 +51,14 @@ public class ESTags {
 		public static final TagKey<Item> STRANGHOUL_HIRING_FOOD = create("stranghoul_hiring_food");
 		public static final TagKey<Item> STRANGHOUL_CURRENCIES = create("stranghoul_currencies");
 		public static final TagKey<Item> STRANGHOUL_VULNERABLE_TO = create("stranghoul_vulnerable_to");
+		public static final TagKey<Item> SEEDS_LAUNCHER_AMMO = create("seeds_launcher_ammo");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
 		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
 		public static final TagKey<Item> HAMMER_ENCHANTABLE = create("enchantable/hammer");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
 		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
+		public static final TagKey<Item> SEEDS_LAUNCHER_ENCHANTABLE = create("enchantable/seeds_launcher");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");
@@ -146,6 +148,7 @@ public class ESTags {
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_COLD = create("has_portal_ruins_cold");
 		public static final TagKey<Biome> HAS_GOLEM_FORGE = create("has_golem_forge");
 		public static final TagKey<Biome> HAS_CURSED_GARDEN = create("has_cursed_garden");
+		public static final TagKey<Biome> HAS_STRANGHOUL_DEN = create("has_stranghoul_den");
 
 		private static TagKey<Biome> create(String string) {
 			return TagKey.create(Registries.BIOME, EternalStarlight.id(string));
@@ -155,6 +158,7 @@ public class ESTags {
 	public static class Enchantments {
 		public static final TagKey<Enchantment> GOLEM_FORGE_LOOT = create("golem_forge_loot");
 		public static final TagKey<Enchantment> CURSED_GARDEN_LOOT = create("cursed_garden_loot");
+		public static final TagKey<Enchantment> SEEDS_LAUNCHER_EXCLUSIVE = create("exclusive_set/seeds_launcher");
 
 		private static TagKey<Enchantment> create(String string) {
 			return TagKey.create(Registries.ENCHANTMENT, EternalStarlight.id(string));

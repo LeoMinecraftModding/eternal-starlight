@@ -50,7 +50,7 @@ public class FrozenBomb extends ThrowableItemProjectile {
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
 				if (getOwner() != entity) {
 					if (entity.canFreeze()) {
-						entity.setTicksFrozen(entity.getTicksFrozen() + 100);
+						entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
 					}
 					entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60));
 				}

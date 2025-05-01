@@ -39,7 +39,7 @@ public class GlaciteArrow extends AbstractArrow {
 	protected void doPostHurtEffects(LivingEntity livingEntity) {
 		super.doPostHurtEffects(livingEntity);
 		if (livingEntity.canFreeze()) {
-			livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + duration);
+			livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + duration, 300));
 		}
 	}
 

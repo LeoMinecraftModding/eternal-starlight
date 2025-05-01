@@ -242,6 +242,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
+				ESItems.SEEDS_LAUNCHER.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get(),
@@ -519,7 +520,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_SICKLE.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
-				ESItems.PUNGENCY_FRUIT_SPEAR.get()
+				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
+				ESItems.SEEDS_LAUNCHER.get()
 			);
 		tag(ESTags.Items.STRANGHOUL_FOOD)
 			.add(
@@ -542,6 +544,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SWAMP_SILVER_AXE.get(),
 				ESItems.SWAMP_SILVER_SICKLE.get()
 			);
+		tag(ESTags.Items.SEEDS_LAUNCHER_AMMO)
+			.addTag(Tags.Items.SEEDS);
 		tag(ESTags.Items.DOOMEDEN_KEYS)
 			.add(
 				ESItems.EYE_OF_DOOM.get(),
@@ -561,6 +565,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE)
 			.add(
 				ESItems.PUNGENCY_FRUIT_SPEAR.get()
+			);
+		tag(ESTags.Items.SEEDS_LAUNCHER_ENCHANTABLE)
+			.add(
+				ESItems.SEEDS_LAUNCHER.get()
 			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(
@@ -803,6 +811,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_SHIELD.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
+				ESItems.SEEDS_LAUNCHER.get(),
 				ESItems.SALTPETER_MATCHBOX.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),

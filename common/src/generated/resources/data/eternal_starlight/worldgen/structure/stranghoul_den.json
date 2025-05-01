@@ -1,0 +1,6 @@
+{
+  "type": "eternal_starlight:stranghoul_den",
+  "biomes": "#eternal_starlight:has_stranghoul_den",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

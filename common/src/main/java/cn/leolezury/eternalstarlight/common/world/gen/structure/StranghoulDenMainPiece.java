@@ -1,0 +1,107 @@
+package cn.leolezury.eternalstarlight.common.world.gen.structure;
+
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESStructurePieceTypes;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
+
+import java.util.Set;
+
+public class StranghoulDenMainPiece extends StructurePiece {
+	private static final Set<Direction> HORIZONTAL_DIRECTIONS = Set.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
+
+	public StranghoulDenMainPiece(int x, int y, int z) {
+		super(ESStructurePieceTypes.STRANGHOUL_DEN_MAIN.get(), 0, new BoundingBox(
+			x - 7,
+			y - 2,
+			z - 7,
+			x + 7,
+			y,
+			z + 7
+		));
+		setOrientation(Direction.SOUTH);
+	}
+
+	public StranghoulDenMainPiece(StructurePieceSerializationContext context, CompoundTag tag) {
+		super(ESStructurePieceTypes.STRANGHOUL_DEN_MAIN.get(), tag);
+		setOrientation(Direction.SOUTH);
+	}
+
+	@Override
+	protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
+
+	}
+
+	private boolean cannotSupport(BlockState state) {
+		return !state.is(BlockTags.DIRT) && !state.is(ESTags.Blocks.BASE_STONE_STARLIGHT);
+	}
+
+	@Override
+	public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos blockPos) {
+		boolean rackPlaced = false;
+		int rackX = 0, rackZ = 0;
+		for (int y = 0; y >= -2; y--) {
+			for (int x = -7; x <= 7; x++) {
+				for (int z = -7; z <= 7; z++) {
+					if (x * x + z * z < (7 + y) * (7 + y)) {
+						if (!(rackPlaced && x == rackX && z == rackZ)) {
+							placeBlock(level, Blocks.AIR.defaultBlockState(), x + 7, y, z + 7, box);
+							level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, y, z + 7));
+							if (getBlock(level, x + 7, y - 1, z + 7, box).is(ESBlocks.NIGHTFALL_MUD.get())) {
+								placeBlock(level, ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
+							}
+						}
+						for (Direction direction : HORIZONTAL_DIRECTIONS) {
+							if ((x + direction.getStepX()) * (x + direction.getStepX()) + (z + direction.getStepZ()) * (z + direction.getStepZ()) >= (7 + y) * (7 + y) && cannotSupport(getBlock(level, x + 7 + direction.getStepX(), y, z + 7 + direction.getStepZ(), box))) {
+								int additionalY = random.nextInt(6, 10);
+								for (int i = 0; i >= -additionalY; i--) {
+									placeBlock(level, level.isEmptyBlock(getWorldPos(x + 7 + direction.getStepX(), y + i + 1, z + 7 + direction.getStepZ())) ? ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState() : ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7 + direction.getStepX(), y + i, z + 7 + direction.getStepZ(), box);
+									if (!cannotSupport(getBlock(level, x + 7 + direction.getStepX(), y + i, z + 7 + direction.getStepZ(), box))) {
+										break;
+									}
+								}
+							}
+						}
+						if (!rackPlaced && y < 0 && random.nextInt(80) == 0) {
+							placeBlock(level, ESBlocks.DRYING_RACK.get().defaultBlockState(), x + 7, y, z + 7, box);
+							if (cannotSupport(getBlock(level, x + 7, y - 1, z + 7, box))) {
+								placeBlock(level, ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
+							}
+							rackPlaced = true;
+							rackX = x;
+							rackZ = z;
+						}
+						if (y == -2) {
+							if (x * x + z * z < 3 * 3) {
+								if (x == 0 && z == 0) {
+									placeBlock(level, Blocks.WATER.defaultBlockState(), x + 7, -3, z + 7, box);
+								} else {
+									placeBlock(level, ESBlocks.NIGHTFALL_FARMLAND.get().defaultBlockState().setValue(FarmBlock.MOISTURE, 7), x + 7, -3, z + 7, box);
+								}
+							} else {
+								if (cannotSupport(getBlock(level, x + 7, -3, z + 7, box))) {
+									placeBlock(level, ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, -3, z + 7, box);
+								}
+								placeBlock(level, ESBlocks.FANTASY_GRASS_CARPET.get().defaultBlockState(), x + 7, -2, z + 7, box);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,7 +1,8 @@
-// 1.21.1	2025-04-03T23:55:30.8241504	Tags for minecraft:enchantment mod id eternal_starlight
+// 1.21.1	2025-05-01T16:43:09.2230506	Tags for minecraft:enchantment mod id eternal_starlight
 732a447cf4fd9fdeeec93db1415c8800df460dad data/eternal_starlight/tags/enchantment/cursed_garden_loot.json
+b1f4091878bedffa655e75c3fbc60561be253b7d data/eternal_starlight/tags/enchantment/exclusive_set/seeds_launcher.json
 9ea07f229a5cff2396b53adc364965a494fe05ae data/eternal_starlight/tags/enchantment/golem_forge_loot.json
-f32938b5679b5adea21fd182f0f7148917926c8f data/minecraft/tags/enchantment/exclusive_set/armor.json
-0f9b69a9722d6bb1a6bdcb8d4b358676c1e7b0e5 data/minecraft/tags/enchantment/in_enchanting_table.json
-61db43e21fb803f3ae65e7c5e48303de02f820d6 data/minecraft/tags/enchantment/tooltip_order.json
+6d4cf36c994ea433f8fd4b35bc8f69f85b366da9 data/minecraft/tags/enchantment/in_enchanting_table.json
+6d4cf36c994ea433f8fd4b35bc8f69f85b366da9 data/minecraft/tags/enchantment/non_treasure.json
+4aa7341cf7ff83b413392d19fd39206b3f85309e data/minecraft/tags/enchantment/tooltip_order.json
 2e6f845310d1a3f3485d17ea8a70b18420703ac8 data/minecraft/tags/enchantment/treasure.json

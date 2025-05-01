@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "eternal_starlight:avoid_landmark",
+    "salt": 615391630,
+    "separation": 8,
+    "spacing": 20
+  },
+  "structures": [
+    {
+      "structure": "eternal_starlight:stranghoul_den",
+      "weight": 1
+    }
+  ]
+}

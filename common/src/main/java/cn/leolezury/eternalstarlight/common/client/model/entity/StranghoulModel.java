@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -62,7 +63,7 @@ public class StranghoulModel<T extends Stranghoul> extends HumanoidModel<T> {
 				this.leftArmPose = HumanoidModel.ArmPose.THROW_SPEAR;
 			}
 		}
-		if (stack.is(Items.BOW) && entity.isAggressive()) {
+		if ((stack.getItem() instanceof SeedsLauncherItem || stack.is(Items.BOW)) && entity.isAggressive()) {
 			if (entity.getMainArm() == HumanoidArm.RIGHT) {
 				this.rightArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
 			} else {

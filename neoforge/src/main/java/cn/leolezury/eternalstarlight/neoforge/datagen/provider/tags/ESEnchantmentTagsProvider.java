@@ -29,26 +29,40 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.POISONING,
 				ESEnchantments.SOUL_SNATCHER
 			);
+		tag(ESTags.Enchantments.SEEDS_LAUNCHER_EXCLUSIVE)
+			.add(
+				ESEnchantments.OVERHEAT,
+				ESEnchantments.GLACIAL_SOWING
+			);
 		tag(EnchantmentTags.TOOLTIP_ORDER)
 			.add(
 				ESEnchantments.FEARLESS,
 				ESEnchantments.POISONING,
 				ESEnchantments.SOUL_SNATCHER,
-				ESEnchantments.TEARING
+				ESEnchantments.TEARING,
+				ESEnchantments.OVERHEAT,
+				ESEnchantments.GLACIAL_SOWING,
+				ESEnchantments.FERTILE
 			);
 		tag(EnchantmentTags.IN_ENCHANTING_TABLE)
 			.add(
-				ESEnchantments.TEARING
-			);
-		tag(EnchantmentTags.ARMOR_EXCLUSIVE)
-			.add(
-				ESEnchantments.POISONING
+				ESEnchantments.TEARING,
+				ESEnchantments.OVERHEAT,
+				ESEnchantments.GLACIAL_SOWING,
+				ESEnchantments.FERTILE
 			);
 		tag(EnchantmentTags.TREASURE)
 			.add(
 				ESEnchantments.POISONING,
 				ESEnchantments.FEARLESS,
 				ESEnchantments.SOUL_SNATCHER
+			);
+		tag(EnchantmentTags.NON_TREASURE)
+			.add(
+				ESEnchantments.TEARING,
+				ESEnchantments.OVERHEAT,
+				ESEnchantments.GLACIAL_SOWING,
+				ESEnchantments.FERTILE
 			);
 	}
 }

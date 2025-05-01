@@ -1,14 +1,17 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.PungencyFruitVinesBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.DryingRackBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownSpear;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -58,6 +61,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -79,6 +83,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, RangedAttackMob {
 	private static final String TAG_HOME_X = "home_x";
@@ -184,6 +189,14 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
+	public void setEquipmentsOnGrownUp() {
+		if (level() instanceof ServerLevelAccessor serverLevel) {
+			DifficultyInstance difficulty = level().getCurrentDifficultyAt(blockPosition());
+			populateDefaultEquipmentSlots(getRandom(), difficulty);
+			populateDefaultEquipmentEnchantments(serverLevel, getRandom(), difficulty);
+		}
+	}
+
 	public Stranghoul(EntityType<? extends Stranghoul> entityType, Level level) {
 		super(entityType, level);
 	}
@@ -201,24 +214,25 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new EatGoal());
-		this.goalSelector.addGoal(2, new SpearAttackGoal());
-		this.goalSelector.addGoal(3, new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F));
-		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0, false));
-		this.goalSelector.addGoal(5, new FollowHirerGoal());
-		this.goalSelector.addGoal(6, new BreedGoal());
-		this.goalSelector.addGoal(7, new GoToWantedItemGoal());
-		this.goalSelector.addGoal(8, new GoHomeGoal());
-		this.goalSelector.addGoal(9, new PlantCropGoal());
-		this.goalSelector.addGoal(10, new CropGoal());
-		this.goalSelector.addGoal(11, new DryRottenFleshGoal());
-		this.goalSelector.addGoal(12, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
+		this.goalSelector.addGoal(2, new SeedsLauncherAttackGoal());
+		this.goalSelector.addGoal(3, new SpearAttackGoal());
+		this.goalSelector.addGoal(4, new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F));
+		this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0, false));
+		this.goalSelector.addGoal(6, new FollowHirerGoal());
+		this.goalSelector.addGoal(7, new BreedGoal());
+		this.goalSelector.addGoal(8, new GoToWantedItemGoal());
+		this.goalSelector.addGoal(9, new GoHomeGoal());
+		this.goalSelector.addGoal(10, new PlantCropGoal());
+		this.goalSelector.addGoal(12, new CropGoal());
+		this.goalSelector.addGoal(12, new DryRottenFleshGoal());
+		this.goalSelector.addGoal(13, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F) {
 			@Override
 			public boolean canUse() {
 				return super.canUse() && !Stranghoul.this.isBartering();
 			}
 		});
-		this.goalSelector.addGoal(13, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new HirerHurtByTargetGoal());
 		this.targetSelector.addGoal(1, new HirerHurtTargetGoal());
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
@@ -229,7 +243,10 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 
 	@Override
 	public void performRangedAttack(LivingEntity target, float distanceFactor) {
-		if (getMainHandItem().getItem() instanceof SpearItem spearItem) {
+		if (getMainHandItem().getItem() instanceof SeedsLauncherItem launcherItem) {
+			ItemStack projectile = this.getProjectile(getMainHandItem());
+			launcherItem.performShooting(level(), this, projectile, InteractionHand.MAIN_HAND);
+		} else if (getMainHandItem().getItem() instanceof SpearItem spearItem) {
 			ThrownSpear spear = spearItem.createSpear(level(), this, getX(), getEyeY() - 0.1, getZ(), getMainHandItem());
 			double x = target.getX() - this.getX();
 			double y = target.getY(0.3333333333333333) - spear.getY();
@@ -240,9 +257,6 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		} else {
 			ItemStack bow = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, Items.BOW));
 			ItemStack projectile = this.getProjectile(bow);
-			if (projectile.is(Items.ARROW)) {
-				projectile = ESItems.MALARITE_ARROW.get().getDefaultInstance();
-			}
 			AbstractArrow arrow = ProjectileUtil.getMobArrow(this, projectile, distanceFactor, bow);
 			double x = target.getX() - this.getX();
 			double y = target.getY(0.3333333333333333) - arrow.getY();
@@ -251,6 +265,40 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			arrow.shoot(x, y + dist * 0.2F, z, 1.6F, (14 - this.level().getDifficulty().getId() * 4));
 			this.playSound(ESSoundEvents.STRANGHOUL_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 			this.level().addFreshEntity(arrow);
+		}
+	}
+
+	@Override
+	public ItemStack getProjectile(ItemStack stack) {
+		if (stack.getItem() instanceof ProjectileWeaponItem weaponItem) {
+			Predicate<ItemStack> predicate = weaponItem.getSupportedHeldProjectiles();
+			ItemStack heldProjectile = ProjectileWeaponItem.getHeldProjectile(this, predicate);
+			return heldProjectile.isEmpty() ? (weaponItem instanceof SeedsLauncherItem ? ESItems.PUNGENCY_FRUIT_SEEDS.get().getDefaultInstance() : ESItems.MALARITE_ARROW.get().getDefaultInstance()) : heldProjectile;
+		} else {
+			return ItemStack.EMPTY;
+		}
+	}
+
+	class SeedsLauncherAttackGoal extends RangedAttackGoal {
+		public SeedsLauncherAttackGoal() {
+			super(Stranghoul.this, 1.0, 30, 5.0F);
+		}
+
+		@Override
+		public boolean canUse() {
+			return super.canUse() && Stranghoul.this.getMainHandItem().getItem() instanceof SeedsLauncherItem;
+		}
+
+		@Override
+		public void start() {
+			super.start();
+			Stranghoul.this.setAggressive(true);
+		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			Stranghoul.this.setAggressive(false);
 		}
 	}
 
@@ -794,6 +842,12 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	}
 
 	@Override
+	public void startSeenByPlayer(ServerPlayer serverPlayer) {
+		super.startSeenByPlayer(serverPlayer);
+		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("stranghoul"));
+	}
+
+	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
 		if (random.nextFloat() < 0.3F && getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
 			this.setItemSlot(EquipmentSlot.HEAD, dyedLeatherArmor(Items.LEATHER_HELMET, random));
@@ -863,12 +917,8 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 				if (growthTicks > 24000) {
 					growthTicks = 0;
 					setBaby(false);
-					if (level() instanceof ServerLevel serverLevel) {
-						DifficultyInstance difficulty = level().getCurrentDifficultyAt(blockPosition());
-						populateDefaultEquipmentSlots(getRandom(), difficulty);
-						populateDefaultEquipmentEnchantments(serverLevel, getRandom(), difficulty);
-						addHappyParticles();
-					}
+					addHappyParticles();
+					setEquipmentsOnGrownUp();
 				}
 			} else {
 				breedCooldown--;

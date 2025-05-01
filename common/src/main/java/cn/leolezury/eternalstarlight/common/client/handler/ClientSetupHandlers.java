@@ -388,6 +388,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("malarite_spear");
 		registerSimpleSpecialModel("pungency_fruit_spear");
+		registerSimpleSpecialModel("seeds_launcher");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -637,6 +638,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("malarite_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("pungency_fruit_spear_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("seeds_launcher_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
@@ -699,6 +701,7 @@ public class ClientSetupHandlers {
 			return particle;
 		});
 		strategy.register(ESParticles.ALLIED.get(), SuspendedTownParticle.HappyVillagerProvider::new);
+		strategy.register(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), PungencyFruitSmokeParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
@@ -767,6 +770,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.ASHEN_SNOWBALL.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.FROZEN_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
+		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}

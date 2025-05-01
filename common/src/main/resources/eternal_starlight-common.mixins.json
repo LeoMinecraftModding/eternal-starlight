@@ -48,6 +48,7 @@
     "client.MultiPlayerGameModeMixin",
     "client.MusicManagerMixin",
     "client.PlayerModelMixin",
+    "client.PlayerRendererMixin",
     "client.ScreenEffectRendererMixin",
     "client.SkullBlockRendererMixin",
     "client.SpriteSourceListMixin",

@@ -45,7 +45,7 @@
               69.0
             ],
             "life_scale": 1.0,
-            "motion_scale": 1.0,
+            "motion_scale": 0.3,
             "rise": true,
             "to_color": [
               179.0,
@@ -80,7 +80,7 @@
   },
   "primary_items": "#eternal_starlight:enchantable/pungency_fruit_spear",
   "slots": [
-    "hand"
+    "mainhand"
   ],
   "supported_items": "#eternal_starlight:enchantable/pungency_fruit_spear",
   "weight": 10

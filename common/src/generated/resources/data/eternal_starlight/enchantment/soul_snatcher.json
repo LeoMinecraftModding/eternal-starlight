@@ -34,7 +34,7 @@
     "per_level_above_first": 25
   },
   "slots": [
-    "hand"
+    "mainhand"
   ],
   "supported_items": "#eternal_starlight:enchantable/chain_of_souls",
   "weight": 10

@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
+import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetPotionFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -41,6 +42,7 @@ public class ESBarteringLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.POTION).setWeight(10).apply(SetPotionFunction.setPotion(Potions.WATER)))
 					.add(LootItem.lootTableItem(Items.LEATHER).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(Items.ROTTEN_FLESH).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
+					.add(LootItem.lootTableItem(ESItems.SEEDS_LAUNCHER.get()).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(10.0F, 20.0F))).setWeight(4))
 					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.DRYING_RACK.get()).setWeight(8))

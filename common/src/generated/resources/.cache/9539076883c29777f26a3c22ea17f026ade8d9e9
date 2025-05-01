@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-26T22:21:39.3089843	Item Models: eternal_starlight
+// 1.21.1	2025-04-30T22:54:37.9130254	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -669,6 +669,7 @@ e7eab93f28ce0b989f50c767fee54102de7715cb assets/eternal_starlight/models/item/sc
 d045885cc57a252d634f14f20d15d935ddd0cc8e assets/eternal_starlight/models/item/scarlet_trapdoor.json
 21cfe2dbea7be94c4263692bcc2ad811dc428666 assets/eternal_starlight/models/item/scarlet_wood.json
 6e998c57ac55278c92537b9c38a6a820a0c28ef0 assets/eternal_starlight/models/item/sea_rosa.json
+0a8912843631421af76aad798bdc19ab67e44738 assets/eternal_starlight/models/item/seeds_launcher_inventory.json
 735cf47f9de5e863c10a248bcc300157e877b400 assets/eternal_starlight/models/item/seeking_eye.json
 f663d155a5d5da9ee8816abe82a2608761b38950 assets/eternal_starlight/models/item/shadegrieve.json
 73d74ac4cd42b3538e4ad65abf589869acf26fdf assets/eternal_starlight/models/item/shadow_snail_meat.json

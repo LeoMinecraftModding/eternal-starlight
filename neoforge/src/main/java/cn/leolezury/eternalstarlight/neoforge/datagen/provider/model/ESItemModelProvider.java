@@ -718,6 +718,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.PUNGENCY_FRUIT_AXE.get());
 		inventoryHandheld(ESItems.PUNGENCY_FRUIT_SPEAR.get());
 
+		inventoryHandheld(ESItems.SEEDS_LAUNCHER.get());
+
 		basicItem(ESItems.DRYING_RACK.get());
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());
 

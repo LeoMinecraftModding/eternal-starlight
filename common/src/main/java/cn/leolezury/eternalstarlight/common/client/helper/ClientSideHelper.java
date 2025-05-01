@@ -139,8 +139,11 @@ public class ClientSideHelper implements ClientHelper {
 			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.THIRST_WALKER.get().getDescriptionId()), EternalStarlight.id("thirst_walker_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
 			new IndexBookComponent.IndexItem(Component.translatable(ESItems.DAGGER_OF_HUNGER.get().getDescriptionId()), EternalStarlight.id("dagger_of_hunger_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
 			new IndexBookComponent.IndexItem(Component.translatable(ESItems.CRYSTALBORN_CATALYST.get().getDescriptionId()), EternalStarlight.id("crystalborn_catalyst_display"), unlocked.contains(EternalStarlight.id("thirst_walker"))),
-			new IndexBookComponent.IndexItem(Component.translatable(ESItems.PUNGENCY_FRUIT.get().getDescriptionId()), EternalStarlight.id("pungency_fruit_display"), unlocked.contains(EternalStarlight.id("pungency_fruit"))),
-			new IndexBookComponent.IndexItem(Component.translatable(ESItems.SILVER_PUNGENCY_FRUIT.get().getDescriptionId()), EternalStarlight.id("silver_pungency_fruit_display"), unlocked.contains(EternalStarlight.id("pungency_fruit"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.STRANGHOUL.get().getDescriptionId()), EternalStarlight.id("stranghoul_display"), unlocked.contains(EternalStarlight.id("stranghoul"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.PUNGENCY_FRUIT.get().getDescriptionId()), EternalStarlight.id("pungency_fruit_display"), unlocked.contains(EternalStarlight.id("stranghoul")) || unlocked.contains(EternalStarlight.id("pungency_fruit"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.SILVER_PUNGENCY_FRUIT.get().getDescriptionId()), EternalStarlight.id("silver_pungency_fruit_display"), unlocked.contains(EternalStarlight.id("stranghoul")) || unlocked.contains(EternalStarlight.id("pungency_fruit"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.SEEDS_LAUNCHER.get().getDescriptionId()), EternalStarlight.id("seeds_launcher_display"), unlocked.contains(EternalStarlight.id("stranghoul"))),
+			new IndexBookComponent.IndexItem(Component.translatable(ESItems.DRYING_RACK.get().getDescriptionId()), EternalStarlight.id("drying_rack_display"), unlocked.contains(EternalStarlight.id("drying_rack"))),
 			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.TWILIGHT_GAZE.get().getDescriptionId()), EternalStarlight.id("twilight_gaze_display"), unlocked.contains(EternalStarlight.id("twilight_gaze"))),
 			new IndexBookComponent.IndexItem(Component.translatable(ESEntities.SHIMMER_LACEWING.get().getDescriptionId()), EternalStarlight.id("shimmer_lacewing_display"), unlocked.contains(EternalStarlight.id("shimmer_lacewing")))
 		), 105, 125);
@@ -262,6 +265,14 @@ public class ClientSideHelper implements ClientHelper {
 
 		TextBookComponent crystalbornCatalyst = new TextBookComponent(translatedBookText("crystalborn_catalyst"), 105, 125);
 
+		DisplayBookComponent stranghoulDisplay = new DisplayBookComponent(105, 130)
+			.entityDisplay(ESEntities.STRANGHOUL.get(), 52, 80, -25, 210, 30, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame.png"), 18, 20, 68, 68)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 92, 96, 11)
+			.textDisplay(Component.translatable(ESEntities.STRANGHOUL.get().getDescriptionId()), 52, 115, 1.2f);
+
+		TextBookComponent stranghoul = new TextBookComponent(translatedBookText("stranghoul"), 105, 125);
+
 		DisplayBookComponent pungencyFruitDisplay = new DisplayBookComponent(105, 130)
 			.textDisplay(Component.translatable(ESItems.PUNGENCY_FRUIT.get().getDescriptionId()), 52, 28, 1)
 			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
@@ -277,6 +288,22 @@ public class ClientSideHelper implements ClientHelper {
 			.itemDisplay(ESItems.SILVER_PUNGENCY_FRUIT.get().getDefaultInstance(), 44, 82);
 
 		TextBookComponent silverPungencyFruit = new TextBookComponent(translatedBookText("silver_pungency_fruit"), 105, 125);
+
+		DisplayBookComponent seedsLauncherDisplay = new DisplayBookComponent(105, 130)
+			.textDisplay(Component.translatable(ESItems.SEEDS_LAUNCHER.get().getDescriptionId()), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemDisplay(ESItems.SEEDS_LAUNCHER.get().getDefaultInstance(), 44, 82);
+
+		TextBookComponent seedsLauncher = new TextBookComponent(translatedBookText("seeds_launcher"), 105, 125);
+
+		DisplayBookComponent dryingRackDisplay = new DisplayBookComponent(105, 130)
+			.textDisplay(Component.translatable(ESItems.DRYING_RACK.get().getDescriptionId()), 52, 28, 1)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 4, 45, 96, 11)
+			.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 36, 74, 32, 32)
+			.itemDisplay(ESItems.DRYING_RACK.get().getDefaultInstance(), 44, 82);
+
+		TextBookComponent dryingRack = new TextBookComponent(translatedBookText("drying_rack"), 105, 125);
 
 		DisplayBookComponent twilightGazeDisplay = new DisplayBookComponent(105, 130)
 			.entityDisplay(ESEntities.TWILIGHT_GAZE.get(), 52, 60, 0, 210, 25, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))
@@ -325,10 +352,16 @@ public class ClientSideHelper implements ClientHelper {
 			new BookComponentDefinition(daggerOfHunger, EternalStarlight.id("dagger_of_hunger"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
 			new BookComponentDefinition(crystalbornCatalystDisplay, EternalStarlight.id("crystalborn_catalyst_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
 			new BookComponentDefinition(crystalbornCatalyst, EternalStarlight.id("crystalborn_catalyst"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("thirst_walker"))),
-			new BookComponentDefinition(pungencyFruitDisplay, EternalStarlight.id("pungency_fruit_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
-			new BookComponentDefinition(pungencyFruit, EternalStarlight.id("pungency_fruit"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
-			new BookComponentDefinition(silverPungencyFruitDisplay, EternalStarlight.id("silver_pungency_fruit_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
-			new BookComponentDefinition(silverPungencyFruit, EternalStarlight.id("silver_pungency_fruit"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
+			new BookComponentDefinition(stranghoulDisplay, EternalStarlight.id("stranghoul_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("stranghoul"))),
+			new BookComponentDefinition(stranghoul, EternalStarlight.id("stranghoul"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("stranghoul"))),
+			new BookComponentDefinition(pungencyFruitDisplay, EternalStarlight.id("pungency_fruit_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("stranghoul")) || packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
+			new BookComponentDefinition(pungencyFruit, EternalStarlight.id("pungency_fruit"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("stranghoul")) || packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
+			new BookComponentDefinition(silverPungencyFruitDisplay, EternalStarlight.id("silver_pungency_fruit_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("stranghoul")) || packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
+			new BookComponentDefinition(silverPungencyFruit, EternalStarlight.id("silver_pungency_fruit"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("stranghoul")) || packet.unlocked().contains(EternalStarlight.id("pungency_fruit"))),
+			new BookComponentDefinition(seedsLauncherDisplay, EternalStarlight.id("seeds_launcher_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("stranghoul"))),
+			new BookComponentDefinition(seedsLauncher, EternalStarlight.id("seeds_launcher"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("stranghoul"))),
+			new BookComponentDefinition(dryingRackDisplay, EternalStarlight.id("drying_rack_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("drying_rack"))),
+			new BookComponentDefinition(dryingRack, EternalStarlight.id("drying_rack"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("drying_rack"))),
 			new BookComponentDefinition(twilightGazeDisplay, EternalStarlight.id("twilight_gaze_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
 			new BookComponentDefinition(twilightGaze, EternalStarlight.id("twilight_gaze"), 11, 12, 5, 12, packet.unlocked().contains(EternalStarlight.id("twilight_gaze"))),
 			new BookComponentDefinition(shimmerLacewingDisplay, EternalStarlight.id("shimmer_lacewing_display"), 11, 6, 5, 6, packet.unlocked().contains(EternalStarlight.id("shimmer_lacewing"))),

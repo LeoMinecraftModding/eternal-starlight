@@ -66,5 +66,9 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 				ESBiomes.STARLIGHT_FOREST,
 				ESBiomes.STARLIGHT_DENSE_FOREST
 			);
+		tag(ESTags.Biomes.HAS_STRANGHOUL_DEN)
+			.add(
+				ESBiomes.DARK_SWAMP
+			);
 	}
 }

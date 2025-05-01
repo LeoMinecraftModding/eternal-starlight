@@ -3,7 +3,9 @@ package cn.leolezury.eternalstarlight.common.data;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.StranghoulDenStructure;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.garden.CursedGardenStructure;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.AvoidLandmarkStructurePlacement;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.LandmarkStructurePlacement;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -47,6 +49,8 @@ public class ESStructures {
 	public static final ResourceKey<StructureSet> GOLEM_FORGE_SET = createSet("golem_forge");
 	public static final ResourceKey<Structure> CURSED_GARDEN = create("cursed_garden");
 	public static final ResourceKey<StructureSet> CURSED_GARDEN_SET = createSet("cursed_garden");
+	public static final ResourceKey<Structure> STRANGHOUL_DEN = create("stranghoul_den");
+	public static final ResourceKey<StructureSet> STRANGHOUL_DEN_SET = createSet("stranghoul_den");
 
 	public static void bootstrap(BootstrapContext<Structure> context) {
 		HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
@@ -107,6 +111,13 @@ public class ESStructures {
 				GenerationStep.Decoration.SURFACE_STRUCTURES,
 				TerrainAdjustment.BEARD_THIN)
 		));
+		context.register(STRANGHOUL_DEN, new StranghoulDenStructure(
+			new Structure.StructureSettings(
+				biomeGetter.getOrThrow(ESTags.Biomes.HAS_STRANGHOUL_DEN),
+				Map.of(),
+				GenerationStep.Decoration.SURFACE_STRUCTURES,
+				TerrainAdjustment.NONE)
+		));
 	}
 
 	public static void bootstrapSets(BootstrapContext<StructureSet> context) {
@@ -118,6 +129,7 @@ public class ESStructures {
 		context.register(PORTAL_RUINS_COLD_SET, new StructureSet(structureGetter.getOrThrow(PORTAL_RUINS_COLD), new RandomSpreadStructurePlacement(36, 30, RandomSpreadType.LINEAR, 107391749)));
 		context.register(GOLEM_FORGE_SET, new StructureSet(structureGetter.getOrThrow(GOLEM_FORGE), new LandmarkStructurePlacement(GOLEM_FORGE)));
 		context.register(CURSED_GARDEN_SET, new StructureSet(structureGetter.getOrThrow(CURSED_GARDEN), new LandmarkStructurePlacement(CURSED_GARDEN)));
+		context.register(STRANGHOUL_DEN_SET, new StructureSet(structureGetter.getOrThrow(STRANGHOUL_DEN), new AvoidLandmarkStructurePlacement(20, 8, RandomSpreadType.LINEAR, 615391630)));
 	}
 
 	public static ResourceKey<Structure> create(String name) {

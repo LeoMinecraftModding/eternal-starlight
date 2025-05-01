@@ -43,7 +43,7 @@
   },
   "primary_items": "#minecraft:enchantable/sword",
   "slots": [
-    "hand"
+    "mainhand"
   ],
   "supported_items": "#minecraft:enchantable/sharp_weapon",
   "weight": 10

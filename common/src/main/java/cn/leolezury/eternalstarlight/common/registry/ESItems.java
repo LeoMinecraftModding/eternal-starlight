@@ -818,6 +818,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SPEAR = registerItem("pungency_fruit_spear",
 		() -> new PungencyFruitSpearItem(new Item.Properties().attributes(PungencyFruitSpearItem.createAttributes())));
 
+	public static final RegistryObject<Item, Item> SEEDS_LAUNCHER = registerItem("seeds_launcher", () -> new SeedsLauncherItem(new Item.Properties().durability(500)));
+
 	public static final RegistryObject<Item, Item> DRYING_RACK = registerItem("drying_rack", () -> new BlockItem(ESBlocks.DRYING_RACK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ROTTEN_FLESH_JERKY = registerItem("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(new FoodProperties(4, 0.1F, false, 2.5F, Optional.empty(), List.of()))));
 
