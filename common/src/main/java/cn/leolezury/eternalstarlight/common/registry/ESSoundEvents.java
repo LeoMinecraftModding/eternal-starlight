@@ -46,6 +46,8 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> CRESCENT_SPEAR_THROW = register("item.crescent_spear.throw");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> SEEDS_LAUNCHER_SHOOT = register("item.seeds_launcher.shoot");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> LASER_BEAM_HUM = register("entity.laser_beam.hum");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> SONAR_BOMB_EXPLODE = register("entity.sonar_bomb.explode");

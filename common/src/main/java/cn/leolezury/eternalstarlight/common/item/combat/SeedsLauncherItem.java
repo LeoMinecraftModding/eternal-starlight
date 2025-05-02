@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.ShotSeeds;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.server.level.ServerLevel;
@@ -43,7 +44,7 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 		if (success) {
 			player.getCooldowns().addCooldown(this, 20);
 		}
-		return success ? InteractionResultHolder.sidedSuccess(stack, level.isClientSide) : super.use(level, player, hand);
+		return success ? InteractionResultHolder.consume(stack) : super.use(level, player, hand);
 	}
 
 	public boolean performShooting(Level level, LivingEntity living, ItemStack projectile, InteractionHand hand) {
@@ -146,6 +147,7 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 			direction = viewVector.toVector3f().rotate(rotation);
 		}
 		projectile.shoot(direction.x(), direction.y(), direction.z(), velocity, inaccuracy);
+		shooter.level().playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(), ESSoundEvents.SEEDS_LAUNCHER_SHOOT.get(), shooter.getSoundSource(), 1.0F, 1.0F);
 	}
 
 	private static Vector3f getProjectileShotVector(LivingEntity shooter, Vec3 distance, float angle) {

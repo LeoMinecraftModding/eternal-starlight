@@ -1,7 +1,11 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
@@ -17,6 +21,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -56,7 +61,6 @@ public abstract class ItemInHandRendererMixin {
 	@Shadow
 	private ItemStack offHandItem;
 
-	@SuppressWarnings({"ConstantConditions"})
 	@Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
 	private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
 		ItemStack itemStack = player.getMainHandItem();
@@ -74,6 +78,34 @@ public abstract class ItemInHandRendererMixin {
 				cir.setReturnValue(((itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(itemStack)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
 			}
 		}
+	}
+
+	@Inject(method = "applyItemArmTransform", at = @At(value = "RETURN"))
+	private void applyItemArmTransform(PoseStack stack, HumanoidArm arm, float equipProgress, CallbackInfo ci) {
+		if (ClientHandlers.oldSeedsLauncherAnimTicks != 0 || ClientHandlers.seedsLauncherAnimTicks != 0) {
+			float anim = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), ClientHandlers.oldSeedsLauncherAnimTicks, ClientHandlers.seedsLauncherAnimTicks);
+			stack.translate(0, 0, Mth.sin((anim / 10) * Mth.PI) * 0.05);
+		}
+	}
+
+	@WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;matches(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z", ordinal = 0))
+	private boolean mainHandMatch(ItemStack stack1, ItemStack stack2, Operation<Boolean> original) {
+		if (stack1.getItem() instanceof SeedsLauncherItem && stack2.getItem() instanceof SeedsLauncherItem) {
+			ItemStack copied = stack1.copy();
+			copied.set(DataComponents.DAMAGE, stack2.get(DataComponents.DAMAGE));
+			return original.call(copied, stack2);
+		}
+		return original.call(stack1, stack2);
+	}
+
+	@WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;matches(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z", ordinal = 1))
+	private boolean offhandMatch(ItemStack stack1, ItemStack stack2, Operation<Boolean> original) {
+		if (stack1.getItem() instanceof SeedsLauncherItem && stack2.getItem() instanceof SeedsLauncherItem) {
+			ItemStack copied = stack1.copy();
+			copied.set(DataComponents.DAMAGE, stack2.get(DataComponents.DAMAGE));
+			return original.call(copied, stack2);
+		}
+		return original.call(stack1, stack2);
 	}
 
 	@Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)

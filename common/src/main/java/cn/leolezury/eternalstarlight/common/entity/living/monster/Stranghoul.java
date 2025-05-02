@@ -244,8 +244,10 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	@Override
 	public void performRangedAttack(LivingEntity target, float distanceFactor) {
 		if (getMainHandItem().getItem() instanceof SeedsLauncherItem launcherItem) {
-			ItemStack projectile = this.getProjectile(getMainHandItem());
-			launcherItem.performShooting(level(), this, projectile, InteractionHand.MAIN_HAND);
+			if (getBoundingBox().inflate(6).intersects(target.getBoundingBox())) {
+				ItemStack projectile = this.getProjectile(getMainHandItem());
+				launcherItem.performShooting(level(), this, projectile, InteractionHand.MAIN_HAND);
+			}
 		} else if (getMainHandItem().getItem() instanceof SpearItem spearItem) {
 			ThrownSpear spear = spearItem.createSpear(level(), this, getX(), getEyeY() - 0.1, getZ(), getMainHandItem());
 			double x = target.getX() - this.getX();

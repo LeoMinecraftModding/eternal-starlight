@@ -94,6 +94,8 @@ public class ClientHandlers {
 	public static float oldAbyssalFogModifier = 1;
 	public static boolean oldTearyEffect;
 	public static boolean tearyEffect;
+	public static int oldSeedsLauncherAnimTicks;
+	public static int seedsLauncherAnimTicks;
 	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f modelViewMatrix = new Matrix4f();
 	public static boolean isHalloween;
@@ -109,6 +111,10 @@ public class ClientHandlers {
 				if (clientTickCount % 1000 == 5) {
 					Calendar calendar = Calendar.getInstance();
 					isHalloween = calendar.get(Calendar.MONTH) == Calendar.NOVEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 1;
+				}
+				oldSeedsLauncherAnimTicks = seedsLauncherAnimTicks;
+				if (seedsLauncherAnimTicks > 0) {
+					seedsLauncherAnimTicks--;
 				}
 			}
 

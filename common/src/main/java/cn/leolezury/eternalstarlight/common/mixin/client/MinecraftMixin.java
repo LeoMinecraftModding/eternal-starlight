@@ -1,15 +1,21 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
+import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,6 +42,16 @@ public abstract class MinecraftMixin {
 			if (biomeHolder.isBound()) {
 				cir.setReturnValue(biomeHolder.value().getBackgroundMusic().orElse(Musics.GAME));
 			}
+		}
+	}
+
+	@WrapOperation(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;itemUsed(Lnet/minecraft/world/InteractionHand;)V"))
+	private void itemUsed(ItemInHandRenderer instance, InteractionHand hand, Operation<Void> original) {
+		if (player == null || !(player.getItemInHand(hand).getItem() instanceof SeedsLauncherItem)) {
+			original.call(instance, hand);
+		} else {
+			ClientHandlers.oldSeedsLauncherAnimTicks = 10;
+			ClientHandlers.seedsLauncherAnimTicks = 10;
 		}
 	}
 }
