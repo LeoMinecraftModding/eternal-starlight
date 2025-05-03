@@ -618,12 +618,10 @@ public class ClientSetupHandlers {
 
 	public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {
 		if (!modifiedBakedModels) {
-			BAKED_MODELS.clear();
 			for (ModelResourceLocation id : models.keySet()) {
-				if (id.id().toString().contains(EternalStarlight.ID + ":thermal_springstone_")) {
+				if (id.id().getNamespace().equals(EternalStarlight.ID) && id.id().getPath().startsWith("thermal_springstone_")) {
 					models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
 				}
-				BAKED_MODELS.put(id, models.get(id));
 			}
 			modifiedBakedModels = true;
 		}

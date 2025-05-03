@@ -22,8 +22,8 @@ public abstract class ItemRendererMixin {
 	public BakedModel render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
 		ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
 		if (ClientSetupHandlers.ITEMS_WITH_SPECIAL_MODEL.containsKey(new ModelResourceLocation(itemKey, "inventory")) && ClientSetupHandlers.ITEMS_WITH_SPECIAL_MODEL.get(new ModelResourceLocation(itemKey, "inventory")).containsKey(itemDisplayContext)) {
-			BakedModel replacedModel = ClientSetupHandlers.BAKED_MODELS.get(ClientSetupHandlers.getSpecialModel(new ModelResourceLocation(itemKey, "inventory"), itemDisplayContext));
-			if (replacedModel != null) {
+			BakedModel replacedModel = Minecraft.getInstance().getModelManager().getModel(ClientSetupHandlers.getSpecialModel(new ModelResourceLocation(itemKey, "inventory"), itemDisplayContext));
+			if (replacedModel != Minecraft.getInstance().getModelManager().getMissingModel()) {
 				return replacedModel.getOverrides().resolve(replacedModel, stack, Minecraft.getInstance().level, null, 0);
 			}
 		}
