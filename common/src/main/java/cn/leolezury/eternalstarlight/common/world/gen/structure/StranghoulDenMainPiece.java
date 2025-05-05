@@ -53,17 +53,14 @@ public class StranghoulDenMainPiece extends StructurePiece {
 	@Override
 	public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos blockPos) {
 		boolean rackPlaced = false;
-		int rackX = 0, rackZ = 0;
 		for (int y = 0; y >= -2; y--) {
 			for (int x = -7; x <= 7; x++) {
 				for (int z = -7; z <= 7; z++) {
 					if (x * x + z * z < (7 + y) * (7 + y)) {
-						if (!(rackPlaced && x == rackX && z == rackZ)) {
-							placeBlock(level, Blocks.AIR.defaultBlockState(), x + 7, y, z + 7, box);
-							level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, y, z + 7));
-							if (getBlock(level, x + 7, y - 1, z + 7, box).is(ESBlocks.NIGHTFALL_MUD.get())) {
-								placeBlock(level, ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
-							}
+						placeBlock(level, Blocks.AIR.defaultBlockState(), x + 7, y, z + 7, box);
+						level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, y, z + 7));
+						if (getBlock(level, x + 7, y - 1, z + 7, box).is(ESBlocks.NIGHTFALL_MUD.get())) {
+							placeBlock(level, ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
 						}
 						for (Direction direction : HORIZONTAL_DIRECTIONS) {
 							if ((x + direction.getStepX()) * (x + direction.getStepX()) + (z + direction.getStepZ()) * (z + direction.getStepZ()) >= (7 + y) * (7 + y) && cannotSupport(getBlock(level, x + 7 + direction.getStepX(), y, z + 7 + direction.getStepZ(), box))) {
@@ -75,15 +72,6 @@ public class StranghoulDenMainPiece extends StructurePiece {
 									}
 								}
 							}
-						}
-						if (!rackPlaced && y < 0 && random.nextInt(80) == 0) {
-							placeBlock(level, ESBlocks.DRYING_RACK.get().defaultBlockState(), x + 7, y, z + 7, box);
-							if (cannotSupport(getBlock(level, x + 7, y - 1, z + 7, box))) {
-								placeBlock(level, ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
-							}
-							rackPlaced = true;
-							rackX = x;
-							rackZ = z;
 						}
 						if (y == -2) {
 							if (x * x + z * z < 3 * 3) {
@@ -97,6 +85,10 @@ public class StranghoulDenMainPiece extends StructurePiece {
 									placeBlock(level, ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, -3, z + 7, box);
 								}
 								placeBlock(level, ESBlocks.FANTASY_GRASS_CARPET.get().defaultBlockState(), x + 7, -2, z + 7, box);
+								if (!rackPlaced && random.nextInt(50) == 0) {
+									placeBlock(level, ESBlocks.DRYING_RACK.get().defaultBlockState(), x + 7, -2, z + 7, box);
+									rackPlaced = true;
+								}
 							}
 						}
 					}

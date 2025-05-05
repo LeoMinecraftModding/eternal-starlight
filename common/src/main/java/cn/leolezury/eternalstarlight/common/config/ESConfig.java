@@ -36,6 +36,7 @@ public class ESConfig {
 		public final AttackingMobConfig stranghoul = new AttackingMobConfig(40, 2, 2, 32, true);
 		public final MobConfig ent = new MobConfig(10, 0, true);
 		public final MobConfig ratlin = new MobConfig(15, 0, true);
+		public final AttackingMobConfig zombifiedRatlin = new AttackingMobConfig(20, 2, 3, 35, true);
 		public final MobConfig shadowSnail = new MobConfig(8, 6, true);
 		public final MobConfig yeti = new MobConfig(20, 0, true);
 		public final AttackingMobConfig auroraDeer = new AttackingMobConfig(20, 0, 3, 16, true);

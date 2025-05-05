@@ -58,6 +58,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STRANGHOUL_SPAWN_EGG = registerItem("stranghoul_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.STRANGHOUL::get, 0x31383a, 0x849496, new Item.Properties()));
 	public static final RegistryObject<Item, Item> ENT_SPAWN_EGG = registerItem("ent_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ENT::get, 0x633737, 0x86b8a9, new Item.Properties()));
 	public static final RegistryObject<Item, Item> RATLIN_SPAWN_EGG = registerItem("ratlin_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.RATLIN::get, 0x544e4e, 0xd7959a, new Item.Properties()));
+	public static final RegistryObject<Item, Item> ZOMBIFIED_RATLIN_SPAWN_EGG = registerItem("zombified_ratlin_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ZOMBIFIED_RATLIN::get, 0x565b4f, 0xd7959a, new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHADOW_SNAIL_SPAWN_EGG = registerItem("shadow_snail_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.SHADOW_SNAIL::get, 0x5263a6, 0x2f2644, new Item.Properties()));
 	public static final RegistryObject<Item, Item> YETI_SPAWN_EGG = registerItem("yeti_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.YETI::get, 0xe8edff, 0xbda1bc, new Item.Properties()));
 	public static final RegistryObject<Item, Item> AURORA_DEER_SPAWN_EGG = registerItem("aurora_deer_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.AURORA_DEER::get, 0x3f4e6d, 0x276365, new Item.Properties()));

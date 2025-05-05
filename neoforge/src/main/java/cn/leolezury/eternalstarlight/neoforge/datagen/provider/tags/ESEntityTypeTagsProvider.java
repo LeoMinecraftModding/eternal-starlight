@@ -78,6 +78,10 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.LONESTAR_SKELETON.get(),
 				ESEntities.TANGLED.get()
 			);
+		tag(EntityTypeTags.ZOMBIES)
+			.add(
+				ESEntities.ZOMBIFIED_RATLIN.get()
+			);
 		tag(EntityTypeTags.ARROWS)
 			.add(
 				ESEntities.THIOQUARTZ_ARROW.get(),

@@ -84,7 +84,7 @@ public abstract class ItemInHandRendererMixin {
 	private void applyItemArmTransform(PoseStack stack, HumanoidArm arm, float equipProgress, CallbackInfo ci) {
 		if (ClientHandlers.oldSeedsLauncherAnimTicks != 0 || ClientHandlers.seedsLauncherAnimTicks != 0) {
 			float anim = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), ClientHandlers.oldSeedsLauncherAnimTicks, ClientHandlers.seedsLauncherAnimTicks);
-			stack.translate(0, 0, Mth.sin((anim / 10) * Mth.PI) * 0.05);
+			stack.translate(0, 0, Mth.sin((anim / 5) * Mth.PI) * 0.05);
 		}
 	}
 

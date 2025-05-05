@@ -33,6 +33,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STRANGHOUL_SPAWN_EGG.get());
 		basicItem(ESItems.ENT_SPAWN_EGG.get());
 		basicItem(ESItems.RATLIN_SPAWN_EGG.get());
+		basicItem(ESItems.ZOMBIFIED_RATLIN_SPAWN_EGG.get());
 		basicItem(ESItems.SHADOW_SNAIL_SPAWN_EGG.get());
 		basicItem(ESItems.YETI_SPAWN_EGG.get());
 		basicItem(ESItems.AURORA_DEER_SPAWN_EGG.get());
@@ -568,7 +569,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GREEN_FANTAFERN.get());
 		flatBlockTexture(ESItems.FANTAGRASS.get());
 		flatBlockTexture(ESItems.GREEN_FANTAGRASS.get());
-		flatBlockTexture(ESItems.HANGING_FANTAGRASS.get());
+		basicItem(ESItems.HANGING_FANTAGRASS.get());
 
 		flatBlockTexture(ESItems.ORANGE_SCARLET_BUD.get());
 		flatBlockTexture(ESItems.PURPLE_SCARLET_BUD.get());

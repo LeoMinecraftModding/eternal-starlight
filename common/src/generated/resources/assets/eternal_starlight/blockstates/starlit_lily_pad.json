@@ -1,21 +1,31 @@
 {
-  "variants": {
-    "": [
-      {
-        "model": "eternal_starlight:block/starlit_lily_pad"
+  "multipart": [
+    {
+      "apply": {
+        "model": "eternal_starlight:block/starlit_lily_pad_flower"
       },
-      {
-        "model": "eternal_starlight:block/starlit_lily_pad",
-        "y": 270
-      },
-      {
-        "model": "eternal_starlight:block/starlit_lily_pad",
-        "y": 180
-      },
-      {
-        "model": "eternal_starlight:block/starlit_lily_pad",
-        "y": 90
+      "when": {
+        "lit": "true"
       }
-    ]
-  }
+    },
+    {
+      "apply": [
+        {
+          "model": "eternal_starlight:block/starlit_lily_pad"
+        },
+        {
+          "model": "eternal_starlight:block/starlit_lily_pad",
+          "y": 270
+        },
+        {
+          "model": "eternal_starlight:block/starlit_lily_pad",
+          "y": 180
+        },
+        {
+          "model": "eternal_starlight:block/starlit_lily_pad",
+          "y": 90
+        }
+      ]
+    }
+  ]
 }

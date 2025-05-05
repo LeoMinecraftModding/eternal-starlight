@@ -731,7 +731,7 @@ public class ESBlocks {
 
 	// water plant
 	public static final RegistryObject<Block, WaterlilyBlock> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
-	public static final RegistryObject<Block, WaterlilyBlock> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel(state -> 5)));
+	public static final RegistryObject<Block, WaterlilyWithFlowerBlock> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyWithFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel(state -> state.getValue(WaterlilyWithFlowerBlock.LIT) ? 15 : 0)));
 	public static final RegistryObject<Block, DuckweedBlock> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new DuckweedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
 
 	// crystal caves plant

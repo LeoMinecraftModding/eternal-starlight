@@ -256,6 +256,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.STRANGHOUL.get(), Stranghoul.createAttributes().build());
 		strategy.register(ESEntities.ENT.get(), Ent.createAttributes().build());
 		strategy.register(ESEntities.RATLIN.get(), Ratlin.createAttributes().build());
+		strategy.register(ESEntities.ZOMBIFIED_RATLIN.get(), ZombifiedRatlin.createAttributes().build());
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), ShadowSnail.createAttributes().build());
 		strategy.register(ESEntities.YETI.get(), Yeti.createAttributes().build());
 		strategy.register(ESEntities.AURORA_DEER.get(), AuroraDeer.createAttributes().build());
@@ -291,6 +292,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.STRANGHOUL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Stranghoul::checkStranghoulSpawnRules);
 		strategy.register(ESEntities.ENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ent::checkEntSpawnRules);
 		strategy.register(ESEntities.RATLIN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ratlin::checkRatlinSpawnRules);
+		strategy.register(ESEntities.ZOMBIFIED_RATLIN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZombifiedRatlin::checkZombifiedRatlinSpawnRules);
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShadowSnail::checkShadowSnailSpawnRules);
 		strategy.register(ESEntities.YETI.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);
 		strategy.register(ESEntities.AURORA_DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);

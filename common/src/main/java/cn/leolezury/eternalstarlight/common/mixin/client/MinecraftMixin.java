@@ -50,8 +50,8 @@ public abstract class MinecraftMixin {
 		if (player == null || !(player.getItemInHand(hand).getItem() instanceof SeedsLauncherItem)) {
 			original.call(instance, hand);
 		} else {
-			ClientHandlers.oldSeedsLauncherAnimTicks = 10;
-			ClientHandlers.seedsLauncherAnimTicks = 10;
+			ClientHandlers.oldSeedsLauncherAnimTicks = 5;
+			ClientHandlers.seedsLauncherAnimTicks = 5;
 		}
 	}
 }

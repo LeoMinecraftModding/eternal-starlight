@@ -367,8 +367,6 @@ public class ClientSetupHandlers {
 		));
 	}
 
-	public static final Map<ModelResourceLocation, BakedModel> BAKED_MODELS = new HashMap<>();
-
 	public static boolean modifiedBakedModels = false;
 
 	public static final String KEY_CATEGORY_ETERNAL_STARLIGHT = "key.categories.eternal_starlight";
@@ -725,6 +723,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.STRANGHOUL.get(), StranghoulRenderer::new);
 		strategy.register(ESEntities.ENT.get(), EntRenderer::new);
 		strategy.register(ESEntities.RATLIN.get(), RatlinRenderer::new);
+		strategy.register(ESEntities.ZOMBIFIED_RATLIN.get(), RatlinRenderer::new);
 		strategy.register(ESEntities.SHADOW_SNAIL.get(), ShadowSnailRenderer::new);
 		strategy.register(ESEntities.YETI.get(), YetiRenderer::new);
 		strategy.register(ESEntities.AURORA_DEER.get(), AuroraDeerRenderer::new);

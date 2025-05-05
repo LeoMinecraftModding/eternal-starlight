@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-12T14:46:19.4426787	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.21.1	2025-05-05T13:55:39.9453412	Tags for minecraft:entity_type mod id eternal_starlight
 5466319e12aea1f42139ac09c8ffdd0620c716d0 data/c/tags/entity_type/boats.json
 d44f14633b66cf9ee5f04c1bb297ee340a53e288 data/c/tags/entity_type/bosses.json
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_type/abyssal_fire_immune.json
@@ -19,3 +19,4 @@ f6eb1b878dcda83e8e0f0c5388c37999f2e0ec47 data/minecraft/tags/entity_type/freeze_
 f627b828af90e448f9c5322878730dddd94748ff data/minecraft/tags/entity_type/immune_to_infested.json
 81a6c1860d98805184066dd01894829e9b9830ec data/minecraft/tags/entity_type/skeletons.json
 e6722641bfada856c0b16e75d1d23d2f51defcf8 data/minecraft/tags/entity_type/undead.json
+aca59d106b7bec4cb3fb7a21af1b2ace76c21542 data/minecraft/tags/entity_type/zombies.json

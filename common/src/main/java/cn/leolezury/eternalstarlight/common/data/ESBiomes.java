@@ -123,6 +123,7 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder swampSpawns() {
 		return baseLushSpawnBuilder()
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ZOMBIFIED_RATLIN.get(), 24, 1, 3))
 			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2));
 	}
 
@@ -263,6 +264,7 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_NIGHTFALL_MUD_ORE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_FOREST);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SWAMP_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATER_SURFACE_VEGETATION);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.UNDERGROUND_SWAMP_VEGETATION);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.HANGING_FANTAGRASS);
 

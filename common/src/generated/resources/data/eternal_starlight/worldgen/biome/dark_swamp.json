@@ -66,6 +66,7 @@
       "eternal_starlight:bouldershroom",
       "eternal_starlight:swamp_forest",
       "eternal_starlight:swamp_vegetation",
+      "eternal_starlight:water_surface_plant",
       "eternal_starlight:underground_swamp_vegetation",
       "eternal_starlight:hanging_fantagrass"
     ],
@@ -119,6 +120,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 18
+      },
+      {
+        "type": "eternal_starlight:zombified_ratlin",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 24
       }
     ],
     "misc": [],

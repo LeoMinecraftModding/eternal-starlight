@@ -22,7 +22,19 @@
               },
               {
                 "data": {
-                  "Name": "eternal_starlight:starlit_lily_pad"
+                  "Name": "eternal_starlight:starlit_lily_pad",
+                  "Properties": {
+                    "lit": "false"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:starlit_lily_pad",
+                  "Properties": {
+                    "lit": "true"
+                  }
                 },
                 "weight": 1
               }

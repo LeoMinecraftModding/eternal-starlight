@@ -168,6 +168,13 @@ public class ESEntities {
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("ratlin").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<ZombifiedRatlin>> ZOMBIFIED_RATLIN = ENTITIES.register(
+		"zombified_ratlin",
+		() -> EntityType.Builder.of(ZombifiedRatlin::new, MobCategory.CREATURE)
+			.sized(0.9F, 0.775F)
+			.clientTrackingRange(8)
+			.build(EternalStarlight.id("zombified_ratlin").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<ShadowSnail>> SHADOW_SNAIL = ENTITIES.register(
 		"shadow_snail",
 		() -> EntityType.Builder.of(ShadowSnail::new, MobCategory.CREATURE)

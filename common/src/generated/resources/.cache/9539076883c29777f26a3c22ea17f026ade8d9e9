@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-30T22:54:37.9130254	Item Models: eternal_starlight
+// 1.21.1	2025-05-05T13:55:39.9453412	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -353,7 +353,7 @@ a73962ccfeaca57fadc311cd4384ce8564bfe22f assets/eternal_starlight/models/item/gr
 0b4f12fcb0cafd76720bf8d0b9f04c9648d35455 assets/eternal_starlight/models/item/grimstone_tile_slab.json
 fa9edd4fae239533ab0cf14a77ffcf0ae3d5731c assets/eternal_starlight/models/item/grimstone_tile_stairs.json
 f289ca560531c1f11d2df95c86788a0c445944b4 assets/eternal_starlight/models/item/grimstone_tile_wall.json
-dc4b3ed7a92bd2103d1080a8c31a10a138352240 assets/eternal_starlight/models/item/hanging_fantagrass.json
+7cffe8370f5a007ea80938dd1544a27624afcb35 assets/eternal_starlight/models/item/hanging_fantagrass.json
 8f39eb60e4035dfdcc6201d98902bcaf5d34b1f1 assets/eternal_starlight/models/item/haze_ice.json
 c37c36271f47254b1d982d3a6a9e35f7a3f0e4e8 assets/eternal_starlight/models/item/haze_ice_atalphaite_ore.json
 ce861382e32b841fc174a685a4364e1b703fea6b assets/eternal_starlight/models/item/haze_ice_bricks.json
@@ -920,3 +920,4 @@ f99791169149e4e0f2cee85fba35187d89082e7a assets/eternal_starlight/models/item/wi
 ae78720fd9770b9436653eb731ed7cd0e1398717 assets/eternal_starlight/models/item/yellow_yeti_fur.json
 4387198c161cd4420fff8f4920667066070dfeb4 assets/eternal_starlight/models/item/yellow_yeti_fur_carpet.json
 3ec1877de0b4f776eff43f13956398fefbab1c51 assets/eternal_starlight/models/item/yeti_spawn_egg.json
+f83505973cede4a931582ae4c584ab687373e857 assets/eternal_starlight/models/item/zombified_ratlin_spawn_egg.json

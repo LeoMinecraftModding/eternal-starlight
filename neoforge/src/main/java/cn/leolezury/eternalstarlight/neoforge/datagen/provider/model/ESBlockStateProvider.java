@@ -400,7 +400,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		horizontalBlock(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), models().orientableWithBottom(name(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top")));
 
 		waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
-		waterlily(ESBlocks.STARLIT_LILY_PAD.get());
+		waterlilyWithFlower(ESBlocks.STARLIT_LILY_PAD.get());
 		waterlily(ESBlocks.MOONLIGHT_DUCKWEED.get());
 
 		cross(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
@@ -766,6 +766,34 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	private void cubeBottomTop(Block block) {
 		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_bottom"), blockTexture(block).withSuffix("_top"));
 		simpleBlock(block, modelFile);
+	}
+
+	private void waterlilyWithFlower(Block lily) {
+		ModelFile model = models().getBuilder(name(lily))
+			.ao(false)
+			.texture("particle", blockTexture(lily))
+			.texture("texture", blockTexture(lily))
+			.renderType(TRANSLUCENT)
+			.element()
+			.from(0, 0.25f, 0)
+			.to(16, 0.25f, 16)
+			.face(Direction.DOWN)
+			.uvs(0, 16, 16, 0)
+			.texture("#texture")
+			.tintindex(0)
+			.end()
+			.face(Direction.UP)
+			.uvs(0, 0, 16, 16)
+			.texture("#texture")
+			.tintindex(0)
+			.end()
+			.end();
+		getMultipartBuilder(lily)
+			.part().modelFile(models().cross(name(lily) + "_flower", blockTexture(lily).withSuffix("_flower")).renderType(CUTOUT)).addModel().condition(WaterlilyWithFlowerBlock.LIT, true).end()
+			.part().modelFile(model).nextModel()
+			.rotationY(270).modelFile(model).nextModel()
+			.rotationY(180).modelFile(model).nextModel()
+			.rotationY(90).modelFile(model).addModel().end();
 	}
 
 	private void waterlily(Block lily) {
