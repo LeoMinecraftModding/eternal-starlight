@@ -31,6 +31,10 @@ public class ESConventionalTags {
 		public static final TagKey<Item> STORAGE_BLOCKS_GLACITE = storageBlock("glacite");
 		public static final TagKey<Item> GEMS_GLACITE = gem("glacite");
 
+		public static final TagKey<Item> ORES_STARLIT_DIAMOND = ore("starlit_diamond");
+		public static final TagKey<Item> STORAGE_BLOCKS_STARLIT_DIAMOND = storageBlock("starlit_diamond");
+		public static final TagKey<Item> GEMS_STARLIT_DIAMOND = gem("starlit_diamond");
+
 		public static final TagKey<Item> ORES_SWAMP_SILVER = ore("swamp_silver");
 		public static final TagKey<Item> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
 		public static final TagKey<Item> INGOTS_SWAMP_SILVER = ingot("swamp_silver");
@@ -110,6 +114,9 @@ public class ESConventionalTags {
 		public static final TagKey<Block> STORAGE_BLOCKS_AETHERSENT = storageBlock("aethersent");
 
 		public static final TagKey<Block> STORAGE_BLOCKS_GLACITE = storageBlock("glacite");
+
+		public static final TagKey<Block> ORES_STARLIT_DIAMOND = ore("starlit_diamond");
+		public static final TagKey<Block> STORAGE_BLOCKS_STARLIT_DIAMOND = storageBlock("starlit_diamond");
 
 		public static final TagKey<Block> ORES_SWAMP_SILVER = ore("swamp_silver");
 		public static final TagKey<Block> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");

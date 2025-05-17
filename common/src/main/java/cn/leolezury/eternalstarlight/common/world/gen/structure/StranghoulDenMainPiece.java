@@ -57,8 +57,10 @@ public class StranghoulDenMainPiece extends StructurePiece {
 			for (int x = -7; x <= 7; x++) {
 				for (int z = -7; z <= 7; z++) {
 					if (x * x + z * z < (7 + y) * (7 + y)) {
-						placeBlock(level, Blocks.AIR.defaultBlockState(), x + 7, y, z + 7, box);
-						level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, y, z + 7));
+						placeBlock(level, level.getBlockState(getWorldPos(x + 7, y + 1, z + 7)).getFluidState().isEmpty() ? Blocks.AIR.defaultBlockState() : ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, y, z + 7, box);
+						if (y == 0) {
+							level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, 1, z + 7));
+						}
 						if (getBlock(level, x + 7, y - 1, z + 7, box).is(ESBlocks.NIGHTFALL_MUD.get())) {
 							placeBlock(level, ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
 						}

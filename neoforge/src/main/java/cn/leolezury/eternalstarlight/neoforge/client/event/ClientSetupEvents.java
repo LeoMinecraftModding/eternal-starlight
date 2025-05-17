@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
+import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -104,6 +105,30 @@ public class ClientSetupEvents {
 		event.registerItem(thermalSpringstoneArmor, ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get());
 		event.registerItem(thermalSpringstoneArmor, ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get());
 		event.registerItem(thermalSpringstoneArmor, ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
+		IClientItemExtensions starlitDiamondArmor = new IClientItemExtensions() {
+			private StarlitDiamondArmorModel<LivingEntity> innerModel;
+			private StarlitDiamondArmorModel<LivingEntity> outerModel;
+
+			@Override
+			public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+				if (innerModel == null || outerModel == null) {
+					innerModel = new StarlitDiamondArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(StarlitDiamondArmorModel.INNER_LOCATION));
+					outerModel = new StarlitDiamondArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(StarlitDiamondArmorModel.OUTER_LOCATION));
+				}
+
+				if (itemStack.is(ESItems.STARLIT_DIAMOND_HELMET.get()) || itemStack.is(ESItems.STARLIT_DIAMOND_CHESTPLATE.get()) || itemStack.is(ESItems.STARLIT_DIAMOND_BOOTS.get())) {
+					return outerModel;
+				} else if (itemStack.is(ESItems.STARLIT_DIAMOND_LEGGINGS.get())) {
+					return innerModel;
+				}
+
+				return IClientItemExtensions.super.getHumanoidArmorModel(livingEntity, itemStack, equipmentSlot, original);
+			}
+		};
+		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_HELMET.get());
+		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_CHESTPLATE.get());
+		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_LEGGINGS.get());
+		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_BOOTS.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());

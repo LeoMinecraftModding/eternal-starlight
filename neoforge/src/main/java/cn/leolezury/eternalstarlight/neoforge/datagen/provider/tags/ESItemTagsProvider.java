@@ -84,7 +84,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.FOODS_RAW_MEAT)
 			.add(
-				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.TOWER_SQUID.get(),
 				ESItems.AURORA_DEER_STEAK.get(),
 				ESItems.RATLIN_MEAT.get(),
@@ -92,6 +91,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.FOODS_COOKED_MEAT)
 			.add(
+				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.COOKED_TOWER_SQUID.get(),
 				ESItems.COOKED_AURORA_DEER_STEAK.get(),
 				ESItems.COOKED_RATLIN_MEAT.get(),
@@ -156,6 +156,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTags(
 				ESConventionalTags.Items.GEMS_THIOQUARTZ,
 				ESConventionalTags.Items.GEMS_GLACITE,
+				ESConventionalTags.Items.GEMS_STARLIT_DIAMOND,
 				ESConventionalTags.Items.GEMS_MALARITE,
 				ESConventionalTags.Items.GEMS_ATALPHAITE
 			);
@@ -223,6 +224,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_SWORD.get(),
 				ESItems.GLACITE_AXE.get(),
 				ESItems.GLACITE_SCYTHE.get(),
+				ESItems.STARLIT_DIAMOND_SWORD.get(),
+				ESItems.STARLIT_DIAMOND_AXE.get(),
 				ESItems.SWAMP_SILVER_SWORD.get(),
 				ESItems.SWAMP_SILVER_AXE.get(),
 				ESItems.MALARITE_SWORD.get(),
@@ -253,6 +256,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 				ESItems.GLACITE_PICKAXE.get(),
+				ESItems.STARLIT_DIAMOND_PICKAXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
@@ -264,6 +268,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AETHERSENT);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_AETHERSENT);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GLACITE, ESConventionalTags.Items.STORAGE_BLOCKS_GLACITE);
+		copy(ESConventionalTags.Blocks.ORES_STARLIT_DIAMOND, ESConventionalTags.Items.ORES_STARLIT_DIAMOND);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_STARLIT_DIAMOND, ESConventionalTags.Items.STORAGE_BLOCKS_STARLIT_DIAMOND);
 		copy(ESConventionalTags.Blocks.ORES_SWAMP_SILVER, ESConventionalTags.Items.ORES_SWAMP_SILVER);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SWAMP_SILVER, ESConventionalTags.Items.STORAGE_BLOCKS_SWAMP_SILVER);
 		copy(ESConventionalTags.Blocks.ORES_MALARITE, ESConventionalTags.Items.ORES_MALARITE);
@@ -319,6 +325,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.GEMS_GLACITE)
 			.add(
 				ESItems.GLACITE_SHARD.get()
+			);
+		tag(ESConventionalTags.Items.GEMS_STARLIT_DIAMOND)
+			.add(
+				ESItems.STARLIT_DIAMOND.get()
 			);
 		tag(ESConventionalTags.Items.INGOTS_SWAMP_SILVER)
 			.add(
@@ -428,6 +438,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
 				ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
 				ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
+				ESItems.STARLIT_DIAMOND_HELMET.get(),
+				ESItems.STARLIT_DIAMOND_CHESTPLATE.get(),
+				ESItems.STARLIT_DIAMOND_LEGGINGS.get(),
+				ESItems.STARLIT_DIAMOND_BOOTS.get(),
 				ESItems.SWAMP_SILVER_LEGGINGS.get(),
 				ESItems.SWAMP_SILVER_BOOTS.get(),
 				ESItems.AMARAMBER_HELMET.get(),
@@ -887,6 +901,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.MEAT)
 			.add(
 				ESItems.DOOMEDEN_CARRION.get(),
+				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.TOWER_SQUID.get(),
 				ESItems.COOKED_TOWER_SQUID.get(),
 				ESItems.LUMINOFISH.get(),
@@ -906,6 +921,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AETHERSENT_HOOD.get(),
 				ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
 				ESItems.GLACITE_HELMET.get(),
+				ESItems.STARLIT_DIAMOND_HELMET.get(),
 				ESItems.SWAMP_SILVER_HELMET.get(),
 				ESItems.AMARAMBER_HELMET.get(),
 				ESItems.AIR_SAC_MASK.get()
@@ -916,6 +932,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AETHERSENT_CAPE.get(),
 				ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
 				ESItems.GLACITE_CHESTPLATE.get(),
+				ESItems.STARLIT_DIAMOND_CHESTPLATE.get(),
 				ESItems.SWAMP_SILVER_CHESTPLATE.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get()
 			);
@@ -924,6 +941,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AETHERSENT_BOTTOMS.get(),
 				ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
 				ESItems.GLACITE_LEGGINGS.get(),
+				ESItems.STARLIT_DIAMOND_LEGGINGS.get(),
 				ESItems.SWAMP_SILVER_LEGGINGS.get()
 			);
 		tag(ItemTags.FOOT_ARMOR)
@@ -931,6 +949,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AETHERSENT_BOOTS.get(),
 				ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
 				ESItems.GLACITE_BOOTS.get(),
+				ESItems.STARLIT_DIAMOND_BOOTS.get(),
 				ESItems.SWAMP_SILVER_BOOTS.get(),
 				ESItems.AIR_SAC_BOOTS.get()
 			);
@@ -940,6 +959,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.RAGE_OF_STARS.get(),
 				ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 				ESItems.GLACITE_SWORD.get(),
+				ESItems.STARLIT_DIAMOND_SWORD.get(),
 				ESItems.SWAMP_SILVER_SWORD.get(),
 				ESItems.MALARITE_SWORD.get(),
 				ESItems.AMARAMBER_SWORD.get(),
@@ -952,6 +972,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 				ESItems.GLACITE_PICKAXE.get(),
+				ESItems.STARLIT_DIAMOND_PICKAXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
@@ -961,6 +982,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_AXE.get(),
 				ESItems.GLACITE_AXE.get(),
+				ESItems.STARLIT_DIAMOND_AXE.get(),
 				ESItems.SWAMP_SILVER_AXE.get(),
 				ESItems.MALARITE_AXE.get(),
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
@@ -970,6 +992,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_HOE.get(),
 				ESItems.GLACITE_HOE.get(),
+				ESItems.STARLIT_DIAMOND_HOE.get(),
 				ESItems.MALARITE_HOE.get(),
 				ESItems.AMARAMBER_HOE.get()
 			)
@@ -981,6 +1004,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(),
 				ESItems.GLACITE_SHOVEL.get(),
+				ESItems.STARLIT_DIAMOND_SHOVEL.get(),
 				ESItems.MALARITE_SHOVEL.get(),
 				ESItems.AMARAMBER_SHOVEL.get()
 			);

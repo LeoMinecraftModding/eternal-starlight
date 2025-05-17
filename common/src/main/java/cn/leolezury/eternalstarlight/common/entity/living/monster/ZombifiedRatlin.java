@@ -28,12 +28,21 @@ public class ZombifiedRatlin extends Ratlin {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false));
-		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 8f, 1.25D, 1.5D));
-		this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0, false));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8f, 1.25D, 1.5D) {
+			@Override
+			public boolean canUse() {
+				return super.canUse() && ZombifiedRatlin.this.getTarget() == null;
+			}
+
+			@Override
+			public boolean canContinueToUse() {
+				return super.canContinueToUse() && ZombifiedRatlin.this.getTarget() == null;
+			}
+		});
+		this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
 	}
 

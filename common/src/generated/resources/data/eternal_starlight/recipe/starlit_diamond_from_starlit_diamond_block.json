@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "starlit_diamond",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:starlit_diamond_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:starlit_diamond"
+  }
+}

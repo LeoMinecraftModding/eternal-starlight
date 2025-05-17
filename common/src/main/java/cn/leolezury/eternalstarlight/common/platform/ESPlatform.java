@@ -108,9 +108,11 @@ public interface ESPlatform {
 		return new CrescentSpearItem(properties);
 	}
 
-	ThermalSpringstoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	ThermalSpringstoneArmorItem createThermalSpringstoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
 
 	AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+
+	ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
 
 	CreativeModeTab getESTab();
 

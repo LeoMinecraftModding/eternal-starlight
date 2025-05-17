@@ -824,6 +824,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, DropExperienceBlock> GLACITE = BLOCKS.register("glacite", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.SNOW)));
 	public static final RegistryObject<Block, Block> GLACITE_BLOCK = BLOCKS.register("glacite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.SNOW)));
 
+	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_STARLIT_DIAMOND_ORE = BLOCKS.register("grimstone_starlit_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));
+	public static final RegistryObject<Block, DropExperienceBlock> VOIDSTONE_STARLIT_DIAMOND_ORE = BLOCKS.register("voidstone_starlit_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+	public static final RegistryObject<Block, Block> STARLIT_DIAMOND_BLOCK = BLOCKS.register("starlit_diamond_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+
 	public static final RegistryObject<Block, DropExperienceBlock> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
 	public static final RegistryObject<Block, Block> SWAMP_SILVER_BLOCK = BLOCKS.register("swamp_silver_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(5.0F, 3.5F)));
 

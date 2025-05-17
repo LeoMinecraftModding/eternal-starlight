@@ -47,6 +47,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addPungencyFruitRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
 		addGlaciteRecipes(recipeOutput);
+		addStarlitDiamondRecipes(recipeOutput);
 		addAtalphaiteRecipes(recipeOutput);
 		addSaltpeterRecipes(recipeOutput);
 		addAmaramberRecipes(recipeOutput);
@@ -1427,6 +1428,23 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		addSmelt(recipeOutput, 200, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
 		addBlast(recipeOutput, 100, ESItems.GLACITE.get(), ESItems.GLACITE_SHARD.get(), ESItems.GLACITE.get());
+	}
+
+	private void addStarlitDiamondRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.STARLIT_DIAMOND.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.STARLIT_DIAMOND_BLOCK.get(), "starlit_diamond_from_starlit_diamond_block", "starlit_diamond");
+		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		addAxe(recipeOutput, ESItems.STARLIT_DIAMOND_AXE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addHoe(recipeOutput, ESItems.STARLIT_DIAMOND_HOE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addShovel(recipeOutput, ESItems.STARLIT_DIAMOND_SHOVEL.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addPickaxe(recipeOutput, ESItems.STARLIT_DIAMOND_PICKAXE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addSword(recipeOutput, ESItems.STARLIT_DIAMOND_SWORD.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addHelmet(recipeOutput, ESItems.STARLIT_DIAMOND_HELMET.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addChestplate(recipeOutput, ESItems.STARLIT_DIAMOND_CHESTPLATE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addLeggings(recipeOutput, ESItems.STARLIT_DIAMOND_LEGGINGS.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		addBoots(recipeOutput, ESItems.STARLIT_DIAMOND_BOOTS.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
 	}
 
 	private void addAtalphaiteRecipes(RecipeOutput recipeOutput) {

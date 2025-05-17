@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNam
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricAlchemistArmorItem;
+import cn.leolezury.eternalstarlight.fabric.item.armor.FabricStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
@@ -122,13 +123,18 @@ public class FabricPlatform implements ESPlatform {
 	}
 
 	@Override
-	public ThermalSpringstoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+	public ThermalSpringstoneArmorItem createThermalSpringstoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new FabricThermalSpringstoneArmorItem(material, type, properties);
 	}
 
 	@Override
 	public AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new FabricAlchemistArmorItem(material, type, properties);
+	}
+
+	@Override
+	public ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new FabricStarlitDiamondArmorItem(material, type, properties);
 	}
 
 	@Override

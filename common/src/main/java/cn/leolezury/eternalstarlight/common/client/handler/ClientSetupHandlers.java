@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalys
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
+import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.block.TangledHeadModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
@@ -783,6 +784,8 @@ public class ClientSetupHandlers {
 		strategy.register(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
 		strategy.register(ThermalSpringStoneArmorModel.OUTER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(OUTER_ARMOR_DEFORMATION));
 		strategy.register(AlchemistArmorModel.LAYER_LOCATION, AlchemistArmorModel::createBodyLayer);
+		strategy.register(StarlitDiamondArmorModel.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+		strategy.register(StarlitDiamondArmorModel.OUTER_LOCATION, () -> StarlitDiamondArmorModel.createArmorLayer(OUTER_ARMOR_DEFORMATION));
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.LUNAR), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.NORTHLAND), BoatModel::createBodyModel);

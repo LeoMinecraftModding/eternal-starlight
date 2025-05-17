@@ -79,7 +79,7 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 	public static void tick(Level level, BlockPos pos, BlockState state, CrystalbornCatalystBlockEntity entity) {
 		if (level instanceof ServerLevel serverLevel) {
 			if (state.getValue(CrystalbornCatalystBlock.LIT)) {
-				entity.cursors.removeIf(cursor -> cursor.energyLeft <= 0);
+				entity.cursors.removeIf(cursor -> cursor.energyLeft <= 0 || cursor.pos.distSqr(pos) > ESConfig.INSTANCE.itemsConfig.crystalbornCatalyst.maxRange() * ESConfig.INSTANCE.itemsConfig.crystalbornCatalyst.maxRange());
 				if (entity.energyLeft > 0 && entity.cursors.size() < 8) {
 					int energy = Math.min(entity.random.nextInt(10, 20), entity.energyLeft);
 					entity.cursors.add(new Cursor(pos, Direction.getRandom(entity.random), energy));
@@ -105,7 +105,7 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 				entity.charge = Math.clamp(entity.charge, 0, 30);
 				if (entity.charge == 30) {
 					entity.items.getFirst().shrink(1);
-					entity.energyLeft += ESConfig.INSTANCE.itemsConfig.crystalbornCatalystEnergyPerShard;
+					entity.energyLeft += ESConfig.INSTANCE.itemsConfig.crystalbornCatalyst.energyPerShard();
 					for (int i = 0; i <= 10; i++) {
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.CRYSTAL, pos.getCenter().x + (entity.random.nextFloat() - 0.5f) * 4, pos.getY(), pos.getCenter().z + (entity.random.nextFloat() - 0.5f) * 4, 0, 1, 0));
 					}
@@ -198,9 +198,13 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 					drops.forEach(dropsConsumer);
 					pos = targetPos;
 					energyLeft -= 1;
+					List<Direction> preferredDirs = new ArrayList<>(Arrays.stream(Direction.values()).toList());
+					preferredDirs.removeIf(dir -> !level.getBlockState(pos.relative(dir)).is(ESTags.Blocks.CRYSTALBORN_CATALYST_PREFERENCES));
 					List<Direction> availableDirs = new ArrayList<>(Arrays.stream(Direction.values()).toList());
 					availableDirs.removeIf(dir -> !level.getBlockState(pos.relative(dir)).is(ESTags.Blocks.CRYSTALBORN_CATALYST_REPLACEABLES));
-					if (!availableDirs.isEmpty()) {
+					if (!preferredDirs.isEmpty()) {
+						direction = preferredDirs.get(level.getRandom().nextInt(preferredDirs.size()));
+					} else if (!availableDirs.isEmpty()) {
 						direction = availableDirs.get(level.getRandom().nextInt(availableDirs.size()));
 					}
 				} else {

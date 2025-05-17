@@ -17,6 +17,7 @@ import cn.leolezury.eternalstarlight.neoforge.block.ForgeTearBombBlock;
 import cn.leolezury.eternalstarlight.neoforge.block.fluid.ForgeEtherFluid;
 import cn.leolezury.eternalstarlight.neoforge.client.ForgeDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeAlchemistArmorItem;
+import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.weapon.ForgeCrescentSpearItem;
 import cn.leolezury.eternalstarlight.neoforge.item.weapon.ForgeHammerItem;
@@ -205,13 +206,18 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public ThermalSpringstoneArmorItem createThermalSpringStoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+	public ThermalSpringstoneArmorItem createThermalSpringstoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new ForgeThermalSpringstoneArmorItem(material, type, properties);
 	}
 
 	@Override
 	public AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new ForgeAlchemistArmorItem(material, type, properties);
+	}
+
+	@Override
+	public ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new ForgeStarlitDiamondArmorItem(material, type, properties);
 	}
 
 	@Override

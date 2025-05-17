@@ -558,6 +558,17 @@
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_glacite"
   },
+  "item.armor.equip_starlit_diamond": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_starlit_diamond"
+  },
   "item.armor.equip_swamp_silver": {
     "sounds": [
       "item/armor/equip_diamond1",

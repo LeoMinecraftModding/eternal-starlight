@@ -70,9 +70,12 @@ public class ESConfig {
 
 	public static class ItemsConfig {
 		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
-		public int crystalbornCatalystEnergyPerShard = 50;
+		public final CrystalbornCatalystConfig crystalbornCatalyst = new CrystalbornCatalystConfig(128, 50);
 
 		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
+		}
+
+		public record CrystalbornCatalystConfig(int maxRange, int energyPerShard) {
 		}
 	}
 

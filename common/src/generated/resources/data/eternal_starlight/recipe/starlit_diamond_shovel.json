@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:gems/starlit_diamond"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "#",
+    "H",
+    "H"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:starlit_diamond_shovel"
+  }
+}

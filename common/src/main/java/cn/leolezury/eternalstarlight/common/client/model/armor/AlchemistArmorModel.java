@@ -54,11 +54,6 @@ public class AlchemistArmorModel<T extends LivingEntity> extends HumanoidArmorMo
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-	}
-
-	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
 		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);

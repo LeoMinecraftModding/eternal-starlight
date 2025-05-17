@@ -92,6 +92,23 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.VORACIOUS_ARROW.get(),
 				ESEntities.AIR_SAC_ARROW.get()
 			);
+		tag(EntityTypeTags.IMPACT_PROJECTILES)
+			.add(
+				ESEntities.AETHERSENT_METEOR.get(),
+				ESEntities.AETHERSTRIKE_ROCKET.get(),
+				ESEntities.GLEECH_EGG.get(),
+				ESEntities.FROZEN_TUBE.get(),
+				ESEntities.LUNAR_SPORE.get(),
+				ESEntities.SHATTERED_BLADE.get(),
+				ESEntities.MALARITE_SPEAR.get(),
+				ESEntities.PUNGENCY_FRUIT_SPEAR.get(),
+				ESEntities.THIOQUARTZ_SHARD.get(),
+				ESEntities.SONAR_BOMB.get(),
+				ESEntities.ASHEN_SNOWBALL.get(),
+				ESEntities.FROZEN_BOMB.get(),
+				ESEntities.WILTED_PETAL.get(),
+				ESEntities.SHOT_SEEDS.get()
+			);
 		tag(EntityTypeTags.UNDEAD)
 			.add(
 				ESEntities.LONESTAR_SKELETON.get(),

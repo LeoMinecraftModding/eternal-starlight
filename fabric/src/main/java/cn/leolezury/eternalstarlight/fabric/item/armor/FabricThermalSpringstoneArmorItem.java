@@ -84,17 +84,6 @@ public class FabricThermalSpringstoneArmorItem extends ThermalSpringstoneArmorIt
 			parentModel.copyPropertiesTo(armorModel);
 			setPartVisibility(armorModel, armorSlot);
 			ArmorRenderer.renderPart(stack, multiBufferSource, light, itemStack, armorModel, getTexture(armorSlot));
-            /*if (itemStack.getItem() instanceof ArmorItem armorItem) {
-                ArmorTrim.getTrim(livingEntity.level().registryAccess(), itemStack, true).ifPresent((armorTrim) -> {
-                    this.renderTrim(armorItem.getMaterial(), stack, multiBufferSource, light, armorTrim, armorModel, itemStack.is(ItemInit.THERMAL_SPRINGSTONE_LEGGINGS.get()));
-                });
-            }*/
 		}
-
-        /*private void renderTrim(ArmorMaterial armorMaterial, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, ArmorTrim armorTrim, HumanoidModel<?> humanoidModel, boolean inner) {
-            TextureAtlasSprite textureAtlasSprite = this.armorTrimAtlas.getSprite(inner ? armorTrim.innerTexture(armorMaterial) : armorTrim.outerTexture(armorMaterial));
-            VertexConsumer vertexConsumer = textureAtlasSprite.wrap(multiBufferSource.getBuffer(Sheets.armorTrimsSheet(((TrimPattern)armorTrim.pattern().value()).decal())));
-            humanoidModel.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        }*/
 	}
 }

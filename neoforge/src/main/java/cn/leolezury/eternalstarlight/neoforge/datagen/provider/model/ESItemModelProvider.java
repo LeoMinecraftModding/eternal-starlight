@@ -683,6 +683,20 @@ public class ESItemModelProvider extends ItemModelProvider {
 		armorWithTrim((ArmorItem) ESItems.GLACITE_LEGGINGS.get());
 		armorWithTrim((ArmorItem) ESItems.GLACITE_BOOTS.get());
 
+		block(ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
+		block(ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		block(ESItems.STARLIT_DIAMOND_BLOCK.get());
+		basicItem(ESItems.STARLIT_DIAMOND.get());
+		handheld(ESItems.STARLIT_DIAMOND_SWORD.get());
+		handheld(ESItems.STARLIT_DIAMOND_PICKAXE.get());
+		handheld(ESItems.STARLIT_DIAMOND_AXE.get());
+		handheld(ESItems.STARLIT_DIAMOND_HOE.get());
+		handheld(ESItems.STARLIT_DIAMOND_SHOVEL.get());
+		basicItem(ESItems.STARLIT_DIAMOND_HELMET.get());
+		basicItem(ESItems.STARLIT_DIAMOND_CHESTPLATE.get());
+		basicItem(ESItems.STARLIT_DIAMOND_LEGGINGS.get());
+		basicItem(ESItems.STARLIT_DIAMOND_BOOTS.get());
+
 		block(ESItems.SWAMP_SILVER_ORE.get());
 		block(ESItems.SWAMP_SILVER_BLOCK.get());
 		basicItem(ESItems.SWAMP_SILVER_INGOT.get());
