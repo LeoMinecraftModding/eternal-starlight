@@ -6,7 +6,7 @@ import net.minecraft.world.level.levelgen.SurfaceSystem;
 import org.spongepowered.asm.mixin.*;
 
 @Mixin(RandomState.class)
-public class RandomStateMixin implements IRandomState {
+public abstract class RandomStateMixin implements IRandomState {
 	@Mutable
 	@Shadow
 	@Final

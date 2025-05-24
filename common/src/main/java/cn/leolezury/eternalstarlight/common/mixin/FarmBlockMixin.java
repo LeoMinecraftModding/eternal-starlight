@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FarmBlock.class)
-public class FarmBlockMixin {
+public abstract class FarmBlockMixin {
 	@Inject(method = "getStateForPlacement", at = @At(value = "RETURN"), cancellable = true)
 	private void getStateForPlacement(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<BlockState> cir) {
 		if (((FarmBlock) (Object) this).defaultBlockState().is(ESBlocks.NIGHTFALL_FARMLAND.get()) && !((FarmBlock) (Object) this).defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos())) {

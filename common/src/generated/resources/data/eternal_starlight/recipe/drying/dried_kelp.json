@@ -1,0 +1,12 @@
+{
+  "type": "eternal_starlight:drying",
+  "duration_ticks": 100,
+  "fire_below": true,
+  "input": {
+    "item": "minecraft:kelp"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:dried_kelp"
+  }
+}

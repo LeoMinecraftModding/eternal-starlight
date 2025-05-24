@@ -394,14 +394,14 @@
   "display": {
     "thirdperson_righthand": {
       "translation": [
-        0,
+        -0.25,
         4.25,
         -2.75
       ]
     },
     "thirdperson_lefthand": {
       "translation": [
-        0,
+        -0.25,
         4.25,
         -2.75
       ]

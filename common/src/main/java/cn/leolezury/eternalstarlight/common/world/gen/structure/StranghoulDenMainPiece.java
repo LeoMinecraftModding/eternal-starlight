@@ -11,13 +11,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
+import net.minecraft.world.level.material.FluidState;
 
 import java.util.Set;
 
@@ -50,6 +50,29 @@ public class StranghoulDenMainPiece extends StructurePiece {
 		return !state.is(BlockTags.DIRT) && !state.is(ESTags.Blocks.BASE_STONE_STARLIGHT);
 	}
 
+	// changed Block.UPDATE_ALL
+	@Override
+	protected void placeBlock(WorldGenLevel worldGenLevel, BlockState blockState, int i, int j, int k, BoundingBox boundingBox) {
+		BlockPos blockPos = this.getWorldPos(i, j, k);
+		if (boundingBox.isInside(blockPos)) {
+			if (this.canBeReplaced(worldGenLevel, i, j, k, boundingBox)) {
+				if (this.getMirror() != Mirror.NONE) {
+					blockState = blockState.mirror(this.getMirror());
+				}
+
+				if (this.getRotation() != Rotation.NONE) {
+					blockState = blockState.rotate(this.getRotation());
+				}
+
+				worldGenLevel.setBlock(blockPos, blockState, Block.UPDATE_ALL);
+				FluidState fluidState = worldGenLevel.getFluidState(blockPos);
+				if (!fluidState.isEmpty()) {
+					worldGenLevel.scheduleTick(blockPos, fluidState.getType(), 0);
+				}
+			}
+		}
+	}
+
 	@Override
 	public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos blockPos) {
 		boolean rackPlaced = false;
@@ -58,9 +81,6 @@ public class StranghoulDenMainPiece extends StructurePiece {
 				for (int z = -7; z <= 7; z++) {
 					if (x * x + z * z < (7 + y) * (7 + y)) {
 						placeBlock(level, level.getBlockState(getWorldPos(x + 7, y + 1, z + 7)).getFluidState().isEmpty() ? Blocks.AIR.defaultBlockState() : ESBlocks.NIGHTFALL_MUD.get().defaultBlockState(), x + 7, y, z + 7, box);
-						if (y == 0) {
-							level.getChunk(blockPos).markPosForPostprocessing(new BlockPos(x + 7, 1, z + 7));
-						}
 						if (getBlock(level, x + 7, y - 1, z + 7, box).is(ESBlocks.NIGHTFALL_MUD.get())) {
 							placeBlock(level, ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState(), x + 7, y - 1, z + 7, box);
 						}

@@ -8,20 +8,17 @@
     "G": {
       "tag": "c:gems/glacite"
     },
-    "N": {
-      "tag": "c:nuggets/swamp_silver"
-    },
     "S": {
       "item": "eternal_starlight:ashen_snowball"
     }
   },
   "pattern": [
-    "NSN",
-    "AGA",
-    "NAN"
+    "SG ",
+    "GAG",
+    " G "
   ],
   "result": {
-    "count": 1,
+    "count": 2,
     "id": "eternal_starlight:frozen_bomb"
   }
 }

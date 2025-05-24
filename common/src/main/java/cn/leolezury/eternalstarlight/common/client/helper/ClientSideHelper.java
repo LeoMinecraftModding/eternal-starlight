@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScre
 import cn.leolezury.eternalstarlight.common.client.gui.toast.BookUnlockToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -373,6 +374,16 @@ public class ClientSideHelper implements ClientHelper {
 			EternalStarlight.id("textures/gui/screen/book/book_flip_left.png"),
 			EternalStarlight.id("textures/gui/screen/book/book_flip_right.png"));
 		Minecraft.getInstance().setScreen(new BookScreen(book));
+	}
+
+	@Override
+	public void handleUpdateWitchType(UpdateWitchTypePacket packet) {
+		if (Minecraft.getInstance().level != null) {
+			Entity witch = Minecraft.getInstance().level.getEntity(packet.witchId());
+			if (witch instanceof StarlightWitch starlightWitch) {
+				starlightWitch.setWitchType(packet.witchType());
+			}
+		}
 	}
 
 	@Override

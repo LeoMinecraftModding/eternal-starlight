@@ -1,0 +1,9 @@
+{
+  "asset_name": "starlit_diamond",
+  "description": {
+    "color": "#9584E4",
+    "translate": "trim_material.eternal_starlight.starlit_diamond"
+  },
+  "ingredient": "eternal_starlight:starlit_diamond",
+  "item_model_index": 0.8
+}

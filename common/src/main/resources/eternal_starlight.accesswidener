@@ -34,9 +34,12 @@ accessible method net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkP
 accessible method net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacerType <init> (Lcom/mojang/serialization/MapCodec;)V
 accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
 accessible method net/minecraft/world/effect/MobEffect <init> (Lnet/minecraft/world/effect/MobEffectCategory;I)V
+accessible method net/minecraft/world/inventory/MenuType <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+accessible class net/minecraft/world/inventory/MenuType$MenuSupplier
+accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
 
 # client init
-accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
 accessible method net/minecraft/client/particle/SquidInkParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDILnet/minecraft/client/particle/SpriteSet;)V
 accessible method net/minecraft/client/particle/GlowParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/particle/SpriteSet;)V
 accessible class net/minecraft/client/particle/DripParticle$DripHangParticle
@@ -47,13 +50,11 @@ accessible class net/minecraft/client/particle/DripParticle$DripLandParticle
 accessible method net/minecraft/client/particle/DripParticle$DripLandParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;)V
 accessible method net/minecraft/client/renderer/item/ItemProperties register (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClampedItemPropertyFunction;)V
 accessible method net/minecraft/client/renderer/blockentity/BlockEntityRenderers register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
-accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
 accessible method net/minecraft/client/renderer/Sheets createSignMaterial (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/Material;
 accessible class net/minecraft/client/particle/ParticleEngine$SpriteParticleRegistration
 accessible class net/minecraft/client/renderer/RenderStateShard$ShaderStateShard
-accessible method net/minecraft/world/inventory/MenuType <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;Lnet/minecraft/world/flag/FeatureFlagSet;)V
-accessible class net/minecraft/world/inventory/MenuType$MenuSupplier
 accessible class net/minecraft/client/gui/screens/MenuScreens$ScreenConstructor
+accessible field net/minecraft/client/renderer/blockentity/SkullBlockRenderer SKIN_BY_TYPE Ljava/util/Map;
 
 # blocks
 accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -89,11 +90,26 @@ accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/
 accessible method net/minecraft/world/item/enchantment/EnchantmentHelper runIterationOnItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;)V
 accessible class net/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor
 
+# chunkgen
+extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
+accessible field net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator globalFluidPicker Ljava/util/function/Supplier;
+extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doFill (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
+extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doCreateBiomes (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+
+# sweep attack for scythes and hammers
+accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F
+
+# custom arrow for mech crossbow
+accessible method net/minecraft/world/entity/projectile/AbstractArrow setPierceLevel (B)V
+
+# custom arrow for wilted crossbow
+accessible field net/minecraft/world/entity/projectile/AbstractArrow inGround Z
+
+# gatekeeper skin
+accessible method net/minecraft/world/level/block/entity/SkullBlockEntity fetchGameProfile (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+
 # render types
 accessible method net/minecraft/client/renderer/RenderType create (Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;IZZLnet/minecraft/client/renderer/RenderType$CompositeState;)Lnet/minecraft/client/renderer/RenderType$CompositeRenderType;
-
-# client setup
-accessible field net/minecraft/client/renderer/blockentity/SkullBlockRenderer SKIN_BY_TYPE Ljava/util/Map;
 
 # world visual effects
 accessible field net/minecraft/client/renderer/LevelRenderer renderBuffers Lnet/minecraft/client/renderer/RenderBuffers;
@@ -109,21 +125,6 @@ accessible method net/minecraft/client/Camera getMaxZoom (F)F
 # astral golem
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer renderArmorPiece (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer getArmorModel (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/client/model/HumanoidModel;
-
-# chunkgen
-extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
-accessible field net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator globalFluidPicker Ljava/util/function/Supplier;
-extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doFill (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
-extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doCreateBiomes (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
-
-# sweep attack for scythes and hammers
-accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F
-
-# custom arrow for mech crossbow
-accessible method net/minecraft/world/entity/projectile/AbstractArrow setPierceLevel (B)V
-
-# custom arrow for wilted crossbow
-accessible field net/minecraft/world/entity/projectile/AbstractArrow inGround Z
 
 # fabirc mixin
 accessible class net/minecraft/client/resources/model/ModelManager$ReloadState
@@ -149,8 +150,9 @@ accessible method net/minecraft/client/renderer/entity/player/PlayerRenderer set
 # gui
 accessible method net/minecraft/client/gui/Gui renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
 
-# gatekeeper skin
-accessible method net/minecraft/world/level/block/entity/SkullBlockEntity fetchGameProfile (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-
 # freeze rendertype
 extendable method net/minecraft/client/model/Model renderType (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;
+
+# custom witch
+accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer model Lnet/minecraft/client/model/EntityModel;
+mutable field net/minecraft/client/renderer/entity/LivingEntityRenderer model Lnet/minecraft/client/model/EntityModel;

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_spiral_kelp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:spiral_kelp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:dried_kelp_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_spiral_kelp"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:dried_kelp_from_smoking"
+    ]
+  }
+}

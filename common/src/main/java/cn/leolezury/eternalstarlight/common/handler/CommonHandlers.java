@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
@@ -16,6 +17,7 @@ import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
+import cn.leolezury.eternalstarlight.common.network.UpdateWitchTypePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -255,6 +257,12 @@ public class CommonHandlers {
 				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
 					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
 				}
+			}
+		}
+		if (entity instanceof StarlightWitch witch && witch.isWitchTypeDirty()) {
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new UpdateWitchTypePacket(entity.getId(), witch.getWitchType()));
+				witch.setWitchTypeDirty(false);
 			}
 		}
 		CompoundTag persistentData = ESEntityUtil.getPersistentData(entity);

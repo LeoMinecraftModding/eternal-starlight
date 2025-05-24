@@ -1027,6 +1027,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AETHERSENT_INGOT.get(),
 				ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 				ESItems.GLACITE_SHARD.get(),
+				ESItems.STARLIT_DIAMOND.get(),
 				ESItems.SWAMP_SILVER_INGOT.get(),
 				ESItems.MALARITE.get(),
 				ESItems.AMARAMBER_INGOT.get(),

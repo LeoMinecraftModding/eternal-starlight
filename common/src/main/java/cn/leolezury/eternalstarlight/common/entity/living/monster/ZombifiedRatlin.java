@@ -28,8 +28,10 @@ public class ZombifiedRatlin extends Ratlin {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0, false));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8f, 1.25D, 1.5D) {
+		this.goalSelector.addGoal(0, new RestrictSunGoal(this));
+		this.goalSelector.addGoal(1, new FleeSunGoal(this, 1));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 8f, 1.25D, 1.5D) {
 			@Override
 			public boolean canUse() {
 				return super.canUse() && ZombifiedRatlin.this.getTarget() == null;
@@ -40,9 +42,9 @@ public class ZombifiedRatlin extends Ratlin {
 				return super.canContinueToUse() && ZombifiedRatlin.this.getTarget() == null;
 			}
 		});
-		this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
 	}
 
@@ -53,6 +55,14 @@ public class ZombifiedRatlin extends Ratlin {
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.zombifiedRatlin.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.zombifiedRatlin.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.25D);
+	}
+
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		if (this.isAlive() && this.isSunBurnTick()) {
+			this.igniteForSeconds(8.0F);
+		}
 	}
 
 	@Override

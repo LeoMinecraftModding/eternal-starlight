@@ -23,6 +23,7 @@ public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> AETHERSENT = create("aethersent");
 	public static final ResourceKey<TrimMaterial> THERMAL_SPRINGSTONE = create("thermal_springstone");
 	public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
+	public static final ResourceKey<TrimMaterial> STARLIT_DIAMOND = create("starlit_diamond");
 	public static final ResourceKey<TrimMaterial> SWAMP_SILVER = create("swamp_silver");
 	public static final ResourceKey<TrimMaterial> MALARITE = create("malarite");
 	public static final ResourceKey<TrimMaterial> AMARAMBER = create("amaramber");
@@ -38,6 +39,7 @@ public class ESTrimMaterials {
 		AETHERSENT,
 		THERMAL_SPRINGSTONE,
 		GLACITE,
+		STARLIT_DIAMOND,
 		SWAMP_SILVER,
 		MALARITE,
 		AMARAMBER,
@@ -54,6 +56,7 @@ public class ESTrimMaterials {
 		register(context, AETHERSENT, ESItems.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
 		register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
 		register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
+		register(context, STARLIT_DIAMOND, ESItems.STARLIT_DIAMOND.asHolder(), 0x9584e4, 0.8f);
 		register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
 		register(context, MALARITE, ESItems.MALARITE.asHolder(), 0x7a518a, 1.0f);
 		register(context, AMARAMBER, ESItems.AMARAMBER_INGOT.asHolder(), 0xc3647e, 1.0f);

@@ -24,7 +24,7 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 @Mixin(SpriteSourceList.class)
-public class SpriteSourceListMixin {
+public abstract class SpriteSourceListMixin {
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void init(List<SpriteSource> list, CallbackInfo ci) {
 		for (SpriteSource source : list) {

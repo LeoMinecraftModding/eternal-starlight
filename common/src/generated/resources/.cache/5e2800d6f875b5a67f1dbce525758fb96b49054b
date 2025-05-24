@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-11T22:49:34.3696697	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-05-18T18:26:19.7052615	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -200,7 +200,7 @@ a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_tool_materials.json
 9e8cd90071d95f56beccac570ba9a3e81b183df7 data/minecraft/tags/item/swords.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/item/tall_flowers.json
-c444704daf3e2a9060c800cab739006ac08f5325 data/minecraft/tags/item/trim_materials.json
+ccc5767be33455b677bddfecfa7c567c506a200b data/minecraft/tags/item/trim_materials.json
 30825978c6ec7284fc7f993f0aa67dda46fcc5f3 data/minecraft/tags/item/trim_templates.json
 057ee534651597aed862e783d06a931c53c6940d data/minecraft/tags/item/walls.json
 d56fbba76c698747446c62692c0e009bfc9bfbb6 data/minecraft/tags/item/wooden_buttons.json

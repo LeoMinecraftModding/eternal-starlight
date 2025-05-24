@@ -238,6 +238,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.OPEN_STARLIGHT_STORY);
 		strategy.register(ESPackets.UPDATE_SPELL_DATA);
 		strategy.register(ESPackets.SET_CLIENT_ETHER_TICKS);
+		strategy.register(ESPackets.UPDATE_WITCH_TYPE);
 	}
 
 	public interface EntityAttributeRegisterStrategy {

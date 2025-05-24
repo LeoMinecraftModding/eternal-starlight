@@ -100,6 +100,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		// food
 		addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
 		addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
+		addSmelt(recipeOutput, 200, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, ESItems.SPIRAL_KELP.get());
 		addSmelt(recipeOutput, 200, ESItems.TOWER_SQUID.get(), ESItems.COOKED_TOWER_SQUID.get(), ESItems.TOWER_SQUID.get());
 		addSmelt(recipeOutput, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
 		addSmelt(recipeOutput, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
@@ -307,11 +308,10 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('G', ESItems.SHIVERING_GEL.get())
 			.unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
 			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get())
-			.pattern("NSN")
-			.pattern("AGA")
-			.pattern("NAN")
-			.define('N', ESConventionalTags.Items.NUGGETS_SWAMP_SILVER)
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 2)
+			.pattern("SG ")
+			.pattern("GAG")
+			.pattern(" G ")
 			.define('A', ESConventionalTags.Items.GEMS_ATALPHAITE)
 			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
 			.define('S', ESItems.ASHEN_SNOWBALL.get())
@@ -336,6 +336,15 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('F', ESTags.Items.YETI_FUR)
 			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
+			.pattern("T")
+			.pattern("S")
+			.pattern("F")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESItems.SPIRAL_KELP.get())
+			.define('T', Items.FLINT)
+			.unlockedBy("has_item", has(ESItems.SPIRAL_KELP.get()))
+			.save(recipeOutput, EternalStarlight.id("arrow_from_spiral_kelp"));
 
 		// overworld stuff replacements
 		// cinder brick
@@ -472,9 +481,12 @@ public class ESRecipeProvider extends RecipeProvider {
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.ROTTEN_FLESH), ESItems.ROTTEN_FLESH_JERKY.get().getDefaultInstance(), 600, true)).save(recipeOutput, EternalStarlight.id("drying/rotten_flesh_jerky"));
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.ROTTEN_FLESH), Items.LEATHER.getDefaultInstance(), 2400, false)).save(recipeOutput, EternalStarlight.id("drying/leather_from_rotten_flesh"));
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.WET_SPONGE), Items.SPONGE.getDefaultInstance(), 100, true)).save(recipeOutput, EternalStarlight.id("drying/sponge"));
+		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.KELP), Items.DRIED_KELP.getDefaultInstance(), 100, true)).save(recipeOutput, EternalStarlight.id("drying/dried_kelp"));
+		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.CLAY_BALL), Items.BRICK.getDefaultInstance(), 150, true)).save(recipeOutput, EternalStarlight.id("drying/brick"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
+		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, 0.1F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.TOWER_SQUID.get(), ESItems.COOKED_TOWER_SQUID.get(), 0.35F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), 0.35F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), 0.35F);
@@ -1361,10 +1373,10 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.PUNGENCY_FRUIT.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESItems.TEAR_BOMB.get())
-			.pattern("FSF")
-			.pattern("SMS")
-			.pattern("FSF")
-			.define('S', Tags.Items.SANDS)
+			.pattern("FGF")
+			.pattern("GMG")
+			.pattern("FGF")
+			.define('G', Tags.Items.GUNPOWDERS)
 			.define('F', ESItems.PUNGENCY_FRUIT.get())
 			.define('M', ESConventionalTags.Items.GEMS_MALARITE)
 			.unlockedBy("has_item", has(ESItems.PUNGENCY_FRUIT.get()))

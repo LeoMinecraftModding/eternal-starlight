@@ -12,13 +12,9 @@ import net.minecraft.world.phys.Vec3;
 public record Freeze(LevelBasedValue duration) implements EnchantmentEntityEffect {
 	public static final MapCodec<Freeze> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(LevelBasedValue.CODEC.fieldOf("duration").forGetter((freeze) -> freeze.duration)).apply(instance, Freeze::new));
 
-	public Freeze(LevelBasedValue duration) {
-		this.duration = duration;
-	}
-
 	@Override
 	public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {
-		entity.setTicksFrozen(Math.min((int) (entity.getTicksFrozen() + this.duration.calculate(enchantmentLevel) * 20), 300));
+		entity.setTicksFrozen(Math.min((int) (entity.getTicksFrozen() + this.duration.calculate(enchantmentLevel) * 20), 600));
 	}
 
 	@Override

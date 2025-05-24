@@ -792,8 +792,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.NORTHLAND), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
-		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.SCARLET), BoatModel::createBodyModel);
-		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ChestBoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.SCARLET), ScarletBoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ScarletChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.TORREYA), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.TORREYA), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.JINGLESTEM), RaftModel::createBodyModel);
@@ -848,6 +848,9 @@ public class ClientSetupHandlers {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
+
+		// vanilla entities
+		strategy.register(DarkSwampWitchModel.LAYER_LOCATION, DarkSwampWitchModel::createBodyLayer);
 
 		// items
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);

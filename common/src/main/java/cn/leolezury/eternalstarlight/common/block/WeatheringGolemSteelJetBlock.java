@@ -30,8 +30,8 @@ public class WeatheringGolemSteelJetBlock extends WeatheringGolemSteelFullBlock 
 		if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
 			Vec3 particlePos = pos.getCenter().add(0, 0.5, 0);
 			RandomSource random = entity.getRandom();
-			for (int i = 0; i < 4; i++) {
-				ParticlePacket packet = new ParticlePacket(ESSmokeParticleOptions.ENERGIZED_FLAME, particlePos.x, particlePos.y, particlePos.z, (random.nextFloat() - 0.5) / 5, 0.2 + random.nextFloat() / 1.5, (random.nextFloat() - 0.5) / 5);
+			for (int i = 0; i < 5; i++) {
+				ParticlePacket packet = new ParticlePacket(ESSmokeParticleOptions.ENERGIZED_FLAME, particlePos.x, particlePos.y, particlePos.z, 0, 0.2 + random.nextFloat() / 1.5, 0);
 				ESPlatform.INSTANCE.sendToAllClients(serverLevel, packet);
 			}
 		}

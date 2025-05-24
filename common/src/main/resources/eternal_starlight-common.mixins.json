@@ -10,6 +10,7 @@
     "BaseFireBlockMixin",
     "BubbleColumnBlockMixin",
     "CeilingHangingSignBlockMixin",
+    "CoralBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "DirtPathBlockMixin",
@@ -23,7 +24,9 @@
     "PlayerMixin",
     "ProjectileMixin",
     "ProjectileWeaponItemMixin",
+    "RaiderMixin",
     "RandomStateMixin",
+    "ServerEntityMixin",
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
@@ -32,7 +35,8 @@
     "TagLoaderMixin",
     "ThrowableProjectileMixin",
     "TntBlockMixin",
-    "WallHangingSignBlockMixin"
+    "WallHangingSignBlockMixin",
+    "WitchMixin"
   ],
   "client": [
     "client.CameraMixin",
@@ -52,7 +56,8 @@
     "client.ScreenEffectRendererMixin",
     "client.SkullBlockRendererMixin",
     "client.SpriteSourceListMixin",
-    "client.SpriteSourceListMixin$PalettedPermutationsAccessor"
+    "client.SpriteSourceListMixin$PalettedPermutationsAccessor",
+    "client.WitchRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

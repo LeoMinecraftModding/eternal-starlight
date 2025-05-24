@@ -224,7 +224,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<AethersentGolem>> AETHERSENT_GOLEM = ENTITIES.register(
 		"aethersent_golem",
 		() -> EntityType.Builder.of(AethersentGolem::new, MobCategory.CREATURE)
-			.sized(0.5F, 1.25F)
+			.sized(0.5F, 1.75F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("aethersent_golem").toString())
 	);

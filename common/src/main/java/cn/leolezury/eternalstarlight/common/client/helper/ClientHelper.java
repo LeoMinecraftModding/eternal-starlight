@@ -21,6 +21,8 @@ public interface ClientHelper {
 
 	void handleOpenStarlightStory(OpenStarlightStoryPacket packet);
 
+	void handleUpdateWitchType(UpdateWitchTypePacket packet);
+
 	void spawnStellarRackParticles(Vec3 center);
 
 	void spawnStellarRackItemParticles(Vec3 center);

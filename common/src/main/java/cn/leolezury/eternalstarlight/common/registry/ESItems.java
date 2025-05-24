@@ -711,9 +711,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_PICKAXE = registerItem("thermal_springstone_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_AXE = registerItem("thermal_springstone_axe",
-		() -> new AxeItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 6, -3.2F))));
+		() -> new AxeItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 6, -3.1F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_HOE = registerItem("thermal_springstone_hoe",
-		() -> new HoeItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 0, -3.0F))));
+		() -> new HoeItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, -2, -1.0F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_SHOVEL = registerItem("thermal_springstone_shovel",
 		() -> new ShovelItem(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_SCYTHE = registerItem("thermal_springstone_scythe",
@@ -739,9 +739,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLACITE_PICKAXE = registerItem("glacite_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.GLACITE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.GLACITE, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> GLACITE_AXE = registerItem("glacite_axe",
-		() -> new AxeItem(ESItemTiers.GLACITE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.GLACITE, 6, -3.2F))));
+		() -> new AxeItem(ESItemTiers.GLACITE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.GLACITE, 6, -3))));
 	public static final RegistryObject<Item, Item> GLACITE_HOE = registerItem("glacite_hoe",
-		() -> new HoeItem(ESItemTiers.GLACITE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.GLACITE, 0, -3.0F))));
+		() -> new HoeItem(ESItemTiers.GLACITE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.GLACITE, -2.5F, 0))));
 	public static final RegistryObject<Item, Item> GLACITE_SHOVEL = registerItem("glacite_shovel",
 		() -> new ShovelItem(ESItemTiers.GLACITE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.GLACITE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> GLACITE_SCYTHE = registerItem("glacite_scythe",
@@ -767,9 +767,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_PICKAXE = registerItem("starlit_diamond_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, 1, -3.0F))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_AXE = registerItem("starlit_diamond_axe",
-		() -> new AxeItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, 6, -3.4F))));
+		() -> new AxeItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, 6, -3.2F))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_HOE = registerItem("starlit_diamond_hoe",
-		() -> new HoeItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, 0, -3.2F))));
+		() -> new HoeItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, -4, -0.2F))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_SHOVEL = registerItem("starlit_diamond_shovel",
 		() -> new ShovelItem(ESItemTiers.STARLIT_DIAMOND, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.STARLIT_DIAMOND, 1.5F, -3.2F))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_HELMET = registerItem("starlit_diamond_helmet",
@@ -791,7 +791,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_PICKAXE = registerItem("swamp_silver_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.SWAMP_SILVER, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_AXE = registerItem("swamp_silver_axe",
-		() -> new AxeItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.SWAMP_SILVER, 6, -3.2F))));
+		() -> new AxeItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.SWAMP_SILVER, 6, -3))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_SICKLE = registerItem("swamp_silver_sickle",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.SWAMP_SILVER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.SWAMP_SILVER, 1, -1.5F))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
@@ -813,9 +813,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MALARITE_PICKAXE = registerItem("malarite_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.MALARITE, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> MALARITE_AXE = registerItem("malarite_axe",
-		() -> new AxeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.MALARITE, 6, -3.2F))));
+		() -> new AxeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.MALARITE, 6, -3))));
 	public static final RegistryObject<Item, Item> MALARITE_HOE = registerItem("malarite_hoe",
-		() -> new HoeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.MALARITE, 0, -3.0F))));
+		() -> new HoeItem(ESItemTiers.MALARITE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.MALARITE, -2, 0))));
 	public static final RegistryObject<Item, Item> MALARITE_SHOVEL = registerItem("malarite_shovel",
 		() -> new ShovelItem(ESItemTiers.MALARITE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.MALARITE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> MALARITE_SICKLE = registerItem("malarite_sickle",
@@ -839,7 +839,7 @@ public class ESItems {
 		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_diamond"))
 	));
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_AXE = registerItem("pungency_fruit_axe",
-		() -> new AxeItem(ESItemTiers.PUNGENCY_FRUIT, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.PUNGENCY_FRUIT, 6, -3.2F))));
+		() -> new AxeItem(ESItemTiers.PUNGENCY_FRUIT, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.PUNGENCY_FRUIT, 6, -3))));
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SPEAR = registerItem("pungency_fruit_spear",
 		() -> new PungencyFruitSpearItem(new Item.Properties().attributes(PungencyFruitSpearItem.createAttributes())));
 
@@ -883,7 +883,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AMARAMBER_AXE = registerItem("amaramber_axe",
 		() -> new AxeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.AMARAMBER, 6, -3.2F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_HOE = registerItem("amaramber_hoe",
-		() -> new HoeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.AMARAMBER, 0, -3.0F))));
+		() -> new HoeItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.AMARAMBER, -2, -3.0F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SHOVEL = registerItem("amaramber_shovel",
 		() -> new ShovelItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SICKLE = registerItem("amaramber_sickle",

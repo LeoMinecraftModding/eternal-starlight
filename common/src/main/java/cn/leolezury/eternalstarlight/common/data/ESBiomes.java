@@ -124,7 +124,9 @@ public class ESBiomes {
 	private static MobSpawnSettings.Builder swampSpawns() {
 		return baseLushSpawnBuilder()
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ZOMBIFIED_RATLIN.get(), 24, 1, 3))
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2));
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 7, 1, 2))
+			.addMobCharge(EntityType.WITCH, 1, 0.15);
 	}
 
 	private static MobSpawnSettings.Builder desertSpawns() {

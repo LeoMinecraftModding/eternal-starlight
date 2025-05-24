@@ -5,17 +5,17 @@
     "F": {
       "item": "eternal_starlight:pungency_fruit"
     },
+    "G": {
+      "tag": "c:gunpowders"
+    },
     "M": {
       "tag": "c:gems/malarite"
-    },
-    "S": {
-      "tag": "c:sands"
     }
   },
   "pattern": [
-    "FSF",
-    "SMS",
-    "FSF"
+    "FGF",
+    "GMG",
+    "FGF"
   ],
   "result": {
     "count": 1,

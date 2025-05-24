@@ -86,6 +86,10 @@
     "eternal_starlight:nightfall_spider": {
       "charge": 1.0,
       "energy_budget": 0.15
+    },
+    "minecraft:witch": {
+      "charge": 1.0,
+      "energy_budget": 0.15
     }
   },
   "spawners": {
@@ -143,6 +147,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 20
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 7
       }
     ],
     "underground_water_creature": [],

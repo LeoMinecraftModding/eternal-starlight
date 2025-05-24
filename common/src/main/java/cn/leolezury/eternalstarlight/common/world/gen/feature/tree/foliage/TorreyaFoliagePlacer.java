@@ -28,27 +28,42 @@ public class TorreyaFoliagePlacer extends FoliagePlacer {
 
 	public static void placeLineFoliage(LevelSimulatedReader level, FoliageSetter setter, TreeConfiguration configuration, RandomSource random, BlockPos fromPos, BlockPos toPos) {
 		List<int[]> leavesPositions = ESMathUtil.getBresenham3DPoints(fromPos.getX(), fromPos.getY(), fromPos.getZ(), toPos.getX(), toPos.getY(), toPos.getZ());
-		for (int[] pos : leavesPositions) {
-			tryPlaceLeaf(level, setter, random, configuration, new BlockPos(pos[0], pos[1], pos[2]));
+		if (!leavesPositions.isEmpty()) {
+			for (int i = 0; i < leavesPositions.size(); i++) {
+				int[] pos = leavesPositions.get(i);
+				int[] lastPos = leavesPositions.get(Math.max(i - 1, 0));
+				checkDistanceAndPlaceLeaf(level, setter, random, configuration, fromPos, new BlockPos(pos[0], pos[1], pos[2]));
+				checkDistanceAndPlaceLeaf(level, setter, random, configuration, fromPos, new BlockPos(lastPos[0], pos[1], pos[2]));
+				checkDistanceAndPlaceLeaf(level, setter, random, configuration, fromPos, new BlockPos(pos[0], pos[1], lastPos[2]));
+				checkDistanceAndPlaceLeaf(level, setter, random, configuration, fromPos, new BlockPos(lastPos[0], pos[1], lastPos[2]));
+			}
 		}
 	}
 
-	public static void placeTorreyaFoliage(LevelSimulatedReader level, FoliageSetter setter, TreeConfiguration configuration, RandomSource random, BlockPos centerPos, float xzRadius, float yRadius) {
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) (xzRadius), (int) yRadius, 0));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) -(xzRadius), (int) yRadius, 0));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset(0, (int) yRadius, (int) -(xzRadius)));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset(0, (int) yRadius, (int) (xzRadius)));
+	protected static boolean checkDistanceAndPlaceLeaf(LevelSimulatedReader level, FoliageSetter setter, RandomSource random, TreeConfiguration configuration, BlockPos center, BlockPos pos) {
+		if (center.distManhattan(pos) < 7) {
+			return tryPlaceLeaf(level, setter, random, configuration, pos);
+		}
+		return false;
+	}
+
+	public static void placeTorreyaFoliage(LevelSimulatedReader level, FoliageSetter setter, TreeConfiguration configuration, RandomSource random, BlockPos centerPos, float xzRadius) {
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) (xzRadius), 2, 0));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) -(xzRadius), 2, 0));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset(0, 2, (int) -(xzRadius)));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset(0, 2, (int) (xzRadius)));
 		double xzOffset = xzRadius / 2f * Math.sqrt(2);
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) xzOffset, (int) yRadius, (int) xzOffset));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) xzOffset, (int) yRadius, (int) -xzOffset));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) -xzOffset, (int) yRadius, (int) xzOffset));
-		placeLineFoliage(level, setter, configuration, random, centerPos.offset(0, (int) -yRadius, 0), centerPos.offset((int) -xzOffset, (int) yRadius, (int) -xzOffset));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) xzOffset, 2, (int) xzOffset));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) xzOffset, 2, (int) -xzOffset));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) -xzOffset, 2, (int) xzOffset));
+		placeLineFoliage(level, setter, configuration, random, centerPos, centerPos.offset((int) -xzOffset, 2, (int) -xzOffset));
 	}
 
 	@Override
 	protected void createFoliage(LevelSimulatedReader levelReader, FoliageSetter setter, RandomSource random, TreeConfiguration configuration, int trunkHeight, FoliageAttachment foliage, int foliageHeight, int radius, int offset) {
 		BlockPos center = foliage.pos().above(offset);
-		placeTorreyaFoliage(levelReader, setter, configuration, random, center, foliage.radiusOffset() + this.radius.sample(random), foliage.radiusOffset() + 1.5F + random.nextInt(2));
+		// no radius offset because of decay distance
+		placeTorreyaFoliage(levelReader, setter, configuration, random, center, this.radius.sample(random));
 	}
 
 	@Override
