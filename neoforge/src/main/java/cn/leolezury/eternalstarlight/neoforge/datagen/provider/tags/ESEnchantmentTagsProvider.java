@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EnchantmentTagsProvider;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,6 +29,10 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.FEARLESS,
 				ESEnchantments.POISONING,
 				ESEnchantments.SOUL_SNATCHER
+			);
+		tag(ESTags.Enchantments.PREVENTS_STARFIRE_BIRD_SPAWNS_WHEN_MINING)
+			.add(
+				Enchantments.SILK_TOUCH
 			);
 		tag(ESTags.Enchantments.SEEDS_LAUNCHER_EXCLUSIVE)
 			.add(

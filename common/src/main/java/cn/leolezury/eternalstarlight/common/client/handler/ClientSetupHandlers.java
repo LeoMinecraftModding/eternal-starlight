@@ -336,6 +336,7 @@ public class ClientSetupHandlers {
 		ESBlocks.TALL_GOLDEN_GRASS,
 		ESBlocks.SWAMP_ROSE,
 		ESBlocks.PUNGENCY_FRUIT_VINES,
+		ESBlocks.STARFIRE_BIRD_NEST,
 		ESBlocks.AMARAMBER_LANTERN,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
@@ -407,6 +408,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DRYING_RACK.get(), DryingRackRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
@@ -524,6 +526,7 @@ public class ClientSetupHandlers {
 		strategy.register(grassColor, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(grassColor, ESBlocks.MOONLIGHT_DUCKWEED.get());
 		strategy.register(leavesColor, ESBlocks.STARLIGHT_MANGROVE_LEAVES.get());
+		strategy.register(leavesColor, ESBlocks.STARFIRE_BIRD_NEST.get());
 		strategy.register(dyeColor, ESBlocks.WHITE_YETI_FUR.get());
 		strategy.register(dyeColor, ESBlocks.ORANGE_YETI_FUR.get());
 		strategy.register(dyeColor, ESBlocks.MAGENTA_YETI_FUR.get());
@@ -575,6 +578,7 @@ public class ClientSetupHandlers {
 		strategy.register(toBlock, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(toBlock, ESBlocks.MOONLIGHT_DUCKWEED.get());
 		strategy.register(toBlock, ESBlocks.STARLIGHT_MANGROVE_LEAVES.get());
+		strategy.register(toBlock, ESBlocks.STARFIRE_BIRD_NEST.get());
 		strategy.register(toBlock, ESBlocks.WHITE_YETI_FUR.get());
 		strategy.register(toBlock, ESBlocks.ORANGE_YETI_FUR.get());
 		strategy.register(toBlock, ESBlocks.MAGENTA_YETI_FUR.get());
@@ -730,6 +734,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.AURORA_DEER.get(), AuroraDeerRenderer::new);
 		strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), CrystallizedMothRenderer::new);
 		strategy.register(ESEntities.SHIMMER_LACEWING.get(), ShimmerLacewingRenderer::new);
+		strategy.register(ESEntities.STARFIRE_BIRD.get(), StarfireBirdRenderer::new);
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolemRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolemRenderer::new);
 		strategy.register(ESEntities.TOWER_SQUID.get(), TowerSquidRenderer::new);
@@ -827,6 +832,8 @@ public class ClientSetupHandlers {
 		strategy.register(AuroraDeerModel.LAYER_LOCATION, AuroraDeerModel::createBodyLayer);
 		strategy.register(CrystallizedMothModel.LAYER_LOCATION, CrystallizedMothModel::createBodyLayer);
 		strategy.register(ShimmerLacewingModel.LAYER_LOCATION, ShimmerLacewingModel::createBodyLayer);
+		strategy.register(StarfireBirdModel.ADULT_LOCATION, StarfireBirdModel::createBodyLayer);
+		strategy.register(StarfireBirdModel.BABY_LOCATION, StarfireBirdModel::createBabyBodyLayer);
 		strategy.register(GrimstoneGolemModel.LAYER_LOCATION, GrimstoneGolemModel::createBodyLayer);
 		strategy.register(AethersentGolemModel.LAYER_LOCATION, AethersentGolemModel::createBodyLayer);
 		strategy.register(TowerSquidModel.LAYER_LOCATION, TowerSquidModel::createBodyLayer);

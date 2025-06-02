@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-11T22:48:18.1197943	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-06-02T15:47:37.2772222	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -75,6 +75,7 @@ a69a799fe7780adfce8197c2c037974f30c39638 data/eternal_starlight/tags/block/dusk_
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/block/northland_logs.json
 a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/block/portal_frame_blocks.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/block/scarlet_logs.json
+25630ae93e9f83141a4b56dac7621772521ac226 data/eternal_starlight/tags/block/starfire_bird_nests.json
 1e2c4666789dccc33609a2676d1d6cd65e2007cf data/eternal_starlight/tags/block/starlight_carver_replaceables.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/block/starlight_mangrove_logs.json
 bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/block/tooth_of_hunger_blocks.json
@@ -106,8 +107,8 @@ f41caa3e1ab3b3a135f2349cceee6a573ec63e5f data/minecraft/tags/block/leaves.json
 6347192baba41b3bc396b8716e60c18a8d3acee6 data/minecraft/tags/block/maintains_farmland.json
 09e3541f1349505632f68c69c197d57121a93a9b data/minecraft/tags/block/mangrove_logs_can_grow_through.json
 ce8f35dc022f1a32927aaa3095c6e03a2c4f43a8 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
-958d21b5702c959bae03e3669b4673fd1b83a2cb data/minecraft/tags/block/mineable/axe.json
-5923e52ca68e3ee2d65495b8e5301cccac388f05 data/minecraft/tags/block/mineable/hoe.json
+e103ec105d8a6517e27fed7e038ffbb481b70bae data/minecraft/tags/block/mineable/axe.json
+920afd94d6a670e2f3cfb64ac3135d2d70e2fa82 data/minecraft/tags/block/mineable/hoe.json
 433b79fbc18f76a7a65cd3a54bade733b4ffa502 data/minecraft/tags/block/mineable/pickaxe.json
 5fa95f78eedaf512144083f3f6bda7e6e277f7d8 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json

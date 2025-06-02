@@ -574,6 +574,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			.addTags(
 				Tags.Blocks.ORES
 			);
+		tag(ESTags.Blocks.STARFIRE_BIRD_NESTS)
+			.add(
+				ESBlocks.STARFIRE_BIRD_NEST.get()
+			);
 		// mc tags
 		tag(BlockTags.LOGS)
 			.addTags(
@@ -1304,7 +1308,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.MOONLIGHT_LILY_PAD.get(),
 				ESBlocks.STARLIT_LILY_PAD.get(),
 				ESBlocks.MOONLIGHT_DUCKWEED.get(),
-				ESBlocks.PUNGENCY_FRUIT_VINES.get()
+				ESBlocks.PUNGENCY_FRUIT_VINES.get(),
+				ESBlocks.DRYING_RACK.get(),
+				ESBlocks.STARFIRE_BIRD_NEST.get()
 			);
 		tag(BlockTags.MINEABLE_WITH_SHOVEL)
 			.add(
@@ -1329,7 +1335,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.MINEABLE_WITH_HOE)
 			.add(
 				ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(),
-				ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()
+				ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(),
+				ESBlocks.STARFIRE_BIRD_NEST.get()
 			);
 		tag(BlockTags.SWORD_EFFICIENT)
 			.add(

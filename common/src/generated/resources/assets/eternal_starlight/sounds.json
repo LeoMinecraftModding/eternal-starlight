@@ -377,6 +377,24 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.sonar_bomb.explode"
   },
+  "entity.starfire_bird.ambient": {
+    "sounds": [
+      "eternal_starlight:mob/starfire_bird/idle"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.starfire_bird.ambient"
+  },
+  "entity.starfire_bird.death": {
+    "sounds": [
+      "eternal_starlight:mob/starfire_bird/death"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.starfire_bird.death"
+  },
+  "entity.starfire_bird.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/starfire_bird/hurt"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.starfire_bird.hurt"
+  },
   "entity.starlight_golem.block": {
     "sounds": [
       "random/anvil_land"

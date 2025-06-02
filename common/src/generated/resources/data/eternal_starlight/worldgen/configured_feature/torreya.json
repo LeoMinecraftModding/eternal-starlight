@@ -4,6 +4,9 @@
     "decorators": [
       {
         "type": "eternal_starlight:torreya_vines"
+      },
+      {
+        "type": "eternal_starlight:starfire_bird_nest"
       }
     ],
     "dirt_provider": {

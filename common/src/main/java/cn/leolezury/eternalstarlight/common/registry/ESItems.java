@@ -64,6 +64,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AURORA_DEER_SPAWN_EGG = registerItem("aurora_deer_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.AURORA_DEER::get, 0x3f4e6d, 0x276365, new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRYSTALLIZED_MOTH_SPAWN_EGG = registerItem("crystallized_moth_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.CRYSTALLIZED_MOTH::get, 0x361d20, 0xff5cbb, new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHIMMER_LACEWING_SPAWN_EGG = registerItem("shimmer_lacewing_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.SHIMMER_LACEWING::get, 0x061d85, 0x15c3cd, new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARFIRE_BIRD_SPAWN_EGG = registerItem("starfire_bird_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.STARFIRE_BIRD::get, 0x831a1a, 0xd29615, new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_GOLEM_SPAWN_EGG = registerItem("grimstone_golem_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.GRIMSTONE_GOLEM::get, 0x51525c, 0xf7a2ff, new Item.Properties()));
 	public static final RegistryObject<Item, Item> AETHERSENT_GOLEM_SPAWN_EGG = registerItem("aethersent_golem_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.AETHERSENT_GOLEM::get, 0x53235b, 0xffffff, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOWER_SQUID_SPAWN_EGG = registerItem("tower_squid_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TOWER_SQUID::get, 0x1d2223, 0x55605a, new Item.Properties()));
@@ -847,6 +848,8 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> DRYING_RACK = registerItem("drying_rack", () -> new BlockItem(ESBlocks.DRYING_RACK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ROTTEN_FLESH_JERKY = registerItem("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(new FoodProperties(5, 0.8F, false, 2.5F, Optional.empty(), List.of()))));
+
+	public static final RegistryObject<Item, Item> STARFIRE_BIRD_NEST = registerItem("starfire_bird_nest", () -> new BlockItem(ESBlocks.STARFIRE_BIRD_NEST.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

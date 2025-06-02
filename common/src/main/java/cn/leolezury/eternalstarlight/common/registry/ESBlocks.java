@@ -840,6 +840,8 @@ public class ESBlocks {
 
 	public static final RegistryObject<Block, DryingRackBlock> DRYING_RACK = BLOCKS.register("drying_rack", () -> new DryingRackBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).noOcclusion().sound(SoundType.WOOD)));
 
+	public static final RegistryObject<Block, StarfireBirdNestBlock> STARFIRE_BIRD_NEST = BLOCKS.register("starfire_bird_nest", () -> new StarfireBirdNestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).strength(0.2F).noOcclusion()));
+
 	public static final RegistryObject<Block, RedStoneOreBlock> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
 	public static final RegistryObject<Block, RedStoneOreBlock> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));
 	public static final RegistryObject<Block, Block> ETERNAL_ICE_REDSTONE_ORE = BLOCKS.register("eternal_ice_redstone_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS)));

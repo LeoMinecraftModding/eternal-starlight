@@ -501,6 +501,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		dryingRack(ESBlocks.DRYING_RACK.get());
 
+		starfireBirdNest(ESBlocks.STARFIRE_BIRD_NEST.get());
+
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
 		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
@@ -639,6 +641,19 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ModelFile modelFile = models().getExistingFile(EternalStarlight.id("drying_rack"));
 		ModelFile modelCampfire = models().getExistingFile(EternalStarlight.id("drying_rack_campfire"));
 		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(DryingRackBlock.CAMPFIRE) ? modelCampfire : modelFile).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build(), BlockStateProperties.LIT);
+	}
+
+	private void starfireBirdNest(Block block) {
+		ModelFile modelFile = models().getExistingFile(EternalStarlight.id("starfire_bird_nest"));
+		ModelFile modelEggs1 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs1"));
+		ModelFile modelEggs2 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs2"));
+		ModelFile modelEggs3 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs3"));
+		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
+			case 1 -> modelEggs1;
+			case 2 -> modelEggs2;
+			case 3 -> modelEggs3;
+			default -> modelFile;
+		}).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build(), StarfireBirdNestBlock.SEEDS);
 	}
 
 	private void rawAmaramberBlock(Block block) {

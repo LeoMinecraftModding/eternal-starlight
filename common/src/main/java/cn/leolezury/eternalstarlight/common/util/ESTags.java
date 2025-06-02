@@ -33,6 +33,7 @@ public class ESTags {
 		public static final TagKey<Item> SMALL_SHIELDS = create("small_shields");
 		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
 		public static final TagKey<Item> CRYSTALLIZED_MOTH_FOOD = create("crystallized_moth_food");
+		public static final TagKey<Item> STARFIRE_BIRD_FOOD = create("starfire_bird_food");
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");
 		public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
 		public static final TagKey<Item> SHADOW_SNAIL_FOOD = create("shadow_snail_food");
@@ -108,6 +109,7 @@ public class ESTags {
 		public static final TagKey<Block> DUSK_LIGHT_ENERGY_SOURCES = create("dusk_light_energy_sources");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_REPLACEABLES = create("crystalborn_catalyst_replaceables");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_PREFERENCES = create("crystalborn_catalyst_preferences");
+		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");
 
 		private static TagKey<Block> create(String string) {
 			return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));
@@ -124,6 +126,7 @@ public class ESTags {
 		public static final TagKey<EntityType<?>> TEARY_IMMUNE = create("teary_immune");
 		public static final TagKey<EntityType<?>> STRANGHOUL_PREYS = create("stranghoul_preys");
 		public static final TagKey<EntityType<?>> STRANGHOUL_CANNOT_HUNT = create("stranghoul_cannot_hunt");
+		public static final TagKey<EntityType<?>> STARFIRE_BIRD_AFRAID_OF = create("starfire_bird_afraid_of");
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));
@@ -159,6 +162,7 @@ public class ESTags {
 	public static class Enchantments {
 		public static final TagKey<Enchantment> GOLEM_FORGE_LOOT = create("golem_forge_loot");
 		public static final TagKey<Enchantment> CURSED_GARDEN_LOOT = create("cursed_garden_loot");
+		public static final TagKey<Enchantment> PREVENTS_STARFIRE_BIRD_SPAWNS_WHEN_MINING = create("prevents_starfire_bird_spawns_when_mining");
 		public static final TagKey<Enchantment> SEEDS_LAUNCHER_EXCLUSIVE = create("exclusive_set/seeds_launcher");
 
 		private static TagKey<Enchantment> create(String string) {

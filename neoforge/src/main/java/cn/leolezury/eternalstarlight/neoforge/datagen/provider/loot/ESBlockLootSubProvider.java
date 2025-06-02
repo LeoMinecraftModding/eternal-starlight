@@ -1,11 +1,9 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.AbyssalKelp;
-import cn.leolezury.eternalstarlight.common.block.BerriesVines;
-import cn.leolezury.eternalstarlight.common.block.LunarisCactusBlock;
-import cn.leolezury.eternalstarlight.common.block.PungencyFruitVinesBlock;
+import cn.leolezury.eternalstarlight.common.block.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.critereon.BlockPredicate;
@@ -35,6 +33,8 @@ import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -759,6 +759,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.DRYING_RACK.get());
 
+		add(ESBlocks.STARFIRE_BIRD_NEST.get(), this::createStarfireBirdNestDrop);
+
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
 		add(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), createCandleCakeDrops(ESBlocks.AMARAMBER_CANDLE.get()));
@@ -835,6 +837,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	private LootTable.Builder createLunarLeavesDrops(Block leaves, Block sapling, float... saplingChances) {
 		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 		return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.doesNotHaveShearsOrSilkTouch()).add(((LootPoolSingletonContainer.Builder<?>) this.applyExplosionCondition(leaves, LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+	}
+
+	protected LootTable.Builder createStarfireBirdNestDrop(Block block) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS).copy(StarfireBirdNestBlock.SEEDS))));
 	}
 
 	private LootItemCondition.Builder hasShearsOrSilkTouch() {

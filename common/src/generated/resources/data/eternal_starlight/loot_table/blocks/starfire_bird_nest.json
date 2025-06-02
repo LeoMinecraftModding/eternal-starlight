@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantments": "minecraft:silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "eternal_starlight:birds"
+              ],
+              "source": "block_entity"
+            },
+            {
+              "block": "eternal_starlight:starfire_bird_nest",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "eggs",
+                "seeds"
+              ]
+            }
+          ],
+          "name": "eternal_starlight:starfire_bird_nest"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "eternal_starlight:blocks/starfire_bird_nest"
+}

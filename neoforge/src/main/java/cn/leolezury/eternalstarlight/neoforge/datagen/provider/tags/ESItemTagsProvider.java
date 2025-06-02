@@ -405,6 +405,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.CRYSTALLIZED_MOTH_FOOD)
 			.addTag(ItemTags.MEAT);
+		tag(ESTags.Items.STARFIRE_BIRD_FOOD)
+			.addTag(Tags.Items.SEEDS);
 		tag(ESTags.Items.ENT_FOOD)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),

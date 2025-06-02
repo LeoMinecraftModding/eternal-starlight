@@ -39,6 +39,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AURORA_DEER_SPAWN_EGG.get());
 		basicItem(ESItems.CRYSTALLIZED_MOTH_SPAWN_EGG.get());
 		basicItem(ESItems.SHIMMER_LACEWING_SPAWN_EGG.get());
+		basicItem(ESItems.STARFIRE_BIRD_SPAWN_EGG.get());
 		basicItem(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
 		basicItem(ESItems.AETHERSENT_GOLEM_SPAWN_EGG.get());
 		basicItem(ESItems.TOWER_SQUID_SPAWN_EGG.get());
@@ -737,6 +738,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.DRYING_RACK.get());
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());
+
+		block(ESItems.STARFIRE_BIRD_NEST.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());

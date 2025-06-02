@@ -19,6 +19,7 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -86,9 +87,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, RangedAttackMob {
-	private static final String TAG_HOME_X = "home_x";
-	private static final String TAG_HOME_Y = "home_y";
-	private static final String TAG_HOME_Z = "home_z";
+	private static final String TAG_HOME_POS = "home_pos";
 	private static final String TAG_BABY = "baby";
 	private static final String TAG_GROWTH_TICKS = "growth_ticks";
 	private static final String TAG_BREED_COOLDOWN = "breed_cooldown";
@@ -281,7 +280,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
-	class SeedsLauncherAttackGoal extends RangedAttackGoal {
+	private class SeedsLauncherAttackGoal extends RangedAttackGoal {
 		public SeedsLauncherAttackGoal() {
 			super(Stranghoul.this, 1.0, 30, 5.0F);
 		}
@@ -304,7 +303,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
-	class SpearAttackGoal extends RangedAttackGoal {
+	private class SpearAttackGoal extends RangedAttackGoal {
 		public SpearAttackGoal() {
 			super(Stranghoul.this, 1.0, 40, 10.0F);
 		}
@@ -404,7 +403,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
-	public class FollowHirerGoal extends Goal {
+	private class FollowHirerGoal extends Goal {
 		@Nullable
 		private LivingEntity hirer;
 		private final PathNavigation navigation;
@@ -798,7 +797,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		}
 	}
 
-	public class HirerHurtTargetGoal extends TargetGoal {
+	private class HirerHurtTargetGoal extends TargetGoal {
 		private LivingEntity hirerLastHurt;
 		private int timestamp;
 
@@ -1152,9 +1151,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		this.addPersistentAngerSaveData(compoundTag);
-		compoundTag.putInt(TAG_HOME_X, homePos.getX());
-		compoundTag.putInt(TAG_HOME_Y, homePos.getY());
-		compoundTag.putInt(TAG_HOME_Z, homePos.getZ());
+		compoundTag.put(TAG_HOME_POS, NbtUtils.writeBlockPos(homePos));
 		compoundTag.putBoolean(TAG_BABY, isBaby());
 		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 		compoundTag.putInt(TAG_BREED_COOLDOWN, breedCooldown);
@@ -1169,7 +1166,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
-		homePos = new BlockPos(compoundTag.getInt(TAG_HOME_X), compoundTag.getInt(TAG_HOME_Y), compoundTag.getInt(TAG_HOME_Z));
+		NbtUtils.readBlockPos(compoundTag, TAG_HOME_POS).ifPresent(pos -> homePos = pos);
 		if (compoundTag.contains(TAG_BABY, CompoundTag.TAG_BYTE)) {
 			setBaby(compoundTag.getBoolean(TAG_BABY));
 		}

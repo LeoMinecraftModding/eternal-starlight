@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -51,9 +52,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	private static final String TAG_CHAT_TICKS = "chat_ticks";
 	private static final String TAG_AWAKE_TICKS = "awake_ticks";
 	private static final String TAG_SLEEP_TICKS = "sleep_ticks";
-	private static final String TAG_HOME_X = "home_x";
-	private static final String TAG_HOME_Y = "home_y";
-	private static final String TAG_HOME_Z = "home_z";
+	private static final String TAG_HOME_POS = "home_pos";
 	private static final String TAG_BOARWARF_CREDIT = "boarwarf_credit";
 
 	public Boarwarf(EntityType<? extends Boarwarf> type, Level level) {
@@ -132,7 +131,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		chatTicks = compoundTag.getInt(TAG_CHAT_TICKS);
 		awakeTicks = compoundTag.getInt(TAG_AWAKE_TICKS);
 		sleepTicks = compoundTag.getInt(TAG_SLEEP_TICKS);
-		homePos = new BlockPos(compoundTag.getInt(TAG_HOME_X), compoundTag.getInt(TAG_HOME_Y), compoundTag.getInt(TAG_HOME_Z));
+		NbtUtils.readBlockPos(compoundTag, TAG_HOME_POS).ifPresent(pos -> homePos = pos);
 		if (this.offers == null) {
 			this.offers = new MerchantOffers();
 			this.addTrades();
@@ -149,9 +148,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		compoundTag.putInt(TAG_CHAT_TICKS, chatTicks);
 		compoundTag.putInt(TAG_AWAKE_TICKS, awakeTicks);
 		compoundTag.putInt(TAG_SLEEP_TICKS, sleepTicks);
-		compoundTag.putInt(TAG_HOME_X, homePos.getX());
-		compoundTag.putInt(TAG_HOME_Y, homePos.getY());
-		compoundTag.putInt(TAG_HOME_Z, homePos.getZ());
+		compoundTag.put(TAG_HOME_POS, NbtUtils.writeBlockPos(homePos));
 	}
 
 	@Override

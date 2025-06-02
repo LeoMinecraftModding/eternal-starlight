@@ -214,6 +214,13 @@ public class ESEntities {
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("shimmer_lacewing").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<StarfireBird>> STARFIRE_BIRD = ENTITIES.register(
+		"starfire_bird",
+		() -> EntityType.Builder.of(StarfireBird::new, MobCategory.AMBIENT)
+			.sized(0.5F, 0.625F)
+			.clientTrackingRange(8)
+			.build(EternalStarlight.id("starfire_bird").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<GrimstoneGolem>> GRIMSTONE_GOLEM = ENTITIES.register(
 		"grimstone_golem",
 		() -> EntityType.Builder.of(GrimstoneGolem::new, MobCategory.CREATURE)
@@ -236,9 +243,9 @@ public class ESEntities {
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("tower_squid").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<LuminoFish>> LUMINOFISH = ENTITIES.register(
+	public static final RegistryObject<EntityType<?>, EntityType<Luminofish>> LUMINOFISH = ENTITIES.register(
 		"luminofish",
-		() -> EntityType.Builder.of(LuminoFish::new, MobCategory.WATER_AMBIENT)
+		() -> EntityType.Builder.of(Luminofish::new, MobCategory.WATER_AMBIENT)
 			.sized(0.5F, 0.3F)
 			.clientTrackingRange(10)
 			.build(EternalStarlight.id("luminofish").toString())

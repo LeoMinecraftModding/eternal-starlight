@@ -74,6 +74,10 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_HURT = register("entity.aurora_deer.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_DEATH = register("entity.aurora_deer.death");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_AMBIENT = register("entity.starfire_bird.ambient");
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_HURT = register("entity.starfire_bird.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_DEATH = register("entity.starfire_bird.death");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_SHOOT = register("entity.aethersent_golem.shoot");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_AMBIENT = register("entity.thirst_walker.ambient");

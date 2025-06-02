@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-11T22:48:18.1004658	Loot Tables
+// 1.21.1	2025-06-01T14:57:50.9986765	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -499,6 +499,7 @@ e106b1854dfffff6d35a84a9cb42adc5a9092b20 data/eternal_starlight/loot_table/block
 2fa93ce65231db2047e1bd794f37e5d32975b6cf data/eternal_starlight/loot_table/blocks/springstone_slab.json
 be1eafe1a40af28ea373c5ee2baf2e22e47c02cd data/eternal_starlight/loot_table/blocks/springstone_stairs.json
 7001d3337e158b7f086b7e0143818ffe25e769ce data/eternal_starlight/loot_table/blocks/springstone_wall.json
+a2294e1b8595e18cf9377812298b6469dbdc0e13 data/eternal_starlight/loot_table/blocks/starfire_bird_nest.json
 c6469d75ac3e55c32fde930554f0e18f69148692 data/eternal_starlight/loot_table/blocks/starlight_flower.json
 1de970dc0152cb800465a0bde270dcbf5d33470f data/eternal_starlight/loot_table/blocks/starlight_golem_spawner.json
 e019eed2c777cb9741771157ef7cc9df3fa5461b data/eternal_starlight/loot_table/blocks/starlight_mangrove_button.json
@@ -676,6 +677,7 @@ e84177efa08c636a037bd1a440289d31e3c42fc0 data/eternal_starlight/loot_table/entit
 318be7f64d350c9f5cd183325a91a5ab456b2dda data/eternal_starlight/loot_table/entities/ratlin.json
 e250ca10b16bd4a2c083a9fd16ff9aa5006a543f data/eternal_starlight/loot_table/entities/shadow_snail.json
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_table/entities/shimmer_lacewing.json
+511101dbbe5019fca06a307bf3bcfc1aeb242e98 data/eternal_starlight/loot_table/entities/starfire_bird.json
 d11b744e9604cb530323d11c95d7f6301f6acef4 data/eternal_starlight/loot_table/entities/starlight_golem.json
 e7a01464e0a4476f3ddb16e3dc6d5d007197079e data/eternal_starlight/loot_table/entities/stranghoul.json
 1805ae6df3c00f65f8820d5326763dcb235137f5 data/eternal_starlight/loot_table/entities/tangled.json

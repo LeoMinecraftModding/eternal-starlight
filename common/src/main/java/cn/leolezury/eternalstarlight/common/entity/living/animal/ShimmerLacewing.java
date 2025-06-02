@@ -157,14 +157,14 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	}
 
 	@Override
-	public boolean isFood(ItemStack itemStack) {
-		return false;
-	}
-
-	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putInt(TAG_VARIANT, getVariant());
+	}
+
+	@Override
+	public boolean isFood(ItemStack itemStack) {
+		return false;
 	}
 
 	@Nullable

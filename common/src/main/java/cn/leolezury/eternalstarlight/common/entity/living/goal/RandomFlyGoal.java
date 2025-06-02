@@ -20,12 +20,18 @@ public class RandomFlyGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		return mob.getNavigation().isDone() && mob.getRandom().nextInt(5) == 0;
+		if (this.mob.hasControllingPassenger()) {
+			return false;
+		}
+		if (mob.getNavigation().isDone()) {
+			return true;
+		}
+		return mob.getRandom().nextInt(10) == 0;
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		return mob.getNavigation().isInProgress() && mob.getRandom().nextInt(30) != 0;
+		return !this.mob.getNavigation().isDone() && !this.mob.hasControllingPassenger() && mob.getRandom().nextInt(40) != 0;
 	}
 
 	@Override

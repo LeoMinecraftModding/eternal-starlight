@@ -11,14 +11,12 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -26,11 +24,9 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 	private static final String TAG_TICKS_SINCE_LAST_ERUPT = "ticks_since_last_erupt";
 
 	private int ticksSinceLastErupt = 0;
-	private final RandomSource random;
 
 	public AbyssalGeyserBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(ESBlockEntities.ABYSSAL_GEYSER.get(), blockPos, blockState);
-		this.random = new LegacyRandomSource(blockPos.asLong());
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, AbyssalGeyserBlockEntity entity) {
@@ -39,9 +35,9 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 		if (entity.ticksSinceLastErupt <= 200) { // erupt for 10 sec
 			if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
 				Vec3 particlePos = pos.getCenter().add(0, 0.4, 0);
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5));
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5));
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (entity.random.nextFloat() - 0.5) / 5, 0.2 + entity.random.nextFloat() / 1.5, (entity.random.nextFloat() - 0.5) / 5));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.SMOKE, particlePos.x, particlePos.y, particlePos.z, (level.random.nextFloat() - 0.5) / 5, 0.2 + level.random.nextFloat() / 1.5, (level.random.nextFloat() - 0.5) / 5));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.LARGE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (level.random.nextFloat() - 0.5) / 5, 0.2 + level.random.nextFloat() / 1.5, (level.random.nextFloat() - 0.5) / 5));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.WHITE_SMOKE, particlePos.x, particlePos.y, particlePos.z, (level.random.nextFloat() - 0.5) / 5, 0.2 + level.random.nextFloat() / 1.5, (level.random.nextFloat() - 0.5) / 5));
 				if (entity.ticksSinceLastErupt == 200) {
 					AABB itemBox = new AABB(pos);
 					itemBox = itemBox.setMaxY(itemBox.maxY + 2);

@@ -133,6 +133,8 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 
 		add(ESEntities.SHIMMER_LACEWING.get(), LootTable.lootTable());
 
+		add(ESEntities.STARFIRE_BIRD.get(), LootTable.lootTable());
+
 		add(ESEntities.GRIMSTONE_GOLEM.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(ESItems.GRIMSTONE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))))

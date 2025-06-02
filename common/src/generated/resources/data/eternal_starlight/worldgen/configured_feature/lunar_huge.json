@@ -9,6 +9,9 @@
           "max_inclusive": 8,
           "min_inclusive": 3
         }
+      },
+      {
+        "type": "eternal_starlight:starfire_bird_nest"
       }
     ],
     "dirt_provider": {

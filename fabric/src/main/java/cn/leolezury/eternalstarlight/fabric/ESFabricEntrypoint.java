@@ -14,9 +14,11 @@ import net.fabricmc.fabric.api.registry.*;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
@@ -30,6 +32,11 @@ public class ESFabricEntrypoint implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		EternalStarlight.init();
+		BuiltInRegistries.POINT_OF_INTEREST_TYPE.registryKeySet().forEach(key -> {
+			if (key.location().getNamespace().equals(EternalStarlight.ID)) {
+				BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(key).ifPresent(holder -> holder.value().matchingStates().forEach(state -> PoiTypes.TYPE_BY_STATE.put(state, holder)));
+			}
+		});
 
 		// setup handlers
 		CommonSetupHandlers.commonSetup();

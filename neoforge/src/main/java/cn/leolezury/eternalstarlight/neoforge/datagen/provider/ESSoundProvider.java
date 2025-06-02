@@ -88,6 +88,10 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.AURORA_DEER_HURT.get(), definition().with(sound(loc("mob/aurora_deer/hurt1")), sound(loc("mob/aurora_deer/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.hurt"));
 		add(ESSoundEvents.AURORA_DEER_DEATH.get(), definition().with(sound(loc("mob/aurora_deer/hurt1"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aurora_deer.death"));
 
+		add(ESSoundEvents.STARFIRE_BIRD_AMBIENT.get(), definition().with(sound(loc("mob/starfire_bird/idle"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starfire_bird.ambient"));
+		add(ESSoundEvents.STARFIRE_BIRD_HURT.get(), definition().with(sound(loc("mob/starfire_bird/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starfire_bird.hurt"));
+		add(ESSoundEvents.STARFIRE_BIRD_DEATH.get(), definition().with(sound(loc("mob/starfire_bird/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starfire_bird.death"));
+
 		add(ESSoundEvents.AETHERSENT_GOLEM_SHOOT.get(), definition().with(sound(loc("mob/aethersent_golem/shoot"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aethersent_golem.shoot"));
 
 		add(ESSoundEvents.THIRST_WALKER_AMBIENT.get(), definition().with(sound(loc("mob/thirst_walker/idle1")), sound(loc("mob/thirst_walker/idle2")), sound(loc("mob/thirst_walker/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.ambient"));

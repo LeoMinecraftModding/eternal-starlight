@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-11T22:48:18.1357044	Block States: eternal_starlight
+// 1.21.1	2025-06-01T14:00:27.2376482	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -496,6 +496,7 @@ ccd0590a161bbd8a0f3d7eee4730ff06a2b25ffa assets/eternal_starlight/blockstates/sp
 936cf07adee7aaa61b9b3a624f7cc2f05030cca7 assets/eternal_starlight/blockstates/springstone_slab.json
 dd583c80bd03257155aa21cf51ccff4ffcfee952 assets/eternal_starlight/blockstates/springstone_stairs.json
 3e8d2315dd043b97a562b4d18e4d3cbe8c082b38 assets/eternal_starlight/blockstates/springstone_wall.json
+abaa595c971e65f565e82b95dde04be68e44105c assets/eternal_starlight/blockstates/starfire_bird_nest.json
 cb1a037d2f7908c55bbf596a00ec8b624b5b72c5 assets/eternal_starlight/blockstates/starlight_flower.json
 18e84b1b110a3ef703144886ef47946b643f6998 assets/eternal_starlight/blockstates/starlight_golem_spawner.json
 e4f4333e1dda01ce000aa9d494c76157b2c38dab assets/eternal_starlight/blockstates/starlight_mangrove_button.json

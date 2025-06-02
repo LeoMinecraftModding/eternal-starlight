@@ -24,12 +24,12 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
-public class LuminoFish extends AbstractSchoolingFish {
-	public LuminoFish(EntityType<? extends LuminoFish> entityType, Level level) {
+public class Luminofish extends AbstractSchoolingFish {
+	public Luminofish(EntityType<? extends Luminofish> entityType, Level level) {
 		super(entityType, level);
 	}
 
-	protected static final EntityDataAccessor<Integer> SWELL_TICKS = SynchedEntityData.defineId(LuminoFish.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> SWELL_TICKS = SynchedEntityData.defineId(Luminofish.class, EntityDataSerializers.INT);
 
 	public int getSwellTicks() {
 		return this.getEntityData().get(SWELL_TICKS);
@@ -44,10 +44,10 @@ public class LuminoFish extends AbstractSchoolingFish {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.luminoFish.maxHealth())
-			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.luminoFish.armor())
-			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.luminoFish.attackDamage())
-			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.luminoFish.followRange());
+			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.luminofish.maxHealth())
+			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.luminofish.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.luminofish.attackDamage())
+			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.luminofish.followRange());
 	}
 
 	@Override
@@ -122,8 +122,8 @@ public class LuminoFish extends AbstractSchoolingFish {
 		return ESItems.LUMINOFISH_BUCKET.get().getDefaultInstance();
 	}
 
-	public static boolean checkLuminoFishSpawnRules(EntityType<? extends LuminoFish> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
+	public static boolean checkLuminoFishSpawnRules(EntityType<? extends Luminofish> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
 		int seaLevel = levelAccessor.getSeaLevel();
-		return blockPos.getY() <= seaLevel - 40 && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER) && ESConfig.INSTANCE.mobsConfig.luminoFish.canSpawn();
+		return blockPos.getY() <= seaLevel - 40 && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER) && ESConfig.INSTANCE.mobsConfig.luminofish.canSpawn();
 	}
 }

@@ -73,6 +73,11 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.addTag(EntityTypeTags.ZOMBIES);
 		tag(ESTags.EntityTypes.STRANGHOUL_CANNOT_HUNT)
 			.addTag(Tags.EntityTypes.BOSSES);
+		tag(ESTags.EntityTypes.STARFIRE_BIRD_AFRAID_OF)
+			.add(
+				EntityType.PLAYER
+			)
+			.addTag(EntityTypeTags.ARTHROPOD);
 		tag(EntityTypeTags.SKELETONS)
 			.add(
 				ESEntities.LONESTAR_SKELETON.get(),
@@ -149,6 +154,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.TINY_CRETEOR.get(),
 				ESEntities.CRYSTALLIZED_MOTH.get(),
 				ESEntities.SHIMMER_LACEWING.get(),
+				ESEntities.STARFIRE_BIRD.get(),
 				ESEntities.GRIMSTONE_GOLEM.get(),
 				ESEntities.AETHERSENT_GOLEM.get()
 			);
