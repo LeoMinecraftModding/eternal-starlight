@@ -21,16 +21,16 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class JinglestemLeavesBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
-	public static final MapCodec<JinglestemLeavesBlock> CODEC = simpleCodec(JinglestemLeavesBlock::new);
+public class HangingAlgaleavesBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
+	public static final MapCodec<HangingAlgaleavesBlock> CODEC = simpleCodec(HangingAlgaleavesBlock::new);
 	public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-	public JinglestemLeavesBlock(Properties properties) {
+	public HangingAlgaleavesBlock(Properties properties) {
 		super(properties, Direction.DOWN, SHAPE, false, 0.02);
 	}
 
 	@Override
-	protected MapCodec<JinglestemLeavesBlock> codec() {
+	protected MapCodec<HangingAlgaleavesBlock> codec() {
 		return CODEC;
 	}
 
@@ -46,7 +46,7 @@ public class JinglestemLeavesBlock extends GrowingPlantHeadBlock implements Liqu
 
 	@Override
 	protected Block getBodyBlock() {
-		return ESBlocks.JINGLESTEM_LEAVES_PLANT.get();
+		return ESBlocks.HANGING_ALGALEAVES_PLANT.get();
 	}
 
 	@Override

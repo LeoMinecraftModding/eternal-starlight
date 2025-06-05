@@ -21,26 +21,26 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
-public class JinglestemLeavesPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer {
-	public static final MapCodec<JinglestemLeavesPlantBlock> CODEC = simpleCodec(JinglestemLeavesPlantBlock::new);
+public class HangingAlgaleavesPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer {
+	public static final MapCodec<HangingAlgaleavesPlantBlock> CODEC = simpleCodec(HangingAlgaleavesPlantBlock::new);
 
-	public JinglestemLeavesPlantBlock(Properties properties) {
-		super(properties, Direction.DOWN, JinglestemLeavesBlock.SHAPE, false);
+	public HangingAlgaleavesPlantBlock(Properties properties) {
+		super(properties, Direction.DOWN, HangingAlgaleavesBlock.SHAPE, false);
 	}
 
 	@Override
-	protected MapCodec<JinglestemLeavesPlantBlock> codec() {
+	protected MapCodec<HangingAlgaleavesPlantBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
 	public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-		return ESItems.JINGLESTEM_LEAVES.get().getDefaultInstance();
+		return ESItems.HANGING_ALGALEAVES.get().getDefaultInstance();
 	}
 
 	@Override
 	protected GrowingPlantHeadBlock getHeadBlock() {
-		return ESBlocks.JINGLESTEM_LEAVES.get();
+		return ESBlocks.HANGING_ALGALEAVES.get();
 	}
 
 	@Override

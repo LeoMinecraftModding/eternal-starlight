@@ -318,12 +318,13 @@ public class ESBlocks {
 	public static final RegistryObject<Block, TorreyaCampfireBlock> TORREYA_CAMPFIRE = BLOCKS.register("torreya_campfire", () -> new TorreyaCampfireBlock(true, 1, BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE)));
 
 	// jinglestem wood
-	public static final RegistryObject<Block, JinglestemLeavesBlock> JINGLESTEM_LEAVES = BLOCKS.register("jinglestem_leaves",
-		() -> new JinglestemLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
-	public static final RegistryObject<Block, JinglestemLeavesPlantBlock> JINGLESTEM_LEAVES_PLANT = BLOCKS.register("jinglestem_leaves_plant",
-		() -> new JinglestemLeavesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
-	public static final RegistryObject<Block, RotatedPillarBlock> JINGLESTEM_LOG = BLOCKS.register("jinglestem_log",
-		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_GREEN)));
+	public static final RegistryObject<Block, HangingAlgaleavesBlock> HANGING_ALGALEAVES = BLOCKS.register("hanging_algaleaves",
+		() -> new HangingAlgaleavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, HangingAlgaleavesPlantBlock> HANGING_ALGALEAVES_PLANT = BLOCKS.register("hanging_algaleaves_plant",
+		() -> new HangingAlgaleavesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, SimpleMultifaceBlock> ALGALEAVES = BLOCKS.register("algaleaves", () -> new SimpleMultifaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, JinglestemLogBlock> JINGLESTEM_LOG = BLOCKS.register("jinglestem_log",
+		() -> new JinglestemLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, RotatedPillarBlock> JINGLESTEM_WOOD = BLOCKS.register("jinglestem_wood",
 		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, Block> JINGLESTEM_PLANKS = BLOCKS.register("jinglestem_planks",

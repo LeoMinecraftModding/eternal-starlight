@@ -249,8 +249,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropOther(ESBlocks.TORREYA_VINES_PLANT.get(), ESBlocks.TORREYA_VINES.get());
 		add(ESBlocks.TORREYA_CAMPFIRE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.RAW_AMARAMBER.get()))));
 
-		add(ESBlocks.JINGLESTEM_LEAVES.get(), block -> this.createLeavesDrops(block, ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ESBlocks.JINGLESTEM_LEAVES_PLANT.get(), block -> this.createLeavesDrops(ESBlocks.JINGLESTEM_LEAVES.get(), ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.HANGING_ALGALEAVES.get(), block -> this.createLeavesDrops(block, ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.HANGING_ALGALEAVES_PLANT.get(), block -> this.createLeavesDrops(ESBlocks.HANGING_ALGALEAVES.get(), ESBlocks.JINGLESTEM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.ALGALEAVES.get(), block -> createMultifaceBlockDrops(block, HAS_SHEARS_OR_SICKLE));
 		dropSelf(ESBlocks.JINGLESTEM_LOG.get());
 		dropSelf(ESBlocks.JINGLESTEM_WOOD.get());
 		dropSelf(ESBlocks.JINGLESTEM_PLANKS.get());

@@ -612,8 +612,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.NORTHLAND_LEAVES.get(),
 				ESBlocks.STARLIGHT_MANGROVE_LEAVES.get(),
 				ESBlocks.SCARLET_LEAVES.get(),
-				ESBlocks.TORREYA_LEAVES.get(),
-				ESBlocks.JINGLESTEM_LEAVES.get()
+				ESBlocks.TORREYA_LEAVES.get()
 			);
 		tag(BlockTags.PLANKS)
 			.add(

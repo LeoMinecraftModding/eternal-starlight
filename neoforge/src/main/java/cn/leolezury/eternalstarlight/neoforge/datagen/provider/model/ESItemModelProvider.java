@@ -221,8 +221,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.TORREYA_VINES.get());
 		basicItem(ESItems.TORREYA_CAMPFIRE.get());
 
-		flatBlockTexture(ESItems.JINGLESTEM_SAPLING.get());
-		flatBlockTexture(ESItems.JINGLESTEM_LEAVES.get());
+		basicItem(ESItems.JINGLESTEM_SAPLING.get());
+		flatBlockTexture(ESItems.HANGING_ALGALEAVES.get());
+		flatBlockTexture(ESItems.ALGALEAVES.get());
 		block(ESItems.JINGLESTEM_LOG.get());
 		block(ESItems.JINGLESTEM_WOOD.get());
 		block(ESItems.JINGLESTEM_PLANKS.get());

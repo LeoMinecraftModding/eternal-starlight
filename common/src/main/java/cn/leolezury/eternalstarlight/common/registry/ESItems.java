@@ -252,7 +252,8 @@ public class ESItems {
 
 	// jinglestem wood
 	public static final RegistryObject<Item, Item> JINGLESTEM_SAPLING = registerItem("jinglestem_sapling", () -> new BlockItem(ESBlocks.JINGLESTEM_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> JINGLESTEM_LEAVES = registerItem("jinglestem_leaves", () -> new BlockItem(ESBlocks.JINGLESTEM_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> HANGING_ALGALEAVES = registerItem("hanging_algaleaves", () -> new BlockItem(ESBlocks.HANGING_ALGALEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ALGALEAVES = registerItem("algaleaves", () -> new BlockItem(ESBlocks.ALGALEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_LOG = registerItem("jinglestem_log", () -> new BlockItem(ESBlocks.JINGLESTEM_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_WOOD = registerItem("jinglestem_wood", () -> new BlockItem(ESBlocks.JINGLESTEM_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_PLANKS = registerItem("jinglestem_planks", () -> new BlockItem(ESBlocks.JINGLESTEM_PLANKS.get(), new Item.Properties()));

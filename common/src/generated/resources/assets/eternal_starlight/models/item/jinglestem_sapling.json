@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:block/jinglestem_sapling"
+    "layer0": "eternal_starlight:item/jinglestem_sapling"
   }
 }

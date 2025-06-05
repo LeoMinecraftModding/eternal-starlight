@@ -44,8 +44,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleExisting(ESBlocks.SPIRAL_KELP_PLANT.get());
 		multifaceBlock(ESBlocks.SEA_ROSA.get());
 		doublePlant(ESBlocks.WICK_GRASS.get());
-		cross(ESBlocks.LUMENSTEM.get());
-		cross(ESBlocks.LUMENSTEM_PLANT.get());
+		lumenstem(ESBlocks.LUMENSTEM.get());
+		lumenstemPlant(ESBlocks.LUMENSTEM_PLANT.get());
 		cross(ESBlocks.CIRCULUSH.get());
 		cross(ESBlocks.MARIMOLD.get());
 		cross(ESBlocks.STONETT.get());
@@ -141,8 +141,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		torreyaVines(ESBlocks.TORREYA_VINES_PLANT.get());
 		campfire(ESBlocks.TORREYA_CAMPFIRE.get());
 
-		cross(ESBlocks.JINGLESTEM_LEAVES.get());
-		cross(ESBlocks.JINGLESTEM_LEAVES_PLANT.get(), blockTexture(ESBlocks.JINGLESTEM_LEAVES.get()), CUTOUT);
+		cross(ESBlocks.HANGING_ALGALEAVES.get());
+		cross(ESBlocks.HANGING_ALGALEAVES_PLANT.get());
+		multifaceBlock(ESBlocks.ALGALEAVES.get());
 		woodSet(ESBlocks.JINGLESTEM_LOG.get(), ESBlocks.JINGLESTEM_WOOD.get(), ESBlocks.JINGLESTEM_PLANKS.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get(), ESBlocks.STRIPPED_JINGLESTEM_WOOD.get(), ESBlocks.JINGLESTEM_DOOR.get(), true, ESBlocks.JINGLESTEM_TRAPDOOR.get(), true, ESBlocks.JINGLESTEM_PRESSURE_PLATE.get(), ESBlocks.JINGLESTEM_BUTTON.get(), ESBlocks.JINGLESTEM_FENCE.get(), ESBlocks.JINGLESTEM_FENCE_GATE.get(), ESBlocks.JINGLESTEM_SLAB.get(), ESBlocks.JINGLESTEM_STAIRS.get(), ESBlocks.JINGLESTEM_SIGN.get(), ESBlocks.JINGLESTEM_WALL_SIGN.get(), ESBlocks.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get());
 		cross(ESBlocks.JINGLESTEM_SAPLING.get());
 		pottedPlant(ESBlocks.POTTED_JINGLESTEM_SAPLING.get(), blockTexture(ESBlocks.JINGLESTEM_SAPLING.get()));
@@ -705,6 +706,20 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
 		ModelFile modelLit = models().cross(name(block) + "_lit", blockTexture(block).withSuffix("_lit")).renderType(CUTOUT);
 		onOffBlock(block, BlockStateProperties.BERRIES, modelLit, modelNormal);
+	}
+
+	private void lumenstem(Block block) {
+		ModelFile modelNormal = models().cross(name(block), blockTexture(block)).renderType(CUTOUT);
+		ModelFile modelBottom = models().cross(name(block) + "_bottom", blockTexture(block).withSuffix("_bottom")).renderType(CUTOUT);
+		onOffBlock(block, LumenstemBlock.BOTTOM, modelBottom, modelNormal);
+	}
+
+	private void lumenstemPlant(Block block) {
+		getVariantBuilder(block).forAllStates((state -> {
+			LumenstemPlantBlock.LumenstemState lumenstemState = state.getValue(LumenstemPlantBlock.LUMENSTEM_STATE);
+			ModelFile modelFile = models().cross(name(block) + "_" + lumenstemState.getSerializedName(), blockTexture(block).withSuffix("_" + lumenstemState.getSerializedName())).renderType(CUTOUT);
+			return ConfiguredModel.builder().modelFile(modelFile).build();
+		}));
 	}
 
 	private void mangroveRoots(Block block) {

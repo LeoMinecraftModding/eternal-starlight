@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
-      "model": "eternal_starlight:block/lumenstem_plant"
+    "lumenstem_state=bottom": {
+      "model": "eternal_starlight:block/lumenstem_plant_bottom"
+    },
+    "lumenstem_state=middle": {
+      "model": "eternal_starlight:block/lumenstem_plant_middle"
+    },
+    "lumenstem_state=single": {
+      "model": "eternal_starlight:block/lumenstem_plant_single"
+    },
+    "lumenstem_state=top": {
+      "model": "eternal_starlight:block/lumenstem_plant_top"
     }
   }
 }

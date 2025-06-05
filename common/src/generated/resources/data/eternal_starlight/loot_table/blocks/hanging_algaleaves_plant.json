@@ -37,7 +37,7 @@
                   ]
                 }
               ],
-              "name": "eternal_starlight:jinglestem_leaves"
+              "name": "eternal_starlight:hanging_algaleaves"
             },
             {
               "type": "minecraft:item",
@@ -132,5 +132,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:blocks/jinglestem_leaves"
+  "random_sequence": "eternal_starlight:blocks/hanging_algaleaves_plant"
 }

@@ -4,7 +4,10 @@
     "plant_body": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "eternal_starlight:lumenstem_plant"
+        "Name": "eternal_starlight:lumenstem_plant",
+        "Properties": {
+          "lumenstem_state": "middle"
+        }
       }
     },
     "plant_head": {
@@ -12,7 +15,8 @@
       "state": {
         "Name": "eternal_starlight:lumenstem",
         "Properties": {
-          "age": "0"
+          "age": "0",
+          "bottom": "true"
         }
       }
     }

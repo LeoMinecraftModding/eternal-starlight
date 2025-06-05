@@ -85,7 +85,7 @@ public class JinglestemSaplingBlock extends BushBlock implements BonemealableBlo
 		if (blockState.getValue(STAGE) == 0) {
 			serverLevel.setBlock(blockPos, blockState.cycle(STAGE), 4);
 		} else {
-			Optional<? extends Holder<ConfiguredFeature<?, ?>>> optional = serverLevel.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(ESConfiguredFeatures.JINGLESTEM);
+			Optional<? extends Holder<ConfiguredFeature<?, ?>>> optional = serverLevel.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(ESConfiguredFeatures.JINGLESTEM_PLANTED);
 			if (optional.isPresent()) {
 				serverLevel.removeBlock(blockPos, false);
 				if (!optional.get().value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, blockPos)) {

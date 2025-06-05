@@ -287,8 +287,8 @@ public class IcicleBlock extends Block implements SimpleWaterloggedBlock {
 
 		private final String name;
 
-		IcicleThickness(final String string2) {
-			this.name = string2;
+		IcicleThickness(final String string) {
+			this.name = string;
 		}
 
 		@Override

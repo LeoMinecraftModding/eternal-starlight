@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "eternal_starlight:block/lumenstem_plant"
+    "cross": "eternal_starlight:block/lumenstem_plant_single"
   }
 }
