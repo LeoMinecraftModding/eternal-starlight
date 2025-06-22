@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-01T12:08:13.5988502	Particle Descriptions
+// 1.21.1	2025-06-22T20:20:18.0425521	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -26,5 +26,8 @@ b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/orbi
 879a93a5e9cafec7df1beecebab752ae4b45ee6e assets/eternal_starlight/particles/smoke.json
 2193fabeef35b58a2505b70d4b03f4e100018a3a assets/eternal_starlight/particles/spiral_kelp_leaves.json
 00f12c77fefadb28756b76a95f8c6899b4e40955 assets/eternal_starlight/particles/stardust.json
+137e4a6ee57f0db9b7e5d5da84c480a5829d6bbf assets/eternal_starlight/particles/starfire.json
+8517a0086659f63d13444e90d9ca9e01346d9d68 assets/eternal_starlight/particles/starfire_explosion.json
+7791a3f688b798067dff8b73c534694fb26b6b05 assets/eternal_starlight/particles/starfire_explosion_small.json
 561eeff328764001a7c7495460eeca4bd7fd3089 assets/eternal_starlight/particles/starlight.json
 21cdc0ed30720178ebd7bd11d6d92e9063330b1c assets/eternal_starlight/particles/tower_squid_ink.json

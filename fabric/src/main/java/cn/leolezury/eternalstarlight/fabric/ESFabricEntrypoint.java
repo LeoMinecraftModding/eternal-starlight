@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -75,6 +76,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 		ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
 		ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> CommonHandlers.onBlockBroken(player, pos, state));
+		ServerLivingEntityEvents.AFTER_DEATH.register(CommonHandlers::onLivingDeath);
 
 		CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 

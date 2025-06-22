@@ -13,8 +13,8 @@ public class CrystallineInfectionEffect extends MobEffect {
 	public static final ResourceLocation ARMOR_MODIFIER_ID = EternalStarlight.id("armor.crystalline_infection");
 	public static final double ARMOR_ADDITION = -5D;
 
-	public CrystallineInfectionEffect(MobEffectCategory mobEffectCategory, int color) {
-		super(mobEffectCategory, color);
+	public CrystallineInfectionEffect(MobEffectCategory category, int color) {
+		super(category, color);
 		this.addAttributeModifier(Attributes.ARMOR, ARMOR_MODIFIER_ID, ARMOR_ADDITION, AttributeModifier.Operation.ADD_VALUE);
 	}
 

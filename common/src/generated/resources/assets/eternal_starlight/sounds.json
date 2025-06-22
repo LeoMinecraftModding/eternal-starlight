@@ -11,6 +11,35 @@
     ],
     "subtitle": "subtitles.block.eternal_starlight.stellar_rack.ambient"
   },
+  "entity.aethersent_golem.death": {
+    "sounds": [
+      "mob/irongolem/death"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aethersent_golem.death"
+  },
+  "entity.aethersent_golem.hurt": {
+    "sounds": [
+      {
+        "name": "mob/irongolem/damage1",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage1",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "volume": 0.8
+      },
+      {
+        "name": "mob/irongolem/damage2",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aethersent_golem.hurt"
+  },
   "entity.aethersent_golem.shoot": {
     "sounds": [
       "eternal_starlight:mob/aethersent_golem/shoot"
@@ -382,6 +411,12 @@
       "eternal_starlight:entity/sonar_bomb/explode"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.sonar_bomb.explode"
+  },
+  "entity.starfire.whoosh": {
+    "sounds": [
+      "eternal_starlight:entity/starfire/whoosh"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.starfire.whoosh"
   },
   "entity.starfire_bird.ambient": {
     "sounds": [

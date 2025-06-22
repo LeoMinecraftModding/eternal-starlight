@@ -16,6 +16,7 @@ public class ESLootProvider extends LootTableProvider {
 			new LootTableProvider.SubProviderEntry(ESEntityLootSubProvider::new, LootContextParamSets.ENTITY),
 			new LootTableProvider.SubProviderEntry(ESChestLootSubProvider::new, LootContextParamSets.CHEST),
 			new LootTableProvider.SubProviderEntry(ESBarteringLootSubProvider::new, LootContextParamSets.PIGLIN_BARTER),
+			new LootTableProvider.SubProviderEntry(ESGiftLootSubProvider::new, LootContextParamSets.GIFT),
 			new LootTableProvider.SubProviderEntry(ESBossLootSubProvider::new, LootContextParamSets.EMPTY)
 		), provider);
 	}

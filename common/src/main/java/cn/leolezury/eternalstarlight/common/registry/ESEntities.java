@@ -534,6 +534,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("shot_seeds").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThrownStarfire>> STARFIRE = ENTITIES.register(
+		"starfire",
+		() -> EntityType.Builder.<ThrownStarfire>of(ThrownStarfire::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("starfire").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<SoulitSpectator>> SOULIT_SPECTATOR = ENTITIES.register(
 		"soulit_spectator",
 		() -> EntityType.Builder.<SoulitSpectator>of(SoulitSpectator::new, MobCategory.MISC)

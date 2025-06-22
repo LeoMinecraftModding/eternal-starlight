@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownStarfire;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
@@ -224,6 +225,17 @@ public class CommonHandlers {
 				}
 			}
 
+			if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
+				if (entity.level() instanceof ServerLevel serverLevel) {
+					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 6, 0.75);
+				}
+				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
+					if (living != entity && living != source.getDirectEntity()) {
+						living.hurt(source, amount / 3);
+					}
+				}
+			}
+
 			if (source.getDirectEntity() instanceof Player player) {
 				if (player.getRandom().nextInt(15) == 0) {
 					Inventory inventory = player.getInventory();
@@ -236,6 +248,19 @@ public class CommonHandlers {
 					if (hasCrystals) {
 						ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
 						player.level().addFreshEntity(itemEntity);
+					}
+				}
+			}
+		}
+	}
+
+	public static void onLivingDeath(LivingEntity entity, DamageSource source) {
+		if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
+			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
+				if (living != entity && living != source.getDirectEntity()) {
+					MobEffectInstance instance = entity.getEffect(ESMobEffects.STARFIRE.asHolder());
+					if (instance != null) {
+						living.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), Math.max(instance.getDuration() / 2, 20)));
 					}
 				}
 			}

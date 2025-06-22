@@ -740,6 +740,17 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.DRYING_RACK.get());
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());
 
+		block(ESItems.OAK_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.SPRUCE_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.BIRCH_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.ACACIA_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.CHERRY_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.JUNGLE_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.DARK_OAK_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.CRIMSON_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.WARPED_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.MANGROVE_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.BAMBOO_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.STARFIRE_BIRD_NEST.get());
 		block(ESItems.LUNAR_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.NORTHLAND_STARFIRE_BIRD_AVIARY.get());

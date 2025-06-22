@@ -1,0 +1,9 @@
+{
+  "parent": "eternal_starlight:block/template_starfire_bird_aviary_eggs2",
+  "textures": {
+    "particle": "minecraft:block/bamboo_planks",
+    "planks": "minecraft:block/bamboo_planks",
+    "stripped_log": "minecraft:block/stripped_bamboo_block",
+    "trapdoor": "minecraft:block/bamboo_trapdoor"
+  }
+}

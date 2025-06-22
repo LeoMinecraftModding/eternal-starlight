@@ -1,0 +1,8 @@
+{
+  "parent": "eternal_starlight:block/template_starfire_bird_aviary_open",
+  "textures": {
+    "particle": "minecraft:block/warped_planks",
+    "planks": "minecraft:block/warped_planks",
+    "stripped_log": "minecraft:block/stripped_warped_stem"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "eternal_starlight:block/template_starfire_bird_aviary",
+  "textures": {
+    "particle": "minecraft:block/jungle_planks",
+    "planks": "minecraft:block/jungle_planks",
+    "stripped_log": "minecraft:block/stripped_jungle_log",
+    "trapdoor": "minecraft:block/jungle_trapdoor"
+  }
+}

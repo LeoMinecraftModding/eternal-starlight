@@ -761,6 +761,17 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DRYING_RACK.get());
 
 		add(ESBlocks.STARFIRE_BIRD_NEST.get(), this::createStarfireBirdNestDrop);
+		add(ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);

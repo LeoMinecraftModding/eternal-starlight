@@ -3,7 +3,7 @@
   "ambientocclusion": false,
   "render_type": "minecraft:cutout",
   "textures": {
-    "bottom": "eternal_starlight:block/starfire_bird_nest_bottom"
+    "bottom": "eternal_starlight:block/starfire_bird_nest"
   },
   "elements": [
     {

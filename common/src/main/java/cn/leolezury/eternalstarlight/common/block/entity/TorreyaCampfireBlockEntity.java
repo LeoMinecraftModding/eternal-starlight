@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -14,8 +15,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-public class ESCampfireBlockEntity extends CampfireBlockEntity {
-	public ESCampfireBlockEntity(BlockPos blockPos, BlockState blockState) {
+public class TorreyaCampfireBlockEntity extends CampfireBlockEntity {
+	public TorreyaCampfireBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(blockPos, blockState);
 	}
 
@@ -33,6 +34,11 @@ public class ESCampfireBlockEntity extends CampfireBlockEntity {
 					living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
 				}
 			}
+			for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
+				if (living instanceof Enemy && !living.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
+					living.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 100));
+				}
+			}
 		} else {
 			cooldownTick(level, blockPos, blockState, campfireBlockEntity);
 		}
@@ -40,6 +46,6 @@ public class ESCampfireBlockEntity extends CampfireBlockEntity {
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return ESBlockEntities.CAMPFIRE.get();
+		return ESBlockEntities.TORREYA_CAMPFIRE.get();
 	}
 }

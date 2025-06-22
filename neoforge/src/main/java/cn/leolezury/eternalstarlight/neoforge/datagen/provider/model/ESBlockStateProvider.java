@@ -139,7 +139,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_TORREYA_SAPLING.get(), blockTexture(ESBlocks.TORREYA_SAPLING.get()));
 		cross(ESBlocks.TORREYA_VINES.get());
 		torreyaVines(ESBlocks.TORREYA_VINES_PLANT.get());
-		campfire(ESBlocks.TORREYA_CAMPFIRE.get());
+		torreyaCampfire(ESBlocks.TORREYA_CAMPFIRE.get());
 
 		cross(ESBlocks.HANGING_ALGALEAVES.get());
 		cross(ESBlocks.HANGING_ALGALEAVES_PLANT.get());
@@ -503,6 +503,17 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		dryingRack(ESBlocks.DRYING_RACK.get());
 
 		starfireBirdNest(ESBlocks.STARFIRE_BIRD_NEST.get());
+		starfireBirdAviary(ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("oak"));
+		starfireBirdAviary(ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("spruce"));
+		starfireBirdAviary(ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("birch"));
+		starfireBirdAviary(ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("acacia"));
+		starfireBirdAviary(ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("cherry"));
+		starfireBirdAviary(ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("jungle"));
+		starfireBirdAviary(ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("dark_oak"));
+		starfireBirdAviary(ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("crimson"), "stem");
+		starfireBirdAviary(ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("warped"), "stem");
+		starfireBirdAviary(ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("mangrove"));
+		starfireBirdAviary(ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("bamboo"), "block");
 		starfireBirdAviary(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("lunar"));
 		starfireBirdAviary(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("northland"));
 		starfireBirdAviary(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("starlight_mangrove"));
@@ -664,42 +675,46 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void starfireBirdAviary(Block block, ResourceLocation type) {
+		starfireBirdAviary(block, type, "log");
+	}
+
+	private void starfireBirdAviary(Block block, ResourceLocation type, String logSuffix) {
 		ModelFile modelFile = models().withExistingParent(name(block), EternalStarlight.id("template_starfire_bird_aviary"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("trapdoor", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_trapdoor"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelOpen = models().withExistingParent(name(block) + "_open", EternalStarlight.id("template_starfire_bird_aviary_open"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs1 = models().withExistingParent(name(block) + "_eggs1", EternalStarlight.id("template_starfire_bird_aviary_eggs1"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("trapdoor", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_trapdoor"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs1Open = models().withExistingParent(name(block) + "_eggs1_open", EternalStarlight.id("template_starfire_bird_aviary_eggs1_open"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs2 = models().withExistingParent(name(block) + "_eggs2", EternalStarlight.id("template_starfire_bird_aviary_eggs2"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("trapdoor", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_trapdoor"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs2Open = models().withExistingParent(name(block) + "_eggs2_open", EternalStarlight.id("template_starfire_bird_aviary_eggs2_open"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs3 = models().withExistingParent(name(block) + "_eggs3", EternalStarlight.id("template_starfire_bird_aviary_eggs3"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("trapdoor", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_trapdoor"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		ModelFile modelEggs3Open = models().withExistingParent(name(block) + "_eggs3_open", EternalStarlight.id("template_starfire_bird_aviary_eggs3_open"))
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
-			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_log"));
+			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
 		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
 			case 1 -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelEggs1Open : modelEggs1;
 			case 2 -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelEggs2Open : modelEggs2;
@@ -1001,14 +1016,15 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.part().modelFile(modelInside).uvLock(false).rotationX(90).addModel().condition(BlockStateProperties.DOWN, false).end();
 	}
 
-	private void campfire(Block block) {
-		campfire(block, blockTexture(block).withSuffix("_log"), blockTexture(block).withSuffix("_log_lit"), blockTexture(block).withSuffix("_fire"));
-	}
-
-	private void campfire(Block block, ResourceLocation log, ResourceLocation litLog, ResourceLocation fire) {
+	private void torreyaCampfire(Block block) {
+		ResourceLocation log = blockTexture(block).withSuffix("_log");
+		ResourceLocation litLog = blockTexture(block).withSuffix("_log_lit");
+		ResourceLocation fire = blockTexture(block).withSuffix("_fire");
+		ResourceLocation starfire = blockTexture(block).withSuffix("_starfire");
 		ModelFile modelNormal = models().withExistingParent(name(block) + "_off", ResourceLocation.withDefaultNamespace("campfire_off")).texture("log", log).texture("particle", log).renderType(CUTOUT);
 		ModelFile modelLit = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? modelLit : modelNormal).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
+		ModelFile modelStarfire = models().withExistingParent(name(block) + "_starfire", ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", starfire).renderType(CUTOUT);
+		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? (state.getValue(TorreyaCampfireBlock.STARFIRE) ? modelStarfire : modelLit) : modelNormal).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build(), BlockStateProperties.WATERLOGGED, BlockStateProperties.SIGNAL_FIRE);
 	}
 
 	private void simpleGrassBlock(Block grassBlock, ResourceLocation dirt) {

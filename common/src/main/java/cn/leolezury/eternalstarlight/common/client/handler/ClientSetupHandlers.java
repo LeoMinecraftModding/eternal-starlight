@@ -338,6 +338,17 @@ public class ClientSetupHandlers {
 		ESBlocks.SWAMP_ROSE,
 		ESBlocks.PUNGENCY_FRUIT_VINES,
 		ESBlocks.STARFIRE_BIRD_NEST,
+		ESBlocks.OAK_STARFIRE_BIRD_AVIARY,
+		ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY,
+		ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY,
+		ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY,
+		ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY,
+		ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY,
+		ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY,
+		ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY,
+		ESBlocks.WARPED_STARFIRE_BIRD_AVIARY,
+		ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY,
+		ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY,
 		ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY,
 		ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY,
 		ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY,
@@ -408,7 +419,7 @@ public class ClientSetupHandlers {
 
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.CAMPFIRE.get(), CampfireRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.TORREYA_CAMPFIRE.get(), CampfireRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
@@ -710,6 +721,9 @@ public class ClientSetupHandlers {
 		});
 		strategy.register(ESParticles.ALLIED.get(), SuspendedTownParticle.HappyVillagerProvider::new);
 		strategy.register(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), PungencyFruitSmokeParticle.Provider::new);
+		strategy.register(ESParticles.STARFIRE.get(), StarfireParticle.Provider::new);
+		strategy.register(ESParticles.STARFIRE_EXPLOSION.get(), StarfireExplosionParticle.Provider::new);
+		strategy.register(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), StarfireExplosionParticle.SmallProvider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
@@ -781,6 +795,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.FROZEN_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}

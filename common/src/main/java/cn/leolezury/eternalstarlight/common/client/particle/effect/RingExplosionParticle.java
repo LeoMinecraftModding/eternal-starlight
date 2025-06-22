@@ -38,7 +38,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 
 	@Override
 	public void render(VertexConsumer consumer, Camera camera, float partialTicks) {
-		alpha = Easing.OUT_QUINT.interpolate(Math.min((age + partialTicks) / lifetime, 1), 1, 0);
+		alpha = Easing.OUT_CUBIC.interpolate(Math.min((age + partialTicks) / lifetime, 1), 1, 0);
 		Quaternionf quaternionf = new Quaternionf();
 		quaternionf.rotateX(Mth.PI / 2);
 		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE);

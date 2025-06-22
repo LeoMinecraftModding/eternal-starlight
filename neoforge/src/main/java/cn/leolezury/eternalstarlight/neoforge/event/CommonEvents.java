@@ -20,6 +20,7 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -60,6 +61,13 @@ public class CommonEvents {
 	@SubscribeEvent
 	private static void onPostLivingHurt(LivingDamageEvent.Post event) {
 		CommonHandlers.onPostLivingHurt(event.getEntity(), event.getSource(), event.getNewDamage());
+	}
+
+	@SubscribeEvent
+	private static void onLivingDeath(LivingDeathEvent event) {
+		if (!event.isCanceled()) {
+			CommonHandlers.onLivingDeath(event.getEntity(), event.getSource());
+		}
 	}
 
 	@SubscribeEvent

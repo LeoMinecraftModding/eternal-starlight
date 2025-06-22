@@ -16,7 +16,7 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESSignBlockEntity>> SIGN = BLOCK_ENTITIES.register("sign", () -> BlockEntityType.Builder.of(ESSignBlockEntity::new, ESBlocks.LUNAR_WALL_SIGN.get(), ESBlocks.LUNAR_SIGN.get(), ESBlocks.NORTHLAND_WALL_SIGN.get(), ESBlocks.NORTHLAND_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_SIGN.get(), ESBlocks.SCARLET_WALL_SIGN.get(), ESBlocks.SCARLET_SIGN.get(), ESBlocks.TORREYA_WALL_SIGN.get(), ESBlocks.TORREYA_SIGN.get(), ESBlocks.JINGLESTEM_WALL_SIGN.get(), ESBlocks.JINGLESTEM_SIGN.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESHangingSignBlockEntity>> HANGING_SIGN = BLOCK_ENTITIES.register("hanging_sign", () -> BlockEntityType.Builder.of(ESHangingSignBlockEntity::new, ESBlocks.LUNAR_WALL_HANGING_SIGN.get(), ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.NORTHLAND_WALL_HANGING_SIGN.get(), ESBlocks.NORTHLAND_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.SCARLET_WALL_HANGING_SIGN.get(), ESBlocks.SCARLET_HANGING_SIGN.get(), ESBlocks.TORREYA_WALL_HANGING_SIGN.get(), ESBlocks.TORREYA_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_HANGING_SIGN.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<AbyssalGeyserBlockEntity>> ABYSSAL_GEYSER = BLOCK_ENTITIES.register("abyssal_geyser", () -> BlockEntityType.Builder.of(AbyssalGeyserBlockEntity::new, ESBlocks.ABYSSAL_GEYSER.get(), ESBlocks.THERMABYSSAL_GEYSER.get(), ESBlocks.CRYOBYSSAL_GEYSER.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESCampfireBlockEntity>> CAMPFIRE = BLOCK_ENTITIES.register("campfire", () -> BlockEntityType.Builder.of(ESCampfireBlockEntity::new, ESBlocks.TORREYA_CAMPFIRE.get()).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TorreyaCampfireBlockEntity>> TORREYA_CAMPFIRE = BLOCK_ENTITIES.register("torreya_campfire", () -> BlockEntityType.Builder.of(TorreyaCampfireBlockEntity::new, ESBlocks.TORREYA_CAMPFIRE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESSkullBlockEntity>> SKULL = BLOCK_ENTITIES.register("skull", () -> BlockEntityType.Builder.of(ESSkullBlockEntity::new, ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<EclipseCoreBlockEntity>> ECLIPSE_CORE = BLOCK_ENTITIES.register("eclipse_core", () -> BlockEntityType.Builder.of(EclipseCoreBlockEntity::new, ESBlocks.ECLIPSE_CORE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<DuskLightBlockEntity>> DUSK_LIGHT = BLOCK_ENTITIES.register("dusk_light", () -> BlockEntityType.Builder.of(DuskLightBlockEntity::new, ESBlocks.DUSK_LIGHT.get()).build(null));
@@ -29,7 +29,26 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITIES.register("crate", () -> BlockEntityType.Builder.of(CrateBlockEntity::new, ESBlocks.GOLEM_STEEL_CRATE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<CrystalbornCatalystBlockEntity>> CRYSTALBORN_CATALYST = BLOCK_ENTITIES.register("crystalborn_catalyst", () -> BlockEntityType.Builder.of(CrystalbornCatalystBlockEntity::new, ESBlocks.CRYSTALBORN_CATALYST.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<DryingRackBlockEntity>> DRYING_RACK = BLOCK_ENTITIES.register("drying_rack", () -> BlockEntityType.Builder.of(DryingRackBlockEntity::new, ESBlocks.DRYING_RACK.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarfireBirdNestBlockEntity>> STARFIRE_BIRD_NEST = BLOCK_ENTITIES.register("starfire_bird_nest", () -> BlockEntityType.Builder.of(StarfireBirdNestBlockEntity::new, ESBlocks.STARFIRE_BIRD_NEST.get(), ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get()).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarfireBirdNestBlockEntity>> STARFIRE_BIRD_NEST = BLOCK_ENTITIES.register("starfire_bird_nest", () -> BlockEntityType.Builder.of(StarfireBirdNestBlockEntity::new,
+		ESBlocks.STARFIRE_BIRD_NEST.get(),
+		ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(),
+		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get()
+	).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 
 	public static void loadClass() {

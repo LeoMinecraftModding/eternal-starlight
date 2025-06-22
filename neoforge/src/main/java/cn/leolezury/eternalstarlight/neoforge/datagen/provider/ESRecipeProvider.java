@@ -1393,6 +1393,17 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private void addStarfireRecipes(RecipeOutput recipeOutput) {
+		addStarfireBirdAviary(recipeOutput, ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(), Blocks.OAK_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(), Blocks.SPRUCE_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(), Blocks.BIRCH_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(), Blocks.ACACIA_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(), Blocks.CHERRY_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(), Blocks.JUNGLE_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(), Blocks.DARK_OAK_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(), Blocks.CRIMSON_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(), Blocks.WARPED_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(), Blocks.MANGROVE_PLANKS);
+		addStarfireBirdAviary(recipeOutput, ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), Blocks.BAMBOO_PLANKS);
 		addStarfireBirdAviary(recipeOutput, ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), ESBlocks.LUNAR_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), ESBlocks.NORTHLAND_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
@@ -1478,6 +1489,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		addChestplate(recipeOutput, ESItems.STARLIT_DIAMOND_CHESTPLATE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
 		addLeggings(recipeOutput, ESItems.STARLIT_DIAMOND_LEGGINGS.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
 		addBoots(recipeOutput, ESItems.STARLIT_DIAMOND_BOOTS.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.JUKEBOX)
+			.pattern("###")
+			.pattern("#X#")
+			.pattern("###")
+			.define('#', ItemTags.PLANKS)
+			.define('X', ESConventionalTags.Items.GEMS_STARLIT_DIAMOND)
+			.unlockedBy("has_starlit_diamond", has(ESConventionalTags.Items.GEMS_STARLIT_DIAMOND))
+			.save(recipeOutput, EternalStarlight.id("jukebox_from_starlit_diamond"));
 	}
 
 	private void addAtalphaiteRecipes(RecipeOutput recipeOutput) {

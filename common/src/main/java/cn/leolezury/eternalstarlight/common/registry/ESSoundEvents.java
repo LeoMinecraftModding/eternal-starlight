@@ -53,6 +53,8 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> SONAR_BOMB_EXPLODE = register("entity.sonar_bomb.explode");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_WHOOSH = register("entity.starfire.whoosh");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKING_EYE_LAUNCH = register("entity.seeking_eye.launch");
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKING_EYE_DEATH = register("entity.seeking_eye.death");
 
@@ -78,6 +80,8 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_HURT = register("entity.starfire_bird.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_DEATH = register("entity.starfire_bird.death");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_HURT = register("entity.aethersent_golem.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_DEATH = register("entity.aethersent_golem.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_SHOOT = register("entity.aethersent_golem.shoot");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_AMBIENT = register("entity.thirst_walker.ambient");

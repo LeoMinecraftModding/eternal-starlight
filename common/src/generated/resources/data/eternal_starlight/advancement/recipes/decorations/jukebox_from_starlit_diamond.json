@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_starlit_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gems/starlit_diamond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:jukebox_from_starlit_diamond"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_starlit_diamond"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:jukebox_from_starlit_diamond"
+    ]
+  }
+}

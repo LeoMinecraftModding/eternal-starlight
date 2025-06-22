@@ -94,8 +94,6 @@ public class CommonSetupHandlers {
 	);
 
 	public static void commonSetup() {
-		DispenserBlock.registerProjectileBehavior(ESItems.ASHEN_SNOWBALL.get());
-		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.THIOQUARTZ_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSENT_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AETHERSTRIKE_ROCKET.get());
@@ -108,6 +106,9 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.ASHEN_SNOWBALL.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_BOMB.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.STARFIRE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());
 		DispenserBlock.registerBehavior(ESItems.LUNAR_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR));
 		DispenserBlock.registerBehavior(ESItems.LUNAR_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR, true));
