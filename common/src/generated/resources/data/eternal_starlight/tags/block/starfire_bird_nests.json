@@ -1,5 +1,11 @@
 {
   "values": [
-    "eternal_starlight:starfire_bird_nest"
+    "eternal_starlight:starfire_bird_nest",
+    "eternal_starlight:lunar_starfire_bird_aviary",
+    "eternal_starlight:northland_starfire_bird_aviary",
+    "eternal_starlight:starlight_mangrove_starfire_bird_aviary",
+    "eternal_starlight:scarlet_starfire_bird_aviary",
+    "eternal_starlight:torreya_starfire_bird_aviary",
+    "eternal_starlight:jinglestem_starfire_bird_aviary"
   ]
 }

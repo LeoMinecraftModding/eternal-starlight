@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-05T23:08:47.9945916	Registries
+// 1.21.1	2025-06-14T17:26:19.0094174	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -87,7 +87,9 @@ ee805fe9f5c2908e7ee0fa58e82b18361653fe49 data/eternal_starlight/jukebox_song/sac
 316091ecd6ce3bf68f04c6d290183460c9814a6d data/eternal_starlight/jukebox_song/whisper_of_the_stars.json
 bfcfb72a59dc0c63084d17048ca2e3f1ecb27612 data/eternal_starlight/painting_variant/crystalborn.json
 beb367c63c7be2ad43b802a43666a87e832a303d data/eternal_starlight/painting_variant/energized.json
+1a18f74db519aeaf0505865c0fa6225a46dacbcd data/eternal_starlight/painting_variant/energized_special.json
 faa4ac655493ac1b20030f84c93702a9a957a475 data/eternal_starlight/painting_variant/monstrous.json
+fa5a77280751d18d08bd0b3d61703ff81ae1b436 data/eternal_starlight/painting_variant/monstrous_special.json
 21d9a047fc64fce8a3234643cea35b3456571eae data/eternal_starlight/painting_variant/the_catalyst.json
 9b91444c8d3399c29f3a250c9d4c8a8de3657e24 data/eternal_starlight/trim_material/aethersent.json
 3181779f120e27d340e2c8b37e24edfbcff54159 data/eternal_starlight/trim_material/amaramber.json

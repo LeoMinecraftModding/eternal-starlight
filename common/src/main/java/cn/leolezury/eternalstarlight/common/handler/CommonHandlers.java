@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
@@ -31,13 +32,17 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.FastColor;
@@ -52,12 +57,15 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
@@ -249,9 +257,31 @@ public class CommonHandlers {
 		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
 			if (!item.level().isClientSide) {
-				if (item.tickCount % 100 == 0 && item.getItem().is(ConventionalTags.Items.MUSIC_DISCS) && !item.getItem().is(ESItems.MUSIC_DISC_SPIRIT.get()) && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
-					item.setItem(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance());
-					item.addDeltaMovement(new Vec3(0, 0.25, 0));
+				if (item.tickCount % 100 == 0 && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
+					ItemStack content = item.getItem();
+					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get())) {
+						item.setItem(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance());
+						item.addDeltaMovement(new Vec3(0, 0.25, 0));
+						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
+					} else if (content.is(ESItems.STARLIT_PAINTING.get())) {
+						CustomData data = content.get(DataComponents.ENTITY_DATA);
+						if (data != null) {
+							Holder<PaintingVariant> variant = data.read(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).getOrThrow();
+							CustomData newData = null;
+							if (variant.is(ESPaintingVariants.ENERGIZED)) {
+								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.ENERGIZED_SPECIAL)).getOrThrow();
+							} else if (variant.is(ESPaintingVariants.MONSTROUS)) {
+								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.MONSTROUS_SPECIAL)).getOrThrow();
+							}
+							if (newData != null) {
+								ItemStack copy = content.copy();
+								copy.set(DataComponents.ENTITY_DATA, newData);
+								item.setItem(copy);
+								item.addDeltaMovement(new Vec3(0, 0.25, 0));
+							}
+						}
+						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
+					}
 				}
 			} else {
 				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {

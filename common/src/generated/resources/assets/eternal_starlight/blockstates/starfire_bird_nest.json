@@ -2,63 +2,63 @@
   "variants": {
     "eggs=0,facing=east": {
       "model": "eternal_starlight:block/starfire_bird_nest",
-      "y": 270
+      "y": 90
     },
     "eggs=0,facing=north": {
-      "model": "eternal_starlight:block/starfire_bird_nest",
-      "y": 180
+      "model": "eternal_starlight:block/starfire_bird_nest"
     },
     "eggs=0,facing=south": {
-      "model": "eternal_starlight:block/starfire_bird_nest"
+      "model": "eternal_starlight:block/starfire_bird_nest",
+      "y": 180
     },
     "eggs=0,facing=west": {
       "model": "eternal_starlight:block/starfire_bird_nest",
-      "y": 90
+      "y": 270
     },
     "eggs=1,facing=east": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs1",
-      "y": 270
+      "y": 90
     },
     "eggs=1,facing=north": {
-      "model": "eternal_starlight:block/starfire_bird_nest_eggs1",
-      "y": 180
+      "model": "eternal_starlight:block/starfire_bird_nest_eggs1"
     },
     "eggs=1,facing=south": {
-      "model": "eternal_starlight:block/starfire_bird_nest_eggs1"
+      "model": "eternal_starlight:block/starfire_bird_nest_eggs1",
+      "y": 180
     },
     "eggs=1,facing=west": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs1",
-      "y": 90
+      "y": 270
     },
     "eggs=2,facing=east": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs2",
-      "y": 270
+      "y": 90
     },
     "eggs=2,facing=north": {
-      "model": "eternal_starlight:block/starfire_bird_nest_eggs2",
-      "y": 180
+      "model": "eternal_starlight:block/starfire_bird_nest_eggs2"
     },
     "eggs=2,facing=south": {
-      "model": "eternal_starlight:block/starfire_bird_nest_eggs2"
+      "model": "eternal_starlight:block/starfire_bird_nest_eggs2",
+      "y": 180
     },
     "eggs=2,facing=west": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs2",
-      "y": 90
+      "y": 270
     },
     "eggs=3,facing=east": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs3",
-      "y": 270
+      "y": 90
     },
     "eggs=3,facing=north": {
+      "model": "eternal_starlight:block/starfire_bird_nest_eggs3"
+    },
+    "eggs=3,facing=south": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs3",
       "y": 180
     },
-    "eggs=3,facing=south": {
-      "model": "eternal_starlight:block/starfire_bird_nest_eggs3"
-    },
     "eggs=3,facing=west": {
       "model": "eternal_starlight:block/starfire_bird_nest_eggs3",
-      "y": 90
+      "y": 270
     }
   }
 }

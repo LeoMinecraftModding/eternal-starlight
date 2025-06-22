@@ -36,7 +36,7 @@ public class StarfireBirdNestRenderer implements BlockEntityRenderer<StarfireBir
 					poseStack.pushPose();
 					poseStack.translate(0.5F + slightOffset, 0.125F + slightOffset, 0.5F + slightOffset);
 					poseStack.mulPose(Axis.YP.rotationDegrees(-blockEntity.getBlockState().getValue(StarfireBirdNestBlock.FACING).toYRot()));
-					poseStack.translate(offset, 0.0F, 0.125F);
+					poseStack.translate(offset, 0.0F, 0.0F);
 					entityRenderer.render(entity, 0, 0, 0, 0, partialTicks, poseStack, bufferSource, packedLight);
 					poseStack.popPose();
 				}

@@ -123,6 +123,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_AMBIENT = register("entity.tangled_skull.ambient");
 	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_MOAN = register("entity.tangled_skull.moan");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> ETHER_TRANSFORM = register("block.ether.transform");
 	public static final RegistryObject<SoundEvent, SoundEvent> STELLAR_RACK_AMBIENT = register("block.stellar_rack.ambient");
 
 	public static RegistryObject<SoundEvent, SoundEvent> register(String name) {

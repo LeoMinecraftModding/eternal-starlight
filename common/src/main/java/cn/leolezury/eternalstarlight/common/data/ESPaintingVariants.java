@@ -8,13 +8,17 @@ import net.minecraft.world.entity.decoration.PaintingVariant;
 
 public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> ENERGIZED = create("energized");
+	public static final ResourceKey<PaintingVariant> ENERGIZED_SPECIAL = create("energized_special");
 	public static final ResourceKey<PaintingVariant> MONSTROUS = create("monstrous");
+	public static final ResourceKey<PaintingVariant> MONSTROUS_SPECIAL = create("monstrous_special");
 	public static final ResourceKey<PaintingVariant> THE_CATALYST = create("the_catalyst");
 	public static final ResourceKey<PaintingVariant> CRYSTALBORN = create("crystalborn");
 
 	public static void bootstrap(BootstrapContext<PaintingVariant> context) {
 		register(context, ENERGIZED, 2, 2);
+		register(context, ENERGIZED_SPECIAL, 2, 2);
 		register(context, MONSTROUS, 2, 2);
+		register(context, MONSTROUS_SPECIAL, 2, 2);
 		register(context, THE_CATALYST, 2, 2);
 		register(context, CRYSTALBORN, 2, 2);
 	}

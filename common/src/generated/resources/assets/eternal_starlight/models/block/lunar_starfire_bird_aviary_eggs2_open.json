@@ -1,0 +1,8 @@
+{
+  "parent": "eternal_starlight:block/template_starfire_bird_aviary_eggs2_open",
+  "textures": {
+    "particle": "eternal_starlight:block/lunar_planks",
+    "planks": "eternal_starlight:block/lunar_planks",
+    "stripped_log": "eternal_starlight:block/stripped_lunar_log"
+  }
+}

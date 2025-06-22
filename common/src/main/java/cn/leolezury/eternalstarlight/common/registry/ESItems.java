@@ -851,6 +851,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ROTTEN_FLESH_JERKY = registerItem("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(new FoodProperties(5, 0.8F, false, 2.5F, Optional.empty(), List.of()))));
 
 	public static final RegistryObject<Item, Item> STARFIRE_BIRD_NEST = registerItem("starfire_bird_nest", () -> new BlockItem(ESBlocks.STARFIRE_BIRD_NEST.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_STARFIRE_BIRD_AVIARY = registerItem("lunar_starfire_bird_aviary", () -> new BlockItem(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> NORTHLAND_STARFIRE_BIRD_AVIARY = registerItem("northland_starfire_bird_aviary", () -> new BlockItem(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY = registerItem("starlight_mangrove_starfire_bird_aviary", () -> new BlockItem(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SCARLET_STARFIRE_BIRD_AVIARY = registerItem("scarlet_starfire_bird_aviary", () -> new BlockItem(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TORREYA_STARFIRE_BIRD_AVIARY = registerItem("torreya_starfire_bird_aviary", () -> new BlockItem(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLESTEM_STARFIRE_BIRD_AVIARY = registerItem("jinglestem_starfire_bird_aviary", () -> new BlockItem(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARFIRE = registerItem("starfire", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

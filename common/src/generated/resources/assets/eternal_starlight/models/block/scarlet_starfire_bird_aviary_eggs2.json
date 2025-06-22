@@ -1,0 +1,9 @@
+{
+  "parent": "eternal_starlight:block/template_starfire_bird_aviary_eggs2",
+  "textures": {
+    "particle": "eternal_starlight:block/scarlet_planks",
+    "planks": "eternal_starlight:block/scarlet_planks",
+    "stripped_log": "eternal_starlight:block/stripped_scarlet_log",
+    "trapdoor": "eternal_starlight:block/scarlet_trapdoor"
+  }
+}

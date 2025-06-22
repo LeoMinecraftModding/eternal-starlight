@@ -741,6 +741,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());
 
 		block(ESItems.STARFIRE_BIRD_NEST.get());
+		block(ESItems.LUNAR_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.NORTHLAND_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.SCARLET_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.TORREYA_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.JINGLESTEM_STARFIRE_BIRD_AVIARY.get());
+		basicItem(ESItems.STARFIRE.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());

@@ -1,4 +1,10 @@
 {
+  "block.ether.transform": {
+    "sounds": [
+      "eternal_starlight:block/ether/transform"
+    ],
+    "subtitle": "subtitles.block.eternal_starlight.ether.transform"
+  },
   "block.stellar_rack.ambient": {
     "sounds": [
       "eternal_starlight:block/stellar_rack/idle"

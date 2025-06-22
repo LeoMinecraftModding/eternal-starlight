@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -149,14 +150,17 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 						double y = blockPos.getY() + 0.5 - (entity.getBbHeight() / 2.0);
 						double z = blockPos.getZ() + 0.5 + xzOffset * facing.getStepZ();
 						entity.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
-						int seeds = blockState.getValue(StarfireBirdNestBlock.SEEDS);
-						if (seeds > 0 && !bird.isBaby() && bird.canFallInLove() && bird.getAge() == 0) {
-							Player loveCause = null;
-							if (blockEntity.lastSeedPlayer != null) {
-								loveCause = level.getPlayerByUUID(blockEntity.lastSeedPlayer);
+						BlockState currentState = level.getBlockState(blockPos);
+						if (currentState.is(ESTags.Blocks.STARFIRE_BIRD_NESTS)) {
+							int seeds = currentState.getValue(StarfireBirdNestBlock.SEEDS);
+							if (seeds > 0 && !bird.isBaby() && bird.canFallInLove() && bird.getAge() == 0) {
+								Player loveCause = null;
+								if (blockEntity.lastSeedPlayer != null) {
+									loveCause = level.getPlayerByUUID(blockEntity.lastSeedPlayer);
+								}
+								bird.setInLove(loveCause);
+								level.setBlockAndUpdate(blockPos, currentState.setValue(StarfireBirdNestBlock.SEEDS, seeds - 1));
 							}
-							bird.setInLove(loveCause);
-							level.setBlockAndUpdate(blockPos, blockState.setValue(StarfireBirdNestBlock.SEEDS, seeds - 1));
 						}
 						bird.addTrustedPlayer(blockEntity.lastSeedPlayer);
 						bird.setStayOutOfNestTicks(renterCooldown);

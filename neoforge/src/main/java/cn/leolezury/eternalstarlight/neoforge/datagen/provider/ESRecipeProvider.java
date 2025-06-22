@@ -45,6 +45,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSwampSilverRecipes(recipeOutput);
 		addMalariteRecipes(recipeOutput);
 		addPungencyFruitRecipes(recipeOutput);
+		addStarfireRecipes(recipeOutput);
 		addThermalSpringstoneRecipes(recipeOutput);
 		addGlaciteRecipes(recipeOutput);
 		addStarlitDiamondRecipes(recipeOutput);
@@ -1389,6 +1390,26 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	protected static void pungencyFruitSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(ingredientItem), Ingredient.of(ESItems.PUNGENCY_FRUIT.get()), category, resultItem).unlocks("has_pungency_fruit", has(ESItems.PUNGENCY_FRUIT.get())).save(recipeOutput, EternalStarlight.id(getItemName(resultItem) + "_smithing"));
+	}
+
+	private void addStarfireRecipes(RecipeOutput recipeOutput) {
+		addStarfireBirdAviary(recipeOutput, ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), ESBlocks.LUNAR_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), ESBlocks.NORTHLAND_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+	}
+
+	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output)
+			.pattern("###")
+			.pattern("SSS")
+			.pattern("###")
+			.define('#', input)
+			.define('S', ESItems.STARFIRE.get())
+			.unlockedBy("has_item", has(ESItems.STARFIRE.get()))
+			.save(recipeOutput);
 	}
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {

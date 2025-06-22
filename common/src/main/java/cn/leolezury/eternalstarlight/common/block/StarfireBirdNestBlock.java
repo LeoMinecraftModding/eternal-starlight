@@ -44,7 +44,7 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 	public static final IntegerProperty SEEDS = IntegerProperty.create("seeds", 0, 3);
 
 	@Override
-	protected MapCodec<StarfireBirdNestBlock> codec() {
+	protected MapCodec<? extends StarfireBirdNestBlock> codec() {
 		return CODEC;
 	}
 

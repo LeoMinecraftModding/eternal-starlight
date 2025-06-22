@@ -863,7 +863,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.CRESCENT_SPEAR.get()
-			);
+			)
+			.addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
 		tag(ItemTags.WEAPON_ENCHANTABLE)
 			.addTag(ESTags.Items.HAMMER_ENCHANTABLE);
 		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)

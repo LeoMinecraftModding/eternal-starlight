@@ -761,6 +761,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DRYING_RACK.get());
 
 		add(ESBlocks.STARFIRE_BIRD_NEST.get(), this::createStarfireBirdNestDrop);
+		add(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
@@ -842,6 +848,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 	protected LootTable.Builder createStarfireBirdNestDrop(Block block) {
 		return LootTable.lootTable().withPool(LootPool.lootPool().when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS).copy(StarfireBirdNestBlock.SEEDS))));
+	}
+
+	protected LootTable.Builder createStarfireBirdAviaryDrop(Block block) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(this.hasSilkTouch()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS).copy(StarfireBirdNestBlock.SEEDS)).otherwise(LootItem.lootTableItem(block))));
 	}
 
 	private LootItemCondition.Builder hasShearsOrSilkTouch() {
