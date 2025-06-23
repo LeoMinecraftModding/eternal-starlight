@@ -47,6 +47,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.DAGGER_OF_HUNGER,
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.NUMBNESS,
+				ESDamageTypes.STARFIRE,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);
@@ -58,6 +59,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.DAGGER_OF_HUNGER,
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.NUMBNESS,
+				ESDamageTypes.STARFIRE,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);
@@ -83,6 +85,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.SONAR,
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.SEEDS,
+				ESDamageTypes.STARFIRE,
 				ESDamageTypes.LASER,
 				ESDamageTypes.BITE
 			);

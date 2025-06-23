@@ -225,13 +225,13 @@ public class CommonHandlers {
 				}
 			}
 
-			if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
+			if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder()) && !source.is(ESDamageTypes.STARFIRE)) {
 				if (entity.level() instanceof ServerLevel serverLevel) {
 					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 6, 0.75);
 				}
 				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
 					if (living != entity && living != source.getDirectEntity()) {
-						living.hurt(source, amount / 3);
+						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(entity.level(), ESDamageTypes.STARFIRE, source.getDirectEntity(), source.getEntity()), amount / 3);
 					}
 				}
 			}

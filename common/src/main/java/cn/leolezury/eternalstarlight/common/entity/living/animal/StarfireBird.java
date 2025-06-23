@@ -5,6 +5,8 @@ import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEn
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESPoiTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
@@ -14,6 +16,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -539,6 +542,12 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 				if (!availableNests.isEmpty()) {
 					nestPos = availableNests.get(getRandom().nextInt(availableNests.size()));
 					nestDestroyedTicks = 0;
+					for (int i = 0; i < 5; ++i) {
+						double d = getRandom().nextGaussian() * 0.02;
+						double e = getRandom().nextGaussian() * 0.02;
+						double f = getRandom().nextGaussian() * 0.02;
+						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ParticleTypes.HAPPY_VILLAGER, getRandomX(1.0F), getRandomY() + 1.0F, getRandomZ(1.0F), d, e, f));
+					}
 				}
 			}
 		} else {
@@ -576,10 +585,9 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 	private boolean canBeSeenAsNewNest(BlockPos pos) {
 		BlockState state = this.level().getBlockState(pos);
 		return state.is(ESTags.Blocks.STARFIRE_BIRD_NESTS)
-			&& state.hasProperty(StarfireBirdNestBlock.SEEDS)
-			&& state.getValue(StarfireBirdNestBlock.SEEDS) > 0
 			&& this.level().getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity entity
-			&& !entity.isFullForAdults();
+			&& !entity.isFullForAdults()
+			&& !entity.getSeeds().isEmpty();
 	}
 
 	@Override

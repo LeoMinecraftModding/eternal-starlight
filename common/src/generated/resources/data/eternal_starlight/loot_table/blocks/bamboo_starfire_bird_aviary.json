@@ -30,7 +30,8 @@
                 {
                   "function": "minecraft:copy_components",
                   "include": [
-                    "eternal_starlight:birds"
+                    "eternal_starlight:birds",
+                    "eternal_starlight:seeds"
                   ],
                   "source": "block_entity"
                 },
@@ -38,8 +39,7 @@
                   "block": "eternal_starlight:bamboo_starfire_bird_aviary",
                   "function": "minecraft:copy_state",
                   "properties": [
-                    "eggs",
-                    "seeds"
+                    "eggs"
                   ]
                 }
               ],

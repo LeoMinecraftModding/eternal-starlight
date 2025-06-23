@@ -41,7 +41,6 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 	public static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final IntegerProperty EGGS = IntegerProperty.create("eggs", 0, 3);
-	public static final IntegerProperty SEEDS = IntegerProperty.create("seeds", 0, 3);
 
 	@Override
 	protected MapCodec<? extends StarfireBirdNestBlock> codec() {
@@ -50,7 +49,11 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 
 	public StarfireBirdNestBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(EGGS, 0).setValue(SEEDS, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(EGGS, 0));
+	}
+
+	public float getSeedsRenderOffset() {
+		return 0.0625F * 2;
 	}
 
 	@Override
@@ -60,16 +63,12 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-		if (stack.is(ESTags.Items.STARFIRE_BIRD_FOOD)) {
-			int seeds = state.getValue(SEEDS);
-			if (seeds < 3) {
-				level.setBlockAndUpdate(pos, state.setValue(SEEDS, seeds + 1));
+		if (stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest && !nest.seedsFull()) {
+			if (!level.isClientSide && nest.addSeeds(stack)) {
+				nest.setLastSeedPlayer(player);
 				stack.consume(1, player);
-				if (level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest) {
-					nest.setLastSeedPlayer(player);
-				}
-				return ItemInteractionResult.sidedSuccess(level.isClientSide);
 			}
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 	}
@@ -102,7 +101,7 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, EGGS, SEEDS);
+		builder.add(FACING, EGGS);
 	}
 
 	@Override
@@ -127,12 +126,11 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 		if (!level.isClientSide && player.isCreative() && level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			int eggs = blockState.getValue(EGGS);
-			int seeds = blockState.getValue(SEEDS);
 			if (blockEntity instanceof StarfireBirdNestBlockEntity nest) {
-				if (nest.getOccupantCount() > 0 || eggs > 0 || seeds > 0) {
+				if (nest.getOccupantCount() > 0 || !nest.getSeeds().isEmpty() || eggs > 0) {
 					ItemStack stack = new ItemStack(this);
 					stack.applyComponents(nest.collectComponents());
-					stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(EGGS, eggs).with(SEEDS, seeds));
+					stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(EGGS, eggs));
 					ItemEntity itemEntity = new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), stack);
 					itemEntity.setDefaultPickUpDelay();
 					level.addFreshEntity(itemEntity);

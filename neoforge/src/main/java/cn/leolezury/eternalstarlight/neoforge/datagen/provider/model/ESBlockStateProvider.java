@@ -666,12 +666,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ModelFile modelEggs1 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs1"));
 		ModelFile modelEggs2 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs2"));
 		ModelFile modelEggs3 = models().getExistingFile(EternalStarlight.id("starfire_bird_nest_eggs3"));
-		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
 			case 1 -> modelEggs1;
 			case 2 -> modelEggs2;
 			case 3 -> modelEggs3;
 			default -> modelFile;
-		}).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build(), StarfireBirdNestBlock.SEEDS);
+		}).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build());
 	}
 
 	private void starfireBirdAviary(Block block, ResourceLocation type) {
@@ -715,12 +715,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.texture("particle", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("planks", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/" + type.getPath() + "_planks"))
 			.texture("stripped_log", ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "block/stripped_" + type.getPath() + "_" + logSuffix));
-		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(switch (state.getValue(StarfireBirdNestBlock.EGGS)) {
 			case 1 -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelEggs1Open : modelEggs1;
 			case 2 -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelEggs2Open : modelEggs2;
 			case 3 -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelEggs3Open : modelEggs3;
 			default -> state.getValue(StarfireBirdAviaryBlock.OPEN) ? modelOpen : modelFile;
-		}).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build(), StarfireBirdNestBlock.SEEDS);
+		}).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build());
 	}
 
 	private void rawAmaramberBlock(Block block) {

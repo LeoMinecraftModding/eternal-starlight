@@ -24,6 +24,7 @@ public class ESDamageTypes {
 	public static final ResourceKey<DamageType> SOUL_ABSORB = create("soul_absorb");
 	public static final ResourceKey<DamageType> NUMBNESS = create("numbness");
 	public static final ResourceKey<DamageType> SEEDS = create("seeds");
+	public static final ResourceKey<DamageType> STARFIRE = create("starfire");
 
 	// starlight golem
 	public static final ResourceKey<DamageType> LASER = create("laser");
@@ -62,6 +63,7 @@ public class ESDamageTypes {
 		context.register(SOUL_ABSORB, new DamageType(name("soul_absorb"), 0.1F));
 		context.register(NUMBNESS, new DamageType(name("numbness"), 0.1F));
 		context.register(SEEDS, new DamageType(name("seeds"), 0.1F));
+		context.register(STARFIRE, new DamageType(name("starfire"), 0.1F));
 		context.register(LASER, new DamageType(name("laser"), 0.1F, DamageEffects.BURNING));
 		context.register(ENERGIZED_FLAME, new DamageType(name("energized_flame"), 0.1F, DamageEffects.BURNING));
 		context.register(POISON, new DamageType(name("poison"), 0.1F));

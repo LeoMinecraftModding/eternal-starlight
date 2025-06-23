@@ -10,16 +10,21 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class StarfireBirdNestRenderer implements BlockEntityRenderer<StarfireBirdNestBlockEntity> {
 	private final EntityRenderDispatcher entityRenderer;
+	private final ItemRenderer itemRenderer;
 
 	public StarfireBirdNestRenderer(BlockEntityRendererProvider.Context context) {
 		this.entityRenderer = context.getEntityRenderer();
+		this.itemRenderer = context.getItemRenderer();
 	}
 
 	@Override
@@ -63,6 +68,24 @@ public class StarfireBirdNestRenderer implements BlockEntityRenderer<StarfireBir
 			}
 			slightOffset += 0.001F;
 			offset += singleOffset;
+		}
+		long seed = blockEntity.getBlockPos().asLong();
+		List<ItemStack> seeds = blockEntity.getSeeds();
+		slightOffset = 0.001F;
+		float seedsOffset = blockEntity.getBlockState().getBlock() instanceof StarfireBirdNestBlock block ? block.getSeedsRenderOffset() : 0;
+		for (int i = 0; i < seeds.size(); i++) {
+			ItemStack stack = seeds.get(i);
+			if (!stack.isEmpty()) {
+				poseStack.pushPose();
+				poseStack.translate(0.5F + slightOffset, seedsOffset + slightOffset, 0.5F + slightOffset);
+				poseStack.mulPose(Axis.YP.rotationDegrees(i * 30.0F));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.scale(0.375F, 0.375F, 0.375F);
+				this.itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, bufferSource, blockEntity.getLevel(), (int) (i + seed));
+				poseStack.popPose();
+			}
+			slightOffset += 0.001F;
+			seedsOffset += 0.375F * 0.0625F;
 		}
 	}
 }
