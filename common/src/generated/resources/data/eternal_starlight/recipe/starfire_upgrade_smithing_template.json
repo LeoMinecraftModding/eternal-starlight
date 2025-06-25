@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:ingots/thermal_springstone"
+    },
+    "C": {
+      "item": "eternal_starlight:springstone"
+    },
+    "S": {
+      "item": "eternal_starlight:starfire_upgrade_smithing_template"
+    }
+  },
+  "pattern": [
+    "#S#",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "eternal_starlight:starfire_upgrade_smithing_template"
+  }
+}

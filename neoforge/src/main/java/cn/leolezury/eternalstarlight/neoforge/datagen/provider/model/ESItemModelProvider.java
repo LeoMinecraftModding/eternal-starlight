@@ -759,6 +759,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TORREYA_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.JINGLESTEM_STARFIRE_BIRD_AVIARY.get());
 		basicItem(ESItems.STARFIRE.get());
+		basicItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get());
+		handheld(ESItems.STARFIRE_SWORD.get());
+		handheld(ESItems.STARFIRE_PICKAXE.get());
+		handheld(ESItems.STARFIRE_AXE.get());
+		handheld(ESItems.STARFIRE_HOE.get());
+		handheld(ESItems.STARFIRE_SHOVEL.get());
+		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());

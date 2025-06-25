@@ -221,6 +221,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 				ESItems.THERMAL_SPRINGSTONE_AXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
+				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.GLACITE_SWORD.get(),
 				ESItems.GLACITE_AXE.get(),
 				ESItems.GLACITE_SCYTHE.get(),
@@ -231,6 +232,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_SWORD.get(),
 				ESItems.MALARITE_AXE.get(),
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
+				ESItems.STARFIRE_SWORD.get(),
+				ESItems.STARFIRE_AXE.get(),
+				ESItems.STARFIRE_HAMMER.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.AMARAMBER_AXE.get(),
 				ESItems.SHATTERED_SWORD.get(),
@@ -392,7 +396,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.HAMMERS)
 			.add(
-				ESItems.THERMAL_SPRINGSTONE_HAMMER.get()
+				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
+				ESItems.STARFIRE_HAMMER.get()
 			);
 		tag(ESTags.Items.SMALL_SHIELDS)
 			.add(
@@ -486,6 +491,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get()
+			);
+		tag(ESTags.Items.STARFIRE_WEAPONS)
+			.add(
+				ESItems.STARFIRE_SWORD.get(),
+				ESItems.STARFIRE_PICKAXE.get(),
+				ESItems.STARFIRE_AXE.get(),
+				ESItems.STARFIRE_HOE.get(),
+				ESItems.STARFIRE_SHOVEL.get(),
+				ESItems.STARFIRE_HAMMER.get()
 			);
 		tag(ESTags.Items.MENDS_NATURALLY)
 			.add(
@@ -968,6 +982,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARLIT_DIAMOND_SWORD.get(),
 				ESItems.SWAMP_SILVER_SWORD.get(),
 				ESItems.MALARITE_SWORD.get(),
+				ESItems.STARFIRE_SWORD.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.SHATTERED_SWORD.get(),
 				ESItems.ENERGY_SWORD.get(),
@@ -982,6 +997,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
+				ESItems.STARFIRE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get()
 			);
 		tag(ItemTags.AXES)
@@ -992,6 +1008,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SWAMP_SILVER_AXE.get(),
 				ESItems.MALARITE_AXE.get(),
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
+				ESItems.STARFIRE_AXE.get(),
 				ESItems.AMARAMBER_AXE.get()
 			);
 		tag(ItemTags.HOES)
@@ -1000,6 +1017,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_HOE.get(),
 				ESItems.STARLIT_DIAMOND_HOE.get(),
 				ESItems.MALARITE_HOE.get(),
+				ESItems.STARFIRE_HOE.get(),
 				ESItems.AMARAMBER_HOE.get()
 			)
 			.addTags(
@@ -1012,6 +1030,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_SHOVEL.get(),
 				ESItems.STARLIT_DIAMOND_SHOVEL.get(),
 				ESItems.MALARITE_SHOVEL.get(),
+				ESItems.STARFIRE_SHOVEL.get(),
 				ESItems.AMARAMBER_SHOVEL.get()
 			);
 		tag(ItemTags.ARROWS)

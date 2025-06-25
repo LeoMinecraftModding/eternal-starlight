@@ -214,6 +214,14 @@ public class CommonHandlers {
 				entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 120));
 			}
 
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.STARFIRE_WEAPONS)) {
+				entity.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 60));
+				if (attacker.level() instanceof ServerLevel serverLevel) {
+					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 5, 0.25);
+				}
+				attacker.level().playSound(null, attacker.blockPosition(), ESSoundEvents.STARFIRE_WHOOSH.get(), attacker.getSoundSource());
+			}
+
 			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
 				&& entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
 				&& entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem

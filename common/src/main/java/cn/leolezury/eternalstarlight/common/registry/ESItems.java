@@ -869,6 +869,32 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TORREYA_STARFIRE_BIRD_AVIARY = registerItem("torreya_starfire_bird_aviary", () -> new BlockItem(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_STARFIRE_BIRD_AVIARY = registerItem("jinglestem_starfire_bird_aviary", () -> new BlockItem(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARFIRE = registerItem("starfire", () -> new StarfireItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARFIRE_UPGRADE_SMITHING_TEMPLATE = registerItem("starfire_upgrade_smithing_template", () -> new SmithingTemplateItem(
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.ingredients"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("upgrade", EternalStarlight.id("starfire_upgrade"))).withStyle(ChatFormatting.GRAY),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.base_slot_description"))),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.additions_slot_description"))),
+		List.of(
+			ResourceLocation.withDefaultNamespace("item/empty_slot_sword"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_pickaxe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_axe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_hoe")
+		),
+		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_diamond"))
+	));
+	public static final RegistryObject<Item, Item> STARFIRE_SWORD = registerItem("starfire_sword",
+		() -> new SwordItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.STARFIRE, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> STARFIRE_PICKAXE = registerItem("starfire_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.STARFIRE, 1, -2.8F))));
+	public static final RegistryObject<Item, Item> STARFIRE_AXE = registerItem("starfire_axe",
+		() -> new AxeItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.STARFIRE, 6, -3))));
+	public static final RegistryObject<Item, Item> STARFIRE_HOE = registerItem("starfire_hoe",
+		() -> new HoeItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.STARFIRE, -2.5F, -1.0F))));
+	public static final RegistryObject<Item, Item> STARFIRE_SHOVEL = registerItem("starfire_shovel",
+		() -> new ShovelItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.STARFIRE, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> STARFIRE_HAMMER = registerItem("starfire_hammer",
+		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

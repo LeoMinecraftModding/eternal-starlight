@@ -1410,6 +1410,13 @@ public class ESRecipeProvider extends RecipeProvider {
 		addStarfireBirdAviary(recipeOutput, ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		copySmithingTemplate(recipeOutput, ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.SPRINGSTONE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SWORD.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_PICKAXE.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_AXE.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HOE.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HAMMER.get());
 	}
 
 	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
@@ -1421,6 +1428,10 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('S', ESItems.STARFIRE.get())
 			.unlockedBy("has_item", has(ESItems.STARFIRE.get()))
 			.save(recipeOutput);
+	}
+
+	protected static void starfireSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(ingredientItem), Ingredient.of(ESItems.STARFIRE.get()), category, resultItem).unlocks("has_starfire", has(ESItems.STARFIRE.get())).save(recipeOutput, EternalStarlight.id(getItemName(resultItem) + "_smithing"));
 	}
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {

@@ -43,6 +43,7 @@ public class ESTags {
 		public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");
 		public static final TagKey<Item> MALARITE_WEAPONS = create("malarite_weapons");
 		public static final TagKey<Item> PUNGENCY_FRUIT_WEAPONS = create("pungency_fruit_weapons");
+		public static final TagKey<Item> STARFIRE_WEAPONS = create("starfire_weapons");
 		public static final TagKey<Item> MENDS_NATURALLY = create("mends_naturally");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");

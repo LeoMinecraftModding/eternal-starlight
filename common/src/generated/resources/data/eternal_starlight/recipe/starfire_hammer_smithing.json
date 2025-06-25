@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "eternal_starlight:starfire"
+  },
+  "base": {
+    "item": "eternal_starlight:thermal_springstone_hammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:starfire_hammer"
+  },
+  "template": {
+    "item": "eternal_starlight:starfire_upgrade_smithing_template"
+  }
+}
