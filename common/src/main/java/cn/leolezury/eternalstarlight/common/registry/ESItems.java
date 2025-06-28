@@ -370,10 +370,18 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> FLARE_BRICK_SLAB = registerItem("flare_brick_slab", () -> new BlockItem(ESBlocks.FLARE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK_STAIRS = registerItem("flare_brick_stairs", () -> new BlockItem(ESBlocks.FLARE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_BRICK_WALL = registerItem("flare_brick_wall", () -> new BlockItem(ESBlocks.FLARE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_BRICKS = registerItem("cut_flare_bricks", () -> new BlockItem(ESBlocks.CUT_FLARE_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_BRICK_SLAB = registerItem("cut_flare_brick_slab", () -> new BlockItem(ESBlocks.CUT_FLARE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_BRICK_STAIRS = registerItem("cut_flare_brick_stairs", () -> new BlockItem(ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_BRICK_WALL = registerItem("cut_flare_brick_wall", () -> new BlockItem(ESBlocks.CUT_FLARE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILES = registerItem("flare_tiles", () -> new BlockItem(ESBlocks.FLARE_TILES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILE_SLAB = registerItem("flare_tile_slab", () -> new BlockItem(ESBlocks.FLARE_TILE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILE_STAIRS = registerItem("flare_tile_stairs", () -> new BlockItem(ESBlocks.FLARE_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLARE_TILE_WALL = registerItem("flare_tile_wall", () -> new BlockItem(ESBlocks.FLARE_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_TILES = registerItem("cut_flare_tiles", () -> new BlockItem(ESBlocks.CUT_FLARE_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_TILE_SLAB = registerItem("cut_flare_tile_slab", () -> new BlockItem(ESBlocks.CUT_FLARE_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_TILE_STAIRS = registerItem("cut_flare_tile_stairs", () -> new BlockItem(ESBlocks.CUT_FLARE_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CUT_FLARE_TILE_WALL = registerItem("cut_flare_tile_wall", () -> new BlockItem(ESBlocks.CUT_FLARE_TILE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_FLARE_PILLAR = registerItem("chiseled_flare_pillar", () -> new BlockItem(ESBlocks.CHISELED_FLARE_PILLAR.get(), new Item.Properties()));
 
 	// stellagmite
@@ -721,7 +729,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_SCYTHE = registerItem("thermal_springstone_scythe",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.THERMAL_SPRINGSTONE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 4, -2.7F, 0.5F, 0.25F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_HAMMER = registerItem("thermal_springstone_hammer",
-		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.THERMAL_SPRINGSTONE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 7, -3.4F))));
+		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.THERMAL_SPRINGSTONE, () -> null, SoundEvents.GENERIC_EXPLODE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.THERMAL_SPRINGSTONE, 7, -3.4F))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_HELMET = registerItem("thermal_springstone_helmet",
 		() -> ESPlatform.INSTANCE.createThermalSpringstoneArmor(ESArmorMaterials.THERMAL_SPRINGSTONE.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> THERMAL_SPRINGSTONE_CHESTPLATE = registerItem("thermal_springstone_chestplate",
@@ -893,8 +901,10 @@ public class ESItems {
 		() -> new HoeItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.STARFIRE, -2.5F, -1.0F))));
 	public static final RegistryObject<Item, Item> STARFIRE_SHOVEL = registerItem("starfire_shovel",
 		() -> new ShovelItem(ESItemTiers.STARFIRE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.STARFIRE, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> STARFIRE_SCYTHE = registerItem("starfire_scythe",
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.STARFIRE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.STARFIRE, 4, -2.7F, 0.5F, 0.25F))));
 	public static final RegistryObject<Item, Item> STARFIRE_HAMMER = registerItem("starfire_hammer",
-		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
+		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, ESParticles.STARFIRE_EXPLOSION::get, ESSoundEvents.STARFIRE_WHOOSH.asHolder(), new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

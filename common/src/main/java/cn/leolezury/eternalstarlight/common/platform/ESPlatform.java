@@ -26,11 +26,13 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
@@ -100,8 +102,8 @@ public interface ESPlatform {
 		return new ScytheItem(tier, canTill, properties);
 	}
 
-	default HammerItem createHammer(Tier tier, Item.Properties properties) {
-		return new HammerItem(tier, properties);
+	default HammerItem createHammer(Tier tier, Supplier<ParticleOptions> smashParticle, Holder<SoundEvent> smashSound, Item.Properties properties) {
+		return new HammerItem(tier, smashParticle, smashSound, properties);
 	}
 
 	default CrescentSpearItem createCrescentSpear(Item.Properties properties) {

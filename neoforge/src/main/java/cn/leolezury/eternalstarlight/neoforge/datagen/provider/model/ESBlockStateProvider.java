@@ -193,7 +193,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.CHISELED_RADIANITE.get());
 
 		stoneSet(ESBlocks.FLARE_BRICKS.get(), ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get());
+		stoneSet(ESBlocks.CUT_FLARE_BRICKS.get(), ESBlocks.CUT_FLARE_BRICK_SLAB.get(), ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), ESBlocks.CUT_FLARE_BRICK_WALL.get());
 		stoneSet(ESBlocks.FLARE_TILES.get(), ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILE_WALL.get());
+		stoneSet(ESBlocks.CUT_FLARE_TILES.get(), ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILE_WALL.get());
 
 		axisBlock(ESBlocks.CHISELED_FLARE_PILLAR.get());
 

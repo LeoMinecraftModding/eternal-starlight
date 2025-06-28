@@ -13,6 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 @Environment(EnvType.CLIENT)
 public class TangledRenderer<T extends Tangled> extends MobRenderer<T, TangledModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tangled.png");
+	private static final ResourceLocation LUSH_TEXTURE = EternalStarlight.id("textures/entity/tangled_lush.png");
+	private static final ResourceLocation BLOOMING_TEXTURE = EternalStarlight.id("textures/entity/tangled_blooming.png");
 
 	public TangledRenderer(EntityRendererProvider.Context context) {
 		super(context, new TangledModel<>(context.bakeLayer(TangledModel.LAYER_LOCATION)), 0.3f);
@@ -21,6 +23,10 @@ public class TangledRenderer<T extends Tangled> extends MobRenderer<T, TangledMo
 
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
-		return ENTITY_TEXTURE;
+		return switch (entity.getVariant()) {
+			case 1 -> LUSH_TEXTURE;
+			case 2 -> BLOOMING_TEXTURE;
+			default -> ENTITY_TEXTURE;
+		};
 	}
 }

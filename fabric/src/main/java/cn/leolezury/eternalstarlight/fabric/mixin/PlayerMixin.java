@@ -62,4 +62,9 @@ public abstract class PlayerMixin {
 			localRef.set(true);
 		}
 	}
+
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;crit(Lnet/minecraft/world/entity/Entity;)V", shift = At.Shift.AFTER))
+	private void attackCrit(Entity entity, CallbackInfo ci, @Local(ordinal = 2) float attackStrength) {
+		CommonHandlers.onCriticalHit((Player) (Object) this, entity, attackStrength);
+	}
 }

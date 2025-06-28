@@ -407,6 +407,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("malarite_spear");
 		registerSimpleSpecialModel("pungency_fruit_spear");
 		registerSimpleSpecialModel("seeds_launcher");
+		registerSimpleSpecialModel("starfire_scythe");
 		registerSimpleSpecialModel("starfire_hammer");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
@@ -659,6 +660,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("malarite_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("pungency_fruit_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("seeds_launcher_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
@@ -674,7 +676,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.SPIRAL_KELP_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.FALLING_RED_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.FALLING_BLUE_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
-		strategy.register(ESParticles.ENERGY.get(), FlameParticle.Provider::new);
+		strategy.register(ESParticles.ENERGY.get(), EnergyParticle.Provider::new);
 		strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
 		strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
 		strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);

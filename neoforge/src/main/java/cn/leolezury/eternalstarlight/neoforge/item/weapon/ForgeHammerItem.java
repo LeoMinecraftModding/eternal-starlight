@@ -1,14 +1,19 @@
 package cn.leolezury.eternalstarlight.neoforge.item.weapon;
 
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
+import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
+import java.util.function.Supplier;
+
 public class ForgeHammerItem extends HammerItem {
-	public ForgeHammerItem(Tier tier, Properties properties) {
-		super(tier, properties);
+	public ForgeHammerItem(Tier tier, Supplier<ParticleOptions> smashParticle, Holder<SoundEvent> smashSound, Properties properties) {
+		super(tier, smashParticle, smashSound, properties);
 	}
 
 	@Override

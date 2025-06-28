@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "critical_hit": {
+      "trigger": "eternal_starlight:hammer_critical_hit"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.hammer_critical_hit.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:starfire_hammer"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.hammer_critical_hit.title"
+    }
+  },
+  "requirements": [
+    [
+      "critical_hit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

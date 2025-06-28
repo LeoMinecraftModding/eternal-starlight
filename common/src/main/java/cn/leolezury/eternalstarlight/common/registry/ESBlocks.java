@@ -237,7 +237,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ScarletLeavesBlock> SCARLET_LEAVES = BLOCKS.register("scarlet_leaves",
 		() -> new ScarletLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
 	public static final RegistryObject<Block, LayeredBlock> SCARLET_LEAVES_PILE = BLOCKS.register("scarlet_leaves_pile",
-		() -> new LayeredBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW).noCollission().sound(SoundType.CHERRY_LEAVES).mapColor(MapColor.COLOR_RED)));
+		() -> new LayeredBlock(BlockBehaviour.Properties.of().replaceable().forceSolidOff().strength(0.1F).isViewBlocking((state, level, pos) -> state.getValue(LayeredBlock.LAYERS) >= 8).pushReaction(PushReaction.DESTROY).noCollission().sound(SoundType.GRASS).mapColor(MapColor.COLOR_RED)));
 	public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_LOG = BLOCKS.register("scarlet_log",
 		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_RED)));
 	public static final RegistryObject<Block, RotatedPillarBlock> SCARLET_WOOD = BLOCKS.register("scarlet_wood",
@@ -454,10 +454,18 @@ public class ESBlocks {
 	public static final RegistryObject<Block, SlabBlock> FLARE_BRICK_SLAB = BLOCKS.register("flare_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, StairBlock> FLARE_BRICK_STAIRS = BLOCKS.register("flare_brick_stairs", () -> new StairBlock(FLARE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, WallBlock> FLARE_BRICK_WALL = BLOCKS.register("flare_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, Block> CUT_FLARE_BRICKS = BLOCKS.register("cut_flare_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, SlabBlock> CUT_FLARE_BRICK_SLAB = BLOCKS.register("cut_flare_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, StairBlock> CUT_FLARE_BRICK_STAIRS = BLOCKS.register("cut_flare_brick_stairs", () -> new StairBlock(CUT_FLARE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, WallBlock> CUT_FLARE_BRICK_WALL = BLOCKS.register("cut_flare_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, Block> FLARE_TILES = BLOCKS.register("flare_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_TILES).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, SlabBlock> FLARE_TILE_SLAB = BLOCKS.register("flare_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, StairBlock> FLARE_TILE_STAIRS = BLOCKS.register("flare_tile_stairs", () -> new StairBlock(FLARE_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, WallBlock> FLARE_TILE_WALL = BLOCKS.register("flare_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, Block> CUT_FLARE_TILES = BLOCKS.register("cut_flare_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, SlabBlock> CUT_FLARE_TILE_SLAB = BLOCKS.register("cut_flare_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, StairBlock> CUT_FLARE_TILE_STAIRS = BLOCKS.register("cut_flare_tile_stairs", () -> new StairBlock(CUT_FLARE_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).mapColor(MapColor.COLOR_BROWN)));
+	public static final RegistryObject<Block, WallBlock> CUT_FLARE_TILE_WALL = BLOCKS.register("cut_flare_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, RotatedPillarBlock> CHISELED_FLARE_PILLAR = BLOCKS.register("chiseled_flare_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_PILLAR).mapColor(MapColor.COLOR_BROWN)));
 
 	// stellagmite

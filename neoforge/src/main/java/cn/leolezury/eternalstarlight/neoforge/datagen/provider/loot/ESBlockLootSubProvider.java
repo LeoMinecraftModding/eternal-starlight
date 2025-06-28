@@ -204,7 +204,25 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
 
 		add(ESBlocks.SCARLET_LEAVES.get(), block -> this.createLeavesDrops(block, ESBlocks.SCARLET_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ESBlocks.SCARLET_LEAVES_PILE.get(), noDrop());
+		add(ESBlocks.SCARLET_LEAVES_PILE.get(), (block) -> LootTable.lootTable()
+			.withPool(LootPool.lootPool()
+				.when(LootItemEntityPropertyCondition.entityPresent(LootContext.EntityTarget.THIS))
+				.add(AlternativesEntry.alternatives(
+					AlternativesEntry.alternatives(
+						LayeredBlock.LAYERS.getPossibleValues(), (i) ->
+							LootItem.lootTableItem(Items.STICK)
+								.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LayeredBlock.LAYERS, i)))
+								.apply(SetItemCountFunction.setCount(UniformGenerator.between(0, i)))
+					).when(HAS_SHEARS_OR_SICKLE.invert()),
+					AlternativesEntry.alternatives(
+						LayeredBlock.LAYERS.getPossibleValues(), (i) ->
+							LootItem.lootTableItem(ESBlocks.SCARLET_LEAVES_PILE.get())
+								.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LayeredBlock.LAYERS, i)))
+								.apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))
+					)
+				))
+			)
+		);
 		dropSelf(ESBlocks.SCARLET_LOG.get());
 		dropSelf(ESBlocks.SCARLET_WOOD.get());
 		dropSelf(ESBlocks.SCARLET_PLANKS.get());
@@ -378,10 +396,18 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.FLARE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.FLARE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.FLARE_BRICK_WALL.get());
+		dropSelf(ESBlocks.CUT_FLARE_BRICKS.get());
+		add(ESBlocks.CUT_FLARE_BRICK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.CUT_FLARE_BRICK_STAIRS.get());
+		dropSelf(ESBlocks.CUT_FLARE_BRICK_WALL.get());
 		dropSelf(ESBlocks.FLARE_TILES.get());
 		add(ESBlocks.FLARE_TILE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.FLARE_TILE_STAIRS.get());
 		dropSelf(ESBlocks.FLARE_TILE_WALL.get());
+		dropSelf(ESBlocks.CUT_FLARE_TILES.get());
+		add(ESBlocks.CUT_FLARE_TILE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.CUT_FLARE_TILE_STAIRS.get());
+		dropSelf(ESBlocks.CUT_FLARE_TILE_WALL.get());
 		dropSelf(ESBlocks.CHISELED_FLARE_PILLAR.get());
 
 		dropSelf(ESBlocks.STELLAGMITE.get());

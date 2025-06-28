@@ -30,6 +30,7 @@ public class ESPoiTypes {
 		ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(),
 		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get()
 	).stream().flatMap((block) -> block.getStateDefinition().getPossibleStates().stream()).collect(ImmutableSet.toImmutableSet()), 1, 1));
+	public static final RegistryObject<PoiType, PoiType> ENERGY_BLOCK = POI_TYPES.register("energy_block", () -> new PoiType(ImmutableList.of(ESBlocks.ENERGY_BLOCK.get()).stream().flatMap((block) -> block.getStateDefinition().getPossibleStates().stream()).collect(ImmutableSet.toImmutableSet()), 1, 1));
 
 	public static void loadClass() {
 	}

@@ -234,6 +234,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PUNGENCY_FRUIT_AXE.get(),
 				ESItems.STARFIRE_SWORD.get(),
 				ESItems.STARFIRE_AXE.get(),
+				ESItems.STARFIRE_SCYTHE.get(),
 				ESItems.STARFIRE_HAMMER.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.AMARAMBER_AXE.get(),
@@ -380,6 +381,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(),
 				ESItems.GLACITE_SCYTHE.get(),
+				ESItems.STARFIRE_SCYTHE.get(),
 				ESItems.PETAL_SCYTHE.get()
 			);
 		tag(ESTags.Items.SICKLES)
@@ -499,6 +501,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_AXE.get(),
 				ESItems.STARFIRE_HOE.get(),
 				ESItems.STARFIRE_SHOVEL.get(),
+				ESItems.STARFIRE_SCYTHE.get(),
 				ESItems.STARFIRE_HAMMER.get()
 			);
 		tag(ESTags.Items.MENDS_NATURALLY)
@@ -802,10 +805,18 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLARE_BRICK_SLAB.get(),
 				ESItems.FLARE_BRICK_STAIRS.get(),
 				ESItems.FLARE_BRICK_WALL.get(),
+				ESItems.CUT_FLARE_BRICKS.get(),
+				ESItems.CUT_FLARE_BRICK_SLAB.get(),
+				ESItems.CUT_FLARE_BRICK_STAIRS.get(),
+				ESItems.CUT_FLARE_BRICK_WALL.get(),
 				ESItems.FLARE_TILES.get(),
 				ESItems.FLARE_TILE_SLAB.get(),
 				ESItems.FLARE_TILE_STAIRS.get(),
 				ESItems.FLARE_TILE_WALL.get(),
+				ESItems.CUT_FLARE_TILES.get(),
+				ESItems.CUT_FLARE_TILE_SLAB.get(),
+				ESItems.CUT_FLARE_TILE_STAIRS.get(),
+				ESItems.CUT_FLARE_TILE_WALL.get(),
 				ESItems.CHISELED_FLARE_PILLAR.get(),
 				ESItems.GOLDEN_GRASS.get(),
 				ESItems.TALL_GOLDEN_GRASS.get(),

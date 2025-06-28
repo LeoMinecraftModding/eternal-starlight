@@ -71,6 +71,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder seekingEye = addItemObtain(consumer, enterDim, "obtain_seeking_eye", ESItems.SEEKING_EYE.get());
 
+		AdvancementHolder scythe = addItemObtain(consumer, enterDim, "obtain_scythe", ESTags.Items.SCYTHES, ESItems.PETAL_SCYTHE.get());
+
 		AdvancementHolder enterAbyss = addInBiome(consumer, enterDim, "enter_abyss", ESItems.ABYSSLATE.get(), biomes.getOrThrow(ESBiomes.THE_ABYSS));
 
 		AdvancementHolder redVelvetumossFlower = addItemObtain(consumer, enterAbyss, "obtain_red_velvetumoss_flower", ESItems.RED_VELVETUMOSS_FLOWER.get());
@@ -203,6 +205,16 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				true, true, false)
 			.addCriterion("hire", ESCriteriaTriggers.HIRE_STRANGHOUL.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":hire_stranghoul");
+
+		AdvancementHolder hammerCriticalHit = Advancement.Builder.advancement().parent(enterDim).display(
+				ESItems.STARFIRE_HAMMER.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".hammer_critical_hit.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".hammer_critical_hit.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("critical_hit", ESCriteriaTriggers.HAMMER_CRITICAL_HIT.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":hammer_critical_hit");
 
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 

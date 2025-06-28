@@ -797,6 +797,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICKS.get(), 2);
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_BRICKS.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.CUT_FLARE_BRICK_SLAB.get(), ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), ESBlocks.CUT_FLARE_BRICK_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_BRICK_WALL.get(), ESBlocks.CUT_FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_BRICK_WALL.get(), ESBlocks.CUT_FLARE_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), ESBlocks.CUT_FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), ESBlocks.CUT_FLARE_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.CUT_FLARE_BRICK_SLAB.get(), ESBlocks.CUT_FLARE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_BRICK_SLAB.get(), ESBlocks.CUT_FLARE_BRICKS.get(), 2);
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_WALL.get(), ESBlocks.FLARE_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLARE_TILE_WALL.get(), ESBlocks.FLARE_TILES.get());
 		addStairs(recipeOutput, ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILES.get());
@@ -806,6 +814,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		addPillar(recipeOutput, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_FLARE_PILLAR.get(), ESBlocks.FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILES.get(), ESBlocks.FLARE_TILES.get());
+		stonecuttingSet(recipeOutput, ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILE_WALL.get(), ESBlocks.FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILES.get(), ESBlocks.FLARE_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILE_WALL.get(), ESBlocks.FLARE_BRICKS.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILE_WALL.get(), ESBlocks.CUT_FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILE_WALL.get(), ESBlocks.CUT_FLARE_TILES.get());
+		addStairs(recipeOutput, ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILES.get());
+		addSlab(recipeOutput, ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILES.get(), 2);
 
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.STELLAGMITE.get());
@@ -1410,12 +1428,13 @@ public class ESRecipeProvider extends RecipeProvider {
 		addStarfireBirdAviary(recipeOutput, ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());
-		copySmithingTemplate(recipeOutput, ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.SPRINGSTONE.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
+		copySmithingTemplate(recipeOutput, ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ATALPHAITE_BLOCK.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SWORD.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_PICKAXE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_AXE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HOE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SCYTHE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HAMMER.get());
 	}
 

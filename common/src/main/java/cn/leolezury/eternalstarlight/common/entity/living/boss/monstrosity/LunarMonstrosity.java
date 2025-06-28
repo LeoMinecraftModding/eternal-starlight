@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -259,7 +260,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 				setBehaviorTicks(0);
 			}
 		}
-		if (isOnFire() || getBehaviorState() == LunarMonstrosityStunPhase.ID) {
+		if (isOnFire() || hasEffect(ESMobEffects.STARFIRE.asHolder()) || getBehaviorState() == LunarMonstrosityStunPhase.ID) {
 			return super.hurt(source, amount * 1.2f);
 		} else {
 			return super.hurt(source, Math.min(1, amount));

@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#eternal_starlight:scythes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_scythe.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:petal_scythe"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_scythe.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

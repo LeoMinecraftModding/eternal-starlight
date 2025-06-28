@@ -335,10 +335,18 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.FLARE_BRICK_SLAB.get());
 		block(ESItems.FLARE_BRICK_STAIRS.get());
 		wall(ESItems.FLARE_BRICK_WALL.get(), ESItems.FLARE_BRICKS.get());
+		block(ESItems.CUT_FLARE_BRICKS.get());
+		block(ESItems.CUT_FLARE_BRICK_SLAB.get());
+		block(ESItems.CUT_FLARE_BRICK_STAIRS.get());
+		wall(ESItems.CUT_FLARE_BRICK_WALL.get(), ESItems.CUT_FLARE_BRICKS.get());
 		block(ESItems.FLARE_TILES.get());
 		block(ESItems.FLARE_TILE_SLAB.get());
 		block(ESItems.FLARE_TILE_STAIRS.get());
 		wall(ESItems.FLARE_TILE_WALL.get(), ESItems.FLARE_TILES.get());
+		block(ESItems.CUT_FLARE_TILES.get());
+		block(ESItems.CUT_FLARE_TILE_SLAB.get());
+		block(ESItems.CUT_FLARE_TILE_STAIRS.get());
+		wall(ESItems.CUT_FLARE_TILE_WALL.get(), ESItems.CUT_FLARE_TILES.get());
 		block(ESItems.CHISELED_FLARE_PILLAR.get());
 
 		block(ESItems.FLARE_BRICKS.get());
@@ -765,6 +773,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.STARFIRE_AXE.get());
 		handheld(ESItems.STARFIRE_HOE.get());
 		handheld(ESItems.STARFIRE_SHOVEL.get());
+		largeHandheld(ESItems.STARFIRE_SCYTHE.get());
+		inventoryHandheld(ESItems.STARFIRE_SCYTHE.get());
 		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());

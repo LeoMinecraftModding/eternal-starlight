@@ -14,6 +14,7 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
@@ -230,6 +231,18 @@ public class CommonHandlers {
 				if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
 					Vec3 location = livingEntity.position();
 					AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
+				}
+			}
+
+			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESItems.PETAL_SCYTHE.get())) {
+				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(2.5))) {
+					if (living != attacker) {
+						living.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
+					}
+				}
+				if (attacker.level() instanceof ServerLevel serverLevel) {
+					Vec3 vec3 = entity.position().add(0, entity.getBbHeight() / 2, 0);
+					serverLevel.sendParticles(ESParticles.SHADEGRIEVE_LEAVES.get(), vec3.x, vec3.y, vec3.z, 15, entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbHeight() * 0.75 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
 				}
 			}
 
@@ -450,6 +463,12 @@ public class CommonHandlers {
 				}
 			}
 			persistentData.putBoolean(TAG_IN_ETHER, false);
+		}
+	}
+
+	public static void onCriticalHit(Player player, Entity target, float attackStrength) {
+		if (player.getWeaponItem().is(ESTags.Items.HAMMERS) && player.getWeaponItem().getItem() instanceof HammerItem hammerItem && attackStrength > 0.9f) {
+			hammerItem.performCriticalAttack(player, target);
 		}
 	}
 

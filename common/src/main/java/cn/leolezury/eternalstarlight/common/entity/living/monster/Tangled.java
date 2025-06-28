@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -18,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -33,11 +35,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class Tangled extends Monster implements MultiBehaviorUser {
+	private static final String TAG_VARIANT = "variant";
 	private static final int MELEE_ID = 1;
 
 	public AnimationState idleAnimationState = new AnimationState();
@@ -63,6 +67,16 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 		this.getEntityData().set(BEHAVIOR_TICKS, behaviourTicks);
 	}
 
+	protected static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Tangled.class, EntityDataSerializers.INT);
+
+	public int getVariant() {
+		return this.getEntityData().get(VARIANT) % 3;
+	}
+
+	public void setVariant(int variant) {
+		this.getEntityData().set(VARIANT, variant % 3);
+	}
+
 	private final BehaviorManager<Tangled> behaviorManager = new BehaviorManager<>(this, List.of(
 		new MeleeAttackPhase<Tangled>(MELEE_ID, 1, 20, 10).with(2, 15)
 	));
@@ -75,7 +89,8 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(BEHAVIOR_STATE, 0)
-			.define(BEHAVIOR_TICKS, 0);
+			.define(BEHAVIOR_TICKS, 0)
+			.define(VARIANT, 0);
 	}
 
 	@Override
@@ -101,6 +116,12 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.tangled.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangled.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.2);
+	}
+
+	@Nullable
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+		setVariant(random.nextInt(3));
+		return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
 	}
 
 	@Override
@@ -147,6 +168,20 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 			}
 		}
 		super.onSyncedDataUpdated(accessor);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains(TAG_VARIANT, CompoundTag.TAG_INT)) {
+			setVariant(compoundTag.getInt(TAG_VARIANT));
+		}
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putInt(TAG_VARIANT, getVariant());
 	}
 
 	@Override

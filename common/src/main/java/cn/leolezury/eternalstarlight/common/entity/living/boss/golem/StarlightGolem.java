@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.EnergyBlock;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
@@ -12,14 +13,12 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,6 +38,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
@@ -87,7 +87,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	public boolean canHurt() {
-		return getLitEnergyBlocks().isEmpty();
+		return getNearbyEnergyBlocks(true).isEmpty();
 	}
 
 	@Override
@@ -235,31 +235,23 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		return false;
 	}
 
-	private List<BlockPos> getNearbyEnergyBlocks(BlockPos center, boolean lit) {
-		List<BlockPos> list = new ArrayList<>();
-		for (int x = center.getX() - 1; x <= center.getX() + 1; x++) {
-			for (int y = center.getY() - 1; y <= center.getY() + 1; y++) {
-				for (int z = center.getZ() - 1; z <= center.getZ() + 1; z++) {
-					BlockState state = level().getBlockState(new BlockPos(x, y, z));
-					if (state.is(ESBlocks.ENERGY_BLOCK.get()) && (!lit || state.getValue(BlockStateProperties.LIT))) {
-						list.add(new BlockPos(x, y, z));
-					}
-				}
-			}
+	private List<BlockPos> getNearbyEnergyBlocks(boolean lit) {
+		if (level() instanceof ServerLevel serverLevel) {
+			PoiManager poiManager = serverLevel.getPoiManager();
+			return poiManager
+				.findAllClosestFirstWithType(poi -> poi.is(ESPoiTypes.ENERGY_BLOCK.getResourceKey()), pos -> {
+					BlockState state = serverLevel.getBlockState(pos);
+					return !lit || (state.hasProperty(EnergyBlock.LIT) && state.getValue(EnergyBlock.LIT));
+				}, blockPosition(), 48, PoiManager.Occupancy.ANY)
+				.limit(5L)
+				.map(Pair::getSecond)
+				.toList();
 		}
-		return list;
+		return List.of();
 	}
 
-	public void litAllEnergyBlocks() {
-		List<BlockPos> list = new ArrayList<>();
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, 10), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, -10), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, 10), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, -10), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(3, 4, 3), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(3, 4, -3), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-3, 4, 3), false));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-3, 4, -3), false));
+	public void turnOnEnergyBlocks() {
+		List<BlockPos> list = getNearbyEnergyBlocks(false);
 		for (BlockPos pos : list) {
 			BlockState state = level().getBlockState(pos);
 			if (state.is(ESBlocks.ENERGY_BLOCK.get()) && !state.getValue(BlockStateProperties.LIT)) {
@@ -270,19 +262,6 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				}
 			}
 		}
-	}
-
-	private List<BlockPos> getLitEnergyBlocks() {
-		List<BlockPos> list = new ArrayList<>();
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, 10), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(10, -1, -10), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, 10), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-10, -1, -10), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(3, 4, 3), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(3, 4, -3), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-3, 4, 3), true));
-		list.addAll(getNearbyEnergyBlocks(blockPosition().offset(-3, 4, -3), true));
-		return list;
 	}
 
 	public void spawnEnergizedFlame(int maxNum, int scanRadius, boolean trackTarget) {
@@ -328,14 +307,8 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
-		} else {
-			if (getRandom().nextInt(15) == 0) {
-				Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
-				level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
-			}
-			if (getBehaviorState() == StarlightGolemChargePhase.ID && !canHurt()) {
-				// bad code
-				List<BlockPos> list = getLitEnergyBlocks();
+			List<BlockPos> list = getNearbyEnergyBlocks(true);
+			if (level() instanceof ServerLevel serverLevel && getBehaviorState() == StarlightGolemChargePhase.ID && !list.isEmpty()) {
 				for (BlockPos pos : list) {
 					Vec3 angle = position().add(-pos.getX() - 0.5, -pos.getY() - 1.0, -pos.getZ() - 0.5);
 					double px = pos.getX() + 0.5;
@@ -357,9 +330,14 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 						dy *= velocity;
 						dz *= velocity;
 
-						level().addParticle(ESParticles.ENERGY.get(), px, py, pz, dx, dy, dz);
+						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, this, new ParticlePacket(ESParticles.ENERGY.get(), px, py, pz, dx, dy, dz));
 					}
 				}
+			}
+		} else {
+			if (getRandom().nextInt(15) == 0) {
+				Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
+				level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
 			}
 		}
 	}
