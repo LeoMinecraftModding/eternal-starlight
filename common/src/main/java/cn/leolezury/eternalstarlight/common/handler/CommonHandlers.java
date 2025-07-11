@@ -21,6 +21,7 @@ import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWitchTypePacket;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -242,7 +243,8 @@ public class CommonHandlers {
 				}
 				if (attacker.level() instanceof ServerLevel serverLevel) {
 					Vec3 vec3 = entity.position().add(0, entity.getBbHeight() / 2, 0);
-					serverLevel.sendParticles(ESParticles.SHADEGRIEVE_LEAVES.get(), vec3.x, vec3.y, vec3.z, 15, entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbHeight() * 0.75 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
+					serverLevel.sendParticles(ESSmokeParticleOptions.LUNAR_ATTACK, vec3.x, vec3.y, vec3.z, 10, 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
+					// serverLevel.sendParticles(ESParticles.SHADEGRIEVE_LEAVES.get(), vec3.x, vec3.y, vec3.z, 15, entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbHeight() * 0.75 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
 				}
 			}
 

@@ -67,10 +67,6 @@ public class StranghoulDenStructure extends Structure {
 								}
 								num--;
 								if (num == 0 && !farmer) {
-									if (stranghoul.isBaby()) {
-										stranghoul.setBaby(false);
-										stranghoul.setEquipmentsOnGrownUp();
-									}
 									stranghoul.setItemInHand(InteractionHand.MAIN_HAND, ESItems.MALARITE_HOE.get().getDefaultInstance());
 								}
 								break;

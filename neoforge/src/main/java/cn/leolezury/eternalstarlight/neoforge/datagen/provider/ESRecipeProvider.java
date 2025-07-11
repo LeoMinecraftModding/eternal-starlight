@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.item.recipe.ToolModificationRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import cn.leolezury.eternalstarlight.common.util.ConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
@@ -202,7 +203,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("FFF")
 			.pattern("FPF")
 			.pattern("FFF")
-			.define('P', Items.ENDER_PEARL)
+			.define('P', ConventionalTags.Items.ENDER_PEARLS)
 			.define('F', ESItems.STARLIGHT_FLOWER.get())
 			.unlockedBy("has_item", has(ESItems.STARLIGHT_FLOWER.get()))
 			.save(recipeOutput);
