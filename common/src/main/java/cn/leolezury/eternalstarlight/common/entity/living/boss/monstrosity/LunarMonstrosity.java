@@ -32,6 +32,8 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -50,6 +52,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -265,6 +268,14 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		} else {
 			return super.hurt(source, Math.min(1, amount));
 		}
+	}
+
+	@Override
+	public boolean addEffect(MobEffectInstance instance, @Nullable Entity entity) {
+		if (instance.getEffect().is(MobEffects.POISON)) {
+			return false;
+		}
+		return super.addEffect(instance, entity);
 	}
 
 	@Override

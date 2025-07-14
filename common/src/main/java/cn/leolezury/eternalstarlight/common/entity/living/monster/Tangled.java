@@ -144,7 +144,7 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 	@Override
 	public boolean doHurtTarget(Entity entity) {
 		boolean flag = super.doHurtTarget(entity);
-		if (flag && entity instanceof LivingEntity living && getRandom().nextInt(5) == 0) {
+		if (flag && entity instanceof LivingEntity living && getRandom().nextInt(5) == 0 && !living.hasEffect(MobEffects.POISON)) {
 			living.addEffect(new MobEffectInstance(MobEffects.POISON, 40));
 		}
 		return flag;

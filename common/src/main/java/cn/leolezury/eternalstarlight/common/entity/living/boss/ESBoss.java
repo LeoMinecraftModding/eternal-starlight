@@ -22,7 +22,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -32,7 +31,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,14 +169,6 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public boolean canChangeDimensions(Level level, Level level1) {
 		return false;
-	}
-
-	@Override
-	public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
-		if (!effectInstance.getEffect().value().isBeneficial()) {
-			return false;
-		}
-		return super.addEffect(effectInstance, entity);
 	}
 
 	@Override
