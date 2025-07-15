@@ -28,17 +28,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 
-public class TowerSquid extends Squid implements Bucketable {
+public class Rookfish extends Squid implements Bucketable {
 	private static final String TAG_FROM_BUCKET = "from_bucket";
-	private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(TowerSquid.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(Rookfish.class, EntityDataSerializers.BOOLEAN);
 
-	public TowerSquid(EntityType<? extends TowerSquid> type, Level level) {
+	public Rookfish(EntityType<? extends Rookfish> type, Level level) {
 		super(type, level);
 	}
 
 	@Override
 	protected ParticleOptions getInkParticle() {
-		return ESParticles.TOWER_SQUID_INK.get();
+		return ESParticles.ROOKFISH_INK.get();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class TowerSquid extends Squid implements Bucketable {
 
 	@Override
 	public ItemStack getBucketItemStack() {
-		return ESItems.TOWER_SQUID_BUCKET.get().getDefaultInstance();
+		return ESItems.ROOKFISH_BUCKET.get().getDefaultInstance();
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class TowerSquid extends Squid implements Bucketable {
 		}
 	}
 
-	public static boolean checkTowerSquidSpawnRules(EntityType<? extends TowerSquid> type, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
+	public static boolean checkTowerSquidSpawnRules(EntityType<? extends Rookfish> type, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
 		int seaLevel = ESDimensions.SEA_LEVEL;
 		int minY = seaLevel - 13;
 		return blockPos.getY() >= minY && blockPos.getY() <= seaLevel && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER);

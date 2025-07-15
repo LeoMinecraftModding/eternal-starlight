@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-29T22:19:30.5822024	Loot Tables
+// 1.21.1	2025-07-15T23:26:50.9784326	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -701,6 +701,7 @@ e84177efa08c636a037bd1a440289d31e3c42fc0 data/eternal_starlight/loot_table/entit
 7434a091afba605f14251db73d338adfbd887bfd data/eternal_starlight/loot_table/entities/lunar_monstrosity.json
 85fdae1bf87df8234c5cfe199bc1caee0bb8a248 data/eternal_starlight/loot_table/entities/nightfall_spider.json
 318be7f64d350c9f5cd183325a91a5ab456b2dda data/eternal_starlight/loot_table/entities/ratlin.json
+e06d1c60bf7db51e793c9afa33eef2fa3f2dabdf data/eternal_starlight/loot_table/entities/rookfish.json
 e250ca10b16bd4a2c083a9fd16ff9aa5006a543f data/eternal_starlight/loot_table/entities/shadow_snail.json
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_table/entities/shimmer_lacewing.json
 511101dbbe5019fca06a307bf3bcfc1aeb242e98 data/eternal_starlight/loot_table/entities/starfire_bird.json
@@ -712,7 +713,6 @@ babe6abda538bda4948feaa3bb8d8965deff0d8b data/eternal_starlight/loot_table/entit
 b01bfc5a45f772ef5c880ced1d46e07c8a9613f6 data/eternal_starlight/loot_table/entities/the_gatekeeper.json
 394cea953eb6f0917e73c3821ea2b7e33c36cd79 data/eternal_starlight/loot_table/entities/thirst_walker.json
 ed91cb96fb35e52e950d7a03bb62f4f8db3070f1 data/eternal_starlight/loot_table/entities/tiny_creteor.json
-ea366c80eba1228ca61060c8975d24a771d86c82 data/eternal_starlight/loot_table/entities/tower_squid.json
 9742c2717dc30701fa79d4ab3d735a2201afc8b9 data/eternal_starlight/loot_table/entities/twilight_gaze.json
 2e639dab65828cba17fb69870b07c99a66201724 data/eternal_starlight/loot_table/entities/yeti.json
 704330d64abff1339b59de4c6ed454ef61b32dc4 data/eternal_starlight/loot_table/entities/zombified_ratlin.json

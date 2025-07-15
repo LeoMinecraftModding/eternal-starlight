@@ -4,10 +4,10 @@
   "cookingtime": 200,
   "experience": 1.0,
   "ingredient": {
-    "item": "eternal_starlight:tower_squid"
+    "item": "eternal_starlight:rookfish"
   },
   "result": {
     "count": 1,
-    "id": "eternal_starlight:cooked_tower_squid"
+    "id": "eternal_starlight:cooked_rookfish"
   }
 }

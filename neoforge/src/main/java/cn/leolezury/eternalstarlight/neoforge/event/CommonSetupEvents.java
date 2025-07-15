@@ -17,7 +17,7 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 import org.jetbrains.annotations.Nullable;
 
-@EventBusSubscriber(modid = EternalStarlight.ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = EternalStarlight.ID)
 public class CommonSetupEvents {
 	@SubscribeEvent
 	private static void onSetup(FMLCommonSetupEvent event) {

@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-31T15:30:45.5103185	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.21.1	2025-07-15T23:26:50.9920271	Tags for minecraft:entity_type mod id eternal_starlight
 5466319e12aea1f42139ac09c8ffdd0620c716d0 data/c/tags/entity_type/boats.json
 d44f14633b66cf9ee5f04c1bb297ee340a53e288 data/c/tags/entity_type/bosses.json
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_type/abyssal_fire_immune.json
@@ -11,10 +11,10 @@ fbaf33f613302274dc990d0f1fe18e9c84210c3c data/eternal_starlight/tags/entity_type
 29c4c858bf8ad96f2189aaf0cf9514ff4755d4ed data/eternal_starlight/tags/entity_type/stranghoul_preys.json
 86a469d8e9ee317a1ca5b93bfed0be34ff5b0d89 data/eternal_starlight/tags/entity_type/teary_immune.json
 ae2cb5fab8eebad99804002a1918eba77982099e data/eternal_starlight/tags/entity_type/vulnerable_to_sonar_bomb.json
-0119460c4a1c254622e0f5a1b11847ceb1464491 data/minecraft/tags/entity_type/aquatic.json
+daad8636c0b84d524b0e89f431669f2c39cae915 data/minecraft/tags/entity_type/aquatic.json
 11016ced45a95a03300bc8b929a01e1993652736 data/minecraft/tags/entity_type/arrows.json
 3f853abb02779d1f23df9823ebb9d8707f24ddc9 data/minecraft/tags/entity_type/arthropod.json
-0119460c4a1c254622e0f5a1b11847ceb1464491 data/minecraft/tags/entity_type/can_breathe_under_water.json
+daad8636c0b84d524b0e89f431669f2c39cae915 data/minecraft/tags/entity_type/can_breathe_under_water.json
 3eea5e86695b6f9fcf6bf43b940c0e349fa11998 data/minecraft/tags/entity_type/fall_damage_immune.json
 f6eb1b878dcda83e8e0f0c5388c37999f2e0ec47 data/minecraft/tags/entity_type/freeze_immune_entity_types.json
 f627b828af90e448f9c5322878730dddd94748ff data/minecraft/tags/entity_type/immune_to_infested.json

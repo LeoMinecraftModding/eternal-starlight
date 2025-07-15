@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-@EventBusSubscriber(modid = EternalStarlight.ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = EternalStarlight.ID)
 public class NeoForgeNetworkHandler {
 	@SubscribeEvent
 	public static void onNetworkInit(RegisterPayloadHandlersEvent event) {

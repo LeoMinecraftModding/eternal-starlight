@@ -123,7 +123,7 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerBehavior(ESItems.JINGLESTEM_RAFT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.JINGLESTEM));
 		DispenserBlock.registerBehavior(ESItems.JINGLESTEM_CHEST_RAFT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.JINGLESTEM, true));
 		DispenserBlock.registerBehavior(ESItems.ETHER_BUCKET.get(), new BucketDispenseItemBehavior());
-		DispenserBlock.registerBehavior(ESItems.TOWER_SQUID_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.ROOKFISH_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.LUMINOFISH_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.LUMINARIS_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.SALTPETER_MATCHBOX.get(), new OptionalDispenseItemBehavior() {
@@ -267,7 +267,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.STARFIRE_BIRD.get(), StarfireBird.createAttributes().build());
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolem.createAttributes().build());
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolem.createAttributes().build());
-		strategy.register(ESEntities.TOWER_SQUID.get(), Squid.createAttributes().build());
+		strategy.register(ESEntities.ROOKFISH.get(), Squid.createAttributes().build());
 		strategy.register(ESEntities.LUMINOFISH.get(), Luminofish.createAttributes().build());
 		strategy.register(ESEntities.LUMINARIS.get(), Luminaris.createAttributes().build());
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGaze.createAttributes().build());
@@ -304,7 +304,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.STARFIRE_BIRD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, StarfireBird::checkStarfireBirdSpawnRules);
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
-		strategy.register(ESEntities.TOWER_SQUID.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TowerSquid::checkTowerSquidSpawnRules);
+		strategy.register(ESEntities.ROOKFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Rookfish::checkTowerSquidSpawnRules);
 		strategy.register(ESEntities.LUMINOFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminofish::checkLuminoFishSpawnRules);
 		strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkLuminarisSpawnRules);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TwilightGaze::checkTwilightGazeSpawnRules);

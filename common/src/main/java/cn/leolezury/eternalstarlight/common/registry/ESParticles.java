@@ -108,7 +108,7 @@ public class ESParticles {
 			return ExplosionShockParticleOptions.STREAM_CODEC;
 		}
 	});
-	public static final RegistryObject<ParticleType<?>, SimpleParticleType> TOWER_SQUID_INK = PARTICLE_TYPES.register("tower_squid_ink", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ROOKFISH_INK = PARTICLE_TYPES.register("rookfish_ink", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AMARAMBER_WAX_ON = PARTICLE_TYPES.register("amaramber_wax_on", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> DRIPPING_MUD = PARTICLE_TYPES.register("dripping_mud", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_MUD = PARTICLE_TYPES.register("falling_mud", () -> new SimpleParticleType(false));

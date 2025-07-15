@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-28T15:31:30.3048201	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-07-15T23:26:51.0303691	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -32,10 +32,10 @@ b20072c8f4ae2f448ba500befd2df878fa1df7f5 data/c/tags/item/fence_gates/wooden.jso
 9925ad8b2e2a120964ba09037b254f9ee222cd59 data/c/tags/item/foods.json
 f68b1445e8e902a4ca456603a16efc4c38729102 data/c/tags/item/foods/berry.json
 116ffed57cee4ddc2c46b14178918e2809039cbe data/c/tags/item/foods/cooked_fish.json
-411362d349773b9b54fbcaf1e25583bb4ec27317 data/c/tags/item/foods/cooked_meat.json
+3a4b43c6ea5f9487579cdc5d513d8299ae4524b3 data/c/tags/item/foods/cooked_meat.json
 c749f7403cc0370886f6a440a1195991a4ac9f8a data/c/tags/item/foods/fruit.json
 1b358a5ddc4e169992763bf5c406a16124be40eb data/c/tags/item/foods/raw_fish.json
-78a6f421eb2649063f86f2d0b90d743793c273fd data/c/tags/item/foods/raw_meat.json
+5efc0e8686848a02120f2a5c0704b9a4c7dcb8fa data/c/tags/item/foods/raw_meat.json
 04dc7f1ac0101b907916cc09c21e779c92166ab3 data/c/tags/item/foods/soup.json
 a7ceb74b6e516f67c969902473c062d8a4653a00 data/c/tags/item/gems.json
 f1a281472a393646e9431d2f44844770ef27bd98 data/c/tags/item/gems/atalphaite.json
@@ -187,7 +187,7 @@ a0c6b8911fea3ee736a416ff277eed8e2d70b69e data/minecraft/tags/item/hoes.json
 93ea883abe844c36dfa7277156a6add21d3784aa data/minecraft/tags/item/leg_armor.json
 71175e2fa0fc241839fc61c68062fabcd2242aad data/minecraft/tags/item/logs.json
 71175e2fa0fc241839fc61c68062fabcd2242aad data/minecraft/tags/item/logs_that_burn.json
-c81e5395942d718627db70b947a912ef64810029 data/minecraft/tags/item/meat.json
+1ca6bec0ea2434bb089fdf9da6b76d8b862ac415 data/minecraft/tags/item/meat.json
 c179c9e0a7ea83ff827c184c01ce915acd40aa4f data/minecraft/tags/item/pickaxes.json
 cdf7fde1bf5a6c43253d43ee947ce9959714bfac data/minecraft/tags/item/planks.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/sand.json

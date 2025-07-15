@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:item/tower_squid_air_sac"
+    "layer0": "eternal_starlight:item/rookfish_bucket"
   }
 }

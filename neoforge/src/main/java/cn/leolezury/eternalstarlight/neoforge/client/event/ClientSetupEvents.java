@@ -42,7 +42,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT)
 public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void clientSetup(FMLClientSetupEvent event) {

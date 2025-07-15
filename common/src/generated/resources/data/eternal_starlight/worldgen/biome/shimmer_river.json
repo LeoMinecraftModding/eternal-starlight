@@ -107,7 +107,7 @@
     "water_ambient": [],
     "water_creature": [
       {
-        "type": "eternal_starlight:tower_squid",
+        "type": "eternal_starlight:rookfish",
         "maxCount": 4,
         "minCount": 2,
         "weight": 16

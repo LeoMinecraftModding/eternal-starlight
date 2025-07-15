@@ -23,7 +23,7 @@ public class BoarwarfChefProfession extends AbstractBoarwarfProfession {
 			new BuyItemTrade(ESItems.AURORA_DEER_STEAK.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
 			new BuyItemTrade(ESItems.RATLIN_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
 			new BuyItemTrade(ESItems.SHADOW_SNAIL_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 3, 30),
-			new BuyItemTrade(ESItems.TOWER_SQUID.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
+			new BuyItemTrade(ESItems.ROOKFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
 			new BuyItemTrade(ESItems.LUMINOFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
 			new BuyItemTrade(ESItems.LUMINARIS.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 30),
 			new BuyItemTrade(ESItems.LUMINOFISH_BUCKET.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 30),
@@ -31,8 +31,8 @@ public class BoarwarfChefProfession extends AbstractBoarwarfProfession {
 			new SellItemTrade(ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
 			new SellItemTrade(ESItems.COOKED_RATLIN_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
 			new SellItemTrade(ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 20),
-			new SellItemTrade(ESItems.COOKED_TOWER_SQUID.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
-			new SellItemTrade(ESItems.TOWER_SQUID_SKEWER.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 20),
+			new SellItemTrade(ESItems.COOKED_ROOKFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
+			new SellItemTrade(ESItems.ROOKFISH_SKEWER.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 20),
 			new SellItemTrade(ESItems.COOKED_LUMINOFISH.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20),
 			new SellItemTrade(ESItems.COOKED_LUMINARIS.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 20)
 		};

@@ -71,7 +71,7 @@ public class ESArmorMaterials {
 		map.put(ArmorItem.Type.CHESTPLATE, 4);
 		map.put(ArmorItem.Type.HELMET, 1);
 		map.put(ArmorItem.Type.BODY, 4);
-	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ESItems.TOWER_SQUID_AIR_SAC.get()), List.of(new ArmorMaterial.Layer(EternalStarlight.id("air_sac"))), 0F, 0F));
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ESItems.ROOKFISH_AIR_SAC.get()), List.of(new ArmorMaterial.Layer(EternalStarlight.id("air_sac"))), 0F, 0F));
 
 	public static void loadClass() {
 	}

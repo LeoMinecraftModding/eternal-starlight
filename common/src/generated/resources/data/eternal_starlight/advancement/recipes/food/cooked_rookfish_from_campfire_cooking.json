@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "has_rookfish": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:rookfish_air_sac"
+            "items": "eternal_starlight:rookfish"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:air_sac_boots"
+        "recipe": "eternal_starlight:cooked_rookfish_from_campfire_cooking"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_item"
+      "has_rookfish"
     ]
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:air_sac_boots"
+      "eternal_starlight:cooked_rookfish_from_campfire_cooking"
     ]
   }
 }

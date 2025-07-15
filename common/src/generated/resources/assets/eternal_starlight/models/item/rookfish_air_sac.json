@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:item/tower_squid_spawn_egg"
+    "layer0": "eternal_starlight:item/rookfish_air_sac"
   }
 }

@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "eternal_starlight:cooked_tower_squid"
+      "item": "eternal_starlight:cooked_rookfish"
     },
     {
       "item": "minecraft:stick"
@@ -17,6 +17,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "eternal_starlight:tower_squid_skewer"
+    "id": "eternal_starlight:rookfish_skewer"
   }
 }

@@ -127,14 +127,14 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(EntityTypeTags.AQUATIC)
 			.add(
-				ESEntities.TOWER_SQUID.get(),
+				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
 				ESEntities.TWILIGHT_GAZE.get()
 			);
 		tag(EntityTypeTags.CAN_BREATHE_UNDER_WATER)
 			.add(
-				ESEntities.TOWER_SQUID.get(),
+				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
 				ESEntities.TWILIGHT_GAZE.get()

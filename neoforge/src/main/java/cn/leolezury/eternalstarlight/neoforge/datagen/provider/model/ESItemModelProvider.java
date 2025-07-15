@@ -42,7 +42,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STARFIRE_BIRD_SPAWN_EGG.get());
 		basicItem(ESItems.GRIMSTONE_GOLEM_SPAWN_EGG.get());
 		basicItem(ESItems.AETHERSENT_GOLEM_SPAWN_EGG.get());
-		basicItem(ESItems.TOWER_SQUID_SPAWN_EGG.get());
+		basicItem(ESItems.ROOKFISH_SPAWN_EGG.get());
 		basicItem(ESItems.LUMINOFISH_SPAWN_EGG.get());
 		basicItem(ESItems.LUMINARIS_SPAWN_EGG.get());
 		basicItem(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
@@ -834,11 +834,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
 		basicItem(ESItems.SEEKING_EYE.get());
 
-		basicItem(ESItems.TOWER_SQUID_BUCKET.get());
-		basicItem(ESItems.TOWER_SQUID.get());
-		basicItem(ESItems.COOKED_TOWER_SQUID.get());
-		handheld(ESItems.TOWER_SQUID_SKEWER.get());
-		basicItem(ESItems.TOWER_SQUID_AIR_SAC.get());
+		basicItem(ESItems.ROOKFISH_BUCKET.get());
+		basicItem(ESItems.ROOKFISH.get());
+		basicItem(ESItems.COOKED_ROOKFISH.get());
+		handheld(ESItems.ROOKFISH_SKEWER.get());
+		basicItem(ESItems.ROOKFISH_AIR_SAC.get());
 		basicItem(ESItems.AIR_SAC_ARROW.get());
 		basicItem(ESItems.AIR_SAC_MASK.get());
 		armorWithTrim((ArmorItem) ESItems.AIR_SAC_BOOTS.get());

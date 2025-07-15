@@ -44,7 +44,7 @@
               "function": "minecraft:furnace_smelt"
             }
           ],
-          "name": "eternal_starlight:tower_squid"
+          "name": "eternal_starlight:rookfish"
         }
       ],
       "rolls": 1.0
@@ -74,11 +74,11 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "eternal_starlight:tower_squid_air_sac"
+          "name": "eternal_starlight:rookfish_air_sac"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:entities/tower_squid"
+  "random_sequence": "eternal_starlight:entities/rookfish"
 }

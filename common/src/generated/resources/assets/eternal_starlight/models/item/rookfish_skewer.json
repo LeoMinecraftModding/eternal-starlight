@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "eternal_starlight:item/tower_squid_skewer"
+    "layer0": "eternal_starlight:item/rookfish_skewer"
   }
 }

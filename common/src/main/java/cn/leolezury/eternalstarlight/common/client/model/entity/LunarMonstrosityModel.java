@@ -10,8 +10,6 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
@@ -38,29 +36,37 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
 
 		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition stem_all = root.addOrReplaceChild("stem_all", CubeListBuilder.create().texOffs(0, 20).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition stemAll = root.addOrReplaceChild("stem_all", CubeListBuilder.create().texOffs(20, 20).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition stem_middle = stem_all.addOrReplaceChild("stem_middle", CubeListBuilder.create().texOffs(0, 20).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, -0.2182F, 0.0F, 0.0F));
+		PartDefinition stemMiddle = stemAll.addOrReplaceChild("stem_middle", CubeListBuilder.create().texOffs(0, 20).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, -0.2182F, 0.0F, 0.0F));
 
-		PartDefinition stem_top = stem_middle.addOrReplaceChild("stem_top", CubeListBuilder.create().texOffs(0, 20).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, 1.309F, 0.0F, 0.0F));
+		PartDefinition stemTop = stemMiddle.addOrReplaceChild("stem_top", CubeListBuilder.create().texOffs(40, 70).addBox(-2.5F, -20.0F, -2.5F, 5.0F, 20.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, 1.309F, 0.0F, 0.0F));
 
-		PartDefinition head = stem_top.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
+		PartDefinition head = stemTop.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -20.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
 
-		head.addOrReplaceChild("petal_down", CubeListBuilder.create().texOffs(20, 0).addBox(-5.0F, 1.0F, -20.0F, 10.0F, 0.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -9.0F, -5.0F, -0.1745F, 0.0F, 0.0F));
+		head.addOrReplaceChild("petal_down", CubeListBuilder.create().texOffs(20, 0).addBox(-5.0F, 0.0F, -20.0F, 10.0F, 0.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.0F, -5.0F, -0.2138F, 0.0F, 0.0F));
 
-		head.addOrReplaceChild("petal_right", CubeListBuilder.create().texOffs(-10, 55).addBox(-0.3F, 1.0F, -5.0F, 20.0F, 0.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, -9.0F, 0.0F, 0.0F, 0.0F, -0.1745F));
+		head.addOrReplaceChild("petal_right", CubeListBuilder.create().texOffs(-10, 55).addBox(-0.3F, 1.0F, -5.0F, 20.0F, 0.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, -9.0F, 0.0F, 0.0F, 0.0F, -0.2138F));
 
-		head.addOrReplaceChild("petal_left", CubeListBuilder.create().texOffs(-10, 45).addBox(-20.0F, 0.0F, -5.0F, 20.0F, 0.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.1745F));
+		head.addOrReplaceChild("petal_left", CubeListBuilder.create().texOffs(-10, 45).addBox(-20.0F, 0.0F, -5.0F, 20.0F, 0.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.2138F));
 
-		head.addOrReplaceChild("petal_up", CubeListBuilder.create().texOffs(20, 20).addBox(-5.0F, 1.0F, 0.0F, 10.0F, 0.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -9.0F, 5.0F, 0.1745F, 0.0F, 0.0F));
+		head.addOrReplaceChild("petal_up", CubeListBuilder.create().texOffs(20, 20).addBox(-5.0F, 0.0F, 0.0F, 10.0F, 0.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.0F, 5.0F, 0.2138F, 0.0F, 0.0F));
 
-		head.addOrReplaceChild("upper_jaw", CubeListBuilder.create().texOffs(61, 0).addBox(-5.0F, -10.0F, 0.0F, 10.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("upper_jaw", CubeListBuilder.create().texOffs(60, 0).addBox(-5.0F, -10.0F, 0.0F, 10.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		head.addOrReplaceChild("lower_jaw", CubeListBuilder.create().texOffs(60, 15).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		head.addOrReplaceChild("soul", CubeListBuilder.create().texOffs(52, 30).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		// head.addOrReplaceChild("soul", CubeListBuilder.create().texOffs(52, 30).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		head.addOrReplaceChild("eye", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		head.addOrReplaceChild("petal_layer_1", CubeListBuilder.create().texOffs(40, 40).addBox(-5.5F, -10.5F, -5.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 0.5F, 0.0F, 0.3927F, 0.0F, -0.3927F));
+
+		head.addOrReplaceChild("petal_layer_2", CubeListBuilder.create().texOffs(40, 40).mirror().addBox(0.5F, -10.5F, -5.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.5F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.5F, 0.0F, 0.3927F, 0.0F, 0.3927F));
+
+		head.addOrReplaceChild("petal_layer_3", CubeListBuilder.create().texOffs(40, 55).mirror().addBox(0.5F, -10.5F, 0.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.5F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.5F, 0.0F, -0.3927F, 0.0F, 0.3927F));
+
+		head.addOrReplaceChild("petal_layer_4", CubeListBuilder.create().texOffs(40, 55).addBox(-5.5F, -10.5F, 0.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.5F)), PartPose.offsetAndRotation(0.0F, 0.5F, 0.0F, -0.3927F, 0.0F, -0.3927F));
 
 		PartDefinition leaf1 = root.addOrReplaceChild("leaf1", CubeListBuilder.create().texOffs(-8, 75).addBox(-16.0F, 0.0F, -4.0F, 16.0F, 0.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 1.5708F, 0.6981F, 1.5708F));
 
@@ -115,10 +121,10 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
 		}
 	}
 
-	@Override
+	/*@Override
 	public RenderType renderType(ResourceLocation resourceLocation) {
 		return RenderType.entityTranslucent(resourceLocation);
-	}
+	}*/
 
 	@Override
 	public ModelPart root() {

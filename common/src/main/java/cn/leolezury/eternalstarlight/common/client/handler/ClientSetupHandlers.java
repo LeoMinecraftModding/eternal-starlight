@@ -693,7 +693,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.ASHEN_SNOW.get(), AshenSnowParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_ASHEN_SNOW.get(), OrbitalAshenSnowParticle.Provider::new);
 		strategy.register(ESParticles.EXPLOSION_SHOCK.get(), ExplosionShockParticle.Provider::new);
-		strategy.register(ESParticles.TOWER_SQUID_INK.get(), spriteSet -> new ParticleProvider<>() {
+		strategy.register(ESParticles.ROOKFISH_INK.get(), spriteSet -> new ParticleProvider<>() {
 			@Override
 			public @NotNull Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
 				return new SquidInkParticle(level, x, y, z, dx, dy, dz, FastColor.ARGB32.color(255, 255 - 51, 255 - 61, 255 - 58), spriteSet);
@@ -762,7 +762,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.STARFIRE_BIRD.get(), StarfireBirdRenderer::new);
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolemRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolemRenderer::new);
-		strategy.register(ESEntities.TOWER_SQUID.get(), TowerSquidRenderer::new);
+		strategy.register(ESEntities.ROOKFISH.get(), RookfishRenderer::new);
 		strategy.register(ESEntities.LUMINOFISH.get(), LuminoFishRenderer::new);
 		strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGazeRenderer::new);
@@ -862,7 +862,7 @@ public class ClientSetupHandlers {
 		strategy.register(StarfireBirdModel.BABY_LOCATION, StarfireBirdModel::createBabyBodyLayer);
 		strategy.register(GrimstoneGolemModel.LAYER_LOCATION, GrimstoneGolemModel::createBodyLayer);
 		strategy.register(AethersentGolemModel.LAYER_LOCATION, AethersentGolemModel::createBodyLayer);
-		strategy.register(TowerSquidModel.LAYER_LOCATION, TowerSquidModel::createBodyLayer);
+		strategy.register(RookfishModel.LAYER_LOCATION, RookfishModel::createBodyLayer);
 		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);

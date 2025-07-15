@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.living.animal.TowerSquid;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Rookfish;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -16,12 +16,12 @@ import net.minecraft.util.Mth;
 import java.util.Arrays;
 
 @Environment(EnvType.CLIENT)
-public class TowerSquidModel<T extends TowerSquid> extends EntityModel<T> {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("tower_squid"), "main");
+public class RookfishModel<T extends Rookfish> extends EntityModel<T> {
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("rookfish"), "main");
 	private final ModelPart root;
 	private final ModelPart[] legs = new ModelPart[8];
 
-	public TowerSquidModel(ModelPart root) {
+	public RookfishModel(ModelPart root) {
 		this.root = root.getChild("root");
 		Arrays.setAll(this.legs, (i) -> root.getChild("root").getChild("leg" + (i + 1)));
 	}
