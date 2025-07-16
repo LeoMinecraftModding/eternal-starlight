@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.MalariteSpearModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.PungencyFruitSpearModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.*;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -21,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 @Environment(EnvType.CLIENT)
 public class ESItemStackRenderer {
 	private static GlaciteShieldModel GLACITE_SHIELD_MODEL;
+	private static FlowglazeShieldModel FLOWGLAZE_SHIELD_MODEL;
 	private static MalariteSpearModel MALARITE_SPEAR_MODEL;
 	private static PungencyFruitSpearModel PUNGENCY_FRUIT_SPEAR_MODEL;
 	private static CrescentSpearModel CRESCENT_SPEAR_MODEL;
@@ -32,9 +30,20 @@ public class ESItemStackRenderer {
 			}
 			poseStack.pushPose();
 			poseStack.scale(1.0F, -1.0F, -1.0F);
-			Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/glacite_shield"));
+			Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/shields/glacite_shield"));
 			VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, GLACITE_SHIELD_MODEL.renderType(material.atlasLocation()), true, stack.hasFoil()));
 			GLACITE_SHIELD_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
+			poseStack.popPose();
+		}
+		if (stack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
+			if (FLOWGLAZE_SHIELD_MODEL == null) {
+				FLOWGLAZE_SHIELD_MODEL = new FlowglazeShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(FlowglazeShieldModel.LAYER_LOCATION));
+			}
+			poseStack.pushPose();
+			poseStack.scale(1.0F, -1.0F, -1.0F);
+			Material material = new Material(Sheets.SHIELD_SHEET, EternalStarlight.id("entity/shields/flowglaze_shield"));
+			VertexConsumer vertexConsumer = material.sprite().wrap(ItemRenderer.getFoilBufferDirect(multiBufferSource, FLOWGLAZE_SHIELD_MODEL.renderType(material.atlasLocation()), true, stack.hasFoil()));
+			FLOWGLAZE_SHIELD_MODEL.renderToBuffer(poseStack, vertexConsumer, light, overlay);
 			poseStack.popPose();
 		}
 		if (stack.is(ESItems.MALARITE_SPEAR.get())) {

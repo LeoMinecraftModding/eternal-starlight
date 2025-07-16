@@ -777,6 +777,16 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.STARFIRE_SCYTHE.get());
 		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
 
+		block(ESItems.FLOWGLAZE.get());
+		basicItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get());
+		handheld(ESItems.FLOWGLAZE_SWORD.get());
+		handheld(ESItems.FLOWGLAZE_PICKAXE.get());
+		handheld(ESItems.FLOWGLAZE_AXE.get());
+		handheld(ESItems.FLOWGLAZE_HOE.get());
+		handheld(ESItems.FLOWGLAZE_SHOVEL.get());
+		largeHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
+		inventoryHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
+
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
 		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());

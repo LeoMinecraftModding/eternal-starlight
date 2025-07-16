@@ -67,6 +67,7 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.GLACITE_SHIELD.get());
+		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.FLOWGLAZE_SHIELD.get());
 		IClientItemExtensions alchemistArmor = new IClientItemExtensions() {
 			private AlchemistArmorModel<LivingEntity> model;
 

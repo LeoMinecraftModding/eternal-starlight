@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-28T20:55:41.1076391	Block States: eternal_starlight
+// 1.21.1	2025-07-17T00:10:06.3330397	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -166,6 +166,7 @@ e82833f60412f8f93a04f43bbe1ecd55ee7d1cd5 assets/eternal_starlight/blockstates/fl
 10511ba3da0947ce9ce876ed9733d2a5201b1b1b assets/eternal_starlight/blockstates/flare_tile_slab.json
 0b61dacfc56b9683a5ac147b312f1bfacf2b9598 assets/eternal_starlight/blockstates/flare_tile_stairs.json
 9fac800b5683ac67f31c4ad1b5c7aa97d9cfce70 assets/eternal_starlight/blockstates/flare_tile_wall.json
+373b74a89aa09ea6f0e20f89b1c577343c7f3600 assets/eternal_starlight/blockstates/flowglaze.json
 d2f6369cf961c897a30fae6c9c006057a1cb9d34 assets/eternal_starlight/blockstates/glacite.json
 be34edbbf80f5ca751c3c5ae86d30872010cab40 assets/eternal_starlight/blockstates/glacite_block.json
 2ac57e361e3b623efe7400f30e124b5fbcdb262c assets/eternal_starlight/blockstates/gladespike.json
@@ -971,6 +972,7 @@ f74d662ae63061ab83eae32ed7e31993b34b7c5a assets/eternal_starlight/models/block/f
 54cc6e3492b45e54f61f5a0535a24690b2efd2c0 assets/eternal_starlight/models/block/flare_tile_wall_post.json
 e9eaf8d3772129adaf08370c2bbe72e16fab4c3a assets/eternal_starlight/models/block/flare_tile_wall_side.json
 ade0f33c6b5170ef92ea03345b3b3613a0056c0e assets/eternal_starlight/models/block/flare_tile_wall_side_tall.json
+18b55db77c750c7ac460d3c9af4efdf82af3a8e6 assets/eternal_starlight/models/block/flowglaze.json
 99e079915e40b40cdafeeff0986955f4f8f85d2d assets/eternal_starlight/models/block/glacite.json
 c0d87b35800a87047d2d1672af819bf6dd45b686 assets/eternal_starlight/models/block/glacite_block.json
 a4a653677ce17e117f8303472927d60ca2180bc0 assets/eternal_starlight/models/block/gladespike.json

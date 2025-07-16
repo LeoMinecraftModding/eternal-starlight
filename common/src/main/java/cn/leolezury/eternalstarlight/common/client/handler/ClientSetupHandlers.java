@@ -13,10 +13,7 @@ import cn.leolezury.eternalstarlight.common.client.model.block.TangledHeadModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.*;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.BoarwarfModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.profession.*;
-import cn.leolezury.eternalstarlight.common.client.model.item.CrescentSpearModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.GlaciteShieldModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.MalariteSpearModel;
-import cn.leolezury.eternalstarlight.common.client.model.item.PungencyFruitSpearModel;
+import cn.leolezury.eternalstarlight.common.client.model.item.*;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticle;
 import cn.leolezury.eternalstarlight.common.client.particle.effect.*;
 import cn.leolezury.eternalstarlight.common.client.particle.environment.AshenSnowParticle;
@@ -365,6 +362,7 @@ public class ClientSetupHandlers {
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
 		ESBlocks.DUSK_GLASS,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
+		ESBlocks.FLOWGLAZE,
 		ESBlocks.STARLIGHT_PORTAL
 	);
 
@@ -409,6 +407,7 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("seeds_launcher");
 		registerSimpleSpecialModel("starfire_scythe");
 		registerSimpleSpecialModel("starfire_hammer");
+		registerSimpleSpecialModel("flowglaze_scythe");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -519,6 +518,8 @@ public class ClientSetupHandlers {
 		ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), EternalStarlight.id("orb_type"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
 
@@ -642,7 +643,8 @@ public class ClientSetupHandlers {
 	public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {
 		if (!modifiedBakedModels) {
 			for (ModelResourceLocation id : models.keySet()) {
-				if (id.id().getNamespace().equals(EternalStarlight.ID) && id.id().getPath().startsWith("thermal_springstone_")) {
+				String path = id.id().getPath();
+				if (id.id().getNamespace().equals(EternalStarlight.ID) && (path.startsWith("thermal_springstone_") || (path.startsWith("starfire_") && !path.startsWith("starfire_bird") && !path.startsWith("starfire_upgrade")))) {
 					models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
 				}
 			}
@@ -662,6 +664,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("seeds_launcher_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_hammer_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("flowglaze_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
@@ -887,6 +890,7 @@ public class ClientSetupHandlers {
 
 		// items
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
+		strategy.register(FlowglazeShieldModel.LAYER_LOCATION, FlowglazeShieldModel::createBodyLayer);
 		strategy.register(MalariteSpearModel.LAYER_LOCATION, MalariteSpearModel::createBodyLayer);
 		strategy.register(PungencyFruitSpearModel.LAYER_LOCATION, PungencyFruitSpearModel::createBodyLayer);
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);

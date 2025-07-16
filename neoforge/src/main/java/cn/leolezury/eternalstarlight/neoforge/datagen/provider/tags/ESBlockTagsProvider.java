@@ -1478,7 +1478,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(BlockTags.IMPERMEABLE)
 			.add(
-				ESBlocks.DUSK_GLASS.get()
+				ESBlocks.DUSK_GLASS.get(),
+				ESBlocks.FLOWGLAZE.get()
 			);
 		tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
 			.add(

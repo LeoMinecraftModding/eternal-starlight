@@ -85,7 +85,8 @@ public class CommonSetupHandlers {
 	));
 
 	public static final List<Supplier<Item>> SHIELDS = List.of(
-		ESItems.GLACITE_SHIELD
+		ESItems.GLACITE_SHIELD,
+		ESItems.FLOWGLAZE_SHIELD
 	);
 
 	public static final Map<TagKey<Item>, List<TagKey<Item>>> ITEM_TAG_EXCLUSIONS = Map.of(

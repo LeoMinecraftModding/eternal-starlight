@@ -1437,6 +1437,15 @@ public class ESRecipeProvider extends RecipeProvider {
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SCYTHE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HAMMER.get());
+
+		copySmithingTemplate(recipeOutput, ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ETERNAL_ICE.get(), ESConventionalTags.Items.GEMS_GLACITE);
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SWORD.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SWORD.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_PICKAXE.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_AXE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_AXE.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_HOE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_HOE.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHOVEL.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SCYTHE.get());
+		flowglazeSmithing(recipeOutput, ESItems.FLOWGLAZE_SHIELD.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHIELD.get());
 	}
 
 	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
@@ -1452,6 +1461,10 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	protected static void starfireSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(ingredientItem), Ingredient.of(ESItems.STARFIRE.get()), category, resultItem).unlocks("has_starfire", has(ESItems.STARFIRE.get())).save(recipeOutput, EternalStarlight.id(getItemName(resultItem) + "_smithing"));
+	}
+
+	protected static void flowglazeSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(ingredientItem), Ingredient.of(ESItems.FLOWGLAZE.get()), category, resultItem).unlocks("has_flowglaze", has(ESItems.FLOWGLAZE.get())).save(recipeOutput, EternalStarlight.id(getItemName(resultItem) + "_smithing"));
 	}
 
 	private void addThermalSpringstoneRecipes(RecipeOutput recipeOutput) {

@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-15T23:26:51.0303691	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-07-17T00:10:06.4211617	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -97,10 +97,10 @@ c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethers
 c3d226738f5244eb9b6c48888bf9f58d7c20b7e1 data/c/tags/item/tools/bow.json
 a5985824349ab96508bc6c94bdd5f96abebb3e32 data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json
-60aa938b0b263e807637df1f182dddf3dd26362e data/c/tags/item/tools/melee_weapon.json
+abc04a5ad37351195cd01575b1e9857c4cd195d3 data/c/tags/item/tools/melee_weapon.json
 45fc49506d8671a5640ae41b2612854380560114 data/c/tags/item/tools/mining_tool.json
 da9606faf20abb80497d387fc1feb6552af6fddb data/c/tags/item/tools/ranged_weapon.json
-7de9617000473e9e307ca001cd1ecff23381eb6a data/c/tags/item/tools/shield.json
+c4976770bc72233192eaafb7b91ab5b0ac597114 data/c/tags/item/tools/shield.json
 6fc589ecbbadd01ed89304c9205bc63375beff48 data/c/tags/item/tools/spear.json
 89173160c0f37d36484b34cd74d0282331c9fe56 data/eternal_starlight/tags/item/arrow_feathers.json
 8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
@@ -136,11 +136,11 @@ f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northl
 25966296f2ec08b0f37ad3f062c6708db05a7e84 data/eternal_starlight/tags/item/pungency_fruit_weapons.json
 4c1d8bbce7c883f739a73eb0374620a15297b159 data/eternal_starlight/tags/item/ratlin_food.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json
-de69624e1369c007f12828e5e4102f66062c763d data/eternal_starlight/tags/item/scythes.json
+e9754f7ded96f02aa3184a8e95b9f44395468c1e data/eternal_starlight/tags/item/scythes.json
 788e6e34a201c014ae3783bc128afbd75443273b data/eternal_starlight/tags/item/seeds_launcher_ammo.json
 3f7463541ec3cd793c5301595a7f9d4b6dbf7275 data/eternal_starlight/tags/item/shadow_snail_food.json
 786ac85729cb81aa260855e97ef980f38bb4fbf5 data/eternal_starlight/tags/item/sickles.json
-7de9617000473e9e307ca001cd1ecff23381eb6a data/eternal_starlight/tags/item/small_shields.json
+c4976770bc72233192eaafb7b91ab5b0ac597114 data/eternal_starlight/tags/item/small_shields.json
 c0433d4ae2dfa51dd4d02000eef99e766ef2c528 data/eternal_starlight/tags/item/starfire_bird_food.json
 bf93838b25ce91b2064b04d3e19901961c86d3de data/eternal_starlight/tags/item/starfire_weapons.json
 02b4718a535a53099ca721e871ef76e71f3b572f data/eternal_starlight/tags/item/starlight_mangrove_logs.json
@@ -165,7 +165,7 @@ e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_f
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json
 11016ced45a95a03300bc8b929a01e1993652736 data/minecraft/tags/item/arrows.json
-97ff8df00714a86afa3e294ab1e3f97982f78bb7 data/minecraft/tags/item/axes.json
+3d791c7310821e93d836e9a6d3e43df75724875b data/minecraft/tags/item/axes.json
 0396cf2f69513b39f8a18af811269153dfc05433 data/minecraft/tags/item/boats.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/item/candles.json
 123b5851b44749eca6582aa5638920d2e869520d data/minecraft/tags/item/chest_armor.json
@@ -173,7 +173,7 @@ e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_f
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 93df719972975c8da4fce2a4b265aa8fde65b202 data/minecraft/tags/item/enchantable/bow.json
 a5985824349ab96508bc6c94bdd5f96abebb3e32 data/minecraft/tags/item/enchantable/crossbow.json
-7fbd4dea1e8b77ae5cee8f1fe7f20f8514ad0a80 data/minecraft/tags/item/enchantable/durability.json
+3835bc0e5acd613b6fd0fe85896a35549fc92caf data/minecraft/tags/item/enchantable/durability.json
 80eaa797ae58fcdb34c449d664e93d7f5ebfbbbe data/minecraft/tags/item/enchantable/fire_aspect.json
 5357a355d7471f020a2fe67ed3ef05a58bf5513e data/minecraft/tags/item/enchantable/sharp_weapon.json
 b3cddbfdf578fe8cacdc142e853b2c4445171ec3 data/minecraft/tags/item/enchantable/sword.json
@@ -182,17 +182,17 @@ c4af49192d3e22a1e2c69082face26ed089227d6 data/minecraft/tags/item/enchantable/we
 739968c9ec0cbeb500fb47ccac16b4b8e69192a5 data/minecraft/tags/item/freeze_immune_wearables.json
 805f50c084076968e0a59f85f9c7a2065abed1ae data/minecraft/tags/item/hanging_signs.json
 c6b1b01b4aae84bb10e9f8c8387286926b1a3d5a data/minecraft/tags/item/head_armor.json
-a0c6b8911fea3ee736a416ff277eed8e2d70b69e data/minecraft/tags/item/hoes.json
+4bde8450da0970fb0b1df4a34a1f8b133feddc97 data/minecraft/tags/item/hoes.json
 7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/item/leaves.json
 93ea883abe844c36dfa7277156a6add21d3784aa data/minecraft/tags/item/leg_armor.json
 71175e2fa0fc241839fc61c68062fabcd2242aad data/minecraft/tags/item/logs.json
 71175e2fa0fc241839fc61c68062fabcd2242aad data/minecraft/tags/item/logs_that_burn.json
 1ca6bec0ea2434bb089fdf9da6b76d8b862ac415 data/minecraft/tags/item/meat.json
-c179c9e0a7ea83ff827c184c01ce915acd40aa4f data/minecraft/tags/item/pickaxes.json
+a4a4b7fcd8431666fc3aa2a8be7bca4e6933cfc2 data/minecraft/tags/item/pickaxes.json
 cdf7fde1bf5a6c43253d43ee947ce9959714bfac data/minecraft/tags/item/planks.json
 ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/sand.json
 99b32e282522da341fb90a660433f78887f6d23c data/minecraft/tags/item/saplings.json
-c0187e4a9526ba5a230072f9b0f54dd2e478a76a data/minecraft/tags/item/shovels.json
+33071e413320b46eec72243cf9f0fe9e35eb7ecf data/minecraft/tags/item/shovels.json
 6058a6efd6dde7cfa5a1abdba37ac5ee662d4db8 data/minecraft/tags/item/signs.json
 92c7c7e74eefda5a79b60c880cad1fb403f24ff7 data/minecraft/tags/item/slabs.json
 05f66411ff1d85a93c74d3aac078fcd8c24abe92 data/minecraft/tags/item/small_flowers.json
@@ -200,7 +200,7 @@ ebcc4ae4c545daab4f4774ee9051934a544712d3 data/minecraft/tags/item/smelts_to_glas
 d59f7d90ae5e4d366b2b2bb2930627c6050f2ff4 data/minecraft/tags/item/stairs.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_crafting_materials.json
 a8695a95c491930d90a9e490edb0e1eebf6d6b73 data/minecraft/tags/item/stone_tool_materials.json
-bebc9a5eb280d84133b7ea417dd2403138720dcd data/minecraft/tags/item/swords.json
+fbbeb4314dd6be76167dd2bb28dbce55c3d37f53 data/minecraft/tags/item/swords.json
 aba45c2d101a6d2ee3a974958d26251511456af8 data/minecraft/tags/item/tall_flowers.json
 ccc5767be33455b677bddfecfa7c567c506a200b data/minecraft/tags/item/trim_materials.json
 30825978c6ec7284fc7f993f0aa67dda46fcc5f3 data/minecraft/tags/item/trim_templates.json

@@ -869,6 +869,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StarfireBirdAviaryBlock> TORREYA_STARFIRE_BIRD_AVIARY = BLOCKS.register("torreya_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.COLOR_BLACK).noOcclusion()));
 	public static final RegistryObject<Block, StarfireBirdAviaryBlock> JINGLESTEM_STARFIRE_BIRD_AVIARY = BLOCKS.register("jinglestem_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.JINGLESTEM_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.COLOR_GREEN).noOcclusion()));
 
+	public static final RegistryObject<Block, Block> FLOWGLAZE = BLOCKS.register("flowglaze", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+
 	public static final RegistryObject<Block, RedStoneOreBlock> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
 	public static final RegistryObject<Block, RedStoneOreBlock> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));
 	public static final RegistryObject<Block, Block> ETERNAL_ICE_REDSTONE_ORE = BLOCKS.register("eternal_ice_redstone_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS)));

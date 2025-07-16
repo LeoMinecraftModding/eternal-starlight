@@ -887,7 +887,8 @@ public class ESItems {
 			ResourceLocation.withDefaultNamespace("item/empty_slot_sword"),
 			ResourceLocation.withDefaultNamespace("item/empty_slot_pickaxe"),
 			ResourceLocation.withDefaultNamespace("item/empty_slot_axe"),
-			ResourceLocation.withDefaultNamespace("item/empty_slot_hoe")
+			ResourceLocation.withDefaultNamespace("item/empty_slot_hoe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_shovel")
 		),
 		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_diamond"))
 	));
@@ -905,6 +906,37 @@ public class ESItems {
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.STARFIRE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.STARFIRE, 4, -2.7F, 0.5F, 0.25F))));
 	public static final RegistryObject<Item, Item> STARFIRE_HAMMER = registerItem("starfire_hammer",
 		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, ESParticles.STARFIRE_EXPLOSION::get, ESSoundEvents.STARFIRE_WHOOSH.asHolder(), new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
+
+	public static final RegistryObject<Item, Item> FLOWGLAZE = registerItem("flowglaze", () -> new BlockItem(ESBlocks.FLOWGLAZE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE = registerItem("flowglaze_upgrade_smithing_template", () -> new SmithingTemplateItem(
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.ingredients"))).withStyle(ChatFormatting.BLUE),
+		Component.translatable(Util.makeDescriptionId("upgrade", EternalStarlight.id("flowglaze_upgrade"))).withStyle(ChatFormatting.GRAY),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.base_slot_description"))),
+		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.additions_slot_description"))),
+		List.of(
+			ResourceLocation.withDefaultNamespace("item/empty_slot_sword"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_pickaxe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_axe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_hoe"),
+			ResourceLocation.withDefaultNamespace("item/empty_slot_shovel")
+		),
+		List.of(ResourceLocation.withDefaultNamespace("item/empty_slot_diamond"))
+	));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_SWORD = registerItem("flowglaze_sword",
+		() -> new SwordItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.FLOWGLAZE, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_PICKAXE = registerItem("flowglaze_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.FLOWGLAZE, 1, -2.8F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_AXE = registerItem("flowglaze_axe",
+		() -> new AxeItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.FLOWGLAZE, 6, -3))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_HOE = registerItem("flowglaze_hoe",
+		() -> new HoeItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(HoeItem.createAttributes(ESItemTiers.FLOWGLAZE, -2.5F, -1.0F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_SHOVEL = registerItem("flowglaze_shovel",
+		() -> new ShovelItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.FLOWGLAZE, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_SCYTHE = registerItem("flowglaze_scythe",
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.FLOWGLAZE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.FLOWGLAZE, 4, -2.7F, 0.5F, 0.3F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_SHIELD = registerItem("flowglaze_shield",
+		() -> new ShieldItem(new Item.Properties().durability(1000)));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));
