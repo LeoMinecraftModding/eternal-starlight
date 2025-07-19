@@ -15,10 +15,13 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import com.mojang.serialization.DataResult;
+import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -69,6 +72,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
+	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
 	private static final String TAG_FIGHT_TARGET = "flight_target";
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
@@ -143,6 +147,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains(TAG_OFFERS)) {
+			DataResult<MerchantOffers> parsed = MerchantOffers.CODEC.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), compoundTag.get(TAG_OFFERS));
+			parsed.resultOrPartial(Util.prefix("Failed to load offers: ", EternalStarlight.LOGGER::warn)).ifPresent((merchantOffers) -> this.offers = merchantOffers);
+		}
 		gatekeeperName = compoundTag.getString(TAG_GATEKEEPER_NAME);
 		fightTarget = compoundTag.getString(TAG_FIGHT_TARGET);
 		fightPlayerOnly = compoundTag.getBoolean(TAG_FIGHT_PLAYER_ONLY);
@@ -157,6 +165,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
+		if (!this.level().isClientSide) {
+			MerchantOffers merchantOffers = this.getOffers();
+			if (!merchantOffers.isEmpty()) {
+				compoundTag.put(TAG_OFFERS, MerchantOffers.CODEC.encodeStart(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), merchantOffers).getOrThrow());
+			}
+		}
 		compoundTag.putString(TAG_GATEKEEPER_NAME, gatekeeperName);
 		if (fightTarget != null) {
 			compoundTag.putString(TAG_FIGHT_TARGET, fightTarget);

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.wailing_well"
+  },
+  "length_in_seconds": 208.0,
+  "sound_event": "eternal_starlight:music_disc.wailing_well"
+}

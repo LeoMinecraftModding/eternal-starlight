@@ -142,6 +142,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MUSIC_DISC_POSTERITY.get(),
 				ESItems.MUSIC_DISC_THE_THORNY_REIGN.get(),
 				ESItems.MUSIC_DISC_PROFUNDITY.get(),
+				ESItems.MUSIC_DISC_WAILING_WELL.get(),
+				ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get(),
 				ESItems.MUSIC_DISC_ATLANTIS.get(),
 				ESItems.MUSIC_DISC_SACRED_DESERT.get(),
 				ESItems.MUSIC_DISC_SPIRIT.get(),
@@ -509,6 +511,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_SHOVEL.get(),
 				ESItems.STARFIRE_SCYTHE.get(),
 				ESItems.STARFIRE_HAMMER.get()
+			);
+		tag(ESTags.Items.FLOWGLAZE_WEAPONS)
+			.add(
+				ESItems.FLOWGLAZE_SWORD.get(),
+				ESItems.FLOWGLAZE_PICKAXE.get(),
+				ESItems.FLOWGLAZE_AXE.get(),
+				ESItems.FLOWGLAZE_HOE.get(),
+				ESItems.FLOWGLAZE_SHOVEL.get(),
+				ESItems.FLOWGLAZE_SCYTHE.get()
 			);
 		tag(ESTags.Items.MENDS_NATURALLY)
 			.add(
@@ -1078,6 +1089,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARLIT_DIAMOND.get(),
 				ESItems.SWAMP_SILVER_INGOT.get(),
 				ESItems.MALARITE.get(),
+				ESItems.STARFIRE.get(),
+				ESItems.FLOWGLAZE.get(),
 				ESItems.AMARAMBER_INGOT.get(),
 				ESItems.GOLEM_STEEL_INGOT.get(),
 				ESItems.TENACIOUS_PETAL.get(),

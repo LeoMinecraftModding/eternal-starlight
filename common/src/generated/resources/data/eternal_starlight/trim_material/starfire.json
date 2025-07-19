@@ -1,0 +1,9 @@
+{
+  "asset_name": "starfire",
+  "description": {
+    "color": "#FF7D3D",
+    "translate": "trim_material.eternal_starlight.starfire"
+  },
+  "ingredient": "eternal_starlight:starfire",
+  "item_model_index": 0.5
+}

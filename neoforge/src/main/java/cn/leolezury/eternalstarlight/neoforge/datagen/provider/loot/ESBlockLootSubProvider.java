@@ -806,6 +806,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 
 		dropSelf(ESBlocks.FLOWGLAZE.get());
+		dropSelf(ESBlocks.FLOWGLAZE_PANE.get());
 
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);

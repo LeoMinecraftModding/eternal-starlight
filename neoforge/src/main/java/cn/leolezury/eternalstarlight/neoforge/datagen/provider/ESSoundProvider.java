@@ -25,7 +25,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DIMENSION.get(), definition().with(sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream(), sound(loc("music/dimension/nest")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_STARLIGHT_FOREST.get(), definition().with(sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_STARLIGHT_PERMAFROST_FOREST.get(), definition().with(sound(loc("music/biome/starlight_permafrost_forest")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
-		add(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.get(), definition().with(sound(loc("music/biome/dark_swamp")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
+		add(ESSoundEvents.MUSIC_BIOME_DARK_SWAMP.get(), definition().with(sound(loc("music/biome/wailing_well")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_SCARLET_FOREST.get(), definition().with(sound(loc("music/biome/scarlet_forest")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_TORREYA_FOREST.get(), definition().with(sound(loc("music/biome/the_thorny_reign")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.get(), definition().with(sound(loc("music/biome/posterity")).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream()));
@@ -43,6 +43,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DISC_POSTERITY.get(), definition().with(sound(loc("music/biome/posterity")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_THE_THORNY_REIGN.get(), definition().with(sound(loc("music/biome/the_thorny_reign")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_PROFUNDITY.get(), definition().with(sound(loc("music/biome/profundity")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_WAILING_WELL.get(), definition().with(sound(loc("music/biome/wailing_well")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_MECHANICAL_FOSSIL.get(), definition().with(sound(loc("music/boss/starlight_golem")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_ATLANTIS.get(), definition().with(sound(loc("music/disc/atlantis")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SACRED_DESERT.get(), definition().with(sound(loc("music/disc/sacred_desert")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SPIRIT.get(), definition().with(sound(loc("music/disc/spirit")).stream()));

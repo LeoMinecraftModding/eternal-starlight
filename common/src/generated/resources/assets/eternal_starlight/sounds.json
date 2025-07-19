@@ -691,7 +691,7 @@
   "music.biome.dark_swamp": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/dark_swamp",
+        "name": "eternal_starlight:music/biome/wailing_well",
         "stream": true
       },
       {
@@ -892,6 +892,14 @@
       }
     ]
   },
+  "music_disc.mechanical_fossil": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/boss/starlight_golem",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.moonlight": {
     "sounds": [
       {
@@ -952,6 +960,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.wailing_well": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/wailing_well",
         "stream": true
       }
     ]

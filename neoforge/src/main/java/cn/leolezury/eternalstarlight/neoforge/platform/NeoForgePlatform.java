@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.platform;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
@@ -8,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
@@ -66,14 +68,13 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryBuilder;
+import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ import java.util.function.Supplier;
 @AutoService(ESPlatform.class)
 public class NeoForgePlatform implements ESPlatform {
 	public static final List<DeferredRegister<?>> REGISTERS = new ArrayList<>();
+	public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPE_REGISTER = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, EternalStarlight.ID);
 	public static final List<Registry<?>> NEW_REGISTRIES = new ArrayList<>();
 
 	@Override
@@ -242,6 +244,49 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public TearBombBlock createTearBombBlock(BlockBehaviour.Properties properties) {
 		return new ForgeTearBombBlock(properties);
+	}
+
+	@Override
+	public <T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath) {
+		AttachmentType.Builder<T> builder = AttachmentType.builder(h -> defaultValue.get());
+		if (codec != null) {
+			builder = builder.serialize(codec);
+		}
+		if (copyOnDeath) {
+			builder = builder.copyOnDeath();
+		}
+		DeferredHolder<AttachmentType<?>, AttachmentType<T>> holder = ATTACHMENT_TYPE_REGISTER.register(id, builder::build);
+		return new EntityDataAttachment<>() {
+			@Override
+			public ResourceLocation id() {
+				return EternalStarlight.id(id);
+			}
+
+			@Override
+			public boolean hasData(Entity entity) {
+				return entity.hasData(holder);
+			}
+
+			@Override
+			public T getData(Entity entity) {
+				return entity.getData(holder);
+			}
+
+			@Override
+			public Optional<T> getExistingData(Entity entity) {
+				return entity.getExistingData(holder);
+			}
+
+			@Override
+			public @Nullable T setData(Entity entity, T data) {
+				return entity.setData(holder, data);
+			}
+
+			@Override
+			public @Nullable T removeData(Entity entity) {
+				return entity.removeData(holder);
+			}
+		};
 	}
 
 	@Override

@@ -1438,6 +1438,12 @@ public class ESRecipeProvider extends RecipeProvider {
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SCYTHE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HAMMER.get());
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.FLOWGLAZE_PANE.get(), 16)
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESBlocks.FLOWGLAZE.get())
+			.unlockedBy("has_item", has(ESBlocks.FLOWGLAZE.get()))
+			.save(recipeOutput);
 		copySmithingTemplate(recipeOutput, ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ETERNAL_ICE.get(), ESConventionalTags.Items.GEMS_GLACITE);
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SWORD.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SWORD.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_PICKAXE.get());

@@ -778,6 +778,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
 
 		block(ESItems.FLOWGLAZE.get());
+		basicItem(ESItems.FLOWGLAZE_PANE.get(), blockTextureFromItem(ESItems.FLOWGLAZE.get()));
 		basicItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get());
 		handheld(ESItems.FLOWGLAZE_SWORD.get());
 		handheld(ESItems.FLOWGLAZE_PICKAXE.get());
@@ -949,6 +950,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_POSTERITY.get());
 		basicItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get());
 		basicItem(ESItems.MUSIC_DISC_PROFUNDITY.get());
+		basicItem(ESItems.MUSIC_DISC_WAILING_WELL.get());
+		basicItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
 		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());

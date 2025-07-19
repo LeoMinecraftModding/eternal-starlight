@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.mechanical_fossil"
+  },
+  "length_in_seconds": 222.0,
+  "sound_event": "eternal_starlight:music_disc.mechanical_fossil"
+}

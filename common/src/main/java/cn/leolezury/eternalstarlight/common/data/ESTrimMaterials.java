@@ -26,6 +26,8 @@ public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> STARLIT_DIAMOND = create("starlit_diamond");
 	public static final ResourceKey<TrimMaterial> SWAMP_SILVER = create("swamp_silver");
 	public static final ResourceKey<TrimMaterial> MALARITE = create("malarite");
+	public static final ResourceKey<TrimMaterial> STARFIRE = create("starfire");
+	public static final ResourceKey<TrimMaterial> FLOWGLAZE = create("flowglaze");
 	public static final ResourceKey<TrimMaterial> AMARAMBER = create("amaramber");
 	public static final ResourceKey<TrimMaterial> GOLEM_STEEL = create("golem_steel");
 	public static final ResourceKey<TrimMaterial> MOONRING = create("moonring");
@@ -42,6 +44,8 @@ public class ESTrimMaterials {
 		STARLIT_DIAMOND,
 		SWAMP_SILVER,
 		MALARITE,
+		STARFIRE,
+		FLOWGLAZE,
 		AMARAMBER,
 		GOLEM_STEEL,
 		MOONRING,
@@ -59,6 +63,8 @@ public class ESTrimMaterials {
 		register(context, STARLIT_DIAMOND, ESItems.STARLIT_DIAMOND.asHolder(), 0x9584e4, 0.8f);
 		register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
 		register(context, MALARITE, ESItems.MALARITE.asHolder(), 0x7a518a, 1.0f);
+		register(context, STARFIRE, ESItems.STARFIRE.asHolder(), 0xff7d3d, 0.5f);
+		register(context, FLOWGLAZE, ESItems.FLOWGLAZE.asHolder(), 0x8ed6b0, 0.8f);
 		register(context, AMARAMBER, ESItems.AMARAMBER_INGOT.asHolder(), 0xc3647e, 1.0f);
 		register(context, GOLEM_STEEL, ESItems.GOLEM_STEEL_INGOT.asHolder(), 0x397aaa, 0.2f);
 		register(context, MOONRING, ESItems.TENACIOUS_PETAL.asHolder(), 0xa36d9e, 0.8f);

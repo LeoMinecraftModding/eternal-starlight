@@ -524,6 +524,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));
 
 		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));
+		paneBlockWithRenderType(ESBlocks.FLOWGLAZE_PANE.get(), blockTexture(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
 
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());

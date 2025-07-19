@@ -363,6 +363,7 @@ public class ClientSetupHandlers {
 		ESBlocks.DUSK_GLASS,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
 		ESBlocks.FLOWGLAZE,
+		ESBlocks.FLOWGLAZE_PANE,
 		ESBlocks.STARLIGHT_PORTAL
 	);
 

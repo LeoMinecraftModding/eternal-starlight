@@ -26,6 +26,7 @@ accessible method net/minecraft/world/level/block/SnowyDirtBlock <init> (Lnet/mi
 accessible method net/minecraft/world/level/block/DirtPathBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/SkullBlock <init> (Lnet/minecraft/world/level/block/SkullBlock$Type;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/WallSkullBlock <init> (Lnet/minecraft/world/level/block/SkullBlock$Type;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/IronBarsBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/item/PickaxeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
 accessible method net/minecraft/world/item/AxeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
 accessible method net/minecraft/world/item/HoeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
@@ -83,6 +84,10 @@ extendable method net/minecraft/world/entity/item/PrimedTnt explode ()V
 
 # equipment changes check
 accessible method net/minecraft/world/entity/LivingEntity getLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
+
+# flowglaze destroy block check
+accessible field net/minecraft/server/level/ServerPlayerGameMode isDestroyingBlock Z
+accessible field net/minecraft/server/level/ServerPlayerGameMode destroyPos Lnet/minecraft/core/BlockPos;
 
 # chain of souls
 accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V

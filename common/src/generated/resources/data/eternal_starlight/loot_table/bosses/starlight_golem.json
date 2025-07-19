@@ -54,6 +54,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_mechanical_fossil"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "conditions": [
             {
               "chance": 0.2,

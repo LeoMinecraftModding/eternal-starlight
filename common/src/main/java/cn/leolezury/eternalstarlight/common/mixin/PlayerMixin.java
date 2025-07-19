@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
@@ -19,6 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -70,6 +72,12 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 		}
 	}
 
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;hurtEnemy(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)Z"))
+	private void attackHurtEnemy(Entity entity, CallbackInfo ci) {
+		if (entity instanceof LivingEntity living) {
+			CommonHandlers.handleFlowglazeWeaponAttack((Player) (Object) this, living);
+		}
+	}
 
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isSprinting()Z", ordinal = 0))
 	private void attackCheckHammerStrength(Entity entity, CallbackInfo ci, @Local(ordinal = 0) LocalBooleanRef localRef) {

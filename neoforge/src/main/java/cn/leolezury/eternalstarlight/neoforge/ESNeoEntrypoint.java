@@ -22,6 +22,7 @@ public class ESNeoEntrypoint {
 		for (DeferredRegister<?> register : NeoForgePlatform.REGISTERS) {
 			register.register(modBus);
 		}
+		NeoForgePlatform.ATTACHMENT_TYPE_REGISTER.register(modBus);
 	}
 
 	private void onRegister(RegisterEvent event) {

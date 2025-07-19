@@ -53,6 +53,7 @@ public class EternalStarlight {
 		ESDataTransformerTypes.loadClass();
 		ESWeathers.loadClass();
 		ESBoarwarfProfessions.loadClass();
+		ESDataAttachments.loadClass();
 		ESRegistries.loadClass();
 		ESFlammabilityRegistry.registerDefaults();
 	}

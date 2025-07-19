@@ -908,6 +908,7 @@ public class ESItems {
 		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, ESParticles.STARFIRE_EXPLOSION::get, ESSoundEvents.STARFIRE_WHOOSH.asHolder(), new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
 
 	public static final RegistryObject<Item, Item> FLOWGLAZE = registerItem("flowglaze", () -> new BlockItem(ESBlocks.FLOWGLAZE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_PANE = registerItem("flowglaze_pane", () -> new BlockItem(ESBlocks.FLOWGLAZE_PANE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE = registerItem("flowglaze_upgrade_smithing_template", () -> new SmithingTemplateItem(
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.ingredients"))).withStyle(ChatFormatting.BLUE),
@@ -1113,6 +1114,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_POSTERITY = registerItem("music_disc_posterity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.POSTERITY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_THE_THORNY_REIGN = registerItem("music_disc_the_thorny_reign", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.THE_THORNY_REIGN)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_PROFUNDITY = registerItem("music_disc_profundity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.PROFUNDITY)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_WAILING_WELL = registerItem("music_disc_wailing_well", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.WAILING_WELL)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_MECHANICAL_FOSSIL = registerItem("music_disc_mechanical_fossil", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.MECHANICAL_FOSSIL)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_ATLANTIS = registerItem("music_disc_atlantis", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.ATLANTIS)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SACRED_DESERT = registerItem("music_disc_sacred_desert", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SACRED_DESERT)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SPIRIT = registerItem("music_disc_spirit", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SPIRIT)));

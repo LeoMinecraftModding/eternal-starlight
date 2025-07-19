@@ -41,9 +41,13 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -67,9 +71,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -152,6 +159,13 @@ public class CommonHandlers {
 		}
 	}
 
+	public static void onItemTooltip(TooltipFlag flags, ItemStack itemStack, List<Component> tooltip, Item.TooltipContext context) {
+		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+		}
+	}
+
 	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
 		float modified = amount;
 		if (source.is(DamageTypeTags.IS_FIRE)) {
@@ -173,6 +187,14 @@ public class CommonHandlers {
 			CompoundTag tag = ESEntityUtil.getPersistentData(entity);
 			tag.putFloat(TAG_NUMBNESS_DAMAGE, tag.getFloat(TAG_NUMBNESS_DAMAGE) + modified * 0.75f);
 			modified *= 0.25f;
+		}
+		if (source.getDirectEntity() instanceof LivingEntity attacker
+			&& attacker.getWeaponItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)
+			&& entity == ESDataAttachments.CONCENTRATED_TARGET.getData(attacker)
+			&& attacker.getWeaponItem() == ESDataAttachments.CONCENTRATED_WEAPON.getData(attacker)
+			&& ESDataAttachments.CONCENTRATION_LEVEL.getData(attacker) >= 4
+		) {
+			modified *= 1.25f;
 		}
 		return modified;
 	}
@@ -224,6 +246,10 @@ public class CommonHandlers {
 				attacker.level().playSound(null, attacker.blockPosition(), ESSoundEvents.STARFIRE_WHOOSH.get(), attacker.getSoundSource());
 			}
 
+			if (source.getDirectEntity() instanceof LivingEntity attacker && !(attacker instanceof Player)) {
+				handleFlowglazeWeaponAttack(attacker, entity);
+			}
+
 			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
 				&& entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
 				&& entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem
@@ -273,6 +299,21 @@ public class CommonHandlers {
 						player.level().addFreshEntity(itemEntity);
 					}
 				}
+			}
+		}
+	}
+
+	public static void handleFlowglazeWeaponAttack(LivingEntity attacker, LivingEntity entity) {
+		if (attacker.getWeaponItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
+			ItemStack stack = attacker.getWeaponItem();
+			if (entity == ESDataAttachments.CONCENTRATED_TARGET.getData(attacker) && stack == ESDataAttachments.CONCENTRATED_WEAPON.getData(attacker)) {
+				ESDataAttachments.LAST_CONCENTRATED_ATTACK_TIME.setData(attacker, attacker.tickCount);
+				ESDataAttachments.CONCENTRATION_LEVEL.setData(attacker, Math.min(ESDataAttachments.CONCENTRATION_LEVEL.getData(attacker) + 1, 4));
+			} else {
+				ESDataAttachments.CONCENTRATED_TARGET.setData(attacker, entity);
+				ESDataAttachments.CONCENTRATED_WEAPON.setData(attacker, stack);
+				ESDataAttachments.LAST_CONCENTRATED_ATTACK_TIME.setData(attacker, attacker.tickCount);
+				ESDataAttachments.CONCENTRATION_LEVEL.setData(attacker, 0);
 			}
 		}
 	}
@@ -374,6 +415,29 @@ public class CommonHandlers {
 			ESSpellUtil.tickSpells(livingEntity);
 			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
 				ESCrestUtil.tickCrests(player);
+				if (player instanceof ServerPlayer serverPlayer) {
+					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
+					ServerLevel serverLevel = serverPlayer.serverLevel();
+					if (gameMode.isDestroyingBlock && serverPlayer.getMainHandItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
+						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) + 1);
+						if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) >= 100) {
+							int id = Block.getId(serverLevel.getBlockState(gameMode.destroyPos));
+							gameMode.destroyBlock(gameMode.destroyPos);
+							for (int i = 0; i < serverLevel.players().size(); i++) {
+								serverLevel.players().get(i).connection.send(new ClientboundLevelEventPacket(2001, gameMode.destroyPos, id, false));
+							}
+						}
+					} else {
+						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, 0);
+					}
+				}
+			}
+			if (ESDataAttachments.CONCENTRATION_LEVEL.getData(livingEntity) > 0
+				&& (livingEntity.tickCount - ESDataAttachments.LAST_CONCENTRATED_ATTACK_TIME.getData(livingEntity) > 100 || livingEntity.getWeaponItem() != ESDataAttachments.CONCENTRATED_WEAPON.getData(livingEntity))) {
+				ESDataAttachments.CONCENTRATED_TARGET.removeData(livingEntity);
+				ESDataAttachments.CONCENTRATED_WEAPON.removeData(livingEntity);
+				ESDataAttachments.LAST_CONCENTRATED_ATTACK_TIME.removeData(livingEntity);
+				ESDataAttachments.CONCENTRATION_LEVEL.removeData(livingEntity);
 			}
 			List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
 			for (ItemStack armor : armors) {

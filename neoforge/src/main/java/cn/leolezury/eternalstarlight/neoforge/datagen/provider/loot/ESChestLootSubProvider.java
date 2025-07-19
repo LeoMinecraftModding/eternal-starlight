@@ -43,6 +43,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_POSTERITY.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_PROFUNDITY.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WAILING_WELL.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()))));
 
 		consumer.accept(ESLootTables.CHEST_GOLEM_FORGE,
@@ -85,6 +86,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(15))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
+					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
 
 		consumer.accept(ESLootTables.CHEST_CURSED_GARDEN,
@@ -123,6 +125,7 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
+					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
 	}
 }

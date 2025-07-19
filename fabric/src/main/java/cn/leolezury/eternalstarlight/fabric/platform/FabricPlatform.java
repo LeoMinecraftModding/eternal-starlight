@@ -1,8 +1,10 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
@@ -21,11 +23,14 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resources.model.BakedModel;
@@ -39,10 +44,13 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -150,6 +158,54 @@ public class FabricPlatform implements ESPlatform {
 				}
 			}
 		}).build();
+	}
+
+	@Override
+	public <T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath) {
+		AttachmentRegistry.Builder<T> builder = AttachmentRegistryImpl.<T>builder().initializer(defaultValue);
+		if (codec != null) {
+			builder = builder.persistent(codec);
+		}
+		if (copyOnDeath) {
+			builder = builder.copyOnDeath();
+		}
+		AttachmentType<T> type = builder.buildAndRegister(EternalStarlight.id(id));
+		return new EntityDataAttachment<>() {
+			@Override
+			public ResourceLocation id() {
+				return EternalStarlight.id(id);
+			}
+
+			@Override
+			public boolean hasData(Entity entity) {
+				return entity.hasAttached(type);
+			}
+
+			@Override
+			public T getData(Entity entity) {
+				// "initializer result cannot be null"
+				if (!entity.hasAttached(type)) {
+					return defaultValue.get();
+				} else {
+					return entity.getAttached(type);
+				}
+			}
+
+			@Override
+			public Optional<T> getExistingData(Entity entity) {
+				return Optional.ofNullable(entity.getAttached(type));
+			}
+
+			@Override
+			public @Nullable T setData(Entity entity, T data) {
+				return entity.setAttached(type, data);
+			}
+
+			@Override
+			public @Nullable T removeData(Entity entity) {
+				return entity.removeAttached(type);
+			}
+		};
 	}
 
 	@Override

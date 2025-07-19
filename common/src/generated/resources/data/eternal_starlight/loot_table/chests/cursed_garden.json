@@ -389,6 +389,11 @@
           "weight": 10
         },
         {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:flowglaze_upgrade_smithing_template",
+          "weight": 10
+        },
+        {
           "type": "minecraft:loot_table",
           "value": "eternal_starlight:chests/music_discs",
           "weight": 8

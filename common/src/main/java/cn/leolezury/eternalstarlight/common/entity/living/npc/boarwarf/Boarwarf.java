@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.*;
@@ -7,8 +8,11 @@ import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.Ast
 import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import com.mojang.serialization.DataResult;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -45,6 +49,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Boarwarf extends PathfinderMob implements Npc, Merchant {
+	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_TYPE = "type";
 	private static final String TAG_PROFESSION = "profession";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
@@ -124,6 +129,10 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains(TAG_OFFERS)) {
+			DataResult<MerchantOffers> parsed = MerchantOffers.CODEC.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), compoundTag.get(TAG_OFFERS));
+			parsed.resultOrPartial(Util.prefix("Failed to load offers: ", EternalStarlight.LOGGER::warn)).ifPresent((merchantOffers) -> this.offers = merchantOffers);
+		}
 		setTypeId(ResourceLocation.read(compoundTag.getString(TAG_TYPE)).getOrThrow());
 		setProfessionId(ResourceLocation.read(compoundTag.getString(TAG_PROFESSION)).getOrThrow());
 		restockCooldown = compoundTag.getInt(TAG_RESTOCK_COOLDOWN);
@@ -141,6 +150,12 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
+		if (!this.level().isClientSide) {
+			MerchantOffers merchantOffers = this.getOffers();
+			if (!merchantOffers.isEmpty()) {
+				compoundTag.put(TAG_OFFERS, MerchantOffers.CODEC.encodeStart(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), merchantOffers).getOrThrow());
+			}
+		}
 		compoundTag.putString(TAG_TYPE, getTypeId().toString());
 		compoundTag.putString(TAG_PROFESSION, getProfessionId().toString());
 		compoundTag.putInt(TAG_RESTOCK_COOLDOWN, restockCooldown);

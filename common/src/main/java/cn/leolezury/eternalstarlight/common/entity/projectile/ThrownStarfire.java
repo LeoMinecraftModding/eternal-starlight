@@ -2,12 +2,14 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.registry.*;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +42,14 @@ public class ThrownStarfire extends ThrowableItemProjectile {
 			}
 			playSound(ESSoundEvents.STARFIRE_WHOOSH.get());
 			discard();
+		}
+	}
+
+	@Override
+	protected void onHitBlock(BlockHitResult hitResult) {
+		super.onHitBlock(hitResult);
+		if (hitResult.getType() != HitResult.Type.MISS && level().getBlockState(hitResult.getBlockPos()).is(BlockTags.SAND)) {
+			level().setBlockAndUpdate(hitResult.getBlockPos(), ESBlocks.FLOWGLAZE.get().defaultBlockState());
 		}
 	}
 

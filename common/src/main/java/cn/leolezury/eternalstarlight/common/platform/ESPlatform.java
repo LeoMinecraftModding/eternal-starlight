@@ -135,6 +135,9 @@ public interface ESPlatform {
 		return new TearBombBlock(properties);
 	}
 
+	// attachment
+	<T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath);
+
 	// reload listeners
 	default TheGatekeeperNameManager createGatekeeperNameManager() {
 		return new TheGatekeeperNameManager();

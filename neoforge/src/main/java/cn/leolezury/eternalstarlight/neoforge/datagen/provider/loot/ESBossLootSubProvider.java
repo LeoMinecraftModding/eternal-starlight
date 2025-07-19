@@ -83,6 +83,8 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(UniformGenerator.between(0, 1))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get())))
 				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get())))
+				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 
 		consumer.accept(ESLootTables.BOSS_TANGLED_HATRED,
