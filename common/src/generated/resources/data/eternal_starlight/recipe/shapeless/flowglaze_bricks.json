@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:flowglaze"
+    },
+    {
+      "item": "eternal_starlight:flowglaze"
+    },
+    {
+      "item": "eternal_starlight:grimstone_bricks"
+    },
+    {
+      "item": "eternal_starlight:grimstone_bricks"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "eternal_starlight:flowglaze_bricks"
+  }
+}

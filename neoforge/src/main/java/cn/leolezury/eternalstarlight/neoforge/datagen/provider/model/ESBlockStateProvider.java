@@ -153,6 +153,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.CHISELED_GRIMSTONE.get());
 		stoneSet(ESBlocks.COBBLED_GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), ESBlocks.COBBLED_GRIMSTONE_STAIRS.get(), ESBlocks.COBBLED_GRIMSTONE_WALL.get());
 		stoneSet(ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICK_SLAB.get(), ESBlocks.GRIMSTONE_BRICK_STAIRS.get(), ESBlocks.GRIMSTONE_BRICK_WALL.get());
+		simpleBlock(ESBlocks.CRACKED_GRIMSTONE_BRICKS.get());
 		stoneSet(ESBlocks.POLISHED_GRIMSTONE.get(), ESBlocks.POLISHED_GRIMSTONE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_WALL.get());
 		stoneSet(ESBlocks.GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILE_WALL.get());
 		simpleBlock(ESBlocks.GLOWING_GRIMSTONE.get());
@@ -479,6 +480,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
 		simpleBlock(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
 
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
@@ -525,6 +528,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));
 		paneBlockWithRenderType(ESBlocks.FLOWGLAZE_PANE.get(), blockTexture(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
+		stoneSet(ESBlocks.FLOWGLAZE_BRICKS.get(), ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICK_WALL.get());
 
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());

@@ -169,6 +169,8 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 
 		add(ESEntities.TWILIGHT_GAZE.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+				.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get())))
+			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(Items.BONE_MEAL)).when(LootItemRandomChanceCondition.randomChance(0.05F))));
 
 		add(ESEntities.FREEZE.get(), LootTable.lootTable()

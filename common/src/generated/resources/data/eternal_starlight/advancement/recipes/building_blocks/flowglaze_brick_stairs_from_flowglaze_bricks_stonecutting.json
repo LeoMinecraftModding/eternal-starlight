@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flowglaze_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:flowglaze_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:flowglaze_brick_stairs_from_flowglaze_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_flowglaze_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:flowglaze_brick_stairs_from_flowglaze_bricks_stonecutting"
+    ]
+  }
+}

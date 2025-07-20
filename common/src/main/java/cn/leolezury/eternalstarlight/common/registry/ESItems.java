@@ -282,6 +282,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GRIMSTONE_BRICK_SLAB = registerItem("grimstone_brick_slab", () -> new BlockItem(ESBlocks.GRIMSTONE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_BRICK_STAIRS = registerItem("grimstone_brick_stairs", () -> new BlockItem(ESBlocks.GRIMSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_BRICK_WALL = registerItem("grimstone_brick_wall", () -> new BlockItem(ESBlocks.GRIMSTONE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRACKED_GRIMSTONE_BRICKS = registerItem("cracked_grimstone_bricks", () -> new BlockItem(ESBlocks.CRACKED_GRIMSTONE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE = registerItem("polished_grimstone", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_SLAB = registerItem("polished_grimstone_slab", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_STAIRS = registerItem("polished_grimstone_stairs", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(), new Item.Properties()));
@@ -770,6 +771,8 @@ public class ESItems {
 	// starlit diamond
 	public static final RegistryObject<Item, Item> GRIMSTONE_STARLIT_DIAMOND_ORE = registerItem("grimstone_starlit_diamond_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_STARLIT_DIAMOND_ORE = registerItem("voidstone_starlit_diamond_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ETERNAL_ICE_STARLIT_DIAMOND_ORE = registerItem("eternal_ice_starlit_diamond_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> HAZE_ICE_STARLIT_DIAMOND_ORE = registerItem("haze_ice_starlit_diamond_ore", () -> new BlockItem(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_BLOCK = registerItem("starlit_diamond_block", () -> new BlockItem(ESBlocks.STARLIT_DIAMOND_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND = registerItem("starlit_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_SWORD = registerItem("starlit_diamond_sword",
@@ -909,6 +912,10 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> FLOWGLAZE = registerItem("flowglaze", () -> new BlockItem(ESBlocks.FLOWGLAZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_PANE = registerItem("flowglaze_pane", () -> new BlockItem(ESBlocks.FLOWGLAZE_PANE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_BRICKS = registerItem("flowglaze_bricks", () -> new BlockItem(ESBlocks.FLOWGLAZE_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_BRICK_SLAB = registerItem("flowglaze_brick_slab", () -> new BlockItem(ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_BRICK_STAIRS = registerItem("flowglaze_brick_stairs", () -> new BlockItem(ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_BRICK_WALL = registerItem("flowglaze_brick_wall", () -> new BlockItem(ESBlocks.FLOWGLAZE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE = registerItem("flowglaze_upgrade_smithing_template", () -> new SmithingTemplateItem(
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.flowglaze_upgrade.ingredients"))).withStyle(ChatFormatting.BLUE),

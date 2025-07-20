@@ -606,6 +606,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	private void addStoneRecipes(RecipeOutput recipeOutput) {
 		addSmelt(recipeOutput, 200, ESBlocks.COBBLED_GRIMSTONE.get(), ESBlocks.GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE.get());
+		addSmelt(recipeOutput, 200, ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.CRACKED_GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICKS.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_GRIMSTONE.get(), ESBlocks.GRIMSTONE.get());
 		addStoneCompress(recipeOutput, ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.POLISHED_GRIMSTONE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GRIMSTONE.get(), ESBlocks.GRIMSTONE_BRICK_SLAB.get());
@@ -1018,6 +1019,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), 2);
+
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE_BRICKS.get(), 8, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE.get(), ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICKS.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_WALL.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_WALL.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICKS.get(), 2);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICKS.get(), 4)
 			.pattern("##")
@@ -1530,6 +1539,10 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		addSmelt(recipeOutput, 300, ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
+		addBlast(recipeOutput, 150, ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
+		addSmelt(recipeOutput, 300, ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
+		addBlast(recipeOutput, 150, ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get(), ESItems.STARLIT_DIAMOND.get(), ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
 		addAxe(recipeOutput, ESItems.STARLIT_DIAMOND_AXE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
 		addHoe(recipeOutput, ESItems.STARLIT_DIAMOND_HOE.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);
 		addShovel(recipeOutput, ESItems.STARLIT_DIAMOND_SHOVEL.get(), ESConventionalTags.Items.GEMS_STARLIT_DIAMOND);

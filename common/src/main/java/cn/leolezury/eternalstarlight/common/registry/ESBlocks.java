@@ -371,6 +371,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, SlabBlock> GRIMSTONE_BRICK_SLAB = BLOCKS.register("grimstone_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)));
 	public static final RegistryObject<Block, StairBlock> GRIMSTONE_BRICK_STAIRS = BLOCKS.register("grimstone_brick_stairs", () -> new StairBlock(GRIMSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
 	public static final RegistryObject<Block, WallBlock> GRIMSTONE_BRICK_WALL = BLOCKS.register("grimstone_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+	public static final RegistryObject<Block, Block> CRACKED_GRIMSTONE_BRICKS = BLOCKS.register("cracked_grimstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS)));
 	public static final RegistryObject<Block, Block> POLISHED_GRIMSTONE = BLOCKS.register("polished_grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block, SlabBlock> POLISHED_GRIMSTONE_SLAB = BLOCKS.register("polished_grimstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)));
 	public static final RegistryObject<Block, StairBlock> POLISHED_GRIMSTONE_STAIRS = BLOCKS.register("polished_grimstone_stairs", () -> new StairBlock(POLISHED_GRIMSTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
@@ -836,6 +837,8 @@ public class ESBlocks {
 
 	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_STARLIT_DIAMOND_ORE = BLOCKS.register("grimstone_starlit_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));
 	public static final RegistryObject<Block, DropExperienceBlock> VOIDSTONE_STARLIT_DIAMOND_ORE = BLOCKS.register("voidstone_starlit_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+	public static final RegistryObject<Block, Block> ETERNAL_ICE_STARLIT_DIAMOND_ORE = BLOCKS.register("eternal_ice_starlit_diamond_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block, Block> HAZE_ICE_STARLIT_DIAMOND_ORE = BLOCKS.register("haze_ice_starlit_diamond_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS)));
 	public static final RegistryObject<Block, Block> STARLIT_DIAMOND_BLOCK = BLOCKS.register("starlit_diamond_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
 	public static final RegistryObject<Block, DropExperienceBlock> SWAMP_SILVER_ORE = BLOCKS.register("swamp_silver_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().strength(3.0F, 3.0F)));
@@ -871,6 +874,10 @@ public class ESBlocks {
 
 	public static final RegistryObject<Block, Block> FLOWGLAZE = BLOCKS.register("flowglaze", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel(state -> 10)));
 	public static final RegistryObject<Block, IronBarsBlock> FLOWGLAZE_PANE = BLOCKS.register("flowglaze_pane", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS_PANE).lightLevel(state -> 10)));
+	public static final RegistryObject<Block, Block> FLOWGLAZE_BRICKS = BLOCKS.register("flowglaze_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).sound(SoundType.GLASS).mapColor(MapColor.TERRACOTTA_CYAN)));
+	public static final RegistryObject<Block, SlabBlock> FLOWGLAZE_BRICK_SLAB = BLOCKS.register("flowglaze_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.GLASS).mapColor(MapColor.TERRACOTTA_CYAN)));
+	public static final RegistryObject<Block, StairBlock> FLOWGLAZE_BRICK_STAIRS = BLOCKS.register("flowglaze_brick_stairs", () -> new StairBlock(FLOWGLAZE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.TERRACOTTA_CYAN)));
+	public static final RegistryObject<Block, WallBlock> FLOWGLAZE_BRICK_WALL = BLOCKS.register("flowglaze_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).sound(SoundType.GLASS).mapColor(MapColor.TERRACOTTA_CYAN)));
 
 	public static final RegistryObject<Block, RedStoneOreBlock> GRIMSTONE_REDSTONE_ORE = BLOCKS.register("grimstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_ORE)));
 	public static final RegistryObject<Block, RedStoneOreBlock> VOIDSTONE_REDSTONE_ORE = BLOCKS.register("voidstone_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_REDSTONE_ORE)));

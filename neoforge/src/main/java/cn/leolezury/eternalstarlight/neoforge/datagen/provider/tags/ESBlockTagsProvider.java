@@ -182,6 +182,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(),
 				ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
 				ESBlocks.VOIDSTONE_MALARITE_ORE.get()
 			);
@@ -302,7 +304,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(ESConventionalTags.Blocks.ORES_STARLIT_DIAMOND)
 			.add(
 				ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get(),
-				ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get()
+				ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get()
 			);
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_STARLIT_DIAMOND)
 			.add(
@@ -369,12 +373,14 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_ETERNAL_ICE)
 			.add(
+				ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get(),
 				ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get(),
 				ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get()
 			);
 		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_HAZE_ICE)
 			.add(
+				ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(),
 				ESBlocks.HAZE_ICE_REDSTONE_ORE.get(),
 				ESBlocks.HAZE_ICE_SALTPETER_ORE.get()
@@ -720,6 +726,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(),
+				ESBlocks.FLOWGLAZE_BRICK_SLAB.get(),
 				ESBlocks.AMARAMBER_BRICK_SLAB.get(),
 				ESBlocks.TORREYA_TILE_SLAB.get()
 			);
@@ -783,6 +790,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(),
+				ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(),
 				ESBlocks.AMARAMBER_BRICK_STAIRS.get(),
 				ESBlocks.TORREYA_TILE_STAIRS.get()
 			);
@@ -830,6 +838,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.POLISHED_SPRINGSTONE_WALL.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_WALL.get(),
 				ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get(),
+				ESBlocks.FLOWGLAZE_BRICK_WALL.get(),
 				ESBlocks.AMARAMBER_BRICK_WALL.get(),
 				ESBlocks.TORREYA_TILE_WALL.get()
 			);
@@ -1037,6 +1046,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.GLACITE_BLOCK.get(),
 				ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(),
+				ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.STARLIT_DIAMOND_BLOCK.get(),
 				ESBlocks.GRIMSTONE_REDSTONE_ORE.get(),
 				ESBlocks.VOIDSTONE_REDSTONE_ORE.get(),
@@ -1048,6 +1059,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HAZE_ICE_SALTPETER_ORE.get(),
 				ESBlocks.SALTPETER_BLOCK.get(),
 				ESBlocks.RAW_AMARAMBER_BLOCK.get(),
+				ESBlocks.FLOWGLAZE_BRICKS.get(),
+				ESBlocks.FLOWGLAZE_BRICK_SLAB.get(),
+				ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(),
+				ESBlocks.FLOWGLAZE_BRICK_WALL.get(),
 				ESBlocks.AMARAMBER_BRICKS.get(),
 				ESBlocks.AMARAMBER_BRICK_SLAB.get(),
 				ESBlocks.AMARAMBER_BRICK_STAIRS.get(),
@@ -1084,6 +1099,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.GRIMSTONE_BRICK_SLAB.get(),
 				ESBlocks.GRIMSTONE_BRICK_STAIRS.get(),
 				ESBlocks.GRIMSTONE_BRICK_WALL.get(),
+				ESBlocks.CRACKED_GRIMSTONE_BRICKS.get(),
 				ESBlocks.POLISHED_GRIMSTONE.get(),
 				ESBlocks.POLISHED_GRIMSTONE_SLAB.get(),
 				ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(),

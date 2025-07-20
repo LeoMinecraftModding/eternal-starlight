@@ -299,6 +299,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.GRIMSTONE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.GRIMSTONE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.GRIMSTONE_BRICK_WALL.get());
+		dropSelf(ESBlocks.CRACKED_GRIMSTONE_BRICKS.get());
 		dropSelf(ESBlocks.POLISHED_GRIMSTONE.get());
 		add(ESBlocks.POLISHED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.POLISHED_GRIMSTONE_STAIRS.get());
@@ -761,6 +762,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		add(ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARLIT_DIAMOND.get()).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARLIT_DIAMOND.get()).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARLIT_DIAMOND.get()).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARLIT_DIAMOND.get()).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropSelf(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
 
 		add(ESBlocks.SWAMP_SILVER_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
@@ -807,6 +810,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.FLOWGLAZE.get());
 		dropSelf(ESBlocks.FLOWGLAZE_PANE.get());
+		dropSelf(ESBlocks.FLOWGLAZE_BRICKS.get());
+		add(ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.FLOWGLAZE_BRICK_STAIRS.get());
+		dropSelf(ESBlocks.FLOWGLAZE_BRICK_WALL.get());
 
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);

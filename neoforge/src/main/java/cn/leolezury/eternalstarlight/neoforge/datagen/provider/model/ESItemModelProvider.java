@@ -76,12 +76,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.SEA_ROSA.get());
 		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
 		flatBlockTexture(ESItems.LUMENSTEM.get());
-		flatBlockTexture(ESItems.CIRCULUSH.get());
+		basicItem(ESItems.CIRCULUSH.get());
 		flatBlockTexture(ESItems.MARIMOLD.get());
-		flatBlockTexture(ESItems.STONETT.get());
-		flatBlockTexture(ESItems.LUMINIS.get());
-		flatBlockTexture(ESItems.GLOWLIS.get());
-		flatBlockTexture(ESItems.GLOREED.get());
+		basicItem(ESItems.STONETT.get());
+		basicItem(ESItems.LUMINIS.get());
+		basicItem(ESItems.GLOWLIS.get());
+		basicItem(ESItems.GLOREED.get());
 		basicItem(ESItems.STARLIGHT_SEAGRASS.get());
 
 		flatBlockTexture(ESItems.JINGLING_PICKLE.get());
@@ -251,6 +251,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GRIMSTONE_BRICK_SLAB.get());
 		block(ESItems.GRIMSTONE_BRICK_STAIRS.get());
 		wall(ESItems.GRIMSTONE_BRICK_WALL.get(), ESItems.GRIMSTONE_BRICKS.get());
+		block(ESItems.CRACKED_GRIMSTONE_BRICKS.get());
 		block(ESItems.POLISHED_GRIMSTONE.get());
 		block(ESItems.POLISHED_GRIMSTONE_SLAB.get());
 		block(ESItems.POLISHED_GRIMSTONE_STAIRS.get());
@@ -695,6 +696,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
 		block(ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		block(ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
+		block(ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
 		block(ESItems.STARLIT_DIAMOND_BLOCK.get());
 		basicItem(ESItems.STARLIT_DIAMOND.get());
 		handheld(ESItems.STARLIT_DIAMOND_SWORD.get());
@@ -779,6 +782,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.FLOWGLAZE.get());
 		basicItem(ESItems.FLOWGLAZE_PANE.get(), blockTextureFromItem(ESItems.FLOWGLAZE.get()));
+		block(ESItems.FLOWGLAZE_BRICKS.get());
+		block(ESItems.FLOWGLAZE_BRICK_SLAB.get());
+		block(ESItems.FLOWGLAZE_BRICK_STAIRS.get());
+		wall(ESItems.FLOWGLAZE_BRICK_WALL.get(), ESItems.FLOWGLAZE_BRICKS.get());
 		basicItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get());
 		handheld(ESItems.FLOWGLAZE_SWORD.get());
 		handheld(ESItems.FLOWGLAZE_PICKAXE.get());

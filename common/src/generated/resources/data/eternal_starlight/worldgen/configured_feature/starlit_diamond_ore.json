@@ -21,6 +21,24 @@
           "block": "eternal_starlight:voidstone",
           "predicate_type": "minecraft:block_match"
         }
+      },
+      {
+        "state": {
+          "Name": "eternal_starlight:eternal_ice_starlit_diamond_ore"
+        },
+        "target": {
+          "block": "eternal_starlight:eternal_ice",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "eternal_starlight:haze_ice_starlit_diamond_ore"
+        },
+        "target": {
+          "block": "eternal_starlight:haze_ice",
+          "predicate_type": "minecraft:block_match"
+        }
       }
     ]
   }
