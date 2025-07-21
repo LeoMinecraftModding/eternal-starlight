@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:put_seeds_into_starfire_bird_nest",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:starfire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_starfire.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:starfire"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_starfire.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

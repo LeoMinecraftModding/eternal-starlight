@@ -4,7 +4,11 @@
     "default": "eternal_starlight:jinglestem_checked",
     "features": [
       {
-        "chance": 0.25,
+        "chance": 0.2,
+        "feature": "eternal_starlight:huge_marimold_checked"
+      },
+      {
+        "chance": 0.5,
         "feature": "eternal_starlight:jinglestem_checked"
       }
     ]

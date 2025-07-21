@@ -101,8 +101,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SEA_ROSA = registerItem("sea_rosa", () -> new BlockItem(ESBlocks.SEA_ROSA.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WICK_GRASS = registerItem("wick_grass", () -> new BlockItem(ESBlocks.WICK_GRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUMENSTEM = registerItem("lumenstem", () -> new BlockItem(ESBlocks.LUMENSTEM.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CIRCULUSH = registerItem("circulush", () -> new BlockItem(ESBlocks.CIRCULUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MARIMOLD = registerItem("marimold", () -> new BlockItem(ESBlocks.MARIMOLD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD_BLOCK = registerItem("marimold_block", () -> new BlockItem(ESBlocks.MARIMOLD_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD_STEM = registerItem("marimold_stem", () -> new BlockItem(ESBlocks.MARIMOLD_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CIRCULUSH = registerItem("circulush", () -> new BlockItem(ESBlocks.CIRCULUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STONETT = registerItem("stonett", () -> new BlockItem(ESBlocks.STONETT.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUMINIS = registerItem("luminis", () -> new BlockItem(ESBlocks.LUMINIS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWLIS = registerItem("glowlis", () -> new BlockItem(ESBlocks.GLOWLIS.get(), new Item.Properties()));
@@ -910,6 +912,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARFIRE_HAMMER = registerItem("starfire_hammer",
 		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, ESParticles.STARFIRE_EXPLOSION::get, ESSoundEvents.STARFIRE_WHOOSH.asHolder(), new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3.4F))));
 
+	public static final RegistryObject<Item, Item> RAW_FLOWGLAZE = registerItem("raw_flowglaze", () -> new BlockItem(ESBlocks.RAW_FLOWGLAZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE = registerItem("flowglaze", () -> new BlockItem(ESBlocks.FLOWGLAZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_PANE = registerItem("flowglaze_pane", () -> new BlockItem(ESBlocks.FLOWGLAZE_PANE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_BRICKS = registerItem("flowglaze_bricks", () -> new BlockItem(ESBlocks.FLOWGLAZE_BRICKS.get(), new Item.Properties()));

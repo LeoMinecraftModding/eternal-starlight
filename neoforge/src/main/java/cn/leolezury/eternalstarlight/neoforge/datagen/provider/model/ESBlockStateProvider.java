@@ -46,8 +46,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		doublePlant(ESBlocks.WICK_GRASS.get());
 		lumenstem(ESBlocks.LUMENSTEM.get());
 		lumenstemPlant(ESBlocks.LUMENSTEM_PLANT.get());
-		cross(ESBlocks.CIRCULUSH.get());
 		cross(ESBlocks.MARIMOLD.get());
+		simpleBlock(ESBlocks.MARIMOLD_BLOCK.get(), models().cubeAll(name(ESBlocks.MARIMOLD_BLOCK.get()), blockTexture(ESBlocks.MARIMOLD_BLOCK.get())).renderType(TRANSLUCENT));
+		mushroomLikeBlock(ESBlocks.MARIMOLD_STEM.get());
+		cross(ESBlocks.CIRCULUSH.get());
 		cross(ESBlocks.STONETT.get());
 		cross(ESBlocks.LUMINIS.get());
 		cross(ESBlocks.GLOWLIS.get());
@@ -354,12 +356,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		doublePlant(ESBlocks.TALL_GLADESPIKE.get());
 		onOffBlock(ESBlocks.MOONLIGHT_BUSH.get(), MoonlightBushBlock.BERRIES, models().cross(name(ESBlocks.MOONLIGHT_BUSH.get()) + "_berries", blockTexture(ESBlocks.MOONLIGHT_BUSH.get()).withSuffix("_berries")).renderType(CUTOUT), models().cross(name(ESBlocks.MOONLIGHT_BUSH.get()), blockTexture(ESBlocks.MOONLIGHT_BUSH.get())).renderType(CUTOUT));
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
-		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
+		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 		directionalBud(ESBlocks.BOULDERSHROOM.get());
-		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
 		pottedPlant(ESBlocks.POTTED_BOULDERSHROOM.get(), blockTexture(ESBlocks.BOULDERSHROOM.get()));
+		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
 		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_STEM.get(), blockTexture(ESBlocks.BOULDERSHROOM_BLOCK.get()).withSuffix("_inside"));
 		cross(ESBlocks.BOULDERSHROOM_ROOTS.get());
 		cross(ESBlocks.BOULDERSHROOM_ROOTS_PLANT.get());
@@ -526,6 +528,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		starfireBirdAviary(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("torreya"));
 		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));
 
+		simpleBlock(ESBlocks.RAW_FLOWGLAZE.get());
 		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));
 		paneBlockWithRenderType(ESBlocks.FLOWGLAZE_PANE.get(), blockTexture(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
 		stoneSet(ESBlocks.FLOWGLAZE_BRICKS.get(), ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICK_WALL.get());

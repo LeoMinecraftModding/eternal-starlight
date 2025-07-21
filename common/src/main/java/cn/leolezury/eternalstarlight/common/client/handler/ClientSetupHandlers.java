@@ -162,8 +162,8 @@ public class ClientSetupHandlers {
 		ESBlocks.WICK_GRASS,
 		ESBlocks.LUMENSTEM,
 		ESBlocks.LUMENSTEM_PLANT,
-		ESBlocks.CIRCULUSH,
 		ESBlocks.MARIMOLD,
+		ESBlocks.CIRCULUSH,
 		ESBlocks.STONETT,
 		ESBlocks.LUMINIS,
 		ESBlocks.GLOWLIS,
@@ -360,6 +360,7 @@ public class ClientSetupHandlers {
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
+		ESBlocks.MARIMOLD_BLOCK,
 		ESBlocks.DUSK_GLASS,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
 		ESBlocks.FLOWGLAZE,

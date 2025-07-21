@@ -76,8 +76,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.SEA_ROSA.get());
 		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
 		flatBlockTexture(ESItems.LUMENSTEM.get());
-		basicItem(ESItems.CIRCULUSH.get());
 		flatBlockTexture(ESItems.MARIMOLD.get());
+		block(ESItems.MARIMOLD_BLOCK.get());
+		cubeAll(ESItems.MARIMOLD_STEM.get());
+		basicItem(ESItems.CIRCULUSH.get());
 		basicItem(ESItems.STONETT.get());
 		basicItem(ESItems.LUMINIS.get());
 		basicItem(ESItems.GLOWLIS.get());
@@ -780,6 +782,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.STARFIRE_SCYTHE.get());
 		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
 
+		block(ESItems.RAW_FLOWGLAZE.get());
 		block(ESItems.FLOWGLAZE.get());
 		basicItem(ESItems.FLOWGLAZE_PANE.get(), blockTextureFromItem(ESItems.FLOWGLAZE.get()));
 		block(ESItems.FLOWGLAZE_BRICKS.get());

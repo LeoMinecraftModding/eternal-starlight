@@ -6,15 +6,18 @@
       "entries": [
         {
           "data": {
-            "Name": "eternal_starlight:circulush"
+            "Name": "eternal_starlight:marimold",
+            "Properties": {
+              "waterlogged": "false"
+            }
           },
-          "weight": 2
+          "weight": 1
         },
         {
           "data": {
-            "Name": "eternal_starlight:marimold"
+            "Name": "eternal_starlight:circulush"
           },
-          "weight": 1
+          "weight": 2
         },
         {
           "data": {

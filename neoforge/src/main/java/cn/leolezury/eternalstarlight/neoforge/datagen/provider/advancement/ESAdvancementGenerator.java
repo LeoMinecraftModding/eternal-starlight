@@ -216,6 +216,20 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("critical_hit", ESCriteriaTriggers.HAMMER_CRITICAL_HIT.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":hammer_critical_hit");
 
+		AdvancementHolder putSeedsIntoStarfireBirdNest = Advancement.Builder.advancement().parent(enterDim).display(
+				ESItems.STARFIRE_BIRD_NEST.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".put_seeds_into_starfire_bird_nest.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".put_seeds_into_starfire_bird_nest.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("put_seeds", ESCriteriaTriggers.PUT_SEEDS_INTO_STARFIRE_BIRD_NEST.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":put_seeds_into_starfire_bird_nest");
+
+		AdvancementHolder starfire = addItemObtain(consumer, putSeedsIntoStarfireBirdNest, "obtain_starfire", ESItems.STARFIRE.get());
+
+		AdvancementHolder flowglaze = addItemObtain(consumer, starfire, "obtain_flowglaze", ESItems.FLOWGLAZE.get());
+
 		AdvancementHolder thermalSpringstone = addItemObtain(consumer, enterDim, "obtain_thermal_springstone", ESItems.THERMAL_SPRINGSTONE.get());
 
 		AdvancementHolder rawAmaramber = addItemObtain(consumer, enterDim, "obtain_raw_amaramber", ESItems.RAW_AMARAMBER.get());

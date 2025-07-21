@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:raw_flowglaze"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:flowglaze"
+  }
+}

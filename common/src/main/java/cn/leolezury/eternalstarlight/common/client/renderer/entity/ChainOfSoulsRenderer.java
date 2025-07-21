@@ -82,8 +82,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		}
 		if (this.entityRenderDispatcher.options.getCameraType().isFirstPerson() && player == Minecraft.getInstance().player) {
 			double fovFactor = 960.0 / (double) this.entityRenderDispatcher.options.fov().get();
-			float xRotFactor = player.getViewXRot(partialTicks) / 750f;
-			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * (0.85f + xRotFactor), -0.1f).scale(fovFactor).yRot(attackAnim * 0.5f).xRot(-attackAnim * 0.7f);
+			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * 0.85f, -0.95f).scale(fovFactor).yRot(attackAnim * 0.5f).xRot(-attackAnim * 0.7f);
 			return player.getEyePosition(partialTicks).add(vec3);
 		} else {
 			float f = Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot) * (float) (Math.PI / 180.0);

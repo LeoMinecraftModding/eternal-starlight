@@ -49,7 +49,7 @@ public class ThrownStarfire extends ThrowableItemProjectile {
 	protected void onHitBlock(BlockHitResult hitResult) {
 		super.onHitBlock(hitResult);
 		if (hitResult.getType() != HitResult.Type.MISS && level().getBlockState(hitResult.getBlockPos()).is(BlockTags.SAND)) {
-			level().setBlockAndUpdate(hitResult.getBlockPos(), ESBlocks.FLOWGLAZE.get().defaultBlockState());
+			level().setBlockAndUpdate(hitResult.getBlockPos(), ESBlocks.RAW_FLOWGLAZE.get().defaultBlockState());
 		}
 	}
 

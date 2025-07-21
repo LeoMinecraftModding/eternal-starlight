@@ -131,7 +131,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "createLivingAttributes", at = @At("RETURN"))
 	private static void createLivingAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
-		cir.getReturnValue().add(ESAttributes.THROWN_POTION_DISTANCE.asHolder()).add(ESAttributes.ETHER_RESISTANCE.asHolder());
+		cir.getReturnValue().add(ESAttributes.THROWN_POTION_DISTANCE.asHolder()).add(ESAttributes.ETHER_RESISTANCE.asHolder()).add(ESAttributes.FIRE_RESISTANCE.asHolder());
 	}
 
 	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V", shift = At.Shift.AFTER))

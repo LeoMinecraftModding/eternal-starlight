@@ -70,8 +70,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		plant(ESBlocks.WICK_GRASS.get());
 		dropSelf(ESBlocks.LUMENSTEM.get());
 		dropOther(ESBlocks.LUMENSTEM_PLANT.get(), ESBlocks.LUMENSTEM.get());
-		plant(ESBlocks.CIRCULUSH.get());
 		plant(ESBlocks.MARIMOLD.get());
+		add(ESBlocks.MARIMOLD_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.MARIMOLD.get())));
+		dropWhenSilkTouch(ESBlocks.MARIMOLD_STEM.get());
+		plant(ESBlocks.CIRCULUSH.get());
 		plant(ESBlocks.STONETT.get());
 		plant(ESBlocks.LUMINIS.get());
 		plant(ESBlocks.GLOWLIS.get());
@@ -808,6 +810,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 
+		dropSelf(ESBlocks.RAW_FLOWGLAZE.get());
 		dropSelf(ESBlocks.FLOWGLAZE.get());
 		dropSelf(ESBlocks.FLOWGLAZE_PANE.get());
 		dropSelf(ESBlocks.FLOWGLAZE_BRICKS.get());

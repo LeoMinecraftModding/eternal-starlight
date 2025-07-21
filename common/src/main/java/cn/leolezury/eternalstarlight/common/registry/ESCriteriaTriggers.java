@@ -20,6 +20,7 @@ public class ESCriteriaTriggers {
 	public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> WITNESS_STRANGHOUL_HUNT = TRIGGERS.register("witness_stranghoul_hunt", PlayerTrigger::new);
 	public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> HIRE_STRANGHOUL = TRIGGERS.register("hire_stranghoul", PlayerTrigger::new);
 	public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> HAMMER_CRITICAL_HIT = TRIGGERS.register("hammer_critical_hit", PlayerTrigger::new);
+	public static final RegistryObject<CriterionTrigger<?>, PlayerTrigger> PUT_SEEDS_INTO_STARFIRE_BIRD_NEST = TRIGGERS.register("put_seeds_into_starfire_bird_nest", PlayerTrigger::new);
 
 	public static void loadClass() {
 	}

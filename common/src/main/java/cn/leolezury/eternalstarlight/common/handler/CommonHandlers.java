@@ -175,12 +175,9 @@ public class CommonHandlers {
 					modified *= instance.getAmplifier() + 2;
 				}
 			}
-			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
-			) {
-				modified /= 2;
+			AttributeInstance resistance = entity.getAttribute(ESAttributes.FIRE_RESISTANCE.asHolder());
+			if (resistance != null) {
+				modified *= (1 - (float) resistance.getValue());
 			}
 		}
 		if (entity.hasEffect(ESMobEffects.NUMBNESS.asHolder())) {

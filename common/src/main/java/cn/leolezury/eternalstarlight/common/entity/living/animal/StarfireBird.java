@@ -223,6 +223,10 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 			if (loveCause != null && this.partner != null) {
 				loveCause.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(loveCause, this.animal, this.partner, null);
+				StarfireBird.this.addTrustedPlayer(loveCause.getUUID());
+				if (this.partner instanceof StarfireBird bird) {
+					bird.addTrustedPlayer(loveCause.getUUID());
+				}
 			}
 
 			StarfireBird.this.setHasEgg(true);

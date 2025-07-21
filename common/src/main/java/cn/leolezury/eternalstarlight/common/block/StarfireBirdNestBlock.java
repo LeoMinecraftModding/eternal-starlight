@@ -2,11 +2,13 @@ package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -66,6 +68,9 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 		if (stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest && !nest.seedsFull()) {
 			if (!level.isClientSide && nest.addSeeds(stack)) {
 				nest.setLastSeedPlayer(player);
+				if (player instanceof ServerPlayer serverPlayer) {
+					ESCriteriaTriggers.PUT_SEEDS_INTO_STARFIRE_BIRD_NEST.get().trigger(serverPlayer);
+				}
 				stack.consume(1, player);
 			}
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);

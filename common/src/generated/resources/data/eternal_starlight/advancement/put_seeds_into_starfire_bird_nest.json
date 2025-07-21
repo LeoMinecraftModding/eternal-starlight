@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "put_seeds": {
+      "trigger": "eternal_starlight:put_seeds_into_starfire_bird_nest"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.put_seeds_into_starfire_bird_nest.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:starfire_bird_nest"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.put_seeds_into_starfire_bird_nest.title"
+    }
+  },
+  "requirements": [
+    [
+      "put_seeds"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

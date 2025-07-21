@@ -1,0 +1,17 @@
+{
+  "feature": "eternal_starlight:huge_marimold",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "eternal_starlight:marimold",
+          "Properties": {
+            "waterlogged": "false"
+          }
+        }
+      }
+    }
+  ]
+}

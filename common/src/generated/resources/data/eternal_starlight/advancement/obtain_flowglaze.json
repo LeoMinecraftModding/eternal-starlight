@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:obtain_starfire",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:flowglaze"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_flowglaze.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:flowglaze"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_flowglaze.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
