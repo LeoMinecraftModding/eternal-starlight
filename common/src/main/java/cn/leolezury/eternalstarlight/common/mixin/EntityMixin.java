@@ -13,6 +13,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -95,6 +97,19 @@ public abstract class EntityMixin implements PersistentDataHolder {
 	private void checkInsideBlocks(CallbackInfo ci, @Local(ordinal = 0) BlockState state) {
 		if (state.getFluidState().is(ESTags.Fluids.ETHER)) {
 			getESPersistentData().putBoolean(CommonHandlers.TAG_IN_ETHER, true);
+		}
+	}
+
+	@Inject(method = "deflection", at = @At("RETURN"), cancellable = true)
+	private void deflection(Projectile projectile, CallbackInfoReturnable<ProjectileDeflection> cir) {
+		Entity entity = (Entity) (Object) this;
+		if (entity instanceof LivingEntity living && living.isBlocking() && living.getUseItem().is(ESItems.FLOWGLAZE_SHIELD.get())) {
+			Vec3 viewVector = living.calculateViewVector(0.0F, living.getYHeadRot());
+			Vec3 offset = projectile.position().vectorTo(living.position());
+			offset = new Vec3(offset.x, 0.0, offset.z).normalize();
+			if (offset.dot(viewVector) < 0.0) {
+				cir.setReturnValue(ProjectileDeflection.AIM_DEFLECT);
+			}
 		}
 	}
 }

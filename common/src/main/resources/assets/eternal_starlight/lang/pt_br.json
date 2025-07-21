@@ -1040,6 +1040,7 @@
   "tooltip.eternal_starlight.dagger_of_hunger.hurt_player": "Quando com fome: Come o jogador",
   "tooltip.eternal_starlight.flowglaze_weapon": "Damage increases after landing consecutive attacks on the same target",
   "tooltip.eternal_starlight.flowglaze_tool": "Instantly destroys blocks when mining duration exceeds a threshold",
+  "tooltip.eternal_starlight.flowglaze_shield": "Reflects projectiles when blocking",
   "tooltip.eternal_starlight.blossom_of_stars": "Para um pensador!",
   "entity.eternal_starlight.falling_block": "Bloco Caindo",
   "entity.eternal_starlight.painting": "Pintura",

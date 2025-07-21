@@ -164,6 +164,9 @@ public class CommonHandlers {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
+		if (itemStack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+		}
 	}
 
 	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
@@ -416,16 +419,22 @@ public class CommonHandlers {
 					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 					ServerLevel serverLevel = serverPlayer.serverLevel();
 					if (gameMode.isDestroyingBlock && serverPlayer.getMainHandItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
+						BlockPos oldTarget = ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TARGET.getData(serverPlayer);
+						if (oldTarget != null && !oldTarget.equals(gameMode.destroyPos)) {
+							ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, 0);
+						}
+						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TARGET.setData(serverPlayer, gameMode.destroyPos);
 						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) + 1);
-						if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) >= 100) {
+						if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) >= 100 && serverLevel.getBlockState(gameMode.destroyPos).getDestroyProgress(serverPlayer, serverLevel, gameMode.destroyPos) > 0) {
 							int id = Block.getId(serverLevel.getBlockState(gameMode.destroyPos));
 							gameMode.destroyBlock(gameMode.destroyPos);
 							for (int i = 0; i < serverLevel.players().size(); i++) {
 								serverLevel.players().get(i).connection.send(new ClientboundLevelEventPacket(2001, gameMode.destroyPos, id, false));
 							}
 						}
-					} else {
-						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, 0);
+					} else if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TARGET.hasData(serverPlayer) || ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.hasData(serverPlayer)) {
+						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TARGET.removeData(serverPlayer);
+						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.removeData(serverPlayer);
 					}
 				}
 			}

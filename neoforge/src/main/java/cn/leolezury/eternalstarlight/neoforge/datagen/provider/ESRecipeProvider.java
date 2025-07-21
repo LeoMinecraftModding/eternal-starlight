@@ -1439,13 +1439,13 @@ public class ESRecipeProvider extends RecipeProvider {
 		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());
 		copySmithingTemplate(recipeOutput, ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ATALPHAITE_BLOCK.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
-		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SWORD.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_SWORD.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_PICKAXE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_AXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_AXE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HOE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HOE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
-		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SCYTHE.get());
-		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_HAMMER.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_SCYTHE.get());
+		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_HAMMER.get());
 
 		addSmelt(recipeOutput, 200, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
 		addBlast(recipeOutput, 100, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
@@ -1456,13 +1456,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESBlocks.FLOWGLAZE.get()))
 			.save(recipeOutput);
 		copySmithingTemplate(recipeOutput, ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ETERNAL_ICE.get(), ESConventionalTags.Items.GEMS_GLACITE);
-		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SWORD.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SWORD.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SWORD.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SWORD.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_PICKAXE.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_AXE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_AXE.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_HOE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_HOE.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHOVEL.get());
-		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SCYTHE.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SCYTHE.get());
-		flowglazeSmithing(recipeOutput, ESItems.FLOWGLAZE_SHIELD.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHIELD.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SCYTHE.get());
+		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHIELD.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SHIELD.get());
 	}
 
 	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {

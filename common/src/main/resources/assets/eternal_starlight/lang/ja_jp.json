@@ -1040,6 +1040,7 @@
   "tooltip.eternal_starlight.dagger_of_hunger.hurt_player": "飢餓値が低いとき：プレイヤーを喰らう",
   "tooltip.eternal_starlight.flowglaze_weapon": "同じ敵を連続で攻撃するとダメージが増加する",
   "tooltip.eternal_starlight.flowglaze_tool": "採掘時間がしきい値を超えるとブロックを即座に破壊する",
+  "tooltip.eternal_starlight.flowglaze_shield": "Reflects projectiles when blocking",
   "tooltip.eternal_starlight.blossom_of_stars": "夢想家に捧ぐ",
   "entity.eternal_starlight.falling_block": "落下中のブロック",
   "entity.eternal_starlight.painting": "絵画",

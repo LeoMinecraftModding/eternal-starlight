@@ -4,6 +4,7 @@
   "textures": {
     "fire": "eternal_starlight:block/torreya_campfire_fire",
     "lit_log": "eternal_starlight:block/torreya_campfire_log_lit",
-    "log": "eternal_starlight:block/torreya_campfire_log"
+    "log": "eternal_starlight:block/torreya_campfire_log",
+    "particle": "eternal_starlight:block/torreya_campfire_log"
   }
 }

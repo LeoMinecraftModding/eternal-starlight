@@ -1034,8 +1034,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ResourceLocation fire = blockTexture(block).withSuffix("_fire");
 		ResourceLocation starfire = blockTexture(block).withSuffix("_starfire");
 		ModelFile modelNormal = models().withExistingParent(name(block) + "_off", ResourceLocation.withDefaultNamespace("campfire_off")).texture("log", log).texture("particle", log).renderType(CUTOUT);
-		ModelFile modelLit = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
-		ModelFile modelStarfire = models().withExistingParent(name(block) + "_starfire", ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("lit_log", litLog).texture("fire", starfire).renderType(CUTOUT);
+		ModelFile modelLit = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("particle", log).texture("lit_log", litLog).texture("fire", fire).renderType(CUTOUT);
+		ModelFile modelStarfire = models().withExistingParent(name(block) + "_starfire", ResourceLocation.withDefaultNamespace("template_campfire")).texture("log", log).texture("particle", log).texture("lit_log", litLog).texture("fire", starfire).renderType(CUTOUT);
 		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.LIT) ? (state.getValue(TorreyaCampfireBlock.STARFIRE) ? modelStarfire : modelLit) : modelNormal).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build(), BlockStateProperties.WATERLOGGED, BlockStateProperties.SIGNAL_FIRE);
 	}
 
