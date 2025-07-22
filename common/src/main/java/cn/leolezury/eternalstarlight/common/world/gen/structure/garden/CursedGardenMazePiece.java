@@ -40,7 +40,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 	private static final int STRUCTURE_SIZE = MAZE_SIZE * 3;
 	private static final int STRUCTURE_HEIGHT = 12;
 	private static final int CENTER_SIZE = 20;
-	private static final int LUNAR_VINE_SIZE = 22;
+	private static final int LUNAR_VINE_SIZE = 21;
 	private static final Set<Direction> HORIZONTAL_DIRECTIONS = Set.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
 
 	private final StructureTemplate noConnection;
