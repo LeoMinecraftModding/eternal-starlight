@@ -607,6 +607,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	private void addStoneRecipes(RecipeOutput recipeOutput) {
 		addSmelt(recipeOutput, 200, ESBlocks.COBBLED_GRIMSTONE.get(), ESBlocks.GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE.get());
 		addSmelt(recipeOutput, 200, ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.CRACKED_GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICKS.get());
+		addSmelt(recipeOutput, 200, ESBlocks.GRIMSTONE_TILES.get(), ESBlocks.CRACKED_GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_TILES.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_GRIMSTONE.get(), ESBlocks.GRIMSTONE.get());
 		addStoneCompress(recipeOutput, ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.POLISHED_GRIMSTONE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GRIMSTONE.get(), ESBlocks.GRIMSTONE_BRICK_SLAB.get());
@@ -629,6 +630,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecuttingSet(recipeOutput, ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILE_WALL.get(), ESBlocks.POLISHED_GRIMSTONE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_BRICKS.get());
 		stonecuttingSet(recipeOutput, ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILE_WALL.get(), ESBlocks.GRIMSTONE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.COBBLED_GRIMSTONE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.COBBLED_GRIMSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.GRIMSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.POLISHED_GRIMSTONE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.POLISHED_GRIMSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.GRIMSTONE_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_TILES.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.GRIMSTONE_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GRIMSTONE.get(), ESBlocks.GRIMSTONE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GRIMSTONE.get(), ESBlocks.POLISHED_GRIMSTONE.get());
@@ -657,8 +668,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILES.get());
 		addSlab(recipeOutput, ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILES.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILES.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		addStairs(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		addSlab(recipeOutput, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILES.get(), 2);
 
 		addSmelt(recipeOutput, 200, ESBlocks.COBBLED_VOIDSTONE.get(), ESBlocks.VOIDSTONE.get(), ESBlocks.COBBLED_VOIDSTONE.get());
+		addSmelt(recipeOutput, 200, ESBlocks.VOIDSTONE_BRICKS.get(), ESBlocks.CRACKED_VOIDSTONE_BRICKS.get(), ESBlocks.VOIDSTONE_BRICKS.get());
+		addSmelt(recipeOutput, 200, ESBlocks.VOIDSTONE_TILES.get(), ESBlocks.CRACKED_VOIDSTONE_TILES.get(), ESBlocks.VOIDSTONE_TILES.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_VOIDSTONE.get(), ESBlocks.VOIDSTONE.get());
 		addStoneCompress(recipeOutput, ESBlocks.VOIDSTONE_BRICKS.get(), ESBlocks.POLISHED_VOIDSTONE.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_VOIDSTONE.get(), ESBlocks.VOIDSTONE_BRICK_SLAB.get());

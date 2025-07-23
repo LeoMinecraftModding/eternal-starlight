@@ -310,6 +310,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.GRIMSTONE_TILE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.GRIMSTONE_TILE_STAIRS.get());
 		dropSelf(ESBlocks.GRIMSTONE_TILE_WALL.get());
+		dropSelf(ESBlocks.CRACKED_GRIMSTONE_TILES.get());
+		dropSelf(ESBlocks.POLISHED_GRIMSTONE_TILES.get());
+		add(ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get());
+		dropSelf(ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get());
 		dropSelf(ESBlocks.CHISELED_GRIMSTONE.get());
 		dropSelf(ESBlocks.GLOWING_GRIMSTONE.get());
 
@@ -322,6 +327,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.VOIDSTONE_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.VOIDSTONE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.VOIDSTONE_BRICK_WALL.get());
+		dropSelf(ESBlocks.CRACKED_VOIDSTONE_BRICKS.get());
 		dropSelf(ESBlocks.POLISHED_VOIDSTONE.get());
 		add(ESBlocks.POLISHED_VOIDSTONE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.POLISHED_VOIDSTONE_STAIRS.get());
@@ -330,6 +336,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.VOIDSTONE_TILE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.VOIDSTONE_TILE_STAIRS.get());
 		dropSelf(ESBlocks.VOIDSTONE_TILE_WALL.get());
+		dropSelf(ESBlocks.CRACKED_VOIDSTONE_TILES.get());
 		dropSelf(ESBlocks.CHISELED_VOIDSTONE.get());
 		dropSelf(ESBlocks.GLOWING_VOIDSTONE.get());
 

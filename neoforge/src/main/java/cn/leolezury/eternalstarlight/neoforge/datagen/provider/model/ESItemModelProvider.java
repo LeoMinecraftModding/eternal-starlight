@@ -262,6 +262,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GRIMSTONE_TILE_SLAB.get());
 		block(ESItems.GRIMSTONE_TILE_STAIRS.get());
 		wall(ESItems.GRIMSTONE_TILE_WALL.get(), ESItems.GRIMSTONE_TILES.get());
+		block(ESItems.CRACKED_GRIMSTONE_TILES.get());
+		block(ESItems.POLISHED_GRIMSTONE_TILES.get());
+		block(ESItems.POLISHED_GRIMSTONE_TILE_SLAB.get());
+		block(ESItems.POLISHED_GRIMSTONE_TILE_STAIRS.get());
+		wall(ESItems.POLISHED_GRIMSTONE_TILE_WALL.get(), ESItems.POLISHED_GRIMSTONE_TILES.get());
 		block(ESItems.CHISELED_GRIMSTONE.get());
 		block(ESItems.GLOWING_GRIMSTONE.get());
 
@@ -274,6 +279,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_BRICK_SLAB.get());
 		block(ESItems.VOIDSTONE_BRICK_STAIRS.get());
 		wall(ESItems.VOIDSTONE_BRICK_WALL.get(), ESItems.VOIDSTONE_BRICKS.get());
+		block(ESItems.CRACKED_VOIDSTONE_BRICKS.get());
 		block(ESItems.POLISHED_VOIDSTONE.get());
 		block(ESItems.POLISHED_VOIDSTONE_SLAB.get());
 		block(ESItems.POLISHED_VOIDSTONE_STAIRS.get());
@@ -282,6 +288,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_TILE_SLAB.get());
 		block(ESItems.VOIDSTONE_TILE_STAIRS.get());
 		wall(ESItems.VOIDSTONE_TILE_WALL.get(), ESItems.VOIDSTONE_TILES.get());
+		block(ESItems.CRACKED_VOIDSTONE_TILES.get());
 		block(ESItems.CHISELED_VOIDSTONE.get());
 		block(ESItems.GLOWING_VOIDSTONE.get());
 

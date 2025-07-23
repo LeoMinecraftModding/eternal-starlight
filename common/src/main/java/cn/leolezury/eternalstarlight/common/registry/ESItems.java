@@ -293,6 +293,11 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GRIMSTONE_TILE_SLAB = registerItem("grimstone_tile_slab", () -> new BlockItem(ESBlocks.GRIMSTONE_TILE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_TILE_STAIRS = registerItem("grimstone_tile_stairs", () -> new BlockItem(ESBlocks.GRIMSTONE_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_TILE_WALL = registerItem("grimstone_tile_wall", () -> new BlockItem(ESBlocks.GRIMSTONE_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRACKED_GRIMSTONE_TILES = registerItem("cracked_grimstone_tiles", () -> new BlockItem(ESBlocks.CRACKED_GRIMSTONE_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_TILES = registerItem("polished_grimstone_tiles", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_TILE_SLAB = registerItem("polished_grimstone_tile_slab", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_TILE_STAIRS = registerItem("polished_grimstone_tile_stairs", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_GRIMSTONE_TILE_WALL = registerItem("polished_grimstone_tile_wall", () -> new BlockItem(ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_GRIMSTONE = registerItem("chiseled_grimstone", () -> new BlockItem(ESBlocks.CHISELED_GRIMSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_GRIMSTONE = registerItem("glowing_grimstone", () -> new BlockItem(ESBlocks.GLOWING_GRIMSTONE.get(), new Item.Properties()));
 
@@ -306,6 +311,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> VOIDSTONE_BRICK_SLAB = registerItem("voidstone_brick_slab", () -> new BlockItem(ESBlocks.VOIDSTONE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_BRICK_STAIRS = registerItem("voidstone_brick_stairs", () -> new BlockItem(ESBlocks.VOIDSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_BRICK_WALL = registerItem("voidstone_brick_wall", () -> new BlockItem(ESBlocks.VOIDSTONE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRACKED_VOIDSTONE_BRICKS = registerItem("cracked_voidstone_bricks", () -> new BlockItem(ESBlocks.CRACKED_VOIDSTONE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_VOIDSTONE = registerItem("polished_voidstone", () -> new BlockItem(ESBlocks.POLISHED_VOIDSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_VOIDSTONE_SLAB = registerItem("polished_voidstone_slab", () -> new BlockItem(ESBlocks.POLISHED_VOIDSTONE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_VOIDSTONE_STAIRS = registerItem("polished_voidstone_stairs", () -> new BlockItem(ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(), new Item.Properties()));
@@ -314,6 +320,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> VOIDSTONE_TILE_SLAB = registerItem("voidstone_tile_slab", () -> new BlockItem(ESBlocks.VOIDSTONE_TILE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_TILE_STAIRS = registerItem("voidstone_tile_stairs", () -> new BlockItem(ESBlocks.VOIDSTONE_TILE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_TILE_WALL = registerItem("voidstone_tile_wall", () -> new BlockItem(ESBlocks.VOIDSTONE_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRACKED_VOIDSTONE_TILES = registerItem("cracked_voidstone_tiles", () -> new BlockItem(ESBlocks.CRACKED_VOIDSTONE_TILES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_VOIDSTONE = registerItem("chiseled_voidstone", () -> new BlockItem(ESBlocks.CHISELED_VOIDSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_VOIDSTONE = registerItem("glowing_voidstone", () -> new BlockItem(ESBlocks.GLOWING_VOIDSTONE.get(), new Item.Properties()));
 

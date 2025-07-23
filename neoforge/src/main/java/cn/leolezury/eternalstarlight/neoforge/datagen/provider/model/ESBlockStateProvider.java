@@ -158,14 +158,18 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.CRACKED_GRIMSTONE_BRICKS.get());
 		stoneSet(ESBlocks.POLISHED_GRIMSTONE.get(), ESBlocks.POLISHED_GRIMSTONE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_WALL.get());
 		stoneSet(ESBlocks.GRIMSTONE_TILES.get(), ESBlocks.GRIMSTONE_TILE_SLAB.get(), ESBlocks.GRIMSTONE_TILE_STAIRS.get(), ESBlocks.GRIMSTONE_TILE_WALL.get());
+		simpleBlock(ESBlocks.CRACKED_GRIMSTONE_TILES.get());
+		stoneSet(ESBlocks.POLISHED_GRIMSTONE_TILES.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_SLAB.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_STAIRS.get(), ESBlocks.POLISHED_GRIMSTONE_TILE_WALL.get());
 		simpleBlock(ESBlocks.GLOWING_GRIMSTONE.get());
 
 		randomlyFlippedBlock(ESBlocks.VOIDSTONE.get());
 		simpleBlock(ESBlocks.CHISELED_VOIDSTONE.get());
 		stoneSet(ESBlocks.COBBLED_VOIDSTONE.get(), ESBlocks.COBBLED_VOIDSTONE_SLAB.get(), ESBlocks.COBBLED_VOIDSTONE_STAIRS.get(), ESBlocks.COBBLED_VOIDSTONE_WALL.get());
 		stoneSet(ESBlocks.VOIDSTONE_BRICKS.get(), ESBlocks.VOIDSTONE_BRICK_SLAB.get(), ESBlocks.VOIDSTONE_BRICK_STAIRS.get(), ESBlocks.VOIDSTONE_BRICK_WALL.get());
+		simpleBlock(ESBlocks.CRACKED_VOIDSTONE_BRICKS.get());
 		stoneSet(ESBlocks.POLISHED_VOIDSTONE.get(), ESBlocks.POLISHED_VOIDSTONE_SLAB.get(), ESBlocks.POLISHED_VOIDSTONE_STAIRS.get(), ESBlocks.POLISHED_VOIDSTONE_WALL.get());
 		stoneSet(ESBlocks.VOIDSTONE_TILES.get(), ESBlocks.VOIDSTONE_TILE_SLAB.get(), ESBlocks.VOIDSTONE_TILE_STAIRS.get(), ESBlocks.VOIDSTONE_TILE_WALL.get());
+		simpleBlock(ESBlocks.CRACKED_VOIDSTONE_TILES.get());
 		simpleBlock(ESBlocks.GLOWING_VOIDSTONE.get());
 
 		simpleBlock(ESBlocks.ETERNAL_ICE.get());
