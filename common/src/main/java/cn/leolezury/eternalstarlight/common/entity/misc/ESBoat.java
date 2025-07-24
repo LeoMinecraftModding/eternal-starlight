@@ -47,6 +47,7 @@ public class ESBoat extends Boat {
 			case SCARLET -> ESItems.SCARLET_BOAT.get();
 			case TORREYA -> ESItems.TORREYA_BOAT.get();
 			case JINGLESTEM -> ESItems.JINGLESTEM_RAFT.get();
+			case CRADLEWOOD -> ESItems.CRADLEWOOD_BOAT.get();
 		};
 	}
 
@@ -87,7 +88,8 @@ public class ESBoat extends Boat {
 		STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
 		SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
 		TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya"),
-		JINGLESTEM(ESBlocks.JINGLESTEM_PLANKS.get(), "jinglestem");
+		JINGLESTEM(ESBlocks.JINGLESTEM_PLANKS.get(), "jinglestem"),
+		CRADLEWOOD(ESBlocks.CRADLEWOOD_PLANKS.get(), "cradlewood");
 
 		private final String name;
 		private final Block block;

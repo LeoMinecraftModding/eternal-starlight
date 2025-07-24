@@ -45,9 +45,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(Tags.Blocks.DYED_RED, Tags.Items.DYED_RED);
 		copy(Tags.Blocks.DYED_WHITE, Tags.Items.DYED_WHITE);
 		copy(Tags.Blocks.DYED_YELLOW, Tags.Items.DYED_YELLOW);
-		copy(Tags.Blocks.FENCE_GATES, Tags.Items.FENCE_GATES);
 		copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
-		copy(Tags.Blocks.FENCES, Tags.Items.FENCES);
 		copy(Tags.Blocks.FENCES_WOODEN, Tags.Items.FENCES_WOODEN);
 		copy(Tags.Blocks.GRAVELS, Tags.Items.GRAVELS);
 		copy(Tags.Blocks.ORE_RATES_DENSE, Tags.Items.ORE_RATES_DENSE);
@@ -380,6 +378,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESTags.Blocks.SCARLET_LOGS, ESTags.Items.SCARLET_LOGS);
 		copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
 		copy(ESTags.Blocks.JINGLESTEM_LOGS, ESTags.Items.JINGLESTEM_LOGS);
+		copy(ESTags.Blocks.CRADLEWOOD_LOGS, ESTags.Items.CRADLEWOOD_LOGS);
 		copy(ESTags.Blocks.YETI_FUR, ESTags.Items.YETI_FUR);
 		copy(ESTags.Blocks.YETI_FUR_CARPETS, ESTags.Items.YETI_FUR_CARPETS);
 		copy(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS, ESTags.Items.TOOTH_OF_HUNGER_BLOCKS);
@@ -925,7 +924,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARLIGHT_MANGROVE_BOAT.get(),
 				ESItems.SCARLET_BOAT.get(),
 				ESItems.TORREYA_BOAT.get(),
-				ESItems.JINGLESTEM_RAFT.get()
+				ESItems.JINGLESTEM_RAFT.get(),
+				ESItems.CRADLEWOOD_BOAT.get()
 			);
 		tag(ItemTags.CHEST_BOATS)
 			.add(
@@ -934,7 +934,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(),
 				ESItems.SCARLET_CHEST_BOAT.get(),
 				ESItems.TORREYA_CHEST_BOAT.get(),
-				ESItems.JINGLESTEM_CHEST_RAFT.get()
+				ESItems.JINGLESTEM_CHEST_RAFT.get(),
+				ESItems.CRADLEWOOD_CHEST_BOAT.get()
 			);
 		tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
 			.add(

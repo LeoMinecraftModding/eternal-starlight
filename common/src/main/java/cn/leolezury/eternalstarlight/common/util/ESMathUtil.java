@@ -136,6 +136,53 @@ public class ESMathUtil {
 		return points;
 	}
 
+	private static void addEllipsePoints(List<int[]> points, int xc, int yc, int x, int y) {
+		points.add(new int[]{xc + x, yc + y});
+		points.add(new int[]{xc + x, yc - y});
+		points.add(new int[]{xc - x, yc + y});
+		points.add(new int[]{xc - x, yc - y});
+	}
+
+	public static List<int[]> getBresenhamEllipsePoints(int xc, int yc, int rx, int ry) {
+		List<int[]> points = new ArrayList<>();
+		int rx2 = rx * rx;
+		int ry2 = ry * ry;
+		int p;
+		int x = 0, y = ry;
+		int px = 0, py = 2 * rx2 * y;
+
+		addEllipsePoints(points, xc, yc, x, y);
+
+		p = (int) Math.round(ry2 - rx2 * ry + 0.25 * rx2);
+		while (px < py) {
+			x++;
+			px += 2 * ry2;
+			if (p < 0) {
+				p += ry2 + px;
+			} else {
+				y--;
+				py -= 2 * rx2;
+				p += ry2 + px - py;
+			}
+			addEllipsePoints(points, xc, yc, x, y);
+		}
+
+		p = (int) Math.round(ry2 * (x + 0.5) * (x + 0.5) + rx2 * (y - 1) * (y - 1) - rx2 * ry2);
+		while (y > 0) {
+			y--;
+			py -= 2 * rx2;
+			if (p > 0) {
+				p += rx2 - py;
+			} else {
+				x++;
+				px += 2 * ry2;
+				p += rx2 - py + px;
+			}
+			addEllipsePoints(points, xc, yc, x, y);
+		}
+		return points;
+	}
+
 	public static double distBetweenLineAndDot(Vec3 start, Vec3 end, Vec3 point) {
 		return distBetweenLineAndDot(start.x, start.y, start.z, end.x, end.y, end.z, point.x, point.y, point.z);
 	}

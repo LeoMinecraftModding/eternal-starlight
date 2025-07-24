@@ -292,6 +292,27 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.JINGLESTEM_SAPLING.get());
 		dropPottedContents(ESBlocks.POTTED_JINGLESTEM_SAPLING.get());
 
+		add(ESBlocks.CRADLEWOOD_LEAVES.get(), block -> this.createLeavesDrops(block, ESBlocks.CRADLEWOOD_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		dropSelf(ESBlocks.CRADLEWOOD_LOG.get());
+		dropSelf(ESBlocks.CRADLEWOOD_WOOD.get());
+		dropSelf(ESBlocks.CRADLEWOOD_PLANKS.get());
+		dropSelf(ESBlocks.STRIPPED_CRADLEWOOD_LOG.get());
+		dropSelf(ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get());
+		add(ESBlocks.CRADLEWOOD_DOOR.get(), this::createDoorTable);
+		dropSelf(ESBlocks.CRADLEWOOD_TRAPDOOR.get());
+		dropSelf(ESBlocks.CRADLEWOOD_PRESSURE_PLATE.get());
+		dropSelf(ESBlocks.CRADLEWOOD_BUTTON.get());
+		dropSelf(ESBlocks.CRADLEWOOD_FENCE.get());
+		dropSelf(ESBlocks.CRADLEWOOD_FENCE_GATE.get());
+		add(ESBlocks.CRADLEWOOD_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.CRADLEWOOD_STAIRS.get());
+		dropSelf(ESBlocks.CRADLEWOOD_SIGN.get());
+		dropSelf(ESBlocks.CRADLEWOOD_WALL_SIGN.get());
+		dropSelf(ESBlocks.CRADLEWOOD_HANGING_SIGN.get());
+		dropSelf(ESBlocks.CRADLEWOOD_WALL_HANGING_SIGN.get());
+		dropSelf(ESBlocks.CRADLEWOOD_SAPLING.get());
+		dropPottedContents(ESBlocks.POTTED_CRADLEWOOD_SAPLING.get());
+
 		add(ESBlocks.GRIMSTONE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_GRIMSTONE.get()));
 		dropSelf(ESBlocks.COBBLED_GRIMSTONE.get());
 		add(ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
@@ -386,7 +407,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
-		dropWhenSilkTouch(ESBlocks.DUSK_LIGHT.get());
+		dropSelf(ESBlocks.DUSK_LIGHT.get());
 		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
@@ -816,6 +837,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 		add(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
+		add(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), this::createStarfireBirdAviaryDrop);
 
 		dropSelf(ESBlocks.RAW_FLOWGLAZE.get());
 		dropSelf(ESBlocks.FLOWGLAZE.get());

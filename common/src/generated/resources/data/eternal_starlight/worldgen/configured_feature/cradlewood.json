@@ -1,0 +1,16 @@
+{
+  "type": "eternal_starlight:cradlewood",
+  "config": {
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 12,
+      "min_inclusive": 9
+    },
+    "horizontal_offset": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 16,
+      "min_inclusive": 12
+    },
+    "leaves_radius": 4
+  }
+}

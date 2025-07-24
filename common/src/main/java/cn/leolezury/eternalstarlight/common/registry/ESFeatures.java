@@ -39,6 +39,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> CORAL_TREE = FEATURES.register("coral_tree", () -> new ESCoralTreeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> DEAD_LUNAR_TREE = FEATURES.register("dead_lunar_tree", () -> new DeadLunarTreeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<JinglestemFeature.Configuration>> JINGLESTEM = FEATURES.register("jinglestem", () -> new JinglestemFeature(JinglestemFeature.Configuration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<CradlewoodFeature.Configuration>> CRADLEWOOD = FEATURES.register("cradlewood", () -> new CradlewoodFeature(CradlewoodFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));

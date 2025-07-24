@@ -274,6 +274,27 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> JINGLESTEM_RAFT = registerItem("jinglestem_raft", () -> new ESBoatItem(false, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> JINGLESTEM_CHEST_RAFT = registerItem("jinglestem_chest_raft", () -> new ESBoatItem(true, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
 
+	// cradlewood wood
+	public static final RegistryObject<Item, Item> CRADLEWOOD_SAPLING = registerItem("cradlewood_sapling", () -> new BlockItem(ESBlocks.CRADLEWOOD_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_LEAVES = registerItem("cradlewood_leaves", () -> new BlockItem(ESBlocks.CRADLEWOOD_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_LOG = registerItem("cradlewood_log", () -> new BlockItem(ESBlocks.CRADLEWOOD_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_WOOD = registerItem("cradlewood_wood", () -> new BlockItem(ESBlocks.CRADLEWOOD_WOOD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_PLANKS = registerItem("cradlewood_planks", () -> new BlockItem(ESBlocks.CRADLEWOOD_PLANKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STRIPPED_CRADLEWOOD_LOG = registerItem("stripped_cradlewood_log", () -> new BlockItem(ESBlocks.STRIPPED_CRADLEWOOD_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STRIPPED_CRADLEWOOD_WOOD = registerItem("stripped_cradlewood_wood", () -> new BlockItem(ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_DOOR = registerItem("cradlewood_door", () -> new BlockItem(ESBlocks.CRADLEWOOD_DOOR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_TRAPDOOR = registerItem("cradlewood_trapdoor", () -> new BlockItem(ESBlocks.CRADLEWOOD_TRAPDOOR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_PRESSURE_PLATE = registerItem("cradlewood_pressure_plate", () -> new BlockItem(ESBlocks.CRADLEWOOD_PRESSURE_PLATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_BUTTON = registerItem("cradlewood_button", () -> new BlockItem(ESBlocks.CRADLEWOOD_BUTTON.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_FENCE = registerItem("cradlewood_fence", () -> new BlockItem(ESBlocks.CRADLEWOOD_FENCE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_FENCE_GATE = registerItem("cradlewood_fence_gate", () -> new BlockItem(ESBlocks.CRADLEWOOD_FENCE_GATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_SLAB = registerItem("cradlewood_slab", () -> new BlockItem(ESBlocks.CRADLEWOOD_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_STAIRS = registerItem("cradlewood_stairs", () -> new BlockItem(ESBlocks.CRADLEWOOD_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_SIGN = registerItem("cradlewood_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ESBlocks.CRADLEWOOD_SIGN.get(), ESBlocks.CRADLEWOOD_WALL_SIGN.get()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_HANGING_SIGN = registerItem("cradlewood_hanging_sign", () -> new HangingSignItem(ESBlocks.CRADLEWOOD_HANGING_SIGN.get(), ESBlocks.CRADLEWOOD_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_BOAT = registerItem("cradlewood_boat", () -> new ESBoatItem(false, ESBoat.Type.CRADLEWOOD, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_CHEST_BOAT = registerItem("cradlewood_chest_boat", () -> new ESBoatItem(true, ESBoat.Type.CRADLEWOOD, new Item.Properties().stacksTo(1)));
+
 	// grimstone
 	public static final RegistryObject<Item, Item> GRIMSTONE = registerItem("grimstone", () -> new BlockItem(ESBlocks.GRIMSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> COBBLED_GRIMSTONE = registerItem("cobbled_grimstone", () -> new BlockItem(ESBlocks.COBBLED_GRIMSTONE.get(), new Item.Properties()));
@@ -888,6 +909,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SCARLET_STARFIRE_BIRD_AVIARY = registerItem("scarlet_starfire_bird_aviary", () -> new BlockItem(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TORREYA_STARFIRE_BIRD_AVIARY = registerItem("torreya_starfire_bird_aviary", () -> new BlockItem(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_STARFIRE_BIRD_AVIARY = registerItem("jinglestem_starfire_bird_aviary", () -> new BlockItem(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRADLEWOOD_STARFIRE_BIRD_AVIARY = registerItem("cradlewood_starfire_bird_aviary", () -> new BlockItem(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARFIRE = registerItem("starfire", () -> new StarfireItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARFIRE_UPGRADE_SMITHING_TEMPLATE = registerItem("starfire_upgrade_smithing_template", () -> new SmithingTemplateItem(
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),

@@ -364,6 +364,46 @@ public class ESBlocks {
 	public static final RegistryObject<Block, JinglestemSaplingBlock> JINGLESTEM_SAPLING = BLOCKS.register("jinglestem_sapling", () -> new JinglestemSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_GREEN)));
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_JINGLESTEM_SAPLING = BLOCKS.register("potted_jinglestem_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, JINGLESTEM_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
 
+	// cradlewood
+	public static final RegistryObject<Block, LeavesBlock> CRADLEWOOD_LEAVES = BLOCKS.register("cradlewood_leaves",
+		() -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, RotatedPillarBlock> CRADLEWOOD_LOG = BLOCKS.register("cradlewood_log",
+		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, RotatedPillarBlock> CRADLEWOOD_WOOD = BLOCKS.register("cradlewood_wood",
+		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, Block> CRADLEWOOD_PLANKS = BLOCKS.register("cradlewood_planks",
+		() -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_CRADLEWOOD_LOG = BLOCKS.register("stripped_cradlewood_log",
+		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, RotatedPillarBlock> STRIPPED_CRADLEWOOD_WOOD = BLOCKS.register("stripped_cradlewood_wood",
+		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, DoorBlock> CRADLEWOOD_DOOR = BLOCKS.register("cradlewood_door",
+		() -> new DoorBlock(ESWoodTypes.CRADLEWOOD_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, TrapDoorBlock> CRADLEWOOD_TRAPDOOR = BLOCKS.register("cradlewood_trapdoor",
+		() -> new TrapDoorBlock(ESWoodTypes.CRADLEWOOD_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, PressurePlateBlock> CRADLEWOOD_PRESSURE_PLATE = BLOCKS.register("cradlewood_pressure_plate",
+		() -> new PressurePlateBlock(ESWoodTypes.CRADLEWOOD_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, ButtonBlock> CRADLEWOOD_BUTTON = BLOCKS.register("cradlewood_button",
+		() -> new ButtonBlock(ESWoodTypes.CRADLEWOOD_SET, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, FenceBlock> CRADLEWOOD_FENCE = BLOCKS.register("cradlewood_fence",
+		() -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, FenceGateBlock> CRADLEWOOD_FENCE_GATE = BLOCKS.register("cradlewood_fence_gate",
+		() -> new FenceGateBlock(ESWoodTypes.CRADLEWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, SlabBlock> CRADLEWOOD_SLAB = BLOCKS.register("cradlewood_slab",
+		() -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, StairBlock> CRADLEWOOD_STAIRS = BLOCKS.register("cradlewood_stairs",
+		() -> new StairBlock(CRADLEWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, StandingSignBlock> CRADLEWOOD_SIGN = BLOCKS.register("cradlewood_sign",
+		() -> new StandingSignBlock(ESWoodTypes.CRADLEWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, WallSignBlock> CRADLEWOOD_WALL_SIGN = BLOCKS.register("cradlewood_wall_sign",
+		() -> new WallSignBlock(ESWoodTypes.CRADLEWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, CeilingHangingSignBlock> CRADLEWOOD_HANGING_SIGN = BLOCKS.register("cradlewood_hanging_sign",
+		() -> new CeilingHangingSignBlock(ESWoodTypes.CRADLEWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, WallHangingSignBlock> CRADLEWOOD_WALL_HANGING_SIGN = BLOCKS.register("cradlewood_wall_hanging_sign",
+		() -> new WallHangingSignBlock(ESWoodTypes.CRADLEWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.TERRACOTTA_WHITE)));
+	public static final RegistryObject<Block, SaplingBlock> CRADLEWOOD_SAPLING = BLOCKS.register("cradlewood_sapling", () -> new SaplingBlock(new TreeGrower("cradlewood", Optional.empty(), Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, FlowerPotBlock> POTTED_CRADLEWOOD_SAPLING = BLOCKS.register("potted_cradlewood_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, CRADLEWOOD_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_RED)));
+
 	// grimstone
 	public static final RegistryObject<Block, Block> GRIMSTONE = BLOCKS.register("grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
 	public static final RegistryObject<Block, Block> COBBLED_GRIMSTONE = BLOCKS.register("cobbled_grimstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE)));
@@ -445,7 +485,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, DropExperienceBlock> ETERNAL_ICE_ATALPHAITE_ORE = BLOCKS.register("eternal_ice_atalphaite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS).lightLevel(state -> 3)));
 	public static final RegistryObject<Block, DropExperienceBlock> HAZE_ICE_ATALPHAITE_ORE = BLOCKS.register("haze_ice_atalphaite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE).mapColor(MapColor.ICE).sound(SoundType.GLASS).lightLevel(state -> 2)));
 	public static final RegistryObject<Block, TransparentBlock> DUSK_GLASS = BLOCKS.register("dusk_glass", () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel(state -> 12)));
-	public static final RegistryObject<Block, DuskLightBlock> DUSK_LIGHT = BLOCKS.register("dusk_light", () -> new DuskLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, DuskLightBlock> DUSK_LIGHT = BLOCKS.register("dusk_light", () -> new DuskLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, EclipseCoreBlock> ECLIPSE_CORE = BLOCKS.register("eclipse_core", () -> new EclipseCoreBlock(BlockBehaviour.Properties.of().strength(-1F).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, Block> RADIANITE = BLOCKS.register("radianite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(DyeColor.WHITE)));
 	public static final RegistryObject<Block, SlabBlock> RADIANITE_SLAB = BLOCKS.register("radianite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).mapColor(DyeColor.WHITE)));
@@ -881,6 +921,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StarfireBirdAviaryBlock> SCARLET_STARFIRE_BIRD_AVIARY = BLOCKS.register("scarlet_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.SCARLET_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.COLOR_RED).noOcclusion()));
 	public static final RegistryObject<Block, StarfireBirdAviaryBlock> TORREYA_STARFIRE_BIRD_AVIARY = BLOCKS.register("torreya_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.TORREYA_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.COLOR_BLACK).noOcclusion()));
 	public static final RegistryObject<Block, StarfireBirdAviaryBlock> JINGLESTEM_STARFIRE_BIRD_AVIARY = BLOCKS.register("jinglestem_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.JINGLESTEM_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.COLOR_GREEN).noOcclusion()));
+	public static final RegistryObject<Block, StarfireBirdAviaryBlock> CRADLEWOOD_STARFIRE_BIRD_AVIARY = BLOCKS.register("cradlewood_starfire_bird_aviary", () -> new StarfireBirdAviaryBlock(ESWoodTypes.CRADLEWOOD_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE).mapColor(MapColor.TERRACOTTA_WHITE).noOcclusion()));
 
 	public static final RegistryObject<Block, Block> RAW_FLOWGLAZE = BLOCKS.register("raw_flowglaze", () -> new Block(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.HAT).strength(0.3F).sound(SoundType.GLASS).lightLevel(state -> 10)));
 	public static final RegistryObject<Block, TransparentBlock> FLOWGLAZE = BLOCKS.register("flowglaze", () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel(state -> 10)));

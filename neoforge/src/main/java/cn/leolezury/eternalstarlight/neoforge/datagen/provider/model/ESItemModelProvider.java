@@ -244,6 +244,26 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.JINGLESTEM_RAFT.get());
 		basicItem(ESItems.JINGLESTEM_CHEST_RAFT.get());
 
+		flatBlockTexture(ESItems.CRADLEWOOD_SAPLING.get());
+		block(ESItems.CRADLEWOOD_LEAVES.get());
+		block(ESItems.CRADLEWOOD_LOG.get());
+		block(ESItems.CRADLEWOOD_WOOD.get());
+		block(ESItems.CRADLEWOOD_PLANKS.get());
+		block(ESItems.STRIPPED_CRADLEWOOD_LOG.get());
+		block(ESItems.STRIPPED_CRADLEWOOD_WOOD.get());
+		basicItem(ESItems.CRADLEWOOD_DOOR.get());
+		trapdoor(ESItems.CRADLEWOOD_TRAPDOOR.get());
+		block(ESItems.CRADLEWOOD_PRESSURE_PLATE.get());
+		button(ESItems.CRADLEWOOD_BUTTON.get(), ESItems.CRADLEWOOD_PLANKS.get());
+		fence(ESItems.CRADLEWOOD_FENCE.get(), ESItems.CRADLEWOOD_PLANKS.get());
+		block(ESItems.CRADLEWOOD_FENCE_GATE.get());
+		block(ESItems.CRADLEWOOD_SLAB.get());
+		block(ESItems.CRADLEWOOD_STAIRS.get());
+		basicItem(ESItems.CRADLEWOOD_SIGN.get());
+		basicItem(ESItems.CRADLEWOOD_HANGING_SIGN.get());
+		basicItem(ESItems.CRADLEWOOD_BOAT.get());
+		basicItem(ESItems.CRADLEWOOD_CHEST_BOAT.get());
+
 		block(ESItems.GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE_SLAB.get());
@@ -778,6 +798,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.SCARLET_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.TORREYA_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.JINGLESTEM_STARFIRE_BIRD_AVIARY.get());
+		block(ESItems.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get());
 		basicItem(ESItems.STARFIRE.get());
 		basicItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get());
 		handheld(ESItems.STARFIRE_SWORD.get());

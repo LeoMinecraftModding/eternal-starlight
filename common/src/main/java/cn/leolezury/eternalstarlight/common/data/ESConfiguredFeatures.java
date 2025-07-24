@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFeatures;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.*;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.CradlewoodFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.HugeMarimoldFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.JinglestemFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator.*;
@@ -114,6 +115,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TORREYA = create("torreya");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> JINGLESTEM = create("jinglestem");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> JINGLESTEM_PLANTED = create("jinglestem_planted");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CRADLEWOOD = create("cradlewood");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_MARIMOLD = create("huge_marimold");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWING_MUSHROOM = create("huge_glowing_mushroom");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_FOREST = create("starlight_forest");
@@ -218,6 +220,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, TORREYA, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.TORREYA_LOG.get()), new BranchingTrunkPlacer(32, 2, 10, UniformInt.of(3, 4), UniformInt.of(2, 4)), BlockStateProvider.simple(ESBlocks.TORREYA_LEAVES.get()), new TorreyaFoliagePlacer(ConstantInt.of(5), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new TorreyaVinesDecorator(), new StarfireBirdNestDecorator())).build());
 		FeatureUtils.register(context, JINGLESTEM, ESFeatures.JINGLESTEM.get(), new JinglestemFeature.Configuration(UniformInt.of(8, 11), UniformInt.of(3, 5), UniformInt.of(5, 7), UniformInt.of(4, 8), true));
 		FeatureUtils.register(context, JINGLESTEM_PLANTED, ESFeatures.JINGLESTEM.get(), new JinglestemFeature.Configuration(UniformInt.of(8, 11), UniformInt.of(3, 5), UniformInt.of(5, 7), UniformInt.of(4, 8), false));
+		FeatureUtils.register(context, CRADLEWOOD, ESFeatures.CRADLEWOOD.get(), new CradlewoodFeature.Configuration(UniformInt.of(9, 12), UniformInt.of(12, 16), ConstantInt.of(4)));
 		FeatureUtils.register(context, HUGE_MARIMOLD, ESFeatures.HUGE_MARIMOLD.get(), new HugeMarimoldFeature.Configuration(UniformInt.of(9, 12), UniformInt.of(4, 5), UniformInt.of(6, 8)));
 		FeatureUtils.register(context, HUGE_GLOWING_MUSHROOM, ESFeatures.HUGE_GLOWING_MUSHROOM.get(), new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_BLOCK.get().defaultBlockState()), BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_STEM.get().defaultBlockState().setValue(HugeMushroomBlock.UP, false).setValue(HugeMushroomBlock.DOWN, false)), 5));
 		FeatureUtils.register(context, STARLIGHT_FOREST, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.HUGE_GLOWING_MUSHROOM_CHECKED), 0.015F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED), 0.05F), new WeightedPlacedFeature(placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_HUGE_TREE_CHECKED), 0.8F)), placedFeatures.getOrThrow(ESPlacedFeatures.LUNAR_TREE_CHECKED)));

@@ -70,7 +70,9 @@ public class CommonSetupHandlers {
 		Map.entry(ESBlocks.TORREYA_LOG.get(), ESBlocks.STRIPPED_TORREYA_LOG.get()),
 		Map.entry(ESBlocks.TORREYA_WOOD.get(), ESBlocks.STRIPPED_TORREYA_WOOD.get()),
 		Map.entry(ESBlocks.JINGLESTEM_LOG.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get()),
-		Map.entry(ESBlocks.JINGLESTEM_WOOD.get(), ESBlocks.STRIPPED_JINGLESTEM_WOOD.get())
+		Map.entry(ESBlocks.JINGLESTEM_WOOD.get(), ESBlocks.STRIPPED_JINGLESTEM_WOOD.get()),
+		Map.entry(ESBlocks.CRADLEWOOD_LOG.get(), ESBlocks.STRIPPED_CRADLEWOOD_LOG.get()),
+		Map.entry(ESBlocks.CRADLEWOOD_WOOD.get(), ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get())
 	));
 
 	public static final Supplier<Map<Block, Block>> TILLABLES = Suppliers.memoize(() -> Map.of(
@@ -123,6 +125,8 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerBehavior(ESItems.TORREYA_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA, true));
 		DispenserBlock.registerBehavior(ESItems.JINGLESTEM_RAFT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.JINGLESTEM));
 		DispenserBlock.registerBehavior(ESItems.JINGLESTEM_CHEST_RAFT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.JINGLESTEM, true));
+		DispenserBlock.registerBehavior(ESItems.CRADLEWOOD_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.CRADLEWOOD));
+		DispenserBlock.registerBehavior(ESItems.CRADLEWOOD_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.CRADLEWOOD, true));
 		DispenserBlock.registerBehavior(ESItems.ETHER_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.ROOKFISH_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.LUMINOFISH_BUCKET.get(), new BucketDispenseItemBehavior());

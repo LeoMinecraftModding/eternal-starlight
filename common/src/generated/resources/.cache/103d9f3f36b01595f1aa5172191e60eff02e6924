@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-21T15:12:41.9895783	Registries
+// 1.21.1	2025-07-24T18:09:04.412064	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -140,6 +140,7 @@ a659f69d111e9ab3d3279bd9002fe0c895b79e1d data/eternal_starlight/worldgen/configu
 838787cc9b3ca9813db20624e93de02293795565 data/eternal_starlight/worldgen/configured_feature/cave_moss.json
 640c804bcf3c61d98fc2b56c85779eca4aae2c21 data/eternal_starlight/worldgen/configured_feature/cave_moss_vein.json
 aa3da90e027681d858027b1106abc88b3fc965ba data/eternal_starlight/worldgen/configured_feature/cave_vine.json
+f79e56e17d57801ebc3b85c1fe709be2aab7076e data/eternal_starlight/worldgen/configured_feature/cradlewood.json
 6a6cf201996309e3f9b013c66d5a77f72f8ef167 data/eternal_starlight/worldgen/configured_feature/cryobysslate_patch.json
 edaf1ea830c85be13b34874fc9b770f6b0ef6191 data/eternal_starlight/worldgen/configured_feature/crystal_caves_vegetation.json
 5337c29b21c161f2ff6fc778af040536c962019a data/eternal_starlight/worldgen/configured_feature/dead_lunar_tree.json

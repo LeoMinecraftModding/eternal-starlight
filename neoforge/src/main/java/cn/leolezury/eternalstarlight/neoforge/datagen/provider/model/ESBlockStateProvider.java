@@ -150,6 +150,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.JINGLESTEM_SAPLING.get());
 		pottedPlant(ESBlocks.POTTED_JINGLESTEM_SAPLING.get(), blockTexture(ESBlocks.JINGLESTEM_SAPLING.get()));
 
+		leaves(ESBlocks.CRADLEWOOD_LEAVES.get());
+		woodSet(ESBlocks.CRADLEWOOD_LOG.get(), ESBlocks.CRADLEWOOD_WOOD.get(), ESBlocks.CRADLEWOOD_PLANKS.get(), ESBlocks.STRIPPED_CRADLEWOOD_LOG.get(), ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get(), ESBlocks.CRADLEWOOD_DOOR.get(), true, ESBlocks.CRADLEWOOD_TRAPDOOR.get(), true, ESBlocks.CRADLEWOOD_PRESSURE_PLATE.get(), ESBlocks.CRADLEWOOD_BUTTON.get(), ESBlocks.CRADLEWOOD_FENCE.get(), ESBlocks.CRADLEWOOD_FENCE_GATE.get(), ESBlocks.CRADLEWOOD_SLAB.get(), ESBlocks.CRADLEWOOD_STAIRS.get(), ESBlocks.CRADLEWOOD_SIGN.get(), ESBlocks.CRADLEWOOD_WALL_SIGN.get(), ESBlocks.CRADLEWOOD_HANGING_SIGN.get(), ESBlocks.CRADLEWOOD_WALL_HANGING_SIGN.get());
+		cross(ESBlocks.CRADLEWOOD_SAPLING.get());
+		pottedPlant(ESBlocks.POTTED_CRADLEWOOD_SAPLING.get(), blockTexture(ESBlocks.CRADLEWOOD_SAPLING.get()));
+
 		// stones
 		randomlyFlippedBlock(ESBlocks.GRIMSTONE.get());
 		simpleBlock(ESBlocks.CHISELED_GRIMSTONE.get());
@@ -531,6 +536,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		starfireBirdAviary(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("scarlet"));
 		starfireBirdAviary(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("torreya"));
 		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));
+		starfireBirdAviary(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("cradlewood"));
 
 		simpleBlock(ESBlocks.RAW_FLOWGLAZE.get());
 		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));

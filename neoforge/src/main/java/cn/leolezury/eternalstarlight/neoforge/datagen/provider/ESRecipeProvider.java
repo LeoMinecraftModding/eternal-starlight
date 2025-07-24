@@ -596,6 +596,21 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSign(recipeOutput, ESItems.JINGLESTEM_SIGN.get(), ESBlocks.JINGLESTEM_PLANKS.get());
 		hangingSign(recipeOutput, ESItems.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.STRIPPED_JINGLESTEM_LOG.get());
 		addBoat(recipeOutput, ESItems.JINGLESTEM_RAFT.get(), ESItems.JINGLESTEM_CHEST_RAFT.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+
+		addButton(recipeOutput, ESBlocks.CRADLEWOOD_BUTTON.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addDoor(recipeOutput, ESBlocks.CRADLEWOOD_DOOR.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addFence(recipeOutput, ESBlocks.CRADLEWOOD_FENCE.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addFenceGate(recipeOutput, ESBlocks.CRADLEWOOD_FENCE_GATE.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addPlanks(recipeOutput, ESBlocks.CRADLEWOOD_PLANKS.get(), ESTags.Items.CRADLEWOOD_LOGS);
+		addWood(recipeOutput, ESBlocks.CRADLEWOOD_WOOD.get(), ESBlocks.CRADLEWOOD_LOG.get());
+		addStrippedWood(recipeOutput, ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get(), ESBlocks.STRIPPED_CRADLEWOOD_LOG.get());
+		addPressurePlate(recipeOutput, ESBlocks.CRADLEWOOD_PRESSURE_PLATE.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addSlab(recipeOutput, ESBlocks.CRADLEWOOD_SLAB.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addStairs(recipeOutput, ESBlocks.CRADLEWOOD_STAIRS.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addTrapdoor(recipeOutput, ESBlocks.CRADLEWOOD_TRAPDOOR.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		addSign(recipeOutput, ESItems.CRADLEWOOD_SIGN.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
+		hangingSign(recipeOutput, ESItems.CRADLEWOOD_HANGING_SIGN.get(), ESBlocks.STRIPPED_CRADLEWOOD_LOG.get());
+		addBoat(recipeOutput, ESItems.CRADLEWOOD_BOAT.get(), ESItems.CRADLEWOOD_CHEST_BOAT.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
 	}
 
 	private void stonecuttingSet(RecipeOutput recipeOutput, ItemLike slab, ItemLike stairs, ItemLike wall, ItemLike source) {
@@ -1457,6 +1472,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addStarfireBirdAviary(recipeOutput, ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), ESBlocks.CRADLEWOOD_PLANKS.get());
 		copySmithingTemplate(recipeOutput, ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get(), ESItems.ATALPHAITE_BLOCK.get(), ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE);
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SWORD.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_SWORD.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_PICKAXE.get());

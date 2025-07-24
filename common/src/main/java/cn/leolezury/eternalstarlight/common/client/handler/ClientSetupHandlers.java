@@ -219,6 +219,10 @@ public class ClientSetupHandlers {
 		ESBlocks.POTTED_JINGLESTEM_SAPLING,
 		ESBlocks.JINGLESTEM_TRAPDOOR,
 		ESBlocks.JINGLESTEM_DOOR,
+		ESBlocks.CRADLEWOOD_SAPLING,
+		ESBlocks.POTTED_CRADLEWOOD_SAPLING,
+		ESBlocks.CRADLEWOOD_TRAPDOOR,
+		ESBlocks.CRADLEWOOD_DOOR,
 		ESBlocks.ICICLE,
 		ESBlocks.ABYSSAL_FIRE,
 		ESBlocks.AMARAMBER_FIRE,
@@ -352,6 +356,7 @@ public class ClientSetupHandlers {
 		ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY,
 		ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY,
 		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY,
+		ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY,
 		ESBlocks.AMARAMBER_LANTERN,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
@@ -834,6 +839,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.TORREYA), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.JINGLESTEM), RaftModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.JINGLESTEM), ChestRaftModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.CRADLEWOOD), BoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.CRADLEWOOD), ChestBoatModel::createBodyModel);
 		strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
 		strategy.register(BoarwarfBlacksmithModel.LAYER_LOCATION, BoarwarfBlacksmithModel::createBodyLayer);
 		strategy.register(BoarwarfChefModel.LAYER_LOCATION, BoarwarfChefModel::createBodyLayer);
