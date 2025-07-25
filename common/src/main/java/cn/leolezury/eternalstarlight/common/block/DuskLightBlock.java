@@ -47,7 +47,8 @@ public class DuskLightBlock extends BaseEntityBlock {
 				for (int i = 1; i < FACING_ORDER.size(); i++) {
 					Direction dir = FACING_ORDER.get((FACING_ORDER.indexOf(facing) + i) % FACING_ORDER.size());
 					BlockPos relativePos = blockPos.relative(dir);
-					if (level.getBlockState(relativePos).getCollisionShape(level, relativePos).isEmpty()) {
+					BlockState relativeState = level.getBlockState(relativePos);
+					if (relativeState.getCollisionShape(level, relativePos).isEmpty() || relativeState.getBlock() instanceof HalfTransparentBlock) {
 						level.setBlockAndUpdate(blockPos, blockState.setValue(FACING, dir));
 						break;
 					}
