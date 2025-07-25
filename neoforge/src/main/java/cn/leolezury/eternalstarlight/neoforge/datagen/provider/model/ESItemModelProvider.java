@@ -345,6 +345,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.CINDER_BRICK.get());
 		block(ESItems.DUSK_GLASS.get());
 		block(ESItems.DUSK_LIGHT.get());
+		block(ESItems.REINFORCED_DUSK_LIGHT.get());
+		cubeAll(ESItems.DUSK_EMITTER.get());
 		block(ESItems.ECLIPSE_CORE.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());

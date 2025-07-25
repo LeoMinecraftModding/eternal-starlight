@@ -381,6 +381,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CINDER_BRICK = registerItem("cinder_brick", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> RADIANITE = registerItem("radianite", () -> new BlockItem(ESBlocks.RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_SLAB = registerItem("radianite_slab", () -> new BlockItem(ESBlocks.RADIANITE_SLAB.get(), new Item.Properties()));

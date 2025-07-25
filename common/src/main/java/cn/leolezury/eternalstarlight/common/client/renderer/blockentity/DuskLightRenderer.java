@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.entity.AbstractDuskLightBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.DuskLightBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -20,7 +21,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
-public class DuskLightRenderer implements BlockEntityRenderer<DuskLightBlockEntity> {
+public class DuskLightRenderer implements BlockEntityRenderer<AbstractDuskLightBlockEntity> {
 	public static final ResourceLocation DUSK_BEAM_TEXTURE = EternalStarlight.id("textures/entity/dusk_beam.png");
 
 	public DuskLightRenderer(BlockEntityRendererProvider.Context context) {
@@ -28,7 +29,7 @@ public class DuskLightRenderer implements BlockEntityRenderer<DuskLightBlockEnti
 	}
 
 	@Override
-	public void render(DuskLightBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+	public void render(AbstractDuskLightBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 		for (Direction direction : Direction.values()) {
 			float progress = Mth.lerp(partialTicks, blockEntity.getOldBeamProgresses().getOrDefault(direction, 0), blockEntity.getBeamProgresses().getOrDefault(direction, 0));
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
@@ -49,12 +50,12 @@ public class DuskLightRenderer implements BlockEntityRenderer<DuskLightBlockEnti
 	}
 
 	@Override
-	public boolean shouldRenderOffScreen(DuskLightBlockEntity blockEntity) {
+	public boolean shouldRenderOffScreen(AbstractDuskLightBlockEntity blockEntity) {
 		return true;
 	}
 
 	@Override
-	public boolean shouldRender(DuskLightBlockEntity blockEntity, Vec3 vec3) {
+	public boolean shouldRender(AbstractDuskLightBlockEntity blockEntity, Vec3 vec3) {
 		return true;
 	}
 }

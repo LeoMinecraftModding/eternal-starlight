@@ -408,6 +408,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
 		dropSelf(ESBlocks.DUSK_LIGHT.get());
+		dropSelf(ESBlocks.REINFORCED_DUSK_LIGHT.get());
+		dropSelf(ESBlocks.DUSK_EMITTER.get());
 		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 		dropSelf(ESBlocks.RADIANITE.get());
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);

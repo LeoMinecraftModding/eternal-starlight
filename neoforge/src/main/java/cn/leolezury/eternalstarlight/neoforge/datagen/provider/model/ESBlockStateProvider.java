@@ -197,6 +197,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get());
 		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
 		simpleBlock(ESBlocks.DUSK_LIGHT.get());
+		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
+		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
 		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
 		stoneSet(ESBlocks.RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get());
 		axisBlock(ESBlocks.RADIANITE_PILLAR.get());
@@ -367,11 +369,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
-		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
+		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()), blockTexture(ESBlocks.GLOWING_MUSHROOM_STEM.get()), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()) + "_inside", blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 		directionalBud(ESBlocks.BOULDERSHROOM.get());
 		pottedPlant(ESBlocks.POTTED_BOULDERSHROOM.get(), blockTexture(ESBlocks.BOULDERSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
-		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_STEM.get(), blockTexture(ESBlocks.BOULDERSHROOM_BLOCK.get()).withSuffix("_inside"));
+		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_STEM.get(), name(ESBlocks.BOULDERSHROOM_STEM.get()), blockTexture(ESBlocks.BOULDERSHROOM_STEM.get()), name(ESBlocks.BOULDERSHROOM_STEM.get()) + "_inside", blockTexture(ESBlocks.BOULDERSHROOM_BLOCK.get()).withSuffix("_inside"));
 		cross(ESBlocks.BOULDERSHROOM_ROOTS.get());
 		cross(ESBlocks.BOULDERSHROOM_ROOTS_PLANT.get());
 
@@ -1017,12 +1019,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void mushroomLikeBlock(Block block) {
-		mushroomLikeBlock(block, blockTexture(block).withSuffix("_inside"));
+		mushroomLikeBlock(block, name(block), blockTexture(block), name(block) + "_inside", blockTexture(block).withSuffix("_inside"));
 	}
 
-	private void mushroomLikeBlock(Block block, ResourceLocation inner) {
-		ModelFile modelOutside = models().singleTexture(name(block), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), blockTexture(block));
-		ModelFile modelInside = models().singleTexture(name(block) + "_inside", ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), inner);
+	private void mushroomLikeBlock(Block block, String outerName, ResourceLocation outerTexture, String innerName, ResourceLocation innerTexture) {
+		ModelFile modelOutside = models().singleTexture(outerName, ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), outerTexture);
+		ModelFile modelInside = models().singleTexture(innerName, ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), innerTexture);
 		getMultipartBuilder(block)
 			.part().modelFile(modelOutside).addModel().condition(BlockStateProperties.NORTH, true).end()
 			.part().modelFile(modelOutside).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()
@@ -1036,6 +1038,24 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.part().modelFile(modelInside).uvLock(false).rotationY(270).addModel().condition(BlockStateProperties.WEST, false).end()
 			.part().modelFile(modelInside).uvLock(false).rotationX(270).addModel().condition(BlockStateProperties.UP, false).end()
 			.part().modelFile(modelInside).uvLock(false).rotationX(90).addModel().condition(BlockStateProperties.DOWN, false).end();
+	}
+
+	private void duskEmitter(Block block, String outerName, ResourceLocation outerTexture, String innerName, ResourceLocation innerTexture) {
+		ModelFile modelOutside = models().singleTexture(outerName, ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), outerTexture);
+		ModelFile modelInside = models().singleTexture(innerName, ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/template_single_face"), innerTexture);
+		getMultipartBuilder(block)
+			.part().modelFile(modelOutside).addModel().condition(BlockStateProperties.NORTH, true).end()
+			.part().modelFile(modelOutside).uvLock(true).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end()
+			.part().modelFile(modelOutside).uvLock(true).rotationY(180).addModel().condition(BlockStateProperties.SOUTH, true).end()
+			.part().modelFile(modelOutside).uvLock(true).rotationY(270).addModel().condition(BlockStateProperties.WEST, true).end()
+			.part().modelFile(modelOutside).uvLock(true).rotationX(270).rotationY(180).addModel().condition(BlockStateProperties.UP, true).end()
+			.part().modelFile(modelOutside).uvLock(true).rotationX(90).rotationY(180).addModel().condition(BlockStateProperties.DOWN, true).end()
+			.part().modelFile(modelInside).addModel().condition(BlockStateProperties.NORTH, false).end()
+			.part().modelFile(modelInside).uvLock(false).rotationY(90).addModel().condition(BlockStateProperties.EAST, false).end()
+			.part().modelFile(modelInside).uvLock(false).rotationY(180).addModel().condition(BlockStateProperties.SOUTH, false).end()
+			.part().modelFile(modelInside).uvLock(false).rotationY(270).addModel().condition(BlockStateProperties.WEST, false).end()
+			.part().modelFile(modelInside).uvLock(false).rotationX(270).rotationY(180).addModel().condition(BlockStateProperties.UP, false).end()
+			.part().modelFile(modelInside).uvLock(false).rotationX(90).rotationY(180).addModel().condition(BlockStateProperties.DOWN, false).end();
 	}
 
 	private void torreyaCampfire(Block block) {

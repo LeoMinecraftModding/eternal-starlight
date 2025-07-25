@@ -801,6 +801,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get(),
 				ESItems.DUSK_GLASS.get(),
 				ESItems.DUSK_LIGHT.get(),
+				ESItems.REINFORCED_DUSK_LIGHT.get(),
+				ESItems.DUSK_EMITTER.get(),
 				ESItems.ECLIPSE_CORE.get(),
 				ESItems.RADIANITE.get(),
 				ESItems.RADIANITE_SLAB.get(),

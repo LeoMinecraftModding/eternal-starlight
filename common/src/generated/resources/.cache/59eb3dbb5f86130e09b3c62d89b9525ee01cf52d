@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-24T18:06:46.7720178	Loot Tables
+// 1.21.1	2025-07-25T10:20:34.1704631	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -158,6 +158,7 @@ b0b1eb04376c9f5417cab0290766ed2600938f5b data/eternal_starlight/loot_table/block
 c694f74fb93033ec3ebefc0eb59a25a050ec7e1d data/eternal_starlight/loot_table/blocks/doomed_redstone_torch.json
 4d9245850117ef35f9962b38f8179e13b0e78b0e data/eternal_starlight/loot_table/blocks/doomed_torch.json
 d130ec3ee2f0c37cbcb2a87ca5b3a55e44a13931 data/eternal_starlight/loot_table/blocks/drying_rack.json
+10693bc6998f1f01602cc3aa353069329891a93f data/eternal_starlight/loot_table/blocks/dusk_emitter.json
 18b76831da722342e5bdf6103f20ddd645d7a6b8 data/eternal_starlight/loot_table/blocks/dusk_glass.json
 d95d8ff1eca7d602aa18952321dee1281a965c1e data/eternal_starlight/loot_table/blocks/dusk_light.json
 c9927f28f70a8bd1eb88ff57cdd90333ba90ce7a data/eternal_starlight/loot_table/blocks/dusted_bricks.json
@@ -524,6 +525,7 @@ eb0a7d0f83747d248162acce7dcefe45a46a1fdb data/eternal_starlight/loot_table/block
 ef6ca7beece08afed4cbf091c118e83fa28f7cde data/eternal_starlight/loot_table/blocks/red_velvetumoss_villi.json
 2deae18bad3a4ed6ae974f676488deb586992f0a data/eternal_starlight/loot_table/blocks/red_yeti_fur.json
 7b3979c205452ca8498f5cea55ed9769cb55e15b data/eternal_starlight/loot_table/blocks/red_yeti_fur_carpet.json
+41b6fcf22d9616a135fcb8f793b67aea104241da data/eternal_starlight/loot_table/blocks/reinforced_dusk_light.json
 e94e4b76890737d9e21f4b365f6a9d7e83d56482 data/eternal_starlight/loot_table/blocks/saltpeter_block.json
 05bee39684ea87f79cb62a16c2b05fe0d59d83c6 data/eternal_starlight/loot_table/blocks/scarlet_button.json
 f0490f2d44556c3a3c639f797ae0de751556299b data/eternal_starlight/loot_table/blocks/scarlet_door.json

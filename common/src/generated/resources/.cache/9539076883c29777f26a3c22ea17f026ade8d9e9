@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-24T14:16:48.0701031	Item Models: eternal_starlight
+// 1.21.1	2025-07-25T10:20:34.2025669	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -237,6 +237,7 @@ c2a03941addadeb68f4d255e1c82df44f80de196 assets/eternal_starlight/models/item/do
 8f0991d80d0b1fc779fee2b5458a9ada0bde18a0 assets/eternal_starlight/models/item/doomed_redstone_torch.json
 b3c984c03c196438a28127734e39a53976a7539b assets/eternal_starlight/models/item/doomed_torch.json
 3cade5e2ec167e447a44ebd75d460b226e63f566 assets/eternal_starlight/models/item/drying_rack.json
+9029d4937f5505c698f354d5dfbc09d5be16a197 assets/eternal_starlight/models/item/dusk_emitter.json
 7b1ba8e372b0dd67ca74ff196d8d260da8e2ffc4 assets/eternal_starlight/models/item/dusk_glass.json
 d9bbcd01731c6068d535ca32cb4f5bb1ec73d946 assets/eternal_starlight/models/item/dusk_light.json
 d69c2364f8fa8b02c3f2d176e4e91ab3e1f5b2b4 assets/eternal_starlight/models/item/dusted_bricks.json
@@ -713,6 +714,7 @@ c8936937ba737d99dc12d1193294bb867b1a4e49 assets/eternal_starlight/models/item/re
 f22f7d2bd6a1a4aa879492724d8f95ba16448f35 assets/eternal_starlight/models/item/red_velvetumoss_villi.json
 fc59e358d3237623d450ec537ca515ba980d47d6 assets/eternal_starlight/models/item/red_yeti_fur.json
 101a64c3decfe1e7bc006b5d4f5d5fc3a4e56848 assets/eternal_starlight/models/item/red_yeti_fur_carpet.json
+1b8f6aa6a522bbe255506c22502a1c97cc4d8445 assets/eternal_starlight/models/item/reinforced_dusk_light.json
 efe9d2537297a54f667509b058f80d2da3c5f20d assets/eternal_starlight/models/item/rookfish.json
 c308bc6d708af7ac10fb9027f28c0b314921b5d7 assets/eternal_starlight/models/item/rookfish_air_sac.json
 a9cf21407a9306804c53f25988d04e13009350d0 assets/eternal_starlight/models/item/rookfish_bucket.json
