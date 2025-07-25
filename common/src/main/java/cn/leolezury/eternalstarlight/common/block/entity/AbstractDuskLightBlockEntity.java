@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import it.unimi.dsi.fastutil.objects.Object2FloatArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -96,6 +98,20 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
 		ticksLeft = 5;
 	}
 
+	public static boolean canPassThrough(BlockState state) {
+		if (state.is(ESTags.Blocks.DUSK_LIGHT_ALWAYS_PASSABLE)) {
+			return true;
+		}
+		if (state.is(ESTags.Blocks.DUSK_LIGHT_ALWAYS_UNPASSABLE)) {
+			return false;
+		}
+		return state.getBlock() instanceof HalfTransparentBlock;
+	}
+
+	public static boolean canDestroy(BlockState state) {
+		return state.is(ESTags.Blocks.DUSK_LIGHT_DESTROYABLES);
+	}
+
 	public static void tick(Level level, BlockPos pos, BlockState state, AbstractDuskLightBlockEntity entity) {
 		if (level.isClientSide) {
 			entity.oldBeamProgresses.clear();
@@ -120,7 +136,7 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
 						BlockHitResult result = level.clip(new ClipContext(pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(0.51)), pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(MAX_LENGTH)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()) {
 							@Override
 							public VoxelShape getBlockShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-								return blockState.getBlock() instanceof HalfTransparentBlock ? Shapes.empty() : super.getBlockShape(blockState, blockGetter, blockPos);
+								return canPassThrough(blockState) ? Shapes.empty() : super.getBlockShape(blockState, blockGetter, blockPos);
 							}
 						});
 						if (result.getType() != HitResult.Type.MISS) {
@@ -128,12 +144,17 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
 							if (level.getBlockEntity(result.getBlockPos()) instanceof AbstractDuskLightBlockEntity light) {
 								light.lightUp(direction.getOpposite());
 							}
+							if (canDestroy(level.getBlockState(result.getBlockPos()))) {
+								level.destroyBlock(result.getBlockPos(), true);
+							}
 						} else {
 							entity.lengths.put(direction, MAX_LENGTH);
 						}
 						List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(pos.getCenter().subtract(0.5, 0.5, 0.5), pos.getCenter().relative(direction, entity.lengths.getOrDefault(direction, 0)).add(0.5, 0.5, 0.5)));
 						for (Entity e : entities) {
-							e.setRemainingFireTicks(Math.max(e.getRemainingFireTicks(), 100));
+							if (!(e instanceof ItemEntity)) {
+								e.setRemainingFireTicks(Math.max(e.getRemainingFireTicks(), 100));
+							}
 						}
 					}
 				}

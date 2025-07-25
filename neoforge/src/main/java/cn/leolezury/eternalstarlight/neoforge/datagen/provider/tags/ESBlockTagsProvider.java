@@ -568,11 +568,20 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.DOOMEDEN_KEYHOLE.get(),
 				ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
 			);
-		tag(ESTags.Blocks.DUSK_LIGHT_ENERGY_SOURCES)
+		tag(ESTags.Blocks.DUSK_LIGHT_DESTROYABLES)
+			.addTags(
+				BlockTags.LEAVES
+			);
+		tag(ESTags.Blocks.DUSK_LIGHT_ALWAYS_PASSABLE)
 			.add(
-				ESBlocks.ATALPHAITE_BLOCK.get(),
-				ESBlocks.BLAZING_ATALPHAITE_BLOCK.get(),
-				ESBlocks.ATALPHAITE_LIGHT.get()
+				Blocks.IRON_BARS,
+				ESBlocks.GOLEM_STEEL_BARS.get(),
+				ESBlocks.WAXED_GOLEM_STEEL_BARS.get(),
+				ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get()
+			);
+		tag(ESTags.Blocks.DUSK_LIGHT_ALWAYS_UNPASSABLE)
+			.add(
+				Blocks.TINTED_GLASS
 			);
 		tag(ESTags.Blocks.CRYSTALBORN_CATALYST_REPLACEABLES)
 			.addTags(
@@ -644,7 +653,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.NORTHLAND_LEAVES.get(),
 				ESBlocks.STARLIGHT_MANGROVE_LEAVES.get(),
 				ESBlocks.SCARLET_LEAVES.get(),
-				ESBlocks.TORREYA_LEAVES.get()
+				ESBlocks.TORREYA_LEAVES.get(),
+				ESBlocks.CRADLEWOOD_LEAVES.get()
 			);
 		tag(BlockTags.PLANKS)
 			.add(

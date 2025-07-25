@@ -425,8 +425,9 @@ public class CommonHandlers {
 						}
 						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TARGET.setData(serverPlayer, gameMode.destroyPos);
 						ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.setData(serverPlayer, ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) + 1);
-						if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) >= 100 && serverLevel.getBlockState(gameMode.destroyPos).getDestroyProgress(serverPlayer, serverLevel, gameMode.destroyPos) > 0) {
-							int id = Block.getId(serverLevel.getBlockState(gameMode.destroyPos));
+						BlockState destroyState = serverLevel.getBlockState(gameMode.destroyPos);
+						if (ESDataAttachments.FLOWGLAZE_DESTROY_BLOCK_TICKS.getData(serverPlayer) >= 100 && destroyState.getDestroyProgress(serverPlayer, serverLevel, gameMode.destroyPos) > 0 && (!destroyState.requiresCorrectToolForDrops() || serverPlayer.getMainHandItem().isCorrectToolForDrops(destroyState))) {
+							int id = Block.getId(destroyState);
 							gameMode.destroyBlock(gameMode.destroyPos);
 							for (int i = 0; i < serverLevel.players().size(); i++) {
 								serverLevel.players().get(i).connection.send(new ClientboundLevelEventPacket(2001, gameMode.destroyPos, id, false));

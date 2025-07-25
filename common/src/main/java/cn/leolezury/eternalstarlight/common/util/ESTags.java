@@ -110,7 +110,9 @@ public class ESTags {
 		public static final TagKey<Block> ABYSSLATES = create("abysslates");
 		public static final TagKey<Block> AETHERSENT_METEOR_REPLACEABLES = create("aethersent_meteor_replaceables");
 		public static final TagKey<Block> DOOMEDEN_KEYHOLE_DESTROYABLES = create("doomeden_keyhole_destroyables");
-		public static final TagKey<Block> DUSK_LIGHT_ENERGY_SOURCES = create("dusk_light_energy_sources");
+		public static final TagKey<Block> DUSK_LIGHT_DESTROYABLES = create("dusk_light_destroyables");
+		public static final TagKey<Block> DUSK_LIGHT_ALWAYS_PASSABLE = create("dusk_light_always_passable");
+		public static final TagKey<Block> DUSK_LIGHT_ALWAYS_UNPASSABLE = create("dusk_light_always_unpassable");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_REPLACEABLES = create("crystalborn_catalyst_replaceables");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_PREFERENCES = create("crystalborn_catalyst_preferences");
 		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");

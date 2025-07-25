@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-25T10:20:34.2521874	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-07-25T19:31:57.9789673	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -183,7 +183,7 @@ c4af49192d3e22a1e2c69082face26ed089227d6 data/minecraft/tags/item/enchantable/we
 25fcef527cd9a240442df188d32c912486c5ddd4 data/minecraft/tags/item/hanging_signs.json
 c6b1b01b4aae84bb10e9f8c8387286926b1a3d5a data/minecraft/tags/item/head_armor.json
 4bde8450da0970fb0b1df4a34a1f8b133feddc97 data/minecraft/tags/item/hoes.json
-7513342632805501456171c57bd0e1373d40b46c data/minecraft/tags/item/leaves.json
+0f8477f0d24a5155b211ed17168cb359357b345d data/minecraft/tags/item/leaves.json
 93ea883abe844c36dfa7277156a6add21d3784aa data/minecraft/tags/item/leg_armor.json
 4d4cd3b6bbdb893c509c92bc10dd4af1fbcbed0b data/minecraft/tags/item/logs.json
 4d4cd3b6bbdb893c509c92bc10dd4af1fbcbed0b data/minecraft/tags/item/logs_that_burn.json
