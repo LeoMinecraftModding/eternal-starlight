@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
+public abstract class AbstractDuskLightBlockEntity extends BlockEntity implements DuskLightReceptor {
 	private static final String TAG_LENGTH = "length";
 	private static final String TAG_LIT = "lit";
 
@@ -94,7 +94,8 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
 
 	protected abstract boolean isFaceActivated(BlockState state, Direction direction);
 
-	protected void lightUp(Direction direction) {
+	@Override
+	public void lightUp(Level level, BlockPos pos, Direction direction) {
 		ticksLeft = 5;
 	}
 
@@ -141,8 +142,10 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity {
 						});
 						if (result.getType() != HitResult.Type.MISS) {
 							entity.lengths.put(direction, (float) result.getLocation().subtract(pos.getCenter()).length());
-							if (level.getBlockEntity(result.getBlockPos()) instanceof AbstractDuskLightBlockEntity light) {
-								light.lightUp(direction.getOpposite());
+							if (level.getBlockEntity(result.getBlockPos()) instanceof DuskLightReceptor receptor) {
+								receptor.lightUp(level, result.getBlockPos(), direction.getOpposite());
+							} else if (level.getBlockState(result.getBlockPos()).getBlock() instanceof DuskLightReceptor receptor) {
+								receptor.lightUp(level, result.getBlockPos(), direction.getOpposite());
 							}
 							if (canDestroy(level.getBlockState(result.getBlockPos()))) {
 								level.destroyBlock(result.getBlockPos(), true);

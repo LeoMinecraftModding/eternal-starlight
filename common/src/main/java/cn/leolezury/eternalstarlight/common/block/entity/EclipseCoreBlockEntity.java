@@ -23,7 +23,7 @@ public class EclipseCoreBlockEntity extends AbstractDuskLightBlockEntity {
 	}
 
 	@Override
-	protected void lightUp(Direction direction) {
+	public void lightUp(Level level, BlockPos pos, Direction direction) {
 		switch (direction) {
 			case NORTH -> ticksLeftNorth = 5;
 			case SOUTH -> ticksLeftSouth = 5;

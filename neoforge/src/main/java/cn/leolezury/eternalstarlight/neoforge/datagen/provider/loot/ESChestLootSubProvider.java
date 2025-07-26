@@ -127,5 +127,10 @@ public class ESChestLootSubProvider implements LootTableSubProvider {
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
+
+		consumer.accept(ESLootTables.CHEST_DUSK_LOCKBOX,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.GRAVITY_PICKAXE.get()))));
 	}
 }

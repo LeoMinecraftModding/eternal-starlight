@@ -195,12 +195,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get());
 		simpleBlock(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get());
 		simpleBlock(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get());
-		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
-		simpleBlock(ESBlocks.DUSK_LIGHT.get());
-		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
-		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
-		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
 		stoneSet(ESBlocks.RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get());
+		stoneSet(ESBlocks.COBBLED_RADIANITE.get(), ESBlocks.COBBLED_RADIANITE_SLAB.get(), ESBlocks.COBBLED_RADIANITE_STAIRS.get(), ESBlocks.COBBLED_RADIANITE_WALL.get());
 		axisBlock(ESBlocks.RADIANITE_PILLAR.get());
 		stoneSet(ESBlocks.RADIANITE_BRICKS.get(), ESBlocks.RADIANITE_BRICK_SLAB.get(), ESBlocks.RADIANITE_BRICK_STAIRS.get(), ESBlocks.RADIANITE_BRICK_WALL.get());
 		stoneSet(ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE_WALL.get());
@@ -313,6 +309,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		fenceBlock(ESBlocks.LUNAR_MOSAIC_FENCE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
 		fenceGateBlock(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
 		carpet(ESBlocks.LUNAR_MAT.get(), blockTexture(ESBlocks.LUNAR_MAT.get()));
+
+		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
+		simpleBlock(ESBlocks.DUSK_LIGHT.get());
+		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
+		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
+		simpleBlock(ESBlocks.DUSK_LOCKBOX.get());
+		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
 
 		// doomeden
 		stoneSet(ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get());

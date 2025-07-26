@@ -379,15 +379,14 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_ATALPHAITE_ORE = registerItem("eternal_ice_atalphaite_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_ATALPHAITE_ORE = registerItem("haze_ice_atalphaite_ore", () -> new BlockItem(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CINDER_BRICK = registerItem("cinder_brick", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> RADIANITE = registerItem("radianite", () -> new BlockItem(ESBlocks.RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_SLAB = registerItem("radianite_slab", () -> new BlockItem(ESBlocks.RADIANITE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_STAIRS = registerItem("radianite_stairs", () -> new BlockItem(ESBlocks.RADIANITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_WALL = registerItem("radianite_wall", () -> new BlockItem(ESBlocks.RADIANITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> COBBLED_RADIANITE = registerItem("cobbled_radianite", () -> new BlockItem(ESBlocks.COBBLED_RADIANITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> COBBLED_RADIANITE_SLAB = registerItem("cobbled_radianite_slab", () -> new BlockItem(ESBlocks.COBBLED_RADIANITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> COBBLED_RADIANITE_STAIRS = registerItem("cobbled_radianite_stairs", () -> new BlockItem(ESBlocks.COBBLED_RADIANITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> COBBLED_RADIANITE_WALL = registerItem("cobbled_radianite_wall", () -> new BlockItem(ESBlocks.COBBLED_RADIANITE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RADIANITE_PILLAR = registerItem("radianite_pillar", () -> new BlockItem(ESBlocks.RADIANITE_PILLAR.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_RADIANITE = registerItem("polished_radianite", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_RADIANITE_SLAB = registerItem("polished_radianite_slab", () -> new BlockItem(ESBlocks.POLISHED_RADIANITE_SLAB.get(), new Item.Properties()));
@@ -564,7 +563,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_JET = registerItem("oxidized_golem_steel_jet", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_CRATE = registerItem("golem_steel_crate", () -> new ContainerBlockItem(ESBlocks.GOLEM_STEEL_CRATE.get(), new Item.Properties()));
 
-	// tenacious petal
+	// lunar monstrosity
 	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_VINE = registerItem("lunar_vine", () -> new BlockItem(ESBlocks.LUNAR_VINE.get(), new Item.Properties()));
@@ -574,6 +573,16 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE = registerItem("lunar_mosaic_fence", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE_GATE = registerItem("lunar_mosaic_fence_gate", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MAT = registerItem("lunar_mat", () -> new BlockItem(ESBlocks.LUNAR_MAT.get(), new Item.Properties()));
+
+	// solar creeper
+	public static final RegistryObject<Item, Item> GRAVITY_PICKAXE = registerItem("gravity_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F))));
+	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_LOCKBOX = registerItem("dusk_lockbox", () -> new BlockItem(ESBlocks.DUSK_LOCKBOX.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
 
 	// doomeden
 	public static final RegistryObject<Item, Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", () -> new Item(new Item.Properties()));

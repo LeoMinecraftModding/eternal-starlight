@@ -406,15 +406,14 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
-		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
-		dropSelf(ESBlocks.DUSK_LIGHT.get());
-		dropSelf(ESBlocks.REINFORCED_DUSK_LIGHT.get());
-		dropSelf(ESBlocks.DUSK_EMITTER.get());
-		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
-		dropSelf(ESBlocks.RADIANITE.get());
+		add(ESBlocks.RADIANITE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_RADIANITE.get()));
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.RADIANITE_STAIRS.get());
 		dropSelf(ESBlocks.RADIANITE_WALL.get());
+		dropSelf(ESBlocks.COBBLED_RADIANITE.get());
+		add(ESBlocks.COBBLED_RADIANITE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.COBBLED_RADIANITE_STAIRS.get());
+		dropSelf(ESBlocks.COBBLED_RADIANITE_WALL.get());
 		dropSelf(ESBlocks.RADIANITE_PILLAR.get());
 		dropSelf(ESBlocks.POLISHED_RADIANITE.get());
 		add(ESBlocks.POLISHED_RADIANITE_SLAB.get(), this::createSlabItemTable);
@@ -588,6 +587,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.LUNAR_MOSAIC_FENCE.get());
 		dropSelf(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get());
 		dropSelf(ESBlocks.LUNAR_MAT.get());
+
+		dropWhenSilkTouch(ESBlocks.DUSK_GLASS.get());
+		dropSelf(ESBlocks.DUSK_LIGHT.get());
+		dropSelf(ESBlocks.REINFORCED_DUSK_LIGHT.get());
+		dropSelf(ESBlocks.DUSK_EMITTER.get());
+		add(ESBlocks.DUSK_LOCKBOX.get(), noDrop());
+		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 
 		dropSelf(ESBlocks.DOOMED_TORCH.get());
 		dropOther(ESBlocks.WALL_DOOMED_TORCH.get(), ESItems.DOOMED_TORCH.get());

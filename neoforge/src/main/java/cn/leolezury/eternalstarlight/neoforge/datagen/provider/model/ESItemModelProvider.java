@@ -343,15 +343,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.ETERNAL_ICE_ATALPHAITE_ORE.get());
 		block(ESItems.HAZE_ICE_ATALPHAITE_ORE.get());
 		basicItem(ESItems.CINDER_BRICK.get());
-		block(ESItems.DUSK_GLASS.get());
-		block(ESItems.DUSK_LIGHT.get());
-		block(ESItems.REINFORCED_DUSK_LIGHT.get());
-		cubeAll(ESItems.DUSK_EMITTER.get());
-		block(ESItems.ECLIPSE_CORE.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());
 		block(ESItems.RADIANITE_STAIRS.get());
 		wall(ESItems.RADIANITE_WALL.get(), ESItems.RADIANITE.get());
+		block(ESItems.COBBLED_RADIANITE.get());
+		block(ESItems.COBBLED_RADIANITE_SLAB.get());
+		block(ESItems.COBBLED_RADIANITE_STAIRS.get());
+		wall(ESItems.COBBLED_RADIANITE_WALL.get(), ESItems.COBBLED_RADIANITE.get());
 		block(ESItems.RADIANITE_PILLAR.get());
 		block(ESItems.POLISHED_RADIANITE.get());
 		block(ESItems.POLISHED_RADIANITE_SLAB.get());
@@ -535,6 +534,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 		fence(ESItems.LUNAR_MOSAIC_FENCE.get(), ESItems.LUNAR_MOSAIC.get());
 		block(ESItems.LUNAR_MOSAIC_FENCE_GATE.get());
 		block(ESItems.LUNAR_MAT.get());
+
+		handheld(ESItems.GRAVITY_PICKAXE.get());
+		block(ESItems.DUSK_GLASS.get());
+		block(ESItems.DUSK_LIGHT.get());
+		block(ESItems.REINFORCED_DUSK_LIGHT.get());
+		cubeAll(ESItems.DUSK_EMITTER.get());
+		block(ESItems.DUSK_LOCKBOX.get());
+		block(ESItems.ECLIPSE_CORE.get());
 
 		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
 		greatsword(ESItems.BONEMORE.get());

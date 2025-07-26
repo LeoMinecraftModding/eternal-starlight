@@ -415,6 +415,11 @@ public class CommonHandlers {
 			ESSpellUtil.tickSpells(livingEntity);
 			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
 				ESCrestUtil.tickCrests(player);
+				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {
+					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(5))) {
+						itemEntity.playerTouch(player);
+					}
+				}
 				if (player instanceof ServerPlayer serverPlayer) {
 					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 					ServerLevel serverLevel = serverPlayer.serverLevel();

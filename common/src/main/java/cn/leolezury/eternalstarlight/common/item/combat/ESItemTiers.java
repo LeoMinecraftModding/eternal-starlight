@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public enum ESItemTiers implements Tier {
 	AMARAMBER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AMARAMBER)),
-	AETHERSENT(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AETHERSENT)),
+	AETHERSENT(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 400, 12.0F, 1.0F, 22, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AETHERSENT)),
 	THERMAL_SPRINGSTONE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE)),
 	STARFIRE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1000, 7.5F, 2.5F, 15, () -> Ingredient.of(ESItems.STARFIRE.get())),
 	FLOWGLAZE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1000, 7.5F, 2.5F, 15, () -> Ingredient.of(ESItems.FLOWGLAZE.get())),
