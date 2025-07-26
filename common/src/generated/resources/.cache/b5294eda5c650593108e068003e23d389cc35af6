@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-15T23:28:51.6720041	Particle Descriptions
+// 1.21.1	2025-07-26T13:34:09.6723549	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -6,6 +6,7 @@ f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/alli
 567290777c0497174ded027e976212460e006e0d assets/eternal_starlight/particles/amaramber_wax_on.json
 b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/ashen_snow.json
 df3620b4fc75de9ed119c43b5b58474f5bc41607 assets/eternal_starlight/particles/blade_shockwave.json
+1320fa193334b2f675d3c43a68b4f72d6b5d1b90 assets/eternal_starlight/particles/cradlewood_leaves.json
 5e60548fdce546847dadbb84ecb3a63b05c8a406 assets/eternal_starlight/particles/crystallized_moth_sonar.json
 843710e4aae08e6dc849c923c265d7473a0a7528 assets/eternal_starlight/particles/dripping_mud.json
 641c77c49f4a8a1145185d4910cb1ef687c6e990 assets/eternal_starlight/particles/energy.json

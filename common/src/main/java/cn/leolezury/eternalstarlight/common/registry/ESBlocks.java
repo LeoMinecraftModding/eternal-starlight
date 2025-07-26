@@ -365,8 +365,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, FlowerPotBlock> POTTED_JINGLESTEM_SAPLING = BLOCKS.register("potted_jinglestem_sapling", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, JINGLESTEM_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).mapColor(MapColor.COLOR_GREEN)));
 
 	// cradlewood
-	public static final RegistryObject<Block, LeavesBlock> CRADLEWOOD_LEAVES = BLOCKS.register("cradlewood_leaves",
-		() -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
+	public static final RegistryObject<Block, CradlewoodLeavesBlock> CRADLEWOOD_LEAVES = BLOCKS.register("cradlewood_leaves",
+		() -> new CradlewoodLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.COLOR_RED)));
 	public static final RegistryObject<Block, RotatedPillarBlock> CRADLEWOOD_LOG = BLOCKS.register("cradlewood_log",
 		() -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.TERRACOTTA_WHITE)));
 	public static final RegistryObject<Block, RotatedPillarBlock> CRADLEWOOD_WOOD = BLOCKS.register("cradlewood_wood",

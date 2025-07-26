@@ -18,6 +18,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.STARDUST.get(), loc("stardust"), 2, false);
 		spriteSet(ESParticles.FIREFLY.get(), loc("firefly"), 5, false);
 		spriteSet(ESParticles.SCARLET_LEAVES.get(), loc("scarlet_leaves"), 5, false);
+		spriteSet(ESParticles.CRADLEWOOD_LEAVES.get(), loc("cradlewood_leaves"), 8, false);
 		spriteSet(ESParticles.SHADEGRIEVE_LEAVES.get(), loc("shadegrieve_leaves"), 4, false);
 		spriteSet(ESParticles.SPIRAL_KELP_LEAVES.get(), loc("spiral_kelp_leaves"), 2, false);
 		sprite(ESParticles.FALLING_RED_CRYSTAL_MOSS.get(), loc("falling_red_crystal_moss"));

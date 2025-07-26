@@ -683,6 +683,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.STARDUST.get(), EndRodParticle.Provider::new);
 		strategy.register(ESParticles.FIREFLY.get(), FireflyParticle.Provider::new);
 		strategy.register(ESParticles.SCARLET_LEAVES.get(), FallingLeavesParticle.Provider::new);
+		strategy.register(ESParticles.CRADLEWOOD_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.SHADEGRIEVE_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.SPIRAL_KELP_LEAVES.get(), FallingLeavesParticle.Provider::new);
 		strategy.register(ESParticles.FALLING_RED_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
