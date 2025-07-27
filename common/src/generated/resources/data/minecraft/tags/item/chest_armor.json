@@ -1,11 +1,11 @@
 {
   "values": [
-    "eternal_starlight:alchemist_robe",
     "eternal_starlight:aethersent_cape",
     "eternal_starlight:thermal_springstone_chestplate",
     "eternal_starlight:glacite_chestplate",
     "eternal_starlight:starlit_diamond_chestplate",
     "eternal_starlight:swamp_silver_chestplate",
-    "eternal_starlight:amaramber_chestplate"
+    "eternal_starlight:amaramber_chestplate",
+    "eternal_starlight:alchemist_robe"
   ]
 }

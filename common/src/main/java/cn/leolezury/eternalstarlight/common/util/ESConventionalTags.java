@@ -13,12 +13,10 @@ public class ESConventionalTags {
 
 		public static final TagKey<Item> CAMPFIRES = create("campfires");
 
-		public static final TagKey<Item> GEMS_THIOQUARTZ = gem("thioquartz");
+		public static final TagKey<Item> ORES_ATALPHAITE = ore("atalphaite");
+		public static final TagKey<Item> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
+		public static final TagKey<Item> GEMS_ATALPHAITE = gem("atalphaite");
 
-		public static final TagKey<Item> STORAGE_BLOCKS_GOLEM_STEEL = storageBlock("golem_steel");
-		public static final TagKey<Item> STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL = storageBlock("oxidized_golem_steel");
-		public static final TagKey<Item> INGOTS_GOLEM_STEEL = ingot("golem_steel");
-		public static final TagKey<Item> INGOTS_OXIDIZED_GOLEM_STEEL = ingot("oxidized_golem_steel");
 
 		public static final TagKey<Item> RAW_MATERIALS_AETHERSENT = rawMaterial("aethersent");
 		public static final TagKey<Item> STORAGE_BLOCKS_RAW_AETHERSENT = storageBlock("raw_aethersent");
@@ -48,14 +46,17 @@ public class ESConventionalTags {
 		public static final TagKey<Item> STORAGE_BLOCKS_SALTPETER = storageBlock("saltpeter");
 		public static final TagKey<Item> DUSTS_SALTPETER = dust("saltpeter");
 
-		public static final TagKey<Item> ORES_ATALPHAITE = ore("atalphaite");
-		public static final TagKey<Item> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
-		public static final TagKey<Item> GEMS_ATALPHAITE = gem("atalphaite");
-
 		public static final TagKey<Item> RAW_MATERIALS_AMARAMBER = rawMaterial("amaramber");
 		public static final TagKey<Item> STORAGE_BLOCKS_RAW_AMARAMBER = storageBlock("raw_amaramber");
 		public static final TagKey<Item> INGOTS_AMARAMBER = ingot("amaramber");
 		public static final TagKey<Item> NUGGETS_AMARAMBER = nugget("amaramber");
+
+		public static final TagKey<Item> GEMS_THIOQUARTZ = gem("thioquartz");
+
+		public static final TagKey<Item> STORAGE_BLOCKS_GOLEM_STEEL = storageBlock("golem_steel");
+		public static final TagKey<Item> STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL = storageBlock("oxidized_golem_steel");
+		public static final TagKey<Item> INGOTS_GOLEM_STEEL = ingot("golem_steel");
+		public static final TagKey<Item> INGOTS_OXIDIZED_GOLEM_STEEL = ingot("oxidized_golem_steel");
 
 		public static final TagKey<Item> ORES_IN_GROUND_GRIMSTONE = oresInGround("grimstone");
 		public static final TagKey<Item> ORES_IN_GROUND_VOIDSTONE = oresInGround("voidstone");
@@ -107,8 +108,8 @@ public class ESConventionalTags {
 	}
 
 	public static class Blocks {
-		public static final TagKey<Block> STORAGE_BLOCKS_GOLEM_STEEL = storageBlock("golem_steel");
-		public static final TagKey<Block> STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL = storageBlock("oxidized_golem_steel");
+		public static final TagKey<Block> ORES_ATALPHAITE = ore("atalphaite");
+		public static final TagKey<Block> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
 
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_AETHERSENT = storageBlock("raw_aethersent");
 		public static final TagKey<Block> STORAGE_BLOCKS_AETHERSENT = storageBlock("aethersent");
@@ -129,8 +130,8 @@ public class ESConventionalTags {
 
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_AMARAMBER = storageBlock("raw_amaramber");
 
-		public static final TagKey<Block> ORES_ATALPHAITE = ore("atalphaite");
-		public static final TagKey<Block> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
+		public static final TagKey<Block> STORAGE_BLOCKS_GOLEM_STEEL = storageBlock("golem_steel");
+		public static final TagKey<Block> STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL = storageBlock("oxidized_golem_steel");
 
 		public static final TagKey<Block> ORES_IN_GROUND_GRIMSTONE = oresInGround("grimstone");
 		public static final TagKey<Block> ORES_IN_GROUND_VOIDSTONE = oresInGround("voidstone");

@@ -51,69 +51,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_HATRED_SPAWN_EGG.get());
 
-		block(ESItems.RED_STARLIGHT_CRYSTAL_BLOCK.get());
-		block(ESItems.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
-		flatBlockTexture(ESItems.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-		flatBlockTexture(ESItems.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
-		flatBlockTexture(ESItems.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-		flatBlockTexture(ESItems.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
-		flatBlockTexture(ESItems.RED_CRYSTALFLEUR.get());
-		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR.get());
-		flatBlockTexture(ESItems.RED_CRYSTALFLEUR_VINE.get());
-		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR_VINE.get());
-		block(ESItems.RED_CRYSTAL_MOSS_BLOCK.get());
-		block(ESItems.BLUE_CRYSTAL_MOSS_BLOCK.get());
-		block(ESItems.RED_CRYSTAL_MOSS_CARPET.get());
-		block(ESItems.BLUE_CRYSTAL_MOSS_CARPET.get());
-		basicItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get());
-		basicItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get());
-		basicItem(ESItems.LUNAR_BERRIES.get());
-		flatBlockTexture(ESItems.CAVE_MOSS.get());
-		basicItem(ESItems.ABYSSAL_FRUIT.get());
-		block(ESItems.ORBFLORA.get());
-		block(ESItems.ORBFLORA_LIGHT.get());
-		basicItem(ESItems.SPIRAL_KELP.get());
-		flatBlockTexture(ESItems.SEA_ROSA.get());
-		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
-		flatBlockTexture(ESItems.LUMENSTEM.get());
-		flatBlockTexture(ESItems.MARIMOLD.get());
-		block(ESItems.MARIMOLD_BLOCK.get());
-		cubeAll(ESItems.MARIMOLD_STEM.get());
-		basicItem(ESItems.CIRCULUSH.get());
-		basicItem(ESItems.STONETT.get());
-		basicItem(ESItems.LUMINIS.get());
-		basicItem(ESItems.GLOWLIS.get());
-		basicItem(ESItems.GLOREED.get());
-		basicItem(ESItems.STARLIGHT_SEAGRASS.get());
-
-		flatBlockTexture(ESItems.JINGLING_PICKLE.get());
-		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());
-		flatBlockTexture(ESItems.TENTACLES_CORAL.get());
-		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL_FAN.get());
-		flatBlockTexture(ESItems.TENTACLES_CORAL_FAN.get());
-		block(ESItems.DEAD_TENTACLES_CORAL_BLOCK.get());
-		block(ESItems.TENTACLES_CORAL_BLOCK.get());
-		flatBlockTexture(ESItems.DEAD_GOLDEN_CORAL.get());
-		flatBlockTexture(ESItems.GOLDEN_CORAL.get());
-		flatBlockTexture(ESItems.DEAD_GOLDEN_CORAL_FAN.get());
-		flatBlockTexture(ESItems.GOLDEN_CORAL_FAN.get());
-		block(ESItems.DEAD_GOLDEN_CORAL_BLOCK.get());
-		block(ESItems.GOLDEN_CORAL_BLOCK.get());
-		flatBlockTexture(ESItems.DEAD_CRYSTALLUM_CORAL.get());
-		flatBlockTexture(ESItems.CRYSTALLUM_CORAL.get());
-		flatBlockTexture(ESItems.DEAD_CRYSTALLUM_CORAL_FAN.get());
-		flatBlockTexture(ESItems.CRYSTALLUM_CORAL_FAN.get());
-		block(ESItems.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
-		block(ESItems.CRYSTALLUM_CORAL_BLOCK.get());
-
-		cubeAll(ESItems.VELVETUMOSS.get());
-		basicItem(ESItems.VELVETUMOSS_BALL.get());
-		flatBlockTexture(ESItems.VELVETUMOSS_VILLI.get());
-
-		block(ESItems.RED_VELVETUMOSS.get());
-		flatBlockTexture(ESItems.RED_VELVETUMOSS_VILLI.get());
-		flatBlockTexture(ESItems.RED_VELVETUMOSS_FLOWER.get());
-
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
 		block(ESItems.LUNAR_LEAVES.get());
@@ -379,7 +316,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.CUT_FLARE_TILE_STAIRS.get());
 		wall(ESItems.CUT_FLARE_TILE_WALL.get(), ESItems.CUT_FLARE_TILES.get());
 		block(ESItems.CHISELED_FLARE_PILLAR.get());
-
 		block(ESItems.FLARE_BRICKS.get());
 		block(ESItems.FLARE_BRICK_SLAB.get());
 		block(ESItems.FLARE_BRICK_STAIRS.get());
@@ -398,22 +334,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.POLISHED_STELLAGMITE_SLAB.get());
 		block(ESItems.POLISHED_STELLAGMITE_STAIRS.get());
 		wall(ESItems.POLISHED_STELLAGMITE_WALL.get(), ESItems.POLISHED_STELLAGMITE.get());
-
-		block(ESItems.TOOTH_OF_HUNGER_TILES.get());
-		block(ESItems.TOOTH_OF_HUNGER_TILE_SLAB.get());
-		block(ESItems.TOOTH_OF_HUNGER_TILE_STAIRS.get());
-		wall(ESItems.TOOTH_OF_HUNGER_TILE_WALL.get(), ESItems.TOOTH_OF_HUNGER_TILES.get());
-		block(ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
-		block(ESItems.CRYSTALBORN_CATALYST.get());
-		block(ESItems.CRYSTALLIZED_SAND.get());
-
-		block(ESItems.NIGHTFALL_MUD.get());
-		block(ESItems.GLOWING_NIGHTFALL_MUD.get());
-		block(ESItems.PACKED_NIGHTFALL_MUD.get());
-		block(ESItems.NIGHTFALL_MUD_BRICKS.get());
-		block(ESItems.NIGHTFALL_MUD_BRICK_SLAB.get());
-		block(ESItems.NIGHTFALL_MUD_BRICK_STAIRS.get());
-		wall(ESItems.NIGHTFALL_MUD_BRICK_WALL.get(), ESItems.NIGHTFALL_MUD_BRICKS.get());
 
 		block(ESItems.ABYSSLATE.get());
 		block(ESItems.POLISHED_ABYSSLATE.get());
@@ -454,21 +374,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.CRYOBYSSAL_MAGMA_BLOCK.get());
 		block(ESItems.CRYOBYSSAL_GEYSER.get());
 
-		block(ESItems.THIOQUARTZ_BLOCK.get());
-		block(ESItems.BUDDING_THIOQUARTZ.get());
-		flatBlockTexture(ESItems.THIOQUARTZ_CLUSTER.get());
-		basicItem(ESItems.THIOQUARTZ_SHARD.get());
-		basicItem(ESItems.THIOQUARTZ_ARROW.get());
-		block(ESItems.TOXITE.get());
-		block(ESItems.TOXITE_SLAB.get());
-		block(ESItems.TOXITE_STAIRS.get());
-		wall(ESItems.TOXITE_WALL.get(), ESItems.TOXITE.get());
-		block(ESItems.POLISHED_TOXITE.get());
-		block(ESItems.POLISHED_TOXITE_SLAB.get());
-		block(ESItems.POLISHED_TOXITE_STAIRS.get());
-		wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
-		basicItem(ESItems.ALCHEMIST_MASK.get());
-		basicItem(ESItems.ALCHEMIST_ROBE.get());
+		block(ESItems.NIGHTFALL_MUD.get());
+		block(ESItems.GLOWING_NIGHTFALL_MUD.get());
+		block(ESItems.PACKED_NIGHTFALL_MUD.get());
+		block(ESItems.NIGHTFALL_MUD_BRICKS.get());
+		block(ESItems.NIGHTFALL_MUD_BRICK_SLAB.get());
+		block(ESItems.NIGHTFALL_MUD_BRICK_STAIRS.get());
+		wall(ESItems.NIGHTFALL_MUD_BRICK_WALL.get(), ESItems.NIGHTFALL_MUD_BRICKS.get());
 
 		block(ESItems.TWILIGHT_SAND.get());
 		block(ESItems.TWILIGHT_SANDSTONE.get());
@@ -489,90 +401,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.DUSTED_BRICK_WALL.get(), ESItems.DUSTED_BRICKS.get());
 		block(ESItems.MOSSY_DUSTED_GRAVEL.get());
 		block(ESItems.GLOWING_MOSSY_DUSTED_GRAVEL.get());
-
-		block(ESItems.GOLEM_STEEL_BLOCK.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());
-		block(ESItems.GOLEM_STEEL_SLAB.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_SLAB.get(), ESItems.GOLEM_STEEL_SLAB.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_SLAB.get());
-		block(ESItems.GOLEM_STEEL_STAIRS.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_STAIRS.get(), ESItems.GOLEM_STEEL_STAIRS.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_STAIRS.get());
-		block(ESItems.GOLEM_STEEL_TILES.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILES.get(), ESItems.GOLEM_STEEL_TILES.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_TILES.get());
-		block(ESItems.GOLEM_STEEL_TILE_SLAB.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_SLAB.get(), ESItems.GOLEM_STEEL_TILE_SLAB.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get());
-		block(ESItems.GOLEM_STEEL_TILE_STAIRS.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), ESItems.GOLEM_STEEL_TILE_STAIRS.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
-		block(ESItems.GOLEM_STEEL_GRATE.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_GRATE.get(), ESItems.GOLEM_STEEL_GRATE.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_GRATE.get());
-		block(ESItems.GOLEM_STEEL_PILLAR.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_PILLAR.get(), ESItems.GOLEM_STEEL_PILLAR.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_PILLAR.get());
-		flatBlockTexture(ESItems.GOLEM_STEEL_BARS.get());
-		basicItem(ESItems.WAXED_GOLEM_STEEL_BARS.get(), blockTextureFromItem(ESItems.GOLEM_STEEL_BARS.get()));
-		flatBlockTexture(ESItems.OXIDIZED_GOLEM_STEEL_BARS.get());
-		block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
-		otherBlock(ESItems.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
-		block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
-		block(ESItems.GOLEM_STEEL_JET.get());
-		otherBlock(ESItems.WAXED_GOLEM_STEEL_JET.get(), ESItems.GOLEM_STEEL_JET.get());
-		block(ESItems.OXIDIZED_GOLEM_STEEL_JET.get());
-		block(ESItems.GOLEM_STEEL_CRATE.get());
-
-		block(ESItems.SHADEGRIEVE.get());
-		block(ESItems.BLOOMING_SHADEGRIEVE.get());
-		basicItem(ESItems.LUNAR_VINE.get());
-		block(ESItems.LUNAR_MOSAIC.get());
-		block(ESItems.LUNAR_MOSAIC_SLAB.get());
-		block(ESItems.LUNAR_MOSAIC_STAIRS.get());
-		fence(ESItems.LUNAR_MOSAIC_FENCE.get(), ESItems.LUNAR_MOSAIC.get());
-		block(ESItems.LUNAR_MOSAIC_FENCE_GATE.get());
-		block(ESItems.LUNAR_MAT.get());
-
-		handheld(ESItems.GRAVITY_PICKAXE.get());
-		block(ESItems.DUSK_GLASS.get());
-		block(ESItems.DUSK_LIGHT.get());
-		block(ESItems.REINFORCED_DUSK_LIGHT.get());
-		cubeAll(ESItems.DUSK_EMITTER.get());
-		block(ESItems.DUSK_LOCKBOX.get());
-		block(ESItems.ECLIPSE_CORE.get());
-
-		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
-		greatsword(ESItems.BONEMORE.get());
-		greatswordInventory(ESItems.BONEMORE.get());
-		bow(ESItems.BOW_OF_BLOOD.get());
-		handheld(ESItems.LIVING_ARM.get());
-		flatBlockTexture(ESItems.DOOMED_TORCH.get());
-		flatBlockTexture(ESItems.DOOMED_REDSTONE_TORCH.get());
-		basicItem(ESItems.DOOMEDEN_CARRION.get());
-		handheld(ESItems.ROTTEN_HAM.get());
-		basicItem(ESItems.EYE_OF_DOOM.get());
-		basicItem(ESItems.DOOMEDEN_RAG.get());
-		handheld(ESItems.FLESH_GRINDER.get());
-		inventoryHandheld(ESItems.DOOMEDEN_RAPIER.get());
-		block(ESItems.DOOMEDEN_BRICKS.get());
-		block(ESItems.DOOMEDEN_BRICK_SLAB.get());
-		block(ESItems.DOOMEDEN_BRICK_STAIRS.get());
-		wall(ESItems.DOOMEDEN_BRICK_WALL.get(), ESItems.DOOMEDEN_BRICKS.get());
-		block(ESItems.POLISHED_DOOMEDEN_BRICKS.get());
-		block(ESItems.POLISHED_DOOMEDEN_BRICK_SLAB.get());
-		block(ESItems.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
-		wall(ESItems.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESItems.POLISHED_DOOMEDEN_BRICKS.get());
-		block(ESItems.DOOMEDEN_TILES.get());
-		block(ESItems.DOOMEDEN_TILE_SLAB.get());
-		block(ESItems.DOOMEDEN_TILE_STAIRS.get());
-		wall(ESItems.DOOMEDEN_TILE_WALL.get(), ESItems.DOOMEDEN_TILES.get());
-		block(ESItems.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-		block(ESItems.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-		block(ESItems.DOOMEDEN_LIGHT.get());
-		block(ESItems.DOOMEDEN_KEYHOLE.get());
-		block(ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
 		flatBlockTexture(ESItems.STARLIGHT_FLOWER.get());
 		flatBlockTexture(ESItems.AUREATE_FLOWER.get());
@@ -605,6 +433,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLOWING_MUSHROOM.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_BLOCK.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
+		basicItem(ESItems.LUNAR_BERRIES.get());
+		flatBlockTexture(ESItems.CAVE_MOSS.get());
 		flatBlockTexture(ESItems.BOULDERSHROOM.get());
 		cubeAll(ESItems.BOULDERSHROOM_BLOCK.get());
 		cubeAll(ESItems.BOULDERSHROOM_STEM.get());
@@ -630,6 +460,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.AMARAMBER_GRASS.get());
 		flatBlockTexture(ESItems.AMARAMBER_GRASS_BUSH.get());
 
+		block(ESItems.RED_STARLIGHT_CRYSTAL_BLOCK.get());
+		block(ESItems.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
+		flatBlockTexture(ESItems.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+		flatBlockTexture(ESItems.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+		basicItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get());
+		basicItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get());
 		flatBlockTexture(ESItems.DEAD_LUNAR_BUSH.get());
 		flatBlockTexture(ESItems.DESERT_AMETHYSIA.get());
 		flatBlockTexture(ESItems.WITHERED_DESERT_AMETHYSIA.get());
@@ -641,10 +477,62 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUNARIS_CACTUS_GEL.get());
 		block(ESItems.CARVED_LUNARIS_CACTUS_FRUIT.get());
 		block(ESItems.LUNARIS_CACTUS_FRUIT_LANTERN.get());
+		flatBlockTexture(ESItems.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+		flatBlockTexture(ESItems.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+		flatBlockTexture(ESItems.RED_CRYSTALFLEUR.get());
+		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR.get());
+		flatBlockTexture(ESItems.RED_CRYSTALFLEUR_VINE.get());
+		flatBlockTexture(ESItems.BLUE_CRYSTALFLEUR_VINE.get());
+		block(ESItems.RED_CRYSTAL_MOSS_BLOCK.get());
+		block(ESItems.BLUE_CRYSTAL_MOSS_BLOCK.get());
+		block(ESItems.RED_CRYSTAL_MOSS_CARPET.get());
+		block(ESItems.BLUE_CRYSTAL_MOSS_CARPET.get());
 
 		flatBlockTexture(ESItems.MOONLIGHT_LILY_PAD.get());
 		flatBlockTexture(ESItems.STARLIT_LILY_PAD.get());
 		flatBlockTexture(ESItems.MOONLIGHT_DUCKWEED.get());
+
+		basicItem(ESItems.ABYSSAL_FRUIT.get());
+		block(ESItems.ORBFLORA.get());
+		block(ESItems.ORBFLORA_LIGHT.get());
+		basicItem(ESItems.SPIRAL_KELP.get());
+		flatBlockTexture(ESItems.SEA_ROSA.get());
+		basicItem(ESItems.WICK_GRASS.get(), blockTextureFromItem(ESItems.WICK_GRASS.get()).withSuffix("_top"));
+		flatBlockTexture(ESItems.LUMENSTEM.get());
+		flatBlockTexture(ESItems.MARIMOLD.get());
+		block(ESItems.MARIMOLD_BLOCK.get());
+		cubeAll(ESItems.MARIMOLD_STEM.get());
+		basicItem(ESItems.CIRCULUSH.get());
+		basicItem(ESItems.STONETT.get());
+		basicItem(ESItems.LUMINIS.get());
+		basicItem(ESItems.GLOWLIS.get());
+		basicItem(ESItems.GLOREED.get());
+		basicItem(ESItems.STARLIGHT_SEAGRASS.get());
+		flatBlockTexture(ESItems.JINGLING_PICKLE.get());
+		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL.get());
+		flatBlockTexture(ESItems.TENTACLES_CORAL.get());
+		flatBlockTexture(ESItems.DEAD_TENTACLES_CORAL_FAN.get());
+		flatBlockTexture(ESItems.TENTACLES_CORAL_FAN.get());
+		block(ESItems.DEAD_TENTACLES_CORAL_BLOCK.get());
+		block(ESItems.TENTACLES_CORAL_BLOCK.get());
+		flatBlockTexture(ESItems.DEAD_GOLDEN_CORAL.get());
+		flatBlockTexture(ESItems.GOLDEN_CORAL.get());
+		flatBlockTexture(ESItems.DEAD_GOLDEN_CORAL_FAN.get());
+		flatBlockTexture(ESItems.GOLDEN_CORAL_FAN.get());
+		block(ESItems.DEAD_GOLDEN_CORAL_BLOCK.get());
+		block(ESItems.GOLDEN_CORAL_BLOCK.get());
+		flatBlockTexture(ESItems.DEAD_CRYSTALLUM_CORAL.get());
+		flatBlockTexture(ESItems.CRYSTALLUM_CORAL.get());
+		flatBlockTexture(ESItems.DEAD_CRYSTALLUM_CORAL_FAN.get());
+		flatBlockTexture(ESItems.CRYSTALLUM_CORAL_FAN.get());
+		block(ESItems.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
+		block(ESItems.CRYSTALLUM_CORAL_BLOCK.get());
+		cubeAll(ESItems.VELVETUMOSS.get());
+		basicItem(ESItems.VELVETUMOSS_BALL.get());
+		flatBlockTexture(ESItems.VELVETUMOSS_VILLI.get());
+		block(ESItems.RED_VELVETUMOSS.get());
+		flatBlockTexture(ESItems.RED_VELVETUMOSS_VILLI.get());
+		flatBlockTexture(ESItems.RED_VELVETUMOSS_FLOWER.get());
 
 		flatBlockTexture(ESItems.CRYSTALLIZED_LUNAR_GRASS.get());
 		flatBlockTexture(ESItems.RED_CRYSTAL_ROOTS.get());
@@ -662,9 +550,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.NIGHTFALL_GRASS_BLOCK.get());
 		block(ESItems.NIGHTFALL_PODZOL.get());
 		block(ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get());
-		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_BLOCK.get());
 		block(ESItems.FANTASY_GRASS_CARPET.get());
+		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());
@@ -835,11 +723,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		largeHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
 		inventoryHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
 
-		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
-		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
-		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());
-		block(ESItems.HAZE_ICE_REDSTONE_ORE.get());
-
 		block(ESItems.GRIMSTONE_SALTPETER_ORE.get());
 		block(ESItems.VOIDSTONE_SALTPETER_ORE.get());
 		block(ESItems.ETERNAL_ICE_SALTPETER_ORE.get());
@@ -872,25 +755,27 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AMARAMBER_HELMET.get());
 		basicItem(ESItems.AMARAMBER_CHESTPLATE.get());
 
-		shatteredSword(ESItems.SHATTERED_SWORD.get());
-		basicItem(ESItems.SHATTERED_SWORD_BLADE.get());
-		basicItem(ESItems.GOLEM_STEEL_INGOT.get());
-		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
-		handheld(ESItems.ENERGY_SWORD.get());
-		basicItem(ESItems.TENACIOUS_PETAL.get());
-		basicItem(ESItems.TENACIOUS_VINE.get());
-		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
-		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
-		crossbow(ESItems.WILTED_CROSSBOW.get());
-		bow(ESItems.MOONRING_BOW.get());
-		greatsword(ESItems.MOONRING_GREATSWORD.get());
-		greatswordInventory(ESItems.MOONRING_GREATSWORD.get());
-		largeHandheld(ESItems.PETAL_SCYTHE.get());
-		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
-		handheld(ESItems.WAND_OF_TELEPORTATION.get());
-		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
-		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
-		basicItem(ESItems.SEEKING_EYE.get());
+		basicItem(ESItems.ETHER_BUCKET.get());
+		block(ESItems.THIOQUARTZ_BLOCK.get());
+		block(ESItems.BUDDING_THIOQUARTZ.get());
+		flatBlockTexture(ESItems.THIOQUARTZ_CLUSTER.get());
+		basicItem(ESItems.THIOQUARTZ_SHARD.get());
+		basicItem(ESItems.THIOQUARTZ_ARROW.get());
+		block(ESItems.TOXITE.get());
+		block(ESItems.TOXITE_SLAB.get());
+		block(ESItems.TOXITE_STAIRS.get());
+		wall(ESItems.TOXITE_WALL.get(), ESItems.TOXITE.get());
+		block(ESItems.POLISHED_TOXITE.get());
+		block(ESItems.POLISHED_TOXITE_SLAB.get());
+		block(ESItems.POLISHED_TOXITE_STAIRS.get());
+		wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
+		basicItem(ESItems.ALCHEMIST_MASK.get());
+		basicItem(ESItems.ALCHEMIST_ROBE.get());
+
+		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
+		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
+		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());
+		block(ESItems.HAZE_ICE_REDSTONE_ORE.get());
 
 		basicItem(ESItems.ROOKFISH_BUCKET.get());
 		basicItem(ESItems.ROOKFISH.get());
@@ -909,6 +794,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUMINARIS.get());
 		basicItem(ESItems.COOKED_LUMINARIS.get());
 
+		basicItem(ESItems.STARLIT_PAINTING.get());
 		block(ESItems.WHITE_YETI_FUR.get());
 		block(ESItems.ORANGE_YETI_FUR.get());
 		block(ESItems.MAGENTA_YETI_FUR.get());
@@ -961,8 +847,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SONAR_BOMB.get());
 
 		basicItem(ESItems.NIGHTFALL_SPIDER_EYE.get());
-		basicItem(ESItems.TRAPPED_SOUL.get());
-		basicItem(ESItems.SOULIT_SPECTATOR.get());
 
 		templateSkull(ESItems.TANGLED_SKULL.get());
 
@@ -971,6 +855,128 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.TOOTH_OF_HUNGER.get());
 		daggerOfHunger(ESItems.DAGGER_OF_HUNGER.get());
 		basicItem(ESItems.VORACIOUS_ARROW.get());
+		block(ESItems.TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.TOOTH_OF_HUNGER_TILE_SLAB.get());
+		block(ESItems.TOOTH_OF_HUNGER_TILE_STAIRS.get());
+		wall(ESItems.TOOTH_OF_HUNGER_TILE_WALL.get(), ESItems.TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+		block(ESItems.CRYSTALBORN_CATALYST.get());
+		block(ESItems.CRYSTALLIZED_SAND.get());
+
+		block(ESItems.THE_GATEKEEPER_SPAWNER.get());
+		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
+		block(ESItems.TANGLED_HATRED_SPAWNER.get());
+		block(ESItems.LUNAR_MONSTROSITY_SPAWNER.get());
+
+		basicItem(ESItems.LOOT_BAG.get());
+		basicItem(ESItems.STARLIGHT_SILVER_COIN.get());
+		basicItem(ESItems.BOOK.get());
+		basicItem(ESItems.SEEKING_EYE.get());
+		shatteredSword(ESItems.SHATTERED_SWORD.get());
+		basicItem(ESItems.SHATTERED_SWORD_BLADE.get());
+
+		basicItem(ESItems.GOLEM_STEEL_INGOT.get());
+		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
+		handheld(ESItems.ENERGY_SWORD.get());
+		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
+		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
+		block(ESItems.GOLEM_STEEL_BLOCK.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+		block(ESItems.GOLEM_STEEL_SLAB.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_SLAB.get(), ESItems.GOLEM_STEEL_SLAB.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_SLAB.get());
+		block(ESItems.GOLEM_STEEL_STAIRS.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_STAIRS.get(), ESItems.GOLEM_STEEL_STAIRS.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_STAIRS.get());
+		block(ESItems.GOLEM_STEEL_TILES.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILES.get(), ESItems.GOLEM_STEEL_TILES.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_TILES.get());
+		block(ESItems.GOLEM_STEEL_TILE_SLAB.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_SLAB.get(), ESItems.GOLEM_STEEL_TILE_SLAB.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get());
+		block(ESItems.GOLEM_STEEL_TILE_STAIRS.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), ESItems.GOLEM_STEEL_TILE_STAIRS.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get());
+		block(ESItems.GOLEM_STEEL_GRATE.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_GRATE.get(), ESItems.GOLEM_STEEL_GRATE.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_GRATE.get());
+		block(ESItems.GOLEM_STEEL_PILLAR.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_PILLAR.get(), ESItems.GOLEM_STEEL_PILLAR.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_PILLAR.get());
+		flatBlockTexture(ESItems.GOLEM_STEEL_BARS.get());
+		basicItem(ESItems.WAXED_GOLEM_STEEL_BARS.get(), blockTextureFromItem(ESItems.GOLEM_STEEL_BARS.get()));
+		flatBlockTexture(ESItems.OXIDIZED_GOLEM_STEEL_BARS.get());
+		block(ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
+		otherBlock(ESItems.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), ESItems.CHISELED_GOLEM_STEEL_BLOCK.get());
+		block(ESItems.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
+		block(ESItems.GOLEM_STEEL_JET.get());
+		otherBlock(ESItems.WAXED_GOLEM_STEEL_JET.get(), ESItems.GOLEM_STEEL_JET.get());
+		block(ESItems.OXIDIZED_GOLEM_STEEL_JET.get());
+		block(ESItems.GOLEM_STEEL_CRATE.get());
+		block(ESItems.ENERGY_BLOCK.get());
+
+		basicItem(ESItems.TENACIOUS_PETAL.get());
+		basicItem(ESItems.TENACIOUS_VINE.get());
+		basicItem(ESItems.TRAPPED_SOUL.get());
+		basicItem(ESItems.SOULIT_SPECTATOR.get());
+		crossbow(ESItems.WILTED_CROSSBOW.get());
+		bow(ESItems.MOONRING_BOW.get());
+		greatsword(ESItems.MOONRING_GREATSWORD.get());
+		greatswordInventory(ESItems.MOONRING_GREATSWORD.get());
+		largeHandheld(ESItems.PETAL_SCYTHE.get());
+		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
+		handheld(ESItems.WAND_OF_TELEPORTATION.get());
+		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
+		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
+		block(ESItems.SHADEGRIEVE.get());
+		block(ESItems.BLOOMING_SHADEGRIEVE.get());
+		basicItem(ESItems.LUNAR_VINE.get());
+		block(ESItems.LUNAR_MOSAIC.get());
+		block(ESItems.LUNAR_MOSAIC_SLAB.get());
+		block(ESItems.LUNAR_MOSAIC_STAIRS.get());
+		fence(ESItems.LUNAR_MOSAIC_FENCE.get(), ESItems.LUNAR_MOSAIC.get());
+		block(ESItems.LUNAR_MOSAIC_FENCE_GATE.get());
+		block(ESItems.LUNAR_MAT.get());
+
+		handheld(ESItems.GRAVITY_PICKAXE.get());
+		block(ESItems.DUSK_GLASS.get());
+		block(ESItems.DUSK_LIGHT.get());
+		block(ESItems.REINFORCED_DUSK_LIGHT.get());
+		cubeAll(ESItems.DUSK_EMITTER.get());
+		block(ESItems.DUSK_LOCKBOX.get());
+		block(ESItems.ECLIPSE_CORE.get());
+
+		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());
+		greatsword(ESItems.BONEMORE.get());
+		greatswordInventory(ESItems.BONEMORE.get());
+		bow(ESItems.BOW_OF_BLOOD.get());
+		handheld(ESItems.LIVING_ARM.get());
+		flatBlockTexture(ESItems.DOOMED_TORCH.get());
+		flatBlockTexture(ESItems.DOOMED_REDSTONE_TORCH.get());
+		basicItem(ESItems.DOOMEDEN_CARRION.get());
+		handheld(ESItems.ROTTEN_HAM.get());
+		basicItem(ESItems.EYE_OF_DOOM.get());
+		basicItem(ESItems.DOOMEDEN_RAG.get());
+		handheld(ESItems.FLESH_GRINDER.get());
+		inventoryHandheld(ESItems.DOOMEDEN_RAPIER.get());
+		block(ESItems.DOOMEDEN_BRICKS.get());
+		block(ESItems.DOOMEDEN_BRICK_SLAB.get());
+		block(ESItems.DOOMEDEN_BRICK_STAIRS.get());
+		wall(ESItems.DOOMEDEN_BRICK_WALL.get(), ESItems.DOOMEDEN_BRICKS.get());
+		block(ESItems.POLISHED_DOOMEDEN_BRICKS.get());
+		block(ESItems.POLISHED_DOOMEDEN_BRICK_SLAB.get());
+		block(ESItems.POLISHED_DOOMEDEN_BRICK_STAIRS.get());
+		wall(ESItems.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESItems.POLISHED_DOOMEDEN_BRICKS.get());
+		block(ESItems.DOOMEDEN_TILES.get());
+		block(ESItems.DOOMEDEN_TILE_SLAB.get());
+		block(ESItems.DOOMEDEN_TILE_STAIRS.get());
+		wall(ESItems.DOOMEDEN_TILE_WALL.get(), ESItems.DOOMEDEN_TILES.get());
+		block(ESItems.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+		block(ESItems.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+		block(ESItems.DOOMEDEN_LIGHT.get());
+		block(ESItems.DOOMEDEN_KEYHOLE.get());
+		block(ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
 		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());
@@ -1005,16 +1011,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_BRISK.get());
 		basicItem(ESItems.MUSIC_DISC_MOONLIGHT.get());
 
-		basicItem(ESItems.STARLIT_PAINTING.get());
-		basicItem(ESItems.ETHER_BUCKET.get());
-		block(ESItems.ENERGY_BLOCK.get());
-		block(ESItems.THE_GATEKEEPER_SPAWNER.get());
-		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
-		block(ESItems.TANGLED_HATRED_SPAWNER.get());
-		block(ESItems.LUNAR_MONSTROSITY_SPAWNER.get());
-		basicItem(ESItems.STARLIGHT_SILVER_COIN.get());
-		basicItem(ESItems.LOOT_BAG.get());
-		basicItem(ESItems.BOOK.get());
 		basicItem(ESItems.BLOSSOM_OF_STARS.get());
 	}
 

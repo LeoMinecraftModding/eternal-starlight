@@ -16,20 +16,6 @@ import java.util.List;
 
 public class ESArmorMaterials {
 	public static final RegistrationProvider<ArmorMaterial> ARMOR_MATERIALS = RegistrationProvider.get(Registries.ARMOR_MATERIAL, EternalStarlight.ID);
-	public static final RegistryObject<ArmorMaterial, ArmorMaterial> ALCHEMIST = ARMOR_MATERIALS.register("alchemist", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
-		map.put(ArmorItem.Type.BOOTS, 2);
-		map.put(ArmorItem.Type.LEGGINGS, 5);
-		map.put(ArmorItem.Type.CHESTPLATE, 6);
-		map.put(ArmorItem.Type.HELMET, 2);
-		map.put(ArmorItem.Type.BODY, 5);
-	}), 15, ESSoundEvents.ARMOR_EQUIP_ALCHEMIST.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.GEMS_THIOQUARTZ), List.of(new ArmorMaterial.Layer(EternalStarlight.id("alchemist"))), 0F, 0F));
-	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AMARAMBER = ARMOR_MATERIALS.register("amaramber", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
-		map.put(ArmorItem.Type.BOOTS, 2);
-		map.put(ArmorItem.Type.LEGGINGS, 5);
-		map.put(ArmorItem.Type.CHESTPLATE, 5);
-		map.put(ArmorItem.Type.HELMET, 2);
-		map.put(ArmorItem.Type.BODY, 5);
-	}), 9, ESSoundEvents.ARMOR_EQUIP_AMARAMBER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AMARAMBER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("amaramber"))), 0F, 0F));
 	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AETHERSENT = ARMOR_MATERIALS.register("aethersent", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
 		map.put(ArmorItem.Type.BOOTS, 3);
 		map.put(ArmorItem.Type.LEGGINGS, 6);
@@ -65,6 +51,20 @@ public class ESArmorMaterials {
 		map.put(ArmorItem.Type.HELMET, 2);
 		map.put(ArmorItem.Type.BODY, 5);
 	}), 25, ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("swamp_silver"))), 0.5F, 0.2F));
+	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AMARAMBER = ARMOR_MATERIALS.register("amaramber", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+		map.put(ArmorItem.Type.BOOTS, 2);
+		map.put(ArmorItem.Type.LEGGINGS, 5);
+		map.put(ArmorItem.Type.CHESTPLATE, 5);
+		map.put(ArmorItem.Type.HELMET, 2);
+		map.put(ArmorItem.Type.BODY, 5);
+	}), 9, ESSoundEvents.ARMOR_EQUIP_AMARAMBER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AMARAMBER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("amaramber"))), 0F, 0F));
+	public static final RegistryObject<ArmorMaterial, ArmorMaterial> ALCHEMIST = ARMOR_MATERIALS.register("alchemist", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+		map.put(ArmorItem.Type.BOOTS, 2);
+		map.put(ArmorItem.Type.LEGGINGS, 5);
+		map.put(ArmorItem.Type.CHESTPLATE, 6);
+		map.put(ArmorItem.Type.HELMET, 2);
+		map.put(ArmorItem.Type.BODY, 5);
+	}), 15, ESSoundEvents.ARMOR_EQUIP_ALCHEMIST.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.GEMS_THIOQUARTZ), List.of(new ArmorMaterial.Layer(EternalStarlight.id("alchemist"))), 0F, 0F));
 	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AIR_SAC = ARMOR_MATERIALS.register("air_sac", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
 		map.put(ArmorItem.Type.BOOTS, 1);
 		map.put(ArmorItem.Type.LEGGINGS, 4);

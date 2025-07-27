@@ -1,7 +1,5 @@
 {
   "values": [
-    "eternal_starlight:bonemore",
-    "eternal_starlight:doomeden_rapier",
     "eternal_starlight:rage_of_stars",
     "eternal_starlight:thermal_springstone_sword",
     "eternal_starlight:thermal_springstone_axe",
@@ -26,10 +24,12 @@
     "eternal_starlight:flowglaze_scythe",
     "eternal_starlight:amaramber_sword",
     "eternal_starlight:amaramber_axe",
+    "eternal_starlight:dagger_of_hunger",
     "eternal_starlight:shattered_sword",
     "eternal_starlight:energy_sword",
     "eternal_starlight:moonring_greatsword",
     "eternal_starlight:petal_scythe",
-    "eternal_starlight:dagger_of_hunger"
+    "eternal_starlight:bonemore",
+    "eternal_starlight:doomeden_rapier"
   ]
 }

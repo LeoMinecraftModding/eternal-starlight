@@ -129,7 +129,6 @@ public class ClientSetupHandlers {
 	}
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
-		ESBlocks.NIGHTFALL_GRASS_BLOCK,
 		ESBlocks.LUNAR_LEAVES,
 		ESBlocks.NORTHLAND_LEAVES,
 		ESBlocks.STARLIGHT_MANGROVE_LEAVES,
@@ -141,57 +140,13 @@ public class ClientSetupHandlers {
 		ESBlocks.HANGING_ALGALEAVES,
 		ESBlocks.HANGING_ALGALEAVES_PLANT,
 		ESBlocks.ALGALEAVES,
+		ESBlocks.NIGHTFALL_GRASS_BLOCK,
 		ESBlocks.GOLEM_STEEL_BARS,
 		ESBlocks.WAXED_GOLEM_STEEL_BARS,
 		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
-		ESBlocks.BERRIES_VINES,
-		ESBlocks.BERRIES_VINES_PLANT,
-		ESBlocks.CAVE_MOSS,
-		ESBlocks.CAVE_MOSS_PLANT,
-		ESBlocks.CAVE_MOSS_VEIN,
-		ESBlocks.ABYSSAL_KELP,
-		ESBlocks.ABYSSAL_KELP_PLANT,
-		ESBlocks.ORBFLORA,
-		ESBlocks.ORBFLORA_PLANT,
-		ESBlocks.SPIRAL_KELP,
-		ESBlocks.SPIRAL_KELP_PLANT,
-		ESBlocks.SEA_ROSA,
-		ESBlocks.WICK_GRASS,
-		ESBlocks.LUMENSTEM,
-		ESBlocks.LUMENSTEM_PLANT,
-		ESBlocks.MARIMOLD,
-		ESBlocks.CIRCULUSH,
-		ESBlocks.STONETT,
-		ESBlocks.LUMINIS,
-		ESBlocks.GLOWLIS,
-		ESBlocks.GLOREED,
-		ESBlocks.STARLIGHT_SEAGRASS,
-		ESBlocks.JINGLING_PICKLE,
-		ESBlocks.DEAD_TENTACLES_CORAL,
-		ESBlocks.TENTACLES_CORAL,
-		ESBlocks.DEAD_TENTACLES_CORAL_FAN,
-		ESBlocks.TENTACLES_CORAL_FAN,
-		ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN,
-		ESBlocks.TENTACLES_CORAL_WALL_FAN,
-		ESBlocks.DEAD_GOLDEN_CORAL,
-		ESBlocks.GOLDEN_CORAL,
-		ESBlocks.DEAD_GOLDEN_CORAL_FAN,
-		ESBlocks.GOLDEN_CORAL_FAN,
-		ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN,
-		ESBlocks.GOLDEN_CORAL_WALL_FAN,
-		ESBlocks.DEAD_CRYSTALLUM_CORAL,
-		ESBlocks.CRYSTALLUM_CORAL,
-		ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN,
-		ESBlocks.CRYSTALLUM_CORAL_FAN,
-		ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN,
-		ESBlocks.CRYSTALLUM_CORAL_WALL_FAN,
-		ESBlocks.VELVETUMOSS_VILLI,
-		ESBlocks.RED_VELVETUMOSS_VILLI,
-		ESBlocks.RED_VELVETUMOSS_FLOWER,
-		ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER,
 		ESBlocks.LUNAR_SAPLING,
 		ESBlocks.POTTED_LUNAR_SAPLING,
 		ESBlocks.LUNAR_TRAPDOOR,
@@ -225,27 +180,6 @@ public class ClientSetupHandlers {
 		ESBlocks.CRADLEWOOD_DOOR,
 		ESBlocks.ICICLE,
 		ESBlocks.ABYSSAL_FIRE,
-		ESBlocks.AMARAMBER_FIRE,
-		ESBlocks.GOLEM_STEEL_GRATE,
-		ESBlocks.WAXED_GOLEM_STEEL_GRATE,
-		ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE,
-		ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
-		ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
-		ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER,
-		ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER,
-		ESBlocks.RED_CRYSTALFLEUR,
-		ESBlocks.POTTED_RED_CRYSTALFLEUR,
-		ESBlocks.BLUE_CRYSTALFLEUR,
-		ESBlocks.POTTED_BLUE_CRYSTALFLEUR,
-		ESBlocks.RED_CRYSTALFLEUR_VINE,
-		ESBlocks.BLUE_CRYSTALFLEUR_VINE,
-		ESBlocks.THIOQUARTZ_CLUSTER,
-		ESBlocks.SHADEGRIEVE,
-		ESBlocks.BLOOMING_SHADEGRIEVE,
-		ESBlocks.DOOMED_TORCH,
-		ESBlocks.WALL_DOOMED_TORCH,
-		ESBlocks.DOOMED_REDSTONE_TORCH,
-		ESBlocks.WALL_DOOMED_REDSTONE_TORCH,
 		ESBlocks.STARLIGHT_FLOWER,
 		ESBlocks.POTTED_STARLIGHT_FLOWER,
 		ESBlocks.AUREATE_FLOWER,
@@ -289,6 +223,11 @@ public class ClientSetupHandlers {
 		ESBlocks.MOONLIGHT_BUSH,
 		ESBlocks.GLOWING_MUSHROOM,
 		ESBlocks.POTTED_GLOWING_MUSHROOM,
+		ESBlocks.BERRIES_VINES,
+		ESBlocks.BERRIES_VINES_PLANT,
+		ESBlocks.CAVE_MOSS,
+		ESBlocks.CAVE_MOSS_PLANT,
+		ESBlocks.CAVE_MOSS_VEIN,
 		ESBlocks.BOULDERSHROOM,
 		ESBlocks.POTTED_BOULDERSHROOM,
 		ESBlocks.BOULDERSHROOM_ROOTS,
@@ -325,9 +264,59 @@ public class ClientSetupHandlers {
 		ESBlocks.POTTED_SUNSET_THORNBLOOM,
 		ESBlocks.AMETHYSIA_GRASS,
 		ESBlocks.LUNARIS_CACTUS,
+		ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER,
+		ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER,
+		ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER,
+		ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER,
+		ESBlocks.RED_CRYSTALFLEUR,
+		ESBlocks.POTTED_RED_CRYSTALFLEUR,
+		ESBlocks.BLUE_CRYSTALFLEUR,
+		ESBlocks.POTTED_BLUE_CRYSTALFLEUR,
+		ESBlocks.RED_CRYSTALFLEUR_VINE,
+		ESBlocks.BLUE_CRYSTALFLEUR_VINE,
 		ESBlocks.MOONLIGHT_LILY_PAD,
 		ESBlocks.STARLIT_LILY_PAD,
 		ESBlocks.MOONLIGHT_DUCKWEED,
+		ESBlocks.ABYSSAL_KELP,
+		ESBlocks.ABYSSAL_KELP_PLANT,
+		ESBlocks.ORBFLORA,
+		ESBlocks.ORBFLORA_PLANT,
+		ESBlocks.SPIRAL_KELP,
+		ESBlocks.SPIRAL_KELP_PLANT,
+		ESBlocks.SEA_ROSA,
+		ESBlocks.WICK_GRASS,
+		ESBlocks.LUMENSTEM,
+		ESBlocks.LUMENSTEM_PLANT,
+		ESBlocks.MARIMOLD,
+		ESBlocks.CIRCULUSH,
+		ESBlocks.STONETT,
+		ESBlocks.LUMINIS,
+		ESBlocks.GLOWLIS,
+		ESBlocks.GLOREED,
+		ESBlocks.STARLIGHT_SEAGRASS,
+		ESBlocks.JINGLING_PICKLE,
+		ESBlocks.DEAD_TENTACLES_CORAL,
+		ESBlocks.TENTACLES_CORAL,
+		ESBlocks.DEAD_TENTACLES_CORAL_FAN,
+		ESBlocks.TENTACLES_CORAL_FAN,
+		ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN,
+		ESBlocks.TENTACLES_CORAL_WALL_FAN,
+		ESBlocks.DEAD_GOLDEN_CORAL,
+		ESBlocks.GOLDEN_CORAL,
+		ESBlocks.DEAD_GOLDEN_CORAL_FAN,
+		ESBlocks.GOLDEN_CORAL_FAN,
+		ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN,
+		ESBlocks.GOLDEN_CORAL_WALL_FAN,
+		ESBlocks.DEAD_CRYSTALLUM_CORAL,
+		ESBlocks.CRYSTALLUM_CORAL,
+		ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN,
+		ESBlocks.CRYSTALLUM_CORAL_FAN,
+		ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN,
+		ESBlocks.CRYSTALLUM_CORAL_WALL_FAN,
+		ESBlocks.VELVETUMOSS_VILLI,
+		ESBlocks.RED_VELVETUMOSS_VILLI,
+		ESBlocks.RED_VELVETUMOSS_FLOWER,
+		ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER,
 		ESBlocks.CRYSTALLIZED_LUNAR_GRASS,
 		ESBlocks.RED_CRYSTAL_ROOTS,
 		ESBlocks.BLUE_CRYSTAL_ROOTS,
@@ -358,18 +347,29 @@ public class ClientSetupHandlers {
 		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY,
 		ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY,
 		ESBlocks.AMARAMBER_LANTERN,
+		ESBlocks.AMARAMBER_FIRE,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
 		ESBlocks.TANGLED_HATRED_SPAWNER,
-		ESBlocks.LUNAR_MONSTROSITY_SPAWNER
+		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
+		ESBlocks.GOLEM_STEEL_GRATE,
+		ESBlocks.WAXED_GOLEM_STEEL_GRATE,
+		ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE,
+		ESBlocks.THIOQUARTZ_CLUSTER,
+		ESBlocks.SHADEGRIEVE,
+		ESBlocks.BLOOMING_SHADEGRIEVE,
+		ESBlocks.DOOMED_TORCH,
+		ESBlocks.WALL_DOOMED_TORCH,
+		ESBlocks.DOOMED_REDSTONE_TORCH,
+		ESBlocks.WALL_DOOMED_REDSTONE_TORCH
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
-		ESBlocks.MARIMOLD_BLOCK,
-		ESBlocks.DUSK_GLASS,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,
+		ESBlocks.MARIMOLD_BLOCK,
 		ESBlocks.FLOWGLAZE,
 		ESBlocks.FLOWGLAZE_PANE,
+		ESBlocks.DUSK_GLASS,
 		ESBlocks.STARLIGHT_PORTAL
 	);
 
@@ -404,11 +404,6 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("thermal_springstone_scythe");
 		registerSimpleSpecialModel("thermal_springstone_hammer");
 		registerSimpleSpecialModel("glacite_scythe");
-		registerSimpleSpecialModel("orb_of_prophecy");
-		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
-		registerSimpleSpecialModel("bonemore");
-		registerSimpleSpecialModel("bonemore_blocking");
-		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("malarite_spear");
 		registerSimpleSpecialModel("pungency_fruit_spear");
 		registerSimpleSpecialModel("seeds_launcher");
@@ -419,6 +414,11 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
 		registerSimpleSpecialModel("crescent_spear");
+		registerSimpleSpecialModel("bonemore");
+		registerSimpleSpecialModel("bonemore_blocking");
+		registerSimpleSpecialModel("doomeden_rapier");
+		registerSimpleSpecialModel("orb_of_prophecy");
+		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
@@ -428,33 +428,38 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.TORREYA_CAMPFIRE.get(), CampfireRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DRYING_RACK.get(), DryingRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
-		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
-
-		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
+		ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				boolean bl = entity.getMainHandItem() == stack;
-				boolean bl2 = entity.getOffhandItem() == stack;
-				if (entity.getMainHandItem().getItem() instanceof ChainOfSoulsItem) {
-					bl2 = false;
-				}
-
-				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getESGrappling() != null ? 1.0F : 0.0F;
+				return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
 			}
 		});
+		ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.MALARITE_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
+
+		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
 
 		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
@@ -507,14 +512,25 @@ public class ClientSetupHandlers {
 		});
 		ItemProperties.register(ESItems.MOONRING_BOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-		ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
+		ItemProperties.register(ESItems.MOONRING_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
+				boolean bl = entity.getMainHandItem() == stack;
+				boolean bl2 = entity.getOffhandItem() == stack;
+				if (entity.getMainHandItem().getItem() instanceof ChainOfSoulsItem) {
+					bl2 = false;
+				}
+
+				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getESGrappling() != null ? 1.0F : 0.0F;
 			}
 		});
-		ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.BONEMORE.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
@@ -525,22 +541,7 @@ public class ClientSetupHandlers {
 		});
 		ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-
-		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
-
 		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), EternalStarlight.id("orb_type"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
-
-		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
-
-		ItemProperties.register(ESItems.MALARITE_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-		ItemProperties.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-		ItemProperties.register(ESItems.CRESCENT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-		ItemProperties.register(ESItems.BONEMORE.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-		ItemProperties.register(ESItems.MOONRING_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -664,9 +665,6 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("thermal_springstone_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("thermal_springstone_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("glacite_scythe_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("orb_of_prophecy_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_inventory")));
-		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("malarite_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("pungency_fruit_spear_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("seeds_launcher_inventory")));
@@ -676,6 +674,9 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("bonemore_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("doomeden_rapier_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("orb_of_prophecy_inventory")));
 	}
 
 	public static void registerParticleProviders(ParticleProviderRegisterStrategy strategy) {

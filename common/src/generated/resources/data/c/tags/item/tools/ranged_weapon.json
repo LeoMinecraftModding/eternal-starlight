@@ -1,6 +1,5 @@
 {
   "values": [
-    "eternal_starlight:bow_of_blood",
     "eternal_starlight:starfall_longbow",
     "eternal_starlight:malarite_spear",
     "eternal_starlight:pungency_fruit_spear",
@@ -9,6 +8,7 @@
     "eternal_starlight:mechanical_crossbow",
     "eternal_starlight:wilted_crossbow",
     "eternal_starlight:moonring_bow",
-    "eternal_starlight:crescent_spear"
+    "eternal_starlight:crescent_spear",
+    "eternal_starlight:bow_of_blood"
   ]
 }

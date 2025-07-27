@@ -1,7 +1,6 @@
 {
   "values": [
-    "#c:storage_blocks/golem_steel",
-    "#c:storage_blocks/oxidized_golem_steel",
+    "#c:storage_blocks/atalphaite",
     "#c:storage_blocks/raw_aethersent",
     "#c:storage_blocks/aethersent",
     "#c:storage_blocks/glacite",
@@ -10,6 +9,7 @@
     "#c:storage_blocks/malarite",
     "#c:storage_blocks/saltpeter",
     "#c:storage_blocks/raw_amaramber",
-    "#c:storage_blocks/atalphaite"
+    "#c:storage_blocks/golem_steel",
+    "#c:storage_blocks/oxidized_golem_steel"
   ]
 }

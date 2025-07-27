@@ -1,8 +1,5 @@
 {
   "values": [
-    "eternal_starlight:red_crystalfleur",
-    "eternal_starlight:blue_crystalfleur",
-    "eternal_starlight:red_velvetumoss_flower",
     "eternal_starlight:starlight_flower",
     "eternal_starlight:aureate_flower",
     "eternal_starlight:conebloom",
@@ -13,6 +10,9 @@
     "eternal_starlight:swamp_rose",
     "eternal_starlight:withered_starlight_flower",
     "eternal_starlight:desert_amethysia",
-    "eternal_starlight:withered_desert_amethysia"
+    "eternal_starlight:withered_desert_amethysia",
+    "eternal_starlight:red_crystalfleur",
+    "eternal_starlight:blue_crystalfleur",
+    "eternal_starlight:red_velvetumoss_flower"
   ]
 }

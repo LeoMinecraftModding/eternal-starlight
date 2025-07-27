@@ -1,14 +1,14 @@
 {
   "values": [
-    "eternal_starlight:gravity_pickaxe",
     "eternal_starlight:thermal_springstone_pickaxe",
+    "eternal_starlight:thermal_springstone_hammer",
     "eternal_starlight:glacite_pickaxe",
     "eternal_starlight:starlit_diamond_pickaxe",
-    "eternal_starlight:thermal_springstone_hammer",
     "eternal_starlight:swamp_silver_pickaxe",
     "eternal_starlight:malarite_pickaxe",
     "eternal_starlight:starfire_pickaxe",
     "eternal_starlight:flowglaze_pickaxe",
-    "eternal_starlight:amaramber_pickaxe"
+    "eternal_starlight:amaramber_pickaxe",
+    "eternal_starlight:gravity_pickaxe"
   ]
 }

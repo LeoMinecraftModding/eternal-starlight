@@ -1,21 +1,21 @@
 {
   "values": [
-    "eternal_starlight:nightfall_dirt",
-    "eternal_starlight:nightfall_farmland",
-    "eternal_starlight:nightfall_dirt_path",
+    "eternal_starlight:ashen_snow",
     "eternal_starlight:nightfall_mud",
     "eternal_starlight:glowing_nightfall_mud",
     "eternal_starlight:twilight_sand",
-    "eternal_starlight:crystallized_sand",
     "eternal_starlight:dusted_gravel",
     "eternal_starlight:mossy_dusted_gravel",
     "eternal_starlight:glowing_mossy_dusted_gravel",
+    "eternal_starlight:nightfall_dirt",
+    "eternal_starlight:nightfall_farmland",
+    "eternal_starlight:nightfall_dirt_path",
     "eternal_starlight:nightfall_grass_block",
     "eternal_starlight:nightfall_podzol",
     "eternal_starlight:tenacious_nightfall_grass_block",
-    "eternal_starlight:golden_grass_block",
     "eternal_starlight:fantasy_grass_block",
+    "eternal_starlight:golden_grass_block",
     "eternal_starlight:swamp_silver_ore",
-    "eternal_starlight:ashen_snow"
+    "eternal_starlight:crystallized_sand"
   ]
 }

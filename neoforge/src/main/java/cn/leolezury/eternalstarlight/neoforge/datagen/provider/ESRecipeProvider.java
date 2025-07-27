@@ -41,18 +41,18 @@ public class ESRecipeProvider extends RecipeProvider {
 	protected void buildRecipes(RecipeOutput recipeOutput) {
 		addWoodRecipes(recipeOutput);
 		addStoneRecipes(recipeOutput);
-		addThioquartzRecipes(recipeOutput);
+		addAtalphaiteRecipes(recipeOutput);
 		addAethersentRecipes(recipeOutput);
+		addThermalSpringstoneRecipes(recipeOutput);
+		addGlaciteRecipes(recipeOutput);
+		addStarlitDiamondRecipes(recipeOutput);
 		addSwampSilverRecipes(recipeOutput);
 		addMalariteRecipes(recipeOutput);
 		addPungencyFruitRecipes(recipeOutput);
 		addStarfireRecipes(recipeOutput);
-		addThermalSpringstoneRecipes(recipeOutput);
-		addGlaciteRecipes(recipeOutput);
-		addStarlitDiamondRecipes(recipeOutput);
-		addAtalphaiteRecipes(recipeOutput);
 		addSaltpeterRecipes(recipeOutput);
 		addAmaramberRecipes(recipeOutput);
+		addThioquartzRecipes(recipeOutput);
 
 		smithingTrims().forEach((template) -> trimSmithing(recipeOutput, template.template(), template.id()));
 		copySmithingTemplate(recipeOutput, ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get(), ESItems.GRIMSTONE.get(), ESConventionalTags.Items.INGOTS_SWAMP_SILVER);
@@ -94,7 +94,6 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.WITHERED_DESERT_AMETHYSIA.get());
 		addSingleConversion(recipeOutput, Items.ORANGE_DYE, ESItems.SUNSET_THORNBLOOM.get());
 		addSingleConversion(recipeOutput, Items.PURPLE_DYE, ESItems.AMETHYSIA_GRASS.get());
-
 		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.GLADESPIKE.get());
 		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.VIVIDSTALK.get());
 		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.TALL_GLADESPIKE.get());
@@ -102,6 +101,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		// food
 		addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
 		addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
+		addSmelt(recipeOutput, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
 		addSmelt(recipeOutput, 200, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, ESItems.SPIRAL_KELP.get());
 		addSmelt(recipeOutput, 200, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH.get());
 		addSmelt(recipeOutput, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
@@ -109,11 +109,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSmelt(recipeOutput, 200, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.AURORA_DEER_STEAK.get());
 		addSmelt(recipeOutput, 200, ESItems.RATLIN_MEAT.get(), ESItems.COOKED_RATLIN_MEAT.get(), ESItems.RATLIN_MEAT.get());
 		addSmelt(recipeOutput, 200, ESItems.SHADOW_SNAIL_MEAT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_MEAT.get());
-		addSmelt(recipeOutput, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
 
 		// smelt
-		addSmelt(recipeOutput, 200, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
-		addBlast(recipeOutput, 100, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
 		addSmelt(recipeOutput, 200, ESItems.RAW_AETHERSENT.get(), ESItems.AETHERSENT_INGOT.get(), ESItems.RAW_AETHERSENT.get());
 		addBlast(recipeOutput, 100, ESItems.RAW_AETHERSENT.get(), ESItems.AETHERSENT_INGOT.get(), ESItems.RAW_AETHERSENT.get());
 		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.GRIMSTONE_REDSTONE_ORE.get());
@@ -124,6 +121,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 150, ESItems.ETERNAL_ICE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.ETERNAL_ICE_REDSTONE_ORE.get());
 		addSmelt(recipeOutput, 300, ESItems.HAZE_ICE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.HAZE_ICE_REDSTONE_ORE.get());
 		addBlast(recipeOutput, 150, ESItems.HAZE_ICE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.HAZE_ICE_REDSTONE_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
+		addBlast(recipeOutput, 100, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
 
 		// magic
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.ORB_OF_PROPHECY.get())
@@ -191,14 +190,87 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 
 		// misc
-		customCarpet(recipeOutput, ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
-		customCarpet(recipeOutput, ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
-		addShapeless(recipeOutput, ESItems.VELVETUMOSS_BALL.get(), Items.SLIME_BALL, 2, ESItems.VELVETUMOSS_BALL.get());
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 2)
+			.pattern("SG ")
+			.pattern("GAG")
+			.pattern(" G ")
+			.define('A', ESConventionalTags.Items.GEMS_ATALPHAITE)
+			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
+			.define('S', ESItems.ASHEN_SNOWBALL.get())
+			.unlockedBy("has_item", has(ESItems.ASHEN_SNOWBALL.get()))
+			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
 		addShapeless(recipeOutput, ESItems.BOULDERSHROOM.get(), ESItems.BOULDERSHROOM_STEW.get(), 1, ESItems.BOULDERSHROOM.get(), ESItems.GLOWING_MUSHROOM.get(), Items.BOWL);
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
 		addShapeless(recipeOutput, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), 1, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.AMARAMBER_CANDLE.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
+			.pattern("T")
+			.pattern("S")
+			.pattern("F")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESItems.SPIRAL_KELP.get())
+			.define('T', Items.FLINT)
+			.unlockedBy("has_item", has(ESItems.SPIRAL_KELP.get()))
+			.save(recipeOutput, EternalStarlight.id("arrow_from_spiral_kelp"));
+		addShapeless(recipeOutput, ESItems.VELVETUMOSS_BALL.get(), Items.SLIME_BALL, 2, ESItems.VELVETUMOSS_BALL.get());
+		customCarpet(recipeOutput, ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
+		customCarpet(recipeOutput, ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
+		addShapeless(recipeOutput, ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH_SKEWER.get(), 3, ESItems.COOKED_ROOKFISH.get(), Items.STICK, Items.STICK, Items.STICK);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_ARROW.get(), 4)
+			.pattern("D")
+			.pattern("S")
+			.pattern("T")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('D', ESItems.DUSTED_SHARD.get())
+			.define('T', ESItems.ROOKFISH_AIR_SAC.get())
+			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_MASK.get())
+			.pattern("LLL")
+			.pattern("LHL")
+			.pattern("SBS")
+			.define('L', ESItems.JINGLESTEM_LOG.get())
+			.define('S', ESItems.ROOKFISH_AIR_SAC.get())
+			.define('H', ESItems.AMARAMBER_HELMET.get())
+			.define('B', ESItems.VELVETUMOSS_BALL.get())
+			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_BOOTS.get())
+			.pattern("# #")
+			.pattern("# #")
+			.define('#', ESItems.ROOKFISH_AIR_SAC.get())
+			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
+			.save(recipeOutput);
+		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
+		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
+			.pattern("SSS")
+			.pattern("SFS")
+			.pattern("SSS")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.YETI_FUR)
+			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
+			.pattern(" N ")
+			.pattern("NGN")
+			.pattern(" N ")
+			.define('N', ESConventionalTags.Items.NUGGETS_SWAMP_SILVER)
+			.define('G', ESItems.SHIVERING_GEL.get())
+			.unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
+			.save(recipeOutput);
+		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
+			.pattern("T")
+			.pattern("S")
+			.pattern("F")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('F', ESTags.Items.ARROW_FEATHERS)
+			.define('T', ESItems.TOOTH_OF_HUNGER.get())
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.save(recipeOutput);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get())
 			.pattern("FFF")
 			.pattern("FPF")
@@ -207,6 +279,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('F', ESItems.STARLIGHT_FLOWER.get())
 			.unlockedBy("has_item", has(ESItems.STARLIGHT_FLOWER.get()))
 			.save(recipeOutput);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_CROSSBOW.get())
 			.pattern("BGB")
 			.pattern("STS")
@@ -228,6 +301,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('$', Items.TRIPWIRE_HOOK)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
+
+		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.WILTED_CROSSBOW.get())
 			.pattern("#&#")
 			.pattern("~$~")
@@ -274,79 +349,6 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
-		addShapeless(recipeOutput, ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH_SKEWER.get(), 3, ESItems.COOKED_ROOKFISH.get(), Items.STICK, Items.STICK, Items.STICK);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_ARROW.get(), 4)
-			.pattern("D")
-			.pattern("S")
-			.pattern("T")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('D', ESItems.DUSTED_SHARD.get())
-			.define('T', ESItems.ROOKFISH_AIR_SAC.get())
-			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_MASK.get())
-			.pattern("LLL")
-			.pattern("LHL")
-			.pattern("SBS")
-			.define('L', ESItems.JINGLESTEM_LOG.get())
-			.define('S', ESItems.ROOKFISH_AIR_SAC.get())
-			.define('H', ESItems.AMARAMBER_HELMET.get())
-			.define('B', ESItems.VELVETUMOSS_BALL.get())
-			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_BOOTS.get())
-			.pattern("# #")
-			.pattern("# #")
-			.define('#', ESItems.ROOKFISH_AIR_SAC.get())
-			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
-			.save(recipeOutput);
-		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
-		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
-			.pattern(" N ")
-			.pattern("NGN")
-			.pattern(" N ")
-			.define('N', ESConventionalTags.Items.NUGGETS_SWAMP_SILVER)
-			.define('G', ESItems.SHIVERING_GEL.get())
-			.unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 2)
-			.pattern("SG ")
-			.pattern("GAG")
-			.pattern(" G ")
-			.define('A', ESConventionalTags.Items.GEMS_ATALPHAITE)
-			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
-			.define('S', ESItems.ASHEN_SNOWBALL.get())
-			.unlockedBy("has_item", has(ESItems.ASHEN_SNOWBALL.get()))
-			.save(recipeOutput);
-		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
-		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
-			.pattern("T")
-			.pattern("S")
-			.pattern("F")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('F', ESTags.Items.ARROW_FEATHERS)
-			.define('T', ESItems.TOOTH_OF_HUNGER.get())
-			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
-			.pattern("SSS")
-			.pattern("SFS")
-			.pattern("SSS")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('F', ESTags.Items.YETI_FUR)
-			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
-			.pattern("T")
-			.pattern("S")
-			.pattern("F")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('F', ESItems.SPIRAL_KELP.get())
-			.define('T', Items.FLINT)
-			.unlockedBy("has_item", has(ESItems.SPIRAL_KELP.get()))
-			.save(recipeOutput, EternalStarlight.id("arrow_from_spiral_kelp"));
 
 		// overworld stuff replacements
 		// cinder brick
@@ -888,30 +890,6 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE.get(), 2);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILES.get())
-			.pattern("##")
-			.pattern("##")
-			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
-			.define('#', ESItems.TOOTH_OF_HUNGER.get())
-			.save(recipeOutput);
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		addStairs(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		addSlab(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get(), 2);
-		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.CRYSTALBORN_CATALYST.get())
-			.pattern("BTB")
-			.pattern("TRT")
-			.pattern("BTB")
-			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
-			.define('T', ESItems.TOOTH_OF_HUNGER.get())
-			.define('B', ESItems.CINDER_BRICK.get())
-			.define('R', Items.REDSTONE)
-			.save(recipeOutput);
-
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
 		addStoneCompress(recipeOutput, ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_ABYSSLATE.get(), ESBlocks.ABYSSLATE.get());
@@ -987,36 +965,47 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(), ESBlocks.POLISHED_CRYOBYSSLATE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(), ESBlocks.POLISHED_CRYOBYSSLATE.get(), 2);
 
-		addStoneCompress(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		addStoneCompress(recipeOutput, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICK_SLAB.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecuttingSet(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		stonecuttingSet(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		addStairs(recipeOutput, ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		addSlab(recipeOutput, ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICKS.get(), 2);
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		addStairs(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		addSlab(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), 2);
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_TILES.get());
-		addStairs(recipeOutput, ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILES.get());
-		addSlab(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
-		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), 1, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+		addStoneCompress(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.PACKED_NIGHTFALL_MUD.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get(), 2);
+
+		addStoneCompress(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SAND.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		addStairs(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		addSlab(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.TWILIGHT_SANDSTONE.get(), 2);
+		addStoneCompress(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		stonecuttingSet(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+		addStairs(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+		addSlab(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), 2);
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.DUSTED_BRICKS.get())
+			.pattern("###")
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESItems.DUSTED_SHARD.get())
+			.unlockedBy("has_item", has(ESItems.DUSTED_SHARD.get()))
+			.save(recipeOutput);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_WALL.get(), ESBlocks.DUSTED_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_WALL.get(), ESBlocks.DUSTED_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get(), 2);
 
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
@@ -1117,47 +1106,29 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get(), 2);
 
-		addStoneCompress(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICKS.get(), ESBlocks.PACKED_NIGHTFALL_MUD.get());
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_WALL.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
-		addStairs(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_STAIRS.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
-		addSlab(recipeOutput, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.NIGHTFALL_MUD_BRICK_SLAB.get(), ESBlocks.NIGHTFALL_MUD_BRICKS.get(), 2);
-
-		addStoneCompress(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SAND.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		addStairs(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		addSlab(recipeOutput, ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.TWILIGHT_SANDSTONE.get(), 2);
-		addStoneCompress(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		stonecuttingSet(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.TWILIGHT_SANDSTONE.get());
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_WALL.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-		addStairs(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_STAIRS.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-		addSlab(recipeOutput, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get(), 2);
-		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE_SLAB.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TWILIGHT_SANDSTONE.get(), ESBlocks.CUT_TWILIGHT_SANDSTONE.get());
-
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.DUSTED_BRICKS.get())
-			.pattern("###")
-			.pattern("###")
-			.pattern("###")
-			.define('#', ESItems.DUSTED_SHARD.get())
-			.unlockedBy("has_item", has(ESItems.DUSTED_SHARD.get()))
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILES.get())
+			.pattern("##")
+			.pattern("##")
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.define('#', ESItems.TOOTH_OF_HUNGER.get())
 			.save(recipeOutput);
-		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_WALL.get(), ESBlocks.DUSTED_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_WALL.get(), ESBlocks.DUSTED_BRICKS.get());
-		addStairs(recipeOutput, ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICKS.get());
-		addSlab(recipeOutput, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get());
-		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		addStairs(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		addSlab(recipeOutput, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get(), 2);
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILES.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.CRYSTALBORN_CATALYST.get())
+			.pattern("BTB")
+			.pattern("TRT")
+			.pattern("BTB")
+			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
+			.define('T', ESItems.TOOTH_OF_HUNGER.get())
+			.define('B', ESItems.CINDER_BRICK.get())
+			.define('R', Items.REDSTONE)
+			.save(recipeOutput);
 
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.GOLEM_STEEL_BLOCK.get(), "golem_steel_ingot_from_golem_steel_block", "golem_steel_ingot");
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get(), "oxidized_golem_steel_ingot_from_oxidized_golem_steel_block", "oxidized_golem_steel_ingot");
@@ -1268,6 +1239,37 @@ public class ESRecipeProvider extends RecipeProvider {
 		addFence(recipeOutput, ESBlocks.LUNAR_MOSAIC_FENCE.get(), ESBlocks.LUNAR_MOSAIC.get());
 		addFenceGate(recipeOutput, ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), ESBlocks.LUNAR_MOSAIC.get());
 		customCarpet(recipeOutput, ESBlocks.LUNAR_MAT.get(), ESBlocks.LUNAR_MOSAIC.get());
+
+		addStoneCompress(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		addStoneCompress(recipeOutput, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICK_SLAB.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		stonecuttingSet(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_WALL.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICKS.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		addStairs(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		addSlab(recipeOutput, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), 2);
+		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_WALL.get(), ESBlocks.DOOMEDEN_TILES.get());
+		addStairs(recipeOutput, ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILES.get());
+		addSlab(recipeOutput, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILES.get(), 2);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), 1, ESBlocks.DOOMED_TORCH.get(), ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
 	}
 
 	private void addThioquartzRecipes(RecipeOutput recipeOutput) {

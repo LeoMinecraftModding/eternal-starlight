@@ -30,84 +30,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		vinesWithFruit(ESBlocks.BERRIES_VINES.get());
-		vinesWithFruit(ESBlocks.BERRIES_VINES_PLANT.get());
-		tintedCross(ESBlocks.CAVE_MOSS.get());
-		tintedCross(ESBlocks.CAVE_MOSS_PLANT.get());
-		multifaceBlock(ESBlocks.CAVE_MOSS_VEIN.get());
-		vinesWithFruit(ESBlocks.ABYSSAL_KELP.get());
-		vinesWithFruit(ESBlocks.ABYSSAL_KELP_PLANT.get());
-		orbflora(ESBlocks.ORBFLORA.get());
-		cross(ESBlocks.ORBFLORA_PLANT.get());
-		simpleBlock(ESBlocks.ORBFLORA_LIGHT.get());
-		simpleExisting(ESBlocks.SPIRAL_KELP.get());
-		simpleExisting(ESBlocks.SPIRAL_KELP_PLANT.get());
-		multifaceBlock(ESBlocks.SEA_ROSA.get());
-		doublePlant(ESBlocks.WICK_GRASS.get());
-		lumenstem(ESBlocks.LUMENSTEM.get());
-		lumenstemPlant(ESBlocks.LUMENSTEM_PLANT.get());
-		cross(ESBlocks.MARIMOLD.get());
-		simpleBlock(ESBlocks.MARIMOLD_BLOCK.get(), models().cubeAll(name(ESBlocks.MARIMOLD_BLOCK.get()), blockTexture(ESBlocks.MARIMOLD_BLOCK.get())).renderType(TRANSLUCENT));
-		mushroomLikeBlock(ESBlocks.MARIMOLD_STEM.get());
-		cross(ESBlocks.CIRCULUSH.get());
-		cross(ESBlocks.STONETT.get());
-		cross(ESBlocks.LUMINIS.get());
-		cross(ESBlocks.GLOWLIS.get());
-		cross(ESBlocks.GLOREED.get());
-		cross(ESBlocks.STARLIGHT_SEAGRASS.get());
-		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
-		directionalBud(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());
-		directionalBud(ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
-		cross(ESBlocks.RED_CRYSTALFLEUR.get());
-		pottedPlant(ESBlocks.POTTED_RED_CRYSTALFLEUR.get(), blockTexture(ESBlocks.RED_CRYSTALFLEUR.get()));
-		cross(ESBlocks.BLUE_CRYSTALFLEUR.get());
-		pottedPlant(ESBlocks.POTTED_BLUE_CRYSTALFLEUR.get(), blockTexture(ESBlocks.BLUE_CRYSTALFLEUR.get()));
-		multifaceBlock(ESBlocks.RED_CRYSTALFLEUR_VINE.get());
-		multifaceBlock(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get());
-		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
-		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
-		randomlyFlippedBlock(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
-		randomlyFlippedBlock(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
-		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get()));
-		carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()));
-
-		cross(ESBlocks.JINGLING_PICKLE.get());
-		cross(ESBlocks.DEAD_TENTACLES_CORAL.get());
-		cross(ESBlocks.TENTACLES_CORAL.get());
-		coralFan(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());
-		coralFan(ESBlocks.TENTACLES_CORAL_FAN.get());
-		coralWallFan(ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN.get(), ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());
-		coralWallFan(ESBlocks.TENTACLES_CORAL_WALL_FAN.get(), ESBlocks.TENTACLES_CORAL_FAN.get());
-		simpleBlock(ESBlocks.DEAD_TENTACLES_CORAL_BLOCK.get());
-		simpleBlock(ESBlocks.TENTACLES_CORAL_BLOCK.get());
-
-		cross(ESBlocks.DEAD_GOLDEN_CORAL.get());
-		cross(ESBlocks.GOLDEN_CORAL.get());
-		coralFan(ESBlocks.DEAD_GOLDEN_CORAL_FAN.get());
-		coralFan(ESBlocks.GOLDEN_CORAL_FAN.get());
-		coralWallFan(ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN.get(), ESBlocks.DEAD_GOLDEN_CORAL_FAN.get());
-		coralWallFan(ESBlocks.GOLDEN_CORAL_WALL_FAN.get(), ESBlocks.GOLDEN_CORAL_FAN.get());
-		simpleBlock(ESBlocks.DEAD_GOLDEN_CORAL_BLOCK.get());
-		simpleBlock(ESBlocks.GOLDEN_CORAL_BLOCK.get());
-
-		cross(ESBlocks.DEAD_CRYSTALLUM_CORAL.get());
-		cross(ESBlocks.CRYSTALLUM_CORAL.get());
-		coralFan(ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get());
-		coralFan(ESBlocks.CRYSTALLUM_CORAL_FAN.get());
-		coralWallFan(ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get());
-		coralWallFan(ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(), ESBlocks.CRYSTALLUM_CORAL_FAN.get());
-		simpleBlock(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
-		simpleBlock(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get());
-
-		mushroomLikeBlock(ESBlocks.VELVETUMOSS.get());
-		directionalCrossCropBud(ESBlocks.VELVETUMOSS_VILLI.get());
-
-		simpleBlock(ESBlocks.RED_VELVETUMOSS.get());
-		directionalCrossCropBud(ESBlocks.RED_VELVETUMOSS_VILLI.get());
-		cross(ESBlocks.RED_VELVETUMOSS_FLOWER.get());
-		pottedPlant(ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER.get(), blockTexture(ESBlocks.RED_VELVETUMOSS_FLOWER.get()));
-
 		// woods
 		leaves(ESBlocks.LUNAR_LEAVES.get());
 		woodSet(ESBlocks.LUNAR_LOG.get(), ESBlocks.LUNAR_WOOD.get(), ESBlocks.LUNAR_PLANKS.get(), ESBlocks.STRIPPED_LUNAR_LOG.get(), ESBlocks.STRIPPED_LUNAR_WOOD.get(), ESBlocks.LUNAR_DOOR.get(), false, ESBlocks.LUNAR_TRAPDOOR.get(), false, ESBlocks.LUNAR_PRESSURE_PLATE.get(), ESBlocks.LUNAR_BUTTON.get(), ESBlocks.LUNAR_FENCE.get(), ESBlocks.LUNAR_FENCE_GATE.get(), ESBlocks.LUNAR_SLAB.get(), ESBlocks.LUNAR_STAIRS.get(), ESBlocks.LUNAR_SIGN.get(), ESBlocks.LUNAR_WALL_SIGN.get(), ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.LUNAR_WALL_HANGING_SIGN.get());
@@ -201,22 +123,15 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.RADIANITE_BRICKS.get(), ESBlocks.RADIANITE_BRICK_SLAB.get(), ESBlocks.RADIANITE_BRICK_STAIRS.get(), ESBlocks.RADIANITE_BRICK_WALL.get());
 		stoneSet(ESBlocks.POLISHED_RADIANITE.get(), ESBlocks.POLISHED_RADIANITE_SLAB.get(), ESBlocks.POLISHED_RADIANITE_STAIRS.get(), ESBlocks.POLISHED_RADIANITE_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_RADIANITE.get());
-
 		stoneSet(ESBlocks.FLARE_BRICKS.get(), ESBlocks.FLARE_BRICK_SLAB.get(), ESBlocks.FLARE_BRICK_STAIRS.get(), ESBlocks.FLARE_BRICK_WALL.get());
 		stoneSet(ESBlocks.CUT_FLARE_BRICKS.get(), ESBlocks.CUT_FLARE_BRICK_SLAB.get(), ESBlocks.CUT_FLARE_BRICK_STAIRS.get(), ESBlocks.CUT_FLARE_BRICK_WALL.get());
 		stoneSet(ESBlocks.FLARE_TILES.get(), ESBlocks.FLARE_TILE_SLAB.get(), ESBlocks.FLARE_TILE_STAIRS.get(), ESBlocks.FLARE_TILE_WALL.get());
 		stoneSet(ESBlocks.CUT_FLARE_TILES.get(), ESBlocks.CUT_FLARE_TILE_SLAB.get(), ESBlocks.CUT_FLARE_TILE_STAIRS.get(), ESBlocks.CUT_FLARE_TILE_WALL.get());
-
 		axisBlock(ESBlocks.CHISELED_FLARE_PILLAR.get());
 
 		stoneSet(ESBlocks.STELLAGMITE.get(), ESBlocks.STELLAGMITE_SLAB.get(), ESBlocks.STELLAGMITE_STAIRS.get(), ESBlocks.STELLAGMITE_WALL.get());
 		stoneSet(ESBlocks.MOLTEN_STELLAGMITE.get(), ESBlocks.MOLTEN_STELLAGMITE_SLAB.get(), ESBlocks.MOLTEN_STELLAGMITE_STAIRS.get(), ESBlocks.MOLTEN_STELLAGMITE_WALL.get());
 		stoneSet(ESBlocks.POLISHED_STELLAGMITE.get(), ESBlocks.POLISHED_STELLAGMITE_SLAB.get(), ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), ESBlocks.POLISHED_STELLAGMITE_WALL.get());
-
-		stoneSet(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get());
-		simpleBlock(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get());
-		directionalBlock(ESBlocks.CRYSTALBORN_CATALYST.get(), models().cubeBottomTop(name(ESBlocks.CRYSTALBORN_CATALYST.get()), EternalStarlight.id("block/machine_side"), EternalStarlight.id("block/machine_side"), blockTexture(ESBlocks.CRYSTALBORN_CATALYST.get())));
-		simpleBlock(ESBlocks.CRYSTALLIZED_SAND.get());
 
 		simpleBlock(ESBlocks.ABYSSLATE.get());
 		simpleBlock(ESBlocks.CHISELED_POLISHED_ABYSSLATE.get());
@@ -239,15 +154,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get());
 		geyser(ESBlocks.CRYOBYSSLATE.get(), ESBlocks.CRYOBYSSAL_GEYSER.get());
 
-		simpleBlock(ESBlocks.THIOQUARTZ_BLOCK.get());
-		simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
-		directionalBud(ESBlocks.THIOQUARTZ_CLUSTER.get());
-		stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
-		polishedToxite(ESBlocks.POLISHED_TOXITE.get());
-		slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
-		stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
-		wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
-
 		simpleBlock(ESBlocks.NIGHTFALL_MUD.get());
 		simpleBlock(ESBlocks.GLOWING_NIGHTFALL_MUD.get());
 		simpleBlock(ESBlocks.PACKED_NIGHTFALL_MUD.get());
@@ -267,66 +173,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
 		simpleGrassBlock(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 		simpleGrassBlock(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.MOSSY_DUSTED_GRAVEL.get()).withSuffix("_side"), blockTexture(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()).withSuffix("_top"), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
-
-		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
-		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
-		slabBlock(ESBlocks.GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
-		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
-		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
-		stairsBlock(ESBlocks.GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
-		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_outer")));
-		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
-		simpleBlock(ESBlocks.GOLEM_STEEL_TILES.get());
-		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
-		slabBlock(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
-		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
-		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
-		stairsBlock(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
-		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_outer")));
-		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
-		simpleBlock(ESBlocks.GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
-		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())));
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
-		axisBlock(ESBlocks.GOLEM_STEEL_PILLAR.get());
-		axisBlock(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get()).withSuffix("_horizontal")));
-		axisBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get());
-		simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
-		simpleBlock(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get())));
-		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
-		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
-		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
-		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(modLoc("golem_steel_crate_open")), models().getExistingFile(modLoc("golem_steel_crate")));
-
-		shadegrieve(ESBlocks.SHADEGRIEVE.get());
-		shadegrieve(ESBlocks.BLOOMING_SHADEGRIEVE.get());
-		particleOnly(ESBlocks.LUNAR_VINE.get(), itemTextureFromBlock(ESBlocks.LUNAR_VINE.get()));
-		simpleBlock(ESBlocks.LUNAR_MOSAIC.get());
-		slabBlock(ESBlocks.LUNAR_MOSAIC_SLAB.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
-		stairsBlock(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
-		fenceBlock(ESBlocks.LUNAR_MOSAIC_FENCE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
-		fenceGateBlock(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
-		carpet(ESBlocks.LUNAR_MAT.get(), blockTexture(ESBlocks.LUNAR_MAT.get()));
-
-		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
-		simpleBlock(ESBlocks.DUSK_LIGHT.get());
-		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
-		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
-		simpleBlock(ESBlocks.DUSK_LOCKBOX.get());
-		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
-
-		// doomeden
-		stoneSet(ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get());
-		simpleBlock(ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-		simpleBlock(ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
-		doomedenTorch(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get());
-		doomedenRedstoneTorch(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get());
-		stoneSet(ESBlocks.DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICK_WALL.get());
-		stoneSet(ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get());
-		onOffBlock(ESBlocks.DOOMEDEN_LIGHT.get());
-		doomedenKeyhole(ESBlocks.DOOMEDEN_KEYHOLE.get(), ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
 		cross(ESBlocks.STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.STARLIGHT_FLOWER.get()));
@@ -373,6 +219,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()), blockTexture(ESBlocks.GLOWING_MUSHROOM_STEM.get()), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()) + "_inside", blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
+		vinesWithFruit(ESBlocks.BERRIES_VINES.get());
+		vinesWithFruit(ESBlocks.BERRIES_VINES_PLANT.get());
+		tintedCross(ESBlocks.CAVE_MOSS.get());
+		tintedCross(ESBlocks.CAVE_MOSS_PLANT.get());
+		multifaceBlock(ESBlocks.CAVE_MOSS_VEIN.get());
 		directionalBud(ESBlocks.BOULDERSHROOM.get());
 		pottedPlant(ESBlocks.POTTED_BOULDERSHROOM.get(), blockTexture(ESBlocks.BOULDERSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
@@ -405,6 +256,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_AMARAMBER_GRASS.get(), blockTexture(ESBlocks.AMARAMBER_GRASS.get()));
 		cross(ESBlocks.AMARAMBER_GRASS_BUSH.get());
 
+		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
+		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
+		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
 		cross(ESBlocks.DEAD_LUNAR_BUSH.get());
 		pottedPlant(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(), blockTexture(ESBlocks.DEAD_LUNAR_BUSH.get()));
 		cross(ESBlocks.DESERT_AMETHYSIA.get());
@@ -418,10 +273,74 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleExisting(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
 		horizontalBlock(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), models().orientableWithBottom(name(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top")));
 		horizontalBlock(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), models().orientableWithBottom(name(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit"), blockTexture(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get()), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_bottom"), blockTexture(ESBlocks.LUNARIS_CACTUS.get()).withSuffix("_fruit_top")));
+		directionalBud(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get());
+		directionalBud(ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+		cross(ESBlocks.RED_CRYSTALFLEUR.get());
+		pottedPlant(ESBlocks.POTTED_RED_CRYSTALFLEUR.get(), blockTexture(ESBlocks.RED_CRYSTALFLEUR.get()));
+		cross(ESBlocks.BLUE_CRYSTALFLEUR.get());
+		pottedPlant(ESBlocks.POTTED_BLUE_CRYSTALFLEUR.get(), blockTexture(ESBlocks.BLUE_CRYSTALFLEUR.get()));
+		multifaceBlock(ESBlocks.RED_CRYSTALFLEUR_VINE.get());
+		multifaceBlock(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get());
+		randomlyFlippedBlock(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
+		randomlyFlippedBlock(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
+		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get()));
+		carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()));
 
 		waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		waterlilyWithFlower(ESBlocks.STARLIT_LILY_PAD.get());
 		waterlily(ESBlocks.MOONLIGHT_DUCKWEED.get());
+
+		vinesWithFruit(ESBlocks.ABYSSAL_KELP.get());
+		vinesWithFruit(ESBlocks.ABYSSAL_KELP_PLANT.get());
+		orbflora(ESBlocks.ORBFLORA.get());
+		cross(ESBlocks.ORBFLORA_PLANT.get());
+		simpleBlock(ESBlocks.ORBFLORA_LIGHT.get());
+		simpleExisting(ESBlocks.SPIRAL_KELP.get());
+		simpleExisting(ESBlocks.SPIRAL_KELP_PLANT.get());
+		multifaceBlock(ESBlocks.SEA_ROSA.get());
+		doublePlant(ESBlocks.WICK_GRASS.get());
+		lumenstem(ESBlocks.LUMENSTEM.get());
+		lumenstemPlant(ESBlocks.LUMENSTEM_PLANT.get());
+		cross(ESBlocks.MARIMOLD.get());
+		simpleBlock(ESBlocks.MARIMOLD_BLOCK.get(), models().cubeAll(name(ESBlocks.MARIMOLD_BLOCK.get()), blockTexture(ESBlocks.MARIMOLD_BLOCK.get())).renderType(TRANSLUCENT));
+		mushroomLikeBlock(ESBlocks.MARIMOLD_STEM.get());
+		cross(ESBlocks.CIRCULUSH.get());
+		cross(ESBlocks.STONETT.get());
+		cross(ESBlocks.LUMINIS.get());
+		cross(ESBlocks.GLOWLIS.get());
+		cross(ESBlocks.GLOREED.get());
+		cross(ESBlocks.STARLIGHT_SEAGRASS.get());
+		cross(ESBlocks.JINGLING_PICKLE.get());
+		cross(ESBlocks.DEAD_TENTACLES_CORAL.get());
+		cross(ESBlocks.TENTACLES_CORAL.get());
+		coralFan(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());
+		coralFan(ESBlocks.TENTACLES_CORAL_FAN.get());
+		coralWallFan(ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN.get(), ESBlocks.DEAD_TENTACLES_CORAL_FAN.get());
+		coralWallFan(ESBlocks.TENTACLES_CORAL_WALL_FAN.get(), ESBlocks.TENTACLES_CORAL_FAN.get());
+		simpleBlock(ESBlocks.DEAD_TENTACLES_CORAL_BLOCK.get());
+		simpleBlock(ESBlocks.TENTACLES_CORAL_BLOCK.get());
+		cross(ESBlocks.DEAD_GOLDEN_CORAL.get());
+		cross(ESBlocks.GOLDEN_CORAL.get());
+		coralFan(ESBlocks.DEAD_GOLDEN_CORAL_FAN.get());
+		coralFan(ESBlocks.GOLDEN_CORAL_FAN.get());
+		coralWallFan(ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN.get(), ESBlocks.DEAD_GOLDEN_CORAL_FAN.get());
+		coralWallFan(ESBlocks.GOLDEN_CORAL_WALL_FAN.get(), ESBlocks.GOLDEN_CORAL_FAN.get());
+		simpleBlock(ESBlocks.DEAD_GOLDEN_CORAL_BLOCK.get());
+		simpleBlock(ESBlocks.GOLDEN_CORAL_BLOCK.get());
+		cross(ESBlocks.DEAD_CRYSTALLUM_CORAL.get());
+		cross(ESBlocks.CRYSTALLUM_CORAL.get());
+		coralFan(ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get());
+		coralFan(ESBlocks.CRYSTALLUM_CORAL_FAN.get());
+		coralWallFan(ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get());
+		coralWallFan(ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(), ESBlocks.CRYSTALLUM_CORAL_FAN.get());
+		simpleBlock(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
+		simpleBlock(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get());
+		mushroomLikeBlock(ESBlocks.VELVETUMOSS.get());
+		directionalCrossCropBud(ESBlocks.VELVETUMOSS_VILLI.get());
+		simpleBlock(ESBlocks.RED_VELVETUMOSS.get());
+		directionalCrossCropBud(ESBlocks.RED_VELVETUMOSS_VILLI.get());
+		cross(ESBlocks.RED_VELVETUMOSS_FLOWER.get());
+		pottedPlant(ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER.get(), blockTexture(ESBlocks.RED_VELVETUMOSS_FLOWER.get()));
 
 		cross(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get());
 		cross(ESBlocks.RED_CRYSTAL_ROOTS.get());
@@ -439,9 +358,94 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		grassBlock(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		snowyDirtBlock(ESBlocks.NIGHTFALL_PODZOL.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()), blockTexture(ESBlocks.NIGHTFALL_GRASS_BLOCK.get()).withSuffix("_snow"));
 		simpleGrassBlock(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
-		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 		simpleGrassBlock(ESBlocks.FANTASY_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_MUD.get()));
 		carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));
+		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
+
+		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
+		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
+
+		stoneSet(ESBlocks.SPRINGSTONE.get(), ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE_WALL.get());
+		stoneSet(ESBlocks.SPRINGSTONE_BRICKS.get(), ESBlocks.SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.SPRINGSTONE_BRICK_WALL.get());
+		stoneSet(ESBlocks.POLISHED_SPRINGSTONE.get(), ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(), ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(), ESBlocks.POLISHED_SPRINGSTONE_WALL.get());
+		simpleBlock(ESBlocks.CHISELED_SPRINGSTONE.get());
+
+		stoneSet(ESBlocks.THERMAL_SPRINGSTONE.get(), ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_WALL.get());
+		stoneSet(ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
+
+		simpleBlock(ESBlocks.GLACITE.get());
+		simpleBlock(ESBlocks.GLACITE_BLOCK.get());
+
+		simpleBlock(ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
+		simpleBlock(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
+
+		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
+		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
+
+		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
+		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
+		simpleBlock(ESBlocks.MALARITE_BLOCK.get());
+
+		pungencyFruit(ESBlocks.PUNGENCY_FRUIT_VINES.get());
+		cubeBottomTop(ESBlocks.TEAR_BOMB.get());
+
+		dryingRack(ESBlocks.DRYING_RACK.get());
+
+		starfireBirdNest(ESBlocks.STARFIRE_BIRD_NEST.get());
+		starfireBirdAviary(ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("oak"));
+		starfireBirdAviary(ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("spruce"));
+		starfireBirdAviary(ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("birch"));
+		starfireBirdAviary(ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("acacia"));
+		starfireBirdAviary(ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("cherry"));
+		starfireBirdAviary(ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("jungle"));
+		starfireBirdAviary(ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("dark_oak"));
+		starfireBirdAviary(ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("crimson"), "stem");
+		starfireBirdAviary(ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("warped"), "stem");
+		starfireBirdAviary(ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("mangrove"));
+		starfireBirdAviary(ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("bamboo"), "block");
+		starfireBirdAviary(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("lunar"));
+		starfireBirdAviary(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("northland"));
+		starfireBirdAviary(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("starlight_mangrove"));
+		starfireBirdAviary(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("scarlet"));
+		starfireBirdAviary(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("torreya"));
+		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));
+		starfireBirdAviary(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("cradlewood"));
+
+		simpleBlock(ESBlocks.RAW_FLOWGLAZE.get());
+		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));
+		paneBlockWithRenderType(ESBlocks.FLOWGLAZE_PANE.get(), blockTexture(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
+		stoneSet(ESBlocks.FLOWGLAZE_BRICKS.get(), ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICK_WALL.get());
+
+		simpleBlock(ESBlocks.GRIMSTONE_SALTPETER_ORE.get());
+		simpleBlock(ESBlocks.VOIDSTONE_SALTPETER_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_SALTPETER_ORE.get());
+		simpleBlock(ESBlocks.SALTPETER_BLOCK.get());
+
+		lantern(ESBlocks.AMARAMBER_LANTERN.get());
+		candle(ESBlocks.AMARAMBER_CANDLE.get());
+		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
+		rawAmaramberBlock(ESBlocks.RAW_AMARAMBER_BLOCK.get());
+		stoneSet(ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get());
+		stoneSet(ESBlocks.TORREYA_TILES.get(), ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILE_WALL.get());
+
+		particleOnly(ESBlocks.ETHER.get());
+		simpleBlock(ESBlocks.THIOQUARTZ_BLOCK.get());
+		simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
+		directionalBud(ESBlocks.THIOQUARTZ_CLUSTER.get());
+		stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
+		polishedToxite(ESBlocks.POLISHED_TOXITE.get());
+		slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+		stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+		wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+
+		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
+		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_REDSTONE_ORE.get());
 
 		tintedCubeAll(ESBlocks.WHITE_YETI_FUR.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
 		tintedCubeAll(ESBlocks.ORANGE_YETI_FUR.get(), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/yeti_fur"), SOLID);
@@ -480,90 +484,79 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		particleOnly(ESBlocks.TANGLED_SKULL.get(), blockTexture(Blocks.SOUL_SAND));
 		particleOnly(ESBlocks.TANGLED_WALL_SKULL.get(), blockTexture(Blocks.SOUL_SAND));
 
-		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
-		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
+		stoneSet(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get());
+		simpleBlock(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get());
+		directionalBlock(ESBlocks.CRYSTALBORN_CATALYST.get(), models().cubeBottomTop(name(ESBlocks.CRYSTALBORN_CATALYST.get()), EternalStarlight.id("block/machine_side"), EternalStarlight.id("block/machine_side"), blockTexture(ESBlocks.CRYSTALBORN_CATALYST.get())));
+		simpleBlock(ESBlocks.CRYSTALLIZED_SAND.get());
 
-		stoneSet(ESBlocks.SPRINGSTONE.get(), ESBlocks.SPRINGSTONE_SLAB.get(), ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE_WALL.get());
-		stoneSet(ESBlocks.SPRINGSTONE_BRICKS.get(), ESBlocks.SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.SPRINGSTONE_BRICK_WALL.get());
-		stoneSet(ESBlocks.POLISHED_SPRINGSTONE.get(), ESBlocks.POLISHED_SPRINGSTONE_SLAB.get(), ESBlocks.POLISHED_SPRINGSTONE_STAIRS.get(), ESBlocks.POLISHED_SPRINGSTONE_WALL.get());
-		simpleBlock(ESBlocks.CHISELED_SPRINGSTONE.get());
-
-		stoneSet(ESBlocks.THERMAL_SPRINGSTONE.get(), ESBlocks.THERMAL_SPRINGSTONE_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_WALL.get());
-		stoneSet(ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICK_WALL.get());
-
-		simpleBlock(ESBlocks.GLACITE.get());
-		simpleBlock(ESBlocks.GLACITE_BLOCK.get());
-
-		simpleBlock(ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get());
-		simpleBlock(ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
-		simpleBlock(ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
-		simpleBlock(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
-		simpleBlock(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
-
-		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
-		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
-
-		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
-		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
-		simpleBlock(ESBlocks.MALARITE_BLOCK.get());
-
-		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
-		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
-		simpleBlock(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get());
-		simpleBlock(ESBlocks.HAZE_ICE_REDSTONE_ORE.get());
-
-		simpleBlock(ESBlocks.GRIMSTONE_SALTPETER_ORE.get());
-		simpleBlock(ESBlocks.VOIDSTONE_SALTPETER_ORE.get());
-		simpleBlock(ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get());
-		simpleBlock(ESBlocks.HAZE_ICE_SALTPETER_ORE.get());
-		simpleBlock(ESBlocks.SALTPETER_BLOCK.get());
-
-		pungencyFruit(ESBlocks.PUNGENCY_FRUIT_VINES.get());
-		cubeBottomTop(ESBlocks.TEAR_BOMB.get());
-
-		dryingRack(ESBlocks.DRYING_RACK.get());
-
-		starfireBirdNest(ESBlocks.STARFIRE_BIRD_NEST.get());
-		starfireBirdAviary(ESBlocks.OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("oak"));
-		starfireBirdAviary(ESBlocks.SPRUCE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("spruce"));
-		starfireBirdAviary(ESBlocks.BIRCH_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("birch"));
-		starfireBirdAviary(ESBlocks.ACACIA_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("acacia"));
-		starfireBirdAviary(ESBlocks.CHERRY_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("cherry"));
-		starfireBirdAviary(ESBlocks.JUNGLE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("jungle"));
-		starfireBirdAviary(ESBlocks.DARK_OAK_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("dark_oak"));
-		starfireBirdAviary(ESBlocks.CRIMSON_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("crimson"), "stem");
-		starfireBirdAviary(ESBlocks.WARPED_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("warped"), "stem");
-		starfireBirdAviary(ESBlocks.MANGROVE_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("mangrove"));
-		starfireBirdAviary(ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("bamboo"), "block");
-		starfireBirdAviary(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("lunar"));
-		starfireBirdAviary(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("northland"));
-		starfireBirdAviary(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("starlight_mangrove"));
-		starfireBirdAviary(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("scarlet"));
-		starfireBirdAviary(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("torreya"));
-		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));
-		starfireBirdAviary(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("cradlewood"));
-
-		simpleBlock(ESBlocks.RAW_FLOWGLAZE.get());
-		simpleBlock(ESBlocks.FLOWGLAZE.get(), models().cubeAll(name(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE.get())).renderType(TRANSLUCENT));
-		paneBlockWithRenderType(ESBlocks.FLOWGLAZE_PANE.get(), blockTexture(ESBlocks.FLOWGLAZE.get()), blockTexture(ESBlocks.FLOWGLAZE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
-		stoneSet(ESBlocks.FLOWGLAZE_BRICKS.get(), ESBlocks.FLOWGLAZE_BRICK_SLAB.get(), ESBlocks.FLOWGLAZE_BRICK_STAIRS.get(), ESBlocks.FLOWGLAZE_BRICK_WALL.get());
-
-		lantern(ESBlocks.AMARAMBER_LANTERN.get());
-		candle(ESBlocks.AMARAMBER_CANDLE.get());
-		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
-		rawAmaramberBlock(ESBlocks.RAW_AMARAMBER_BLOCK.get());
-		stoneSet(ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get());
-		stoneSet(ESBlocks.TORREYA_TILES.get(), ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILE_WALL.get());
-
-		stellarRack(ESBlocks.STELLAR_RACK.get());
-		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
-		simpleBlock(ESBlocks.CREST_POT.get(), models().getExistingFile(modLoc("crest_pot")));
-		particleOnly(ESBlocks.ETHER.get());
-		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 		spawner(ESBlocks.THE_GATEKEEPER_SPAWNER.get());
 		spawner(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get());
 		spawner(ESBlocks.TANGLED_HATRED_SPAWNER.get());
 		spawner(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get());
+
+		simpleBlock(ESBlocks.GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get());
+		slabBlock(ESBlocks.GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
+		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get())));
+		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
+		stairsBlock(ESBlocks.GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_BLOCK.get()));
+		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_STAIRS.get()).withSuffix("_outer")));
+		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get()));
+		simpleBlock(ESBlocks.GOLEM_STEEL_TILES.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get());
+		slabBlock(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
+		slabBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_SLAB.get()).withSuffix("_top")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILES.get())));
+		slabBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
+		stairsBlock(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.GOLEM_STEEL_TILES.get()));
+		stairsBlock(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_inner")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get()).withSuffix("_outer")));
+		stairsBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get()));
+		simpleBlock(ESBlocks.GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_GRATE.get())));
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), models().cubeAll(name(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get()), blockTexture(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get())).renderType(CUTOUT));
+		axisBlock(ESBlocks.GOLEM_STEEL_PILLAR.get());
+		axisBlock(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get())), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_PILLAR.get()).withSuffix("_horizontal")));
+		axisBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get());
+		simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get())));
+		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
+		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
+		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
+		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
+		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(modLoc("golem_steel_crate_open")), models().getExistingFile(modLoc("golem_steel_crate")));
+		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
+
+		shadegrieve(ESBlocks.SHADEGRIEVE.get());
+		shadegrieve(ESBlocks.BLOOMING_SHADEGRIEVE.get());
+		particleOnly(ESBlocks.LUNAR_VINE.get(), itemTextureFromBlock(ESBlocks.LUNAR_VINE.get()));
+		simpleBlock(ESBlocks.LUNAR_MOSAIC.get());
+		slabBlock(ESBlocks.LUNAR_MOSAIC_SLAB.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
+		stairsBlock(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
+		fenceBlock(ESBlocks.LUNAR_MOSAIC_FENCE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
+		fenceGateBlock(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
+		carpet(ESBlocks.LUNAR_MAT.get(), blockTexture(ESBlocks.LUNAR_MAT.get()));
+
+		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
+		simpleBlock(ESBlocks.DUSK_LIGHT.get());
+		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
+		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
+		simpleBlock(ESBlocks.DUSK_LOCKBOX.get());
+		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
+
+		stoneSet(ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get());
+		simpleBlock(ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+		simpleBlock(ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get());
+		doomedenTorch(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get());
+		doomedenRedstoneTorch(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get());
+		stoneSet(ESBlocks.DOOMEDEN_BRICKS.get(), ESBlocks.DOOMEDEN_BRICK_SLAB.get(), ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.DOOMEDEN_BRICK_WALL.get());
+		stoneSet(ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get());
+		onOffBlock(ESBlocks.DOOMEDEN_LIGHT.get());
+		doomedenKeyhole(ESBlocks.DOOMEDEN_KEYHOLE.get(), ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get());
+
+		stellarRack(ESBlocks.STELLAR_RACK.get());
+		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
+		simpleBlock(ESBlocks.CREST_POT.get(), models().getExistingFile(modLoc("crest_pot")));
 		portal(ESBlocks.STARLIGHT_PORTAL.get());
 	}
 

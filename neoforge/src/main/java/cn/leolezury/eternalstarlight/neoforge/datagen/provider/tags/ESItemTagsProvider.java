@@ -67,10 +67,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.FOODS_FRUIT)
 			.add(
-				ESItems.ABYSSAL_FRUIT.get(),
-				ESItems.VELVETUMOSS_BALL.get(),
 				ESItems.LUNARIS_CACTUS_FRUIT.get(),
 				ESItems.LUNARIS_CACTUS_GEL.get(),
+				ESItems.ABYSSAL_FRUIT.get(),
+				ESItems.VELVETUMOSS_BALL.get(),
 				ESItems.PUNGENCY_FRUIT.get(),
 				ESItems.SILVER_PUNGENCY_FRUIT.get()
 			);
@@ -107,6 +107,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.FOODS_SOUP)
 			.add(
+				ESItems.BOULDERSHROOM_STEW.get(),
 				ESItems.PUNGENCY_STEW.get()
 			);
 		tag(Tags.Items.ANIMAL_FOODS)
@@ -166,23 +167,23 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.INGOTS)
 			.addTags(
-				ESConventionalTags.Items.INGOTS_AMARAMBER,
 				ESConventionalTags.Items.INGOTS_AETHERSENT,
-				ESConventionalTags.Items.INGOTS_SWAMP_SILVER,
 				ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE,
+				ESConventionalTags.Items.INGOTS_SWAMP_SILVER,
+				ESConventionalTags.Items.INGOTS_AMARAMBER,
 				ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL,
 				ESConventionalTags.Items.INGOTS_GOLEM_STEEL
 			);
 		tag(Tags.Items.NUGGETS)
 			.addTags(
-				ESConventionalTags.Items.NUGGETS_AMARAMBER,
 				ESConventionalTags.Items.NUGGETS_AETHERSENT,
-				ESConventionalTags.Items.NUGGETS_SWAMP_SILVER
+				ESConventionalTags.Items.NUGGETS_SWAMP_SILVER,
+				ESConventionalTags.Items.NUGGETS_AMARAMBER
 			);
 		tag(Tags.Items.RAW_MATERIALS)
 			.addTags(
-				ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER,
-				ESConventionalTags.Items.RAW_MATERIALS_AETHERSENT
+				ESConventionalTags.Items.RAW_MATERIALS_AETHERSENT,
+				ESConventionalTags.Items.RAW_MATERIALS_AMARAMBER
 			);
 		tag(Tags.Items.DUSTS)
 			.addTags(
@@ -216,8 +217,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.MELEE_WEAPON_TOOLS)
 			.add(
-				ESItems.BONEMORE.get(),
-				ESItems.DOOMEDEN_RAPIER.get(),
 				ESItems.RAGE_OF_STARS.get(),
 				ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 				ESItems.THERMAL_SPRINGSTONE_AXE.get(),
@@ -242,15 +241,16 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLOWGLAZE_SCYTHE.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.AMARAMBER_AXE.get(),
+				ESItems.DAGGER_OF_HUNGER.get(),
 				ESItems.SHATTERED_SWORD.get(),
 				ESItems.ENERGY_SWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
 				ESItems.PETAL_SCYTHE.get(),
-				ESItems.DAGGER_OF_HUNGER.get()
+				ESItems.BONEMORE.get(),
+				ESItems.DOOMEDEN_RAPIER.get()
 			);
 		tag(Tags.Items.RANGED_WEAPON_TOOLS)
 			.add(
-				ESItems.BOW_OF_BLOOD.get(),
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
@@ -259,22 +259,23 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get(),
 				ESItems.MOONRING_BOW.get(),
-				ESItems.CRESCENT_SPEAR.get()
+				ESItems.CRESCENT_SPEAR.get(),
+				ESItems.BOW_OF_BLOOD.get()
 			);
 		tag(Tags.Items.MINING_TOOL_TOOLS)
 			.add(
-				ESItems.GRAVITY_PICKAXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
 				ESItems.GLACITE_PICKAXE.get(),
 				ESItems.STARLIT_DIAMOND_PICKAXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
-				ESItems.AMARAMBER_PICKAXE.get()
+				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GRAVITY_PICKAXE.get()
 			);
 		// mod conventional tags
-		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_GOLEM_STEEL);
-		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL);
+		copy(ESConventionalTags.Blocks.ORES_ATALPHAITE, ESConventionalTags.Items.ORES_ATALPHAITE);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_ATALPHAITE, ESConventionalTags.Items.STORAGE_BLOCKS_ATALPHAITE);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AETHERSENT);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_AETHERSENT);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GLACITE, ESConventionalTags.Items.STORAGE_BLOCKS_GLACITE);
@@ -287,8 +288,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.ORES_SALTPETER, ESConventionalTags.Items.ORES_SALTPETER);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER, ESConventionalTags.Items.STORAGE_BLOCKS_SALTPETER);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AMARAMBER, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AMARAMBER);
-		copy(ESConventionalTags.Blocks.ORES_ATALPHAITE, ESConventionalTags.Items.ORES_ATALPHAITE);
-		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_ATALPHAITE, ESConventionalTags.Items.STORAGE_BLOCKS_ATALPHAITE);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_GOLEM_STEEL);
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL, ESConventionalTags.Items.STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
@@ -303,18 +304,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.CAMPFIRES)
 			.add(
 				ESItems.TORREYA_CAMPFIRE.get()
-			);
-		tag(ESConventionalTags.Items.GEMS_THIOQUARTZ)
-			.add(
-				ESItems.THIOQUARTZ_SHARD.get()
-			);
-		tag(ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
-			.add(
-				ESItems.GOLEM_STEEL_INGOT.get()
-			);
-		tag(ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL)
-			.add(
-				ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()
 			);
 		tag(ESConventionalTags.Items.RAW_MATERIALS_AETHERSENT)
 			.add(
@@ -372,6 +361,18 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.AMARAMBER_NUGGET.get()
 			);
+		tag(ESConventionalTags.Items.GEMS_THIOQUARTZ)
+			.add(
+				ESItems.THIOQUARTZ_SHARD.get()
+			);
+		tag(ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.add(
+				ESItems.GOLEM_STEEL_INGOT.get()
+			);
+		tag(ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL)
+			.add(
+				ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()
+			);
 		// mod tags
 		copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
 		copy(ESTags.Blocks.NORTHLAND_LOGS, ESTags.Items.NORTHLAND_LOGS);
@@ -400,8 +401,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.GREATSWORDS)
 			.add(
-				ESItems.BONEMORE.get(),
-				ESItems.MOONRING_GREATSWORD.get()
+				ESItems.MOONRING_GREATSWORD.get(),
+				ESItems.BONEMORE.get()
 			);
 		tag(ESTags.Items.HAMMERS)
 			.add(
@@ -433,8 +434,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.RATLIN_FOOD)
 			.addTag(ItemTags.MEAT)
 			.add(
-				ESItems.CAVE_MOSS.get(),
-				Items.GLOW_LICHEN
+				Items.GLOW_LICHEN,
+				ESItems.CAVE_MOSS.get()
 			);
 		tag(ESTags.Items.SHADOW_SNAIL_FOOD)
 			.addTag(ItemTags.LEAVES)
@@ -449,11 +450,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.UNTRIMMABLE_ARMOR)
 			.add(
-				ESItems.ALCHEMIST_MASK.get(),
-				ESItems.ALCHEMIST_ROBE.get(),
-				ESItems.AETHERSENT_CAPE.get(),
-				ESItems.AETHERSENT_BOTTOMS.get(),
-				ESItems.AETHERSENT_BOOTS.get(),
 				ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
 				ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
 				ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
@@ -466,6 +462,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SWAMP_SILVER_BOOTS.get(),
 				ESItems.AMARAMBER_HELMET.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get(),
+				ESItems.ALCHEMIST_MASK.get(),
+				ESItems.ALCHEMIST_ROBE.get(),
+				ESItems.AETHERSENT_CAPE.get(),
+				ESItems.AETHERSENT_BOTTOMS.get(),
+				ESItems.AETHERSENT_BOOTS.get(),
 				ESItems.AIR_SAC_MASK.get()
 			);
 		tag(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)
@@ -534,21 +535,21 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS)
 			.add(
-				ESItems.SALTPETER_MATCHBOX.get(),
-				ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 				Items.FLINT_AND_STEEL,
 				Items.FIRE_CHARGE,
 				Items.BLAZE_ROD,
-				Items.BLAZE_POWDER
+				Items.BLAZE_POWDER,
+				ESItems.SALTPETER_MATCHBOX.get(),
+				ESItems.THERMAL_SPRINGSTONE_INGOT.get()
 			);
 		tag(ESTags.Items.STELLAGMITE_IGNITERS)
 			.add(
-				ESItems.SALTPETER_MATCHBOX.get(),
-				ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 				Items.FLINT_AND_STEEL,
 				Items.FIRE_CHARGE,
 				Items.BLAZE_ROD,
-				Items.BLAZE_POWDER
+				Items.BLAZE_POWDER,
+				ESItems.SALTPETER_MATCHBOX.get(),
+				ESItems.THERMAL_SPRINGSTONE_INGOT.get()
 			);
 		tag(ESTags.Items.ENT_FERTILIZERS)
 			.add(
@@ -728,12 +729,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				Items.END_STONE,
 				ESItems.STARLIGHT_FLOWER.get(),
 				ESItems.LUNAR_BERRIES.get(),
-				ESItems.LUNARIS_CACTUS.get(),
-				ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(),
-				ESItems.LUNARIS_CACTUS_FRUIT.get(),
 				ESItems.LUNAR_GRASS.get(),
 				ESItems.GLOWING_LUNAR_GRASS.get(),
-				ESItems.LUNAR_REED.get()
+				ESItems.LUNAR_REED.get(),
+				ESItems.LUNARIS_CACTUS.get(),
+				ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(),
+				ESItems.LUNARIS_CACTUS_FRUIT.get()
 			);
 		tag(ESTags.Items.LUNAR_CRYSTALS)
 			.add(
@@ -877,10 +878,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.GLACITE_SHIELD.get(),
-				ESItems.FLOWGLAZE_SHIELD.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.SEEDS_LAUNCHER.get(),
+				ESItems.FLOWGLAZE_SHIELD.get(),
 				ESItems.SALTPETER_MATCHBOX.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
@@ -896,9 +897,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ItemTags.BOW_ENCHANTABLE)
 			.add(
-				ESItems.BOW_OF_BLOOD.get(),
 				ESItems.STARFALL_LONGBOW.get(),
-				ESItems.MOONRING_BOW.get()
+				ESItems.MOONRING_BOW.get(),
+				ESItems.BOW_OF_BLOOD.get()
 			);
 		tag(ItemTags.CROSSBOW_ENCHANTABLE)
 			.add(
@@ -958,7 +959,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ItemTags.MEAT)
 			.add(
-				ESItems.DOOMEDEN_CARRION.get(),
 				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.ROOKFISH.get(),
 				ESItems.COOKED_ROOKFISH.get(),
@@ -971,28 +971,29 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.RATLIN_MEAT.get(),
 				ESItems.COOKED_RATLIN_MEAT.get(),
 				ESItems.SHADOW_SNAIL_MEAT.get(),
-				ESItems.COOKED_SHADOW_SNAIL_MEAT.get()
+				ESItems.COOKED_SHADOW_SNAIL_MEAT.get(),
+				ESItems.DOOMEDEN_CARRION.get()
 			);
 		tag(ItemTags.HEAD_ARMOR)
 			.add(
-				ESItems.ALCHEMIST_MASK.get(),
-				ESItems.AETHERSENT_HOOD.get(),
 				ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
 				ESItems.GLACITE_HELMET.get(),
 				ESItems.STARLIT_DIAMOND_HELMET.get(),
 				ESItems.SWAMP_SILVER_HELMET.get(),
 				ESItems.AMARAMBER_HELMET.get(),
+				ESItems.ALCHEMIST_MASK.get(),
+				ESItems.AETHERSENT_HOOD.get(),
 				ESItems.AIR_SAC_MASK.get()
 			);
 		tag(ItemTags.CHEST_ARMOR)
 			.add(
-				ESItems.ALCHEMIST_ROBE.get(),
 				ESItems.AETHERSENT_CAPE.get(),
 				ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
 				ESItems.GLACITE_CHESTPLATE.get(),
 				ESItems.STARLIT_DIAMOND_CHESTPLATE.get(),
 				ESItems.SWAMP_SILVER_CHESTPLATE.get(),
-				ESItems.AMARAMBER_CHESTPLATE.get()
+				ESItems.AMARAMBER_CHESTPLATE.get(),
+				ESItems.ALCHEMIST_ROBE.get()
 			);
 		tag(ItemTags.LEG_ARMOR)
 			.add(
@@ -1013,7 +1014,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ItemTags.SWORDS)
 			.add(
-				ESItems.DOOMEDEN_RAPIER.get(),
 				ESItems.RAGE_OF_STARS.get(),
 				ESItems.THERMAL_SPRINGSTONE_SWORD.get(),
 				ESItems.GLACITE_SWORD.get(),
@@ -1025,21 +1025,22 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.SHATTERED_SWORD.get(),
 				ESItems.ENERGY_SWORD.get(),
-				ESItems.DAGGER_OF_HUNGER.get()
+				ESItems.DAGGER_OF_HUNGER.get(),
+				ESItems.DOOMEDEN_RAPIER.get()
 			)
 			.addTag(ESTags.Items.GREATSWORDS);
 		tag(ItemTags.PICKAXES)
 			.add(
-				ESItems.GRAVITY_PICKAXE.get(),
 				ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.GLACITE_PICKAXE.get(),
 				ESItems.STARLIT_DIAMOND_PICKAXE.get(),
-				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
 				ESItems.STARFIRE_PICKAXE.get(),
 				ESItems.FLOWGLAZE_PICKAXE.get(),
-				ESItems.AMARAMBER_PICKAXE.get()
+				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GRAVITY_PICKAXE.get()
 			);
 		tag(ItemTags.AXES)
 			.add(
@@ -1079,20 +1080,19 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ItemTags.ARROWS)
 			.add(
-				ESItems.THIOQUARTZ_ARROW.get(),
 				ESItems.AETHERSENT_ARROW.get(),
 				ESItems.GLACITE_ARROW.get(),
 				ESItems.MALARITE_ARROW.get(),
 				ESItems.AMARAMBER_ARROW.get(),
+				ESItems.THIOQUARTZ_ARROW.get(),
 				ESItems.VORACIOUS_ARROW.get(),
 				ESItems.AIR_SAC_ARROW.get()
 			);
 		tag(ItemTags.TRIM_MATERIALS)
 			.add(
+				ESItems.ATALPHAITE.get(),
 				ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
 				ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get(),
-				ESItems.ATALPHAITE.get(),
-				ESItems.THIOQUARTZ_SHARD.get(),
 				ESItems.AETHERSENT_INGOT.get(),
 				ESItems.THERMAL_SPRINGSTONE_INGOT.get(),
 				ESItems.GLACITE_SHARD.get(),
@@ -1102,6 +1102,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE.get(),
 				ESItems.FLOWGLAZE.get(),
 				ESItems.AMARAMBER_INGOT.get(),
+				ESItems.THIOQUARTZ_SHARD.get(),
 				ESItems.GOLEM_STEEL_INGOT.get(),
 				ESItems.TENACIOUS_PETAL.get(),
 				ESItems.BROKEN_DOOMEDEN_BONE.get()

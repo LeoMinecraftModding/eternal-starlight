@@ -1,9 +1,9 @@
 {
   "values": [
-    "#c:ingots/amaramber",
     "#c:ingots/aethersent",
-    "#c:ingots/swamp_silver",
     "#c:ingots/thermal_springstone",
+    "#c:ingots/swamp_silver",
+    "#c:ingots/amaramber",
     "#c:ingots/oxidized_golem_steel",
     "#c:ingots/golem_steel"
   ]

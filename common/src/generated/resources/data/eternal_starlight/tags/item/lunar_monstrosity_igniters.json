@@ -1,10 +1,10 @@
 {
   "values": [
-    "eternal_starlight:saltpeter_matchbox",
-    "eternal_starlight:thermal_springstone_ingot",
     "minecraft:flint_and_steel",
     "minecraft:fire_charge",
     "minecraft:blaze_rod",
-    "minecraft:blaze_powder"
+    "minecraft:blaze_powder",
+    "eternal_starlight:saltpeter_matchbox",
+    "eternal_starlight:thermal_springstone_ingot"
   ]
 }

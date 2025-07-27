@@ -1,6 +1,5 @@
 {
   "values": [
-    "eternal_starlight:doomeden_carrion",
     "eternal_starlight:rotten_flesh_jerky",
     "eternal_starlight:rookfish",
     "eternal_starlight:cooked_rookfish",
@@ -13,6 +12,7 @@
     "eternal_starlight:ratlin_meat",
     "eternal_starlight:cooked_ratlin_meat",
     "eternal_starlight:shadow_snail_meat",
-    "eternal_starlight:cooked_shadow_snail_meat"
+    "eternal_starlight:cooked_shadow_snail_meat",
+    "eternal_starlight:doomeden_carrion"
   ]
 }

@@ -609,13 +609,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> RAGE_OF_STARS = registerItem("rage_of_stars", () -> new RageOfStarsItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.AETHERSENT, 3, -2.4F))));
 	public static final RegistryObject<Item, Item> STARFALL_LONGBOW = registerItem("starfall_longbow", () -> new BowItem(new Item.Properties().durability(2000)));
 	public static final RegistryObject<Item, Item> AETHERSENT_HOOD = registerItem("aethersent_hood",
-		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(25))));
+		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_CAPE = registerItem("aethersent_cape",
-		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25))));
+		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_BOTTOMS = registerItem("aethersent_bottoms",
-		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25))));
+		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_BOOTS = registerItem("aethersent_boots",
-		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25))));
+		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSTRIKE_ROCKET = registerItem("aetherstrike_rocket", () -> new AetherstrikeRocketItem(new Item.Properties()));
 
 	// thermal springstone
@@ -1010,8 +1010,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SONAR_BOMB = registerItem("sonar_bomb", () -> new SonarBombItem(new Item.Properties().stacksTo(16)));
 
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_EYE = registerItem("nightfall_spider_eye", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> TRAPPED_SOUL = registerItem("trapped_soul", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> SOULIT_SPECTATOR = registerItem("soulit_spectator", () -> new SoulitSpectatorItem(new Item.Properties().rarity(Rarity.RARE).durability(750)));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
@@ -1087,6 +1085,8 @@ public class ESItems {
 	// lunar monstrosity
 	public static final RegistryObject<Item, Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> TENACIOUS_VINE = registerItem("tenacious_vine", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> TRAPPED_SOUL = registerItem("trapped_soul", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> SOULIT_SPECTATOR = registerItem("soulit_spectator", () -> new SoulitSpectatorItem(new Item.Properties().rarity(Rarity.RARE).durability(750)));
 	public static final RegistryObject<Item, Item> WILTED_CROSSBOW = registerItem("wilted_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
