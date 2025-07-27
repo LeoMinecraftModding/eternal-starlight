@@ -76,69 +76,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TANGLED_SKULL_SPAWN_EGG = registerItem("tangled_skull_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_SKULL::get, 0x838c8d, 0x445955, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWN_EGG = registerItem("tangled_hatred_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_HATRED::get, 0x424273, 0x202040, new Item.Properties()));
 
-	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_BLOCK = registerItem("red_starlight_crystal_block", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_BLOCK = registerItem("blue_starlight_crystal_block", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_CLUSTER = registerItem("red_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blue_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blooming_red_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blooming_blue_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_CRYSTALFLEUR = registerItem("red_crystalfleur", () -> new BlockItem(ESBlocks.RED_CRYSTALFLEUR.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR = registerItem("blue_crystalfleur", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_CRYSTALFLEUR_VINE = registerItem("red_crystalfleur_vine", () -> new BlockItem(ESBlocks.RED_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR_VINE = registerItem("blue_crystalfleur_vine", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_BLOCK = registerItem("red_crystal_moss_block", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_BLOCK = registerItem("blue_crystal_moss_block", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_CARPET = registerItem("red_crystal_moss_carpet", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_CARPET = registerItem("blue_crystal_moss_carpet", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_SHARD = registerItem("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_SHARD = registerItem("blue_starlight_crystal_shard", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_BERRIES = registerItem("lunar_berries", () -> new ItemNameBlockItem(ESBlocks.BERRIES_VINES.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.8F).build())));
-	public static final RegistryObject<Item, Item> CAVE_MOSS = registerItem("cave_moss", () -> new BlockItem(ESBlocks.CAVE_MOSS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> ABYSSAL_FRUIT = registerItem("abyssal_fruit", () -> new ItemNameBlockItem(ESBlocks.ABYSSAL_KELP.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.3F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.15F).alwaysEdible().build())));
-	public static final RegistryObject<Item, Item> ORBFLORA = registerItem("orbflora", () -> new BlockItem(ESBlocks.ORBFLORA.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> ORBFLORA_LIGHT = registerItem("orbflora_light", () -> new BlockItem(ESBlocks.ORBFLORA_LIGHT.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> SPIRAL_KELP = registerItem("spiral_kelp", () -> new BlockItem(ESBlocks.SPIRAL_KELP.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> SEA_ROSA = registerItem("sea_rosa", () -> new BlockItem(ESBlocks.SEA_ROSA.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WICK_GRASS = registerItem("wick_grass", () -> new BlockItem(ESBlocks.WICK_GRASS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUMENSTEM = registerItem("lumenstem", () -> new BlockItem(ESBlocks.LUMENSTEM.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> MARIMOLD = registerItem("marimold", () -> new BlockItem(ESBlocks.MARIMOLD.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> MARIMOLD_BLOCK = registerItem("marimold_block", () -> new BlockItem(ESBlocks.MARIMOLD_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> MARIMOLD_STEM = registerItem("marimold_stem", () -> new BlockItem(ESBlocks.MARIMOLD_STEM.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CIRCULUSH = registerItem("circulush", () -> new BlockItem(ESBlocks.CIRCULUSH.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> STONETT = registerItem("stonett", () -> new BlockItem(ESBlocks.STONETT.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUMINIS = registerItem("luminis", () -> new BlockItem(ESBlocks.LUMINIS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GLOWLIS = registerItem("glowlis", () -> new BlockItem(ESBlocks.GLOWLIS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GLOREED = registerItem("gloreed", () -> new BlockItem(ESBlocks.GLOREED.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> STARLIGHT_SEAGRASS = registerItem("starlight_seagrass", () -> new BlockItem(ESBlocks.STARLIGHT_SEAGRASS.get(), new Item.Properties()));
-
-	public static final RegistryObject<Item, Item> JINGLING_PICKLE = registerItem("jingling_pickle", () -> new BlockItem(ESBlocks.JINGLING_PICKLE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL = registerItem("dead_tentacles_coral", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TENTACLES_CORAL = registerItem("tentacles_coral", () -> new BlockItem(ESBlocks.TENTACLES_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL_FAN = registerItem("dead_tentacles_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get(), ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> TENTACLES_CORAL_FAN = registerItem("tentacles_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.TENTACLES_CORAL_FAN.get(), ESBlocks.TENTACLES_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL_BLOCK = registerItem("dead_tentacles_coral_block", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TENTACLES_CORAL_BLOCK = registerItem("tentacles_coral_block", () -> new BlockItem(ESBlocks.TENTACLES_CORAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL = registerItem("dead_golden_coral", () -> new BlockItem(ESBlocks.DEAD_GOLDEN_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLDEN_CORAL = registerItem("golden_coral", () -> new BlockItem(ESBlocks.GOLDEN_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL_FAN = registerItem("dead_golden_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_GOLDEN_CORAL_FAN.get(), ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> GOLDEN_CORAL_FAN = registerItem("golden_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.GOLDEN_CORAL_FAN.get(), ESBlocks.GOLDEN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL_BLOCK = registerItem("dead_golden_coral_block", () -> new BlockItem(ESBlocks.DEAD_GOLDEN_CORAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLDEN_CORAL_BLOCK = registerItem("golden_coral_block", () -> new BlockItem(ESBlocks.GOLDEN_CORAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL = registerItem("dead_crystallum_coral", () -> new BlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL = registerItem("crystallum_coral", () -> new BlockItem(ESBlocks.CRYSTALLUM_CORAL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL_FAN = registerItem("dead_crystallum_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get(), ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL_FAN = registerItem("crystallum_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.CRYSTALLUM_CORAL_FAN.get(), ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL_BLOCK = registerItem("dead_crystallum_coral_block", () -> new BlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL_BLOCK = registerItem("crystallum_coral_block", () -> new BlockItem(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get(), new Item.Properties()));
-
-	// abyssal plants
-	public static final RegistryObject<Item, Item> VELVETUMOSS = registerItem("velvetumoss", () -> new BlockItem(ESBlocks.VELVETUMOSS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> VELVETUMOSS_BALL = registerItem("velvetumoss_ball", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.2F).build())));
-	public static final RegistryObject<Item, Item> VELVETUMOSS_VILLI = registerItem("velvetumoss_villi", () -> new BlockItem(ESBlocks.VELVETUMOSS_VILLI.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_VELVETUMOSS = registerItem("red_velvetumoss", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_VELVETUMOSS_VILLI = registerItem("red_velvetumoss_villi", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS_VILLI.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> RED_VELVETUMOSS_FLOWER = registerItem("red_velvetumoss_flower", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS_FLOWER.get(), new Item.Properties()));
-
 	// lunar wood
 	public static final RegistryObject<Item, Item> LUNAR_SAPLING = registerItem("lunar_sapling", () -> new BlockItem(ESBlocks.LUNAR_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_LEAVES = registerItem("lunar_leaves", () -> new BlockItem(ESBlocks.LUNAR_LEAVES.get(), new Item.Properties()));
@@ -430,15 +367,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_STAIRS = registerItem("polished_stellagmite_stairs", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_STELLAGMITE_WALL = registerItem("polished_stellagmite_wall", () -> new BlockItem(ESBlocks.POLISHED_STELLAGMITE_WALL.get(), new Item.Properties()));
 
-	// tooth of hunger
-	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILES = registerItem("tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_SLAB = registerItem("tooth_of_hunger_tile_slab", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_STAIRS = registerItem("tooth_of_hunger_tile_stairs", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_WALL = registerItem("tooth_of_hunger_tile_wall", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CHISELED_TOOTH_OF_HUNGER_TILES = registerItem("chiseled_tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CRYSTALBORN_CATALYST = registerItem("crystalborn_catalyst", () -> new BlockItem(ESBlocks.CRYSTALBORN_CATALYST.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CRYSTALLIZED_SAND = registerItem("crystallized_sand", () -> new BlockItem(ESBlocks.CRYSTALLIZED_SAND.get(), new Item.Properties()));
-
 	// the abyss
 	public static final RegistryObject<Item, Item> ABYSSLATE = registerItem("abysslate", () -> new BlockItem(ESBlocks.ABYSSLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_ABYSSLATE = registerItem("polished_abysslate", () -> new BlockItem(ESBlocks.POLISHED_ABYSSLATE.get(), new Item.Properties()));
@@ -477,25 +405,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CRYOBYSSAL_MAGMA_BLOCK = registerItem("cryobyssal_magma_block", () -> new BlockItem(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRYOBYSSAL_GEYSER = registerItem("cryobyssal_geyser", () -> new BlockItem(ESBlocks.CRYOBYSSAL_GEYSER.get(), new Item.Properties()));
 
-	// ether
-	public static final RegistryObject<Item, Item> THIOQUARTZ_BLOCK = registerItem("thioquartz_block", () -> new BlockItem(ESBlocks.THIOQUARTZ_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BUDDING_THIOQUARTZ = registerItem("budding_thioquartz", () -> new BlockItem(ESBlocks.BUDDING_THIOQUARTZ.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> THIOQUARTZ_CLUSTER = registerItem("thioquartz_cluster", () -> new BlockItem(ESBlocks.THIOQUARTZ_CLUSTER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> THIOQUARTZ_SHARD = registerItem("thioquartz_shard", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> THIOQUARTZ_ARROW = registerItem("thioquartz_arrow", () -> new ThioquartzArrowItem(new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOXITE = registerItem("toxite", () -> new BlockItem(ESBlocks.TOXITE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOXITE_SLAB = registerItem("toxite_slab", () -> new BlockItem(ESBlocks.TOXITE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOXITE_STAIRS = registerItem("toxite_stairs", () -> new BlockItem(ESBlocks.TOXITE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TOXITE_WALL = registerItem("toxite_wall", () -> new BlockItem(ESBlocks.TOXITE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_TOXITE = registerItem("polished_toxite", () -> new BlockItem(ESBlocks.POLISHED_TOXITE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_TOXITE_SLAB = registerItem("polished_toxite_slab", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_TOXITE_STAIRS = registerItem("polished_toxite_stairs", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_TOXITE_WALL = registerItem("polished_toxite_wall", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> ALCHEMIST_MASK = registerItem("alchemist_mask",
-		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
-	public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",
-		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10))));
-
 	// mud
 	public static final RegistryObject<Item, Item> NIGHTFALL_MUD = registerItem("nightfall_mud", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_NIGHTFALL_MUD = registerItem("glowing_nightfall_mud", () -> new BlockItem(ESBlocks.GLOWING_NIGHTFALL_MUD.get(), new Item.Properties()));
@@ -526,94 +435,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> DUSTED_BRICK_WALL = registerItem("dusted_brick_wall", () -> new BlockItem(ESBlocks.DUSTED_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MOSSY_DUSTED_GRAVEL = registerItem("mossy_dusted_gravel", () -> new BlockItem(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MOSSY_DUSTED_GRAVEL = registerItem("glowing_mossy_dusted_gravel", () -> new BlockItem(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
-
-	// golem steel
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BLOCK = registerItem("waxed_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BLOCK = registerItem("oxidized_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_SLAB = registerItem("golem_steel_slab", () -> new BlockItem(ESBlocks.GOLEM_STEEL_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_SLAB = registerItem("waxed_golem_steel_slab", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_SLAB = registerItem("oxidized_golem_steel_slab", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_STAIRS = registerItem("golem_steel_stairs", () -> new BlockItem(ESBlocks.GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_STAIRS = registerItem("waxed_golem_steel_stairs", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_STAIRS = registerItem("oxidized_golem_steel_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILES = registerItem("golem_steel_tiles", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILES = registerItem("waxed_golem_steel_tiles", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILES = registerItem("oxidized_golem_steel_tiles", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_SLAB = registerItem("golem_steel_tile_slab", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILE_SLAB = registerItem("waxed_golem_steel_tile_slab", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_SLAB = registerItem("oxidized_golem_steel_tile_slab", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_STAIRS = registerItem("golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILE_STAIRS = registerItem("waxed_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = registerItem("oxidized_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_GRATE = registerItem("golem_steel_grate", () -> new BlockItem(ESBlocks.GOLEM_STEEL_GRATE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_GRATE = registerItem("waxed_golem_steel_grate", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_GRATE = registerItem("oxidized_golem_steel_grate", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_PILLAR = registerItem("golem_steel_pillar", () -> new BlockItem(ESBlocks.GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_PILLAR = registerItem("waxed_golem_steel_pillar", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_PILLAR = registerItem("oxidized_golem_steel_pillar", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_BARS = registerItem("golem_steel_bars", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BARS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BARS = registerItem("waxed_golem_steel_bars", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BARS = registerItem("oxidized_golem_steel_bars", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("waxed_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_JET = registerItem("golem_steel_jet", () -> new BlockItem(ESBlocks.GOLEM_STEEL_JET.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_JET = registerItem("waxed_golem_steel_jet", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_JET = registerItem("oxidized_golem_steel_jet", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_CRATE = registerItem("golem_steel_crate", () -> new ContainerBlockItem(ESBlocks.GOLEM_STEEL_CRATE.get(), new Item.Properties()));
-
-	// lunar monstrosity
-	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_VINE = registerItem("lunar_vine", () -> new BlockItem(ESBlocks.LUNAR_VINE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MOSAIC = registerItem("lunar_mosaic", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_SLAB = registerItem("lunar_mosaic_slab", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_STAIRS = registerItem("lunar_mosaic_stairs", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE = registerItem("lunar_mosaic_fence", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE_GATE = registerItem("lunar_mosaic_fence_gate", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MAT = registerItem("lunar_mat", () -> new BlockItem(ESBlocks.LUNAR_MAT.get(), new Item.Properties()));
-
-	// solar creeper
-	public static final RegistryObject<Item, Item> GRAVITY_PICKAXE = registerItem("gravity_pickaxe",
-		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F)).rarity(Rarity.EPIC)));
-	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> DUSK_LOCKBOX = registerItem("dusk_lockbox", () -> new BlockItem(ESBlocks.DUSK_LOCKBOX.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
-
-	// doomeden
-	public static final RegistryObject<Item, Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> BONEMORE = registerItem("bonemore", () -> new GreatswordItem(ESItemTiers.DOOMEDEN, new Item.Properties().rarity(Rarity.EPIC).attributes(GreatswordItem.createAttributes(ESItemTiers.DOOMEDEN, 6, -2.8F, 0.5F))));
-	public static final RegistryObject<Item, Item> BOW_OF_BLOOD = registerItem("bow_of_blood", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-	public static final RegistryObject<Item, Item> LIVING_ARM = registerItem("living_arm", () -> new LivingArmItem(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item, Item> DOOMED_TORCH = registerItem("doomed_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
-	public static final RegistryObject<Item, Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).build())));
-	public static final RegistryObject<Item, Item> ROTTEN_HAM = registerItem("rotten_ham", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
-	public static final RegistryObject<Item, Item> EYE_OF_DOOM = registerItem("eye_of_doom", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_RAG = registerItem("doomeden_rag", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> FLESH_GRINDER = registerItem("flesh_grinder", () -> new AxeItem(ESItemTiers.DOOMEDEN, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.DOOMEDEN, 5, -2F))));
-	public static final RegistryObject<Item, Item> DOOMEDEN_RAPIER = registerItem("doomeden_rapier", () -> new SwordItem(ESItemTiers.DOOMEDEN, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.DOOMEDEN, 4, -1.8F))));
-	public static final RegistryObject<Item, Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICKS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_SLAB = registerItem("doomeden_brick_slab", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_STAIRS = registerItem("doomeden_brick_stairs", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_WALL = registerItem("doomeden_brick_wall", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICKS = registerItem("polished_doomeden_bricks", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_SLAB = registerItem("polished_doomeden_brick_slab", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_STAIRS = registerItem("polished_doomeden_brick_stairs", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_WALL = registerItem("polished_doomeden_brick_wall", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_TILES = registerItem("doomeden_tiles", () -> new BlockItem(ESBlocks.DOOMEDEN_TILES.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_SLAB = registerItem("doomeden_tile_slab", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_SLAB.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_STAIRS = registerItem("doomeden_tile_stairs", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_STAIRS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_WALL = registerItem("doomeden_tile_wall", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("chiseled_polished_doomeden_bricks", () -> new BlockItem(ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("charged_chiseled_polished_doomeden_bricks", () -> new BlockItem(ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_LIGHT = registerItem("doomeden_light", () -> new BlockItem(ESBlocks.DOOMEDEN_LIGHT.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DOOMEDEN_KEYHOLE = registerItem("doomeden_keyhole", () -> new BlockItem(ESBlocks.DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> REDSTONE_DOOMEDEN_KEYHOLE = registerItem("redstone_doomeden_keyhole", () -> new BlockItem(ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
 
 	// common plant
 	public static final RegistryObject<Item, Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(ESBlocks.STARLIGHT_FLOWER.get(), new Item.Properties()));
@@ -647,6 +468,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_BERRIES = registerItem("lunar_berries", () -> new ItemNameBlockItem(ESBlocks.BERRIES_VINES.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.8F).build())));
+	public static final RegistryObject<Item, Item> CAVE_MOSS = registerItem("cave_moss", () -> new BlockItem(ESBlocks.CAVE_MOSS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BOULDERSHROOM = registerItem("bouldershroom", () -> new BlockItem(ESBlocks.BOULDERSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BOULDERSHROOM_BLOCK = registerItem("bouldershroom_block", () -> new BlockItem(ESBlocks.BOULDERSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BOULDERSHROOM_STEM = registerItem("bouldershroom_stem", () -> new BlockItem(ESBlocks.BOULDERSHROOM_STEM.get(), new Item.Properties()));
@@ -663,6 +486,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GREEN_FANTAGRASS = registerItem("green_fantagrass", () -> new BlockItem(ESBlocks.GREEN_FANTAGRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HANGING_FANTAGRASS = registerItem("hanging_fantagrass", () -> new BlockItem(ESBlocks.HANGING_FANTAGRASS.get(), new Item.Properties()));
 
+	// scarlet forest plant
 	public static final RegistryObject<Item, Item> ORANGE_SCARLET_BUD = registerItem("orange_scarlet_bud", () -> new BlockItem(ESBlocks.ORANGE_SCARLET_BUD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> PURPLE_SCARLET_BUD = registerItem("purple_scarlet_bud", () -> new BlockItem(ESBlocks.PURPLE_SCARLET_BUD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_SCARLET_BUD = registerItem("red_scarlet_bud", () -> new BlockItem(ESBlocks.RED_SCARLET_BUD.get(), new Item.Properties()));
@@ -674,7 +498,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AMARAMBER_GRASS = registerItem("amaramber_grass", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_GRASS_BUSH = registerItem("amaramber_grass_bush", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS_BUSH.get(), new Item.Properties()));
 
-	// desert plant
+	// desert stuff
+	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_BLOCK = registerItem("red_starlight_crystal_block", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_BLOCK = registerItem("blue_starlight_crystal_block", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_CLUSTER = registerItem("red_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blue_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_SHARD = registerItem("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_SHARD = registerItem("blue_starlight_crystal_shard", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(ESBlocks.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DESERT_AMETHYSIA = registerItem("desert_amethysia", () -> new BlockItem(ESBlocks.DESERT_AMETHYSIA.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WITHERED_DESERT_AMETHYSIA = registerItem("withered_desert_amethysia", () -> new BlockItem(ESBlocks.WITHERED_DESERT_AMETHYSIA.get(), new Item.Properties()));
@@ -686,11 +516,64 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_GEL = registerItem("lunaris_cactus_gel", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.1f).build())));
 	public static final RegistryObject<Item, Item> CARVED_LUNARIS_CACTUS_FRUIT = registerItem("carved_lunaris_cactus_fruit", () -> new BlockItem(ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNARIS_CACTUS_FRUIT_LANTERN = registerItem("lunaris_cactus_fruit_lantern", () -> new BlockItem(ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blooming_red_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLOOMING_RED_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blooming_blue_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLOOMING_BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_CRYSTALFLEUR = registerItem("red_crystalfleur", () -> new BlockItem(ESBlocks.RED_CRYSTALFLEUR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR = registerItem("blue_crystalfleur", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_CRYSTALFLEUR_VINE = registerItem("red_crystalfleur_vine", () -> new BlockItem(ESBlocks.RED_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_CRYSTALFLEUR_VINE = registerItem("blue_crystalfleur_vine", () -> new BlockItem(ESBlocks.BLUE_CRYSTALFLEUR_VINE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_BLOCK = registerItem("red_crystal_moss_block", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_BLOCK = registerItem("blue_crystal_moss_block", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_CARPET = registerItem("red_crystal_moss_carpet", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_CARPET = registerItem("blue_crystal_moss_carpet", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
 
 	// water plant
 	public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIT_LILY_PAD = registerItem("starlit_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.STARLIT_LILY_PAD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MOONLIGHT_DUCKWEED = registerItem("moonlight_duckweed", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_DUCKWEED.get(), new Item.Properties()));
+
+	// sea stuff
+	public static final RegistryObject<Item, Item> ABYSSAL_FRUIT = registerItem("abyssal_fruit", () -> new ItemNameBlockItem(ESBlocks.ABYSSAL_KELP.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.GLOWING, 600, 0), 0.3F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.15F).alwaysEdible().build())));
+	public static final RegistryObject<Item, Item> ORBFLORA = registerItem("orbflora", () -> new BlockItem(ESBlocks.ORBFLORA.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ORBFLORA_LIGHT = registerItem("orbflora_light", () -> new BlockItem(ESBlocks.ORBFLORA_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SPIRAL_KELP = registerItem("spiral_kelp", () -> new BlockItem(ESBlocks.SPIRAL_KELP.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SEA_ROSA = registerItem("sea_rosa", () -> new BlockItem(ESBlocks.SEA_ROSA.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WICK_GRASS = registerItem("wick_grass", () -> new BlockItem(ESBlocks.WICK_GRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUMENSTEM = registerItem("lumenstem", () -> new BlockItem(ESBlocks.LUMENSTEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD = registerItem("marimold", () -> new BlockItem(ESBlocks.MARIMOLD.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD_BLOCK = registerItem("marimold_block", () -> new BlockItem(ESBlocks.MARIMOLD_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MARIMOLD_STEM = registerItem("marimold_stem", () -> new BlockItem(ESBlocks.MARIMOLD_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CIRCULUSH = registerItem("circulush", () -> new BlockItem(ESBlocks.CIRCULUSH.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STONETT = registerItem("stonett", () -> new BlockItem(ESBlocks.STONETT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUMINIS = registerItem("luminis", () -> new BlockItem(ESBlocks.LUMINIS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOWLIS = registerItem("glowlis", () -> new BlockItem(ESBlocks.GLOWLIS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOREED = registerItem("gloreed", () -> new BlockItem(ESBlocks.GLOREED.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARLIGHT_SEAGRASS = registerItem("starlight_seagrass", () -> new BlockItem(ESBlocks.STARLIGHT_SEAGRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> JINGLING_PICKLE = registerItem("jingling_pickle", () -> new BlockItem(ESBlocks.JINGLING_PICKLE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL = registerItem("dead_tentacles_coral", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TENTACLES_CORAL = registerItem("tentacles_coral", () -> new BlockItem(ESBlocks.TENTACLES_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL_FAN = registerItem("dead_tentacles_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_TENTACLES_CORAL_FAN.get(), ESBlocks.DEAD_TENTACLES_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> TENTACLES_CORAL_FAN = registerItem("tentacles_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.TENTACLES_CORAL_FAN.get(), ESBlocks.TENTACLES_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> DEAD_TENTACLES_CORAL_BLOCK = registerItem("dead_tentacles_coral_block", () -> new BlockItem(ESBlocks.DEAD_TENTACLES_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TENTACLES_CORAL_BLOCK = registerItem("tentacles_coral_block", () -> new BlockItem(ESBlocks.TENTACLES_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL = registerItem("dead_golden_coral", () -> new BlockItem(ESBlocks.DEAD_GOLDEN_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLDEN_CORAL = registerItem("golden_coral", () -> new BlockItem(ESBlocks.GOLDEN_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL_FAN = registerItem("dead_golden_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_GOLDEN_CORAL_FAN.get(), ESBlocks.DEAD_GOLDEN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> GOLDEN_CORAL_FAN = registerItem("golden_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.GOLDEN_CORAL_FAN.get(), ESBlocks.GOLDEN_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> DEAD_GOLDEN_CORAL_BLOCK = registerItem("dead_golden_coral_block", () -> new BlockItem(ESBlocks.DEAD_GOLDEN_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLDEN_CORAL_BLOCK = registerItem("golden_coral_block", () -> new BlockItem(ESBlocks.GOLDEN_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL = registerItem("dead_crystallum_coral", () -> new BlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL = registerItem("crystallum_coral", () -> new BlockItem(ESBlocks.CRYSTALLUM_CORAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL_FAN = registerItem("dead_crystallum_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL_FAN.get(), ESBlocks.DEAD_CRYSTALLUM_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL_FAN = registerItem("crystallum_coral_fan", () -> new StandingAndWallBlockItem(ESBlocks.CRYSTALLUM_CORAL_FAN.get(), ESBlocks.CRYSTALLUM_CORAL_WALL_FAN.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> DEAD_CRYSTALLUM_CORAL_BLOCK = registerItem("dead_crystallum_coral_block", () -> new BlockItem(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRYSTALLUM_CORAL_BLOCK = registerItem("crystallum_coral_block", () -> new BlockItem(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VELVETUMOSS = registerItem("velvetumoss", () -> new BlockItem(ESBlocks.VELVETUMOSS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VELVETUMOSS_BALL = registerItem("velvetumoss_ball", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.2F).build())));
+	public static final RegistryObject<Item, Item> VELVETUMOSS_VILLI = registerItem("velvetumoss_villi", () -> new BlockItem(ESBlocks.VELVETUMOSS_VILLI.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_VELVETUMOSS = registerItem("red_velvetumoss", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_VELVETUMOSS_VILLI = registerItem("red_velvetumoss_villi", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS_VILLI.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_VELVETUMOSS_FLOWER = registerItem("red_velvetumoss_flower", () -> new BlockItem(ESBlocks.RED_VELVETUMOSS_FLOWER.get(), new Item.Properties()));
 
 	// crystal caves plant
 	public static final RegistryObject<Item, Item> CRYSTALLIZED_LUNAR_GRASS = registerItem("crystallized_lunar_grass", () -> new BlockItem(ESBlocks.CRYSTALLIZED_LUNAR_GRASS.get(), new Item.Properties()));
@@ -711,9 +594,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NIGHTFALL_GRASS_BLOCK = registerItem("nightfall_grass_block", () -> new BlockItem(ESBlocks.NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_PODZOL = registerItem("nightfall_podzol", () -> new BlockItem(ESBlocks.NIGHTFALL_PODZOL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TENACIOUS_NIGHTFALL_GRASS_BLOCK = registerItem("tenacious_nightfall_grass_block", () -> new BlockItem(ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> GOLDEN_GRASS_BLOCK = registerItem("golden_grass_block", () -> new BlockItem(ESBlocks.GOLDEN_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_BLOCK = registerItem("fantasy_grass_block", () -> new BlockItem(ESBlocks.FANTASY_GRASS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_CARPET = registerItem("fantasy_grass_carpet", () -> new BlockItem(ESBlocks.FANTASY_GRASS_CARPET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLDEN_GRASS_BLOCK = registerItem("golden_grass_block", () -> new BlockItem(ESBlocks.GOLDEN_GRASS_BLOCK.get(), new Item.Properties()));
 
 	// aethersent
 	public static final RegistryObject<Item, Item> CRETEOR_HIDE = registerItem("creteor_hide", () -> new Item(new Item.Properties()));
@@ -989,11 +872,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> FLOWGLAZE_SHIELD = registerItem("flowglaze_shield",
 		() -> new ShieldItem(new Item.Properties().durability(1000)));
 
-	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> ETERNAL_ICE_REDSTONE_ORE = registerItem("eternal_ice_redstone_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> HAZE_ICE_REDSTONE_ORE = registerItem("haze_ice_redstone_ore", () -> new BlockItem(ESBlocks.HAZE_ICE_REDSTONE_ORE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item, Item> GRIMSTONE_SALTPETER_ORE = registerItem("grimstone_saltpeter_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_SALTPETER_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_SALTPETER_ORE = registerItem("voidstone_saltpeter_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_SALTPETER_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_SALTPETER_ORE = registerItem("eternal_ice_saltpeter_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get(), new Item.Properties()));
@@ -1034,24 +912,30 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
 
-	// boss materials
-	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
-	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
-	public static final RegistryObject<Item, Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> TENACIOUS_VINE = registerItem("tenacious_vine", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> WILTED_CROSSBOW = registerItem("wilted_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
-	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, false, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 4, -2.7F, 0.5F, 0.45F))));
-	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(ESSpells.TELEPORTATION.asHolder(), new Item.Properties().durability(800).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(400).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
+	// ether
+	public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> new BucketItem(ESFluids.ETHER_STILL.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item, Item> THIOQUARTZ_BLOCK = registerItem("thioquartz_block", () -> new BlockItem(ESBlocks.THIOQUARTZ_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BUDDING_THIOQUARTZ = registerItem("budding_thioquartz", () -> new BlockItem(ESBlocks.BUDDING_THIOQUARTZ.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> THIOQUARTZ_CLUSTER = registerItem("thioquartz_cluster", () -> new BlockItem(ESBlocks.THIOQUARTZ_CLUSTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> THIOQUARTZ_SHARD = registerItem("thioquartz_shard", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> THIOQUARTZ_ARROW = registerItem("thioquartz_arrow", () -> new ThioquartzArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE = registerItem("toxite", () -> new BlockItem(ESBlocks.TOXITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_SLAB = registerItem("toxite_slab", () -> new BlockItem(ESBlocks.TOXITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_STAIRS = registerItem("toxite_stairs", () -> new BlockItem(ESBlocks.TOXITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_WALL = registerItem("toxite_wall", () -> new BlockItem(ESBlocks.TOXITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_TOXITE = registerItem("polished_toxite", () -> new BlockItem(ESBlocks.POLISHED_TOXITE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_TOXITE_SLAB = registerItem("polished_toxite_slab", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_TOXITE_STAIRS = registerItem("polished_toxite_stairs", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_TOXITE_WALL = registerItem("polished_toxite_wall", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ALCHEMIST_MASK = registerItem("alchemist_mask",
+		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
+	public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",
+		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10))));
+
+	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ETERNAL_ICE_REDSTONE_ORE = registerItem("eternal_ice_redstone_ore", () -> new BlockItem(ESBlocks.ETERNAL_ICE_REDSTONE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> HAZE_ICE_REDSTONE_ORE = registerItem("haze_ice_redstone_ore", () -> new BlockItem(ESBlocks.HAZE_ICE_REDSTONE_ORE.get(), new Item.Properties()));
 
 	// mob stuff
 	public static final RegistryObject<Item, Item> ROOKFISH_BUCKET = registerItem("rookfish_bucket", () -> new MobBucketItem(ESEntities.ROOKFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
@@ -1072,6 +956,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUMINARIS = registerItem("luminaris", () -> new Item(new Item.Properties().food(Foods.SALMON)));
 	public static final RegistryObject<Item, Item> COOKED_LUMINARIS = registerItem("cooked_luminaris", () -> new Item(new Item.Properties().food(Foods.COOKED_SALMON)));
 
+	public static final RegistryObject<Item, Item> STARLIT_PAINTING = registerItem("starlit_painting", () -> new ESPaintingItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> WHITE_YETI_FUR = registerItem("white_yeti_fur", () -> new BlockItem(ESBlocks.WHITE_YETI_FUR.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ORANGE_YETI_FUR = registerItem("orange_yeti_fur", () -> new BlockItem(ESBlocks.ORANGE_YETI_FUR.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MAGENTA_YETI_FUR = registerItem("magenta_yeti_fur", () -> new BlockItem(ESBlocks.MAGENTA_YETI_FUR.get(), new Item.Properties()));
@@ -1135,6 +1020,130 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER = registerItem("tooth_of_hunger", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> DAGGER_OF_HUNGER = registerItem("dagger_of_hunger", () -> new DaggerOfHungerItem(ESItemTiers.TOOTH_OF_HUNGER, new Item.Properties().rarity(Rarity.RARE).attributes(DaggerOfHungerItem.DEFAULT_ATTRIBUTE)));
 	public static final RegistryObject<Item, Item> VORACIOUS_ARROW = registerItem("voracious_arrow", () -> new VoraciousArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILES = registerItem("tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_SLAB = registerItem("tooth_of_hunger_tile_slab", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_STAIRS = registerItem("tooth_of_hunger_tile_stairs", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER_TILE_WALL = registerItem("tooth_of_hunger_tile_wall", () -> new BlockItem(ESBlocks.TOOTH_OF_HUNGER_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_TOOTH_OF_HUNGER_TILES = registerItem("chiseled_tooth_of_hunger_tiles", () -> new BlockItem(ESBlocks.CHISELED_TOOTH_OF_HUNGER_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRYSTALBORN_CATALYST = registerItem("crystalborn_catalyst", () -> new BlockItem(ESBlocks.CRYSTALBORN_CATALYST.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRYSTALLIZED_SAND = registerItem("crystallized_sand", () -> new BlockItem(ESBlocks.CRYSTALLIZED_SAND.get(), new Item.Properties()));
+
+	// boss spawners
+	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWNER = registerItem("tangled_hatred_spawner", () -> new BlockItem(ESBlocks.TANGLED_HATRED_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
+
+	// gatekeeper
+	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1)));
+	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+
+	// starlight golem
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BLOCK = registerItem("waxed_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BLOCK = registerItem("oxidized_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_SLAB = registerItem("golem_steel_slab", () -> new BlockItem(ESBlocks.GOLEM_STEEL_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_SLAB = registerItem("waxed_golem_steel_slab", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_SLAB = registerItem("oxidized_golem_steel_slab", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_STAIRS = registerItem("golem_steel_stairs", () -> new BlockItem(ESBlocks.GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_STAIRS = registerItem("waxed_golem_steel_stairs", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_STAIRS = registerItem("oxidized_golem_steel_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILES = registerItem("golem_steel_tiles", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILES = registerItem("waxed_golem_steel_tiles", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILES = registerItem("oxidized_golem_steel_tiles", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_SLAB = registerItem("golem_steel_tile_slab", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILE_SLAB = registerItem("waxed_golem_steel_tile_slab", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_SLAB = registerItem("oxidized_golem_steel_tile_slab", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_TILE_STAIRS = registerItem("golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_TILE_STAIRS = registerItem("waxed_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_TILE_STAIRS = registerItem("oxidized_golem_steel_tile_stairs", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_GRATE = registerItem("golem_steel_grate", () -> new BlockItem(ESBlocks.GOLEM_STEEL_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_GRATE = registerItem("waxed_golem_steel_grate", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_GRATE = registerItem("oxidized_golem_steel_grate", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_PILLAR = registerItem("golem_steel_pillar", () -> new BlockItem(ESBlocks.GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_PILLAR = registerItem("waxed_golem_steel_pillar", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_PILLAR = registerItem("oxidized_golem_steel_pillar", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_PILLAR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_BARS = registerItem("golem_steel_bars", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BARS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BARS = registerItem("waxed_golem_steel_bars", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_BARS = registerItem("oxidized_golem_steel_bars", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_GOLEM_STEEL_BLOCK = registerItem("chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("waxed_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK = registerItem("oxidized_chiseled_golem_steel_block", () -> new BlockItem(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_JET = registerItem("golem_steel_jet", () -> new BlockItem(ESBlocks.GOLEM_STEEL_JET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_JET = registerItem("waxed_golem_steel_jet", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_JET = registerItem("oxidized_golem_steel_jet", () -> new BlockItem(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_CRATE = registerItem("golem_steel_crate", () -> new ContainerBlockItem(ESBlocks.GOLEM_STEEL_CRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(ESBlocks.ENERGY_BLOCK.get(), new Item.Properties()));
+
+	// lunar monstrosity
+	public static final RegistryObject<Item, Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> TENACIOUS_VINE = registerItem("tenacious_vine", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> WILTED_CROSSBOW = registerItem("wilted_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
+	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, false, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 4, -2.7F, 0.5F, 0.45F))));
+	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(ESSpells.TELEPORTATION.asHolder(), new Item.Properties().durability(800).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(400).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_VINE = registerItem("lunar_vine", () -> new BlockItem(ESBlocks.LUNAR_VINE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MOSAIC = registerItem("lunar_mosaic", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_SLAB = registerItem("lunar_mosaic_slab", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_STAIRS = registerItem("lunar_mosaic_stairs", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE = registerItem("lunar_mosaic_fence", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MOSAIC_FENCE_GATE = registerItem("lunar_mosaic_fence_gate", () -> new BlockItem(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MAT = registerItem("lunar_mat", () -> new BlockItem(ESBlocks.LUNAR_MAT.get(), new Item.Properties()));
+
+	// solar creeper
+	public static final RegistryObject<Item, Item> GRAVITY_PICKAXE = registerItem("gravity_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F)).rarity(Rarity.EPIC)));
+	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_LOCKBOX = registerItem("dusk_lockbox", () -> new BlockItem(ESBlocks.DUSK_LOCKBOX.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
+
+	// doomeden
+	public static final RegistryObject<Item, Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> BONEMORE = registerItem("bonemore", () -> new GreatswordItem(ESItemTiers.DOOMEDEN, new Item.Properties().rarity(Rarity.EPIC).attributes(GreatswordItem.createAttributes(ESItemTiers.DOOMEDEN, 6, -2.8F, 0.5F))));
+	public static final RegistryObject<Item, Item> BOW_OF_BLOOD = registerItem("bow_of_blood", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+	public static final RegistryObject<Item, Item> LIVING_ARM = registerItem("living_arm", () -> new LivingArmItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> DOOMED_TORCH = registerItem("doomed_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> DOOMED_REDSTONE_TORCH = registerItem("doomed_redstone_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
+	public static final RegistryObject<Item, Item> DOOMEDEN_CARRION = registerItem("doomeden_carrion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).build())));
+	public static final RegistryObject<Item, Item> ROTTEN_HAM = registerItem("rotten_ham", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
+	public static final RegistryObject<Item, Item> EYE_OF_DOOM = registerItem("eye_of_doom", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_RAG = registerItem("doomeden_rag", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLESH_GRINDER = registerItem("flesh_grinder", () -> new AxeItem(ESItemTiers.DOOMEDEN, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.DOOMEDEN, 5, -2F))));
+	public static final RegistryObject<Item, Item> DOOMEDEN_RAPIER = registerItem("doomeden_rapier", () -> new SwordItem(ESItemTiers.DOOMEDEN, new Item.Properties().attributes(SwordItem.createAttributes(ESItemTiers.DOOMEDEN, 4, -1.8F))));
+	public static final RegistryObject<Item, Item> DOOMEDEN_BRICKS = registerItem("doomeden_bricks", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_SLAB = registerItem("doomeden_brick_slab", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_STAIRS = registerItem("doomeden_brick_stairs", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_BRICK_WALL = registerItem("doomeden_brick_wall", () -> new BlockItem(ESBlocks.DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICKS = registerItem("polished_doomeden_bricks", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_SLAB = registerItem("polished_doomeden_brick_slab", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_STAIRS = registerItem("polished_doomeden_brick_stairs", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> POLISHED_DOOMEDEN_BRICK_WALL = registerItem("polished_doomeden_brick_wall", () -> new BlockItem(ESBlocks.POLISHED_DOOMEDEN_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_TILES = registerItem("doomeden_tiles", () -> new BlockItem(ESBlocks.DOOMEDEN_TILES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_SLAB = registerItem("doomeden_tile_slab", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_STAIRS = registerItem("doomeden_tile_stairs", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_TILE_WALL = registerItem("doomeden_tile_wall", () -> new BlockItem(ESBlocks.DOOMEDEN_TILE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("chiseled_polished_doomeden_bricks", () -> new BlockItem(ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS = registerItem("charged_chiseled_polished_doomeden_bricks", () -> new BlockItem(ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_LIGHT = registerItem("doomeden_light", () -> new BlockItem(ESBlocks.DOOMEDEN_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DOOMEDEN_KEYHOLE = registerItem("doomeden_keyhole", () -> new BlockItem(ESBlocks.DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> REDSTONE_DOOMEDEN_KEYHOLE = registerItem("redstone_doomeden_keyhole", () -> new BlockItem(ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(), new Item.Properties()));
 
 	// magic
 	public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = registerItem("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
@@ -1172,17 +1181,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_BRISK = registerItem("music_disc_brisk", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.BRISK)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_MOONLIGHT = registerItem("music_disc_moonlight", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.MOONLIGHT)));
 
-	// misc
-	public static final RegistryObject<Item, Item> STARLIT_PAINTING = registerItem("starlit_painting", () -> new ESPaintingItem(new Item.Properties()));
-	public static final RegistryObject<Item, Item> ETHER_BUCKET = registerItem("ether_bucket", () -> new BucketItem(ESFluids.ETHER_STILL.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(ESBlocks.ENERGY_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWNER = registerItem("tangled_hatred_spawner", () -> new BlockItem(ESBlocks.TANGLED_HATRED_SPAWNER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1)));
 	// hide it from creative mode tab
 	public static final RegistryObject<Item, Item> BLOSSOM_OF_STARS = ITEMS.register("blossom_of_stars", () -> new BlossomOfStarsItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(ESMobEffects.DREAM_CATCHER.asHolder(), 2400, 0), 1F).alwaysEdible().build()).rarity(Rarity.RARE)));
 

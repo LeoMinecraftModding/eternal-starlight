@@ -771,7 +771,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.BOARWARF_SPAWN_EGG.get(),
 				ESItems.ASTRAL_GOLEM_SPAWN_EGG.get(),
-
 				ESItems.RADIANITE.get(),
 				ESItems.RADIANITE_SLAB.get(),
 				ESItems.RADIANITE_STAIRS.get(),
