@@ -576,7 +576,7 @@ public class ESItems {
 
 	// solar creeper
 	public static final RegistryObject<Item, Item> GRAVITY_PICKAXE = registerItem("gravity_pickaxe",
-		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F))));
+		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F)).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
