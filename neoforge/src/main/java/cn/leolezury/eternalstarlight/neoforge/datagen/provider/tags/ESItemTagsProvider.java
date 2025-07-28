@@ -813,6 +813,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.REINFORCED_DUSK_LIGHT.get(),
 				ESItems.DUSK_EMITTER.get(),
 				ESItems.DUSK_LOCKBOX.get(),
+				ESItems.FLARE_SPAWNER.get(),
 				ESItems.ECLIPSE_CORE.get(),
 				ESItems.BROKEN_DOOMEDEN_BONE.get(),
 				ESItems.BONEMORE.get(),

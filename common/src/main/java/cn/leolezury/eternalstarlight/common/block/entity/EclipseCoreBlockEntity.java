@@ -23,8 +23,8 @@ public class EclipseCoreBlockEntity extends AbstractDuskLightBlockEntity {
 	}
 
 	@Override
-	public void lightUp(Level level, BlockPos pos, Direction direction) {
-		switch (direction) {
+	public void lightUp(Level level, BlockPos pos, Direction sourceDir) {
+		switch (sourceDir) {
 			case NORTH -> ticksLeftNorth = 5;
 			case SOUTH -> ticksLeftSouth = 5;
 			case WEST -> ticksLeftWest = 5;
@@ -63,9 +63,7 @@ public class EclipseCoreBlockEntity extends AbstractDuskLightBlockEntity {
 			if (entity.ticksLeftEast < 0) {
 				entity.ticksLeftEast = 0;
 			}
-			if (entity.ticksLeftNorth > 0 && entity.ticksLeftSouth > 0 && entity.ticksLeftWest > 0 && entity.ticksLeftEast > 0) {
-				entity.ticksLeft = 5;
-			}
+			entity.ticksLeft = Math.min(Math.min(entity.ticksLeftNorth, entity.ticksLeftSouth), Math.min(entity.ticksLeftWest, entity.ticksLeftEast));
 		}
 		AbstractDuskLightBlockEntity.tick(level, pos, state, entity);
 		if (level instanceof ServerLevel serverLevel && !oldLit && entity.isLit() && entity.ticks > 5) {

@@ -5,5 +5,5 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 
 public interface DuskLightReceptor {
-	void lightUp(Level level, BlockPos pos, Direction direction);
+	void lightUp(Level level, BlockPos pos, Direction sourceDir);
 }

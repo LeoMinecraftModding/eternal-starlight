@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -98,7 +99,7 @@ public abstract class EtherFluid extends FlowingFluid {
 			if (blockState.getBlock() instanceof LiquidBlock) {
 				levelAccessor.setBlock(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState(), 3);
 			}
-			levelAccessor.levelEvent(1501, blockPos, 0);
+			levelAccessor.levelEvent(LevelEvent.LAVA_FIZZ, blockPos, 0);
 			return;
 		}
 

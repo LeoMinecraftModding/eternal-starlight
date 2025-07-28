@@ -948,6 +948,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ReinforcedDuskLightBlock> REINFORCED_DUSK_LIGHT = BLOCKS.register("reinforced_dusk_light", () -> new ReinforcedDuskLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, DuskEmitterBlock> DUSK_EMITTER = BLOCKS.register("dusk_emitter", () -> new DuskEmitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).lightLevel(state -> 15)));
 	public static final RegistryObject<Block, DuskLockboxBlock> DUSK_LOCKBOX = BLOCKS.register("dusk_lockbox", () -> new DuskLockboxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, FlareSpawnerBlock> FLARE_SPAWNER = BLOCKS.register("flare_spawner", () -> new FlareSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).noOcclusion().lightLevel(state -> state.getValue(FlareSpawnerBlock.LIT) ? 15 : 0)));
 	public static final RegistryObject<Block, EclipseCoreBlock> ECLIPSE_CORE = BLOCKS.register("eclipse_core", () -> new EclipseCoreBlock(BlockBehaviour.Properties.of().strength(-1F).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 15)));
 
 	// doomeden

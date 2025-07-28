@@ -537,11 +537,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		fenceGateBlock(ESBlocks.LUNAR_MOSAIC_FENCE_GATE.get(), blockTexture(ESBlocks.LUNAR_MOSAIC.get()));
 		carpet(ESBlocks.LUNAR_MAT.get(), blockTexture(ESBlocks.LUNAR_MAT.get()));
 
-		simpleBlock(ESBlocks.DUSK_GLASS.get(), models().cubeAll(name(ESBlocks.DUSK_GLASS.get()), blockTexture(ESBlocks.DUSK_GLASS.get())).renderType(TRANSLUCENT));
+		tintedCubeAll(ESBlocks.DUSK_GLASS.get(), blockTexture(ESBlocks.DUSK_GLASS.get()), TRANSLUCENT);
 		simpleBlock(ESBlocks.DUSK_LIGHT.get());
 		simpleBlock(ESBlocks.REINFORCED_DUSK_LIGHT.get());
 		duskEmitter(ESBlocks.DUSK_EMITTER.get(), name(ESBlocks.DUSK_EMITTER.get()), blockTexture(ESBlocks.DUSK_EMITTER.get()), name(ESBlocks.DUSK_EMITTER.get()) + "_off", blockTexture(ESBlocks.DUSK_EMITTER.get()).withSuffix("_off"));
 		simpleBlock(ESBlocks.DUSK_LOCKBOX.get());
+		onOffBlock(ESBlocks.FLARE_SPAWNER.get(), FlareSpawnerBlock.LIT, models().cubeAll(name(ESBlocks.FLARE_SPAWNER.get()), blockTexture(ESBlocks.FLARE_SPAWNER.get())).renderType(CUTOUT), models().cubeAll(name(ESBlocks.FLARE_SPAWNER.get()) + "_off", blockTexture(ESBlocks.FLARE_SPAWNER.get()).withSuffix("_off")).renderType(CUTOUT));
 		simpleBlock(ESBlocks.ECLIPSE_CORE.get());
 
 		stoneSet(ESBlocks.DOOMEDEN_TILES.get(), ESBlocks.DOOMEDEN_TILE_SLAB.get(), ESBlocks.DOOMEDEN_TILE_STAIRS.get(), ESBlocks.DOOMEDEN_TILE_WALL.get());

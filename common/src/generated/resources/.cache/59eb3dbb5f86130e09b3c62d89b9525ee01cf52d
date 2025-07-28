@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-26T23:09:52.7934384	Loot Tables
+// 1.21.1	2025-07-28T14:59:16.5412273	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -192,6 +192,7 @@ f6a4e29b3afa1c18c6a589b7c598883e8cc8c2a0 data/eternal_starlight/loot_table/block
 fa80bff6c28d986cf8ff3a4329344d06d8a5aa6a data/eternal_starlight/loot_table/blocks/flare_brick_slab.json
 dbbd546f85d8c70bf1353f468a0abc88bb15ca9c data/eternal_starlight/loot_table/blocks/flare_brick_stairs.json
 e5cf8168a6601221e047fb1a76db11d12ec46e4f data/eternal_starlight/loot_table/blocks/flare_brick_wall.json
+cf0fd6dc0bbc7b6d8472a3fd085c2828aeae8a86 data/eternal_starlight/loot_table/blocks/flare_spawner.json
 879dfd25c869297d530528b6931d608ff11c5826 data/eternal_starlight/loot_table/blocks/flare_tiles.json
 27d2477eac6032d9c746dbf986af8581c9769434 data/eternal_starlight/loot_table/blocks/flare_tile_slab.json
 cd2d7bf66307d42b3e23768cebdfb63833bf3c92 data/eternal_starlight/loot_table/blocks/flare_tile_stairs.json

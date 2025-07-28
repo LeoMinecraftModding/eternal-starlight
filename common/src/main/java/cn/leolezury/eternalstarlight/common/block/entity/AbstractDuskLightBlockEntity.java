@@ -95,7 +95,7 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 	protected abstract boolean isFaceActivated(BlockState state, Direction direction);
 
 	@Override
-	public void lightUp(Level level, BlockPos pos, Direction direction) {
+	public void lightUp(Level level, BlockPos pos, Direction sourceDir) {
 		ticksLeft = 5;
 	}
 

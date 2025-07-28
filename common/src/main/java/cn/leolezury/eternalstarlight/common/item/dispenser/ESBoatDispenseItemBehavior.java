@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class ESBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {
@@ -59,6 +60,6 @@ public class ESBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {
 
 	@Override
 	protected void playSound(BlockSource blockSource) {
-		blockSource.level().levelEvent(1000, blockSource.pos(), 0);
+		blockSource.level().levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, blockSource.pos(), 0);
 	}
 }

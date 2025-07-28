@@ -19,6 +19,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -119,7 +120,7 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 			for (int j = 0; j < blockPatternMatch.getHeight(); ++j) {
 				BlockInWorld blockInWorld = blockPatternMatch.getBlock(i, j, 0);
 				level.setBlock(blockInWorld.getPos(), Blocks.AIR.defaultBlockState(), 2);
-				level.levelEvent(2001, blockInWorld.getPos(), Block.getId(blockInWorld.getState()));
+				level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, blockInWorld.getPos(), Block.getId(blockInWorld.getState()));
 			}
 		}
 

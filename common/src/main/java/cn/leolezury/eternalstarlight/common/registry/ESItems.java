@@ -1108,11 +1108,12 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GRAVITY_PICKAXE = registerItem("gravity_pickaxe",
 		() -> new PickaxeItem(ESItemTiers.AETHERSENT, new Item.Properties().attributes(PickaxeItem.createAttributes(ESItemTiers.AETHERSENT, 1, -2.8F)).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item, Item> DUSK_GLASS = registerItem("dusk_glass", () -> new BlockItem(ESBlocks.DUSK_GLASS.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> DUSK_LOCKBOX = registerItem("dusk_lockbox", () -> new BlockItem(ESBlocks.DUSK_LOCKBOX.get(), new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties().rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> DUSK_LIGHT = registerItem("dusk_light", () -> new BlockItem(ESBlocks.DUSK_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> REINFORCED_DUSK_LIGHT = registerItem("reinforced_dusk_light", () -> new BlockItem(ESBlocks.REINFORCED_DUSK_LIGHT.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DUSK_EMITTER = registerItem("dusk_emitter", () -> new BlockItem(ESBlocks.DUSK_EMITTER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DUSK_LOCKBOX = registerItem("dusk_lockbox", () -> new BlockItem(ESBlocks.DUSK_LOCKBOX.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> FLARE_SPAWNER = registerItem("flare_spawner", () -> new BlockItem(ESBlocks.FLARE_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ECLIPSE_CORE = registerItem("eclipse_core", () -> new BlockItem(ESBlocks.ECLIPSE_CORE.get(), new Item.Properties()));
 
 	// doomeden
 	public static final RegistryObject<Item, Item> BROKEN_DOOMEDEN_BONE = registerItem("broken_doomeden_bone", () -> new Item(new Item.Properties()));

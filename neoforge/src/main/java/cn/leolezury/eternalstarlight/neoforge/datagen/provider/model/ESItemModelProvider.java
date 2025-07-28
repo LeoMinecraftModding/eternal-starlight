@@ -945,6 +945,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.REINFORCED_DUSK_LIGHT.get());
 		cubeAll(ESItems.DUSK_EMITTER.get());
 		block(ESItems.DUSK_LOCKBOX.get());
+		block(ESItems.FLARE_SPAWNER.get());
 		block(ESItems.ECLIPSE_CORE.get());
 
 		basicItem(ESItems.BROKEN_DOOMEDEN_BONE.get());

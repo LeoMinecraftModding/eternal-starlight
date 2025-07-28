@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-26T22:29:34.1756388	Item Models: eternal_starlight
+// 1.21.1	2025-07-28T14:59:16.5609776	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -277,6 +277,7 @@ f75d73859b9a583d4fb4838f158fcb1283b07ec9 assets/eternal_starlight/models/item/fa
 c57af9f382bda15a9b4587e1e3bea54027efba92 assets/eternal_starlight/models/item/flare_brick_slab.json
 5747ba8c3f211ef7af679b437842b94eab2f8162 assets/eternal_starlight/models/item/flare_brick_stairs.json
 6318cabd1c7b4669dbfcc05241b39ab8d4ef6b44 assets/eternal_starlight/models/item/flare_brick_wall.json
+629cadee3faa7fbd09798a9d4d265b9fa3b2f0b9 assets/eternal_starlight/models/item/flare_spawner.json
 ecc328ee8c598d34236b7bb4d49fb189b34ef1b1 assets/eternal_starlight/models/item/flare_tiles.json
 a9a39acb23dff05a5c959df19a63683f728cc275 assets/eternal_starlight/models/item/flare_tile_slab.json
 7411264dc0c7f71fb0880b76e1df0f466b35de12 assets/eternal_starlight/models/item/flare_tile_stairs.json

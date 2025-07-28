@@ -26,7 +26,7 @@ public class DuskLockboxBlockEntity extends RandomizableContainerBlockEntity imp
 	}
 
 	@Override
-	public void lightUp(Level level, BlockPos pos, Direction direction) {
+	public void lightUp(Level level, BlockPos pos, Direction sourceDir) {
 		RandomSource random = level.getRandom();
 		for (int i = 0; i < getContainerSize(); i++) {
 			ItemStack stack = getItem(i);

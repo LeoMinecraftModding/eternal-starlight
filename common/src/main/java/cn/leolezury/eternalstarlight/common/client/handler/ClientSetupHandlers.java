@@ -67,6 +67,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -80,6 +81,9 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
@@ -358,6 +362,7 @@ public class ClientSetupHandlers {
 		ESBlocks.THIOQUARTZ_CLUSTER,
 		ESBlocks.SHADEGRIEVE,
 		ESBlocks.BLOOMING_SHADEGRIEVE,
+		ESBlocks.FLARE_SPAWNER,
 		ESBlocks.DOOMED_TORCH,
 		ESBlocks.WALL_DOOMED_TORCH,
 		ESBlocks.DOOMED_REDSTONE_TORCH,
@@ -400,6 +405,8 @@ public class ClientSetupHandlers {
 		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KEY_CATEGORY_ETERNAL_STARLIGHT)
 	);
 
+	private static final SimplexNoise COLOR_NOISE = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(1225L)));
+
 	public static void clientSetup() {
 		registerSimpleSpecialModel("thermal_springstone_scythe");
 		registerSimpleSpecialModel("thermal_springstone_hammer");
@@ -434,6 +441,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.FLARE_SPAWNER.get(), FlareSpawnerRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
@@ -589,6 +597,10 @@ public class ClientSetupHandlers {
 		strategy.register(dyeColor, ESBlocks.GREEN_YETI_FUR_CARPET.get());
 		strategy.register(dyeColor, ESBlocks.RED_YETI_FUR_CARPET.get());
 		strategy.register(dyeColor, ESBlocks.BLACK_YETI_FUR_CARPET.get());
+		strategy.register((state, getter, pos, i) -> {
+			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 12.0, pos.getY() / 12.0, pos.getZ() / 12.0) + 1) / 2 : (Math.sin((ClientHandlers.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
+			return FastColor.ARGB32.color((int) Mth.lerp(progress, 218, 255), (int) Mth.lerp(progress, 90, 255), (int) Mth.lerp(progress, 255, 116));
+		}, ESBlocks.DUSK_GLASS.get());
 	}
 
 	public static void registerItemColors(ItemColorRegisterStrategy strategy) {
@@ -641,6 +653,7 @@ public class ClientSetupHandlers {
 		strategy.register(toBlock, ESBlocks.GREEN_YETI_FUR_CARPET.get());
 		strategy.register(toBlock, ESBlocks.RED_YETI_FUR_CARPET.get());
 		strategy.register(toBlock, ESBlocks.BLACK_YETI_FUR_CARPET.get());
+		strategy.register(toBlock, ESBlocks.DUSK_GLASS.get());
 	}
 
 	public static void registerShaders(ShaderRegisterStrategy strategy) {

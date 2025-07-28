@@ -842,6 +842,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.REINFORCED_DUSK_LIGHT.get());
 		dropSelf(ESBlocks.DUSK_EMITTER.get());
 		add(ESBlocks.DUSK_LOCKBOX.get(), noDrop());
+		add(ESBlocks.FLARE_SPAWNER.get(), noDrop());
 		add(ESBlocks.ECLIPSE_CORE.get(), noDrop());
 
 		dropSelf(ESBlocks.DOOMED_TORCH.get());
