@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
+import cn.leolezury.eternalstarlight.common.block.EclipseCoreBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
@@ -38,10 +39,9 @@ public class EclipseCoreBlockEntity extends AbstractDuskLightBlockEntity {
 
 	public static void tick(Level level, BlockPos pos, BlockState state, EclipseCoreBlockEntity entity) {
 		entity.ticks++;
-		boolean oldLit = entity.isLit();
 		if (level.isClientSide) {
 			entity.oldEclipseProgress = entity.eclipseProgress;
-			if (entity.isLit()) {
+			if (state.getValue(EclipseCoreBlock.LIT)) {
 				entity.eclipseProgress = Mth.clamp(entity.eclipseProgress + 0.08f, 0, 1);
 			} else {
 				entity.eclipseProgress = Mth.clamp(entity.eclipseProgress - 0.2f, 0, 1);
@@ -65,9 +65,15 @@ public class EclipseCoreBlockEntity extends AbstractDuskLightBlockEntity {
 			}
 			entity.ticksLeft = Math.min(Math.min(entity.ticksLeftNorth, entity.ticksLeftSouth), Math.min(entity.ticksLeftWest, entity.ticksLeftEast));
 		}
+		boolean oldLit = entity.isLit();
 		AbstractDuskLightBlockEntity.tick(level, pos, state, entity);
-		if (level instanceof ServerLevel serverLevel && !oldLit && entity.isLit() && entity.ticks > 5) {
-			ScreenShakeVfx.createInstance(serverLevel.dimension(), entity.getBlockPos().getCenter(), 45, 50, 0.24f, 0.24f, 4.5f, 5).send(serverLevel);
+		if (level instanceof ServerLevel serverLevel && !oldLit && entity.isLit()) {
+			if (entity.ticks > 5) {
+				ScreenShakeVfx.createInstance(serverLevel.dimension(), entity.getBlockPos().getCenter(), 45, 50, 0.24f, 0.24f, 4.5f, 5).send(serverLevel);
+			}
+			if (!state.getValue(EclipseCoreBlock.LIT)) {
+				level.setBlockAndUpdate(pos, state.setValue(EclipseCoreBlock.LIT, true));
+			}
 		}
 	}
 

@@ -37,7 +37,7 @@ public class DuskLightRenderer<T extends AbstractDuskLightBlockEntity> implement
 			float pitch = -camera.getXRot();
 			Vec3 sight = ESMathUtil.rotationToPosition(1, pitch, yaw);*/
 			Vec3 sight = camera.getPosition().subtract(blockEntity.getBlockPos().getCenter());
-			Vec3 start = new Vec3(0.5, 0.5, 0.5);
+			Vec3 start = new Vec3(0.5, 0.5, 0.5).add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(0.5));
 			Vec3 end = start.add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(progress * DuskLightBlockEntity.MAX_LENGTH));
 			Vec3 sideOffset = end.subtract(start).cross(sight).normalize().scale(0.25);
 			PoseStack.Pose pose = poseStack.last();

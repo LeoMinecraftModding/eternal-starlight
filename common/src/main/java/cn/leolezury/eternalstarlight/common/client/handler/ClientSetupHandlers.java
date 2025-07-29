@@ -598,7 +598,7 @@ public class ClientSetupHandlers {
 		strategy.register(dyeColor, ESBlocks.RED_YETI_FUR_CARPET.get());
 		strategy.register(dyeColor, ESBlocks.BLACK_YETI_FUR_CARPET.get());
 		strategy.register((state, getter, pos, i) -> {
-			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 12.0, pos.getY() / 12.0, pos.getZ() / 12.0) + 1) / 2 : (Math.sin((ClientHandlers.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
+			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 10.0, pos.getY() / 10.0, pos.getZ() / 10.0) + 1) / 2 : (Math.sin((ClientHandlers.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
 			return FastColor.ARGB32.color((int) Mth.lerp(progress, 218, 255), (int) Mth.lerp(progress, 90, 255), (int) Mth.lerp(progress, 255, 116));
 		}, ESBlocks.DUSK_GLASS.get());
 	}

@@ -123,7 +123,7 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 				}
 				if (entity.isFaceActivated(state, direction) && entity.lit) {
 					entity.beamProgresses.put(direction, Mth.clamp(entity.beamProgresses.getFloat(direction) + 0.3f, 0, entity.lengths.getOrDefault(direction, 0) / MAX_LENGTH));
-					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(ManaType.BLAZE, pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(entity.lengths.getOrDefault(direction, 0))));
+					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(ManaType.BLAZE, pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(entity.lengths.getOrDefault(direction, 0) + 0.5)));
 				} else {
 					entity.beamProgresses.put(direction, Mth.clamp(entity.beamProgresses.getFloat(direction) - 0.3f, 0, 1));
 				}
@@ -134,14 +134,16 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 			if (entity.lit) {
 				for (Direction direction : Direction.values()) {
 					if (entity.isFaceActivated(state, direction)) {
-						BlockHitResult result = level.clip(new ClipContext(pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(0.51)), pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(MAX_LENGTH)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()) {
+						Vec3 fromPos = pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(0.51));
+						Vec3 toPos = fromPos.add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(MAX_LENGTH));
+						BlockHitResult result = level.clip(new ClipContext(fromPos, toPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()) {
 							@Override
 							public VoxelShape getBlockShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
 								return canPassThrough(blockState) ? Shapes.empty() : super.getBlockShape(blockState, blockGetter, blockPos);
 							}
 						});
 						if (result.getType() != HitResult.Type.MISS) {
-							entity.lengths.put(direction, (float) result.getLocation().subtract(pos.getCenter()).length());
+							entity.lengths.put(direction, (float) result.getLocation().subtract(fromPos).length());
 							if (level.getBlockEntity(result.getBlockPos()) instanceof DuskLightReceptor receptor) {
 								receptor.lightUp(level, result.getBlockPos(), direction.getOpposite());
 							} else if (level.getBlockState(result.getBlockPos()).getBlock() instanceof DuskLightReceptor receptor) {
@@ -153,7 +155,10 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 						} else {
 							entity.lengths.put(direction, MAX_LENGTH);
 						}
-						List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(pos.getCenter().subtract(0.5, 0.5, 0.5), pos.getCenter().relative(direction, entity.lengths.getOrDefault(direction, 0)).add(0.5, 0.5, 0.5)));
+						List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(
+							fromPos.subtract(direction.getAxis() == Direction.Axis.X ? 0 : 0.25, direction.getAxis() == Direction.Axis.Y ? 0 : 0.25, direction.getAxis() == Direction.Axis.Z ? 0 : 0.25),
+							fromPos.relative(direction, entity.lengths.getOrDefault(direction, 0)).add(direction.getAxis() == Direction.Axis.X ? 0 : 0.25, direction.getAxis() == Direction.Axis.Y ? 0 : 0.25, direction.getAxis() == Direction.Axis.Z ? 0 : 0.25)
+						));
 						for (Entity e : entities) {
 							if (!(e instanceof ItemEntity)) {
 								e.setRemainingFireTicks(Math.max(e.getRemainingFireTicks(), 100));
