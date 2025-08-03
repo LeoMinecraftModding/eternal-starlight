@@ -2,23 +2,23 @@
   "parent": "block/block",
   "render_type": "minecraft:cutout",
   "textures": {
-    "kelp": "eternal_starlight:block/spiral_kelp_plant",
-    "particle": "eternal_starlight:block/spiral_kelp_plant"
+    "kelp": "eternal_starlight:block/spiral_kelp",
+    "particle": "eternal_starlight:item/spiral_kelp"
   },
   "elements": [
     {
       "from": [
-        7.5,
+        6.5,
         0,
-        7.5
+        8
       ],
       "to": [
-        8.5,
+        9.5,
         16,
-        8.5
+        8
       ],
       "rotation": {
-        "angle": 0,
+        "angle": 45,
         "axis": "y",
         "origin": [
           8,
@@ -29,55 +29,19 @@
       "faces": {
         "north": {
           "uv": [
-            11,
+            10,
             0,
-            12,
-            16
-          ],
-          "texture": "#kelp"
-        },
-        "east": {
-          "uv": [
-            11,
-            0,
-            12,
+            13,
             16
           ],
           "texture": "#kelp"
         },
         "south": {
           "uv": [
-            11,
+            10,
             0,
-            12,
+            13,
             16
-          ],
-          "texture": "#kelp"
-        },
-        "west": {
-          "uv": [
-            11,
-            0,
-            12,
-            16
-          ],
-          "texture": "#kelp"
-        },
-        "up": {
-          "uv": [
-            12,
-            1,
-            11,
-            0
-          ],
-          "texture": "#kelp"
-        },
-        "down": {
-          "uv": [
-            12,
-            0,
-            11,
-            1
           ],
           "texture": "#kelp"
         }
@@ -85,123 +49,81 @@
     },
     {
       "from": [
-        2.5,
-        14,
-        2.5
+        6.5,
+        0,
+        8
       ],
       "to": [
-        13.5,
-        14,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          14,
-          8
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            11,
-            11,
-            0,
-            0
-          ],
-          "texture": "#kelp"
-        },
-        "down": {
-          "uv": [
-            11,
-            0,
-            0,
-            11
-          ],
-          "texture": "#kelp"
-        }
-      }
-    },
-    {
-      "from": [
-        2.5,
-        12,
-        2.5
-      ],
-      "to": [
-        13.5,
-        12,
-        13.5
+        9.5,
+        16,
+        8
       ],
       "rotation": {
         "angle": -45,
         "axis": "y",
         "origin": [
           8,
+          8,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            10,
+            0,
+            13,
+            16
+          ],
+          "texture": "#kelp"
+        },
+        "south": {
+          "uv": [
+            10,
+            0,
+            13,
+            16
+          ],
+          "texture": "#kelp"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        1,
+        7
+      ],
+      "to": [
+        14,
+        1,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
           12,
-          8
+          1,
+          12
         ]
       },
       "faces": {
         "up": {
           "uv": [
-            11,
-            11,
             0,
-            0
+            9,
+            7,
+            16
           ],
           "texture": "#kelp"
         },
         "down": {
           "uv": [
-            11,
             0,
-            0,
-            11
-          ],
-          "texture": "#kelp"
-        }
-      }
-    },
-    {
-      "from": [
-        2.5,
-        10,
-        2.5
-      ],
-      "to": [
-        13.5,
-        10,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          10,
-          8
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            11,
-            11,
-            0,
-            0
-          ],
-          "rotation": 90,
-          "texture": "#kelp"
-        },
-        "down": {
-          "uv": [
-            11,
-            0,
-            0,
-            11
+            9,
+            7,
+            16
           ],
           "rotation": 270,
           "texture": "#kelp"
@@ -210,127 +132,126 @@
     },
     {
       "from": [
-        2.5,
-        8,
-        2.5
+        4.5,
+        3,
+        7
       ],
       "to": [
-        13.5,
-        8,
-        13.5
+        11.5,
+        3,
+        16
       ],
       "rotation": {
-        "angle": -45,
+        "angle": 0,
         "axis": "y",
         "origin": [
-          8,
-          8,
-          8
+          9.5,
+          3,
+          12
         ]
       },
       "faces": {
         "up": {
           "uv": [
-            11,
-            11,
             0,
+            9,
+            7,
             0
+          ],
+          "texture": "#kelp"
+        },
+        "down": {
+          "uv": [
+            0,
+            9,
+            7,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#kelp"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        5,
+        7
+      ],
+      "to": [
+        9,
+        5,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          7,
+          5,
+          12
+        ]
+      },
+      "faces": {
+        "up": {
+          "uv": [
+            0,
+            9,
+            7,
+            16
           ],
           "rotation": 90,
           "texture": "#kelp"
         },
         "down": {
           "uv": [
-            11,
             0,
-            0,
-            11
+            9,
+            7,
+            16
           ],
-          "rotation": 270,
+          "rotation": 180,
           "texture": "#kelp"
         }
       }
     },
     {
       "from": [
-        2.5,
-        6,
-        2.5
+        0,
+        7,
+        4.5
       ],
       "to": [
-        13.5,
-        6,
-        13.5
+        9,
+        7,
+        11.5
       ],
       "rotation": {
         "angle": 0,
         "axis": "y",
         "origin": [
-          8,
-          6,
-          8
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            11,
-            11,
-            0,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#kelp"
-        },
-        "down": {
-          "uv": [
-            11,
-            0,
-            0,
-            11
-          ],
-          "rotation": 180,
-          "texture": "#kelp"
-        }
-      }
-    },
-    {
-      "from": [
-        2.5,
-        4,
-        2.5
-      ],
-      "to": [
-        13.5,
-        4,
-        13.5
-      ],
-      "rotation": {
-        "angle": 45,
-        "axis": "y",
-        "origin": [
-          8,
           4,
-          8
+          7,
+          9.5
         ]
       },
       "faces": {
         "up": {
           "uv": [
-            11,
-            11,
             0,
+            9,
+            7,
             0
           ],
-          "rotation": 270,
+          "rotation": 90,
           "texture": "#kelp"
         },
         "down": {
           "uv": [
-            11,
             0,
-            0,
-            11
+            9,
+            7,
+            0
           ],
           "rotation": 90,
           "texture": "#kelp"
@@ -339,84 +260,171 @@
     },
     {
       "from": [
-        2.5,
         2,
-        2.5
+        9,
+        2
       ],
       "to": [
-        13.5,
-        2,
-        13.5
+        9,
+        9,
+        9
       ],
       "rotation": {
         "angle": 0,
         "axis": "y",
         "origin": [
-          8,
-          2,
-          8
+          7,
+          9,
+          4
         ]
       },
       "faces": {
         "up": {
           "uv": [
-            11,
-            11,
+            7,
+            9,
             0,
-            0
+            16
           ],
-          "rotation": 270,
+          "rotation": 90,
           "texture": "#kelp"
         },
         "down": {
           "uv": [
-            11,
             0,
-            0,
-            11
+            16,
+            7,
+            9
           ],
-          "rotation": 90,
+          "rotation": 180,
           "texture": "#kelp"
         }
       }
     },
     {
       "from": [
-        2.5,
-        0.1,
-        2.5
+        4.5,
+        11,
+        0
       ],
       "to": [
-        13.5,
-        0.1,
-        13.5
+        11.5,
+        11,
+        9
       ],
       "rotation": {
-        "angle": 45,
+        "angle": 0,
         "axis": "y",
         "origin": [
-          8,
-          0.1,
-          8
+          9.5,
+          11,
+          4
         ]
       },
       "faces": {
         "up": {
           "uv": [
-            11,
-            11,
             0,
-            0
+            0,
+            7,
+            9
           ],
           "texture": "#kelp"
         },
         "down": {
           "uv": [
-            11,
             0,
             0,
-            11
+            7,
+            9
           ],
+          "rotation": 180,
+          "texture": "#kelp"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        13,
+        2
+      ],
+      "to": [
+        14,
+        13,
+        9
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          9,
+          13,
+          4
+        ]
+      },
+      "faces": {
+        "up": {
+          "uv": [
+            7,
+            16,
+            0,
+            9
+          ],
+          "rotation": 90,
+          "texture": "#kelp"
+        },
+        "down": {
+          "uv": [
+            7,
+            16,
+            0,
+            9
+          ],
+          "rotation": 180,
+          "texture": "#kelp"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        15,
+        4.5
+      ],
+      "to": [
+        16,
+        15,
+        11.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          12,
+          15,
+          9.5
+        ]
+      },
+      "faces": {
+        "up": {
+          "uv": [
+            0,
+            0,
+            7,
+            9
+          ],
+          "rotation": 90,
+          "texture": "#kelp"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            7,
+            9
+          ],
+          "rotation": 90,
           "texture": "#kelp"
         }
       }

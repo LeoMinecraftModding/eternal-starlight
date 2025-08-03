@@ -11,7 +11,7 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 	public static final int ID = 1;
 
 	public StarlightGolemLaserBeamPhase() {
-		super(ID, 2, 200, 400);
+		super(ID, 2, 200, 400, StarlightGolemChargeStartPhase.ID);
 	}
 
 	@Override

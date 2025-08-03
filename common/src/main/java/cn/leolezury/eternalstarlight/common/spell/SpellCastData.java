@@ -6,9 +6,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
-public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength, int castTicks) {
+public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength, int castTicks, boolean offhand) {
 	public static SpellCastData getDefault() {
-		return new SpellCastData(false, ESSpells.GUIDANCE_OF_STARS.get(), 0, 0);
+		return new SpellCastData(false, ESSpells.GUIDANCE_OF_STARS.get(), 0, 0, false);
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength,
 	}
 
 	public SpellCastData increaseTick() {
-		return new SpellCastData(hasSpell(), spell(), strength(), castTicks() + 1);
+		return new SpellCastData(hasSpell(), spell(), strength(), castTicks() + 1, offhand());
 	}
 
 	public static SpellCastData fromNetwork(RegistryFriendlyByteBuf buf) {
@@ -25,7 +25,8 @@ public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength,
 		AbstractSpell spell = buf.readById(ESSpells.SPELLS.registry()::byId);
 		int strength = buf.readInt();
 		int ticks = buf.readInt();
-		return new SpellCastData(hasSpell, spell, strength, ticks);
+		boolean offhand = buf.readBoolean();
+		return new SpellCastData(hasSpell, spell, strength, ticks, offhand);
 	}
 
 	public void toNetwork(RegistryFriendlyByteBuf buf) {
@@ -33,6 +34,7 @@ public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength,
 		buf.writeById(ESSpells.SPELLS.registry()::getId, spell());
 		buf.writeInt(strength());
 		buf.writeInt(castTicks());
+		buf.writeBoolean(offhand());
 	}
 
 	public record ItemSpellSource(Item item, InteractionHand hand) implements SpellSource {

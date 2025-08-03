@@ -8,7 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,13 +19,13 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,16 +34,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class JinglestemSaplingBlock extends BushBlock implements BonemealableBlock, SimpleWaterloggedBlock {
+public class JinglestemSaplingBlock extends BushBlock implements BonemealableBlock, LiquidBlockContainer {
 	public static final MapCodec<JinglestemSaplingBlock> CODEC = simpleCodec(JinglestemSaplingBlock::new);
 
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
-	protected static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0);
+	protected static final VoxelShape SHAPE = Block.box(5.0, 0.0, 5.0, 11.0, 12.0, 11.0);
 
 	public JinglestemSaplingBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false).setValue(STAGE, 0));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(STAGE, 0));
 	}
 
 	@Override
@@ -56,22 +57,22 @@ public class JinglestemSaplingBlock extends BushBlock implements BonemealableBlo
 
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState blockState, LevelAccessor levelAccessor, BlockPos pos, BlockPos blockPos) {
-		if (state.getValue(WATERLOGGED)) {
+		BlockState result = super.updateShape(state, direction, blockState, levelAccessor, pos, blockPos);
+		if (!result.isAir()) {
 			levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
 		}
-		return super.updateShape(state, direction, blockState, levelAccessor, pos, blockPos);
+		return result;
 	}
 
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		LevelAccessor level = context.getLevel();
-		BlockPos pos = context.getClickedPos();
-		return this.defaultBlockState().setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER);
+		FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+		return fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 ? super.getStateForPlacement(context) : null;
 	}
 
 	@Override
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	protected FluidState getFluidState(BlockState state) {
+		return Fluids.WATER.getSource(false);
 	}
 
 	@Override
@@ -113,11 +114,21 @@ public class JinglestemSaplingBlock extends BushBlock implements BonemealableBlo
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(WATERLOGGED, STAGE);
+		builder.add(STAGE);
 	}
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE;
+	}
+
+	@Override
+	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter getter, BlockPos pos, BlockState state, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluidState) {
+		return false;
 	}
 }

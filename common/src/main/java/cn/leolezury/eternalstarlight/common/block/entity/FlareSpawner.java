@@ -102,8 +102,6 @@ public abstract class FlareSpawner {
 		if (state.hasProperty(FlareSpawnerBlock.LIT) && state.getValue(FlareSpawnerBlock.LIT)) {
 			if (level.getBlockEntity(pos.above()) instanceof DuskLightReceptor receptor) {
 				receptor.lightUp(level, pos.above(), Direction.DOWN);
-			} else if (level.getBlockState(pos.above()).getBlock() instanceof DuskLightReceptor receptor) {
-				receptor.lightUp(level, pos.above(), Direction.DOWN);
 			}
 		}
 	}

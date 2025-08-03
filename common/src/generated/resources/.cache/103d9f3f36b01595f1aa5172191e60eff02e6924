@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-24T18:09:04.412064	Registries
+// 1.21.1	2025-08-03T20:09:29.7509634	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -244,7 +244,7 @@ c20a1ffedd2af1b842a5177f61b257380c45e12d data/eternal_starlight/worldgen/placed_
 faddb4e6caad6020536a438419cfd41f28a39fab data/eternal_starlight/worldgen/placed_feature/huge_glowing_mushroom_checked.json
 d1df205307e313d218fd4aaf5c4936cd0dae26a0 data/eternal_starlight/worldgen/placed_feature/huge_marimold_checked.json
 b54eb71e6d906c462d965b143a109b2a6fd372ff data/eternal_starlight/worldgen/placed_feature/icicle.json
-21a66a90a4d50867fea8a20bfeb22f60b4d0e4e9 data/eternal_starlight/worldgen/placed_feature/jinglestem_checked.json
+2cf38fd79bb3664e36bca310d992920ff62eb794 data/eternal_starlight/worldgen/placed_feature/jinglestem_checked.json
 f10fb1c26fc3a231ede3c1ff3ebbe68373e2f696 data/eternal_starlight/worldgen/placed_feature/jinglestem_forest.json
 d606e9a80c2484a837d303931007136e2256cac2 data/eternal_starlight/worldgen/placed_feature/lower_atalphaite_ore.json
 bc20673c6fb3e86167c90d0a5192bbe1ca8822c0 data/eternal_starlight/worldgen/placed_feature/lower_malarite_ore.json

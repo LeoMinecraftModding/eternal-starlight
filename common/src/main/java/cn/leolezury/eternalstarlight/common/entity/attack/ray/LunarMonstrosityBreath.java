@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 
-import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosityToxicBreathPhase;
@@ -23,7 +22,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return 3 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale();
+		return 3;
 	}
 
 	@Override

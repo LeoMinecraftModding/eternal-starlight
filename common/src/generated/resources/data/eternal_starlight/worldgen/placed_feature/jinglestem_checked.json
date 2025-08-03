@@ -8,8 +8,7 @@
         "state": {
           "Name": "eternal_starlight:jinglestem_sapling",
           "Properties": {
-            "stage": "0",
-            "waterlogged": "false"
+            "stage": "0"
           }
         }
       }

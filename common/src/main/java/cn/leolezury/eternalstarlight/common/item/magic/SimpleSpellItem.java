@@ -37,10 +37,10 @@ public class SimpleSpellItem extends Item {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (!level.isClientSide && spell.value().canCast(player, false)) {
 			itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-			spell.value().start(player, false);
 			if (player instanceof SpellCaster caster) {
 				caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
 			}
+			spell.value().start(player, false);
 			return InteractionResultHolder.consume(itemStack);
 		}
 		return InteractionResultHolder.fail(itemStack);

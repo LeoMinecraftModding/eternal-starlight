@@ -44,7 +44,7 @@ public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 		} else {
 			getActivePhase().ifPresent(p -> {
 				if (!canContinue(p)) {
-					p.stop(entity);
+					p.stop(entity, phaseList);
 				} else {
 					p.tick(entity);
 					entity.setBehaviorTicks(entity.getBehaviorTicks() + 1);

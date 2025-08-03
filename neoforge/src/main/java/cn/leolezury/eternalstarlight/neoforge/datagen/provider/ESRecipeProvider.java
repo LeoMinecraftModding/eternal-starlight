@@ -260,6 +260,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('G', ESItems.SHIVERING_GEL.get())
 			.unlockedBy("has_item", has(ESItems.SHIVERING_GEL.get()))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.TINTED_GLASS, 2)
+			.pattern(" E ")
+			.pattern("EGE")
+			.pattern(" E ")
+			.define('G', Blocks.GLASS)
+			.define('E', ESItems.NIGHTFALL_SPIDER_EYE.get())
+			.unlockedBy("has_item", has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
+			.save(recipeOutput, EternalStarlight.id("tinted_glass_from_nightfall_spider_eye"));
 		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
 			.pattern("T")

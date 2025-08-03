@@ -878,7 +878,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, CarpetBlock> BLACK_YETI_FUR_CARPET = BLOCKS.register("black_yeti_fur_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_CARPET)));
 
 	public static final RegistryObject<Block, SkullBlock> TANGLED_SKULL = BLOCKS.register("tangled_skull", () -> new SkullBlock(ESSkullType.TANGLED, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL)));
-	public static final RegistryObject<Block, WallSkullBlock> TANGLED_WALL_SKULL = BLOCKS.register("tangled_wall_skull", () -> new WallSkullBlock(ESSkullType.TANGLED, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_WALL_SKULL)));
+	public static final RegistryObject<Block, WallSkullBlock> TANGLED_WALL_SKULL = BLOCKS.register("tangled_wall_skull", () -> new WallSkullBlock(ESSkullType.TANGLED, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL)));
 
 	public static final RegistryObject<Block, Block> TOOTH_OF_HUNGER_TILES = BLOCKS.register("tooth_of_hunger_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
 	public static final RegistryObject<Block, SlabBlock> TOOTH_OF_HUNGER_TILE_SLAB = BLOCKS.register("tooth_of_hunger_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.BONE_BLOCK).mapColor(MapColor.COLOR_BROWN)));
@@ -893,6 +893,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StarlightGolemSpawnerBlock> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, TangledHatredSpawnerBlock> TANGLED_HATRED_SPAWNER = BLOCKS.register("tangled_hatred_spawner", () -> new TangledHatredSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, SolarEggBlock> SOLAR_EGG = BLOCKS.register("solar_egg", () -> new SolarEggBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_PURPLE)));
 
 	// starlight golem
 	public static final RegistryObject<Block, WeatheringGolemSteelFullBlock> GOLEM_STEEL_BLOCK = BLOCKS.register("golem_steel_block", () -> new WeatheringGolemSteelFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_BLUE)));
@@ -928,7 +929,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> GOLEM_STEEL_JET = BLOCKS.register("golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_BLUE)));
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> WAXED_GOLEM_STEEL_JET = BLOCKS.register("waxed_golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WAXED_COPPER_BLOCK).mapColor(MapColor.COLOR_BLUE)));
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> OXIDIZED_GOLEM_STEEL_JET = BLOCKS.register("oxidized_golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY)));
-	public static final RegistryObject<Block, CrateBlock> GOLEM_STEEL_CRATE = BLOCKS.register("golem_steel_crate", () -> new CrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY).strength(10F, 12F)));
+	public static final RegistryObject<Block, CrateBlock> GOLEM_STEEL_CRATE = BLOCKS.register("golem_steel_crate", () -> new CrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_GRAY).strength(50.0F, 1200.0F)));
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
 	// lunar monstrosity

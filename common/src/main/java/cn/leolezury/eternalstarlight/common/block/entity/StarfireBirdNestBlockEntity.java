@@ -192,6 +192,7 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 							bird.setInLove(loveCause);
 						}
 						bird.addTrustedPlayer(blockEntity.lastSeedPlayer);
+						bird.addGiftCount();
 						bird.setStayOutOfNestTicks(renterCooldown);
 					}
 

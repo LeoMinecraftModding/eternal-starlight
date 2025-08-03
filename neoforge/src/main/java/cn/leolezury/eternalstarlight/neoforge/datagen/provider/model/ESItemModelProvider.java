@@ -867,6 +867,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
 		block(ESItems.TANGLED_HATRED_SPAWNER.get());
 		block(ESItems.LUNAR_MONSTROSITY_SPAWNER.get());
+		basicItem(ESItems.SOLAR_EGG.get());
 
 		basicItem(ESItems.LOOT_BAG.get());
 		basicItem(ESItems.STARLIGHT_SILVER_COIN.get());

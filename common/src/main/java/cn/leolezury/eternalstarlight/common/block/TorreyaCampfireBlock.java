@@ -35,7 +35,7 @@ public class TorreyaCampfireBlock extends CampfireBlock {
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-		if (stack.is(ESItems.STARFIRE.get()) && !state.getValue(STARFIRE)) {
+		if (stack.is(ESItems.STARFIRE.get()) && !state.getValue(STARFIRE) && state.getValue(LIT)) {
 			level.setBlockAndUpdate(pos, state.setValue(STARFIRE, true));
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}

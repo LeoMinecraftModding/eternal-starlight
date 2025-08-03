@@ -166,7 +166,7 @@ public abstract class LivingEntityMixin {
 						Vec3 centerPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.CRESCENT_SPEAR, centerPos.x + speed.x * 1.5, centerPos.y + speed.y * 1.5, centerPos.z + speed.z * 1.5, speed.x, speed.y, speed.z));
 					}
-					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 50, 0.12f, 0.24f, 3, 5.5f).send(serverLevel);
+					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.12f, 0.24f, 3, 5.5f).send(serverLevel);
 				}
 			}
 		}

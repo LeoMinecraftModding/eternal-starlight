@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
-import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -40,7 +38,7 @@ public class LunarThorn extends AttackEffect {
 				if (getAttackMode() == 0) {
 					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
 						if (livingEntity != getOwner()) {
-							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), getOwner() instanceof LunarMonstrosity ? 4 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : 4);
+							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 4);
 						}
 					}
 				}
@@ -50,7 +48,7 @@ public class LunarThorn extends AttackEffect {
 							if (!livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
 								livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10));
 							}
-							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), getOwner() instanceof LunarMonstrosity ? 3 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale() : 3);
+							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 3);
 						}
 					}
 				}

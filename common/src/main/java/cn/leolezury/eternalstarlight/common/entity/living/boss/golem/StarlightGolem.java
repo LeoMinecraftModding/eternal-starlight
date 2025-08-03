@@ -56,7 +56,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		super(entityType, level);
 	}
 
-	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, true);
+	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.BLUE, false);
 
 	private final BehaviorManager<StarlightGolem> behaviorManager = new BehaviorManager<>(this, List.of(
 		new StarlightGolemLaserBeamPhase(),

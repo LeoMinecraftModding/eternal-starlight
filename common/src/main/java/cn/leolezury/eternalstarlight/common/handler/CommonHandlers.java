@@ -171,6 +171,18 @@ public class CommonHandlers {
 
 	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
 		float modified = amount;
+		Entity sourceEntity = source.getEntity();
+		if (sourceEntity != null) {
+			if (sourceEntity.getType() == ESEntities.STARLIGHT_GOLEM.get()) {
+				modified *= (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale();
+			}
+			if (sourceEntity.getType() == ESEntities.LUNAR_MONSTROSITY.get()) {
+				modified *= (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale();
+			}
+			if (sourceEntity.getType() == ESEntities.TANGLED_HATRED.get()) {
+				modified *= (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale();
+			}
+		}
 		if (source.is(DamageTypeTags.IS_FIRE)) {
 			if (entity.hasEffect(ESMobEffects.FLAMMABLE.asHolder())) {
 				MobEffectInstance instance = entity.getEffect(ESMobEffects.FLAMMABLE.asHolder());

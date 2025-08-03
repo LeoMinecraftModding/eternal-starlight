@@ -98,6 +98,7 @@ public class LunarVineRenderer implements BlockEntityRenderer<LunarVineBlockEnti
 			this.lowerVine.visible = lower;
 		}
 
+		@Override
 		public void renderToBuffer(PoseStack stack, VertexConsumer consumer, int light, int overlay, int color) {
 			this.root.render(stack, consumer, light, overlay, color);
 		}
@@ -149,6 +150,7 @@ public class LunarVineRenderer implements BlockEntityRenderer<LunarVineBlockEnti
 			return LayerDefinition.create(meshdefinition, 16, 16);
 		}
 
+		@Override
 		public void renderToBuffer(PoseStack stack, VertexConsumer consumer, int light, int overlay, int color) {
 			this.root.render(stack, consumer, light, overlay, color);
 		}

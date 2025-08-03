@@ -18,7 +18,7 @@ public class SnowyLeavesBlock extends LeavesBlock {
 
 	public SnowyLeavesBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(PERSISTENT, false).setValue(WATERLOGGED, false).setValue(SNOWY, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(SNOWY, false));
 	}
 
 	@Override

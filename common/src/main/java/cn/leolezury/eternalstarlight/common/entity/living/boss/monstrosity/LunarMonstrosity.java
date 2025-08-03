@@ -61,7 +61,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		super(entityType, level);
 	}
 
-	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, true);
+	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
 
 	private final BehaviorManager<LunarMonstrosity> behaviorManager = new BehaviorManager<>(this, List.of(
 		new LunarMonstrosityToxicBreathPhase(),
@@ -177,7 +177,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		return createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.armor())
-			.add(Attributes.ATTACK_DAMAGE, 5 * ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale())
+			.add(Attributes.ATTACK_DAMAGE, 5)
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.35F)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
@@ -336,7 +336,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			Vec3 vec3 = livingEntity.position().vectorTo(this.position()).normalize();
 			vec3 = new Vec3(vec3.x, 0.0D, vec3.z);
 			if (vec3.dot(this.getViewVector(1.0F)) < 0.0D) {
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.BITE, this), damage * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale());
+				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.BITE, this), damage);
 			}
 		}
 	}
@@ -348,7 +348,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 				living.hurtMarked = true;
 				living.setDeltaMovement(living.getDeltaMovement().add(motion));
 				if (damage) {
-					living.hurt(damageSources().mobAttack(this), strength * 3 * (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale());
+					living.hurt(damageSources().mobAttack(this), strength * 3);
 				}
 			}
 		}

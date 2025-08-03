@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.AnimationUtils;
@@ -15,6 +16,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -63,7 +65,10 @@ public class StranghoulModel<T extends Stranghoul> extends HumanoidModel<T> {
 				this.leftArmPose = HumanoidModel.ArmPose.THROW_SPEAR;
 			}
 		}
-		if ((stack.getItem() instanceof SeedsLauncherItem || stack.is(Items.BOW)) && entity.isAggressive()) {
+		if ((stack.getItem() instanceof SeedsLauncherItem
+			|| (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.FABRIC && stack.is(Items.BOW))
+			|| (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.NEOFORGE && stack.getItem() instanceof BowItem))
+			&& entity.isAggressive()) {
 			if (entity.getMainArm() == HumanoidArm.RIGHT) {
 				this.rightArmPose = HumanoidModel.ArmPose.BOW_AND_ARROW;
 			} else {

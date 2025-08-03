@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-28T14:59:16.5412273	Loot Tables
+// 1.21.1	2025-07-31T17:13:35.7573591	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -557,6 +557,7 @@ b5eee874fcf0e4aee3892981f91c77ae952498f1 data/eternal_starlight/loot_table/block
 30ee98736f3c3be164bf02f6a0c205f512368944 data/eternal_starlight/loot_table/blocks/shadegrieve.json
 748c0c6f0f13594b73728008cff8294c9aec961a data/eternal_starlight/loot_table/blocks/small_glowing_night_sprouts.json
 808dc5abb7c5bdb7dbd1855fc404cab59ed776ba data/eternal_starlight/loot_table/blocks/small_night_sprouts.json
+f24a1136488def273b1851bd52ae034b801f3874 data/eternal_starlight/loot_table/blocks/solar_egg.json
 2665eb1b672ec99e25189a0901b25adfe8d72841 data/eternal_starlight/loot_table/blocks/spiral_kelp.json
 e43051d647a2804d936367a1cf718b890fb1502c data/eternal_starlight/loot_table/blocks/spiral_kelp_plant.json
 835d2d7999f328383170764314adca60e8d3dfa0 data/eternal_starlight/loot_table/blocks/springstone.json

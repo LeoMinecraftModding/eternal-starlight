@@ -429,8 +429,8 @@ public class ClientSetupHandlers {
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
-		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
-		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.TELEPORTATION), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.TELEPORTATION_CAST, PlayerAnimation.FIRST_PERSON_TELEPORTATION_CAST, List.of(new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
+		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
+		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.TELEPORTATION), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.TELEPORTATION_CAST, PlayerAnimation.FIRST_PERSON_TELEPORTATION_CAST, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
@@ -438,6 +438,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.DRYING_RACK.get(), DryingRackRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.SOLAR_EGG.get(), SolarEggRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
@@ -921,6 +922,7 @@ public class ClientSetupHandlers {
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities
+		strategy.register(SolarEggRenderer.SolarEggModel.LAYER_LOCATION, SolarEggRenderer.SolarEggModel::createLayer);
 		strategy.register(LunarVineRenderer.VineModel.LAYER_LOCATION, LunarVineRenderer.VineModel::createLayer);
 		strategy.register(LunarVineRenderer.FlowerModel.LAYER_LOCATION, LunarVineRenderer.FlowerModel::createLayer);
 	}

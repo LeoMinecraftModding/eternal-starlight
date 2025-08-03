@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.spell;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -50,7 +51,7 @@ public abstract class AbstractSpell {
 		}
 		onStart(entity);
 		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setESSpellData(new SpellCastData(true, this, strength, 0));
+			caster.setESSpellData(new SpellCastData(true, this, strength, 0, caster.getESSpellSource() instanceof SpellCastData.ItemSpellSource source && source.hand() == InteractionHand.OFF_HAND));
 		}
 	}
 

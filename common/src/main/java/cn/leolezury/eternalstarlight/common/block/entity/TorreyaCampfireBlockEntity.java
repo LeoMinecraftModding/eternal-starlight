@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
+import cn.leolezury.eternalstarlight.common.block.TorreyaCampfireBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import net.minecraft.core.BlockPos;
@@ -41,6 +42,9 @@ public class TorreyaCampfireBlockEntity extends CampfireBlockEntity {
 			}
 		} else {
 			cooldownTick(level, blockPos, blockState, campfireBlockEntity);
+			if (blockState.getValue(TorreyaCampfireBlock.STARFIRE)) {
+				level.setBlockAndUpdate(blockPos, blockState.setValue(TorreyaCampfireBlock.STARFIRE, false));
+			}
 		}
 	}
 

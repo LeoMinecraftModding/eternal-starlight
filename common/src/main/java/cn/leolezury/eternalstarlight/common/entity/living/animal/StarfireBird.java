@@ -71,6 +71,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 	private static final String TAG_STAY_OUT_OF_NEST_TICKS = "stay_out_of_nest_ticks";
 	private static final String TAG_HAS_EGG = "has_egg";
 	private static final String TAG_TRUSTED_PLAYERS = "trusted_players";
+	private static final String TAG_GIFT_COUNT = "gift_count";
 	private static final String TAG_GIFT_COOLDOWN = "gift_cooldown";
 	protected static final EntityDataAccessor<Boolean> SPECIAL_VARIANT = SynchedEntityData.defineId(StarfireBird.class, EntityDataSerializers.BOOLEAN);
 
@@ -113,7 +114,12 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		}
 	}
 
+	private int giftCount;
 	private int giftCooldown;
+
+	public void addGiftCount() {
+		giftCount++;
+	}
 
 	private float oldFlapScale, flapScale;
 
@@ -460,7 +466,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		}
 
 		private boolean canUseGoal() {
-			if (StarfireBird.this.giftCooldown > 0) {
+			if (StarfireBird.this.giftCooldown > 0 || StarfireBird.this.giftCount <= 0) {
 				return false;
 			}
 			if ((giftTarget == null || !giftTarget.isAlive()) && !StarfireBird.this.trustedPlayers.isEmpty()) {
@@ -498,7 +504,8 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 						BehaviorUtils.throwItem(StarfireBird.this, item, giftTarget.position().add(0, giftTarget.getBbHeight() / 2, 0));
 					}
 					giftTarget = null;
-					StarfireBird.this.giftCooldown = 6000;
+					StarfireBird.this.giftCooldown = 600;
+					StarfireBird.this.giftCount--;
 				}
 			}
 			this.tryTicks++;
@@ -623,6 +630,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 				}
 			}
 		}
+		giftCount = compoundTag.getInt(TAG_GIFT_COUNT);
 		giftCooldown = compoundTag.getInt(TAG_GIFT_COOLDOWN);
 	}
 
@@ -642,6 +650,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 			}
 		}
 		compoundTag.put(TAG_TRUSTED_PLAYERS, listTag);
+		compoundTag.putInt(TAG_GIFT_COUNT, giftCount);
 		compoundTag.putInt(TAG_GIFT_COOLDOWN, giftCooldown);
 	}
 

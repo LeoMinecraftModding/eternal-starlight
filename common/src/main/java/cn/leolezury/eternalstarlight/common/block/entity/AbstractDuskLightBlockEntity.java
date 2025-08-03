@@ -146,8 +146,6 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 							entity.lengths.put(direction, (float) result.getLocation().subtract(fromPos).length());
 							if (level.getBlockEntity(result.getBlockPos()) instanceof DuskLightReceptor receptor) {
 								receptor.lightUp(level, result.getBlockPos(), direction.getOpposite());
-							} else if (level.getBlockState(result.getBlockPos()).getBlock() instanceof DuskLightReceptor receptor) {
-								receptor.lightUp(level, result.getBlockPos(), direction.getOpposite());
 							}
 							if (canDestroy(level.getBlockState(result.getBlockPos()))) {
 								level.destroyBlock(result.getBlockPos(), true);

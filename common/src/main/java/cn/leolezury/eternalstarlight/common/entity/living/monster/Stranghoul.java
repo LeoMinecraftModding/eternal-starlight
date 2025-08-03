@@ -59,10 +59,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -257,6 +254,10 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			this.level().addFreshEntity(spear);
 		} else {
 			ItemStack bow = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, Items.BOW));
+			// I HATE YOU
+			if (ESPlatform.INSTANCE.getLoader() == ESPlatform.Loader.NEOFORGE) {
+				bow = this.getItemInHand(getMainHandItem().getItem() instanceof BowItem ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND);
+			}
 			ItemStack projectile = this.getProjectile(bow);
 			AbstractArrow arrow = ProjectileUtil.getMobArrow(this, projectile, distanceFactor, bow);
 			double x = target.getX() - this.getX();

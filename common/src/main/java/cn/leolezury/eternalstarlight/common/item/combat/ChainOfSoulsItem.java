@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -56,5 +57,10 @@ public class ChainOfSoulsItem extends Item {
 
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 		player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
+	}
+
+	@Override
+	public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+		return repairCandidate.is(ESItems.TENACIOUS_PETAL.get()) || super.isValidRepairItem(stack, repairCandidate);
 	}
 }

@@ -6,6 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
+import java.util.List;
+
 public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> {
 	private final int id;
 	private final int priority;
@@ -57,10 +59,14 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 		onStart(entity);
 	}
 
-	public void stop(T entity) {
-		entity.setBehaviorState(turnsInto);
+	public void stop(T entity, List<BehaviorPhase<T>> phaseList) {
+		if (turnsInto == 0) {
+			entity.setBehaviorState(turnsInto);
+			entity.setBehaviorTicks(0);
+		} else {
+			phaseList.stream().filter(p -> turnsInto == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+		}
 		onStop(entity);
-		entity.setBehaviorTicks(0);
 	}
 
 	public boolean canReachTarget(T entity, double range) {

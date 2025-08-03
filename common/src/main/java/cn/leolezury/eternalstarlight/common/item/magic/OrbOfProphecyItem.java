@@ -108,8 +108,8 @@ public class OrbOfProphecyItem extends Item {
 				if (component != null && component.crest().isBound()) {
 					Crest crest = component.crest().value();
 					if (crest.getSpell().isPresent() && crest.getSpell().get().canCast(player, true)) {
-						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						return InteractionResultHolder.consume(itemStack);
 					}
 				}

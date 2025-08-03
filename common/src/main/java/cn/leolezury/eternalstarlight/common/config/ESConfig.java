@@ -33,7 +33,7 @@ public class ESConfig {
 		public final AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
 		public final CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
 		public final AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);
-		public final AttackingMobConfig stranghoul = new AttackingMobConfig(40, 2, 2, 32, true);
+		public final AttackingMobConfig stranghoul = new AttackingMobConfig(30, 2, 2, 32, true);
 		public final MobConfig ent = new MobConfig(10, 0, true);
 		public final MobConfig ratlin = new MobConfig(15, 0, true);
 		public final AttackingMobConfig zombifiedRatlin = new AttackingMobConfig(20, 2, 3, 35, true);
@@ -53,7 +53,7 @@ public class ESConfig {
 		public final AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 5, 32, true);
 		public final BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
 		public final AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
-		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(10, 0, 3, 64, true);
+		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(1, 0, 3, 64, true);
 		public final BossConfig tangledHatred = new BossConfig(60, 5, 1, 100, true);
 
 		public record CreteorConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, double spawnChance) {

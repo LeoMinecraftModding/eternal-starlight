@@ -1308,6 +1308,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get(),
 				ESBlocks.HAZE_ICE_SALTPETER_ORE.get(),
 				ESBlocks.SALTPETER_BLOCK.get(),
+				ESBlocks.AMARAMBER_LANTERN.get(),
 				ESBlocks.RAW_AMARAMBER_BLOCK.get(),
 				ESBlocks.AMARAMBER_BRICKS.get(),
 				ESBlocks.AMARAMBER_BRICK_SLAB.get(),
@@ -1525,7 +1526,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			.add(
 				ESBlocks.THE_GATEKEEPER_SPAWNER.get(),
 				ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(),
+				ESBlocks.TANGLED_HATRED_SPAWNER.get(),
 				ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(),
+				ESBlocks.SOLAR_EGG.get(),
 				ESBlocks.GOLEM_STEEL_CRATE.get(),
 				ESBlocks.ENERGY_BLOCK.get()
 			);

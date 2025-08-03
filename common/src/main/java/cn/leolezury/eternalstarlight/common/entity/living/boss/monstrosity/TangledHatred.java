@@ -77,7 +77,7 @@ public class TangledHatred extends ESBoss {
 		return Monster.createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.tangledHatred.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.tangledHatred.armor())
-			.add(Attributes.ATTACK_DAMAGE, 5 * ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale())
+			.add(Attributes.ATTACK_DAMAGE, 5)
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.tangledHatred.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0);
 	}

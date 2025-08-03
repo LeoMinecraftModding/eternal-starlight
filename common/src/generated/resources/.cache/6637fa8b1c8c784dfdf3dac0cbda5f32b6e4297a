@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-27T22:32:31.2946149	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-08-03T20:09:29.7345728	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -95,7 +95,7 @@ a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_s
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/block/dampens_vibrations.json
 d0a2b11171dc65d73093da1e9a864e8164493da8 data/minecraft/tags/block/dirt.json
 6ea55feb79f02ab17e1dd4bdc32c306ded7f85c3 data/minecraft/tags/block/dragon_immune.json
-bbd4c581bc8f647fe91802e9ac907e322e0f6404 data/minecraft/tags/block/features_cannot_replace.json
+8c49beef2266788c50c9257a22134a57064c9910 data/minecraft/tags/block/features_cannot_replace.json
 0ba65e333c1645d015b8b95daaa846b4064f3747 data/minecraft/tags/block/fence_gates.json
 9d34c3f353473a445208384d2bdb0f87ade13c64 data/minecraft/tags/block/flower_pots.json
 42884e8c5a46a38bf9f966edf96dcb9f0e316b0e data/minecraft/tags/block/frog_prefer_jump_to.json
@@ -110,7 +110,7 @@ b7e18f3b592dc299e6b3b19b05c7c10f92dd4efb data/minecraft/tags/block/mangrove_logs
 ad2418f9c0d27ca82a64e2a223a76e48fb21bd77 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 a931837b3e3a4e8f660cca175a63470e48e5c3c2 data/minecraft/tags/block/mineable/axe.json
 920afd94d6a670e2f3cfb64ac3135d2d70e2fa82 data/minecraft/tags/block/mineable/hoe.json
-7635a99009f9cc542ff439b1ee38444f6faea773 data/minecraft/tags/block/mineable/pickaxe.json
+ccc63de5c32ababf470d6e0d88d8dbf72648c3a6 data/minecraft/tags/block/mineable/pickaxe.json
 7f23848766bbaeba39ab4ad4fe1346351f9ff854 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 f1a357ab1926778d96e01ccd9e41a6a26437047d data/minecraft/tags/block/mushroom_grow_block.json

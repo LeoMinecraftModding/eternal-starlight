@@ -272,6 +272,13 @@ public class PlayerAnimator {
 		}
 	}
 
+	public static class CastSpellHandAnimationTransformer extends UseItemHandAnimationTransformer {
+		@Override
+		public boolean shouldApply(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
+			return player instanceof SpellCaster caster && caster.getESSpellData().offhand();
+		}
+	}
+
 	public interface AnimationTransformer {
 		boolean shouldApply(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model);
 

@@ -1004,7 +1004,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SHADOW_SNAIL_SHELL = registerItem("shadow_snail_shell", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHADOW_SNAIL_SHELL_POWDER = registerItem("shadow_snail_shell_powder", () -> new BoneMealItem(new Item.Properties()));
 
-	public static final RegistryObject<Item, Item> FROZEN_TUBE = registerItem("frozen_tube", () -> new FrozenTubeItem(new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item, Item> FROZEN_TUBE = registerItem("frozen_tube", () -> new FrozenTubeItem(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> SHIVERING_GEL = registerItem("shivering_gel", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SONAR_BOMB = registerItem("sonar_bomb", () -> new SonarBombItem(new Item.Properties().stacksTo(16)));
@@ -1031,6 +1031,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWNER = registerItem("tangled_hatred_spawner", () -> new BlockItem(ESBlocks.TANGLED_HATRED_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SOLAR_EGG = registerItem("solar_egg", () -> new BlockItem(ESBlocks.SOLAR_EGG.get(), new Item.Properties()));
 
 	// gatekeeper
 	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
@@ -1092,7 +1093,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MOONRING_GREATSWORD = registerItem("moonring_greatsword", () -> new GreatswordItem(ESItemTiers.PETAL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.PETAL, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> PETAL_SCYTHE = registerItem("petal_scythe", () -> ESPlatform.INSTANCE.createScythe(ESItemTiers.PETAL, false, new Item.Properties().rarity(Rarity.RARE).attributes(ScytheItem.createAttributes(ESItemTiers.PETAL, 4, -2.7F, 0.5F, 0.45F))));
 	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new SimpleSpellItem(ESSpells.TELEPORTATION.asHolder(), new Item.Properties().durability(800).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(400).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(1200).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
