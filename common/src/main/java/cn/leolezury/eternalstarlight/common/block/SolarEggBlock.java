@@ -96,12 +96,6 @@ public class SolarEggBlock extends BaseEntityBlock {
 		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 
-	@Override
-	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-		checkStructure(level, pos.offset(1 - state.getValue(X_OFFSET), -state.getValue(Y_OFFSET), 1 - state.getValue(Z_OFFSET)));
-		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
-	}
-
 	private void checkStructure(LevelAccessor level, BlockPos pos) {
 		BlockState state = level.getBlockState(pos);
 		if (state.is(this) && state.getValue(X_OFFSET) == 1 && state.getValue(Y_OFFSET) == 0 && state.getValue(Z_OFFSET) == 1) {
