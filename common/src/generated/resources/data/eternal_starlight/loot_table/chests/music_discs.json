@@ -38,6 +38,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_stars_shining_upon_the_sea"
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_atlantis"
         }
       ],

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eternal_starlight:item/music_disc_stars_shining_upon_the_sea"
+  }
+}

@@ -1006,7 +1006,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get());
 		basicItem(ESItems.MUSIC_DISC_PROFUNDITY.get());
 		basicItem(ESItems.MUSIC_DISC_WAILING_WELL.get());
+		basicItem(ESItems.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.get());
+		basicItem(ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get());
 		basicItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get());
+		basicItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
 		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());

@@ -73,6 +73,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	private static void onLivingDeath(LivingDeathEvent event) {
 		if (!event.isCanceled()) {
+			boolean allow = CommonHandlers.onAllowLivingDeath(event.getEntity(), event.getSource());
+			if (!allow) {
+				event.setCanceled(true);
+			}
+		}
+		if (!event.isCanceled()) {
 			CommonHandlers.onLivingDeath(event.getEntity(), event.getSource());
 		}
 	}

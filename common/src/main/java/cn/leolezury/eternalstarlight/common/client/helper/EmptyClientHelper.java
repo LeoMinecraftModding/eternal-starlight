@@ -36,6 +36,11 @@ public class EmptyClientHelper implements ClientHelper {
 	}
 
 	@Override
+	public void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet) {
+
+	}
+
+	@Override
 	public void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet) {
 
 	}

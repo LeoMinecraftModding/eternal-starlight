@@ -17,6 +17,7 @@ public record ExplosionShockParticleOptions(Vector3f fromColor, Vector3f toColor
 	public static final ExplosionShockParticleOptions FROZEN = new ExplosionShockParticleOptions(new Vector3f(121, 178, 209), new Vector3f(192, 251, 255));
 	public static final ExplosionShockParticleOptions CRYSTAL = new ExplosionShockParticleOptions(new Vector3f(196, 80, 132), new Vector3f(126, 197, 203));
 	public static final ExplosionShockParticleOptions FLARE = new ExplosionShockParticleOptions(new Vector3f(222, 112, 255), new Vector3f(255, 255, 116));
+	public static final ExplosionShockParticleOptions DEATH = new ExplosionShockParticleOptions(new Vector3f(220, 53, 69), new Vector3f(237, 38, 85));
 
 	public static final MapCodec<ExplosionShockParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		ExtraCodecs.VECTOR3F.fieldOf("from_color").forGetter(ExplosionShockParticleOptions::fromColor),

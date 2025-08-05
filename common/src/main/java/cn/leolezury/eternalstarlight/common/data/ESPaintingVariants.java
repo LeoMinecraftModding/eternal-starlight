@@ -13,6 +13,7 @@ public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> MONSTROUS_SPECIAL = create("monstrous_special");
 	public static final ResourceKey<PaintingVariant> THE_CATALYST = create("the_catalyst");
 	public static final ResourceKey<PaintingVariant> CRYSTALBORN = create("crystalborn");
+	public static final ResourceKey<PaintingVariant> VOIDSTONE_APPLE = create("voidstone_apple");
 
 	public static void bootstrap(BootstrapContext<PaintingVariant> context) {
 		register(context, ENERGIZED, 2, 2);
@@ -21,6 +22,7 @@ public class ESPaintingVariants {
 		register(context, MONSTROUS_SPECIAL, 2, 2);
 		register(context, THE_CATALYST, 2, 2);
 		register(context, CRYSTALBORN, 2, 2);
+		register(context, VOIDSTONE_APPLE, 2, 2);
 	}
 
 	private static void register(BootstrapContext<PaintingVariant> context, ResourceKey<PaintingVariant> key, int xSize, int ySize) {

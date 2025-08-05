@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.optimized_option"
+  },
+  "length_in_seconds": 188.0,
+  "sound_event": "eternal_starlight:music_disc.optimized_option"
+}

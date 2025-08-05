@@ -26,6 +26,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_optimized_option"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,

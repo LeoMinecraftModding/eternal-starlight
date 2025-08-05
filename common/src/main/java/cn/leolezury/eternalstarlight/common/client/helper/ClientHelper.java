@@ -17,6 +17,8 @@ public interface ClientHelper {
 
 	void handleClientDismount(ClientDismountPacket packet);
 
+	void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet);
+
 	void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet);
 
 	void handleOpenStarlightStory(OpenStarlightStoryPacket packet);

@@ -21,7 +21,8 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 		tag(ESTags.PaintingVariants.PLACEABLE)
 			.add(
 				ESPaintingVariants.THE_CATALYST,
-				ESPaintingVariants.CRYSTALBORN
+				ESPaintingVariants.CRYSTALBORN,
+				ESPaintingVariants.VOIDSTONE_APPLE
 			);
 	}
 }

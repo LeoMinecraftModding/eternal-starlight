@@ -63,6 +63,8 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get())))
 				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get())))
+				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(5, 8))
 					.add(LootItem.lootTableItem(Items.COAL).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(75))
 					.add(LootItem.lootTableItem(Items.GOLD_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
@@ -125,6 +127,8 @@ public class ESBossLootSubProvider implements LootTableSubProvider {
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MOONLIGHT.get())))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get())))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 	}

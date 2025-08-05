@@ -1,0 +1,8 @@
+{
+  "comparator_output": 3,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.fake_light"
+  },
+  "length_in_seconds": 170.0,
+  "sound_event": "eternal_starlight:music_disc.fake_light"
+}

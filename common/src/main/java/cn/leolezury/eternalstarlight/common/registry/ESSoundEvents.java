@@ -30,7 +30,10 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_THE_THORNY_REIGN = register("music_disc.the_thorny_reign");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_PROFUNDITY = register("music_disc.profundity");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_WAILING_WELL = register("music_disc.wailing_well");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_STARS_SHINING_UPON_THE_SEA = register("music_disc.stars_shining_upon_the_sea");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_OPTIMIZED_OPTION = register("music_disc.optimized_option");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_MECHANICAL_FOSSIL = register("music_disc.mechanical_fossil");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_FAKE_LIGHT = register("music_disc.fake_light");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ATLANTIS = register("music_disc.atlantis");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SACRED_DESERT = register("music_disc.sacred_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SPIRIT = register("music_disc.spirit");

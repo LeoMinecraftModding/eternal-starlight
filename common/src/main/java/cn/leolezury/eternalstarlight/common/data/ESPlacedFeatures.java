@@ -77,10 +77,12 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> RED_VELVETUMOSS = create("red_velvetumoss");
 	public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = create("lunar_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_huge_starfire_birds_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = create("starlight_mangrove_tree_checked");
 	public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_TREE_CHECKED = create("torreya_tree_checked");
+	public static final ResourceKey<PlacedFeature> TORREYA_STARFIRE_BIRDS_TREE_CHECKED = create("torreya_starfire_birds_tree_checked");
 	public static final ResourceKey<PlacedFeature> JINGLESTEM_CHECKED = create("jinglestem_checked");
 	public static final ResourceKey<PlacedFeature> HUGE_MARIMOLD_CHECKED = create("huge_marimold_checked");
 	public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = create("huge_glowing_mushroom_checked");
@@ -178,10 +180,12 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, RED_VELVETUMOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.RED_VELVETUMOSS), RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
+		PlacementUtils.register(context, LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
 		PlacementUtils.register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
 		PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
+		PlacementUtils.register(context, TORREYA_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
 		PlacementUtils.register(context, JINGLESTEM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM), PlacementUtils.filteredByBlockSurvival(ESBlocks.JINGLESTEM_SAPLING.get()));
 		PlacementUtils.register(context, HUGE_MARIMOLD_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_MARIMOLD), PlacementUtils.filteredByBlockSurvival(ESBlocks.MARIMOLD.get()));
 		PlacementUtils.register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));

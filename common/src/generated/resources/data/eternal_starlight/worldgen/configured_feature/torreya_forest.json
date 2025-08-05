@@ -4,8 +4,12 @@
     "default": "eternal_starlight:torreya_tree_checked",
     "features": [
       {
-        "chance": 0.25,
+        "chance": 0.4,
         "feature": "eternal_starlight:torreya_tree_checked"
+      },
+      {
+        "chance": 0.4,
+        "feature": "eternal_starlight:torreya_starfire_birds_tree_checked"
       }
     ]
   }

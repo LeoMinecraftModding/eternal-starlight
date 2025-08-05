@@ -1,0 +1,8 @@
+{
+  "comparator_output": 12,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.stars_shining_upon_the_sea"
+  },
+  "length_in_seconds": 194.0,
+  "sound_event": "eternal_starlight:music_disc.stars_shining_upon_the_sea"
+}

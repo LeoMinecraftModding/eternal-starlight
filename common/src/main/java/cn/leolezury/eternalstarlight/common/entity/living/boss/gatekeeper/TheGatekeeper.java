@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
@@ -10,7 +9,9 @@ import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
+import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
@@ -20,6 +21,7 @@ import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -59,7 +61,6 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -72,6 +73,10 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
+	public static int GUI_RESPONSE_EMPTY = 0;
+	public static int GUI_RESPONSE_CHALLENGE = 1;
+	public static int GUI_RESPONSE_TRADE = 2;
+	public static int GUI_RESPONSE_LEAVE = 3;
 	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
 	private static final String TAG_FIGHT_TARGET = "flight_target";
@@ -327,49 +332,44 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	protected InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
 		if (!level().isClientSide && player instanceof ServerPlayer serverPlayer && serverPlayer.getServer() != null && getTradingPlayer() == null && !isActivated() && getTarget() == null && getFightTarget().isEmpty()) {
 			AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
-			boolean killed = killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone();
-			boolean challenged = isPlayerPermitted(serverPlayer);
-			boolean hasOrb = false;
-			for (int i = 0; i < serverPlayer.getInventory().getContainerSize(); i++) {
-				if (serverPlayer.getInventory().getItem(i).is(ESItems.ORB_OF_PROPHECY.get())) hasOrb = true;
-			}
-			boolean hasBook = false;
-			for (int i = 0; i < serverPlayer.getInventory().getContainerSize(); i++) {
-				ItemStack inventoryItem = serverPlayer.getInventory().getItem(i);
-				if (inventoryItem.is(ESItems.BOOK.get())) hasBook = true;
-				if (inventoryItem.is(ESItems.LOOT_BAG.get())) {
-					ResourceKeyComponent<LootTable> component = inventoryItem.get(ESDataComponents.LOOT_TABLE.get());
-					if (component != null && component.resourceKey().location().equals(ESLootTables.BOSS_THE_GATEKEEPER.location())) {
-						hasBook = true;
-					}
+			if (killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone() && !isPlayerPermitted(serverPlayer)) {
+				permitPlayer(serverPlayer);
+				ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+				lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+				ItemEntity item = player.spawnAtLocation(lootBag);
+				if (item != null) {
+					item.setGlowingTag(true);
+					item.setExtendedLifetime();
 				}
 			}
-			if (!challenged) {
-				if (killed) {
-					permitPlayer(serverPlayer);
-					if (!hasBook) {
-						ItemEntity book = spawnAtLocation(ESItems.BOOK.get());
-						if (book != null) {
-							book.setGlowingTag(true);
-						}
-					}
-					if (!hasOrb) {
-						ItemEntity orb = spawnAtLocation(ESItems.ORB_OF_PROPHECY.get());
-						if (orb != null) {
-							orb.setGlowingTag(true);
-						}
-					}
-				} else if (super.canAttack(serverPlayer)) {
-					setFightTargetName(serverPlayer.getName().getString());
-					setActivated(true);
-					setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
-				}
-			} else if (!getOffers().isEmpty()) {
-				this.setTradingPlayer(serverPlayer);
-				this.openTradingScreen(serverPlayer, this.getDisplayName(), 1);
-			}
+			conversationTarget = serverPlayer;
+			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenGatekeeperGuiPacket(getId(), isPlayerPermitted(serverPlayer)));
 		}
 		return isActivated() ? InteractionResult.PASS : InteractionResult.sidedSuccess(level().isClientSide);
+	}
+
+	public synchronized void handleDialogueClose(int operation) {
+		if (conversationTarget != null) {
+			if (operation == GUI_RESPONSE_CHALLENGE) {
+				fightPlayerOnly = true;
+				setFightTargetName(conversationTarget.getName().getString());
+				setActivated(true);
+			}
+			if (operation == GUI_RESPONSE_TRADE && isPlayerPermitted(conversationTarget) && offers != null && !offers.isEmpty()) {
+				this.setTradingPlayer(conversationTarget);
+				this.openTradingScreen(conversationTarget, this.getDisplayName(), 1);
+			}
+			if (operation == GUI_RESPONSE_LEAVE) {
+				if (level() instanceof ServerLevel serverLevel) {
+					RandomSource random = serverLevel.getRandom();
+					for (int i = 0; i <= 25; i++) {
+						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.DEATH, getX() + (random.nextFloat() - 0.5f) * getBbWidth() * 3, getY(), getZ() + (random.nextFloat() - 0.5f) * getBbWidth() * 3, 0, 1, 0));
+					}
+				}
+				discard();
+			}
+			conversationTarget = null;
+		}
 	}
 
 	private void permitPlayer(ServerPlayer player) {
@@ -417,11 +417,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					}
 				}
 			}
-			setHealth(getMaxHealth());
-			setFightTargetName("");
-			setTarget(null);
-			setActivated(false);
-			tryTeleportBack();
+			abortFight();
 			if (level() instanceof ServerLevel serverLevel) {
 				dropCustomDeathLoot(serverLevel, source, true);
 			}
@@ -523,11 +519,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		refreshDimensions();
 		if (!level().isClientSide) {
 			if (isAlive() && tickCount % 5 == 0 && (getTarget() == null || !getTarget().isAlive())) {
-				setHealth(getMaxHealth());
-				setFightTargetName("");
-				setTarget(null);
-				setActivated(false);
-				tryTeleportBack();
+				abortFight();
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
@@ -543,9 +535,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			if (isLeftHanded()) {
 				setLeftHanded(false);
 			}
-			if (getTarget() != null && !getTarget().isAlive()) {
-				setTarget(null);
-			}
 			if (isActivated() && !isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
@@ -553,6 +542,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			idleAnimationState.startIfStopped(tickCount);
 			level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
 		}
+	}
+
+	public void abortFight() {
+		setHealth(getMaxHealth());
+		setFightTargetName("");
+		setTarget(null);
+		setActivated(false);
+		tryTeleportBack();
 	}
 
 	@Override

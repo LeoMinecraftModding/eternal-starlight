@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownStarfire;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
@@ -19,9 +20,11 @@ import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWitchTypePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -53,6 +56,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.FastColor;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -328,6 +332,22 @@ public class CommonHandlers {
 				ESDataAttachments.CONCENTRATION_LEVEL.setData(attacker, 0);
 			}
 		}
+	}
+
+	public static boolean onAllowLivingDeath(LivingEntity entity, DamageSource source) {
+		if (entity instanceof Player player && source.getEntity() instanceof TheGatekeeper gatekeeper) {
+			gatekeeper.abortFight();
+			player.setHealth(Math.max(player.getHealth(), player.getMaxHealth() * 0.1f));
+			player.invulnerableTime = 200;
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				RandomSource random = serverLevel.getRandom();
+				for (int i = 0; i <= 25; i++) {
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.DEATH, player.getX() + (random.nextFloat() - 0.5f) * player.getBbWidth() * 3, player.getY(), player.getZ() + (random.nextFloat() - 0.5f) * player.getBbWidth() * 3, 0, 1, 0));
+				}
+			}
+			return false;
+		}
+		return true;
 	}
 
 	public static void onLivingDeath(LivingEntity entity, DamageSource source) {
