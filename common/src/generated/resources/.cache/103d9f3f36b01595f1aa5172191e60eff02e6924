@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-05T21:07:50.5710791	Registries
+// 1.21.1	2025-08-05T23:25:51.972388	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -96,6 +96,7 @@ beb367c63c7be2ad43b802a43666a87e832a303d data/eternal_starlight/painting_variant
 1a18f74db519aeaf0505865c0fa6225a46dacbcd data/eternal_starlight/painting_variant/energized_special.json
 faa4ac655493ac1b20030f84c93702a9a957a475 data/eternal_starlight/painting_variant/monstrous.json
 fa5a77280751d18d08bd0b3d61703ff81ae1b436 data/eternal_starlight/painting_variant/monstrous_special.json
+781547c7303a1928f0b079adb3e0c3118d363421 data/eternal_starlight/painting_variant/pungency_fruit_feast.json
 21d9a047fc64fce8a3234643cea35b3456571eae data/eternal_starlight/painting_variant/the_catalyst.json
 01286af535422dcd021890995fa02f93afc54ead data/eternal_starlight/painting_variant/voidstone_apple.json
 9b91444c8d3399c29f3a250c9d4c8a8de3657e24 data/eternal_starlight/trim_material/aethersent.json

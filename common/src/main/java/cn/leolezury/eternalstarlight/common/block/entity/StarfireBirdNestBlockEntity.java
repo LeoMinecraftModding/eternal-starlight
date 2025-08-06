@@ -15,6 +15,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -27,6 +28,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,15 +41,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class StarfireBirdNestBlockEntity extends BlockEntity {
+public class StarfireBirdNestBlockEntity extends SimpleContainerBlockEntity {
 	private static final String TAG_BIRDS = "birds";
-	private static final String TAG_SEEDS = "seeds";
 	private static final String TAG_LAST_SEED_PLAYER = "last_seed_player";
 	private static final String TAG_HATCH_TICKS = "hatch_ticks";
 	private static final List<String> IGNORED_BIRD_TAGS = Arrays.asList("Air", "FallDistance", "FallFlying", "Fire", "HurtByTimestamp", "HurtTime", "Motion", "PortalCooldown", "Pos", "leash", "UUID");
 
 	private final List<BirdData> stored = Lists.newArrayList();
-	private final List<ItemStack> seeds = Lists.newArrayList();
+	private NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
 	private UUID lastSeedPlayer = null;
 	private int hatchTicks;
 
@@ -55,40 +56,34 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 		super(ESBlockEntities.STARFIRE_BIRD_NEST.get(), blockPos, blockState);
 	}
 
-	private void markUpdated() {
+	@Override
+	public void setChanged() {
+		super.setChanged();
 		if (getLevel() != null) {
-			this.setChanged();
 			this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 		}
 	}
 
 	public boolean addSeeds(ItemStack stack) {
-		if (!seedsFull()) {
-			seeds.add(stack.copyWithCount(1));
-			markUpdated();
-			return true;
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).isEmpty()) {
+				items.set(i, stack);
+				setChanged();
+				return true;
+			}
 		}
 		return false;
 	}
 
-	public List<ItemStack> getSeeds() {
-		if (seeds.removeIf(ItemStack::isEmpty)) {
-			markUpdated();
-		}
-		return Collections.unmodifiableList(seeds);
-	}
-
-	public boolean seedsFull() {
-		return getSeeds().size() >= 5;
-	}
-
 	public boolean removeSeeds() {
-		if (getSeeds().isEmpty()) {
-			return false;
+		for (int i = 0; i < items.size(); i++) {
+			if (!items.get(i).isEmpty()) {
+				items.set(i, ItemStack.EMPTY);
+				setChanged();
+				return true;
+			}
 		}
-		seeds.removeLast();
-		markUpdated();
-		return true;
+		return false;
 	}
 
 	public void setLastSeedPlayer(Player player) {
@@ -101,12 +96,27 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 			this.stored.removeIf((birdData) -> releaseOccupant(this.level, this.worldPosition, state, this, birdData.toOccupant(), list, emergency, 2400));
 		}
 		if (!list.isEmpty()) {
-			markUpdated();
+			setChanged();
 		}
 	}
 
 	public int getOccupantCount() {
 		return this.stored.size();
+	}
+
+	@Override
+	public int getContainerSize() {
+		return 5;
+	}
+
+	@Override
+	public int getMaxStackSize() {
+		return 1;
+	}
+
+	@Override
+	public boolean canPlaceItem(int index, ItemStack stack) {
+		return stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && this.getItem(index).isEmpty() && stack.getCount() <= this.getMaxStackSize();
 	}
 
 	public boolean isEmpty() {
@@ -148,7 +158,7 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 			}
 
 			entity.discard();
-			markUpdated();
+			setChanged();
 		}
 	}
 
@@ -157,7 +167,7 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 		if (level != null) {
 			this.stored.sort(Comparator.comparingInt(d -> d.getOrCreateEntityInstance(level, getBlockPos()) instanceof AgeableMob mob ? -mob.getAge() : 0));
 		}
-		markUpdated();
+		setChanged();
 	}
 
 	private static boolean releaseOccupant(Level level, BlockPos blockPos, BlockState blockState, StarfireBirdNestBlockEntity blockEntity, Occupant occupant, @Nullable List<Entity> list, boolean emergency, int renterCooldown) {
@@ -239,7 +249,7 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 		}
 
 		if (change) {
-			blockEntity.markUpdated();
+			blockEntity.setChanged();
 		}
 	}
 
@@ -263,26 +273,29 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 		if (compoundTag.contains(TAG_BIRDS)) {
 			Occupant.LIST_CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_BIRDS)).resultOrPartial((string) -> EternalStarlight.LOGGER.error("Failed to parse Starfire Birds: '{}'", string)).ifPresent((list) -> list.forEach(this::storeBird));
 		}
-		this.seeds.clear();
-		if (compoundTag.contains(TAG_SEEDS)) {
-			ItemStack.OPTIONAL_CODEC.listOf().parse(NbtOps.INSTANCE, compoundTag.get(TAG_SEEDS)).resultOrPartial((string) -> EternalStarlight.LOGGER.error("Failed to parse Starfire Bird Nest seeds: '{}'", string)).ifPresent((list) -> list.forEach(this::addSeeds));
-		}
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(compoundTag, this.items, provider);
 		if (compoundTag.hasUUID(TAG_LAST_SEED_PLAYER)) {
 			lastSeedPlayer = compoundTag.getUUID(TAG_LAST_SEED_PLAYER);
 		}
 		hatchTicks = compoundTag.getInt(TAG_HATCH_TICKS);
-		markUpdated();
+		setChanged();
 	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.saveAdditional(compoundTag, provider);
 		compoundTag.put(TAG_BIRDS, Occupant.LIST_CODEC.encodeStart(NbtOps.INSTANCE, this.getBirds()).getOrThrow());
-		compoundTag.put(TAG_SEEDS, ItemStack.OPTIONAL_CODEC.listOf().encodeStart(NbtOps.INSTANCE, this.getSeeds()).getOrThrow());
+		ContainerHelper.saveAllItems(compoundTag, this.items, provider);
 		if (lastSeedPlayer != null) {
 			compoundTag.putUUID(TAG_LAST_SEED_PLAYER, lastSeedPlayer);
 		}
 		compoundTag.putInt(TAG_HATCH_TICKS, hatchTicks);
+	}
+
+	@Override
+	public NonNullList<ItemStack> getItems() {
+		return items;
 	}
 
 	@Nullable
@@ -302,23 +315,19 @@ public class StarfireBirdNestBlockEntity extends BlockEntity {
 		this.stored.clear();
 		List<Occupant> occupants = input.getOrDefault(ESDataComponents.BIRDS.get(), List.of());
 		occupants.forEach(this::storeBird);
-		List<ItemStack> seeds = input.getOrDefault(ESDataComponents.SEEDS.get(), List.of());
-		seeds.forEach(this::addSeeds);
-		markUpdated();
+		setChanged();
 	}
 
 	@Override
 	protected void collectImplicitComponents(DataComponentMap.Builder builder) {
 		super.collectImplicitComponents(builder);
 		builder.set(ESDataComponents.BIRDS.get(), this.getBirds());
-		builder.set(ESDataComponents.SEEDS.get(), this.getSeeds());
 	}
 
 	@Override
 	public void removeComponentsFromTag(CompoundTag compoundTag) {
 		super.removeComponentsFromTag(compoundTag);
 		compoundTag.remove(TAG_BIRDS);
-		compoundTag.remove(TAG_SEEDS);
 	}
 
 	private List<Occupant> getBirds() {

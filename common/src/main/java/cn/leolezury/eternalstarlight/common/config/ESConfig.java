@@ -19,6 +19,7 @@ public class ESConfig {
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
 	public float aethersentMeteorDropRate = 0.0005f;
+	public boolean aethersentMeteorReplaceBlocks = true;
 	public boolean laserBeamBreakBlocks = true;
 	public int mobMaxTearyTicks = 200;
 	public MobsConfig mobsConfig = new MobsConfig();

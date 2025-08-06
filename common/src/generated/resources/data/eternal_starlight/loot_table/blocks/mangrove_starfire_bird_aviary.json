@@ -30,8 +30,8 @@
                 {
                   "function": "minecraft:copy_components",
                   "include": [
-                    "eternal_starlight:birds",
-                    "eternal_starlight:seeds"
+                    "minecraft:container",
+                    "eternal_starlight:birds"
                   ],
                   "source": "block_entity"
                 },
@@ -47,6 +47,15 @@
             },
             {
               "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:copy_components",
+                  "include": [
+                    "minecraft:container"
+                  ],
+                  "source": "block_entity"
+                }
+              ],
               "name": "eternal_starlight:mangrove_starfire_bird_aviary"
             }
           ]

@@ -12,6 +12,7 @@ import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -927,11 +928,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	}
 
 	protected LootTable.Builder createStarfireBirdNestDrop(Block block) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ESDataComponents.BIRDS.get()).include(ESDataComponents.SEEDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS))));
+		return LootTable.lootTable().withPool(LootPool.lootPool().when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CONTAINER).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS))));
 	}
 
 	protected LootTable.Builder createStarfireBirdAviaryDrop(Block block) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(this.hasSilkTouch()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ESDataComponents.BIRDS.get()).include(ESDataComponents.SEEDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS)).otherwise(LootItem.lootTableItem(block))));
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(this.hasSilkTouch()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CONTAINER).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS)).otherwise(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CONTAINER)))));
 	}
 
 	private LootItemCondition.Builder hasShearsOrSilkTouch() {

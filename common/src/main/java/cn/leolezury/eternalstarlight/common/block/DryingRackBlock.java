@@ -10,6 +10,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -48,14 +49,10 @@ public class DryingRackBlock extends BaseEntityBlock {
 		return CODEC;
 	}
 
-	public static boolean canSurviveOnBlock(BlockGetter level, BlockPos blockPos) {
-		BlockState blockState = level.getBlockState(blockPos);
-		return blockState.isFaceSturdy(level, blockPos, Direction.UP) || blockState.is(BlockTags.CAMPFIRES);
-	}
-
 	@Override
-	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-		return canSurviveOnBlock(levelReader, blockPos.below());
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockState belowState = level.getBlockState(pos.below());
+		return belowState.isFaceSturdy(level, pos, Direction.UP) || belowState.is(BlockTags.CAMPFIRES) || (belowState.is(this) && belowState.getValue(FACING).getAxis() == state.getValue(FACING).getAxis());
 	}
 
 	@Override
@@ -103,11 +100,19 @@ public class DryingRackBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-		if (!state.is(newState.getBlock()) && level.getBlockEntity(pos) instanceof DryingRackBlockEntity entity) {
-			Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), entity.getItem());
-		}
-		super.onRemove(state, level, pos, newState, movedByPiston);
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+		Containers.dropContentsOnDestroy(state, newState, level, pos);
+		super.onRemove(state, level, pos, newState, isMoving);
+	}
+
+	@Override
+	protected boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	@Override
+	protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
 	}
 
 	@Override

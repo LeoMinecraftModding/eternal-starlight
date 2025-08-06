@@ -4,7 +4,9 @@ import cn.leolezury.eternalstarlight.common.block.entity.DuskLockboxBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -22,6 +24,16 @@ public class DuskLockboxBlock extends BaseEntityBlock {
 
 	public DuskLockboxBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	protected boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	@Override
+	protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
 	}
 
 	@Nullable

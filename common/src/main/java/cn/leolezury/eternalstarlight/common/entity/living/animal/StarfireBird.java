@@ -598,7 +598,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		return state.is(ESTags.Blocks.STARFIRE_BIRD_NESTS)
 			&& this.level().getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity entity
 			&& !entity.isFullForAdults()
-			&& !entity.getSeeds().isEmpty();
+			&& entity.getItems().stream().anyMatch(stack -> !stack.isEmpty());
 	}
 
 	@Override

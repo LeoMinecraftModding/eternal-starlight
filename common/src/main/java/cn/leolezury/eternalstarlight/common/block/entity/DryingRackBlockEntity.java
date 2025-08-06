@@ -7,15 +7,16 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -23,9 +24,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class DryingRackBlockEntity extends BlockEntity {
+public class DryingRackBlockEntity extends SimpleContainerBlockEntity {
 	private static final String TAG_DRYING_TICKS = "drying_ticks";
-	private static final String TAG_ITEM = "item";
 
 	protected DryingRackBlockEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
 		super(entityType, pos, state);
@@ -38,16 +38,15 @@ public class DryingRackBlockEntity extends BlockEntity {
 	private final RecipeManager.CachedCheck<DryingRecipeInput, DryingRecipe> quickCheck = RecipeManager.createCheck(ESRecipes.DRYING.get());
 	private boolean lastLit;
 	private int dryingTicks = 0;
-	private ItemStack item = ItemStack.EMPTY;
+	private NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
 
 	public ItemStack getItem() {
-		return item;
+		return items.getFirst();
 	}
 
 	public void setItem(ItemStack item) {
-		this.item = item;
+		setItem(0, item);
 		this.dryingTicks = 0;
-		markUpdated();
 	}
 
 	public boolean canBeDried(ItemStack stack, boolean fireBelow) {
@@ -65,25 +64,27 @@ public class DryingRackBlockEntity extends BlockEntity {
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, DryingRackBlockEntity entity) {
-		if (!entity.item.isEmpty()) {
-			boolean lit = state.getValue(DryingRackBlock.LIT);
-			if (entity.lastLit != lit) {
-				entity.dryingTicks = 0;
-				entity.lastLit = lit;
-			}
-			Optional<RecipeHolder<DryingRecipe>> optionalRecipe = entity.quickCheck.getRecipeFor(new DryingRecipeInput(entity.item, lit), level);
-			if (optionalRecipe.isPresent()) {
-				DryingRecipe recipe = optionalRecipe.get().value();
-				entity.dryingTicks++;
-				if (entity.dryingTicks > recipe.durationTicks()) {
+		if (!level.isClientSide) {
+			if (!entity.getItem().isEmpty()) {
+				boolean lit = state.getValue(DryingRackBlock.LIT);
+				if (entity.lastLit != lit) {
 					entity.dryingTicks = 0;
-					entity.setItem(recipe.output().copy());
+					entity.lastLit = lit;
+				}
+				Optional<RecipeHolder<DryingRecipe>> optionalRecipe = entity.quickCheck.getRecipeFor(new DryingRecipeInput(entity.items.getFirst(), lit), level);
+				if (optionalRecipe.isPresent()) {
+					DryingRecipe recipe = optionalRecipe.get().value();
+					entity.dryingTicks++;
+					if (entity.dryingTicks > recipe.durationTicks()) {
+						entity.dryingTicks = 0;
+						entity.setItem(recipe.output().copy());
+					}
+				} else {
+					entity.dryingTicks = 0;
 				}
 			} else {
 				entity.dryingTicks = 0;
 			}
-		} else {
-			entity.dryingTicks = 0;
 		}
 	}
 
@@ -98,9 +99,10 @@ public class DryingRackBlockEntity extends BlockEntity {
 		return saveWithFullMetadata(provider);
 	}
 
-	private void markUpdated() {
+	@Override
+	public void setChanged() {
+		super.setChanged();
 		if (getLevel() != null) {
-			this.setChanged();
 			this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
 		}
 	}
@@ -109,13 +111,35 @@ public class DryingRackBlockEntity extends BlockEntity {
 	public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.loadAdditional(compoundTag, provider);
 		this.dryingTicks = compoundTag.getInt(TAG_DRYING_TICKS);
-		setItem(ItemStack.parseOptional(provider, compoundTag.getCompound(TAG_ITEM)));
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(compoundTag, this.items, provider);
 	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.saveAdditional(compoundTag, provider);
 		compoundTag.putInt(TAG_DRYING_TICKS, this.dryingTicks);
-		compoundTag.put(TAG_ITEM, this.item.saveOptional(provider));
+		ContainerHelper.saveAllItems(compoundTag, this.items, provider);
+	}
+
+	@Override
+	protected NonNullList<ItemStack> getItems() {
+		return items;
+	}
+
+	@Override
+	public int getContainerSize() {
+		return 1;
+	}
+
+	@Override
+	public int getMaxStackSize() {
+		return 1;
+	}
+
+	@Override
+	public boolean canPlaceItem(int index, ItemStack stack) {
+		BlockState state = getBlockState();
+		return canBeDried(stack, state.hasProperty(DryingRackBlock.LIT) && state.getValue(DryingRackBlock.LIT)) && this.getItem(index).isEmpty() && stack.getCount() <= this.getMaxStackSize();
 	}
 }

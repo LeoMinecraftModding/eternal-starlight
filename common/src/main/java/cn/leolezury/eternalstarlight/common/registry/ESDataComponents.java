@@ -10,7 +10,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.storage.loot.LootTable;
 
@@ -25,7 +24,6 @@ public class ESDataComponents {
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Boolean>> HAS_BLADE = DATA_COMPONENTS.register("has_blade", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Float>> HUNGER_LEVEL = DATA_COMPONENTS.register("hunger_level", () -> DataComponentType.<Float>builder().persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT).build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<List<StarfireBirdNestBlockEntity.Occupant>>> BIRDS = DATA_COMPONENTS.register("birds", () -> DataComponentType.<List<StarfireBirdNestBlockEntity.Occupant>>builder().persistent(StarfireBirdNestBlockEntity.Occupant.LIST_CODEC).networkSynchronized(StarfireBirdNestBlockEntity.Occupant.STREAM_CODEC.apply(ByteBufCodecs.list())).cacheEncoding().build());
-	public static final RegistryObject<DataComponentType<?>, DataComponentType<List<ItemStack>>> SEEDS = DATA_COMPONENTS.register("seeds", () -> DataComponentType.<List<ItemStack>>builder().persistent(ItemStack.OPTIONAL_CODEC.listOf()).networkSynchronized(ItemStack.OPTIONAL_LIST_STREAM_CODEC).cacheEncoding().build());
 
 	public static void loadClass() {
 	}

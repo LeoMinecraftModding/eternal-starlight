@@ -70,7 +70,7 @@ public class StarfireBirdNestRenderer implements BlockEntityRenderer<StarfireBir
 			offset += singleOffset;
 		}
 		long seed = blockEntity.getBlockPos().asLong();
-		List<ItemStack> seeds = blockEntity.getSeeds();
+		List<ItemStack> seeds = blockEntity.getItems().stream().filter(stack -> !stack.isEmpty()).toList();
 		slightOffset = 0.001F;
 		float seedsOffset = blockEntity.getBlockState().getBlock() instanceof StarfireBirdNestBlock block ? block.getSeedsRenderOffset() : 0;
 		for (int i = 0; i < seeds.size(); i++) {

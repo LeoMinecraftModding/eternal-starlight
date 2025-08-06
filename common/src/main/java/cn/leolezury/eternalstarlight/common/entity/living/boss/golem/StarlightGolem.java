@@ -167,18 +167,20 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean hurt(DamageSource damageSource, float f) {
-		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			return super.hurt(damageSource, f);
-		} else if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
-			hurtCount++;
-			return super.hurt(damageSource, f);
-		} else {
-			if (damageSource.getDirectEntity() instanceof LivingEntity && tickCount - lastHurtSound > 20) {
-				playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
-				lastHurtSound = tickCount;
+		if (!damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
+				if (damageSource.getEntity() != null) {
+					hurtCount++;
+				}
+			} else {
+				if (damageSource.getDirectEntity() instanceof LivingEntity && tickCount - lastHurtSound > 20) {
+					playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
+					lastHurtSound = tickCount;
+				}
+				return false;
 			}
-			return false;
 		}
+		return super.hurt(damageSource, f);
 	}
 
 	@Override
