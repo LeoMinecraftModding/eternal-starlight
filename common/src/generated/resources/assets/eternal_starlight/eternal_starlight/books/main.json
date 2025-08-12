@@ -156,8 +156,8 @@
       }
     }
   ],
-  "content_offset_x": 10,
   "down_button_offset": 174,
+  "frame_width": 10,
   "height": 187,
   "scroll_button_color": -5439492,
   "scroll_button_width": 2,
