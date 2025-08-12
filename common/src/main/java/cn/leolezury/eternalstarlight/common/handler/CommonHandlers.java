@@ -51,7 +51,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
-import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
@@ -101,7 +100,7 @@ public class CommonHandlers {
 	public static final String TAG_IN_ABYSSAL_FIRE_TICKS = "in_abyssal_fire_ticks";
 	public static final String TAG_NUMBNESS_DAMAGE = "numbness_damage";
 	private static final String TAG_TEARY_TICKS = "teary_ticks";
-	private static TheGatekeeperNameManager gatekeeperNames;
+	public static TheGatekeeperNameManager gatekeeperNames;
 	private static Weathers starlightWeathers;
 	private static AbstractWeather lastWeather;
 
@@ -683,14 +682,5 @@ public class CommonHandlers {
 				}
 			}
 		}
-	}
-
-	public interface AddReloadListenerStrategy {
-		void add(PreparableReloadListener listener);
-	}
-
-	public static void addReloadListeners(AddReloadListenerStrategy strategy) {
-		gatekeeperNames = ESPlatform.INSTANCE.createGatekeeperNameManager();
-		strategy.add(gatekeeperNames);
 	}
 }

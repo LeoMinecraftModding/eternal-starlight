@@ -12,11 +12,11 @@ import org.joml.Matrix4f;
 @Environment(EnvType.CLIENT)
 public class ESGuiUtil {
 	// from GuiGraphics, changed int -> float
-	public static void blit(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float y, float width, float height, float texWidth, float texHeight) {
-		innerBlit(graphics, resourceLocation, x, x + width, y, y + height, width / texWidth, height / texHeight);
+	public static void blitFloat(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float y, float width, float height, float texWidth, float texHeight) {
+		innerBlitFloat(graphics, resourceLocation, x, x + width, y, y + height, width / texWidth, height / texHeight);
 	}
 
-	private static void innerBlit(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float xTo, float y, float yTo, float u, float v) {
+	private static void innerBlitFloat(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float xTo, float y, float yTo, float u, float v) {
 		RenderSystem.setShaderTexture(0, resourceLocation);
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		Matrix4f matrix4f = graphics.pose().last().pose();

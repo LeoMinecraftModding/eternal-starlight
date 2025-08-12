@@ -162,7 +162,7 @@ public class CrestButton extends Button {
 			float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
 			float width = CREST_WIDTH * progress;
 			float height = CREST_HEIGHT * progress;
-			ESGuiUtil.blit(guiGraphics, crest.crest().value().texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
+			ESGuiUtil.blitFloat(guiGraphics, crest.crest().value().texture(), (x - (width - getWidth()) / 2f), (y - (height - getHeight()) / 2f), width, height, width, height);
 		}
 	}
 }

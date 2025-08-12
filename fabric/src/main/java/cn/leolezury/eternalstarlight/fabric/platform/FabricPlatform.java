@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -12,11 +13,12 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.FabricGlowingBakedModel;
+import cn.leolezury.eternalstarlight.fabric.client.resource.FabricBookLoader;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringstoneArmorItem;
-import cn.leolezury.eternalstarlight.fabric.manager.gatekeeper.FabricGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
+import cn.leolezury.eternalstarlight.fabric.resource.gatekeeper.FabricGatekeeperNameManager;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
@@ -206,6 +208,11 @@ public class FabricPlatform implements ESPlatform {
 				return entity.removeAttached(type);
 			}
 		};
+	}
+
+	@Override
+	public BookLoader createBookLoader() {
+		return new FabricBookLoader();
 	}
 
 	@Override

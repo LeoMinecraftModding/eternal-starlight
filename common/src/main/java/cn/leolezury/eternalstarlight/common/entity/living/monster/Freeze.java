@@ -187,11 +187,6 @@ public class Freeze extends Monster implements RangedAttackMob {
 			} else {
 				setAttackTicks(0);
 			}
-			for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
-				if (livingEntity.canFreeze()) {
-					livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 3, 300));
-				}
-			}
 		} else {
 			if (!onGround()) {
 				Vec3 pos = position().add(0, getBbHeight() / 20f * 12f, 0);

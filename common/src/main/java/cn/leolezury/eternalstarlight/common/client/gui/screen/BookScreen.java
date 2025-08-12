@@ -1,143 +1,247 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
-import cn.leolezury.eternalstarlight.common.client.book.Book;
-import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
-import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentDefinition;
-import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.ESPageButton;
+import cn.leolezury.eternalstarlight.common.client.book.BookContext;
+import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
+import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.BookProgressButton;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import org.lwjgl.glfw.GLFW;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class BookScreen extends Screen {
-	private final Book book;
-	private int pageSize;
-	private int currentPage;
+	public static final int OVERLAY_Z_OFFSET = 1000;
+	public static final int BUTTON_Z_OFFSET = 2000;
+	public static final int TOOLTIP_Z_OFFSET = 3000;
+
+	private final BookDefinition book;
+	private final BookContext context;
+	private final List<ConfiguredBookComponent<?, ?>> unlockedComponents;
+
+	private BookProgressButton upButton;
+	private BookProgressButton downButton;
+
+	private int tickCount = 0;
+	private int totalHeight = 0;
+	private int scrollProgress = 0;
+	private boolean scrolling = false;
 	private int mouseX, mouseY;
 
-	private ESPageButton leftButton;
-	private ESPageButton rightButton;
-
-	public BookScreen(Book book) {
+	public BookScreen(BookDefinition book, Set<ResourceLocation> unlocked) {
 		super(Component.empty());
-		book.removeDisabled();
 		this.book = book;
-		this.currentPage = -2;
+		this.unlockedComponents = new ArrayList<>(book.components());
+		this.unlockedComponents.removeIf(component -> {
+			if (component.config().unlockConditions().isEmpty()) {
+				return false;
+			}
+			boolean enabled = false;
+			for (HashSet<ResourceLocation> conditions : component.config().unlockConditions()) {
+				boolean conditionGroup = true;
+				for (ResourceLocation condition : conditions) {
+					conditionGroup = conditionGroup && unlocked.contains(condition);
+				}
+				enabled = enabled || conditionGroup;
+			}
+			return !enabled;
+		});
+		this.context = new BookContext() {
+			@Override
+			public int getMouseX() {
+				return mouseX;
+			}
+
+			@Override
+			public int getMouseY() {
+				return mouseY;
+			}
+
+			@Override
+			public Font getFont() {
+				return font;
+			}
+
+			@Override
+			public BookDefinition getBookDefinition() {
+				return book;
+			}
+
+			@Override
+			public int getContentX() {
+				return BookScreen.this.getContentX();
+			}
+
+			@Override
+			public int getContentY() {
+				return BookScreen.this.getContentY();
+			}
+
+			@Override
+			public int getTickCount() {
+				return tickCount;
+			}
+
+			@Override
+			public void jumpToComponent(ResourceLocation id) {
+				int currentHeight = 0;
+				for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+					if (component.config().id().equals(id)) {
+						setScrollProgress(currentHeight);
+						break;
+					}
+					currentHeight += component.getTotalHeight(context);
+				}
+			}
+		};
 	}
 
 	@Override
 	protected void init() {
-		leftButton = addRenderableWidget(new ESPageButton(getBaseX(), getBaseY() + book.height(), book, false, true, button -> flipLeft()));
-		rightButton = addRenderableWidget(new ESPageButton(getBaseX() + book.width() - book.buttonWidth(), getBaseY() + book.height(), book, true, true, button -> flipRight()));
-		pageSize = 0;
-		for (BookComponentDefinition definition : getComponents()) {
-			pageSize += definition.component().getPageCount(pageSize, font);
+		totalHeight = 0;
+		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+			totalHeight += component.getTotalHeight(context);
 		}
-		updateVisibility();
+		upButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttonWidth() - book.buttonDistanceFromRight(), getBaseY() + book.upButtonOffset(), book, false, button -> {
+			setScrollProgress(scrollProgress - font.lineHeight);
+		}));
+		downButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttonWidth() - book.buttonDistanceFromRight(), getBaseY() + book.downButtonOffset(), book, true, button -> {
+			setScrollProgress(scrollProgress + font.lineHeight);
+		}));
+		updateButtonVisibility();
 	}
 
 	@Override
-	public void mouseMoved(double d, double e) {
-		super.mouseMoved(d, e);
-		mouseX = (int) d;
-		mouseY = (int) e;
+	public void mouseMoved(double x, double y) {
+		super.mouseMoved(x, y);
+		mouseX = (int) x;
+		mouseY = (int) y;
 	}
 
 	@Override
-	public boolean mouseClicked(double x, double y, int i) {
-		if (bookOpened()) {
-			BookComponentDefinition left = getCurrentComponent(true);
-			BookComponentDefinition right = getCurrentComponent(false);
-			if (left != null) {
-				left.component().onClick(createBookAccess(true), font,
-					getBaseX() + left.xOffsetL(),
-					getBaseY() + left.yOffsetL(),
-					(int) x, (int) y);
+	public boolean mouseClicked(double x, double y, int button) {
+		if (x >= getContentX() && x <= getContentX() + book.width() - 2 * book.frameWidth()) {
+			int startHeight = 0;
+			for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+				int currentY = getContentY() - scrollProgress + startHeight;
+				if (y >= currentY && y <= currentY + component.getTotalHeight(context)) {
+					component.onClick(context, getContentX(), getContentY() - scrollProgress + startHeight);
+				}
+				startHeight += component.getTotalHeight(context);
 			}
-			if (right != null) {
-				right.component().onClick(createBookAccess(false), font,
-					getBaseX() + book.width() / 2 + right.xOffsetR(),
-					getBaseY() + right.yOffsetR(),
-					(int) x, (int) y);
-			}
-		} else if (currentPage < 0) {
-			if (x >= getBaseX() + book.width() / 2f && x <= getBaseX() + book.width() && y >= getBaseY() && y <= getBaseY() + book.height()) {
-				setPage(0);
-			}
-		} else if (x >= getBaseX() && x <= getBaseX() + book.width() / 2f && y >= getBaseY() && y <= getBaseY() + book.height()) {
-			setPage(pageSize - 1);
 		}
-		return super.mouseClicked(x, y, i);
+		boolean scrollArea = x >= getBaseX() + book.scrollbarXOffset()
+			&& x <= getBaseX() + book.scrollbarXOffset() + book.scrollbarWidth()
+			&& y >= getBaseY() + book.scrollbarYOffset()
+			&& y <= getBaseY() + book.scrollbarYOffset() + book.scrollbarHeight();
+		if (scrollArea && button == 0) {
+			this.scrolling = true;
+			return true;
+		}
+		return super.mouseClicked(x, y, button);
+	}
+
+	@Override
+	public boolean mouseReleased(double x, double y, int button) {
+		if (button == 0) {
+			this.scrolling = false;
+		}
+
+		return super.mouseReleased(x, y, button);
+	}
+
+	@Override
+	public boolean mouseDragged(double x, double y, int button, double dragX, double dragY) {
+		if (this.scrolling) {
+			if (y < getBaseY() + book.scrollbarYOffset()) {
+				scrollProgress = 0;
+			} else if (mouseY > getBaseY() + book.scrollbarYOffset() + book.scrollbarHeight()) {
+				scrollProgress = totalHeight - book.height() + 2 * book.frameWidth();
+			} else {
+				setScrollProgress((int) ((y - getBaseY() - book.scrollbarYOffset()) * (double) (totalHeight - book.height() + 2 * book.frameWidth()) / (double) getMaxScroll()));
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean mouseScrolled(double x, double y, double scrollX, double scrollY) {
+		setScrollProgress(scrollProgress - (int) (scrollY * font.lineHeight));
+		return true;
+	}
+
+	@Override
+	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+		boolean up = keyCode == GLFW.GLFW_KEY_UP;
+		boolean down = keyCode == GLFW.GLFW_KEY_DOWN;
+		if (up || down) {
+			setScrollProgress(scrollProgress + (up ? -1 : 1) * font.lineHeight);
+		}
+		return super.keyPressed(keyCode, scanCode, modifiers);
 	}
 
 	@Override
 	public void tick() {
-		if (bookOpened()) {
-			BookComponentDefinition left = getCurrentComponent(true);
-			BookComponentDefinition right = getCurrentComponent(false);
-			if (left != null) {
-				left.component().tick(createBookAccess(true), font,
-					getBaseX() + left.xOffsetL(),
-					getBaseY() + left.yOffsetL(),
-					mouseX, mouseY);
-			}
-			if (right != null) {
-				right.component().tick(createBookAccess(false), font,
-					getBaseX() + book.width() / 2 + right.xOffsetR(),
-					getBaseY() + right.yOffsetR(),
-					mouseX, mouseY);
-			}
-			if (left == null || right == null || left.component() != right.component()) {
-				if (left != null) {
-					left.component().singleTick(createBookAccess(true), font,
-						getBaseX() + left.xOffsetL(),
-						getBaseY() + left.yOffsetL(),
-						mouseX, mouseY);
-				}
-				if (right != null) {
-					right.component().singleTick(createBookAccess(false), font,
-						getBaseX() + book.width() / 2 + right.xOffsetR(),
-						getBaseY() + right.yOffsetR(),
-						mouseX, mouseY);
-				}
-			} else {
-				left.component().singleTick(createBookAccess(true), font,
-					getBaseX() + left.xOffsetL(),
-					getBaseY() + left.yOffsetL(),
-					mouseX, mouseY);
-			}
+		tickCount++;
+		int startHeight = 0;
+		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+			component.tick(context, getContentX(), getContentY() - scrollProgress + startHeight);
+			startHeight += component.getTotalHeight(context);
 		}
-		updateVisibility();
+		updateButtonVisibility();
 	}
 
 	@Override
-	public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
-		super.renderBackground(guiGraphics, i, j, f);
-		if (bookOpened()) {
-			guiGraphics.blit(book.background(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
-			BookComponentDefinition left = getCurrentComponent(true);
-			BookComponentDefinition right = getCurrentComponent(false);
-			if (left != null) {
-				left.component().render(createBookAccess(true), guiGraphics, font,
-					getBaseX() + left.xOffsetL(),
-					getBaseY() + left.yOffsetL(),
-					mouseX, mouseY);
+	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+		guiGraphics.blit(book.textures().background(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
+		guiGraphics.enableScissor(getContentX(), getContentY(), getContentX() + book.width() - 2 * book.frameWidth(), getContentY() + book.height() - 2 * book.frameWidth());
+		int startHeight = 0;
+		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+			if (getContentY() - scrollProgress + startHeight < getContentY() + book.height() - 2 * book.frameWidth()
+				&& getContentY() - scrollProgress + startHeight + component.getTotalHeight(context) > getContentY()) {
+				component.render(context, guiGraphics, getContentX(), getContentY() - scrollProgress + startHeight);
 			}
-			if (right != null) {
-				right.component().render(createBookAccess(false), guiGraphics, font,
-					getBaseX() + book.width() / 2 + right.xOffsetR(),
-					getBaseY() + right.yOffsetR(),
-					mouseX, mouseY);
+			startHeight += component.getTotalHeight(context);
+		}
+		guiGraphics.pose().pushPose();
+		guiGraphics.pose().translate(0.0, 0.0, OVERLAY_Z_OFFSET);
+		guiGraphics.disableScissor();
+		RenderSystem.enableBlend();
+		RenderSystem.enableDepthTest();
+		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		guiGraphics.blit(book.textures().overlay(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
+		RenderSystem.disableBlend();
+		RenderSystem.disableDepthTest();
+		RenderSystem.defaultBlendFunc();
+		guiGraphics.pose().popPose();
+		int scrollButtonX = getBaseX() + book.scrollbarXOffset() + (book.scrollbarWidth() - book.scrollButtonWidth()) / 2;
+		int scrollButtonY = getBaseY() + book.scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth())));
+		guiGraphics.pose().pushPose();
+		guiGraphics.pose().translate(0.0, 0.0, BUTTON_Z_OFFSET);
+		guiGraphics.fill(scrollButtonX, scrollButtonY, scrollButtonX + book.scrollButtonWidth(), scrollButtonY + getScrollButtonHeight(), book.scrollButtonColor());
+		guiGraphics.pose().popPose();
+		startHeight = 0;
+		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+			if (getContentY() - scrollProgress + startHeight < getContentY() + book.height() - 2 * book.frameWidth()
+				&& getContentY() - scrollProgress + startHeight + component.getTotalHeight(context) > getContentY()) {
+				component.renderDelayed(context, guiGraphics, getContentX(), getContentY() - scrollProgress + startHeight);
 			}
-		} else if (currentPage < 0) {
-			guiGraphics.blit(book.cover(), getBaseX() + book.width() / 2, getBaseY(), 0, 0, book.width() / 2, book.height(), book.width() / 2, book.height());
-		} else {
-			guiGraphics.blit(book.backCover(), getBaseX(), getBaseY(), 0, 0, book.width() / 2, book.height(), book.width() / 2, book.height());
+			startHeight += component.getTotalHeight(context);
 		}
 	}
 
@@ -146,91 +250,40 @@ public class BookScreen extends Screen {
 		return false;
 	}
 
-	public void flipLeft() {
-		setPage(currentPage - 2);
-		updateVisibility();
-	}
-
-	public void flipRight() {
-		setPage(currentPage + 2);
-		updateVisibility();
+	private void updateButtonVisibility() {
+		upButton.visible = scrollProgress > 0;
+		downButton.visible = scrollProgress < totalHeight - book.height() + 2 * book.frameWidth();
+		if (totalHeight <= book.height() - 2 * book.frameWidth()) {
+			upButton.visible = false;
+			downButton.visible = false;
+		}
 	}
 
 	private int getBaseX() {
 		return (width - book.width()) / 2;
 	}
 
+	private int getContentX() {
+		return getBaseX() + book.frameWidth();
+	}
+
 	private int getBaseY() {
 		return (height - book.height()) / 2;
 	}
 
-	private boolean bookOpened() {
-		return currentPage >= 0 && currentPage < pageSize;
+	private int getContentY() {
+		return getBaseY() + book.frameWidth();
 	}
 
-	private @Nullable BookComponentDefinition getCurrentComponent(boolean left) {
-		if (getCurrentComponentIndex(left) == -1) {
-			return null;
-		}
-		return getComponents().get(getCurrentComponentIndex(left));
+	private void setScrollProgress(int progress) {
+		this.scrollProgress = Mth.clamp(progress, 0, totalHeight - book.height() + 2 * book.frameWidth());
 	}
 
-	private int getCurrentComponentIndex(boolean left) {
-		int pages = 0;
-		for (int i = 0; i < getComponents().size(); i++) {
-			BookComponentDefinition definition = getComponents().get(i);
-			pages += definition.component().getPageCount(pages, font);
-			if (pages >= currentPage + (left ? 1 : 2)) {
-				return i;
-			}
-		}
-		return -1;
+	private int getMaxScroll() {
+		return book.scrollbarHeight() - getScrollButtonHeight();
 	}
 
-	private BookAccess createBookAccess(boolean left) {
-		return new BookAccess() {
-			@Override
-			public int getRelativePage() {
-				int pages = 0;
-				for (int i = 0; i < getComponents().size(); i++) {
-					BookComponentDefinition definition = getComponents().get(i);
-					int defCount = definition.component().getPageCount(pages, font);
-					pages += defCount;
-					if (pages >= currentPage + (left ? 1 : 2)) {
-						return currentPage + (left ? 0 : 1) - (pages - defCount);
-					}
-				}
-				return 0;
-			}
-
-			@Override
-			public boolean isLeftPage() {
-				return left;
-			}
-
-			@Override
-			public void setPage(int page) {
-				BookScreen.this.setPage(page);
-			}
-
-			@Override
-			public List<BookComponentDefinition> getComponents() {
-				return BookScreen.this.getComponents();
-			}
-		};
-	}
-
-	private void setPage(int page) {
-		currentPage = page - page % 2;
-	}
-
-	private void updateVisibility() {
-		boolean visible = bookOpened();
-		leftButton.visible = visible;
-		rightButton.visible = visible;
-	}
-
-	private List<BookComponentDefinition> getComponents() {
-		return book.components();
+	private int getScrollButtonHeight() {
+		return Math.clamp((int) (book.scrollbarHeight() * (double) (book.height() - 2 * book.frameWidth()) / (double) totalHeight), book.scrollButtonWidth(), book.scrollbarHeight());
 	}
 }

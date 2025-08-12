@@ -70,6 +70,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
 		CommonSetupHandlers.registerChunkGenerator();
 		CommonSetupHandlers.registerBiomeSource();
+		CommonSetupHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
 		// common handlers
 		ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
@@ -78,8 +79,6 @@ public class ESFabricEntrypoint implements ModInitializer {
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> CommonHandlers.onBlockBroken(player, pos, state));
 		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, source, amount) -> CommonHandlers.onAllowLivingDeath(entity, source));
 		ServerLivingEntityEvents.AFTER_DEATH.register(CommonHandlers::onLivingDeath);
-
-		CommonHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
 		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
 			StrippableBlockRegistry.register(entry.getKey(), entry.getValue());

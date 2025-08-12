@@ -66,6 +66,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -930,5 +931,10 @@ public class ClientSetupHandlers {
 	public static void registerMenuScreens(MenuScreenRegisterStrategy strategy) {
 		strategy.register(ESMenuTypes.CRATE.get(), CrateScreen::new);
 		strategy.register(ESMenuTypes.CRYSTALBORN_CATALYST.get(), CrystalbornCatalystScreen::new);
+	}
+
+	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {
+		ClientHandlers.books = ESPlatform.INSTANCE.createBookLoader();
+		strategy.accept(ClientHandlers.books);
 	}
 }

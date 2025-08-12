@@ -127,7 +127,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onAddReloadListener(AddReloadListenerEvent event) {
-		CommonHandlers.addReloadListeners(event::addListener);
+		CommonSetupHandlers.addReloadListeners(event::addListener);
 	}
 
 	@SubscribeEvent

@@ -2,12 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
-import cn.leolezury.eternalstarlight.common.client.book.ESGuideBookProvider;
-import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookComponent;
+import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
-import cn.leolezury.eternalstarlight.common.client.gui.toast.BookUnlockToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
@@ -28,9 +26,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
@@ -107,7 +102,7 @@ public class ClientSideHelper implements ClientHelper {
 
 	@Override
 	public void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet) {
-		IndexBookComponent oldIndex = ESGuideBookProvider.buildIndex(packet.oldUnlocked());
+		/*IndexBookComponent oldIndex = ESGuideBookProvider.buildIndex(packet.oldUnlocked());
 		IndexBookComponent index = ESGuideBookProvider.buildIndex(packet.unlocked());
 		List<Component> oldTexts = oldIndex.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList();
 		List<Component> newTexts = new ArrayList<>(index.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList());
@@ -118,12 +113,15 @@ public class ClientSideHelper implements ClientHelper {
 			for (Component component : newTexts) {
 				Minecraft.getInstance().getToasts().addToast(new BookUnlockToast(component));
 			}
-		}
+		}*/
 	}
 
 	@Override
 	public void handleOpenStarlightStory(OpenStarlightStoryPacket packet) {
-		Minecraft.getInstance().setScreen(new BookScreen(ESGuideBookProvider.getBook(packet.unlocked())));
+		BookDefinition definition = ClientHandlers.books.getBook(packet.bookId());
+		if (definition != null) {
+			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
+		}
 	}
 
 	@Override

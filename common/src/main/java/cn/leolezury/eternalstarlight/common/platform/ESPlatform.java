@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
+import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
@@ -139,6 +140,11 @@ public interface ESPlatform {
 	<T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath);
 
 	// reload listeners
+	@Environment(EnvType.CLIENT)
+	default BookLoader createBookLoader() {
+		return new BookLoader();
+	}
+
 	default TheGatekeeperNameManager createGatekeeperNameManager() {
 		return new TheGatekeeperNameManager();
 	}

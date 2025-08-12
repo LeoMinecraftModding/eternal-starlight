@@ -50,7 +50,7 @@ public class CrestPageButton extends Button {
 		float progress = (Mth.lerp(partialTicks, prevHoverProgress, hoverProgress) / 40f) + 1f;
 		float width = getWidth() * progress;
 		float height = getHeight() * progress;
-		ESGuiUtil.blit(guiGraphics, this.active ? (this.nextPage ? NEXT_PAGE_ENABLED : PREVIOUS_PAGE_ENABLED) : (this.nextPage ? NEXT_PAGE : PREVIOUS_PAGE), (getX() - (width - getWidth()) / 2f), (getY() - (height - getHeight()) / 2f), width, height, width, height);
+		ESGuiUtil.blitFloat(guiGraphics, this.active ? (this.nextPage ? NEXT_PAGE_ENABLED : PREVIOUS_PAGE_ENABLED) : (this.nextPage ? NEXT_PAGE : PREVIOUS_PAGE), (getX() - (width - getWidth()) / 2f), (getY() - (height - getHeight()) / 2f), width, height, width, height);
 		guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 	}
 }

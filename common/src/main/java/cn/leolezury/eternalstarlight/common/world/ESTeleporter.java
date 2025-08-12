@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -89,13 +88,9 @@ public class ESTeleporter {
 			return null;
 		} else {
 			WorldBorder border = dest.getWorldBorder();
-			double minX = Math.max(-2.9999872E7D, border.getMinX() + 16.0D);
-			double minZ = Math.max(-2.9999872E7D, border.getMinZ() + 16.0D);
-			double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
-			double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
 			double coordinateDifference = DimensionType.getTeleportationScale(entity.level().dimensionType(), dest.dimensionType());
-			BlockPos blockpos = new BlockPos((int) Mth.clamp(entity.getX() * coordinateDifference, minX, maxX), (int) entity.getY(), (int) Mth.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
-			return getOrMakePortal(dest, entity, entrancePos, blockpos).map((result) -> new DimensionTransition(dest, Vec3.atCenterOf(result), Vec3.ZERO, entity.getYRot(), entity.getXRot(), DimensionTransition.PLACE_PORTAL_TICKET)).orElse(null);
+			BlockPos pos = border.clampToBounds(entity.getX() * coordinateDifference, entity.getY(), entity.getZ() * coordinateDifference);
+			return getOrMakePortal(dest, entity, entrancePos, pos).map((result) -> new DimensionTransition(dest, Vec3.atCenterOf(result), Vec3.ZERO, entity.getYRot(), entity.getXRot(), DimensionTransition.PLACE_PORTAL_TICKET)).orElse(null);
 		}
 	}
 }

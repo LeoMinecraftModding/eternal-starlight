@@ -1,18 +1,26 @@
 package cn.leolezury.eternalstarlight.common.client.book.component;
 
-import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
-import cn.leolezury.eternalstarlight.common.util.Color;
+import cn.leolezury.eternalstarlight.common.client.book.BookContext;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -21,127 +29,212 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.StreamSupport;
 
 @Environment(EnvType.CLIENT)
-public class DisplayBookComponent extends BookComponent {
-	private final List<TextDisplay> textDisplays = new ArrayList<>();
-	private final List<EntityDisplay> entityDisplays = new ArrayList<>();
-	private final Map<EntityDisplay, LivingEntity> entities = new HashMap<>();
-	private final List<ItemDisplay> itemDisplays = new ArrayList<>();
-	private final List<ItemTagDisplay> itemTagDisplays = new ArrayList<>();
-	private final List<ImageDisplay> imageDisplays = new ArrayList<>();
-
-	private int tickCount;
-
-	public DisplayBookComponent(int width, int height) {
-		super(width, height);
+public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Config> {
+	public DisplayBookComponent() {
+		super(Config.CODEC);
 	}
 
 	@Override
-	public int getPageCount(int pagesBefore, Font font) {
-		return 1;
+	public int getTotalHeight(Config config, BookContext context) {
+		return config.totalHeight();
 	}
 
 	@Override
-	public void render(BookAccess access, GuiGraphics graphics, Font font, int x, int y, int mouseX, int mouseY) {
-		for (ImageDisplay display : imageDisplays) {
+	public void render(Config config, BookContext context, GuiGraphics graphics, int x, int y) {
+		for (ImageDisplay display : config.imageDisplays()) {
 			graphics.blit(display.location(), x + display.x(), y + display.y(), 0, 0, display.width(), display.height(), display.width(), display.height());
 		}
-		for (EntityDisplay display : entityDisplays) {
-			if (!entities.containsKey(display) && Minecraft.getInstance().level != null) {
-				LivingEntity livingEntity = display.type().create(Minecraft.getInstance().level);
-				if (livingEntity != null) {
-					livingEntity.yBodyRot = display.yRot();
-					livingEntity.setXRot(display.xRot());
-					livingEntity.setYRot(display.yRot());
-					livingEntity.yHeadRot = livingEntity.getYRot();
-					livingEntity.yHeadRotO = livingEntity.getYRot();
-					entities.put(display, livingEntity);
-				}
-			}
-			if (entities.containsKey(display)) {
-				InventoryScreen.renderEntityInInventory(graphics, x + display.x(), y + display.y(), display.scale(), new Vector3f(), display.rotation, null, entities.get(display));
+		for (EntityDisplay display : config.entityDisplays()) {
+			LivingEntity entity = display.getEntity();
+			if (entity != null) {
+				InventoryScreen.renderEntityInInventory(graphics, x + display.x, y + display.y, display.scale, new Vector3f(), display.rotation, null, entity);
 			}
 		}
-		for (ItemDisplay display : itemDisplays) {
-			graphics.renderItem(display.stack(), x + display.x(), y + display.y());
+		for (ItemDisplay display : config.itemDisplays()) {
+			ItemStack stack = display.getItemStack();
+			graphics.renderItem(stack, x + display.x, y + display.y);
 		}
-		for (ItemTagDisplay display : itemTagDisplays) {
+		for (ItemTagDisplay display : config.itemTagDisplays()) {
 			List<Item> items = StreamSupport.stream(BuiltInRegistries.ITEM.getTagOrEmpty(display.tag()).spliterator(), false).map(Holder::value).toList();
 			if (!items.isEmpty()) {
-				graphics.renderItem(items.get((tickCount / 20) % items.size()).getDefaultInstance(), x + display.x(), y + display.y());
+				ItemStack stack = items.get((context.getTickCount() / 20) % items.size()).getDefaultInstance();
+				graphics.renderItem(stack, x + display.x(), y + display.y());
 			}
 		}
-		for (TextDisplay display : textDisplays) {
+		for (TextDisplay display : config.textDisplays()) {
 			graphics.pose().pushPose();
 			graphics.pose().translate(x + display.x(), y + display.y(), 0);
 			graphics.pose().scale(display.scale(), display.scale(), display.scale());
-			graphics.drawString(font, display.text(), -font.width(display.text()) / 2, -font.lineHeight, Color.BLACK.argb(), false);
+			graphics.drawString(context.getFont(), display.text(), -context.getFont().width(display.text()) / 2, -context.getFont().lineHeight, 0, false);
 			graphics.pose().popPose();
 		}
 	}
 
 	@Override
-	public void tick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
-		tickCount++;
-	}
-
-	@Override
-	public void singleTick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
-
-	}
-
-	@Override
-	public void onClick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY) {
-
-	}
-
-	public DisplayBookComponent textDisplay(Component text, int x, int y, float scale) {
-		textDisplays.add(new TextDisplay(text, x, y, scale));
-		return this;
-	}
-
-	public DisplayBookComponent entityDisplay(EntityType<? extends LivingEntity> type, int x, int y, float xRot, float yRot, float scale, Quaternionf rotation) {
-		entityDisplays.add(new EntityDisplay(type, x, y, xRot, yRot, scale, rotation));
-		return this;
-	}
-
-	public DisplayBookComponent itemDisplay(ItemStack stack, int x, int y) {
-		itemDisplays.add(new ItemDisplay(stack, x, y));
-		return this;
-	}
-
-	public DisplayBookComponent itemTagDisplay(TagKey<Item> tag, int x, int y) {
-		itemTagDisplays.add(new ItemTagDisplay(tag, x, y));
-		return this;
-	}
-
-	public DisplayBookComponent imageDisplay(ResourceLocation location, int x, int y, int width, int height) {
-		imageDisplays.add(new ImageDisplay(location, x, y, width, height));
-		return this;
+	public void renderDelayed(Config config, BookContext context, GuiGraphics graphics, int x, int y) {
+		for (ItemDisplay display : config.itemDisplays()) {
+			ItemStack stack = display.getItemStack();
+			if (context.getMouseX() >= x + display.x && context.getMouseX() <= x + display.x + 16
+				&& context.getMouseY() >= Math.max(y + display.y, context.getContentY()) && context.getMouseY() <= Math.min(y + display.y + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
+				graphics.pose().pushPose();
+				graphics.pose().translate(0.0, 0.0, BookScreen.TOOLTIP_Z_OFFSET);
+				graphics.renderTooltip(context.getFont(), Screen.getTooltipFromItem(Minecraft.getInstance(), stack), stack.getTooltipImage(), context.getMouseX(), context.getMouseY());
+				graphics.pose().popPose();
+			}
+		}
+		for (ItemTagDisplay display : config.itemTagDisplays()) {
+			List<Item> items = StreamSupport.stream(BuiltInRegistries.ITEM.getTagOrEmpty(display.tag()).spliterator(), false).map(Holder::value).toList();
+			if (!items.isEmpty()) {
+				ItemStack stack = items.get((context.getTickCount() / 20) % items.size()).getDefaultInstance();
+				if (context.getMouseX() >= x + display.x() && context.getMouseX() <= x + display.x() + 16
+					&& context.getMouseY() >= Math.max(y + display.y(), context.getContentY()) && context.getMouseY() <= Math.min(y + display.y() + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
+					graphics.pose().pushPose();
+					graphics.pose().translate(0.0, 0.0, BookScreen.TOOLTIP_Z_OFFSET);
+					graphics.renderTooltip(context.getFont(), Screen.getTooltipFromItem(Minecraft.getInstance(), stack), stack.getTooltipImage(), context.getMouseX(), context.getMouseY());
+					graphics.pose().popPose();
+				}
+			}
+		}
 	}
 
 	private record TextDisplay(Component text, int x, int y, float scale) {
-
+		public static final Codec<TextDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ComponentSerialization.CODEC.fieldOf("text").forGetter(TextDisplay::text),
+			Codec.INT.fieldOf("x").forGetter(TextDisplay::x),
+			Codec.INT.fieldOf("y").forGetter(TextDisplay::y),
+			Codec.FLOAT.fieldOf("scale").forGetter(TextDisplay::scale)
+		).apply(instance, TextDisplay::new));
 	}
 
-	private record EntityDisplay(EntityType<? extends LivingEntity> type, int x, int y, float xRot, float yRot, float scale, Quaternionf rotation) {
+	private static class EntityDisplay {
+		public static final Codec<EntityDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			CompoundTag.CODEC.fieldOf("entity").forGetter(o -> o.entityTag),
+			Codec.INT.fieldOf("x").forGetter(o -> o.x),
+			Codec.INT.fieldOf("y").forGetter(o -> o.y),
+			Codec.FLOAT.fieldOf("x_rot").forGetter(o -> o.xRot),
+			Codec.FLOAT.fieldOf("y_rot").forGetter(o -> o.yRot),
+			Codec.FLOAT.fieldOf("scale").forGetter(o -> o.scale),
+			ExtraCodecs.QUATERNIONF.fieldOf("rotation").forGetter(o -> o.rotation)
+		).apply(instance, EntityDisplay::new));
 
+		private LivingEntity cachedEntity;
+		private final CompoundTag entityTag;
+		private final int x, y;
+		private final float xRot, yRot, scale;
+		private final Quaternionf rotation;
+
+		public EntityDisplay(CompoundTag entity, int x, int y, float xRot, float yRot, float scale, Quaternionf rotation) {
+			this.entityTag = entity;
+			this.x = x;
+			this.y = y;
+			this.xRot = xRot;
+			this.yRot = yRot;
+			this.scale = scale;
+			this.rotation = rotation;
+		}
+
+		public LivingEntity getEntity() {
+			if (cachedEntity == null && Minecraft.getInstance().level != null) {
+				if (EntityType.loadEntityRecursive(entityTag, Minecraft.getInstance().level, e -> e) instanceof LivingEntity entity) {
+					cachedEntity = entity;
+					cachedEntity.yBodyRot = yRot;
+					cachedEntity.setXRot(xRot);
+					cachedEntity.setYRot(yRot);
+					cachedEntity.yHeadRot = cachedEntity.getYRot();
+					cachedEntity.yHeadRotO = cachedEntity.getYRot();
+				}
+			}
+			return cachedEntity;
+		}
 	}
 
-	private record ItemDisplay(ItemStack stack, int x, int y) {
+	private static class ItemDisplay {
+		public static final Codec<ItemDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			CompoundTag.CODEC.fieldOf("item").forGetter(o -> o.itemStackTag),
+			Codec.INT.fieldOf("x").forGetter(o -> o.x),
+			Codec.INT.fieldOf("y").forGetter(o -> o.y)
+		).apply(instance, ItemDisplay::new));
 
+		private ItemStack cachedStack = null;
+		private final CompoundTag itemStackTag;
+		private final int x, y;
+
+		public ItemDisplay(CompoundTag itemStack, int x, int y) {
+			this.itemStackTag = itemStack;
+			this.x = x;
+			this.y = y;
+		}
+
+		public ItemStack getItemStack() {
+			if (cachedStack == null && Minecraft.getInstance().level != null) {
+				cachedStack = ItemStack.parseOptional(Minecraft.getInstance().level.registryAccess(), itemStackTag);
+			}
+			return cachedStack == null ? ItemStack.EMPTY : cachedStack;
+		}
 	}
 
 	private record ItemTagDisplay(TagKey<Item> tag, int x, int y) {
-
+		public static final Codec<ItemTagDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			TagKey.codec(Registries.ITEM).fieldOf("item_tag").forGetter(ItemTagDisplay::tag),
+			Codec.INT.fieldOf("x").forGetter(ItemTagDisplay::x),
+			Codec.INT.fieldOf("y").forGetter(ItemTagDisplay::y)
+		).apply(instance, ItemTagDisplay::new));
 	}
 
 	private record ImageDisplay(ResourceLocation location, int x, int y, int width, int height) {
+		public static final Codec<ImageDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("location").forGetter(ImageDisplay::location),
+			Codec.INT.fieldOf("x").forGetter(ImageDisplay::x),
+			Codec.INT.fieldOf("y").forGetter(ImageDisplay::y),
+			Codec.INT.fieldOf("width").forGetter(ImageDisplay::width),
+			Codec.INT.fieldOf("height").forGetter(ImageDisplay::height)
+		).apply(instance, ImageDisplay::new));
+	}
 
+	public record Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight, List<TextDisplay> textDisplays, List<EntityDisplay> entityDisplays, List<ItemDisplay> itemDisplays, List<ItemTagDisplay> itemTagDisplays, List<ImageDisplay> imageDisplays) implements BookComponentConfig {
+		public static final Codec<Config> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("id").forGetter(Config::id),
+			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("unlock_conditions").forGetter(Config::unlockConditions),
+			Codec.INT.fieldOf("total_height").forGetter(Config::totalHeight),
+			TextDisplay.CODEC.listOf().fieldOf("text_displays").forGetter(Config::textDisplays),
+			EntityDisplay.CODEC.listOf().fieldOf("entity_displays").forGetter(Config::entityDisplays),
+			ItemDisplay.CODEC.listOf().fieldOf("item_displays").forGetter(Config::itemDisplays),
+			ItemTagDisplay.CODEC.listOf().fieldOf("item_tag_displays").forGetter(Config::itemTagDisplays),
+			ImageDisplay.CODEC.listOf().fieldOf("image_displays").forGetter(Config::imageDisplays)
+		).apply(instance, Config::new));
+
+		public Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight) {
+			this(id, unlockConditions, totalHeight, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+		}
+
+		public Config textDisplay(Component text, int x, int y, float scale) {
+			textDisplays.add(new TextDisplay(text, x, y, scale));
+			return this;
+		}
+
+		public Config entityDisplay(CompoundTag tag, int x, int y, float xRot, float yRot, float scale, Quaternionf rotation) {
+			entityDisplays.add(new EntityDisplay(tag, x, y, xRot, yRot, scale, rotation));
+			return this;
+		}
+
+		public Config itemDisplay(CompoundTag tag, int x, int y) {
+			itemDisplays.add(new ItemDisplay(tag, x, y));
+			return this;
+		}
+
+		public Config itemTagDisplay(TagKey<Item> tag, int x, int y) {
+			itemTagDisplays.add(new ItemTagDisplay(tag, x, y));
+			return this;
+		}
+
+		public Config imageDisplay(ResourceLocation location, int x, int y, int width, int height) {
+			imageDisplays.add(new ImageDisplay(location, x, y, width, height));
+			return this;
+		}
 	}
 }

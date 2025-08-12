@@ -1,0 +1,176 @@
+{
+  "button_distance_from_right": 6,
+  "button_height": 4,
+  "button_width": 4,
+  "components": [
+    {
+      "type": "eternal_starlight:index",
+      "config": {
+        "entries": [
+          {
+            "icon": {
+              "count": 1,
+              "id": "eternal_starlight:seeking_eye"
+            },
+            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+            "icon_frame_height": 24,
+            "icon_frame_width": 24,
+            "jump_tp": "eternal_starlight:test1",
+            "listening": [],
+            "text": {
+              "color": "#ACFFFC",
+              "text": "Test One"
+            }
+          },
+          {
+            "icon": {
+              "count": 1,
+              "id": "eternal_starlight:flowglaze_axe"
+            },
+            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+            "icon_frame_height": 24,
+            "icon_frame_width": 24,
+            "jump_tp": "eternal_starlight:test2",
+            "listening": [],
+            "text": {
+              "color": "#ACFFFC",
+              "text": "Test Two"
+            }
+          },
+          {
+            "icon": {
+              "count": 1,
+              "id": "eternal_starlight:abyssal_magma_block"
+            },
+            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+            "icon_frame_height": 24,
+            "icon_frame_width": 24,
+            "jump_tp": "eternal_starlight:test3",
+            "listening": [],
+            "text": {
+              "color": "#ACFFFC",
+              "text": "Test Three Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text"
+            }
+          }
+        ],
+        "id": "eternal_starlight:test_index",
+        "line_height": 12,
+        "unlock_conditions": [],
+        "width": 130
+      }
+    },
+    {
+      "type": "eternal_starlight:text",
+      "config": {
+        "id": "eternal_starlight:test1",
+        "line_height": 12,
+        "text": {
+          "color": "#ACFFFC",
+          "translate": "book.eternal_starlight.main_story"
+        },
+        "unlock_conditions": [],
+        "width": 130
+      }
+    },
+    {
+      "type": "eternal_starlight:text",
+      "config": {
+        "id": "eternal_starlight:test2",
+        "line_height": 12,
+        "text": {
+          "color": "#ACFFFC",
+          "translate": "book.eternal_starlight.freeze"
+        },
+        "unlock_conditions": [],
+        "width": 130
+      }
+    },
+    {
+      "type": "eternal_starlight:display",
+      "config": {
+        "entity_displays": [
+          {
+            "entity": {
+              "id": "eternal_starlight:freeze"
+            },
+            "rotation": [
+              0.0,
+              -0.21643962,
+              0.976296,
+              -0.0
+            ],
+            "scale": 30.0,
+            "x": 65,
+            "x_rot": -25.0,
+            "y": 65,
+            "y_rot": 210.0
+          }
+        ],
+        "id": "eternal_starlight:test3",
+        "image_displays": [
+          {
+            "height": 20,
+            "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+            "width": 20,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 20,
+            "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+            "width": 20,
+            "x": 20,
+            "y": 20
+          }
+        ],
+        "item_displays": [
+          {
+            "item": {
+              "count": 1,
+              "id": "eternal_starlight:starfire"
+            },
+            "x": 22,
+            "y": 22
+          }
+        ],
+        "item_tag_displays": [
+          {
+            "item_tag": "eternal_starlight:golem_forge_locators",
+            "x": 2,
+            "y": 2
+          }
+        ],
+        "text_displays": [
+          {
+            "scale": 2.0,
+            "text": {
+              "strikethrough": true,
+              "text": "SampleText"
+            },
+            "x": 65,
+            "y": 80
+          }
+        ],
+        "total_height": 200,
+        "unlock_conditions": []
+      }
+    }
+  ],
+  "content_offset_x": 10,
+  "down_button_offset": 174,
+  "height": 187,
+  "scroll_button_color": -5439492,
+  "scroll_button_width": 2,
+  "scrollbar_height": 170,
+  "scrollbar_width": 4,
+  "scrollbar_x_offset": 140,
+  "scrollbar_y_offset": 5,
+  "textures": {
+    "background": "eternal_starlight:textures/gui/screen/book/book.png",
+    "down_button": "eternal_starlight:textures/gui/screen/book/down.png",
+    "overlay": "eternal_starlight:textures/gui/screen/book/book_overlay.png",
+    "up_button": "eternal_starlight:textures/gui/screen/book/up.png"
+  },
+  "up_button_offset": 2,
+  "width": 150
+}

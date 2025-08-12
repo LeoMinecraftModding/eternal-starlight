@@ -36,6 +36,7 @@ import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
@@ -55,6 +56,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class CommonSetupHandlers {
@@ -357,5 +359,10 @@ public class CommonSetupHandlers {
 
 	public static void registerBiomeSource() {
 		Registry.register(BuiltInRegistries.BIOME_SOURCE, EternalStarlight.ID + ":es_biomes", ESBiomeSource.CODEC);
+	}
+
+	public static void addReloadListeners(Consumer<PreparableReloadListener> strategy) {
+		CommonHandlers.gatekeeperNames = ESPlatform.INSTANCE.createGatekeeperNameManager();
+		strategy.accept(CommonHandlers.gatekeeperNames);
 	}
 }

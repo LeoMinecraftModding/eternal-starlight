@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.neoforge.datagen;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.*;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.advancement.ESAdvancementProvider;
+import cn.leolezury.eternalstarlight.neoforge.datagen.provider.book.ESBookDefinitionProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot.ESLootProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.model.ESBlockStateProvider;
 import cn.leolezury.eternalstarlight.neoforge.datagen.provider.model.ESItemModelProvider;
@@ -32,6 +33,7 @@ public class DataGenerators {
 		generator.addProvider(event.includeClient(), new ESAtlasProvider(output, lookupProvider, helper));
 		generator.addProvider(event.includeClient(), new ESParticleDescriptionProvider(output, helper));
 		generator.addProvider(event.includeClient(), new ESSoundProvider(output, helper));
+		generator.addProvider(event.includeClient(), new ESBookDefinitionProvider(output, lookupProvider, helper));
 
 		ESBlockTagsProvider blockTagsProvider = new ESBlockTagsProvider(output, lookupProvider, helper);
 		generator.addProvider(event.includeServer(), blockTagsProvider);

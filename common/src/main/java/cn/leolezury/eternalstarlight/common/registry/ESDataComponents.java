@@ -10,6 +10,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.storage.loot.LootTable;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class ESDataComponents {
 	public static final RegistrationProvider<DataComponentType<?>> DATA_COMPONENTS = RegistrationProvider.get(Registries.DATA_COMPONENT_TYPE, EternalStarlight.ID);
+	public static final RegistryObject<DataComponentType<?>, DataComponentType<ResourceLocation>> BOOK = DATA_COMPONENTS.register("book", () -> DataComponentType.<ResourceLocation>builder().persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC).build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<CustomData>> CRESTS = DATA_COMPONENTS.register("crests", () -> DataComponentType.<CustomData>builder().persistent(CustomData.CODEC).networkSynchronized(CustomData.STREAM_CODEC).build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<CurrentCrestComponent>> CURRENT_CREST = DATA_COMPONENTS.register("current_crest", () -> DataComponentType.<CurrentCrestComponent>builder().persistent(CurrentCrestComponent.CODEC).networkSynchronized(CurrentCrestComponent.STREAM_CODEC).build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Boolean>> ORB_OF_PROPHECY_TEMPORARY = DATA_COMPONENTS.register("orb_of_prophecy_temporary", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());

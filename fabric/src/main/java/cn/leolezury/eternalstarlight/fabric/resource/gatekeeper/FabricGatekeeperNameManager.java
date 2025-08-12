@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.fabric.manager.gatekeeper;
+package cn.leolezury.eternalstarlight.fabric.resource.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;

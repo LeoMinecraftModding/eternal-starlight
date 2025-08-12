@@ -1,28 +1,37 @@
 package cn.leolezury.eternalstarlight.common.client.book.component;
 
-import cn.leolezury.eternalstarlight.common.client.book.BookAccess;
+import cn.leolezury.eternalstarlight.common.client.book.BookContext;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 
 @Environment(EnvType.CLIENT)
-public abstract class BookComponent {
-	protected final int width;
-	protected final int height;
+public abstract class BookComponent<C extends BookComponentConfig> {
+	private final MapCodec<ConfiguredBookComponent<C, BookComponent<C>>> configuredCodec;
 
-	public BookComponent(int width, int height) {
-		this.width = width;
-		this.height = height;
+	public BookComponent(Codec<C> configCodec) {
+		this.configuredCodec = configCodec.fieldOf("config").xmap(c -> new ConfiguredBookComponent<>(this, c), ConfiguredBookComponent::config);
 	}
 
-	public abstract int getPageCount(int pagesBefore, Font font);
+	public MapCodec<ConfiguredBookComponent<C, BookComponent<C>>> getConfiguredCodec() {
+		return configuredCodec;
+	}
 
-	public abstract void render(BookAccess access, GuiGraphics graphics, Font font, int x, int y, int mouseX, int mouseY);
+	public abstract int getTotalHeight(C config, BookContext context);
 
-	public abstract void tick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
+	public abstract void render(C config, BookContext context, GuiGraphics graphics, int x, int y);
 
-	public abstract void singleTick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
+	public void renderDelayed(C config, BookContext context, GuiGraphics graphics, int x, int y) {
 
-	public abstract void onClick(BookAccess access, Font font, int x, int y, int mouseX, int mouseY);
+	}
+
+	public void tick(C config, BookContext context, int x, int y) {
+
+	}
+
+	public void onClick(C config, BookContext context, int x, int y) {
+
+	}
 }

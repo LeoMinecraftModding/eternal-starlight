@@ -231,4 +231,9 @@ public class ClientSetupEvents {
 			event.register(mapping.getValue());
 		}
 	}
+
+	@SubscribeEvent
+	private static void onAddReloadListener(RegisterClientReloadListenersEvent event) {
+		ClientSetupHandlers.addClientReloadListeners(event::registerReloadListener);
+	}
 }

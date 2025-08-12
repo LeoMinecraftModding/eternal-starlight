@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
@@ -64,7 +65,7 @@ import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class ClientHandlers {
-	public static final int FULL_BRIGHT = 0xf000f0;
+	public static BookLoader books;
 	public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
 	public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
 	public static final List<ScreenShake> SCREEN_SHAKES = new ArrayList<>();
@@ -572,7 +573,7 @@ public class ClientHandlers {
 				GuiCrest guiCrest = entry.getValue();
 				Crest crest = registry.get(entry.getKey());
 				if (crest != null) {
-					ESGuiUtil.blit(guiGraphics, crest.texture(), guiCrest.getX(partialTicks), guiCrest.getY(partialTicks), 72, 72, 72, 72);
+					ESGuiUtil.blitFloat(guiGraphics, crest.texture(), guiCrest.getX(partialTicks), guiCrest.getY(partialTicks), 72, 72, 72, 72);
 				}
 			}
 		}

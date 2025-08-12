@@ -85,10 +85,10 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 						if (level().getBlockState(pos).is(Blocks.FIRE) && blockPosition().distSqr(pos) <= 4 * 4) {
 							level().setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 						}
-						if (level().getBlockState(pos).is(Blocks.WATER) && blockPosition().distSqr(pos) <= 4 * 4) {
+						if (level().getBlockState(pos).is(Blocks.WATER) && level().getFluidState(pos).isSource() && blockPosition().distSqr(pos) <= 4 * 4) {
 							level().setBlockAndUpdate(pos, Blocks.ICE.defaultBlockState());
 						}
-						if (level().getBlockState(pos).is(Blocks.LAVA) && blockPosition().distSqr(pos) <= 2 * 2) {
+						if (level().getBlockState(pos).is(Blocks.LAVA) && level().getFluidState(pos).isSource() && blockPosition().distSqr(pos) <= 2 * 2) {
 							level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
 						}
 					}
