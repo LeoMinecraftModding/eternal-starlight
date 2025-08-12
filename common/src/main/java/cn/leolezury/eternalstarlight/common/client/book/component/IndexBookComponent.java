@@ -61,7 +61,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 	public static class Entry {
 		public static final Codec<Entry> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ComponentSerialization.CODEC.fieldOf("text").forGetter(o -> o.text),
-			ResourceLocation.CODEC.fieldOf("jump_tp").forGetter(o -> o.jumpTo),
+			ResourceLocation.CODEC.fieldOf("jump_to").forGetter(o -> o.jumpTo),
 			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("listening").forGetter(o -> o.listening),
 			Codec.INT.fieldOf("icon_frame_width").forGetter(o -> o.iconFrameWidth),
 			Codec.INT.fieldOf("icon_frame_height").forGetter(o -> o.iconFrameHeight),
