@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.network.OpenStarlightStoryPacket;
+import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
@@ -22,7 +22,7 @@ public class ESBookItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
-			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenStarlightStoryPacket(stack.getOrDefault(ESDataComponents.BOOK.get(), EternalStarlight.id("main")), ESBookUtil.getUnlockedParts(serverPlayer)));
+			ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(stack.getOrDefault(ESDataComponents.BOOK.get(), EternalStarlight.id("main")), ESBookUtil.getUnlockedParts(serverPlayer)));
 		}
 		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 	}

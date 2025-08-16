@@ -136,7 +136,9 @@ public class LunarisCactusBlock extends Block {
 
 	@Override
 	protected void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
-		entity.hurt(level.damageSources().cactus(), 1.0F);
+		if (!blockState.getValue(FRUIT)) {
+			entity.hurt(level.damageSources().cactus(), 1.0F);
+		}
 	}
 
 	@Override

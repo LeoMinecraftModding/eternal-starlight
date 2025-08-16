@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookContext;
+import cn.leolezury.eternalstarlight.common.client.book.text.BookContent;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -12,11 +13,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,10 +27,16 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 		super(Config.CODEC);
 	}
 
+	private List<Entry> filterEnabledEntries(Config config, BookContext context) {
+		List<Entry> filtered = new ArrayList<>(config.entries());
+		filtered.removeIf(entry -> !context.isComponentEnabled(entry.jumpTo));
+		return filtered;
+	}
+
 	@Override
 	public int getTotalHeight(Config config, BookContext context) {
-		int totalHeight = 0;
-		for (Entry entry : config.entries()) {
+		int totalHeight = config.offset() + config.extraHeight();
+		for (Entry entry : filterEnabledEntries(config, context)) {
 			totalHeight += entry.getHeight(config, context);
 		}
 		return totalHeight;
@@ -37,8 +44,8 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 
 	@Override
 	public void render(Config config, BookContext context, GuiGraphics graphics, int x, int y) {
-		int startHeight = 0;
-		for (Entry entry : config.entries()) {
+		int startHeight = config.offset();
+		for (Entry entry : filterEnabledEntries(config, context)) {
 			entry.render(config, context, graphics, x, y + startHeight);
 			startHeight += entry.getHeight(config, context);
 		}
@@ -46,8 +53,8 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 
 	@Override
 	public void onClick(Config config, BookContext context, int x, int y) {
-		int startHeight = y;
-		for (Entry entry : config.entries()) {
+		int startHeight = y + config.offset();
+		for (Entry entry : filterEnabledEntries(config, context)) {
 			int currentHeight = entry.getHeight(config, context);
 			if (context.getMouseX() >= context.getContentX() && context.getMouseX() <= context.getContentX() + context.getBookDefinition().width() - 2 * context.getBookDefinition().frameWidth()
 				&& context.getMouseY() > startHeight && context.getMouseY() < startHeight + currentHeight) {
@@ -60,7 +67,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 
 	public static class Entry {
 		public static final Codec<Entry> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			ComponentSerialization.CODEC.fieldOf("text").forGetter(o -> o.text),
+			BookContent.CODEC.fieldOf("text").forGetter(o -> o.text),
 			ResourceLocation.CODEC.fieldOf("jump_to").forGetter(o -> o.jumpTo),
 			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("listening").forGetter(o -> o.listening),
 			Codec.INT.fieldOf("icon_frame_width").forGetter(o -> o.iconFrameWidth),
@@ -69,7 +76,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 			CompoundTag.CODEC.fieldOf("icon").forGetter(o -> o.icon)
 		).apply(instance, Entry::new));
 
-		private final Component text;
+		private final BookContent text;
 		private final ResourceLocation jumpTo;
 		private final HashSet<ResourceLocation> listening;
 		private final int iconFrameWidth;
@@ -78,7 +85,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 		private final CompoundTag icon;
 		private ItemStack cachedIcon;
 
-		public Entry(Component text, ResourceLocation jumpTo, HashSet<ResourceLocation> listening, int iconFrameWidth, int iconFrameHeight, ResourceLocation iconFrame, CompoundTag icon) {
+		public Entry(BookContent text, ResourceLocation jumpTo, HashSet<ResourceLocation> listening, int iconFrameWidth, int iconFrameHeight, ResourceLocation iconFrame, CompoundTag icon) {
 			this.text = text;
 			this.jumpTo = jumpTo;
 			this.listening = listening;
@@ -86,6 +93,18 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 			this.iconFrameHeight = iconFrameHeight;
 			this.iconFrame = iconFrame;
 			this.icon = icon;
+		}
+
+		public ResourceLocation getJumpToId() {
+			return jumpTo;
+		}
+
+		public HashSet<ResourceLocation> getListeningIds() {
+			return listening;
+		}
+
+		public Component getText() {
+			return text.toComponent();
 		}
 
 		public ItemStack getIcon() {
@@ -100,7 +119,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 		}
 
 		public int getHeight(Config config, BookContext context) {
-			return Math.max((splitText(config, context, text).size() - 1) * config.lineHeight() + context.getFont().lineHeight / 2 + iconFrameHeight / 2, iconFrameHeight);
+			return Math.max((splitText(config, context, getText()).size() - 1) * config.lineHeight() + context.getFont().lineHeight / 2 + iconFrameHeight / 2, iconFrameHeight);
 		}
 
 		public void render(Config config, BookContext context, GuiGraphics graphics, int x, int y) {
@@ -108,18 +127,20 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 			graphics.renderItem(getIcon(), x + iconFrameWidth / 2 - 8, y + iconFrameHeight / 2 - 8);
 			boolean selected = context.getMouseX() >= context.getContentX() && context.getMouseX() <= context.getContentX() + context.getBookDefinition().width() - 2 * context.getBookDefinition().frameWidth()
 				&& context.getMouseY() > y && context.getMouseY() < y + getHeight(config, context);
-			List<FormattedCharSequence> list = splitText(config, context, selected ? text.copy().withStyle(ChatFormatting.UNDERLINE) : text);
+			List<FormattedCharSequence> list = splitText(config, context, selected ? getText().copy().withStyle(ChatFormatting.UNDERLINE) : getText());
 			for (int i = 0; i < list.size(); i++) {
 				graphics.drawString(context.getFont(), list.get(i), x + iconFrameWidth, y + iconFrameHeight / 2 - context.getFont().lineHeight / 2 + i * config.lineHeight(), -1, true);
 			}
 		}
 	}
 
-	public record Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, List<Entry> entries, int width, int lineHeight) implements BookComponentConfig {
+	public record Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, List<Entry> entries, int offset, int extraHeight, int width, int lineHeight) implements BookComponentConfig {
 		public static final Codec<Config> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ResourceLocation.CODEC.fieldOf("id").forGetter(Config::id),
 			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("unlock_conditions").forGetter(Config::unlockConditions),
 			Entry.CODEC.listOf().fieldOf("entries").forGetter(Config::entries),
+			Codec.INT.fieldOf("offset").forGetter(Config::offset),
+			Codec.INT.fieldOf("extra_height").forGetter(Config::extraHeight),
 			Codec.INT.fieldOf("width").forGetter(Config::width),
 			Codec.INT.fieldOf("line_height").forGetter(Config::lineHeight)
 		).apply(instance, Config::new));

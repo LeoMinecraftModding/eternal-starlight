@@ -41,12 +41,12 @@ public class EmptyClientHelper implements ClientHelper {
 	}
 
 	@Override
-	public void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet) {
+	public void handleUpdateBook(UpdateBookPacket packet) {
 
 	}
 
 	@Override
-	public void handleOpenStarlightStory(OpenStarlightStoryPacket packet) {
+	public void handleOpenBook(OpenBookPacket packet) {
 
 	}
 

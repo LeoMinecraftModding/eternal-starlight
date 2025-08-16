@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-11T23:46:33.0410564	Registries
+// 1.21.1	2025-08-17T00:09:28.815392	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -310,7 +310,7 @@ ce11e3dd4303e02482e9de0c24b3922fd84cc788 data/eternal_starlight/worldgen/placed_
 3f193ef83545d2ad7c1ebea8c8cab08a71e13af7 data/eternal_starlight/worldgen/processor_list/golem_forge/oxidization.json
 57595cba3889644cd81fa83952a30837a0a90cef data/eternal_starlight/worldgen/processor_list/portal_ruins_vines.json
 8e25b7f28f562fcb9345d3a142c52066eee34fd1 data/eternal_starlight/worldgen/structure/cursed_garden.json
-df8b760cc1155e0f29d78aab93fde462475632ea data/eternal_starlight/worldgen/structure/golem_forge.json
+ab54389780614eef9866624ca86167188aa9ee66 data/eternal_starlight/worldgen/structure/golem_forge.json
 3d3a44c6d242589b25c6d56311ce8781eb985c8a data/eternal_starlight/worldgen/structure/portal_ruins_cold.json
 fb92463956e5fd9946099d841b2c5c492419a169 data/eternal_starlight/worldgen/structure/portal_ruins_common.json
 d8f2073f79e8852f2b6dc8dd568bd2832df1b9b7 data/eternal_starlight/worldgen/structure/portal_ruins_desert.json

@@ -17,19 +17,19 @@ import net.minecraft.util.Mth;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class BookScreen extends Screen {
-	public static final int OVERLAY_Z_OFFSET = 1000;
-	public static final int BUTTON_Z_OFFSET = 2000;
-	public static final int TOOLTIP_Z_OFFSET = 3000;
+	public static final int OVERLAY_Z_OFFSET = 770;
+	public static final int BUTTON_Z_OFFSET = 780;
+	public static final int TOOLTIP_Z_OFFSET = 790;
 
 	private final BookDefinition book;
 	private final BookContext context;
-	private final List<ConfiguredBookComponent<?, ?>> unlockedComponents;
+	private final List<List<ConfiguredBookComponent<?, ?>>> unlockedComponents;
+	private final List<ConfiguredBookComponent<?, ?>> currentComponents = new ArrayList<>();
 
 	private BookProgressButton upButton;
 	private BookProgressButton downButton;
@@ -43,21 +43,15 @@ public class BookScreen extends Screen {
 	public BookScreen(BookDefinition book, Set<ResourceLocation> unlocked) {
 		super(Component.empty());
 		this.book = book;
-		this.unlockedComponents = new ArrayList<>(book.components());
-		this.unlockedComponents.removeIf(component -> {
-			if (component.config().unlockConditions().isEmpty()) {
-				return false;
-			}
-			boolean enabled = false;
-			for (HashSet<ResourceLocation> conditions : component.config().unlockConditions()) {
-				boolean conditionGroup = true;
-				for (ResourceLocation condition : conditions) {
-					conditionGroup = conditionGroup && unlocked.contains(condition);
-				}
-				enabled = enabled || conditionGroup;
-			}
-			return !enabled;
-		});
+		this.unlockedComponents = new ArrayList<>();
+		for (List<ConfiguredBookComponent<?, ?>> innerList : book.components()) {
+			this.unlockedComponents.add(new ArrayList<>(innerList));
+		}
+		this.unlockedComponents.forEach(list -> list.removeIf(component -> !component.isEnabled(unlocked)));
+		this.unlockedComponents.removeIf(List::isEmpty);
+		if (!this.unlockedComponents.isEmpty()) {
+			this.currentComponents.addAll(this.unlockedComponents.getFirst());
+		}
 		this.context = new BookContext() {
 			@Override
 			public int getMouseX() {
@@ -95,14 +89,24 @@ public class BookScreen extends Screen {
 			}
 
 			@Override
+			public boolean isComponentEnabled(ResourceLocation id) {
+				return unlockedComponents.stream().flatMap(List::stream).anyMatch(component -> component.config().id().equals(id));
+			}
+
+			@Override
 			public void jumpToComponent(ResourceLocation id) {
-				int currentHeight = 0;
-				for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
-					if (component.config().id().equals(id)) {
-						setScrollProgress(currentHeight);
-						break;
+				for (List<ConfiguredBookComponent<?, ?>> list : unlockedComponents) {
+					int currentHeight = 0;
+					for (ConfiguredBookComponent<?, ?> component : list) {
+						if (component.config().id().equals(id)) {
+							currentComponents.clear();
+							currentComponents.addAll(list);
+							init();
+							setScrollProgress(currentHeight);
+							break;
+						}
+						currentHeight += component.getTotalHeight(context);
 					}
-					currentHeight += component.getTotalHeight(context);
 				}
 			}
 		};
@@ -111,7 +115,7 @@ public class BookScreen extends Screen {
 	@Override
 	protected void init() {
 		totalHeight = 0;
-		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+		for (ConfiguredBookComponent<?, ?> component : currentComponents) {
 			totalHeight += component.getTotalHeight(context);
 		}
 		upButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttonWidth() - book.buttonDistanceFromRight(), getBaseY() + book.upButtonOffset(), book, false, button -> {
@@ -134,7 +138,7 @@ public class BookScreen extends Screen {
 	public boolean mouseClicked(double x, double y, int button) {
 		if (x >= getContentX() && x <= getContentX() + book.width() - 2 * book.frameWidth()) {
 			int startHeight = 0;
-			for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+			for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
 				int currentY = getContentY() - scrollProgress + startHeight;
 				if (y >= currentY && y <= currentY + component.getTotalHeight(context)) {
 					component.onClick(context, getContentX(), getContentY() - scrollProgress + startHeight);
@@ -165,13 +169,14 @@ public class BookScreen extends Screen {
 	@Override
 	public boolean mouseDragged(double x, double y, int button, double dragX, double dragY) {
 		if (this.scrolling) {
-			if (y < getBaseY() + book.scrollbarYOffset()) {
+			/*if (y < getBaseY() + book.scrollbarYOffset()) {
 				scrollProgress = 0;
 			} else if (mouseY > getBaseY() + book.scrollbarYOffset() + book.scrollbarHeight()) {
 				scrollProgress = totalHeight - book.height() + 2 * book.frameWidth();
 			} else {
 				setScrollProgress((int) ((y - getBaseY() - book.scrollbarYOffset()) * (double) (totalHeight - book.height() + 2 * book.frameWidth()) / (double) getMaxScroll()));
-			}
+			}*/
+			setScrollProgress((int) ((y - getBaseY() - book.scrollbarYOffset()) * (double) (totalHeight - book.height() + 2 * book.frameWidth()) / (double) getMaxScroll()));
 			return true;
 		} else {
 			return false;
@@ -198,7 +203,7 @@ public class BookScreen extends Screen {
 	public void tick() {
 		tickCount++;
 		int startHeight = 0;
-		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+		for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
 			component.tick(context, getContentX(), getContentY() - scrollProgress + startHeight);
 			startHeight += component.getTotalHeight(context);
 		}
@@ -211,7 +216,7 @@ public class BookScreen extends Screen {
 		guiGraphics.blit(book.textures().background(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
 		guiGraphics.enableScissor(getContentX(), getContentY(), getContentX() + book.width() - 2 * book.frameWidth(), getContentY() + book.height() - 2 * book.frameWidth());
 		int startHeight = 0;
-		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+		for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
 			if (getContentY() - scrollProgress + startHeight < getContentY() + book.height() - 2 * book.frameWidth()
 				&& getContentY() - scrollProgress + startHeight + component.getTotalHeight(context) > getContentY()) {
 				component.render(context, guiGraphics, getContentX(), getContentY() - scrollProgress + startHeight);
@@ -229,14 +234,16 @@ public class BookScreen extends Screen {
 		RenderSystem.disableDepthTest();
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.pose().popPose();
-		int scrollButtonX = getBaseX() + book.scrollbarXOffset() + (book.scrollbarWidth() - book.scrollButtonWidth()) / 2;
-		int scrollButtonY = getBaseY() + book.scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth())));
-		guiGraphics.pose().pushPose();
-		guiGraphics.pose().translate(0.0, 0.0, BUTTON_Z_OFFSET);
-		guiGraphics.fill(scrollButtonX, scrollButtonY, scrollButtonX + book.scrollButtonWidth(), scrollButtonY + getScrollButtonHeight(), book.scrollButtonColor());
-		guiGraphics.pose().popPose();
+		if (getScrollButtonHeight() < book.scrollbarHeight()) {
+			int scrollButtonX = getBaseX() + book.scrollbarXOffset() + (book.scrollbarWidth() - book.scrollButtonWidth()) / 2;
+			int scrollButtonY = getBaseY() + book.scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth())));
+			guiGraphics.pose().pushPose();
+			guiGraphics.pose().translate(0.0, 0.0, BUTTON_Z_OFFSET);
+			guiGraphics.fill(scrollButtonX, scrollButtonY, scrollButtonX + book.scrollButtonWidth(), scrollButtonY + getScrollButtonHeight(), book.scrollButtonColor());
+			guiGraphics.pose().popPose();
+		}
 		startHeight = 0;
-		for (ConfiguredBookComponent<?, ?> component : unlockedComponents) {
+		for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
 			if (getContentY() - scrollProgress + startHeight < getContentY() + book.height() - 2 * book.frameWidth()
 				&& getContentY() - scrollProgress + startHeight + component.getTotalHeight(context) > getContentY()) {
 				component.renderDelayed(context, guiGraphics, getContentX(), getContentY() - scrollProgress + startHeight);
@@ -276,7 +283,7 @@ public class BookScreen extends Screen {
 	}
 
 	private void setScrollProgress(int progress) {
-		this.scrollProgress = Mth.clamp(progress, 0, totalHeight - book.height() + 2 * book.frameWidth());
+		this.scrollProgress = Mth.clamp(progress, 0, Math.max(totalHeight - book.height() + 2 * book.frameWidth(), 0));
 	}
 
 	private int getMaxScroll() {

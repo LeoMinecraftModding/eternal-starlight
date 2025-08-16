@@ -48,6 +48,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.NUMBNESS,
 				ESDamageTypes.STARFIRE,
+				ESDamageTypes.LASER,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);
@@ -60,6 +61,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.NUMBNESS,
 				ESDamageTypes.STARFIRE,
+				ESDamageTypes.LASER,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);

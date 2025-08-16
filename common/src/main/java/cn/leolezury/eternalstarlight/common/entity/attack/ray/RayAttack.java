@@ -183,7 +183,7 @@ public class RayAttack extends Entity {
 	}
 
 	public float getRotationSpeed() {
-		return 1.6f;
+		return 1.2f;
 	}
 
 	public float getAttackDamage() {

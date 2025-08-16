@@ -15,7 +15,6 @@ public class BookComponentRegistry {
 	private static final Map<ResourceLocation, BookComponent<?>> COMPONENTS = new HashMap<>();
 	public static final Codec<BookComponent<?>> BY_NAME_CODEC = ResourceLocation.CODEC.xmap(id -> get(id).orElseThrow(), BookComponentRegistry::getKey);
 
-	public static final EmptyBookComponent EMPTY = register("empty", new EmptyBookComponent());
 	public static final TextBookComponent TEXT = register("text", new TextBookComponent());
 	public static final DisplayBookComponent DISPLAY = register("display", new DisplayBookComponent());
 	public static final IndexBookComponent INDEX = register("index", new IndexBookComponent());

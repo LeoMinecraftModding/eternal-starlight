@@ -3,15 +3,21 @@ package cn.leolezury.eternalstarlight.common.client.helper;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
+import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentRegistry;
+import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
+import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookComponent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.network.*;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.Color;
@@ -21,11 +27,18 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
@@ -101,23 +114,82 @@ public class ClientSideHelper implements ClientHelper {
 	}
 
 	@Override
-	public void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet) {
-		/*IndexBookComponent oldIndex = ESGuideBookProvider.buildIndex(packet.oldUnlocked());
-		IndexBookComponent index = ESGuideBookProvider.buildIndex(packet.unlocked());
-		List<Component> oldTexts = oldIndex.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList();
-		List<Component> newTexts = new ArrayList<>(index.getIndexItems().stream().map(IndexBookComponent.IndexItem::originalText).toList());
-		newTexts.removeAll(oldTexts);
-		if (newTexts.size() > 3) {
-			Minecraft.getInstance().getToasts().addToast(new BookUnlockToast(ESGuideBookProvider.translatedBookText("unlock.multiple")));
-		} else {
-			for (Component component : newTexts) {
-				Minecraft.getInstance().getToasts().addToast(new BookUnlockToast(component));
+	public void handleUpdateBook(UpdateBookPacket packet) {
+		Set<ResourceLocation> bookIds = new HashSet<>();
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null) {
+			Inventory inventory = player.getInventory();
+			for (int i = 0; i < inventory.getContainerSize(); i++) {
+				ItemStack stack = inventory.getItem(i);
+				ResourceLocation bookId = stack.getOrDefault(ESDataComponents.BOOK.get(), EternalStarlight.id("main"));
+				bookIds.add(bookId);
 			}
-		}*/
+		}
+		Set<BookDefinition> definitions = bookIds.stream().map(ClientHandlers.books::getBook).collect(Collectors.toSet());
+		List<IndexBookComponent.Entry> newEntries = new ArrayList<>();
+		List<IndexBookComponent.Entry> changedEntries = new ArrayList<>();
+		for (BookDefinition definition : definitions) {
+			List<IndexBookComponent.Entry> entries = new ArrayList<>();
+			definition.components().stream().flatMap(List::stream)
+				.filter(c -> c.component() == BookComponentRegistry.INDEX)
+				.forEach(c -> {
+					if (c.config() instanceof IndexBookComponent.Config config) {
+						entries.addAll(config.entries());
+					}
+				});
+			for (IndexBookComponent.Entry entry : entries) {
+				Optional<ConfiguredBookComponent<?, ?>> jumpTo = definition.getComponent(entry.getJumpToId());
+				boolean oldEnabled = jumpTo.isPresent() && jumpTo.get().isEnabled(packet.oldUnlocked());
+				boolean enabled = jumpTo.isPresent() && jumpTo.get().isEnabled(packet.unlocked());
+				if (!oldEnabled && enabled) {
+					newEntries.add(entry);
+				}
+				for (ResourceLocation listeningId : entry.getListeningIds()) {
+					Optional<ConfiguredBookComponent<?, ?>> listening = definition.getComponent(listeningId);
+					boolean oldListeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.oldUnlocked());
+					boolean listeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.unlocked());
+					if (!oldListeningEnabled && listeningEnabled) {
+						changedEntries.add(entry);
+						break;
+					}
+				}
+			}
+		}
+		changedEntries.removeAll(newEntries);
+		if (newEntries.size() > 3) {
+			Minecraft.getInstance().getToasts().addToast(new SimpleTextToast(
+				Component.translatable("book." + EternalStarlight.ID + ".unlock"),
+				Component.translatable("book." + EternalStarlight.ID + ".unlock.multiple"),
+				ESItems.BOOK.get().getDefaultInstance()
+			));
+		} else {
+			for (IndexBookComponent.Entry entry : newEntries) {
+				Minecraft.getInstance().getToasts().addToast(new SimpleTextToast(
+					Component.translatable("book." + EternalStarlight.ID + ".unlock"),
+					entry.getText(),
+					entry.getIcon()
+				));
+			}
+		}
+		if (changedEntries.size() > 3) {
+			Minecraft.getInstance().getToasts().addToast(new SimpleTextToast(
+				Component.translatable("book." + EternalStarlight.ID + ".update"),
+				Component.translatable("book." + EternalStarlight.ID + ".unlock.multiple"),
+				ESItems.BOOK.get().getDefaultInstance()
+			));
+		} else {
+			for (IndexBookComponent.Entry entry : changedEntries) {
+				Minecraft.getInstance().getToasts().addToast(new SimpleTextToast(
+					Component.translatable("book." + EternalStarlight.ID + ".update"),
+					entry.getText(),
+					entry.getIcon()
+				));
+			}
+		}
 	}
 
 	@Override
-	public void handleOpenStarlightStory(OpenStarlightStoryPacket packet) {
+	public void handleOpenBook(OpenBookPacket packet) {
 		BookDefinition definition = ClientHandlers.books.getBook(packet.bookId());
 		if (definition != null) {
 			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));

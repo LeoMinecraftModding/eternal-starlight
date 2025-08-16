@@ -19,9 +19,9 @@ public interface ClientHelper {
 
 	void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet);
 
-	void handleUpdateStarlightStory(UpdateStarlightStoryPacket packet);
+	void handleUpdateBook(UpdateBookPacket packet);
 
-	void handleOpenStarlightStory(OpenStarlightStoryPacket packet);
+	void handleOpenBook(OpenBookPacket packet);
 
 	void handleUpdateWitchType(UpdateWitchTypePacket packet);
 

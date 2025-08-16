@@ -85,7 +85,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 	@Override
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
-		goalSelector.addGoal(1, new FreezeAttackGoal(this, 1.5, 70, 15));
+		goalSelector.addGoal(1, new FreezeAttackGoal(this, 1.5, 120, 15));
 		goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 32.0F));
 		goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 		goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.3));
@@ -97,7 +97,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 	}
 
 	@Override
-	public void performRangedAttack(LivingEntity livingEntity, float f) {
+	public void performRangedAttack(LivingEntity entity, float f) {
 		setAttacking(true);
 		setAttackTicks(0);
 	}

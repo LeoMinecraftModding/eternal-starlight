@@ -244,8 +244,8 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.CLIENT_DISMOUNT);
 		strategy.register(ESPackets.OPEN_GATEKEEPER_GUI);
 		strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
-		strategy.register(ESPackets.UPDATE_STARLIGHT_STORY);
-		strategy.register(ESPackets.OPEN_STARLIGHT_STORY);
+		strategy.register(ESPackets.UPDATE_BOOK);
+		strategy.register(ESPackets.OPEN_BOOK);
 		strategy.register(ESPackets.UPDATE_SPELL_DATA);
 		strategy.register(ESPackets.SET_CLIENT_ETHER_TICKS);
 		strategy.register(ESPackets.UPDATE_WITCH_TYPE);

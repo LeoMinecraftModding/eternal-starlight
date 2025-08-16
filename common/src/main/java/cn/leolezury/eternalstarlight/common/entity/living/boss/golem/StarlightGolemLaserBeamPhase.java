@@ -11,17 +11,17 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 	public static final int ID = 1;
 
 	public StarlightGolemLaserBeamPhase() {
-		super(ID, 2, 200, 400, StarlightGolemChargeStartPhase.ID);
+		super(ID, 2, 200, 400);
 	}
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null;
+		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 30;
 	}
 
 	@Override
 	public void onStart(StarlightGolem entity) {
-
+		entity.setAttackEnergy(Math.max(entity.getAttackEnergy() - 50, 0));
 	}
 
 	@Override

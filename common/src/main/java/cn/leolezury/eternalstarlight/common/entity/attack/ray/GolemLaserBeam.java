@@ -22,7 +22,7 @@ public class GolemLaserBeam extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 10f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.5f : 0);
+		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 4f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.5f : 0);
 	}
 
 	@Override

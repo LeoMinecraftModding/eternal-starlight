@@ -3,158 +3,209 @@
   "button_height": 4,
   "button_width": 4,
   "components": [
-    {
-      "type": "eternal_starlight:index",
-      "config": {
-        "entries": [
-          {
-            "icon": {
-              "count": 1,
-              "id": "eternal_starlight:seeking_eye"
+    [
+      {
+        "type": "eternal_starlight:index",
+        "config": {
+          "entries": [
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:seeking_eye"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:seeking_eye_display",
+              "listening": [
+                "eternal_starlight:seeking_eye"
+              ],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.seeking_eye",
+                  "translation": true
+                }
+              ]
             },
-            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
-            "icon_frame_height": 24,
-            "icon_frame_width": 24,
-            "jump_tp": "eternal_starlight:test1",
-            "listening": [],
-            "text": {
-              "color": "#ACFFFC",
-              "text": "Test One"
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:orb_of_prophecy"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:orb_of_prophecy_display",
+              "listening": [
+                "eternal_starlight:orb_of_prophecy"
+              ],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.orb_of_prophecy",
+                  "translation": true
+                }
+              ]
             }
-          },
-          {
-            "icon": {
-              "count": 1,
-              "id": "eternal_starlight:flowglaze_axe"
-            },
-            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
-            "icon_frame_height": 24,
-            "icon_frame_width": 24,
-            "jump_tp": "eternal_starlight:test2",
-            "listening": [],
-            "text": {
-              "color": "#ACFFFC",
-              "text": "Test Two"
+          ],
+          "extra_height": 20,
+          "id": "eternal_starlight:index",
+          "line_height": 12,
+          "offset": 20,
+          "unlock_conditions": [],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [],
+          "id": "eternal_starlight:seeking_eye_display",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 10
             }
-          },
-          {
-            "icon": {
-              "count": 1,
-              "id": "eternal_starlight:abyssal_magma_block"
-            },
-            "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
-            "icon_frame_height": 24,
-            "icon_frame_width": 24,
-            "jump_tp": "eternal_starlight:test3",
-            "listening": [],
-            "text": {
-              "color": "#ACFFFC",
-              "text": "Test Three Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text"
+          ],
+          "item_displays": [
+            {
+              "item": {
+                "count": 1,
+                "id": "eternal_starlight:seeking_eye"
+              },
+              "x": 57,
+              "y": 12
             }
-          }
-        ],
-        "id": "eternal_starlight:test_index",
-        "line_height": 12,
-        "unlock_conditions": [],
-        "width": 130
-      }
-    },
-    {
-      "type": "eternal_starlight:text",
-      "config": {
-        "id": "eternal_starlight:test1",
-        "line_height": 12,
-        "text": {
-          "color": "#ACFFFC",
-          "translate": "book.eternal_starlight.main_story"
-        },
-        "unlock_conditions": [],
-        "width": 130
-      }
-    },
-    {
-      "type": "eternal_starlight:text",
-      "config": {
-        "id": "eternal_starlight:test2",
-        "line_height": 12,
-        "text": {
-          "color": "#ACFFFC",
-          "translate": "book.eternal_starlight.freeze"
-        },
-        "unlock_conditions": [],
-        "width": 130
-      }
-    },
-    {
-      "type": "eternal_starlight:display",
-      "config": {
-        "entity_displays": [
-          {
-            "entity": {
-              "id": "eternal_starlight:freeze"
+          ],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "scale": 1.5,
+              "text": {
+                "color": "#ACFFFC",
+                "translate": "item.eternal_starlight.seeking_eye"
+              },
+              "x": 65,
+              "y": 55
+            }
+          ],
+          "total_height": 60,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:seeking_eye",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
             },
-            "rotation": [
-              0.0,
-              -0.21643962,
-              0.976296,
-              -0.0
-            ],
-            "scale": 30.0,
-            "x": 65,
-            "x_rot": -25.0,
-            "y": 65,
-            "y_rot": 210.0
-          }
-        ],
-        "id": "eternal_starlight:test3",
-        "image_displays": [
-          {
-            "height": 20,
-            "location": "eternal_starlight:textures/gui/screen/book/slot.png",
-            "width": 20,
-            "x": 0,
-            "y": 0
-          },
-          {
-            "height": 20,
-            "location": "eternal_starlight:textures/gui/screen/book/slot.png",
-            "width": 20,
-            "x": 20,
-            "y": 20
-          }
-        ],
-        "item_displays": [
-          {
-            "item": {
-              "count": 1,
-              "id": "eternal_starlight:starfire"
-            },
-            "x": 22,
-            "y": 22
-          }
-        ],
-        "item_tag_displays": [
-          {
-            "item_tag": "eternal_starlight:golem_forge_locators",
-            "x": 2,
-            "y": 2
-          }
-        ],
-        "text_displays": [
-          {
-            "scale": 2.0,
-            "text": {
-              "strikethrough": true,
-              "text": "SampleText"
-            },
-            "x": 65,
-            "y": 80
-          }
-        ],
-        "total_height": 200,
-        "unlock_conditions": []
+            {
+              "content": "book.eternal_starlight.seeking_eye",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 130
+        }
       }
-    }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [],
+          "id": "eternal_starlight:orb_of_prophecy_display",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 10
+            }
+          ],
+          "item_displays": [
+            {
+              "item": {
+                "count": 1,
+                "id": "eternal_starlight:orb_of_prophecy"
+              },
+              "x": 57,
+              "y": 12
+            }
+          ],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "scale": 1.5,
+              "text": {
+                "color": "#ACFFFC",
+                "translate": "item.eternal_starlight.orb_of_prophecy"
+              },
+              "x": 65,
+              "y": 55
+            }
+          ],
+          "total_height": 60,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:orb_of_prophecy",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.orb_of_prophecy",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ]
   ],
   "down_button_offset": 174,
   "frame_width": 10,

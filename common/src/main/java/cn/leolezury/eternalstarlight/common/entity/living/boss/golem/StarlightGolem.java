@@ -75,6 +75,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public AnimationState chargeEndAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
 
+	private int attackEnergy;
 	private int hurtCount;
 	private int lastHurtSound;
 
@@ -84,6 +85,14 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public int getHurtCount() {
 		return hurtCount;
+	}
+
+	public int getAttackEnergy() {
+		return attackEnergy;
+	}
+
+	public void setAttackEnergy(int energy) {
+		this.attackEnergy = energy;
 	}
 
 	public boolean canHurt() {

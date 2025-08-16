@@ -12,11 +12,11 @@ import net.minecraft.world.entity.player.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-public record UpdateStarlightStoryPacket(Set<ResourceLocation> oldUnlocked, Set<ResourceLocation> unlocked) implements CustomPacketPayload {
-	public static final Type<UpdateStarlightStoryPacket> TYPE = new Type<>(EternalStarlight.id("update_starlight_story"));
-	public static final StreamCodec<RegistryFriendlyByteBuf, UpdateStarlightStoryPacket> STREAM_CODEC = StreamCodec.ofMember(UpdateStarlightStoryPacket::write, UpdateStarlightStoryPacket::read);
+public record UpdateBookPacket(Set<ResourceLocation> oldUnlocked, Set<ResourceLocation> unlocked) implements CustomPacketPayload {
+	public static final Type<UpdateBookPacket> TYPE = new Type<>(EternalStarlight.id("update_book"));
+	public static final StreamCodec<RegistryFriendlyByteBuf, UpdateBookPacket> STREAM_CODEC = StreamCodec.ofMember(UpdateBookPacket::write, UpdateBookPacket::read);
 
-	public static UpdateStarlightStoryPacket read(FriendlyByteBuf buf) {
+	public static UpdateBookPacket read(FriendlyByteBuf buf) {
 		int oldSize = buf.readInt();
 		Set<ResourceLocation> oldUnlocked = new HashSet<>();
 		for (int i = 0; i < oldSize; i++) {
@@ -27,10 +27,10 @@ public record UpdateStarlightStoryPacket(Set<ResourceLocation> oldUnlocked, Set<
 		for (int i = 0; i < size; i++) {
 			unlocked.add(ResourceLocation.parse(buf.readUtf()));
 		}
-		return new UpdateStarlightStoryPacket(oldUnlocked, unlocked);
+		return new UpdateBookPacket(oldUnlocked, unlocked);
 	}
 
-	public static void write(UpdateStarlightStoryPacket packet, FriendlyByteBuf buf) {
+	public static void write(UpdateBookPacket packet, FriendlyByteBuf buf) {
 		buf.writeInt(packet.oldUnlocked().size());
 		for (ResourceLocation resourceLocation : packet.oldUnlocked()) {
 			buf.writeUtf(resourceLocation.toString());
@@ -41,8 +41,8 @@ public record UpdateStarlightStoryPacket(Set<ResourceLocation> oldUnlocked, Set<
 		}
 	}
 
-	public static void handle(UpdateStarlightStoryPacket packet, Player player) {
-		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleUpdateStarlightStory(packet));
+	public static void handle(UpdateBookPacket packet, Player player) {
+		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleUpdateBook(packet));
 	}
 
 	@Override

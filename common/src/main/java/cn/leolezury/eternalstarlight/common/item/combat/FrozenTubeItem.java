@@ -35,7 +35,7 @@ public class FrozenTubeItem extends Item implements ProjectileItem {
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.consume(1, player);
 
-		player.getCooldowns().addCooldown(this, 60);
+		player.getCooldowns().addCooldown(this, 20);
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
 	}

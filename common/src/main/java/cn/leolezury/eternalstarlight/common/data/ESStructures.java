@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.StranghoulDenStructure;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.garden.CursedGardenStructure;
@@ -11,17 +10,13 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.random.WeightedRandomList;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
-import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
@@ -99,7 +94,7 @@ public class ESStructures {
 		context.register(GOLEM_FORGE, new JigsawStructure(
 			new Structure.StructureSettings(
 				biomeGetter.getOrThrow(ESTags.Biomes.HAS_GOLEM_FORGE),
-				Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(ESEntities.FREEZE.get(), 3, 1, 2)))),
+				Map.of(),
 				GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
 				TerrainAdjustment.BEARD_THIN),
 			poolGetter.getOrThrow(ESTemplatePools.GOLEM_FORGE_BOSS), Optional.empty(), 20,

@@ -3,9 +3,9 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -20,10 +20,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -71,10 +71,10 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
 				if (!level().isClientSide && getOwner() != entity) {
 					if (entity.canFreeze()) {
-						entity.hurt(getOwner() instanceof LivingEntity owner ? ESDamageTypes.getIndirectEntityDamageSource(level(), DamageTypes.FREEZE, this, owner) : level().damageSources().freeze(), getOwner() instanceof Freeze ? (float) ESConfig.INSTANCE.mobsConfig.freeze.attackDamage() : 5);
 						entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
-					} else if (getOwner() instanceof LivingEntity owner) {
-						entity.hurt(damageSources().mobProjectile(this, owner), 2.5f);
+					}
+					if (getOwner() instanceof Player && entity instanceof StarlightGolem golem) {
+						golem.setAttackEnergy(Math.max(golem.getAttackEnergy() - 3, 0));
 					}
 				}
 			}
@@ -100,8 +100,10 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 	}
 
 	@Override
-	protected void onHitEntity(EntityHitResult entityHitResult) {
-
+	protected void onHitEntity(EntityHitResult hitResult) {
+		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner) {
+			hitResult.getEntity().hurt(damageSources().mobProjectile(this, owner), getOwner() instanceof Freeze ? (float) ESConfig.INSTANCE.mobsConfig.freeze.attackDamage() : 3f);
+		}
 	}
 
 	@Override

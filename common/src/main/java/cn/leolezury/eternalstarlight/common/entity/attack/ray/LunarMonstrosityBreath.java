@@ -27,7 +27,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 
 	@Override
 	public float getRotationSpeed() {
-		return 1.4f;
+		return 1.0f;
 	}
 
 	@Override

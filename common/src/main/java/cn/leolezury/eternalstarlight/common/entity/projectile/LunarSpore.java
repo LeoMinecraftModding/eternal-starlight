@@ -101,7 +101,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
 				if (getOwner() != entity) {
-					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
+					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 3);
 				}
 			}
 			discard();

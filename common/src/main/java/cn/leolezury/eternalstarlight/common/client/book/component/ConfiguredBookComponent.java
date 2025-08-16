@@ -5,11 +5,30 @@ import com.mojang.serialization.Codec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public record ConfiguredBookComponent<C extends BookComponentConfig, B extends BookComponent<C>>(B component, C config) {
 	public static final Codec<ConfiguredBookComponent<?, ?>> CODEC = BookComponentRegistry.BY_NAME_CODEC
 		.dispatch(configured -> configured.component, BookComponent::getConfiguredCodec);
+
+	public boolean isEnabled(Set<ResourceLocation> unlocked) {
+		if (config().unlockConditions().isEmpty()) {
+			return true;
+		}
+		boolean enabled = false;
+		for (HashSet<ResourceLocation> conditions : config().unlockConditions()) {
+			boolean conditionGroup = true;
+			for (ResourceLocation condition : conditions) {
+				conditionGroup = conditionGroup && unlocked.contains(condition);
+			}
+			enabled = enabled || conditionGroup;
+		}
+		return enabled;
+	}
 
 	public int getTotalHeight(BookContext context) {
 		return component().getTotalHeight(config(), context);

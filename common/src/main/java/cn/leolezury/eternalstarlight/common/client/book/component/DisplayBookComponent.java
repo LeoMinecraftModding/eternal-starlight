@@ -70,7 +70,7 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 			graphics.pose().pushPose();
 			graphics.pose().translate(x + display.x(), y + display.y(), 0);
 			graphics.pose().scale(display.scale(), display.scale(), display.scale());
-			graphics.drawString(context.getFont(), display.text(), -context.getFont().width(display.text()) / 2, -context.getFont().lineHeight, 0, false);
+			graphics.drawString(context.getFont(), display.text(), -context.getFont().width(display.text()) / 2, -context.getFont().lineHeight, 0, true);
 			graphics.pose().popPose();
 		}
 	}

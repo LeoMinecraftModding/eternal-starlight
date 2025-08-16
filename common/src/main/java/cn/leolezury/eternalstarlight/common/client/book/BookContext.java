@@ -21,5 +21,7 @@ public interface BookContext {
 
 	int getTickCount();
 
+	boolean isComponentEnabled(ResourceLocation id);
+
 	void jumpToComponent(ResourceLocation id);
 }

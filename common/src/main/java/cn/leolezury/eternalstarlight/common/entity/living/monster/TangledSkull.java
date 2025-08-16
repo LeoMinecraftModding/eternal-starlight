@@ -249,7 +249,7 @@ public class TangledSkull extends Monster {
 				}
 				boolean ally = isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 				if (result.getType() != HitResult.Type.MISS && !ally) {
-					this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, Level.ExplosionInteraction.NONE);
+					this.level().explode(this, this.getX(), this.getY(), this.getZ(), 1, Level.ExplosionInteraction.NONE);
 					if (isShotFromMonstrosity() && level() instanceof ServerLevel serverLevel) {
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.SOUL, getX(), getY(), getZ(), 0, 0.2, 0));
 					}
@@ -266,7 +266,7 @@ public class TangledSkull extends Monster {
 		setDeltaMovement(Vec3.ZERO);
 		++this.skullDeathTime;
 		if (this.skullDeathTime >= 80 && !this.level().isClientSide() && !this.isRemoved()) {
-			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, Level.ExplosionInteraction.NONE);
+			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 1, Level.ExplosionInteraction.NONE);
 			this.level().broadcastEntityEvent(this, (byte) 60);
 			this.remove(RemovalReason.KILLED);
 		}

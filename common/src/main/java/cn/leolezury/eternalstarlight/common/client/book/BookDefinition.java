@@ -8,15 +8,16 @@ import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public record BookDefinition(List<ConfiguredBookComponent<?, ?>> components,
+public record BookDefinition(List<List<ConfiguredBookComponent<?, ?>>> components,
 							 int width, int height, int frameWidth,
 							 int buttonWidth, int buttonHeight, int upButtonOffset, int downButtonOffset, int buttonDistanceFromRight,
 							 int scrollbarWidth, int scrollbarHeight, int scrollbarXOffset, int scrollbarYOffset, int scrollButtonWidth, int scrollButtonColor,
 							 Textures textures) {
 	public static final Codec<BookDefinition> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-		ConfiguredBookComponent.CODEC.listOf().fieldOf("components").forGetter(BookDefinition::components),
+		ConfiguredBookComponent.CODEC.listOf().listOf().fieldOf("components").forGetter(BookDefinition::components),
 		Codec.INT.fieldOf("width").forGetter(BookDefinition::width),
 		Codec.INT.fieldOf("height").forGetter(BookDefinition::height),
 		Codec.INT.fieldOf("frame_width").forGetter(BookDefinition::frameWidth),
@@ -41,5 +42,14 @@ public record BookDefinition(List<ConfiguredBookComponent<?, ?>> components,
 			ResourceLocation.CODEC.fieldOf("up_button").forGetter(Textures::upButton),
 			ResourceLocation.CODEC.fieldOf("down_button").forGetter(Textures::downButton)
 		).apply(instance, Textures::new));
+	}
+
+	public Optional<ConfiguredBookComponent<?, ?>> getComponent(ResourceLocation id) {
+		for (ConfiguredBookComponent<?, ?> component : components().stream().flatMap(List::stream).toList()) {
+			if (component.config().id().equals(id)) {
+				return Optional.of(component);
+			}
+		}
+		return Optional.empty();
 	}
 }

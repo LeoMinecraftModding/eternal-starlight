@@ -31,11 +31,12 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null;
+		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 0;
 	}
 
 	@Override
 	public void onStart(StarlightGolem entity) {
+		entity.setAttackEnergy(Math.max(entity.getAttackEnergy() - 16, 0));
 		visited.clear();
 		lavaVisited.clear();
 	}
