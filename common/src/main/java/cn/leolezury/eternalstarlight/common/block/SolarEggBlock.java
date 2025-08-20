@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.block.entity.SolarEggBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -120,7 +119,6 @@ public class SolarEggBlock extends BaseEntityBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
 		builder.add(X_OFFSET, Z_OFFSET, Y_OFFSET);
 	}
 

@@ -1,0 +1,6 @@
+{
+  "cooldown": 1.1,
+  "damage_multiplier": 1.2,
+  "item": "minecraft:melon_seeds",
+  "speed_multiplier": 0.9
+}

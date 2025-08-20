@@ -5,10 +5,14 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -20,8 +24,11 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DaggerOfHungerItem extends SwordItem {
 	public static final ItemAttributeModifiers DEFAULT_ATTRIBUTE = SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 3, -2.4f);
@@ -30,6 +37,18 @@ public class DaggerOfHungerItem extends SwordItem {
 
 	public DaggerOfHungerItem(Tier tier, Properties properties) {
 		super(tier, properties);
+		DataComponentMap copy = components;
+		this.components = new DataComponentMap() {
+			@Override
+			public @Nullable <T> T get(DataComponentType<? extends T> type) {
+				return type != DataComponents.MAX_DAMAGE && type != DataComponents.DAMAGE ? copy.get(type) : null;
+			}
+
+			@Override
+			public Set<DataComponentType<?>> keySet() {
+				return copy.keySet().stream().filter(type -> type != DataComponents.MAX_DAMAGE && type != DataComponents.DAMAGE).collect(Collectors.toSet());
+			}
+		};
 	}
 
 	@Override
@@ -38,7 +57,7 @@ public class DaggerOfHungerItem extends SwordItem {
 		if (attacker instanceof Player player) {
 			player.getFoodData().eat(3, 0);
 		}
-		float hungerLevel = stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f);
+		float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
 		float newHungerLevel = Math.min(1, hungerLevel + 0.05f);
 		stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.HUNGER_LEVEL.get(), newHungerLevel).build());
 		if (newHungerLevel == 1 && attacker instanceof ServerPlayer player) {
@@ -50,7 +69,7 @@ public class DaggerOfHungerItem extends SwordItem {
 	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean bl) {
 		if (entity.tickCount % 1200 == 0) {
-			float hungerLevel = stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f);
+			float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
 			float newHungerLevel = Math.max(-1, hungerLevel - 0.00005f * 1200);
 			stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.HUNGER_LEVEL.get(), newHungerLevel).build());
 			if (hungerLevel == -1) {
@@ -60,7 +79,7 @@ public class DaggerOfHungerItem extends SwordItem {
 			}
 		}
 		if (entity.tickCount % 600 == 0) {
-			float hungerLevel = stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f);
+			float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
 			int state = Math.min(2, (int) ((hungerLevel + 1f) * 1.5f));
 			ItemAttributeModifiers modifiers = switch (state) {
 				case 0 -> PENALTY_ATTRIBUTE;
@@ -74,11 +93,27 @@ public class DaggerOfHungerItem extends SwordItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-		float hungerLevel = itemStack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f);
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.hunger_value").append(Math.round((hungerLevel + 1) * 50) + "%").withStyle(ChatFormatting.DARK_PURPLE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.when_attack").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.attack_bonus").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.hurt_player").withStyle(ChatFormatting.BLUE));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+	}
+
+	@Override
+	public boolean isBarVisible(ItemStack stack) {
+		return true;
+	}
+
+	@Override
+	public int getBarWidth(ItemStack stack) {
+		float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
+		return Mth.clamp(Math.round(13.0F - (1.0F - hungerLevel) * 13.0F / 2.0F), 0, 13);
+	}
+
+	@Override
+	public int getBarColor(ItemStack stack) {
+		float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
+		float progress = Mth.clamp((hungerLevel + 1.0F) / 2.0F, 0, 1);
+		return FastColor.ARGB32.colorFromFloat(1, 103.0F * progress / 255.0F, 47.0F * progress / 255.0F, 207.0F * progress / 255.0F);
 	}
 }

@@ -1,0 +1,6 @@
+{
+  "cooldown": 1.2,
+  "damage_multiplier": 1.5,
+  "item": "minecraft:torchflower_seeds",
+  "speed_multiplier": 1.0
+}

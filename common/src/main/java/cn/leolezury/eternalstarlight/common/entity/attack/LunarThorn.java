@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -37,14 +38,14 @@ public class LunarThorn extends AttackEffect {
 			if (getSpawnedTicks() > 40 && getOwner() != null) {
 				if (getAttackMode() == 0) {
 					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
-						if (livingEntity != getOwner()) {
+						if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
 							livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 4);
 						}
 					}
 				}
 				if (getAttackMode() == 1) {
 					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
-						if (livingEntity != getOwner()) {
+						if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
 							if (!livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
 								livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10));
 							}

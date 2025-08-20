@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:rookfish",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:rookfish_air_sac",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": "eternal_starlight:the_abyss"
+              }
+            }
+          ],
+          "name": "eternal_starlight:luminofish",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": "eternal_starlight:the_abyss"
+              }
+            }
+          ],
+          "name": "eternal_starlight:luminaris",
+          "weight": 15
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "eternal_starlight:gameplay/fishing/fish"
+}

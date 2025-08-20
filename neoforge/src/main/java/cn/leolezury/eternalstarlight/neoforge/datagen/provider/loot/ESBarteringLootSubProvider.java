@@ -22,12 +22,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
 
-public class ESBarteringLootSubProvider implements LootTableSubProvider {
-	private final HolderLookup.Provider registries;
-
-	public ESBarteringLootSubProvider(HolderLookup.Provider lookup) {
-		this.registries = lookup;
-	}
+public record ESBarteringLootSubProvider(HolderLookup.Provider registries) implements LootTableSubProvider {
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {

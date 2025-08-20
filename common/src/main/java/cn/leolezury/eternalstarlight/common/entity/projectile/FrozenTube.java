@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGo
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -69,7 +70,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 				serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-				if (!level().isClientSide && getOwner() != entity) {
+				if (!level().isClientSide && ESEntityUtil.shouldHarm(getOwner(), entity)) {
 					if (entity.canFreeze()) {
 						entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
 					}

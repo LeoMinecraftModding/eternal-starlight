@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -92,6 +93,8 @@ public class ShotSeeds extends ThrowableItemProjectile {
 			}
 		}
 		damage += (float) (getDeltaMovement().length() * 1.25);
+		SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(level().registryAccess(), getItem().getItem()).value();
+		damage *= type.damageMultiplier();
 		entity.invulnerableTime = 0;
 		if (entity.hurt(source, damage)) {
 			if (entity instanceof LivingEntity living) {

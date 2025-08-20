@@ -9,6 +9,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -27,7 +30,7 @@ import java.util.Optional;
 public class ESPainting extends Painting {
 	private static final String TAG_ITEM = "item";
 
-	private ItemStack item = ESItems.STARLIT_PAINTING.get().getDefaultInstance();
+	private static final EntityDataAccessor<ItemStack> ITEM_STACK = SynchedEntityData.defineId(ESPainting.class, EntityDataSerializers.ITEM_STACK);
 
 	public ESPainting(Level level, BlockPos blockPos) {
 		super(ESEntities.PAINTING.get(), level);
@@ -37,6 +40,12 @@ public class ESPainting extends Painting {
 
 	public ESPainting(EntityType<? extends ESPainting> type, Level level) {
 		super(type, level);
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(ITEM_STACK, ESItems.STARLIT_PAINTING.get().getDefaultInstance());
 	}
 
 	public static Optional<ESPainting> createPainting(Level level, ItemStack item, BlockPos blockPos, Direction direction) {
@@ -71,7 +80,11 @@ public class ESPainting extends Painting {
 	}
 
 	public void setItem(ItemStack item) {
-		this.item = item;
+		this.getEntityData().set(ITEM_STACK, item.copy());
+	}
+
+	public ItemStack getItem() {
+		return this.getEntityData().get(ITEM_STACK);
 	}
 
 	@Override
@@ -83,19 +96,19 @@ public class ESPainting extends Painting {
 					return;
 				}
 			}
-			this.spawnAtLocation(item);
+			this.spawnAtLocation(getItem());
 		}
 	}
 
 	@Override
 	public ItemStack getPickResult() {
-		return item.copy();
+		return getItem().copy();
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.put(TAG_ITEM, this.item.save(this.registryAccess()));
+		compoundTag.put(TAG_ITEM, this.getItem().save(this.registryAccess()));
 	}
 
 	@Override

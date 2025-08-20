@@ -1,0 +1,48 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.eternal_starlight.tracing"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 0.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 4.5,
+            "per_level_above_first": 2.5
+          },
+          "min_amplifier": 0.0,
+          "min_duration": 4.5,
+          "to_apply": "minecraft:glowing"
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "direct_attacker",
+          "predicate": {
+            "type": "eternal_starlight:chain_of_souls"
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 11
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#eternal_starlight:enchantable/chain_of_souls",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/chain_of_souls",
+  "weight": 5
+}

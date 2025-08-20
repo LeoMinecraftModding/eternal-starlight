@@ -42,7 +42,8 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 		ItemStack projectile = getProjectile(player, stack);
 		boolean success = performShooting(level, player, projectile, hand);
 		if (success) {
-			player.getCooldowns().addCooldown(this, 20);
+			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(level.registryAccess(), projectile.getItem()).value();
+			player.getCooldowns().addCooldown(this, type.cooldownAsTicks());
 		}
 		return success ? InteractionResultHolder.consume(stack) : super.use(level, player, hand);
 	}
@@ -146,7 +147,12 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 			Vec3 viewVector = shooter.getViewVector(1.0F);
 			direction = viewVector.toVector3f().rotate(rotation);
 		}
-		projectile.shoot(direction.x(), direction.y(), direction.z(), velocity, inaccuracy);
+		float speedMultiplier = 1;
+		if (projectile instanceof ShotSeeds seeds) {
+			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(shooter.level().registryAccess(), seeds.getItem().getItem()).value();
+			speedMultiplier *= type.speedMultiplier();
+		}
+		projectile.shoot(direction.x(), direction.y(), direction.z(), velocity * speedMultiplier, inaccuracy);
 		shooter.level().playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(), ESSoundEvents.SEEDS_LAUNCHER_SHOOT.get(), shooter.getSoundSource(), 1.0F, 1.0F);
 	}
 

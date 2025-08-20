@@ -50,7 +50,6 @@ public class EnchantedGrimstoneBricksBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 }

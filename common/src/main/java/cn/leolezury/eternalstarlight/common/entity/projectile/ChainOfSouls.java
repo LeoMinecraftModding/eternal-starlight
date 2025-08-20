@@ -58,7 +58,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private UUID targetId;
 
 	public Entity getTarget() {
-		return target;
+		return level().isClientSide ? level().getEntity(getTargetId()) : target;
 	}
 
 	public void setTarget(Entity target) {
@@ -114,7 +114,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 			if (target != null) {
 				setTargetId(target.getId());
 				setDeltaMovement(Vec3.ZERO);
-				if (!target.isAlive() || target.isRemoved() || target.distanceToSqr(this) > getMaxRange() * getMaxRange()) {
+				if (!isValidTarget(target)) {
 					target = null;
 					targetId = null;
 				} else {
@@ -131,6 +131,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 								damage = EnchantmentHelper.modifyDamage(serverLevel, getWeaponItem(), target, damageSource, damage);
 							}
 							if (target.hurt(damageSource, damage)) {
+								EnchantmentHelper.doPostAttackEffects(serverLevel, target, damageSource);
 								playerOwner.heal((float) (damage * ESConfig.INSTANCE.itemsConfig.chainOfSouls.healPercentage()));
 								playSound(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get());
 								for (int i = 0; i < 7; i++) {
@@ -198,6 +199,10 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		return ESConfig.INSTANCE.itemsConfig.chainOfSouls.maxRange();
 	}
 
+	public boolean isValidTarget(Entity entity) {
+		return entity instanceof LivingEntity && entity.isAlive() && entity.distanceToSqr(this) <= getMaxRange() * getMaxRange();
+	}
+
 	@Override
 	protected boolean canHitEntity(Entity entity) {
 		return entity != getOwner();
@@ -206,7 +211,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if (target == null && !level().isClientSide) {
+		if (!level().isClientSide && target == null && isValidTarget(hitResult.getEntity())) {
 			this.setTarget(hitResult.getEntity());
 			Player player = this.getPlayerOwner();
 			if (player != null && !reachedTarget()) {

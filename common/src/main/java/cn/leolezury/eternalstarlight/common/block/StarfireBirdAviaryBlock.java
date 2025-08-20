@@ -63,7 +63,7 @@ public class StarfireBirdAviaryBlock extends StarfireBirdNestBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(OPEN);
 		super.createBlockStateDefinition(builder);
+		builder.add(OPEN);
 	}
 }

@@ -17,6 +17,7 @@
     "EntityMixin",
     "FarmBlockMixin",
     "FireBlockMixin",
+    "FishingHookMixin",
     "InventoryChangeTriggerMixin",
     "ItemEntityMixin",
     "ItemStackMixin",

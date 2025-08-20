@@ -23,7 +23,21 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 				ESPaintingVariants.THE_CATALYST,
 				ESPaintingVariants.CRYSTALBORN,
 				ESPaintingVariants.VOIDSTONE_APPLE,
-				ESPaintingVariants.PUNGENCY_FRUIT_FEAST
+				ESPaintingVariants.PUNGENCY_FRUIT_FEAST,
+				ESPaintingVariants.STARFLOWERS,
+				ESPaintingVariants.COLD_ANOMALY,
+				ESPaintingVariants.NORTHLAND_HUT,
+				ESPaintingVariants.RAT_HEAD,
+				ESPaintingVariants.ORIGINAL_CRETEOR,
+				ESPaintingVariants.TWILIGHT_SQUID,
+				ESPaintingVariants.POWER,
+				ESPaintingVariants.POT_OF_CRESTS,
+				ESPaintingVariants.THIRSTY,
+				ESPaintingVariants.STACK,
+				ESPaintingVariants.CARVED_SLATE,
+				ESPaintingVariants.INSECT_SPECIMEN,
+				ESPaintingVariants.SWORD_OF_THE_LAKE,
+				ESPaintingVariants.SKELETON_LONESTAR
 			);
 	}
 }

@@ -18,6 +18,6 @@ import java.util.List;
 public abstract class ItemStackMixin {
 	@Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V"))
 	private void getTooltipLines(Item.TooltipContext context, Player player, TooltipFlag flag, CallbackInfoReturnable<List<Component>> cir, @Local(ordinal = 0) List<Component> list) {
-		CommonHandlers.onItemTooltip(flag, (ItemStack) (Object) this, list, context);
+		CommonHandlers.onItemTooltip(player, flag, (ItemStack) (Object) this, list, context);
 	}
 }

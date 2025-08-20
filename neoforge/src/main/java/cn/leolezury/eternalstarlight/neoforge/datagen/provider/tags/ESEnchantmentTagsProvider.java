@@ -28,7 +28,8 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 			.add(
 				ESEnchantments.FEARLESS,
 				ESEnchantments.POISONING,
-				ESEnchantments.SOUL_SNATCHER
+				ESEnchantments.SOUL_SNATCHER,
+				ESEnchantments.TRACING
 			);
 		tag(ESTags.Enchantments.PREVENTS_STARFIRE_BIRD_SPAWNS_WHEN_MINING)
 			.add(
@@ -44,6 +45,7 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.FEARLESS,
 				ESEnchantments.POISONING,
 				ESEnchantments.SOUL_SNATCHER,
+				ESEnchantments.TRACING,
 				ESEnchantments.TEARING,
 				ESEnchantments.OVERHEAT,
 				ESEnchantments.GLACIAL_SOWING,
@@ -51,6 +53,7 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 			);
 		tag(EnchantmentTags.IN_ENCHANTING_TABLE)
 			.add(
+				ESEnchantments.TRACING,
 				ESEnchantments.TEARING,
 				ESEnchantments.OVERHEAT,
 				ESEnchantments.GLACIAL_SOWING,
@@ -64,6 +67,7 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 			);
 		tag(EnchantmentTags.NON_TREASURE)
 			.add(
+				ESEnchantments.TRACING,
 				ESEnchantments.TEARING,
 				ESEnchantments.OVERHEAT,
 				ESEnchantments.GLACIAL_SOWING,

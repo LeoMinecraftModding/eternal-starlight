@@ -64,7 +64,6 @@ public class CarvedLunarisCactusFruitBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	protected void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
-		super.onPlace(blockState, level, blockPos, blockState2, bl);
 		if (!blockState2.is(blockState.getBlock())) {
 			this.trySpawnGolem(level, blockPos);
 		}

@@ -1,0 +1,6 @@
+{
+  "cooldown": 0.5,
+  "damage_multiplier": 0.4,
+  "item": "minecraft:pumpkin_seeds",
+  "speed_multiplier": 1.5
+}

@@ -33,7 +33,6 @@ public class EnergyBlock extends Block {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(LIT);
-		super.createBlockStateDefinition(builder);
 	}
 
 	@Override

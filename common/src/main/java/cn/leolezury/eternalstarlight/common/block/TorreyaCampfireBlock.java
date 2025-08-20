@@ -54,7 +54,7 @@ public class TorreyaCampfireBlock extends CampfireBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(STARFIRE);
 		super.createBlockStateDefinition(builder);
+		builder.add(STARFIRE);
 	}
 }

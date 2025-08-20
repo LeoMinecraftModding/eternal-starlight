@@ -15,6 +15,20 @@ public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> CRYSTALBORN = create("crystalborn");
 	public static final ResourceKey<PaintingVariant> VOIDSTONE_APPLE = create("voidstone_apple");
 	public static final ResourceKey<PaintingVariant> PUNGENCY_FRUIT_FEAST = create("pungency_fruit_feast");
+	public static final ResourceKey<PaintingVariant> STARFLOWERS = create("starflowers");
+	public static final ResourceKey<PaintingVariant> COLD_ANOMALY = create("cold_anomaly");
+	public static final ResourceKey<PaintingVariant> NORTHLAND_HUT = create("northland_hut");
+	public static final ResourceKey<PaintingVariant> RAT_HEAD = create("rat_head");
+	public static final ResourceKey<PaintingVariant> ORIGINAL_CRETEOR = create("original_creteor");
+	public static final ResourceKey<PaintingVariant> TWILIGHT_SQUID = create("twilight_squid");
+	public static final ResourceKey<PaintingVariant> POWER = create("power");
+	public static final ResourceKey<PaintingVariant> POT_OF_CRESTS = create("pot_of_crests");
+	public static final ResourceKey<PaintingVariant> THIRSTY = create("thirsty");
+	public static final ResourceKey<PaintingVariant> STACK = create("stack");
+	public static final ResourceKey<PaintingVariant> CARVED_SLATE = create("carved_slate");
+	public static final ResourceKey<PaintingVariant> INSECT_SPECIMEN = create("insect_specimen");
+	public static final ResourceKey<PaintingVariant> SWORD_OF_THE_LAKE = create("sword_of_the_lake");
+	public static final ResourceKey<PaintingVariant> SKELETON_LONESTAR = create("skeleton_lonestar");
 
 	public static void bootstrap(BootstrapContext<PaintingVariant> context) {
 		register(context, ENERGIZED, 2, 2);
@@ -25,6 +39,20 @@ public class ESPaintingVariants {
 		register(context, CRYSTALBORN, 2, 2);
 		register(context, VOIDSTONE_APPLE, 2, 2);
 		register(context, PUNGENCY_FRUIT_FEAST, 1, 2);
+		register(context, STARFLOWERS, 1, 2);
+		register(context, COLD_ANOMALY, 1, 1);
+		register(context, NORTHLAND_HUT, 3, 2);
+		register(context, RAT_HEAD, 2, 1);
+		register(context, ORIGINAL_CRETEOR, 1, 2);
+		register(context, TWILIGHT_SQUID, 1, 1);
+		register(context, POWER, 1, 2);
+		register(context, POT_OF_CRESTS, 1, 1);
+		register(context, THIRSTY, 1, 2);
+		register(context, STACK, 2, 2);
+		register(context, CARVED_SLATE, 2, 1);
+		register(context, INSECT_SPECIMEN, 2, 1);
+		register(context, SWORD_OF_THE_LAKE, 1, 1);
+		register(context, SKELETON_LONESTAR, 1, 1);
 	}
 
 	private static void register(BootstrapContext<PaintingVariant> context, ResourceKey<PaintingVariant> key, int xSize, int ySize) {

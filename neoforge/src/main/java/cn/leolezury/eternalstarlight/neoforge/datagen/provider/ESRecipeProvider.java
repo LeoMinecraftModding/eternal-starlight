@@ -191,7 +191,7 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		// misc
 		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 2)
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 12)
 			.pattern("SG ")
 			.pattern("GAG")
 			.pattern(" G ")
@@ -252,7 +252,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('F', ESTags.Items.YETI_FUR)
 			.unlockedBy("has_item", has(ESTags.Items.YETI_FUR))
 			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SONAR_BOMB.get(), 12)
 			.pattern(" N ")
 			.pattern("NGN")
 			.pattern(" N ")
@@ -1084,7 +1084,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICKS.get(), 2);
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.TORREYA_TILES.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.TORREYA_TILES.get(), 32)
 			.pattern("IL")
 			.pattern("LI")
 			.define('I', ESConventionalTags.Items.INGOTS_AMARAMBER)

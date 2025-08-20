@@ -33,6 +33,7 @@ public class ESEnchantments {
 	public static final ResourceKey<Enchantment> POISONING = create("poisoning");
 	public static final ResourceKey<Enchantment> FEARLESS = create("fearless");
 	public static final ResourceKey<Enchantment> SOUL_SNATCHER = create("soul_snatcher");
+	public static final ResourceKey<Enchantment> TRACING = create("tracing");
 	public static final ResourceKey<Enchantment> TEARING = create("tearing");
 	public static final ResourceKey<Enchantment> OVERHEAT = create("overheat");
 	public static final ResourceKey<Enchantment> GLACIAL_SOWING = create("glacial_sowing");
@@ -51,6 +52,9 @@ public class ESEnchantments {
 		context.register(SOUL_SNATCHER, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE), 10, 3, Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25), 1, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.DAMAGE, new AddValue(LevelBasedValue.perLevel(0.5F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.CHAIN_OF_SOULS.get())))
 			.build(SOUL_SNATCHER.location()));
+		context.register(TRACING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE), items.getOrThrow(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE), 5, 2, Enchantment.dynamicCost(20, 11), Enchantment.dynamicCost(30, 11), 1, EquipmentSlotGroup.MAINHAND))
+			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new ApplyMobEffect(HolderSet.direct(MobEffects.GLOWING), LevelBasedValue.constant(4.5F), LevelBasedValue.perLevel(4.5F, 2.5F), LevelBasedValue.constant(0F), LevelBasedValue.constant(0F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.CHAIN_OF_SOULS.get())))
+			.build(TRACING.location()));
 		context.register(TEARING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE), items.getOrThrow(ESTags.Items.PUNGENCY_FRUIT_SPEAR_ENCHANTABLE), 10, 1, Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25), 1, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new ApplyMobEffect(HolderSet.direct(ESMobEffects.TEARY.asHolder()), LevelBasedValue.constant(2.5F), LevelBasedValue.perLevel(2.5F, 0.5F), LevelBasedValue.constant(0F), LevelBasedValue.constant(0F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.PUNGENCY_FRUIT_SPEAR.get())))
 			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.DAMAGING_ENTITY, new SpawnParticlesEffect(ESSmokeParticleOptions.PUNGENCY_FRUIT, SpawnParticlesEffect.inBoundingBox(), SpawnParticlesEffect.inBoundingBox(), SpawnParticlesEffect.fixedVelocity(ConstantFloat.of(0)), SpawnParticlesEffect.fixedVelocity(ConstantFloat.of(0)), ConstantFloat.of(0)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.PUNGENCY_FRUIT_SPEAR.get())))

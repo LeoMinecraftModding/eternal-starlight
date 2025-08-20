@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -34,7 +35,7 @@ public class ThrownStarfire extends ThrowableItemProjectile {
 			if (level() instanceof ServerLevel serverLevel) {
 				createExplosionParticles(serverLevel, position().add(0, getBbHeight() / 2, 0), 12, 1);
 				for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-					if (getOwner() != entity) {
+					if (ESEntityUtil.shouldHarm(getOwner(), entity)) {
 						entity.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 200));
 						createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 10, 0.25);
 					}

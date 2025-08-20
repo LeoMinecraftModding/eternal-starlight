@@ -40,10 +40,10 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		if (player != null) {
 			stack.pushPose();
 			float attackAnim = player.getAttackAnim(partialTicks);
-			Entity target = chain.level().getEntity(chain.getTargetId());
+			Entity target = chain.getTarget();
 			Vec3 handPos = getPlayerHandPos(player, Mth.sin(Mth.sqrt(attackAnim) * Mth.PI), partialTicks);
 			Vec3 endPos = new Vec3(Mth.lerp(partialTicks, chain.xo, chain.getX()), Mth.lerp(partialTicks, chain.yo, chain.getY()), Mth.lerp(partialTicks, chain.zo, chain.getZ()));
-			if (target != null) {
+			if (chain.isValidTarget(target)) {
 				Vec3 targetPos = new Vec3(Mth.lerp(partialTicks, target.xo, target.getX()), Mth.lerp(partialTicks, target.yo, target.getY()) + target.getBbHeight() / 2, Mth.lerp(partialTicks, target.zo, target.getZ()));
 				Vec3 diff = targetPos.subtract(endPos);
 				stack.translate(diff.x(), diff.y(), diff.z());

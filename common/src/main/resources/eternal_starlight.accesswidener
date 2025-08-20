@@ -30,6 +30,8 @@ accessible method net/minecraft/world/level/block/IronBarsBlock <init> (Lnet/min
 accessible method net/minecraft/world/item/PickaxeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
 accessible method net/minecraft/world/item/AxeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
 accessible method net/minecraft/world/item/HoeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
+accessible field net/minecraft/world/item/Item components Lnet/minecraft/core/component/DataComponentMap;
+mutable field net/minecraft/world/item/Item components Lnet/minecraft/core/component/DataComponentMap;
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/MapCodec;)V
 accessible method net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkPlacerType <init> (Lcom/mojang/serialization/MapCodec;)V
 accessible method net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacerType <init> (Lcom/mojang/serialization/MapCodec;)V

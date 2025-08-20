@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -42,7 +43,7 @@ public class AshenSnowball extends ThrowableItemProjectile {
 				serverLevel.sendParticles(ESParticles.ORBITAL_ASHEN_SNOW.get(), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + (random.nextFloat() - 0.5f) * getBbHeight() * 8, this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 1.5, 0.2, 0.0);
 			}
 			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
-				if (getOwner() != entity) {
+				if (ESEntityUtil.shouldHarm(getOwner(), entity)) {
 					entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60));
 				}
 			}

@@ -94,7 +94,6 @@ public class MarimoldBlock extends BushBlock implements BonemealableBlock, Simpl
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
 		builder.add(WATERLOGGED);
 	}
 

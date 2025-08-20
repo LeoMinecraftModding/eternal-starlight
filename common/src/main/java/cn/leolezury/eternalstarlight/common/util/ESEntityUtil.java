@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.util;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
@@ -38,6 +39,22 @@ public class ESEntityUtil {
 		}
 		result.entities().sort((o1, o2) -> (int) Math.signum(o1.position().distanceTo(from) - o2.position().distanceTo(from)));
 		return result;
+	}
+
+	public static boolean shouldHarm(Entity attacker, Entity victim) {
+		if (attacker == null || victim == null) {
+			return true;
+		}
+		if (attacker == victim) {
+			return false;
+		}
+		if (attacker.isAlliedTo(victim) || victim.isAlliedTo(attacker)) {
+			return false;
+		}
+		if (attacker instanceof Player p1 && victim instanceof Player p2 && !p1.canHarmPlayer(p2)) {
+			return false;
+		}
+		return true;
 	}
 
 	public record RaytraceResult(List<Entity> entities, BlockHitResult blockHitResult) {

@@ -14,12 +14,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
 
-public class ESGiftLootSubProvider implements LootTableSubProvider {
-	private final HolderLookup.Provider registries;
-
-	public ESGiftLootSubProvider(HolderLookup.Provider lookup) {
-		this.registries = lookup;
-	}
+public record ESGiftLootSubProvider(HolderLookup.Provider registries) implements LootTableSubProvider {
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {

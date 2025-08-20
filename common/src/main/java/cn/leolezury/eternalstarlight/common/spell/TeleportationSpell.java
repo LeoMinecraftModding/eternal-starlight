@@ -63,7 +63,7 @@ public class TeleportationSpell extends AbstractSpell {
 			serverLevel.sendParticles(ESParticles.STARLIGHT.get(), vec3.x, vec3.y, vec3.z, 1, 0, 0, 0, 0);
 		}
 		for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(entity.getBbWidth() * 3.5f))) {
-			if (livingEntity.distanceTo(entity) <= 4 * entity.getBbWidth()) {
+			if (ESEntityUtil.shouldHarm(entity, livingEntity) && livingEntity.distanceTo(entity) <= 4 * entity.getBbWidth()) {
 				if ((!(entity instanceof Enemy) && livingEntity instanceof Enemy) || (entity instanceof Enemy && !(livingEntity instanceof Enemy))) {
 					livingEntity.hurt(entity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(entity), 4 + (entity instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.8f : 0));
 				}

@@ -138,21 +138,21 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.POLISHED_ABYSSLATE.get(), ESBlocks.POLISHED_ABYSSLATE_SLAB.get(), ESBlocks.POLISHED_ABYSSLATE_STAIRS.get(), ESBlocks.POLISHED_ABYSSLATE_WALL.get());
 		stoneSet(ESBlocks.POLISHED_ABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_ABYSSLATE_BRICK_SLAB.get(), ESBlocks.POLISHED_ABYSSLATE_BRICK_STAIRS.get(), ESBlocks.POLISHED_ABYSSLATE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.ABYSSAL_MAGMA_BLOCK.get());
-		geyser(ESBlocks.ABYSSLATE.get(), ESBlocks.ABYSSAL_GEYSER.get());
+		geyser(ESBlocks.ABYSSAL_GEYSER.get(), ESBlocks.ABYSSLATE.get());
 
 		simpleBlock(ESBlocks.THERMABYSSLATE.get());
 		simpleBlock(ESBlocks.CHISELED_POLISHED_THERMABYSSLATE.get());
 		stoneSet(ESBlocks.POLISHED_THERMABYSSLATE.get(), ESBlocks.POLISHED_THERMABYSSLATE_SLAB.get(), ESBlocks.POLISHED_THERMABYSSLATE_STAIRS.get(), ESBlocks.POLISHED_THERMABYSSLATE_WALL.get());
 		stoneSet(ESBlocks.POLISHED_THERMABYSSLATE_BRICKS.get(), ESBlocks.POLISHED_THERMABYSSLATE_BRICK_SLAB.get(), ESBlocks.POLISHED_THERMABYSSLATE_BRICK_STAIRS.get(), ESBlocks.POLISHED_THERMABYSSLATE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get());
-		geyser(ESBlocks.THERMABYSSLATE.get(), ESBlocks.THERMABYSSAL_GEYSER.get());
+		geyser(ESBlocks.THERMABYSSAL_GEYSER.get(), ESBlocks.THERMABYSSLATE.get());
 
 		simpleBlock(ESBlocks.CRYOBYSSLATE.get());
 		simpleBlock(ESBlocks.CHISELED_POLISHED_CRYOBYSSLATE.get());
 		stoneSet(ESBlocks.POLISHED_CRYOBYSSLATE.get(), ESBlocks.POLISHED_CRYOBYSSLATE_SLAB.get(), ESBlocks.POLISHED_CRYOBYSSLATE_STAIRS.get(), ESBlocks.POLISHED_CRYOBYSSLATE_WALL.get());
 		stoneSet(ESBlocks.POLISHED_CRYOBYSSLATE_BRICKS.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_SLAB.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_STAIRS.get(), ESBlocks.POLISHED_CRYOBYSSLATE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get());
-		geyser(ESBlocks.CRYOBYSSLATE.get(), ESBlocks.CRYOBYSSAL_GEYSER.get());
+		geyser(ESBlocks.CRYOBYSSAL_GEYSER.get(), ESBlocks.CRYOBYSSLATE.get());
 
 		simpleBlock(ESBlocks.NIGHTFALL_MUD.get());
 		simpleBlock(ESBlocks.GLOWING_NIGHTFALL_MUD.get());
@@ -522,9 +522,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get());
 		simpleBlock(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get())));
 		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
-		simpleBlock(ESBlocks.GOLEM_STEEL_JET.get());
+		jetBlock(ESBlocks.GOLEM_STEEL_JET.get());
 		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
-		simpleBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
+		jetBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(modLoc("golem_steel_crate_open")), models().getExistingFile(modLoc("golem_steel_crate")));
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 
@@ -880,9 +880,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(block, models().cubeAll(name(block), blockTexture(Blocks.SPAWNER)).renderType(CUTOUT));
 	}
 
-	private void geyser(Block stone, Block geyser) {
+	private void geyser(Block geyser, Block stone) {
 		ModelFile modelFile = models().cubeBottomTop(name(geyser), blockTexture(stone), blockTexture(stone), blockTexture(geyser));
 		simpleBlock(geyser, modelFile);
+	}
+
+	private void jetBlock(Block block) {
+		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_top"));
+		simpleBlock(block, modelFile);
 	}
 
 	private void cubeBottomTop(Block block) {

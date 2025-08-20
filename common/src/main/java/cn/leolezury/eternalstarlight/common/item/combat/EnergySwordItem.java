@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -33,12 +34,12 @@ public class EnergySwordItem extends SwordItem {
 			livingEntity.setDeltaMovement(initialEndPos.subtract(initialStartPos).scale(5));
 			livingEntity.invulnerableTime += 20;
 			for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, livingEntity.getBoundingBox().inflate(livingEntity.getBbWidth() * 4f))) {
-				if (entity != livingEntity) {
+				if (ESEntityUtil.shouldHarm(livingEntity, entity)) {
 					entity.hurt(livingEntity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(livingEntity), 4);
 				}
 			}
 			for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, livingEntity.getBoundingBox().inflate(livingEntity.getBbWidth() * 4f).move(initialEndPos.subtract(initialStartPos).scale(5)))) {
-				if (entity != livingEntity) {
+				if (ESEntityUtil.shouldHarm(livingEntity, entity)) {
 					entity.hurt(livingEntity instanceof Player player ? serverLevel.damageSources().playerAttack(player) : serverLevel.damageSources().mobAttack(livingEntity), 4);
 				}
 			}

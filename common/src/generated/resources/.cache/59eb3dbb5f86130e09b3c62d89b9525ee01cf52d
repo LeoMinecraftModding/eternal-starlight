@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-06T12:29:51.3263884	Loot Tables
+// 1.21.1	2025-08-20T21:05:07.3795666	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -766,5 +766,9 @@ ed91cb96fb35e52e950d7a03bb62f4f8db3070f1 data/eternal_starlight/loot_table/entit
 4ac2a98d8cebe59ed04d9a0551d145efd03d6406 data/eternal_starlight/loot_table/entities/twilight_gaze.json
 2e639dab65828cba17fb69870b07c99a66201724 data/eternal_starlight/loot_table/entities/yeti.json
 704330d64abff1339b59de4c6ed454ef61b32dc4 data/eternal_starlight/loot_table/entities/zombified_ratlin.json
+078b597f7d093b83f18ef0529beb39e276a37272 data/eternal_starlight/loot_table/gameplay/fishing.json
+873b73b2a515f76ce9f9b8a310e54a79ba67f58d data/eternal_starlight/loot_table/gameplay/fishing/fish.json
+27030c6c8244904e555ee54803edf8afc9da27d5 data/eternal_starlight/loot_table/gameplay/fishing/junk.json
+1f21fd3c8be8212cf561dea23674844e8f1d619c data/eternal_starlight/loot_table/gameplay/fishing/treasure.json
 9c04453f179b09b731bb15026bb99511c8cb1bf8 data/eternal_starlight/loot_table/gameplay/starfire_bird_gift.json
 2e3882bff4b9cd6258bd51772ba6929405bcc8af data/eternal_starlight/loot_table/gameplay/stranghoul_bartering.json

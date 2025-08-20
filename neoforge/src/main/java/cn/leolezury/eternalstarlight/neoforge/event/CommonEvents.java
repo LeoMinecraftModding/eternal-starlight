@@ -57,7 +57,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onItemTooltip(ItemTooltipEvent event) {
-		CommonHandlers.onItemTooltip(event.getFlags(), event.getItemStack(), event.getToolTip(), event.getContext());
+		CommonHandlers.onItemTooltip(event.getEntity(), event.getFlags(), event.getItemStack(), event.getToolTip(), event.getContext());
 	}
 
 	@SubscribeEvent

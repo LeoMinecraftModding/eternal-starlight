@@ -19,6 +19,10 @@ public class ESLootTables {
 
 	public static final ResourceKey<LootTable> GAMEPLAY_STRANGHOUL_BARTERING = create("gameplay/stranghoul_bartering");
 	public static final ResourceKey<LootTable> GAMEPLAY_STARFIRE_BIRD_GIFT = create("gameplay/starfire_bird_gift");
+	public static final ResourceKey<LootTable> GAMEPLAY_FISHING = create("gameplay/fishing");
+	public static final ResourceKey<LootTable> GAMEPLAY_FISHING_FISH = create("gameplay/fishing/fish");
+	public static final ResourceKey<LootTable> GAMEPLAY_FISHING_JUNK = create("gameplay/fishing/junk");
+	public static final ResourceKey<LootTable> GAMEPLAY_FISHING_TREASURE = create("gameplay/fishing/treasure");
 
 	public static ResourceKey<LootTable> create(String name) {
 		return ResourceKey.create(Registries.LOOT_TABLE, EternalStarlight.id(name));

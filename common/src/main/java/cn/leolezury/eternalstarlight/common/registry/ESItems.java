@@ -1044,7 +1044,7 @@ public class ESItems {
 	// starlight golem
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 6, -2.4F))));
 	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));

@@ -1,0 +1,6 @@
+{
+  "cooldown": 0.8,
+  "damage_multiplier": 0.8,
+  "item": "minecraft:beetroot_seeds",
+  "speed_multiplier": 1.2
+}

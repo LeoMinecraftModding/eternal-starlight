@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "eternal_starlight:block/oxidized_golem_steel_jet"
+    "bottom": "eternal_starlight:block/oxidized_golem_steel_jet_side",
+    "side": "eternal_starlight:block/oxidized_golem_steel_jet_side",
+    "top": "eternal_starlight:block/oxidized_golem_steel_jet_top"
   }
 }

@@ -26,12 +26,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
 
-public class ESBossLootSubProvider implements LootTableSubProvider {
-	private final HolderLookup.Provider registries;
-
-	public ESBossLootSubProvider(HolderLookup.Provider lookup) {
-		this.registries = lookup;
-	}
+public record ESBossLootSubProvider(HolderLookup.Provider registries) implements LootTableSubProvider {
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {

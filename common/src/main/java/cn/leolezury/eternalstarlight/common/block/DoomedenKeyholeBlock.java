@@ -111,7 +111,7 @@ public class DoomedenKeyholeBlock extends HorizontalAxisBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(LIT);
 		super.createBlockStateDefinition(builder);
+		builder.add(LIT);
 	}
 }

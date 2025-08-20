@@ -16,6 +16,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
@@ -34,9 +35,11 @@ import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
@@ -162,13 +165,33 @@ public class CommonHandlers {
 		}
 	}
 
-	public static void onItemTooltip(TooltipFlag flags, ItemStack itemStack, List<Component> tooltip, Item.TooltipContext context) {
+	public static void onItemTooltip(Player player, TooltipFlag flags, ItemStack itemStack, List<Component> tooltip, Item.TooltipContext context) {
+		HolderLookup.Provider lookup = context.registries();
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+		}
+		if (player != null && lookup != null && itemStack.is(ESTags.Items.SEEDS_LAUNCHER_AMMO) && player.getInventory().contains(stack -> stack.getItem() == ESItems.SEEDS_LAUNCHER.get())) {
+			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(lookup, itemStack.getItem()).value();
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.ammo").withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+			String damage = Math.round((type.damageMultiplier() - 1) * 100) + "%";
+			if (!damage.startsWith("-")) {
+				damage = "+" + damage;
+			}
+			String speed = Math.round((type.speedMultiplier() - 1) * 100) + "%";
+			if (!speed.startsWith("-")) {
+				speed = "+" + speed;
+			}
+			if (!damage.equals("+0%")) {
+				tooltip.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.damage_multiplier", damage).withStyle(damage.startsWith("-") ? ChatFormatting.RED : ChatFormatting.BLUE)));
+			}
+			if (!speed.equals("+0%")) {
+				tooltip.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.speed_multiplier", speed).withStyle(speed.startsWith("-") ? ChatFormatting.RED : ChatFormatting.BLUE)));
+			}
+			tooltip.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.cooldown", type.cooldown()).withStyle(ChatFormatting.DARK_GREEN)));
 		}
 	}
 
@@ -420,7 +443,7 @@ public class CommonHandlers {
 		persistentData.putInt(TAG_IN_ABYSSAL_FIRE_TICKS, Math.max(inAbyssalFireTicks - 1, 0));
 		if (!level.isClientSide && entity instanceof AbstractArrow arrow && persistentData.getBoolean(TAG_WILTED_ARROW) && !arrow.inGround) {
 			List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
-			affected.removeIf(e -> arrow.getOwner() == e);
+			affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
 			for (LivingEntity living : affected) {
 				living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
 				living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));

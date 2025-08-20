@@ -182,7 +182,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		if (!isRemoved()) {
 			if (!level().isClientSide) {
 				if (natural && getSize() >= 10) {
-					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(5, 9)));
+					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(15, 25)));
 					if (entity != null) {
 						entity.setGlowingTag(true);
 					}
@@ -229,7 +229,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 		}
 		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
-			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && getOwner() != livingEntity) {
+			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
 				livingEntity.invulnerableTime = 0;
 				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
 			}
