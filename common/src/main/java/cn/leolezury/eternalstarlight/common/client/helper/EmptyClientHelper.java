@@ -51,11 +51,6 @@ public class EmptyClientHelper implements ClientHelper {
 	}
 
 	@Override
-	public void handleUpdateWitchType(UpdateWitchTypePacket packet) {
-
-	}
-
-	@Override
 	public void spawnStellarRackParticles(Vec3 center) {
 
 	}

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -15,12 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ProjectileWeaponItem.class)
 public abstract class ProjectileWeaponItemMixin {
-	@Inject(method = "createProjectile", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "createProjectile", at = @At("RETURN"))
 	private void createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
 		if (itemStack.is(ESItems.STARFALL_LONGBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
-			ESEntityUtil.getPersistentData(projectile).putBoolean(CommonHandlers.TAG_STARFALL_ARROW, true);
-			cir.setReturnValue(projectile);
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.STARFALL_ARROW);
 		}
 	}
 }

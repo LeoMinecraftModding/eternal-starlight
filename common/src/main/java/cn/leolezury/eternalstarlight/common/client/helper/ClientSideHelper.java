@@ -12,7 +12,6 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogue
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.network.*;
@@ -59,12 +58,12 @@ public class ClientSideHelper implements ClientHelper {
 
 	@Override
 	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
-		if (packet.ownedCrests().crests().isEmpty()) {
+		if (packet.ownedCrests().isEmpty()) {
 			if (Minecraft.getInstance().player != null) {
 				Minecraft.getInstance().player.displayClientMessage(Component.translatable("message." + EternalStarlight.ID + ".no_crest"), true);
 			}
 		} else {
-			Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests().crests(), packet.ownedCrests().crests()));
+			Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests(), packet.ownedCrests()));
 		}
 	}
 
@@ -193,16 +192,6 @@ public class ClientSideHelper implements ClientHelper {
 		BookDefinition definition = ClientHandlers.books.getBook(packet.bookId());
 		if (definition != null) {
 			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
-		}
-	}
-
-	@Override
-	public void handleUpdateWitchType(UpdateWitchTypePacket packet) {
-		if (Minecraft.getInstance().level != null) {
-			Entity witch = Minecraft.getInstance().level.getEntity(packet.witchId());
-			if (witch instanceof StarlightWitch starlightWitch) {
-				starlightWitch.setWitchType(packet.witchType());
-			}
 		}
 	}
 

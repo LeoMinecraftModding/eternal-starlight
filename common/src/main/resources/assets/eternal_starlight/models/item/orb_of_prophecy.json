@@ -3,20 +3,6 @@
     "layer0": "eternal_starlight:item/orb_of_prophecy",
     "particle": "eternal_starlight:item/orb_of_prophecy"
   },
-  "overrides": [
-    {
-      "model": "eternal_starlight:item/orb_of_prophecy_temporary",
-      "predicate": {
-        "eternal_starlight:orb_type": 0.5
-      }
-    },
-    {
-      "model": "eternal_starlight:item/orb_of_prophecy_with_crests",
-      "predicate": {
-        "eternal_starlight:orb_type": 1.0
-      }
-    }
-  ],
   "gui_light": "front",
   "elements": [
     {
@@ -170,20 +156,5 @@
         0
       ]
     }
-  },
-  "groups": [
-    {
-      "name": "group",
-      "origin": [
-        8,
-        8,
-        8
-      ],
-      "color": 0,
-      "nbt": "{}",
-      "children": [
-        0
-      ]
-    }
-  ]
+  }
 }

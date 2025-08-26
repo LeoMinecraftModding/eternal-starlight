@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.animation;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -28,13 +29,7 @@ public class PlayerAnimator {
 		ANIMATIONS.put(trigger, function);
 	}
 
-	public static class UseItemAnimationTrigger implements AnimationTrigger {
-		private final Supplier<? extends Item> itemSupplier;
-
-		public UseItemAnimationTrigger(Supplier<? extends Item> itemSupplier) {
-			this.itemSupplier = itemSupplier;
-		}
-
+	public record UseItemAnimationTrigger(Supplier<? extends Item> itemSupplier) implements AnimationTrigger {
 		@Override
 		public boolean shouldPlay(AbstractClientPlayer player) {
 			return player.isUsingItem() && player.getItemInHand(player.getUsedItemHand()).is(itemSupplier.get());
@@ -46,22 +41,16 @@ public class PlayerAnimator {
 		}
 	}
 
-	public static class CastSpellAnimationTrigger implements AnimationTrigger {
-		private final Supplier<? extends AbstractSpell> spellSupplier;
-
-		public CastSpellAnimationTrigger(Supplier<? extends AbstractSpell> spellSupplier) {
-			this.spellSupplier = spellSupplier;
-		}
-
+	public record CastSpellAnimationTrigger(Supplier<? extends AbstractSpell> spellSupplier) implements AnimationTrigger {
 		@Override
 		public boolean shouldPlay(AbstractClientPlayer player) {
-			return player instanceof SpellCaster caster && caster.getESSpellData().hasSpell() && caster.getESSpellData().spell() == spellSupplier.get();
+			return player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell() && ESDataAttachments.SPELL_CAST_DATA.getData(player).spell() == spellSupplier.get();
 		}
 
 		@Override
 		public float animateTicks(AbstractClientPlayer player, float ageInTicks) {
-			if (player instanceof SpellCaster caster) {
-				return Math.min(caster.getESSpellData().spell().spellProperties().totalTicks(), caster.getESSpellData().castTicks() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
+			if (player instanceof SpellCaster) {
+				return Math.min(ESDataAttachments.SPELL_CAST_DATA.getData(player).spell().spellProperties().totalTicks(), ESDataAttachments.SPELL_CAST_DATA.getData(player).castTicks() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 			}
 			return 0;
 		}
@@ -275,7 +264,7 @@ public class PlayerAnimator {
 	public static class CastSpellHandAnimationTransformer extends UseItemHandAnimationTransformer {
 		@Override
 		public boolean shouldApply(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
-			return player instanceof SpellCaster caster && caster.getESSpellData().offhand();
+			return player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).offhand();
 		}
 	}
 

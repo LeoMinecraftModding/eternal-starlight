@@ -9,18 +9,13 @@ import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -40,8 +35,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -53,13 +46,11 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
-	public static final String TAG_METEOR_COOLDOWN = "meteor_cooldown";
 	private static final String TAG_SIZE = "size";
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_TARGET_X = "target_x";
 	private static final String TAG_TARGET_Y = "target_y";
 	private static final String TAG_TARGET_Z = "target_z";
-	private static final String TAG_ONLY_HURT_ENEMY = "only_hurt_enemy";
 	private static final String TAG_NATURAL = "natural";
 
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
@@ -92,12 +83,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		this.targetPos = targetPos;
 	}
 
-	private boolean onlyHurtEnemy = true;
-
-	public void setOnlyHurtEnemy(boolean onlyHurtEnemy) {
-		this.onlyHurtEnemy = onlyHurtEnemy;
-	}
-
 	private boolean natural = true;
 
 	public boolean isNatural() {
@@ -119,11 +104,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
 		if (!level.isClientSide) {
-			CompoundTag tag = ESEntityUtil.getPersistentData(entity);
-			if (tag.getInt(TAG_METEOR_COOLDOWN) > 0) {
+			if (ESDataAttachments.METEOR_COOLDOWN.getData(entity) > 0) {
 				return;
 			}
-			tag.putInt(TAG_METEOR_COOLDOWN, 1);
+			ESDataAttachments.METEOR_COOLDOWN.setData(entity, 20);
 			for (int x = -1; x <= 1; x++) {
 				for (int z = -1; z <= 1; z++) {
 					RandomSource random = entity.getRandom();
@@ -131,7 +115,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 					meteor.setSize(random.nextInt(2, 5));
 					meteor.setTarget(target);
 					meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));
-					meteor.onlyHurtEnemy = onlyHurtEnemy;
 					meteor.natural = false;
 					level.addFreshEntity(meteor);
 					if (level instanceof ServerLevel serverLevel) {
@@ -155,9 +138,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
 		targetPos = new Vec3(compoundTag.getDouble(TAG_TARGET_X), compoundTag.getDouble(TAG_TARGET_Y), compoundTag.getDouble(TAG_TARGET_Z));
-		if (compoundTag.contains(TAG_ONLY_HURT_ENEMY, CompoundTag.TAG_BYTE)) {
-			onlyHurtEnemy = compoundTag.getBoolean(TAG_ONLY_HURT_ENEMY);
-		}
 		if (compoundTag.contains(TAG_NATURAL, CompoundTag.TAG_BYTE)) {
 			natural = compoundTag.getBoolean(TAG_NATURAL);
 		}
@@ -174,7 +154,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			compoundTag.putDouble(TAG_TARGET_Y, targetPos.y);
 			compoundTag.putDouble(TAG_TARGET_Z, targetPos.z);
 		}
-		compoundTag.putBoolean(TAG_ONLY_HURT_ENEMY, onlyHurtEnemy);
 		compoundTag.putBoolean(TAG_NATURAL, natural);
 	}
 
@@ -229,17 +208,17 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 		}
 		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
-			if ((!(getOwner() instanceof Player) || livingEntity instanceof Enemy || !onlyHurtEnemy) && ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
+			if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
 				livingEntity.invulnerableTime = 0;
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.02f : 1f));
+				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.08f : 1f));
 			}
 		}
 		if ((getTarget() != null && getY() < getTarget().getY()) || getY() < targetPos.y) {
 			playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
 			if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
 				serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+				discard();
 			}
-			discard();
 		}
 		if (natural) {
 			dropAndDiscard(false);
@@ -249,7 +228,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	public void tick() {
 		super.tick();
-		setDeltaMovement(0, -2, 0);
+		setDeltaMovement(0, natural ? -2 : -4, 0);
 		if (tickCount % 10 == 0) {
 			refreshDimensions();
 		}
@@ -312,24 +291,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+		effect.update(oldPos.add(0, getBbHeight() / 2, 0));
 		if (isRemoved()) {
 			effect.setLength(Math.max(effect.getLength() - 1.2f, 0));
 		}
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public TrailEffect.TrailPoint adjustPoint(TrailEffect.TrailPoint point, boolean vertical, float partialTicks) {
-		Vec3 center = point.center();
-		float width = point.width() / 2;
-		if (Minecraft.getInstance().getCameraEntity() != null) {
-			float yRot = Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90;
-			Vec3 upper = ESMathUtil.rotationToPosition(center, width, 0, yRot + 90);
-			Vec3 lower = ESMathUtil.rotationToPosition(center, width, 0, yRot - 90);
-			return new TrailEffect.TrailPoint(upper, lower);
-		}
-		return point;
 	}
 
 	@Override
@@ -340,11 +305,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	public boolean isTrailFullBright() {
 		return true;
-	}
-
-	@Override
-	public boolean shouldRenderHorizontal() {
-		return false;
 	}
 
 	@Environment(EnvType.CLIENT)

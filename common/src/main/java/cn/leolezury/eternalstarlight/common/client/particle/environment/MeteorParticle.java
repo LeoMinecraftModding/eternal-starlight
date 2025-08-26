@@ -4,14 +4,12 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -22,8 +20,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class MeteorParticle extends Particle {
@@ -42,7 +38,7 @@ public class MeteorParticle extends Particle {
 	public void tick() {
 		super.tick();
 		level.addParticle(ESExplosionParticleOptions.AETHERSENT, true, x, y, z, 0, 0, 0);
-		this.effect.update(new Vec3(xo, yo, zo), new Vec3(x - xo, y - yo, z - zo));
+		this.effect.update(new Vec3(xo, yo, zo));
 		if (onGround) {
 			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
 			if (effect.getLength() <= 0) {
@@ -62,21 +58,8 @@ public class MeteorParticle extends Particle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(this.x, this.y, this.z).subtract(new Vec3(this.xo, this.yo, this.zo)), partialTicks);
-		List<TrailEffect.TrailPoint> adjustedVertical = this.effect.getVerticalRenderPoints().stream().map(point -> {
-			Vec3 center = point.center();
-			float width = point.width() / 2;
-			if (Minecraft.getInstance().getCameraEntity() != null) {
-				float yRot = Minecraft.getInstance().getCameraEntity().getYHeadRot() + 90;
-				Vec3 upper = ESMathUtil.rotationToPosition(center, width, 0, yRot + 90);
-				Vec3 lower = ESMathUtil.rotationToPosition(center, width, 0, yRot - 90);
-				return new TrailEffect.TrailPoint(upper, lower);
-			}
-			return point;
-		}).toList();
-		this.effect.getVerticalRenderPoints().clear();
-		this.effect.getVerticalRenderPoints().addAll(adjustedVertical);
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, 144 / 255f, 94 / 255f, 168 / 255f, 1f, LightTexture.FULL_BRIGHT);
+		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

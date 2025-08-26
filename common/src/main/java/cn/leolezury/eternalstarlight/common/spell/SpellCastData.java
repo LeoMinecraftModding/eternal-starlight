@@ -2,11 +2,14 @@ package cn.leolezury.eternalstarlight.common.spell;
 
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
 public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength, int castTicks, boolean offhand) {
+	public static final StreamCodec<RegistryFriendlyByteBuf, SpellCastData> STREAM_CODEC = StreamCodec.ofMember(SpellCastData::toNetwork, SpellCastData::fromNetwork);
+
 	public static SpellCastData getDefault() {
 		return new SpellCastData(false, ESSpells.GUIDANCE_OF_STARS.get(), 0, 0, false);
 	}

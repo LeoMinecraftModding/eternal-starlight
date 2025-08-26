@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SpellCooldown {
 	public static final Codec<SpellCooldown> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
@@ -12,7 +12,7 @@ public class SpellCooldown {
 		Codec.INT.fieldOf("cooldown").forGetter(SpellCooldown::getCooldown)
 	).apply(instance, SpellCooldown::new));
 
-	public static final Codec<ArrayList<SpellCooldown>> LIST_CODEC = CODEC.listOf().xmap(ArrayList::new, l -> l);
+	public static final Codec<List<SpellCooldown>> LIST_CODEC = CODEC.listOf();
 
 	private final AbstractSpell spell;
 	private int cooldown;

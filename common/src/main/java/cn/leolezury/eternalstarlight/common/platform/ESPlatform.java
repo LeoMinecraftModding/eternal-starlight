@@ -28,6 +28,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
@@ -54,7 +56,9 @@ import net.minecraft.world.phys.Vec3;
 
 import java.nio.file.Path;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.ServiceLoader;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -137,7 +141,11 @@ public interface ESPlatform {
 	}
 
 	// attachment
-	<T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath);
+	default <T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec, boolean copyOnDeath) {
+		return registerDataAttachment(id, defaultValue, codec, streamCodec, (v1, v2) -> !Objects.equals(v1, v2), copyOnDeath);
+	}
+
+	<T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec, BiPredicate<T, T> shouldSync, boolean copyOnDeath);
 
 	// reload listeners
 	@Environment(EnvType.CLIENT)

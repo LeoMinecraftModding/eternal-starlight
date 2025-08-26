@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.spell;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESSpellUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,7 +25,7 @@ public abstract class AbstractSpell {
 
 	public boolean canCast(LivingEntity entity, boolean checkCrystal) {
 		boolean crystalCheck = !checkCrystal || (entity instanceof Player player && (player.hasInfiniteMaterials() || hasNeededCrystal(player.getInventory())));
-		return crystalCheck && ESSpellUtil.getCooldownFor(entity, this) <= 0 && checkExtraConditions(entity);
+		return crystalCheck && ESSpellUtil.getCooldown(entity, this) <= 0 && checkExtraConditions(entity);
 	}
 
 	public boolean hasNeededCrystal(Inventory inventory) {
@@ -50,8 +51,8 @@ public abstract class AbstractSpell {
 			damageCrystal(player);
 		}
 		onStart(entity);
-		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setESSpellData(new SpellCastData(true, this, strength, 0, caster.getESSpellSource() instanceof SpellCastData.ItemSpellSource source && source.hand() == InteractionHand.OFF_HAND));
+		if (!entity.level().isClientSide && entity instanceof SpellCaster) {
+			ESDataAttachments.SPELL_CAST_DATA.setData(entity, new SpellCastData(true, this, strength, 0, ESDataAttachments.SPELL_SOURCE.getData(entity) instanceof SpellCastData.ItemSpellSource source && source.hand() == InteractionHand.OFF_HAND));
 		}
 	}
 
@@ -79,9 +80,9 @@ public abstract class AbstractSpell {
 
 	public void stop(LivingEntity entity, int ticks) {
 		onStop(entity, ticks);
-		ESSpellUtil.setCooldownFor(entity, this, properties.cooldownTicks());
-		if (!entity.level().isClientSide && entity instanceof SpellCaster caster) {
-			caster.setESSpellData(SpellCastData.getDefault());
+		ESSpellUtil.addCooldown(entity, this, properties.cooldownTicks());
+		if (!entity.level().isClientSide && entity instanceof SpellCaster) {
+			ESDataAttachments.SPELL_CAST_DATA.removeData(entity);
 		}
 	}
 

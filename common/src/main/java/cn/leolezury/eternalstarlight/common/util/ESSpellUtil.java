@@ -1,16 +1,19 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.SpellCooldown;
 import net.minecraft.world.entity.LivingEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ESSpellUtil {
-	public static int getCooldownFor(LivingEntity entity, AbstractSpell spell) {
-		if (entity instanceof SpellCaster caster) {
-			Optional<SpellCooldown> cooldown = caster.getESSpellCooldowns().stream().filter(c -> c.getSpell() == spell).findFirst();
+	public static int getCooldown(LivingEntity entity, AbstractSpell spell) {
+		if (entity instanceof SpellCaster) {
+			Optional<SpellCooldown> cooldown = ESDataAttachments.SPELL_COOLDOWNS.getData(entity).stream().filter(c -> c.getSpell() == spell).findFirst();
 			if (cooldown.isPresent()) {
 				return cooldown.get().getCooldown();
 			}
@@ -18,26 +21,35 @@ public class ESSpellUtil {
 		return 0;
 	}
 
-	public static void setCooldownFor(LivingEntity entity, AbstractSpell spell, int cooldown) {
-		if (entity instanceof SpellCaster caster) {
-			caster.addESSpellCooldown(spell, cooldown);
+	public static void addCooldown(LivingEntity entity, AbstractSpell spell, int cooldown) {
+		if (entity instanceof SpellCaster) {
+			int totalCooldown = cooldown + getCooldown(entity, spell);
+			List<SpellCooldown> updated = new ArrayList<>(ESDataAttachments.SPELL_COOLDOWNS.getData(entity));
+			if (updated.stream().noneMatch(c -> c.getSpell() == spell)) {
+				updated.add(new SpellCooldown(spell, totalCooldown));
+			} else {
+				updated.stream().filter(c -> c.getSpell() == spell).findFirst().ifPresent(c -> c.setCooldown(totalCooldown));
+			}
+			ESDataAttachments.SPELL_COOLDOWNS.setData(entity, updated);
 		}
 	}
 
 	public static void tickSpells(LivingEntity entity) {
-		if (entity instanceof SpellCaster caster) {
+		if (entity instanceof SpellCaster) {
 			// cooldown
-			caster.getESSpellCooldowns().forEach(SpellCooldown::tick);
-			caster.getESSpellCooldowns().removeIf(c -> c.getCooldown() <= 0);
+			List<SpellCooldown> updated = new ArrayList<>(ESDataAttachments.SPELL_COOLDOWNS.getData(entity));
+			updated.forEach(SpellCooldown::tick);
+			updated.removeIf(c -> c.getCooldown() <= 0);
+			ESDataAttachments.SPELL_COOLDOWNS.setData(entity, updated);
 			// current spell
-			if (caster.getESSpellData().hasSpell()) {
-				caster.setESSpellData(caster.getESSpellData().increaseTick());
-				AbstractSpell spell = caster.getESSpellData().spell();
+			if (ESDataAttachments.SPELL_CAST_DATA.getData(entity).hasSpell()) {
+				ESDataAttachments.SPELL_CAST_DATA.setData(entity, ESDataAttachments.SPELL_CAST_DATA.getData(entity).increaseTick());
+				AbstractSpell spell = ESDataAttachments.SPELL_CAST_DATA.getData(entity).spell();
 				if (!entity.level().isClientSide) {
 					int preparationTicks = spell.spellProperties().preparationTicks();
 					int spellTicks = spell.spellProperties().spellTicks();
-					int useTicks = caster.getESSpellData().castTicks();
-					if (!spell.canContinueToCast(entity, useTicks) || !caster.getESSpellSource().canContinue(entity)) {
+					int useTicks = ESDataAttachments.SPELL_CAST_DATA.getData(entity).castTicks();
+					if (!spell.canContinueToCast(entity, useTicks) || !ESDataAttachments.SPELL_SOURCE.getData(entity).canContinue(entity)) {
 						spell.stop(entity, useTicks - preparationTicks);
 					}
 					if (useTicks <= preparationTicks + spellTicks) {

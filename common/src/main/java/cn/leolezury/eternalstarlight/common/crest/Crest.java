@@ -56,11 +56,7 @@ public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optio
 		).apply(instance, LevelBasedAttributeModifier::new));
 
 		public AttributeModifier getModifier(int level) {
-			return new AttributeModifier(getModifierId(level), amount() + (level - 1) * amountAddition(), operation());
-		}
-
-		public ResourceLocation getModifierId(int level) {
-			return id().withSuffix("_level_" + level);
+			return new AttributeModifier(id(), amount() + (level - 1) * amountAddition(), operation());
 		}
 	}
 
@@ -70,16 +66,12 @@ public record Crest(ManaType type, int maxLevel, ResourceLocation texture, Optio
 			Codec.INT.fieldOf("level").forGetter(Instance::level)
 		).apply(instance, Instance::new));
 
+		public static final Codec<List<Instance>> LIST_CODEC = CODEC.listOf();
+
 		public static Optional<Instance> of(RegistryAccess access, ResourceKey<Crest> key, int level) {
 			Registry<Crest> registry = access.registryOrThrow(ESRegistries.CREST);
 			Optional<Holder.Reference<Crest>> holder = registry.getHolder(key);
 			return holder.map(ref -> new Instance(ref, Math.min(level, ref.value().maxLevel())));
 		}
-	}
-
-	public record Set(List<Instance> crests) {
-		public static final Codec<Set> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-			Instance.CODEC.listOf().fieldOf("crests").forGetter(Set::crests)
-		).apply(instance, Set::new));
 	}
 }

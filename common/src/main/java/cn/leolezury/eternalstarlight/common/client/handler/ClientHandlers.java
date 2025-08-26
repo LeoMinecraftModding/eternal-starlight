@@ -18,14 +18,12 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
@@ -491,8 +489,8 @@ public class ClientHandlers {
 		Options options = Minecraft.getInstance().options;
 		if (options.getCameraType().isFirstPerson()) {
 			LocalPlayer player = Minecraft.getInstance().player;
-			if (player instanceof SpellCaster caster && caster.getESSpellData().hasSpell()) {
-				SpellCastData data = caster.getESSpellData();
+			if (player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell()) {
+				SpellCastData data = ESDataAttachments.SPELL_CAST_DATA.getData(player);
 				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
 					float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());
@@ -514,10 +512,9 @@ public class ClientHandlers {
 	}
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
-		float clientEtherTicksRaw = ESEntityUtil.getPersistentData(Minecraft.getInstance().player).getInt(CommonHandlers.TAG_CLIENT_IN_ETHER_TICKS);
-		float clientEtherTicks = Math.min(clientEtherTicksRaw + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
-		float erosionProgress = Math.min(clientEtherTicks, 140f) / 140f;
-		if (clientEtherTicksRaw > 0) {
+		float clientEtherTicks = Math.min(ESDataAttachments.IN_ETHER_TICKS.getData(Minecraft.getInstance().player) + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
+		float erosionProgress = clientEtherTicks / 140f;
+		if (erosionProgress > 0) {
 			renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
 		}
 	}

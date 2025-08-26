@@ -2,52 +2,41 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
-import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Fireball;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class GatekeeperFireball extends Fireball implements TrailOwner {
+public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
-	public GatekeeperFireball(EntityType<? extends GatekeeperFireball> entityType, Level level) {
-		super(entityType, level);
-	}
+	public float oSpin, spin;
 
-	public GatekeeperFireball(Level level, LivingEntity livingEntity, Vec3 motion) {
-		super(ESEntities.GATEKEEPER_FIREBALL.get(), livingEntity, motion, level);
-	}
-
-	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(GatekeeperFireball.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(EnergySpark.class, EntityDataSerializers.INT);
 
 	public int getSpawnedTicks() {
 		return this.getEntityData().get(SPAWNED_TICKS);
@@ -57,9 +46,20 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		this.getEntityData().set(SPAWNED_TICKS, spawnedTicks);
 	}
 
+	public EnergySpark(EntityType<? extends EnergySpark> entityType, Level level) {
+		super(entityType, level);
+	}
+
+	public EnergySpark(Level level, LivingEntity livingEntity) {
+		super(ESEntities.ENERGY_SPARK.get(), livingEntity, level);
+	}
+
+	public EnergySpark(Level level, double x, double y, double z) {
+		super(ESEntities.ENERGY_SPARK.get(), x, y, z, level);
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
 		builder.define(SPAWNED_TICKS, 0);
 	}
 
@@ -78,61 +78,6 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	}
 
 	@Override
-	protected ParticleOptions getTrailParticle() {
-		return ESSmokeParticleOptions.FLAME;
-	}
-
-	@Override
-	public boolean isPickable() {
-		return false;
-	}
-
-	@Override
-	public boolean isOnFire() {
-		return false;
-	}
-
-	@Override
-	public boolean hurt(DamageSource damageSource, float amount) {
-		return false;
-	}
-
-	@Override
-	protected boolean shouldBurn() {
-		return false;
-	}
-
-	private boolean canReachTarget(double range) {
-		LivingEntity target = getTarget();
-		if (target == null) {
-			return false;
-		}
-		return level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(range)).contains(target);
-	}
-
-	@Override
-	protected void onHit(HitResult hitResult) {
-		super.onHit(hitResult);
-		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
-			boolean bl = ESPlatform.INSTANCE.canEntityGrief(level(), getOwner());
-			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
-			this.discard();
-		}
-	}
-
-	@Override
-	protected void onHitEntity(EntityHitResult entityHitResult) {
-		super.onHitEntity(entityHitResult);
-		if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
-			Entity entity = entityHitResult.getEntity();
-			Entity entity2 = this.getOwner();
-			DamageSource damageSource = this.damageSources().fireball(this, entity2);
-			entity.hurt(damageSource, 8.0F);
-			EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
-		}
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide) {
@@ -144,19 +89,61 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 					targetId = null;
 				}
 			}
-			setSpawnedTicks(getSpawnedTicks() + 1);
-			if (getSpawnedTicks() == 60 && getTarget() != null) {
-				Vec3 power = getTarget().position().subtract(position()).normalize().scale(0.4f);
-				setDeltaMovement(power);
+			if (target != null && !target.isAlive()) {
+				target = null;
+				targetId = null;
 			}
+			Vec3 targetPos = position().add(getRandom().nextInt(-10, 11), getRandom().nextInt(-10, 11), getRandom().nextInt(-10, 11));
+			if (target != null) {
+				targetPos = target.position().add(0, target.getBbHeight() / 2, 0);
+			}
+			if (getSpawnedTicks() <= 40 && tickCount % 2 == 0) {
+				Vec3 delta = new Vec3(getRandom().nextFloat() - 0.5, getRandom().nextFloat() - 0.5, getRandom().nextFloat() - 0.5);
+				double length = this.getDeltaMovement().length();
+				this.setDeltaMovement(this.getDeltaMovement().add(delta.normalize().scale(Math.max(length * 0.05, 0.005))).normalize().scale(length));
+			}
+			if (getSpawnedTicks() > 40) {
+				Vec3 delta = targetPos.subtract(position());
+				double lengthSqr = delta.lengthSqr();
+				if (lengthSqr < 100) {
+					double e = 1.0 - Math.sqrt(lengthSqr) / 10.0;
+					this.setDeltaMovement(this.getDeltaMovement().add(delta.normalize().scale(e * e * 0.03)));
+				} else {
+					this.setDeltaMovement(this.getDeltaMovement().add(delta.normalize().scale(0.05)));
+				}
+			}
+			if (getSpawnedTicks() > 600) {
+				discard();
+			}
+			setSpawnedTicks(getSpawnedTicks() + 1);
 		}
-		if (getSpawnedTicks() < 60 && getOwner() != null) {
-			Entity owner = getOwner();
-			float yaw = ESMathUtil.positionToYaw(owner.position(), position());
-			float pitch = ESMathUtil.positionToPitch(owner.position(), position());
-			Vec3 newPos = ESMathUtil.rotationToPosition(owner.position(), distanceTo(owner), pitch, yaw + 5);
-			setPos(newPos);
+		oSpin = spin;
+		spin += Mth.PI * 0.06f * (getSpawnedTicks() / 100f);
+	}
+
+	@Override
+	protected void applyGravity() {
+
+	}
+
+	@Override
+	protected void onHitBlock(BlockHitResult hitResult) {
+		super.onHitBlock(hitResult);
+		switch (hitResult.getDirection().getAxis()) {
+			case X -> setDeltaMovement(getDeltaMovement().multiply(-1, 1, 1));
+			case Y -> setDeltaMovement(getDeltaMovement().multiply(1, -1, 1));
+			case Z -> setDeltaMovement(getDeltaMovement().multiply(1, 1, -1));
 		}
+	}
+
+	@Override
+	protected void onHitEntity(EntityHitResult hitResult) {
+		super.onHitEntity(hitResult);
+		if ((getTarget() == null || hitResult.getEntity() == getTarget()) && hitResult.getEntity() != getOwner()) {
+			hitResult.getEntity().invulnerableTime = 0;
+			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 3);
+		}
+		discard();
 	}
 
 	@Override
@@ -179,7 +166,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 
 	@Override
 	public TrailEffect newTrail() {
-		return new TrailEffect(0.5f, 18);
+		return new TrailEffect(0.125f, 3);
 	}
 
 	@Override
@@ -193,12 +180,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(250 / 255f, 150 / 255f, 5 / 255f, 1.5f);
-	}
-
-	@Override
-	public boolean isTrailFullBright() {
-		return true;
+		return new Vector4f(128 / 255f, 255 / 255f, 255 / 255f, 2f);
 	}
 
 	@Environment(EnvType.CLIENT)

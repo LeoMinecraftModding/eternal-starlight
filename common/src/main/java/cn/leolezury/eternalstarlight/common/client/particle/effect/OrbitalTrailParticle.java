@@ -27,7 +27,7 @@ import net.minecraft.world.phys.Vec3;
 public class OrbitalTrailParticle extends Particle {
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
-	private final TrailEffect effect = new TrailEffect(0.3f, 20);
+	private final TrailEffect effect = new TrailEffect(0.125f, 4);
 	private final int fromColor, toColor;
 	private final float radius, rotSpeed;
 	private final Entity owner;
@@ -69,7 +69,7 @@ public class OrbitalTrailParticle extends Particle {
 		this.x = pos.x();
 		this.y = pos.y();
 		this.z = pos.z();
-		this.effect.update(new Vec3(xo, yo, zo), new Vec3(x - xo, y - yo, z - zo));
+		this.effect.update(new Vec3(xo, yo, zo));
 		if (this.age++ >= this.lifetime) {
 			this.remove();
 		}
@@ -86,8 +86,8 @@ public class OrbitalTrailParticle extends Particle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), new Vec3(this.x, this.y, this.z).subtract(new Vec3(this.xo, this.yo, this.zo)), partialTicks);
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, true, color.rf(), color.gf(), color.bf(), a, LightTexture.FULL_BRIGHT);
+		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

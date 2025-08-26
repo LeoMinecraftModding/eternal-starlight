@@ -1,11 +1,10 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
-import cn.leolezury.eternalstarlight.common.network.UpdateSpellDataPacket;
-import cn.leolezury.eternalstarlight.common.network.UpdateWitchTypePacket;
+import cn.leolezury.eternalstarlight.common.network.SyncAttachmentsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import net.minecraft.server.level.ServerEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Final;
@@ -21,17 +20,16 @@ public abstract class ServerEntityMixin {
 	@Final
 	private Entity entity;
 
+	@Shadow
+	@Final
+	private ServerLevel level;
+
 	@Inject(method = "addPairing", at = @At(value = "TAIL"))
-	private void startSeenByPlayer(ServerPlayer serverPlayer, CallbackInfo ci) {
-		if (entity instanceof SpellCaster caster) {
-			if (!entity.level().isClientSide) {
-				ESPlatform.INSTANCE.sendToClient(serverPlayer, new UpdateSpellDataPacket(entity.getId(), caster.getESSpellData()));
+	private void addPairing(ServerPlayer serverPlayer, CallbackInfo ci) {
+		ESDataAttachments.getAttachments().forEach(attachment -> {
+			if (attachment.streamCodec() != null && attachment.hasData(entity)) {
+				ESPlatform.INSTANCE.sendToClient(serverPlayer, SyncAttachmentsPacket.create(entity, attachment, attachment.getData(entity), level.registryAccess()));
 			}
-		}
-		if (entity instanceof StarlightWitch witch) {
-			if (!entity.level().isClientSide) {
-				ESPlatform.INSTANCE.sendToClient(serverPlayer, new UpdateWitchTypePacket(entity.getId(), witch.getWitchType()));
-			}
-		}
+		});
 	}
 }

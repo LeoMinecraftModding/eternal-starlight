@@ -11,19 +11,10 @@ public interface TrailOwner {
 
 	void updateTrail(TrailEffect effect);
 
-	@Environment(EnvType.CLIENT)
-	default TrailEffect.TrailPoint adjustPoint(TrailEffect.TrailPoint point, boolean vertical, float partialTicks) {
-		return point;
-	}
-
 	Vector4f getTrailColor();
 
 	default boolean isTrailFullBright() {
 		return false;
-	}
-
-	default boolean shouldRenderHorizontal() {
-		return true;
 	}
 
 	@Environment(EnvType.CLIENT)

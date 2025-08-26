@@ -116,7 +116,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(oldPos.add(0, getBbHeight() / 2, 0), position().subtract(oldPos));
+		effect.update(oldPos.add(0, getBbHeight() / 2, 0));
 		if (isRemoved()) {
 			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
 		}
@@ -124,7 +124,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 0.75f);
+		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 2f);
 	}
 
 	@Environment(EnvType.CLIENT)

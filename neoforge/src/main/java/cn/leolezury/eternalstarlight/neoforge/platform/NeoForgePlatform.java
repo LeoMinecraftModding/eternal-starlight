@@ -39,7 +39,9 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -80,6 +82,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -247,11 +250,15 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public <T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, boolean copyOnDeath) {
+	public <T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec, BiPredicate<T, T> shouldSync, boolean copyOnDeath) {
 		AttachmentType.Builder<T> builder = AttachmentType.builder(h -> defaultValue.get());
 		if (codec != null) {
 			builder = builder.serialize(codec);
 		}
+		// "Received synced attachments from unknown entity"
+		/*if (streamCodec != null) {
+			builder = builder.sync((target, player) -> target instanceof Entity entity ? entity.isAlive() : target != null, streamCodec);
+		}*/
 		if (copyOnDeath) {
 			builder = builder.copyOnDeath();
 		}
@@ -278,13 +285,23 @@ public class NeoForgePlatform implements ESPlatform {
 			}
 
 			@Override
-			public @Nullable T setData(Entity entity, T data) {
+			public @Nullable T setDataUnsynced(Entity entity, T data) {
 				return entity.setData(holder, data);
 			}
 
 			@Override
-			public @Nullable T removeData(Entity entity) {
+			public @Nullable T removeDataUnsynced(Entity entity) {
 				return entity.removeData(holder);
+			}
+
+			@Override
+			public @Nullable StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec() {
+				return streamCodec;
+			}
+
+			@Override
+			public boolean shouldSync(T v1, T v2) {
+				return shouldSync.test(v1, v2);
 			}
 		};
 	}

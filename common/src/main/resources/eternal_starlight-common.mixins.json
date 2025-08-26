@@ -29,15 +29,13 @@
     "RandomStateMixin",
     "ServerEntityMixin",
     "ServerLevelMixin",
-    "ServerPlayerMixin",
     "SignBlockMixin",
     "SpawnEggItemMixin",
     "SurfaceSystemMixin",
     "TagLoaderMixin",
     "ThrowableProjectileMixin",
     "TntBlockMixin",
-    "WallHangingSignBlockMixin",
-    "WitchMixin"
+    "WallHangingSignBlockMixin"
   ],
   "client": [
     "client.CameraMixin",

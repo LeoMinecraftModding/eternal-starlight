@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.magic;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import net.minecraft.core.Holder;
@@ -37,12 +38,11 @@ public class SimpleSpellItem extends Item {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (!level.isClientSide && spell.value().canCast(player, false)) {
 			itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-			if (player instanceof SpellCaster caster) {
-				caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+			if (player instanceof SpellCaster) {
+				ESDataAttachments.SPELL_SOURCE.setData(player, new SpellCastData.ItemSpellSource(this, interactionHand));
 			}
 			spell.value().start(player, false);
-			return InteractionResultHolder.consume(itemStack);
 		}
-		return InteractionResultHolder.fail(itemStack);
+		return InteractionResultHolder.consume(itemStack);
 	}
 }

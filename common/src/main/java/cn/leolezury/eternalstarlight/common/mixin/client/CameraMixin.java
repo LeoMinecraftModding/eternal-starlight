@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
@@ -27,7 +28,7 @@ public abstract class CameraMixin {
 
 	@Inject(method = "setup", at = @At(value = "RETURN"))
 	private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
-		if (isDetached() && Minecraft.getInstance().player instanceof SpellCaster caster && caster.getESSpellData().hasSpell()) {
+		if (isDetached() && Minecraft.getInstance().player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(Minecraft.getInstance().player).hasSpell()) {
 			move(-getMaxZoom(2 * Minecraft.getInstance().player.getScale()), 1, 0);
 		}
 	}

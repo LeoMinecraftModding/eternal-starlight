@@ -980,7 +980,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.DOOMEDEN_KEYHOLE.get());
 		block(ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
-		orbOfProphecyInventory(ESItems.ORB_OF_PROPHECY.get());
+		inventoryModel(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());
 		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
 		block(ESItems.CREST_POT.get());
@@ -1110,17 +1110,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.9).model(pull2).end();
 	}
 
-	private void orbOfProphecyInventory(Item item) {
-		ModelFile withCrestModel = withExistingParent(name(item) + "_with_crests_inventory", "item/generated")
-			.texture("layer0", itemTexture(item).withSuffix("_with_crests_inventory"));
-		ModelFile temporaryModel = withExistingParent(name(item) + "_temporary_inventory", "item/generated")
-			.texture("layer0", itemTexture(item).withSuffix("_temporary_inventory"));
-		withExistingParent(name(item) + "_inventory", "item/generated")
-			.texture("layer0", itemTexture(item).withSuffix("_inventory"))
-			.override().predicate(EternalStarlight.id("orb_type"), 0.5f).model(temporaryModel).end()
-			.override().predicate(EternalStarlight.id("orb_type"), 1).model(withCrestModel).end();
-	}
-
 	private void trapdoor(Item item) {
 		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(item) + "_bottom"));
 	}
@@ -1197,6 +1186,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 	private void inventoryHandheld(Item item) {
 		getBuilder(item.toString() + "_inventory")
 			.parent(new ModelFile.UncheckedModelFile("item/handheld"))
+			.texture("layer0", itemTexture(item) + "_inventory");
+	}
+
+	private void inventoryModel(Item item) {
+		getBuilder(item.toString() + "_inventory")
+			.parent(new ModelFile.UncheckedModelFile("item/generated"))
 			.texture("layer0", itemTexture(item) + "_inventory");
 	}
 

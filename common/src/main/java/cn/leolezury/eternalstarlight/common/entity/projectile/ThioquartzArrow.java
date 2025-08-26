@@ -1,13 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.network.SetClientEtherTicksPacket;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,12 +32,7 @@ public class ThioquartzArrow extends AbstractArrow {
 	protected void doPostHurtEffects(LivingEntity livingEntity) {
 		super.doPostHurtEffects(livingEntity);
 		playSound(SoundEvents.GLASS_BREAK);
-		CompoundTag persistentData = ESEntityUtil.getPersistentData(livingEntity);
-		int inEtherTicks = persistentData.getInt(CommonHandlers.TAG_IN_ETHER_TICKS);
-		persistentData.putInt(CommonHandlers.TAG_IN_ETHER_TICKS, inEtherTicks + 100);
-		if (livingEntity instanceof ServerPlayer serverPlayer) {
-			ESPlatform.INSTANCE.sendToClient(serverPlayer, new SetClientEtherTicksPacket(serverPlayer.getId(), Math.min(inEtherTicks + 100, 140)));
-		}
+		ESDataAttachments.IN_ETHER_TICKS.setData(livingEntity, Math.min(ESDataAttachments.IN_ETHER_TICKS.getData(livingEntity) + 100, 300));
 		List<LivingEntity> affected = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(8));
 		affected.removeIf(e -> !ESEntityUtil.shouldHarm(getOwner(), e));
 		for (int i = 0; i < 5; i++) {

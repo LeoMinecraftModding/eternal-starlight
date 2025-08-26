@@ -176,6 +176,6 @@ public class CrestSelectionScreen extends Screen {
 				newCrests.add(button.getCrest());
 			}
 		}
-		ESPlatform.INSTANCE.sendToServer(new UpdateCrestsPacket(new Crest.Set(newCrests)));
+		ESPlatform.INSTANCE.sendToServer(new UpdateCrestsPacket(newCrests));
 	}
 }

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -72,6 +71,8 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 		if (!entity.getType().is(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE) && entity.tickCount % 30 == 0) {
 			entity.hurt(level.damageSources().inFire(), 3.0F);
 		}
-		ESEntityUtil.getPersistentData(entity).putInt(CommonHandlers.TAG_IN_ABYSSAL_FIRE_TICKS, 5);
+		if (!level.isClientSide) {
+			ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.setData(entity, 5);
+		}
 	}
 }

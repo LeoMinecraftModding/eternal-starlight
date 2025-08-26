@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -17,27 +17,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowItemMixin {
-	@Inject(method = "createProjectile", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "createProjectile", at = @At("RETURN"))
 	private void createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
 		if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
-			ESEntityUtil.getPersistentData(projectile).putBoolean(CommonHandlers.TAG_CRYSTAL_ARROW, true);
-			cir.setReturnValue(projectile);
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.CRYSTAL_ARROW);
 		}
 		if (itemStack.is(ESItems.MECHANICAL_CROSSBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
 			if (projectile instanceof AbstractArrow arrow) {
 				arrow.setPierceLevel((byte) ((int) arrow.getPierceLevel() + 1));
 			}
-			cir.setReturnValue(projectile);
 		}
 		if (itemStack.is(ESItems.WILTED_CROSSBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
-			ESEntityUtil.getPersistentData(projectile).putBoolean(CommonHandlers.TAG_WILTED_ARROW, true);
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.WILTED_ARROW);
 			if (projectile instanceof AbstractArrow arrow) {
 				arrow.setBaseDamage(arrow.getBaseDamage() + 1);
 			}
-			cir.setReturnValue(projectile);
 		}
 	}
 

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
@@ -96,7 +96,7 @@ public abstract class EntityMixin implements PersistentDataHolder {
 	@Inject(method = "checkInsideBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;entityInside(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)V"))
 	private void checkInsideBlocks(CallbackInfo ci, @Local(ordinal = 0) BlockState state) {
 		if (state.getFluidState().is(ESTags.Fluids.ETHER)) {
-			getESPersistentData().putBoolean(CommonHandlers.TAG_IN_ETHER, true);
+			ESDataAttachments.IN_ETHER.setData((Entity) (Object) this, true);
 		}
 	}
 

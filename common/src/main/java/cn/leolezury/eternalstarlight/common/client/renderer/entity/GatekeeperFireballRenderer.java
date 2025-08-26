@@ -5,13 +5,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemDisplayContext;
 
 @Environment(EnvType.CLIENT)
@@ -24,14 +22,14 @@ public class GatekeeperFireballRenderer extends ThrownItemRenderer<GatekeeperFir
 	}
 
 	@Override
-	public void render(GatekeeperFireball entity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+	public void render(GatekeeperFireball entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight) {
 		if (entity.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(entity) < 12.25)) {
 			poseStack.pushPose();
-			float scale = (Math.min(60f, entity.getSpawnedTicks() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 60f) * 3f;
+			float scale = (Math.min(60f, entity.getSpawnedTicks() + partialTicks) / 60f) * 3f;
 			poseStack.scale(scale, scale, scale);
 			poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
 			poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
-			this.itemRenderer.renderStatic(((ItemSupplier) entity).getItem(), ItemDisplayContext.GROUND, i, OverlayTexture.NO_OVERLAY, poseStack, multiBufferSource, entity.level(), entity.getId());
+			this.itemRenderer.renderStatic(entity.getItem(), ItemDisplayContext.GROUND, packedLight, OverlayTexture.NO_OVERLAY, poseStack, multiBufferSource, entity.level(), entity.getId());
 			poseStack.popPose();
 		}
 	}

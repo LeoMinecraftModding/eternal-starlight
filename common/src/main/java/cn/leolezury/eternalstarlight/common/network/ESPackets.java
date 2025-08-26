@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
 public class ESPackets {
+	public static final PacketInfo<SyncAttachmentsPacket> SYNC_ATTACHMENTS = new PacketInfo<>(SyncAttachmentsPacket.TYPE, SyncAttachmentsPacket.STREAM_CODEC, SyncAttachmentsPacket::handle);
 	public static final PacketInfo<NoParametersPacket> NO_PARAMETERS = new PacketInfo<>(NoParametersPacket.TYPE, NoParametersPacket.STREAM_CODEC, NoParametersPacket::handle);
 	public static final PacketInfo<ParticlePacket> PARTICLE = new PacketInfo<>(ParticlePacket.TYPE, ParticlePacket.STREAM_CODEC, ParticlePacket::handle);
 	public static final PacketInfo<VfxPacket> VFX = new PacketInfo<>(VfxPacket.TYPE, VfxPacket.STREAM_CODEC, VfxPacket::handle);
@@ -19,9 +20,6 @@ public class ESPackets {
 	public static final PacketInfo<CloseGatekeeperGuiPacket> CLOSE_GATEKEEPER_GUI = new PacketInfo<>(CloseGatekeeperGuiPacket.TYPE, CloseGatekeeperGuiPacket.STREAM_CODEC, CloseGatekeeperGuiPacket::handle);
 	public static final PacketInfo<UpdateBookPacket> UPDATE_BOOK = new PacketInfo<>(UpdateBookPacket.TYPE, UpdateBookPacket.STREAM_CODEC, UpdateBookPacket::handle);
 	public static final PacketInfo<OpenBookPacket> OPEN_BOOK = new PacketInfo<>(OpenBookPacket.TYPE, OpenBookPacket.STREAM_CODEC, OpenBookPacket::handle);
-	public static final PacketInfo<UpdateSpellDataPacket> UPDATE_SPELL_DATA = new PacketInfo<>(UpdateSpellDataPacket.TYPE, UpdateSpellDataPacket.STREAM_CODEC, UpdateSpellDataPacket::handle);
-	public static final PacketInfo<SetClientEtherTicksPacket> SET_CLIENT_ETHER_TICKS = new PacketInfo<>(SetClientEtherTicksPacket.TYPE, SetClientEtherTicksPacket.STREAM_CODEC, SetClientEtherTicksPacket::handle);
-	public static final PacketInfo<UpdateWitchTypePacket> UPDATE_WITCH_TYPE = new PacketInfo<>(UpdateWitchTypePacket.TYPE, UpdateWitchTypePacket.STREAM_CODEC, UpdateWitchTypePacket::handle);
 
 	public record PacketInfo<T extends CustomPacketPayload>(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 

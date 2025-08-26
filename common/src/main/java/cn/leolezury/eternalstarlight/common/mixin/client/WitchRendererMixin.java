@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.client.model.entity.DarkSwampWitchModel;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.StarlightWitch;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -36,7 +36,7 @@ public abstract class WitchRendererMixin {
 
 	@Inject(method = "render(Lnet/minecraft/world/entity/monster/Witch;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("HEAD"))
 	private void render(Witch witch, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
-		if (witch instanceof StarlightWitch starlightWitch && Objects.equals(starlightWitch.getWitchType(), "dark_swamp")) {
+		if (Objects.equals(ESDataAttachments.WITCH_TYPE.getData(witch), "dark_swamp")) {
 			WitchRenderer renderer = (WitchRenderer) (Object) this;
 			renderer.model = darkSwampModel;
 		}
@@ -52,7 +52,7 @@ public abstract class WitchRendererMixin {
 
 	@Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Witch;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"), cancellable = true)
 	private void getTextureLocation(Witch witch, CallbackInfoReturnable<ResourceLocation> cir) {
-		if (witch instanceof StarlightWitch starlightWitch && Objects.equals(starlightWitch.getWitchType(), "dark_swamp")) {
+		if (Objects.equals(ESDataAttachments.WITCH_TYPE.getData(witch), "dark_swamp")) {
 			cir.setReturnValue(DarkSwampWitchModel.ENTITY_TEXTURE);
 		}
 	}

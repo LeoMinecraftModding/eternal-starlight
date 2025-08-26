@@ -2,22 +2,16 @@ package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESGlowParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
-import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -221,11 +215,10 @@ public abstract class LivingEntityMixin {
 	private void tickEffects(CallbackInfo ci) {
 		LivingEntity livingEntity = ((LivingEntity) (Object) this);
 		if (!hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
-			CompoundTag tag = ESEntityUtil.getPersistentData(livingEntity);
-			float damage = tag.getFloat(CommonHandlers.TAG_NUMBNESS_DAMAGE);
+			float damage = ESDataAttachments.NUMBNESS_DAMAGE.getData(livingEntity);
 			if (damage != 0) {
 				hurt(ESDamageTypes.getDamageSource(livingEntity.level(), ESDamageTypes.NUMBNESS), damage);
-				tag.putFloat(CommonHandlers.TAG_NUMBNESS_DAMAGE, 0);
+				ESDataAttachments.NUMBNESS_DAMAGE.setData(livingEntity, 0f);
 			}
 		}
 	}

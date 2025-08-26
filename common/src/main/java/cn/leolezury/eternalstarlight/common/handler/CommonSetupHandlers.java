@@ -233,6 +233,7 @@ public class CommonSetupHandlers {
 	}
 
 	public static void registerPackets(NetworkRegisterStrategy strategy) {
+		strategy.register(ESPackets.SYNC_ATTACHMENTS);
 		strategy.register(ESPackets.NO_PARAMETERS);
 		strategy.register(ESPackets.PARTICLE);
 		strategy.register(ESPackets.VFX);
@@ -246,9 +247,6 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
 		strategy.register(ESPackets.UPDATE_BOOK);
 		strategy.register(ESPackets.OPEN_BOOK);
-		strategy.register(ESPackets.UPDATE_SPELL_DATA);
-		strategy.register(ESPackets.SET_CLIENT_ETHER_TICKS);
-		strategy.register(ESPackets.UPDATE_WITCH_TYPE);
 	}
 
 	public interface EntityAttributeRegisterStrategy {

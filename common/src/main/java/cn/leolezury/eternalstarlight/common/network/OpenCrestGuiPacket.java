@@ -11,12 +11,14 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
-public record OpenCrestGuiPacket(Crest.Set crests, Crest.Set ownedCrests) implements CustomPacketPayload {
+import java.util.List;
+
+public record OpenCrestGuiPacket(List<Crest.Instance> crests, List<Crest.Instance> ownedCrests) implements CustomPacketPayload {
 	public static final CustomPacketPayload.Type<OpenCrestGuiPacket> TYPE = new CustomPacketPayload.Type<>(EternalStarlight.id("open_crest_gui"));
 
 	public static final Codec<OpenCrestGuiPacket> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-		Crest.Set.CODEC.fieldOf("crests").forGetter(OpenCrestGuiPacket::crests),
-		Crest.Set.CODEC.fieldOf("owned_crests").forGetter(OpenCrestGuiPacket::ownedCrests)
+		Crest.Instance.LIST_CODEC.fieldOf("crests").forGetter(OpenCrestGuiPacket::crests),
+		Crest.Instance.LIST_CODEC.fieldOf("owned_crests").forGetter(OpenCrestGuiPacket::ownedCrests)
 	).apply(instance, OpenCrestGuiPacket::new));
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, OpenCrestGuiPacket> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC);

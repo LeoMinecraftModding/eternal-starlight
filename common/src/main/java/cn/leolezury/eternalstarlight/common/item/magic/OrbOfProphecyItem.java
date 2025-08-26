@@ -7,15 +7,12 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -27,41 +24,12 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-
-import java.util.List;
-import java.util.Optional;
 
 public class OrbOfProphecyItem extends Item {
 	public OrbOfProphecyItem(Properties properties) {
 		super(properties);
-	}
-
-	public static void recordCrests(RegistryAccess access, ItemStack stack, CompoundTag tag) {
-		List<Crest.Instance> crests = ESCrestUtil.getCrests(access, tag).crests();
-		List<Crest.Instance> itemCrests = ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag()).crests();
-		Optional<Tag> crestsTag = ESCrestUtil.setCrests(access, ESCrestUtil.mergeCrests(crests, itemCrests));
-		if (crestsTag.isPresent() && crestsTag.get() instanceof CompoundTag compoundTag) {
-			stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.of(compoundTag)).build());
-		}
-	}
-
-	public static boolean hasCrests(RegistryAccess access, ItemStack stack) {
-		return !getCrests(access, stack).isEmpty();
-	}
-
-	public static List<Crest.Instance> getCrests(RegistryAccess access, ItemStack stack) {
-		return ESCrestUtil.getCrests(access, stack.getComponents().getOrDefault(ESDataComponents.CRESTS.get(), CustomData.EMPTY).copyTag()).crests();
-	}
-
-	public static void setTemporary(ItemStack stack) {
-		stack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), true).build());
-	}
-
-	public static boolean isTemporary(ItemStack stack) {
-		return stack.getOrDefault(ESDataComponents.ORB_OF_PROPHECY_TEMPORARY.get(), false);
 	}
 
 	@Override
@@ -89,26 +57,15 @@ public class OrbOfProphecyItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (player.getPose() == Pose.STANDING) {
-			if (hasCrests(level.registryAccess(), itemStack)) {
-				int xpCost = isTemporary(itemStack) ? 2 : 1;
-				if (player.experienceLevel >= xpCost) {
-					player.experienceLevel -= xpCost;
-					getCrests(level.registryAccess(), itemStack).forEach(crest -> ESCrestUtil.giveCrest(player, crest));
-					itemStack.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CRESTS.get(), CustomData.EMPTY).build());
-					if (isTemporary(itemStack)) {
-						itemStack.consume(1, player);
-					}
-					return InteractionResultHolder.success(itemStack);
-				}
-			} else if (!itemStack.has(ESDataComponents.CURRENT_CREST.get())) {
+			if (!itemStack.has(ESDataComponents.CURRENT_CREST.get())) {
 				player.startUsingItem(interactionHand);
 				return InteractionResultHolder.consume(itemStack);
-			} else if (!level.isClientSide && player instanceof SpellCaster caster && !caster.getESSpellData().hasSpell()) {
+			} else if (!level.isClientSide && player instanceof SpellCaster && !ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell()) {
 				CurrentCrestComponent component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
 				if (component != null && component.crest().isBound()) {
 					Crest crest = component.crest().value();
 					if (crest.getSpell().isPresent() && crest.getSpell().get().canCast(player, true)) {
-						caster.setESSpellSource(new SpellCastData.ItemSpellSource(this, interactionHand));
+						ESDataAttachments.SPELL_SOURCE.setData(player, new SpellCastData.ItemSpellSource(this, interactionHand));
 						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
 						return InteractionResultHolder.consume(itemStack);
 					}

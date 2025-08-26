@@ -46,7 +46,6 @@ public class MeteorShowerWeather extends AbstractWeather {
 			AethersentMeteor meteor = new AethersentMeteor(level, null, targetX + (random.nextFloat() - 0.5) * 3, targetY + 200 + (random.nextFloat() - 0.5) * 5, targetZ + (random.nextFloat() - 0.5) * 3);
 			meteor.setSize(10);
 			meteor.setTargetPos(new Vec3(targetX, targetY, targetZ));
-			meteor.setOnlyHurtEnemy(false);
 			level.addFreshEntity(meteor);
 			level.sendParticles(ParticleTypes.EXPLOSION, meteor.getX(), meteor.getY(), meteor.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
 		}

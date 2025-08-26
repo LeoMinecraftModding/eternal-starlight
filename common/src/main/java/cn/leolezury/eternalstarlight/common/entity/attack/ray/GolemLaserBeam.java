@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
 import net.minecraft.world.entity.Entity;
@@ -22,7 +23,7 @@ public class GolemLaserBeam extends RayAttack {
 
 	@Override
 	public float getAttackDamage() {
-		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 4f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster caster ? caster.getESSpellData().strength() * 0.5f : 0);
+		return (getCaster().isPresent() && getCaster().get() instanceof StarlightGolem) ? 4f : 3f + (getCaster().isPresent() && getCaster().get() instanceof SpellCaster ? ESDataAttachments.SPELL_CAST_DATA.getData(getCaster().get()).strength() * 0.5f : 0);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class GolemLaserBeam extends RayAttack {
 					discard();
 				}
 			} else {
-				if (caster instanceof SpellCaster spellCaster && (!spellCaster.getESSpellData().hasSpell() || spellCaster.getESSpellData().spell() != ESSpells.LASER_BEAM.get())) {
+				if (caster instanceof SpellCaster && (!ESDataAttachments.SPELL_CAST_DATA.getData(caster).hasSpell() || ESDataAttachments.SPELL_CAST_DATA.getData(caster).spell() != ESSpells.LASER_BEAM.get())) {
 					discard();
 				}
 			}

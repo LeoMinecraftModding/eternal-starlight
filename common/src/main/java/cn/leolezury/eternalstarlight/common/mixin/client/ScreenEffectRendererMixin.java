@@ -1,8 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,9 +30,7 @@ public abstract class ScreenEffectRendererMixin {
 	@Inject(method = "renderScreenEffect", at = @At(value = "TAIL"))
 	private static void renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
 		if (minecraft.player != null && !minecraft.player.isSpectator()) {
-			CompoundTag persistentData = ESEntityUtil.getPersistentData(minecraft.player);
-			int inAbyssalFireTicks = persistentData.getInt(CommonHandlers.TAG_IN_ABYSSAL_FIRE_TICKS);
-			if (inAbyssalFireTicks > 0) {
+			if (ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.getData(minecraft.player) > 0) {
 				renderAbyssalFlame(poseStack);
 			}
 		}

@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
 public class WiltedPetalRenderer extends EntityRenderer<WiltedPetal> {
@@ -27,20 +26,21 @@ public class WiltedPetalRenderer extends EntityRenderer<WiltedPetal> {
 	@Override
 	public void render(WiltedPetal entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
+		poseStack.translate(0, entity.getBbHeight() / 2, 0);
 		poseStack.scale(0.6F, 0.6F, 0.6F);
-		poseStack.mulPose(new Quaternionf(this.entityRenderDispatcher.cameraOrientation()).rotateZ(Mth.lerp(partialTicks, entity.oSpin, entity.spin)));
+		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
 		PoseStack.Pose pose = poseStack.last();
 		VertexConsumer vertexConsumer = buffer.getBuffer(RENDER_TYPE);
-		vertex(vertexConsumer, pose, packedLight, 0.0F, 0, 0, 1);
-		vertex(vertexConsumer, pose, packedLight, 1.0F, 0, 1, 1);
-		vertex(vertexConsumer, pose, packedLight, 1.0F, 1, 1, 0);
-		vertex(vertexConsumer, pose, packedLight, 0.0F, 1, 0, 0);
+		vertex(vertexConsumer, pose, packedLight, 0.5F * Mth.SQRT_OF_TWO * Mth.sin(Mth.lerp(partialTicks, entity.oSpin, entity.spin)), 0.5F * Mth.SQRT_OF_TWO * Mth.cos(Mth.lerp(partialTicks, entity.oSpin, entity.spin)), 0, 1);
+		vertex(vertexConsumer, pose, packedLight, 0.5F * Mth.SQRT_OF_TWO * Mth.sin(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 90), 0.5F * Mth.SQRT_OF_TWO * Mth.cos(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 90), 1, 1);
+		vertex(vertexConsumer, pose, packedLight, 0.5F * Mth.SQRT_OF_TWO * Mth.sin(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 180), 0.5F * Mth.SQRT_OF_TWO * Mth.cos(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 180), 1, 0);
+		vertex(vertexConsumer, pose, packedLight, 0.5F * Mth.SQRT_OF_TWO * Mth.sin(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 270), 0.5F * Mth.SQRT_OF_TWO * Mth.cos(Mth.lerp(partialTicks, entity.oSpin, entity.spin) + Mth.DEG_TO_RAD * 270), 0, 0);
 		poseStack.popPose();
 		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
 	}
 
-	private static void vertex(VertexConsumer consumer, PoseStack.Pose pose, int packedLight, float x, int y, int u, int v) {
-		consumer.addVertex(pose, x - 0.5F, y - 0.25F, 0.0F)
+	private static void vertex(VertexConsumer consumer, PoseStack.Pose pose, int packedLight, float x, float y, float u, float v) {
+		consumer.addVertex(pose, x, y, 0.0F)
 			.setColor(-1)
 			.setUv(u, v)
 			.setOverlay(OverlayTexture.NO_OVERLAY)

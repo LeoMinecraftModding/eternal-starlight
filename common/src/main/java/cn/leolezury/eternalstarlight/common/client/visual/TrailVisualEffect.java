@@ -72,19 +72,8 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 		float x = (float) (entityRemoved ? entity.getX() : Mth.lerp(partialTicks, entity.xOld, entity.getX()));
 		float y = (float) (entityRemoved ? entity.getY() : Mth.lerp(partialTicks, entity.yOld, entity.getY()));
 		float z = (float) (entityRemoved ? entity.getZ() : Mth.lerp(partialTicks, entity.zOld, entity.getZ()));
-		this.effect.prepareRender(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), new Vec3(entity.getX(), entity.getY(), entity.getZ()).subtract(new Vec3(entity.xOld, entity.yOld, entity.zOld)), partialTicks);
-
-		List<TrailEffect.TrailPoint> adjustedVertical = this.effect.getVerticalRenderPoints().stream().map(p -> entity.adjustPoint(p, true, partialTicks)).toList();
-		this.effect.getVerticalRenderPoints().clear();
-		this.effect.getVerticalRenderPoints().addAll(adjustedVertical);
-		List<TrailEffect.TrailPoint> adjustedHorizontal = this.effect.getHorizontalRenderPoints().stream().map(p -> entity.adjustPoint(p, false, partialTicks)).toList();
-		this.effect.getHorizontalRenderPoints().clear();
-		this.effect.getHorizontalRenderPoints().addAll(adjustedHorizontal);
-
-		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, true, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
-		if (entity.shouldRenderHorizontal()) {
-			this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, false, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
-		}
+		this.effect.prepareRender(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), partialTicks);
+		this.effect.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 	}
 
 	@Override

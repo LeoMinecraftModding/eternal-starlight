@@ -29,7 +29,6 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.combat.ChainOfSoulsItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
-import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.blaze3d.platform.InputConstants;
@@ -550,8 +549,6 @@ public class ClientSetupHandlers {
 			}
 		});
 		ItemProperties.register(ESItems.BOW_OF_BLOOD.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-		ItemProperties.register(ESItems.ORB_OF_PROPHECY.get(), EternalStarlight.id("orb_type"), (stack, level, entity, i) -> level == null ? 0.0F : (OrbOfProphecyItem.hasCrests(level.registryAccess(), stack) ? (OrbOfProphecyItem.isTemporary(stack) ? 0.5F : 1.0F) : 0.0F));
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
@@ -828,6 +825,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.ENERGY_SPARK.get(), EnergySparkRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}
