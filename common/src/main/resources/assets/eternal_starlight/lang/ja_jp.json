@@ -1475,6 +1475,7 @@
   "crest.eternal_starlight.blazing_beam": "灼熱の光線",
   "crest.eternal_starlight.blazing_beam.desc": "向いている方向へレーザービームを発射する",
   "weather.eternal_starlight.meteor_shower": "流星雨",
+  "weather.eternal_starlight.aurora": "Aurora",
   "commands.eternal_starlight.weather.set": "天候を%sに設定しました",
   "commands.eternal_starlight.weather.fail": "天候を%sに設定できませんでした",
   "commands.eternal_starlight.weather.clear": "天候を晴れに設定しました",
