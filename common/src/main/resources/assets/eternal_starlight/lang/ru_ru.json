@@ -1475,6 +1475,7 @@
   "crest.eternal_starlight.blazing_beam": "Пылающий луч",
   "crest.eternal_starlight.blazing_beam.desc": "Выстрелите лазерным лучом в том направлении, куда вы смотрите",
   "weather.eternal_starlight.meteor_shower": "Метеоритный дождь",
+  "weather.eternal_starlight.aurora": "Aurora",
   "commands.eternal_starlight.weather.set": "Установлена погода %s",
   "commands.eternal_starlight.weather.fail": "Не удалось установить погоду на %s",
   "commands.eternal_starlight.weather.clear": "Установлена ясная погода",
