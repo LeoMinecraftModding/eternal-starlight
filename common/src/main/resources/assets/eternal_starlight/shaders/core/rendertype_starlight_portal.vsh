@@ -8,7 +8,6 @@ in vec2 UV0;
 
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
-uniform mat3 IViewRotMat;
 uniform int FogShape;
 
 out float vertexDistance;

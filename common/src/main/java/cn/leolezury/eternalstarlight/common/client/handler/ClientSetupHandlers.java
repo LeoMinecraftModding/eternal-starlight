@@ -659,6 +659,7 @@ public class ClientSetupHandlers {
 		strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
 		strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
 		strategy.register(EternalStarlight.id("rendertype_eclipse"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeEclipse);
+		strategy.register(EternalStarlight.id("aurora"), DefaultVertexFormat.POSITION_COLOR, ESShaders::setAurora);
 	}
 
 	public static void modifyBakingResult(Map<ModelResourceLocation, BakedModel> models) {

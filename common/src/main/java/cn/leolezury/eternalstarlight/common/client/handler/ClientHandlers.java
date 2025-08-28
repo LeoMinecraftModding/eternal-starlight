@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
+import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
@@ -28,8 +29,7 @@ import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.ByteBufferBuilder;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.AttackIndicatorStatus;
@@ -42,6 +42,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -83,9 +84,11 @@ public class ClientHandlers {
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 	public static int clientTickCount = 0;
+	public static BossMusicSoundInstance bossMusicInstance = null;
 	private static float oldPortalTicks;
 	private static float portalTicks;
-	public static BossMusicSoundInstance bossMusicInstance = null;
+	private static float oldAuroraIntensity;
+	private static float auroraIntensity;
 	public static int resetCameraIn;
 	public static float fogStartDecrement;
 	public static float fogEndDecrement;
@@ -184,6 +187,18 @@ public class ClientHandlers {
 				portalTicks -= 2;
 			}
 			portalTicks = Mth.clamp(portalTicks, 0, 80);
+			oldAuroraIntensity = auroraIntensity;
+			if (player.level().dimension() == ESDimensions.STARLIGHT_KEY) {
+				if (ClientWeatherState.weather == ESWeathers.AURORA.get()) {
+					auroraIntensity += 0.05f;
+				} else {
+					auroraIntensity -= 0.05f;
+				}
+			} else {
+				oldAuroraIntensity = 0;
+				auroraIntensity = 0;
+			}
+			auroraIntensity = Mth.clamp(auroraIntensity, 0, 1);
 			List<ResourceKey<Crest>> crestsToRemove = new ArrayList<>();
 			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
 				GuiCrest crest = GUI_CRESTS.get(key);
@@ -327,7 +342,7 @@ public class ClientHandlers {
 		modelViewMatrix = RenderSystem.getModelViewMatrix();
 	}
 
-	public static void onAfterRenderWeather() {
+	public static void onAfterRenderWeather(float partialTicks) {
 		RenderSystem.enableCull();
 		RenderSystem.enableBlend();
 		RenderSystem.enableDepthTest();
@@ -342,6 +357,39 @@ public class ClientHandlers {
 		if (Minecraft.useShaderTransparency() && Minecraft.getInstance().levelRenderer.getCloudsTarget() != null) {
 			Minecraft.getInstance().levelRenderer.getCloudsTarget().bindWrite(false);
 		}
+		// aurora
+		float aurora = Mth.lerp(partialTicks, oldAuroraIntensity, auroraIntensity);
+		if (aurora > 0 && Minecraft.getInstance().level != null) {
+			renderSkyShader(ESShaders.getAurora(), aurora);
+		}
+	}
+
+	private static void renderSkyShader(ShaderInstance shader, float intensity) {
+		Tesselator tesselator = Tesselator.getInstance();
+		BufferBuilder buffer = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+
+		final float scale = 2048F * (Minecraft.getInstance().gameRenderer.getRenderDistance() / 32F);
+		Vec3 pos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+		float height = (float) (pos.y() + 128);
+		float cloud = Minecraft.getInstance().level.effects().getCloudHeight() + 64;
+		float y = (float) (Math.max(height, cloud) - pos.y());
+		buffer.addVertex(-scale, y, scale).setColor(1F, 1F, 1F, 1F);
+		buffer.addVertex(-scale, y, -scale).setColor(1F, 1F, 1F, 1F);
+		buffer.addVertex(scale, y, -scale).setColor(1F, 1F, 1F, 1F);
+		buffer.addVertex(scale, y, scale).setColor(1F, 1F, 1F, 1F);
+
+		RenderSystem.enableBlend();
+		RenderSystem.enableDepthTest();
+		RenderSystem.setShaderColor(1F, 1F, 1F, intensity);
+		ShaderInstance last = RenderSystem.getShader();
+		RenderSystem.setShader(() -> shader);
+		shader.apply();
+		BufferUploader.drawWithShader(buffer.buildOrThrow());
+		shader.clear();
+		RenderSystem.setShader(() -> last);
+		RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+		RenderSystem.disableDepthTest();
+		RenderSystem.disableBlend();
 	}
 
 	public static Vec3 computeCameraAngles(Vec3 angles) {
@@ -512,8 +560,7 @@ public class ClientHandlers {
 	}
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
-		float clientEtherTicks = Math.min(ESDataAttachments.IN_ETHER_TICKS.getData(Minecraft.getInstance().player) + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 140f);
-		float erosionProgress = clientEtherTicks / 140f;
+		float erosionProgress = ESDataAttachments.IN_ETHER_TICKS.getData(Minecraft.getInstance().player) / 140f;
 		if (erosionProgress > 0) {
 			renderTextureOverlay(guiGraphics, ETHER_EROSION_OVERLAY, erosionProgress);
 		}

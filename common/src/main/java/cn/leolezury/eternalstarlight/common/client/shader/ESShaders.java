@@ -9,6 +9,7 @@ public class ESShaders {
 	private static ShaderInstance crestSelectionGui;
 	private static ShaderInstance renderTypeStarlightPortal;
 	private static ShaderInstance renderTypeEclipse;
+	private static ShaderInstance aurora;
 
 	public static ShaderInstance getCrestSelectionGui() {
 		return crestSelectionGui;
@@ -32,5 +33,13 @@ public class ESShaders {
 
 	public static void setRenderTypeEclipse(ShaderInstance renderTypeEclipse) {
 		ESShaders.renderTypeEclipse = renderTypeEclipse;
+	}
+
+	public static ShaderInstance getAurora() {
+		return aurora;
+	}
+
+	public static void setAurora(ShaderInstance aurora) {
+		ESShaders.aurora = aurora;
 	}
 }

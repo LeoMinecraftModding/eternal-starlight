@@ -22,6 +22,7 @@
     "ItemEntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "PlayerListMixin",
     "PlayerMixin",
     "ProjectileMixin",
     "ProjectileWeaponItemMixin",

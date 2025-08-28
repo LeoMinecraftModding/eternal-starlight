@@ -43,7 +43,7 @@ public class ClientEvents {
 	}
 
 	@SubscribeEvent
-	private static void onAfterRenderEntities(RenderLevelStageEvent event) {
+	private static void onRenderLevelStage(RenderLevelStageEvent event) {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
 			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
@@ -51,7 +51,7 @@ public class ClientEvents {
 			ClientHandlers.onAfterRenderParticles();
 		}
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_WEATHER) {
-			ClientHandlers.onAfterRenderWeather();
+			ClientHandlers.onAfterRenderWeather(event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 	}
 }

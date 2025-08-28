@@ -1475,6 +1475,7 @@
   "crest.eternal_starlight.blazing_beam": "Blazing Beam",
   "crest.eternal_starlight.blazing_beam.desc": "Fire a laser beam in the direction you're facing",
   "weather.eternal_starlight.meteor_shower": "Meteor Shower",
+  "weather.eternal_starlight.aurora": "Aurora",
   "commands.eternal_starlight.weather.set": "Set weather to %s",
   "commands.eternal_starlight.weather.fail": "Failed to set weather to %s",
   "commands.eternal_starlight.weather.clear": "Set weather to clear",

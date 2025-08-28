@@ -1475,6 +1475,7 @@
   "crest.eternal_starlight.blazing_beam": "炽热射线",
   "crest.eternal_starlight.blazing_beam.desc": "向你面对的方向发射一束激光",
   "weather.eternal_starlight.meteor_shower": "流星雨",
+  "weather.eternal_starlight.aurora": "极光",
   "commands.eternal_starlight.weather.set": "已将天气设置为%s",
   "commands.eternal_starlight.weather.fail": "无法将天气设置为%s",
   "commands.eternal_starlight.weather.clear": "已将天气清除",
