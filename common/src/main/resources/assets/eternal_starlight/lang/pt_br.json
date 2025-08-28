@@ -1475,6 +1475,7 @@
   "crest.eternal_starlight.blazing_beam": "Raio Ardente",
   "crest.eternal_starlight.blazing_beam.desc": "Dispara um raio laser na direção que você está olhando",
   "weather.eternal_starlight.meteor_shower": "Chuva de Meteoros",
+  "weather.eternal_starlight.aurora": "Aurora",
   "commands.eternal_starlight.weather.set": "Clima definido para %s",
   "commands.eternal_starlight.weather.fail": "Falha ao definir o clima para %s",
   "commands.eternal_starlight.weather.clear": "Clima definido para limpo",
