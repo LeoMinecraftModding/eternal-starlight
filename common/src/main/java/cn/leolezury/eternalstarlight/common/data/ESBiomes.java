@@ -345,6 +345,7 @@ public class ESBiomes {
 	private static BiomeGenerationSettings.Builder lushShallowSeaGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = baseAquaticGenSettings(featureGetter, carverGetter);
 
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.VELVETUMOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.LUMENSTEM);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.JINGLESTEM_FOREST);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.LUSH_SHALLOW_SEA_VEGETATION);
@@ -360,7 +361,6 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.CRYOBYSSLATE_PATCH);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ABYSSAL_KELP);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ORBFLORA);
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.VELVETUMOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.RED_VELVETUMOSS);
 
 		return builder;

@@ -36,7 +36,7 @@ public class SonarBombItem extends Item implements ProjectileItem {
 			itemStack.shrink(1);
 		}
 
-		player.getCooldowns().addCooldown(this, 60);
+		player.getCooldowns().addCooldown(this, 20);
 
 		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
 	}

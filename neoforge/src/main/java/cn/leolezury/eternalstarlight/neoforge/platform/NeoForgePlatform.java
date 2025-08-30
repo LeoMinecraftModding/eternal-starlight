@@ -21,9 +21,10 @@ import cn.leolezury.eternalstarlight.neoforge.client.ForgeDimensionSpecialEffect
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeThermalSpringstoneArmorItem;
-import cn.leolezury.eternalstarlight.neoforge.item.weapon.ForgeCrescentSpearItem;
-import cn.leolezury.eternalstarlight.neoforge.item.weapon.ForgeHammerItem;
-import cn.leolezury.eternalstarlight.neoforge.item.weapon.ForgeScytheItem;
+import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgeCrescentSpearItem;
+import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgeHammerItem;
+import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgePetalScytheItem;
+import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgeScytheItem;
 import cn.leolezury.eternalstarlight.neoforge.network.NeoForgeNetworkHandler;
 import com.google.auto.service.AutoService;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -200,6 +201,11 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
 		return new ForgeScytheItem(tier, canTill, properties);
+	}
+
+	@Override
+	public ScytheItem createPetalScythe(Tier tier, boolean canTill, Item.Properties properties) {
+		return new ForgePetalScytheItem(tier, canTill, properties);
 	}
 
 	@Override

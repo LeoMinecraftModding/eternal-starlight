@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
@@ -18,8 +19,8 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
 	}
 
 	@Override
-	public void swing(ItemStack stack, LivingEntity entity) {
-		double range = 10;
+	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+		double range = 20;
 		Vec3 eyePosition = entity.getEyePosition();
 		Vec3 viewVector = entity.getViewVector(1.0F);
 		Vec3 vec3 = eyePosition.add(viewVector.x * range, viewVector.y * range, viewVector.z * range);

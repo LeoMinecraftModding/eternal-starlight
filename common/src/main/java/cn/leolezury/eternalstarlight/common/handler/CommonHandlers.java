@@ -452,6 +452,7 @@ public class CommonHandlers {
 		}
 		if (entity instanceof LivingEntity livingEntity) {
 			ESSpellUtil.tickSpells(livingEntity);
+			SpecialItemCooldown.tick(livingEntity);
 			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
 				ESCrestUtil.tickCrests(player);
 				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {

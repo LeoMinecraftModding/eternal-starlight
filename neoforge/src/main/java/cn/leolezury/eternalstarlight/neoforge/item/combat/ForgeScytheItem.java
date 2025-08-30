@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.neoforge.item.weapon;
+package cn.leolezury.eternalstarlight.neoforge.item.combat;
 
 import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
 import net.minecraft.world.item.ItemStack;

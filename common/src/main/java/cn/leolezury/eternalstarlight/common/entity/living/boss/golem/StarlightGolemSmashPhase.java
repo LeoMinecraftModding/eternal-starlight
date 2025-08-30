@@ -26,7 +26,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 	private final List<BlockPos> lavaVisited = new ArrayList<>();
 
 	public StarlightGolemSmashPhase() {
-		super(ID, 2, 100, 250);
+		super(ID, 2, 70, 250);
 	}
 
 	@Override

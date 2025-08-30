@@ -80,7 +80,7 @@ public abstract class AbstractSpell {
 
 	public void stop(LivingEntity entity, int ticks) {
 		onStop(entity, ticks);
-		ESSpellUtil.addCooldown(entity, this, properties.cooldownTicks());
+		ESSpellUtil.setCooldown(entity, this, properties.cooldownTicks());
 		if (!entity.level().isClientSide && entity instanceof SpellCaster) {
 			ESDataAttachments.SPELL_CAST_DATA.removeData(entity);
 		}

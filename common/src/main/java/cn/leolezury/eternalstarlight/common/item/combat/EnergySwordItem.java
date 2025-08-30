@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
+import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -17,7 +18,7 @@ public class EnergySwordItem extends SwordItem {
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		super.postHurtEnemy(stack, target, attacker);
 		Level level = attacker.level();
-		if (!level.isClientSide && attacker.getRandom().nextInt(5) == 0) {
+		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, stack.getItem())) {
 			for (int i = 0; i < attacker.getRandom().nextInt(5, 8); i++) {
 				EnergySpark spark = new EnergySpark(level, attacker);
 				spark.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
@@ -26,6 +27,7 @@ public class EnergySwordItem extends SwordItem {
 				spark.shoot(movement.x, movement.y, movement.z, 0.1f, 0.2f);
 				level.addFreshEntity(spark);
 			}
+			SpecialItemCooldown.setCooldown(attacker, stack.getItem(), 75);
 		}
 	}
 }

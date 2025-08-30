@@ -31,12 +31,12 @@ public class MoonringBowItem extends BowItem {
 				ScreenShakeVfx.createInstance(livingEntity.level().dimension(), livingEntity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
 			}
 			for (int i = 0; i < 16; i++) {
-				createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, 40, i * 5);
+				createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, livingEntity.getYRot(), 40, i * 5);
 			}
 		}
 	}
 
-	private void createThorn(Level level, LivingEntity owner, double x, double y, double z, double maxDiff, int delay) {
+	public static void createThorn(Level level, LivingEntity owner, double x, double y, double z, float yRot, double maxDiff, int delay) {
 		BlockPos startPos = BlockPos.containing(x, y, z);
 		boolean successful = false;
 		double finalY = y;
@@ -67,6 +67,7 @@ public class MoonringBowItem extends BowItem {
 			thorn.setPos(x, finalY, z);
 			thorn.setOwner(owner);
 			thorn.setSpawnedTicks(-delay);
+			thorn.setYRot(yRot);
 			level.addFreshEntity(thorn);
 		}
 	}

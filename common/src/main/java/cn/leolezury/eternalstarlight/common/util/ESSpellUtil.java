@@ -21,14 +21,13 @@ public class ESSpellUtil {
 		return 0;
 	}
 
-	public static void addCooldown(LivingEntity entity, AbstractSpell spell, int cooldown) {
+	public static void setCooldown(LivingEntity entity, AbstractSpell spell, int cooldown) {
 		if (entity instanceof SpellCaster) {
-			int totalCooldown = cooldown + getCooldown(entity, spell);
 			List<SpellCooldown> updated = new ArrayList<>(ESDataAttachments.SPELL_COOLDOWNS.getData(entity));
 			if (updated.stream().noneMatch(c -> c.getSpell() == spell)) {
-				updated.add(new SpellCooldown(spell, totalCooldown));
+				updated.add(new SpellCooldown(spell, cooldown));
 			} else {
-				updated.stream().filter(c -> c.getSpell() == spell).findFirst().ifPresent(c -> c.setCooldown(totalCooldown));
+				updated.stream().filter(c -> c.getSpell() == spell).findFirst().ifPresent(c -> c.setCooldown(cooldown));
 			}
 			ESDataAttachments.SPELL_COOLDOWNS.setData(entity, updated);
 		}
@@ -42,21 +41,19 @@ public class ESSpellUtil {
 			updated.removeIf(c -> c.getCooldown() <= 0);
 			ESDataAttachments.SPELL_COOLDOWNS.setData(entity, updated);
 			// current spell
-			if (ESDataAttachments.SPELL_CAST_DATA.getData(entity).hasSpell()) {
+			if (!entity.level().isClientSide && ESDataAttachments.SPELL_CAST_DATA.getData(entity).hasSpell()) {
 				ESDataAttachments.SPELL_CAST_DATA.setData(entity, ESDataAttachments.SPELL_CAST_DATA.getData(entity).increaseTick());
 				AbstractSpell spell = ESDataAttachments.SPELL_CAST_DATA.getData(entity).spell();
-				if (!entity.level().isClientSide) {
-					int preparationTicks = spell.spellProperties().preparationTicks();
-					int spellTicks = spell.spellProperties().spellTicks();
-					int useTicks = ESDataAttachments.SPELL_CAST_DATA.getData(entity).castTicks();
-					if (!spell.canContinueToCast(entity, useTicks) || !ESDataAttachments.SPELL_SOURCE.getData(entity).canContinue(entity)) {
-						spell.stop(entity, useTicks - preparationTicks);
-					}
-					if (useTicks <= preparationTicks + spellTicks) {
-						spell.tick(entity, useTicks);
-					} else {
-						spell.stop(entity, useTicks - preparationTicks);
-					}
+				int preparationTicks = spell.spellProperties().preparationTicks();
+				int spellTicks = spell.spellProperties().spellTicks();
+				int useTicks = ESDataAttachments.SPELL_CAST_DATA.getData(entity).castTicks();
+				if (!spell.canContinueToCast(entity, useTicks) || !ESDataAttachments.SPELL_SOURCE.getData(entity).canContinue(entity)) {
+					spell.stop(entity, useTicks - preparationTicks);
+				}
+				if (useTicks <= preparationTicks + spellTicks) {
+					spell.tick(entity, useTicks);
+				} else {
+					spell.stop(entity, useTicks - preparationTicks);
 				}
 			}
 		}

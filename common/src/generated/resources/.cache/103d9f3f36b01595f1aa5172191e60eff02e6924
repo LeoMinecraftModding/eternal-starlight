@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-20T22:59:11.1208502	Registries
+// 1.21.1	2025-08-30T15:50:18.7620771	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -143,7 +143,7 @@ e28f8ec9fe6e36b71f38dba2b36e8f0273c44a6e data/eternal_starlight/trim_material/sw
 4206b1788e7f146fdfdc2159b90941d126c37811 data/eternal_starlight/worldgen/biome/crystallized_desert.json
 08d16b3eebe8e959ff143df719a2c27d0a7afaaf data/eternal_starlight/worldgen/biome/dark_swamp.json
 dc17d51d0fa1f7135ea07d1b3b9d9db429719fa0 data/eternal_starlight/worldgen/biome/ether_river.json
-8794f4f43646777e6e90eb36e76f45a3b0f2a9a3 data/eternal_starlight/worldgen/biome/lush_shallow_sea.json
+b81bb8d44336048cd2075c814a844710a23f20a9 data/eternal_starlight/worldgen/biome/lush_shallow_sea.json
 78a54da4c744f979acd26f72f819d7f3ed201637 data/eternal_starlight/worldgen/biome/scarlet_forest.json
 93a086e9d461a96025099eec3567ad4e81383657 data/eternal_starlight/worldgen/biome/shimmer_river.json
 b565132482e33192f6b224e24db9f150991d0ea4 data/eternal_starlight/worldgen/biome/spiral_kelp_forest.json
@@ -151,7 +151,7 @@ b9b8fba57212eb7b311bf3ddde183cf3d9b12143 data/eternal_starlight/worldgen/biome/s
 dd340e758faea9a51f9f8de3e42ecf1a78a3fbd9 data/eternal_starlight/worldgen/biome/starlight_forest.json
 5ac145c5bb0ad87b464597839bce3ba1b7e2b235 data/eternal_starlight/worldgen/biome/starlight_permafrost_forest.json
 82ba9afd637b677dba3682659f640b9058541e50 data/eternal_starlight/worldgen/biome/starlit_sea.json
-ba9f0ffa29464efb05e65a1c7e3c46b1e72782a2 data/eternal_starlight/worldgen/biome/the_abyss.json
+e349b6956835a538350e7cfc675e0049c19e05bf data/eternal_starlight/worldgen/biome/the_abyss.json
 64b2f4614743f56cf8cb3f55271c481832d76704 data/eternal_starlight/worldgen/biome/torreya_forest.json
 afc997ee4b204653844410588cb9e18579252bad data/eternal_starlight/worldgen/biome/warm_shore.json
 8640a37510768989b08749d4646198c81b27ee6f data/eternal_starlight/worldgen/configured_carver/caves.json

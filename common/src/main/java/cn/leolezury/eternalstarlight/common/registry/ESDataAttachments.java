@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.spell.SpellCooldown;
+import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -40,6 +41,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<List<Crest.Instance>> OLD_ACTIVE_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("old_active_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
 	public static final EntityDataAttachment<List<Crest.Instance>> CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("crests", List::of, Crest.Instance.LIST_CODEC, null, true));
 	public static final EntityDataAttachment<List<Crest.Instance>> OWNED_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("owned_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
+	public static final EntityDataAttachment<List<SpecialItemCooldown>> SPECIAL_ITEM_COOLDOWNS = register(ESPlatform.INSTANCE.registerDataAttachment("special_item_cooldowns", List::of, SpecialItemCooldown.LIST_CODEC, null, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);

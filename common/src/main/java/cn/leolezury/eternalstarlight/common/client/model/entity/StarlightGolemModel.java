@@ -20,24 +20,26 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 
 	public StarlightGolemModel(ModelPart root) {
 		this.root = root;
-		this.head = root.getChild("body").getChild("head");
+		this.head = root.getChild("upper").getChild("head");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-10.0F, -34.0F, -8.0F, 20.0F, 30.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition upper = partdefinition.addOrReplaceChild("upper", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(84, 83).addBox(-8.0F, -3.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F))
+		upper.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(84, 83).addBox(-8.0F, -3.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F))
 			.texOffs(0, 0).addBox(-1.0F, -3.0F, -3.0F, 2.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
 			.texOffs(0, 70).addBox(-8.0F, 24.0F, -4.0F, 7.0F, 5.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-11.0F, -29.0F, 0.0F));
 
-		body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(0, 91).addBox(1.0F, -3.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F))
+		upper.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(0, 91).addBox(1.0F, -3.0F, -4.0F, 7.0F, 27.0F, 8.0F, new CubeDeformation(0.0F))
 			.texOffs(0, 46).addBox(-1.0F, -3.0F, -3.0F, 2.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
 			.texOffs(46, 70).addBox(1.0F, 24.0F, -4.0F, 7.0F, 5.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(11.0F, -29.0F, 0.0F));
 
-		body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(68, 33).addBox(-7.0F, -10.5F, -6.5F, 14.0F, 13.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -30.5F, -3.5F));
+		upper.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-10.0F, -15.0F, -8.0F, 20.0F, 30.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -19.0F, 0.0F));
+
+		upper.addOrReplaceChild("head", CubeListBuilder.create().texOffs(68, 33).addBox(-7.0F, -10.5F, -6.5F, 14.0F, 13.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -30.5F, -3.5F));
 
 		partdefinition.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 46).addBox(-12.0F, -4.0F, -10.0F, 24.0F, 4.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 

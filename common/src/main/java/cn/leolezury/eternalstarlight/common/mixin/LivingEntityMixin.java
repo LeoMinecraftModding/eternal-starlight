@@ -93,7 +93,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
 	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
 		if (this.getItemInHand(interactionHand).getItem() instanceof Swingable swingable) {
-			swingable.swing(this.getItemInHand(interactionHand), (LivingEntity) ((Object) this));
+			swingable.swing(this.getItemInHand(interactionHand), (LivingEntity) ((Object) this), interactionHand);
 		}
 	}
 

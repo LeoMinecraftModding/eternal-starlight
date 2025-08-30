@@ -8,7 +8,7 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 	public static final int ID = 2;
 
 	public StarlightGolemSummonFlamePhase() {
-		super(ID, 2, 210, 250);
+		super(ID, 2, 200, 250);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 
 	@Override
 	public void tick(StarlightGolem entity) {
-		if (entity.getBehaviorTicks() % 30 == 0) {
+		if (entity.getBehaviorTicks() % 40 == 0) {
 			if (entity.level() instanceof ServerLevel serverLevel) {
 				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 45, 50, 0.24f, 0.24f, 4.5f, 5).send(serverLevel);
 			}

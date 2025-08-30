@@ -7,6 +7,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
+import java.util.Objects;
+
 public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength, int castTicks, boolean offhand) {
 	public static final StreamCodec<RegistryFriendlyByteBuf, SpellCastData> STREAM_CODEC = StreamCodec.ofMember(SpellCastData::toNetwork, SpellCastData::fromNetwork);
 
@@ -49,5 +51,17 @@ public record SpellCastData(boolean hasSpell, AbstractSpell spell, int strength,
 
 	public interface SpellSource {
 		boolean canContinue(LivingEntity living);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		SpellCastData that = (SpellCastData) o;
+		return strength == that.strength && castTicks == that.castTicks && offhand == that.offhand && hasSpell == that.hasSpell && Objects.equals(spell, that.spell);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(hasSpell, spell, strength, castTicks, offhand);
 	}
 }

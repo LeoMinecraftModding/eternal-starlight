@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
@@ -114,6 +115,9 @@ public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 				} else {
 					this.setDeltaMovement(this.getDeltaMovement().add(delta.normalize().scale(0.05)));
 				}
+				if (target != null && target.getBoundingBox().intersects(getBoundingBox())) {
+					hurtTarget(target);
+				}
 			}
 			if (getSpawnedTicks() > 600) {
 				discard();
@@ -142,9 +146,13 @@ public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if ((getTarget() == null || hitResult.getEntity() == getTarget()) && hitResult.getEntity() != getOwner()) {
-			hitResult.getEntity().invulnerableTime = 0;
-			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 3);
+		hurtTarget(hitResult.getEntity());
+	}
+
+	private void hurtTarget(Entity entity) {
+		if ((getTarget() == null || entity == getTarget()) && entity != getOwner()) {
+			entity.invulnerableTime = 0;
+			entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 3);
 		}
 		discard();
 	}

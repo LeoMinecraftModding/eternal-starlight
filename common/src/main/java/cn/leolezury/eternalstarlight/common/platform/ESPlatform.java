@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
+import cn.leolezury.eternalstarlight.common.item.combat.PetalScytheItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
@@ -105,6 +106,10 @@ public interface ESPlatform {
 
 	default ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
 		return new ScytheItem(tier, canTill, properties);
+	}
+
+	default ScytheItem createPetalScythe(Tier tier, boolean canTill, Item.Properties properties) {
+		return new PetalScytheItem(tier, canTill, properties);
 	}
 
 	default HammerItem createHammer(Tier tier, Supplier<ParticleOptions> smashParticle, Holder<SoundEvent> smashSound, Item.Properties properties) {

@@ -6,7 +6,7 @@ public class StarlightGolemChargeStartPhase extends BehaviorPhase<StarlightGolem
 	public static final int ID = 4;
 
 	public StarlightGolemChargeStartPhase() {
-		super(ID, 1, 20, 1800, StarlightGolemChargePhase.ID);
+		super(ID, 1, 35, 1800, StarlightGolemChargePhase.ID);
 	}
 
 	@Override

@@ -200,7 +200,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			setBehaviorState(0);
 		}
 		++deathTime;
-		if (deathTime == 100 && !level().isClientSide()) {
+		if (deathTime == 110 && !level().isClientSide()) {
 			level().broadcastEntityEvent(this, (byte) 60);
 			remove(Entity.RemovalReason.KILLED);
 		}

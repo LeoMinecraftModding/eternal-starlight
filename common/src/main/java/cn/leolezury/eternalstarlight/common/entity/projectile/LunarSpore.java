@@ -5,10 +5,10 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatredPart;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.fabricmc.api.EnvType;
@@ -22,7 +22,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -65,52 +65,51 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public void tick() {
 		super.tick();
-		if ((tickCount > 200 || getDeltaMovement().length() < 0.001) && !level().isClientSide) discard();
+		if ((tickCount > (getOwner() instanceof Player ? 60 : 200) || getDeltaMovement().length() < 0.001) && !level().isClientSide) explodeAndDiscard();
 	}
 
 	@Override
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
-		if (getOwner() instanceof TangledHatred hatred && hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof TangledHatredPart part) {
-			boolean hasPart = false;
-			for (TangledHatredPart hatredPart : hatred.parts) {
-				if (hatredPart == part) {
-					hasPart = true;
-					break;
-				}
-			}
-			if (hasPart) {
-				return;
-			}
-		}
-		if (hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof Projectile) {
+		if (hitResult.getType() == HitResult.Type.ENTITY && !ESEntityUtil.shouldHarm(getOwner(), ((EntityHitResult) hitResult).getEntity())) {
 			return;
 		}
 		if (!level().isClientSide) {
-			playSound(SoundEvents.GENERIC_EXPLODE.value());
-			if (level() instanceof ServerLevel serverLevel) {
-				for (int i = 0; i < 4; i++) {
-					Vec3 vec3 = new Vec3(this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth());
-					for (int m = 0; m < serverLevel.players().size(); ++m) {
-						ServerPlayer serverPlayer = serverLevel.players().get(m);
-						serverLevel.sendParticles(serverPlayer, ESExplosionParticleOptions.LUNAR, true, vec3.x, vec3.y, vec3.z, 2, 0, 0, 0, 0);
-						serverLevel.sendParticles(serverPlayer, ESSmokeParticleOptions.LUNAR_SHORT, true, vec3.x, vec3.y, vec3.z, 2, 0, 0, 0, 0);
-					}
-				}
-				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
-			}
-			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
-				if (getOwner() != entity) {
-					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 3);
-				}
-			}
-			discard();
+			explodeAndDiscard();
 		}
+	}
+
+	private void explodeAndDiscard() {
+		playSound(SoundEvents.GENERIC_EXPLODE.value());
+		if (level() instanceof ServerLevel serverLevel) {
+			for (int i = 0; i < 4; i++) {
+				Vec3 vec3 = new Vec3(this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth());
+				for (int m = 0; m < serverLevel.players().size(); ++m) {
+					ServerPlayer serverPlayer = serverLevel.players().get(m);
+					serverLevel.sendParticles(serverPlayer, ESExplosionParticleOptions.LUNAR, true, vec3.x, vec3.y, vec3.z, 2, 0, 0, 0, 0);
+					serverLevel.sendParticles(serverPlayer, ESSmokeParticleOptions.LUNAR_SHORT, true, vec3.x, vec3.y, vec3.z, 2, 0, 0, 0, 0);
+				}
+			}
+			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.02f, 0.03f, 4.5f, 5).send(serverLevel);
+		}
+		for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
+			if (ESEntityUtil.shouldHarm(getOwner(), entity)) {
+				if (getOwner() instanceof Player) {
+					entity.invulnerableTime = 0;
+				}
+				entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
+			}
+		}
+		discard();
 	}
 
 	@Override
 	public TrailEffect newTrail() {
-		return new TrailEffect(0.4f, getOwner() instanceof LunarMonstrosity ? 10 : 40);
+		return new TrailEffect(0.4f, switch (getOwner()) {
+			case LunarMonstrosity ignored -> 15;
+			case TangledHatred ignored -> 40;
+			case null, default -> 12;
+		});
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
 import cn.leolezury.eternalstarlight.common.block.DirectionalBudBlock;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
@@ -12,6 +13,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -36,20 +38,21 @@ public class VelvetumossFeature extends Feature<VelvetumossFeature.Configuration
 				for (int z = -3; z <= 3; z++) {
 					if (ESMathUtil.isPointInEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
 						stonePos.setWithOffset(pos, x, y, z);
-						if (level.getBlockState(stonePos).is(ESTags.Blocks.ABYSSLATES)) {
-							if (stonePos.distToCenterSqr(stonePos.getCenter()) < 4 && Arrays.stream(Direction.values()).anyMatch(direction -> level.getBlockState(stonePos.relative(direction)).is(Blocks.WATER))) {
+						BlockState blockState = level.getBlockState(stonePos);
+						if (blockState.is(ESTags.Blocks.ABYSSLATES) || blockState.is(ESBlocks.TWILIGHT_SAND.get()) || blockState.is(ESBlocks.DUSTED_GRAVEL.get()) || blockState.is(ESBlocks.MOSSY_DUSTED_GRAVEL.get()) || blockState.is(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get())) {
+							if (Arrays.stream(Direction.values()).anyMatch(direction -> level.getBlockState(stonePos.relative(direction)).is(Blocks.WATER))) {
 								setBlock(level, stonePos, config.moss().defaultBlockState());
-							}
-							for (Direction direction : Direction.values()) {
-								BlockPos growPos = stonePos.relative(direction);
-								if (level.getBlockState(growPos).is(Blocks.WATER) && random.nextInt(3) == 0) {
-									setBlock(level, growPos, config.villi().defaultBlockState().setValue(DirectionalBudBlock.WATERLOGGED, true).setValue(DirectionalBudBlock.FACING, direction));
+								for (Direction direction : Direction.values()) {
+									BlockPos growPos = stonePos.relative(direction);
+									if (level.getBlockState(growPos).is(Blocks.WATER) && random.nextInt(3) == 0) {
+										setBlock(level, growPos, config.villi().defaultBlockState().setValue(DirectionalBudBlock.WATERLOGGED, true).setValue(DirectionalBudBlock.FACING, direction));
+									}
 								}
-							}
-							if (config.flower().isPresent() && random.nextInt(10) == 0) {
-								BlockPos growPos = stonePos.relative(Direction.UP);
-								if (level.getBlockState(growPos).is(Blocks.WATER)) {
-									setBlock(level, growPos, config.flower().get().defaultBlockState().setValue(DirectionalBudBlock.WATERLOGGED, true));
+								if (config.flower().isPresent() && random.nextInt(10) == 0) {
+									BlockPos growPos = stonePos.relative(Direction.UP);
+									if (level.getBlockState(growPos).is(Blocks.WATER)) {
+										setBlock(level, growPos, config.flower().get().defaultBlockState().setValue(DirectionalBudBlock.WATERLOGGED, true));
+									}
 								}
 							}
 						}

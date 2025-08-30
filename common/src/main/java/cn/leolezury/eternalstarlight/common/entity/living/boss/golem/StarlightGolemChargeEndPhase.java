@@ -6,7 +6,7 @@ public class StarlightGolemChargeEndPhase extends BehaviorPhase<StarlightGolem> 
 	public static final int ID = 6;
 
 	public StarlightGolemChargeEndPhase() {
-		super(ID, 1, 30, 0);
+		super(ID, 1, 35, 0);
 	}
 
 	@Override

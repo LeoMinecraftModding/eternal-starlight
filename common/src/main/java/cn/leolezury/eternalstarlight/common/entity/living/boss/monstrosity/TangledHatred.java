@@ -161,7 +161,7 @@ public class TangledHatred extends ESBoss {
 
 	@Override
 	public boolean isAlliedTo(Entity entity) {
-		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
+		return super.isAlliedTo(entity) || (entity instanceof TangledHatredPart part && parts.contains(part)) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
 	}
 
 	public Optional<Vec3> calculateAttackTargetPos() {
