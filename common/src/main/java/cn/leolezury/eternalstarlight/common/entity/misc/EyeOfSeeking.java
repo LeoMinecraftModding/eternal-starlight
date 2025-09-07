@@ -49,10 +49,12 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
 	}
 
+	@Override
 	public ItemStack getItem() {
 		return this.getEntityData().get(DATA_ITEM_STACK);
 	}
 
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		builder.define(DATA_ITEM_STACK, this.getDefaultItem());
 	}
@@ -92,6 +94,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 		this.surviveAfterDeath = surviveAfterDeath;
 	}
 
+	@Override
 	public void lerpMotion(double d, double e, double f) {
 		this.setDeltaMovement(d, e, f);
 		if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
@@ -116,6 +119,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 		return Mth.lerp(0.2F, f, g);
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
 		Vec3 vec3 = this.getDeltaMovement();
@@ -168,11 +172,13 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.put(TAG_ITEM, this.getItem().save(this.registryAccess()));
 		compoundTag.putBoolean(TAG_SURVIVE_AFTER_DEATH, surviveAfterDeath);
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		if (compoundTag.contains(TAG_ITEM, 10)) {
 			this.setItem(ItemStack.parse(this.registryAccess(), compoundTag.getCompound(TAG_ITEM)).orElse(this.getDefaultItem()));
@@ -186,10 +192,7 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 		return new ItemStack(ESItems.SEEKING_EYE.get());
 	}
 
-	public float getLightLevelDependentMagicValue() {
-		return 1.0F;
-	}
-
+	@Override
 	public boolean isAttackable() {
 		return false;
 	}

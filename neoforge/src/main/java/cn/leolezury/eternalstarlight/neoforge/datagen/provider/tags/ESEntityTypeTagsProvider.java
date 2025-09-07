@@ -37,6 +37,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		tag(ESTags.EntityTypes.ROBOTIC)
 			.add(
 				ESEntities.FREEZE.get(),
+				ESEntities.PERMAFROST.get(),
 				ESEntities.STARLIGHT_GOLEM.get()
 			);
 		tag(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)
@@ -145,7 +146,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)
 			.add(
-				ESEntities.FREEZE.get()
+				ESEntities.FREEZE.get(),
+				ESEntities.PERMAFROST.get()
 			);
 		tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
 			.add(
@@ -156,7 +158,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.SHIMMER_LACEWING.get(),
 				ESEntities.STARFIRE_BIRD.get(),
 				ESEntities.GRIMSTONE_GOLEM.get(),
-				ESEntities.AETHERSENT_GOLEM.get()
+				ESEntities.AETHERSENT_GOLEM.get(),
+				ESEntities.FREEZE.get(),
+				ESEntities.PERMAFROST.get()
 			);
 	}
 }

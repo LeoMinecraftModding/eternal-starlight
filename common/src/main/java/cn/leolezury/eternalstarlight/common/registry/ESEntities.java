@@ -3,12 +3,14 @@ package cn.leolezury.eternalstarlight.common.registry;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
+import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.LunarMonstrosityBreath;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
@@ -23,6 +25,7 @@ import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.player.Player;
 
 public class ESEntities {
 	public static final RegistrationProvider<EntityType<?>> ENTITIES = RegistrationProvider.get(Registries.ENTITY_TYPE, EternalStarlight.ID);
@@ -332,6 +335,13 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("frozen_tube").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Permafrost>> PERMAFROST = ENTITIES.register(
+		"permafrost",
+		() -> EntityType.Builder.of(Permafrost::new, MobCategory.MONSTER)
+			.sized(0.75f, 2.25f)
+			.fireImmune()
+			.build(EternalStarlight.id("permafrost").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<LunarMonstrosity>> LUNAR_MONSTROSITY = ENTITIES.register(
 		"lunar_monstrosity",
 		() -> EntityType.Builder.of(LunarMonstrosity::new, MobCategory.MONSTER)
@@ -387,6 +397,16 @@ public class ESEntities {
 			.sized(1.5f, 1.5f)
 			.updateInterval(1)
 			.build(EternalStarlight.id("tangled_hatred_part").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<TangledHusk>> TANGLED_HUSK = ENTITIES.register(
+		"tangled_husk",
+		() -> EntityType.Builder.of(TangledHusk::new, MobCategory.MISC)
+			.sized(0.6F, 1.8F)
+			.eyeHeight(1.62F)
+			.vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT)
+			.clientTrackingRange(32)
+			.updateInterval(2)
+			.build(EternalStarlight.id("tangled_husk").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<ShatteredBlade>> SHATTERED_BLADE = ENTITIES.register(
 		"shattered_blade",

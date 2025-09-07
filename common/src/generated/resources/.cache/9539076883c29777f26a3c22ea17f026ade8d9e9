@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-26T16:00:08.5439492	Item Models: eternal_starlight
+// 1.21.1	2025-09-07T22:10:40.3808626	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -618,6 +618,7 @@ e3363e3c9bd4e4f08e9253f9eafad350b4e5a624 assets/eternal_starlight/models/item/ox
 557e8235f136d33df1fbdb8fa7557992ffb98c5a assets/eternal_starlight/models/item/oxidized_golem_steel_tile_stairs.json
 ab00c94148b0d38aba8a1e454147a19576c25ba7 assets/eternal_starlight/models/item/packed_nightfall_mud.json
 450d938b145d84e3e5806ea587464300471d008d assets/eternal_starlight/models/item/parasol_grass.json
+b6e7d0e93afbad155ed7de58502ad8506541f28d assets/eternal_starlight/models/item/permafrost_spawn_egg.json
 c1315c30db7ce19e3869d72add9cb6d74435612c assets/eternal_starlight/models/item/petal_scythe.json
 aa7cee5ed2d127b67ff4e274d31b20993669b504 assets/eternal_starlight/models/item/petal_scythe_inventory.json
 7f31293820b0c5fde1e28e42d48ca5da894032c7 assets/eternal_starlight/models/item/pink_rose.json

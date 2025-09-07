@@ -5,6 +5,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -117,7 +118,7 @@ public class AttackEffect extends Entity {
 
 	@Override
 	public boolean hurt(DamageSource damageSource, float amount) {
-		if (damageSource.equals(damageSources().genericKill())) {
+		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			discard();
 		}
 		return false;
@@ -126,6 +127,9 @@ public class AttackEffect extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
+		this.applyGravity();
+		this.move(MoverType.SELF, this.getDeltaMovement());
+		this.setDeltaMovement(this.getDeltaMovement().scale(0.98));
 		if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
 			if (owner == null && ownerId != null) {
 				if (serverLevel.getEntity(ownerId) instanceof LivingEntity livingEntity) {
@@ -146,11 +150,6 @@ public class AttackEffect extends Entity {
 			if (shouldContinueToTick()) {
 				setSpawnedTicks(getSpawnedTicks() + 1);
 			}
-			this.move(MoverType.SELF, this.getDeltaMovement());
-			if (!onGround() && !isNoGravity()) {
-				applyGravity();
-			}
-			setDeltaMovement(getDeltaMovement().scale(0.8));
 		}
 	}
 }

@@ -430,7 +430,6 @@ public class ClientSetupHandlers {
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
-		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.TELEPORTATION), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.TELEPORTATION_CAST, PlayerAnimation.FIRST_PERSON_TELEPORTATION_CAST, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
 		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
@@ -799,6 +798,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.ENERGIZED_FLAME.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.FREEZE.get(), FreezeRenderer::new);
 		strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
+		strategy.register(ESEntities.PERMAFROST.get(), PermafrostRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
@@ -807,6 +807,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
 		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
 		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
+		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
 		strategy.register(ESEntities.PUNGENCY_FRUIT_SPEAR.get(), ThrownPungencyFruitSpearRenderer::new);
@@ -901,6 +902,7 @@ public class ClientSetupHandlers {
 		strategy.register(TheGatekeeperModel.SLIM_OUTER_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true, 0.5f));
 		strategy.register(StarlightGolemModel.LAYER_LOCATION, StarlightGolemModel::createBodyLayer);
 		strategy.register(FreezeModel.LAYER_LOCATION, FreezeModel::createBodyLayer);
+		strategy.register(PermafrostModel.LAYER_LOCATION, PermafrostModel::createBodyLayer);
 		strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);
 		strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
 		strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);

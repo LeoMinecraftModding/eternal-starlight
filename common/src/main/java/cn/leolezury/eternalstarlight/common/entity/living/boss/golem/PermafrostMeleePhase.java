@@ -1,0 +1,52 @@
+package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
+
+import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+
+public class PermafrostMeleePhase extends BehaviorPhase<Permafrost> {
+	public static final int ID = 1;
+
+	public PermafrostMeleePhase() {
+		super(ID, 1, 20, 100, PermafrostMeleeTransitionPhase.ID);
+	}
+
+	@Override
+	public boolean canStart(Permafrost entity, boolean cooldownOver) {
+		boolean canReachGround = false;
+		LivingEntity target = entity.getTarget();
+		if (target != null) {
+			BlockHitResult result = entity.level().clip(new ClipContext(entity.position(), new Vec3(entity.getX(), target.getY() - 5, entity.getZ()), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+			canReachGround = result.getType() != HitResult.Type.MISS;
+		}
+		return cooldownOver && canReachTarget(entity, 4) && canReachGround;
+	}
+
+	@Override
+	public void onStart(Permafrost entity) {
+	}
+
+	@Override
+	public void tick(Permafrost entity) {
+		if (entity.getTarget() != null) {
+			LivingEntity target = entity.getTarget();
+			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+		}
+		Vec3 movement = entity.getDeltaMovement();
+		entity.hurtMarked = true;
+		entity.setDeltaMovement(new Vec3(movement.x, entity.getBehaviorTicks() <= 7 ? Math.max(movement.y, 0.5) : Math.min(movement.y, -0.4), movement.z));
+	}
+
+	@Override
+	public boolean canContinue(Permafrost entity) {
+		return true;
+	}
+
+	@Override
+	public void onStop(Permafrost entity) {
+	}
+}

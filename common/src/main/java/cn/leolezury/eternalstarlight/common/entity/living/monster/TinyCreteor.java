@@ -200,7 +200,7 @@ public class TinyCreteor extends Monster implements PowerableMob {
 	private void explode() {
 		if (!this.level().isClientSide) {
 			this.dead = true;
-			this.level().explode(this, this.getX(), this.getY(), this.getZ(), this.isPowered() ? 3.0F : 2.0F, Level.ExplosionInteraction.MOB);
+			this.level().explode(this, this.getX(), this.getY(), this.getZ(), this.isPowered() ? 3.0F : 2.0F, Level.ExplosionInteraction.NONE);
 			if (level() instanceof ServerLevel serverLevel) {
 				for (int i = 0; i < 12; i++) {
 					Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();

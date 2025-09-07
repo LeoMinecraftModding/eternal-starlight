@@ -5,18 +5,26 @@ import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.*;
 import cn.leolezury.eternalstarlight.common.client.book.text.BookContent;
 import cn.leolezury.eternalstarlight.common.client.book.text.BookText;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.Sets;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Style;
 import net.minecraft.util.FastColor;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.joml.Quaternionf;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,6 +45,10 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.ORB_OF_PROPHECY.get().getDescriptionId()), EternalStarlight.id("orb_of_prophecy_display"), Sets.newHashSet(EternalStarlight.id("orb_of_prophecy")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
+					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), Sets.newHashSet(EternalStarlight.id("starlight_golem")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.CHISELED_GOLEM_STEEL_BLOCK.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
 					}))
 				), 20, 20, 130, 12))
 			),
@@ -45,7 +57,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("seeking_eye_display"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), 60)
-					.textDisplay(ESItems.SEEKING_EYE.get().getDescription().copy().withColor(0xacfffc), 65, 55, 1.5f)
+					.textDisplay(simpleColoredTranslated(ESItems.SEEKING_EYE.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
 					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
 					.itemDisplay(Util.make(() -> {
 						ItemStack stack = ESItems.SEEKING_EYE.get().getDefaultInstance();
@@ -53,14 +65,23 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					}), 55 + 2, 10 + 2)),
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("seeking_eye"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
-				)), simpleColoredTranslatedBookContent("seeking_eye"), 10, 20, 130, 12))
+				)), simpleColoredTranslatedBookContent("seeking_eye"), 10, 20, 130, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("seeking_eye_locators"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), simpleColoredTranslatedBookContent("seeking_eye.locator_items"), 0, 0, 130, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("seeking_eye_locators_starlight_golem"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), 50)
+					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":starlight_golem_display}"), new BookText(true, ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()))), true, 65, 35, 110, 9, 6, 1)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 5, 20, 20)
+					.itemTagDisplay(ESTags.Items.GOLEM_FORGE_LOCATORS, 55 + 2, 5 + 2))
 			),
 			// orb of prophecy
 			List.of(
 				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("orb_of_prophecy_display"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), 60)
-					.textDisplay(ESItems.ORB_OF_PROPHECY.get().getDescription().copy().withColor(0xacfffc), 65, 55, 1.5f)
+					.textDisplay(simpleColoredTranslated(ESItems.ORB_OF_PROPHECY.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
 					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
 					.itemDisplay(Util.make(() -> {
 						ItemStack stack = ESItems.ORB_OF_PROPHECY.get().getDefaultInstance();
@@ -69,6 +90,28 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("orb_of_prophecy"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), simpleColoredTranslatedBookContent("orb_of_prophecy"), 10, 20, 130, 12))
+			),
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("starlight_golem_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), 125)
+					.textDisplay(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), true, 65, 110, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame_72.png"), 29, 20, 72, 72)
+					.entityDisplay(Util.make(() -> {
+						CompoundTag tag = new CompoundTag();
+						tag.putString(Entity.ID_TAG, ESEntities.STARLIGHT_GOLEM.getId().toString());
+						return tag;
+					}), 65, 80, -25, 210, 22, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.MOB_INFO, new MobInfoBookComponent.Config(EternalStarlight.id("starlight_golem_info"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), ESEntities.STARLIGHT_GOLEM.getId(), List.of(
+					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MAX_HEALTH.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_max_health.png")),
+					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("starlight_golem.defense"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.ARMOR.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_armor.png")),
+					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("starlight_golem.speed"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MOVEMENT_SPEED.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_movement_speed.png"))
+				), 150, 65, 20, 8, 4, 4, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("starlight_golem"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), simpleColoredTranslatedBookContent("starlight_golem"), 10, 20, 130, 12))
 			)
 		), 150, 187, 10,
 			4, 4, 2, 174, 6,

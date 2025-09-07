@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.fabric.mixin;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,7 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -27,11 +28,15 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	protected abstract void jumpInLiquid(TagKey<Fluid> tagKey);
 
-	@ModifyVariable(method = "actuallyHurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-	private float actuallyHurt(float amount, DamageSource damageSource) {
-		float modified = CommonHandlers.onModifyLivingHurtDamage((LivingEntity) (Object) this, damageSource, amount);
-		CommonHandlers.onPostLivingHurt((LivingEntity) (Object) this, damageSource, modified);
-		return modified;
+	@Inject(method = "actuallyHurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setHealth(F)V", shift = At.Shift.AFTER))
+	private void actuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
+		CommonHandlers.onPostLivingHurt((LivingEntity) (Object) this, source, amount);
+	}
+
+	@WrapMethod(method = "hurt")
+	private boolean hurt(DamageSource source, float amount, Operation<Boolean> original) {
+		float modified = CommonHandlers.onModifyLivingHurtDamage((LivingEntity) (Object) this, source, amount);
+		return original.call(source, modified);
 	}
 
 	@Inject(method = "hurt", at = @At(value = "HEAD"))

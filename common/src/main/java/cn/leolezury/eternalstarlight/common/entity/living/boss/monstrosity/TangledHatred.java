@@ -251,7 +251,7 @@ public class TangledHatred extends ESBoss {
 				parts.clear();
 				for (int i = 0; i < numSegments; i++) {
 					TangledHatredPart part = new TangledHatredPart(ESEntities.TANGLED_HATRED_PART.get(), level());
-					part.setPos(this.chain.segments().get(i).getMiddlePosition());
+					part.setCenterPos(this.chain.segments().get(i).getMiddlePosition());
 					part.setParent(this);
 					level().addFreshEntity(part);
 					parts.add(part);
@@ -260,7 +260,7 @@ public class TangledHatred extends ESBoss {
 			if (parts.size() == numSegments) {
 				for (int i = 0; i < numSegments; i++) {
 					TangledHatredPart part = parts.get(i);
-					part.setPos(this.chain.segments().get(i).getMiddlePosition());
+					part.setCenterPos(this.chain.segments().get(i).getMiddlePosition());
 				}
 			}
 

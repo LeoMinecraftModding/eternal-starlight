@@ -18,6 +18,7 @@ public class BookComponentRegistry {
 	public static final TextBookComponent TEXT = register("text", new TextBookComponent());
 	public static final DisplayBookComponent DISPLAY = register("display", new DisplayBookComponent());
 	public static final IndexBookComponent INDEX = register("index", new IndexBookComponent());
+	public static final MobInfoBookComponent MOB_INFO = register("mob_info", new MobInfoBookComponent());
 
 	private static <T extends BookComponent<?>> T register(String location, T type) {
 		return register(EternalStarlight.id(location), type);

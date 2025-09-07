@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -62,5 +63,18 @@ public class ShatteredSwordItem extends SwordItem {
 			}
 		}
 		return InteractionResultHolder.fail(itemStack);
+	}
+
+	@Override
+	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+		if (!level.isClientSide && entity instanceof Player player && !hasBlade(stack)) {
+			for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
+				ItemStack item = player.getInventory().getItem(i);
+				if (item.is(ESItems.SHATTERED_SWORD_BLADE.get())) {
+					player.getInventory().setItem(i, ItemStack.EMPTY);
+					setHasBlade(stack, true);
+				}
+			}
+		}
 	}
 }

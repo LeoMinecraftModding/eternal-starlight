@@ -387,7 +387,7 @@ public class CommonHandlers {
 	public static void onEntityTick(Entity entity) {
 		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
-			if (!item.level().isClientSide) {
+			if (!level.isClientSide) {
 				if (item.tickCount % 100 == 0 && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
 					ItemStack content = item.getItem();
 					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get())) {
@@ -453,7 +453,7 @@ public class CommonHandlers {
 		if (entity instanceof LivingEntity livingEntity) {
 			ESSpellUtil.tickSpells(livingEntity);
 			SpecialItemCooldown.tick(livingEntity);
-			if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
+			if (livingEntity instanceof Player player && !level.isClientSide) {
 				ESCrestUtil.tickCrests(player);
 				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {
 					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(5))) {
@@ -494,7 +494,7 @@ public class CommonHandlers {
 			List<ItemStack> armors = List.of(livingEntity.getItemBySlot(EquipmentSlot.HEAD), livingEntity.getItemBySlot(EquipmentSlot.CHEST), livingEntity.getItemBySlot(EquipmentSlot.LEGS), livingEntity.getItemBySlot(EquipmentSlot.FEET));
 			for (ItemStack armor : armors) {
 				if (armor.getItem() instanceof TickableArmor tickableArmor) {
-					tickableArmor.tick(livingEntity.level(), livingEntity, armor);
+					tickableArmor.tick(level, livingEntity, armor);
 				}
 			}
 			boolean armorChanged = false;
@@ -522,7 +522,7 @@ public class CommonHandlers {
 			int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(entity);
 			AttributeInstance armorInstance = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 			boolean inEther = ESDataAttachments.IN_ETHER.getData(entity);
-			if (!livingEntity.level().isClientSide) {
+			if (!level.isClientSide) {
 				int meteorCooldown = ESDataAttachments.METEOR_COOLDOWN.getData(entity);
 				if (meteorCooldown > 0) {
 					ESDataAttachments.METEOR_COOLDOWN.setData(entity, meteorCooldown - 1);

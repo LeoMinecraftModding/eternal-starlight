@@ -3,10 +3,12 @@ package cn.leolezury.eternalstarlight.common.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.CarvedLunarisCactusFruitBlock;
 import cn.leolezury.eternalstarlight.common.command.ESCommand;
+import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
@@ -281,10 +283,12 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
 		strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
 		strategy.register(ESEntities.FREEZE.get(), Freeze.createAttributes().build());
+		strategy.register(ESEntities.PERMAFROST.get(), Permafrost.createAttributes().build());
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
 		strategy.register(ESEntities.TANGLED.get(), Tangled.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkull.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatred.createAttributes().build());
+		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHusk.createAttributes().build());
 	}
 
 	public interface SpawnPlacementRegisterStrategy {
@@ -316,6 +320,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkLuminarisSpawnRules);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TwilightGaze::checkTwilightGazeSpawnRules);
 		strategy.register(ESEntities.FREEZE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Freeze::checkFreezeSpawnRules);
+		strategy.register(ESEntities.PERMAFROST.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Permafrost::checkPermafrostSpawnRules);
 		strategy.register(ESEntities.TANGLED.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Tangled::checkTangledSpawnRules);
 	}
 

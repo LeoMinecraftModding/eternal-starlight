@@ -23,6 +23,10 @@ public class TangledHatredPart extends Entity {
 		super(entityType, level);
 	}
 
+	public void setCenterPos(Vec3 pos) {
+		setPos(pos.subtract(0, getBbHeight() / 2, 0));
+	}
+
 	@Override
 	public void push(Entity entity) {
 
@@ -62,19 +66,8 @@ public class TangledHatredPart extends Entity {
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide && tickCount > 10) {
-			if (parent == null || parent.isDeadOrDying() || parent.isRemoved()) {
+			if (parent == null || parent.isDeadOrDying() || parent.isRemoved() || !parent.parts.contains(this)) {
 				discard();
-			} else {
-				boolean hasPart = false;
-				for (TangledHatredPart part : parent.parts) {
-					if (part == this) {
-						hasPart = true;
-						break;
-					}
-				}
-				if (!hasPart) {
-					discard();
-				}
 			}
 		}
 	}

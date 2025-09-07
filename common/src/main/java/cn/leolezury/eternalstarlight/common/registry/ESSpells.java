@@ -15,7 +15,6 @@ public class ESSpells {
 	public static final Codec<AbstractSpell> CODEC = SPELLS.registry().byNameCodec();
 	public static final Codec<Holder<AbstractSpell>> HOLDER_CODEC = SPELLS.registry().holderByNameCodec();
 
-	public static final RegistryObject<AbstractSpell, TeleportationSpell> TELEPORTATION = SPELLS.register("teleportation", () -> new TeleportationSpell(new AbstractSpell.Properties(List.of(ManaType.WIND, ManaType.LUNAR), 40, 20, 300)));
 	public static final RegistryObject<AbstractSpell, GuidanceOfStarsSpell> GUIDANCE_OF_STARS = SPELLS.register("guidance_of_stars", () -> new GuidanceOfStarsSpell(new AbstractSpell.Properties(List.of(ManaType.TERRA, ManaType.WIND, ManaType.LUNAR), 30, 30, 200)));
 	public static final RegistryObject<AbstractSpell, LaserBeamSpell> LASER_BEAM = SPELLS.register("laser_beam", () -> new LaserBeamSpell(new AbstractSpell.Properties(List.of(ManaType.BLAZE, ManaType.LIGHT), 30, 400, 250)));
 	public static final RegistryObject<AbstractSpell, BurstSparkSpell> BURST_SPARK = SPELLS.register("burst_spark", () -> new BurstSparkSpell(new AbstractSpell.Properties(List.of(ManaType.BLAZE, ManaType.LIGHT), 30, 400, 250)));

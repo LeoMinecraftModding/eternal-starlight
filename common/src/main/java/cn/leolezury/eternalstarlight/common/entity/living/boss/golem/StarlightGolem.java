@@ -16,9 +16,9 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -144,9 +144,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void updateRayEnd(Vec3 endPos) {
-		setXRot(-ESMathUtil.positionToPitch(position(), endPos));
-		setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
-		setYRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
+		lookAt(EntityAnchorArgument.Anchor.EYES, endPos);
 	}
 
 	private class GolemLookAtTargetGoal extends LookAtTargetGoal {
@@ -169,7 +167,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.starlightGolem.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.starlightGolem.armor())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.starlightGolem.followRange())
-			.add(Attributes.MOVEMENT_SPEED, 0.35F)
+			.add(Attributes.MOVEMENT_SPEED, 0)
 			.add(Attributes.ATTACK_DAMAGE, 0)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
 	}

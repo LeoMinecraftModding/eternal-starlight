@@ -185,7 +185,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	public boolean shouldPlayBossMusic() {
-		return isAlive();
+		return isAlive() && getBossMusic() != null;
 	}
 
 	public SoundEvent getBossMusic() {
@@ -205,12 +205,19 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
 		if (!level().isClientSide) {
+			ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+			lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+			if (fightParticipants.isEmpty()) {
+				ItemEntity item = spawnAtLocation(lootBag.copy());
+				if (item != null) {
+					item.setGlowingTag(true);
+					item.setExtendedLifetime();
+				}
+			}
 			for (Player player : level().players()) {
 				if (player instanceof ServerPlayer serverPlayer) {
 					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
-						ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-						lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
-						ItemEntity item = player.spawnAtLocation(lootBag);
+						ItemEntity item = player.spawnAtLocation(lootBag.copy());
 						if (item != null) {
 							item.setGlowingTag(true);
 							item.setExtendedLifetime();

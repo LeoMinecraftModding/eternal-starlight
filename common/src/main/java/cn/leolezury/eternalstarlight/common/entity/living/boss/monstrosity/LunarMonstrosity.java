@@ -15,8 +15,8 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -168,9 +168,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void updateRayEnd(Vec3 endPos) {
-		setXRot(-ESMathUtil.positionToPitch(position(), endPos));
-		setYHeadRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
-		setYRot(ESMathUtil.positionToYaw(position(), endPos) - 90);
+		lookAt(EntityAnchorArgument.Anchor.EYES, endPos);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

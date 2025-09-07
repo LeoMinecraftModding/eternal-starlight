@@ -165,7 +165,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	private static void onCommandRegister(RegisterCommandsEvent event) {
+	private static void onRegisterCommands(RegisterCommandsEvent event) {
 		CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
 	}
 

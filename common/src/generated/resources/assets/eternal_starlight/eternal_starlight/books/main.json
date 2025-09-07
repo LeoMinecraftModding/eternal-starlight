@@ -53,6 +53,29 @@
                   "translation": true
                 }
               ]
+            },
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:chiseled_golem_steel_block"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:starlight_golem_display",
+              "listening": [
+                "eternal_starlight:starlight_golem"
+              ],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.starlight_golem",
+                  "translation": true
+                }
+              ]
             }
           ],
           "extra_height": 20,
@@ -92,13 +115,23 @@
           "item_tag_displays": [],
           "text_displays": [
             {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
               "scale": 1.5,
-              "text": {
-                "color": "#ACFFFC",
-                "translate": "item.eternal_starlight.seeking_eye"
-              },
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.seeking_eye",
+                  "translation": true
+                }
+              ],
+              "width": 110,
               "x": 65,
-              "y": 55
+              "y": 45
             }
           ],
           "total_height": 60,
@@ -133,6 +166,82 @@
           ],
           "width": 130
         }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 0,
+          "id": "eternal_starlight:seeking_eye_locators",
+          "line_height": 12,
+          "offset": 0,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.seeking_eye.locator_items",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 130
+        }
+      },
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [],
+          "id": "eternal_starlight:seeking_eye_locators_starlight_golem",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 5
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [
+            {
+              "item_tag": "eternal_starlight:golem_forge_locators",
+              "x": 57,
+              "y": 7
+            }
+          ],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 9,
+              "min_distance_to_bottom": 6,
+              "scale": 1.0,
+              "text": [
+                {
+                  "content": "${color: #acfffc}${link: eternal_starlight:starlight_golem_display}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.starlight_golem",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 35
+            }
+          ],
+          "total_height": 50,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
       }
     ],
     [
@@ -163,13 +272,23 @@
           "item_tag_displays": [],
           "text_displays": [
             {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
               "scale": 1.5,
-              "text": {
-                "color": "#ACFFFC",
-                "translate": "item.eternal_starlight.orb_of_prophecy"
-              },
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.orb_of_prophecy",
+                  "translation": true
+                }
+              ],
+              "width": 110,
               "x": 65,
-              "y": 55
+              "y": 45
             }
           ],
           "total_height": 60,
@@ -194,6 +313,165 @@
             },
             {
               "content": "book.eternal_starlight.orb_of_prophecy",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [
+            {
+              "entity": {
+                "id": "eternal_starlight:starlight_golem"
+              },
+              "rotation": [
+                0.0,
+                -0.21643962,
+                0.976296,
+                -0.0
+              ],
+              "scale": 22.0,
+              "x": 65,
+              "x_rot": -25.0,
+              "y": 80,
+              "y_rot": 210.0
+            }
+          ],
+          "id": "eternal_starlight:starlight_golem_display",
+          "image_displays": [
+            {
+              "height": 72,
+              "location": "eternal_starlight:textures/gui/screen/book/frame_72.png",
+              "width": 72,
+              "x": 29,
+              "y": 20
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.starlight_golem",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 110
+            }
+          ],
+          "total_height": 125,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:mob_info",
+        "config": {
+          "button_height": 4,
+          "button_width": 4,
+          "center_x": 65,
+          "entries": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": []
+            },
+            {
+              "attribute": "minecraft:generic.armor",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "book.eternal_starlight.starlight_golem.defense",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "book.eternal_starlight.starlight_golem.speed",
+                  "translation": true
+                }
+              ]
+            }
+          ],
+          "height": 8,
+          "id": "eternal_starlight:starlight_golem_info",
+          "left_button": "eternal_starlight:textures/gui/screen/book/left.png",
+          "mob": "eternal_starlight:starlight_golem",
+          "right_button": "eternal_starlight:textures/gui/screen/book/right.png",
+          "tooltip_width": 150,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 20
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:starlight_golem",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.starlight_golem",
               "translation": true
             }
           ],

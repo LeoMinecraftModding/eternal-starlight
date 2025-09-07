@@ -47,6 +47,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUMINARIS_SPAWN_EGG.get());
 		basicItem(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
 		basicItem(ESItems.FREEZE_SPAWN_EGG.get());
+		basicItem(ESItems.PERMAFROST_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_HATRED_SPAWN_EGG.get());

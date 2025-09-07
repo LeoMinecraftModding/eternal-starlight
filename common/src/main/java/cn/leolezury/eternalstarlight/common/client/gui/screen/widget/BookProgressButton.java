@@ -23,7 +23,13 @@ public class BookProgressButton extends Button {
 	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		guiGraphics.pose().pushPose();
 		guiGraphics.pose().translate(0.0, 0.0, BookScreen.BUTTON_Z_OFFSET);
+		//RenderSystem.enableBlend();
+		//RenderSystem.enableDepthTest();
+		//RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		guiGraphics.blit(isDown ? book.textures().downButton() : book.textures().upButton(), this.getX(), this.getY(), 0, 0, book.buttonWidth(), book.buttonHeight(), book.buttonWidth(), book.buttonHeight());
+		//RenderSystem.disableBlend();
+		//RenderSystem.disableDepthTest();
+		//RenderSystem.defaultBlendFunc();
 		guiGraphics.pose().popPose();
 	}
 }

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookContext;
+import cn.leolezury.eternalstarlight.common.client.book.text.BookContent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -16,11 +17,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentSerialization;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -41,7 +43,11 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 
 	@Override
 	public int getTotalHeight(Config config, BookContext context) {
-		return config.totalHeight();
+		int totalHeight = config.totalHeight();
+		for (TextDisplay display : config.textDisplays()) {
+			totalHeight = Math.max(totalHeight, display.getLeastComponentHeight(context));
+		}
+		return totalHeight;
 	}
 
 	@Override
@@ -68,9 +74,13 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		}
 		for (TextDisplay display : config.textDisplays()) {
 			graphics.pose().pushPose();
-			graphics.pose().translate(x + display.x(), y + display.y(), 0);
-			graphics.pose().scale(display.scale(), display.scale(), display.scale());
-			graphics.drawString(context.getFont(), display.text(), -context.getFont().width(display.text()) / 2, -context.getFont().lineHeight, 0, true);
+			graphics.pose().translate(x + display.x, y + display.y, 0);
+			List<FormattedCharSequence> lines = display.getLines(context);
+			graphics.pose().scale(display.scale, display.scale, 1);
+			for (int i = 0; i < lines.size(); i++) {
+				FormattedCharSequence text = lines.get(i);
+				graphics.drawString(context.getFont(), text, display.centered ? -context.getFont().width(text) / 2 : 0, i * display.lineHeight, 0, true);
+			}
 			graphics.pose().popPose();
 		}
 	}
@@ -102,13 +112,69 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		}
 	}
 
-	private record TextDisplay(Component text, int x, int y, float scale) {
+	@Override
+	public void onClick(DisplayBookComponent.Config config, BookContext context, int x, int y) {
+		for (TextDisplay display : config.textDisplays()) {
+			int trueLineHeight = (int) (display.lineHeight * display.scale);
+			List<FormattedCharSequence> list = display.getLines(context);
+			int line = (context.getMouseY() - (y + display.y)) / trueLineHeight;
+			if (context.getMouseY() >= (y + display.y) && line >= 0 && line < list.size()) {
+				FormattedCharSequence charSequence = list.get(line);
+				int width = (int) (context.getFont().width(charSequence) * display.scale);
+				int startX = x + display.x - (display.centered ? width / 2 : 0);
+				int endX = x + display.x + (display.centered ? width / 2 : width);
+				if (context.getMouseX() >= startX && context.getMouseX() <= endX) {
+					Style style = context.getFont().getSplitter().componentStyleAtWidth(charSequence, (int) ((context.getMouseX() - startX) / display.scale));
+					if (style != null) {
+						ClickEvent event = style.getClickEvent();
+						if (event != null && event.getAction() == ClickEvent.Action.CHANGE_PAGE) {
+							context.jumpToComponent(ResourceLocation.parse(event.getValue()));
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private static class TextDisplay {
 		public static final Codec<TextDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			ComponentSerialization.CODEC.fieldOf("text").forGetter(TextDisplay::text),
-			Codec.INT.fieldOf("x").forGetter(TextDisplay::x),
-			Codec.INT.fieldOf("y").forGetter(TextDisplay::y),
-			Codec.FLOAT.fieldOf("scale").forGetter(TextDisplay::scale)
+			BookContent.CODEC.fieldOf("text").forGetter(o -> o.text),
+			Codec.BOOL.fieldOf("centered").forGetter(o -> o.centered),
+			Codec.INT.fieldOf("x").forGetter(o -> o.x),
+			Codec.INT.fieldOf("y").forGetter(o -> o.y),
+			Codec.INT.fieldOf("width").forGetter(o -> o.width),
+			Codec.INT.fieldOf("line_height").forGetter(o -> o.lineHeight),
+			Codec.INT.fieldOf("min_distance_to_bottom").forGetter(o -> o.minDistanceToBottom),
+			Codec.FLOAT.fieldOf("scale").forGetter(o -> o.scale)
 		).apply(instance, TextDisplay::new));
+
+		private final BookContent text;
+		private final List<FormattedCharSequence> cachedText = new ArrayList<>();
+		private final boolean centered;
+		private final int x, y, width, lineHeight, minDistanceToBottom;
+		private final float scale;
+
+		public TextDisplay(BookContent text, boolean centered, int x, int y, int width, int lineHeight, int minDistanceToBottom, float scale) {
+			this.text = text;
+			this.centered = centered;
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.lineHeight = lineHeight;
+			this.minDistanceToBottom = minDistanceToBottom;
+			this.scale = scale;
+		}
+
+		public List<FormattedCharSequence> getLines(BookContext context) {
+			if (cachedText.isEmpty()) {
+				cachedText.addAll(context.getFont().split(text.toComponent(), (int) (width / scale)));
+			}
+			return cachedText;
+		}
+
+		public int getLeastComponentHeight(BookContext context) {
+			return (int) (y + getLines(context).size() * lineHeight * scale + minDistanceToBottom);
+		}
 	}
 
 	private static class EntityDisplay {
@@ -212,8 +278,8 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 			this(id, unlockConditions, totalHeight, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 		}
 
-		public Config textDisplay(Component text, int x, int y, float scale) {
-			textDisplays.add(new TextDisplay(text, x, y, scale));
+		public Config textDisplay(BookContent text, boolean centered, int x, int y, int width, int lineHeight, int minDistanceToBottom, float scale) {
+			textDisplays.add(new TextDisplay(text, centered, x, y, width, lineHeight, minDistanceToBottom, scale));
 			return this;
 		}
 

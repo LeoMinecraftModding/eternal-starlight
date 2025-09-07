@@ -242,7 +242,12 @@ public class BookScreen extends Screen {
 			guiGraphics.fill(scrollButtonX, scrollButtonY, scrollButtonX + book.scrollButtonWidth(), scrollButtonY + getScrollButtonHeight(), book.scrollButtonColor());
 			guiGraphics.pose().popPose();
 		}
-		startHeight = 0;
+	}
+
+	@Override
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.render(guiGraphics, mouseX, mouseY, partialTick);
+		int startHeight = 0;
 		for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
 			if (getContentY() - scrollProgress + startHeight < getContentY() + book.height() - 2 * book.frameWidth()
 				&& getContentY() - scrollProgress + startHeight + component.getTotalHeight(context) > getContentY()) {
