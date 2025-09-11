@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.entity.attack.CrystalCluster;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
@@ -569,6 +570,14 @@ public class ESEntities {
 			.clientTrackingRange(10)
 			.updateInterval(1)
 			.build(EternalStarlight.id("energy_spark").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<CrystalCluster>> CRYSTAL_CLUSTER = ENTITIES.register(
+		"crystal_cluster",
+		() -> EntityType.Builder.of(CrystalCluster::new, MobCategory.MISC)
+			.sized(0.75f, 0.75f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("crystal_cluster").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<SoulitSpectator>> SOULIT_SPECTATOR = ENTITIES.register(
 		"soulit_spectator",

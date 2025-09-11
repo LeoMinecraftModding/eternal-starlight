@@ -15,8 +15,8 @@ public class ESWeathers {
 	public static final ResourceKey<Registry<AbstractWeather>> REGISTRY_KEY = ResourceKey.createRegistryKey(EternalStarlight.id("weather"));
 	public static final RegistrationProvider<AbstractWeather> WEATHERS = RegistrationProvider.newRegistry(REGISTRY_KEY, EternalStarlight.ID);
 	public static final Codec<AbstractWeather> CODEC = WEATHERS.registry().byNameCodec();
-	public static final RegistryObject<AbstractWeather, MeteorShowerWeather> METEOR_SHOWER = WEATHERS.register("meteor_shower", () -> new MeteorShowerWeather(new AbstractWeather.Properties(UniformInt.of(6000, 12000), UniformInt.of(24000, 180000))));
-	public static final RegistryObject<AbstractWeather, EmptyWeather> AURORA = WEATHERS.register("aurora", () -> new EmptyWeather(new AbstractWeather.Properties(UniformInt.of(6000, 12000), UniformInt.of(24000, 180000))));
+	public static final RegistryObject<AbstractWeather, MeteorShowerWeather> METEOR_SHOWER = WEATHERS.register("meteor_shower", () -> new MeteorShowerWeather(new AbstractWeather.Properties(UniformInt.of(6000, 12000), UniformInt.of(36000, 180000))));
+	public static final RegistryObject<AbstractWeather, EmptyWeather> AURORA = WEATHERS.register("aurora", () -> new EmptyWeather(new AbstractWeather.Properties(UniformInt.of(6000, 12000), UniformInt.of(36000, 180000))));
 
 	public static void loadClass() {
 	}

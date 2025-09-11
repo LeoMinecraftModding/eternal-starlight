@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-05T21:07:50.5800524	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-09-11T22:04:50.3490046	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -170,6 +170,7 @@ dfd066c2a25beb28f4ecbf64bcd61fe28a267e2c data/minecraft/tags/item/boats.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/item/candles.json
 77589c67db844bbf172d449116ec9b5bde1ca184 data/minecraft/tags/item/chest_armor.json
 eed71a5e9334851c98f7b9269a07ae7ba96103d7 data/minecraft/tags/item/chest_boats.json
+3ec49686cb97e91ef743c116f33f9e57942e3a2b data/minecraft/tags/item/cluster_max_harvestables.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 d46892015fcc974956b6e2c30d1271a89f4db08c data/minecraft/tags/item/enchantable/bow.json
 a5985824349ab96508bc6c94bdd5f96abebb3e32 data/minecraft/tags/item/enchantable/crossbow.json

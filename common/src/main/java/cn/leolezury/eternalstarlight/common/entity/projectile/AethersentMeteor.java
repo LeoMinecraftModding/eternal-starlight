@@ -53,7 +53,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	private static final String TAG_TARGET_Z = "target_z";
 	private static final String TAG_NATURAL = "natural";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
 	public int getSize() {

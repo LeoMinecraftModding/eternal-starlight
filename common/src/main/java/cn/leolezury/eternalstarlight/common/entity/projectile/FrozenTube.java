@@ -3,8 +3,10 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -24,6 +26,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +41,7 @@ import org.joml.Vector4f;
 public class FrozenTube extends AbstractArrow implements TrailOwner {
 	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	private boolean dealtDamage;
 
 	public FrozenTube(EntityType<? extends FrozenTube> entityType, Level level) {
@@ -69,7 +72,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 			if (level() instanceof ServerLevel serverLevel) {
 				serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, ESItems.FROZEN_TUBE.get().getDefaultInstance()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
 			}
-			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
+			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
 				if (!level().isClientSide && ESEntityUtil.shouldHarm(getOwner(), entity)) {
 					if (entity.canFreeze()) {
 						entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
@@ -103,7 +106,12 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner) {
-			hitResult.getEntity().hurt(damageSources().mobProjectile(this, owner), getOwner() instanceof Freeze ? (float) ESConfig.INSTANCE.mobsConfig.freeze.attackDamage() : 3f);
+			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, owner), (float) switch (getOwner()) {
+				case Player ignored -> 6;
+				case Freeze ignored -> ESConfig.INSTANCE.mobsConfig.freeze.attackDamage();
+				case Permafrost permafrost -> (permafrost.getAttribute(Attributes.ATTACK_SPEED) != null ? permafrost.getAttributeValue(Attributes.ATTACK_SPEED) : 12) * 0.4;
+				default -> 3;
+			});
 		}
 	}
 
@@ -136,7 +144,7 @@ public class FrozenTube extends AbstractArrow implements TrailOwner {
 
 	@Override
 	public TrailEffect newTrail() {
-		return new TrailEffect(0.3f, 15);
+		return new TrailEffect(0.3f, 8);
 	}
 
 	@Override

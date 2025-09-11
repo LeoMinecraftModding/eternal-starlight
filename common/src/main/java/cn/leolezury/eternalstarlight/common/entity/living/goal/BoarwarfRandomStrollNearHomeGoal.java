@@ -15,10 +15,12 @@ public class BoarwarfRandomStrollNearHomeGoal extends RandomStrollGoal {
 	@Nullable
 	@Override
 	protected Vec3 getPosition() {
-		if (mob instanceof Boarwarf boarwarf) {
-			BlockPos homePos = boarwarf.homePos;
+		if (mob instanceof Boarwarf boarwarf && boarwarf.homePos.dimension() == boarwarf.level().dimension()) {
+			BlockPos homePos = boarwarf.homePos.pos();
 			Vec3 homeVec = new Vec3(homePos.getX(), homePos.getY(), homePos.getZ());
 			return DefaultRandomPos.getPosTowards(boarwarf, 15, 7, homeVec, (float) Math.PI / 2F);
-		} else return null;
+		} else {
+			return super.getPosition();
+		}
 	}
 }

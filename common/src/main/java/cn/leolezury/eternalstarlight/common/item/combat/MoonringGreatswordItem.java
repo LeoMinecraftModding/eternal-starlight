@@ -16,7 +16,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		super.postHurtEnemy(stack, target, attacker);
 		Level level = attacker.level();
-		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, stack.getItem())) {
+		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, this)) {
 			float radiusIncrement = target.getBbWidth() * 0.75f;
 			for (int i = 0; i < 4; i++) {
 				float radius = (i + 1) * radiusIncrement;
@@ -27,7 +27,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
 					MoonringBowItem.createThorn(level, attacker, target.getX() + Math.cos(angle) * radius, target.getY(), target.getZ() + Math.sin(angle) * radius, Mth.wrapDegrees(-angle * Mth.RAD_TO_DEG), 40, i * 7);
 				}
 			}
-			SpecialItemCooldown.setCooldown(attacker, stack.getItem(), 125);
+			SpecialItemCooldown.setCooldown(attacker, this, 125);
 		}
 	}
 }

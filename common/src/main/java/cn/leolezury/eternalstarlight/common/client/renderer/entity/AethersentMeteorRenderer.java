@@ -29,16 +29,16 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 
 	@Override
 	public void render(AethersentMeteor meteor, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-		BlockState blockstate = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
-		if (blockstate.getRenderShape() == RenderShape.MODEL) {
+		BlockState state = ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState();
+		if (state.getRenderShape() == RenderShape.MODEL) {
 			Level level = meteor.level();
-			if (blockstate != level.getBlockState(meteor.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
+			if (state != level.getBlockState(meteor.blockPosition()) && state.getRenderShape() != RenderShape.INVISIBLE) {
 				stack.pushPose();
-				BlockPos blockpos = BlockPos.containing(meteor.getX(), meteor.getBoundingBox().maxY, meteor.getZ());
+				BlockPos pos = BlockPos.containing(meteor.getX(), meteor.getBoundingBox().maxY, meteor.getZ());
 				float scale = meteor.getSize() / 10f;
-				stack.translate(-0.5D * scale, 0.0D, -0.5D * scale);
+				stack.translate(-0.5 * scale, 0.0, -0.5 * scale);
 				stack.scale(scale, scale, scale);
-				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(meteor.blockPosition()));
+				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(meteor.blockPosition()));
 				stack.popPose();
 				super.render(meteor, yaw, delta, stack, bufferSource, packedLight);
 			}

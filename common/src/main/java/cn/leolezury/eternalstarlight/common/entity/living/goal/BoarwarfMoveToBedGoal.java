@@ -40,10 +40,10 @@ public class BoarwarfMoveToBedGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean findNearestBlock() {
-		if (mob instanceof Boarwarf boarwarf) {
+		if (mob instanceof Boarwarf boarwarf && boarwarf.homePos.dimension() == boarwarf.level().dimension()) {
 			int searchRange = 10;
 			int verticalSearchRange = 5;
-			BlockPos blockpos = boarwarf.homePos;
+			BlockPos blockpos = boarwarf.homePos.pos();
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 			for (int k = this.verticalSearchStart; k <= verticalSearchRange; k = k > 0 ? -k : 1 - k) {

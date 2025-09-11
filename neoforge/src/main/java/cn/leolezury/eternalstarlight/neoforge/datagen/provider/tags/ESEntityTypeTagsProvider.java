@@ -34,7 +34,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.BOAT.get(),
 				ESEntities.CHEST_BOAT.get()
 			);
-		tag(ESTags.EntityTypes.ROBOTIC)
+		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLYS)
 			.add(
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
@@ -79,6 +79,11 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				EntityType.PLAYER
 			)
 			.addTag(EntityTypeTags.ARTHROPOD);
+		tag(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS)
+			.add(
+				ESEntities.TINY_CRETEOR.get(),
+				EntityType.PHANTOM
+			);
 		tag(EntityTypeTags.SKELETONS)
 			.add(
 				ESEntities.LONESTAR_SKELETON.get(),

@@ -13,7 +13,7 @@ public abstract class ProjectileMixin {
 	@Inject(method = "onHit", at = @At(value = "HEAD"))
 	private void onHit(HitResult hitResult, CallbackInfo ci) {
 		if (hitResult.getType() != HitResult.Type.MISS) {
-			CommonHandlers.onArrowHit((Projectile) (Object) this, hitResult);
+			CommonHandlers.onProjectileImpact((Projectile) (Object) this, hitResult);
 		}
 	}
 }

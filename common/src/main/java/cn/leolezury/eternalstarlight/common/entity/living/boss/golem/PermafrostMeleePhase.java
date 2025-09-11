@@ -36,9 +36,8 @@ public class PermafrostMeleePhase extends BehaviorPhase<Permafrost> {
 			LivingEntity target = entity.getTarget();
 			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
 		}
-		Vec3 movement = entity.getDeltaMovement();
 		entity.hurtMarked = true;
-		entity.setDeltaMovement(new Vec3(movement.x, entity.getBehaviorTicks() <= 7 ? Math.max(movement.y, 0.5) : Math.min(movement.y, -0.4), movement.z));
+		entity.addDeltaMovement(new Vec3(0, entity.getBehaviorTicks() <= 7 ? 0.12 : -0.1, 0));
 	}
 
 	@Override

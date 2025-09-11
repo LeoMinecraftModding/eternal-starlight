@@ -28,6 +28,7 @@ public abstract class CrossbowItemMixin {
 			if (projectile instanceof AbstractArrow arrow) {
 				arrow.setPierceLevel((byte) ((int) arrow.getPierceLevel() + 1));
 			}
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.MECHANICAL_ARROW);
 		}
 		if (itemStack.is(ESItems.WILTED_CROSSBOW.get())) {
 			Projectile projectile = cir.getReturnValue();

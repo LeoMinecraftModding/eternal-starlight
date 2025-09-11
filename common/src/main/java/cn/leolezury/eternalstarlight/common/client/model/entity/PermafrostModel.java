@@ -3,10 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PermafrostAnimation;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.PermafrostMeleeEndPhase;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.PermafrostMeleePhase;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.PermafrostMeleeTransitionPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -39,13 +36,13 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 		PartDefinition armature = lower.addOrReplaceChild("armature", CubeListBuilder.create().texOffs(40, 0).addBox(-1.0F, 3.0F, -1.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F))
 			.texOffs(40, 8).addBox(-2.0F, 9.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition armature1 = armature.addOrReplaceChild("armature1", CubeListBuilder.create().texOffs(0, 57).mirror().addBox(-9.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 3.5F, -1.0F, 0.0F, -0.7854F, 0.0F));
+		armature.addOrReplaceChild("armature1", CubeListBuilder.create().texOffs(0, 57).mirror().addBox(-9.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 3.5F, -1.0F, 0.0F, -0.7854F, 0.0F));
 
-		PartDefinition armature2 = armature.addOrReplaceChild("armature2", CubeListBuilder.create().texOffs(0, 57).addBox(0.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 3.5F, -1.0F, 0.0F, 0.7854F, 0.0F));
+		armature.addOrReplaceChild("armature2", CubeListBuilder.create().texOffs(0, 57).addBox(0.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 3.5F, -1.0F, 0.0F, 0.7854F, 0.0F));
 
-		PartDefinition armature3 = armature.addOrReplaceChild("armature3", CubeListBuilder.create().texOffs(0, 57).addBox(0.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 3.5F, 1.0F, 0.0F, -0.7854F, 0.0F));
+		armature.addOrReplaceChild("armature3", CubeListBuilder.create().texOffs(0, 57).addBox(0.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 3.5F, 1.0F, 0.0F, -0.7854F, 0.0F));
 
-		PartDefinition armature4 = armature.addOrReplaceChild("armature4", CubeListBuilder.create().texOffs(0, 57).mirror().addBox(-9.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 3.5F, 1.0F, 0.0F, 0.7854F, 0.0F));
+		armature.addOrReplaceChild("armature4", CubeListBuilder.create().texOffs(0, 57).mirror().addBox(-9.0F, -6.5F, 0.0F, 9.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.0F, 3.5F, 1.0F, 0.0F, 0.7854F, 0.0F));
 
 		PartDefinition wheel = lower.addOrReplaceChild("wheel", CubeListBuilder.create().texOffs(40, 16).addBox(-4.0F, -1.2F, -4.0F, 8.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
 			.texOffs(40, 20).addBox(-4.0F, -1.2F, 2.0F, 8.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
@@ -58,47 +55,55 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 			.texOffs(18, 61).addBox(-7.0F, -1.2F, 0.0F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F))
 			.texOffs(18, 58).addBox(4.0F, -1.2F, 0.0F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 6.2F, 0.0F));
 
-		PartDefinition right_chain = wheel.addOrReplaceChild("right_chain", CubeListBuilder.create(), PartPose.offset(-5.5F, 0.8F, 0.0F));
+		PartDefinition rightChainCenter = wheel.addOrReplaceChild("right_chain_center", CubeListBuilder.create(), PartPose.offset(0.0F, 0.8F, 0.0F));
 
-		PartDefinition right_chain1 = right_chain.addOrReplaceChild("right_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+		PartDefinition rightChain = rightChainCenter.addOrReplaceChild("right_chain", CubeListBuilder.create(), PartPose.offset(-5.5F, 0.0F, 0.0F));
 
-		PartDefinition right_chain2 = right_chain1.addOrReplaceChild("right_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		PartDefinition rightChain1 = rightChain.addOrReplaceChild("right_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
 
-		PartDefinition right_rod = right_chain2.addOrReplaceChild("right_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
+		PartDefinition rightChain2 = rightChain1.addOrReplaceChild("right_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+
+		rightChain2.addOrReplaceChild("right_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
 			.texOffs(52, 31).addBox(-1.0F, 3.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
 			.texOffs(48, 3).addBox(0.0F, -0.5F, -1.5F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		PartDefinition left_chain = wheel.addOrReplaceChild("left_chain", CubeListBuilder.create(), PartPose.offset(5.5F, 0.8F, 0.0F));
+		PartDefinition leftChainCenter = wheel.addOrReplaceChild("left_chain_center", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.8F, 0.0F, 0.0F, 3.1416F, 0.0F));
 
-		PartDefinition left_chain1 = left_chain.addOrReplaceChild("left_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+		PartDefinition leftChain = leftChainCenter.addOrReplaceChild("left_chain", CubeListBuilder.create(), PartPose.offset(-5.5F, 0.0F, 0.0F));
 
-		PartDefinition left_chain2 = left_chain1.addOrReplaceChild("left_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		PartDefinition leftChain1 = leftChain.addOrReplaceChild("left_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
 
-		PartDefinition left_rod = left_chain2.addOrReplaceChild("left_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
+		PartDefinition leftChain2 = leftChain1.addOrReplaceChild("left_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+
+		leftChain2.addOrReplaceChild("left_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
 			.texOffs(52, 31).addBox(-1.0F, 3.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
 			.texOffs(48, 3).addBox(0.0F, -0.5F, -1.5F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		PartDefinition forward_chain = wheel.addOrReplaceChild("forward_chain", CubeListBuilder.create(), PartPose.offset(0.0F, 0.8F, -5.5F));
+		PartDefinition forwardChainCenter = wheel.addOrReplaceChild("forward_chain_center", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.8F, 0.0F, 0.0F, -1.5708F, 0.0F));
 
-		PartDefinition forward_chain1 = forward_chain.addOrReplaceChild("forward_chain1", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+		PartDefinition forwardChain = forwardChainCenter.addOrReplaceChild("forward_chain", CubeListBuilder.create(), PartPose.offset(-5.5F, 0.0F, 0.0F));
 
-		PartDefinition forward_chain2 = forward_chain1.addOrReplaceChild("forward_chain2", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		PartDefinition forwardChain1 = forwardChain.addOrReplaceChild("forward_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
 
-		PartDefinition forward_rod = forward_chain2.addOrReplaceChild("forward_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
+		PartDefinition forwardChain2 = forwardChain1.addOrReplaceChild("forward_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+
+		forwardChain2.addOrReplaceChild("forward_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
 			.texOffs(52, 31).addBox(-1.0F, 3.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
-			.texOffs(48, 6).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+			.texOffs(48, 3).addBox(0.0F, -0.5F, -1.5F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		PartDefinition backward_chain = wheel.addOrReplaceChild("backward_chain", CubeListBuilder.create(), PartPose.offset(0.0F, 0.8F, 5.5F));
+		PartDefinition backwardChainCenter = wheel.addOrReplaceChild("backward_chain_center", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.8F, 0.0F, 0.0F, 1.5708F, 0.0F));
 
-		PartDefinition backward_chain1 = backward_chain.addOrReplaceChild("backward_chain1", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+		PartDefinition backwardChain = backwardChainCenter.addOrReplaceChild("backward_chain", CubeListBuilder.create(), PartPose.offset(-5.5F, 0.0F, 0.0F));
 
-		PartDefinition backward_chain2 = backward_chain1.addOrReplaceChild("backward_chain2", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+		PartDefinition backwardChain1 = backwardChain.addOrReplaceChild("backward_chain1", CubeListBuilder.create().texOffs(48, -1).addBox(0.0F, -0.5F, -1.5F, 0.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
 
-		PartDefinition backward_rod = backward_chain2.addOrReplaceChild("backward_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
+		PartDefinition backwardChain2 = backwardChain1.addOrReplaceChild("backward_chain2", CubeListBuilder.create().texOffs(48, 2).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+
+		backwardChain2.addOrReplaceChild("backward_rod", CubeListBuilder.create().texOffs(40, 30).addBox(-1.5F, 1.5F, -1.5F, 3.0F, 13.0F, 3.0F, new CubeDeformation(0.0F))
 			.texOffs(52, 31).addBox(-1.0F, 3.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
-			.texOffs(48, 6).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
+			.texOffs(48, 3).addBox(0.0F, -0.5F, -1.5F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 3.0F, 0.0F));
 
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 20).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.5F))
+		root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 20).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.5F))
 			.texOffs(0, 0).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -11.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
@@ -121,6 +126,9 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 				}
 				case PermafrostMeleeEndPhase.ID -> {
 					animate(entity.meleeEndAnimationState, PermafrostAnimation.MELEE_END, ageInTicks);
+				}
+				case PermafrostRangedPhase.ID -> {
+					animate(entity.rangedAnimationState, PermafrostAnimation.RANGED, ageInTicks);
 				}
 			}
 		}

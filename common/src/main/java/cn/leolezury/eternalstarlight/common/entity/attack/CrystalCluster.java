@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import net.minecraft.nbt.CompoundTag;
@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,8 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class LunarThorn extends Entity {
-	private static final String TAG_ATTACK_MODE = "attack_mode";
+public class CrystalCluster extends Entity {
 	private static final String TAG_OWNER = "owner";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
@@ -40,7 +38,7 @@ public class LunarThorn extends Entity {
 		this.owner = owner;
 	}
 
-	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(LunarThorn.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(CrystalCluster.class, EntityDataSerializers.INT);
 
 	public int getSpawnedTicks() {
 		return this.getEntityData().get(SPAWNED_TICKS);
@@ -50,20 +48,11 @@ public class LunarThorn extends Entity {
 		this.getEntityData().set(SPAWNED_TICKS, spawnedTicks);
 	}
 
-	private int attackMode;
-
-	public int getAttackMode() {
-		return attackMode;
-	}
-
-	public void setAttackMode(int attackMode) {
-		this.attackMode = attackMode;
-	}
-
 	public float oldClientScale = 0f;
 	public float clientScale = 0f;
+	public int clientCrystalType = 0;
 
-	public LunarThorn(EntityType<? extends LunarThorn> type, Level level) {
+	public CrystalCluster(EntityType<? extends CrystalCluster> type, Level level) {
 		super(type, level);
 	}
 
@@ -84,29 +73,26 @@ public class LunarThorn extends Entity {
 					ownerId = null;
 				}
 			}
-			if (getSpawnedTicks() >= 200) {
+			if (getSpawnedTicks() >= 20) {
 				discard();
 			}
-			if (getSpawnedTicks() > 40 && getOwner() != null) {
+			if (getSpawnedTicks() > 5 && getOwner() != null) {
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
-					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
-						if (getAttackMode() == 1 && !livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-							livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10));
-						}
-						livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), getAttackMode() == 0 ? 4 : 3);
+					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity) && livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.CRYSTALLINE_INFECTION, this, getOwner()), 4)) {
+						livingEntity.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 120));
 					}
 				}
 			}
 			setSpawnedTicks(getSpawnedTicks() + 1);
 		} else {
-			float scale = getSpawnedTicks() <= 40 ? Easing.OUT_QUART.calculate(getSpawnedTicks() / 40f) : 1;
-			if (getSpawnedTicks() >= 160) {
-				scale = Easing.OUT_QUART.calculate((200 - getSpawnedTicks()) / 40f);
+			float scale = getSpawnedTicks() <= 5 ? Easing.OUT_QUART.calculate(getSpawnedTicks() / 5f) : 1;
+			if (getSpawnedTicks() >= 15) {
+				scale = Easing.OUT_QUART.calculate((20 - getSpawnedTicks()) / 5f);
 			}
 			oldClientScale = clientScale;
 			clientScale = scale;
-			if (random.nextInt(20) == 0) {
-				level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getRandomX(1.5), getRandomY(), getRandomZ(1.5), 0, 0, 0);
+			if (clientCrystalType == 0) {
+				clientCrystalType = random.nextBoolean() ? 1 : 2;
 			}
 		}
 	}
@@ -125,7 +111,6 @@ public class LunarThorn extends Entity {
 			ownerId = compoundTag.getUUID(TAG_OWNER);
 		}
 		setSpawnedTicks(compoundTag.getInt(TAG_SPAWNED_TICKS));
-		setAttackMode(compoundTag.getInt(TAG_ATTACK_MODE));
 	}
 
 	@Override
@@ -134,6 +119,5 @@ public class LunarThorn extends Entity {
 			compoundTag.putUUID(TAG_OWNER, owner.getUUID());
 		}
 		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
-		compoundTag.putInt(TAG_ATTACK_MODE, getAttackMode());
 	}
 }

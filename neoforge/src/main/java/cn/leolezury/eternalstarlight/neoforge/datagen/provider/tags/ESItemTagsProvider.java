@@ -1047,6 +1047,19 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_PICKAXE.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
+		tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
+			.add(
+				ESItems.THERMAL_SPRINGSTONE_PICKAXE.get(),
+				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
+				ESItems.GLACITE_PICKAXE.get(),
+				ESItems.STARLIT_DIAMOND_PICKAXE.get(),
+				ESItems.SWAMP_SILVER_PICKAXE.get(),
+				ESItems.MALARITE_PICKAXE.get(),
+				ESItems.STARFIRE_PICKAXE.get(),
+				ESItems.FLOWGLAZE_PICKAXE.get(),
+				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GRAVITY_PICKAXE.get()
+			);
 		tag(ItemTags.AXES)
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_AXE.get(),

@@ -45,13 +45,15 @@ public class Permafrost extends ESBoss {
 	private final BehaviorManager<Permafrost> behaviorManager = new BehaviorManager<>(this, List.of(
 		new PermafrostMeleePhase(),
 		new PermafrostMeleeTransitionPhase(),
-		new PermafrostMeleeEndPhase()
+		new PermafrostMeleeEndPhase(),
+		new PermafrostRangedPhase()
 	));
 
 	public AnimationState idleAnimationState = new AnimationState();
 	public AnimationState meleeAnimationState = new AnimationState();
 	public AnimationState meleeTransitionAnimationState = new AnimationState();
 	public AnimationState meleeEndAnimationState = new AnimationState();
+	public AnimationState rangedAnimationState = new AnimationState();
 
 	@Override
 	protected PathNavigation createNavigation(Level level) {
@@ -99,8 +101,8 @@ public class Permafrost extends ESBoss {
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.permafrost.armor())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.permafrost.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
-			.add(Attributes.FLYING_SPEED, 0.75)
-			.add(Attributes.ATTACK_DAMAGE, 7)
+			.add(Attributes.FLYING_SPEED, 0.8)
+			.add(Attributes.ATTACK_DAMAGE, 12)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 0.75);
 	}
 
@@ -129,11 +131,11 @@ public class Permafrost extends ESBoss {
 			LivingEntity entity = Permafrost.this.getTarget();
 			if (entity != null) {
 				Vec3 target = entity.position();
-				BlockHitResult result = Permafrost.this.level().clip(new ClipContext(target.add(0, entity.getBbHeight() / 2, 0), target.add(0, entity.getBbHeight() + Permafrost.this.getBbHeight() + 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, Permafrost.this));
+				BlockHitResult result = Permafrost.this.level().clip(new ClipContext(target.add(0, entity.getBbHeight() / 2, 0), target.add(0, entity.getBbHeight() / 2 + Permafrost.this.getBbHeight(), 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, Permafrost.this));
 				if (result.getType() != HitResult.Type.MISS) {
 					target = result.getLocation();
 				} else {
-					target = target.add(0, entity.getBbHeight() + Permafrost.this.getBbHeight() + 0.5, 0);
+					target = target.add(0, entity.getBbHeight() / 2 + Permafrost.this.getBbHeight(), 0);
 				}
 				Permafrost.this.getNavigation().moveTo(target.x, target.y - Permafrost.this.getBbHeight(), target.z, 1);
 			}
@@ -144,6 +146,7 @@ public class Permafrost extends ESBoss {
 		meleeAnimationState.stop();
 		meleeTransitionAnimationState.stop();
 		meleeEndAnimationState.stop();
+		rangedAnimationState.stop();
 	}
 
 	@Override
@@ -154,6 +157,7 @@ public class Permafrost extends ESBoss {
 				case PermafrostMeleePhase.ID -> meleeAnimationState.start(tickCount);
 				case PermafrostMeleeTransitionPhase.ID -> meleeTransitionAnimationState.start(tickCount);
 				case PermafrostMeleeEndPhase.ID -> meleeEndAnimationState.start(tickCount);
+				case PermafrostRangedPhase.ID -> rangedAnimationState.start(tickCount);
 			}
 		}
 		super.onSyncedDataUpdated(accessor);
@@ -166,7 +170,7 @@ public class Permafrost extends ESBoss {
 
 	@Override
 	public boolean isAlliedTo(Entity entity) {
-		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.ROBOTIC);
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLYS);
 	}
 
 	@Override
@@ -184,12 +188,11 @@ public class Permafrost extends ESBoss {
 			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
-			this.setNoGravity(true);
 			if (getBehaviorState() == 0) {
 				LivingEntity target = getTarget();
 				if (target != null && level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(1)).contains(getTarget())) {
 					hurtMarked = true;
-					addDeltaMovement(position().subtract(target.position()).normalize().scale(0.1));
+					addDeltaMovement(position().subtract(target.position()).multiply(1, 0, 1).normalize().scale(0.1));
 				}
 			}
 		} else {

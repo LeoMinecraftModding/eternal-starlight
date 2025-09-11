@@ -1,16 +1,19 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.GlobalVec3;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -36,9 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ESBoss extends Monster implements MultiBehaviorUser {
-	private static final String TAG_INITIAL_X = "initial_x";
-	private static final String TAG_INITIAL_Y = "initial_y";
-	private static final String TAG_INITIAL_Z = "initial_z";
+	private static final String TAG_INITIAL_POS = "initial_pos";
 	private static final String TAG_SPAWNED = "spawned";
 	private static final String TAG_PHASE = "phase";
 	private static final String TAG_ACTIVATED = "activated";
@@ -96,10 +97,10 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		}
 	}
 
-	private Vec3 initialPos = Vec3.ZERO;
+	private GlobalVec3 initialPos = GlobalVec3.of(Level.OVERWORLD, Vec3.ZERO);
 	private boolean spawned = false;
 
-	public Vec3 getInitialPos() {
+	public GlobalVec3 getInitialPos() {
 		return initialPos;
 	}
 
@@ -115,7 +116,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		initialPos = new Vec3(compoundTag.getDouble(TAG_INITIAL_X), compoundTag.getDouble(TAG_INITIAL_Y), compoundTag.getDouble(TAG_INITIAL_Z));
+		GlobalVec3.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_INITIAL_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.initialPos = pos);
 		spawned = compoundTag.getBoolean(TAG_SPAWNED);
 		setPhase(compoundTag.getInt(TAG_PHASE));
 		if (compoundTag.contains(TAG_ACTIVATED, CompoundTag.TAG_INT)) {
@@ -126,9 +127,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putDouble(TAG_INITIAL_X, initialPos.x);
-		compoundTag.putDouble(TAG_INITIAL_Y, initialPos.y);
-		compoundTag.putDouble(TAG_INITIAL_Z, initialPos.z);
+		GlobalVec3.CODEC.encodeStart(NbtOps.INSTANCE, initialPos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_INITIAL_POS, tag));
 		compoundTag.putBoolean(TAG_SPAWNED, spawned);
 		compoundTag.putInt(TAG_PHASE, getPhase());
 		compoundTag.putBoolean(TAG_ACTIVATED, isActivated());
@@ -181,7 +180,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	public void initializeBoss() {
-		initialPos = position();
+		initialPos = GlobalVec3.of(level().dimension(), position());
 	}
 
 	public boolean shouldPlayBossMusic() {
@@ -241,8 +240,8 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 				initializeBoss();
 				spawned = true;
 			}
-			if (!canBossMove()) {
-				setPos(initialPos.x, position().y, initialPos.z);
+			if (!canBossMove() && level().dimension() == initialPos.dimension()) {
+				setPos(initialPos.pos().x, position().y, initialPos.pos().z);
 			}
 		}
 	}

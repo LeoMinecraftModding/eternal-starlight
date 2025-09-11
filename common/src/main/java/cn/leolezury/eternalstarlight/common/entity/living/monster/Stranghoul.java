@@ -14,12 +14,13 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -97,7 +98,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	private int remainingPersistentAngerTime;
 	@Nullable
 	private UUID persistentAngerTarget;
-	public BlockPos homePos = BlockPos.ZERO;
+	public GlobalPos homePos = GlobalPos.of(Level.OVERWORLD, BlockPos.ZERO);
 	private int growthTicks;
 	private int breedCooldown = 24000;
 	private int admirationTicks;
@@ -612,12 +613,12 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 
 		@Override
 		public boolean canUse() {
-			return Stranghoul.this.getRandom().nextInt(reducedTickDelay(120)) == 0 && !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos, 20);
+			return Stranghoul.this.getRandom().nextInt(reducedTickDelay(120)) == 0 && Stranghoul.this.homePos.dimension() == Stranghoul.this.level().dimension() && !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos.pos(), 20);
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			return !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos, 10) && tryTicks < 600;
+			return Stranghoul.this.homePos.dimension() == Stranghoul.this.level().dimension() && !Stranghoul.this.blockPosition().closerThan(Stranghoul.this.homePos.pos(), 10) && tryTicks < 600;
 		}
 
 		@Override
@@ -628,7 +629,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 		@Override
 		public void tick() {
 			tryTicks++;
-			Stranghoul.this.getNavigation().moveTo(Stranghoul.this.homePos.getX() + 0.5, Stranghoul.this.homePos.getY() + 0.5, Stranghoul.this.homePos.getZ() + 0.5, 1);
+			Stranghoul.this.getNavigation().moveTo(Stranghoul.this.homePos.pos().getX() + 0.5, Stranghoul.this.homePos.pos().getY() + 0.5, Stranghoul.this.homePos.pos().getZ() + 0.5, 1);
 		}
 
 		@Override
@@ -876,7 +877,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-		homePos = blockPosition();
+		homePos = GlobalPos.of(level.getLevel().dimension(), blockPosition());
 		if (random.nextFloat() < 0.1F) {
 			this.setBaby(true);
 		}
@@ -1152,7 +1153,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		this.addPersistentAngerSaveData(compoundTag);
-		compoundTag.put(TAG_HOME_POS, NbtUtils.writeBlockPos(homePos));
+		GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_HOME_POS, tag));
 		compoundTag.putBoolean(TAG_BABY, isBaby());
 		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 		compoundTag.putInt(TAG_BREED_COOLDOWN, breedCooldown);
@@ -1167,7 +1168,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
-		NbtUtils.readBlockPos(compoundTag, TAG_HOME_POS).ifPresent(pos -> homePos = pos);
+		GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.homePos = pos);
 		if (compoundTag.contains(TAG_BABY, CompoundTag.TAG_BYTE)) {
 			setBaby(compoundTag.getBoolean(TAG_BABY));
 		}

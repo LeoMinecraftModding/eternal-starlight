@@ -30,7 +30,6 @@ public class YetiFurBlock extends HalfTransparentBlock {
 		} else {
 			entity.causeFallDamage(f, 0.0F, level.damageSources().fall());
 		}
-
 	}
 
 	@Override
@@ -40,7 +39,6 @@ public class YetiFurBlock extends HalfTransparentBlock {
 		} else {
 			this.bounceUp(entity);
 		}
-
 	}
 
 	private void bounceUp(Entity entity) {
@@ -49,16 +47,5 @@ public class YetiFurBlock extends HalfTransparentBlock {
 			double d = entity instanceof LivingEntity ? 0.8 : 0.6;
 			entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
 		}
-	}
-
-	@Override
-	public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
-		double d = Math.abs(entity.getDeltaMovement().y);
-		if (d < 0.1 && !entity.isSteppingCarefully()) {
-			double e = 0.4 + d * 0.2;
-			entity.setDeltaMovement(entity.getDeltaMovement().multiply(e, 1.0, e));
-		}
-
-		super.stepOn(level, blockPos, blockState, entity);
 	}
 }

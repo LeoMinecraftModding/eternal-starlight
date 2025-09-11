@@ -37,7 +37,9 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 				ESPaintingVariants.CARVED_SLATE,
 				ESPaintingVariants.INSECT_SPECIMEN,
 				ESPaintingVariants.SWORD_OF_THE_LAKE,
-				ESPaintingVariants.SKELETON_LONESTAR
+				ESPaintingVariants.SKELETON_LONESTAR,
+				ESPaintingVariants.HYMN_OF_THE_RATS,
+				ESPaintingVariants.COOLER
 			);
 	}
 }

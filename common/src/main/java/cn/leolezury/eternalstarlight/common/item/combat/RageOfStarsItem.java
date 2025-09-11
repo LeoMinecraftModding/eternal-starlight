@@ -18,8 +18,7 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
 		super(tier, properties);
 	}
 
-	@Override
-	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+	private void performSpecialAttach(LivingEntity entity) {
 		double range = 20;
 		Vec3 eyePosition = entity.getEyePosition();
 		Vec3 viewVector = entity.getViewVector(1.0F);
@@ -30,5 +29,16 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
 			Vec3 location = livingEntity.position();
 			AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, false);
 		}
+	}
+
+	@Override
+	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+		super.postHurtEnemy(stack, target, attacker);
+		performSpecialAttach(attacker);
+	}
+
+	@Override
+	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+		performSpecialAttach(entity);
 	}
 }

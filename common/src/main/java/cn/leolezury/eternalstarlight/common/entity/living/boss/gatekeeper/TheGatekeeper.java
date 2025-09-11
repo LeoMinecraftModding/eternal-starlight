@@ -65,10 +65,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -267,6 +264,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
 		super.populateDefaultEquipmentSlots(randomSource, difficultyInstance);
+		Arrays.fill(this.handDropChances, 0);
 		this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ESItems.SHATTERED_SWORD.get()));
 	}
 
@@ -408,6 +406,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			getFightTarget().ifPresent(p -> {
 				if (p instanceof ServerPlayer serverPlayer) {
 					permitPlayer(serverPlayer);
+					ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.setData(serverPlayer, ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(serverPlayer) + 1);
 				}
 			});
 			for (Player player : level().players()) {
@@ -433,7 +432,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	private void tryTeleportBack() {
-		Vec3 initialPos = getInitialPos();
+		if (getInitialPos().dimension() != level().dimension()) {
+			return;
+		}
+		Vec3 initialPos = getInitialPos().pos();
 		BlockPos blockPos = BlockPos.containing(initialPos);
 		if (initialPos.distanceTo(position()) > 15) {
 			Stream<VoxelShape> shapes = StreamSupport.stream(level().getBlockCollisions(this, getBoundingBox().move(initialPos.subtract(position()))).spliterator(), false);
@@ -540,7 +542,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 		} else {
 			idleAnimationState.startIfStopped(tickCount);
-			level().addParticle(ESParticles.STARLIGHT.get(), getX() + (getRandom().nextDouble() - 0.5) * 2, getY() + 1 + (getRandom().nextDouble() - 0.5) * 2, getZ() + (getRandom().nextDouble() - 0.5) * 2, 0, 0, 0);
 		}
 	}
 

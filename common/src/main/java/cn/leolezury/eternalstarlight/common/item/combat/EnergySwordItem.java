@@ -18,7 +18,7 @@ public class EnergySwordItem extends SwordItem {
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		super.postHurtEnemy(stack, target, attacker);
 		Level level = attacker.level();
-		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, stack.getItem())) {
+		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, this)) {
 			for (int i = 0; i < attacker.getRandom().nextInt(5, 8); i++) {
 				EnergySpark spark = new EnergySpark(level, attacker);
 				spark.setPos(target.position().add(0, target.getBbHeight() / 2, 0));
@@ -27,7 +27,7 @@ public class EnergySwordItem extends SwordItem {
 				spark.shoot(movement.x, movement.y, movement.z, 0.1f, 0.2f);
 				level.addFreshEntity(spark);
 			}
-			SpecialItemCooldown.setCooldown(attacker, stack.getItem(), 75);
+			SpecialItemCooldown.setCooldown(attacker, this, 75);
 		}
 	}
 }

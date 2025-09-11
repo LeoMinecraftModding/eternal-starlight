@@ -11,9 +11,9 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -73,7 +73,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	public int chatTicks = 0;
 	private int awakeTicks = 0;
 	private int sleepTicks = 0;
-	public BlockPos homePos = BlockPos.ZERO;
+	public GlobalPos homePos = GlobalPos.of(Level.OVERWORLD, BlockPos.ZERO);
 	public Boarwarf chatTarget = null;
 	public final AnimationState idleAnimationState = new AnimationState();
 
@@ -140,7 +140,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		chatTicks = compoundTag.getInt(TAG_CHAT_TICKS);
 		awakeTicks = compoundTag.getInt(TAG_AWAKE_TICKS);
 		sleepTicks = compoundTag.getInt(TAG_SLEEP_TICKS);
-		NbtUtils.readBlockPos(compoundTag, TAG_HOME_POS).ifPresent(pos -> homePos = pos);
+		GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.homePos = pos);
 		if (this.offers == null) {
 			this.offers = new MerchantOffers();
 			this.addTrades();
@@ -163,7 +163,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		compoundTag.putInt(TAG_CHAT_TICKS, chatTicks);
 		compoundTag.putInt(TAG_AWAKE_TICKS, awakeTicks);
 		compoundTag.putInt(TAG_SLEEP_TICKS, sleepTicks);
-		compoundTag.put(TAG_HOME_POS, NbtUtils.writeBlockPos(homePos));
+		GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_HOME_POS, tag));
 	}
 
 	@Override
@@ -191,7 +191,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	@Nullable
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
-		homePos = blockPosition();
+		homePos = GlobalPos.of(level.getLevel().dimension(), blockPosition());
 
 		level().registryAccess().registryOrThrow(ESRegistries.BOARWARF_TYPE).forEach((type) -> {
 			if (type.biome().value() == level.getBiome(blockPosition()).value()) {

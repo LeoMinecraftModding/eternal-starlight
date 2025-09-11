@@ -16,7 +16,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 
 public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 	public static final int ID = 3;
@@ -54,11 +53,11 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 50, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 				}
 			}
-			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(entity.getBehaviorTicks() == 3 ? 4.5 : 1.25))) {
+			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(entity.getBehaviorTicks() == 3 ? 4.5 : 1.5))) {
 				if (livingEntity == target || (livingEntity instanceof Targeting targeting && targeting.getTarget() == entity)) {
 					entity.doHurtTarget(livingEntity);
 					livingEntity.hurtMarked = true;
-					livingEntity.addDeltaMovement(livingEntity.position().subtract(entity.position()).normalize().multiply(0.8, 0.3, 0.8));
+					livingEntity.addDeltaMovement(livingEntity.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
 				}
 			}
 		}
@@ -71,6 +70,5 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 
 	@Override
 	public void onStop(Permafrost entity) {
-		entity.addDeltaMovement(new Vec3(0, 0.1, 0));
 	}
 }

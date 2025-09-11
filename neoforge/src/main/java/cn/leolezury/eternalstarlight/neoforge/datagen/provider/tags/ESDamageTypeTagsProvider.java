@@ -89,6 +89,9 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.SEEDS,
 				ESDamageTypes.STARFIRE,
 				ESDamageTypes.LASER,
+				ESDamageTypes.ENERGIZED_FLAME,
+				ESDamageTypes.FREEZE,
+				ESDamageTypes.POISON,
 				ESDamageTypes.BITE
 			);
 	}

@@ -18,6 +18,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity> {
@@ -64,5 +65,15 @@ public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity
 		public void renderToBuffer(PoseStack stack, VertexConsumer consumer, int light, int overlay, int color) {
 			this.root.render(stack, consumer, light, overlay, color);
 		}
+	}
+
+	@Override
+	public boolean shouldRenderOffScreen(SolarEggBlockEntity blockEntity) {
+		return true;
+	}
+
+	@Override
+	public boolean shouldRender(SolarEggBlockEntity blockEntity, Vec3 vec3) {
+		return true;
 	}
 }

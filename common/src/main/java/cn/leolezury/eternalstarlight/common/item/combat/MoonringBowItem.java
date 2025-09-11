@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,8 +10,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class MoonringBowItem extends BowItem {
 	public MoonringBowItem(Properties properties) {
@@ -31,7 +32,7 @@ public class MoonringBowItem extends BowItem {
 				ScreenShakeVfx.createInstance(livingEntity.level().dimension(), livingEntity.position(), 30, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
 			}
 			for (int i = 0; i < 16; i++) {
-				createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, livingEntity.getYRot(), 40, i * 5);
+				createThorn(level, livingEntity, livingEntity.getX() + x * i * 1.5, livingEntity.getY(), livingEntity.getZ() + z * i * 1.5, Mth.wrapDegrees(-livingEntity.getYRot()), 40, i * 5);
 			}
 		}
 	}
@@ -42,9 +43,9 @@ public class MoonringBowItem extends BowItem {
 		double finalY = y;
 
 		if (level.getBlockState(startPos).isAir()) {
-			ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level, CollisionContext.of(owner), startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0));
-			if (result.blockHitResult() != null) {
-				finalY = result.blockHitResult().getLocation().y;
+			BlockHitResult result = level.clip(new ClipContext(startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, owner));
+			if (result.getType() != HitResult.Type.MISS) {
+				finalY = result.getLocation().y;
 				successful = true;
 			}
 		} else {
@@ -54,9 +55,9 @@ public class MoonringBowItem extends BowItem {
 				currentDiff++;
 			}
 			if (level.getBlockState(startPos).isAir()) {
-				ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level, CollisionContext.of(owner), startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0));
-				if (result.blockHitResult() != null) {
-					finalY = result.blockHitResult().getLocation().y;
+				BlockHitResult result = level.clip(new ClipContext(startPos.getCenter(), startPos.getCenter().add(0, -maxDiff, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, owner));
+				if (result.getType() != HitResult.Type.MISS) {
+					finalY = result.getLocation().y;
 					successful = true;
 				}
 			}

@@ -117,7 +117,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onProjectileImpact(ProjectileImpactEvent event) {
-		CommonHandlers.onArrowHit(event.getProjectile(), event.getRayTraceResult());
+		CommonHandlers.onProjectileImpact(event.getProjectile(), event.getRayTraceResult());
 	}
 
 	@SubscribeEvent

@@ -123,7 +123,7 @@ public class ESTags {
 	}
 
 	public static class EntityTypes {
-		public static final TagKey<EntityType<?>> ROBOTIC = create("robotic");
+		public static final TagKey<EntityType<?>> STARLIGHT_GOLEM_ALLYS = create("starlight_golem_allys");
 		public static final TagKey<EntityType<?>> LUNAR_MONSTROSITY_ALLYS = create("lunar_monstrosity_allys");
 		public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
 		public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
@@ -133,6 +133,7 @@ public class ESTags {
 		public static final TagKey<EntityType<?>> STRANGHOUL_PREYS = create("stranghoul_preys");
 		public static final TagKey<EntityType<?>> STRANGHOUL_CANNOT_HUNT = create("stranghoul_cannot_hunt");
 		public static final TagKey<EntityType<?>> STARFIRE_BIRD_AFRAID_OF = create("starfire_bird_afraid_of");
+		public static final TagKey<EntityType<?>> AETHERSENT_GOLEM_TARGETS = create("aethersent_golem_targets");
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));

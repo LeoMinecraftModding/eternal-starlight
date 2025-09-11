@@ -36,7 +36,7 @@ public class CrestEntity extends Entity implements TrailOwner {
 	private static final String TAG_HEALTH = "health";
 	private static final String TAG_CREST = "crest";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/concentrated_trail.png");
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
 	private int age;
 	private int health;

@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-16T22:34:22.3679693	Tags for minecraft:damage_type mod id eternal_starlight
+// 1.21.1	2025-09-11T23:30:49.9356455	Tags for minecraft:damage_type mod id eternal_starlight
 7ec4ef987458f2a35edd11d2a66197a43bd2aebd data/minecraft/tags/damage_type/always_kills_armor_stands.json
 a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_armor.json
 a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_enchantments.json
@@ -6,4 +6,4 @@ d333f8a27770a4899d30e37fcbfea67b43629c90 data/minecraft/tags/damage_type/bypasse
 80cdd122fa9f7fc66afd12460ba25e9a11aef5bb data/minecraft/tags/damage_type/is_projectile.json
 4b0fb15669d6f3058f9dda751f9d7448660e46fe data/minecraft/tags/damage_type/no_impact.json
 4b0fb15669d6f3058f9dda751f9d7448660e46fe data/minecraft/tags/damage_type/no_knockback.json
-2a4c5c740ac63e535737ea9ae5ffcb1b86d9494f data/minecraft/tags/damage_type/panic_causes.json
+ba76178b8f2b04fa7475bb09dfd1560cc57501b2 data/minecraft/tags/damage_type/panic_causes.json

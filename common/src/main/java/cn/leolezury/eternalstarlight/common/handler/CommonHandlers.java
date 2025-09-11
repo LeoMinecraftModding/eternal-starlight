@@ -7,8 +7,10 @@ import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
+import cn.leolezury.eternalstarlight.common.entity.attack.CrystalCluster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
+import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownStarfire;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
@@ -55,6 +57,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -78,9 +81,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -91,6 +96,7 @@ import java.util.Optional;
 
 public class CommonHandlers {
 	public static final String CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
+	public static final String MECHANICAL_ARROW = EternalStarlight.ID + ":mechanical";
 	public static final String STARFALL_ARROW = EternalStarlight.ID + ":starfall";
 	public static final String WILTED_ARROW = EternalStarlight.ID + ":wilted";
 	public static TheGatekeeperNameManager gatekeeperNames;
@@ -189,6 +195,9 @@ public class CommonHandlers {
 		float modified = amount;
 		Entity sourceEntity = source.getEntity();
 		if (sourceEntity != null) {
+			if (sourceEntity.getType() == ESEntities.THE_GATEKEEPER.get()) {
+				modified *= (1 + Mth.clamp(ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(entity), 0, 40) * 0.05f);
+			}
 			if (sourceEntity.getType() == ESEntities.STARLIGHT_GOLEM.get()) {
 				modified *= (float) ESConfig.INSTANCE.mobsConfig.starlightGolem.attackDamageScale();
 			}
@@ -426,28 +435,30 @@ public class CommonHandlers {
 				ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.setData(entity, inAbyssalFireTicks - 1);
 			}
 		}
-		if (!level.isClientSide && entity instanceof AbstractArrow arrow && ESDataAttachments.ARROW_TYPE.getData(arrow).equals(WILTED_ARROW) && !arrow.inGround) {
-			List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
-			affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
-			for (LivingEntity living : affected) {
-				living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
-				living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
-			}
-			if (arrow.tickCount % 4 == 0) {
-				for (int i = 0; i < 3; i++) {
-					WiltedPetal petal = arrow.getOwner() instanceof LivingEntity living ? new WiltedPetal(level, living) : new WiltedPetal(ESEntities.WILTED_PETAL.get(), level);
-					petal.setPos(entity.position());
-					Vec3 movement = new Vec3(entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5);
-					if (affected.size() > i) {
-						LivingEntity target = affected.get(i);
-						movement = target.position().add(0, target.getBbHeight() / 2, 0).subtract(entity.position());
-					}
-					petal.shoot(movement.x, movement.y, movement.z, 0.8f, 0.2f);
-					level.addFreshEntity(petal);
+		if (!level.isClientSide && entity instanceof AbstractArrow arrow && !arrow.inGround) {
+			if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(WILTED_ARROW)) {
+				List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
+				affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
+				for (LivingEntity living : affected) {
+					living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
+					living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
 				}
-			}
-			if (level instanceof ServerLevel serverLevel) {
-				serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(96, 0x90003b)), entity.getX(), entity.getY(), entity.getZ(), 6, 2, 2, 2, 0.2);
+				if (arrow.tickCount % 4 == 0) {
+					for (int i = 0; i < 3; i++) {
+						WiltedPetal petal = arrow.getOwner() instanceof LivingEntity living ? new WiltedPetal(level, living) : new WiltedPetal(ESEntities.WILTED_PETAL.get(), level);
+						petal.setPos(entity.position());
+						Vec3 movement = new Vec3(entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5);
+						if (affected.size() > i) {
+							LivingEntity target = affected.get(i);
+							movement = target.position().add(0, target.getBbHeight() / 2, 0).subtract(entity.position());
+						}
+						petal.shoot(movement.x, movement.y, movement.z, 0.8f, 0.2f);
+						level.addFreshEntity(petal);
+					}
+				}
+				if (level instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(96, 0x90003b)), entity.getX(), entity.getY(), entity.getZ(), 6, 2, 2, 2, 0.2);
+				}
 			}
 		}
 		if (entity instanceof LivingEntity livingEntity) {
@@ -598,18 +609,54 @@ public class CommonHandlers {
 		}
 	}
 
-	public static void onArrowHit(Projectile projectile, HitResult result) {
+	public static void onProjectileImpact(Projectile projectile, HitResult result) {
 		if (projectile.level() instanceof ServerLevel serverLevel) {
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(CRYSTAL_ARROW)) {
+				for (int i = 0; i < 5; i++) {
+					Vec3 pos = projectile.position().offsetRandom(projectile.getRandom(), 4);
+					BlockPos startPos = BlockPos.containing(pos);
+					int currentDiff = 0;
+					while (!serverLevel.getBlockState(startPos).isAir() && currentDiff < 40) {
+						startPos = startPos.above();
+						currentDiff++;
+					}
+					if (serverLevel.getBlockState(startPos).isAir()) {
+						BlockHitResult toGround = serverLevel.clip(new ClipContext(startPos.getCenter(), startPos.getCenter().subtract(0, 128, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, projectile));
+						if (toGround.getType() != HitResult.Type.MISS) {
+							CrystalCluster cluster = new CrystalCluster(ESEntities.CRYSTAL_CLUSTER.get(), serverLevel);
+							cluster.setPos(toGround.getLocation());
+							if (projectile.getOwner() instanceof LivingEntity owner) {
+								cluster.setOwner(owner);
+							}
+							cluster.setYRot(Mth.wrapDegrees(projectile.getRandom().nextFloat() * 360));
+							serverLevel.addFreshEntity(cluster);
+						}
+					}
+				}
 				if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
 					int level = 0;
 					if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
 						MobEffectInstance instance = living.getEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder());
 						if (instance != null) {
-							level += instance.getAmplifier();
+							level = Math.min(instance.getAmplifier() + 1, 4);
 						}
 					}
 					living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 200, level));
+				}
+			}
+			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(MECHANICAL_ARROW) && result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
+				Entity owner = projectile.getOwner();
+				ItemStack weapon = projectile.getWeaponItem();
+				if (owner instanceof LivingEntity attacker && weapon != null && !SpecialItemCooldown.isOnCooldown(owner, weapon.getItem())) {
+					for (int i = 0; i < owner.getRandom().nextInt(5, 8); i++) {
+						EnergySpark spark = new EnergySpark(serverLevel, attacker);
+						spark.setPos(living.position().add(0, living.getBbHeight() / 2, 0));
+						spark.setTarget(living);
+						Vec3 movement = new Vec3(owner.getRandom().nextFloat() - 0.5, owner.getRandom().nextFloat() - 0.5, owner.getRandom().nextFloat() - 0.5);
+						spark.shoot(movement.x, movement.y, movement.z, 0.1f, 0.2f);
+						serverLevel.addFreshEntity(spark);
+					}
+					SpecialItemCooldown.setCooldown(owner, weapon.getItem(), 75);
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFALL_ARROW) && projectile.getOwner() instanceof LivingEntity owner) {

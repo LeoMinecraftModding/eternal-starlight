@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -16,13 +17,13 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.AbstractGolem;
-import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -131,15 +132,15 @@ public class AethersentGolem extends AbstractGolem {
 		if (!level().isClientSide) {
 			if (tickCount % 20 == 0) {
 				List<AethersentMeteor> meteors = level().getEntitiesOfClass(AethersentMeteor.class, getBoundingBox().inflate(75)).stream().filter(AethersentMeteor::isNatural).toList();
-				List<Phantom> phantoms = level().getEntitiesOfClass(Phantom.class, getBoundingBox().inflate(50)).stream().toList();
-				if (!meteors.isEmpty() || !phantoms.isEmpty()) {
+				List<LivingEntity> mobTargets = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(50)).stream().filter(living -> living.getType().is(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS)).toList();
+				if (!meteors.isEmpty() || !mobTargets.isEmpty()) {
 					level().broadcastEntityEvent(this, (byte) 100);
 					meteors.forEach(meteor -> meteor.dropAndDiscard(true));
-					phantoms.forEach(phantom -> phantom.hurt(damageSources().magic(), 8));
+					mobTargets.forEach(living -> living.hurt(damageSources().magic(), 8));
 					if (!meteors.isEmpty()) {
 						lookPos = meteors.getFirst().position();
 					} else {
-						lookPos = phantoms.getFirst().position();
+						lookPos = mobTargets.getFirst().position();
 					}
 					playSound(ESSoundEvents.AETHERSENT_GOLEM_SHOOT.get());
 					peaceTicks = 0;

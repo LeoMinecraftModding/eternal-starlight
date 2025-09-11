@@ -27,15 +27,15 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 
 	@Override
 	public void render(ESFallingBlock block, float yaw, float delta, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
-		BlockState blockstate = block.getBlockState();
-		if (blockstate == null) return;
-		if (blockstate.getRenderShape() == RenderShape.MODEL) {
+		BlockState state = block.getBlockState();
+		if (state == null) return;
+		if (state.getRenderShape() == RenderShape.MODEL) {
 			Level level = block.level();
-			if (blockstate != level.getBlockState(block.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
+			if (state.getRenderShape() != RenderShape.INVISIBLE) {
 				stack.pushPose();
-				BlockPos blockpos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
-				stack.translate(-0.5D, 0.0D, -0.5D);
-				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, blockstate, blockpos, blockstate.getSeed(block.getStartPos()));
+				BlockPos pos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
+				stack.translate(-0.5, 0.0, -0.5);
+				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(block.getStartPos()));
 				stack.popPose();
 				super.render(block, yaw, delta, stack, bufferSource, packedLight);
 			}

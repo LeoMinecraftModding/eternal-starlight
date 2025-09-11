@@ -9,6 +9,9 @@
     "eternal_starlight:seeds",
     "eternal_starlight:starfire",
     "eternal_starlight:laser",
+    "eternal_starlight:energized_flame",
+    "eternal_starlight:freeze",
+    "eternal_starlight:poison",
     "eternal_starlight:bite"
   ]
 }

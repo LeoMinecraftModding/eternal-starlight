@@ -16,10 +16,9 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 		super(tier, canTill, properties);
 	}
 
-	@Override
-	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+	private void performSpecialAttach(LivingEntity entity) {
 		Level level = entity.level();
-		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(entity, stack.getItem())) {
+		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(entity, this)) {
 			Vec3 shootPos = entity.position().add(0, entity.getBbWidth() / 2, 0);
 			for (int i = -2; i <= 2; i++) {
 				LunarSpore spore = new LunarSpore(level, entity, shootPos.x, shootPos.y, shootPos.z);
@@ -27,7 +26,18 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 				spore.setDeltaMovement(ESMathUtil.rotationToPosition(0.9f, -entity.getViewXRot(0) + 5, entity.getViewYRot(0) + 90 + i * 8));
 				level.addFreshEntity(spore);
 			}
-			SpecialItemCooldown.setCooldown(entity, stack.getItem(), 100);
+			SpecialItemCooldown.setCooldown(entity, this, 100);
 		}
+	}
+
+	@Override
+	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+		super.postHurtEnemy(stack, target, attacker);
+		performSpecialAttach(attacker);
+	}
+
+	@Override
+	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+		performSpecialAttach(entity);
 	}
 }

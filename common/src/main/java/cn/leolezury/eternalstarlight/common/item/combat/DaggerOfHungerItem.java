@@ -52,7 +52,8 @@ public class DaggerOfHungerItem extends SwordItem {
 	}
 
 	@Override
-	public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
+	public void postHurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
+		super.postHurtEnemy(stack, entity, attacker);
 		entity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 60));
 		if (attacker instanceof Player player) {
 			player.getFoodData().eat(3, 0);
@@ -63,7 +64,6 @@ public class DaggerOfHungerItem extends SwordItem {
 		if (newHungerLevel == 1 && attacker instanceof ServerPlayer player) {
 			ESCriteriaTriggers.SATURATE_DAGGER_OF_HUNGER.get().trigger(player);
 		}
-		return super.hurtEnemy(stack, entity, attacker);
 	}
 
 	@Override
